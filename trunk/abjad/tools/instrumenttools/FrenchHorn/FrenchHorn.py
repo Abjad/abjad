@@ -2,11 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.BrassInstrument import BrassInstrument
-from abjad.tools.instrumenttools.WindInstrument import WindInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class FrenchHorn(BrassInstrument, WindInstrument):
+class FrenchHorn(Instrument):
     r'''Abjad model of the French horn:
 
     ::
@@ -40,9 +39,13 @@ class FrenchHorn(BrassInstrument, WindInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        BrassInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'horn'
-        self._default_performer_names.append('hornist')
+        self._default_performer_names.extend([
+            'wind player',
+            'brass player',
+            'hornist',
+            ])
         self._default_short_instrument_name = 'hn.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \

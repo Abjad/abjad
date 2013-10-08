@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class EFlatClarinet(Clarinet):
+class EFlatClarinet(Instrument):
     r'''Abjad model of the E-flat clarinet:
 
     ::
@@ -39,8 +39,15 @@ class EFlatClarinet(Clarinet):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Clarinet.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'clarinet in E-flat'
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'single reed player',
+            'clarinettist',
+            'clarinetist',
+            ])
         self._default_short_instrument_name = 'cl. E-flat'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \

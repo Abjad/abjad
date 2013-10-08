@@ -2,11 +2,11 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class ClarinetInA(Clarinet):
-    r'''Abjad model of the clarinet in A:
+class ClarinetInA(Instrument):
+    r'''A clarinet in A.
 
     ::
 
@@ -39,12 +39,19 @@ class ClarinetInA(Clarinet):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Clarinet.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
+        pitch = pitchtools.NamedPitch('a')
         self._default_instrument_name = 'clarinet in A'
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'single reed player',
+            'clarinettist',
+            'clarinetist',
+            ])
         self._default_short_instrument_name = r'cl. A \natural'
-        self._is_primary_instrument = False
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch('a')
-        self.starting_clefs = [contexttools.ClefMark('treble')]
-        self._copy_starting_clefs_to_allowable_clefs()
+        self._default_sounding_pitch_of_written_middle_c = pitch
+        self._default_starting_clefs = [contexttools.ClefMark('treble')]
         self._default_pitch_range = pitchtools.PitchRange(-11, 33)
+        self._is_primary_instrument = False
+        self._copy_starting_clefs_to_allowable_clefs()

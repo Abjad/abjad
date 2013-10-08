@@ -2,11 +2,11 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class BFlatClarinet(Clarinet):
-    r'''Abjad model of the B-flat clarinet:
+class BFlatClarinet(Instrument):
+    r'''A B-flat clarinet.
 
     ::
 
@@ -40,15 +40,23 @@ class BFlatClarinet(Clarinet):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Clarinet.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'clarinet in B-flat'
+        self.default_performer_abbreviation = 'cl.'
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'single reed player',
+            'clarinettist',
+            'clarinetist',
+            ])
         self._default_short_instrument_name = 'cl. in B-flat'
-        self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch('bf')
         self.starting_clefs = [contexttools.ClefMark('treble')]
-        self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-10, 34)
+        self._is_primary_instrument = True
+        self._copy_starting_clefs_to_allowable_clefs()
 
     ### PUBLIC METHODS ###
 
@@ -60,6 +68,7 @@ class BFlatClarinet(Clarinet):
             >>> for performer_name in clarinet._get_performer_names():
             ...     performer_name
             'instrumentalist'
+            'wind player'
             'reed player'
             'single reed player'
             'clarinettist'

@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Voice import Voice
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class SopranoVoice(Voice):
+class SopranoVoice(Instrument):
     r'''Abjad model of the soprano voice:
 
     ::
@@ -43,9 +43,12 @@ class SopranoVoice(Voice):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Voice.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'soprano voice'
-        self._default_performer_names.append('soprano')
+        self._default_performer_names.extend([
+            'vocalist',
+            'soprano'
+            ])
         self._default_short_instrument_name = 'soprano'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \

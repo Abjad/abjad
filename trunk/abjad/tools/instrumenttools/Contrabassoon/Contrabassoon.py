@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Bassoon import Bassoon
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Contrabassoon(Bassoon):
+class Contrabassoon(Instrument):
     r'''Abjad model of the contrabassoon:
 
     ::
@@ -42,8 +42,14 @@ class Contrabassoon(Bassoon):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Bassoon.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'contrabassoon'
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'double reed player',
+            'bassoonist',
+            ])
         self._default_short_instrument_name = 'contrabsn.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \

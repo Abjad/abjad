@@ -2,11 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.PercussionInstrument \
-	import PercussionInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Xylophone(PercussionInstrument):
+class Xylophone(Instrument):
     r'''Abjad model of the xylphone:
 
     ::
@@ -36,9 +35,12 @@ class Xylophone(PercussionInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        PercussionInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'xylophone'
-        self._default_performer_names.append('xylophonist')
+        self._default_performer_names.extend([
+            'percussionist',
+            'xylophonist',
+            ])
         self._default_short_instrument_name = 'xyl.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \

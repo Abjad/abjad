@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.WindInstrument import WindInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Flute(WindInstrument):
+class Flute(Instrument):
     r'''A flute.
 
     ::
@@ -37,9 +37,10 @@ class Flute(WindInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        WindInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'flute'
         self._default_performer_names.extend([
+            'wind player',
             'flautist', 
             'flutist',
             ])

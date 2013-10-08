@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class ContrabassClarinet(Clarinet):
+class ContrabassClarinet(Instrument):
     r'''Abjad model of the contrassbass clarinet:
 
     ::
@@ -39,8 +39,15 @@ class ContrabassClarinet(Clarinet):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Clarinet.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'contrabass clarinet'
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'single reed player',
+            'clarinettist',
+            'clarinetist',
+            ])
         self._default_short_instrument_name = 'cbass cl.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \

@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.StringInstrument import StringInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Viola(StringInstrument):
+class Viola(Instrument):
     r'''Abjad model of the viola:
 
     ::
@@ -38,9 +38,12 @@ class Viola(StringInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        StringInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'viola'
-        self._default_performer_names.append('violist')
+        self._default_performer_names.extend([
+            'string player',
+            'violist',
+            ])
         self._default_short_instrument_name = 'va.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \

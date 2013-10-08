@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Oboe import Oboe
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class EnglishHorn(Oboe):
+class EnglishHorn(Instrument):
     r'''Abjad model of the English horn:
 
     ::
@@ -39,8 +39,14 @@ class EnglishHorn(Oboe):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Oboe.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'English horn'
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'double reed player',
+            'oboist',
+            ])
         self._default_short_instrument_name = 'Eng. hn.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \

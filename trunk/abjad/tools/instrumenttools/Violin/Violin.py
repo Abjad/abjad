@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.StringInstrument import StringInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Violin(StringInstrument):
+class Violin(Instrument):
     r'''A violin.
 
     ::
@@ -37,9 +37,12 @@ class Violin(StringInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        StringInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'violin'
-        self._default_performer_names.append('violinist')
+        self._default_performer_names.extend([
+            'string player',
+            'violinist',
+            ])
         self._default_pitch_range = pitchtools.PitchRange(-5, 43)
         self._default_short_instrument_name = 'vn.'
         self._default_starting_clefs = [contexttools.ClefMark('treble')]

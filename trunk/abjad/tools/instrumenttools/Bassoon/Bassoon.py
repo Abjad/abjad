@@ -2,11 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.DoubleReedInstrument \
-    import DoubleReedInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Bassoon(DoubleReedInstrument):
+class Bassoon(Instrument):
     r'''A bassoon.
 
     ::
@@ -40,13 +39,18 @@ class Bassoon(DoubleReedInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        DoubleReedInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_allowable_clefs = contexttools.ClefMarkInventory([
             contexttools.ClefMark('bass'), 
             contexttools.ClefMark('tenor'),
             ])
         self._default_instrument_name = 'bassoon'
-        self._default_performer_names.append('bassoonist')
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'double reed player',
+            'bassoonist',
+            ])
         self._default_pitch_range = pitchtools.PitchRange(-26, 15)
         self._default_short_instrument_name = 'bsn.'
         self._default_starting_clefs = contexttools.ClefMarkInventory([

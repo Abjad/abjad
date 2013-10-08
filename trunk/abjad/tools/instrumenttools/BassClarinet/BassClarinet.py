@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class BassClarinet(Clarinet):
+class BassClarinet(Instrument):
     r'''A bass clarinet.
 
     ::
@@ -37,7 +37,7 @@ class BassClarinet(Clarinet):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Clarinet.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         pitch = pitchtools.NamedPitch('bf,')
         self._default_allowable_clefs = contexttools.ClefMarkInventory([
             contexttools.ClefMark('treble'), 
@@ -45,6 +45,13 @@ class BassClarinet(Clarinet):
             ])
         self._default_instrument_name = 'bass clarinet'
         self._default_pitch_range = pitchtools.PitchRange(-26, 19)
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'single reed player',
+            'clarinettist',
+            'clarinetist',
+            ])
         self._default_short_instrument_name = 'bass cl.'
         self._default_sounding_pitch_of_written_middle_c = pitch
         self._default_starting_clefs = contexttools.ClefMarkInventory([
@@ -78,7 +85,7 @@ class BassClarinet(Clarinet):
 
             Returns named pitch.
             '''
-            return Clarinet.sounding_pitch_of_written_middle_c.fget(self)
+            return Instrument.sounding_pitch_of_written_middle_c.fget(self)
         def fset(self, pitch):
-            Clarinet.sounding_pitch_of_written_middle_c.fset(self, pitch)
+            Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

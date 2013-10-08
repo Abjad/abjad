@@ -2,11 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.PercussionInstrument \
-	import PercussionInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class UntunedPercussion(PercussionInstrument):
+class UntunedPercussion(Instrument):
     r'''Abjad model of untuned percussion:
 
     ::
@@ -36,8 +35,11 @@ class UntunedPercussion(PercussionInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        PercussionInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'untuned percussion'
+        self._default_performer_names.extend([
+            'percussionist',
+            ])
         self._default_short_instrument_name = 'perc.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \

@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Trombone.Trombone import Trombone
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class AltoTrombone(Trombone):
+class AltoTrombone(Instrument):
     r'''An alto trombone.
 
     ::
@@ -40,8 +40,12 @@ class AltoTrombone(Trombone):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Trombone.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'alto trombone'
+        self._default_performer_names.extend([
+            'brass player',
+            'trombonist',
+            ])
         self._default_pitch_range = pitchtools.PitchRange('[A2, Bb5]')
         self._default_short_instrument_name = 'alt. trb.'
         self._default_starting_clefs = [
@@ -77,7 +81,7 @@ class AltoTrombone(Trombone):
 
             Returns named pitch.
             '''
-            return Trombone.sounding_pitch_of_written_middle_c.fget(self)
+            return Instrument.sounding_pitch_of_written_middle_c.fget(self)
         def fset(self, pitch):
-            Trombone.sounding_pitch_of_written_middle_c.fset(self, pitch)
+            Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

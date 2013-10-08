@@ -3,10 +3,10 @@ from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools.instrumenttools.StringInstrument import StringInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Harp(StringInstrument):
+class Harp(Instrument):
     r'''Abjad model of the harp:
 
     ::
@@ -48,10 +48,16 @@ class Harp(StringInstrument):
     def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        StringInstrument.__init__(
-            self, target_context=target_context, **kwargs)
+        Instrument.__init__(
+            self, 
+            target_context=target_context, 
+            **kwargs
+            )
         self._default_instrument_name = 'harp'
-        self._default_performer_names.append('harpist')
+        self._default_performer_names.extend([
+            'string player',
+            'harpist',
+            ])
         self._default_short_instrument_name = 'hp.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \

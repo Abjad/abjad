@@ -2,11 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.PercussionInstrument \
-	import PercussionInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Glockenspiel(PercussionInstrument):
+class Glockenspiel(Instrument):
     r'''Abjad model of the glockenspiel:
 
     ::
@@ -40,8 +39,11 @@ class Glockenspiel(PercussionInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        PercussionInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'glockenspiel'
+        self._default_performer_names.extend([
+            'percussionist',
+            ])
         self._default_short_instrument_name = 'gkspl.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \

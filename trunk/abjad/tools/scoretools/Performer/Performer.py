@@ -494,16 +494,7 @@ class Performer(AbjadObject):
                 TenorVoice
             wind player:
                 AltoFlute
-                AltoSaxophone
-                BaritoneSaxophone
-                BassFlute
-                BassSaxophone
-                ContrabassFlute
-                ContrabassSaxophone
-                Flute
-                Piccolo
-                SopraninoSaxophone
-                SopranoSaxophone
+                ...
                 TenorSaxophone
             xylophonist:
                 Xylophone

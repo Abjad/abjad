@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Voice import Voice
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class ContraltoVoice(Voice):
+class ContraltoVoice(Instrument):
     r'''Abjad model of the contralto voice:
 
     ::
@@ -43,9 +43,12 @@ class ContraltoVoice(Voice):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Voice.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'contralto voice'
-        self._default_performer_names.append('contralto')
+        self._default_performer_names.extend([
+            'vocalist',
+            'contralto',
+            ])
         self._default_short_instrument_name = 'contralto'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
