@@ -20,8 +20,7 @@ class Instrument(contexttools.InstrumentMark):
         short_instrument_name_markup=None,
         target_context=None,
         ):
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch("c'")
+        self._sounding_pitch_of_written_middle_c = pitchtools.NamedPitch("c'")
         contexttools.InstrumentMark.__init__(
             self,
             instrument_name,
@@ -143,9 +142,9 @@ class Instrument(contexttools.InstrumentMark):
     @apply
     def all_clefs():
         def fget(self):
-            r'''All clefs allowed for instrument.
+            r'''Gets and sets all clefs allowed for instrument.
 
-            Returns tuple of clefs.
+            Returns inventory of clefs.
             '''
             return self._all_clefs
         def fset(self, clefs):
@@ -173,7 +172,7 @@ class Instrument(contexttools.InstrumentMark):
     @apply
     def pitch_range():
         def fget(self):
-            r'''Read / write pitch range.
+            r'''Gets and sets pitch range.
 
             Returns pitch range.
             '''
@@ -189,9 +188,9 @@ class Instrument(contexttools.InstrumentMark):
     @apply
     def primary_clefs():
         def fget(self):
-            r'''Primary clefs of instrument.
+            r'''Gets and sets instrument's primary clefs.
 
-            Returns clef mark inventory.
+            Returns clef inventory.
             '''
             return self._primary_clefs
         def fset(self, clefs):
@@ -201,7 +200,7 @@ class Instrument(contexttools.InstrumentMark):
     @apply
     def sounding_pitch_of_written_middle_c():
         def fget(self):
-            r'''Sounding pitch of written middle C.
+            r'''Gets and sets sounding pitch of written middle C.
 
             Returns named pitch.
             '''
@@ -210,4 +209,3 @@ class Instrument(contexttools.InstrumentMark):
             pitch = pitchtools.NamedPitch(pitch)
             self._sounding_pitch_of_written_middle_c = pitch
         return property(**locals())
-

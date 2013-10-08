@@ -134,13 +134,9 @@ class InstrumentMark(ContextMark):
     @apply
     def instrument_name():
         def fget(self):
-            r'''Gets instrument name.
+            r'''Gets and sets instrument name.
 
             Returns string.
-
-            Sets instrument name.
-
-            Returns none.
             '''
             if self._instrument_name is None:
                 return self._default_instrument_name
@@ -154,13 +150,9 @@ class InstrumentMark(ContextMark):
     @apply
     def instrument_name_markup():
         def fget(self):
-            r'''Gets instrument name markup.
+            r'''Gets and sets instrument name markup.
 
             Returns markup.
-
-            Sets instrument name markup.
-
-            Returns none.
             '''
             from abjad.tools.markuptools import Markup
             if self._instrument_name_markup is None:
@@ -202,13 +194,9 @@ class InstrumentMark(ContextMark):
     @apply
     def short_instrument_name():
         def fget(self):
-            r'''Gets short instrument name.
+            r'''Gets and sets short instrument name.
 
             Returns string.
-
-            Sets short instrument name.
-
-            Returns none.
             '''
             if self._short_instrument_name is None:
                 return self._default_short_instrument_name
@@ -222,13 +210,9 @@ class InstrumentMark(ContextMark):
     @apply
     def short_instrument_name_markup():
         def fget(self):
-            r'''Gets short instrument name markup.
+            r'''Gets and sets short instrument name markup.
 
             Returns markup.
-
-            Sets short instrument name markup.
-
-            Returns none.
             '''
             from abjad.tools.markuptools import Markup
             if self._short_instrument_name_markup is None:

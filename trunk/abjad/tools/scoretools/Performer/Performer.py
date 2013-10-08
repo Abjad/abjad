@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Performer(AbjadObject):
-    r'''Abjad model of performer:
+    r'''A instrumental or vocal performer.
 
     ::
 
@@ -69,7 +69,7 @@ class Performer(AbjadObject):
 
     @staticmethod
     def list_performer_names():
-        r'''List performer names:
+        r'''Lists performer names.
 
         ::
 
@@ -104,7 +104,7 @@ class Performer(AbjadObject):
             'violist'
             'xylophonist'
 
-        Return list.
+        Returns list.
         '''
         from abjad.tools import instrumenttools
         performer_names = set([])

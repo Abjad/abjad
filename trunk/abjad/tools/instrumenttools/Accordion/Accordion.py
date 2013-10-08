@@ -2,11 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools.instrumenttools.KeyboardInstrument import KeyboardInstrument
-from abjad.tools.instrumenttools.ReedInstrument import ReedInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Accordion(KeyboardInstrument, ReedInstrument):
+class Accordion(Instrument):
     r'''An accordion.
 
     ::
@@ -48,13 +47,16 @@ class Accordion(KeyboardInstrument, ReedInstrument):
     def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        KeyboardInstrument.__init__(
+        Instrument.__init__(
             self, 
             target_context=target_context, 
             **kwargs
             )
         self._default_instrument_name = 'accordion'
-        self._default_performer_names.append('accordionist')
+        self._default_performer_names.extend([
+            'keyboardist',
+            'accordionist',
+            ])
         self._default_short_instrument_name = 'acc.'
         self._is_primary_instrument = True
         self.primary_clefs = [
@@ -78,45 +80,84 @@ class Accordion(KeyboardInstrument, ReedInstrument):
     ### PUBLIC PROPERTIES ###
 
     @apply
+    def all_clefs():
+        def fget(self):
+            r'''Gets and sets all clefs allowed for instrument.
+
+            ::
+
+                >>> for clef in accordion.all_clefs:
+                ...     clef
+                ClefMark('treble')
+                ClefMark('bass')
+
+            Returns clef inventory.
+            '''
+            return Instrument.all_clefs.fget(self)
+        def fset(self, all_clefs):
+            return Instrument.all_clefs.fset(self, all_clefs)
+        return property(**locals())
+
+    @apply
     def instrument_name():
         def fget(self):
-            r'''Get instrument name.
+            r'''Gets and sets instrument name.
 
             ::
 
                 >>> accordion.instrument_name
                 'accordion'
 
-            Returns string.
-
-            Set instrument name:
-            
             ::
 
                 >>> accordion.instrument_name = 'fisarmonica'
                 >>> accordion.instrument_name
                 'fisarmonica'
 
-            Returns none.
+            Returns string.
             '''
-            return KeyboardInstrument.instrument_name.fget(self)
+            return Instrument.instrument_name.fget(self)
         def fset(self, foo):
-            KeyboardInstrument.instrument_name.fset(self, foo)
+            Instrument.instrument_name.fset(self, foo)
+        return property(**locals())
+
+    @apply
+    def instrument_name_markup():
+        def fget(self):
+            r'''Gets and sets instrument name markup.
+
+            ::
+
+                >>> accordion.instrument_name_markup
+                Markup(('Fisarmonica',))
+
+            ::
+
+                >>> markup = markuptools.Markup('fisarmonica')
+                >>> accordion.instrument_name_markup = markup
+                >>> accordion.instrument_name_markup
+                Markup(('fisarmonica',))
+
+            Returns markup.
+            '''
+            return Instrument.instrument_name_markup.fget(self)
+        def fset(self, markup):
+            return Instrument.instrument_name_markup.fset(self, markup)
         return property(**locals())
 
     @property
     def is_primary_instrument(self):
         r'''True when instrument is primary.
-        Otherwise false:
+        Otherwise false.
 
         ::
 
             >>> accordion.is_primary_instrument
             True
 
-        Return string.
+        Returns string.
         '''
-        return self._is_primary_instrument
+        return Instrument.is_primary_instrument.fget(self)
 
     @apply
     def pitch_range():
@@ -135,24 +176,85 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
             Returns pitch range.
             '''
-            superclass = KeyboardInstrument
-            return superclass.pitch_range.fget(self)
+            return Instrument.pitch_range.fget(self)
         def fset(self, pitch_range):
-            superclass = KeyboardInstrument
-            superclass.pitch_range.fset(self, pitch_range)
+            Instrument.pitch_range.fset(self, pitch_range)
+        return property(**locals())
+
+    @apply
+    def primary_clefs():
+        def fget(self):
+            r'''Gets and sets instrument primary clefs.
+
+            ::
+
+                >>> for clef in accordion.primary_clefs:
+                ...     clef
+                ClefMark('treble')
+                ClefMark('bass')
+
+            Returns clef inventory.
+            '''
+            return Instrument.primary_clefs.fget(self)
+        def fset(self, clefs):
+            return Instrument.primary_clefs.fset(self, clefs)
+
+    @apply
+    def short_instrument_name():
+        def fget(self):
+            r'''Gets and sets short instrument name.
+
+            ::
+
+                >>> accordion.short_instrument_name
+                'acc.'
+    
+            ::
+
+                >>> accordion.short_instrument_name = 'fis.'
+                >>> accordion.short_instrument_name
+                'fis.'
+
+            Returns string.
+            '''
+            return Instrument.short_instrument_name.fget(self)
+        def fset(self, name):
+            return Instrument.short_instrument_name.fset(self, name)
+        return property(**locals())
+
+    @apply
+    def short_instrument_name_markup():
+        def fget(self):
+            r'''Gets and sets short instrument name markup.
+
+            ::
+
+                >>> accordion.short_instrument_name_markup
+                Markup(('Fis.',))
+
+            ::
+
+                >>> markup = markuptools.Markup('fis.')
+                >>> accordion.short_instrument_name_markup = markup
+                >>> accordion.short_instrument_name_markup
+                Markup(('fis.',))
+
+            Returns markup.
+            '''
+            return Instrument.short_instrument_name_markup.fget(self)
+        def fset(self, markup):
+            return Instrument.short_instrument_name_markup.fset(self, markup)
         return property(**locals())
 
     @apply
     def sounding_pitch_of_written_middle_c():
         def fget(self):
-            r'''Gets sounding pitch of written middle C.
+            r'''Gets and sets sounding pitch of written middle C.
 
             ::
 
                 >>> accordion.sounding_pitch_of_written_middle_c
                 NamedPitch("c'")
-
-            Sets sounding pitch of written middle C:
 
             ::
 
@@ -162,9 +264,7 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
             Returns named pitch.
             '''
-            superclass = KeyboardInstrument
-            return superclass.sounding_pitch_of_written_middle_c.fget(self)
+            return Instrument.sounding_pitch_of_written_middle_c.fget(self)
         def fset(self, foo):
-            superclass = KeyboardInstrument
-            superclass.sounding_pitch_of_written_middle_c.fset(self, foo)
+            Instrument.sounding_pitch_of_written_middle_c.fset(self, foo)
         return property(**locals())
