@@ -5,7 +5,8 @@ from abjad.tools import voicetools
 
 
 def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr):
-    '''Iterate notes and chords in `expr` outside traditional instrument ranges:
+    '''Iterates notes and chords in `expr` 
+    outside traditional instrument ranges:
 
     ::
 
@@ -20,7 +21,7 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
         ... staff))
         [Chord('<d fs>8')]
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 
@@ -29,5 +30,5 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
             contexttools.InstrumentMark)
         if instrument is None:
             raise MissingInstrumentError
-        if note_or_chord not in instrument.default_pitch_range:
+        if note_or_chord not in instrument._default_pitch_range:
             yield note_or_chord

@@ -52,4 +52,4 @@ class TenorVoice(Voice):
             pitchtools.NamedPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange('C3', 'D5')
+        self._default_pitch_range = pitchtools.PitchRange('C3', 'D5')

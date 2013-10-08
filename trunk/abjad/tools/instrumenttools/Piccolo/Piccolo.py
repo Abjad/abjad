@@ -44,4 +44,4 @@ class Piccolo(Flute):
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c''")
-        self._traditional_pitch_range = pitchtools.PitchRange(14, 48)
+        self._default_pitch_range = pitchtools.PitchRange(14, 48)

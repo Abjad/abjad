@@ -3,13 +3,13 @@ from abjad.tools.containertools.Container import Container
 
 
 class GraceContainer(Container):
-    r'''Abjad model of grace music:
+    r'''A container of grace music.
 
     ::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
-        >>> spannertools.BeamSpanner(voice[:])
-        BeamSpanner(c'8, d'8, e'8, f'8)
+        >>> beam = spannertools.BeamSpanner(voice[:])
+        >>> show(voice) # doctest: +SKIP
 
     ..  doctest::
 
@@ -23,13 +23,10 @@ class GraceContainer(Container):
 
     ::
 
-        >>> show(voice) # doctest: +SKIP
-
-    ::
-
         >>> grace_notes = [Note("c'16"), Note("d'16")]
         >>> containertools.GraceContainer(grace_notes, kind='grace')(voice[1])
         Note("d'8")
+        >>> show(voice) # doctest: +SKIP
 
     ..  doctest::
 
@@ -47,14 +44,11 @@ class GraceContainer(Container):
 
     ::
 
-        >>> show(voice) # doctest: +SKIP
-
-    ::
-
         >>> after_grace_notes = [Note("e'16"), Note("f'16")]
         >>> containertools.GraceContainer(
         ...     after_grace_notes, kind='after')(voice[1])
         Note("d'8")
+        >>> show(voice) # doctest: +SKIP
 
     ..  doctest::
 
@@ -77,13 +71,9 @@ class GraceContainer(Container):
 
     ::
 
-        >>> show(voice) # doctest: +SKIP
+    Fill grace containers with notes, rests or chords.
 
-    Grace objects are containers you can fill with notes, rests and chords.
-
-    Grace containers override the special ``__call__`` method.
-
-    Attach grace containers to nongrace notes, rests and chords.
+    Attach grace containers to nongrace notes, rests or chords.
     '''
 
     ### CLASS VARIABLES ###
@@ -120,7 +110,7 @@ class GraceContainer(Container):
         return arg
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._summary)
+        return '{}({})'.format(self._class_name, self._summary)
 
     ### PRIVATE METHODS ###
 
@@ -145,7 +135,7 @@ class GraceContainer(Container):
     @apply
     def kind():
         def fget(self):
-            r'''Get `kind` of grace container:
+            r'''Gets `kind` of grace container.
 
             ::
 
@@ -157,9 +147,9 @@ class GraceContainer(Container):
                 >>> grace_container.kind
                 'grace'
 
-            Return string.
+            Returns string.
 
-            Set `kind` of grace container:
+            Sets `kind` of grace container:
 
             ::
 
@@ -172,7 +162,7 @@ class GraceContainer(Container):
                 >>> grace_container.kind
                 'acciaccatura'
 
-            Set string.
+            Sets string.
 
             Valid options include ``'after'``, ``'grace'``, 
             ``'acciaccatura'``, ``'appoggiatura'``.
@@ -196,14 +186,14 @@ class GraceContainer(Container):
     ### PUBLIC METHODS ###
 
     def attach(self, leaf):
-        r'''Attach grace container to `leaf`.
+        r'''Attaches grace container to `leaf`.
 
-        Return grace container.
+        Returns grace container.
         '''
         return self(leaf)
 
     def detach(self):
-        r'''Detach grace container from leaf:
+        r'''Detaches grace container from leaf.
 
         ::
 
@@ -235,7 +225,7 @@ class GraceContainer(Container):
                 f'8
             }
 
-        Return grace container.
+        Returns grace container.
         '''
         if self._carrier is not None:
             carrier = self._carrier

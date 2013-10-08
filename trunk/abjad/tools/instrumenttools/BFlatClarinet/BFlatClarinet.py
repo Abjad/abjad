@@ -48,16 +48,16 @@ class BFlatClarinet(Clarinet):
             pitchtools.NamedPitch('bf')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange(-10, 34)
+        self._default_pitch_range = pitchtools.PitchRange(-10, 34)
 
     ### PUBLIC METHODS ###
 
-    def get_performer_names(self):
+    def _get_performer_names(self):
         r'''Get performer names:
 
         ::
 
-            >>> for performer_name in clarinet.get_performer_names():
+            >>> for performer_name in clarinet._get_performer_names():
             ...     performer_name
             'instrumentalist'
             'reed player'
@@ -67,4 +67,4 @@ class BFlatClarinet(Clarinet):
 
         Return list.
         '''
-        return super(BFlatClarinet, self).get_performer_names()
+        return super(BFlatClarinet, self)._get_performer_names()

@@ -6,13 +6,14 @@ from abjad.tools import pitchtools
 
 
 class Instrument(contexttools.InstrumentMark):
-    '''Abjad model of the musical instrument.
+    '''A musical instrument.
     '''
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self,
+    def __init__(
+        self,
         instrument_name=None,
         short_instrument_name=None,
         instrument_name_markup=None,
@@ -38,123 +39,28 @@ class Instrument(contexttools.InstrumentMark):
     def _copy_primary_clefs_to_all_clefs(self):
         self.all_clefs = contexttools.ClefMarkInventory(self.primary_clefs)
 
-    ### PUBLIC PROPERTIES ###
-
-    @apply
-    def all_clefs():
-        def fset(self, clefs):
-            r'''Read / write all clefs.
-
-            Return tuple of clefs.
-            '''
-            self._all_clefs = contexttools.ClefMarkInventory(clefs)
-        def fget(self):
-            return self._all_clefs
-        return property(**locals())
-
-    @property
-    def default_pitch_range(self):
-        r'''Traditional pitch range.
-
-        Return pitch range.
-        '''
-        return self._traditional_pitch_range
-
-    @property
-    def interval_of_transposition(self):
-        r'''Interval of transposition.
-
-        Return melodic diatonic interval.
-        '''
-        return pitchtools.NamedPitch("c'") - \
-            self.sounding_pitch_of_written_middle_c
-
-    @property
-    def is_primary_instrument(self):
-        return self._is_primary_instrument
-
-    @property
-    def is_secondary_instrument(self):
-        return not self.is_primary_instrument
-
-    @property
-    def is_transposing(self):
-        r'''True when instrument is transposing. False otherwise.
-
-        Return boolean.
-        '''
-        return not self.sounding_pitch_of_written_middle_c == \
-            pitchtools.NamedPitch("c'")
-
-    @apply
-    def pitch_range():
-        def fset(self, pitch_range):
-            r'''Read / write pitch range.
-
-            Return pitch range.
-            '''
-            if pitch_range is not None:
-                pitch_range = pitchtools.PitchRange(pitch_range)
-            self._pitch_range = pitch_range
-        def fget(self):
-            if self._pitch_range is None:
-                return self.default_pitch_range
-            return self._pitch_range
-        return property(**locals())
-
-    @apply
-    def primary_clefs():
-        def fset(self, clefs):
-            r'''Read / write primary clefs.
-
-            Return tuple of clefs.
-            '''
-            self._primary_clefs = contexttools.ClefMarkInventory(clefs)
-        def fget(self):
-            return self._primary_clefs
-        return property(**locals())
-
-    @apply
-    def sounding_pitch_of_written_middle_c():
-        def fset(self, pitch):
-            r'''Read / write sounding pitch of written middle C.
-
-            Return named chromatic pitch.
-            '''
-            pitch = pitchtools.NamedPitch(pitch)
-            self._sounding_pitch_of_written_middle_c = pitch
-        def fget(self):
-            return self._sounding_pitch_of_written_middle_c
-        return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def get_default_performer_name(self):
-        r'''Get default player name.
-        '''
+    def _get_default_performer_name(self):
         if self._default_performer_names is None:
-            performer_name = '{} player'.format(self.default_instrument_name)
+            performer_name = '{} player'.format(self._default_instrument_name)
             return performer_name
         else:
             return self._default_performer_names[-1]
 
-    def get_performer_names(self):
-        r'''Get performer names.
-        '''
+    def _get_performer_names(self):
         if self._default_performer_names is None:
-            performer_name = '{} player'.format(self.default_instrument_name)
+            performer_name = '{} player'.format(self._default_instrument_name)
             return [performer_name]
         else:
             return self._default_performer_names[:]
 
     @classmethod
-    def list_instrument_names(cls):
-        r'''List instrument names:
+    def _list_instrument_names(cls):
+        r'''Lists instrument names.
 
         ::
 
-            >>> for instrument_name in instrumenttools.Instrument.\
-            ...     list_instrument_names():
+            >>> function = instrumenttools.Instrument._list_instrument_names
+            >>> for instrument_name in function():
             ...     instrument_name
             ...
             'accordion'
@@ -170,58 +76,25 @@ class Instrument(contexttools.InstrumentMark):
             'bass voice'
             'bassoon'
             'cello'
-            'clarinet in A'
-            'clarinet in B-flat'
-            'clarinet in E-flat'
-            'contrabass'
-            'contrabass clarinet'
-            'contrabass flute'
-            'contrabass saxophone'
-            'contrabassoon'
-            'contralto voice'
-            'English horn'
-            'flute'
-            'glockenspiel'
-            'guitar'
-            'harp'
-            'harpsichord'
-            'horn'
-            'marimba'
-            'mezzo-soprano voice'
-            'oboe'
-            'piano'
-            'piccolo'
-            'sopranino saxophone'
-            'soprano saxophone'
-            'soprano voice'
-            'tenor saxophone'
-            'tenor trombone'
-            'tenor voice'
-            'trumpet'
-            'tuba'
-            'untuned percussion'
-            'vibraphone'
-            'viola'
-            'violin'
-            'xylophone'
+            ...
 
-        Return list.
+        Returns list.
         '''
         instrument_names = []
-        for instrument_class in cls.list_instruments():
+        for instrument_class in cls._list_instruments():
             instrument = instrument_class()
             instrument_names.append(instrument.instrument_name)
         instrument_names.sort(key=lambda x: x.lower())
         return instrument_names
 
     @staticmethod
-    def list_instruments(classes=None):
-        r'''List instruments in ``instrumenttools`` module:
+    def _list_instruments(classes=None):
+        r'''Lists instruments.
 
         ::
 
-            >>> for instrument in instrumenttools.Instrument.\
-            ...     list_instruments()[:5]:
+            >>> function = instrumenttools.Instrument._list_instruments
+            >>> for instrument in function():
             ...     instrument.__name__
             ...
             'Accordion'
@@ -229,8 +102,9 @@ class Instrument(contexttools.InstrumentMark):
             'AltoSaxophone'
             'AltoTrombone'
             'BaritoneSaxophone'
+            ...
 
-        Return list.
+        Returns list.
         '''
         from abjad.tools import instrumenttools
         if classes is None:
@@ -247,70 +121,93 @@ class Instrument(contexttools.InstrumentMark):
         return instruments
 
     @classmethod
-    def list_primary_instruments(cls):
-        r'''List primary instruments:
-
-        ::
-
-            >>> for instrument in instrumenttools.Instrument.\
-            ...     list_primary_instruments():
-            ...     instrument.__name__
-            ...
-            'Accordion'
-            'AltoSaxophone'
-            'BaritoneVoice'
-            'Bassoon'
-            'BassVoice'
-            'BFlatClarinet'
-            'Cello'
-            'Contrabass'
-            'ContraltoVoice'
-            'Flute'
-            'FrenchHorn'
-            'Guitar'
-            'Harp'
-            'Harpsichord'
-            'MezzoSopranoVoice'
-            'Oboe'
-            'Piano'
-            'SopranoVoice'
-            'TenorTrombone'
-            'TenorVoice'
-            'Trumpet'
-            'Tuba'
-            'Viola'
-            'Violin'
-
-        Return list
-        '''
+    def _list_primary_instruments(cls):
         primary_instruments = []
-        for instrument_class in cls.list_instruments():
+        for instrument_class in cls._list_instruments():
             instrument = instrument_class()
             if instrument.is_primary_instrument:
                 primary_instruments.append(instrument_class)
         return primary_instruments
 
     @classmethod
-    def list_secondary_instruments(cls):
-        r'''List secondary instruments:
-
-        ::
-
-            >>> for secondary_instrument in instrumenttools.Instrument.\
-            ...     list_secondary_instruments()[:5]:
-            ...     secondary_instrument
-            ...
-            <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>
-            <class 'abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone'>
-            <class 'abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone'>
-            <class 'abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet'>
-            <class 'abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute'>
-
-        Return list
-        '''
+    def _list_secondary_instruments(cls):
         secondary_instruments = []
-        for instrument_class in cls.list_instruments():
+        for instrument_class in cls._list_instruments():
             instrument = instrument_class()
-            if instrument.is_secondary_instrument:
+            if not instrument.is_primary_instrument:
                 secondary_instruments.append(instrument_class)
         return secondary_instruments
+
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def all_clefs():
+        def fget(self):
+            r'''All clefs allowed for instrument.
+
+            Returns tuple of clefs.
+            '''
+            return self._all_clefs
+        def fset(self, clefs):
+            self._all_clefs = contexttools.ClefMarkInventory(clefs)
+        return property(**locals())
+
+    @property
+    def interval_of_transposition(self):
+        r'''Interval of transposition.
+
+        Returns melodic interval.
+        '''
+        return pitchtools.NamedPitch("c'") - \
+            self.sounding_pitch_of_written_middle_c
+
+    @property
+    def is_primary_instrument(self):
+        '''True when instrument is primary instrument.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_primary_instrument
+
+    @apply
+    def pitch_range():
+        def fget(self):
+            r'''Read / write pitch range.
+
+            Returns pitch range.
+            '''
+            if self._pitch_range is None:
+                return self._default_pitch_range
+            return self._pitch_range
+        def fset(self, pitch_range):
+            if pitch_range is not None:
+                pitch_range = pitchtools.PitchRange(pitch_range)
+            self._pitch_range = pitch_range
+        return property(**locals())
+
+    @apply
+    def primary_clefs():
+        def fget(self):
+            r'''Primary clefs of instrument.
+
+            Returns clef mark inventory.
+            '''
+            return self._primary_clefs
+        def fset(self, clefs):
+            self._primary_clefs = contexttools.ClefMarkInventory(clefs)
+        return property(**locals())
+
+    @apply
+    def sounding_pitch_of_written_middle_c():
+        def fget(self):
+            r'''Sounding pitch of written middle C.
+
+            Returns named pitch.
+            '''
+            return self._sounding_pitch_of_written_middle_c
+        def fset(self, pitch):
+            pitch = pitchtools.NamedPitch(pitch)
+            self._sounding_pitch_of_written_middle_c = pitch
+        return property(**locals())
+

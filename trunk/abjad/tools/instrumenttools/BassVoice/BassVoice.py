@@ -48,4 +48,4 @@ class BassVoice(Voice):
             pitchtools.NamedPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange(('E2', 'F4'))
+        self._default_pitch_range = pitchtools.PitchRange(('E2', 'F4'))

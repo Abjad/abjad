@@ -3,18 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Mark(AbjadObject):
-    r'''Abstract base class from which concrete marks inherit:
-
-        >>> mark = marktools.Mark()
-        >>> mark
-        Mark()
-
-    ::
-
-        >>> note = Note("c'4")
-        >>> mark.attach(note)
-        Mark()(c'4)
-
+    r'''Abstract base class from which concrete marks inherit.
     '''
 
     ### CLASS VARIABLES ###
@@ -38,11 +27,11 @@ class Mark(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, *args):
-        r'''Detach mark from component when called with no arguments.
+        r'''Detaches mark from component when called with no arguments.
 
-        Attach mark to component when called with one argument.
+        Attaches mark to component when called with one argument.
 
-        Return self.
+        Returns self.
         '''
         if len(args) == 0:
             return self.detach()
@@ -52,9 +41,9 @@ class Mark(AbjadObject):
             raise ValueError('must call mark with at most 1 argument.')
 
     def __copy__(self, *args):
-        r'''Copy mark.
+        r'''Copies mark.
             
-        Return new mark.
+        Returns new mark.
         '''
         new = type(self)()
         new.format_slot = self.format_slot
@@ -64,16 +53,16 @@ class Mark(AbjadObject):
         r'''True when `expr` is the same type as self.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             return True
         return False
 
     def __repr__(self):
-        r'''Mark interpreter representation.
+        r'''Interpreter representation of mark.
 
-        Return string.
+        Returns string.
         '''
         return '{}({}){}'.format(
             self._class_name,
@@ -117,14 +106,9 @@ class Mark(AbjadObject):
 
     @property
     def start_component(self):
-        r'''Reference to mark start component:
+        r'''Mark start component.
 
-        ::
-
-            >>> mark.start_component
-            Note("c'4")
-
-        Return component or none.
+        Returns component or none.
         '''
         return self._start_component
 
@@ -139,39 +123,17 @@ class Mark(AbjadObject):
     ### PUBLIC METHODS ###
 
     def attach(self, start_component):
-        r'''Attach mark to `start_component`:
+        r'''Attaches mark to `start_component`.
 
-        ::
-
-            >>> mark = marktools.Mark()
-            >>> mark
-            Mark()
-
-        ::
-
-            >>> note = Note("c'4")
-            >>> mark.attach(note)
-            Mark()(c'4)
-
-        Return mark.
+        Returns mark.
         '''
         self._bind_start_component(start_component)
         return self
 
     def detach(self):
-        r'''Detach mark from start component:
+        r'''Detaches mark from start component.
 
-        ::
-
-            >>> mark
-            Mark()(c'4)
-
-        ::
-
-            >>> mark.detach()
-            Mark()
-
-        Return mark.
+        Returns mark.
         '''
         self._unbind_start_component()
         return self

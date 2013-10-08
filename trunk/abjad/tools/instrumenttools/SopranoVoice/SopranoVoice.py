@@ -52,4 +52,4 @@ class SopranoVoice(Voice):
             pitchtools.NamedPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange(('C4', 'E6'))
+        self._default_pitch_range = pitchtools.PitchRange(('C4', 'E6'))

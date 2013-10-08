@@ -22,7 +22,7 @@ def default_instrument_name_to_instrument_class(default_instrument_name):
     '''
     from abjad.tools import instrumenttools
 
-    for instrument_class in instrumenttools.Instrument.list_instruments():
+    for instrument_class in instrumenttools.Instrument._list_instruments():
         instrument = instrument_class()
-        if instrument.default_instrument_name == default_instrument_name:
+        if instrument._default_instrument_name == default_instrument_name:
             return instrument_class

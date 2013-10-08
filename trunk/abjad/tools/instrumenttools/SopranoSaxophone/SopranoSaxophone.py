@@ -50,4 +50,4 @@ class SopranoSaxophone(Saxophone):
             pitchtools.NamedPitch('bf')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange(-4, 28)
+        self._default_pitch_range = pitchtools.PitchRange(-4, 28)

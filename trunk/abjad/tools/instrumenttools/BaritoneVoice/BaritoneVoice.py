@@ -52,4 +52,4 @@ class BaritoneVoice(Voice):
             pitchtools.NamedPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange(('A2', 'A4'))
+        self._default_pitch_range = pitchtools.PitchRange(('A2', 'A4'))

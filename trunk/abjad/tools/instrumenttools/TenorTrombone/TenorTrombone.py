@@ -51,4 +51,4 @@ class TenorTrombone(Trombone):
         self.primary_clefs = [
             contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange(-20, 15)
+        self._default_pitch_range = pitchtools.PitchRange(-20, 15)

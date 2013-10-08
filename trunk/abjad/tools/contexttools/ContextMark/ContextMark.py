@@ -3,20 +3,9 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class ContextMark(Mark):
-    '''Abstract class from which concrete context marks inherit:
+    '''Abstract class from which concrete context marks inherit.
 
-    ::
-
-        >>> note = Note("c'4")
-
-    ::
-
-        >>> contexttools.ContextMark()(note)
-        ContextMark()(c'4)
-
-    Context marks override ``__call__`` to attach to Abjad components.
-
-    Context marks implement ``__slots__``.
+    Context marks are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -41,6 +30,10 @@ class ContextMark(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies context mark.
+
+        Returns new context mark.
+        '''
         return type(self)(target_context=self._target_context)
 
     ### PRIVATE PROPERTIES ###
@@ -111,19 +104,9 @@ class ContextMark(Mark):
 
     @property
     def effective_context(self):
-        r'''Reference to effective context of context mark:
+        r'''Effective context of context mark.
 
-        ::
-
-            >>> note = Note("c'4")
-            >>> context_mark = contexttools.ContextMark()(note)
-
-        ::
-
-            >>> context_mark.effective_context is None
-            True
-
-        Return context mark or none.
+        Returns context mark or none.
         '''
         if self.start_component is not None:
             self.start_component._update_now(marks=True)
@@ -131,27 +114,21 @@ class ContextMark(Mark):
 
     @property
     def target_context(self):
-        r'''Reference to target context of context mark:
+        r'''Target context of context mark.
 
-        ::
-
-            >>> note = Note("c'4")
-            >>> context_mark = contexttools.ContextMark()(note)
-
-        ::
-
-            >>> context_mark.target_context is None
-            True
-
-        Return context mark or none.
+        Returns context or none.
         '''
         return self._target_context
 
     ### PUBLIC METHODS ###
 
     def attach(self, start_component):
-        r'''Make sure no context mark of same type is already attached 
+        r'''Attaches context mark to `start_component`.
+        
+        Makes sure no context mark of same type is already attached 
         to score component that starts with start component.
+
+        Returns context mark.
         '''
         from abjad.tools import contexttools
         classes = (type(self), )
@@ -166,29 +143,9 @@ class ContextMark(Mark):
         return Mark.attach(self, start_component)
 
     def detach(self):
-        r'''Detach mark:
+        r'''Detaches context mark.
 
-        ::
-
-            >>> note = Note("c'4")
-            >>> context_mark = contexttools.ContextMark()(note)
-
-        ::
-
-            >>> context_mark.start_component
-            Note("c'4")
-
-        ::
-
-            >>> context_mark.detach()
-            ContextMark()
-
-        ::
-
-            >>> context_mark.start_component is None
-            True
-
-        Return context mark.
+        Returns context mark.
         '''
         Mark.detach(self)
         self._unbind_effective_context()

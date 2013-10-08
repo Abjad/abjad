@@ -48,4 +48,4 @@ class BassClarinet(Clarinet):
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self.all_clefs = [
             contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
-        self._traditional_pitch_range = pitchtools.PitchRange(-26, 19)
+        self._default_pitch_range = pitchtools.PitchRange(-26, 19)

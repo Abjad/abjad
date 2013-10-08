@@ -51,4 +51,4 @@ class Bassoon(DoubleReedInstrument):
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self.all_clefs = [
             contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
-        self._traditional_pitch_range = pitchtools.PitchRange(-26, 15)
+        self._default_pitch_range = pitchtools.PitchRange(-26, 15)

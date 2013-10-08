@@ -510,7 +510,7 @@ class TimeSignatureMark(ContextMark):
         return marktools.Mark.attach(self, start_component)
 
     def detach(self):
-        r'''Detach time signature mark:
+        r'''Detaches time signature mark.
 
         ::
 
@@ -527,7 +527,7 @@ class TimeSignatureMark(ContextMark):
             >>> time_signature.detach()
             TimeSignatureMark((3, 8))
 
-        Return time signature mark.
+        Returns time signature mark.
         '''
         return ContextMark.detach(self)
 

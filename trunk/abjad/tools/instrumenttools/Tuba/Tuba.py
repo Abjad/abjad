@@ -47,4 +47,4 @@ class Tuba(BrassInstrument):
             pitchtools.NamedPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange(-34, 5)
+        self._default_pitch_range = pitchtools.PitchRange(-34, 5)

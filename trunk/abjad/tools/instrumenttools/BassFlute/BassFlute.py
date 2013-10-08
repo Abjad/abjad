@@ -44,4 +44,4 @@ class BassFlute(Flute):
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch('c')
-        self._traditional_pitch_range = pitchtools.PitchRange(-12, 24)
+        self._default_pitch_range = pitchtools.PitchRange(-12, 24)

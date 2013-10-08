@@ -44,4 +44,4 @@ class AltoFlute(Flute):
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("g")
-        self._traditional_pitch_range = pitchtools.PitchRange(-5, 31)
+        self._default_pitch_range = pitchtools.PitchRange(-5, 31)

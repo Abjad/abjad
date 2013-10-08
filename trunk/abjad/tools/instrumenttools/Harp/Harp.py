@@ -59,4 +59,4 @@ class Harp(StringInstrument):
         self.primary_clefs = [
             contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
-        self._traditional_pitch_range = pitchtools.PitchRange(-37, 44)
+        self._default_pitch_range = pitchtools.PitchRange(-37, 44)

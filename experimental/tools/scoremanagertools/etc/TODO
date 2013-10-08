@@ -95,3 +95,22 @@
 
 32. Implement a Session.display_variables() method to print the current value
     of all session variables to the terminal for user inspection.
+
+33. Figure out the correct ajv replace regex to change tratiettor/music
+    to just traiettorie.
+
+34. Find a way to get rid of the ...
+
+    if __name__ == '__main__':
+        segment = Segment()
+        lilypond_file = segment()
+        current_directory_path = os.path.dirname(__file__)
+        iotools.log_render_lilypond_input(
+            lilypond_file,
+            output_directory_path=current_directory_path,
+            output_file_name_root='output',
+            )
+
+    ... at the bottom of each segment definition file.
+    There should be a way to call a prebuilt external script
+    that does exactly the same thing.

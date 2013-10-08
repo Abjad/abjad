@@ -161,20 +161,23 @@ def test_pitchtools_PitchRange___contains___14():
     glockenspiel = instrumenttools.Glockenspiel()(staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    r'''
-    \new Staff {
-        \set Staff.instrumentName = \markup { Glockenspiel }
-        \set Staff.shortInstrumentName = \markup { Gkspl. }
-        <c' e'>4
-        <d' fs'>4
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \set Staff.instrumentName = \markup { Glockenspiel }
+            \set Staff.shortInstrumentName = \markup { Gkspl. }
+            <c' e'>4
+            <d' fs'>4
+        }
+        '''
+        )
 
-    assert staff[0] in glockenspiel.default_pitch_range
-    assert staff[1] in glockenspiel.default_pitch_range
-    assert staff in glockenspiel.default_pitch_range
+    assert staff[0] in glockenspiel.pitch_range
+    assert staff[1] in glockenspiel.pitch_range
+    assert staff in glockenspiel.pitch_range
 
-    assert not Note("c'4") in glockenspiel.default_pitch_range
+    assert not Note("c'4") in glockenspiel.pitch_range
 
 
 def test_pitchtools_PitchRange___contains___15():
@@ -188,17 +191,20 @@ def test_pitchtools_PitchRange___contains___15():
     staff[2].override.note_head.style = 'cross'
     staff[3].override.note_head.style = 'cross'
 
-    r'''
-    \new Staff {
-        \set Staff.instrumentName = \markup { Flute }
-        \set Staff.shortInstrumentName = \markup { Fl. }
-        c'4
-        d'4
-        \once \override NoteHead #'style = #'cross
-        c4
-        \once \override NoteHead #'style = #'cross
-        d4
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \set Staff.instrumentName = \markup { Flute }
+            \set Staff.shortInstrumentName = \markup { Fl. }
+            c'4
+            d'4
+            \once \override NoteHead #'style = #'cross
+            c4
+            \once \override NoteHead #'style = #'cross
+            d4
+        }
+        '''
+        )
 
-    assert staff in flute.default_pitch_range
+    assert staff in flute.pitch_range

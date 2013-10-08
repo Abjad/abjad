@@ -32,12 +32,11 @@ class InstrumentCreationWizard(Wizard):
         head=None,
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(
-            pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         selector = io.Selector(session=self.session)
-        items = instrumenttools.Instrument.list_instrument_names()
+        items = instrumenttools.Instrument._list_instrument_names()
         selector.items = items
         selector.is_ranged = self.is_ranged
         with self.backtracking:

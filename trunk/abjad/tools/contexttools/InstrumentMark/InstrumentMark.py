@@ -24,32 +24,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 # The impact this currently has in the system concerns the 
 # storage format of such objects.
 class InstrumentMark(ContextMark):
-    r'''Abjad model of an instrument change:
-
-    ::
-
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
-        InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Flute }
-            \set Staff.shortInstrumentName = \markup { Fl. }
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+    r'''An instrument mark.
 
     Instrument marks target staff context by default.
     '''
@@ -62,7 +37,8 @@ class InstrumentMark(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         instrument_name=None,
         short_instrument_name=None,
         instrument_name_markup=None,
@@ -84,6 +60,10 @@ class InstrumentMark(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies instrument mark.
+
+        Returns new instrument mark.
+        '''
         return type(self)(
             instrument_name_markup=self._instrument_name_markup, 
             short_instrument_name_markup=self._short_instrument_name_markup,
@@ -91,6 +71,11 @@ class InstrumentMark(ContextMark):
             )
 
     def __eq__(self, arg):
+        r'''True when instrument mark equals `arg`.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.instrument_name == arg.instrument_name:
                 if self.short_instrument_name == arg.short_instrument_name:
@@ -98,6 +83,10 @@ class InstrumentMark(ContextMark):
         return False
 
     def __hash__(self):
+        '''Hash value of instrument mark.
+
+        Returns integer.
+        '''
         return hash((
             self._class_name, 
             self.instrument_name, 
@@ -142,45 +131,19 @@ class InstrumentMark(ContextMark):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def default_instrument_name(self):
-        r'''Default instrument name.
-
-        Return string.
-        '''
-        return self._default_instrument_name
-
-    @property
-    def default_short_instrument_name(self):
-        r'''Default short instrument name.
-
-        Return string.
-        '''
-        return self._default_short_instrument_name
-
     @apply
     def instrument_name():
         def fget(self):
-            r'''Get instrument name:
+            r'''Gets instrument name.
 
-            ::
+            Returns string.
 
-                >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-                >>> instrument.instrument_name
-                'Flute'
+            Sets instrument name.
 
-            Set instrument name:
-
-            ::
-
-                >>> instrument.instrument_name = 'Alto Flute'
-                >>> instrument.instrument_name
-                'Alto Flute'
-
-            Return string.
+            Returns none.
             '''
             if self._instrument_name is None:
-                return self.default_instrument_name
+                return self._default_instrument_name
             else:
                 return self._instrument_name
         def fset(self, instrument_name):
@@ -191,23 +154,13 @@ class InstrumentMark(ContextMark):
     @apply
     def instrument_name_markup():
         def fget(self):
-            r'''Get instrument name markup:
+            r'''Gets instrument name markup.
 
-            ::
+            Returns markup.
 
-                >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-                >>> instrument.instrument_name_markup
-                Markup(('Flute',))
+            Sets instrument name markup.
 
-            Set instrument name markup:
-
-            ::
-
-                >>> instrument.instrument_name_markup = 'Alto Flute'
-                >>> instrument.instrument_name_markup
-                Markup(('Alto Flute',))
-
-            Return markup.
+            Returns none.
             '''
             from abjad.tools.markuptools import Markup
             if self._instrument_name_markup is None:
@@ -227,47 +180,38 @@ class InstrumentMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        r'''LilyPond format:
+        r'''LilyPond format of instrument mark.
 
-        ::
-
-            >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-            >>> instrument.lilypond_format
-            ['\\set Staff.instrumentName = \\markup { Flute }',
-                '\\set Staff.shortInstrumentName = \\markup { Fl. }']
-
-        Return list.
+        Returns string.
         '''
         result = []
-        result.append(r'\set %s.instrumentName = %s' % (
-            self._target_context_name, self.instrument_name_markup))
-        result.append(r'\set %s.shortInstrumentName = %s' % (
-            self._target_context_name, self.short_instrument_name_markup))
+        line = r'\set {}.instrumentName = {}'
+        line = line.format(
+            self._target_context_name, 
+            self.instrument_name_markup,
+            )
+        result.append(line)
+        line = r'\set {}.shortInstrumentName = {}'
+        line = line.format(
+            self._target_context_name, 
+            self.short_instrument_name_markup,
+            )
+        result.append(line)
         return result
 
     @apply
     def short_instrument_name():
         def fget(self):
-            r'''Get short instrument name:
+            r'''Gets short instrument name.
 
-            ::
+            Returns string.
 
-                >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-                >>> instrument.short_instrument_name
-                'Fl.'
+            Sets short instrument name.
 
-            Set short instrument name:
-
-            ::
-
-                >>> instrument.short_instrument_name = 'Alto Fl.'
-                >>> instrument.short_instrument_name
-                'Alto Fl.'
-
-            Return string.
+            Returns none.
             '''
             if self._short_instrument_name is None:
-                return self.default_short_instrument_name
+                return self._default_short_instrument_name
             else:
                 return self._short_instrument_name
         def fset(self, short_instrument_name):
@@ -278,23 +222,13 @@ class InstrumentMark(ContextMark):
     @apply
     def short_instrument_name_markup():
         def fget(self):
-            r'''Get short instrument name markup:
+            r'''Gets short instrument name markup.
 
-            ::
+            Returns markup.
 
-                >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-                >>> instrument.short_instrument_name_markup
-                Markup(('Fl.',))
+            Sets short instrument name markup.
 
-            Set short instrument name markup:
-
-            ::
-
-                >>> instrument.short_instrument_name_markup = 'Alto Fl.'
-                >>> instrument.short_instrument_name_markup
-                Markup(('Alto Fl.',))
-
-            Return markup.
+            Returns none.
             '''
             from abjad.tools.markuptools import Markup
             if self._short_instrument_name_markup is None:
