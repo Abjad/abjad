@@ -254,9 +254,15 @@ class Accordion(Instrument):
                 >>> accordion.sounding_pitch_of_written_middle_c
                 NamedPitch('g')
 
+            ::
+
+                >>> accordion.sounding_pitch_of_written_middle_c = None
+                >>> accordion.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
             Returns named pitch.
             '''
             return Instrument.sounding_pitch_of_written_middle_c.fget(self)
-        def fset(self, foo):
-            Instrument.sounding_pitch_of_written_middle_c.fset(self, foo)
+        def fset(self, pitch):
+            Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

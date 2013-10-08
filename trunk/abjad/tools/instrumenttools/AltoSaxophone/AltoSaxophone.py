@@ -42,7 +42,8 @@ class AltoSaxophone(Saxophone):
         self._default_performer_names.extend(['saxophonist'])
         self._default_short_instrument_name = 'alto sax.'
         self._is_primary_instrument = True
-        self._sounding_pitch_of_written_middle_c = pitchtools.NamedPitch('ef')
+        pitch = pitchtools.NamedPitch('ef')
+        self._default_sounding_pitch_of_written_middle_c = pitch
         self.starting_clefs = [contexttools.ClefMark('treble')]
         self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-11, 21)
@@ -61,13 +62,19 @@ class AltoSaxophone(Saxophone):
 
             ::
 
-                >>> alto_saxophone.sounding_pitch_of_written_middle_c = "c'"
+                >>> alto_saxophone.sounding_pitch_of_written_middle_c = 'e'
                 >>> alto_saxophone.sounding_pitch_of_written_middle_c
-                NamedPitch("c'")
+                NamedPitch('e')
+
+            ::
+
+                >>> alto_saxophone.sounding_pitch_of_written_middle_c = None
+                >>> alto_saxophone.sounding_pitch_of_written_middle_c
+                NamedPitch('ef')
 
             Returns named pitch.
             '''
             return Saxophone.sounding_pitch_of_written_middle_c.fget(self)
-        def fset(self, foo):
-            Saxophone.sounding_pitch_of_written_middle_c.fset(self, foo)
+        def fset(self, pitch):
+            Saxophone.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

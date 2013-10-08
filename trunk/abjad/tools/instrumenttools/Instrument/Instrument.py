@@ -20,7 +20,6 @@ class Instrument(contexttools.InstrumentMark):
         short_instrument_name_markup=None,
         target_context=None,
         ):
-        self._sounding_pitch_of_written_middle_c = pitchtools.NamedPitch("c'")
         contexttools.InstrumentMark.__init__(
             self,
             instrument_name,
@@ -29,9 +28,12 @@ class Instrument(contexttools.InstrumentMark):
             short_instrument_name_markup=short_instrument_name_markup,
             target_context=target_context,
             )
+        pitch = pitchtools.NamedPitch("c'")
+        self._default_sounding_pitch_of_written_middle_c = pitch
         self._default_performer_names = ['instrumentalist']
         self._is_primary_instrument = False
         self._pitch_range = None
+        self._sounding_pitch_of_written_middle_c = None
 
     ### PRIVATE METHODS ###
 
@@ -187,8 +189,11 @@ class Instrument(contexttools.InstrumentMark):
 
             Returns named pitch.
             '''
+            if self._sounding_pitch_of_written_middle_c is None:
+                return self._default_sounding_pitch_of_written_middle_c
             return self._sounding_pitch_of_written_middle_c
         def fset(self, pitch):
+            pitch = pitch or self._default_sounding_pitch_of_written_middle_c
             pitch = pitchtools.NamedPitch(pitch)
             self._sounding_pitch_of_written_middle_c = pitch
         return property(**locals())

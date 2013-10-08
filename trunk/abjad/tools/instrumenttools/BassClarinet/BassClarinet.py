@@ -70,6 +70,6 @@ class BassClarinet(Clarinet):
             Returns named pitch.
             '''
             return Clarinet.sounding_pitch_of_written_middle_c.fget(self)
-        def fset(self, foo):
-            Clarinet.sounding_pitch_of_written_middle_c.fset(self, foo)
+        def fset(self, pitch):
+            Clarinet.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

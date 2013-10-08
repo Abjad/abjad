@@ -65,13 +65,19 @@ class AltoTrombone(Trombone):
 
             ::
 
-                >>> alto_trombone.sounding_pitch_of_written_middle_c = 'bf'
+                >>> alto_trombone.sounding_pitch_of_written_middle_c = "cs'"
                 >>> alto_trombone.sounding_pitch_of_written_middle_c
-                NamedPitch('bf')
+                NamedPitch("cs'")
+
+            ::
+
+                >>> alto_trombone.sounding_pitch_of_written_middle_c = None
+                >>> alto_trombone.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
 
             Returns named pitch.
             '''
             return Trombone.sounding_pitch_of_written_middle_c.fget(self)
-        def fset(self, foo):
-            Trombone.sounding_pitch_of_written_middle_c.fset(self, foo)
+        def fset(self, pitch):
+            Trombone.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

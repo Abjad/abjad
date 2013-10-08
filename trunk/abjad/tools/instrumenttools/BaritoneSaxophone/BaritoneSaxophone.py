@@ -15,8 +15,8 @@ class BaritoneSaxophone(Saxophone):
 
     ::
 
-        >>> baritone_saxophone = instrumenttools.BaritoneSaxophone()
-        >>> baritone_saxophone = baritone_saxophone.attach(staff)
+        >>> baritone_sax = instrumenttools.BaritoneSaxophone()
+        >>> baritone_sax = baritone_sax.attach(staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -42,7 +42,8 @@ class BaritoneSaxophone(Saxophone):
         self._default_performer_names.extend(['saxophonist'])
         self._default_short_instrument_name = 'bar. sax.'
         self._is_primary_instrument = False
-        self._sounding_pitch_of_written_middle_c = pitchtools.NamedPitch('ef,')
+        pitch = pitchtools.NamedPitch('ef,')
+        self._default_sounding_pitch_of_written_middle_c = pitch
         self.starting_clefs = [contexttools.ClefMark('treble')]
         self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-24, 8)
@@ -56,18 +57,24 @@ class BaritoneSaxophone(Saxophone):
 
             ::
 
-                >>> baritone_saxophone.sounding_pitch_of_written_middle_c
+                >>> baritone_sax.sounding_pitch_of_written_middle_c
                 NamedPitch('ef,')
 
             ::
 
-                >>> baritone_saxophone.sounding_pitch_of_written_middle_c = 'c' 
-                >>> baritone_saxophone.sounding_pitch_of_written_middle_c
-                NamedPitch('c')
+                >>> baritone_sax.sounding_pitch_of_written_middle_c = 'e' 
+                >>> baritone_sax.sounding_pitch_of_written_middle_c
+                NamedPitch('e')
+
+            ::
+
+                >>> baritone_sax.sounding_pitch_of_written_middle_c = None
+                >>> baritone_sax.sounding_pitch_of_written_middle_c
+                NamedPitch('ef,')
 
             Returns named pitch.
             '''
             return Saxophone.sounding_pitch_of_written_middle_c.fget(self)
-        def fset(self, foo):
-            Saxophone.sounding_pitch_of_written_middle_c.fset(self, foo)
+        def fset(self, pitch):
+            Saxophone.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

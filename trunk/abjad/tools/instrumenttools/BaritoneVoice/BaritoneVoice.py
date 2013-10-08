@@ -72,6 +72,6 @@ class BaritoneVoice(Voice):
             Returns named pitch.
             '''
             return Voice.sounding_pitch_of_written_middle_c.fget(self)
-        def fset(self, foo):
-            Voice.sounding_pitch_of_written_middle_c.fset(self, foo)
+        def fset(self, pitch):
+            Voice.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

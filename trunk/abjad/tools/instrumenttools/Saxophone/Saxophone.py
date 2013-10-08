@@ -10,6 +10,7 @@ class Saxophone(SingleReedInstrument):
 
     ### CLASS VARIABLES ###
 
+    # TODO: remove?
     default_perfomer_abbreviation = 'sax.'
 
     ### INITIALIZER ###

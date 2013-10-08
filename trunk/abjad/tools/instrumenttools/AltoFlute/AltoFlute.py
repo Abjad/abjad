@@ -40,8 +40,9 @@ class AltoFlute(Flute):
         self._default_instrument_name = 'alto flute'
         self._default_pitch_range = pitchtools.PitchRange(-5, 31)
         self._default_short_instrument_name = 'alt. fl.'
+        pitch = pitchtools.NamedPitch('g')
+        self._default_sounding_pitch_of_written_middle_c = pitch
         self._is_primary_instrument = False
-        self._sounding_pitch_of_written_middle_c = pitchtools.NamedPitch('g')
 
     ### PUBLIC PROPERTIES ###
 
@@ -57,9 +58,15 @@ class AltoFlute(Flute):
 
             ::
 
-                >>> alto_flute.sounding_pitch_of_written_middle_c = 'f'
+                >>> alto_flute.sounding_pitch_of_written_middle_c = 'gs'
                 >>> alto_flute.sounding_pitch_of_written_middle_c
-                NamedPitch('f')
+                NamedPitch('gs')
+
+            ::
+
+                >>> alto_flute.sounding_pitch_of_written_middle_c = None
+                >>> alto_flute.sounding_pitch_of_written_middle_c
+                NamedPitch('g')
 
             Returns named pitch.
             '''
