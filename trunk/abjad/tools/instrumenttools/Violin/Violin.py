@@ -6,16 +6,18 @@ from abjad.tools.instrumenttools.StringInstrument import StringInstrument
 
 
 class Violin(StringInstrument):
-    r'''Abjad model of the violin:
+    r'''A violin.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> instrumenttools.Violin()(staff)
-        Violin()(Staff{4})
+        >>> violin = instrumenttools.Violin()
+        >>> violin = violin.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -38,10 +40,8 @@ class Violin(StringInstrument):
         StringInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'violin'
         self._default_performer_names.append('violinist')
-        self._default_short_instrument_name = 'vn.'
-        self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch("c'")
-        self.starting_clefs = [contexttools.ClefMark('treble')]
-        self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-5, 43)
+        self._default_short_instrument_name = 'vn.'
+        self._default_starting_clefs = [contexttools.ClefMark('treble')]
+        self._copy_starting_clefs_to_allowable_clefs()
+        self._is_primary_instrument = True

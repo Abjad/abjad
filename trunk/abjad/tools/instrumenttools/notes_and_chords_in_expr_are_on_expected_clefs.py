@@ -3,7 +3,10 @@ from abjad.tools import contexttools
 from abjad.tools import iterationtools
 
 
-def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allowed=True):
+def notes_and_chords_in_expr_are_on_expected_clefs(
+    expr, 
+    percussion_clef_is_allowed=True,
+    ):
     r'''True when notes and chords in `expr` are on expected clefs:
 
     ::

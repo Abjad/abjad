@@ -28,12 +28,16 @@ class Instrument(contexttools.InstrumentMark):
             short_instrument_name_markup=short_instrument_name_markup,
             target_context=target_context,
             )
+        self._default_allowable_clefs = None
+        self._default_performer_names = ['instrumentalist']
         pitch = pitchtools.NamedPitch("c'")
         self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_performer_names = ['instrumentalist']
+        self._default_starting_clefs = None
         self._is_primary_instrument = False
+        self._allowable_clefs = None
         self._pitch_range = None
         self._sounding_pitch_of_written_middle_c = None
+        self._starting_clefs = None
 
     ### PRIVATE METHODS ###
 
@@ -149,6 +153,8 @@ class Instrument(contexttools.InstrumentMark):
 
             Returns clef inventory.
             '''
+            if self._allowable_clefs is None:
+                return self._default_allowable_clefs
             return self._allowable_clefs
         def fset(self, clefs):
             self._allowable_clefs = contexttools.ClefMarkInventory(clefs)
@@ -177,9 +183,12 @@ class Instrument(contexttools.InstrumentMark):
 
             Returns clef inventory.
             '''
-            return self._starting_clefs
+            if self._starting_clefs is None:
+                return self._default_starting_clefs
+            return self._default_starting_clefs
         def fset(self, clefs):
-            self._starting_clefs = contexttools.ClefMarkInventory(clefs)
+            clefs = contexttools.ClefMarkInventory(clefs)
+            self._starting_clefs = clefs
         return property(**locals())
 
     @apply

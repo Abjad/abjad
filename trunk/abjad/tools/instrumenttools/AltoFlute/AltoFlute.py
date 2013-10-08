@@ -37,10 +37,10 @@ class AltoFlute(Flute):
 
     def __init__(self, **kwargs):
         Flute.__init__(self, **kwargs)
+        pitch = pitchtools.NamedPitch('g')
         self._default_instrument_name = 'alto flute'
         self._default_pitch_range = pitchtools.PitchRange(-5, 31)
         self._default_short_instrument_name = 'alt. fl.'
-        pitch = pitchtools.NamedPitch('g')
         self._default_sounding_pitch_of_written_middle_c = pitch
         self._is_primary_instrument = False
 

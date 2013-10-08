@@ -45,11 +45,13 @@ class BaritoneVoice(Voice):
         Voice.__init__(self, **kwargs)
         self._default_instrument_name = 'baritone voice'
         self._default_performer_names.append('baritone')
-        self._default_short_instrument_name = 'baritone'
-        self._is_primary_instrument = True
-        self.starting_clefs = [contexttools.ClefMark('bass')]
-        self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(('A2', 'A4'))
+        self._default_short_instrument_name = 'baritone'
+        self._default_starting_clefs = contexttools.ClefMarkInventory([
+            contexttools.ClefMark('bass'),
+            ])
+        self._is_primary_instrument = True
+        self._copy_starting_clefs_to_allowable_clefs()
 
     ### PUBLIC PROPERTIES ###
 

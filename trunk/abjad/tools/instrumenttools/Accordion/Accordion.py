@@ -57,14 +57,14 @@ class Accordion(Instrument):
             'keyboardist',
             'accordionist',
             ])
+        self._default_pitch_range = pitchtools.PitchRange(-32, 48)
         self._default_short_instrument_name = 'acc.'
-        self._is_primary_instrument = True
-        self.starting_clefs = [
+        self._default_starting_clefs = [
             contexttools.ClefMark('treble'), 
             contexttools.ClefMark('bass'),
             ]
+        self._is_primary_instrument = True
         self._copy_starting_clefs_to_allowable_clefs()
-        self._default_pitch_range = pitchtools.PitchRange(-32, 48)
 
     ### PRIVATE PROPERTIES ###
 

@@ -38,16 +38,19 @@ class BassClarinet(Clarinet):
 
     def __init__(self, **kwargs):
         Clarinet.__init__(self, **kwargs)
-        self._default_instrument_name = 'bass clarinet'
-        self._default_short_instrument_name = 'bass cl.'
-        self._is_primary_instrument = False
-        self._sounding_pitch_of_written_middle_c = pitchtools.NamedPitch('bf,')
-        self.starting_clefs = [contexttools.ClefMark('treble')]
-        self.allowable_clefs = [
+        pitch = pitchtools.NamedPitch('bf,')
+        self._default_allowable_clefs = contexttools.ClefMarkInventory([
             contexttools.ClefMark('treble'), 
             contexttools.ClefMark('bass'),
-            ]
+            ])
+        self._default_instrument_name = 'bass clarinet'
         self._default_pitch_range = pitchtools.PitchRange(-26, 19)
+        self._default_short_instrument_name = 'bass cl.'
+        self._default_sounding_pitch_of_written_middle_c = pitch
+        self._default_starting_clefs = contexttools.ClefMarkInventory([
+            contexttools.ClefMark('treble'),
+            ])
+        self._is_primary_instrument = False
 
     ### PUBLIC PROPERTIES ###
 
@@ -63,9 +66,15 @@ class BassClarinet(Clarinet):
 
             ::
 
-                >>> bass_clarinet.sounding_pitch_of_written_middle_c = 'c'
+                >>> bass_clarinet.sounding_pitch_of_written_middle_c = 'b,'
                 >>> bass_clarinet.sounding_pitch_of_written_middle_c
-                NamedPitch('c')
+                NamedPitch('b,')
+
+            :: 
+
+                >>> bass_clarinet.sounding_pitch_of_written_middle_c = None
+                >>> bass_clarinet.sounding_pitch_of_written_middle_c
+                NamedPitch('bf,')
 
             Returns named pitch.
             '''

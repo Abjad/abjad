@@ -38,15 +38,17 @@ class BaritoneSaxophone(Saxophone):
 
     def __init__(self, **kwargs):
         Saxophone.__init__(self, **kwargs)
+        pitch = pitchtools.NamedPitch('ef,')
         self._default_instrument_name = 'baritone saxophone'
         self._default_performer_names.extend(['saxophonist'])
         self._default_short_instrument_name = 'bar. sax.'
-        self._is_primary_instrument = False
-        pitch = pitchtools.NamedPitch('ef,')
         self._default_sounding_pitch_of_written_middle_c = pitch
-        self.starting_clefs = [contexttools.ClefMark('treble')]
-        self._copy_starting_clefs_to_allowable_clefs()
+        self._default_starting_clefs = contexttools.ClefMarkInventory([
+            contexttools.ClefMark('treble'),
+            ])
         self._default_pitch_range = pitchtools.PitchRange(-24, 8)
+        self._is_primary_instrument = False
+        self._copy_starting_clefs_to_allowable_clefs()
 
     ### PUBLIC PROPERTIES ###
 

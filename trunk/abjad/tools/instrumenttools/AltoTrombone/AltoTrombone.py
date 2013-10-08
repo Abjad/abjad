@@ -42,14 +42,14 @@ class AltoTrombone(Trombone):
     def __init__(self, **kwargs):
         Trombone.__init__(self, **kwargs)
         self._default_instrument_name = 'alto trombone'
+        self._default_pitch_range = pitchtools.PitchRange('[A2, Bb5]')
         self._default_short_instrument_name = 'alt. trb.'
-        self._is_primary_instrument = False
-        self.starting_clefs = [
+        self._default_starting_clefs = [
             contexttools.ClefMark('bass'), 
             contexttools.ClefMark('tenor'),
             ]
+        self._is_primary_instrument = False
         self._copy_starting_clefs_to_allowable_clefs()
-        self._default_pitch_range = pitchtools.PitchRange('[A2, Bb5]')
 
     ### PUBLIC PROPERTIES ###
 
