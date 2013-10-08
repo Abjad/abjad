@@ -6,18 +6,20 @@ from abjad.tools.instrumenttools.Trombone.Trombone import Trombone
 
 
 class AltoTrombone(Trombone):
-    r'''Abjad model of the alto trombone:
+    r'''An alto trombone.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> contexttools.ClefMark('bass')(staff)
-        ClefMark('bass')(Staff{4})
+        >>> clef = contexttools.ClefMark('bass')
+        >>> clef = clef.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> instrumenttools.AltoTrombone()(staff)
-        AltoTrombone()(Staff{4})
+        >>> alto_trombone = instrumenttools.AltoTrombone()
+        >>> alto_trombone = alto_trombone.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -32,11 +34,7 @@ class AltoTrombone(Trombone):
             f'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    The tenor trombone targets staff context by default.
+    The alto trombone targets staff context by default.
     '''
 
     ### INITIALIZER ###
@@ -46,9 +44,34 @@ class AltoTrombone(Trombone):
         self._default_instrument_name = 'alto trombone'
         self._default_short_instrument_name = 'alt. trb.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch("c'")
         self.starting_clefs = [
-            contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
+            contexttools.ClefMark('bass'), 
+            contexttools.ClefMark('tenor'),
+            ]
         self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange('[A2, Bb5]')
+
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def sounding_pitch_of_written_middle_c():
+        def fget(self):
+            r'''Gets and sets sounding pitch of written middle C.
+
+            ::
+
+                >>> alto_trombone.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> alto_trombone.sounding_pitch_of_written_middle_c = 'bf'
+                >>> alto_trombone.sounding_pitch_of_written_middle_c
+                NamedPitch('bf')
+
+            Returns named pitch.
+            '''
+            return Trombone.sounding_pitch_of_written_middle_c.fget(self)
+        def fset(self, foo):
+            Trombone.sounding_pitch_of_written_middle_c.fset(self, foo)
+        return property(**locals())

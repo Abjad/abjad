@@ -6,16 +6,18 @@ from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
 
 
 class BassClarinet(Clarinet):
-    r'''Abjad model of the bass clarinet:
+    r'''A bass clarinet.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> instrumenttools.BassClarinet()(staff)
-        BassClarinet()(Staff{4})
+        >>> bass_clarinet = instrumenttools.BassClarinet()
+        >>> bass_clarinet = bass_clarinet.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -29,10 +31,6 @@ class BassClarinet(Clarinet):
             f'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
     The bass clarinet targets staff context by default.
     '''
 
@@ -43,9 +41,35 @@ class BassClarinet(Clarinet):
         self._default_instrument_name = 'bass clarinet'
         self._default_short_instrument_name = 'bass cl.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch('bf,')
+        self._sounding_pitch_of_written_middle_c = pitchtools.NamedPitch('bf,')
         self.starting_clefs = [contexttools.ClefMark('treble')]
         self.allowable_clefs = [
-            contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
+            contexttools.ClefMark('treble'), 
+            contexttools.ClefMark('bass'),
+            ]
         self._default_pitch_range = pitchtools.PitchRange(-26, 19)
+
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def sounding_pitch_of_written_middle_c():
+        def fget(self):
+            r'''Gets and sets sounding pitch of written middle C.
+
+            ::
+
+                >>> bass_clarinet.sounding_pitch_of_written_middle_c
+                NamedPitch('bf,')
+
+            ::
+
+                >>> bass_clarinet.sounding_pitch_of_written_middle_c = 'c'
+                >>> bass_clarinet.sounding_pitch_of_written_middle_c
+                NamedPitch('c')
+
+            Returns named pitch.
+            '''
+            return Clarinet.sounding_pitch_of_written_middle_c.fget(self)
+        def fset(self, foo):
+            Clarinet.sounding_pitch_of_written_middle_c.fset(self, foo)
+        return property(**locals())
