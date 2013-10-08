@@ -69,8 +69,6 @@ class GraceContainer(Container):
             f'8 ]
         }
 
-    ::
-
     Fill grace containers with notes, rests or chords.
 
     Attach grace containers to nongrace notes, rests or chords.
