@@ -106,7 +106,7 @@ class Mark(AbjadObject):
 
     @property
     def start_component(self):
-        r'''Mark start component.
+        r'''Start component of mark.
 
         Returns component or none.
         '''

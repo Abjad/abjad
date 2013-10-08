@@ -7,7 +7,8 @@ from abjad.tools import pitchtools
 
 
 def transpose_from_sounding_pitch_to_written_pitch(expr):
-    r'''Transpose notes and chords in `expr` from sounding pitch to written pitch:
+    r'''Transpose notes and chords in `expr` from sounding pitch 
+    to written pitch:
 
     ::
 
@@ -53,7 +54,8 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
             contexttools.InstrumentMark)
         if not instrument:
             continue
-        t_n = instrument.interval_of_transposition
+        sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+        t_n = pitchtools.NamedPitch('C4') - sounding_pitch
         t_n *= -1
         if isinstance(note_or_chord, notetools.Note):
             note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(

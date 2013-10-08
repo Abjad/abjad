@@ -152,16 +152,6 @@ class Instrument(contexttools.InstrumentMark):
             self._allowable_clefs = contexttools.ClefMarkInventory(clefs)
         return property(**locals())
 
-    @property
-    def interval_of_transposition(self):
-        r'''Interval of transposition.
-
-        Returns named interval.
-        '''
-        sounding_pitch = self.sounding_pitch_of_written_middle_c
-        interval = pitchtools.NamedPitch("c'") - sounding_pitch
-        return interval
-
     @apply
     def pitch_range():
         def fget(self):

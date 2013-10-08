@@ -382,7 +382,8 @@ class Chord(Leaf):
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)
-            interval = instrument.interval_of_transposition
+            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            interval = pitchtools.NamedPitch('C4') - sounding_pitch
             interval *= -1
             written_pitches = [
                 pitchtools.transpose_pitch_carrier_by_melodic_interval(
@@ -502,7 +503,8 @@ class Chord(Leaf):
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)
-            interval = instrument.interval_of_transposition
+            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            interval = pitchtools.NamedPitch('C4') - sounding_pitch
             sounding_pitches = [
                 pitchtools.transpose_pitch_carrier_by_melodic_interval(
                 pitch, interval) for pitch in self.written_pitches]

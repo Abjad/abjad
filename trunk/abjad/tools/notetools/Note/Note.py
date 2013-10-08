@@ -189,7 +189,8 @@ class Note(Leaf):
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)
-            t_n = instrument.interval_of_transposition
+            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            t_n = pitchtools.NamedPitch('C4') - sounding_pitch
             t_n *= -1
             written_pitch = \
                 pitchtools.transpose_pitch_carrier_by_melodic_interval(
@@ -287,7 +288,8 @@ class Note(Leaf):
                     message = 'effective instrument of note'
                     message += ' can not be determined.'
                     raise InstrumentError(message)
-                t_n = instrument.interval_of_transposition
+                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+                t_n = pitchtools.NamedPitch('C4') - sounding_pitch
                 sounding_pitch = \
                     pitchtools.transpose_pitch_carrier_by_melodic_interval(
                         self.written_pitch, t_n)
@@ -305,7 +307,9 @@ class Note(Leaf):
                     message = 'effective instrument of note'
                     message += ' can not be determined.'
                     raise InstrumentError(message)
-                t_n = -1 * instrument.interval_of_transposition
+                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+                t_n = pitchtools.NamedPitch('C4') - sounding_pitch
+                t_n *= -1
                 self.written_pitch = \
                     pitchtools.transpose_pitch_carrier_by_melodic_interval(
                         pitch, t_n)
