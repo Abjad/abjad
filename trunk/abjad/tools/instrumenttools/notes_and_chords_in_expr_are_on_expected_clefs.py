@@ -87,7 +87,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
                 return True
             else:
                 return False
-        if clef not in instrument.all_clefs:
+        if clef not in instrument.allowable_clefs:
             return False
     else:
         return True

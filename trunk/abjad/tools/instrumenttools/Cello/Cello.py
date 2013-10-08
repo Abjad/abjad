@@ -49,8 +49,8 @@ class Cello(StringInstrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self.primary_clefs = [contexttools.ClefMark('bass')]
-        self.all_clefs = [
+        self.starting_clefs = [contexttools.ClefMark('bass')]
+        self.allowable_clefs = [
             contexttools.ClefMark('bass'),
             contexttools.ClefMark('tenor'),
             contexttools.ClefMark('treble'),

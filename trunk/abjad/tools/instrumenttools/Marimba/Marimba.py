@@ -46,7 +46,7 @@ class Marimba(PercussionInstrument):
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self.primary_clefs = [
+        self.starting_clefs = [
             contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
-        self._copy_primary_clefs_to_all_clefs()
+        self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-19, 36)

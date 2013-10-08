@@ -59,11 +59,11 @@ class Accordion(Instrument):
             ])
         self._default_short_instrument_name = 'acc.'
         self._is_primary_instrument = True
-        self.primary_clefs = [
+        self.starting_clefs = [
             contexttools.ClefMark('treble'), 
             contexttools.ClefMark('bass'),
             ]
-        self._copy_primary_clefs_to_all_clefs()
+        self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-32, 48)
 
     ### PRIVATE PROPERTIES ###
@@ -80,22 +80,22 @@ class Accordion(Instrument):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def all_clefs():
+    def allowable_clefs():
         def fget(self):
             r'''Gets and sets all clefs allowed for instrument.
 
             ::
 
-                >>> for clef in accordion.all_clefs:
+                >>> for clef in accordion.allowable_clefs:
                 ...     clef
                 ClefMark('treble')
                 ClefMark('bass')
 
             Returns clef inventory.
             '''
-            return Instrument.all_clefs.fget(self)
-        def fset(self, all_clefs):
-            return Instrument.all_clefs.fset(self, all_clefs)
+            return Instrument.allowable_clefs.fget(self)
+        def fset(self, allowable_clefs):
+            return Instrument.allowable_clefs.fset(self, allowable_clefs)
         return property(**locals())
 
     @apply
@@ -182,22 +182,28 @@ class Accordion(Instrument):
         return property(**locals())
 
     @apply
-    def primary_clefs():
+    def starting_clefs():
         def fget(self):
-            r'''Gets and sets instrument primary clefs.
+            r'''Gets and sets starting clefs.
 
             ::
 
-                >>> for clef in accordion.primary_clefs:
-                ...     clef
+                >>> for clef in accordion.starting_clefs: clef
                 ClefMark('treble')
                 ClefMark('bass')
 
+            ::
+
+                >>> clef = accordion.starting_clefs.pop()
+                >>> for clef in accordion.starting_clefs: clef
+                ClefMark('treble')
+
             Returns clef inventory.
             '''
-            return Instrument.primary_clefs.fget(self)
+            return Instrument.starting_clefs.fget(self)
         def fset(self, clefs):
-            return Instrument.primary_clefs.fset(self, clefs)
+            return Instrument.starting_clefs.fset(self, clefs)
+        return property(**locals())
 
     @apply
     def short_instrument_name():

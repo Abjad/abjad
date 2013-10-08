@@ -48,7 +48,7 @@ class Bassoon(DoubleReedInstrument):
         self._default_performer_names.append('bassoonist')
         self._default_short_instrument_name = 'bsn.'
         self._is_primary_instrument = True
-        self.primary_clefs = [contexttools.ClefMark('bass')]
-        self.all_clefs = [
+        self.starting_clefs = [contexttools.ClefMark('bass')]
+        self.allowable_clefs = [
             contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
         self._default_pitch_range = pitchtools.PitchRange(-26, 15)

@@ -28,7 +28,7 @@ class InstrumentEditor(InteractiveEditor):
             'rg', 
             getters.get_symbolic_pitch_range_string,
             ),
-        ('all_clefs', 'clefs', 'cf', ClefMarkInventoryEditor),
+        ('allowable_clefs', 'clefs', 'cf', ClefMarkInventoryEditor),
         )
 
     ### PRIVATE METHODS ###

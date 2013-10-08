@@ -50,6 +50,6 @@ class MezzoSopranoVoice(Voice):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self.primary_clefs = [contexttools.ClefMark('treble')]
-        self._copy_primary_clefs_to_all_clefs()
+        self.starting_clefs = [contexttools.ClefMark('treble')]
+        self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(('A3', 'C6'))

@@ -45,8 +45,8 @@ class Viola(StringInstrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self.primary_clefs = [contexttools.ClefMark('alto')]
-        self.all_clefs = [
+        self.starting_clefs = [contexttools.ClefMark('alto')]
+        self.allowable_clefs = [
             contexttools.ClefMark('alto'),
             contexttools.ClefMark('treble')]
         self._default_pitch_range = pitchtools.PitchRange(-12, 28)

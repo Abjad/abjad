@@ -35,8 +35,9 @@ class Instrument(contexttools.InstrumentMark):
 
     ### PRIVATE METHODS ###
 
-    def _copy_primary_clefs_to_all_clefs(self):
-        self.all_clefs = contexttools.ClefMarkInventory(self.primary_clefs)
+    def _copy_starting_clefs_to_allowable_clefs(self):
+        inventory = contexttools.ClefMarkInventory(self.starting_clefs)
+        self.allowable_clefs = inventory
 
     def _get_default_performer_name(self):
         if self._default_performer_names is None:
@@ -140,15 +141,15 @@ class Instrument(contexttools.InstrumentMark):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def all_clefs():
+    def allowable_clefs():
         def fget(self):
-            r'''Gets and sets all clefs allowed for instrument.
+            r'''Gets and sets allowable clefs.
 
-            Returns inventory of clefs.
+            Returns clef inventory.
             '''
-            return self._all_clefs
+            return self._allowable_clefs
         def fset(self, clefs):
-            self._all_clefs = contexttools.ClefMarkInventory(clefs)
+            self._allowable_clefs = contexttools.ClefMarkInventory(clefs)
         return property(**locals())
 
     @property
@@ -186,15 +187,15 @@ class Instrument(contexttools.InstrumentMark):
         return property(**locals())
 
     @apply
-    def primary_clefs():
+    def starting_clefs():
         def fget(self):
-            r'''Gets and sets instrument's primary clefs.
+            r'''Gets and sets starting clefs.
 
             Returns clef inventory.
             '''
-            return self._primary_clefs
+            return self._starting_clefs
         def fset(self, clefs):
-            self._primary_clefs = contexttools.ClefMarkInventory(clefs)
+            self._starting_clefs = contexttools.ClefMarkInventory(clefs)
         return property(**locals())
 
     @apply
