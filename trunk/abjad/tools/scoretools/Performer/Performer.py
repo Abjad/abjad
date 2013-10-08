@@ -441,18 +441,11 @@ class Performer(AbjadObject):
                 TenorSaxophone
             saxophonist:
                 AltoSaxophone
-                AltoSaxophone
-                BaritoneSaxophone
                 BaritoneSaxophone
                 BassSaxophone
-                BassSaxophone
-                ContrabassSaxophone
                 ContrabassSaxophone
                 SopraninoSaxophone
-                SopraninoSaxophone
                 SopranoSaxophone
-                SopranoSaxophone
-                TenorSaxophone
                 TenorSaxophone
             single reed player:
                 AltoSaxophone
@@ -501,10 +494,17 @@ class Performer(AbjadObject):
                 TenorVoice
             wind player:
                 AltoFlute
+                AltoSaxophone
+                BaritoneSaxophone
                 BassFlute
+                BassSaxophone
                 ContrabassFlute
+                ContrabassSaxophone
                 Flute
                 Piccolo
+                SopraninoSaxophone
+                SopranoSaxophone
+                TenorSaxophone
             xylophonist:
                 Xylophone
 

@@ -2,11 +2,11 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class TenorSaxophone(Saxophone):
-    r'''Abjad model of the tenor saxophone:
+class TenorSaxophone(Instrument):
+    r'''A tenor saxophone.
 
     ::
 
@@ -33,17 +33,20 @@ class TenorSaxophone(Saxophone):
 
         >>> show(staff) # doctest: +SKIP
 
-    The tenor saxophone is pitched in B-flat.
-
     The tenor saxophone targets staff context by default.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Saxophone.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'tenor saxophone'
-        self._default_performer_names.extend(['saxophonist'])
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'single reed player',
+            'saxophonist',
+            ])
         self._default_short_instrument_name = 'ten. sax.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \

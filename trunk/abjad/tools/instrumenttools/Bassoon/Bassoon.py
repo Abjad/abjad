@@ -7,18 +7,19 @@ from abjad.tools.instrumenttools.DoubleReedInstrument \
 
 
 class Bassoon(DoubleReedInstrument):
-    r'''Abjad model of the bassoon:
+    r'''A bassoon.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> contexttools.ClefMark('bass')(staff)
-        ClefMark('bass')(Staff{4})
+        >>> clef = contexttools.ClefMark('bass')
+        >>> clef = clef.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> instrumenttools.Bassoon()(staff)
-        Bassoon()(Staff{4})
+        >>> bassoon = instrumenttools.Bassoon()
+        >>> bassoon = bassoon.attach(staff)
 
     ..  doctest::
 
@@ -33,10 +34,6 @@ class Bassoon(DoubleReedInstrument):
             f'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
     The bassoon targets staff context by default.
     '''
 
@@ -44,11 +41,15 @@ class Bassoon(DoubleReedInstrument):
 
     def __init__(self, **kwargs):
         DoubleReedInstrument.__init__(self, **kwargs)
+        self._default_allowable_clefs = contexttools.ClefMarkInventory([
+            contexttools.ClefMark('bass'), 
+            contexttools.ClefMark('tenor'),
+            ])
         self._default_instrument_name = 'bassoon'
         self._default_performer_names.append('bassoonist')
-        self._default_short_instrument_name = 'bsn.'
-        self._is_primary_instrument = True
-        self.starting_clefs = [contexttools.ClefMark('bass')]
-        self.allowable_clefs = [
-            contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
         self._default_pitch_range = pitchtools.PitchRange(-26, 15)
+        self._default_short_instrument_name = 'bsn.'
+        self._default_starting_clefs = contexttools.ClefMarkInventory([
+            contexttools.ClefMark('bass'),
+            ])
+        self._is_primary_instrument = True

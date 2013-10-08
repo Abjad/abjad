@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class BaritoneSaxophone(Saxophone):
+class BaritoneSaxophone(Instrument):
     r'''A baritone saxophone.
 
     ::
@@ -37,10 +37,15 @@ class BaritoneSaxophone(Saxophone):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Saxophone.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         pitch = pitchtools.NamedPitch('ef,')
         self._default_instrument_name = 'baritone saxophone'
-        self._default_performer_names.extend(['saxophonist'])
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'single reed player',
+            'saxophonist',
+            ])
         self._default_short_instrument_name = 'bar. sax.'
         self._default_sounding_pitch_of_written_middle_c = pitch
         self._default_starting_clefs = contexttools.ClefMarkInventory([
@@ -76,7 +81,7 @@ class BaritoneSaxophone(Saxophone):
 
             Returns named pitch.
             '''
-            return Saxophone.sounding_pitch_of_written_middle_c.fget(self)
+            return Instrument.sounding_pitch_of_written_middle_c.fget(self)
         def fset(self, pitch):
-            Saxophone.sounding_pitch_of_written_middle_c.fset(self, pitch)
+            Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())

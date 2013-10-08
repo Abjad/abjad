@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Flute import Flute
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class BassFlute(Flute):
-    r'''Abjad model of the bass flute:
+class BassFlute(Instrument):
+    r'''A bass flute.
 
     ::
 
@@ -36,9 +36,14 @@ class BassFlute(Flute):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Flute.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         pitch = pitchtools.NamedPitch('c')
         self._default_instrument_name = 'bass flute'
+        self._default_performer_names.extend([
+            'wind player',
+            'flautist',
+            'flutist',
+            ])
         self._default_pitch_range = pitchtools.PitchRange(-12, 24)
         self._default_short_instrument_name = 'bass fl.'
         self._default_sounding_pitch_of_written_middle_c = pitch
@@ -70,7 +75,8 @@ class BassFlute(Flute):
 
             Returns named pitch.
             '''
-            return Flute.sounding_pitch_of_written_middle_c.fget(self)
+            return Instrument.sounding_pitch_of_written_middle_c.fget(self)
         def fset(self, pitch):
-            return Flute.sounding_pitch_of_written_middle_c.fset(self, pitch)
+            return Instrument.sounding_pitch_of_written_middle_c.fset(
+                self, pitch)
         return property(**locals())

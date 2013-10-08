@@ -2,20 +2,22 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class BassSaxophone(Saxophone):
-    r'''Abjad model of the bass saxophone:
+class BassSaxophone(Instrument):
+    r'''A bass saxophone.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> instrumenttools.BassSaxophone()(staff)
-        BassSaxophone()(Staff{4})
+        >>> bass_sax = instrumenttools.BassSaxophone()
+        >>> bass_sax = bass_sax.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -29,25 +31,26 @@ class BassSaxophone(Saxophone):
             f'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    The bass saxophone is pitched in B-flat.
-
     The bass saxophone targets staff context by default.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Saxophone.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
+        pitch = pitchtools.NamedPitch('bf,,')
         self._default_instrument_name = 'bass saxophone'
-        self._default_performer_names.extend(['saxophonist'])
+        self._default_performer_names.extend([
+            'wind player',
+            'reed player',
+            'single reed player',
+            'saxophonist',
+            ])
         self._default_short_instrument_name = 'bass sax.'
-        self._is_primary_instrument = False
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch('bf,,')
-        self.starting_clefs = [contexttools.ClefMark('treble')]
-        self._copy_starting_clefs_to_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-28, 4)
+        self._default_sounding_pitch_of_written_middle_c = pitch
+        self._default_starting_clefs = contexttools.ClefMarkInventory([
+            contexttools.ClefMark('treble'),
+            ])
+        self._is_primary_instrument = False
+        self._copy_starting_clefs_to_allowable_clefs()
