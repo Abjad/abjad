@@ -154,7 +154,7 @@ class Performer(AbjadObject):
         performer_names = set([])
         for instrument_class in instrumenttools.Instrument._list_instruments():
             instrument = instrument_class()
-            if instrument.is_primary_instrument:
+            if instrument._is_primary_instrument:
                 performer_name = instrument._get_default_performer_name()
                 performer_abbreviation = getattr(
                     instrument, 'default_performer_abbreviation', None)
@@ -262,7 +262,7 @@ class Performer(AbjadObject):
         for likely_instrument_class in \
             self.likely_instruments_based_on_performer_name:
             likely_instrument = likely_instrument_class()
-            if likely_instrument.is_primary_instrument:
+            if likely_instrument._is_primary_instrument:
                 return likely_instrument_class
 
     @apply

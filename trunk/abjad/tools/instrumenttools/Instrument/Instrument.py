@@ -125,7 +125,7 @@ class Instrument(contexttools.InstrumentMark):
         primary_instruments = []
         for instrument_class in cls._list_instruments():
             instrument = instrument_class()
-            if instrument.is_primary_instrument:
+            if instrument._is_primary_instrument:
                 primary_instruments.append(instrument_class)
         return primary_instruments
 
@@ -134,7 +134,7 @@ class Instrument(contexttools.InstrumentMark):
         secondary_instruments = []
         for instrument_class in cls._list_instruments():
             instrument = instrument_class()
-            if not instrument.is_primary_instrument:
+            if not instrument._is_primary_instrument:
                 secondary_instruments.append(instrument_class)
         return secondary_instruments
 
@@ -156,19 +156,11 @@ class Instrument(contexttools.InstrumentMark):
     def interval_of_transposition(self):
         r'''Interval of transposition.
 
-        Returns melodic interval.
+        Returns named interval.
         '''
-        return pitchtools.NamedPitch("c'") - \
-            self.sounding_pitch_of_written_middle_c
-
-    @property
-    def is_primary_instrument(self):
-        '''True when instrument is primary instrument.
-        Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._is_primary_instrument
+        sounding_pitch = self.sounding_pitch_of_written_middle_c
+        interval = pitchtools.NamedPitch("c'") - sounding_pitch
+        return interval
 
     @apply
     def pitch_range():

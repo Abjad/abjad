@@ -145,20 +145,6 @@ class Accordion(Instrument):
             return Instrument.instrument_name_markup.fset(self, markup)
         return property(**locals())
 
-    @property
-    def is_primary_instrument(self):
-        r'''True when instrument is primary.
-        Otherwise false.
-
-        ::
-
-            >>> accordion.is_primary_instrument
-            True
-
-        Returns string.
-        '''
-        return Instrument.is_primary_instrument.fget(self)
-
     @apply
     def pitch_range():
         def fget(self):
