@@ -2,10 +2,10 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.BrassInstrument import BrassInstrument
+from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class Trumpet(BrassInstrument):
+class Trumpet(Instrument):
     r'''Abjad model of the trumpet:
 
     ::
@@ -35,9 +35,12 @@ class Trumpet(BrassInstrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        BrassInstrument.__init__(self, **kwargs)
+        Instrument.__init__(self, **kwargs)
         self._default_instrument_name = 'trumpet'
-        self._default_performer_names.append('trumpeter')
+        self._default_performer_names.extend([
+            'brass player',
+            'trumpeter',
+            ])
         self._default_short_instrument_name = 'tp.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
