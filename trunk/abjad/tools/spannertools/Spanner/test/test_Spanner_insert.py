@@ -34,8 +34,7 @@ def test_Spanner_insert_02():
         Operation is still not composer-safe, however.
         Note that beam.append() and beam.append_left() are composer-safe.'''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[1])
 
     r'''

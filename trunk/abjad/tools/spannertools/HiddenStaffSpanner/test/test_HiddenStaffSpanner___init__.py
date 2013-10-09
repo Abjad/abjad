@@ -14,8 +14,7 @@ def test_HiddenStaffSpanner___init___02():
     r'''Hide staff around one measure.
     '''
 
-    staff = Staff(Measure((2, 8), "c'8 d'8") * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''

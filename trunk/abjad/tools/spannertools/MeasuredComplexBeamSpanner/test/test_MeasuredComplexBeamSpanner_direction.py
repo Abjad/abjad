@@ -4,8 +4,8 @@ from abjad import *
 
 def test_MeasuredComplexBeamSpanner_direction_01():
 
-    staff = Staff(Measure((2, 16), notetools.make_repeated_notes(2, Duration(1, 16))) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("abj: | 2/16 c'16 d'16 || 2/16 e'16 f'16 |"
+        "| 2/16 g'16 a'16 |")
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
