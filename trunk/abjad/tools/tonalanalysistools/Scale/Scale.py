@@ -65,6 +65,34 @@ class Scale(PitchClassSegment):
         mode = self.key_signature.mode.mode_name.title()
         return '{}{}'.format(letter, mode)
 
+    ### PRIVATE METHODS ###
+
+    def _set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(self, expr):
+        from abjad.tools import chordtools
+        from abjad.tools import iterationtools
+        from abjad.tools import notetools
+        from abjad.tools import pitchtools
+        from abjad.tools import tonalanalysistools
+
+        dicg = self.diatonic_interval_class_segment
+        length = len(dicg)
+
+        octave_number = 4
+        pitch = pitchtools.NamedPitch(self[0], octave_number)
+
+        for i, tie_chain in enumerate(iterationtools.iterate_tie_chains_in_expr(expr)):
+            if isinstance(tie_chain[0], notetools.Note):
+                for note in tie_chain:
+                    note.written_pitch = pitch
+            elif isinstance(tie_chain[0], chordtools.Chord):
+                for chord in tie_chain:
+                    chord.written_pitches = [pitch]
+            else:
+                pass
+            dic = dicg[i % length]
+            ascending_mdi = pitchtools.NamedInterval(dic.quality_string, dic.number)
+            pitch += ascending_mdi
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -200,8 +228,8 @@ class Scale(PitchClassSegment):
         '''
         written_duration = written_duration or durationtools.Duration(1, 8)
         result = notetools.make_notes(n * [0], [written_duration])
-        #pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        #    result, self.key_signature)
+        self._set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+            result)
         return result
 
     def make_score(self):
@@ -280,3 +308,4 @@ class Scale(PitchClassSegment):
         pitch_class = self[scale_index]
         pitch_class = pitch_class.apply_accidental(scale_degree._accidental)
         return pitch_class
+
