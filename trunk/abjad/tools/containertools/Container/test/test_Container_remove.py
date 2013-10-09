@@ -57,36 +57,30 @@ def test_Container_remove_02():
     Container returns after removal.
     '''
 
-    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+#    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+#    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
     sequential = staff[0]
     beam = spannertools.BeamSpanner(staff[:])
 
-    r'''
-    \new Staff {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8 ]
+            }
         }
-        {
-            e'8
-            f'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     staff.remove(sequential)
 
-    r'''
-    \new Staff {
-        {
-            e'8 [
-            f'8 ]
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -99,14 +93,8 @@ def test_Container_remove_02():
         '''
         )
 
-    r'''
-    {
-        c'8
-        d'8
-    }
-    '''
+    assert inspect(staff).is_well_formed()
 
-    assert inspect(sequential).is_well_formed()
     assert testtools.compare(
         sequential,
         r'''
@@ -116,6 +104,8 @@ def test_Container_remove_02():
         }
         '''
         )
+
+    assert inspect(sequential).is_well_formed()
 
 
 def test_Container_remove_03():

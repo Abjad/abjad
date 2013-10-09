@@ -10,8 +10,7 @@ def test_Container___delitem___01():
     Operation always leaves all expressions in tact.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     spannertools.BeamSpanner(voice[:])
     spannertools.SlurSpanner(voice[0][:])
     spannertools.SlurSpanner(voice[1][:])
@@ -202,9 +201,7 @@ def test_Container___delitem___08():
     r'''Delete leaf from nested container.
     '''
 
-    voice = Voice(notetools.make_repeated_notes(2))
-    voice.insert(1, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("c'8 { d'8 e'8 } f'8")
     spannertools.BeamSpanner(voice.select_leaves())
     spannertools.GlissandoSpanner(voice.select_leaves())
 

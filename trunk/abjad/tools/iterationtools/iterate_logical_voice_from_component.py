@@ -7,7 +7,7 @@ def iterate_logical_voice_from_component(
     component_class=None, 
     reverse=False,
     ):
-    r'''Itearte logical voice forward from `component` and yield instances 
+    r'''Iterate logical voice forward from `component` and yield instances 
     of `component_class`.
 
     ::
