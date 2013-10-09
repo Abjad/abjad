@@ -366,10 +366,8 @@ def test_ScoreMutationAgent_fuse_13():
     Beams are OK because they attach to leaves rather than containers.
     '''
 
-    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    spannertools.BeamSpanner(voice.select_leaves())
+    voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
+    beam = spannertools.BeamSpanner(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -414,9 +412,7 @@ def test_ScoreMutationAgent_fuse_14():
     Beam attaches to container rather than leaves.
     '''
 
-    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     spannertools.BeamSpanner(voice[0])
 
     assert testtools.compare(
@@ -463,10 +459,9 @@ def test_ScoreMutationAgent_fuse_15():
     Beams are OK because they attach to leaves rather than containers.
     '''
 
-    measure_1 = Measure((1, 8), notetools.make_repeated_notes(1))
-    measure_2 = Measure((1, 12), notetools.make_repeated_notes(1))
+    measure_1 = Measure((1, 8), "c'8")
+    measure_2 = Measure((1, 12), "d'8")
     voice = Voice([measure_1, measure_2])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     spannertools.BeamSpanner(voice.select_leaves())
 
     assert testtools.compare(
@@ -530,9 +525,7 @@ def test_ScoreMutationAgent_fuse_18():
     r'''Fuse three measures.
     '''
 
-    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
     spannertools.BeamSpanner(voice.select_leaves())
 
     assert testtools.compare(

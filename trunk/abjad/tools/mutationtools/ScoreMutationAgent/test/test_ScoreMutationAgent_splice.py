@@ -274,11 +274,10 @@ def test_ScoreMutationAgent_splice_10():
     r'''Splice left of container with underspanners.
     '''
 
-    voice = Voice(2 * Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     spannertools.BeamSpanner(voice.select_leaves())
     result = mutate(voice[1]).splice(
-        [Note(2.5, (1, 8))], 
+        [Note("dqs'8")], 
         direction=Left,
         grow_spanners=True,
         )

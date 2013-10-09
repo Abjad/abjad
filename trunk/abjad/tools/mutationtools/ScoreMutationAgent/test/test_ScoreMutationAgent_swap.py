@@ -8,8 +8,7 @@ def test_ScoreMutationAgent_swap_01():
     to empty tuplet.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     spannertools.BeamSpanner(voice.select_leaves())
 
     assert testtools.compare(
@@ -61,9 +60,8 @@ def test_ScoreMutationAgent_swap_02():
     r'''Move parentage, children and spanners from container to empty voice.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     voice.name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
     spannertools.GlissandoSpanner(voice[:])
     spannertools.BeamSpanner(voice.select_leaves())
 
@@ -118,8 +116,7 @@ def test_ScoreMutationAgent_swap_03():
     r'''Move parentage, children and spanners from container to empty tuplet.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     spannertools.GlissandoSpanner(voice[:])
     spannertools.BeamSpanner(voice.select_leaves())
 
@@ -176,9 +173,8 @@ def test_ScoreMutationAgent_swap_04():
     raises exception.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     spannertools.BeamSpanner(voice[:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     note = Note("c'4")
     assert py.test.raises(
@@ -192,9 +188,8 @@ def test_ScoreMutationAgent_swap_05():
     to nonempty container raises exception.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     spannertools.BeamSpanner(voice[:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     assert py.test.raises(
@@ -208,8 +203,7 @@ def test_ScoreMutationAgent_swap_06():
     that are not parent-contiguous raises exception.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     spannertools.BeamSpanner(voice.select_leaves())
 
     assert testtools.compare(

@@ -5,14 +5,13 @@ from abjad import *
 def test_AttributeInspectionAgent__select_vertical_moment_at_01():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+    score.append(Staff([tuplettools.FixedDurationTuplet(
+        Duration(4, 8), "d''8 c''8 b'8")]))
     piano_staff = scoretools.PianoStaff([])
-    piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
+    piano_staff.append(Staff("a'4 g'4"))
+    piano_staff.append(Staff("f'8 e'8 d'8 c'8"))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
     r'''
     \new Score <<
@@ -61,14 +60,13 @@ def test_AttributeInspectionAgent__select_vertical_moment_at_01():
 def test_AttributeInspectionAgent__select_vertical_moment_at_02():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+    score.append(Staff([tuplettools.FixedDurationTuplet(
+        Duration(4, 8), "d''8 c''8 b'8")]))
     piano_staff = scoretools.PianoStaff([])
-    piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
+    piano_staff.append(Staff("a'4 g'4"))
+    piano_staff.append(Staff("f'8 e'8 d'8 c'8"))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
     r'''
     \new Score <<
