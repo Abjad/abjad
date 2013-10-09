@@ -1157,28 +1157,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
     beam.override.score.spacing_spanner.uniform_stretching = True
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            \override Score.SpacingSpanner #'strict-grace-spacing = ##t
-            \override Score.SpacingSpanner #'strict-note-spacing = ##t
-            \override Score.SpacingSpanner #'uniform-stretching = ##t
-            c'8 [
-            d'8
-        }
-        {
-            \time 2/8
-            e'8
-            f'8 ]
-            \revert Score.SpacingSpanner #'strict-note-spacing
-            \revert Score.SpacingSpanner #'strict-grace-spacing
-            \revert Score.SpacingSpanner #'uniform-stretching
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -1203,6 +1181,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___37():
     r'''Override LilyPond SpacingSpanner grob.
@@ -1213,16 +1193,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___37():
     score.override.spacing_spanner.strict_note_spacing = True
     score.override.spacing_spanner.uniform_stretching = True
 
-    r'''
-    \new Score \with {
-        \override SpacingSpanner #'strict-grace-spacing = ##t
-        \override SpacingSpanner #'strict-note-spacing = ##t
-        \override SpacingSpanner #'uniform-stretching = ##t
-    } <<
-    >>
-    '''
-
-    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -1234,6 +1204,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___37():
         >>
         '''
         )
+
+    assert inspect(score).is_well_formed()
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___38():
@@ -1247,30 +1219,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___38():
     bass.extend(notes)
     score.override.span_bar.color = 'red'
 
-    r'''
-    \new Score \with {
-        \override SpanBar #'color = #red
-    } <<
-        \new PianoStaff <<
-            \context Staff = "treble" {
-                \clef "treble"
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            \context Staff = "bass" {
-                \clef "bass"
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-        >>
-    >>
-    '''
-
-    assert inspect(score).is_well_formed()
     assert testtools.compare(
         score,
         r'''
@@ -1297,6 +1245,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___38():
         '''
         )
 
+    assert inspect(score).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___39():
     r'''Override LilyPond StaffSymbol grob.
@@ -1304,17 +1254,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___39():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.override.staff_symbol.color = 'red'
-
-    r'''
-    \new Staff \with {
-        \override StaffSymbol #'color = #red
-    } {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
 
     assert testtools.compare(
         staff,
@@ -1338,17 +1277,18 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___40():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff[2].override.staff.staff_symbol.color = 'red'
 
-    r'''
-    \new Staff {
-        c'8
-        d'8
-        \once \override Staff.StaffSymbol #'color = #red
-        e'8
-        f'8
-    }
-    '''
-
-    staff.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\staff\\once \\override Staff.StaffSymbol #'color = #red\n\te'8\n\tf'8\n}"
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8
+            d'8
+            \once \override Staff.StaffSymbol #'color = #red
+            e'8
+            f'8
+        }
+        '''
+        )
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___41():
@@ -1356,18 +1296,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___41():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.override.staff_symbol.line_positions = schemetools.SchemeVector(-4, -2, 2, 4)
-
-    r'''
-    \new Staff \with {
-        \override StaffSymbol #'line-positions = #'(-4 -2 2 4)
-    } {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
+    staff.override.staff_symbol.line_positions = \
+        schemetools.SchemeVector(-4, -2, 2, 4)
 
     assert testtools.compare(
         staff,
@@ -1389,12 +1319,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___42():
     '''
 
     note = Note(0, (1, 16))
-    note.override.stem.stroke_style = schemetools.Scheme('grace', force_quotes=True)
-
-    r'''
-    \once \override Stem #'stroke-style = #"grace"
-    c'16
-    '''
+    note.override.stem.stroke_style = \
+        schemetools.Scheme('grace', force_quotes=True)
 
     assert testtools.compare(
         note,
@@ -1412,18 +1338,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___43():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.override.stem_tremolo.slope = 0.5
     staff.override.stem_tremolo.staff_padding = 2
-
-    r'''
-    \new Staff \with {
-        \override StemTremolo #'slope = #0.5
-        \override StemTremolo #'staff-padding = #2
-    } {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
 
     assert testtools.compare(
         staff,
@@ -1448,26 +1362,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___44():
     score = Score([scoretools.StaffGroup([Staff(notetools.make_repeated_notes(8))])])
     score.override.system_start_bar.collapse_height = 0
     score.override.system_start_bar.color = 'red'
-
-    r'''
-    \new Score \with {
-        \override SystemStartBar #'collapse-height = #0
-        \override SystemStartBar #'color = #red
-    } <<
-        \new StaffGroup <<
-            \new Staff {
-                c'8
-                c'8
-                c'8
-                c'8
-                c'8
-                c'8
-                c'8
-                c'8
-            }
-        >>
-    >>
-    '''
 
     assert testtools.compare(
         score,
@@ -1501,18 +1395,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___45():
     text_script_spanner = spannertools.TextScriptSpanner(staff[:])
     text_script_spanner.override.text_script.color = 'red'
 
-    r'''
-    \new Staff {
-        \override TextScript #'color = #red
-        c'8
-        d'8
-        e'8
-        f'8
-        \revert TextScript #'color
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -1527,6 +1409,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___45():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
     r'''Override LilyPond TextSpanner grob.
@@ -1536,18 +1420,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
     text_spanner = spannertools.TextSpanner(staff[:])
     text_spanner.override.text_spanner.font_shape = 'italic'
 
-    r'''
-    \new Staff {
-        \override TextSpanner #'font-shape = #'italic
-        c'8 \startTextSpan
-        c'8
-        c'8
-        c'8 \stopTextSpan
-        \revert TextSpanner #'font-shape
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -1562,6 +1434,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___47():
     r'''Override LilyPond Tie grob.
@@ -1569,6 +1443,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___47():
 
     note = Note("c'4")
     note.override.tie.color = 'red'
+
     assert testtools.compare(
         note,
         r'''
@@ -1584,17 +1459,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___48():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.override.time_signature.transparent = True
-
-    r'''
-    \new Staff \with {
-        \override TimeSignature #'transparent = ##t
-    } {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
 
     assert testtools.compare(
         staff,
@@ -1618,18 +1482,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___49():
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     measure.override.time_signature.transparent = True
 
-    r'''
-    {
-        \override TimeSignature #'transparent = ##t
-        \time 4/8
-        c'8
-        d'8
-        e'8
-        f'8
-        \revert TimeSignature #'transparent
-    }
-    '''
-
     assert testtools.compare(
         measure,
         r'''
@@ -1652,18 +1504,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___50():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     measure.override.staff.time_signature.transparent = True
-
-    r'''
-    {
-        \override Staff.TimeSignature #'transparent = ##t
-        \time 4/8
-        c'8
-        d'8
-        e'8
-        f'8
-        \revert Staff.TimeSignature #'transparent
-    }
-    '''
 
     assert testtools.compare(
         measure,
@@ -1689,18 +1529,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___51():
     staff.override.trill_pitch_accidental.staff_padding = 2
     staff.override.trill_pitch_accidental.Y_extent = (-1.5, 1.5)
 
-    r'''
-    \new Staff \with {
-        \override TrillPitchAccidental #'Y-extent = #'(-1.5 . 1.5)
-        \override TrillPitchAccidental #'staff-padding = #2
-    } {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
     assert testtools.compare(
         staff,
         r'''
@@ -1725,17 +1553,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___52():
     trill = spannertools.TrillSpanner(voice[:])
     trill.override.trill_spanner.color = 'red'
 
-    r'''
-    \new Voice {
-        \override TrillSpanner #'color = #red
-        c'8 \startTrillSpan
-        d'8
-        e'8
-        f'8 \stopTrillSpan
-        \revert TrillSpanner #'color
-    }
-    '''
-
     assert testtools.compare(
         voice,
         r'''
@@ -1759,18 +1576,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
     spannertools.BeamSpanner(voice[:])
     voice.override.tuplet_bracket.direction = Down
 
-    r'''
-    \new Voice \with {
-        \override TupletBracket #'direction = #down
-    } {
-        c'8 [
-        d'8
-        e'8
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1785,6 +1590,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
     r'''Override LilyPond TupletBracket grob.
@@ -1794,17 +1601,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
     spannertools.BeamSpanner(voice[:])
     voice[1].override.tuplet_bracket.direction = Down
 
-    r'''
-    \new Voice {
-        c'8 [
-        \once \override TupletBracket #'direction = #down
-        d'8
-        e'8
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1818,6 +1614,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
     r'''Override LilyPond TupletNumber grob.
@@ -1826,17 +1624,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     tuplet.override.tuplet_number.fraction = True
 
-    r'''
-    \override TupletNumber #'fraction = ##tuplet
-    \times 2/3 {
-        c'8
-        d'8
-        e'8
-    }
-    \revert TupletNumber #'fraction
-    '''
-
-    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -1850,6 +1637,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
         '''
         )
 
+    assert inspect(tuplet).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
     r'''Override LilyPond TupletNumber grob.
@@ -1859,18 +1648,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
     spannertools.BeamSpanner(voice[:])
     voice.override.tuplet_number.fraction = True
 
-    r'''
-    \new Voice \with {
-        \override TupletNumber #'fraction = ##t
-    } {
-        c'8 [
-        d'8
-        e'8
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1885,6 +1662,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
     r'''Override LilyPond TupletNumber grob.
@@ -1894,17 +1673,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
     spannertools.BeamSpanner(voice[:])
     voice[1].override.tuplet_number.fraction = True
 
-    r'''
-    \new Voice {
-        c'8 [
-        \once \override TupletNumber #'fraction = ##t
-        d'8
-        e'8
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1918,6 +1686,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
     r'''Override LilyPond TupletNumber grob.
@@ -1927,18 +1697,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
     spannertools.BeamSpanner(voice[:])
     voice.override.tuplet_number.text = markuptools.Markup('6:4')
 
-    r'''
-    \new Voice \with {
-        \override TupletNumber #'text = \markup { 6:4 }
-    } {
-        c'8 [
-        d'8
-        e'8
-        f'8 ]
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -1953,6 +1711,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___59():
     r'''Override LilyPond VerticalAlignment grob.
@@ -1961,18 +1721,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___59():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.override.vertical_alignment.staff_padding = 2
     staff.override.vertical_alignment.Y_extent = (-1.5, 1.5)
-
-    r'''
-    \new Staff \with {
-        \override VerticalAlignment #'Y-extent = #'(-1.5 . 1.5)
-        \override VerticalAlignment #'staff-padding = #2
-    } {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
 
     assert testtools.compare(
         staff,
@@ -1997,18 +1745,6 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___60():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff.override.vertical_axis_group.staff_padding = 2
     staff.override.vertical_axis_group.Y_extent = (-1.5, 1.5)
-
-    r'''
-    \new Staff \with {
-        \override VerticalAxisGroup #'Y-extent = #'(-1.5 . 1.5)
-        \override VerticalAxisGroup #'staff-padding = #2
-    } {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
 
     assert testtools.compare(
         staff,

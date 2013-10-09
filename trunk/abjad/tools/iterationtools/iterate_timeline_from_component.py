@@ -9,9 +9,8 @@ def iterate_timeline_from_component(expr, component_class=None, reverse=False):
     ::
 
         >>> score = Score([])
-        >>> score.append(Staff(notetools.make_repeated_notes(4, Duration(1, 4))))
-        >>> score.append(Staff(notetools.make_repeated_notes(4)))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
+        >>> score.append(Staff("c'4 d'4 e'4 f'4"))
+        >>> score.append(Staff("g'8 a'8 b'8 c''8"))
 
     ..  doctest::
 

@@ -12,12 +12,16 @@ def iterate_logical_voice_from_component(
 
     ::
 
-        >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-        >>> container.is_simultaneous = True
-        >>> container[0].name = 'voice 1'
-        >>> container[1].name = 'voice 2'
-        >>> staff = Staff(container * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+        >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+        >>> container_1.is_simultaneous = True
+        >>> container_1[0].name = 'voice 1'
+        >>> container_1[1].name = 'voice 2'
+        >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+        >>> container_2.is_simultaneous = True
+        >>> container_2[0].name = 'voice 1'
+        >>> container_2[1].name = 'voice 2'
+        >>> staff = Staff([container_1, container_2])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 

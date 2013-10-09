@@ -6,38 +6,45 @@ def test_iterationtools_iterate_logical_voice_from_component_01():
     r'''Iterate only notes.
     '''
 
-    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    container.is_simultaneous = True
-    container[0].name = 'voice 1'
-    container[1].name = 'vocie 2'
-    staff = Staff(container * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+    container_1.is_simultaneous = True
+    container_1[0].name = 'voice 1'
+    container_1[1].name = 'voice 2'
 
-    r'''
-    \new Staff {
-        <<
-            \context Voice = "voice 1" {
-                c'8
-                d'8
-            }
-            \context Voice = "vocie 2" {
-                e'8
-                f'8
-            }
-        >>
-        <<
-            \context Voice = "voice 1" {
-                g'8
-                a'8
-            }
-            \context Voice = "vocie 2" {
-                b'8
-                c''8
-            }
-        >>
-    }
-    '''
+    container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+    container_2.is_simultaneous = True
+    container_2[0].name = 'voice 1'
+    container_2[1].name = 'voice 2'
+
+    staff = Staff([container_1, container_2])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            <<
+                \context Voice = "voice 1" {
+                    c'8
+                    d'8
+                }
+                \context Voice = "voice 2" {
+                    e'8
+                    f'8
+                }
+            >>
+            <<
+                \context Voice = "voice 1" {
+                    g'8
+                    a'8
+                }
+                \context Voice = "voice 2" {
+                    b'8
+                    c''8
+                }
+            >>
+        }
+        '''
+        )
 
     notes = iterationtools.iterate_logical_voice_from_component(
         staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
@@ -58,41 +65,51 @@ def test_iterationtools_iterate_logical_voice_from_component_02():
     r'''Iterate all components.
     '''
 
-    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    container.is_simultaneous = True
-    container[0].name = 'voice 1'
-    container[1].name = 'vocie 2'
-    staff = Staff(container * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+    container_1.is_simultaneous = True
+    container_1[0].name = 'voice 1'
+    container_1[1].name = 'voice 2'
 
-    r'''
-    \new Staff {
-        <<
-            \context Voice = "voice 1" {
-                c'8
-                d'8
-            }
-            \context Voice = "vocie 2" {
-                e'8
-                f'8
-            }
-        >>
-        <<
-            \context Voice = "voice 1" {
-                g'8
-                a'8
-            }
-            \context Voice = "vocie 2" {
-                b'8
-                c''8
-            }
-        >>
-    }
-    '''
+    container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+    container_2.is_simultaneous = True
+    container_2[0].name = 'voice 1'
+    container_2[1].name = 'voice 2'
 
+    staff = Staff([container_1, container_2])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            <<
+                \context Voice = "voice 1" {
+                    c'8
+                    d'8
+                }
+                \context Voice = "voice 2" {
+                    e'8
+                    f'8
+                }
+            >>
+            <<
+                \context Voice = "voice 1" {
+                    g'8
+                    a'8
+                }
+                \context Voice = "voice 2" {
+                    b'8
+                    c''8
+                }
+            >>
+        }
+        '''
+        )
+
+    leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
     components = iterationtools.iterate_logical_voice_from_component(
-        staff.select_leaves(allow_discontiguous_leaves=True)[-1], reverse=True)
+        leaf, 
+        reverse=True,
+        )
     components = list(components)
 
     r'''
@@ -104,11 +121,10 @@ def test_iterationtools_iterate_logical_voice_from_component_02():
     Note(e', 8)
     '''
 
-    assert components[0] is \
-        staff.select_leaves(allow_discontiguous_leaves=True)[-1]
+    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
+    assert components[0] is leaves[-1]
     assert components[1] is staff[1][1]
-    assert components[2] is \
-        staff.select_leaves(allow_discontiguous_leaves=True)[-2]
+    assert components[2] is leaves[-2]
     assert components[3] is staff[0][1]
     assert components[4] is staff[0][1][1]
     assert components[5] is staff[0][1][0]
@@ -116,41 +132,51 @@ def test_iterationtools_iterate_logical_voice_from_component_02():
 
 def test_iterationtools_iterate_logical_voice_from_component_03():
 
-    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    container.is_simultaneous = True
-    container[0].name = 'voice 1'
-    container[1].name = 'vocie 2'
-    staff = Staff(container * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+    container_1.is_simultaneous = True
+    container_1[0].name = 'voice 1'
+    container_1[1].name = 'voice 2'
 
-    r'''
-    \new Staff {
-        <<
-            \context Voice = "voice 1" {
-                c'8
-                d'8
-            }
-            \context Voice = "vocie 2" {
-                e'8
-                f'8
-            }
-        >>
-        <<
-            \context Voice = "voice 1" {
-                g'8
-                a'8
-            }
-            \context Voice = "vocie 2" {
-                b'8
-                c''8
-            }
-        >>
-    }
-    '''
+    container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+    container_2.is_simultaneous = True
+    container_2[0].name = 'voice 1'
+    container_2[1].name = 'voice 2'
 
+    staff = Staff([container_1, container_2])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            <<
+                \context Voice = "voice 1" {
+                    c'8
+                    d'8
+                }
+                \context Voice = "voice 2" {
+                    e'8
+                    f'8
+                }
+            >>
+            <<
+                \context Voice = "voice 1" {
+                    g'8
+                    a'8
+                }
+                \context Voice = "voice 2" {
+                    b'8
+                    c''8
+                }
+            >>
+        }
+        '''
+        )
+
+    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
     notes = iterationtools.iterate_logical_voice_from_component(
-        staff.select_leaves(allow_discontiguous_leaves=True)[0], Note)
+        leaves[0], 
+        Note,
+        )
     notes = list(notes)
 
     voice_1_first_half = staff[0][0]
@@ -164,41 +190,49 @@ def test_iterationtools_iterate_logical_voice_from_component_03():
 
 def test_iterationtools_iterate_logical_voice_from_component_04():
 
-    container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-    container.is_simultaneous = True
-    container[0].name = 'voice 1'
-    container[1].name = 'vocie 2'
-    staff = Staff(container * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+    container_1.is_simultaneous = True
+    container_1[0].name = 'voice 1'
+    container_1[1].name = 'voice 2'
 
-    r'''
-    \new Staff {
-        <<
-            \context Voice = "voice 1" {
-                c'8
-                d'8
-            }
-            \context Voice = "vocie 2" {
-                e'8
-                f'8
-            }
-        >>
-        <<
-            \context Voice = "voice 1" {
-                g'8
-                a'8
-            }
-            \context Voice = "vocie 2" {
-                b'8
-                c''8
-            }
-        >>
-    }
-    '''
+    container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+    container_2.is_simultaneous = True
+    container_2[0].name = 'voice 1'
+    container_2[1].name = 'voice 2'
 
-    components = iterationtools.iterate_logical_voice_from_component(
-        staff.select_leaves(allow_discontiguous_leaves=True)[0])
+    staff = Staff([container_1, container_2])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            <<
+                \context Voice = "voice 1" {
+                    c'8
+                    d'8
+                }
+                \context Voice = "voice 2" {
+                    e'8
+                    f'8
+                }
+            >>
+            <<
+                \context Voice = "voice 1" {
+                    g'8
+                    a'8
+                }
+                \context Voice = "voice 2" {
+                    b'8
+                    c''8
+                }
+            >>
+        }
+        '''
+        )
+
+    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
+    leaf = leaves[0]
+    components = iterationtools.iterate_logical_voice_from_component(leaf)
     components = list(components)
 
     r'''
@@ -210,11 +244,9 @@ def test_iterationtools_iterate_logical_voice_from_component_04():
     a'8
     '''
 
-    assert components[0] is \
-        staff.select_leaves(allow_discontiguous_leaves=True)[0]
+    assert components[0] is leaves[0]
     assert components[1] is staff[0][0]
-    assert components[2] is \
-        staff.select_leaves(allow_discontiguous_leaves=True)[1]
+    assert components[2] is leaves[1]
     assert components[3] is staff[1][0]
     assert components[4] is staff[1][0][0]
     assert components[5] is staff[1][0][1]

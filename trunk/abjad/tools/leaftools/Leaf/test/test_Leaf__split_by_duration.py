@@ -22,12 +22,11 @@ def test_Leaf__split_by_duration_01():
         )
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        (1, 32), 
+        Duration(1, 32), 
         fracture_spanners=False,
         tie_split_notes=False,
         )
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -39,6 +38,8 @@ def test_Leaf__split_by_duration_01():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
 
 
 def test_Leaf__split_by_duration_02():
@@ -60,7 +61,7 @@ def test_Leaf__split_by_duration_02():
         )
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        (1, 32),
+        Duration(1, 32),
         fracture_spanners=True,
         tie_split_notes=False,
         )
@@ -99,7 +100,7 @@ def test_Leaf__split_by_duration_03():
         )
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        (1, 32), 
+        Duration(1, 32), 
         fracture_spanners=False,
         tie_split_notes=True,
         )
@@ -127,12 +128,11 @@ def test_Leaf__split_by_duration_04():
     staff = Staff("c'8 [ d'8 e'8 ]")
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        (1, 32), 
+        Duration(1, 32), 
         fracture_spanners=True, 
         tie_split_notes=True,
         )
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -145,6 +145,8 @@ def test_Leaf__split_by_duration_04():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_Leaf__split_by_duration_05():
     r'''Split note into tuplet monads.
@@ -154,11 +156,10 @@ def test_Leaf__split_by_duration_05():
     staff = Staff("c'8 [ d'8 e'8 ]")
 
     halves = staff.select_leaves()[1]._split_by_duration(
-        (1, 24), 
+        Duration(1, 24), 
         tie_split_notes=False,
         )
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -183,12 +184,7 @@ def test_Leaf__split_by_duration_06():
     This test comes from a container-crossing spanner bug.
     '''
 
-    voice = Voice(
-        notetools.make_repeated_notes(1) + 
-        [tuplettools.FixedDurationTuplet(
-            Duration(2, 8), notetools.make_repeated_notes(3))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        voice)
+    voice = Voice(r"c'8 \times 2/3 { d'8 e'8 f'8 }")
     spannertools.BeamSpanner(voice.select_leaves())
 
     assert testtools.compare(
@@ -265,6 +261,7 @@ def test_Leaf__split_by_duration_09():
     '''
 
     note = Note("c'4")
+
     halves = note._split_by_duration(
         Duration(1, 8), 
         tie_split_notes=False,
@@ -309,6 +306,7 @@ def test_Leaf__split_by_duration_11():
     '''
 
     note = Note("c'4")
+
     halves = note._split_by_duration(
         Duration(5, 32), 
         tie_split_notes=False,
@@ -342,6 +340,7 @@ def test_Leaf__split_by_duration_12():
         assert inspect(leaf).get_spanners() == set([tie])
         spanner_classes = (spannertools.TieSpanner,)
         assert inspect(leaf).get_spanner(spanner_classes) is tie
+
     assert inspect(staff).is_well_formed()
 
 
@@ -361,6 +360,7 @@ def test_Leaf__split_by_duration_13():
     for l in staff.select_leaves():
         assert inspect(l).get_spanners() == set([b])
         assert l._get_spanner(spannertools.BeamSpanner) is b
+
     assert inspect(staff).is_well_formed()
 
 
@@ -379,6 +379,7 @@ def test_Leaf__split_by_duration_14():
     for l in staff.select_leaves():
         assert inspect(l).get_spanners() == set([tie])
         assert inspect(l).get_spanner(spannertools.TieSpanner) is tie
+
     assert inspect(staff).is_well_formed()
 
 
@@ -395,6 +396,7 @@ def test_Leaf__split_by_duration_15():
     assert tie.components == (container, )
     for l in container.select_leaves():
         assert not inspect(l).get_spanners()
+
     assert inspect(container).is_well_formed()
 
 
@@ -413,6 +415,7 @@ def test_Leaf__split_by_duration_16():
         for l in v.select_leaves():
             assert not inspect(l).get_spanners()
             assert l._parent is v
+
     assert inspect(staff).is_well_formed()
 
 

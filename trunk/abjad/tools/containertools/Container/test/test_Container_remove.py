@@ -57,8 +57,6 @@ def test_Container_remove_02():
     Container returns after removal.
     '''
 
-#    staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-#    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
     sequential = staff[0]
     beam = spannertools.BeamSpanner(staff[:])

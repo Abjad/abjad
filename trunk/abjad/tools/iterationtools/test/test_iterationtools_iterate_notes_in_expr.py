@@ -4,28 +4,31 @@ from abjad import *
 
 def test_iterationtools_iterate_notes_in_expr_01():
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff()
+    staff.append(Measure((2, 8), "c'8 d'8"))
+    staff.append(Measure((2, 8), "e'8 f'8"))
+    staff.append(Measure((2, 8), "g'8 a'8"))
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8
+            }
         }
-        {
-            \time 2/8
-            e'8
-            f'8
-        }
-        {
-            \time 2/8
-            g'8
-            a'8
-        }
-    }
-    '''
+        '''
+        )
 
     generator = iterationtools.iterate_notes_in_expr(staff, reverse=True)
     notes = list(generator)
@@ -42,8 +45,31 @@ def test_iterationtools_iterate_notes_in_expr_02():
     r'''Optional start and stop keyword parameters.
     '''
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff()
+    staff.append(Measure((2, 8), "c'8 d'8"))
+    staff.append(Measure((2, 8), "e'8 f'8"))
+    staff.append(Measure((2, 8), "g'8 a'8"))
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8
+            }
+        }
+        '''
+        )
 
     notes = list(iterationtools.iterate_notes_in_expr(staff, reverse=True, start=3))
     assert notes[0] is staff[1][0]
@@ -65,28 +91,31 @@ def test_iterationtools_iterate_notes_in_expr_02():
 
 def test_iterationtools_iterate_notes_in_expr_03():
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff()
+    staff.append(Measure((2, 8), "c'8 d'8"))
+    staff.append(Measure((2, 8), "e'8 f'8"))
+    staff.append(Measure((2, 8), "g'8 a'8"))
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8
+            }
         }
-        {
-            \time 2/8
-            e'8
-            f'8
-        }
-        {
-            \time 2/8
-            g'8
-            a'8
-        }
-    }
-    '''
+        '''
+        )
 
     generator = iterationtools.iterate_notes_in_expr(staff)
     notes = list(generator)
@@ -103,8 +132,31 @@ def test_iterationtools_iterate_notes_in_expr_04():
     r'''Optional start and stop keyword parameters.
     '''
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff()
+    staff.append(Measure((2, 8), "c'8 d'8"))
+    staff.append(Measure((2, 8), "e'8 f'8"))
+    staff.append(Measure((2, 8), "g'8 a'8"))
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8
+            }
+        }
+        '''
+        )
 
     notes = list(iterationtools.iterate_notes_in_expr(staff, start=3))
     assert notes[0] is staff[1][1]

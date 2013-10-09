@@ -13,12 +13,20 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
 
         >>> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+
+        >>> staff = Staff()
+        >>> staff.append(Measure((2, 8), "c'8 d'8"))
+        >>> staff.append(Measure((2, 8), "e'8 f'8"))
+        >>> staff.append(Measure((2, 8), "g'8 a'8"))
+        >>> staff.append(Measure((2, 8), "b'8 c''8"))
         >>> tempo_mark = contexttools.TempoMark(
-        ...     Duration(1, 8), 44, target_context = Staff)(t)
+        ...     Duration(1, 8), 44, target_context=Staff)
+        >>> tempo_mark = tempo_mark.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> f(t)
+        >>> f(staff)
         \new Staff {
             \tempo 8=44
             {
@@ -42,8 +50,13 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
 
     ::
 
-        >>> layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(t, Duration(6))
-        >>> f(t)
+        >>> layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(
+        ...     staff, Duration(6))
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> f(staff)
         \new Staff {
             \tempo 8=44
             {
@@ -72,12 +85,12 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
     to move end-of-line LilyPond TimeSignature and BarLine grobs to
     the right.
     '''
-    from abjad.tools.layouttools.set_line_breaks_by_line_duration import set_line_breaks_by_line_duration
+    from abjad.tools import layouttools
 
     if line_break_class is None:
         line_break_class = measuretools.Measure
 
-    set_line_breaks_by_line_duration(
+    layouttools.set_line_breaks_by_line_duration(
         expr,
         line_duration,
         line_break_class,

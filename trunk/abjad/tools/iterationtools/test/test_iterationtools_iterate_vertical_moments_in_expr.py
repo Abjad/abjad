@@ -5,40 +5,42 @@ from abjad import *
 def test_iterationtools_iterate_vertical_moments_in_expr_01():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(
-        Duration(4, 8), notetools.make_repeated_notes(3))]))
+    staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
+    score.append(staff_1)
     piano_staff = scoretools.PianoStaff([])
-    piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
+    piano_staff = scoretools.PianoStaff()
+    piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
-    r'''
-    \new Score <<
-        \new Staff {
-            \times 4/3 {
-                d''8
-                c''8
-                b'8
-            }
-        }
-        \new PianoStaff <<
+    assert testtools.compare(
+        score,
+        r'''
+        \new Score <<
             \new Staff {
-                a'4
-                g'4
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    d''8
+                    c''8
+                    b'8
+                }
             }
-            \new Staff {
-                \clef "bass"
-                f'8
-                e'8
-                d'8
-                c'8
-            }
+            \new PianoStaff <<
+                \new Staff {
+                    a'4
+                    g'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    f'8
+                    e'8
+                    d'8
+                    c'8
+                }
+            >>
         >>
-    >>
-    '''
+        '''
+        )
 
     moment_generator = iterationtools.iterate_vertical_moments_in_expr(
         score, reverse=True)
@@ -68,15 +70,42 @@ def test_iterationtools_iterate_vertical_moments_in_expr_01():
 def test_iterationtools_iterate_vertical_moments_in_expr_02():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(
-        Duration(4, 8), notetools.make_repeated_notes(3))]))
+    staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
+    score.append(staff_1)
     piano_staff = scoretools.PianoStaff([])
-    piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
+    piano_staff = scoretools.PianoStaff()
+    piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
+
+    assert testtools.compare(
+        score,
+        r'''
+        \new Score <<
+            \new Staff {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    d''8
+                    c''8
+                    b'8
+                }
+            }
+            \new PianoStaff <<
+                \new Staff {
+                    a'4
+                    g'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    f'8
+                    e'8
+                    d'8
+                    c'8
+                }
+            >>
+        >>
+        '''
+        )
 
     # see above for formatted score #
 
@@ -103,40 +132,42 @@ def test_iterationtools_iterate_vertical_moments_in_expr_02():
 def test_iterationtools_iterate_vertical_moments_in_expr_03():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(
-        Duration(4, 8), notetools.make_repeated_notes(3))]))
+    staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
+    score.append(staff_1)
     piano_staff = scoretools.PianoStaff([])
-    piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
+    piano_staff = scoretools.PianoStaff()
+    piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
 
-    r'''
-    \new Score <<
-        \new Staff {
-            \times 4/3 {
-                d''8
-                c''8
-                b'8
-            }
-        }
-        \new PianoStaff <<
+    assert testtools.compare(
+        score,
+        r'''
+        \new Score <<
             \new Staff {
-                a'4
-                g'4
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    d''8
+                    c''8
+                    b'8
+                }
             }
-            \new Staff {
-                \clef "bass"
-                f'8
-                e'8
-                d'8
-                c'8
-            }
+            \new PianoStaff <<
+                \new Staff {
+                    a'4
+                    g'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    f'8
+                    e'8
+                    d'8
+                    c'8
+                }
+            >>
         >>
-    >>
-    '''
+        '''
+        )
 
     moment_generator = iterationtools.iterate_vertical_moments_in_expr(score)
     moments = list(moment_generator)
@@ -165,15 +196,42 @@ def test_iterationtools_iterate_vertical_moments_in_expr_03():
 def test_iterationtools_iterate_vertical_moments_in_expr_04():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(
-        Duration(4, 8), notetools.make_repeated_notes(3))]))
+    staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
+    score.append(staff_1)
     piano_staff = scoretools.PianoStaff([])
-    piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
+    piano_staff = scoretools.PianoStaff()
+    piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
+
+    assert testtools.compare(
+        score,
+        r'''
+        \new Score <<
+            \new Staff {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    d''8
+                    c''8
+                    b'8
+                }
+            }
+            \new PianoStaff <<
+                \new Staff {
+                    a'4
+                    g'4
+                }
+                \new Staff {
+                    \clef "bass"
+                    f'8
+                    e'8
+                    d'8
+                    c'8
+                }
+            >>
+        >>
+        '''
+        )
 
     # see above for formatted score #
 
