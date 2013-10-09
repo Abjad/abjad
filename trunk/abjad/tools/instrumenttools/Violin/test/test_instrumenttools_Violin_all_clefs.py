@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_instrumenttools_Violin_allowable_clefs_01():
+def test_instrumenttools_Violin_all_clefs_01():
 
     violin = instrumenttools.Violin()
 

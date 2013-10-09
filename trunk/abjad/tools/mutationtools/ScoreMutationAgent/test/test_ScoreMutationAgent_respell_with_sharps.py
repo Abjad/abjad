@@ -2,13 +2,13 @@
 from abjad import *
 
 
-def test_ScoreMutationAgent_respell_with_sharps_02():
+def test_ScoreMutationAgent_respell_with_sharps_01():
     note = Note(('df', 4), 4)
     mutate(note).respell_with_sharps()
     assert note.written_pitch == pitchtools.NamedPitch('cs', 4)
 
 
-def test_ScoreMutationAgent_respell_with_sharps_03():
+def test_ScoreMutationAgent_respell_with_sharps_02():
     chord = Chord([('df', 4), ('f', 4), ('af', 4)], (1, 4))
     mutate(chord).respell_with_sharps()
     assert chord.written_pitches == (
@@ -18,7 +18,7 @@ def test_ScoreMutationAgent_respell_with_sharps_03():
         )
 
 
-def test_ScoreMutationAgent_respell_with_sharps_04():
+def test_ScoreMutationAgent_respell_with_sharps_03():
     staff = Staff(notetools.make_repeated_notes(12))
     pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(staff)
     mutate(staff).respell_with_sharps()

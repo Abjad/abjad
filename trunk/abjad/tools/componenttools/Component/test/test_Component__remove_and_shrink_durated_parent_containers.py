@@ -3,11 +3,12 @@ from abjad import *
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_01():
-    r'''Excise leaf from tuplet and measure.
+    r'''Remove leaf from tuplet and measure.
     '''
 
-    measure = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
+    measure = Measure((4, 4), [])
+    measure.append(tuplettools.FixedDurationTuplet((2, 4), "c'4 d'4 e'4"))
+    measure.append(tuplettools.FixedDurationTuplet((2, 4), "f'4 g'4 a'4"))
 
     assert testtools.compare(
         measure,
@@ -54,11 +55,13 @@ def test_Component__remove_and_shrink_durated_parent_containers_01():
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_02():
-    r'''Excise leaf from tuplet and measure.
+    r'''Remove leaf from tuplet and measure.
     '''
 
-    measure = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 5) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
+    measure = Measure((4, 4), [])
+    tuplet_1 = tuplettools.FixedDurationTuplet((2, 4), "c'8 d' e' f' g'")
+    tuplet_2 = tuplettools.FixedDurationTuplet((2, 4), "a'8 b' c'' d'' e''")
+    measure.extend([tuplet_1, tuplet_2])
 
     assert testtools.compare(
         measure,
@@ -113,15 +116,15 @@ def test_Component__remove_and_shrink_durated_parent_containers_02():
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_03():
-    r'''Excise leaf from tuplet and measure.
+    r'''Remove leaf from tuplet and measure.
     '''
 
-    measure = Measure((5, 6), [
-        tuplettools.FixedDurationTuplet(Duration(3, 4), Note("c'4") * 5),
-        tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 7),
-        ])
-
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measure)
+    measure = Measure((5, 6), [])
+    tuplet_1 = tuplettools.FixedDurationTuplet(
+        (3, 4), "c'4 d' e' f' g'")
+    tuplet_2 = tuplettools.FixedDurationTuplet(
+        (4, 8), "a'8 b' c'' d'' e'' f'' g''")
+    measure.extend([tuplet_1, tuplet_2])
 
     assert testtools.compare(
         measure,
@@ -185,16 +188,16 @@ def test_Component__remove_and_shrink_durated_parent_containers_03():
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_04():
-    r'''Excise leaf that conflicts with time signature duration;
-    change time signature denominator and reset tuplet target durations.
+    r'''Remove leaf that conflicts with time signature duration.
+    Change time signature denominator and reset tuplet target durations.
     '''
 
-    measure = Measure((5, 6), [
-        tuplettools.FixedDurationTuplet(Duration(3, 4), Note("c'4") * 5),
-        tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 7),
-        ])
-
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(measure)
+    measure = Measure((5, 6), [])
+    tuplet_1 = tuplettools.FixedDurationTuplet(
+        (3, 4), "c'4 cs' d' ef' e'")
+    tuplet_2 = tuplettools.FixedDurationTuplet(
+        (4, 8), "f'8 fs' g' af' a' bf' b'")
+    measure.extend([tuplet_1, tuplet_2])
 
     assert testtools.compare(
         measure,
@@ -253,37 +256,19 @@ def test_Component__remove_and_shrink_durated_parent_containers_04():
         '''
         )
 
-    assert isinstance(measure, Measure)
-    assert measure.time_signature == contexttools.TimeSignatureMark((11, 14))
-    assert len(measure) == 2
-    tuplet = measure[0]
-    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
-    assert len(tuplet) == 5
-    assert tuplet.target_duration == Duration(7, 8)
-    assert inspect(tuplet).get_duration() == Duration(2, 4)
-    note = measure[0][0]
-    assert note.written_duration == Duration(1, 4)
-    assert inspect(note).get_duration() == Duration(1, 10)
-    tuplet = measure[1]
-    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
-    assert len(tuplet) == 6
-    assert tuplet.target_duration == Duration(4, 8)
-    assert inspect(tuplet).get_duration() == Duration(2, 7)
-    note = measure[1][0]
-    assert note.written_duration == Duration(1, 8)
-    assert inspect(note).get_duration() == Duration(1, 21)
     assert inspect(measure).is_well_formed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_05():
-    r'''Excise leaf that conflicts with time signature duration;
-    trigger tuplet insertion.
+    r'''Remove leaf that conflicts with time signature duration.
+    Trigger tuplet insertion.
     '''
 
-    measure = Measure((5, 6),
-        [tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(7))] +
-            notetools.make_repeated_notes(3, (1, 4)))
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(measure)
+    measure = Measure((5, 6), [])
+    tuplet = tuplettools.FixedDurationTuplet((4, 8), [])
+    tuplet.extend("c'8 cs' d' ef' e' f' fs'")
+    measure.append(tuplet)
+    measure.extend("g'4 af'4 a'4")
 
     assert testtools.compare(
         measure,
@@ -341,37 +326,19 @@ def test_Component__remove_and_shrink_durated_parent_containers_05():
         '''
         )
 
-    assert isinstance(measure, Measure)
-    assert measure.time_signature == contexttools.TimeSignatureMark((11, 14))
-    assert len(measure) == 4
-    tuplet = measure[0]
-    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
-    assert len(tuplet) == 6
-    assert tuplet.target_duration == Duration(2, 4)
-    assert inspect(tuplet).get_duration() == Duration(2, 7)
-    note = measure[0][0]
-    assert note.written_duration == Duration(1, 8)
-    assert inspect(note).get_duration() == Duration(1, 21)
-    tuplet = measure[1]
-    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
-    assert len(tuplet) == 1
-    assert tuplet.target_duration == Duration(7, 24)
-    assert inspect(tuplet).get_duration() == Duration(1, 6)
-    note = measure[1][0]
-    assert note.written_duration == Duration(1, 4)
-    assert inspect(note).get_duration() == Duration(1, 6)
     assert inspect(measure).is_well_formed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_06():
-    r'''Excise leaf that matches time signature duration;
-    does not trigger trivial 1:1 tuplet insertion.
+    r'''Remove leaf that matches time signature duration.
+    Does not trigger trivial 1:1 tuplet insertion.
     '''
 
-    measure = Measure((5, 6),
-        [tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(7))] +
-            notetools.make_repeated_notes(3, (1, 4)))
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(measure)
+    measure = Measure((5, 6), [])
+    tuplet = tuplettools.FixedDurationTuplet((4, 8), [])
+    tuplet.extend("c'8 cs' d' ef' e' f' fs'")
+    measure.append(tuplet)
+    measure.extend("g'4 af'4 a'4")
 
     assert testtools.compare(
         measure,
@@ -420,20 +387,6 @@ def test_Component__remove_and_shrink_durated_parent_containers_06():
         '''
         )
 
-    assert isinstance(measure, Measure)
-    assert measure.time_signature == contexttools.TimeSignatureMark((4, 6))
-    assert len(measure) == 3
-    tuplet = measure[0]
-    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
-    assert len(tuplet) == 7
-    assert tuplet.target_duration == Duration(2, 4)
-    assert inspect(tuplet).get_duration() == Duration(2, 6)
-    note = measure[0][0]
-    assert note.written_duration == Duration(1, 8)
-    assert inspect(note).get_duration() == Duration(1, 21)
-    note = measure[1]
-    assert note.written_duration == Duration(1, 4)
-    assert inspect(note).get_duration() == Duration(1, 6)
     assert inspect(measure).is_well_formed()
 
 
@@ -441,9 +394,11 @@ def test_Component__remove_and_shrink_durated_parent_containers_07():
     r'''Nested fixed-duration tuplet.
     '''
 
-    measure = Measure((4, 4), [
-        tuplettools.FixedDurationTuplet(Duration(2, 2), [Note(0, (1, 2)), Note(1, (1, 2)),
-        tuplettools.FixedDurationTuplet(Duration(2, 4), [Note(i, (1, 4)) for i in range(2, 5)])])])
+    measure = Measure((4, 4), [])
+    inner_tuplet = tuplettools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
+    outer_tuplet = tuplettools.FixedDurationTuplet((2, 2), [])
+    outer_tuplet.extend([Note("c'2"), Note("cs'2"), inner_tuplet])
+    measure.append(outer_tuplet)
 
     assert testtools.compare(
         measure,
@@ -464,30 +419,6 @@ def test_Component__remove_and_shrink_durated_parent_containers_07():
         )
 
     measure.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
-    measure = measure
-    assert isinstance(measure, Measure)
-    assert measure.time_signature == contexttools.TimeSignatureMark((8, 9))
-    assert len(measure) == 1
-    tuplet = measure[0]
-    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
-    assert len(tuplet) == 3
-    assert tuplet.target_duration == Duration(1)
-    assert inspect(tuplet).get_duration() == Duration(8, 9)
-    assert tuplet.multiplier == Duration(3, 4)
-    note = measure[0][0]
-    assert isinstance(note, Note)
-    assert note.written_duration == Duration(1, 2)
-    assert inspect(note).get_duration() == Duration(1, 3)
-    tuplet = measure[0][-1]
-    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
-    assert len(tuplet) == 2
-    assert tuplet.target_duration == Duration(1, 3)
-    assert inspect(tuplet).get_duration() == Duration(2, 9)
-    assert tuplet.multiplier == Duration(2, 3)
-    note = measure[0][-1][0]
-    assert isinstance(note, Note)
-    assert note.written_duration == Duration(1, 4)
-    assert inspect(note).get_duration() == Duration(1, 9)
 
     assert testtools.compare(
         measure,
@@ -509,253 +440,404 @@ def test_Component__remove_and_shrink_durated_parent_containers_07():
         '''
         )
 
+    assert inspect(measure).is_well_formed()
+
 
 def test_Component__remove_and_shrink_durated_parent_containers_08():
-    r'''Exicse plain vanilla container.
+    r'''Remove leaf from container.
     '''
 
-    container = Container(Note("c'4") * 6)
+    container = Container("c'4 c'4 c'4 c'4 c'4 c'4")
+
     container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(container, Container)
-    assert len(container) == 5
-    assert container._preprolated_duration == Duration(5, 4)
-    assert inspect(container).get_duration() == Duration(5, 4)
-    assert isinstance(container[0], Note)
-    assert container[0].written_duration == Duration(1, 4)
-    assert inspect(container[0]).get_duration() == Duration(1, 4)
+
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            c'4
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+        '''
+        )
+
     assert inspect(container).is_well_formed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_09():
-    r'''Container container.
-    '''
-
-    container = Container(Note("c'4") * 6)
-    container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(container, Container)
-    assert len(container) == 5
-    assert container._preprolated_duration == Duration(5, 4)
-    assert inspect(container).get_duration() == Duration(5, 4)
-    assert isinstance(container[0], Note)
-    assert container[0].written_duration == Duration(1, 4)
-    assert inspect(container[0]).get_duration() == Duration(1, 4)
-    assert inspect(container).is_well_formed()
-
-
-def test_Component__remove_and_shrink_durated_parent_containers_10():
-    r'''Excise voice.
+    r'''Remove leaf from voice.
     '''
 
     voice = Voice(Note("c'4") * 6)
+
     voice.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(voice, Voice)
-    assert len(voice) == 5
-    assert voice._preprolated_duration == Duration(5, 4)
-    assert inspect(voice).get_duration() == Duration(5, 4)
-    assert isinstance(voice[0], Note)
-    assert voice[0].written_duration == Duration(1, 4)
-    assert inspect(voice[0]).get_duration() == Duration(1, 4)
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'4
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+        '''
+        )
+
     assert inspect(voice).is_well_formed()
 
 
-def test_Component__remove_and_shrink_durated_parent_containers_11():
-    r'''Staff.
+def test_Component__remove_and_shrink_durated_parent_containers_10():
+    r'''Remove leaf from staff.
     '''
 
     staff = Staff(Note("c'4") * 6)
+
     staff.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(staff, Staff)
-    assert len(staff) == 5
-    assert staff._preprolated_duration == Duration(5, 4)
-    assert inspect(staff).get_duration() == Duration(5, 4)
-    assert isinstance(staff[0], Note)
-    assert staff[0].written_duration == Duration(1, 4)
-    assert inspect(staff[0]).get_duration() == Duration(1, 4)
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'4
+            c'4
+            c'4
+            c'4
+            c'4
+        }
+        '''
+        )
+
     assert inspect(staff).is_well_formed()
+
+
+def test_Component__remove_and_shrink_durated_parent_containers_11():
+    r'''Remove fixed-duration tuplet from container.
+    '''
+
+    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    container = Container([tuplet_1, tuplet_2])
+
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
+    container[0]._remove_and_shrink_durated_parent_containers()
+
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
+    assert inspect(container).is_well_formed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_12():
-    r'''Container.
+    r'''Remove fixed-duration tuplet from voice.
     '''
 
-    container = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    container[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(container, Container)
-    assert len(container) == 1
-    assert container._preprolated_duration == Duration(2, 4)
-    assert inspect(container).get_duration() == Duration(2, 4)
-    assert isinstance(container[0], tuplettools.FixedDurationTuplet)
-    assert container[0].target_duration == Duration(2, 4)
-    assert inspect(container[0]).get_duration() == Duration(2, 4)
-    assert isinstance(container[0][0], Note)
-    assert container[0][0].written_duration == Duration(1, 4)
-    assert inspect(container[0][0]).get_duration() == Duration(1, 6)
-    assert inspect(container).is_well_formed()
+    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    voice = Voice([tuplet_1, tuplet_2])
 
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
 
-def test_Component__remove_and_shrink_durated_parent_containers_13():
-    r'''Container.
-    '''
-
-    container = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    container[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(container, Container)
-    assert len(container) == 1
-    assert container._preprolated_duration == Duration(2, 4)
-    assert inspect(container).get_duration() == Duration(2, 4)
-    assert isinstance(container[0], tuplettools.FixedDurationTuplet)
-    assert container[0].target_duration == Duration(2, 4)
-    assert inspect(container[0]).get_duration() == Duration(2, 4)
-    assert isinstance(container[0][0], Note)
-    assert container[0][0].written_duration == Duration(1, 4)
-    assert inspect(container[0][0]).get_duration() == Duration(1, 6)
-    assert inspect(container).is_well_formed()
-
-
-def test_Component__remove_and_shrink_durated_parent_containers_14():
-    r'''Excise voice.
-    '''
-
-    voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
     voice[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(voice, Voice)
-    assert len(voice) == 1
-    assert voice._preprolated_duration == Duration(2, 4)
-    assert inspect(voice).get_duration() == Duration(2, 4)
-    assert isinstance(voice[0], tuplettools.FixedDurationTuplet)
-    assert voice[0].target_duration == Duration(2, 4)
-    assert inspect(voice[0]).get_duration() == Duration(2, 4)
-    assert isinstance(voice[0][0], Note)
-    assert voice[0][0].written_duration == Duration(1, 4)
-    assert inspect(voice[0][0]).get_duration() == Duration(1, 6)
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
     assert inspect(voice).is_well_formed()
 
 
-def test_Component__remove_and_shrink_durated_parent_containers_15():
-    r'''Excise staff.
+def test_Component__remove_and_shrink_durated_parent_containers_13():
+    r'''Remove fixed-duration tuplet from staff.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
+    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    staff = Staff([tuplet_1, tuplet_2])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
     staff[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(staff, Staff)
-    assert len(staff) == 1
-    assert staff._preprolated_duration == Duration(2, 4)
-    assert inspect(staff).get_duration() == Duration(2, 4)
-    assert isinstance(staff[0], tuplettools.FixedDurationTuplet)
-    assert staff[0].target_duration == Duration(2, 4)
-    assert inspect(staff[0]).get_duration() == Duration(2, 4)
-    assert isinstance(staff[0][0], Note)
-    assert staff[0][0].written_duration == Duration(1, 4)
-    assert inspect(staff[0][0]).get_duration() == Duration(1, 6)
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
     assert inspect(staff).is_well_formed()
 
 
-def test_Component__remove_and_shrink_durated_parent_containers_16():
-    r'''Excise container.
+def test_Component__remove_and_shrink_durated_parent_containers_14():
+    r'''Remove leaf from fixed-duration tuplet in container.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
+    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    container = Container([tuplet_1, tuplet_2])
+
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
+    container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            \times 2/3 {
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
+    assert inspect(container).is_well_formed()
+
+
+def test_Component__remove_and_shrink_durated_parent_containers_15():
+    r'''Remove leaf form fixed-duration tuplet in voice.
+    '''
+
+    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    voice = Voice([tuplet_1, tuplet_2])
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
+    voice.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            \times 2/3 {
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
+    assert inspect(voice).is_well_formed()
+
+
+def test_Component__remove_and_shrink_durated_parent_containers_16():
+    r'''Remove leaf from fixed-duration tuplet in staff.
+    '''
+
+    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    staff = Staff([tuplet_1, tuplet_2])
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
     staff.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(staff, Staff)
-    assert len(staff) == 2
-    assert staff._preprolated_duration == Duration(5, 6)
-    assert inspect(staff).get_duration() == Duration(5, 6)
-    assert isinstance(staff[0], tuplettools.FixedDurationTuplet)
-    assert staff[0].target_duration == Duration(2, 6)
-    assert inspect(staff[0]).get_duration() == Duration(2, 6)
-    assert isinstance(staff[0][0], Note)
-    assert staff[0][0].written_duration == Duration(1, 4)
-    assert inspect(staff[0][0]).get_duration() == Duration(1, 6)
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \times 2/3 {
+                c'4
+                c'4
+            }
+            \times 2/3 {
+                c'4
+                c'4
+                c'4
+            }
+        }
+        '''
+        )
+
     assert inspect(staff).is_well_formed()
 
 
 def test_Component__remove_and_shrink_durated_parent_containers_17():
-    r'''Excise container.
+    r'''Remove leaf from nested tuplet of length 1.
     '''
 
-    container = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(container, Container)
-    assert len(container) == 2
-    assert container._preprolated_duration == Duration(5, 6)
-    assert inspect(container).get_duration() == Duration(5, 6)
-    assert isinstance(container[0], tuplettools.FixedDurationTuplet)
-    assert container[0].target_duration == Duration(2, 6)
-    assert inspect(container[0]).get_duration() == Duration(2, 6)
-    assert isinstance(container[0][0], Note)
-    assert container[0][0].written_duration == Duration(1, 4)
-    assert inspect(container[0][0]).get_duration() == Duration(1, 6)
-    assert inspect(container).is_well_formed()
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
+    inner_tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'4")
+    tuplet.extend([Note("c'4"), Note("c'4"), inner_tuplet])
 
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \times 2/3 {
+            c'4
+            c'4
+            {
+                c'4
+            }
+        }
+        '''
+        )
 
-def test_Component__remove_and_shrink_durated_parent_containers_18():
-    r'''Excise voice.
-    '''
-
-    voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    voice.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(voice, Voice)
-    assert len(voice) == 2
-    assert voice._preprolated_duration == Duration(5, 6)
-    assert inspect(voice).get_duration() == Duration(5, 6)
-    assert isinstance(voice[0], tuplettools.FixedDurationTuplet)
-    assert voice[0].target_duration == Duration(2, 6)
-    assert inspect(voice[0]).get_duration() == Duration(2, 6)
-    assert isinstance(voice[0][0], Note)
-    assert voice[0][0].written_duration == Duration(1, 4)
-    assert inspect(voice[0][0]).get_duration() == Duration(1, 6)
-    assert inspect(voice).is_well_formed()
-
-
-def test_Component__remove_and_shrink_durated_parent_containers_19():
-    r'''Excise staff.
-    '''
-
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    staff.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(staff, Staff)
-    assert len(staff) == 2
-    assert staff._preprolated_duration == Duration(5, 6)
-    assert inspect(staff).get_duration() == Duration(5, 6)
-    assert isinstance(staff[0], tuplettools.FixedDurationTuplet)
-    assert staff[0].target_duration == Duration(2, 6)
-    assert inspect(staff[0]).get_duration() == Duration(2, 6)
-    assert isinstance(staff[0][0], Note)
-    assert staff[0][0].written_duration == Duration(1, 4)
-    assert inspect(staff[0][0]).get_duration() == Duration(1, 6)
-    assert inspect(staff).is_well_formed()
-
-
-def test_Component__remove_and_shrink_durated_parent_containers_20():
-    r'''Excise singly-nested singleton.
-    '''
-
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [
-        Note("c'4"),
-        Note("c'4"),
-        tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])
     tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
-    assert isinstance(tuplet, tuplettools.FixedDurationTuplet)
-    assert len(tuplet) == 2
-    assert tuplet.target_duration == Duration(2, 6)
-    assert tuplet.multiplier == Duration(2, 3)
-    assert inspect(tuplet).get_duration() == Duration(2, 6)
-    assert isinstance(tuplet[0], Note)
-    assert tuplet[0].written_duration == Duration(1, 4)
+
+
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \times 2/3 {
+            c'4
+            c'4
+        }
+        '''
+        )
+
     assert inspect(tuplet[0]).get_duration() == Duration(1, 6)
 
 
-def test_Component__remove_and_shrink_durated_parent_containers_21():
-    r'''Excise doubly-nested singleton.
+def test_Component__remove_and_shrink_durated_parent_containers_18():
+    r'''Remove leaf from nested tuplet of length 1.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [
-        Note("c'4"),
-        Note("c'4"),
-        tuplettools.FixedDurationTuplet(Duration(1, 4), [
-            tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])])
-
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(tuplet)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
+    middle_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
+    inner_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
+    inner_tuplet.extend("e'4")
+    middle_tuplet.append(inner_tuplet)
+    tuplet.extend([Note("c'4"), Note("d'4"), middle_tuplet])
 
     assert testtools.compare(
         tuplet,
@@ -774,7 +856,6 @@ def test_Component__remove_and_shrink_durated_parent_containers_21():
 
     tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
 
-    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -785,18 +866,19 @@ def test_Component__remove_and_shrink_durated_parent_containers_21():
         '''
         )
 
+    assert inspect(tuplet).is_well_formed()
 
-def test_Component__remove_and_shrink_durated_parent_containers_22():
-    r'''Excise doubly-nested singleton leaf.
+
+def test_Component__remove_and_shrink_durated_parent_containers_19():
+    r'''Remove leaf from nested fixed-duration tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [
-        Note("c'4"),
-        Note("c'4"),
-        tuplettools.FixedDurationTuplet(Duration(1, 4), [
-            tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 2)])])
-
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(tuplet)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
+    middle_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
+    inner_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
+    inner_tuplet.extend("e'8 f'8")
+    middle_tuplet.append(inner_tuplet)
+    tuplet.extend([Note("c'4"), Note("d'4"), middle_tuplet])
 
     assert testtools.compare(
         tuplet,
@@ -816,7 +898,6 @@ def test_Component__remove_and_shrink_durated_parent_containers_22():
 
     tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
 
-    assert inspect(tuplet).is_well_formed()
     assert testtools.compare(
         tuplet,
         r'''
@@ -832,12 +913,15 @@ def test_Component__remove_and_shrink_durated_parent_containers_22():
         '''
         )
 
+    assert inspect(tuplet).is_well_formed()
 
-def test_Component__remove_and_shrink_durated_parent_containers_23():
+
+def test_Component__remove_and_shrink_durated_parent_containers_20():
     r'''Excise leaf from fixed-duration tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8 f'8 g'8")
+    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), [])
+    tuplet.extend("c'8 d'8 e'8 f'8 g'8")
 
     assert testtools.compare(
         tuplet,
@@ -869,11 +953,11 @@ def test_Component__remove_and_shrink_durated_parent_containers_23():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_Component__remove_and_shrink_durated_parent_containers_24():
-    r'''Excise leaf from fixed-multiplier tuplet.
+def test_Component__remove_and_shrink_durated_parent_containers_21():
+    r'''Remove leaf from tuplet.
     '''
 
-    tuplet = Tuplet(Fraction(4, 5), "c'8 d'8 e'8 f'8 g'8")
+    tuplet = Tuplet(Multiplier(4, 5), "c'8 d'8 e'8 f'8 g'8")
 
     assert testtools.compare(
         tuplet,
@@ -905,13 +989,14 @@ def test_Component__remove_and_shrink_durated_parent_containers_24():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_Component__remove_and_shrink_durated_parent_containers_25():
-    r'''Excise nested fixed-duration tuplet.
+def test_Component__remove_and_shrink_durated_parent_containers_22():
+    r'''Remove leaf from nested fixed-duration tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2,2), [Note(0, (1,2)), Note(1, (1,2)),
-        tuplettools.FixedDurationTuplet(Duration(2,4), [Note(i, (1,4)) for i in range(2, 5)])])
-
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 2), [])
+    inner_tuplet = tuplettools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
+    tuplet.extend([Note("c'2"), Note("cs'2"), inner_tuplet])
+    
     assert testtools.compare(
         tuplet,
         r'''
@@ -946,12 +1031,12 @@ def test_Component__remove_and_shrink_durated_parent_containers_25():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_Component__remove_and_shrink_durated_parent_containers_26():
-    r'''Excise nested fixed-multiplier tuplet.
+def test_Component__remove_and_shrink_durated_parent_containers_23():
+    r'''Remove leaf from nested tuplet.
     '''
 
-    tuplet = Tuplet(Fraction(2,3), [Note(0, (1,2)), Note(1, (1,2)),
-        Tuplet(Fraction(2,3), [Note(i, (1,4)) for i in range(2, 5)])])
+    tuplet = Tuplet(Multiplier(2, 3), [])
+    tuplet.extend(r"c'2 cs'2 \times 2/3 { d'4 ef'4 e'4 }")
 
     assert testtools.compare(
         tuplet,
