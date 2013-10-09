@@ -305,7 +305,8 @@ class AttributeInspectionAgent(object):
 
                 >>> for note in staff:
                 ...     result = inspect(note).is_bar_line_crossing()
-                ...     print '{}\t{}'.format(note, result)
+                ...     print note, result
+                ...
                 c'4 False
                 d'4 True
                 e'4 False

@@ -474,14 +474,36 @@ def test_BeamSpanner___init___17():
     '''Like-named containers need not be lexically contiguous.
     '''
 
-    container = Container(Container(
-        Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-    container[0].is_simultaneous = True
-    container[1].is_simultaneous = True
-    container[0][0].name, container[1][1].name = 'first', 'first'
-    container[0][1].name, container[1][0].name = 'second', 'second'
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        <<
+            \context Voice = "first" {
+                c'8
+                cs'8
+                d'8
+                ef'8
+            }
+            \context Voice = "second" {
+                e'8
+                f'8
+                fs'8
+                g'8
+            }
+        >>
+        <<
+            \context Voice = "second" {
+                af'8
+                a'8
+                bf'8
+                b'8
+            }
+            \context Voice = "first" {
+                c''8
+                cs''8
+                d''8
+                ef''8
+            }
+        >>
+        ''')
     beam = spannertools.BeamSpanner(container[0][0][:] + container[1][1][:])
 
     assert testtools.compare(
@@ -529,16 +551,31 @@ def test_BeamSpanner___init___18():
     '''
 
     container = Container(
-        Container(Voice(notetools.make_repeated_notes(4)) * 2) * 2)
-    container[0].is_simultaneous = True
-    container[1].is_simultaneous = True
-    container[0][0].name, container[1][0].name = 'first', 'first'
-    container[0][1].name, container[1][1].name = 'second', 'second'
-    del(container[1][1])
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
-        container)
+        r'''
+        <<
+            \context Voice = "first" {
+                c'8
+                cs'8
+                d'8
+                ef'8
+            }
+            \context Voice = "second" {
+                e'8
+                f'8
+                fs'8
+                g'8
+            }
+        >>
+        <<
+            \context Voice = "first" {
+                af'8
+                a'8
+                bf'8
+                b'8
+            }
+        >>
+        ''')
     beam = spannertools.BeamSpanner(container[0][0][:] + container[1][0][:])
-
 
     assert testtools.compare(
         container,
@@ -599,10 +636,23 @@ def test_BeamSpanner___init___20():
     simultaneous parent container.
     '''
 
-    container = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    container.is_simultaneous = True
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(
+        r'''
+        <<
+            \new Voice {
+                c'8
+                cs'8
+                d'8
+                ef'8
+            }
+            \new Voice {
+                e'8
+                f'8
+                fs'8
+                g'8
+            }
+        >>
+        ''')
     beam = spannertools.BeamSpanner(container[0][:])
 
     assert testtools.compare(
@@ -633,12 +683,27 @@ def test_BeamSpanner___init___21():
     in the same logical voice. Lilypond is happy with this situation, though.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
-    new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    new.is_simultaneous = True
-    staff.insert(2, new)
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
-        staff)
+    staff = Staff(
+        r'''
+        c'8
+        cs'8
+        <<
+            \new Voice {
+                d'8
+                ef'8
+                e'8
+                f'8
+            }
+            \new Voice {
+                fs'8
+                g'8
+                af'8
+                a'8
+            }
+        >>
+        bf'8
+        b'8
+        ''')
 
     assert testtools.compare(
         staff,
@@ -675,15 +740,34 @@ def test_BeamSpanner___init___22():
     r'''You can span counttime components in three chunks.
     '''
 
-    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    staff[0].name, staff[1].name = 'foo', 'foo'
-    new = Container(Voice(notetools.make_repeated_notes(4)) * 2)
-    new.is_simultaneous = True
-    staff.insert(1, new)
-    staff[1][0].name = 'foo'
-    staff[1][1].name = 'bar'
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(
-    staff)
+    staff = Staff(r'''
+        \context Voice = "foo" {
+            c'8
+            cs'8
+            d'8
+            ef'8
+        }
+        <<
+            \context Voice = "foo" {
+                e'8
+                f'8
+                fs'8
+                g'8
+            }
+            \context Voice = "bar" {
+                af'8
+                a'8
+                bf'8
+                b'8
+            }
+        >>
+        \context Voice = "foo" {
+            c''8
+            cs''8
+            d''8
+            ef''8
+        }
+        ''')
     leaves = staff[0][:] + staff[1][0][:] + staff[2][:]
     beam = spannertools.BeamSpanner(leaves)
 

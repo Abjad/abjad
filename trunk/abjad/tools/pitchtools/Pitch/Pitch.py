@@ -161,3 +161,41 @@ class Pitch(AbjadObject):
         if isinstance(expr, (int, long, float)):
             return expr % 0.5 == 0
         return False
+
+    ### PUBLIC PROPERTIES ###
+
+#    @abc.abstractproperty
+#    def diatonic_pitch_class_name(self):
+#        raise NotImplementedError
+#
+#    @abc.abstractproperty
+#    def diatonic_pitch_class_number(self):
+#        raise NotImplementedError
+#
+#    @abc.abstractproperty
+#    def diatonic_pitch_name(self):
+#        raise NotImplementedError
+#
+#    @abc.abstractproperty
+#    def diatonic_pitch_number(self):
+#        raise NotImplementedError
+#
+#    @abc.abstractproperty
+#    def octave_indication(self):
+#        raise NotImplementedError
+#
+#    @abc.abstractproperty
+#    def pitch_class_name(self):
+#        raise NotImplementedError
+#
+#    @abc.abstractproperty
+#    def pitch_class_number(self):
+#        raise NotImplementedError
+#
+#    @abc.abstractproperty
+#    def pitch_name(self):
+#        raise NotImplementedError
+#
+#    @abc.abstractproperty
+#    def pitch_number(self):
+#        raise NotImplementedError

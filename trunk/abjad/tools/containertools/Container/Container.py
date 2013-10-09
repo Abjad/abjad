@@ -603,6 +603,7 @@ class Container(Component):
         return self
 
     def _parse_string(self, string):
+        from abjad.tools import lilypondfiletools
         from abjad.tools import lilypondparsertools
         from abjad.tools import rhythmtreetools
         user_input = string.strip()
@@ -614,10 +615,12 @@ class Container(Component):
         elif user_input.startswith('rtm:'):
             parsed = rhythmtreetools.parse_rtm_syntax(user_input[4:])
         else:
-            if not user_input.startswith('<<') and \
+            if not user_input.startswith('<<') or \
                 not user_input.endswith('>>'):
-                user_input = '{ %s }' % user_input
+                user_input = '{{ {} }}'.format(user_input)
             parsed = lilypondparsertools.LilyPondParser()(user_input)
+            if isinstance(parsed, lilypondfiletools.LilyPondFile):
+                parsed = Container(parsed[:])
             assert isinstance(parsed, Container)
         return parsed
 

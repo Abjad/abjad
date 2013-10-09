@@ -69,8 +69,7 @@ def test_AttributeInspectionAgent_get_effective_context_mark_06():
     r'''Redudant clefs are allowed.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     contexttools.ClefMark('treble')(staff[0])
     contexttools.ClefMark('treble')(staff[4])
 
@@ -113,8 +112,7 @@ def test_AttributeInspectionAgent_get_effective_context_mark_07():
     r'''Clefs with transposition are allowed and work as expected.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     contexttools.ClefMark('treble_8')(staff[0])
     contexttools.ClefMark('treble')(staff[4])
 

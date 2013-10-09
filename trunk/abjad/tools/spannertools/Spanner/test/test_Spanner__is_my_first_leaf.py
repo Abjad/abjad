@@ -13,8 +13,7 @@ def test_Spanner__is_my_first_leaf_01():
         def _copy_keyword_args(self, new):
             pass
 
-    container = Container(notetools.make_repeated_notes(4))
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(container)
+    container = Container("c'8 cs'8 d'8 ef'8")
     spanner = MockSpanner(container)
 
     r'''
@@ -46,9 +45,16 @@ def test_Spanner__is_my_first_leaf_02():
         def _copy_keyword_args(self, new):
             pass
 
-    container = Container(notetools.make_repeated_notes(4))
-    container.insert(2, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(container)
+    container = Container(r'''
+        c'8
+        cs'8
+        {
+            d'8
+            ef'8
+        }
+        e'8
+        f'8
+        ''')
     spanner = MockSpanner(container[:3])
 
     r'''

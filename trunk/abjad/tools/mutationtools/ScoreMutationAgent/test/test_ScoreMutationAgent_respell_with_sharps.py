@@ -19,8 +19,7 @@ def test_ScoreMutationAgent_respell_with_sharps_02():
 
 
 def test_ScoreMutationAgent_respell_with_sharps_03():
-    staff = Staff(notetools.make_repeated_notes(12))
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8 af'8 a'8 bf'8 b'")
     mutate(staff).respell_with_sharps()
     assert testtools.compare(
         staff,

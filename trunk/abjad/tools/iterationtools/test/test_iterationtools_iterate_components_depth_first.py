@@ -5,13 +5,7 @@ import py.test
 
 # NOTE: all tests operate on the following expression #
 
-t = Staff(notetools.make_repeated_notes(4))
-t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-t[2].is_simultaneous = True
-pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr(t)
-
-r'''
-\new Staff {
+t = Staff(r'''
     c'8
     cs'8
     <<
@@ -26,8 +20,7 @@ r'''
     >>
     fs'8
     g'8
-}
-'''
+    ''')
 
 
 def test_iterationtools_iterate_components_depth_first_01():
