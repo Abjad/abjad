@@ -200,8 +200,8 @@ class Scale(PitchClassSegment):
         '''
         written_duration = written_duration or durationtools.Duration(1, 8)
         result = notetools.make_notes(n * [0], [written_duration])
-        pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-            result, self.key_signature)
+        #pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        #    result, self.key_signature)
         return result
 
     def make_score(self):
