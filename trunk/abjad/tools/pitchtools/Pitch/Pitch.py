@@ -65,10 +65,12 @@ class Pitch(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    @abc.abstractmethod
     def __abs__(self):
         raise NotImplementedError(
             'TODO: all pitch-related classes must implement abs.')
 
+    @abc.abstractmethod
     def __float__(self):
         raise NotImplementedError(
             'TODO: all pitch-related classes must implement float.')
@@ -76,12 +78,13 @@ class Pitch(AbjadObject):
     def __hash__(self):
         return hash(repr(self))
 
+    @abc.abstractmethod
     def __int__(self):
         raise NotImplementedError(
             'TODO: all pitch-related classes must implement int.')
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._format_string)
+        return '{}({})'.format(self._class_name, self._format_string)
 
     ### PRIVATE METHODS ###
 
@@ -93,6 +96,10 @@ class Pitch(AbjadObject):
                 self, is_indented=False))]
 
     ### PUBLIC METHODS ###
+
+#    @abc.abstractmethod
+#    def apply_accidental(self, accidental=None):
+#        raise NotImplementedError
 
     @staticmethod
     def is_diatonic_pitch_name(expr):
@@ -162,40 +169,69 @@ class Pitch(AbjadObject):
             return expr % 0.5 == 0
         return False
 
+#    @abc.abstractmetod
+#    def invert(self, axis=None):
+#        raise NotImplementedError
+
+#    @abc.abstractmetod
+#    def transpose(self, expr):
+#        raise NotImplementedError
+
     ### PUBLIC PROPERTIES ###
+
+#    @abc.abstractproperty
+#    def accidental_spelling(self):
+#        raise NotImplementedError
+
+#    @abc.abstractproperty
+#    def accidental(self):
+#        raise NotImplementedError
 
 #    @abc.abstractproperty
 #    def diatonic_pitch_class_name(self):
 #        raise NotImplementedError
-#
+
 #    @abc.abstractproperty
 #    def diatonic_pitch_class_number(self):
 #        raise NotImplementedError
-#
+
 #    @abc.abstractproperty
 #    def diatonic_pitch_name(self):
 #        raise NotImplementedError
-#
+
 #    @abc.abstractproperty
 #    def diatonic_pitch_number(self):
 #        raise NotImplementedError
-#
+
 #    @abc.abstractproperty
-#    def octave_indication(self):
+#    def lilypond_format(self):
 #        raise NotImplementedError
-#
+
+#    @property
+#    def octave_indication(self):
+#        from abjad.tools import pitchtools
+#        return pitchtools.OctaveIndication(self.octave_number)
+
+#    @abc.abstractproperty
+#    def octave_number(self):
+#        raise NotImplementedError
+
 #    @abc.abstractproperty
 #    def pitch_class_name(self):
 #        raise NotImplementedError
-#
+
 #    @abc.abstractproperty
 #    def pitch_class_number(self):
 #        raise NotImplementedError
-#
+
+#    @abc.abstractproperty
+#    def pitch_class_octave_label(self):
+#        raise NotImplementedError
+
 #    @abc.abstractproperty
 #    def pitch_name(self):
 #        raise NotImplementedError
-#
+
 #    @abc.abstractproperty
 #    def pitch_number(self):
 #        raise NotImplementedError
