@@ -3,16 +3,19 @@ from abjad.tools import measuretools
 
 
 # TODO: remove in favor of layouttools.set_line_breaks_by_line_duration()
-def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duration,
-    line_break_class=None, adjust_eol=False, add_empty_bars=False):
+def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(
+    expr, 
+    line_duration,
+    line_break_class=None, 
+    adjust_eol=False, 
+    add_empty_bars=False,
+    ):
     r'''Iterate `line_break_class` instances in `expr` and 
     accumulate duration in seconds.
+
     Add line break after every total less than or equal to `line_duration`:
 
     ::
-
-        >>> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
         >>> staff = Staff()
         >>> staff.append(Measure((2, 8), "c'8 d'8"))

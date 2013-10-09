@@ -38,65 +38,9 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     Iteration control tests index of iteration.
     '''
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    staff.extend("abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
-        }
-        {
-            \time 2/8
-            e'8
-            f'8
-        }
-        {
-            \time 2/8
-            g'8
-            a'8
-        }
-        {
-            \time 2/8
-            b'8
-            c''8
-        }
-    }
-    '''
-
-    def iterctrl(measure, i):
-        return i % 2 == 1
-
-    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(
-        staff, iterctrl)
-
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
-        }
-        {
-            \time 2/8
-            s1 * 1/4
-        }
-        {
-            \time 2/8
-            g'8
-            a'8
-        }
-        {
-            \time 2/8
-            s1 * 1/4
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -107,21 +51,51 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
                 d'8
             }
             {
-                \time 2/8
-                s1 * 1/4
+                e'8
+                f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }
             {
+                b'8
+                c''8
+            }
+        }
+        '''
+        )
+
+    def iterctrl(measure, i):
+        return i % 2 == 1
+
+    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(
+        staff, iterctrl)
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
                 \time 2/8
+                c'8
+                d'8
+            }
+            {
+                s1 * 1/4
+            }
+            {
+                g'8
+                a'8
+            }
+            {
                 s1 * 1/4
             }
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
 
 
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
@@ -136,50 +110,37 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
         Measure((4, 8), "c'8 d'8 e'8 f'8"),
         ])
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 2/8
+                c'8
+                d'8
+            }
+            {
+                \time 3/8
+                c'8
+                d'8
+                e'8
+            }
+            {
+                \time 4/8
+                c'8
+                d'8
+                e'8
+                f'8
+            }
         }
-        {
-            \time 3/8
-            c'8
-            d'8
-            e'8
-        }
-        {
-            \time 4/8
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-    }
-    '''
+        '''
+        )
 
-    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(staff, lambda m, i: 2 < len(m))
+    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(
+        staff, 
+        lambda m, i: 2 < len(m),
+        )
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
-        }
-        {
-            \time 3/8
-            s1 * 3/8
-        }
-        {
-            \time 4/8
-            s1 * 1/2
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -200,3 +161,5 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

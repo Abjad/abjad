@@ -1149,8 +1149,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
     require context promotion.
     '''
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam = spannertools.BeamSpanner(staff[:])
     beam.override.score.spacing_spanner.strict_grace_spacing = True
     beam.override.score.spacing_spanner.strict_note_spacing = True

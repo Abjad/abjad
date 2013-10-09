@@ -2,16 +2,16 @@
 
 
 def get_one_indexed_measure_number_in_expr(expr, measure_number):
-    r'''Get one-indexed `measure_number` in `expr`:
+    r'''Gets one-indexed `measure_number` in `expr`.
 
     ::
 
-        >>> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
-        >>> f(t)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -27,7 +27,10 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
                 a'8
             }
         }
-        >>> measuretools.get_one_indexed_measure_number_in_expr(t, 3)
+
+    ::
+
+        >>> measuretools.get_one_indexed_measure_number_in_expr(staff, 3)
         Measure(2/8, [g'8, a'8])
 
     Note that measures number from ``1``.

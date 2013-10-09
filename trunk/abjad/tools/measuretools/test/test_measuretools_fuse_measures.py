@@ -68,41 +68,29 @@ def test_measuretools_fuse_measures_02():
     Beams are OK because they attach to leaves rather than containers.
     '''
 
-    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     spannertools.BeamSpanner(voice.select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            \time 1/8
-            c'16 [
-            d'16
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 1/8
+                c'16 [
+                d'16
+            }
+            {
+                \time 2/16
+                e'16
+                f'16 ]
+            }
         }
-        {
-            \time 2/16
-            e'16
-            f'16 ]
-        }
-    }
-    '''
+        '''
+        )
 
     measuretools.fuse_measures(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            \time 2/8
-            c'16 [
-            d'16
-            e'16
-            f'16 ]
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -118,6 +106,8 @@ def test_measuretools_fuse_measures_02():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_measuretools_fuse_measures_03():
     r'''Fuse measures with differing power-of-two denominators.
@@ -125,41 +115,29 @@ def test_measuretools_fuse_measures_03():
     Beam attaches to container rather than leaves.
     '''
 
-    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     spannertools.BeamSpanner(voice[0])
 
-    r'''
-    \new Voice {
-        {
-            \time 1/8
-            c'16 [
-            d'16 ]
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 1/8
+                c'16 [
+                d'16 ]
+            }
+            {
+                \time 2/16
+                e'16
+                f'16
+            }
         }
-        {
-            \time 2/16
-            e'16
-            f'16
-        }
-    }
-    '''
+        '''
+        )
 
     measuretools.fuse_measures(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            \time 2/8
-            c'16
-            d'16
-            e'16
-            f'16
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -175,6 +153,8 @@ def test_measuretools_fuse_measures_03():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_measuretools_fuse_measures_04():
     r'''Fuse measures with power-of-two-denominators together with measures
@@ -183,42 +163,31 @@ def test_measuretools_fuse_measures_04():
     Beams are OK because they attach to leaves rather than containers.
     '''
 
-    m1 = Measure((1, 8), notetools.make_repeated_notes(1))
-    m2 = Measure((1, 12), notetools.make_repeated_notes(1))
-    voice = Voice([m1, m2])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    measure_1 = Measure((1, 8), "c'8")
+    measure_2 = Measure((1, 12), "d'8")
+    voice = Voice([measure_1, measure_2])
     spannertools.BeamSpanner(voice.select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            \time 1/8
-            c'8 [
-        }
-        {
-            \time 1/12
-            \scaleDurations #'(2 . 3) {
-                d'8 ]
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 1/8
+                c'8 [
+            }
+            {
+                \time 1/12
+                \scaleDurations #'(2 . 3) {
+                    d'8 ]
+                }
             }
         }
-    }
-    '''
+        '''
+        )
 
     measuretools.fuse_measures(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            \time 5/24
-            \scaleDurations #'(2 . 3) {
-                c'8. [
-                d'8 ]
-            }
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -233,6 +202,8 @@ def test_measuretools_fuse_measures_04():
         }
         '''
         )
+
+    assert inspect(voice).is_well_formed()
 
 
 def test_measuretools_fuse_measures_05():
@@ -259,48 +230,32 @@ def test_measuretools_fuse_measures_07():
     r'''Fuse three measures.
     '''
 
-    voice = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
-    measuretools.fill_measures_in_expr_with_repeated_notes(voice, Duration(1, 16))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
     spannertools.BeamSpanner(voice.select_leaves())
 
-    r'''
-    \new Voice {
-        {
-            \time 1/8
-            c'16 [
-            d'16
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                \time 1/8
+                c'16 [
+                d'16
+            }
+            {
+                e'16
+                f'16
+            }
+            {
+                g'16
+                a'16 ]
+            }
         }
-        {
-            \time 1/8
-            e'16
-            f'16
-        }
-        {
-            \time 1/8
-            g'16
-            a'16 ]
-        }
-    }
-    '''
+        '''
+        )
 
     measuretools.fuse_measures(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            \time 3/8
-            c'16 [
-            d'16
-            e'16
-            f'16
-            g'16
-            a'16 ]
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -318,44 +273,53 @@ def test_measuretools_fuse_measures_07():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_measuretools_fuse_measures_08():
     r'''Measure fusion across intervening container boundaries is undefined.
     '''
 
-    voice = Voice(Container(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    container_1 = Container("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    container_2 = Container("abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
+    voice = Voice([container_1, container_2])
 
-    r'''
-    \new Voice {
-        {
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
             {
-                \time 2/8
-                c'8
-                d'8
+                {
+                    \time 2/8
+                    c'8
+                    d'8
+                }
+                {
+                    \time 2/8
+                    e'8
+                    f'8
+                }
             }
             {
-                \time 2/8
-                e'8
-                f'8
+                {
+                    \time 2/8
+                    g'8
+                    a'8
+                }
+                {
+                    \time 2/8
+                    b'8
+                    c''8
+                }
             }
         }
-        {
-            {
-                \time 2/8
-                g'8
-                a'8
-            }
-            {
-                \time 2/8
-                b'8
-                c''8
-            }
-        }
-    }
-    '''
+        '''
+        )
 
-    assert py.test.raises(AssertionError, 'measuretools.fuse_measures([voice[0][1], voice[1][0]])')
+    assert py.test.raises(
+        AssertionError, 
+        'measuretools.fuse_measures([voice[0][1], voice[1][0]])',
+        )
 
 
 def test_measuretools_fuse_measures_09():
@@ -364,59 +328,39 @@ def test_measuretools_fuse_measures_09():
     With change in number of note heads because of non-power-of-two multiplier.
     '''
 
-    staff = Staff([
-        Measure((9, 80), []),
-        Measure((2, 16), [])])
-    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(staff)
+    staff = Staff()
+    staff.append(Measure((9, 80), "c'64 c' c' c' c' c' c' c' c'"))
+    staff.append(Measure((2, 16), "c'16 c'"))
 
-    r'''
-    \new Staff {
-        {
-            \time 9/80
-            \scaleDurations #'(4 . 5) {
-                c'64
-                c'64
-                c'64
-                c'64
-                c'64
-                c'64
-                c'64
-                c'64
-                c'64
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 9/80
+                \scaleDurations #'(4 . 5) {
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                    c'64
+                }
+            }
+            {
+                \time 2/16
+                c'16
+                c'16
             }
         }
-        {
-            \time 2/16
-            c'16
-            c'16
-        }
-    }
-    '''
+        '''
+        )
 
     new = measuretools.fuse_measures(staff[:])
 
-    r'''
-    {
-        \time 19/80
-        \scaleDurations #'(4 . 5) {
-            c'64
-            c'64
-            c'64
-            c'64
-            c'64
-            c'64
-            c'64
-            c'64
-            c'64
-            c'16 ~
-            c'64
-            c'16 ~
-            c'64
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -442,3 +386,5 @@ def test_measuretools_fuse_measures_09():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
