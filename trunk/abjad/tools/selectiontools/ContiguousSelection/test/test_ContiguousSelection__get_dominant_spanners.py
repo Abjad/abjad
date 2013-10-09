@@ -12,8 +12,7 @@ def test_ContiguousSelection__get_dominant_spanners_01():
     Beam and trill dominate first container.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
@@ -49,8 +48,7 @@ def test_ContiguousSelection__get_dominant_spanners_02():
     r'''Beam, glissando and trill all dominante second container.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
@@ -67,8 +65,7 @@ def test_ContiguousSelection__get_dominant_spanners_03():
     r'''Glissando and trill dominate last container.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
@@ -84,8 +81,7 @@ def test_ContiguousSelection__get_dominant_spanners_04():
     r'''Beam and trill dominate first two containers.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
@@ -101,8 +97,7 @@ def test_ContiguousSelection__get_dominant_spanners_05():
     r'''Glissando and trill dominate last two containers.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
@@ -118,8 +113,7 @@ def test_ContiguousSelection__get_dominant_spanners_06():
     r'''Only trill dominates all three containers.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
@@ -134,8 +128,7 @@ def test_ContiguousSelection__get_dominant_spanners_07():
     r'''Only trill dominates voice.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())
@@ -152,8 +145,7 @@ def test_ContiguousSelection__get_dominant_spanners_08():
     Note that beam and glissando attach to containers.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner(voice[:2])
     glissando = spannertools.GlissandoSpanner(voice[1:])
     trill = spannertools.TrillSpanner(voice.select_leaves())

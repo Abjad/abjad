@@ -4,29 +4,7 @@ from abjad import *
 
 def test_Selection__get_component_01():
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
-
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
-        }
-        {
-            \time 2/8
-            e'8
-            f'8
-        }
-        {
-            \time 2/8
-            g'8
-            a'8
-        }
-    }
-    '''
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
     assert select(staff)._get_component(Measure, 0) is staff[0]
     assert select(staff)._get_component(Measure, 1) is staff[1]
@@ -35,9 +13,7 @@ def test_Selection__get_component_01():
 
 def test_Selection__get_component_02():
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
     assert select(staff)._get_component(Measure, -1) is staff[2]
     assert select(staff)._get_component(Measure, -2) is staff[1]
@@ -48,8 +24,7 @@ def test_Selection__get_component_03():
     r'''Read forwards for positive n.
     '''
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
     r'''
     \new Staff {
@@ -83,8 +58,7 @@ def test_Selection__get_component_04():
     r'''Read backwards for negative n.
     '''
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
     r'''
     \new Staff {
@@ -116,15 +90,7 @@ def test_Selection__get_component_04():
 
 def test_Selection__get_component_05():
 
-    staff = Staff([])
-    durations = [Duration(n, 16) for n in range(1, 5)]
-    notes = notetools.make_notes([0, 2, 4, 5], durations)
-    rests = resttools.make_rests(durations)
-    leaves = sequencetools.interlace_sequences(notes, rests)
-    staff.extend(leaves)
-
-    r'''
-    \new Staff {
+    staff = Staff(r'''
         c'16
         r16
         d'8
@@ -133,8 +99,10 @@ def test_Selection__get_component_05():
         r8.
         f'4
         r4
-    }
-    '''
+        ''')
+
+    notes = [staff[0], staff[2], staff[4], staff[6]]
+    rests = [staff[1], staff[3], staff[5], staff[7]]
 
     assert select(staff)._get_component(Note, 0) is notes[0]
     assert select(staff)._get_component(Note, 1) is notes[1]
@@ -153,15 +121,7 @@ def test_Selection__get_component_06():
     r'''Iterates backwards with negative values of n.
     '''
 
-    staff = Staff([])
-    durations = [Duration(n, 16) for n in range(1, 5)]
-    notes = notetools.make_notes([0, 2, 4, 5], durations)
-    rests = resttools.make_rests(durations)
-    leaves = sequencetools.interlace_sequences(notes, rests)
-    staff.extend(leaves)
-
-    r'''
-    \new Staff {
+    staff = Staff(r'''
         c'16
         r16
         d'8
@@ -170,8 +130,10 @@ def test_Selection__get_component_06():
         r8.
         f'4
         r4
-    }
-    '''
+        ''')
+
+    notes = [staff[0], staff[2], staff[4], staff[6]]
+    rests = [staff[1], staff[3], staff[5], staff[7]]
 
     assert select(staff)._get_component(Note, -1) is notes[3]
     assert select(staff)._get_component(Note, -2) is notes[2]

@@ -10,11 +10,20 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_01():
     Even if components are all part of the same logical voice.
     '''
 
-    voice = Voice(notetools.make_repeated_notes(4))
-    voice.insert(2, Voice(notetools.make_repeated_notes(2)))
-    Container(voice[:2])
-    Container(voice[-2:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+    voice = Voice(r'''
+        {
+            c'8
+            d'8
+        }
+        \new Voice {
+            e'8
+            f'8
+        }
+        {
+            g'8
+            a'8
+        }
+        ''')
 
     r'''
     \new Voice {
@@ -105,12 +114,7 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_08():
     r'''False when components belonging to same logical voice are ommitted.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    spannertools.BeamSpanner(voice.select_leaves())
-
-    r'''
-    \new Voice {
+    voice = Voice(r'''
         {
             c'8 [
             d'8
@@ -123,7 +127,6 @@ def test_Selection__all_are_contiguous_components_in_same_logical_voice_08():
             g'8
             a'8 ]
         }
-    }
-    '''
+        ''')
 
     assert not Selection._all_are_contiguous_components_in_same_logical_voice(voice[:1] + voice[-1:])

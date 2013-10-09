@@ -4,19 +4,7 @@ from abjad import *
 
 def test_VerticalMoment___len___01():
 
-    score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(
-        Duration(4, 8), notetools.make_repeated_notes(3))]))
-    piano_staff = scoretools.PianoStaff([])
-    piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-    piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-    contexttools.ClefMark('bass')(piano_staff[1])
-    score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        list(reversed(score.select_leaves(allow_discontiguous_leaves=True))))
-
-    r'''
-    \new Score <<
+    score = Score(r'''
         \new Staff {
             \times 4/3 {
                 d''8
@@ -37,8 +25,8 @@ def test_VerticalMoment___len___01():
                 c'8
             }
         >>
-    >>
-    '''
+        ''')
+    piano_staff = score[1]
 
     vertical_moment = inspect(score).get_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Score<<2>>, Staff{1}, {@ 3:4 d''8, c''8, b'8 @}, d''8, PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"

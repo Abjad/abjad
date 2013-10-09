@@ -38,9 +38,16 @@ def test_Selection__all_are_contiguous_components_in_same_parent_02():
     False to unincorporated components when orphans not allowed.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        voice)
+    voice = Voice(r'''
+        {
+            c'8
+            d'8
+        }
+        {
+            e'8
+            f'8
+        }
+        ''')
 
     assert testtools.compare(
         voice,

@@ -4,7 +4,7 @@ import py.test
 
 
 def test_Parentage_logical_voice_indicator_01():
-    r'''An anonymous staff and its contained unvoiced leaves share 
+    r'''An anonymous staff and its contained unvoiced leaves share
     the same signature.
     '''
 
@@ -16,7 +16,7 @@ def test_Parentage_logical_voice_indicator_01():
 
 
 def test_Parentage_logical_voice_indicator_02():
-    r'''A named staff and its contained unvoiced leaves share 
+    r'''A named staff and its contained unvoiced leaves share
     the same signature.
     '''
 
@@ -46,11 +46,22 @@ def test_Parentage_logical_voice_indicator_04():
     first voice, staff and score in the parentage of component.
     '''
 
-    voice = Voice(notetools.make_repeated_notes(4))
-    voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    voice[2].is_simultaneous = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        voice)
+    voice = Voice(r'''
+        c'8
+        d'8
+        <<
+            \new Voice {
+                e'8
+                f'8
+            }
+            \new Voice {
+                g'8
+                a'8
+            }
+        >>
+        b'8
+        c''8
+        ''')
     voice.override.note_head.color = 'red'
 
     assert testtools.compare(
@@ -77,7 +88,7 @@ def test_Parentage_logical_voice_indicator_04():
         '''
         )
 
-    signatures = [inspect(leaf).get_parentage().logical_voice_indicator 
+    signatures = [inspect(leaf).get_parentage().logical_voice_indicator
         for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
 
     assert signatures[0] == signatures[1]
@@ -94,14 +105,24 @@ def test_Parentage_logical_voice_indicator_05():
     first voice, staff and score in parentage of component.
     '''
 
-    voice = Voice(notetools.make_repeated_notes(4))
-    voice.name = 'foo'
-    voice.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
-    voice[2].is_simultaneous = True
-    voice[2][0].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        voice)
+    voice = Voice(r'''
+        c'8
+        d'8
+        <<
+            \context Voice = "foo" {
+                e'8
+                f'8
+            }
+            \new Voice {
+                g'8
+                a'8
+            }
+        >>
+        b'8
+        c''8
+        ''')
     voice.override.note_head.color = 'red'
+    voice.name = 'foo'
 
     assert testtools.compare(
         voice,
@@ -127,7 +148,7 @@ def test_Parentage_logical_voice_indicator_05():
         '''
         )
 
-    signatures = [inspect(leaf).get_parentage().logical_voice_indicator 
+    signatures = [inspect(leaf).get_parentage().logical_voice_indicator
         for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
 
     signatures[0] == signatures[1]
@@ -151,13 +172,14 @@ def test_Parentage_logical_voice_indicator_06():
     first voice, staff and score in parentage of component.
     '''
 
-    container = Container(Staff([Voice("c'8 d'8")]) * 2)
+    container = Container([
+        Staff([Voice("c'8 d'8")]),
+        Staff([Voice("e'8 f'8")]),
+        ])
     container[0].name = 'staff1'
     container[1].name = 'staff2'
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
     assert py.test.raises(
         AssertionError, 'spannertools.BeamSpanner(container.select_leaves())')
     leaves = container.select_leaves(allow_discontiguous_leaves=True)
@@ -184,7 +206,7 @@ def test_Parentage_logical_voice_indicator_06():
         '''
         )
 
-    signatures = [inspect(leaf).get_parentage().logical_voice_indicator 
+    signatures = [inspect(leaf).get_parentage().logical_voice_indicator
         for leaf in leaves]
 
     signatures[0] == signatures[1]
@@ -199,16 +221,26 @@ def test_Parentage_logical_voice_indicator_07():
     first voice, staff and score in parentage of component.
     '''
 
-    container = Container(notetools.make_repeated_notes(2))
-    container[1:1] = Container(
-        Voice(notetools.make_repeated_notes(1)) * 2) * 2
-    container[1].is_simultaneous = True
-    container[1][0].name = 'alto'
-    container[1][1].name = 'soprano'
-    container[2][0].name = 'alto'
-    container[2][1].name = 'soprano'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        c'8
+        <<
+            \context Voice = "alto" {
+                d'8
+            }
+            \context Voice = "soprano" {
+                e'8
+            }
+        >>
+        {
+            \context Voice = "alto" {
+                f'8
+            }
+            \context Voice = "soprano" {
+                g'8
+            }
+        }
+        a'8
+        ''')
     container[1][1].override.note_head.color = 'red'
     container[2][1].override.note_head.color = 'red'
 
@@ -242,7 +274,7 @@ def test_Parentage_logical_voice_indicator_07():
         '''
         )
 
-    signatures = [inspect(leaf).get_parentage().logical_voice_indicator 
+    signatures = [inspect(leaf).get_parentage().logical_voice_indicator
         for leaf in container.select_leaves(allow_discontiguous_leaves=True)]
 
     signatures[0] != signatures[1]
@@ -297,10 +329,15 @@ def test_Parentage_logical_voice_indicator_10():
     r'''Measure and leaves must carry same logical voice signature.
     '''
 
-    staff = Staff([Measure((2, 8), "c'8 d'8")] +
-        notetools.make_repeated_notes(2))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    staff = Staff(r'''
+        {
+            \time 2/8
+            c'8
+            d'8
+        }
+        e'8
+        f'8
+        ''')
 
     assert testtools.compare(
         staff,
@@ -326,13 +363,13 @@ def test_Parentage_logical_voice_indicator_10():
 
 
 def test_Parentage_logical_voice_indicator_11():
-    r'''Leaves inside different staves have different logical voice 
+    r'''Leaves inside different staves have different logical voice
     signatures, even when the staves have the same name.
     '''
 
     container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
     container[0].name = container[1].name = 'staff'
-    
+
     assert testtools.compare(
         container,
         r'''

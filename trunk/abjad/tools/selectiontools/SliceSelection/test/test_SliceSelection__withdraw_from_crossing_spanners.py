@@ -8,11 +8,16 @@ def test_SliceSelection__withdraw_from_crossing_spanners_01():
     No spanners cross voice.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    beam = spannertools.BeamSpanner(voice[0][:])
-    slur = spannertools.SlurSpanner(voice[1][:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    voice = Voice(r'''
+        {
+            c'8 [ \startTrillSpan
+            d'8 ]
+        }
+        {
+            e'8 (
+            f'8 ) \stopTrillSpan
+        }
+        ''')
 
     assert testtools.compare(
         voice,
@@ -56,11 +61,16 @@ def test_SliceSelection__withdraw_from_crossing_spanners_02():
     r'''Withdraw logical-voice-contiguous components from crossing spanners.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    beam = spannertools.BeamSpanner(voice[0][:])
-    slur = spannertools.SlurSpanner(voice[1][:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    voice = Voice(r'''
+        {
+            c'8 [ \startTrillSpan
+            d'8 ]
+        }
+        {
+            e'8 (
+            f'8 ) \stopTrillSpan
+        }
+        ''')
 
     assert testtools.compare(
         voice,
@@ -105,11 +115,16 @@ def test_SliceSelection__withdraw_from_crossing_spanners_03():
     Both slur and trill become discontiguous.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-    beam = spannertools.BeamSpanner(voice[0][:])
-    slur = spannertools.SlurSpanner(voice[1][:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    voice = Voice(r'''
+        {
+            c'8 [ \startTrillSpan
+            d'8 ]
+        }
+        {
+            e'8 (
+            f'8 ) \stopTrillSpan
+        }
+        ''')
 
     assert testtools.compare(
         voice,

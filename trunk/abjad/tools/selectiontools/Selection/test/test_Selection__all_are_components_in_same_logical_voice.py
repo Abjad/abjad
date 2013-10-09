@@ -96,9 +96,20 @@ def test_Selection__all_are_components_in_same_logical_voice_06():
     r'''Voice, sequential and leaves all appear in same logical voice.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        voice)
+    voice = Voice(r'''
+        {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        ''')
 
     assert testtools.compare(
         voice,
@@ -128,10 +139,18 @@ def test_Selection__all_are_components_in_same_logical_voice_07():
     r'''Anonymous voice, tuplets and leaves all appear in same logical voice.
     '''
 
-    voice = Voice(tuplettools.FixedDurationTuplet(
-        Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        voice)
+    voice = Voice(r'''
+        \times 2/3 {
+            c'8
+            d'8
+            e'8
+        }
+        \times 2/3 {
+            f'8
+            g'8
+            a'8
+        }
+        ''')
 
     assert testtools.compare(
         voice,
@@ -159,9 +178,20 @@ def test_Selection__all_are_components_in_same_logical_voice_08():
     r'''Logical voice does not extend across anonymous voices.
     '''
 
-    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    staff = Staff(r'''
+        \new Voice {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        \new Voice {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        ''')
 
     assert testtools.compare(
         staff,
@@ -197,11 +227,20 @@ def test_Selection__all_are_components_in_same_logical_voice_09():
     r'''Logical voice encompasses across like-named voices.
     '''
 
-    staff = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
-    staff[0].name = 'foo'
-    staff[1].name = 'foo'
+    staff = Staff(r'''
+        \context Voice = "foo" {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        \context Voice = "foo" {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        ''')
 
     assert testtools.compare(
         staff,
@@ -231,11 +270,16 @@ def test_Selection__all_are_components_in_same_logical_voice_10():
     r'''Logical voice does not extend across differently named voices.
     '''
 
-    staff = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
-    staff[0].name = 'foo'
-    staff[1].name = 'bar'
+    staff = Staff(r'''
+        \context Voice = "foo" {
+            c'8
+            d'8
+        }
+        \context Voice = "bar" {
+            e'8
+            f'8
+        }
+        ''')
 
     assert testtools.compare(
         staff,
@@ -262,9 +306,20 @@ def test_Selection__all_are_components_in_same_logical_voice_11():
     Logical voice does not extend across anonymous staves.
     '''
 
-    container = Container(Staff([Voice(notetools.make_repeated_notes(2))]) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        \new Staff {
+            \new Voice {
+                c'8
+                d'8
+            }
+        }
+        \new Staff {
+            \new Voice {
+                e'8
+                f'8
+            }
+        }
+        ''')
 
     assert testtools.compare(
         container,
@@ -295,12 +350,28 @@ def test_Selection__all_are_components_in_same_logical_voice_12():
     Logical voice does not extend across anonymous staves.
     '''
 
-    container = Container(
-        Staff(Voice(notetools.make_repeated_notes(2)) * 2) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
-    container[0].is_simultaneous = True
-    container[1].is_simultaneous = True
+    container = Container(r'''
+        \new Staff <<
+            \new Voice {
+                c'8
+                d'8
+            }
+            \new Voice {
+                e'8
+                f'8
+            }
+        >>
+        \new Staff <<
+            \new Voice {
+                g'8
+                a'8
+            }
+            \new Voice {
+                b'8
+                c''8
+            }
+        >>
+        ''')
 
     assert testtools.compare(
         container,
@@ -339,9 +410,16 @@ def test_Selection__all_are_components_in_same_logical_voice_13():
     logical voice.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        voice)
+    voice = Voice(r'''
+        {
+            c'8
+            d'8
+        }
+        {
+            e'8
+            f'8
+        }
+        ''')
 
     assert testtools.compare(
         voice,
@@ -413,12 +491,20 @@ def test_Selection__all_are_components_in_same_logical_voice_15():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container([
-        Container(notetools.make_repeated_notes(4)), 
-        Voice(notetools.make_repeated_notes(4)),
-        ])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        \new Voice {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        ''')
 
     assert testtools.compare(
         container,
@@ -452,11 +538,20 @@ def test_Selection__all_are_components_in_same_logical_voice_16():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(
-        [Voice(notetools.make_repeated_notes(4)), 
-        Container(notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        \new Voice {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        ''')
 
     assert testtools.compare(
         container,
@@ -490,13 +585,20 @@ def test_Selection__all_are_components_in_same_logical_voice_17():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container([
-        Container(notetools.make_repeated_notes(4)), 
-        Voice(notetools.make_repeated_notes(4)),
-        ])
-    container[1].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        \context Voice = "foo" {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        ''')
 
     r'''
     {
@@ -527,13 +629,20 @@ def test_Selection__all_are_components_in_same_logical_voice_18():
     r'''Logical voice can not extend acrossdifferently named implicit voices.
     '''
 
-    container = Container([
-        Voice(notetools.make_repeated_notes(4)), 
-        Container(notetools.make_repeated_notes(4)),
-        ])
-    container[0].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        \context Voice = "foo" {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        ''')
 
     assert testtools.compare(
         container,
@@ -567,11 +676,20 @@ def test_Selection__all_are_components_in_same_logical_voice_19():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(
-        [Container(notetools.make_repeated_notes(4)), 
-        Staff(notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        \new Staff {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        ''')
 
     assert testtools.compare(
         container,
@@ -870,10 +988,18 @@ def test_Selection__all_are_components_in_same_logical_voice_26():
     r'''Logical voice can not extend across differently named implicit voices.
     '''
 
-    container = Container(notetools.make_repeated_notes(4))
-    container.insert(0, Staff(notetools.make_repeated_notes(4)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        container)
+    container = Container(r'''
+        \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        g'8
+        a'8
+        b'8
+        c''8
+        ''')
 
     assert testtools.compare(
         container,

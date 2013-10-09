@@ -4,9 +4,8 @@ from abjad import *
 
 def test_ContiguousSelection_partition_by_durations_not_greater_than_01():
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+        "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     tempo = contexttools.TempoMark(Duration(1, 4), 60, target_context=Staff)
     tempo.attach(staff)
 
@@ -38,20 +37,20 @@ def test_ContiguousSelection_partition_by_durations_not_greater_than_01():
 
     leaves = staff.select_leaves()
     parts = leaves.partition_by_durations_not_greater_than(
-        [0.75], 
-        cyclic=True, 
-        in_seconds=True, 
+        [0.75],
+        cyclic=True,
+        in_seconds=True,
         overhang=False,
         )
 
     r'''
     [
-        [Note(c', 8)], 
-        [Note(d', 8)], 
-        [Note(e', 8)], 
-        [Note(f', 8)], 
-        [Note(g', 8)], 
-        [Note(a', 8)], 
+        [Note(c', 8)],
+        [Note(d', 8)],
+        [Note(e', 8)],
+        [Note(f', 8)],
+        [Note(g', 8)],
+        [Note(a', 8)],
         [Note(b', 8)]
     ]
     '''
@@ -68,9 +67,8 @@ def test_ContiguousSelection_partition_by_durations_not_greater_than_01():
 
 def test_ContiguousSelection_partition_by_durations_not_greater_than_02():
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+        "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
 
     assert testtools.compare(
         staff,
@@ -99,17 +97,17 @@ def test_ContiguousSelection_partition_by_durations_not_greater_than_02():
 
     leaves = staff.select_leaves()
     parts = leaves.partition_by_durations_not_greater_than(
-        [Duration(3, 16)], 
-        cyclic=True, 
-        in_seconds=False, 
+        [Duration(3, 16)],
+        cyclic=True,
+        in_seconds=False,
         overhang=False,
         )
 
     r'''
     [
-        [Note(c', 8)], 
-        [Note(d', 8)], 
-        [Note(e', 8)], 
+        [Note(c', 8)],
+        [Note(d', 8)],
+        [Note(e', 8)],
         [Note(f', 8)],
         [Note(g', 8)],
         [Note(a', 8)],
@@ -129,17 +127,16 @@ def test_ContiguousSelection_partition_by_durations_not_greater_than_02():
 
 def test_ContiguousSelection_partition_by_durations_not_greater_than_03():
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+        "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     tempo = contexttools.TempoMark(Duration(1, 4), 60, target_context=Staff)
     tempo.attach(staff)
 
     leaves = staff.select_leaves()
     parts = leaves.partition_by_durations_not_greater_than(
-        [0.75], 
-        cyclic=False, 
-        in_seconds=True, 
+        [0.75],
+        cyclic=False,
+        in_seconds=True,
         overhang=False,
         )
 
@@ -151,15 +148,13 @@ def test_ContiguousSelection_partition_by_durations_not_greater_than_03():
 
 def test_ContiguousSelection_partition_by_durations_not_greater_than_04():
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
-        staff)
-
+    staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
+        "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = staff.select_leaves()
     parts = leaves.partition_by_durations_not_greater_than(
-        [Duration(3, 16)], 
-        cyclic=False, 
-        in_seconds=False, 
+        [Duration(3, 16)],
+        cyclic=False,
+        in_seconds=False,
         overhang=False,
         )
 
