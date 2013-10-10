@@ -48,6 +48,9 @@ class TypedCollection(AbjadObject):
     def __len__(self):
         return len(self._collection)
 
+    def __ne__(self, expr):
+        return not self.__eq__(expr)
+
     ### PRIVATE PROPERTIES ###
 
     @property

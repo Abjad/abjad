@@ -24,16 +24,12 @@ class TypedCounter(TypedCollection):
 
     '''
     __cmp__
-    __contains__
     __ge__
     __getattribute__
-    __getitem__
     __gt__
     __hash__
-    __iter__
     __le__
     __lt__
-    __ne__
     __setitem__
     '''
 
@@ -75,6 +71,10 @@ class TypedCounter(TypedCollection):
 
     def __reduce__(self):
         return self.__class__, (dict(self._collection),)
+
+    def __setitem__(self, token, value):
+        item = self._item_callable(token)
+        self._collection.__setitem__(item, value)
 
     def __sub__(self, expr):
         if not isinstance(expr, type(self)) \
