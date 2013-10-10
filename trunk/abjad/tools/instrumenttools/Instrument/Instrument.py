@@ -24,8 +24,8 @@ class Instrument(contexttools.InstrumentMark):
         ):
         contexttools.InstrumentMark.__init__(
             self,
-            instrument_name,
-            short_instrument_name,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
             instrument_name_markup=instrument_name_markup,
             short_instrument_name_markup=short_instrument_name_markup,
             target_context=target_context,

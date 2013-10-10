@@ -55,4 +55,3 @@ class ClarinetInA(Instrument):
         self._default_pitch_range = pitchtools.PitchRange(-11, 33)
         self._is_primary_instrument = False
         self._copy_default_starting_clefs_to_default_allowable_clefs()
-        #self._make_default_name_markups()

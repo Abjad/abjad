@@ -55,7 +55,6 @@ class BaritoneVoice(Instrument):
             ])
         self._is_primary_instrument = True
         self._copy_default_starting_clefs_to_default_allowable_clefs()
-        #self._make_default_name_markups()
 
     ### PUBLIC PROPERTIES ###
 

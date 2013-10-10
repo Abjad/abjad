@@ -54,4 +54,3 @@ class FrenchHorn(Instrument):
             contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-25, 17)
-        #self._make_default_name_markups()

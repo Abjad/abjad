@@ -50,18 +50,11 @@ class InstrumentMark(ContextMark):
         from abjad.tools.stafftools.Staff import Staff
         target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
-
-#        self._default_instrument_name = None
-#        self._default_instrument_name_markup = None
-#        self._default_short_instrument_name = None
-#        self._default_short_instrument_name_markup = None
-
         self._default_instrument_name = instrument_name
         self._default_instrument_name_markup = instrument_name_markup
         self._default_short_instrument_name = short_instrument_name
         self._default_short_instrument_name_markup = \
             short_instrument_name_markup
-
         self.instrument_name = instrument_name
         self.instrument_name_markup = instrument_name_markup
         self.short_instrument_name = short_instrument_name
@@ -120,7 +113,6 @@ class InstrumentMark(ContextMark):
         result = ', '.join(result)
         return result
 
-    # TODO: remove in favor of all subclass inits implementing only keywords
     @property
     def _keyword_argument_names(self):
         return (
@@ -255,3 +247,11 @@ class InstrumentMark(ContextMark):
                 self._short_instrument_name_markup = \
                     Markup(short_instrument_name_markup)
         return property(**locals())
+
+#    @property
+#    def storage_format(self):
+#        superclass = super(InstrumentMark, self)
+#        if self._default_instrument_name_markup is None or \
+#            self._default_short_instrument_name_markup is None:
+#            self._make_default_name_markups()
+#        return superclass.storage_format

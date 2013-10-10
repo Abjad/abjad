@@ -57,7 +57,6 @@ class BFlatClarinet(Instrument):
         self._default_pitch_range = pitchtools.PitchRange(-10, 34)
         self._is_primary_instrument = True
         self._copy_default_starting_clefs_to_default_allowable_clefs()
-        #self._make_default_name_markups()
 
     ### PUBLIC METHODS ###
 

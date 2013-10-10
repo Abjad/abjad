@@ -52,7 +52,6 @@ class AltoSaxophone(Instrument):
         self._default_starting_clefs = [contexttools.ClefMark('treble')]
         self._is_primary_instrument = True
         self._copy_default_starting_clefs_to_default_allowable_clefs()
-        #self._make_default_name_markups()
 
     ### PUBLIC PROPERTIES ###
 

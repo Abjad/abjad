@@ -52,4 +52,3 @@ class Guitar(Instrument):
         self.starting_clefs = [contexttools.ClefMark('treble')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-20, 16)
-        #self._make_default_name_markups()

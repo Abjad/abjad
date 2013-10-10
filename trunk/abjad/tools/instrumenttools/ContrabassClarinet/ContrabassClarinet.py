@@ -56,4 +56,3 @@ class ContrabassClarinet(Instrument):
         self.allowable_clefs = [
             contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._default_pitch_range = pitchtools.PitchRange(-38, 7)
-        #self._make_default_name_markups()

@@ -48,4 +48,3 @@ class Violin(Instrument):
         self._default_starting_clefs = [contexttools.ClefMark('treble')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._is_primary_instrument = True
-        #self._make_default_name_markups()

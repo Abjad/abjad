@@ -52,4 +52,3 @@ class BassVoice(Instrument):
         self.starting_clefs = [contexttools.ClefMark('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(('E2', 'F4'))
-        #self._make_default_name_markups()
