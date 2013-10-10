@@ -46,9 +46,6 @@ class NamedPitch(Pitch):
                     args[0].pitch_number)
             elif hasattr(args[0], 'named_pitch'):
                 self._init_by_named_pitch(args[0].named_pitch)
-#            elif pitchtools.is_pitch_class_name_octave_number_pair(
-#                args[0]):
-#                self._init_by_pitch_class_name_octave_number_pair(*args)
             elif pitchtools.is_pitch_class_octave_number_string(args[0]):
                 self._init_by_pitch_class_octave_number_string(*args)
             elif isinstance(args[0], str):
@@ -279,9 +276,9 @@ class NamedPitch(Pitch):
             named_pitch._pitch_name
 
     def _init_by_named_pitch_class_and_octave_number(
-        self, npc, octave_number):
+        self, named_pitch_class, octave_number):
         self._init_by_pitch_class_name_and_octave_number(
-            npc._pitch_class_name, octave_number)
+            named_pitch_class.pitch_class_name, octave_number)
 
     def _init_by_pitch_class_octave_number_string(
         self, pitch_class_octave_number_string):
@@ -338,7 +335,7 @@ class NamedPitch(Pitch):
 
         Return string.
         '''
-        return self.named_pitch_class._pitch_class_name
+        return self.named_pitch_class.pitch_class_name
 
     @property
     def pitch_class_number(self):

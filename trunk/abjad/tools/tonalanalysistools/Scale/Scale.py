@@ -289,9 +289,9 @@ class Scale(PitchClassSegment):
     def named_pitch_class_to_scale_degree(self, *args):
         from abjad.tools import tonalanalysistools
         foreign_pitch_class = pitchtools.NamedPitchClass(*args)
-        letter = foreign_pitch_class._diatonic_pitch_class_name
+        letter = foreign_pitch_class.diatonic_pitch_class_name
         for i, pc in enumerate(self):
-            if pc._diatonic_pitch_class_name == letter:
+            if pc.diatonic_pitch_class_name == letter:
                 native_pitch_class = pc
                 scale_degree_index = i
                 scale_degree_number = scale_degree_index + 1

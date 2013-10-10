@@ -42,6 +42,19 @@ class Accidental(AbjadObject):
         'ss'  : 2,
     }
 
+    _alphabetic_accidental_abbreviation_to_symbolic_accidental_string = {
+        'ff'  : 'bb',
+        'tqf' : 'b~',
+        'f'   : 'b',
+        'qf'  : '~',
+        ''    : '',
+        '!'   : '!',
+        'qs'  : '+',
+        's'   : '#',
+        'tqs' : '#+',
+        'ss'  : '##',
+        }
+
     _alphabetic_accidental_regex_body = """
         ([s]{1,2}   # s or ss for sharp or double sharp
         |[f]{1,2}   # or f or ff for flat or double flat
@@ -93,6 +106,31 @@ class Accidental(AbjadObject):
         '^{}$'.format(_symbolic_accidental_string_regex_body),
         re.VERBOSE,
         )
+
+    _symbolic_accidental_string_to_alphabetic_accidental_abbreviation = {
+        'bb' : 'ff',
+        'b~' : 'tqf',
+        'b'  : 'f',
+        '~'  : 'qf',
+        ''   : '',
+        '!'  : '!',
+        '+'  : 'qs',
+        '#'  : 's',
+        '#+' : 'tqs',
+        '##' : 'ss',
+        }
+
+    _symbolic_accidental_string_to_semitones = {
+        'bb' : -2,
+        'b~' : -1.5,
+        'b'  : -1,
+        '~'  : -0.5,
+        ''   : 0,
+        '+'  : 0.5,
+        '#'  : 1,
+        '#+' : 1.5,
+        '##' : 2,
+        }
 
     __slots__ = (
         '_alphabetic_accidental_abbreviation',

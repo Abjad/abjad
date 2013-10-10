@@ -13,6 +13,11 @@ class Pitch(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_pitch_class',
+        '_octave_indication',
+        )
+
     _diatonic_pitch_name_regex_body = '''
         {}  # exactly one diatonic pitch-class name
         {}  # followed by exactly one octave tick string
@@ -54,8 +59,6 @@ class Pitch(AbjadObject):
         '^{}$'.format(_pitch_name_regex_body),
         re.VERBOSE,
         )
-
-    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -99,6 +102,10 @@ class Pitch(AbjadObject):
 
 #    @abc.abstractmethod
 #    def apply_accidental(self, accidental=None):
+#        raise NotImplementedError
+
+#    @abc.abstractmetod
+#    def invert(self, axis=None):
 #        raise NotImplementedError
 
     @staticmethod
@@ -170,21 +177,31 @@ class Pitch(AbjadObject):
         return False
 
 #    @abc.abstractmetod
-#    def invert(self, axis=None):
-#        raise NotImplementedError
-
-#    @abc.abstractmetod
 #    def transpose(self, expr):
 #        raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 
-#    @abc.abstractproperty
-#    def accidental_spelling(self):
-#        raise NotImplementedError
+    @property
+    def accidental_spelling(self):
+        r'''Accidental spelling:
+
+        ::
+
+            >>> pitchtools.NamedPitch("c").accidental_spelling
+            'mixed'
+
+        Return string.
+        '''
+        from abjad import abjad_configuration
+        return abjad_configuration['accidental_spelling']
 
 #    @abc.abstractproperty
 #    def accidental(self):
+#        raise NotImplementedError
+
+#    @abc.abstractproperty
+#    def alteration_in_semitones(self):
 #        raise NotImplementedError
 
 #    @abc.abstractproperty
@@ -207,14 +224,13 @@ class Pitch(AbjadObject):
 #    def lilypond_format(self):
 #        raise NotImplementedError
 
-#    @property
-#    def octave_indication(self):
-#        from abjad.tools import pitchtools
-#        return pitchtools.OctaveIndication(self.octave_number)
+    @property
+    def octave_indication(self):
+        return self._octave_indication
 
-#    @abc.abstractproperty
-#    def octave_number(self):
-#        raise NotImplementedError
+    @property
+    def octave_number(self):
+        return self.octave_indication.octave_number
 
 #    @abc.abstractproperty
 #    def pitch_class_name(self):

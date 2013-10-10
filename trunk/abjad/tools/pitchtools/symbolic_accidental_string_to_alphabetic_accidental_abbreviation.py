@@ -13,19 +13,7 @@ def symbolic_accidental_string_to_alphabetic_accidental_abbreviation(symbolic_ac
 
     Return string or none.
     '''
-
-    return _symbolic_accidental_string_to_alphabetic_accidental_abbreviation.get(
+    from abjad.tools import pitchtools
+    return pitchtools.Accidental._symbolic_accidental_string_to_alphabetic_accidental_abbreviation.get(
         symbolic_accidental_string)
 
-_symbolic_accidental_string_to_alphabetic_accidental_abbreviation = {
-    ''   : '',
-    '!'  : '!',
-    'bb' : 'ff',
-    'b~' : 'tqf',
-    'b'  : 'f',
-    '~'  : 'qf',
-    '##' : 'ss',
-    '#+' : 'tqs',
-    '#'  : 's',
-    '+'  : 'qs',
-    }

@@ -89,7 +89,7 @@ class TonalAnalysisAgent(object):
         letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
         for letter in letters:
             for npc in npcset:
-                if npc._diatonic_pitch_class_name == letter:
+                if npc.diatonic_pitch_class_name == letter:
                     ordered_npcs.append(npc)
         ordered_npcs = pitchtools.PitchClassSegment(
             ordered_npcs, item_class=pitchtools.NamedPitchClass)

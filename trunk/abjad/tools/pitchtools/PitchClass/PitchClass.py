@@ -75,6 +75,33 @@ class PitchClass(AbjadObject):
         re.VERBOSE,
         )
 
+    _pitch_class_number_to_pitch_class_name = {
+        0:    'c',
+        0.5:  'cqs',
+        1:    'cs',
+        1.5:  'dqf',
+        2:    'd',
+        2.5:  'dqs',
+        3:    'ef',
+        3.5:  'eqf',
+        4:    'e',
+        4.5:  'eqs',
+        5:    'f',
+        5.5:  'fqs',
+        6:    'fs',
+        6.5:  'gqf',
+        7:    'g',
+        7.5:  'gqs',
+        8:    'af',
+        8.5:  'aqf',
+        9:    'a',
+        9.5:  'aqs',
+        10:   'bf',
+        10.5: 'bqf',
+        11:   'b',
+        11.5: 'bqs',
+        }
+
     ### INITIALIZER ###
 
     @abc.abstractmethod
@@ -96,6 +123,14 @@ class PitchClass(AbjadObject):
                 self, is_indented=False))]
 
     ### PUBLIC METHODS ###
+
+#    @abc.abstractmethod
+#    def apply_accidental(self, accidental=None):
+#        raise NotImplementedError
+
+#    @abc.abstractmethod
+#    def invert(self, axis=None):
+#        raise NotImplementedError
 
     @staticmethod
     def is_diatonic_pitch_class_name(expr):
@@ -171,3 +206,52 @@ class PitchClass(AbjadObject):
         '''
 
         return expr in [(n).__truediv__(2) for n in range(24)]
+
+#    @abc.abstractmethod
+#    def multiply(self, n=1):
+#        raise NotImplementedError
+
+#    @abc.abstractmethod
+#    def transpose(self, expr):
+#        raise NotImplementedError
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def accidental_spelling(self):
+        r'''Accidental spelling:
+
+        ::
+
+            >>> pitchtools.NamedPitch("c").accidental_spelling
+            'mixed'
+
+        Return string.
+        '''
+        from abjad import abjad_configuration
+        return abjad_configuration['accidental_spelling']
+
+#    @abc.abstractproperty
+#    def accidental(self):
+#        raise NotImplementedError
+
+#    @abc.abstractproperty
+#    def alteration_in_semitones(self):
+#        raise NotImplementedError
+
+#    @abc.abstractproperty
+#    def diatonic_pitch_class_name(self):
+#        raise NotImplementedError
+
+#    @abc.abstractproperty
+#    def diatonic_pitch_class_number(self):
+#        raise NotImplementedError
+
+#    @abc.abstractproperty
+#    def pitch_class_name(self):
+#        raise NotImplementedError
+
+#    @abc.abstractproperty
+#    def pitch_class_number(self):
+#        raise NotImplementedError
+

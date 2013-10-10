@@ -211,7 +211,7 @@ class ChordClass(PitchClassSet):
     @property
     def root_string(self):
         capitalized_qualities = ('major', 'dominant', 'augmented')
-        symbolic_name = self.root._symbolic_name
+        symbolic_name = self.root.pitch_class_label
         letter, accidental = symbolic_name[0], symbolic_name[1:]
         if self.quality_indicator.quality_string in capitalized_qualities:
             letter = letter.upper()
