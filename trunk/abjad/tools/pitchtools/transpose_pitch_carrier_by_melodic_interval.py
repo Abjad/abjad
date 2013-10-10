@@ -51,8 +51,8 @@ def transpose_pitch_carrier_by_melodic_interval(
         diatonic_pitch_class_number = \
             (pitch.diatonic_pitch_class_number + mdi.staff_spaces) % 7
         diatonic_pitch_class_name = \
-            pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name(
-            diatonic_pitch_class_number)
+            pitchtools.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
+                diatonic_pitch_class_number]
         named_pitch = pitchtools.NamedPitch(
             pitch_number, diatonic_pitch_class_name)
         return type(pitch)(named_pitch)

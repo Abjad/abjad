@@ -22,6 +22,7 @@ def transpose_named_pitch_by_melodic_chromatic_interval_and_respell(
 
     pitch_number = pitch.pitch_number + melodic_chromatic_interval
     diatonic_pitch_class_number = (pitch.diatonic_pitch_class_number + staff_spaces) % 7
-    diatonic_pitch_class_name = pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name(
-        diatonic_pitch_class_number)
+    diatonic_pitch_class_name = \
+        pitchtools.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
+            diatonic_pitch_class_number]
     return pitchtools.NamedPitch(pitch_number, diatonic_pitch_class_name)

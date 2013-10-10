@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import math
 
 
 def spell_pitch_number(pitch_number, diatonic_pitch_class_name):
@@ -24,19 +25,21 @@ def spell_pitch_number(pitch_number, diatonic_pitch_class_name):
         raise ValueError
 
     # find accidental semitones
-    pc = pitchtools.diatonic_pitch_class_name_to_pitch_class_number(diatonic_pitch_class_name)
+    pc = \
+        pitchtools.PitchClass._diatonic_pitch_class_name_to_pitch_class_number[
+            diatonic_pitch_class_name]
     nearest_neighbor = pitchtools.transpose_pitch_class_number_to_pitch_number_neighbor(
         pitch_number, pc)
     semitones = pitch_number - nearest_neighbor
 
     # find accidental alphabetic string
     alphabetic_accidental_abbreviation = \
-        pitchtools.Accidental._semitones_to_alphabetic_accidental_abbreviation[semitones]
+        pitchtools.Accidental._semitones_to_alphabetic_accidental_abbreviation[
+            semitones]
     accidental = pitchtools.Accidental(alphabetic_accidental_abbreviation)
 
     # find octave
-    octave = pitchtools.pitch_number_and_accidental_semitones_to_octave_number(
-        pitch_number, semitones)
+    octave_number = int(math.floor((pitch_number - semitones) / 12)) + 4
 
     # return accidental and octave
-    return accidental, octave
+    return accidental, octave_number
