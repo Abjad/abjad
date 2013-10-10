@@ -23,19 +23,19 @@ class NumberedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg):
+    def __init__(self, expr):
         from abjad.tools import pitchtools
-        if hasattr(arg, 'pitch_number'):
-            pitch_number = arg.pitch_number
-        elif Pitch.is_pitch_number(arg):
-            pitch_number = arg
-        elif Pitch.is_pitch_name(arg):
+        if hasattr(expr, 'pitch_number'):
+            pitch_number = expr.pitch_number
+        elif Pitch.is_pitch_number(expr):
+            pitch_number = expr
+        elif Pitch.is_pitch_name(expr):
             pitch_number = \
-                pitchtools.pitch_name_to_pitch_number(arg)
+                pitchtools.pitch_name_to_pitch_number(expr)
         else:
             raise TypeError(
                 'can not initialize numbered chromatic pitch from "%s".' %
-                arg)
+                expr)
         self._pitch_number = pitch_number
 
     ### SPECIAL METHODS ###
@@ -214,8 +214,8 @@ class NumberedPitch(Pitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.pitch_number_to_diatonic_pitch_number(
-            self.pitch_number)
+        return ((self.octave_number - 4) * 7) + \
+            self.diatonic_pitch_class_number
 
     @property
     def lilypond_format(self):
