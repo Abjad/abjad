@@ -4,16 +4,42 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
 class NamedPitchClass(PitchClass):
-    '''Abjad model of named pitch-class:
+    '''A named pitch-class.
 
     ::
 
-        >>> named_pitch_class = pitchtools.NamedPitchClass('cs')
-
-    ::
-
-        >>> named_pitch_class
+        >>> pitchtools.NamedPitchClass('cs')
         NamedPitchClass('cs')
+
+    ::
+
+        >>> pitchtools.NamedPitchClass(14)
+        NamedPitchClass('d')
+
+    ::
+
+        >>> pitchtools.NamedPitchClass(pitchtools.NamedPitch('g,'))
+        NamedPitchClass('g')
+
+    ::
+
+        >>> pitchtools.NamedPitchClass(pitchtools.NumberedPitch(15))
+        NamedPitchClass('ef')
+
+    ::
+
+        >>> pitchtools.NamedPitchClass(pitchtools.NumberedPitchClass(4))
+        NamedPitchClass('e')
+
+    ::
+
+        >>> pitchtools.NamedPitchClass('C#5')
+        NamedPitchClass('cs')
+
+    ::
+
+        >>> pitchtools.NamedPitchClass(Note("a'8."))
+        NamedPitchClass('a')
 
     Return named pitch-class.
     '''
@@ -159,7 +185,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> named_pitch_class.apply_accidental('qs')
+            >>> pitchtools.NamedPitchClass('cs').apply_accidental('qs')
             NamedPitchClass('ctqs')
 
         Return named chromatic pitch-class.
@@ -177,7 +203,7 @@ class NamedPitchClass(PitchClass):
 
         ::
 
-            >>> named_pitch_class.transpose(
+            >>> pitchtools.NamedPitchClass('cs').transpose(
             ...     pitchtools.NamedInterval('major', 2))
             NamedPitchClass('ds')
 

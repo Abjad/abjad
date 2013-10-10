@@ -5,14 +5,44 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
 class NumberedPitchClass(PitchClass):
-    '''Abjad model of a numbered chromatic pitch-class:
+    '''A numbered pitch-class.
 
     ::
 
         >>> pitchtools.NumberedPitchClass(13)
         NumberedPitchClass(1)
 
-    Numbered chromatic pitch-classes are immutable.
+    ::
+
+        >>> pitchtools.NumberedPitchClass('d')
+        NumberedPitchClass(2)
+
+    ::
+
+        >>> pitchtools.NumberedPitchClass(pitchtools.NamedPitch('g,'))
+        NumberedPitchClass(7)
+
+    ::
+
+        >>> pitchtools.NumberedPitchClass(pitchtools.NumberedPitch(15))
+        NumberedPitchClass(3)
+
+    ::
+
+        >>> pitchtools.NumberedPitchClass(pitchtools.NamedPitchClass('e'))
+        NumberedPitchClass(4)
+
+    ::
+
+        >>> pitchtools.NumberedPitchClass('C#5')
+        NumberedPitchClass(1)
+
+    ::
+
+        >>> pitchtools.NumberedPitchClass(Note("a'8."))
+        NumberedPitchClass(9)
+
+    Return numbered pitch-class.
     '''
 
     ### CLASS VARIABLES ###
