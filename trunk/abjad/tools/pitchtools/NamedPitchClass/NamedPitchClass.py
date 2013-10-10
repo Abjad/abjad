@@ -293,6 +293,6 @@ class NamedPitchClass(PitchClass):
 
         Return integer or float.
         '''
-        return self._diatonic_pitch_class_number_to_pitch_class_number[
-            self._diatonic_pitch_class_number] + \
-            self._alteration_in_semitones
+        return (self._diatonic_pitch_class_number_to_pitch_class_number[
+            self._diatonic_pitch_class_number] +
+            self._alteration_in_semitones) % 12
