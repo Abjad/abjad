@@ -198,12 +198,11 @@ class NamedPitch(Pitch):
 
     def _init_by_pitch_name(self, pitch_string):
         from abjad.tools import pitchtools
-        pitch_class_name = pitchtools.pitch_name_to_pitch_class_name(
-            pitch_string)
+        named_pitch_class = pitchtools.NamedPitchClass(pitch_string)
         octave_number = pitchtools.OctaveIndication.from_pitch_name(
             pitch_string).octave_number
-        self._init_by_pitch_class_name_and_octave_number(
-            pitch_class_name, octave_number)
+        self._init_by_named_pitch_class_and_octave_number(
+            named_pitch_class, octave_number)
 
     def _init_by_pitch_number(self, pitch_number):
         from abjad.tools import pitchtools
@@ -261,8 +260,8 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         octave = pitchtools.OctaveIndication.from_pitch_number(
             abs(self.numbered_pitch)).octave_number
-        name = pitchtools.pitch_class_number_to_pitch_class_name_with_flats(
-            self.numbered_pitch_class)
+        name = pitchtools.PitchClass._pitch_class_number_to_pitch_class_name_with_flats[
+            self.pitch_class_number]
         pitch = type(self)(name, octave)
         return pitch
 
@@ -270,8 +269,8 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         octave = pitchtools.OctaveIndication.from_pitch_number(
             abs(self.numbered_pitch)).octave_number
-        name = pitchtools.pitch_class_number_to_pitch_class_name_with_sharps(
-            self.numbered_pitch_class)
+        name = pitchtools.PitchClass._pitch_class_number_to_pitch_class_name_with_sharps[
+            self.pitch_class_number]
         pitch = type(self)(name, octave)
         return pitch
 
