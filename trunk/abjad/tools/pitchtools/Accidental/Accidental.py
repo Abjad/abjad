@@ -149,7 +149,8 @@ class Accidental(AbjadObject):
             _alphabetic_accidental_abbreviation = arg
         elif self.is_symbolic_accidental_string(arg):
             _alphabetic_accidental_abbreviation = \
-            pitchtools.symbolic_accidental_string_to_alphabetic_accidental_abbreviation(arg)
+                self._symbolic_accidental_string_to_alphabetic_accidental_abbreviation[
+                    arg]
         elif arg in self._all_accidental_names:
             _alphabetic_accidental_abbreviation = \
                 self._name_to_alphabetic_accidental_abbreviation[arg]
@@ -176,8 +177,8 @@ class Accidental(AbjadObject):
         _is_adjusted = not self.semitones == 0
         self._is_adjusted = _is_adjusted
         _symbolic_accidental_string = \
-            pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string(
-            self.alphabetic_accidental_abbreviation)
+            self._alphabetic_accidental_abbreviation_to_symbolic_accidental_string[
+                self.alphabetic_accidental_abbreviation]
         self._symbolic_accidental_string = _symbolic_accidental_string
 
     ### SPECIAL METHODS ###
