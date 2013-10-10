@@ -59,7 +59,7 @@ class NamedPitchClass(PitchClass):
             self._init_by_named_pitch_class(expr)
         elif isinstance(expr, pitchtools.NamedPitch):
             self._init_by_named_pitch(expr)
-        elif pitchtools.is_pitch_class_octave_number_string(expr):
+        elif pitchtools.Pitch.is_pitch_class_octave_number_string(expr):
             self._init_by_pitch_class_octave_number_string(expr)
         elif pitchtools.Pitch.is_pitch_name(expr):
             self._init_by_pitch_name(expr)

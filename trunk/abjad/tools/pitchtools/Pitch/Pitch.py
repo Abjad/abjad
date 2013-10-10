@@ -141,6 +141,27 @@ class Pitch(AbjadObject):
         return isinstance(expr, (int, long))
 
     @staticmethod
+    def is_pitch_class_octave_number_string(expr):
+        '''True when `expr` is a pitch-class / octave number string, otherwise 
+        false:
+
+        ::
+
+            >>> pitchtools.Pitch.is_pitch_class_octave_number_string('C#2')
+            True
+
+        Quartertone accidentals are supported.
+
+        The regex ``^([A-G])([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)([-]?[0-9]+)$``
+        underlies this predicate.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Pitch._pitch_class_octave_number_regex.match(expr))
+
+    @staticmethod
     def is_pitch_name(expr):
         '''True `expr` is a chromatic pitch name, otherwise false.
 

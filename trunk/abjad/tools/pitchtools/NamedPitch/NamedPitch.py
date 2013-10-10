@@ -42,7 +42,7 @@ class NamedPitch(Pitch):
                     args[0].pitch_number)
             elif hasattr(args[0], 'named_pitch'):
                 self._init_by_named_pitch(args[0].named_pitch)
-            elif pitchtools.is_pitch_class_octave_number_string(args[0]):
+            elif self.is_pitch_class_octave_number_string(args[0]):
                 self._init_by_pitch_class_octave_number_string(*args)
             elif isinstance(args[0], str):
                 self._init_by_pitch_name(*args)
