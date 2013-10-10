@@ -2,7 +2,9 @@
 import abc
 import inspect
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
+from abjad.tools import stringtools
 
 
 class Instrument(contexttools.InstrumentMark):
@@ -28,22 +30,23 @@ class Instrument(contexttools.InstrumentMark):
             short_instrument_name_markup=short_instrument_name_markup,
             target_context=target_context,
             )
+        pitch = pitchtools.NamedPitch("c'")
         self._default_allowable_clefs = None
         self._default_performer_names = ['instrumentalist']
-        pitch = pitchtools.NamedPitch("c'")
         self._default_sounding_pitch_of_written_middle_c = pitch
         self._default_starting_clefs = None
-        self._is_primary_instrument = False
         self._allowable_clefs = None
+        self._is_primary_instrument = False
         self._pitch_range = None
         self._sounding_pitch_of_written_middle_c = None
         self._starting_clefs = None
 
     ### PRIVATE METHODS ###
 
-    def _copy_starting_clefs_to_allowable_clefs(self):
-        inventory = contexttools.ClefMarkInventory(self.starting_clefs)
-        self.allowable_clefs = inventory
+    def _copy_default_starting_clefs_to_default_allowable_clefs(self):
+        clefs = self._default_starting_clefs
+        clefs = contexttools.ClefMarkInventory(clefs)
+        self._default_allowable_clefs = clefs
 
     def _get_default_performer_name(self):
         if self._default_performer_names is None:
@@ -144,6 +147,16 @@ class Instrument(contexttools.InstrumentMark):
                 secondary_instruments.append(instrument_class)
         return secondary_instruments
 
+    def _make_default_name_markups(self):
+        string = self._default_instrument_name
+        string = stringtools.capitalize_string_start(string)
+        markup = markuptools.Markup(string)
+        self._default_instrument_name_markup = markup
+        string = self._default_short_instrument_name
+        string = stringtools.capitalize_string_start(string)
+        markup = markuptools.Markup(string)
+        self._default_short_instrument_name_markup = markup
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -154,10 +167,14 @@ class Instrument(contexttools.InstrumentMark):
             Returns clef inventory.
             '''
             if self._allowable_clefs is None:
-                return self._default_allowable_clefs
+                clefs = self._default_allowable_clefs
+                clefs = contexttools.ClefMarkInventory(clefs)
+                self._allowable_clefs = clefs
             return self._allowable_clefs
         def fset(self, clefs):
-            self._allowable_clefs = contexttools.ClefMarkInventory(clefs)
+            if clefs is not None:
+                clefs = contexttools.ClefMarkInventory(clefs)
+            self._allowable_clefs = clefs
         return property(**locals())
 
     @apply

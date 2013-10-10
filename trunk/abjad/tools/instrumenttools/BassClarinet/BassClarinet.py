@@ -58,6 +58,7 @@ class BassClarinet(Instrument):
             contexttools.ClefMark('treble'),
             ])
         self._is_primary_instrument = False
+        #self._make_default_name_markups()
 
     ### PUBLIC PROPERTIES ###
 

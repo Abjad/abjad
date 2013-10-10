@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import copy
+from abjad.tools import markuptools
 from abjad.tools import stringtools
 from abjad.tools.contexttools.ContextMark import ContextMark
 
@@ -48,10 +50,18 @@ class InstrumentMark(ContextMark):
         from abjad.tools.stafftools.Staff import Staff
         target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
-        self._default_instrument_name = None
-        self._default_instrument_name_markup = None
-        self._default_short_instrument_name = None
-        self._default_short_instrument_name_markup = None
+
+#        self._default_instrument_name = None
+#        self._default_instrument_name_markup = None
+#        self._default_short_instrument_name = None
+#        self._default_short_instrument_name_markup = None
+
+        self._default_instrument_name = instrument_name
+        self._default_instrument_name_markup = instrument_name_markup
+        self._default_short_instrument_name = short_instrument_name
+        self._default_short_instrument_name_markup = \
+            short_instrument_name_markup
+
         self.instrument_name = instrument_name
         self.instrument_name_markup = instrument_name_markup
         self.short_instrument_name = short_instrument_name
@@ -129,6 +139,18 @@ class InstrumentMark(ContextMark):
     def _target_context_name(self):
         return self.target_context.__name__
 
+    ### PRIVATE METHODS ###
+
+    def _make_default_name_markups(self):
+        string = self._default_instrument_name
+        string = stringtools.capitalize_string_start(string)
+        markup = markuptools.Markup(string)
+        self._default_instrument_name_markup = markup
+        string = self._default_short_instrument_name
+        string = stringtools.capitalize_string_start(string)
+        markup = markuptools.Markup(string)
+        self._default_short_instrument_name_markup = markup
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -154,12 +176,13 @@ class InstrumentMark(ContextMark):
 
             Returns markup.
             '''
-            from abjad.tools.markuptools import Markup
             if self._instrument_name_markup is None:
-                return Markup(stringtools.capitalize_string_start(
-                    self.instrument_name))
-            else:
-                return self._instrument_name_markup
+                if self._default_instrument_name_markup is None:
+                    self._make_default_name_markups()
+                markup = self._default_instrument_name_markup
+                markup = copy.copy(markup)
+                self._instrument_name_markup = markup
+            return self._instrument_name_markup
         def fset(self, instrument_name_markup):
             from abjad.tools.markuptools import Markup
             assert isinstance(
@@ -214,12 +237,13 @@ class InstrumentMark(ContextMark):
 
             Returns markup.
             '''
-            from abjad.tools.markuptools import Markup
             if self._short_instrument_name_markup is None:
-                return Markup(stringtools.capitalize_string_start(
-                    self.short_instrument_name))
-            else:
-                return self._short_instrument_name_markup
+                if self._default_instrument_name_markup is None:
+                    self._make_default_name_markups()
+                markup = self._default_short_instrument_name_markup
+                markup = copy.copy(markup)
+                self._short_instrument_name_markup = markup
+            return self._short_instrument_name_markup
         def fset(self, short_instrument_name_markup):
             from abjad.tools.markuptools import Markup
             assert isinstance(short_instrument_name_markup, 

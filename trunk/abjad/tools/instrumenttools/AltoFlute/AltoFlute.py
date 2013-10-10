@@ -48,6 +48,7 @@ class AltoFlute(Instrument):
         self._default_short_instrument_name = 'alt. fl.'
         self._default_sounding_pitch_of_written_middle_c = pitch
         self._is_primary_instrument = False
+        #self._make_default_name_markups()
 
     ### PUBLIC PROPERTIES ###
 

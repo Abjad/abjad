@@ -7,7 +7,14 @@ instrumentation=scoretools.InstrumentationSpecifier(
 		scoretools.Performer(
 			name='hornist',
 			instruments=instrumenttools.InstrumentInventory([
-				instrumenttools.FrenchHorn()
+				instrumenttools.FrenchHorn(
+					instrument_name_markup=markuptools.Markup((
+						'Horn',
+						)),
+					short_instrument_name_markup=markuptools.Markup((
+						'Hn.',
+						))
+					)
 				])
 			),
 		scoretools.Performer(

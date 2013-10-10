@@ -55,5 +55,6 @@ class TenorTrombone(Instrument):
             pitchtools.NamedPitch("c'")
         self.starting_clefs = [
             contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
-        self._copy_starting_clefs_to_allowable_clefs()
+        self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-20, 15)
+        #self._make_default_name_markups()

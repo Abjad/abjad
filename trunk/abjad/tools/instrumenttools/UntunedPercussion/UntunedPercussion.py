@@ -45,8 +45,9 @@ class UntunedPercussion(Instrument):
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
         self.starting_clefs = [contexttools.ClefMark('percussion')]
-        self._copy_starting_clefs_to_allowable_clefs()
+        self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-48, 39)
+        #self._make_default_name_markups()
 
     ### CLASS VARIABLES ###
 

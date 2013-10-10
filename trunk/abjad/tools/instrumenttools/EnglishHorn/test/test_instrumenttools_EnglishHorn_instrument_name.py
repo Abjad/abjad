@@ -20,5 +20,5 @@ def test_instrumenttools_EnglishHorn_instrument_name_02():
 
     assert horn.instrument_name == 'Horn I'
     assert horn.short_instrument_name == 'Hn. I'
-    assert horn.instrument_name_markup == markuptools.Markup('Horn I')
-    assert horn.short_instrument_name_markup == markuptools.Markup('Hn. I')
+    assert horn.instrument_name_markup == markuptools.Markup('English horn')
+    assert horn.short_instrument_name_markup == markuptools.Markup('Eng. hn.')

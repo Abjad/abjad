@@ -57,3 +57,4 @@ class Cello(Instrument):
             contexttools.ClefMark('treble'),
             ]
         self._default_pitch_range = pitchtools.PitchRange(-24, 19)
+        #self._make_default_name_markups()

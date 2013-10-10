@@ -53,7 +53,8 @@ class BaritoneSaxophone(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(-24, 8)
         self._is_primary_instrument = False
-        self._copy_starting_clefs_to_allowable_clefs()
+        self._copy_default_starting_clefs_to_default_allowable_clefs()
+        #self._make_default_name_markups()
 
     ### PUBLIC PROPERTIES ###
 

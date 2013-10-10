@@ -59,12 +59,13 @@ class Accordion(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(-32, 48)
         self._default_short_instrument_name = 'acc.'
-        self._default_starting_clefs = [
+        self._default_starting_clefs = contexttools.ClefMarkInventory([
             contexttools.ClefMark('treble'), 
             contexttools.ClefMark('bass'),
-            ]
+            ])
         self._is_primary_instrument = True
-        self._copy_starting_clefs_to_allowable_clefs()
+        #self._make_default_name_markups()
+        self._copy_default_starting_clefs_to_default_allowable_clefs()
 
     ### PRIVATE PROPERTIES ###
 
@@ -82,14 +83,40 @@ class Accordion(Instrument):
     @apply
     def allowable_clefs():
         def fget(self):
-            r'''Gets and sets all clefs allowed for instrument.
+            r'''Gets and sets allowable clefs.
 
             ::
 
+                >>> accordion.allowable_clefs
+                ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
+
+            ::
+
+                >>> import copy
+                >>> skips = []
                 >>> for clef in accordion.allowable_clefs:
-                ...     clef
+                ...     skip = skiptools.Skip((1, 8))
+                ...     clef = copy.copy(clef)
+                ...     clef = clef.attach(skip)
+                ...     skips.append(skip)
+                >>> staff = Staff(skips)
+                >>> staff.override.clef.full_size_change = True
+                >>> staff.override.time_signature.stencil = False
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> accordion.allowable_clefs.append('tenor')
+                >>> for clef in accordion.allowable_clefs: clef
                 ClefMark('treble')
                 ClefMark('bass')
+                ClefMark('tenor')
+
+            ::
+
+                >>> accordion.allowable_clefs = None
+                >>> accordion.allowable_clefs
+                ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
 
             Returns clef inventory.
             '''
@@ -114,6 +141,12 @@ class Accordion(Instrument):
                 >>> accordion.instrument_name
                 'fisarmonica'
 
+            ::
+
+                >>> accordion.instrument_name = None
+                >>> accordion.instrument_name
+                'accordion'
+
             Returns string.
             '''
             return Instrument.instrument_name.fget(self)
@@ -129,7 +162,7 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion.instrument_name_markup
-                Markup(('Fisarmonica',))
+                Markup(('Accordion',))
 
             ::
 
@@ -222,7 +255,7 @@ class Accordion(Instrument):
             ::
 
                 >>> accordion.short_instrument_name_markup
-                Markup(('Fis.',))
+                Markup(('Acc.',))
 
             ::
 

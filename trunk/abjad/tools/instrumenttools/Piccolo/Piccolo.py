@@ -50,3 +50,4 @@ class Piccolo(Instrument):
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c''")
         self._default_pitch_range = pitchtools.PitchRange(14, 48)
+        #self._make_default_name_markups()

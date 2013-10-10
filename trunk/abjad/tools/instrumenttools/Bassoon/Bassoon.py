@@ -57,3 +57,4 @@ class Bassoon(Instrument):
             contexttools.ClefMark('bass'),
             ])
         self._is_primary_instrument = True
+        #self._make_default_name_markups()

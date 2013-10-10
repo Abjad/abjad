@@ -28,15 +28,13 @@ def test_InstrumentEditor_instrument_name_02():
 
 
 def test_InstrumentEditor_instrument_name_03():
-    r'''Instrument name changes instrument name markup.
-    Unless instrument name markup is set explicitly.
+    r'''Instrument name does not change instrument name markup.
     '''
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor._run(pending_user_input="accordion in 'foo' q")
     instrument = editor.target
     assert instrument.instrument_name == 'foo'
-    assert instrument.instrument_name_markup == markuptools.Markup('Foo')
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor._run(pending_user_input="accordion im 'bar' in 'foo' q")

@@ -50,3 +50,4 @@ class ContrabassFlute(Instrument):
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch('g,')
         self._default_pitch_range = pitchtools.PitchRange(-17, 19)
+        #self._make_default_name_markups()

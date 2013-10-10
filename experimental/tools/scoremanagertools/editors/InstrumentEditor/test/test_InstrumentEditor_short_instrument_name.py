@@ -27,7 +27,7 @@ def test_InstrumentEditor_short_instrument_name_02():
 
 
 def test_InstrumentEditor_short_instrument_name_03():
-    r'''Short instrument name changes short instrument name markup.
+    r'''Short instrument name does not change short instrument name markup.
     Unless short instrument name markup is set explicitly.
     '''
 
@@ -35,7 +35,6 @@ def test_InstrumentEditor_short_instrument_name_03():
     editor._run(pending_user_input="accordion sn 'foo' q")
     instrument = editor.target
     assert instrument.short_instrument_name == 'foo'
-    assert instrument.short_instrument_name_markup == markuptools.Markup('Foo')
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor._run(pending_user_input="accordion sm 'bar' sn 'foo' q")

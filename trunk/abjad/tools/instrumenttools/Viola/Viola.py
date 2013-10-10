@@ -53,3 +53,4 @@ class Viola(Instrument):
             contexttools.ClefMark('alto'),
             contexttools.ClefMark('treble')]
         self._default_pitch_range = pitchtools.PitchRange(-12, 28)
+        #self._make_default_name_markups()
