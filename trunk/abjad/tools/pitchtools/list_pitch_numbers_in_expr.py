@@ -16,7 +16,7 @@ def list_pitch_numbers_in_expr(expr):
 
     pitches = pitchtools.list_named_pitches_in_expr(expr)
 
-    pitch_numbers = [pitch.numbered_pitch._pitch_number for pitch in pitches]
+    pitch_numbers = [pitch.pitch_number for pitch in pitches]
     pitch_numbers = tuple(pitch_numbers)
 
     return pitch_numbers

@@ -75,6 +75,16 @@ class PitchClass(AbjadObject):
         re.VERBOSE,
         )
 
+    _pitch_class_number_to_diatonic_pitch_class_number = {
+        0: 0,
+        2: 1,
+        4: 2,
+        5: 3,
+        7: 4,
+        9: 5,
+        11: 6,
+        }
+
     _pitch_class_number_to_pitch_class_name = {
         0:    'c',
         0.5:  'cqs',
@@ -98,6 +108,60 @@ class PitchClass(AbjadObject):
         9.5:  'aqs',
         10:   'bf',
         10.5: 'bqf',
+        11:   'b',
+        11.5: 'bqs',
+        }
+
+    _pitch_class_number_to_pitch_class_name_with_flats = {
+        0:    'c',
+        0.5:  'dtqf',
+        1:    'df',
+        1.5:  'dqf',
+        2:    'd',
+        2.5:  'etqf',
+        3:    'ef',
+        3.5:  'eqf',
+        4:    'e',
+        4.5:  'fqf',
+        5:    'f',
+        5.5:  'gtqf',
+        6:    'gf',
+        6.5:  'gqf',
+        7:    'g',
+        7.5:  'atqf',
+        8:    'af',
+        8.5:  'aqf',
+        9:    'a',
+        9.5:  'btqf',
+        10:   'bf',
+        10.5: 'bqf',
+        11:   'b',
+        11.5: 'cqf',
+        }
+
+    _pitch_class_number_to_pitch_class_name_with_sharps = {
+        0:    'c',
+        0.5:  'cqs',
+        1:    'cs',
+        1.5:  'ctqs',
+        2:    'd',
+        2.5:  'dqs',
+        3:    'ds',
+        3.5:  'dtqs',
+        4:    'e',
+        4.5:  'eqs',
+        5:    'f',
+        5.5:  'fqs',
+        6:    'fs',
+        6.5:  'ftqs',
+        7:    'g',
+        7.5:  'gqs',
+        8:    'gs',
+        8.5:  'gtqs',
+        9:    'a',
+        9.5:  'aqs',
+        10:   'as',
+        10.5: 'atqs',
         11:   'b',
         11.5: 'bqs',
         }
@@ -231,27 +295,35 @@ class PitchClass(AbjadObject):
         from abjad import abjad_configuration
         return abjad_configuration['accidental_spelling']
 
-#    @abc.abstractproperty
-#    def accidental(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def accidental(self):
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def alteration_in_semitones(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def alteration_in_semitones(self):
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def diatonic_pitch_class_name(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def diatonic_pitch_class_name(self):
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def diatonic_pitch_class_number(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def diatonic_pitch_class_number(self):
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def pitch_class_name(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def named_pitch_class(self):
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def pitch_class_number(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def numbered_pitch_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_class_name(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_class_number(self):
+        raise NotImplementedError
 

@@ -230,13 +230,13 @@ class NamedInterval(Interval):
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier_1)
         pitch_2 = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier_2)
-        degree_1 = pitch_1._diatonic_pitch_number
-        degree_2 = pitch_2._diatonic_pitch_number
+        degree_1 = pitch_1.diatonic_pitch_number
+        degree_2 = pitch_2.diatonic_pitch_number
         #degree_1 = abs(pitch_1.numbered_diatonic_pitch)
         #degree_2 = abs(pitch_2.numbered_diatonic_pitch)
         diatonic_interval_number = abs(degree_1 - degree_2) + 1
-        chromatic_interval_number = abs(abs(pitch_1.numbered_pitch) -
-            abs(pitch_2.numbered_pitch))
+        chromatic_interval_number = abs(abs(pitchtools.NumberedPitch(pitch_1))
+            - abs(pitchtools.NumberedPitch(pitch_2)))
         absolute_diatonic_interval = \
             pitchtools.spell_chromatic_interval_number(
             diatonic_interval_number, chromatic_interval_number)

@@ -87,7 +87,7 @@ class NamedPitchClass(PitchClass):
         mdi = melodic_diatonic_interval
         new = pitchtools.transpose_pitch_carrier_by_melodic_interval(
             dummy, mdi)
-        return new.named_pitch_class
+        return type(self)(new)
 
     def __copy__(self, *args):
         return type(self)(self)
@@ -131,17 +131,19 @@ class NamedPitchClass(PitchClass):
     ### PRIVATE METHODS ###
 
     def _init_by_named_pitch(self, expr):
-        named_pitch_class = expr.named_pitch_class
-        self._init_by_named_pitch_class(named_pitch_class)
+        self._alteration_in_semitones = expr.alteration_in_semitones
+        self._diatonic_pitch_class_number = expr.diatonic_pitch_class_number
 
     def _init_by_named_pitch_class(self, expr):
         self._alteration_in_semitones = expr.alteration_in_semitones
         self._diatonic_pitch_class_number = expr.diatonic_pitch_class_number
 
     def _init_by_number(self, expr):
+        from abjad.tools import pitchtools
         pitch_class_number = float(expr) % 12
-        pitch_class_name = self._pitch_class_number_to_pitch_class_name[
-            pitch_class_number]
+        numbered_pitch_class = pitchtools.NumberedPitchClass(
+            pitch_class_number)
+        pitch_class_name = numbered_pitch_class.pitch_class_name
         self._init_by_pitch_name(pitch_class_name)
 
     def _init_by_pitch_carrier(self, expr):
@@ -214,9 +216,7 @@ class NamedPitchClass(PitchClass):
         transposed_pitch = \
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
                 pitch, melodic_diatonic_interval)
-        transposed_named_pitch_class = \
-            transposed_pitch.named_pitch_class
-        return transposed_named_pitch_class
+        return type(self)(transposed_pitch)
 
     ### PUBLIC PROPERTIES ###
 
@@ -273,6 +273,33 @@ class NamedPitchClass(PitchClass):
         Return integer.
         '''
         return self._diatonic_pitch_class_number
+
+    @property
+    def named_pitch_class(self):
+        r'''Named pitch-class.
+
+        ::
+
+            >>> pitchtools.NamedPitchClass('cs').named_pitch_class
+            NamedPitchClass('cs')
+
+        Return named pitch-class.
+        '''
+        return type(self)(self)
+
+    @property
+    def numbered_pitch_class(self):
+        r'''Numbered pitch-class.
+
+        ::
+
+            >>> pitchtools.NamedPitchClass('cs').numbered_pitch_class
+            NumberedPitchClass(1)
+
+        Return numbered pitch-class.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitchClass(self)
 
     @property
     def pitch_class_label(self):

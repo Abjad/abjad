@@ -363,9 +363,9 @@ class PitchRange(AbjadObject):
         '''
         result = []
         result.append(self._open_bracket_string)
-        result.append(str(self.start_pitch.numbered_pitch))
+        result.append(str(self.start_pitch.pitch_number))
         result.append(', ')
-        result.append(str(self.stop_pitch.numbered_pitch))
+        result.append(str(self.stop_pitch.pitch_number))
         result.append(self._close_bracket_string)
         result = ''.join(result)
         return result

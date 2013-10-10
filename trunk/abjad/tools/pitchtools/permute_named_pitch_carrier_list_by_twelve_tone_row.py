@@ -30,7 +30,7 @@ def permute_named_pitch_carrier_list_by_twelve_tone_row(pitches, row):
                 if pitch.numbered_pitch_class == pc:
                     matching_pitches.append(pitch)
             elif isinstance(pitch, notetools.Note):
-                if pitch.written_pitch.numbered_pitch_class == pc:
+                if pitchtools.NumberedPitchClass(pitch.written_pitch) == pc:
                     matching_pitches.append(pitch)
             else:
                 raise TypeError('must be Abjad Pitch or Note.')

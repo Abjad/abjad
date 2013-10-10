@@ -9,8 +9,7 @@ class NumberedPitch(Pitch):
 
     ::
 
-        >>> pitch = pitchtools.NumberedPitch(13)
-        >>> pitch
+        >>> pitchtools.NumberedPitch(13)
         NumberedPitch(13)
 
     Numbered chromatic pitches are immutable.
@@ -106,51 +105,6 @@ class NumberedPitch(Pitch):
             self.pitch_number,
             )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def pitch_number(self):
-        r'''Chromatic pitch-class number:
-
-        ::
-
-            >>> pitch.pitch_number
-            13
-
-        Return integer or float.
-        '''
-        return self._pitch_number
-
-    @property
-    def diatonic_pitch_class_number(self):
-        r'''Diatonic pitch-class number:
-
-        ::
-
-            >>> pitch.diatonic_pitch_class_number
-            0
-
-        Return integer.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.pitch_number_to_diatonic_pitch_class_number(
-            self.pitch_number)
-
-    @property
-    def diatonic_pitch_number(self):
-        r'''Diatonic pitch-class number:
-
-        ::
-
-            >>> pitch.diatonic_pitch_number
-            7
-
-        Return integer.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.pitch_number_to_diatonic_pitch_number(
-            self.pitch_number)
-
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
@@ -158,7 +112,7 @@ class NumberedPitch(Pitch):
 
         ::
 
-            >>> pitch.apply_accidental('flat')
+            >>> pitchtools.NumberedPitch(13).apply_accidental('flat')
             NumberedPitch(12)
 
         Return numbered chromatic pitch.
@@ -173,10 +127,263 @@ class NumberedPitch(Pitch):
 
         ::
 
-            >>> pitch.transpose(1)
+            >>> pitchtools.NumberedPitch(13).transpose(1)
             NumberedPitch(14)
 
         Return numbered chromatic pitch.
         '''
         semitones = abs(self) + n
         return type(self)(semitones)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def accidental(self):
+        r'''Accidental.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(13).accidental
+            Accidental('s')
+
+        Return accidental.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.Accidental(self.alteration_in_semitones)
+
+    @property
+    def alteration_in_semitones(self):
+        r'''Alteration in semitones.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(13).alteration_in_semitones
+            1
+
+        Return integer or float.
+        '''
+        return self.numbered_pitch_class.alteration_in_semitones
+
+    @property
+    def diatonic_pitch_class_name(self):
+        r'''Diatonic pitch-class name.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).diatonic_pitch_class_name
+            'c'
+
+        Return string.
+        '''
+        return self.numbered_pitch_class.diatonic_pitch_class_name
+
+    @property
+    def diatonic_pitch_class_number(self):
+        r'''Diatonic pitch-class number.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).diatonic_pitch_class_number
+            0
+
+        Return integer.
+        '''
+        return self.numbered_pitch_class.diatonic_pitch_class_number
+
+    @property
+    def diatonic_pitch_name(self):
+        r'''Diatonic pitch name.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).diatonic_pitch_name
+            "c''"
+
+        Return string.
+        '''
+        return '{}{}'.format(
+            self.diatonic_pitch_class_name,
+            self.octave_indication.octave_tick_string,
+            )
+
+    @property
+    def diatonic_pitch_number(self):
+        r'''Diatonic pitch-class number.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).diatonic_pitch_number
+            7
+
+        Return integer.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.pitch_number_to_diatonic_pitch_number(
+            self.pitch_number)
+
+    @property
+    def lilypond_format(self):
+        r'''LilyPond input format.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).lilypond_format
+            "cs''"
+
+        Return string.
+        '''
+        return self.pitch_name
+
+    @property
+    def named_pitch(self):
+        r'''Named pitch.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).named_pitch
+            NamedPitch("cs''")
+
+        Return named pitch.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitch(self)
+
+    @property
+    def named_pitch_class(self):
+        r'''Named pitch-class.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).named_pitch_class
+            NamedPitchClass('cs')
+
+        Return named pitch-class.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitchClass(self)
+
+    @property
+    def numbered_pitch(self):
+        r'''Numbered pitch.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).numbered_pitch
+            NumberedPitch(13)
+
+        Return numbered pitch.
+        '''
+        return type(self)(self)
+
+    @property
+    def numbered_pitch_class(self):
+        r'''Numbered pitch-class.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).numbered_pitch_class
+            NumberedPitchClass(1)
+
+        Return numbered pitch-class.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitchClass(self)
+
+    @property
+    def octave_indication(self):
+        r'''Octave indication.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).octave_indication
+            OctaveIndication(5)
+
+        Return octave indication.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.OctaveIndication(self.octave_number)
+
+    @property
+    def octave_number(self):
+        r'''Octave number.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).octave_number
+            5
+
+        Return integer.
+        '''
+        return self._pitch_number // 12 + 4
+
+    @property
+    def pitch_class_name(self):
+        r'''Pitch-class name.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).pitch_class_name
+            'cs'
+
+        Return string.
+        '''
+        return self.numbered_pitch_class.pitch_class_name
+
+    @property
+    def pitch_class_number(self):
+        r'''Pitch-class number.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).pitch_class_number
+            1
+
+        Return integer or float.
+        '''
+        return self._pitch_number % 12
+
+    @property
+    def pitch_name(self):
+        r'''Pitch name.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).pitch_name
+            "cs''"
+
+        Return string.
+        '''
+        return '{}{}'.format(
+            self.numbered_pitch_class.pitch_class_name,
+            self.octave_indication.octave_tick_string,
+            )
+
+    @property
+    def pitch_number(self):
+        r'''Pitch-class number.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).pitch_number
+            13
+
+        Return integer or float.
+        '''
+        return self._pitch_number
+
+    @property
+    def pitch_class_octave_label(self):
+        r'''Pitch-class / octave label.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).pitch_class_octave_label
+            'C#5'
+
+        Return string.
+        '''
+        return '{}{}{}'.format(
+            self.diatonic_pitch_class_name.upper(),
+            self.accidental.symbolic_accidental_string,
+            self.octave_number,
+            )

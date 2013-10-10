@@ -15,9 +15,9 @@ def test_pitchtools_insert_and_transpose_nested_subruns_in_pitch_class_number_li
     t = []
     for x in notes:
         try:
-            t.append(abs(x.written_pitch.numbered_pitch))
+            t.append(x.written_pitch.pitch_class_number)
         except AttributeError:
-            t.append([abs(y.written_pitch.numbered_pitch) for y in x])
+            t.append([y.written_pitch.pitch_class_number for y in x])
 
     print t
 

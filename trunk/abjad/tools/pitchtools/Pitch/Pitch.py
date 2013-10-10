@@ -196,58 +196,92 @@ class Pitch(AbjadObject):
         from abjad import abjad_configuration
         return abjad_configuration['accidental_spelling']
 
-#    @abc.abstractproperty
-#    def accidental(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def accidental(self):
+        r'''Accidental.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def alteration_in_semitones(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def alteration_in_semitones(self):
+        r'''Alteration in semitones.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def diatonic_pitch_class_name(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def diatonic_pitch_class_name(self):
+        r'''Diatonic pitch-class name.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def diatonic_pitch_class_number(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def diatonic_pitch_class_number(self):
+        r'''Diatonic pitch-class number.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def diatonic_pitch_name(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def diatonic_pitch_name(self):
+        r'''Diatonic pitch name.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def diatonic_pitch_number(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def diatonic_pitch_number(self):
+        r'''Diatonic pitch number.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def lilypond_format(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def lilypond_format(self):
+        r'''LilyPond input format.'''
+        raise NotImplementedError
 
-    @property
+    @abc.abstractproperty
+    def named_pitch(self):
+        r'''Named pitch.'''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def named_pitch_class(self):
+        r'''Named pitch-class.'''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def numbered_pitch(self):
+        r'''Numbered pitch.'''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def numbered_pitch_class(self):
+        r'''Numbered pitch-class.'''
+        raise NotImplementedError
+
+    @abc.abstractproperty
     def octave_indication(self):
-        return self._octave_indication
+        r'''Octave indication.'''
+        raise NotImplementedError
 
-    @property
+    @abc.abstractproperty
     def octave_number(self):
-        return self.octave_indication.octave_number
+        r'''Octave number.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def pitch_class_name(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def pitch_class_name(self):
+        r'''Pitch-class name.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def pitch_class_number(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def pitch_class_number(self):
+        r'''Pitch-class number.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def pitch_class_octave_label(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def pitch_name(self):
+        r'''Pitch name.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def pitch_name(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def pitch_number(self):
+        r'''Pitch number.'''
+        raise NotImplementedError
 
-#    @abc.abstractproperty
-#    def pitch_number(self):
-#        raise NotImplementedError
+    @abc.abstractproperty
+    def pitch_class_octave_label(self):
+        r'''Pitch-class / octave label.'''
+        raise NotImplementedError

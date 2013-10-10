@@ -143,8 +143,8 @@ class NumberedInterval(Interval):
         pitch_2 = pitchtools.get_named_pitch_from_pitch_carrier(
             pitch_carrier_2)
         # get difference in semitones
-        number = abs(pitch_2.numbered_pitch) - \
-            abs(pitch_1.numbered_pitch)
+        number = abs(pitchtools.NumberedPitch(pitch_2)) - \
+            abs(pitchtools.NumberedPitch(pitch_1))
         # change 1.0, 2.0, ... into 1, 2, ...
         number = mathtools.integer_equivalent_number_to_integer(number)
         # return melodic chromatic interval

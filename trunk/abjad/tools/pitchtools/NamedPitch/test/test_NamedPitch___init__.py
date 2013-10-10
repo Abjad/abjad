@@ -9,9 +9,11 @@ def test_NamedPitch___init___01():
 
     pitch = pitchtools.NamedPitch('df', 5)
     assert pitch.lilypond_format == "df''"
-    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('df')
+    assert pitchtools.NamedPitchClass(pitch) == \
+        pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
-    assert pitch.numbered_pitch_class == pitchtools.NumberedPitchClass(1)
+    assert pitchtools.NumberedPitchClass(pitch) == \
+        pitchtools.NumberedPitchClass(1)
 
 
 def test_NamedPitch___init___02():
@@ -19,7 +21,6 @@ def test_NamedPitch___init___02():
     npc = pitchtools.NamedPitchClass('cs')
     octave_number = 5
     pitch = pitchtools.NamedPitch(npc, octave_number)
-
     assert pitch == pitchtools.NamedPitch('cs', 5)
 
 
@@ -28,12 +29,12 @@ def test_NamedPitch___init___03():
     '''
 
     pitch = pitchtools.NamedPitch(13)
-
     assert pitch.lilypond_format == "cs''"
-    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('cs')
+    assert pitchtools.NamedPitchClass(pitch) == \
+        pitchtools.NamedPitchClass('cs')
     assert pitch.octave_number == 5
-    assert pitch.numbered_pitch_class == pitchtools.NumberedPitchClass(1)
-
+    assert pitchtools.NumberedPitchClass(pitch) == \
+        pitchtools.NumberedPitchClass(1)
 
 
 def test_NamedPitch___init___04():
@@ -43,10 +44,11 @@ def test_NamedPitch___init___04():
     pitch = pitchtools.NamedPitch(13, 'd')
 
     assert pitch.lilypond_format == "df''"
-    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('df')
+    assert pitchtools.NamedPitchClass(pitch) == \
+        pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
-    assert pitch.numbered_pitch_class == pitchtools.NumberedPitchClass(1)
-
+    assert pitchtools.NumberedPitchClass(pitch) == \
+        pitchtools.NumberedPitchClass(1)
 
 
 def test_NamedPitch___init___05():
@@ -56,10 +58,11 @@ def test_NamedPitch___init___05():
     pitch = pitchtools.NamedPitch(('df', 5))
 
     assert pitch.lilypond_format == "df''"
-    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('df')
+    assert pitchtools.NamedPitchClass(pitch) == \
+        pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
-    assert pitch.numbered_pitch_class == pitchtools.NumberedPitchClass(1)
-
+    assert pitchtools.NumberedPitchClass(pitch) == \
+        pitchtools.NumberedPitchClass(1)
 
 
 def test_NamedPitch___init___06():
@@ -73,7 +76,6 @@ def test_NamedPitch___init___06():
     assert pitchtools.NamedPitch('cs,,,') == pitchtools.NamedPitch('cs', 0)
 
 
-
 def test_NamedPitch___init___07():
     r'''Init by reference.
     '''
@@ -82,9 +84,11 @@ def test_NamedPitch___init___07():
     pitch = pitchtools.NamedPitch(pitch_1)
 
     assert pitch.lilypond_format == "df''"
-    assert pitch.named_pitch_class == pitchtools.NamedPitchClass('df')
+    assert pitchtools.NamedPitchClass(pitch) == \
+        pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
-    assert pitch.numbered_pitch_class == pitchtools.NumberedPitchClass(1)
+    assert pitchtools.NumberedPitchClass(pitch) == \
+        pitchtools.NumberedPitchClass(1)
 
 
 def test_NamedPitch___init___08():

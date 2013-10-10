@@ -93,7 +93,7 @@ def transpose_pitch_carrier_by_melodic_interval(
             return result.pitch_number
         elif isinstance(pitch_carrier, notetools.Note):
             new_note = copy.copy(pitch_carrier)
-            number = abs(pitch_carrier.written_pitch.numbered_pitch)
+            number = abs(pitchtools.NumberedPitch(pitch_carrier.written_pitch))
             number += mci.number
             new_pitch = pitchtools.NamedPitch(number)
             new_note.written_pitch = new_pitch
@@ -102,7 +102,7 @@ def transpose_pitch_carrier_by_melodic_interval(
             new_chord = copy.copy(pitch_carrier)
             for new_nh, old_nh in \
                 zip(new_chord.note_heads, pitch_carrier.note_heads):
-                number = abs(old_nh.written_pitch.numbered_pitch)
+                number = abs(pitchtools.NumberedPitch(old_nh.written_pitch))
                 number += mci.number
                 new_pitch = pitchtools.NamedPitch(number)
                 new_nh.written_pitch = new_pitch

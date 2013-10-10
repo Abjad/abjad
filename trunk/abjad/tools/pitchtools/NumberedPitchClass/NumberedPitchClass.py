@@ -130,7 +130,7 @@ class NumberedPitchClass(PitchClass):
     ### PRIVATE METHODS ###
 
     def _init_by_named_pitch(self, expr):
-        self._init_by_named_pitch_class(expr.named_pitch_class)
+        self._pitch_class_number = expr.pitch_class_number
 
     def _init_by_named_pitch_class(self, expr):
         self._pitch_class_number = expr.pitch_class_number
@@ -202,9 +202,16 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(1).alteration_in_semitones
             1
 
+        ::
+
+            >>> pitchtools.NumberedPitchClass(10.5).alteration_in_semitones
+            -0.5
+
         Return integer or float.
         '''
-        return self.pitch_class_number - self.diatonic_pitch_class_number
+        return (self.pitch_class_number - 
+            self._diatonic_pitch_class_number_to_pitch_class_number[
+                self.diatonic_pitch_class_number])
 
     @property
     def diatonic_pitch_class_name(self):
@@ -217,8 +224,7 @@ class NumberedPitchClass(PitchClass):
 
         Return string.
         '''
-        return self._pitch_class_number_to_pitch_class_name[
-            self._pitch_class_number][0]
+        return self.pitch_class_name[0]
 
     @property
     def diatonic_pitch_class_number(self):
@@ -233,6 +239,33 @@ class NumberedPitchClass(PitchClass):
         '''
         return self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
             self.diatonic_pitch_class_name]
+
+    @property
+    def named_pitch_class(self):
+        r'''Named pitch-class.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(13).named_pitch_class
+            NamedPitchClass('cs')
+
+        Return named pitch-class.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitchClass(self)
+
+    @property
+    def numbered_pitch_class(self):
+        r'''Numbered pitch-class.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(13).numbered_pitch_class
+            NumberedPitchClass(1)
+
+        Return numbered pitch-class.
+        '''
+        return type(self)(self)
 
     @property
     def pitch_class_label(self):
@@ -261,8 +294,17 @@ class NumberedPitchClass(PitchClass):
 
         Return string.
         '''
-        return self._pitch_class_number_to_pitch_class_name[
-            self._pitch_class_number]
+        if self.accidental_spelling == 'mixed':
+            return self._pitch_class_number_to_pitch_class_name[
+                self._pitch_class_number]
+        elif self.accidental_spelling == 'sharps':
+            return self._pitch_class_number_to_pitch_class_name_with_sharps[
+                self._pitch_class_number]
+        elif self.accidental_spelling == 'flats':
+            return self._pitch_class_number_to_pitch_class_name_with_flats[
+                self._pitch_class_number]
+        else:
+            raise ValueError
 
     @property
     def pitch_class_number(self):
@@ -276,3 +318,19 @@ class NumberedPitchClass(PitchClass):
         Return integer or float.
         '''
         return self._pitch_class_number
+
+    @property
+    def pitch_class_label(self):
+        r'''Pitch-class / octave label.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(13).pitch_class_label
+            'C#'
+
+        Return string.
+        '''
+        return '{}{}'.format(
+            self.diatonic_pitch_class_name.upper(),
+            self.accidental.symbolic_accidental_string,
+            )
