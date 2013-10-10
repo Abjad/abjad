@@ -487,9 +487,9 @@ class NamedPitch(Pitch):
         Return integer or float.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
+        return (pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
             self._diatonic_pitch_class_number] + \
-            self._alteration_in_semitones
+            self._alteration_in_semitones) % 12
 
     @property
     def pitch_name(self):
