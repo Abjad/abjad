@@ -5,14 +5,14 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 @functools.total_ordering
 class NumberedPitch(Pitch):
-    '''Abjad model of a numbered chromatic pitch:
+    '''A numbered pitch.
 
     ::
 
         >>> pitchtools.NumberedPitch(13)
         NumberedPitch(13)
 
-    Numbered chromatic pitches are immutable.
+    Return numbered pitch.
     '''
 
     ### CLASS VARIABLES ###
@@ -96,10 +96,6 @@ class NumberedPitch(Pitch):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _keyword_argument_names(self):
-        return ()
-
-    @property
     def _positional_argument_values(self):
         return (
             self.pitch_number,
@@ -108,7 +104,7 @@ class NumberedPitch(Pitch):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
-        r'''Apply `accidental`:
+        r'''Apply `accidental`.
 
         ::
 
@@ -123,7 +119,7 @@ class NumberedPitch(Pitch):
         return type(self)(semitones)
 
     def transpose(self, n=0):
-        r'''Tranpose by `n` semitones:
+        r'''Tranpose by `n` semitones.
 
         ::
 

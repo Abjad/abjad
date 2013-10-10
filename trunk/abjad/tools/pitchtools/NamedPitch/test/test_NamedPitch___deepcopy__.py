@@ -9,4 +9,4 @@ def test_NamedPitch___deepcopy___01():
     new = copy.deepcopy(pitch)
 
     assert new is not pitch
-    assert new._accidental is not pitch._accidental
+    assert new.accidental is not pitch.accidental

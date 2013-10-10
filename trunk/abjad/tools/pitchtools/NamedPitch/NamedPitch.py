@@ -6,20 +6,18 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 
 class NamedPitch(Pitch):
-    '''Abjad model of named chromatic pitch:
+    '''A named pitch.
 
     ::
 
         >>> pitchtools.NamedPitch("cs''")
         NamedPitch("cs''")
 
-    Named chromatic pitches are immutable.
+    Return named pitch.
     '''
 
     ### CLASS VARIABLES ###
 
-    # calculate accidental_semitones, diatonic_pitch_number at init
-    # so notehead sorting doesn't take forever later on
     __slots__ = (
         '_alteration_in_semitones',
         '_diatonic_pitch_class_number',
@@ -112,7 +110,7 @@ class NamedPitch(Pitch):
         return False
 
     def __getnewargs__(self):
-        return (self._pitch_name,)
+        return (self.pitch_name,)
 
     def __gt__(self, arg):
         from abjad.tools import pitchtools
@@ -179,26 +177,6 @@ class NamedPitch(Pitch):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _accidental(self):
-        from abjad.tools import pitchtools
-        groups = pitchtools.Pitch._pitch_name_regex.match(
-            self.pitch_name).groups()
-        alphabetic_accidental_abbreviation = groups[1]
-        return pitchtools.Accidental(alphabetic_accidental_abbreviation)
-
-    @property
-    def _octave_tick_string(self):
-        if self.octave_number is not None:
-            if self.octave_number <= 2:
-                return ',' * (3 - self.octave_number)
-            elif self.octave_number == 3:
-                return ''
-            else:
-                return "'" * (self.octave_number - 3)
-        else:
-            return None
-
-    @property
     def _positional_argument_values(self):
         return (
             self.pitch_name,
@@ -206,7 +184,6 @@ class NamedPitch(Pitch):
 
     ### PRIVATE METHODS ###
 
-    # done
     def _init_by_pitch_class_name_and_octave_number(
         self, pitch_class_name, octave_number):
         from abjad.tools import pitchtools
@@ -214,13 +191,11 @@ class NamedPitch(Pitch):
         self._init_by_named_pitch_class_and_octave_number(
             named_pitch_class, octave_number)
 
-    # done
     def _init_by_pitch_class_name_octave_number_pair(self, pair):
         pitch_class_name, octave_number = pair
         self._init_by_pitch_class_name_and_octave_number(
             pitch_class_name, octave_number)
 
-    # done
     def _init_by_pitch_name(self, pitch_string):
         from abjad.tools import pitchtools
         pitch_class_name = pitchtools.pitch_name_to_pitch_class_name(
@@ -230,7 +205,6 @@ class NamedPitch(Pitch):
         self._init_by_pitch_class_name_and_octave_number(
             pitch_class_name, octave_number)
 
-    # done
     def _init_by_pitch_number(self, pitch_number):
         from abjad.tools import pitchtools
         named_pitch_class = pitchtools.NamedPitchClass(pitch_number)
@@ -238,7 +212,6 @@ class NamedPitch(Pitch):
         self._init_by_named_pitch_class_and_octave_number(
             named_pitch_class, octave_number)
 
-    # done
     def _init_by_pitch_number_and_diatonic_pitch_class_name(
         self, pitch_number, diatonic_pitch_class_name):
         from abjad.tools import pitchtools
@@ -251,21 +224,18 @@ class NamedPitch(Pitch):
         self._init_by_named_pitch_class_and_octave_number(
             named_pitch_class, octave_number)
 
-    # done
     def _init_by_pitch_number_and_named_pitch_class(
         self, pitch_number, named_pitch_class):
         diatonic_pitch_class_name = named_pitch_class.diatonic_pitch_class_name
         self._init_by_pitch_number_and_diatonic_pitch_class_name(
             pitch_number, diatonic_pitch_class_name)
 
-    # done
     def _init_by_named_pitch(self, named_pitch):
         self._alteration_in_semitones = named_pitch._alteration_in_semitones
         self._diatonic_pitch_class_number = \
             named_pitch.diatonic_pitch_class_number
         self._octave_number = named_pitch.octave_number
 
-    # done
     def _init_by_named_pitch_class_and_octave_number(
         self, named_pitch_class, octave_number):
         self._alteration_in_semitones = \
@@ -274,7 +244,6 @@ class NamedPitch(Pitch):
             named_pitch_class._diatonic_pitch_class_number
         self._octave_number = octave_number
 
-    # done
     def _init_by_pitch_class_octave_number_string(
         self, pitch_class_octave_number_string):
         from abjad.tools import pitchtools

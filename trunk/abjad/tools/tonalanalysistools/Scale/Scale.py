@@ -298,7 +298,7 @@ class Scale(PitchClassSegment):
                 break
         native_pitch = pitchtools.NamedPitch(native_pitch_class, 4)
         foreign_pitch = pitchtools.NamedPitch(foreign_pitch_class, 4)
-        accidental = foreign_pitch._accidental - native_pitch._accidental
+        accidental = foreign_pitch.accidental - native_pitch.accidental
         return tonalanalysistools.ScaleDegree(accidental, scale_degree_number)
 
     def scale_degree_to_named_pitch_class(self, *args):
@@ -306,6 +306,6 @@ class Scale(PitchClassSegment):
         scale_degree = tonalanalysistools.ScaleDegree(*args)
         scale_index = scale_degree.number - 1
         pitch_class = self[scale_index]
-        pitch_class = pitch_class.apply_accidental(scale_degree._accidental)
+        pitch_class = pitch_class.apply_accidental(scale_degree.accidental)
         return pitch_class
 

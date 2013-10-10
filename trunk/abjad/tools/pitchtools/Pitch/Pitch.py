@@ -110,7 +110,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_diatonic_pitch_name(expr):
-        '''True when `expr` is a diatonic pitch name. Otherwise false:
+        '''True when `expr` is a diatonic pitch name, otherwise false.
 
         ::
 
@@ -127,7 +127,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_diatonic_pitch_number(expr):
-        '''True when `expr` is a diatonic pitch number. Otherwise false:
+        '''True when `expr` is a diatonic pitch number, otherwise false.
 
         ::
 
@@ -142,7 +142,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_pitch_name(expr):
-        '''True `expr` is a chromatic pitch name. Otherwise false:
+        '''True `expr` is a chromatic pitch name, otherwise false.
 
         ::
 
@@ -160,7 +160,7 @@ class Pitch(AbjadObject):
 
     @staticmethod
     def is_pitch_number(expr):
-        '''True `expr` is a chromatic pitch number. Otherwise false:
+        '''True `expr` is a chromatic pitch number, otherwise false.
 
         ::
 
@@ -184,7 +184,7 @@ class Pitch(AbjadObject):
 
     @property
     def accidental_spelling(self):
-        r'''Accidental spelling:
+        r'''Accidental spelling.
 
         ::
 

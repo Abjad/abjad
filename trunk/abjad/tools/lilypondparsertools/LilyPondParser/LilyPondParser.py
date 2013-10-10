@@ -748,11 +748,11 @@ class LilyPondParser(abctools.Parser):
                 return 1. # b to c
             return scale[normalized_step + 1] - scale[normalized_step]
         a_oct, a_step, a_alt = pitch_a.octave_number, \
-            pitch_a.diatonic_pitch_class_number, pitch_a._accidental.semitones
+            pitch_a.diatonic_pitch_class_number, pitch_a.accidental.semitones
         b_oct, b_step, b_alt = pitch_b.octave_number, \
-            pitch_b.diatonic_pitch_class_number, pitch_b._accidental.semitones
+            pitch_b.diatonic_pitch_class_number, pitch_b.accidental.semitones
         c_oct, c_step, c_alt = pitch_c.octave_number, \
-            pitch_c.diatonic_pitch_class_number, pitch_c._accidental.semitones
+            pitch_c.diatonic_pitch_class_number, pitch_c.accidental.semitones
         d_oct, d_step, d_alt, d_tones = b_oct - a_oct, b_step - a_step, \
             b_alt - a_alt, float(pitch_b) - float(pitch_a)
         tmp_alt = float(pitch_c) + d_tones

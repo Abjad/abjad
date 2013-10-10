@@ -209,7 +209,7 @@ class NumberedPitchClass(PitchClass):
 
         Return integer or float.
         '''
-        return (self.pitch_class_number - 
+        return (self.pitch_class_number -
             self._diatonic_pitch_class_number_to_pitch_class_number[
                 self.diatonic_pitch_class_number])
 
@@ -269,11 +269,11 @@ class NumberedPitchClass(PitchClass):
 
     @property
     def pitch_class_label(self):
-        r'''Pitch-class label.
+        r'''Pitch-class / octave label.
 
         ::
 
-            >>> pitchtools.NumberedPitchClass(1).pitch_class_label
+            >>> pitchtools.NumberedPitchClass(13).pitch_class_label
             'C#'
 
         Return string.
@@ -318,19 +318,3 @@ class NumberedPitchClass(PitchClass):
         Return integer or float.
         '''
         return self._pitch_class_number
-
-    @property
-    def pitch_class_label(self):
-        r'''Pitch-class / octave label.
-
-        ::
-
-            >>> pitchtools.NumberedPitchClass(13).pitch_class_label
-            'C#'
-
-        Return string.
-        '''
-        return '{}{}'.format(
-            self.diatonic_pitch_class_name.upper(),
-            self.accidental.symbolic_accidental_string,
-            )
