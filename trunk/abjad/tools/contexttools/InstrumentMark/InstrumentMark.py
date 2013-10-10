@@ -101,14 +101,14 @@ class InstrumentMark(ContextMark):
     @property
     def _contents_repr_string(self):
         result = []
-        for keyword_argument_name in self._keyword_argument_names:
-            private_keyword_argument_name = '_{}'.format(
-                keyword_argument_name)
-            private_keyword_argument_value = \
-                getattr(self, private_keyword_argument_name, None)
-            if private_keyword_argument_value is not None:
-                string = '{}={!r}'.format(
-                    keyword_argument_name, private_keyword_argument_value)
+        for name in self._keyword_argument_names:
+            value = getattr(self, name)
+            default_keyword_argument_name = '_default_{}'.format(name)
+            default_value = getattr(self, default_keyword_argument_name, None)
+            if value == default_value:
+                value = None
+            if value is not None:
+                string = '{}={!r}'.format(name, value)
                 result.append(string)
         result = ', '.join(result)
         return result
@@ -132,6 +132,18 @@ class InstrumentMark(ContextMark):
         return self.target_context.__name__
 
     ### PRIVATE METHODS ###
+
+    def _get_tools_package_qualified_keyword_argument_repr_pieces(
+        self, 
+        is_indented=True,
+        ):
+        if self._default_instrument_name_markup is None or \
+            self._default_short_instrument_name_markup is None:
+            self._make_default_name_markups()
+        superclass = super(InstrumentMark, self)
+        return superclass._get_tools_package_qualified_keyword_argument_repr_pieces(
+            is_indented=is_indented
+            )
 
     def _make_default_name_markups(self):
         string = self._default_instrument_name
@@ -247,11 +259,3 @@ class InstrumentMark(ContextMark):
                 self._short_instrument_name_markup = \
                     Markup(short_instrument_name_markup)
         return property(**locals())
-
-#    @property
-#    def storage_format(self):
-#        superclass = super(InstrumentMark, self)
-#        if self._default_instrument_name_markup is None or \
-#            self._default_short_instrument_name_markup is None:
-#            self._make_default_name_markups()
-#        return superclass.storage_format

@@ -224,8 +224,11 @@ class AbjadObject(object):
         tmp = introspectiontools.class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             if self._has_default_attribute_values:
-                private_keyword_argument_name = '_{}'.format(name)
-                value = getattr(self, private_keyword_argument_name)
+                default_keyword_argument_name = '_default_{}'.format(name)
+                default_value = getattr(self, default_keyword_argument_name)
+                value = getattr(self, name)
+                if value == default_value:
+                    value = None
             # change container.music to container._music
             elif hasattr(self, '_storage_format_attribute_mapping'):
                 mapped_attribute_name = \

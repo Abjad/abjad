@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import py
 from abjad import *
 
 
@@ -13,6 +14,7 @@ def test_instrumenttools_Flute___repr___01():
 def test_instrumenttools_Flute___repr___02():
     r'''Initializer combinations.
     '''
+    py.test.skip('statal repr is currently undecided.')
 
     flute = instrumenttools.Flute(instrument_name='foo')
     assert repr(flute) == "Flute(instrument_name='foo')"
