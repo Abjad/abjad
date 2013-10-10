@@ -29,13 +29,8 @@ class NumberedPitch(Pitch):
             pitch_number = expr.pitch_number
         elif Pitch.is_pitch_number(expr):
             pitch_number = expr
-        elif Pitch.is_pitch_name(expr):
-            pitch_number = \
-                pitchtools.pitch_name_to_pitch_number(expr)
         else:
-            raise TypeError(
-                'can not initialize numbered chromatic pitch from "%s".' %
-                expr)
+            pitch_number = pitchtools.NamedPitch(expr).pitch_number
         self._pitch_number = pitch_number
 
     ### SPECIAL METHODS ###

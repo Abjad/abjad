@@ -516,9 +516,18 @@ class NamedPitch(Pitch):
             >>> pitchtools.NamedPitch("cs''").pitch_number
             13
 
+        ::
+
+            >>> pitchtools.NamedPitch("cff''").pitch_number
+            10
+
         Return integer or float.
         '''
-        return self.pitch_class_number + (12 * (self._octave_number - 4))
+        from abjad.tools import pitchtools
+        return pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
+            self.diatonic_pitch_class_number] + \
+            self.alteration_in_semitones + \
+            (12 * (self._octave_number - 4))
 
     @property
     def pitch_class_octave_label(self):
