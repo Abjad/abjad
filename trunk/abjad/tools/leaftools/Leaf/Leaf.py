@@ -494,7 +494,7 @@ class Leaf(Component):
         for mark in last_leaf._get_marks():
             mark.detach()
         # tie split notes, rests and chords as specified
-        if pitchtools.is_pitch_carrier(self) and tie_split_notes:
+        if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterationtools.iterate_leaves_in_expr(
                 flattened_result)
             # TODO: implement SliceSelection._attach_tie_spanner_to_leaves()
@@ -552,7 +552,7 @@ class Leaf(Component):
                 index = spanner.index(leaf_left_of_split)
                 spanner.fracture(index, direction=Right)
         # tie split notes, rests and chords as specified
-        if pitchtools.is_pitch_carrier(self) and tie_split_notes:
+        if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             selection = selectiontools.ContiguousSelection(leaves_around_split)
             selection._attach_tie_spanner_to_leaf_pair()
         return left_leaf_list, right_leaf_list

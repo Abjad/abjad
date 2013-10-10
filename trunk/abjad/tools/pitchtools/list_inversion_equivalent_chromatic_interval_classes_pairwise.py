@@ -110,7 +110,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers
     if len(pitch_carriers) == 0:
         return result
     elif len(pitch_carriers) == 1:
-        if pitchtools.is_pitch_carrier(pitch_carriers[0]):
+        if pitchtools.Pitch.is_pitch_carrier(pitch_carriers[0]):
             return result
         else:
             raise TypeError('must be Abjad pitch, note, note head or chord.')

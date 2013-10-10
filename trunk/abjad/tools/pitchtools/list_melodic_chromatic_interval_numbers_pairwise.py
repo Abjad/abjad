@@ -72,7 +72,7 @@ def list_melodic_chromatic_interval_numbers_pairwise(pitch_carriers, wrap=False)
     if len(pitch_carriers) == 0:
         return result
     elif len(pitch_carriers) == 1:
-        if pitchtools.is_pitch_carrier(pitch_carriers[0]):
+        if pitchtools.Pitch.is_pitch_carrier(pitch_carriers[0]):
             return result
         else:
             raise TypeError('must be Abjad Pitch, Note, NoteHead or Chord.')

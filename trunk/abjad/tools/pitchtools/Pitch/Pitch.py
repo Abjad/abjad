@@ -141,6 +141,31 @@ class Pitch(AbjadObject):
         return isinstance(expr, (int, long))
 
     @staticmethod
+    def is_pitch_carrier(expr):
+        '''True when `expr` is an Abjad pitch, note, note-head of chord
+        instance, otherwise false.
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> pitchtools.Pitch.is_pitch_carrier(note)
+            True
+
+        Return boolean.
+        '''
+        from abjad.tools import chordtools
+        from abjad.tools import notetools
+        from abjad.tools import pitchtools
+        return isinstance(
+            expr, (
+                pitchtools.NamedPitch,
+                notetools.Note,
+                notetools.NoteHead,
+                chordtools.Chord
+                )
+            )
+
+    @staticmethod
     def is_pitch_class_octave_number_string(expr):
         '''True when `expr` is a pitch-class / octave number string, otherwise 
         false:

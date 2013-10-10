@@ -67,7 +67,7 @@ class NumberedPitchClass(PitchClass):
             self._init_by_named_pitch_class(expr)
         elif isinstance(expr, str):
             self._init_by_string(expr)
-        elif pitchtools.is_pitch_carrier(expr):
+        elif pitchtools.Pitch.is_pitch_carrier(expr):
             self._init_by_pitch_carrier(expr)
         else:
             raise TypeError('Cannot instantiate {} from '
