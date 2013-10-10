@@ -58,6 +58,10 @@ class TypedCounter(TypedCollection):
         if item in self._collection:
             dict.__delitem__(self._collection, item)
 
+    def __getitem__(self, token):
+        item = self._item_callable(token)
+        return self._collection[item]
+
     def __missing__(self, token):
         return 0
 
