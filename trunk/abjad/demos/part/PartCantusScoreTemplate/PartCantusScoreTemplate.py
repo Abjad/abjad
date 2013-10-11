@@ -5,14 +5,10 @@ from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools import scoretemplatetools
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class PartCantusScoreTemplate(scoretemplatetools.ScoreTemplate):
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        pass
+class PartCantusScoreTemplate(AbjadObject):
 
     ### SPECIAL METHODS ###
 

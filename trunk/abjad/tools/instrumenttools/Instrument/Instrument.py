@@ -201,13 +201,16 @@ class Instrument(contexttools.InstrumentMark):
             Returns clef inventory.
             '''
             if self._starting_clefs is None:
-                return self._default_starting_clefs
-            return self._default_starting_clefs
+                clefs = self._default_starting_clefs
+                clefs = contexttools.ClefMarkInventory(clefs)
+                self._starting_clefs = clefs
+            return self._starting_clefs
         def fset(self, clefs):
-            clefs = contexttools.ClefMarkInventory(clefs)
+            if clefs is not None:
+                clefs = contexttools.ClefMarkInventory(clefs)
             self._starting_clefs = clefs
         return property(**locals())
-
+        
     @apply
     def sounding_pitch_of_written_middle_c():
         def fget(self):

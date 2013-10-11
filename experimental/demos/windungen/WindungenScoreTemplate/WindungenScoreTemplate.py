@@ -3,10 +3,10 @@ from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
-from abjad.tools.scoretemplatetools import ScoreTemplate
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class WindungenScoreTemplate(ScoreTemplate):
+class WindungenScoreTemplate(AbjadObject):
 
     ### INITIALIZER ###
 

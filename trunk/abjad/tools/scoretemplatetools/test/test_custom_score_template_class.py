@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 def test_custom_score_template_class_01():
     r'''Score template with named contexts.
     '''
 
-    class NamedContextScoreTemplate(ScoreTemplate):
+    class NamedContextScoreTemplate(AbjadObject):
 
         ### INITIALIZER ###
 
@@ -55,7 +55,7 @@ def test_custom_score_template_class_02():
     CAUTION: always use built-in LilyPond score context; do not rename.
     '''
 
-    class CustomContextScoreTemplate(ScoreTemplate):
+    class CustomContextScoreTemplate(AbjadObject):
 
         ### INITIALIZER ###
 

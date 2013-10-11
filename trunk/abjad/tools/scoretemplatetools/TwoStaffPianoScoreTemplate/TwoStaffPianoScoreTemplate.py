@@ -5,11 +5,11 @@ from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
-from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class TwoStaffPianoScoreTemplate(ScoreTemplate):
-    '''Two-staff piano score template:
+class TwoStaffPianoScoreTemplate(AbjadObject):
+    '''Two-staff piano score template.
 
     ::
 

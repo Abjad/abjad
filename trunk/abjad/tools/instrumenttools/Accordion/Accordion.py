@@ -105,11 +105,9 @@ class Accordion(Instrument):
 
             ::
 
-                >>> accordion.allowable_clefs.append('tenor')
-                >>> for clef in accordion.allowable_clefs: clef
-                ClefMark('treble')
-                ClefMark('bass')
-                ClefMark('tenor')
+                >>> accordion.allowable_clefs = ['treble']
+                >>> accordion.allowable_clefs
+                ClefMarkInventory([ClefMark('treble')])
 
             ::
 
@@ -170,6 +168,12 @@ class Accordion(Instrument):
                 >>> accordion.instrument_name_markup
                 Markup(('fisarmonica',))
 
+            ::
+
+                >>> accordion.instrument_name_markup = None
+                >>> accordion.instrument_name_markup
+                Markup(('Accordion',))
+
             Returns markup.
             '''
             return Instrument.instrument_name_markup.fget(self)
@@ -189,8 +193,27 @@ class Accordion(Instrument):
 
             ::
 
-                >>> pitch_range = pitchtools.PitchRange(0, 39)
-                >>> accordion.pitch_range = pitch_range
+                >>> result = scoretools.make_empty_piano_score()
+                >>> score, treble_staff, bass_staff = result
+                >>> note = Note("c'1")
+                >>> note.written_pitch = accordion.pitch_range.start_pitch
+                >>> bass_staff.append(note)
+                >>> note = Note("c'1")
+                >>> note.written_pitch = accordion.pitch_range.stop_pitch
+                >>> treble_staff.append(note)
+                >>> show(score) # doctest: +SKIP
+
+            ::
+
+                >>> accordion.pitch_range = '[C2, C6]'
+                >>> accordion.pitch_range
+                PitchRange('[C2, C6]')
+
+            ::
+
+                >>> accordion.pitch_range = None
+                >>> accordion.pitch_range
+                PitchRange('[E1, C8]')
 
             Returns pitch range.
             '''
@@ -206,15 +229,20 @@ class Accordion(Instrument):
 
             ::
 
-                >>> for clef in accordion.starting_clefs: clef
-                ClefMark('treble')
-                ClefMark('bass')
+                >>> accordion.starting_clefs
+                ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
 
             ::
 
-                >>> clef = accordion.starting_clefs.pop()
-                >>> for clef in accordion.starting_clefs: clef
-                ClefMark('treble')
+                >>> accordion.starting_clefs = ['treble']
+                >>> accordion.starting_clefs
+                ClefMarkInventory([ClefMark('treble')])
+
+            ::
+
+                >>> accordion.starting_clefs = None
+                >>> accordion.starting_clefs
+                ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
 
             Returns clef inventory.
             '''
@@ -238,6 +266,12 @@ class Accordion(Instrument):
                 >>> accordion.short_instrument_name = 'fis.'
                 >>> accordion.short_instrument_name
                 'fis.'
+
+            ::
+
+                >>> accordion.short_instrument_name = None
+                >>> accordion.short_instrument_name
+                'acc.'
 
             Returns string.
             '''
@@ -263,6 +297,12 @@ class Accordion(Instrument):
                 >>> accordion.short_instrument_name_markup
                 Markup(('fis.',))
 
+            ::
+
+                >>> accordion.short_instrument_name_markup = None
+                >>> accordion.short_instrument_name_markup
+                Markup(('Acc.',))
+
             Returns markup.
             '''
             return Instrument.short_instrument_name_markup.fget(self)
@@ -279,6 +319,10 @@ class Accordion(Instrument):
 
                 >>> accordion.sounding_pitch_of_written_middle_c
                 NamedPitch("c'")
+
+            ::
+
+                >>> 
 
             ::
 

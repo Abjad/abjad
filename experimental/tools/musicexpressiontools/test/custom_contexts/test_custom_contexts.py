@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 def test_custom_contexts_01():
 
-    class CustomContextScoreTemplate(ScoreTemplate):
+    class CustomContextScoreTemplate(AbjadObject):
 
         ### INITIALIZER ###
 
