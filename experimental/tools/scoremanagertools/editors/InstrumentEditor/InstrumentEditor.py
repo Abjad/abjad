@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental.tools.scoremanagertools import getters
-from experimental.tools.scoremanagertools import io
+from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools import wizards
 from abjad.tools.instrumenttools.Instrument import Instrument
 from abjad.tools import instrumenttools

@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from experimental.tools.scoremanagertools import io
+from experimental.tools.scoremanagertools import iotools
 
 
 view_inventory=datastructuretools.TypedList([
-	io.View([
+	iotools.View([
 		'segment 03',
 		'segment 02',
 		'segment 01'

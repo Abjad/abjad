@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.scoremanagertools import io
+from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.editors.ListEditor import ListEditor
 from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \
     import MaterialPackageMaker

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
-from experimental.tools.scoremanagertools import io
+from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 
@@ -35,7 +35,7 @@ class InstrumentCreationWizard(Wizard):
         self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
-        selector = io.Selector(session=self.session)
+        selector = iotools.Selector(session=self.session)
         items = instrumenttools.Instrument._list_instrument_names()
         selector.items = items
         selector.is_ranged = self.is_ranged
@@ -76,7 +76,7 @@ class InstrumentCreationWizard(Wizard):
     def name_untuned_percussion(self, instrument):
         from abjad.tools.instrumenttools import UntunedPercussion
         if isinstance(instrument, instrumenttools.UntunedPercussion):
-            selector = io.Selector(session=self.session)
+            selector = iotools.Selector(session=self.session)
             items = UntunedPercussion.known_untuned_percussion[:]
             selector.items = items
             with self.backtracking:

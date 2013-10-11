@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.editors.PitchRangeEditor \
     import PitchRangeEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
-from experimental.tools.scoremanagertools.io.UserInputGetter \
+from experimental.tools.scoremanagertools.iotools.UserInputGetter \
     import UserInputGetter
 
 

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
-from experimental.tools.scoremanagertools import io
+from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.editors.ClefMarkEditor \
     import ClefMarkEditor
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
@@ -19,7 +19,7 @@ class ClefMarkInventoryEditor(ObjectInventoryEditor):
 
     item_editor_class = ClefMarkEditor
 
-    item_getter_configuration_method = io.UserInputGetter.append_clef
+    item_getter_configuration_method = iotools.UserInputGetter.append_clef
 
     item_identifier = 'clef mark'
 

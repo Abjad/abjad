@@ -614,7 +614,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         lines = []
         lines.append('# -*- encoding: utf-8 -*-\n')
         lines.append('from abjad import *\n')
-        lines.append('from experimental.tools.scoremanagertools import io\n')
+        line = 'from experimental.tools.scoremanagertools import iotools\n'
+        lines.append(line)
         lines.append('\n\n')
         line = 'view_inventory={}'.format(view_inventory.storage_format)
         lines.append(line)

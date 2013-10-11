@@ -5,7 +5,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
 from experimental.tools.scoremanagertools.specifiers.PerformerSpecifier \
     import PerformerSpecifier
-from experimental.tools.scoremanagertools import io
+from experimental.tools.scoremanagertools import iotools
 
 
 class PerformerSpecifierEditor(ParameterSpecifierEditor):
@@ -14,7 +14,7 @@ class PerformerSpecifierEditor(ParameterSpecifierEditor):
 
     target_manifest = TargetManifest(
         PerformerSpecifier,
-        ('performer', 'pf', io.Selector.make_performer_selector,)
+        ('performer', 'pf', iotools.Selector.make_performer_selector,)
         )
 
     ### PUBLIC PROPERTIES ###

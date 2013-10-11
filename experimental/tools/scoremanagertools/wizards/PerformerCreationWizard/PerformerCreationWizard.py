@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
-from experimental.tools.scoremanagertools import io
+from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard \
     import InstrumentCreationWizard
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
@@ -30,7 +30,7 @@ class PerformerCreationWizard(Wizard):
         head=None, 
         pending_user_input=None,
         ):
-        from experimental.tools.scoremanagertools.io import Selector
+        from experimental.tools.scoremanagertools.iotools import Selector
         self.session.io_manager.assign_user_input(pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         try_again = False

@@ -2,7 +2,7 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools import io
+from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.editors.InteractiveEditor \
     import InteractiveEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
@@ -40,7 +40,7 @@ class ListEditor(InteractiveEditor):
 
     item_editor_class = None
 
-    item_getter_configuration_method = io.UserInputGetter.append_expr
+    item_getter_configuration_method = iotools.UserInputGetter.append_expr
 
     item_identifier = 'element'
 

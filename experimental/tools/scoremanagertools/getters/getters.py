@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.scoremanagertools.io.UserInputGetter \
+from experimental.tools.scoremanagertools.iotools.UserInputGetter \
 	import UserInputGetter
 
 

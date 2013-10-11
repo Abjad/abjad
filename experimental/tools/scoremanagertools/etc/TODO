@@ -76,7 +76,7 @@
 
 25. Refactor iotools as a single IOManager class.
 
-26. Make scoremanagertools.io.IOManager inherit from iotools.IOManager.
+26. Make scoremanagertools.iotools.IOManager inherit from iotools.IOManager.
 
 27. Audit all '*_file_name' variables in the system.
     Most are probably file path variables and should be renamed.
