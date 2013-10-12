@@ -50,7 +50,7 @@ class Cello(Instrument):
             ])
         self._default_short_instrument_name = 'vc.'
         self._is_primary_instrument = True
-        self.starting_clefs = [contexttools.ClefMark('bass')]
+        self._starting_clefs = [contexttools.ClefMark('bass')]
         self.allowable_clefs = [
             contexttools.ClefMark('bass'),
             contexttools.ClefMark('tenor'),

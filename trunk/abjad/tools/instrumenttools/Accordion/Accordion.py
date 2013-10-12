@@ -223,35 +223,6 @@ class Accordion(Instrument):
         return property(**locals())
 
     @apply
-    def starting_clefs():
-        def fget(self):
-            r'''Gets and sets starting clefs.
-
-            ::
-
-                >>> accordion.starting_clefs
-                ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
-
-            ::
-
-                >>> accordion.starting_clefs = ['treble']
-                >>> accordion.starting_clefs
-                ClefMarkInventory([ClefMark('treble')])
-
-            ::
-
-                >>> accordion.starting_clefs = None
-                >>> accordion.starting_clefs
-                ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
-
-            Returns clef inventory.
-            '''
-            return Instrument.starting_clefs.fget(self)
-        def fset(self, clefs):
-            return Instrument.starting_clefs.fset(self, clefs)
-        return property(**locals())
-
-    @apply
     def short_instrument_name():
         def fget(self):
             r'''Gets and sets short instrument name.
@@ -322,13 +293,17 @@ class Accordion(Instrument):
 
             ::
 
-                >>> 
+                >>> pitch = accordion.sounding_pitch_of_written_middle_c
+                >>> note = Note(pitch, Duration(1))
+                >>> staff = Staff([note])
+                >>> staff.override.time_signature.stencil = False
+                >>> show(staff) # doctest: +SKIP
 
             ::
 
-                >>> accordion.sounding_pitch_of_written_middle_c = 'g'
+                >>> accordion.sounding_pitch_of_written_middle_c = 'cs'
                 >>> accordion.sounding_pitch_of_written_middle_c
-                NamedPitch('g')
+                NamedPitch('cs')
 
             ::
 

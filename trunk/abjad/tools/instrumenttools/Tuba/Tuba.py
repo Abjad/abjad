@@ -48,7 +48,7 @@ class Tuba(Instrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self.starting_clefs = [contexttools.ClefMark('bass')]
+        self._starting_clefs = [contexttools.ClefMark('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-34, 5)
         #self._make_default_name_markups()

@@ -53,6 +53,6 @@ class SopraninoSaxophone(Instrument):
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("ef'")
-        self.starting_clefs = [contexttools.ClefMark('treble')]
+        self._starting_clefs = [contexttools.ClefMark('treble')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(1, 30)

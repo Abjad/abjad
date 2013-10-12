@@ -50,7 +50,7 @@ class FrenchHorn(Instrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch('f')
-        self.starting_clefs = [
+        self._starting_clefs = [
             contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-25, 17)

@@ -193,23 +193,23 @@ class Instrument(contexttools.InstrumentMark):
             self._pitch_range = pitch_range
         return property(**locals())
 
-    @apply
-    def starting_clefs():
-        def fget(self):
-            r'''Gets and sets starting clefs.
-
-            Returns clef inventory.
-            '''
-            if self._starting_clefs is None:
-                clefs = self._default_starting_clefs
-                clefs = contexttools.ClefMarkInventory(clefs)
-                self._starting_clefs = clefs
-            return self._starting_clefs
-        def fset(self, clefs):
-            if clefs is not None:
-                clefs = contexttools.ClefMarkInventory(clefs)
-            self._starting_clefs = clefs
-        return property(**locals())
+#    @apply
+#    def starting_clefs():
+#        def fget(self):
+#            r'''Gets and sets starting clefs.
+#
+#            Returns clef inventory.
+#            '''
+#            if self._starting_clefs is None:
+#                clefs = self._default_starting_clefs
+#                clefs = contexttools.ClefMarkInventory(clefs)
+#                self._starting_clefs = clefs
+#            return self._starting_clefs
+#        def fset(self, clefs):
+#            if clefs is not None:
+#                clefs = contexttools.ClefMarkInventory(clefs)
+#            self._starting_clefs = clefs
+#        return property(**locals())
         
     @apply
     def sounding_pitch_of_written_middle_c():

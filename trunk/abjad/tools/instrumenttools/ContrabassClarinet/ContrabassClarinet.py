@@ -52,7 +52,7 @@ class ContrabassClarinet(Instrument):
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch('bf,,')
-        self.starting_clefs = [contexttools.ClefMark('treble')]
+        self._starting_clefs = [contexttools.ClefMark('treble')]
         self.allowable_clefs = [
             contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._default_pitch_range = pitchtools.PitchRange(-38, 7)
