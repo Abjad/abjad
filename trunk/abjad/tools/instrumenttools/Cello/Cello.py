@@ -6,18 +6,20 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Cello(Instrument):
-    r'''Abjad model of the cello:
+    r'''A cello.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> contexttools.ClefMark('bass')(staff)
-        ClefMark('bass')(Staff{4})
+        >>> clef = contexttools.ClefMark('bass')
+        >>> clef = clef.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> instrumenttools.Cello()(staff)
-        Cello()(Staff{4})
+        >>> cello = instrumenttools.Cello()
+        >>> cello = cello.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -32,10 +34,6 @@ class Cello(Instrument):
             f'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
     The cello targets staff context by default.
     '''
 
@@ -43,17 +41,17 @@ class Cello(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
+        self._default_allowable_clefs = contexttools.ClefMarkInventory([
+            contexttools.ClefMark('bass'),
+            contexttools.ClefMark('tenor'),
+            contexttools.ClefMark('treble'),
+            ])
         self._default_instrument_name = 'cello'
         self._default_performer_names.extend([
             'string player',
             'cellist',
             ])
-        self._default_short_instrument_name = 'vc.'
-        self._is_primary_instrument = True
-        self._starting_clefs = [contexttools.ClefMark('bass')]
-        self.allowable_clefs = [
-            contexttools.ClefMark('bass'),
-            contexttools.ClefMark('tenor'),
-            contexttools.ClefMark('treble'),
-            ]
         self._default_pitch_range = pitchtools.PitchRange(-24, 19)
+        self._default_short_instrument_name = 'vc.'
+        self._default_starting_clefs = [contexttools.ClefMark('bass')]
+        self._is_primary_instrument = True

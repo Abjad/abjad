@@ -6,16 +6,18 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class FrenchHorn(Instrument):
-    r'''Abjad model of the French horn:
+    r'''A French horn.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> instrumenttools.FrenchHorn()(staff)
-        FrenchHorn()(Staff{4})
+        >>> french_horn = instrumenttools.FrenchHorn()
+        >>> french_horn = french_horn.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -29,10 +31,6 @@ class FrenchHorn(Instrument):
             f'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
     The French horn targets staff context by default.
     '''
 
@@ -40,17 +38,19 @@ class FrenchHorn(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
+        pitch = pitchtools.NamedPitch('f')
+        clefs = [contexttools.ClefMark('treble'), 
+            contexttools.ClefMark('bass'),
+            ]
         self._default_instrument_name = 'horn'
         self._default_performer_names.extend([
             'wind player',
             'brass player',
             'hornist',
             ])
-        self._default_short_instrument_name = 'hn.'
-        self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch('f')
-        self._starting_clefs = [
-            contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-25, 17)
+        self._default_short_instrument_name = 'hn.'
+        self._default_sounding_pitch_of_written_middle_c = pitch
+        self._default_starting_clefs = clefs
+        self._is_primary_instrument = True
+        self._copy_default_starting_clefs_to_default_allowable_clefs()

@@ -109,6 +109,16 @@ class Instrument(ContextMark):
             self.short_instrument_name,
             ))
 
+    def __repr__(self):
+        r'''Interpreter representation of instrument.
+
+        Returns string.
+        '''
+        return '{}(){}'.format(
+            self.__class__.__name__,
+            self._attachment_repr_string,
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -133,6 +143,9 @@ class Instrument(ContextMark):
             'instrument_name_markup',
             'short_instrument_name',
             'short_instrument_name_markup',
+            'allowable_clefs',
+            'pitch_range',
+            'sounding_pitch_of_written_middle_c',
             )
 
     @property

@@ -66,17 +66,6 @@ class Accordion(Instrument):
         self._is_primary_instrument = True
         self._copy_default_starting_clefs_to_default_allowable_clefs()
 
-    ### PRIVATE PROPERTIES ###
-
-    # TODO: extend class definition to allow for custom target context in repr
-    @property
-    def _keyword_argument_names(self):
-        return ()
-
-    @property
-    def _positional_argument_values(self):
-        return ()
-
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -317,3 +306,55 @@ class Accordion(Instrument):
         def fset(self, pitch):
             Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())
+
+    @property
+    def storage_format(self):
+        r'''Accordion storage format.
+
+        ::
+
+            >>> accordion = instrumenttools.Accordion()
+            >>> print accordion.storage_format
+            instrumenttools.Accordion()
+
+        ::
+
+            >>> accordion = instrumenttools.Accordion()
+            >>> accordion.instrument_name = 'fisarmonica'
+            >>> markup = markuptools.Markup('Fisarmonica')
+            >>> accordion.instrument_name_markup = markup
+            >>> accordion.short_instrument_name = 'fis.'
+            >>> markup = markuptools.Markup('Fis.')
+            >>> accordion.short_instrument_name_markup = markup
+            >>> accordion.allowable_clefs = ['treble']
+            >>> accordion.pitch_range = '[C4, C6]'
+            >>> accordion.sounding_pitch_of_written_middle_c = "c''"
+
+        ::
+
+            >>> print accordion.storage_format
+            instrumenttools.Accordion(
+                instrument_name='fisarmonica',
+                instrument_name_markup=markuptools.Markup((
+                    'Fisarmonica',
+                    )),
+                short_instrument_name='fis.',
+                short_instrument_name_markup=markuptools.Markup((
+                    'Fis.',
+                    )),
+                allowable_clefs=contexttools.ClefMarkInventory([
+                    contexttools.ClefMark(
+                        'treble',
+                        target_context=stafftools.Staff
+                        )
+                    ]),
+                pitch_range=pitchtools.PitchRange(
+                    '[C4, C6]'
+                    ),
+                sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''")
+                )
+
+        Returns string.
+        '''
+        superclass = super(Accordion, self)
+        return superclass.storage_format

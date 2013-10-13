@@ -40,15 +40,15 @@ class Guitar(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
+        pitch = pitchtools.NamedPitch('c')
         self._default_instrument_name = 'guitar'
         self._default_performer_names.extend([
             'string player',
             'guitarist',
             ])
-        self._default_short_instrument_name = 'gt.'
-        self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch('c')
-        self._starting_clefs = [contexttools.ClefMark('treble')]
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-20, 16)
+        self._default_short_instrument_name = 'gt.'
+        self._default_sounding_pitch_of_written_middle_c = pitch
+        self._default_starting_clefs = [contexttools.ClefMark('treble')]
+        self._is_primary_instrument = True
+        self._copy_default_starting_clefs_to_default_allowable_clefs()
