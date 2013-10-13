@@ -6,6 +6,7 @@ class ContextMark(Mark):
     '''Abstract class from which concrete context marks inherit.
 
     Context marks are immutable.
+
     '''
 
     ### CLASS VARIABLES ###
