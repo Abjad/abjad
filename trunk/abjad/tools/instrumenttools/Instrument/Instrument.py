@@ -63,10 +63,11 @@ class Instrument(ContextMark):
         self.short_instrument_name_markup = short_instrument_name_markup
 
         pitch = pitchtools.NamedPitch("c'")
-        self._default_allowable_clefs = None
+        clefs = contexttools.ClefMarkInventory(['treble'])
+        self._default_allowable_clefs = copy.deepcopy(clefs)
         self._default_performer_names = ['instrumentalist']
         self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_starting_clefs = None
+        self._default_starting_clefs = copy.deepcopy(clefs)
         self._allowable_clefs = None
         self._is_primary_instrument = False
         self._pitch_range = None

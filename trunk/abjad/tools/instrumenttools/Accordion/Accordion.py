@@ -13,10 +13,6 @@ class Accordion(Instrument):
         >>> piano_staff = scoretools.PianoStaff()
         >>> piano_staff.append(Staff("c'8 d'8 e'8 f'8"))
         >>> piano_staff.append(Staff("c'4 b4"))
-        >>> show(piano_staff) # doctest: +SKIP
-
-    ::
-
         >>> accordion = instrumenttools.Accordion()
         >>> accordion = accordion.attach(piano_staff)
         >>> show(piano_staff) # doctest: +SKIP
@@ -52,6 +48,10 @@ class Accordion(Instrument):
             target_context=target_context, 
             **kwargs
             )
+        self._default_allowable_clefs = contexttools.ClefMarkInventory([
+            contexttools.ClefMark('treble'), 
+            contexttools.ClefMark('bass'),
+            ])
         self._default_instrument_name = 'accordion'
         self._default_performer_names.extend([
             'keyboardist',
@@ -64,7 +64,6 @@ class Accordion(Instrument):
             contexttools.ClefMark('bass'),
             ])
         self._is_primary_instrument = True
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
 
     ### PUBLIC PROPERTIES ###
 
@@ -152,10 +151,10 @@ class Accordion(Instrument):
 
             ::
 
-                >>> markup = markuptools.Markup('fisarmonica')
+                >>> markup = markuptools.Markup('Fisarmonica')
                 >>> accordion.instrument_name_markup = markup
                 >>> accordion.instrument_name_markup
-                Markup(('fisarmonica',))
+                Markup(('Fisarmonica',))
 
             ::
 
@@ -173,7 +172,7 @@ class Accordion(Instrument):
     @apply
     def pitch_range():
         def fget(self):
-            r'''Gets and sets pitch range.
+            r"""Gets and sets pitch range.
 
             ::
 
@@ -190,6 +189,7 @@ class Accordion(Instrument):
                 >>> note = Note("c'1")
                 >>> note.written_pitch = accordion.pitch_range.stop_pitch
                 >>> treble_staff.append(note)
+                >>> score.override.time_signature.stencil = False
                 >>> show(score) # doctest: +SKIP
 
             ::
@@ -205,7 +205,7 @@ class Accordion(Instrument):
                 PitchRange('[E1, C8]')
 
             Returns pitch range.
-            '''
+            """
             return Instrument.pitch_range.fget(self)
         def fset(self, pitch_range):
             Instrument.pitch_range.fset(self, pitch_range)
@@ -319,20 +319,20 @@ class Accordion(Instrument):
 
         ::
 
-            >>> accordion = instrumenttools.Accordion()
-            >>> accordion.instrument_name = 'fisarmonica'
+            >>> custom = instrumenttools.Accordion()
+            >>> custom.instrument_name = 'fisarmonica'
             >>> markup = markuptools.Markup('Fisarmonica')
-            >>> accordion.instrument_name_markup = markup
-            >>> accordion.short_instrument_name = 'fis.'
+            >>> custom.instrument_name_markup = markup
+            >>> custom.short_instrument_name = 'fis.'
             >>> markup = markuptools.Markup('Fis.')
-            >>> accordion.short_instrument_name_markup = markup
-            >>> accordion.allowable_clefs = ['treble']
-            >>> accordion.pitch_range = '[C4, C6]'
-            >>> accordion.sounding_pitch_of_written_middle_c = "c''"
+            >>> custom.short_instrument_name_markup = markup
+            >>> custom.allowable_clefs = ['treble']
+            >>> custom.pitch_range = '[C4, C6]'
+            >>> custom.sounding_pitch_of_written_middle_c = "c''"
 
         ::
 
-            >>> print accordion.storage_format
+            >>> print custom.storage_format
             instrumenttools.Accordion(
                 instrument_name='fisarmonica',
                 instrument_name_markup=markuptools.Markup((

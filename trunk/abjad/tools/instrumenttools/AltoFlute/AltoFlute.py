@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
-from abjad.tools import markuptools
 from abjad.tools import pitchtools
+from abjad.tools import scoretools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -10,11 +10,7 @@ class AltoFlute(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> show(staff) # doctest: +SKIP
-
-    ::
-
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> alto_flute = instrumenttools.AltoFlute()
         >>> alto_flute = alto_flute.attach(staff)
         >>> show(staff) # doctest: +SKIP
@@ -25,13 +21,13 @@ class AltoFlute(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Alto flute }
             \set Staff.shortInstrumentName = \markup { Alt. fl. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            f'4
         }
 
-    The alto flute targets staff context by default.
+    The alto flute targets the staff context by default.
     '''
 
     ### INITIALIZER ###
@@ -48,11 +44,210 @@ class AltoFlute(Instrument):
         self._default_pitch_range = pitchtools.PitchRange(-5, 31)
         self._default_short_instrument_name = 'alt. fl.'
         self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_starting_clefs = [contexttools.ClefMark('treble')]
-        self._is_primary_instrument = False
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
 
     ### PUBLIC PROPERTIES ###
+
+    @apply
+    def allowable_clefs():
+        def fget(self):
+            r'''Gets and sets allowable clefs.
+
+            ::
+
+                >>> alto_flute.allowable_clefs
+                ClefMarkInventory([ClefMark('treble')])
+
+            ::
+
+                >>> import copy
+                >>> skips = []
+                >>> for clef in alto_flute.allowable_clefs:
+                ...     skip = skiptools.Skip((1, 8))
+                ...     clef = copy.copy(clef)
+                ...     clef = clef.attach(skip)
+                ...     skips.append(skip)
+                >>> staff = Staff(skips)
+                >>> staff.override.clef.full_size_change = True
+                >>> staff.override.time_signature.stencil = False
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> alto_flute.allowable_clefs = ['treble', 'treble^8']
+                >>> alto_flute.allowable_clefs
+                ClefMarkInventory([ClefMark('treble'), ClefMark('treble^8')])
+
+            ::
+
+                >>> alto_flute.allowable_clefs = None
+                >>> alto_flute.allowable_clefs
+                ClefMarkInventory([ClefMark('treble')])
+
+            Returns clef inventory.
+            '''
+            return Instrument.allowable_clefs.fget(self)
+        def fset(self, allowable_clefs):
+            return Instrument.allowable_clefs.fset(self, allowable_clefs)
+        return property(**locals())
+
+    @apply
+    def instrument_name():
+        def fget(self):
+            r'''Gets and sets instrument name.
+
+            ::
+
+                >>> alto_flute.instrument_name
+                'alto flute'
+
+            ::
+
+                >>> alto_flute.instrument_name = 'flauto contralto'
+                >>> alto_flute.instrument_name
+                'flauto contralto'
+
+            ::
+
+                >>> alto_flute.instrument_name = None
+                >>> alto_flute.instrument_name
+                'alto flute'
+
+            Returns string.
+            '''
+            return Instrument.instrument_name.fget(self)
+        def fset(self, foo):
+            Instrument.instrument_name.fset(self, foo)
+        return property(**locals())
+
+    @apply
+    def instrument_name_markup():
+        def fget(self):
+            r'''Gets and sets instrument name markup.
+
+            ::
+
+                >>> alto_flute.instrument_name_markup
+                Markup(('Alto flute',))
+
+            ::
+
+                >>> markup = markuptools.Markup('Flauto contralto')
+                >>> alto_flute.instrument_name_markup = markup
+                >>> alto_flute.instrument_name_markup
+                Markup(('Flauto contralto',))
+
+            ::
+
+                >>> alto_flute.instrument_name_markup = None
+                >>> alto_flute.instrument_name_markup
+                Markup(('Alto flute',))
+
+            Returns markup.
+            '''
+            return Instrument.instrument_name_markup.fget(self)
+        def fset(self, markup):
+            return Instrument.instrument_name_markup.fset(self, markup)
+        return property(**locals())
+
+    @apply
+    def pitch_range():
+        def fget(self):
+            r"""Gets and sets pitch range.
+
+            ::
+
+                >>> alto_flute.pitch_range
+                PitchRange('[G3, G6]')
+
+            ::
+
+                >>> chord = Chord("<c' d'>1")
+                >>> start_pitch = alto_flute.pitch_range.start_pitch
+                >>> chord[0].written_pitch = start_pitch
+                >>> stop_pitch = alto_flute.pitch_range.stop_pitch
+                >>> chord[1].written_pitch = stop_pitch
+                >>> voice = Voice([chord])
+                >>> staff = Staff([voice])
+                >>> staff.override.time_signature.stencil = False
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> alto_flute.pitch_range = '[G3, C7]'
+                >>> alto_flute.pitch_range
+                PitchRange('[G3, C7]')
+
+            ::
+
+                >>> alto_flute.pitch_range = None
+                >>> alto_flute.pitch_range
+                PitchRange('[G3, G6]')
+
+            Returns pitch range.
+            """
+            return Instrument.pitch_range.fget(self)
+        def fset(self, pitch_range):
+            Instrument.pitch_range.fset(self, pitch_range)
+        return property(**locals())
+
+    @apply
+    def short_instrument_name():
+        def fget(self):
+            r'''Gets and sets short instrument name.
+
+            ::
+
+                >>> alto_flute.short_instrument_name
+                'alt. fl.'
+    
+            ::
+
+                >>> alto_flute.short_instrument_name = 'fl. contr.'
+                >>> alto_flute.short_instrument_name
+                'fl. contr.'
+
+            ::
+
+                >>> alto_flute.short_instrument_name = None
+                >>> alto_flute.short_instrument_name
+                'alt. fl.'
+
+            Returns string.
+            '''
+            return Instrument.short_instrument_name.fget(self)
+        def fset(self, name):
+            return Instrument.short_instrument_name.fset(self, name)
+        return property(**locals())
+
+    @apply
+    def short_instrument_name_markup():
+        def fget(self):
+            r'''Gets and sets short instrument name markup.
+
+            ::
+
+                >>> alto_flute.short_instrument_name_markup
+                Markup(('Alt. fl.',))
+
+            ::
+
+                >>> markup = markuptools.Markup('Fl. contr.')
+                >>> alto_flute.short_instrument_name_markup = markup
+                >>> alto_flute.short_instrument_name_markup
+                Markup(('Fl. contr.',))
+
+            ::
+
+                >>> alto_flute.short_instrument_name_markup = None
+                >>> alto_flute.short_instrument_name_markup
+                Markup(('Alt. fl.',))
+
+            Returns markup.
+            '''
+            return Instrument.short_instrument_name_markup.fget(self)
+        def fset(self, markup):
+            return Instrument.short_instrument_name_markup.fset(self, markup)
+        return property(**locals())
 
     @apply
     def sounding_pitch_of_written_middle_c():
@@ -63,6 +258,15 @@ class AltoFlute(Instrument):
 
                 >>> alto_flute.sounding_pitch_of_written_middle_c
                 NamedPitch('g')
+
+            ::
+
+                >>> pitch = alto_flute.sounding_pitch_of_written_middle_c
+                >>> note = Note(pitch, Duration(1))
+                >>> voice = Voice([note])
+                >>> staff = Staff([voice])
+                >>> staff.override.time_signature.stencil = False
+                >>> show(staff) # doctest: +SKIP
 
             ::
 
@@ -80,5 +284,49 @@ class AltoFlute(Instrument):
             '''
             return Instrument.sounding_pitch_of_written_middle_c.fget(self)
         def fset(self, pitch):
-            return Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
+            return Instrument.sounding_pitch_of_written_middle_c.fset(
+                self, pitch)
         return property(**locals())
+
+    @property
+    def storage_format(self):
+        r'''Alto flute storage format.
+
+        ::
+
+            >>> alto_flute = instrumenttools.AltoFlute()
+            >>> print alto_flute.storage_format
+            instrumenttools.AltoFlute()
+
+        ::
+
+            >>> custom = instrumenttools.AltoFlute()
+            >>> custom.instrument_name = 'flauto contralto'
+            >>> markup = markuptools.Markup('Flauto contralto')
+            >>> custom.instrument_name_markup = markup
+            >>> custom.short_instrument_name = 'fl. contr.'
+            >>> markup = markuptools.Markup('Fl. contr.')
+            >>> custom.short_instrument_name_markup = markup
+            >>> custom.pitch_range = '[G3, C7]'
+
+        ::
+
+            >>> print custom.storage_format
+            instrumenttools.AltoFlute(
+                instrument_name='flauto contralto',
+                instrument_name_markup=markuptools.Markup((
+                    'Flauto contralto',
+                    )),
+                short_instrument_name='fl. contr.',
+                short_instrument_name_markup=markuptools.Markup((
+                    'Fl. contr.',
+                    )),
+                pitch_range=pitchtools.PitchRange(
+                    '[G3, C7]'
+                    )
+                )
+
+        Returns string.
+        '''
+        superclass = super(AltoFlute, self)
+        return superclass.storage_format
