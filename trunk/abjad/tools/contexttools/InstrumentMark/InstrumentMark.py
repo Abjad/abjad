@@ -5,26 +5,6 @@ from abjad.tools import stringtools
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-# Note that instruments are the classes in the system that 
-# implement default attribute values.
-#
-# That means that three things are true.
-#
-# First, all instruments come supplied with a default name and 
-# a default short instrument name.
-#
-# Second, all instruments allow users to override both instrument name 
-# and short instrument name.
-#
-# Third, all instruments 'remember' default values 
-# when such values are overridden.
-#
-# When all three of these things are the case we talk about a class 
-# implementing default attribute values.
-#
-# This is the meaning of the '_has_default_attribute_values' class attribute.
-# The impact this currently has in the system concerns the 
-# storage format of such objects.
 class InstrumentMark(ContextMark):
     r'''An instrument mark.
 

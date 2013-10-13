@@ -18,7 +18,8 @@ class PartCantusScoreTemplate(AbjadObject):
         bell_voice = voicetools.Voice(name='Bell Voice')
         bell_staff = stafftools.Staff([bell_voice], name='Bell Staff')
         contexttools.ClefMark('treble')(bell_staff)
-        contexttools.InstrumentMark('Campana in La', 'Camp.')(bell_staff)
+        bells = instrumenttools.Instrument('Campana in La', 'Camp.')
+        bells.attach(bell_staff)
         contexttools.TempoMark((1, 4), (112, 120))(bell_staff)
         contexttools.TimeSignatureMark((6, 4))(bell_staff)
 

@@ -63,15 +63,17 @@ def make_mozart_score():
     marktools.BarLine('|.')(score['RH Voice'][-1])
     marktools.BarLine('|.')(score['LH Voice'][-1])
 
-    # remove the old, default Piano InstrumentMark attached to the PianoStaff
+    # remove the old, default piano instrument attached to the piano staff
     # and add a custom instrument mark
     for mark in inspect(score['Piano Staff']).get_marks(
-        contexttools.InstrumentMark):
+        instrumenttools.Instrument):
         mark.detach()
 
-    contexttools.InstrumentMark(
-        'Katzenklavier', 'kk.',
-        target_context = scoretools.PianoStaff
-        )(score['Piano Staff'])
+    klavier = instrumenttools.Piano(
+        instrument_name='Katzenklavier', 
+        short_instrument_name='kk.',
+        target_context = scoretools.PianoStaff,
+        )
+    klavier.attach(score['Piano Staff'])
 
     return score

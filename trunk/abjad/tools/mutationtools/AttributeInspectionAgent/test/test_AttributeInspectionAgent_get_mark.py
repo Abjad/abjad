@@ -15,8 +15,10 @@ def test_AttributeInspectionAgent_get_mark_02():
 
     note = Note("c'8")
 
-    assert py.test.raises(MissingMarkError,
-        'inspect(note).get_mark(marktools.Annotation)')
+    assert py.test.raises(
+        MissingMarkError,
+        'inspect(note).get_mark(marktools.Annotation)',
+        )
 
 
 def test_AttributeInspectionAgent_get_mark_03():
@@ -25,8 +27,10 @@ def test_AttributeInspectionAgent_get_mark_03():
     marktools.Annotation('special information')(note)
     marktools.Annotation('more special information')(note)
 
-    assert py.test.raises(ExtraMarkError, 
-        'inspect(note).get_mark(marktools.Annotation)')
+    assert py.test.raises(
+        ExtraMarkError, 
+        'inspect(note).get_mark(marktools.Annotation)',
+        )
 
 
 def test_AttributeInspectionAgent_get_mark_04():
@@ -41,8 +45,10 @@ def test_AttributeInspectionAgent_get_mark_05():
 
     note = Note("c'8")
 
-    assert py.test.raises(MissingMarkError,
-        'inspect(note).get_mark(marktools.Articulation)')
+    assert py.test.raises(
+        MissingMarkError,
+        'inspect(note).get_mark(marktools.Articulation)',
+        )
 
 
 def test_AttributeInspectionAgent_get_mark_06():
@@ -51,8 +57,10 @@ def test_AttributeInspectionAgent_get_mark_06():
     marktools.Articulation('staccato')(note)
     marktools.Articulation('marcato')(note)
 
-    assert py.test.raises(ExtraMarkError,
-        'inspect(note).get_mark(marktools.Articulation)')
+    assert py.test.raises(
+        ExtraMarkError,
+        'inspect(note).get_mark(marktools.Articulation)',
+        )
 
 
 def test_AttributeInspectionAgent_get_mark_07():
@@ -68,8 +76,10 @@ def test_AttributeInspectionAgent_get_mark_08():
 
     note = Note("c'8")
 
-    assert py.test.raises(MissingMarkError,
-        'inspect(note).get_mark(marktools.LilyPondCommandMark)')
+    assert py.test.raises(
+        MissingMarkError,
+        'inspect(note).get_mark(marktools.LilyPondCommandMark)',
+        )
 
 
 def test_AttributeInspectionAgent_get_mark_09():
@@ -78,27 +88,34 @@ def test_AttributeInspectionAgent_get_mark_09():
     marktools.LilyPondCommandMark('stemUp')(note)
     marktools.LilyPondCommandMark('slurUp')(note)
 
-    assert py.test.raises(ExtraMarkError,
-        'inspect(note).get_mark(marktools.LilyPondCommandMark)')
+    assert py.test.raises(
+        ExtraMarkError,
+        'inspect(note).get_mark(marktools.LilyPondCommandMark)',
+        )
 
 
 def test_AttributeInspectionAgent_get_mark_10():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(staff.select_leaves())
-    lilypond_command_mark_1 = marktools.LilyPondCommandMark('slurDotted')(staff[0])
-    lilypond_command_mark_2 = marktools.LilyPondCommandMark('slurUp')(staff[0])
+    lilypond_command_mark_1 = \
+        marktools.LilyPondCommandMark('slurDotted')(staff[0])
+    lilypond_command_mark_2 = \
+        marktools.LilyPondCommandMark('slurUp')(staff[0])
 
-    r'''
-    \new Staff {
-        \slurDotted
-        \slurUp
-        c'8 (
-        d'8
-        e'8
-        f'8 )
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \slurDotted
+            \slurUp
+            c'8 (
+            d'8
+            e'8
+            f'8 )
+        }
+        '''
+        )
 
     marks = inspect(staff[0]).get_marks(marktools.LilyPondCommandMark)
 
@@ -112,15 +129,18 @@ def test_AttributeInspectionAgent_get_mark_11():
     note = Note("c'8")
     lilypond_comment = marktools.LilyPondComment('comment')(note)
 
-    assert inspect(note).get_mark(marktools.LilyPondComment) is lilypond_comment
+    mark = inspect(note).get_mark(marktools.LilyPondComment) 
+    assert mark is lilypond_comment
 
 
 def test_AttributeInspectionAgent_get_mark_12():
 
     note = Note("c'8")
 
-    assert py.test.raises(MissingMarkError,
-        'inspect(note).get_mark(marktools.LilyPondComment)')
+    assert py.test.raises(
+        MissingMarkError,
+        'inspect(note).get_mark(marktools.LilyPondComment)',
+        )
 
 
 def test_AttributeInspectionAgent_get_mark_13():
@@ -129,8 +149,10 @@ def test_AttributeInspectionAgent_get_mark_13():
     marktools.LilyPondComment('comment')(note)
     marktools.LilyPondComment('another comment')(note)
 
-    assert py.test.raises(ExtraMarkError,
-        'inspect(note).get_mark(marktools.LilyPondComment)')
+    assert py.test.raises(
+        ExtraMarkError,
+        'inspect(note).get_mark(marktools.LilyPondComment)',
+        )
 
 
 def test_AttributeInspectionAgent_get_mark_14():
@@ -169,12 +191,12 @@ def test_AttributeInspectionAgent_get_mark_17():
 def test_AttributeInspectionAgent_get_mark_18():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
-    instrument_mark.attach(staff)
+    violin = instrumenttools.Violin()
+    violin.attach(staff)
 
-    found_instrument_mark = inspect(staff).get_mark(contexttools.InstrumentMark)
+    found_instrument_mark = inspect(staff).get_mark(instrumenttools.Instrument)
 
-    assert found_instrument_mark is instrument_mark
+    assert found_instrument_mark is violin
 
 
 def test_AttributeInspectionAgent_get_mark_19():

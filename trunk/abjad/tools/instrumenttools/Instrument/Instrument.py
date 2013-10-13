@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 import copy
 import inspect
 from abjad.tools import contexttools
@@ -41,7 +40,6 @@ class Instrument(ContextMark):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(
         self,
         instrument_name=None,
@@ -238,9 +236,9 @@ class Instrument(ContextMark):
         instruments = []
         for value in instrumenttools.__dict__.itervalues():
             try:
-                if issubclass(value, classes) \
-                    and not inspect.isabstract(value):
-                    instruments.append(value)
+                if issubclass(value, classes):
+                    if not value is instrumenttools.Instrument:
+                        instruments.append(value)
             except TypeError:
                 pass
         instruments.sort(key=lambda x: x.__name__.lower())
