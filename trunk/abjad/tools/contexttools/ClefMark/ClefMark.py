@@ -3,19 +3,16 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class ClefMark(ContextMark):
-    r'''Abjad model of a clef:
+    r'''A clef.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> contexttools.ClefMark('treble')(staff)
-        ClefMark('treble')(Staff{8})
-
-    ::
-
+        >>> clef = contexttools.ClefMark('treble')(staff)
         >>> clef = contexttools.ClefMark('alto')(staff[1])
         >>> clef = contexttools.ClefMark('bass')(staff[2])
         >>> clef = contexttools.ClefMark('treble^8')(staff[3])
@@ -23,6 +20,7 @@ class ClefMark(ContextMark):
         >>> clef = contexttools.ClefMark('tenor')(staff[5])
         >>> clef = contexttools.ClefMark('bass^15')(staff[6])
         >>> clef = contexttools.ClefMark('percussion')(staff[7])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -46,10 +44,6 @@ class ClefMark(ContextMark):
             c''8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
     Clef marks target the staff context by default.
     '''
 
@@ -63,26 +57,115 @@ class ClefMark(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr, target_context=None):
+    def __init__(self, clef_name, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
         target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
-        if isinstance(expr, str):
-            self._clef_name = expr
-        elif isinstance(expr, type(self)):
-            self._clef_name = expr.clef_name
+        if isinstance(clef_name, str):
+            self._clef_name = clef_name
+        elif isinstance(clef_name, type(self)):
+            self._clef_name = clef_name.clef_name
         else:
-            raise TypeError('can not init clef from {}.'.format(expr))
+            message = 'can not initialize clef from {}.'.format(clef_name)
+            raise TypeError(message)
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self._clef_name, target_context=self.target_context)
+        r'''Copies clef.
+
+        ::
+
+            >>> import copy
+            >>> clef_1 = contexttools.ClefMark('alto')
+            >>> clef_2 = copy.copy(clef_1)
+
+        ::
+
+            >>> clef_1, clef_2
+            (ClefMark('alto'), ClefMark('alto'))
+
+        ::
+
+            >>> clef_1 == clef_2
+            True
+
+        ::
+
+            >>> clef_1 is clef_2
+            False
+
+        Returns new clef.
+        '''
+        return type(self)(
+            self.clef_name, 
+            target_context=self.target_context,
+            )
 
     def __eq__(self, arg):
+        r'''True when clef name of `arg` equal clef name of clef.
+        Otherwise false.
+
+        ::
+
+            >>> clef_1 = contexttools.ClefMark('treble')
+            >>> clef_2 = contexttools.ClefMark('alto')
+
+        ::
+
+            >>> clef_1 == clef_1
+            True
+            >>> clef_1 == clef_2
+            False
+            >>> clef_2 == clef_1
+            False
+            >>> clef_2 == clef_2
+            True
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             return self._clef_name == arg._clef_name
         return False
+
+    def __ne__(self, arg):
+        r'''True when clef of `arg` does not equal clef name of clef.
+        False otherwise.
+
+        ::
+
+            >>> clef_1 = contexttools.ClefMark('treble')
+            >>> clef_2 = contexttools.ClefMark('alto')
+
+        ::
+
+            >>> clef_1 != clef_1
+            False
+            >>> clef_1 != clef_2
+            True
+            >>> clef_2 != clef_1
+            True
+            >>> clef_2 != clef_2
+            False
+
+        Returns boolean.
+        '''
+        superclass = super(ClefMark, self)
+        return superclass.__ne__(arg)
+
+    def __repr__(self):
+        r'''Interpreter representation of clef.
+
+        ::
+
+            >>> clef = contexttools.ClefMark('treble')
+            >>> clef
+            ClefMark('treble')
+
+        Returns string.
+        '''
+        superclass = super(ClefMark, self)
+        return superclass.__repr__()
 
     ### PRIVATE PROPERTIES ###
 
@@ -108,7 +191,7 @@ class ClefMark(ContextMark):
 
     @classmethod
     def list_clef_names(cls):
-        r'''List clef names:
+        r'''Lists clef names.
 
         ::
 
@@ -136,7 +219,7 @@ class ClefMark(ContextMark):
     @apply
     def clef_name():
         def fget(self):
-            r'''Get clef name:
+            r'''Gets and sets clef name.
 
             ::
 
@@ -144,15 +227,13 @@ class ClefMark(ContextMark):
                 >>> clef.clef_name
                 'treble'
 
-            Set clef name:
-
             ::
 
                 >>> clef.clef_name = 'alto'
                 >>> clef.clef_name
                 'alto'
 
-            Return string.
+            Returns string.
             '''
             return self._clef_name
         def fset(self, clef_name):
@@ -162,7 +243,7 @@ class ClefMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        r'''LilyPond format of clef:
+        r'''LilyPond format of clef.
 
         ::
 
@@ -170,13 +251,13 @@ class ClefMark(ContextMark):
             >>> clef.lilypond_format
             '\\clef "treble"'
 
-        Return string.
+        Returns string.
         '''
         return r'\clef "%s"' % self._clef_name
 
     @property
     def middle_c_position(self):
-        r'''Middle-C position of clef:
+        r'''Middle C position of clef.
 
         ::
 
@@ -184,7 +265,7 @@ class ClefMark(ContextMark):
             >>> clef.middle_c_position
             -6
 
-        Return integer number of stafflines.
+        Returns integer number of stafflines.
         '''
         alteration = 0
         if '_' in self._clef_name:
@@ -210,3 +291,20 @@ class ClefMark(ContextMark):
         else:
             base_name = self._clef_name
         return self._clef_name_to_middle_c_position[base_name] + alteration
+
+    @property
+    def storage_format(self):
+        r'''Storage format of clef.
+
+        ::
+
+            >>> print clef.storage_format
+            contexttools.ClefMark(
+                'treble',
+                target_context=stafftools.Staff
+                )
+
+        Returns string.
+        '''
+        superclass = super(ClefMark, self)
+        return superclass.storage_format
