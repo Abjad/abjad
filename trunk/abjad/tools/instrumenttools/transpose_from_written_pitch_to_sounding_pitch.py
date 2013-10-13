@@ -12,8 +12,9 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
     ::
 
         >>> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
-        >>> instrumenttools.BFlatClarinet()(staff)
-        BFlatClarinet()(Staff{4})
+        >>> clarinet = instrumenttools.BFlatClarinet()
+        >>> clarinet = clarinet.attach(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -31,8 +32,8 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
 
         >>> for leaf in staff.select_leaves():
         ...   leaf.written_pitch_indication_is_at_sounding_pitch = False
-
         >>> instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -46,14 +47,15 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
             d'4
         }
 
-    Return none.
+    Returns none.
     '''
+    from abjad.tools import instrumenttools
 
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
         if note_or_chord.written_pitch_indication_is_at_sounding_pitch:
             continue
         instrument = note_or_chord._get_effective_context_mark(
-            contexttools.InstrumentMark)
+            instrumenttools.Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.sounding_pitch_of_written_middle_c

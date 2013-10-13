@@ -374,11 +374,11 @@ class Chord(Leaf):
 
         Returns tuple of pitches.
         """
-        from abjad.tools import contexttools
+        from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
         if self.written_pitch_indication_is_at_sounding_pitch:
             instrument = self._get_effective_context_mark(
-                contexttools.InstrumentMark)
+                instrumenttools.Instrument)
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)
@@ -493,13 +493,13 @@ class Chord(Leaf):
 
         Returns tuple.
         """
-        from abjad.tools import contexttools
+        from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
         if self.written_pitch_indication_is_at_sounding_pitch:
             return self.written_pitches
         else:
             instrument = self._get_effective_context_mark(
-                contexttools.InstrumentMark)
+                instrumenttools.Instrument)
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)

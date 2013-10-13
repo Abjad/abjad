@@ -181,11 +181,11 @@ class Note(Leaf):
 
         Return named chromatic pitch.
         '''
-        from abjad.tools import contexttools
+        from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
         if self.written_pitch_indication_is_at_sounding_pitch:
             instrument = self._get_effective_context_mark(
-                contexttools.InstrumentMark)
+                instrumenttools.Instrument)
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
                 raise InstrumentError(message)
@@ -277,13 +277,13 @@ class Note(Leaf):
                 }
 
             '''
-            from abjad.tools import contexttools
+            from abjad.tools import instrumenttools
             from abjad.tools import pitchtools
             if self.written_pitch_indication_is_at_sounding_pitch:
                 return self.written_pitch
             else:
                 instrument = self._get_effective_context_mark(
-                    contexttools.InstrumentMark)
+                    instrumenttools.Instrument)
                 if not instrument:
                     message = 'effective instrument of note'
                     message += ' can not be determined.'
@@ -295,14 +295,14 @@ class Note(Leaf):
                         self.written_pitch, t_n)
                 return sounding_pitch
         def fset(self, arg):
-            from abjad.tools import contexttools
+            from abjad.tools import instrumenttools
             from abjad.tools import pitchtools
             pitch = pitchtools.NamedPitch(arg)
             if self.written_pitch_indication_is_at_sounding_pitch:
                 self.written_pitch = pitch
             else:
                 instrument = self._get_effective_context_mark(
-                    contexttools.InstrumentMark)
+                    instrumenttools.Instrument)
                 if not instrument:
                     message = 'effective instrument of note'
                     message += ' can not be determined.'

@@ -37,10 +37,11 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
     Returns boolean.
     '''
+    from abjad.tools import instrumenttools
 
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
         instrument = note_or_chord._get_effective_context_mark(
-            contexttools.InstrumentMark)
+            instrumenttools.Instrument)
         if note_or_chord not in instrument._default_pitch_range:
             return False
     else:

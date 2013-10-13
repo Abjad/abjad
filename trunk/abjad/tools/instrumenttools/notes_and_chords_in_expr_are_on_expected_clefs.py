@@ -7,7 +7,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(
     expr, 
     percussion_clef_is_allowed=True,
     ):
-    r'''True when notes and chords in `expr` are on expected clefs:
+    r'''True when notes and chords in `expr` are on expected clefs.
 
     ::
 
@@ -37,7 +37,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(
         >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
         False
 
-    Allow percussion clef when `percussion_clef_is_allowed` is true:
+    Allows percussion clef when `percussion_clef_is_allowed` is true:
 
     ::
 
@@ -66,7 +66,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(
         ...     staff, percussion_clef_is_allowed=True)
         True
 
-    Disallow percussion clef when `percussion_clef_is_allowed` is false:
+    Disallows percussion clef when `percussion_clef_is_allowed` is false:
 
     ::
 
@@ -74,12 +74,13 @@ def notes_and_chords_in_expr_are_on_expected_clefs(
         ...     staff, percussion_clef_is_allowed=False)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
+    from abjad.tools import instrumenttools
 
     for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
         instrument = note_or_chord._get_effective_context_mark(
-            contexttools.InstrumentMark)
+            instrumenttools.Instrument)
         if not instrument:
             return False
         clef = note_or_chord._get_effective_context_mark(contexttools.ClefMark)
