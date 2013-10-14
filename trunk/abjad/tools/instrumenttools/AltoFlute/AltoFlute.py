@@ -52,36 +52,48 @@ class AltoFlute(Instrument):
         def fget(self):
             r'''Gets and sets allowable clefs.
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.allowable_clefs
-                ClefMarkInventory([ClefMark('treble')])
+                Gets property:
 
-            ::
+                ::
 
-                >>> import copy
-                >>> skips = []
-                >>> for clef in alto_flute.allowable_clefs:
-                ...     skip = skiptools.Skip((1, 8))
-                ...     clef = copy.copy(clef)
-                ...     clef = clef.attach(skip)
-                ...     skips.append(skip)
-                >>> staff = Staff(skips)
-                >>> staff.override.clef.full_size_change = True
-                >>> staff.override.time_signature.stencil = False
-                >>> show(staff) # doctest: +SKIP
+                    >>> alto_flute.allowable_clefs
+                    ClefMarkInventory([ClefMark('treble')])
 
-            ::
+                ::
 
-                >>> alto_flute.allowable_clefs = ['treble', 'treble^8']
-                >>> alto_flute.allowable_clefs
-                ClefMarkInventory([ClefMark('treble'), ClefMark('treble^8')])
+                    >>> import copy
+                    >>> skips = []
+                    >>> for clef in alto_flute.allowable_clefs:
+                    ...     skip = skiptools.Skip((1, 8))
+                    ...     clef = copy.copy(clef)
+                    ...     clef = clef.attach(skip)
+                    ...     skips.append(skip)
+                    >>> staff = Staff(skips)
+                    >>> staff.override.clef.full_size_change = True
+                    >>> staff.override.time_signature.stencil = False
+                    >>> show(staff) # doctest: +SKIP
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.allowable_clefs = None
-                >>> alto_flute.allowable_clefs
-                ClefMarkInventory([ClefMark('treble')])
+                Sets property:
+
+                ::
+
+                    >>> alto_flute.allowable_clefs = ['treble', 'treble^8']
+                    >>> alto_flute.allowable_clefs
+                    ClefMarkInventory([ClefMark('treble'), ClefMark('treble^8')])
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> alto_flute.allowable_clefs = None
+                    >>> alto_flute.allowable_clefs
+                    ClefMarkInventory([ClefMark('treble')])
 
             Returns clef inventory.
             '''
@@ -95,22 +107,34 @@ class AltoFlute(Instrument):
         def fget(self):
             r'''Gets and sets instrument name.
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.instrument_name
-                'alto flute'
+                Gets property:
 
-            ::
+                ::
 
-                >>> alto_flute.instrument_name = 'flauto contralto'
-                >>> alto_flute.instrument_name
-                'flauto contralto'
+                    >>> alto_flute.instrument_name
+                    'alto flute'
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.instrument_name = None
-                >>> alto_flute.instrument_name
-                'alto flute'
+                Sets property:
+
+                ::
+
+                    >>> alto_flute.instrument_name = 'flauto contralto'
+                    >>> alto_flute.instrument_name
+                    'flauto contralto'
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> alto_flute.instrument_name = None
+                    >>> alto_flute.instrument_name
+                    'alto flute'
 
             Returns string.
             '''
@@ -124,23 +148,35 @@ class AltoFlute(Instrument):
         def fget(self):
             r'''Gets and sets instrument name markup.
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.instrument_name_markup
-                Markup(('Alto flute',))
+                Gets property:
 
-            ::
+                ::
 
-                >>> markup = markuptools.Markup('Flauto contralto')
-                >>> alto_flute.instrument_name_markup = markup
-                >>> alto_flute.instrument_name_markup
-                Markup(('Flauto contralto',))
+                    >>> alto_flute.instrument_name_markup
+                    Markup(('Alto flute',))
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.instrument_name_markup = None
-                >>> alto_flute.instrument_name_markup
-                Markup(('Alto flute',))
+                Sets property:
+
+                ::
+
+                    >>> markup = markuptools.Markup('Flauto contralto')
+                    >>> alto_flute.instrument_name_markup = markup
+                    >>> alto_flute.instrument_name_markup
+                    Markup(('Flauto contralto',))
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> alto_flute.instrument_name_markup = None
+                    >>> alto_flute.instrument_name_markup
+                    Markup(('Alto flute',))
 
             Returns markup.
             '''
@@ -154,34 +190,46 @@ class AltoFlute(Instrument):
         def fget(self):
             r"""Gets and sets pitch range.
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.pitch_range
-                PitchRange('[G3, G6]')
+                Gets property:
 
-            ::
+                ::
 
-                >>> chord = Chord("<c' d'>1")
-                >>> start_pitch = alto_flute.pitch_range.start_pitch
-                >>> chord[0].written_pitch = start_pitch
-                >>> stop_pitch = alto_flute.pitch_range.stop_pitch
-                >>> chord[1].written_pitch = stop_pitch
-                >>> voice = Voice([chord])
-                >>> staff = Staff([voice])
-                >>> staff.override.time_signature.stencil = False
-                >>> show(staff) # doctest: +SKIP
+                    >>> alto_flute.pitch_range
+                    PitchRange('[G3, G6]')
 
-            ::
+                ::
 
-                >>> alto_flute.pitch_range = '[G3, C7]'
-                >>> alto_flute.pitch_range
-                PitchRange('[G3, C7]')
+                    >>> chord = Chord("<c' d'>1")
+                    >>> start_pitch = alto_flute.pitch_range.start_pitch
+                    >>> chord[0].written_pitch = start_pitch
+                    >>> stop_pitch = alto_flute.pitch_range.stop_pitch
+                    >>> chord[1].written_pitch = stop_pitch
+                    >>> voice = Voice([chord])
+                    >>> staff = Staff([voice])
+                    >>> staff.override.time_signature.stencil = False
+                    >>> show(staff) # doctest: +SKIP
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.pitch_range = None
-                >>> alto_flute.pitch_range
-                PitchRange('[G3, G6]')
+                Sets property:
+
+                ::
+
+                    >>> alto_flute.pitch_range = '[G3, C7]'
+                    >>> alto_flute.pitch_range
+                    PitchRange('[G3, C7]')
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> alto_flute.pitch_range = None
+                    >>> alto_flute.pitch_range
+                    PitchRange('[G3, G6]')
 
             Returns pitch range.
             """
@@ -195,22 +243,34 @@ class AltoFlute(Instrument):
         def fget(self):
             r'''Gets and sets short instrument name.
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.short_instrument_name
-                'alt. fl.'
-    
-            ::
+                Gets property:
+            
+                ::
 
-                >>> alto_flute.short_instrument_name = 'fl. contr.'
-                >>> alto_flute.short_instrument_name
-                'fl. contr.'
+                    >>> alto_flute.short_instrument_name
+                    'alt. fl.'
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.short_instrument_name = None
-                >>> alto_flute.short_instrument_name
-                'alt. fl.'
+                Sets property:
+        
+                ::
+
+                    >>> alto_flute.short_instrument_name = 'fl. contr.'
+                    >>> alto_flute.short_instrument_name
+                    'fl. contr.'
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> alto_flute.short_instrument_name = None
+                    >>> alto_flute.short_instrument_name
+                    'alt. fl.'
 
             Returns string.
             '''
@@ -224,23 +284,35 @@ class AltoFlute(Instrument):
         def fget(self):
             r'''Gets and sets short instrument name markup.
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.short_instrument_name_markup
-                Markup(('Alt. fl.',))
+                Gets property:
 
-            ::
+                ::
 
-                >>> markup = markuptools.Markup('Fl. contr.')
-                >>> alto_flute.short_instrument_name_markup = markup
-                >>> alto_flute.short_instrument_name_markup
-                Markup(('Fl. contr.',))
+                    >>> alto_flute.short_instrument_name_markup
+                    Markup(('Alt. fl.',))
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.short_instrument_name_markup = None
-                >>> alto_flute.short_instrument_name_markup
-                Markup(('Alt. fl.',))
+                Sets property:
+
+                ::
+
+                    >>> markup = markuptools.Markup('Fl. contr.')
+                    >>> alto_flute.short_instrument_name_markup = markup
+                    >>> alto_flute.short_instrument_name_markup
+                    Markup(('Fl. contr.',))
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> alto_flute.short_instrument_name_markup = None
+                    >>> alto_flute.short_instrument_name_markup
+                    Markup(('Alt. fl.',))
 
             Returns markup.
             '''
@@ -254,31 +326,43 @@ class AltoFlute(Instrument):
         def fget(self):
             r'''Gets and sets sounding pitch of written middle C.
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.sounding_pitch_of_written_middle_c
-                NamedPitch('g')
+                Gets property:
 
-            ::
+                ::
 
-                >>> pitch = alto_flute.sounding_pitch_of_written_middle_c
-                >>> note = Note(pitch, Duration(1))
-                >>> voice = Voice([note])
-                >>> staff = Staff([voice])
-                >>> staff.override.time_signature.stencil = False
-                >>> show(staff) # doctest: +SKIP
+                    >>> alto_flute.sounding_pitch_of_written_middle_c
+                    NamedPitch('g')
 
-            ::
+                ::
 
-                >>> alto_flute.sounding_pitch_of_written_middle_c = 'gs'
-                >>> alto_flute.sounding_pitch_of_written_middle_c
-                NamedPitch('gs')
+                    >>> pitch = alto_flute.sounding_pitch_of_written_middle_c
+                    >>> note = Note(pitch, Duration(1))
+                    >>> voice = Voice([note])
+                    >>> staff = Staff([voice])
+                    >>> staff.override.time_signature.stencil = False
+                    >>> show(staff) # doctest: +SKIP
 
-            ::
+            ..  container:: example
 
-                >>> alto_flute.sounding_pitch_of_written_middle_c = None
-                >>> alto_flute.sounding_pitch_of_written_middle_c
-                NamedPitch('g')
+                Sets property:
+
+                ::
+
+                    >>> alto_flute.sounding_pitch_of_written_middle_c = 'gs'
+                    >>> alto_flute.sounding_pitch_of_written_middle_c
+                    NamedPitch('gs')
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> alto_flute.sounding_pitch_of_written_middle_c = None
+                    >>> alto_flute.sounding_pitch_of_written_middle_c
+                    NamedPitch('g')
 
             Returns named pitch.
             '''
@@ -292,39 +376,47 @@ class AltoFlute(Instrument):
     def storage_format(self):
         r'''Alto flute storage format.
 
-        ::
+        ..  container:: example
 
-            >>> alto_flute = instrumenttools.AltoFlute()
-            >>> print alto_flute.storage_format
-            instrumenttools.AltoFlute()
+            Without customization:
 
-        ::
+            ::
 
-            >>> custom = instrumenttools.AltoFlute()
-            >>> custom.instrument_name = 'flauto contralto'
-            >>> markup = markuptools.Markup('Flauto contralto')
-            >>> custom.instrument_name_markup = markup
-            >>> custom.short_instrument_name = 'fl. contr.'
-            >>> markup = markuptools.Markup('Fl. contr.')
-            >>> custom.short_instrument_name_markup = markup
-            >>> custom.pitch_range = '[G3, C7]'
+                >>> alto_flute = instrumenttools.AltoFlute()
+                >>> print alto_flute.storage_format
+                instrumenttools.AltoFlute()
 
-        ::
+        ..  container:: example
 
-            >>> print custom.storage_format
-            instrumenttools.AltoFlute(
-                instrument_name='flauto contralto',
-                instrument_name_markup=markuptools.Markup((
-                    'Flauto contralto',
-                    )),
-                short_instrument_name='fl. contr.',
-                short_instrument_name_markup=markuptools.Markup((
-                    'Fl. contr.',
-                    )),
-                pitch_range=pitchtools.PitchRange(
-                    '[G3, C7]'
+            With customization:
+
+            ::
+
+                >>> custom = instrumenttools.AltoFlute()
+                >>> custom.instrument_name = 'flauto contralto'
+                >>> markup = markuptools.Markup('Flauto contralto')
+                >>> custom.instrument_name_markup = markup
+                >>> custom.short_instrument_name = 'fl. contr.'
+                >>> markup = markuptools.Markup('Fl. contr.')
+                >>> custom.short_instrument_name_markup = markup
+                >>> custom.pitch_range = '[G3, C7]'
+
+            ::
+
+                >>> print custom.storage_format
+                instrumenttools.AltoFlute(
+                    instrument_name='flauto contralto',
+                    instrument_name_markup=markuptools.Markup((
+                        'Flauto contralto',
+                        )),
+                    short_instrument_name='fl. contr.',
+                    short_instrument_name_markup=markuptools.Markup((
+                        'Fl. contr.',
+                        )),
+                    pitch_range=pitchtools.PitchRange(
+                        '[G3, C7]'
+                        )
                     )
-                )
 
         Returns string.
         '''

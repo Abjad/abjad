@@ -139,7 +139,7 @@ class Performer(AbjadObject):
             ('mezzo-soprano', 'ms.')
             ('oboist', 'ob.')
             ('pianist', 'pf.')
-            ('saxophonist', 'alto sax.')
+            ('saxophonist', 'alt. sax.')
             ('soprano', 'sop.')
             ('tenor', 'ten.')
             ('trombonist', 'trb.')

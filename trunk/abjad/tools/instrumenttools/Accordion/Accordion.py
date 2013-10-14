@@ -72,36 +72,48 @@ class Accordion(Instrument):
         def fget(self):
             r'''Gets and sets allowable clefs.
 
-            ::
+            ..  container:: example
 
-                >>> accordion.allowable_clefs
-                ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
+                Gets property:
 
-            ::
+                ::
 
-                >>> import copy
-                >>> skips = []
-                >>> for clef in accordion.allowable_clefs:
-                ...     skip = skiptools.Skip((1, 8))
-                ...     clef = copy.copy(clef)
-                ...     clef = clef.attach(skip)
-                ...     skips.append(skip)
-                >>> staff = Staff(skips)
-                >>> staff.override.clef.full_size_change = True
-                >>> staff.override.time_signature.stencil = False
-                >>> show(staff) # doctest: +SKIP
+                    >>> accordion.allowable_clefs
+                    ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
 
-            ::
+                ::
 
-                >>> accordion.allowable_clefs = ['treble']
-                >>> accordion.allowable_clefs
-                ClefMarkInventory([ClefMark('treble')])
+                    >>> import copy
+                    >>> skips = []
+                    >>> for clef in accordion.allowable_clefs:
+                    ...     skip = skiptools.Skip((1, 8))
+                    ...     clef = copy.copy(clef)
+                    ...     clef = clef.attach(skip)
+                    ...     skips.append(skip)
+                    >>> staff = Staff(skips)
+                    >>> staff.override.clef.full_size_change = True
+                    >>> staff.override.time_signature.stencil = False
+                    >>> show(staff) # doctest: +SKIP
 
-            ::
+            ..  container:: example
 
-                >>> accordion.allowable_clefs = None
-                >>> accordion.allowable_clefs
-                ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
+                Sets property:
+
+                ::
+
+                    >>> accordion.allowable_clefs = ['treble']
+                    >>> accordion.allowable_clefs
+                    ClefMarkInventory([ClefMark('treble')])
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> accordion.allowable_clefs = None
+                    >>> accordion.allowable_clefs
+                    ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
 
             Returns clef inventory.
             '''
@@ -115,22 +127,34 @@ class Accordion(Instrument):
         def fget(self):
             r'''Gets and sets instrument name.
 
-            ::
+            ..  container:: example
 
-                >>> accordion.instrument_name
-                'accordion'
+                Gets property:
 
-            ::
+                ::
 
-                >>> accordion.instrument_name = 'fisarmonica'
-                >>> accordion.instrument_name
-                'fisarmonica'
+                    >>> accordion.instrument_name
+                    'accordion'
 
-            ::
+            ..  container:: example
 
-                >>> accordion.instrument_name = None
-                >>> accordion.instrument_name
-                'accordion'
+                Sets property:
+
+                ::
+
+                    >>> accordion.instrument_name = 'fisarmonica'
+                    >>> accordion.instrument_name
+                    'fisarmonica'
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> accordion.instrument_name = None
+                    >>> accordion.instrument_name
+                    'accordion'
 
             Returns string.
             '''
@@ -144,23 +168,35 @@ class Accordion(Instrument):
         def fget(self):
             r'''Gets and sets instrument name markup.
 
-            ::
+            ..  container:: example
 
-                >>> accordion.instrument_name_markup
-                Markup(('Accordion',))
+                Gets property:
 
-            ::
+                ::
 
-                >>> markup = markuptools.Markup('Fisarmonica')
-                >>> accordion.instrument_name_markup = markup
-                >>> accordion.instrument_name_markup
-                Markup(('Fisarmonica',))
+                    >>> accordion.instrument_name_markup
+                    Markup(('Accordion',))
 
-            ::
+            ..  container:: example
 
-                >>> accordion.instrument_name_markup = None
-                >>> accordion.instrument_name_markup
-                Markup(('Accordion',))
+                Sets property:
+
+                ::
+
+                    >>> markup = markuptools.Markup('Fisarmonica')
+                    >>> accordion.instrument_name_markup = markup
+                    >>> accordion.instrument_name_markup
+                    Markup(('Fisarmonica',))
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> accordion.instrument_name_markup = None
+                    >>> accordion.instrument_name_markup
+                    Markup(('Accordion',))
 
             Returns markup.
             '''
@@ -174,35 +210,47 @@ class Accordion(Instrument):
         def fget(self):
             r"""Gets and sets pitch range.
 
-            ::
+            ..  container:: example
 
-                >>> accordion.pitch_range
-                PitchRange('[E1, C8]')
+                Gets property:
 
-            ::
+                ::
 
-                >>> result = scoretools.make_empty_piano_score()
-                >>> score, treble_staff, bass_staff = result
-                >>> note = Note("c'1")
-                >>> note.written_pitch = accordion.pitch_range.start_pitch
-                >>> bass_staff.append(note)
-                >>> note = Note("c'1")
-                >>> note.written_pitch = accordion.pitch_range.stop_pitch
-                >>> treble_staff.append(note)
-                >>> score.override.time_signature.stencil = False
-                >>> show(score) # doctest: +SKIP
+                    >>> accordion.pitch_range
+                    PitchRange('[E1, C8]')
 
-            ::
+                ::
 
-                >>> accordion.pitch_range = '[C2, C6]'
-                >>> accordion.pitch_range
-                PitchRange('[C2, C6]')
+                    >>> result = scoretools.make_empty_piano_score()
+                    >>> score, treble_staff, bass_staff = result
+                    >>> note = Note("c'1")
+                    >>> note.written_pitch = accordion.pitch_range.start_pitch
+                    >>> bass_staff.append(note)
+                    >>> note = Note("c'1")
+                    >>> note.written_pitch = accordion.pitch_range.stop_pitch
+                    >>> treble_staff.append(note)
+                    >>> score.override.time_signature.stencil = False
+                    >>> show(score) # doctest: +SKIP
 
-            ::
+            ..  container:: example
 
-                >>> accordion.pitch_range = None
-                >>> accordion.pitch_range
-                PitchRange('[E1, C8]')
+                Sets property:
+
+                ::
+
+                    >>> accordion.pitch_range = '[C2, C6]'
+                    >>> accordion.pitch_range
+                    PitchRange('[C2, C6]')
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> accordion.pitch_range = None
+                    >>> accordion.pitch_range
+                    PitchRange('[E1, C8]')
 
             Returns pitch range.
             """
@@ -216,22 +264,34 @@ class Accordion(Instrument):
         def fget(self):
             r'''Gets and sets short instrument name.
 
-            ::
+            ..  container:: example
 
-                >>> accordion.short_instrument_name
-                'acc.'
-    
-            ::
+                Gets property:
 
-                >>> accordion.short_instrument_name = 'fis.'
-                >>> accordion.short_instrument_name
-                'fis.'
+                ::
 
-            ::
+                    >>> accordion.short_instrument_name
+                    'acc.'
 
-                >>> accordion.short_instrument_name = None
-                >>> accordion.short_instrument_name
-                'acc.'
+            ..  container:: example
+
+                Sets property:
+        
+                ::
+
+                    >>> accordion.short_instrument_name = 'fis.'
+                    >>> accordion.short_instrument_name
+                    'fis.'
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> accordion.short_instrument_name = None
+                    >>> accordion.short_instrument_name
+                    'acc.'
 
             Returns string.
             '''
@@ -245,23 +305,35 @@ class Accordion(Instrument):
         def fget(self):
             r'''Gets and sets short instrument name markup.
 
-            ::
+            ..  container:: example
 
-                >>> accordion.short_instrument_name_markup
-                Markup(('Acc.',))
+                Gets property:
 
-            ::
+                ::
 
-                >>> markup = markuptools.Markup('fis.')
-                >>> accordion.short_instrument_name_markup = markup
-                >>> accordion.short_instrument_name_markup
-                Markup(('fis.',))
+                    >>> accordion.short_instrument_name_markup
+                    Markup(('Acc.',))
 
-            ::
+            ..  container:: example
 
-                >>> accordion.short_instrument_name_markup = None
-                >>> accordion.short_instrument_name_markup
-                Markup(('Acc.',))
+                Sets property:
+
+                ::
+
+                    >>> markup = markuptools.Markup('fis.')
+                    >>> accordion.short_instrument_name_markup = markup
+                    >>> accordion.short_instrument_name_markup
+                    Markup(('fis.',))
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> accordion.short_instrument_name_markup = None
+                    >>> accordion.short_instrument_name_markup
+                    Markup(('Acc.',))
 
             Returns markup.
             '''
@@ -275,30 +347,42 @@ class Accordion(Instrument):
         def fget(self):
             r'''Gets and sets sounding pitch of written middle C.
 
-            ::
+            ..  container:: example
 
-                >>> accordion.sounding_pitch_of_written_middle_c
-                NamedPitch("c'")
+                Gets property:
 
-            ::
+                ::
 
-                >>> pitch = accordion.sounding_pitch_of_written_middle_c
-                >>> note = Note(pitch, Duration(1))
-                >>> staff = Staff([note])
-                >>> staff.override.time_signature.stencil = False
-                >>> show(staff) # doctest: +SKIP
+                    >>> accordion.sounding_pitch_of_written_middle_c
+                    NamedPitch("c'")
 
-            ::
+                ::
 
-                >>> accordion.sounding_pitch_of_written_middle_c = 'cs'
-                >>> accordion.sounding_pitch_of_written_middle_c
-                NamedPitch('cs')
+                    >>> pitch = accordion.sounding_pitch_of_written_middle_c
+                    >>> note = Note(pitch, Duration(1))
+                    >>> staff = Staff([note])
+                    >>> staff.override.time_signature.stencil = False
+                    >>> show(staff) # doctest: +SKIP
 
-            ::
+            ..  container:: example
 
-                >>> accordion.sounding_pitch_of_written_middle_c = None
-                >>> accordion.sounding_pitch_of_written_middle_c
-                NamedPitch("c'")
+                Sets property:
+
+                ::
+
+                    >>> accordion.sounding_pitch_of_written_middle_c = 'cs'
+                    >>> accordion.sounding_pitch_of_written_middle_c
+                    NamedPitch('cs')
+
+            ..  container:: example
+
+                Restores default:
+
+                ::
+
+                    >>> accordion.sounding_pitch_of_written_middle_c = None
+                    >>> accordion.sounding_pitch_of_written_middle_c
+                    NamedPitch("c'")
 
             Returns named pitch.
             '''
@@ -311,48 +395,56 @@ class Accordion(Instrument):
     def storage_format(self):
         r'''Accordion storage format.
 
-        ::
+        ..  container:: example
 
-            >>> accordion = instrumenttools.Accordion()
-            >>> print accordion.storage_format
-            instrumenttools.Accordion()
+            Without customization:
 
-        ::
+            ::
 
-            >>> custom = instrumenttools.Accordion()
-            >>> custom.instrument_name = 'fisarmonica'
-            >>> markup = markuptools.Markup('Fisarmonica')
-            >>> custom.instrument_name_markup = markup
-            >>> custom.short_instrument_name = 'fis.'
-            >>> markup = markuptools.Markup('Fis.')
-            >>> custom.short_instrument_name_markup = markup
-            >>> custom.allowable_clefs = ['treble']
-            >>> custom.pitch_range = '[C4, C6]'
-            >>> custom.sounding_pitch_of_written_middle_c = "c''"
+                >>> accordion = instrumenttools.Accordion()
+                >>> print accordion.storage_format
+                instrumenttools.Accordion()
 
-        ::
+        ..  container:: example
 
-            >>> print custom.storage_format
-            instrumenttools.Accordion(
-                instrument_name='fisarmonica',
-                instrument_name_markup=markuptools.Markup((
-                    'Fisarmonica',
-                    )),
-                short_instrument_name='fis.',
-                short_instrument_name_markup=markuptools.Markup((
-                    'Fis.',
-                    )),
-                allowable_clefs=contexttools.ClefMarkInventory([
-                    contexttools.ClefMark(
-                        'treble',
-                        target_context=stafftools.Staff
-                        )
-                    ]),
-                pitch_range=pitchtools.PitchRange(
-                    '[C4, C6]'
-                    ),
-                sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''")
-                )
+            With customization:
+
+            ::
+
+                >>> custom = instrumenttools.Accordion()
+                >>> custom.instrument_name = 'fisarmonica'
+                >>> markup = markuptools.Markup('Fisarmonica')
+                >>> custom.instrument_name_markup = markup
+                >>> custom.short_instrument_name = 'fis.'
+                >>> markup = markuptools.Markup('Fis.')
+                >>> custom.short_instrument_name_markup = markup
+                >>> custom.allowable_clefs = ['treble']
+                >>> custom.pitch_range = '[C4, C6]'
+                >>> custom.sounding_pitch_of_written_middle_c = "c''"
+
+            ::
+
+                >>> print custom.storage_format
+                instrumenttools.Accordion(
+                    instrument_name='fisarmonica',
+                    instrument_name_markup=markuptools.Markup((
+                        'Fisarmonica',
+                        )),
+                    short_instrument_name='fis.',
+                    short_instrument_name_markup=markuptools.Markup((
+                        'Fis.',
+                        )),
+                    allowable_clefs=contexttools.ClefMarkInventory([
+                        contexttools.ClefMark(
+                            'treble',
+                            target_context=stafftools.Staff
+                            )
+                        ]),
+                    pitch_range=pitchtools.PitchRange(
+                        '[C4, C6]'
+                        ),
+                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''")
+                    )
 
         Returns string.
         '''
