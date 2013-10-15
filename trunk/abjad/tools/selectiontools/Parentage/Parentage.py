@@ -96,12 +96,6 @@ class Parentage(SimultaneousSelection):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _id_string(component):
-        lhs = component._class_name
-        rhs = getattr(component, 'name', None) or id(component)
-        return '{}-{!r}'.format(lhs, rhs)
-
     def _get_governor(self):
         from abjad.tools import containertools
         from abjad.tools import componenttools
@@ -114,6 +108,12 @@ class Parentage(SimultaneousSelection):
                     component._parent.is_simultaneous:
                     return component
 
+    @staticmethod
+    def _id_string(component):
+        lhs = component._class_name
+        rhs = getattr(component, 'name', None) or id(component)
+        return '{}-{!r}'.format(lhs, rhs)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -121,6 +121,23 @@ class Parentage(SimultaneousSelection):
         r'''The component from which the selection was derived.
         '''
         return self._component
+
+    @property
+    def depth(self):
+        r'''Length of proper parentage of component.
+
+        Return nonnegative integer.
+        '''
+        return len(self[1:])
+
+    @property
+    def is_orphan(self):
+        r'''True when component has no parent.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        return self.parent is None
 
     @property
     def logical_voice_indicator(self):
@@ -189,23 +206,6 @@ class Parentage(SimultaneousSelection):
                 if not indicator['score']:
                     indicator['score'] = self._id_string(component)
         return indicator
-
-    @property
-    def depth(self):
-        r'''Length of proper parentage of component.
-
-        Return nonnegative integer.
-        '''
-        return len(self[1:])
-
-    @property
-    def is_orphan(self):
-        r'''True when component has no parent.
-        Otherwise false.
-
-        Return boolean.
-        '''
-        return self.parent is None
 
     @property
     def parent(self):

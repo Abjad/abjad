@@ -191,6 +191,11 @@ class Tuplet(Container):
 
     ### PRIVATE METHODS ###
 
+    def _extract(self, scale_contents=False):
+        if scale_contents:
+            self._scale_contents(self.multiplier)
+        return super(Tuplet, self)._extract()
+
     # TODO: hoist to Tuplet and make work for all tuplet instances
     def _fix(self):
         from abjad.tools import leaftools
@@ -208,32 +213,32 @@ class Tuplet(Container):
                 component._set_duration(new_written_duration)
 
     def _format_after_slot(self, format_contributions):
-        r'''Tuple of format contributions to appear 
+        r'''Tuple of format contributions to appear
         immediately after self closing.
         '''
         result = []
-        result.append(('grob reverts', 
+        result.append(('grob reverts',
             format_contributions.get('grob reverts', [])))
         result.append(('lilypond command marks',
             format_contributions.get(
                 'after', {}).get('lilypond command marks', [])))
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('after', {}).get('comments', [])))
         return tuple(result)
 
     def _format_before_slot(self, format_contributions):
         result = []
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('before', {}).get('comments', [])))
         result.append(('lilypond command marks',
             format_contributions.get(
                 'before', {}).get('lilypond command marks', [])))
-        result.append(('grob overrides', 
+        result.append(('grob overrides',
             format_contributions.get('grob overrides', [])))
         return tuple(result)
 
     def _format_close_brackets_slot(self, format_contributions):
-        r'''Tuple of format contributions used to 
+        r'''Tuple of format contributions used to
         generate self closing.
         '''
         result = []
@@ -242,14 +247,14 @@ class Tuplet(Container):
         return tuple(result)
 
     def _format_closing_slot(self, format_contributions):
-        r'''Tuple of format contributions to appear 
+        r'''Tuple of format contributions to appear
         immediately before self closing.
         '''
         result = []
         result.append(('lilypond command marks',
             format_contributions.get(
                 'closing', {}).get('lilypond command marks', [])))
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('closing', {}).get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
 
@@ -288,17 +293,12 @@ class Tuplet(Container):
 
     def _format_opening_slot(self, format_contributions):
         result = []
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('opening', {}).get('comments', [])))
         result.append(('lilypond command marks',
             format_contributions.get(
                 'opening', {}).get('lilypond command marks', [])))
         return self._format_slot_contributions_with_indent(result)
-
-    def _extract(self, scale_contents=False):
-        if scale_contents:
-            self._scale_contents(self.multiplier)
-        return super(Tuplet, self)._extract()
 
     def _scale(self, multiplier):
         from abjad.tools import leaftools
@@ -336,7 +336,7 @@ class Tuplet(Container):
 
 
                 ::
-                    
+
                     >>> tuplet.force_fraction is None
                     True
 
@@ -554,7 +554,7 @@ class Tuplet(Container):
                             f'4
                         }
                     }
-    
+
                 ::
 
                     >>> staff[0].is_invisible = True
@@ -667,7 +667,7 @@ class Tuplet(Container):
                     >>> show(tuplet) # doctest: +SKIP
 
                 ..  doctest::
-                
+
                     >>> f(tuplet)
                     \tweak #'text #tuplet-number::calc-fraction-text
                     \times 4/3 {
@@ -766,322 +766,6 @@ class Tuplet(Container):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_leaf_and_ratio(leaf, ratio, is_diminution=True):
-        r'''Makes tuplet from `leaf` and `ratio`.
-
-        ::
-
-            >>> note = Note("c'8.")
-
-        ..  container:: example
-
-            **Example 1a.** Change leaf to augmented tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     mathtools.Ratio(1), 
-                ...     is_diminution=False,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                {
-                    c'8.
-                }
-
-        ..  container:: example
-
-            **Example 1b.** Change leaf to augmented tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1, 2], 
-                ...     is_diminution=False,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                {
-                    c'16
-                    c'8
-                }
-
-        ..  container:: example
-
-            **Example 1c.** Change leaf to augmented tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     mathtools.Ratio(1, 2, 2), 
-                ...     is_diminution=False,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 8/5 {
-                    c'64.
-                    c'32.
-                    c'32.
-                }
-
-        ..  container:: example
-
-            **Example 1d.** Change leaf to augmented tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1, 2, 2, 3], 
-                ...     is_diminution=False,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 3/2 {
-                    c'64
-                    c'32
-                    c'32
-                    c'32.
-                }
-
-        ..  container:: example
-
-            **Example 1e.** Change leaf to augmented tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1, 2, 2, 3, 3], 
-                ...     is_diminution=False,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 12/11 {
-                    c'64
-                    c'32
-                    c'32
-                    c'32.
-                    c'32.
-                }
-
-        ..  container:: example
-
-            **Example 1f.** Change leaf to augmented tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     mathtools.Ratio(1, 2, 2, 3, 3, 4), 
-                ...     is_diminution=False,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 8/5 {
-                    c'128
-                    c'64
-                    c'64
-                    c'64.
-                    c'64.
-                    c'32
-                }
-
-        ..  container:: example
-
-            **Example 2a.** Change leaf to diminished tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1], 
-                ...     is_diminution=True,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                {
-                    c'8.
-                }
-
-        ..  container:: example
-
-            **Example 2b.** Change leaf to diminished tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1, 2], 
-                ...     is_diminution=True,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                {
-                    c'16
-                    c'8
-                }
-
-        ..  container:: example
-
-            **Example 2c.** Change leaf to diminished tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1, 2, 2], 
-                ...     is_diminution=True,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                \times 4/5 {
-                    c'32.
-                    c'16.
-                    c'16.
-                }
-                
-        ..  container:: example
-
-            **Example 2d.** Change leaf to diminished tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1, 2, 2, 3], 
-                ...     is_diminution=True,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 3/4 {
-                    c'32
-                    c'16
-                    c'16
-                    c'16.
-                }
-
-        ..  container:: example
-
-            **Example 2e.** Change leaf to diminished tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1, 2, 2, 3, 3], 
-                ...     is_diminution=True,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \times 6/11 {
-                    c'32
-                    c'16
-                    c'16
-                    c'16.
-                    c'16.
-                }
-
-        ..  container:: example
-
-            **Example 2f.** Change leaf to diminished tuplets 
-            with `ratio`:
-
-            ::
-
-                >>> tuplet = Tuplet.from_leaf_and_ratio(
-                ...     note,
-                ...     [1, 2, 2, 3, 3, 4], 
-                ...     is_diminution=True,
-                ...     )
-                >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(tuplet) 
-                \times 4/5 {
-                    c'64
-                    c'32
-                    c'32
-                    c'32.
-                    c'32.
-                    c'16
-                }
-
-        Returns tuplet.
-        '''
-        tuplet = leaf._to_tuplet_with_ratio(
-            ratio, 
-            is_diminution=is_diminution,
-            )
-        return tuplet
-
-    @staticmethod
     def from_duration_and_ratio(
         duration,
         ratio,
@@ -1093,17 +777,17 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 1.** Make augmented tuplet from `duration` and 
+            **Example 1.** Make augmented tuplet from `duration` and
             `ratio` and avoid dots.
 
-            Make tupletted leaves strictly without dots when all 
+            Make tupletted leaves strictly without dots when all
             `ratio` equal ``1``:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(1, 1, 1, -1, -1), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(1, 1, 1, -1, -1),
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
@@ -1112,7 +796,7 @@ class Tuplet(Container):
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
-               
+
                 >>> f(measure)
                 {
                     \time 3/16
@@ -1126,14 +810,14 @@ class Tuplet(Container):
                     }
                 }
 
-            Allow tupletted leaves to return with dots when some `ratio` 
+            Allow tupletted leaves to return with dots when some `ratio`
             do not equal ``1``:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(1, -2, -2, 3, 3), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(1, -2, -2, 3, 3),
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
@@ -1162,8 +846,8 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(5, -1, 5), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(5, -1, 5),
                 ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=False,
@@ -1189,14 +873,14 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Make augmented tuplet from `duration` and 
+            **Example 2.** Make augmented tuplet from `duration` and
             `ratio` and encourage dots:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(1, 1, 1, -1, -1), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(1, 1, 1, -1, -1),
                 ...     avoid_dots=False,
                 ...     is_diminution=False,
                 ...     )
@@ -1225,8 +909,8 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(5, -1, 5), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(5, -1, 5),
                 ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=False,
@@ -1250,17 +934,17 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 3.** Make diminished tuplet from `duration` and nonzero 
+            **Example 3.** Make diminished tuplet from `duration` and nonzero
             integer `ratio`.
 
-            Make tupletted leaves strictly without dots when all 
+            Make tupletted leaves strictly without dots when all
             `ratio` equal ``1``:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(1, 1, 1, -1, -1), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(1, 1, 1, -1, -1),
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
@@ -1283,14 +967,14 @@ class Tuplet(Container):
                     }
                 }
 
-            Allow tupletted leaves to return with dots when some `ratio` 
+            Allow tupletted leaves to return with dots when some `ratio`
             do not equal ``1``:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(1, -2, -2, 3, 3), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(1, -2, -2, 3, 3),
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
@@ -1319,8 +1003,8 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(5, -1, 5), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(5, -1, 5),
                 ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=True,
@@ -1345,15 +1029,15 @@ class Tuplet(Container):
                 }
 
         ..  container:: example
-        
-            **Example 4.** Make diminished tuplet from `duration` and 
+
+            **Example 4.** Make diminished tuplet from `duration` and
             `ratio` and encourage dots:
 
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(1, 1, 1, -1, -1), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(1, 1, 1, -1, -1),
                 ...     avoid_dots=False,
                 ...     is_diminution=True,
                 ...     )
@@ -1380,8 +1064,8 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
-                ...     Duration(3, 16), 
-                ...     mathtools.Ratio(5, -1, 5), 
+                ...     Duration(3, 16),
+                ...     mathtools.Ratio(5, -1, 5),
                 ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=True,
@@ -1434,16 +1118,16 @@ class Tuplet(Container):
         # make tuplet leaves
         try:
             notes = [
-                notetools.Note(0, x) if 0 < x else resttools.Rest(abs(x)) 
+                notetools.Note(0, x) if 0 < x else resttools.Rest(abs(x))
                 for x in written_durations
                 ]
         except AssignabilityError:
             denominator = duration._denominator
-            note_durations = [durationtools.Duration(x, denominator) 
+            note_durations = [durationtools.Duration(x, denominator)
                 for x in ratio]
-            pitches = [None if note_duration < 0 else 0 
+            pitches = [None if note_duration < 0 else 0
                 for note_duration in note_durations]
-            leaf_durations = [abs(note_duration) 
+            leaf_durations = [abs(note_duration)
                 for note_duration in note_durations]
             notes = leaftools.make_leaves(
                 pitches,
@@ -1466,8 +1150,324 @@ class Tuplet(Container):
         return tuplet
 
     @staticmethod
+    def from_leaf_and_ratio(leaf, ratio, is_diminution=True):
+        r'''Makes tuplet from `leaf` and `ratio`.
+
+        ::
+
+            >>> note = Note("c'8.")
+
+        ..  container:: example
+
+            **Example 1a.** Change leaf to augmented tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     mathtools.Ratio(1),
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                {
+                    c'8.
+                }
+
+        ..  container:: example
+
+            **Example 1b.** Change leaf to augmented tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2],
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                {
+                    c'16
+                    c'8
+                }
+
+        ..  container:: example
+
+            **Example 1c.** Change leaf to augmented tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     mathtools.Ratio(1, 2, 2),
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 8/5 {
+                    c'64.
+                    c'32.
+                    c'32.
+                }
+
+        ..  container:: example
+
+            **Example 1d.** Change leaf to augmented tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3],
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/2 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                }
+
+        ..  container:: example
+
+            **Example 1e.** Change leaf to augmented tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3, 3],
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 12/11 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                    c'32.
+                }
+
+        ..  container:: example
+
+            **Example 1f.** Change leaf to augmented tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     mathtools.Ratio(1, 2, 2, 3, 3, 4),
+                ...     is_diminution=False,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 8/5 {
+                    c'128
+                    c'64
+                    c'64
+                    c'64.
+                    c'64.
+                    c'32
+                }
+
+        ..  container:: example
+
+            **Example 2a.** Change leaf to diminished tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1],
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                {
+                    c'8.
+                }
+
+        ..  container:: example
+
+            **Example 2b.** Change leaf to diminished tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2],
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                {
+                    c'16
+                    c'8
+                }
+
+        ..  container:: example
+
+            **Example 2c.** Change leaf to diminished tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2],
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 4/5 {
+                    c'32.
+                    c'16.
+                    c'16.
+                }
+
+        ..  container:: example
+
+            **Example 2d.** Change leaf to diminished tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3],
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/4 {
+                    c'32
+                    c'16
+                    c'16
+                    c'16.
+                }
+
+        ..  container:: example
+
+            **Example 2e.** Change leaf to diminished tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3, 3],
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 6/11 {
+                    c'32
+                    c'16
+                    c'16
+                    c'16.
+                    c'16.
+                }
+
+        ..  container:: example
+
+            **Example 2f.** Change leaf to diminished tuplets
+            with `ratio`:
+
+            ::
+
+                >>> tuplet = Tuplet.from_leaf_and_ratio(
+                ...     note,
+                ...     [1, 2, 2, 3, 3, 4],
+                ...     is_diminution=True,
+                ...     )
+                >>> measure = Measure((3, 16), [tuplet])
+                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet)
+                \times 4/5 {
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                    c'32.
+                    c'16
+                }
+
+        Returns tuplet.
+        '''
+        tuplet = leaf._to_tuplet_with_ratio(
+            ratio,
+            is_diminution=is_diminution,
+            )
+        return tuplet
+
+    @staticmethod
     def from_nonreduced_ratio_and_nonreduced_fraction(ratio, fraction):
-        r'''Makes tuplet from nonreduced `ratio` and 
+        r'''Makes tuplet from nonreduced `ratio` and
         nonreduced `fraction`.
 
         ..  container:: example
@@ -1496,7 +1496,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example 2.** Make fixed-duration tuplet when 
+            **Example 2.** Make fixed-duration tuplet when
             prolation is necessary:
 
             ::
@@ -1716,8 +1716,8 @@ class Tuplet(Container):
         Duration = durationtools.Duration
         self.force_fraction = True
         durations = [
-            self._contents_duration, 
-            self._preprolated_duration, 
+            self._contents_duration,
+            self._preprolated_duration,
             Duration(1, denominator),
             ]
         duration_pairs = Duration.durations_to_nonreduced_fractions_with_common_denominator(
@@ -1728,7 +1728,7 @@ class Tuplet(Container):
         r'''Change tuplet to fixed-duration tuplet.
 
         ..  container:: example
-        
+
             **Example:**
 
             ::
@@ -1747,7 +1747,7 @@ class Tuplet(Container):
                 >>> show(new_tuplet) # doctest: +SKIP
 
             ::
-                
+
                 >>> new_tuplet
                 FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
@@ -1764,7 +1764,7 @@ class Tuplet(Container):
         changes diminished tuplets to augmented.
 
         ..  container:: example
-        
+
             **Example 1.** Change augmented tuplet to diminished:
 
             ::

@@ -158,35 +158,6 @@ class ContiguousSelection(Selection):
                 crossing_spanners.add(spanner)
         return crossing_spanners
 
-    def _get_dominant_spanners(self):
-        r'''Returns spanners that dominate components in selection.
-        Returns set of (spanner, index) pairs.
-        Each (spanner, index) pair gives a spanner which dominates
-        all components in selection together with the start index
-        at which spanner first encounters selection.
-        Use this helper to lift spanners temporarily from components
-        in selection and perform some action to the underlying
-        score tree before reattaching spanners.
-        score components.
-        '''
-        from abjad.tools import selectiontools
-        from abjad.tools import spannertools
-        Selection = selectiontools.Selection
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        receipt = set([])
-        if len(self) == 0:
-            return receipt
-        first, last = self[0], self[-1]
-        start_components = first._get_descendants_starting_with()
-        stop_components = last._get_descendants_stopping_with()
-        stop_components = set(stop_components)
-        for component in start_components:
-            for spanner in component._get_spanners():
-                if set(spanner[:]) & stop_components != set([]):
-                    index = spanner.index(component)
-                    receipt.add((spanner, index))
-        return receipt
-            
     def _fuse(self):
         from abjad.tools import leaftools
         from abjad.tools import measuretools
@@ -296,6 +267,35 @@ class ContiguousSelection(Selection):
             del(dummy_container[:])
         return new_tuplet
 
+    def _get_dominant_spanners(self):
+        r'''Returns spanners that dominate components in selection.
+        Returns set of (spanner, index) pairs.
+        Each (spanner, index) pair gives a spanner which dominates
+        all components in selection together with the start index
+        at which spanner first encounters selection.
+        Use this helper to lift spanners temporarily from components
+        in selection and perform some action to the underlying
+        score tree before reattaching spanners.
+        score components.
+        '''
+        from abjad.tools import selectiontools
+        from abjad.tools import spannertools
+        Selection = selectiontools.Selection
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        receipt = set([])
+        if len(self) == 0:
+            return receipt
+        first, last = self[0], self[-1]
+        start_components = first._get_descendants_starting_with()
+        stop_components = last._get_descendants_stopping_with()
+        stop_components = set(stop_components)
+        for component in start_components:
+            for spanner in component._get_spanners():
+                if set(spanner[:]) & stop_components != set([]):
+                    index = spanner.index(component)
+                    receipt.add((spanner, index))
+        return receipt
+            
     def _give_dominant_spanners(self, recipients):
         r'''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.

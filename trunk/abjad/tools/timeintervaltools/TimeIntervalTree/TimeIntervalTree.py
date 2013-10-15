@@ -407,6 +407,50 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
             parent = node.parent
         return parent
 
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        if not len(self):
+            return ['{}()'.format(self._tools_package_qualified_class_name)]
+        pieces = []
+        pieces.append('{}(['.format(self._tools_package_qualified_class_name))
+        for interval in self:
+            ipieces = interval._get_tools_package_qualified_repr_pieces()
+            if 1 < len(ipieces):
+                for ipiece in ipieces[:-1]:
+                    pieces.append('\t{}'.format(ipiece))
+                pieces.append('\t{},'.format(ipieces[-1]))
+            else:
+                pieces.append('\t{},'.format(ipieces[0]))
+        pieces.append('\t])')
+        return pieces
+
+    def _insert(self, args):
+        from abjad.tools import timeintervaltools
+        def recurse(x):
+            result = []
+            if isinstance(x, timeintervaltools.TimeInterval):
+                result.append(x)
+            elif isinstance(x, timeintervaltools.TimeIntervalAggregateMixin):
+                result.extend(x.intervals)
+            elif isinstance(x, collections.Iterable) and \
+                not isinstance(x, (basestring)):
+                for y in x:
+                    result.extend(recurse(y))
+            return result
+        intervals = recurse([args])
+        for interval in intervals:
+            node = self._find_by_key(interval.start_offset)
+            if node is not None:
+                node.payload.append(interval)
+            else:
+                node = timeintervaltools.TimeIntervalTreeNode(interval.start_offset, interval)
+                node.left = self._sentinel
+                node.right = self._sentinel
+                node.parent = self._sentinel
+                self._insert_node(node)
+        self._update_stop_extrema()
+        self._start = self.earliest_start
+        self._stop = self.latest_stop
+
     def _insert_fixup(self, z):
         while z != self._root and z.parent.red:
             if z.parent.is_left_child:
@@ -508,50 +552,6 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
             return recurse(self._root)
         else:
             return []
-
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        if not len(self):
-            return ['{}()'.format(self._tools_package_qualified_class_name)]
-        pieces = []
-        pieces.append('{}(['.format(self._tools_package_qualified_class_name))
-        for interval in self:
-            ipieces = interval._get_tools_package_qualified_repr_pieces()
-            if 1 < len(ipieces):
-                for ipiece in ipieces[:-1]:
-                    pieces.append('\t{}'.format(ipiece))
-                pieces.append('\t{},'.format(ipieces[-1]))
-            else:
-                pieces.append('\t{},'.format(ipieces[0]))
-        pieces.append('\t])')
-        return pieces
-
-    def _insert(self, args):
-        from abjad.tools import timeintervaltools
-        def recurse(x):
-            result = []
-            if isinstance(x, timeintervaltools.TimeInterval):
-                result.append(x)
-            elif isinstance(x, timeintervaltools.TimeIntervalAggregateMixin):
-                result.extend(x.intervals)
-            elif isinstance(x, collections.Iterable) and \
-                not isinstance(x, (basestring)):
-                for y in x:
-                    result.extend(recurse(y))
-            return result
-        intervals = recurse([args])
-        for interval in intervals:
-            node = self._find_by_key(interval.start_offset)
-            if node is not None:
-                node.payload.append(interval)
-            else:
-                node = timeintervaltools.TimeIntervalTreeNode(interval.start_offset, interval)
-                node.left = self._sentinel
-                node.right = self._sentinel
-                node.parent = self._sentinel
-                self._insert_node(node)
-        self._update_stop_extrema()
-        self._start = self.earliest_start
-        self._stop = self.latest_stop
 
     def _update_stop_extrema(self):
         def recurse(node):

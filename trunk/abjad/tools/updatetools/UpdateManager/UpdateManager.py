@@ -44,29 +44,6 @@ class UpdateManager(AbjadObject):
         return components
 
     @staticmethod
-    def _update_now(
-        component, 
-        offsets=False, 
-        offsets_in_seconds=False, 
-        marks=False,
-        ):
-        if component._is_forbidden_to_update:
-            return
-        state_flags = UpdateManager._get_score_tree_state_flags(component)
-        offsets_are_current = state_flags[0]
-        marks_are_current = state_flags[1]
-        offsets_in_seconds_are_current = state_flags[2]
-        if offsets and not offsets_are_current:
-            UpdateManager._update_all_offsets(component)
-            UpdateManager._update_all_leaf_indices_and_measure_numbers(
-                component)
-        if offsets_in_seconds and not offsets_in_seconds_are_current:
-            UpdateManager._update_all_offsets_in_seconds(component)
-        if marks and not marks_are_current:
-            UpdateManager._update_all_marks(component)
-            UpdateManager._update_all_offsets_in_seconds(component)
-
-    @staticmethod
     def _update_all_leaf_indices_and_measure_numbers(component):
         r'''Call only when updating offsets.
         No separate state flags exist for leaf indices or measure numbers.
@@ -158,3 +135,27 @@ class UpdateManager(AbjadObject):
                 current_duration_in_seconds
         except MissingTempoError:
             pass
+
+    @staticmethod
+    def _update_now(
+        component, 
+        offsets=False, 
+        offsets_in_seconds=False, 
+        marks=False,
+        ):
+        if component._is_forbidden_to_update:
+            return
+        state_flags = UpdateManager._get_score_tree_state_flags(component)
+        offsets_are_current = state_flags[0]
+        marks_are_current = state_flags[1]
+        offsets_in_seconds_are_current = state_flags[2]
+        if offsets and not offsets_are_current:
+            UpdateManager._update_all_offsets(component)
+            UpdateManager._update_all_leaf_indices_and_measure_numbers(
+                component)
+        if offsets_in_seconds and not offsets_in_seconds_are_current:
+            UpdateManager._update_all_offsets_in_seconds(component)
+        if marks and not marks_are_current:
+            UpdateManager._update_all_marks(component)
+            UpdateManager._update_all_offsets_in_seconds(component)
+
