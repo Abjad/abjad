@@ -18,12 +18,12 @@ class AbjadConfiguration(Configuration):
 
         >>> configuration = configurationtools.AbjadConfiguration()
 
-    `AbjadConfiguration` creates the `$home/.abjad/` directory 
+    `AbjadConfiguration` creates the `$home/.abjad/` directory
     on instantiation.
 
-    `AbjadConfiguration` then attempts to read an `abjad.cfg` file in 
+    `AbjadConfiguration` then attempts to read an `abjad.cfg` file in
     that directory and parse the file as a `ConfigObj` configuration.
-    `AbjadConfiguration` generates a default configuration if no file 
+    `AbjadConfiguration` generates a default configuration if no file
     is found.
 
     `AbjadConfiguration` validates the `ConfigObj` instance
@@ -137,7 +137,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> configurationtools.AbjadConfiguration.get_abjad_revision_string() # doctest: +SKIP
+            >>> abjad_configuration.get_abjad_revision_string() # doctest: +SKIP
             '11266'
 
         Returns string.
@@ -153,7 +153,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> configuration.get_abjad_startup_string() # doctest: +SKIP
+            >>> abjad_configuration.get_abjad_startup_string() # doctest: +SKIP
             'Abjad 2.13 (r12069)'
 
         Returns string.
@@ -169,7 +169,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> configurationtools.AbjadConfiguration.get_abjad_version_string()
+            >>> abjad_configuration.get_abjad_version_string()
             '2.13'
 
         Returns string.
@@ -183,11 +183,11 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> configurationtools.AbjadConfiguration.get_lilypond_minimum_version_string() # doctest: +SKIP
+            >>> abjad_configuration.get_lilypond_minimum_version_string() # doctest: +SKIP
             '2.17.0'
 
         This is useful for documentation purposes, where all developers are
-        using the development version of LilyPond, but not necessarily 
+        using the development version of LilyPond, but not necessarily
         the exact same version.
 
         Returns string.
@@ -203,7 +203,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> configurationtools.AbjadConfiguration.get_lilypond_version_string() # doctest: +SKIP
+            >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
             '2.13.61'
 
         Returns string.
@@ -233,7 +233,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> configurationtools.AbjadConfiguration.get_python_version_string() # doctest: +SKIP
+            >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
             '2.6.1'
 
         Returns string.
@@ -247,17 +247,17 @@ class AbjadConfiguration(Configuration):
         python_version_string = python_version_string.strip()
         # return trimmed string
         return python_version_string
-        
+
     @staticmethod
     def get_tab_width():
         r'''Gets tab width.
 
         ::
 
-            >>> configurationtools.AbjadConfiguration.get_tab_width()
+            >>> abjad_configuration.get_tab_width()
             4
 
-        The value is used by various functions that generate or 
+        The value is used by various functions that generate or
         test code in the system.
 
         Returns nonnegative integer.
@@ -270,7 +270,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> configuration.get_text_editor() # doctest: +SKIP
+            >>> abjad_configuration.get_text_editor() # doctest: +SKIP
             'vim'
 
         Returns string.
@@ -290,12 +290,12 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> for x in configuration.list_abjad_environment_variables():
+            >>> for x in abjad_configuration.list_abjad_environment_variables():
             ...     x
 
 
         Abjad environment variables are defined in
-        ``abjad/tools/configurationtools/AbjadConfiguration/AbjadConfiguration.py``.
+        ``abjad/tools/abjad_configuration/AbjadConfiguration.py``.
 
         Returns tuple of zero or more environment variable / setting pairs.
         '''
@@ -312,7 +312,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> configurationtools.AbjadConfiguration.list_package_dependency_versions() # doctest: +SKIP
+            >>> abjad_configuration.list_package_dependency_versions() # doctest: +SKIP
             {'sphinx': '1.1.2', 'py.test': '2.1.2'}
 
         Returns dictionary.
@@ -343,14 +343,14 @@ class AbjadConfiguration(Configuration):
         except ImportError:
             pass
         return dependencies
-        
+
     @staticmethod
     def set_default_accidental_spelling(spelling='mixed'):
         '''Set default accidental spelling to sharps:
 
         ::
 
-            >>> pitchtools.set_default_accidental_spelling('sharps')
+            >>> abjad_configuration.set_default_accidental_spelling('sharps')
 
         ::
 
@@ -361,7 +361,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> pitchtools.set_default_accidental_spelling('flats')
+            >>> abjad_configuration.set_default_accidental_spelling('flats')
 
         ::
 
@@ -372,7 +372,7 @@ class AbjadConfiguration(Configuration):
 
         ::
 
-            >>> pitchtools.set_default_accidental_spelling()
+            >>> abjad_configuration.set_default_accidental_spelling()
 
         ::
 
