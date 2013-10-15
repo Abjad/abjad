@@ -189,4 +189,3 @@ class PitchClassSet(Set):
         '''
         tokens = (pitch_class + expr for pitch_class in self)
         return self.new(tokens=tokens)
-

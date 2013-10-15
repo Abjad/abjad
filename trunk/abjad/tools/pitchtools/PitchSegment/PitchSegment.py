@@ -263,4 +263,3 @@ class PitchSegment(Segment):
                 if middle < left and middle < right:
                     result.append(middle)
         return tuple(result)
-

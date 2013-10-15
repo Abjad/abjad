@@ -158,4 +158,3 @@ class UpdateManager(AbjadObject):
         if marks and not marks_are_current:
             UpdateManager._update_all_marks(component)
             UpdateManager._update_all_offsets_in_seconds(component)
-

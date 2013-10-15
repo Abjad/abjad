@@ -35,4 +35,3 @@ def test_PitchClassSegment_has_duplicates_02():
         skiptools.Skip((1, 4)),
         item_class=pitchtools.NumberedPitchClass,
         ).has_duplicates
-

@@ -378,4 +378,3 @@ class NumberedPitch(Pitch):
         Return integer or float.
         '''
         return self._pitch_number
-

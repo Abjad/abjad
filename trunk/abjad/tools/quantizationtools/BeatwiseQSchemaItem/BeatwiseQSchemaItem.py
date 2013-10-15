@@ -84,4 +84,3 @@ class BeatwiseQSchemaItem(QSchemaItem):
         Return duration or none.
         '''
         return self._beatspan
-

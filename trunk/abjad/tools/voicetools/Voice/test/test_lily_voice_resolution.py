@@ -35,10 +35,12 @@ def test_lily_voice_resolution_01():
             >>
             b'8
             c''8
-        }''',
+        }
+        '''
         )
 
-    r'''LilyPond identifies three separate voices.
+    r'''
+    LilyPond identifies three separate voices.
     LilyPond colors the outer four notes (c'8 d'8 b'8 c''8) red.
     LilyPond colors the inner four notes black.
     LilyPond issues clashing note column warnings for the inner notes.
@@ -84,7 +86,8 @@ def test_lily_voice_resolution_02():
         ''',
         )
 
-    r'''LilyPond colors six notes red and two notes black.
+    r'''
+    LilyPond colors six notes red and two notes black.
     LilyPond identifies two voices.
     '''
 
@@ -102,7 +105,8 @@ def test_lily_voice_resolution_03():
     container[1][0].name = 'voicefoo'
     py.test.raises(AssertionError, 'spannertools.BeamSpanner(container.select_leaves())')
 
-    r'''LilyPond gives unterminated beam warnings.
+    r'''
+    LilyPond gives unterminated beam warnings.
     LilyPond gives grob direction programming errors.
     We conclude that LilyPond identifies two separate voices.
     Good example for Abjad voice resolution.
@@ -176,7 +180,8 @@ def test_lily_voice_resolution_04():
         ''',
         )
 
-    r'''LilyPond handles this example perfectly.
+    r'''
+    LilyPond handles this example perfectly.
     LilyPond colors the four note_heads of the soprano voice red.
     LilyPond colors all other note_heads black.
     '''

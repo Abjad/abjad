@@ -57,4 +57,3 @@ class QSchemaItem(AbjadObject):
         Return tempo mark or none.
         '''
         return self._tempo
-

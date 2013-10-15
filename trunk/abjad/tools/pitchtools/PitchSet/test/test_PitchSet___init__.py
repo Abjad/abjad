@@ -15,5 +15,3 @@ def test_PitchSet___init___02():
 
     assert len(pitchtools.PitchSet([pitchtools.NamedPitch(x) 
         for x in [12, 14, 18, 19]])) == 4
-
-

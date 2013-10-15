@@ -23,4 +23,3 @@ def test_Accidental_symbolic_accidental_string_02():
     assert pitchtools.Accidental('s').symbolic_accidental_string == '#'
     assert pitchtools.Accidental('tqs').symbolic_accidental_string == '#+'
     assert pitchtools.Accidental('ss').symbolic_accidental_string == '##'
-

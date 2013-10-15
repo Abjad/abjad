@@ -307,4 +307,3 @@ class PitchClassSegment(Segment):
         '''
         from abjad.tools import pitchtools
         return len(pitchtools.PitchClassSet(self)) < len(self)
-

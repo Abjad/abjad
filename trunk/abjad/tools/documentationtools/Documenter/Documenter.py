@@ -65,4 +65,3 @@ class Documenter(abctools.Maker):
     @property
     def prefix(self):
         return self._prefix
-

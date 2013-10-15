@@ -73,4 +73,3 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
     @property
     def _format_string(self):
         return self.number
-

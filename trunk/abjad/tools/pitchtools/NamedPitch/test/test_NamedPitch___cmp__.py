@@ -70,5 +70,3 @@ def test_NamedPitch___cmp___06():
     number = 99
     assert not pitch == number
     assert      pitch != number
-
-

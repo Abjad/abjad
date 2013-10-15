@@ -339,4 +339,3 @@ class PitchClass(AbjadObject):
     def pitch_class_number(self):
         r'''Pitch-class number.'''
         raise NotImplementedError
-

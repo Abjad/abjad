@@ -39,5 +39,3 @@ def test_PitchClassSet___eq___02():
     assert pitch_class_set_1 != pitch_class_set_3
     assert pitch_class_set_2 != pitch_class_set_3
     assert not pitch_class_set_1 != pitch_class_set_2
-
-

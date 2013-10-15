@@ -308,4 +308,3 @@ class Scale(PitchClassSegment):
         pitch_class = self[scale_index]
         pitch_class = pitch_class.apply_accidental(scale_degree.accidental)
         return pitch_class
-

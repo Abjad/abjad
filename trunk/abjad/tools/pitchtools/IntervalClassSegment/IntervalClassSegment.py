@@ -111,4 +111,3 @@ class IntervalClassSegment(Segment):
             if not interval.number == 3:
                 return False
         return True
-

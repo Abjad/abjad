@@ -137,5 +137,3 @@ def test_SlurSpanner___init___03():
         )
 
     assert inspect(container).is_well_formed()
-
-

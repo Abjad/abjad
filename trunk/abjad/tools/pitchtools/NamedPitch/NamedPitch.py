@@ -544,4 +544,3 @@ class NamedPitch(Pitch):
             self.diatonic_pitch_class_number] + \
             self.alteration_in_semitones + \
             (12 * (self._octave_number - 4))
-

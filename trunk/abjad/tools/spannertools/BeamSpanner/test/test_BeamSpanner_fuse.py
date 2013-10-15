@@ -13,7 +13,8 @@ def test_BeamSpanner_fuse_01():
 
     assert testtools.compare(
         staff,
-        r'''    
+        r'''
+            
         \new Staff {
             c'8 [
             d'8

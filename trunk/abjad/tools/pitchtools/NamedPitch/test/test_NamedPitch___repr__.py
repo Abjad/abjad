@@ -10,7 +10,8 @@ def test_NamedPitch___repr___01():
     named_pitch_1 = pitchtools.NamedPitch("cs''")
     named_pitch_2 = eval(repr(named_pitch_1))
 
-    r'''NamedPitch("cs''")
+    r'''
+    NamedPitch("cs''")
     '''
 
     assert isinstance(named_pitch_1, pitchtools.NamedPitch)

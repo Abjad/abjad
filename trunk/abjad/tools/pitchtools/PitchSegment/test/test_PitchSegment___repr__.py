@@ -11,7 +11,8 @@ def test_PitchSegment___repr___01():
     named_pitch_segment_1 = pitchtools.PitchSegment(ncps)
     named_pitch_segment_2 = eval(repr(named_pitch_segment_1))
 
-    r'''PitchSegment("bf bqf fs' g' bqf g'")
+    r'''
+    PitchSegment("bf bqf fs' g' bqf g'")
     '''
 
     assert isinstance(named_pitch_segment_1, pitchtools.PitchSegment)
