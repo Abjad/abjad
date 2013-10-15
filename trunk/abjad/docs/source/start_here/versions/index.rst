@@ -3,6 +3,14 @@
 Version history
 ===============
 
+
+Abjad 2.13
+----------
+
+Released 2013-10-18. Built from r12,311.
+Implements 500 public classes and 526 functions totaling 199,255.
+
+
 Abjad 2.12
 ----------
 
@@ -12,39 +20,41 @@ Implements 559 public classes and 1045 functions totaling 216,000 lines of code.
 Performance increases
 ^^^^^^^^^^^^^^^^^^^^^
 
-Abjad 2.12 introduces a number of performance optimizations. ``LilyPondFile`` objects
-format four times faster than before. ``Duration`` objects initialize faster. 
-``NonreducedFraction`` arithmetic operations are faster. 
-Context marks like dynamics and tempo indications now attach and detach much faster.
+Abjad 2.12 introduces a number of performance optimizations. ``LilyPondFile``
+objects format four times faster than before. ``Duration`` objects initialize
+faster.  ``NonreducedFraction`` arithmetic operations are faster.  Context
+marks like dynamics and tempo indications now attach and detach much faster.
 
 Duration property renames
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You may now use ``note.duration``, ``rest.duration``, ``staff.duration`` and so
-on to access the duration of all objects in the system. The previous term ``prolated_duration``
-has been removed from all objects in the system.
+on to access the duration of all objects in the system. The previous term
+``prolated_duration`` has been removed from all objects in the system.
 
 Timespan integration
 ^^^^^^^^^^^^^^^^^^^^
-You may now use ``note.timespan.start_offset`` and ``note.timespan.stop_offset`` to access
-the start- and stop-offsets of notes. The previous ``note.start_offset`` and ``note.stop_offset``
-properties have been removed from the system. Note that the same is true for all other
-durated objects systemwide.
+
+You may now use ``note.timespan.start_offset`` and
+``note.timespan.stop_offset`` to access the start- and stop-offsets of notes.
+The previous ``note.start_offset`` and ``note.stop_offset`` properties have
+been removed from the system. Note that the same is true for all other durated
+objects systemwide.
 
 Deepcopy changes
 ^^^^^^^^^^^^^^^^
 
-You may now use Python's built-in ``copy.deepcopy()`` to copy any object in the system.
-Previous versions of Abjad aliased Python's deepcopy. In Abjad 2.12 deepcopy copies all
-attributes of a score component and all references the component holds. This result is
-that deepcopying a note will result in the note being copied as well as the entire
-score tree in which the note is embedded.
+You may now use Python's built-in ``copy.deepcopy()`` to copy any object in the
+system.  Previous versions of Abjad aliased Python's deepcopy. In Abjad 2.12
+deepcopy copies all attributes of a score component and all references the
+component holds. This result is that deepcopying a note will result in the note
+being copied as well as the entire score tree in which the note is embedded.
 
 Measure classes
 ^^^^^^^^^^^^^^^
 
-Abjad 2.12 features only a single ``Measure`` class. The anonymous measure and dynamic measures
-have been removed from the system.
+Abjad 2.12 features only a single ``Measure`` class. The anonymous measure and
+dynamic measures have been removed from the system.
 
 The string format of ``Measure`` objects has been updated to indicate ties:
 
@@ -58,7 +68,8 @@ Other new features
 ^^^^^^^^^^^^^^^^^^
 
 Extended ``lilypondfiletools.ContextBlock`` with read/write ``alias`` property.
-This allows for the definition of new context in reference to existing contexts:
+This allows for the definition of new context in reference to existing
+contexts:
 
 ::
 
@@ -76,28 +87,33 @@ This allows for the definition of new context in reference to existing contexts:
         \override StaffSymbol #'color = #red
     }
 
-The ``datastructuretools.PayloadTree`` class now implements ``graphviz_format`` and ``graphviz_graph`` properties.
-You can use these to visualized any tree object you create.
+The ``datastructuretools.PayloadTree`` class now implements ``graphviz_format``
+and ``graphviz_graph`` properties.  You can use these to visualized any tree
+object you create.
 
 The ``Note.sounding_pitch`` property is now read / write.
 
-``Articulation`` marks can now initialize from other ``Articulation`` marks
-and ``Dynamic`` marks can now initialize from other ``Dynamic`` marks.
+``Articulation`` marks can now initialize from other ``Articulation`` marks and
+``Dynamic`` marks can now initialize from other ``Dynamic`` marks.
 
-The ``MetricGridSpanner`` class has been removed from the ``spannertools`` package.
+The ``MetricGridSpanner`` class has been removed from the ``spannertools``
+package.
 
 You may now clear the pitches of a chord with ``chord[:] = []``.
 The ``Chord.clear()`` method has been removed.
 
 New ``iotools.profile_expr()`` keywords available. The ``print_callers=True``
-and ``print_callees=True`` break profiler output to calling and called functions, respectively.
-Set ``print_to_terminal=False`` to return profiler output as a string.
+and ``print_callees=True`` break profiler output to calling and called
+functions, respectively.  Set ``print_to_terminal=False`` to return profiler
+output as a string.
 
-A new ``iotools.count_function_calls()`` function is available. Use the function
-to return the number of function calls required to interpret any Abjad expression.
+A new ``iotools.count_function_calls()`` function is available. Use the
+function to return the number of function calls required to interpret any Abjad
+expression.
 
-A new ``iotools.which()`` function is available. The new function is cross-platform
-and can be used to check for the presence of commandline tools before opening pipes.
+A new ``iotools.which()`` function is available. The new function is
+cross-platform and can be used to check for the presence of commandline tools
+before opening pipes.
 
 Automatic line breaking is now available in ``abjad-book`` LaTeX output.
 Thanks to Jeffry Treviño for this feature.
@@ -107,24 +123,30 @@ Thanks to Jeffry Treviño for this feature.
 Abjad 2.11
 ----------
 
-Released 2013-02-05. Built from r9468.
-Implements 515 public classes and 1016 functions totaling 210,000 lines of code.
+Released 2013-02-05. Built from r9468.  Implements 515 public classes and 1016
+functions totaling 210,000 lines of code.
 
 The ``MetricalHierarchy`` class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A new ``MetricalHierarchy`` class is now available in the ``timesignaturetools`` package.
+A new ``MetricalHierarchy`` class is now available in the
+``timesignaturetools`` package.
 
-The class implements a rhythm tree-based model of nested time signature groupings.
+The class implements a rhythm tree-based model of nested time signature
+groupings.
 
-The structure of the tree corresponds to factors of the time signature’s numerator.
+The structure of the tree corresponds to factors of the time signature’s
+numerator.
 
-Each deeper level of the tree divides the previous by the next factor in sequence.
+Each deeper level of the tree divides the previous by the next factor in
+sequence.
 
-Prime divisions greater than ``3`` are converted to sequences of ``2`` and ``3`` summing to that prime. 
-Hence ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2``.
+Prime divisions greater than ``3`` are converted to sequences of ``2`` and
+``3`` summing to that prime.  Hence ``5`` becomes ``3+2`` and ``7`` becomes
+``3+2+2``.
 
-The ``MetricalHierarchy`` class models a common-practice understanding of meter::
+The ``MetricalHierarchy`` class models a common-practice understanding of
+meter::
 
     >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
 
@@ -212,13 +234,13 @@ The ``MetricalHierarchy`` class models a common-practice understanding of meter:
 Rewriting rhythms according to a different metric hierarchy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A new ``establish_metrical_hierarchy()`` function is now available in the 
+A new ``establish_metrical_hierarchy()`` function is now available in the
 ``timesignaturetools`` package.
 
 The function rewrites the contents of tie chains to match a metrical hierarchy.
 
-Example 1. Rewrite the contents of a measure in a staff using the default metrical
-hierarchy for that measure's time signature:
+Example 1. Rewrite the contents of a measure in a staff using the default
+metrical hierarchy for that measure's time signature:
 
 ::
 
@@ -508,9 +530,9 @@ The behavior of the ``Quantizer`` can be modified at call-time.
 
 Pass a ``QSchema`` instance to alter the macro-structure of quantizer output.
 
-Here, we quantize using settings specified by a ``MeasurewiseQSchema``.
-This causes the ``Quantizer`` to group the output into measures
-with different tempi and time signatures:
+Here, we quantize using settings specified by a ``MeasurewiseQSchema``.  This
+causes the ``Quantizer`` to group the output into measures with different tempi
+and time signatures:
 
 ::
 
@@ -575,10 +597,10 @@ with different tempi and time signatures:
 
 .. image:: images/quantization-2.png
 
-Here we quantize using settings specified by a ``BeatwiseQSchema``.
-This keeps the output of the quantizer flattened and produces 
-neither measures nor explicit time signatures.
-The default beatwise setting of ``quarter=60`` persists until the third beatspan:
+Here we quantize using settings specified by a ``BeatwiseQSchema``.  This keeps
+the output of the quantizer flattened and produces neither measures nor
+explicit time signatures.  The default beatwise setting of ``quarter=60``
+persists until the third beatspan:
 
 ::
 
@@ -626,11 +648,11 @@ The default beatwise setting of ``quarter=60`` persists until the third beatspan
 
 .. image:: images/quantization-3.png
 
-Refer to the ``BeatwiseQSchema`` and ``MeasurewiseQSchema`` API entires
-for more information on controlling ``Quantizer`` output.
+Refer to the ``BeatwiseQSchema`` and ``MeasurewiseQSchema`` API entires for
+more information on controlling ``Quantizer`` output.
 
-Refer to the ``SearchTree`` API entry for information on controlling the rhythmic
-complexity of ``Quantizer`` output.
+Refer to the ``SearchTree`` API entry for information on controlling the
+rhythmic complexity of ``Quantizer`` output.
 
 
 The ``timerelationtools`` package
@@ -638,9 +660,9 @@ The ``timerelationtools`` package
 
 A new ``timerelationtools`` package is now available.
 
-The ``timerelationtools`` package features seven functions
-for using natural language to compare the in-time position
-on an offset relative to a reference timespan::
+The ``timerelationtools`` package features seven functions for using natural
+language to compare the in-time position on an offset relative to a reference
+timespan::
 
     timerelationtools.offset_happens_after_timespan_starts()
     timerelationtools.offset_happens_after_timespan_stops()
@@ -650,9 +672,8 @@ on an offset relative to a reference timespan::
     timerelationtools.offset_happens_when_timespan_starts()
     timerelationtools.offset_happens_when_timespan_stops()
 
-The ``timerelationtools`` package contains ``26`` functions
-for using natural language to compare the in-time position
-of one timespan relative to another::
+The ``timerelationtools`` package contains ``26`` functions for using natural
+language to compare the in-time position of one timespan relative to another::
 
     timerelationtools.timespan_2_contains_timespan_1_improperly()
     timerelationtools.timespan_2_curtails_timespan_1()
@@ -681,8 +702,8 @@ of one timespan relative to another::
     timerelationtools.timespan_2_stops_when_timespan_1_stops()
     timerelationtools.timespan_2_trisects_timespan_1()
 
-Here's an example of some of the natural language comparison
-functions available in the ``timerelationtools`` package::
+Here's an example of some of the natural language comparison functions
+available in the ``timerelationtools`` package::
 
     >>> staff_1 = Staff(r"\times 2/3 { c'4 d'4 e'4 } \times 2/3 { f'4 g'4 a'4 }")
     >>> staff_2 = Staff("c'2. d'4")
@@ -784,13 +805,15 @@ New tutorials describe how to get started with Abjad:
     More about Abjad
 
 
-Music notation images now appear in the docstrings of many functions throughout the API.
+Music notation images now appear in the docstrings of many functions throughout
+the API.
 
 
-Added new ``iotools.graph()`` function to the ``iotools`` package.
-A small number of classes throughout the system have started to gain a `graphviz_format` attribute, 
-including ``datastructuretools.Digraph``, ``documentationtools.InheritanceGraph``, 
-some of the ``rhythmtreetools.RhythmTreeNode`` subclasses, and even 
+Added new ``iotools.graph()`` function to the ``iotools`` package.  A small
+number of classes throughout the system have started to gain a
+`graphviz_format` attribute, including ``datastructuretools.Digraph``,
+``documentationtools.InheritanceGraph``, some of the
+``rhythmtreetools.RhythmTreeNode`` subclasses, and even
 ``timesignaturetools.MetricalHierarchy``::
 
     >>> hierarchy = timesignaturetools.MetricalHierarchy((7, 4))
@@ -813,7 +836,8 @@ Forced accidentals and cautionary accidentals are now available as properties::
     c'!?4
 
 
-Forced accidentals and cautionary accidentals are also now available at instantiation::
+Forced accidentals and cautionary accidentals are also now available at
+instantiation::
 
     >>> note = Note("c'!?4")
     >>> note
@@ -859,18 +883,17 @@ Added a function to register custom markup globally with the LilyPond parser::
     \markup { \my-custom-markup-function { foo bar baz } }
 
 
-Note that this once registered, the custom markup command is also recognized when instantiating
-parsed markup objects::
+Note that this once registered, the custom markup command is also recognized
+when instantiating parsed markup objects::
 
     >>> markuptools.Markup(r"\my-custom-markup-function { foo bar baz }")
     Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
 
 
-Added new ``markuptools.MusicGlyph`` class.
-This is a subclass of ``markuptools.MarkupCommand``, 
-and can therefore be used anywhere ``MarkupCommand`` can appear.
-It guarantees correct quoting around the glyph name 
-(which is easy to forget, or not always clear how to do for new users), 
+Added new ``markuptools.MusicGlyph`` class.  This is a subclass of
+``markuptools.MarkupCommand``, and can therefore be used anywhere
+``MarkupCommand`` can appear.  It guarantees correct quoting around the glyph
+name (which is easy to forget, or not always clear how to do for new users),
 and also checks that the glyph name is recognized in LilyPond::
 
     >>> markuptools.MusicGlyph('accidentals.sharp')
@@ -882,16 +905,17 @@ and also checks that the glyph name is recognized in LilyPond::
     \musicglyph #"accidentals.sharp"
 
 
-The ``durationtools`` package now implements three related classes.
-All three classes are now available in the global namespace.
-Durations, multipliers and offsets are now distinguished everywhere in Abjad::
+The ``durationtools`` package now implements three related classes.  All three
+classes are now available in the global namespace.  Durations, multipliers and
+offsets are now distinguished everywhere in Abjad::
 
     Duration
     Multiplier
     Offset
 
 
-Implemented new ``NonreducedRatio`` class. Compare with existing ``Ratio`` class::
+Implemented new ``NonreducedRatio`` class. Compare with existing ``Ratio``
+class::
 
     >>> mathtools.NonreducedRatio(2, 4, 2)
     NonreducedRatio(2, 4, 2)
@@ -902,7 +926,8 @@ Implemented new ``NonreducedRatio`` class. Compare with existing ``Ratio`` class
     Ratio(1, 2, 1)
 
 
-Added new ``componenttools.ScoreSelection`` subclasses. All selections are improper::
+Added new ``componenttools.ScoreSelection`` subclasses. All selections are
+improper::
 
     selectiontools.Descendants
     selectiontools.Lineage
@@ -924,11 +949,11 @@ Added ``lilypondfiletools.LilyPondDimension`` class::
 
 
 Added a new parseable tag to abjad-book: ``<abjadextract module \>[flags]``.
-This single-line tag imports the code found at `module`, and copies the
-actual code text itself into the abjad-book session, just as though it
-had been manually included between a pair of ``<abjad></abjad>`` tags.
-The intended use is in Abjad's literature examples.  Most of the examples
-are also written up in the ``demos/`` directory.
+This single-line tag imports the code found at `module`, and copies the actual
+code text itself into the abjad-book session, just as though it had been
+manually included between a pair of ``<abjad></abjad>`` tags.  The intended use
+is in Abjad's literature examples.  Most of the examples are also written up in
+the ``demos/`` directory.
 
 
 The ``abjad-book`` executable now handles multi-page PNG output.
@@ -943,9 +968,9 @@ Example: show pages 2 through 5 of a multipage score::
 
 
 Added new ``EvenRunRhythmMaker`` class to the ``rhythmmakertools`` package.
-For each division on which the class is called, the class
-produces an even run of notes each equal in duration to ``1/d``
-with ``d`` equal to the division denominator::
+For each division on which the class is called, the class produces an even run
+of notes each equal in duration to ``1/d`` with ``d`` equal to the division
+denominator::
 
     >>> maker = rhythmmakertools.EvenRunRhythmMaker()
 

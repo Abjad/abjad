@@ -1,3 +1,20 @@
+Abjad 2.13
+    Date of package: 2013-10-15
+    Revision of Abjad repository: r12,311
+
+    Packaging environment:
+        0. workstation description: 2.9 GHz i7 MacBook Pro / OSX 10.8.5
+        1. uname -v: Darwin Kernel Version 12.5.0
+        2. svn --version: svn, version 1.6.18 (r1303927)
+        3. python --version: Python 2.7.5
+        4. pip --version: pip 1.4.1
+        5. py.test --version: This is py.test version 2.4.2 
+        6. sphinx-build --version: Sphinx v1.1.3
+        7. lilypond --version: GNU LilyPond 2.17.28
+        8. convert --version: ImageMagick 6.8.6-3 2013-06-25 Q16
+        9. dot -V: graphviz version 2.32.0 (20130801.1934)  
+
+
 Abjad 2.12
     Date of package: 2013-03-24
     Revision of Abjad repository: r9810

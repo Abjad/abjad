@@ -7,6 +7,7 @@ Abjad packaging checklist:
  2.  Document the packaging environment in the packaging transcript.
     (a) Apply any OS updates to the machine on which you will produce 
         the package.
+        Record workstation description in the packaging transcript.
         Record the output of "uname -v" in the packaging transcript.
 
     (b) Decide whether to upgrade svn.
@@ -14,6 +15,14 @@ Abjad packaging checklist:
         http://subversion.apache.org/packages.html#osx.
         The openCollabNet universal build maintained by Jeremy Whitlock 
         is recomended.
+        Retrieval process:
+        1. Go to www.collab.net
+        2. Click "login" and login (or create account)
+        3. "Downloads"
+        4. "Subversion"
+        5. "CommunityBinaries" <== this is the important step
+        Note that the community version published on CollabNet
+        may not be the most recent version of Subversion.
         Regardless of whether svn is upgraded or not, 
         record the output of "svn --version".
 
@@ -31,19 +40,23 @@ Abjad packaging checklist:
         Record the output of "sphinx-build --version" 
         in the packaging transcript.
 
-    (g) Update LilyPond.
+    (g) Visit www.lilypond.org.
+        Decide whether to update LilyPond.
         Record the output of "lilypond --version" in the packaging transcript.
 
-    (h) Update ImageMagick.
+    (h) Visit http://www.imagemagick.org/script/binary-releases.php.
+        Decide whether to update ImageMagick.
         Record the output of "convert --version" in the packaging transcript.
     
-    (i) Update Graphiz. Go to www.graphviz.org.
+    (i) Visit www.graphviz.org.
+        Decide whether to update Graphviz.
         Record the output of "dot -V" in the packaging transcript.
 
  3. Author release notes:
         Open docs/source/start_here/versions/index.rst.
         Add a sentence giving the release date and repository revision number.
         Example: "Released 2009-05-21. Built from r5752."
+        Change to abjad/tools.
         Run "ajv count tools ." and "scr/devel/count-source-lines".
         Add a sentence detailing the output of these scripts to this chapter.
         Example: "Implements 405 public classes and 1066 functions 
