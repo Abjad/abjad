@@ -304,32 +304,6 @@ class ClassDocumenter(Documenter):
                 result.append(autodoc)
         return result
 
-    def _build_bases_section(self):
-        from abjad.tools import documentationtools
-        pieces = []
-        pieces.append(documentationtools.ReSTHeading(                     
-            level=3,                                                        
-            text='Bases',
-            ))
-        mro = inspect.getmro(self.object)[1:]
-        for cls in mro:
-            packagesystem_path = '.'.join((cls.__module__, cls.__name__))
-            stripped_packagesystem_path = self._shrink_module_name(
-                packagesystem_path)
-            if packagesystem_path.startswith('__builtin__'):
-                packagesystem_path = \
-                    packagesystem_path.partition('__builtin__.')[-1]
-            text = '- :class:`{} <{}>`'.format(
-                stripped_packagesystem_path,
-                packagesystem_path,
-                )
-            paragraph = documentationtools.ReSTParagraph(                                
-                text=text,
-                wrap=False,                                                         
-                )
-            pieces.append(paragraph) 
-        return pieces
-
     def _build_attributes_autosummary(self):
         from abjad.tools import documentationtools
         pieces = []
@@ -354,6 +328,32 @@ class ClassDocumenter(Documenter):
             ))
         html_only.append(autosummary)
         pieces.append(html_only)
+        return pieces
+
+    def _build_bases_section(self):
+        from abjad.tools import documentationtools
+        pieces = []
+        pieces.append(documentationtools.ReSTHeading(                     
+            level=3,                                                        
+            text='Bases',
+            ))
+        mro = inspect.getmro(self.object)[1:]
+        for cls in mro:
+            packagesystem_path = '.'.join((cls.__module__, cls.__name__))
+            stripped_packagesystem_path = self._shrink_module_name(
+                packagesystem_path)
+            if packagesystem_path.startswith('__builtin__'):
+                packagesystem_path = \
+                    packagesystem_path.partition('__builtin__.')[-1]
+            text = '- :class:`{} <{}>`'.format(
+                stripped_packagesystem_path,
+                packagesystem_path,
+                )
+            paragraph = documentationtools.ReSTParagraph(                                
+                text=text,
+                wrap=False,                                                         
+                )
+            pieces.append(paragraph) 
         return pieces
 
     ### PUBLIC PROPERTIES ###

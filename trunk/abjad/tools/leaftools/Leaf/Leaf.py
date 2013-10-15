@@ -265,24 +265,6 @@ class Leaf(Component):
         result.append(leaf._format_agrace_opening())
         return result
 
-    def _get_leaf_index(self):
-        self._update_now(offsets=True)
-        return self._leaf_index
-
-    def _process_contribution_packet(self, contribution_packet):
-        result = ''
-        for contributor, contributions in contribution_packet:
-            if contributions:
-                if isinstance(contributor, tuple):
-                    contributor = '\t' + contributor[0] + ':\n'
-                else:
-                    contributor = '\t' + contributor + ':\n'
-                result += contributor
-                for contribution in contributions:
-                    contribution = '\t\t' + contribution + '\n'
-                    result += contribution
-        return result
-
     def _get_leaf(self, n=0):
         from abjad.tools import leaftools
         from abjad.tools import selectiontools
@@ -324,6 +306,10 @@ class Leaf(Component):
                     break
         return current_leaf
 
+    def _get_leaf_index(self):
+        self._update_now(offsets=True)
+        return self._leaf_index
+
     def _get_tie_chain(self):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
@@ -337,6 +323,20 @@ class Leaf(Component):
                 raise ExtraSpannerError
         else:
             return selectiontools.TieChain(music=self)
+
+    def _process_contribution_packet(self, contribution_packet):
+        result = ''
+        for contributor, contributions in contribution_packet:
+            if contributions:
+                if isinstance(contributor, tuple):
+                    contributor = '\t' + contributor[0] + ':\n'
+                else:
+                    contributor = '\t' + contributor + ':\n'
+                result += contributor
+                for contribution in contributions:
+                    contribution = '\t\t' + contribution + '\n'
+                    result += contribution
+        return result
 
     def _report_format_contributors(self):
         format_contributions = formattools.get_all_format_contributions(self)

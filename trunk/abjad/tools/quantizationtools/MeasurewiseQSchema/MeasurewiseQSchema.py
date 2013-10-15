@@ -270,14 +270,14 @@ class MeasurewiseQSchema(QSchema):
         return quantizationtools.MeasurewiseQSchemaItem
 
     @property
-    def target_item_class(self):
-        from abjad.tools import quantizationtools
-        return quantizationtools.QTargetMeasure
-
-    @property
     def target_class(self):
         from abjad.tools import quantizationtools
         return quantizationtools.MeasurewiseQTarget
+
+    @property
+    def target_item_class(self):
+        from abjad.tools import quantizationtools
+        return quantizationtools.QTargetMeasure
 
     @property
     def time_signature(self):

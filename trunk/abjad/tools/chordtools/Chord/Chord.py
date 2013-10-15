@@ -233,166 +233,6 @@ class Chord(Leaf):
         '''
         return super(Chord, self).lilypond_format
 
-    @property
-    def override(self):
-        r'''LilyPond grob override component plug-in.
-
-        ..  container:: example
-
-            **Example.** Override LilyPond accidental, note head and stem
-            grobs:
-
-            ::
-
-                >>> chord = Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.override.accidental.color = 'red'
-                >>> chord.override.note_head.color = 'red'
-                >>> chord.override.stem.color = 'red'
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                \once \override Accidental #'color = #red
-                \once \override NoteHead #'color = #red
-                \once \override Stem #'color = #red
-                <e' cs'' f''>4
-
-        Returns none.
-        '''
-        return super(Chord, self).override
-
-    @property
-    def set(self):
-        r'''LilyPond context setting component plug-in.
-
-        ..  container:: example
-
-            **Example.** Set LilyPond ``stemLeftBeamCount``
-            and ``stemRightBeamCount`` context settings:
-
-            ::
-
-                >>> chord = Chord("<e' cs'' f''>16")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> beam = spannertools.BeamSpanner()
-                >>> beam.attach([chord])
-                >>> chord.set.stem_left_beam_count = 0
-                >>> chord.set.stem_right_beam_count = 2
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #2
-                <e' cs'' f''>16 [ ]
-
-        Returns none.
-        '''
-        return super(Chord, self).set
-
-    @apply
-    def written_duration():
-        def fget(self):
-            r'''Written duration of chord.
-
-            ..  container:: example
-
-                **Example 1.** Get written duration:
-
-                ::
-
-                    >>> chord = Chord("<e' cs'' f''>4")
-                    >>> show(chord) # doctest: +SKIP
-
-                ::
-
-                    >>> chord.written_duration
-                    Duration(1, 4)
-
-            ..  container:: example
-
-                **Example 2.** Set written duration:
-
-                ::
-
-                    >>> chord = Chord("<e' cs'' f''>4")
-                    >>> show(chord) # doctest: +SKIP
-
-                ::
-
-                    >>> chord.written_duration = Duration(1, 16)
-                    >>> show(chord) # doctest: +SKIP
-
-            Set duration.
-
-            Returns duration.
-            '''
-            return Leaf.written_duration.fget(self)
-        def fset(self, expr):
-            Leaf.written_duration.fset(self, expr)
-        return property(**locals())
-
-    @property
-    def written_pitches(self):
-        r"""Written pitches in chord.
-
-        ..  container:: example
-
-            **Example**
-
-            ::
-
-                >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-                >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
-                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-                ...     staff)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \set Staff.instrumentName = \markup { Glockenspiel }
-                    \set Staff.shortInstrumentName = \markup { Gkspl. }
-                    <c' e'>4
-                    <d' fs'>4
-                }
-
-            ::
-
-                >>> staff[0].written_pitches
-                (NamedPitch("c'"), NamedPitch("e'"))
-
-        Returns tuple of pitches.
-        """
-        from abjad.tools import instrumenttools
-        from abjad.tools import pitchtools
-        if self.written_pitch_indication_is_at_sounding_pitch:
-            instrument = self._get_effective_context_mark(
-                instrumenttools.Instrument)
-            if not instrument:
-                message = 'effective instrument of note can not be determined.'
-                raise InstrumentError(message)
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-            interval = pitchtools.NamedPitch('C4') - sounding_pitch
-            interval *= -1
-            written_pitches = [
-                pitchtools.transpose_pitch_carrier_by_melodic_interval(
-                pitch, interval)
-                for pitch in self.written_pitches]
-            return tuple(written_pitches)
-        else:
-            return self.written_pitches
-
     @apply
     def note_heads():
         def fget(self):
@@ -461,6 +301,72 @@ class Chord(Leaf):
         return property(**locals())
 
     @property
+    def override(self):
+        r'''LilyPond grob override component plug-in.
+
+        ..  container:: example
+
+            **Example.** Override LilyPond accidental, note head and stem
+            grobs:
+
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> chord.override.accidental.color = 'red'
+                >>> chord.override.note_head.color = 'red'
+                >>> chord.override.stem.color = 'red'
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                \once \override Accidental #'color = #red
+                \once \override NoteHead #'color = #red
+                \once \override Stem #'color = #red
+                <e' cs'' f''>4
+
+        Returns none.
+        '''
+        return super(Chord, self).override
+
+    @property
+    def set(self):
+        r'''LilyPond context setting component plug-in.
+
+        ..  container:: example
+
+            **Example.** Set LilyPond ``stemLeftBeamCount``
+            and ``stemRightBeamCount`` context settings:
+
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>16")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> beam = spannertools.BeamSpanner()
+                >>> beam.attach([chord])
+                >>> chord.set.stem_left_beam_count = 0
+                >>> chord.set.stem_right_beam_count = 2
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #2
+                <e' cs'' f''>16 [ ]
+
+        Returns none.
+        '''
+        return super(Chord, self).set
+
+    @property
     def sounding_pitches(self):
         r"""Sounding pitches in chord.
 
@@ -509,6 +415,48 @@ class Chord(Leaf):
                 pitchtools.transpose_pitch_carrier_by_melodic_interval(
                 pitch, interval) for pitch in self.written_pitches]
             return tuple(sounding_pitches)
+
+    @apply
+    def written_duration():
+        def fget(self):
+            r'''Written duration of chord.
+
+            ..  container:: example
+
+                **Example 1.** Get written duration:
+
+                ::
+
+                    >>> chord = Chord("<e' cs'' f''>4")
+                    >>> show(chord) # doctest: +SKIP
+
+                ::
+
+                    >>> chord.written_duration
+                    Duration(1, 4)
+
+            ..  container:: example
+
+                **Example 2.** Set written duration:
+
+                ::
+
+                    >>> chord = Chord("<e' cs'' f''>4")
+                    >>> show(chord) # doctest: +SKIP
+
+                ::
+
+                    >>> chord.written_duration = Duration(1, 16)
+                    >>> show(chord) # doctest: +SKIP
+
+            Set duration.
+
+            Returns duration.
+            '''
+            return Leaf.written_duration.fget(self)
+        def fset(self, expr):
+            Leaf.written_duration.fset(self, expr)
+        return property(**locals())
 
     @apply
     def written_pitches():

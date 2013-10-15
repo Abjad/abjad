@@ -70,14 +70,14 @@ class Interval(AbjadObject):
     def __ne__(self, arg):
         return not self == arg
 
+    def __neg__(self):
+        pass
+
     def __repr__(self):
         return '%s(%s)' % (self._class_name, self._format_string)
 
     def __str__(self):
         return str(self.number)
-
-    def __neg__(self):
-        pass
 
     ### PRIVATE METHODS ###
 

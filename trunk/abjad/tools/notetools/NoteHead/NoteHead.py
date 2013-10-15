@@ -46,6 +46,11 @@ class NoteHead(AbjadObject):
     def __copy__(self, *args):
         return type(self)(*self.__getnewargs__())
 
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            return self.written_pitch == expr.written_pitch
+        return self.written_pitch == expr
+
     def __getnewargs__(self):
         args = (
             self.written_pitch,
@@ -55,11 +60,6 @@ class NoteHead(AbjadObject):
             self.tweak._get_attribute_pairs(),
         )
         return args
-
-    def __eq__(self, expr):
-        if isinstance(expr, type(self)):
-            return self.written_pitch == expr.written_pitch
-        return self.written_pitch == expr
 
     def __lt__(self, expr):
         if isinstance(expr, type(self)):

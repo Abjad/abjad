@@ -151,54 +151,6 @@ class Note(Leaf):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def written_pitch(self):
-        r'''Written pitch of note:
-
-        ::
-
-            >>> staff = Staff("d''8 e''8 f''8 g''8")
-            >>> piccolo = instrumenttools.Piccolo()(staff)
-            >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-            ...     staff)
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                \set Staff.instrumentName = \markup { Piccolo }
-                \set Staff.shortInstrumentName = \markup { Picc. }
-                d'8
-                e'8
-                f'8
-                g'8
-            }
-
-        ::
-
-            >>> staff[0].written_pitch
-            NamedPitch("d'")
-
-        Return named chromatic pitch.
-        '''
-        from abjad.tools import instrumenttools
-        from abjad.tools import pitchtools
-        if self.written_pitch_indication_is_at_sounding_pitch:
-            instrument = self._get_effective_context_mark(
-                instrumenttools.Instrument)
-            if not instrument:
-                message = 'effective instrument of note can not be determined.'
-                raise InstrumentError(message)
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-            t_n = pitchtools.NamedPitch('C4') - sounding_pitch
-            t_n *= -1
-            written_pitch = \
-                pitchtools.transpose_pitch_carrier_by_melodic_interval(
-                    self.written_pitch, t_n)
-            return written_pitch
-        else:
-            return self.written_pitch
-
     @apply
     def note_head():
         def fget(self):

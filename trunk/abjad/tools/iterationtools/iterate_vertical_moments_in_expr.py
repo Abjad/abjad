@@ -102,6 +102,20 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     from abjad.tools import iterationtools
     from abjad.tools import selectiontools
 
+    def _buffer_components_starting_with(component, buffer, stop_offsets):
+        if not isinstance(component, componenttools.Component):
+            raise TypeError
+        buffer.append(component)
+        stop_offsets.append(component._get_timespan().stop_offset)
+        if isinstance(component, containertools.Container):
+            if component.is_simultaneous:
+                for x in component:
+                    _buffer_components_starting_with(x, buffer, stop_offsets)
+            else:
+                if component:
+                    _buffer_components_starting_with(
+                        component[0], buffer, stop_offsets)
+
     def _iterate_vertical_moments_forward_in_expr(expr):
         if not isinstance(expr, componenttools.Component):
             raise TypeError
@@ -119,20 +133,6 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
             yield vertical_moment
             current_offset, stop_offsets = min(stop_offsets), []
             _update_buffer(current_offset, buffer, stop_offsets)
-
-    def _buffer_components_starting_with(component, buffer, stop_offsets):
-        if not isinstance(component, componenttools.Component):
-            raise TypeError
-        buffer.append(component)
-        stop_offsets.append(component._get_timespan().stop_offset)
-        if isinstance(component, containertools.Container):
-            if component.is_simultaneous:
-                for x in component:
-                    _buffer_components_starting_with(x, buffer, stop_offsets)
-            else:
-                if component:
-                    _buffer_components_starting_with(
-                        component[0], buffer, stop_offsets)
 
     def _next_in_parent(component):
         if not isinstance(component, componenttools.Component):

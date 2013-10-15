@@ -184,6 +184,20 @@ class NamedPitch(Pitch):
 
     ### PRIVATE METHODS ###
 
+    def _init_by_named_pitch(self, named_pitch):
+        self._alteration_in_semitones = named_pitch._alteration_in_semitones
+        self._diatonic_pitch_class_number = \
+            named_pitch.diatonic_pitch_class_number
+        self._octave_number = named_pitch.octave_number
+
+    def _init_by_named_pitch_class_and_octave_number(
+        self, named_pitch_class, octave_number):
+        self._alteration_in_semitones = \
+            named_pitch_class._alteration_in_semitones
+        self._diatonic_pitch_class_number = \
+            named_pitch_class._diatonic_pitch_class_number
+        self._octave_number = octave_number
+
     def _init_by_pitch_class_name_and_octave_number(
         self, pitch_class_name, octave_number):
         from abjad.tools import pitchtools
@@ -195,6 +209,17 @@ class NamedPitch(Pitch):
         pitch_class_name, octave_number = pair
         self._init_by_pitch_class_name_and_octave_number(
             pitch_class_name, octave_number)
+
+    def _init_by_pitch_class_octave_number_string(
+        self, pitch_class_octave_number_string):
+        from abjad.tools import pitchtools
+        groups = self._pitch_class_octave_number_regex.match(
+            pitch_class_octave_number_string).groups()
+        named_pitch_class = pitchtools.NamedPitchClass(
+            pitch_class_octave_number_string)
+        octave_number = int(groups[2])
+        self._init_by_named_pitch_class_and_octave_number(
+            named_pitch_class, octave_number)
 
     def _init_by_pitch_name(self, pitch_string):
         from abjad.tools import pitchtools
@@ -228,31 +253,6 @@ class NamedPitch(Pitch):
         diatonic_pitch_class_name = named_pitch_class.diatonic_pitch_class_name
         self._init_by_pitch_number_and_diatonic_pitch_class_name(
             pitch_number, diatonic_pitch_class_name)
-
-    def _init_by_named_pitch(self, named_pitch):
-        self._alteration_in_semitones = named_pitch._alteration_in_semitones
-        self._diatonic_pitch_class_number = \
-            named_pitch.diatonic_pitch_class_number
-        self._octave_number = named_pitch.octave_number
-
-    def _init_by_named_pitch_class_and_octave_number(
-        self, named_pitch_class, octave_number):
-        self._alteration_in_semitones = \
-            named_pitch_class._alteration_in_semitones
-        self._diatonic_pitch_class_number = \
-            named_pitch_class._diatonic_pitch_class_number
-        self._octave_number = octave_number
-
-    def _init_by_pitch_class_octave_number_string(
-        self, pitch_class_octave_number_string):
-        from abjad.tools import pitchtools
-        groups = self._pitch_class_octave_number_regex.match(
-            pitch_class_octave_number_string).groups()
-        named_pitch_class = pitchtools.NamedPitchClass(
-            pitch_class_octave_number_string)
-        octave_number = int(groups[2])
-        self._init_by_named_pitch_class_and_octave_number(
-            named_pitch_class, octave_number)
 
     ### PUBLIC METHODS ###
 
@@ -491,6 +491,23 @@ class NamedPitch(Pitch):
             self._alteration_in_semitones) % 12
 
     @property
+    def pitch_class_octave_label(self):
+        r'''Pitch-class / octave label.
+
+        ::
+
+            >>> pitchtools.NamedPitch("cs''").pitch_class_octave_label
+            'C#5'
+
+        Return string.
+        '''
+        return '{}{}{}'.format(
+            self.diatonic_pitch_class_name.upper(),
+            self.accidental.symbolic_accidental_string,
+            self.octave_number,
+            )
+
+    @property
     def pitch_name(self):
         r'''Pitch name.
 
@@ -528,19 +545,3 @@ class NamedPitch(Pitch):
             self.alteration_in_semitones + \
             (12 * (self._octave_number - 4))
 
-    @property
-    def pitch_class_octave_label(self):
-        r'''Pitch-class / octave label.
-
-        ::
-
-            >>> pitchtools.NamedPitch("cs''").pitch_class_octave_label
-            'C#5'
-
-        Return string.
-        '''
-        return '{}{}{}'.format(
-            self.diatonic_pitch_class_name.upper(),
-            self.accidental.symbolic_accidental_string,
-            self.octave_number,
-            )

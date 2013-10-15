@@ -26,8 +26,8 @@ class AttributeInspectionAgent(object):
     ### PUBLIC METHODS ###
 
     def get_annotation(
-        self, 
-        name, 
+        self,
+        name,
         default=None,
         ):
         r'''Gets value of annotation with `name` attached to component.
@@ -90,8 +90,47 @@ class AttributeInspectionAgent(object):
             badly_formed_components.extend(checker.violators(self._component))
         return badly_formed_components
 
+    def get_components(
+        self,
+        component_classes=None,
+        include_self=True,
+        ):
+        r'''Gets all components of `component_classes`
+        in the descendants of component.
+
+        Returns component selection.
+        '''
+        return self._component._get_components(
+            component_classes=component_classes,
+            include_self=include_self,
+            )
+
+    def get_contents(
+        self,
+        include_self=True,
+        ):
+        r'''Gets contents of component.
+
+        Returns sequential selection.
+        '''
+        return self._component._get_contents(
+            include_self=include_self,
+            )
+
+    def get_descendants(
+        self,
+        include_self=True,
+        ):
+        r'''Gets descendants of component.
+
+        Returns descendants.
+        '''
+        return self._component._get_descendants(
+            include_self=include_self,
+            )
+
     def get_duration(
-        self, 
+        self,
         in_seconds=False,
         ):
         r'''Gets duration of component.
@@ -106,7 +145,7 @@ class AttributeInspectionAgent(object):
         self,
         context_mark_classes=None,
         ):
-        r'''Gets effective context mark of `context_mark_class` 
+        r'''Gets effective context mark of `context_mark_class`
         that governs component.
 
         Returns context mark or none.
@@ -123,7 +162,7 @@ class AttributeInspectionAgent(object):
         return self._component._get_effective_staff()
 
     def get_grace_containers(
-        self, 
+        self,
         kind=None,
         ):
         r'''Gets grace containers attached to leaf.
@@ -136,13 +175,13 @@ class AttributeInspectionAgent(object):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> grace_container = containertools.GraceContainer(
-                ...     [Note("cs'16")], 
+                ...     [Note("cs'16")],
                 ...     kind='grace',
                 ...     )
                 >>> grace_container.attach(staff[1])
                 Note("d'8")
                 >>> after_grace = containertools.GraceContainer(
-                ...     [Note("ds'16")], 
+                ...     [Note("ds'16")],
                 ...     kind='after'
                 ...     )
                 >>> after_grace.attach(staff[1])
@@ -197,6 +236,64 @@ class AttributeInspectionAgent(object):
             kind=kind,
             )
 
+    def get_leaf(self, n=0):
+        r'''Gets leaf `n` **in logical voice**.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Voice("c'8 d'8 e'8 f'8"))
+                >>> staff.append(Voice("g'8 a'8 b'8 c''8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+                    \new Voice {
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                }
+
+            ::
+
+                >>> for n in range(8):
+                ...     print n, inspect(staff[0][0]).get_leaf(n)
+                ...
+                0 c'8
+                1 d'8
+                2 e'8
+                3 f'8
+                4 None
+                5 None
+                6 None
+                7 None
+
+        Returns leaf or none.
+        '''
+        from abjad.tools import leaftools
+        if not isinstance(self._component, leaftools.Leaf):
+            return None
+        return self._component._get_leaf(n=n)
+
+    def get_lineage(self):
+        r'''Gets lineage of component.
+
+        Returns lineage.
+        '''
+        return self._component._get_lineage()
+
     def get_mark(
         self,
         mark_classes=None,
@@ -236,11 +333,23 @@ class AttributeInspectionAgent(object):
             direction=direction,
             )
 
+    def get_parentage(
+        self,
+        include_self=True,
+        ):
+        r'''Gets parentage of component.
+
+        Returns parentage.
+        '''
+        return self._component._get_parentage(
+            include_self=include_self,
+            )
+
     def get_spanner(
-        self, 
+        self,
         spanner_classes=None,
         ):
-        r'''Gets exactly one spanner of `spanner_classes` attached to 
+        r'''Gets exactly one spanner of `spanner_classes` attached to
         component.
 
         Raises exception when no spanner of `spanner_classes` is attached
@@ -253,7 +362,7 @@ class AttributeInspectionAgent(object):
             )
 
     def get_spanners(
-        self, 
+        self,
         spanner_classes=None,
         ):
         r'''Gets spanners attached to component.
@@ -264,7 +373,14 @@ class AttributeInspectionAgent(object):
             spanner_classes=spanner_classes,
             )
 
-    def get_timespan(self, 
+    def get_tie_chain(self):
+        r'''Gets tie chain that governs leaf.
+
+        Returns tie chain.
+        '''
+        return self._component._get_tie_chain()
+
+    def get_timespan(self,
         in_seconds=False,
         ):
         r'''Gets timespan of component.
@@ -273,6 +389,30 @@ class AttributeInspectionAgent(object):
         '''
         return self._component._get_timespan(
             in_seconds=in_seconds,
+            )
+
+    def get_vertical_moment(
+        self,
+        governor=None,
+        ):
+        r'''Gets vertical moment starting with component.
+
+        Returns vertical moment.
+        '''
+        return self._component._get_vertical_moment(
+            governor=governor,
+            )
+
+    def get_vertical_moment_at(
+        self,
+        offset,
+        ):
+        r'''Gets vertical moment at `offset`.
+
+        Returns vertical moment.
+        '''
+        return self._component._get_vertical_moment_at(
+            offset,
             )
 
     def is_bar_line_crossing(self):
@@ -330,148 +470,8 @@ class AttributeInspectionAgent(object):
             return True
         return False
 
-    def get_components(
-        self, 
-        component_classes=None, 
-        include_self=True,
-        ):
-        r'''Gets all components of `component_classes`
-        in the descendants of component.
-
-        Returns component selection.
-        '''
-        return self._component._get_components(
-            component_classes=component_classes,
-            include_self=include_self,
-            )
-
-    def get_contents(
-        self, 
-        include_self=True,
-        ):
-        r'''Gets contents of component.
-
-        Returns sequential selection.
-        '''
-        return self._component._get_contents(
-            include_self=include_self,
-            )
-
-    def get_descendants(
-        self,
-        include_self=True,
-        ):
-        r'''Gets descendants of component.
-
-        Returns descendants.
-        '''
-        return self._component._get_descendants(
-            include_self=include_self,
-            )
-
-    def get_leaf(self, n=0):
-        r'''Gets leaf `n` **in logical voice**.
-
-        ..  container:: example
-
-            ::
-
-                >>> staff = Staff()
-                >>> staff.append(Voice("c'8 d'8 e'8 f'8"))
-                >>> staff.append(Voice("g'8 a'8 b'8 c''8"))
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \new Voice {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                    }
-                    \new Voice {
-                        g'8
-                        a'8
-                        b'8
-                        c''8
-                    }
-                }
-
-            ::
-
-                >>> for n in range(8):
-                ...     print n, inspect(staff[0][0]).get_leaf(n)
-                ...
-                0 c'8
-                1 d'8
-                2 e'8
-                3 f'8
-                4 None
-                5 None
-                6 None
-                7 None
-
-        Returns leaf or none.
-        '''
-        from abjad.tools import leaftools
-        if not isinstance(self._component, leaftools.Leaf):
-            return None
-        return self._component._get_leaf(n=n)
-
-    def get_lineage(self):
-        r'''Gets lineage of component.
-        
-        Returns lineage.
-        '''
-        return self._component._get_lineage()
-
-    def get_parentage(
-        self, 
-        include_self=True,
-        ):
-        r'''Gets parentage of component.
-
-        Returns parentage.
-        '''
-        return self._component._get_parentage(
-            include_self=include_self,
-            )
-
-    def get_tie_chain(self):
-        r'''Gets tie chain that governs leaf.
-
-        Returns tie chain.
-        '''
-        return self._component._get_tie_chain()
-
-    def get_vertical_moment(
-        self, 
-        governor=None,
-        ):
-        r'''Gets vertical moment starting with component.
-
-        Returns vertical moment.
-        '''
-        return self._component._get_vertical_moment(
-            governor=governor,
-            )
-
-    def get_vertical_moment_at(
-        self, 
-        offset,
-        ):
-        r'''Gets vertical moment at `offset`.
-
-        Returns vertical moment.
-        '''
-        return self._component._get_vertical_moment_at(
-            offset,
-            )
-
     def is_well_formed(
-        self, 
+        self,
         allow_empty_containers=True,
         ):
         r'''True when component is well-formed.

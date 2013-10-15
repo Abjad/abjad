@@ -482,6 +482,10 @@ class PitchArray(AbjadObject):
                         pitchtools.list_named_pitches_in_expr(leaf))
         return pitch_array
 
+    def has_spanning_cell_over_index(self, index):
+        rows = self.rows
+        return any(row.has_spanning_cell_over_index(index) for row in rows)
+
     def list_nonspanning_subarrays(self):
         r'''List nonspanning subarrays of pitch array:
 
@@ -538,10 +542,6 @@ class PitchArray(AbjadObject):
             subarray = self.copy_subarray(upper_left_pair, lower_right_pair)
             subarrays.append(subarray)
         return subarrays
-
-    def has_spanning_cell_over_index(self, index):
-        rows = self.rows
-        return any(row.has_spanning_cell_over_index(index) for row in rows)
 
     def pad_to_depth(self, depth):
         self_depth = self.depth

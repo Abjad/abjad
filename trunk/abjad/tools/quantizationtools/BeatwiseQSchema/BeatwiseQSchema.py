@@ -255,11 +255,11 @@ class BeatwiseQSchema(QSchema):
         return quantizationtools.BeatwiseQSchemaItem
 
     @property
-    def target_item_class(self):
-        from abjad.tools import quantizationtools
-        return quantizationtools.QTargetBeat
-
-    @property
     def target_class(self):
         from abjad.tools import quantizationtools
         return quantizationtools.BeatwiseQTarget
+
+    @property
+    def target_item_class(self):
+        from abjad.tools import quantizationtools
+        return quantizationtools.QTargetBeat

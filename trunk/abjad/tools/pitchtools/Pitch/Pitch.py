@@ -228,6 +228,11 @@ class Pitch(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
+    @abc.abstractproperty
+    def accidental(self):
+        r'''Accidental.'''
+        raise NotImplementedError
+
     @property
     def accidental_spelling(self):
         r'''Accidental spelling.
@@ -241,11 +246,6 @@ class Pitch(AbjadObject):
         '''
         from abjad import abjad_configuration
         return abjad_configuration['accidental_spelling']
-
-    @abc.abstractproperty
-    def accidental(self):
-        r'''Accidental.'''
-        raise NotImplementedError
 
     @abc.abstractproperty
     def alteration_in_semitones(self):
@@ -318,6 +318,11 @@ class Pitch(AbjadObject):
         raise NotImplementedError
 
     @abc.abstractproperty
+    def pitch_class_octave_label(self):
+        r'''Pitch-class / octave label.'''
+        raise NotImplementedError
+
+    @abc.abstractproperty
     def pitch_name(self):
         r'''Pitch name.'''
         raise NotImplementedError
@@ -325,9 +330,4 @@ class Pitch(AbjadObject):
     @abc.abstractproperty
     def pitch_number(self):
         r'''Pitch number.'''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_octave_label(self):
-        r'''Pitch-class / octave label.'''
         raise NotImplementedError

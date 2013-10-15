@@ -57,29 +57,6 @@ def transpose_pitch_carrier_by_melodic_interval(
             pitch_number, diatonic_pitch_class_name)
         return type(pitch)(named_pitch)
 
-    def _transpose_pitch_carrier_by_melodic_diatonic_interval(
-        pitch_carrier, melodic_diatonic_interval):
-        mdi = pitchtools.NamedInterval(melodic_diatonic_interval)
-        if isinstance(pitch_carrier, pitchtools.Pitch):
-            return _transpose_pitch_by_melodic_diatonic_interval(
-                pitch_carrier, mdi)
-        elif isinstance(pitch_carrier, notetools.Note):
-            new_note = copy.copy(pitch_carrier)
-            new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
-                pitch_carrier.written_pitch, mdi)
-            new_note.written_pitch = new_pitch
-            return new_note
-        elif isinstance(pitch_carrier, chordtools.Chord):
-            new_chord = copy.copy(pitch_carrier)
-            for new_nh, old_nh in \
-                zip(new_chord.note_heads, pitch_carrier.note_heads):
-                new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
-                    old_nh.written_pitch, mdi)
-                new_nh.written_pitch = new_pitch
-            return new_chord
-        else:
-            return pitch_carrier
-
     def _transpose_pitch_carrier_by_melodic_chromatic_interval(
         pitch_carrier, melodic_chromatic_interval):
         mci = pitchtools.NumberedInterval(melodic_chromatic_interval)
@@ -105,6 +82,29 @@ def transpose_pitch_carrier_by_melodic_interval(
                 number = abs(pitchtools.NumberedPitch(old_nh.written_pitch))
                 number += mci.number
                 new_pitch = pitchtools.NamedPitch(number)
+                new_nh.written_pitch = new_pitch
+            return new_chord
+        else:
+            return pitch_carrier
+
+    def _transpose_pitch_carrier_by_melodic_diatonic_interval(
+        pitch_carrier, melodic_diatonic_interval):
+        mdi = pitchtools.NamedInterval(melodic_diatonic_interval)
+        if isinstance(pitch_carrier, pitchtools.Pitch):
+            return _transpose_pitch_by_melodic_diatonic_interval(
+                pitch_carrier, mdi)
+        elif isinstance(pitch_carrier, notetools.Note):
+            new_note = copy.copy(pitch_carrier)
+            new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
+                pitch_carrier.written_pitch, mdi)
+            new_note.written_pitch = new_pitch
+            return new_note
+        elif isinstance(pitch_carrier, chordtools.Chord):
+            new_chord = copy.copy(pitch_carrier)
+            for new_nh, old_nh in \
+                zip(new_chord.note_heads, pitch_carrier.note_heads):
+                new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
+                    old_nh.written_pitch, mdi)
                 new_nh.written_pitch = new_pitch
             return new_chord
         else:

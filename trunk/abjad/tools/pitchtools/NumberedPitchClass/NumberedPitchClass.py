@@ -135,10 +135,10 @@ class NumberedPitchClass(PitchClass):
     def _init_by_named_pitch_class(self, expr):
         self._pitch_class_number = expr.pitch_class_number
 
-    def _init_by_string(self, expr):
-        from abjad.tools import pitchtools
-        named_pitch_class = pitchtools.NamedPitchClass(expr)
-        self._init_by_named_pitch_class(named_pitch_class)
+    def _init_by_number(self, expr):
+        self._pitch_class_number = \
+            mathtools.integer_equivalent_number_to_integer(
+                round((float(expr) % 12) * 2) / 2)
 
     def _init_by_pitch_carrier(self, expr):
         from abjad.tools import pitchtools
@@ -146,10 +146,10 @@ class NumberedPitchClass(PitchClass):
             expr)
         self._init_by_named_pitch(named_pitch)
 
-    def _init_by_number(self, expr):
-        self._pitch_class_number = \
-            mathtools.integer_equivalent_number_to_integer(
-                round((float(expr) % 12) * 2) / 2)
+    def _init_by_string(self, expr):
+        from abjad.tools import pitchtools
+        named_pitch_class = pitchtools.NamedPitchClass(expr)
+        self._init_by_named_pitch_class(named_pitch_class)
 
     ### PUBLIC METHODS ###
 

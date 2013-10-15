@@ -334,6 +334,23 @@ class NumberedPitch(Pitch):
         return self._pitch_number % 12
 
     @property
+    def pitch_class_octave_label(self):
+        r'''Pitch-class / octave label.
+
+        ::
+
+            >>> pitchtools.NumberedPitch(13).pitch_class_octave_label
+            'C#5'
+
+        Return string.
+        '''
+        return '{}{}{}'.format(
+            self.diatonic_pitch_class_name.upper(),
+            self.accidental.symbolic_accidental_string,
+            self.octave_number,
+            )
+
+    @property
     def pitch_name(self):
         r'''Pitch name.
 
@@ -362,19 +379,3 @@ class NumberedPitch(Pitch):
         '''
         return self._pitch_number
 
-    @property
-    def pitch_class_octave_label(self):
-        r'''Pitch-class / octave label.
-
-        ::
-
-            >>> pitchtools.NumberedPitch(13).pitch_class_octave_label
-            'C#5'
-
-        Return string.
-        '''
-        return '{}{}{}'.format(
-            self.diatonic_pitch_class_name.upper(),
-            self.accidental.symbolic_accidental_string,
-            self.octave_number,
-            )

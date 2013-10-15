@@ -462,12 +462,12 @@ class InheritanceGraph(AbjadObject):
         return self._lineage_addresses
 
     @property
-    def lineage_distance_mapping(self):
-        return self._lineage_distance_mapping
-
-    @property
     def lineage_classes(self):
         return self._lineage_classes
+
+    @property
+    def lineage_distance_mapping(self):
+        return self._lineage_distance_mapping
 
     @property
     def lineage_prune_distance(self):
