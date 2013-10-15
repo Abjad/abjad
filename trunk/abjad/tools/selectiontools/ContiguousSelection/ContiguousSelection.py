@@ -127,37 +127,6 @@ class ContiguousSelection(Selection):
         # return trimmed governor copy
         return governor_copy
 
-    def _get_offset_lists(self):
-        start_offsets, stop_offsets = [], []
-        for component in self:
-            start_offsets.append(component._get_timespan().start_offset)
-            stop_offsets.append(component._get_timespan().stop_offset)
-        return start_offsets, stop_offsets
-
-    def _get_crossing_spanners(self):
-        r'''Assert logical-voice-contiguous components.
-        Collect spanners that attach to any component in selection.
-        Return unordered set of crossing spanners.
-        A spanner P crosses a list of logical-voice-contiguous components C
-        when P and C share at least one component and when it is the
-        case that NOT ALL of the components in P are also in C.
-        In other words, there is some intersection -- but not total
-        intersection -- between the components of P and C.
-        '''
-        from abjad.tools import iterationtools
-        from abjad.tools import selectiontools
-        assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        all_components = set(iterationtools.iterate_components_in_expr(self))
-        contained_spanners = set()
-        for component in iterationtools.iterate_components_in_expr(self):
-            contained_spanners.update(component._get_spanners())
-        crossing_spanners = set([])
-        for spanner in contained_spanners:
-            spanner_components = set(spanner[:])
-            if not spanner_components.issubset(all_components):
-                crossing_spanners.add(spanner)
-        return crossing_spanners
-
     def _fuse(self):
         from abjad.tools import leaftools
         from abjad.tools import measuretools
@@ -267,6 +236,30 @@ class ContiguousSelection(Selection):
             del(dummy_container[:])
         return new_tuplet
 
+    def _get_crossing_spanners(self):
+        r'''Assert logical-voice-contiguous components.
+        Collect spanners that attach to any component in selection.
+        Return unordered set of crossing spanners.
+        A spanner P crosses a list of logical-voice-contiguous components C
+        when P and C share at least one component and when it is the
+        case that NOT ALL of the components in P are also in C.
+        In other words, there is some intersection -- but not total
+        intersection -- between the components of P and C.
+        '''
+        from abjad.tools import iterationtools
+        from abjad.tools import selectiontools
+        assert self._all_are_contiguous_components_in_same_logical_voice(self)
+        all_components = set(iterationtools.iterate_components_in_expr(self))
+        contained_spanners = set()
+        for component in iterationtools.iterate_components_in_expr(self):
+            contained_spanners.update(component._get_spanners())
+        crossing_spanners = set([])
+        for spanner in contained_spanners:
+            spanner_components = set(spanner[:])
+            if not spanner_components.issubset(all_components):
+                crossing_spanners.add(spanner)
+        return crossing_spanners
+
     def _get_dominant_spanners(self):
         r'''Returns spanners that dominate components in selection.
         Returns set of (spanner, index) pairs.
@@ -296,6 +289,13 @@ class ContiguousSelection(Selection):
                     receipt.add((spanner, index))
         return receipt
             
+    def _get_offset_lists(self):
+        start_offsets, stop_offsets = [], []
+        for component in self:
+            start_offsets.append(component._get_timespan().start_offset)
+            stop_offsets.append(component._get_timespan().stop_offset)
+        return start_offsets, stop_offsets
+
     def _give_dominant_spanners(self, recipients):
         r'''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.

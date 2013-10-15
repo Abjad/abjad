@@ -157,14 +157,14 @@ class QSchema(AbjadObject):
         return self._search_tree
 
     @abc.abstractproperty
-    def target_item_class(self):
-        r'''The schema's target class' item class.
+    def target_class(self):
+        r'''The schema's target class.
         '''
         raise NotImplemented
 
     @abc.abstractproperty
-    def target_class(self):
-        r'''The schema's target class.
+    def target_item_class(self):
+        r'''The schema's target class' item class.
         '''
         raise NotImplemented
 

@@ -72,10 +72,6 @@ class RhythmMaker(Maker):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _is_leaf_list(expr):
-        return all(isinstance(x, leaftools.Leaf) for x in expr)
-
     # TODO: make static
     def _all_are_tuplets_or_all_are_leaf_lists(self, expr):
         if all(isinstance(x, tuplettools.Tuplet) for x in expr):
@@ -84,6 +80,10 @@ class RhythmMaker(Maker):
             return True
         else:
             return False
+
+    @staticmethod
+    def _is_leaf_list(expr):
+        return all(isinstance(x, leaftools.Leaf) for x in expr)
 
     def _make_secondary_duration_pairs(
         self, duration_pairs, secondary_divisions):
