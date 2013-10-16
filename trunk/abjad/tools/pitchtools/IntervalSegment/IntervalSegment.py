@@ -106,7 +106,7 @@ class IntervalSegment(Segment):
 
     @property
     def spread(self):
-        r'''The maximum harmonic interval spanned by any combination of
+        r'''The maximum interval spanned by any combination of
         the intervals within a numbered interval segment:
 
         ::
