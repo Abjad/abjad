@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_NumberedInterval_chromatic_interval_number_01():
+def test_NumberedInterval_numbered_interval_number_01():
 
     assert pitchtools.NumberedInterval(-14).numbered_interval_number == -14
     assert pitchtools.NumberedInterval(14).numbered_interval_number == 14

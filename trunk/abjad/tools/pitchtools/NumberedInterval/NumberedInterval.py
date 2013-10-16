@@ -59,7 +59,7 @@ class NumberedInterval(Interval):
 
     def __ge__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be melodic chromatic interval.' % arg)
+            raise TypeError('%s must be numbered interval.' % arg)
         if not self.direction_number == arg.direction_number:
             raise ValueError(
                 'can only compare melodic intervals of same direction.')
@@ -67,7 +67,7 @@ class NumberedInterval(Interval):
 
     def __gt__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be melodic chromatic interval.' % arg)
+            raise TypeError('%s must be numbered interval.' % arg)
         if not self.direction_number == arg.direction_number:
             raise ValueError(
                 'can only compare melodic intervals of same direction.')
@@ -81,7 +81,7 @@ class NumberedInterval(Interval):
 
     def __le__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be melodic chromatic interval.' % arg)
+            raise TypeError('%s must be numbered interval.' % arg)
         if not self.direction_number == arg.direction_number:
             raise ValueError(
                 'can only compare melodic intervals of same direction.')
@@ -89,7 +89,7 @@ class NumberedInterval(Interval):
 
     def __lt__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be melodic chromatic interval.' % arg)
+            raise TypeError('%s must be numbered interval.' % arg)
         if not self.direction_number == arg.direction_number:
             raise ValueError(
                 'can only compare melodic intervals of same direction.')
@@ -123,7 +123,7 @@ class NumberedInterval(Interval):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate melodic chromatic interval from `pitch_carrier_1` to
+        '''Calculate numbered interval from `pitch_carrier_1` to
         `pitch_carrier_2`:
 
         ::
@@ -134,7 +134,7 @@ class NumberedInterval(Interval):
             ...     )
             NumberedInterval(+14)
 
-        Return melodic chromatic interval.
+        Return numbered interval.
         '''
         from abjad.tools import pitchtools
         # get pitches
@@ -147,7 +147,7 @@ class NumberedInterval(Interval):
             abs(pitchtools.NumberedPitch(pitch_1))
         # change 1.0, 2.0, ... into 1, 2, ...
         number = mathtools.integer_equivalent_number_to_integer(number)
-        # return melodic chromatic interval
+        # return numbered interval
         return cls(number)
 
     ### PUBLIC PROPERTIES ###

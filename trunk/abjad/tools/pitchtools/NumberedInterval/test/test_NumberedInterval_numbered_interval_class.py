@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_NumberedInterval_melodic_chromatic_interval_class_01():
+def test_NumberedInterval_numbered_interval_class_01():
 
     assert pitchtools.NumberedIntervalClass(
         pitchtools.NumberedInterval(2)).number  == 2
@@ -14,7 +14,7 @@ def test_NumberedInterval_melodic_chromatic_interval_class_01():
         pitchtools.NumberedInterval(38)).number == 2
 
 
-def test_NumberedInterval_melodic_chromatic_interval_class_02():
+def test_NumberedInterval_numbered_interval_class_02():
 
     assert pitchtools.NumberedIntervalClass(
         pitchtools.NumberedInterval(-2)).number == -2

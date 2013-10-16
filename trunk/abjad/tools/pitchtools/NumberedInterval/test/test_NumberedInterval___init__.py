@@ -19,7 +19,7 @@ def test_NumberedInterval___init___02():
 
 
 def test_NumberedInterval___init___03():
-    r'''Init from other chromatic interval.
+    r'''Init from other numbered interval.
     '''
 
     i = pitchtools.NumberedInterval(3)
@@ -29,7 +29,7 @@ def test_NumberedInterval___init___03():
 
 
 def test_NumberedInterval___init___04():
-    r'''Init from melodic diatonic interval.
+    r'''Init from named interval.
     '''
 
     diatonic_interval = pitchtools.NamedInterval('perfect', 4)

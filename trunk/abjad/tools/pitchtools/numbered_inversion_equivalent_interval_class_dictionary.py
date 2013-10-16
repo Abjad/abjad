@@ -3,8 +3,8 @@ from abjad.tools import sequencetools
 
 
 def numbered_inversion_equivalent_interval_class_dictionary(pitches):
-    r'''Change named `pitches` to inversion-equivalent chromatic interval-class number
-    dictionary:
+    r'''Change named `pitches` to numbered inversion-equivalent interval-class
+    number dictionary:
 
     ::
 

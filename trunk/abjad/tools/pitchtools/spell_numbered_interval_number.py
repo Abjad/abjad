@@ -10,7 +10,7 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
         >>> pitchtools.spell_numbered_interval_number(2, 1)
         NamedInterval('+m2')
 
-    Return melodic diatonic interval.
+    Return named interval.
     '''
     from abjad.tools import pitchtools
 

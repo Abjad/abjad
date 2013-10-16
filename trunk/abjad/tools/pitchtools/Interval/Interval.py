@@ -109,7 +109,7 @@ class Interval(AbjadObject):
 
     @staticmethod
     def is_named_interval_abbreviation(expr):
-        '''True when `expr` is a melodic diatonic interval abbreviation.
+        '''True when `expr` is a named interval abbreviation.
         Otherwise false:
 
         ::

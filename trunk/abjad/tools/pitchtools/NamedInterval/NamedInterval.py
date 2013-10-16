@@ -53,7 +53,7 @@ class NamedInterval(Interval):
     def __add__(self, arg):
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be melodic diatonic interval.' % arg)
+            raise TypeError('%s must be named interval.' % arg)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self + arg
         return pitchtools.NamedInterval.from_pitch_carriers(
@@ -140,7 +140,7 @@ class NamedInterval(Interval):
     def __sub__(self, arg):
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be melodic diatonic interval.' % arg)
+            raise TypeError('%s must be named interval.' % arg)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self - arg
         return pitchtools.NamedInterval.from_pitch_carriers(
@@ -214,7 +214,7 @@ class NamedInterval(Interval):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate melodic diatonic interval from `pitch_carrier_1` to
+        '''Calculate named interval from `pitch_carrier_1` to
         `pitch_carrier_2`:
 
         ::
@@ -225,7 +225,7 @@ class NamedInterval(Interval):
             ...     )
             NamedInterval('+M9')
 
-        Return melodic diatonic interval.
+        Return named interval.
         '''
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier_1)

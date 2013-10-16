@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_NamedInterval___init___01():
-    r'''Init melodic diatonic interval from abbreviation.
+    r'''Init named interval from abbreviation.
     '''
 
     mdi = pitchtools.NamedInterval('+M3')
@@ -21,7 +21,7 @@ def test_NamedInterval___init___02():
 
 
 def test_NamedInterval___init___03():
-    r'''Can init from other melodic diatonic interval instance.
+    r'''Can init from other named interval instance.
     '''
 
     mdi = pitchtools.NamedInterval('major', 3)

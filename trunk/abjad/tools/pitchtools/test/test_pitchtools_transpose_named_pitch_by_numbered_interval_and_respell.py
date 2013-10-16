@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_pitchtools_transpose_named_pitch_by_melodic_chromatic_interval_and_respell_01():
+def test_pitchtools_transpose_named_pitch_by_numbered_interval_and_respell_01():
 
     pitch = pitchtools.NamedPitch(0)
 
@@ -21,7 +21,7 @@ def test_pitchtools_transpose_named_pitch_by_melodic_chromatic_interval_and_resp
         KeyError, 'pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 4.5)')
 
 
-def test_pitchtools_transpose_named_pitch_by_melodic_chromatic_interval_and_respell_02():
+def test_pitchtools_transpose_named_pitch_by_numbered_interval_and_respell_02():
 
     pitch = pitchtools.NamedPitch(0)
 

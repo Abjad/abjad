@@ -107,7 +107,7 @@ class IntervalSegment(Segment):
     @property
     def spread(self):
         r'''The maximum harmonic interval spanned by any combination of
-        the intervals within a harmonic chromatic interval segment:
+        the intervals within a numbered interval segment:
 
         ::
 
@@ -119,7 +119,7 @@ class IntervalSegment(Segment):
             >>> pitchtools.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
             NumberedInterval(+5.0)
 
-        Return harmonic chromatic interval.
+        Return numbered interval.
         '''
         from abjad.tools import pitchtools
         current = maximum = minimum = 0

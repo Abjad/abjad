@@ -76,7 +76,7 @@ class NumberedIntervalClass(IntervalClass):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate melodic chromatic interval-class from `pitch_carrier_1` to
+        '''Calculate numbered interval-class from `pitch_carrier_1` to
         `pitch_carrier_2`:
 
         ::
@@ -87,13 +87,13 @@ class NumberedIntervalClass(IntervalClass):
             ...     )
             NumberedIntervalClass(+2)
 
-        Return melodic chromatic interval-class.
+        Return numbered interval-class.
         '''
         from abjad.tools import pitchtools
-        # get melodic chromatic interval
+        # get numbered interval
         interval = pitchtools.NumberedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
-        # return melodic chromatic interval-class
+        # return numbered interval-class
         return cls(interval)
 
     ### PUBLIC PROPERTIES ###
