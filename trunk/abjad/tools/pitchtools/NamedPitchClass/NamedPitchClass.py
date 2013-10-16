@@ -80,11 +80,11 @@ class NamedPitchClass(PitchClass):
     def __abs__(self):
         return abs(self.numbered_pitch_class)
 
-    def __add__(self, melodic_diatonic_interval):
+    def __add__(self, named_interval):
         from abjad.tools import pitchtools
         dummy = pitchtools.NamedPitch(
             self.pitch_class_name, 4)
-        mdi = melodic_diatonic_interval
+        mdi = named_interval
         new = pitchtools.transpose_pitch_carrier_by_melodic_interval(
             dummy, mdi)
         return type(self)(new)
@@ -220,7 +220,7 @@ class NamedPitchClass(PitchClass):
 
     def transpose(self, n):
         r'''Transpose named pitch-class by
-        `melodic_diatonic_interval`:
+        `named_interval`:
 
         ::
 

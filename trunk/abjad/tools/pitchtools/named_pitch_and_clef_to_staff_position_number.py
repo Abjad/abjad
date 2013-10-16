@@ -2,7 +2,7 @@
 
 
 def named_pitch_and_clef_to_staff_position_number(pitch, clef):
-    r'''Change named chromatic `pitch` and `clef` to staff position number:
+    r'''Change named `pitch` and `clef` to staff position number:
 
     ::
 

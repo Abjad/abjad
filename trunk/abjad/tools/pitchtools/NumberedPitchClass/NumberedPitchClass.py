@@ -79,7 +79,7 @@ class NumberedPitchClass(PitchClass):
         return self._pitch_class_number
 
     def __add__(self, expr):
-        r'''Addition defined against melodic chromatic intervals only.
+        r'''Addition defined against melodic numbered intervals only.
         '''
         from abjad.tools import pitchtools
         interval = pitchtools.NumberedInterval(expr)
@@ -113,7 +113,7 @@ class NumberedPitchClass(PitchClass):
         return str(abs(self))
 
     def __sub__(self, expr):
-        r'''Subtraction defined against both melodic chromatic intervals
+        r'''Subtraction defined against both melodic numbered intervals
         and against other pitch-classes.
         '''
         from abjad.tools import pitchtools

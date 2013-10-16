@@ -53,7 +53,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     def _init_by_quality_string_and_number(self, quality_string, number):
         if number == 0:
-            raise ValueError('diatonic intervals can not equal zero.')
+            raise ValueError('named intervals can not equal zero.')
         elif abs(number) == 1:
             number = 1
         elif abs(number) % 7 == 0:

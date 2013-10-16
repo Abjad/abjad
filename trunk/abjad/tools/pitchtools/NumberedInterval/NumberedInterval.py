@@ -153,12 +153,12 @@ class NumberedInterval(Interval):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def chromatic_interval_number(self):
+    def numbered_interval_number(self):
         r'''Chromatic interval number:
 
         ::
 
-            >>> pitchtools.NumberedInterval(-14).chromatic_interval_number
+            >>> pitchtools.NumberedInterval(-14).numbered_interval_number
             -14
 
         Return integer or float.

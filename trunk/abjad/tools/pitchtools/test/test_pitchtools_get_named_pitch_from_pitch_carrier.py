@@ -6,33 +6,33 @@ import py.test
 def test_pitchtools_get_named_pitch_from_pitch_carrier_01():
 
     pitch = pitchtools.NamedPitch('df', 5)
-    namedchromaticpitch = pitchtools.get_named_pitch_from_pitch_carrier(pitch)
+    named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(pitch)
 
-    assert namedchromaticpitch == pitchtools.NamedPitch('df', 5)
+    assert named_pitch == pitchtools.NamedPitch('df', 5)
 
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_02():
 
     note = Note(('df', 5), (1, 4))
-    namedchromaticpitch = pitchtools.get_named_pitch_from_pitch_carrier(note)
+    named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(note)
 
-    assert namedchromaticpitch == pitchtools.NamedPitch('df', 5)
+    assert named_pitch == pitchtools.NamedPitch('df', 5)
 
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_03():
 
     note = Note(('df', 5), (1, 4))
-    namedchromaticpitch = pitchtools.get_named_pitch_from_pitch_carrier(note.note_head)
+    named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(note.note_head)
 
-    assert namedchromaticpitch == pitchtools.NamedPitch('df', 5)
+    assert named_pitch == pitchtools.NamedPitch('df', 5)
 
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_04():
 
     chord = Chord([('df', 5)], (1, 4))
-    namedchromaticpitch = pitchtools.get_named_pitch_from_pitch_carrier(chord)
+    named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(chord)
 
-    assert namedchromaticpitch == pitchtools.NamedPitch('df', 5)
+    assert named_pitch == pitchtools.NamedPitch('df', 5)
 
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_05():

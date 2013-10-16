@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_NumberedInterval___le___01():
-    r'''Compare two ascending chromatic intervals.
+    r'''Compare two ascending numbered intervals.
     '''
 
     interval_1 = pitchtools.NumberedInterval(2)
@@ -14,7 +14,7 @@ def test_NumberedInterval___le___01():
 
 
 def test_NumberedInterval___le___02():
-    r'''Compare two descending chromatic intervals.
+    r'''Compare two descending numbered intervals.
     '''
 
     interval_1 = pitchtools.NumberedInterval(-2)
@@ -25,7 +25,7 @@ def test_NumberedInterval___le___02():
 
 
 def test_NumberedInterval___le___03():
-    r'''Compare two ascending chromatic intervals.
+    r'''Compare two ascending numbered intervals.
     '''
 
     interval_1 = pitchtools.NumberedInterval(2)
@@ -36,7 +36,7 @@ def test_NumberedInterval___le___03():
 
 
 def test_NumberedInterval___le___04():
-    r'''Compare two descending chromatic intervals.
+    r'''Compare two descending numbered intervals.
     '''
 
     interval_1 = pitchtools.NumberedInterval(-2)
