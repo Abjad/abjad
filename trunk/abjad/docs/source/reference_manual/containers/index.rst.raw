@@ -1,20 +1,22 @@
 Containers
 ==========
 
+
 Creating containers
 -------------------
 
 Create a container with components:
 
 <abjad>
-container = Container([Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")])
+notes = [Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")]
+container = Container(notes)
 </abjad>
 
 <abjad>
 show(container)
 </abjad>
 
-Or with a note-entry string:
+Or with a LilyPond input string:
 
 .. Xenakis: Jalons (1986): Contrabass: m58
 
@@ -26,43 +28,41 @@ container = Container("ds'16 cs'16 e'16 c'16 d'2 ~ d'8")
 show(container)
 </abjad>
 
-Inspecting music
-----------------
 
-Return the components in a container with ``music``:
+Selecting music
+---------------
 
-<abjad>
-container.music
-</abjad>
-
-Or with a special call to ``__getslice__``:
+Slice a container to select its components:
 
 <abjad>
 container[:]
 </abjad>
 
+
 Inspecting length
 -----------------
 
-Get the length of a container with ``len()``:
+Get the length of a container with Python's built-in ``len()`` function:
 
 <abjad>
 len(container)
 </abjad>
 
+
 Inspecting duration
 -------------------
 
-Contents duration equals the sum of the duration of everything inside the container:
+Use the inspector the get the duration of a container:
 
 <abjad>
-container._contents_duration
+inspect(container).get_duration()
 </abjad>
+
 
 Adding one component to the end of a container
 ----------------------------------------------
 
-Add one component to the end of a container with ``append``:
+Add one component to the end of a container with ``append()``:
 
 <abjad>
 container.append(Note("af'32"))
@@ -72,10 +72,11 @@ container.append(Note("af'32"))
 show(container)
 </abjad>
 
+
 Adding many components to the end of a container
 ------------------------------------------------
 
-Add many components to the end of a container with ``extend``:
+Add many components to the end of a container with ``extend()``:
 
 <abjad>
 container.extend([Note("c''32"), Note("a'32")])
@@ -85,10 +86,11 @@ container.extend([Note("c''32"), Note("a'32")])
 show(container)
 </abjad>
 
+
 Finding the index of a component
 --------------------------------
 
-Find the index of a component with ``index``:
+Find the index of a component with ``index()``:
 
 <abjad>
 note = container[7]
@@ -98,10 +100,11 @@ note = container[7]
 container.index(note)
 </abjad>
 
+
 Inserting a component by index
 ------------------------------
 
-Insert a component by index with ``insert``:
+Insert a component by index with ``insert()``:
 
 <abjad>
 container.insert(-3, Note("g'32"))
@@ -111,10 +114,11 @@ container.insert(-3, Note("g'32"))
 show(container)
 </abjad>
 
+
 Removing a component by index
 -----------------------------
 
-Remove a component by index with ``pop``:
+Remove a component by index with ``pop()``:
 
 <abjad>
 container.pop(-1)
@@ -124,10 +128,11 @@ container.pop(-1)
 show(container)
 </abjad>
 
+
 Removing a component by reference
 ---------------------------------
 
-Remove a component by reference with ``remove``:
+Remove a component by reference with ``remove()``:
 
 <abjad>
 container.remove(container[-1])
@@ -139,7 +144,9 @@ show(container)
 
 .. note::
 
-    ``__getslice__``, ``__setslice__`` and ``__delslice__`` remain to be documented.
+    ``__getslice__``, ``__setslice__`` and ``__delslice__`` 
+    remain to be documented.
+
 
 Naming containers
 -----------------
@@ -172,6 +179,7 @@ But container names do not appear in notational output:
 <abjad>
 show(score)
 </abjad>
+
 
 Understanding ``{ }`` and ``<< >>`` in LilyPond
 -----------------------------------------------
@@ -236,31 +244,36 @@ show(staff)
 
 The examples above are both LilyPond input.
 
-The most common use of LilyPond ``{ }`` is to group a potentially long stream of notes
-and rests into a single expression.
+The most common use of LilyPond ``{ }`` is to group a 
+potentially long stream of notes and rests into a single expression.
 
 The most common use of LilyPond ``<< >>`` is to group a relatively smaller
 number of note lists together polyphonically.
 
-Understanding sequential and parallel containers
-------------------------------------------------
 
-Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container ``is_simultaneous`` attribute.
+Understanding sequential and simultneous containers
+---------------------------------------------------
 
-Some containers set ``is_simultaneous`` to false at initialization::
+Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container 
+``is_simultaneous`` attribute.
 
-    staff = Staff([])
-    staff.is_simultaneous
-    False
+Some containers set ``is_simultaneous`` to false at initialization:
 
-Other containers set ``is_simultaneous`` to true::
+<abjad>
+staff = Staff([])
+staff.is_simultaneous
+</abjad>
 
-    score = Score([])
-    score.is_simultaneous
-    True
+Other containers set ``is_simultaneous`` to true:
 
-Changing sequential and parallel containers
--------------------------------------------
+<abjad>
+score = Score([])
+score.is_simultaneous
+</abjad>
+
+
+Changing sequential and simultaneous containers
+-----------------------------------------------
 
 Set ``is_simultaneous`` by hand as necessary:
 
@@ -274,12 +287,9 @@ marktools.LilyPondCommandMark('voiceTwo')(voice_2)
 show(staff)
 </abjad>
 
-The staff in the example above is set to parallel after initialization to create
-a type of polyphonic staff:
+The staff in the example above is set to simultaneous after initialization 
+to create a type of polyphonic staff.
 
-<abjad>
-f(staff)
-</abjad>
 
 Overriding containers
 ---------------------
@@ -294,10 +304,6 @@ slur_3 = spannertools.SlurSpanner(staff[4:6])
 </abjad>
 
 <abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -308,17 +314,15 @@ staff.override.staff_symbol.color = 'blue'
 </abjad>
 
 <abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
+
 
 Overriding containers' contents
 -------------------------------
 
-You can override LilyPond grobs to change the look of containers' contents, too:
+You can override LilyPond grobs to change the look of containers' 
+contents, too:
 
 <abjad>
 staff.override.note_head.color = 'red'
@@ -326,12 +330,9 @@ staff.override.stem.color = 'red'
 </abjad>
 
 <abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
+
 
 Removing container overrides
 ----------------------------
@@ -340,10 +341,6 @@ Delete grob overrides you no longer want:
 
 <abjad>
 del(staff.override.staff_symbol)
-</abjad>
-
-<abjad>
-f(staff)
 </abjad>
 
 <abjad>

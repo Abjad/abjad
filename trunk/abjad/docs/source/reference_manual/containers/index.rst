@@ -1,6 +1,7 @@
 Containers
 ==========
 
+
 Creating containers
 -------------------
 
@@ -8,7 +9,8 @@ Create a container with components:
 
 ::
 
-   >>> container = Container([Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")])
+   >>> notes = [Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")]
+   >>> container = Container(notes)
 
 
 ::
@@ -18,7 +20,7 @@ Create a container with components:
 .. image:: images/index-1.png
 
 
-Or with a note-entry string:
+Or with a LilyPond input string:
 
 .. Xenakis: Jalons (1986): Contrabass: m58
 
@@ -34,18 +36,11 @@ Or with a note-entry string:
 .. image:: images/index-2.png
 
 
-Inspecting music
-----------------
 
-Return the components in a container with ``music``:
+Selecting music
+---------------
 
-::
-
-   >>> container.music
-   (Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16"), Note("d'2"), Note("d'8"))
-
-
-Or with a special call to ``__getslice__``:
+Slice a container to select its components:
 
 ::
 
@@ -53,10 +48,11 @@ Or with a special call to ``__getslice__``:
    SliceSelection(Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16"), Note("d'2"), Note("d'8"))
 
 
+
 Inspecting length
 -----------------
 
-Get the length of a container with ``len()``:
+Get the length of a container with Python's built-in ``len()`` function:
 
 ::
 
@@ -64,21 +60,23 @@ Get the length of a container with ``len()``:
    6
 
 
+
 Inspecting duration
 -------------------
 
-Contents duration equals the sum of the duration of everything inside the container:
+Use the inspector the get the duration of a container:
 
 ::
 
-   >>> container._contents_duration
+   >>> inspect(container).get_duration()
    Duration(7, 8)
+
 
 
 Adding one component to the end of a container
 ----------------------------------------------
 
-Add one component to the end of a container with ``append``:
+Add one component to the end of a container with ``append()``:
 
 ::
 
@@ -92,10 +90,11 @@ Add one component to the end of a container with ``append``:
 .. image:: images/index-3.png
 
 
+
 Adding many components to the end of a container
 ------------------------------------------------
 
-Add many components to the end of a container with ``extend``:
+Add many components to the end of a container with ``extend()``:
 
 ::
 
@@ -109,10 +108,11 @@ Add many components to the end of a container with ``extend``:
 .. image:: images/index-4.png
 
 
+
 Finding the index of a component
 --------------------------------
 
-Find the index of a component with ``index``:
+Find the index of a component with ``index()``:
 
 ::
 
@@ -125,10 +125,11 @@ Find the index of a component with ``index``:
    7
 
 
+
 Inserting a component by index
 ------------------------------
 
-Insert a component by index with ``insert``:
+Insert a component by index with ``insert()``:
 
 ::
 
@@ -142,10 +143,11 @@ Insert a component by index with ``insert``:
 .. image:: images/index-5.png
 
 
+
 Removing a component by index
 -----------------------------
 
-Remove a component by index with ``pop``:
+Remove a component by index with ``pop()``:
 
 ::
 
@@ -160,10 +162,11 @@ Remove a component by index with ``pop``:
 .. image:: images/index-6.png
 
 
+
 Removing a component by reference
 ---------------------------------
 
-Remove a component by reference with ``remove``:
+Remove a component by reference with ``remove()``:
 
 ::
 
@@ -179,7 +182,9 @@ Remove a component by reference with ``remove``:
 
 .. note::
 
-    ``__getslice__``, ``__setslice__`` and ``__delslice__`` remain to be documented.
+    ``__getslice__``, ``__setslice__`` and ``__delslice__`` 
+    remain to be documented.
+
 
 Naming containers
 -----------------
@@ -236,6 +241,7 @@ But container names do not appear in notational output:
 .. image:: images/index-8.png
 
 
+
 Understanding ``{ }`` and ``<< >>`` in LilyPond
 -----------------------------------------------
 
@@ -290,31 +296,40 @@ expressions that are to be played at the same time::
 
 The examples above are both LilyPond input.
 
-The most common use of LilyPond ``{ }`` is to group a potentially long stream of notes
-and rests into a single expression.
+The most common use of LilyPond ``{ }`` is to group a 
+potentially long stream of notes and rests into a single expression.
 
 The most common use of LilyPond ``<< >>`` is to group a relatively smaller
 number of note lists together polyphonically.
 
-Understanding sequential and parallel containers
-------------------------------------------------
 
-Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container ``is_simultaneous`` attribute.
+Understanding sequential and simultneous containers
+---------------------------------------------------
 
-Some containers set ``is_simultaneous`` to false at initialization::
+Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container 
+``is_simultaneous`` attribute.
 
-    staff = Staff([])
-    staff.is_simultaneous
-    False
+Some containers set ``is_simultaneous`` to false at initialization:
 
-Other containers set ``is_simultaneous`` to true::
+::
 
-    score = Score([])
-    score.is_simultaneous
-    True
+   >>> staff = Staff([])
+   >>> staff.is_simultaneous
+   False
 
-Changing sequential and parallel containers
--------------------------------------------
+
+Other containers set ``is_simultaneous`` to true:
+
+::
+
+   >>> score = Score([])
+   >>> score.is_simultaneous
+   True
+
+
+
+Changing sequential and simultaneous containers
+-----------------------------------------------
 
 Set ``is_simultaneous`` by hand as necessary:
 
@@ -333,37 +348,8 @@ Set ``is_simultaneous`` by hand as necessary:
 .. image:: images/index-11.png
 
 
-The staff in the example above is set to parallel after initialization to create
-a type of polyphonic staff:
-
-::
-
-   >>> f(staff)
-   \new Staff <<
-       \new Voice {
-           \voiceOne
-           e''4
-           f''4
-           g''4
-           g''4
-           f''4
-           e''4
-           d''4
-           d''4 -\fermata
-       }
-       \new Voice {
-           \voiceTwo
-           c''4
-           c''4
-           b'4
-           c''4
-           c''8
-           b'8
-           c''4
-           b'4
-           b'4 -\fermata
-       }
-   >>
+The staff in the example above is set to simultaneous after initialization 
+to create a type of polyphonic staff.
 
 
 Overriding containers
@@ -377,20 +363,6 @@ The symbols below are black with fixed thickness and predetermined spacing:
    >>> slur_1 = spannertools.SlurSpanner(staff[:2])
    >>> slur_2 = spannertools.SlurSpanner(staff[2:4])
    >>> slur_3 = spannertools.SlurSpanner(staff[4:6])
-
-
-::
-
-   >>> f(staff)
-   \new Staff {
-       c'4 (
-       d'4 )
-       e'4 (
-       f'4 )
-       g'4 (
-       a'4 )
-       g'2
-   }
 
 
 ::
@@ -409,31 +381,17 @@ But you can override LilyPond grobs to change the look of Abjad containers:
 
 ::
 
-   >>> f(staff)
-   \new Staff \with {
-       \override StaffSymbol #'color = #blue
-   } {
-       c'4 (
-       d'4 )
-       e'4 (
-       f'4 )
-       g'4 (
-       a'4 )
-       g'2
-   }
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-13.png
 
 
+
 Overriding containers' contents
 -------------------------------
 
-You can override LilyPond grobs to change the look of containers' contents, too:
+You can override LilyPond grobs to change the look of containers' 
+contents, too:
 
 ::
 
@@ -443,27 +401,10 @@ You can override LilyPond grobs to change the look of containers' contents, too:
 
 ::
 
-   >>> f(staff)
-   \new Staff \with {
-       \override NoteHead #'color = #red
-       \override StaffSymbol #'color = #blue
-       \override Stem #'color = #red
-   } {
-       c'4 (
-       d'4 )
-       e'4 (
-       f'4 )
-       g'4 (
-       a'4 )
-       g'2
-   }
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-14.png
+
 
 
 Removing container overrides
@@ -478,23 +419,7 @@ Delete grob overrides you no longer want:
 
 ::
 
-   >>> f(staff)
-   \new Staff \with {
-       \override NoteHead #'color = #red
-       \override Stem #'color = #red
-   } {
-       c'4 (
-       d'4 )
-       e'4 (
-       f'4 )
-       g'4 (
-       a'4 )
-       g'2
-   }
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-15.png
+
