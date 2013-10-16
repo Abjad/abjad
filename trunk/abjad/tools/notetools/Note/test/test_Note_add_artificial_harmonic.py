@@ -33,8 +33,8 @@ def test_Note_add_artificial_harmonic_02():
     '''
 
     note = Note("c'4")
-    diatonic_interval = pitchtools.NamedInterval('minor', 3)
-    note = note.add_artificial_harmonic(diatonic_interval)
+    named_interval = pitchtools.NamedInterval('minor', 3)
+    note = note.add_artificial_harmonic(named_interval)
     assert testtools.compare(
         note,
         r'''
