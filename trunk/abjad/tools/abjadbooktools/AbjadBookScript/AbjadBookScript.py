@@ -155,6 +155,7 @@ EXAMPLES
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        from abjad.tools import developerscripttools
         for filename in self._collect_filenames(args):
             self._process_filename(args, filename)
         flags = []
@@ -166,29 +167,25 @@ EXAMPLES
             developerscripttools.BuildApiScript()(flags)
 
     def setup_argument_parser(self, parser):
-
         parser.add_argument('path',
+            default=os.getcwd(),
+            help='directory tree to be recursed over',
+            nargs='?',
             type=self._validate_path,
-            help='the path to process: a filename ending in ".raw" or '
-            'an arbitrarily-deep directory tree to be recursed over'
             )
-
         parser.add_argument('--skip-rendering',
             action='store_true',
             help='skip all image rendering and simply execute the code',
             )
-
         parser.add_argument('--verbose',
             action='store_true',
             dest='verbose',
             help='run in verbose mode, printing all LilyPond output',
             )
-
         parser.add_argument('-X', '--experimental',
             action='store_true',
             help='rebuild abjad.tools docs after processing',
             )
-
         parser.add_argument('-M', '--mainline',
             action='store_true',
             help='rebuild mainline docs after processing',

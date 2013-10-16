@@ -59,7 +59,7 @@ class OutputFormat(abctools.AbjadObject):
                             reformatted.append(
                                 self.image_block.format(image_file_name))
                     except KeyError:
-                        reformatted.append('ERROR')
+                        print 'Error:\n{}'.format('\n'.join(reformatted))
 
                 else:
                     for page_number, image_file_name in sorted(
