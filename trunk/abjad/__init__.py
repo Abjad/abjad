@@ -36,6 +36,7 @@ from abjad.tools.durationtools import Multiplier
 from abjad.tools.durationtools import Offset
 from abjad.tools.measuretools import Measure
 from abjad.tools.notetools import Note
+from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.resttools import Rest
 from abjad.tools.scoretools import Score
 from abjad.tools.stafftools import Staff
