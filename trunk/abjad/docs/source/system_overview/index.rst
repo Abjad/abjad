@@ -5,3 +5,4 @@ System Overview
 
    lcs/index
    parsing/index
+   durations/index

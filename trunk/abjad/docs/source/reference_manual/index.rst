@@ -10,7 +10,6 @@ Reference manual
    articulations/index
    chords/index
    containers/index
-   durations/index
    instrument_marks/index
    input_output/index
    lilypond_command_marks/index
