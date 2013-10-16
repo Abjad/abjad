@@ -2,12 +2,12 @@
 from abjad.tools import mathtools
 
 
-def spell_chromatic_interval_number(diatonic_interval_number, chromatic_interval_number):
+def spell_numbered_interval_number(diatonic_interval_number, chromatic_interval_number):
     '''Spell `chromatic_interval_number` according to `diatonic_interval_number`:
 
     ::
 
-        >>> pitchtools.spell_chromatic_interval_number(2, 1)
+        >>> pitchtools.spell_numbered_interval_number(2, 1)
         NamedInterval('+m2')
 
     Return melodic diatonic interval.

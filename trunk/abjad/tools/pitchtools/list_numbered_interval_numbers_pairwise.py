@@ -2,7 +2,7 @@
 from abjad.tools import sequencetools
 
 
-def list_interval_numbers_pairwise(pitch_carriers, wrap=False):
+def list_numbered_interval_numbers_pairwise(pitch_carriers, wrap=False):
     r'''List melodic chromatic interval numbers pairwise between `pitch_carriers`:
 
     ::
@@ -25,13 +25,13 @@ def list_interval_numbers_pairwise(pitch_carriers, wrap=False):
 
     ::
 
-        >>> pitchtools.list_interval_numbers_pairwise(
+        >>> pitchtools.list_numbered_interval_numbers_pairwise(
         ... staff)
         [2, 2, 1, 2, 2, 2, 1]
 
     ::
 
-        >>> pitchtools.list_interval_numbers_pairwise(
+        >>> pitchtools.list_numbered_interval_numbers_pairwise(
         ... staff, wrap=True)
         [2, 2, 1, 2, 2, 2, 1, -12]
 
@@ -47,13 +47,13 @@ def list_interval_numbers_pairwise(pitch_carriers, wrap=False):
 
     ::
 
-        >>> pitchtools.list_interval_numbers_pairwise(
+        >>> pitchtools.list_numbered_interval_numbers_pairwise(
         ... notes)
         [-1, -2, -2, -2, -1, -2, -2]
 
     ::
 
-        >>> pitchtools.list_interval_numbers_pairwise(
+        >>> pitchtools.list_numbered_interval_numbers_pairwise(
         ... notes, wrap=True)
         [-1, -2, -2, -2, -1, -2, -2, 12]
 

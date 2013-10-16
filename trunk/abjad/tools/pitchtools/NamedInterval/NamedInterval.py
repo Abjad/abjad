@@ -238,7 +238,7 @@ class NamedInterval(Interval):
         chromatic_interval_number = abs(abs(pitchtools.NumberedPitch(pitch_1))
             - abs(pitchtools.NumberedPitch(pitch_2)))
         absolute_diatonic_interval = \
-            pitchtools.spell_chromatic_interval_number(
+            pitchtools.spell_numbered_interval_number(
             diatonic_interval_number, chromatic_interval_number)
         if pitch_2 < pitch_1:
             diatonic_interval = -absolute_diatonic_interval
