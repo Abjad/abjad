@@ -51,12 +51,15 @@ class OutputFormat(abctools.AbjadObject):
                 page_range = result['page_range']
 
                 if page_range is None:
-                    image_file_names = [v for k, v in sorted(
-                        image_dict[image_count].items())]
-                    for image_file_name in image_file_names:
-                        image_file_name = image_file_name.rpartition('.')[0]
-                        reformatted.append(
-                            self.image_block.format(image_file_name))
+                    try:
+                        image_file_names = [v for k, v in sorted(
+                            image_dict[image_count].items())]
+                        for image_file_name in image_file_names:
+                            image_file_name = image_file_name.rpartition('.')[0]
+                            reformatted.append(
+                                self.image_block.format(image_file_name))
+                    except KeyError:
+                        reformatted.append('ERROR')
 
                 else:
                     for page_number, image_file_name in sorted(
