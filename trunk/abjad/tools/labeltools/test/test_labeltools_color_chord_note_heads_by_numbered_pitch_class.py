@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_01():
+def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_01():
     r'''Works on chords.
     '''
 
@@ -48,7 +48,7 @@ def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_01():
         )
 
 
-def test_labeltools_color_chord_note_heads_by_numeric_pitch_class_02():
+def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_02():
     r'''Works on notes.
     '''
 

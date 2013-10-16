@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_labeltools_label_leaves_in_expr_with_melodic_diatonic_intervals_01():
+def test_labeltools_label_leaves_in_expr_with_named_intervals_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    labeltools.label_leaves_in_expr_with_melodic_diatonic_intervals(staff)
+    labeltools.label_leaves_in_expr_with_named_intervals(staff)
 
     r'''
     \new Staff {
@@ -37,10 +37,10 @@ def test_labeltools_label_leaves_in_expr_with_melodic_diatonic_intervals_01():
         )
 
 
-def test_labeltools_label_leaves_in_expr_with_melodic_diatonic_intervals_02():
+def test_labeltools_label_leaves_in_expr_with_named_intervals_02():
 
     staff = Staff(notetools.make_notes([0, 13, 11, 8, 2, 3, 9, 10, 6, 5], [Duration(1, 8)]))
-    labeltools.label_leaves_in_expr_with_melodic_diatonic_intervals(staff)
+    labeltools.label_leaves_in_expr_with_named_intervals(staff)
 
     r'''
     \new Staff {

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01():
+def test_labeltools_label_vertical_moments_in_expr_with_named_intervals_01():
 
     score = Score(Staff([]) * 3)
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
@@ -11,7 +11,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
     score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
     contexttools.ClefMark('bass')(score[2])
     score[2].append(Note(-24, (1, 2)))
-    labeltools.label_vertical_moments_in_expr_with_chromatic_intervals(score)
+    labeltools.label_vertical_moments_in_expr_with_diatonic_intervals(score)
 
     r'''
     \new Score <<
@@ -22,8 +22,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
                     \small
                         \column
                             {
-                                +26
-                                +19
+                                16
+                                12
                             }
                     }
             e'8
@@ -32,8 +32,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
                     \small
                         \column
                             {
-                                +29
-                                +17
+                                18
+                                11
                             }
                     }
         }
@@ -45,8 +45,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
                     \small
                         \column
                             {
-                                +28
-                                +17
+                                17
+                                11
                             }
                     }
         }
@@ -57,8 +57,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
                     \small
                         \column
                             {
-                                +24
-                                +19
+                                15
+                                12
                             }
                     }
         }
@@ -77,8 +77,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
                         \small
                             \column
                                 {
-                                    +26
-                                    +19
+                                    16
+                                    12
                                 }
                         }
                 e'8
@@ -87,8 +87,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
                         \small
                             \column
                                 {
-                                    +29
-                                    +17
+                                    18
+                                    11
                                 }
                         }
             }
@@ -100,8 +100,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
                         \small
                             \column
                                 {
-                                    +28
-                                    +17
+                                    17
+                                    11
                                 }
                         }
             }
@@ -112,8 +112,8 @@ def test_labeltools_label_vertical_moments_in_expr_with_chromatic_intervals_01()
                         \small
                             \column
                                 {
-                                    +24
-                                    +19
+                                    15
+                                    12
                                 }
                         }
             }

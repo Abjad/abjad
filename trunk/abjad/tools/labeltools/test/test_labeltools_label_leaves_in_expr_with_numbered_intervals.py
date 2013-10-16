@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_01():
+def test_labeltools_label_leaves_in_expr_with_numbered_intervals_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
+    labeltools.label_leaves_in_expr_with_numbered_intervals(staff)
 
     r'''
     \new Staff {
@@ -38,10 +38,10 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_01():
         )
 
 
-def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_02():
+def test_labeltools_label_leaves_in_expr_with_numbered_intervals_02():
 
     staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
-    labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
+    labeltools.label_leaves_in_expr_with_numbered_intervals(staff)
 
     assert inspect(staff).is_well_formed()
     assert testtools.compare(
@@ -63,12 +63,12 @@ def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_02():
         )
 
 
-def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_intervals_03():
+def test_labeltools_label_leaves_in_expr_with_numbered_intervals_03():
     r'''Works with quartertones.
     '''
 
     staff = Staff(notetools.make_notes([0, 25.5, 11.5, -4, -14, -13, 9, 10, 6.5, 5.5], [Duration(1, 8)]))
-    labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals(staff)
+    labeltools.label_leaves_in_expr_with_numbered_intervals(staff)
 
     assert inspect(staff).is_well_formed()
     assert testtools.compare(

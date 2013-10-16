@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_labeltools_label_leaves_in_expr_with_melodic_chromatic_interval_classes_01():
+def test_labeltools_label_leaves_in_expr_with_numbered_interval_classes_01():
 
 
     staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
-    labeltools.label_leaves_in_expr_with_melodic_chromatic_interval_classes(staff)
+    labeltools.label_leaves_in_expr_with_numbered_interval_classes(staff)
 
     assert testtools.compare(
         staff,
