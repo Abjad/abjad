@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 import inspect
 from abjad.tools.documentationtools.Documenter import Documenter
 
@@ -134,17 +133,17 @@ class ClassDocumenter(Documenter):
     ### CLASS VARIABLES ###
 
     _ignored_special_methods = (
-        '__format__', 
+        '__format__',
         '__getattribute__',
-        '__getnewargs__', 
-        '__init__', 
-        '__reduce__', 
+        '__getnewargs__',
+        '__init__',
+        '__reduce__',
         '__reduce_ex__',
-        '__sizeof__', 
-        '__subclasshook__', 
-        'fromkeys', 
+        '__sizeof__',
+        '__subclasshook__',
+        'fromkeys',
         'pipe_cloexec',
-    )
+        )
 
     ### INITIALIZER ###
 
@@ -216,11 +215,12 @@ class ClassDocumenter(Documenter):
         parts = self.object.__module__.split('.')
         tools_package_path = '.'.join(parts[:3])
         tools_package_name, sep, class_name = stripped_class_name.partition('.')
-        banner = ':py:mod:`{} <{}>`.{}'.format(
-            tools_package_name,
-            tools_package_path,
-            class_name,
-            )
+        banner = '{}.{}'.format(tools_package_name, class_name)
+#        banner = ':py:mod:`{} <{}>`.{}'.format(
+#            tools_package_name,
+#            tools_package_path,
+#            class_name,
+#            )
         document = documentationtools.ReSTDocument()
         document.append(documentationtools.ReSTHeading(
             level=2,
@@ -233,7 +233,7 @@ class ClassDocumenter(Documenter):
             argument=self.module_name,
             directive='autoclass',
             options={
-                #'noindex': True, 
+                #'noindex': True,
                 },
             ))
         document.extend(self._build_attributes_autosummary())
@@ -333,8 +333,8 @@ class ClassDocumenter(Documenter):
     def _build_bases_section(self):
         from abjad.tools import documentationtools
         pieces = []
-        pieces.append(documentationtools.ReSTHeading(                     
-            level=3,                                                        
+        pieces.append(documentationtools.ReSTHeading(
+            level=3,
             text='Bases',
             ))
         mro = inspect.getmro(self.object)[1:]
@@ -345,15 +345,15 @@ class ClassDocumenter(Documenter):
             if packagesystem_path.startswith('__builtin__'):
                 packagesystem_path = \
                     packagesystem_path.partition('__builtin__.')[-1]
-            text = '- :class:`{} <{}>`'.format(
+            text = '- :py:class:`{} <{}>`'.format(
                 stripped_packagesystem_path,
                 packagesystem_path,
                 )
-            paragraph = documentationtools.ReSTParagraph(                                
+            paragraph = documentationtools.ReSTParagraph(
                 text=text,
-                wrap=False,                                                         
+                wrap=False,
                 )
-            pieces.append(paragraph) 
+            pieces.append(paragraph)
         return pieces
 
     ### PUBLIC PROPERTIES ###

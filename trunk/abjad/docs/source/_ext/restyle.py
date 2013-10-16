@@ -99,10 +99,17 @@ def doctree_read(app, doctree):
                     '',
                     '{}'.format(defining_class.__name__),
                     ))
+                html_only_class_name_node = addnodes.only(expr='html')
+                html_only_class_name_node.append(nodes.Text('('))
+                html_only_class_name_node.append(xref_node)
+                html_only_class_name_node.append(nodes.Text(').'))
+                latex_only_class_name_node = addnodes.only(expr='latex')
+                latex_only_class_name_node.append(nodes.Text(
+                    '({}).'.format(defining_class.__name__),
+                    ))
                 addname_node.clear()
-                addname_node.append(nodes.Text('('))
-                addname_node.append(xref_node)
-                addname_node.append(nodes.Text(').'))
+                addname_node.append(html_only_class_name_node)
+                addname_node.append(latex_only_class_name_node)
                 label_node.append(nodes.literal(
                     '',
                     ' inherited ',

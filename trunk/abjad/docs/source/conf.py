@@ -220,6 +220,7 @@ latex_elements = {
 \setcounter{tocdepth}{2}
 \definecolor{VerbatimColor}{rgb}{0.95,0.95,0.95}
 \definecolor{VerbatimBorderColor}{rgb}{1.0,1.0,1.0}
+\hypersetup{unicode=true}
     ''',
 }
 

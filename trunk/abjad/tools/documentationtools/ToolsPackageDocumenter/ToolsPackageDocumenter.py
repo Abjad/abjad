@@ -10,7 +10,7 @@ class ToolsPackageDocumenter(Documenter):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
+    def __init__(self,
         obj,
         ignored_directory_names=(),
         prefix='abjad.tools.',
@@ -34,7 +34,7 @@ class ToolsPackageDocumenter(Documenter):
 
         Return string.
         '''
-        from abjad.tools import documentationtools 
+        from abjad.tools import documentationtools
         document = documentationtools.ReSTDocument()
 #        document.append(documentationtools.ReSTParagraph(
 #            text=':orphan:',
@@ -47,22 +47,24 @@ class ToolsPackageDocumenter(Documenter):
             argument=self.module_name,
             directive='automodule',
             ))
+        html_only = documentationtools.ReSTOnlyDirective(argument='html')
         if self.abstract_class_documenters:
-            document.extend(self._build_autosummary_section(
+            html_only.extend(self._build_autosummary_section(
                 'Abstract classes',
                 self.abstract_class_documenters,
                 ))
         if self.concrete_class_documenters:
-            document.extend(self._build_autosummary_section(
+            html_only.extend(self._build_autosummary_section(
                 'Concrete classes',
                 self.concrete_class_documenters,
                 ))
         if self.function_documenters:
-            document.extend(self._build_autosummary_section(
+            html_only.extend(self._build_autosummary_section(
                 'Functions',
                 self.function_documenters,
                 ))
-        return document.rest_format 
+        document.append(html_only)
+        return document.rest_format
 
     ### PRIVATE METHODS ###
 
@@ -83,7 +85,7 @@ class ToolsPackageDocumenter(Documenter):
     def _examine_tools_package(self):
         from abjad.tools import documentationtools
         code_root = self.object.__path__[0]
-        root_package_name = self.prefix.split('.')[0] 
+        root_package_name = self.prefix.split('.')[0]
         crawler = documentationtools.ModuleCrawler(
             code_root,
             root_package_name=root_package_name,
@@ -99,7 +101,7 @@ class ToolsPackageDocumenter(Documenter):
             obj = getattr(module, obj_name)
             if isinstance(obj, types.TypeType):
                 documenter = documentationtools.ClassDocumenter(
-                    obj, 
+                    obj,
                     prefix=self.prefix,
                     )
                 if documenter.is_abstract:
@@ -108,7 +110,7 @@ class ToolsPackageDocumenter(Documenter):
                     concrete_class_documenters.append(documenter)
             elif isinstance(obj, types.FunctionType):
                 documenter = documentationtools.FunctionDocumenter(
-                    obj, 
+                    obj,
                     prefix=self.prefix,
                     )
                 function_documenters.append(documenter)
@@ -146,6 +148,9 @@ class ToolsPackageDocumenter(Documenter):
             )
         result.append(heading)
 
+        only_html = documentationtools.ReSTOnlyDirective(argument='html')
+        only_latex = documentationtools.ReSTOnlyDirective(argument='latex')
+
         hidden_toc = documentationtools.ReSTTOCDirective(
             options={
                 'hidden': True,
@@ -154,14 +159,11 @@ class ToolsPackageDocumenter(Documenter):
             )
         index_path = '/'.join(self.module_name.split('.')[1:] + ['index'])
         hidden_toc.append(index_path)
-        result.append(hidden_toc)
+        only_html.append(hidden_toc)
 
-        only_html = documentationtools.ReSTOnlyDirective(argument='html')
-        only_latex = documentationtools.ReSTOnlyDirective(argument='latex')
-         
         def module_name_to_toc_entry(module_name):
             return '/'.join(module_name.split('.')[1:-1])
-            
+
         def make_subsection(banner, documenters, only_html, only_latex):
             only_latex.append(documentationtools.ReSTHeading(
                 level=3,

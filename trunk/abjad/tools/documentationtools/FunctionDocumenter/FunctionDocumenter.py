@@ -42,11 +42,12 @@ class FunctionDocumenter(Documenter):
         tools_package_path = '.'.join(parts[:3])
         tools_package_name, sep, function_name = \
             stripped_function_name.partition('.')
-        banner = ':py:mod:`{} <{}>`.{}'.format(
-            tools_package_name,
-            tools_package_path,
-            function_name,
-            )
+        banner = '{}.{}'.format(tools_package_name, function_name)
+#        banner = ':py:mod:`{} <{}>`.{}'.format(
+#            tools_package_name,
+#            tools_package_path,
+#            function_name,
+#            )
         heading = documentationtools.ReSTHeading(
             level=2,
             text=banner,

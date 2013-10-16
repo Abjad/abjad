@@ -313,7 +313,7 @@ Specifically, one must move the LilyPond ``Timing_translator`` out from the
 score context and into the staff context.
 
 (You can refer to the LilyPond documentation on
-`Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_
+`Polymetric notation <http://www.lilypond.org/doc/v2.16/Documentation/notation/displaying-rhythms#polymetric-notation>`_
 to learn all about how this works.)
 
 In this example we a custom ``documentationtools`` function to set up our

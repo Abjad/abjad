@@ -232,6 +232,9 @@ Then we'll apply some formatting overrides to improve its overall appearance:
 .. image:: images/index-9.png
 
 
+..  note: Consult LilyPond's documentation on `proportional notation <http://www.lilypond.org/doc/v2.16/Documentation/notation/proportional-notation>`_
+    to learn all about what the formatting overrides above do.
+
 The proportional spacing makes the score much easier to read, but now the
 notation is much too big.  We'll clean that up next.
 
