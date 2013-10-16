@@ -12,63 +12,87 @@ notes, rests and chords with and without dots.
 
 You can create breves with a LilyPond input string:
 
-<abjad>
-note_1 = Note(r"c'\breve")
-note_2 = Note(r"d'\breve.")
-</abjad>
+::
+
+   >>> note_1 = Note(r"c'\breve")
+   >>> note_2 = Note(r"d'\breve.")
+
 
 Or with an explicit duration:
 
-<abjad>
-note_3 = Note("e'", Duration(2, 1))
-note_4 = Note("f'", Duration(3, 1))
-</abjad>
+::
+
+   >>> note_3 = Note("e'", Duration(2, 1))
+   >>> note_4 = Note("f'", Duration(3, 1))
+
 
 The written duration of a breve always returns an Abjad duration object:
 
-<abjad>
-notes = [note_1, note_2, note_3, note_4]
-for note in notes:
-    note, note.written_duration
-</abjad>
+::
+
+   >>> notes = [note_1, note_2, note_3, note_4]
+   >>> for note in notes:
+   ...     note, note.written_duration
+   ... 
+   (Note("c'\\breve"), Duration(2, 1))
+   (Note("d'\\breve."), Duration(3, 1))
+   (Note("e'\\breve"), Duration(2, 1))
+   (Note("f'\\breve."), Duration(3, 1))
+
 
 LilyPond renders breves like this:
 
-<abjad>
-staff = Staff(notes)
-show(staff)
-</abjad>
+::
+
+   >>> staff = Staff(notes)
+   >>> show(staff)
+
+.. image:: images/index-1.png
+
 
 Abjad also supports longas. A longa equals two breves:
 
-<abjad>
-note_1 = Note(r"c'\longa")
-note_2 = Note("d'", Duration(6, 1))
-</abjad>
+::
 
-<abjad>
-notes = [note_1, note_2]
-for note in notes:
-    note, note.written_duration
-</abjad>
+   >>> note_1 = Note(r"c'\longa")
+   >>> note_2 = Note("d'", Duration(6, 1))
 
-<abjad>
-staff = Staff(notes)
-show(staff)
-</abjad>
+
+::
+
+   >>> notes = [note_1, note_2]
+   >>> for note in notes:
+   ...     note, note.written_duration
+   ... 
+   (Note("c'\\longa"), Duration(4, 1))
+   (Note("d'\\longa."), Duration(6, 1))
+
+
+::
+
+   >>> staff = Staff(notes)
+   >>> show(staff)
+
+.. image:: images/index-2.png
+
 
 A maxima is a duration equal to two longas:
 
-<abjad>
-note_1 = Note(r"c'\maxima")
-note_2 = Note("d'", Duration(12, 1))
-</abjad>
+::
 
-<abjad>
-notes = [note_1, note_2]
-for note in notes:
-    note, note.written_duration
-</abjad>
+   >>> note_1 = Note(r"c'\maxima")
+   >>> note_2 = Note("d'", Duration(12, 1))
+
+
+::
+
+   >>> notes = [note_1, note_2]
+   >>> for note in notes:
+   ...     note, note.written_duration
+   ... 
+   (Note("c'\\maxima"), Duration(8, 1))
+   (Note("d'\\maxima."), Duration(12, 1))
+
 
 Abjad supports maximas and LilyPond supplies a ``\maxima`` command. But you can
 not use Abjad to render maxima-valued notes, rests and chords because LilyPond
@@ -93,41 +117,55 @@ Abjad implements LilyPond multpliers as the settable
 ``lilypond_duration_multiplier`` attribute implemented on notes, rests and
 chords.
 
-<abjad>
-note = Note("c'4")
-note.lilypond_duration_multiplier = Multiplier(1, 2)
-</abjad>
+::
 
-<abjad>
-f(note)
-</abjad>
+   >>> note = Note("c'4")
+   >>> note.lilypond_duration_multiplier = Multiplier(1, 2)
 
-<abjad>
-note.written_duration
-note.lilypond_duration_multiplier
-inspect(note).get_duration()
-</abjad>
 
-<abjad>
-show(note)
-</abjad>
+::
+
+   >>> f(note)
+   c'4 * 1/2
+
+
+::
+
+   >>> note.written_duration
+   Duration(1, 4)
+   >>> note.lilypond_duration_multiplier
+   Multiplier(1, 2)
+   >>> inspect(note).get_duration()
+   Duration(1, 8)
+
+
+::
+
+   >>> show(note)
+
+.. image:: images/index-3.png
+
 
 LilyPond multipliers scale the durations of the half notes below to that of
 quarter notes:
 
-<abjad>
-quarter_notes = 4 * Note("c'4")
-half_note = Note("c'2")
-half_note.lilypond_duration_multiplier = Multiplier(1, 2)
-half_notes = 4 * half_note
-top_staff = stafftools.RhythmicStaff(quarter_notes)
-bottom_staff = stafftools.RhythmicStaff(half_notes)
-staff_group = scoretools.StaffGroup([top_staff, bottom_staff])
-</abjad>
+::
 
-<abjad>
-show(staff_group)
-</abjad>
+   >>> quarter_notes = 4 * Note("c'4")
+   >>> half_note = Note("c'2")
+   >>> half_note.lilypond_duration_multiplier = Multiplier(1, 2)
+   >>> half_notes = 4 * half_note
+   >>> top_staff = stafftools.RhythmicStaff(quarter_notes)
+   >>> bottom_staff = stafftools.RhythmicStaff(half_notes)
+   >>> staff_group = scoretools.StaffGroup([top_staff, bottom_staff])
+
+
+::
+
+   >>> show(staff_group)
+
+.. image:: images/index-4.png
+
 
 Note that the LilyPond multiplication `*` operator differs from the Abjad
 multiplication `*` operator. LilyPond multiplication scales duration of
@@ -145,45 +183,57 @@ names most frequently used when talking about note duration.
 
 Consider the measure below:
 
-<abjad>
-measure = Measure((5, 16), "c16 c c c c")
-beam = spannertools.BeamSpanner()
-beam.attach([measure])
-staff = stafftools.RhythmicStaff([measure])
-</abjad>
+::
 
-<abjad>
-show(staff)
-</abjad>
+   >>> measure = Measure((5, 16), "c16 c c c c")
+   >>> beam = spannertools.BeamSpanner()
+   >>> beam.attach([measure])
+   >>> staff = stafftools.RhythmicStaff([measure])
+
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-5.png
+
 
 Every note in the measure equals one sixteenth of a whole note:
 
-<abjad>
-note = measure[0]
-inspect(note).get_duration()
-</abjad>
+::
+
+   >>> note = measure[0]
+   >>> inspect(note).get_duration()
+   Duration(1, 16)
+
 
 But now consider this measure:
 
-<abjad>
-tuplet = Tuplet((4, 5), "c16 c c c c")
-measure = Measure((4, 16), [tuplet])
-beam = spannertools.BeamSpanner()
-beam.attach([measure])
-staff = stafftools.RhythmicStaff([measure])
-</abjad>
+::
 
-<abjad>
-show(staff)
-</abjad>
+   >>> tuplet = Tuplet((4, 5), "c16 c c c c")
+   >>> measure = Measure((4, 16), [tuplet])
+   >>> beam = spannertools.BeamSpanner()
+   >>> beam.attach([measure])
+   >>> staff = stafftools.RhythmicStaff([measure])
+
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-6.png
+
 
 The notes in this measure are equal to only one twentieth of a whole note:
 Every note in this measures 
 
-<abjad>
-note = tuplet[0]
-inspect(note).get_duration()
-</abjad>
+::
+
+   >>> note = tuplet[0]
+   >>> inspect(note).get_duration()
+   Duration(1, 20)
+
 
 The notes in this measure are "sixteenth notes" with a duration equal to a
 value other than ``1/16``. Abjad formalizes this distinction in the difference
