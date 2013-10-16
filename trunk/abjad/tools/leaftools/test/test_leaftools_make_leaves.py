@@ -150,7 +150,7 @@ def test_leaftools_make_leaves_09():
 
 
 def test_leaftools_make_leaves_10():
-    r'''Works with space-delimited string of chromatic pitch names.
+    r'''Works with space-delimited string of pitch names.
     '''
 
     leaves = leaftools.make_leaves("C#5 Db5 c'' fs''", [Duration(1, 4)])

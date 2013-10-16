@@ -191,7 +191,7 @@ class NoteHead(AbjadObject):
             >>> note_head.named_pitch
             NamedPitch("cs''")
 
-        Return named chromatic pitch.
+        Return named pitch.
         '''
         return self.written_pitch
 

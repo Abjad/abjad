@@ -34,7 +34,7 @@ def test_sequencetools_rotate_sequence_03():
 
 
 def test_sequencetools_rotate_sequence_04():
-    r'''Rotate named chromatic pitch segment.
+    r'''Rotate named pitch segment.
     '''
     py.test.skip('FIXME')
     named_pitch_segment_1 = pitchtools.PitchSegment("c'' d'' e'' f''")

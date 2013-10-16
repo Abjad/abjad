@@ -158,7 +158,7 @@ class KeySignatureMark(ContextMark):
                 >>> key_signature.tonic
                 NamedPitchClass('d')
 
-            Return named chromatic pitch.
+            Return named pitch.
             '''
             return self._tonic
         def fset(self, tonic):

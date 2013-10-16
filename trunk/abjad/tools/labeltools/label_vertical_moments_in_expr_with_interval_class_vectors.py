@@ -73,7 +73,7 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(
         if not pitches:
             continue
         interval_class_vector = \
-            pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(
+            pitchtools.numbered_inversion_equivalent_interval_class_dictionary(
             pitches)
         formatted = _format_interval_class_vector(interval_class_vector)
         markup = markuptools.Markup(formatted, markup_direction)
