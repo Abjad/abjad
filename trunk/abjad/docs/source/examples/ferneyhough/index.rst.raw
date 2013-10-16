@@ -1,22 +1,25 @@
 Ferneyhough: *Unsichtbare Farben*
 =================================
 
-.. note::  Explore the `abjad/demos/ferneyhough/` directory for the complete code to this example,
-    or import it into your Python session directly with:
+..  note::  Explore the `abjad/demos/ferneyhough/` directory for the complete
+    code to this example, or import it into your Python session directly with:
 
     * `from abjad.demos import ferneyhough`
 
-Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare Farben` in
-`The OM Composer's Book 2`.
+Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare
+Farben` in `The OM Composer's Book 2`.
 
-Malt explains that Ferneyhough used OpenMusic to create an "exhaustive catalogue
-of rhythmic cells" such that:
+Malt explains that Ferneyhough used OpenMusic to create an "exhaustive
+catalogue of rhythmic cells" such that:
 
-    1. They are subdivided into two pulses, with proportions from ``1/1`` to ``1/11``.
+    1.  They are subdivided into two pulses, with proportions from ``1/1`` to 
+        ``1/11``.
 
-    2. The second pulse is subdivided successively by ``1``, ``2``, ``3``, ``4``, ``5`` and ``6``.
+    2.  The second pulse is subdivided successively by ``1``, ``2``, ``3``, 
+        ``4``, ``5`` and ``6``.
 
 Let's recreate Malt's results in Abjad.
+
 
 The proportions
 ---------------
@@ -34,86 +37,123 @@ proportions
 The transforms
 --------------
 
-Then we define a helper function:
+Next we'll show how to divide a quarter note into various ratios, and then
+divide the final `tie chain` of the resulting tuplet into yet another ratio:
 
-<abjad>[strip_prompt=true]
-def divide_tuplet(tuplet, n):
-    last_tie_chain = tietools.get_tie_chain(tuplet[-1])
-    proportions = n * [1]
-    tietools.tie_chain_to_tuplet_with_ratio(last_tie_chain, proportions)
+<abjadextract abjad.demos.ferneyhough.make_nested_tuplet.make_nested_tuplet \>[strip_prompt=true]
+
+<abjad>
+tuplet = make_nested_tuplet(Duration(1, 4), (1, 1), 5)
+staff = stafftools.RhythmicStaff([tuplet])
+show(staff)
+</abjad>
+
+<abjad>
+tuplet = make_nested_tuplet(Duration(1, 4), (2, 1), 5)
+staff = stafftools.RhythmicStaff([tuplet])
+show(staff)
+</abjad>
+
+<abjad>
+tuplet = make_nested_tuplet(Duration(1, 4), (3, 1), 5)
+staff = stafftools.RhythmicStaff([tuplet])
+show(staff)
+</abjad>
+
+A `tie chain` is a selection of notes or chords connected by ties. It lets us
+talk about a notated rhythm of ``5/16``, for example, which cannot be expressed
+with only a single leaf.
+
+Note how we can divide a tuplet whose outer proportions are ``3/5``, where
+the second `tie chain` requires two notes to express the ``5/16`` duration:
+
+<abjad>
+normal_tuplet = Tuplet.from_duration_and_ratio(Duration(1, 4), (3, 5))
+staff = stafftools.RhythmicStaff([normal_tuplet])
+show(staff)
+</abjad>
+
+<abjad>
+subdivided_tuplet = make_nested_tuplet(Duration(1, 4), (3, 5), 3)
+staff = stafftools.RhythmicStaff([subdivided_tuplet])
+show(staff)
 </abjad>
 
 The rhythms
 -----------
 
-We set the duration of each tuplet equal to a quarter note:
+Now that we know how to make the basic building block, let's make a lot of
+tuplets all at once.
+
+We'll set the duration of each tuplet equal to a quarter note:
 
 <abjad>
 duration = Fraction(1, 4)
 </abjad>
 
-And then we make the rhythms:
+And then we make one row of rhythms, with the last `tie chain` increasingly
+subdivided:
+
+<abjadextract abjad.demos.ferneyhough.make_row_of_nested_tuplets.make_row_of_nested_tuplets \>[strip_prompt=true]
 
 <abjad>
-music = []
-for proportion in proportions:
-    tuplets = []
-    for n in range(1, 6 + 1):
-        tuplet = Tuplet.from_duration_and_ratio(duration, proportion)
-        divide_tuplet(tuplet, n)
-        tuplets.append(tuplet)
-    music.extend(tuplets)
+tuplets = make_row_of_nested_tuplets(duration, (2, 1), 6)
+staff = stafftools.RhythmicStaff(tuplets)
+show(staff)
 </abjad>
+
+If we can make one single row of rhythms, we can make many rows of rhythms.
+Let's try:
+
+<abjadextract abjad.demos.ferneyhough.make_rows_of_nested_tuplets.make_rows_of_nested_tuplets \>[strip_prompt=true]
+
+<abjad>
+score = Score()
+for tuplet_row in make_rows_of_nested_tuplets(duration, 4, 6):
+    score.append(stafftools.RhythmicStaff(tuplet_row))
+
+show(score)
+</abjad>
+
+That's getting close to what we want, but the typography isn't as good as it
+could be.
 
 The score
 ---------
 
-We make the score:
+First we'll package up the logic for making the un-styled score into a single
+function:
+
+<abjadextract abjad.demos.ferneyhough.make_score.make_score \>[strip_prompt=true]
 
 <abjad>
-staff = stafftools.RhythmicStaff(music)
-time_signature = contexttools.TimeSignatureMark((1, 4))(staff)
-score = Score([staff])
+score = make_score(Duration(1, 4), 4, 6)
+show(score)
 </abjad>
 
-And then configure it:
+Then we'll apply some formatting overrides to improve its overall appearance:
+
+<abjadextract abjad.demos.ferneyhough.configure_score.configure_score \>[strip_prompt=true]
 
 <abjad>
-score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
-score.set.tuplet_full_length = True
-score.override.bar_line.stencil = False
-score.override.bar_number.transparent = True
-score.override.spacing_spanner.uniform_stretching = True
-score.override.spacing_spanner.strict_note_spacing = True
-score.override.time_signature.stencil = False
-score.override.tuplet_bracket.padding = 2
-score.override.tuplet_bracket.staff_padding = 4
-score.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+configure_score(score)
+show(score)
 </abjad>
 
+The proportional spacing makes the score much easier to read, but now the
+notation is much too big.  We'll clean that up next.
 
 The LilyPond file
 -----------------
 
-Finally we insert the score into a LilyPond file:
+Let's adjust the overall size of our output, and put everything together:
+
+<abjadextract abjad.demos.ferneyhough.make_lilypond_file.make_lilypond_file \>[strip_prompt=true]
+
+<abjadextract abjad.demos.ferneyhough.configure_lilypond_file.configure_lilypond_file \>[strip_prompt=true]
 
 <abjad>
-lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-</abjad>
-
-And then configure it:
-
-<abjad>
-lilypond_file.default_paper_size = '11x17', 'portrait'
-lilypond_file.global_staff_size = 12
-lilypond_file.layout_block.indent = 0
-lilypond_file.layout_block.ragged_right = True
-lilypond_file.paper_block.ragged_bottom = True
-lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 8, 0)
-</abjad>
-
-Which looks like this:
-
-<abjad>
+lilypond_file = make_lilypond_file(Duration(1, 4), 11, 6)
 show(lilypond_file)
 </abjad>
+
