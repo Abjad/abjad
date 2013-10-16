@@ -13,9 +13,9 @@ Here is what we want to end up with:
 The score
 ---------
 
-We'll construct the fragment top-down from containers to notes.
-We could have done it the other way around but it will be easier to keep the big picture
-in mind this way. Later, you can rebuild the example bottom-up as an exercise.
+We'll construct the fragment top-down from containers to notes.  We could have
+done it the other way around but it will be easier to keep the big picture in
+mind this way. Later, you can rebuild the example bottom-up as an exercise.
 
 First let's create an empty score with a pair of staves connected by a brace:
 
@@ -32,10 +32,11 @@ piano_staff.append(lower_staff)
 score.append(piano_staff)
 </abjad>
 
-Here we create an empty score and assign it to the ``score`` variable.
-Then we create an empty piano staff assigned to the ``piano_staff`` variable and
-two empty staves assigned to the ``upper_staff`` and ``lower_staff`` variables.
-Finally, we append the two staves to the piano staff and the piano staff to the score.
+Here we create an empty score and assign it to the ``score`` variable.  Then we
+create an empty piano staff assigned to the ``piano_staff`` variable and two
+empty staves assigned to the ``upper_staff`` and ``lower_staff`` variables.
+Finally, we append the two staves to the piano staff and the piano staff to the
+score.
 
 The measures
 ------------
@@ -52,7 +53,7 @@ m5 = Measure((2, 4), [])
 
 <abjad>
 upper_measures = [m1, m2, m3, m4, m5]
-lower_measures = componenttools.copy_components_and_covered_spanners(upper_measures)
+lower_measures = [mutate(x).copy() for x in upper_measures]
 </abjad>.
 
 <abjad>
@@ -62,10 +63,9 @@ lower_staff.extend(lower_measures)
 
 The lower measures are copies of the upper measures.
 
-Note that we add lists of measures to staves with ``extend()``.
-This is because ``extend()`` is used for adding many objects to an iterable at once
+Note that we add lists of measures to staves with ``extend()``.  This is
+because ``extend()`` is used for adding many objects to an iterable at once
 while ``append()`` is used to add only one object at a time.
-
 
 The notes
 ---------
@@ -77,11 +77,17 @@ upper_measures[0].extend([Note(i, (1, 8)) for i in [9, 7, 5, 4]])
 </abjad>
 
 <abjad>
-upper_measures[1].extend(notetools.make_notes([2, 7, 5, 4, 2], [(1, 4)] + [(1, 8)] * 4))
+upper_measures[1].extend(notetools.make_notes(
+    [2, 7, 5, 4, 2],
+    [(1, 4)] + [(1, 8)] * 4),
+    )
 </abjad>
 
 <abjad>
-notes = notetools.make_notes([0, 2, 4, 5, 4], [(1, 8), (1, 16), (1, 16), (1, 8), (1, 8)])
+notes = notetools.make_notes(
+    [0, 2, 4, 5, 4], 
+    [(1, 8), (1, 16), (1, 16), (1, 8), (1, 8)],
+    )
 upper_measures[2].extend(notes)
 </abjad>
 
@@ -93,11 +99,10 @@ upper_measures[3].append(Note("d'2"))
 upper_measures[4].append(Note("d'2"))
 </abjad>
 
-Now let's add notes to the lower staff.
-This will be a more intricate process than that needed for the upper staff.
-We added notes directly to the measures of the upper staff.
-But this will not be possible for the lower staff because of the simultaneous voices
-the lower staff contains.
+Now let's add notes to the lower staff.  This will be a more intricate process
+than that needed for the upper staff.  We added notes directly to the measures
+of the upper staff.  But this will not be possible for the lower staff because
+of the simultaneous voices the lower staff contains.
 
 We add notes to the lower staff measure by measure:
 
@@ -122,8 +127,9 @@ lower_measures[2].append(main_voice_m3)
 Notice that we give the same name to the three voices contained in
 the first three measures of the lower staff.
 
-It is in the last two measures of the lower staff where Bartók writes two voices at once.
-We'll name the second of these two voices the `appendix_voice`:
+It is in the last two measures of the lower staff where Bartók writes two
+voices at once.  We'll name the second of these two voices the
+`appendix_voice`:
 
 <abjad>
 appendix_voice_m4 = Voice([Note("b2")])
@@ -148,10 +154,9 @@ lower_measures[3].append(container)
 The LilyPond ``\voiceOne`` and ``\voiceTwo`` commands determine the direction
 of the stems in different voices.
 
-Note that we must put both voices in a parallel container
-because they occur at the same time in the score.
-We do this by creating an Abjad container and then setting
-the ``is_simultaneous`` attribute of the container to true.
+Note that we must put both voices in a parallel container because they occur at
+the same time in the score.  We do this by creating an Abjad container and then
+setting the ``is_simultaneous`` attribute of the container to true.
 
 We now do a similar thing for the last measure:
 
@@ -184,19 +189,17 @@ show(score)
 The details
 -----------
 
-Ok, let's add the details.
-First, notice that the bottom staff has a treble clef just like the top staff.
-Let's change that:
+Ok, let's add the details.  First, notice that the bottom staff has a treble
+clef just like the top staff.  Let's change that:
 
 <abjad>
 contexttools.ClefMark('bass')(lower_staff)
 </abjad>
 
-Now let's add dynamic marks.
-For the top staff, we'll add them to the first note of the first measure
-and the second note of the second measure.
-For the bottom staff, we'll add dynamic markings to the second note
-of the first measure and the fourth note of the second measure.
+Now let's add dynamic marks.  For the top staff, we'll add them to the first
+note of the first measure and the second note of the second measure.  For the
+bottom staff, we'll add dynamic markings to the second note of the first
+measure and the fourth note of the second measure.
 
 <abjad>
 contexttools.DynamicMark('pp')(upper_measures[0][0])
@@ -209,7 +212,8 @@ Let's add a double bar to the end of the piece:
 
 <abjad>
 bar_line = marktools.BarLine('|.')
-bar_line.attach(lower_staff.leaves[-1])
+bar_line.attach(lower_staff.select_leaves(
+    allow_discontiguous_leaves=True)[-1])
 </abjad>
 
 And see how things are coming out:
@@ -218,16 +222,17 @@ And see how things are coming out:
 show(score)
 </abjad>
 
-Notice that the beams of the eighth and sixteenth notes appear
-as you would usually expect: grouped by beat.
-We get this for free thanks to LilyPond's default beaming algorithm.
-But this is not the way Bartók notated the beams.
+Notice that the beams of the eighth and sixteenth notes appear as you would
+usually expect: grouped by beat.  We get this for free thanks to LilyPond's
+default beaming algorithm.  But this is not the way Bartók notated the beams.
 Let's set the beams as Bartók did with some crossing the bar lines:
 
 <abjad>
 spannertools.BeamSpanner(upper_measures[0])
-spannertools.BeamSpanner(lower_staff.leaves[1:5])
-spannertools.BeamSpanner(lower_staff.leaves[6:10])
+spannertools.BeamSpanner(lower_staff.select_leaves(
+    allow_discontiguous_leaves=True)[1:5])
+spannertools.BeamSpanner(lower_staff.select_leaves(
+    allow_discontiguous_leaves=True)[6:10])
 </abjad>
 
 <abjad>
@@ -237,23 +242,29 @@ show(score)
 Now some slurs:
 
 <abjad>
-spannertools.SlurSpanner(upper_staff.leaves[0:5])
-spannertools.SlurSpanner(upper_staff.leaves[5:])
-spannertools.SlurSpanner(lower_staff.leaves[1:6])
-spannertools.SlurSpanner(lower_staff.leaves[6:13] + (main_voice_m4, main_voice_m5))
+spannertools.SlurSpanner(upper_staff.select_leaves()[0:5])
+spannertools.SlurSpanner(upper_staff.select_leaves()[5:])
+spannertools.SlurSpanner(lower_staff.select_leaves(
+    allow_discontiguous_leaves=True)[1:6])
+selection = (
+    lower_staff.select_leaves(allow_discontiguous_leaves=True)[6:13] +
+    main_voice_m4.select_leaves() +
+    main_voice_m5.select_leaves()
+    )
+spannertools.SlurSpanner(selection)
 </abjad>
 
 Hairpins:
 
 <abjad>
-spannertools.CrescendoSpanner(upper_staff.leaves[-7:-2])
-spannertools.DecrescendoSpanner(upper_staff.leaves[-2:])
+spannertools.CrescendoSpanner(upper_staff.select_leaves()[-7:-2])
+spannertools.DecrescendoSpanner(upper_staff.select_leaves()[-2:])
 </abjad>
 
 A ritardando marking above the last seven notes of the upper staff:
 
 <abjad>
-text_spanner = spannertools.TextSpanner(upper_staff.leaves[-7:])
+text_spanner = spannertools.TextSpanner(upper_staff.select_leaves()[-7:])
 text_spanner.override.text_spanner.bound_details__left__text = markuptools.Markup('ritard.')
 </abjad>
 
