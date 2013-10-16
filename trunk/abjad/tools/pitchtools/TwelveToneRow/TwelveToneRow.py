@@ -14,7 +14,7 @@ class TwelveToneRow(PitchClassSegment):
     Twelve-tone rows validate pitch-classes at initialization.
 
     Twelve-tone rows inherit canonical operators from numbered 
-    chromatic pitch-class segment.
+    pitch-class segment.
 
     Twelve-tone rows return numbered pitch-class segments 
     on calls to getslice.

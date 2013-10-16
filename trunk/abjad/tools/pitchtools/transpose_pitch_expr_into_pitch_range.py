@@ -26,9 +26,9 @@ def _transpose_pitch_carrier_into_pitch_range(pitch_carrier, pitch_range):
     from abjad.tools import pitchtools
 
     while pitch_carrier < pitch_range:
-        pitch_carrier = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch_carrier, 12)
+        pitch_carrier = pitchtools.transpose_pitch_carrier_by_interval(pitch_carrier, 12)
     while pitch_range < pitch_carrier:
-        pitch_carrier = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch_carrier, -12)
+        pitch_carrier = pitchtools.transpose_pitch_carrier_by_interval(pitch_carrier, -12)
     if pitch_carrier not in pitch_range:
         raise ValueError('can not transpose pitch carrier %s into pitch range.' % pitch_carrier)
     return pitch_carrier

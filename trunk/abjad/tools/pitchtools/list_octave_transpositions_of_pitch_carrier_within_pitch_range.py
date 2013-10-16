@@ -46,7 +46,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
     interval = pitchtools.NumberedInterval(-12)
     while True:
         pitch_carrier_copy = copy.copy(pitch_carrier)
-        candidate = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch_carrier_copy, interval)
+        candidate = pitchtools.transpose_pitch_carrier_by_interval(pitch_carrier_copy, interval)
         if candidate in pitch_range:
             result.append(candidate)
             interval -= pitchtools.NumberedInterval(12)
@@ -58,7 +58,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
     interval = pitchtools.NumberedInterval(0)
     while True:
         pitch_carrier_copy = copy.copy(pitch_carrier)
-        candidate = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch_carrier_copy, interval)
+        candidate = pitchtools.transpose_pitch_carrier_by_interval(pitch_carrier_copy, interval)
         if candidate in pitch_range:
             result.append(candidate)
             interval += pitchtools.NumberedInterval(12)

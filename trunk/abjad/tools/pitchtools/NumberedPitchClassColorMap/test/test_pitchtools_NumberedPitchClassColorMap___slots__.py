@@ -4,7 +4,7 @@ import py.test
 
 
 def test_pitchtools_NumberedPitchClassColorMap___slots___01():
-    r'''Numbered chromatic pitch-class color maps are immutable.
+    r'''Numbered pitch-class color maps are immutable.
     '''
 
     pitches = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]

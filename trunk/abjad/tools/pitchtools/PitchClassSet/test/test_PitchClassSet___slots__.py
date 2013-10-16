@@ -4,7 +4,7 @@ import py.test
 
 
 def test_PitchClassSet___slots___01():
-    r'''Named chromatic pitch-class set can not be changed after initialization.
+    r'''Named pitch-class set can not be changed after initialization.
     '''
 
     named_pitch_classes = ['gs', 'a', 'as', 'c', 'cs']

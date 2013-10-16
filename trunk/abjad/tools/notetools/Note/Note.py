@@ -243,7 +243,7 @@ class Note(Leaf):
                 sounding_pitch = instrument.sounding_pitch_of_written_middle_c
                 t_n = pitchtools.NamedPitch('C4') - sounding_pitch
                 sounding_pitch = \
-                    pitchtools.transpose_pitch_carrier_by_melodic_interval(
+                    pitchtools.transpose_pitch_carrier_by_interval(
                         self.written_pitch, t_n)
                 return sounding_pitch
         def fset(self, arg):
@@ -263,7 +263,7 @@ class Note(Leaf):
                 t_n = pitchtools.NamedPitch('C4') - sounding_pitch
                 t_n *= -1
                 self.written_pitch = \
-                    pitchtools.transpose_pitch_carrier_by_melodic_interval(
+                    pitchtools.transpose_pitch_carrier_by_interval(
                         pitch, t_n)
         return property(**locals())
 
@@ -376,7 +376,7 @@ class Note(Leaf):
         chord.append(
             chord[0].written_pitch.numbered_pitch._pitch_number)
         chord[1].written_pitch = \
-            pitchtools.transpose_pitch_carrier_by_melodic_interval(
+            pitchtools.transpose_pitch_carrier_by_interval(
             chord[1].written_pitch, melodic_diatonic_interval)
         chord[1].tweak.style = 'harmonic'
         parent = self._parent

@@ -85,7 +85,7 @@ class NumberedPitch(Pitch):
                 self, arg)
         else:
             interval = arg
-            return pitchtools.transpose_pitch_carrier_by_melodic_interval(
+            return pitchtools.transpose_pitch_carrier_by_interval(
                 self, -interval)
 
     ### PRIVATE PROPERTIES ###

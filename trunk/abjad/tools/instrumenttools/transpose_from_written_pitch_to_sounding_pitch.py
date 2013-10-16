@@ -61,11 +61,11 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
         sounding_pitch = instrument.sounding_pitch_of_written_middle_c
         t_n = pitchtools.NamedPitch('C4') - sounding_pitch
         if isinstance(note_or_chord, notetools.Note):
-            note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(
+            note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_interval(
                 note_or_chord.written_pitch, t_n)
             note_or_chord.written_pitch_indication_is_at_sounding_pitch = True
         elif isinstance(note_or_chord, chordtools.Chord):
-            pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
+            pitches = [pitchtools.transpose_pitch_carrier_by_interval(pitch, t_n)
                 for pitch in note_or_chord.written_pitches]
             note_or_chord.written_pitches = pitches
             note_or_chord.written_pitch_indication_is_at_sounding_pitch = True

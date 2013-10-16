@@ -13,7 +13,7 @@ class NumberedPitchClassColorMap(AbjadObject):
         >>> mapping = pitchtools.NumberedPitchClassColorMap(
         ... pitch_class_numbers, colors)
 
-    Numbered chromatic pitch-class color maps are immutable.
+    Numbered pitch-class color maps are immutable.
     '''
 
     ### CLASS VARIABLES ###

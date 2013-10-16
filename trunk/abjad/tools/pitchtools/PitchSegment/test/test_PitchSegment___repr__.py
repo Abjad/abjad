@@ -4,7 +4,7 @@ from abjad.tools.pitchtools import PitchSegment
 
 
 def test_PitchSegment___repr___01():
-    r'''Named chromatic pitch segment repr is evaluable.
+    r'''Named pitch segment repr is evaluable.
     '''
 
     ncps = ['bf', 'bqf', "fs'", "g'", 'bqf', "g'"]

@@ -4,7 +4,7 @@ from abjad.tools.pitchtools import NumberedPitchClassColorMap
 
 
 def test_pitchtools_NumberedPitchClassColorMap___repr___01():
-    r'''Numbered chromatic pitch-class color map repr is evaluable.
+    r'''Numbered pitch-class color map repr is evaluable.
     '''
 
     pitches = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]

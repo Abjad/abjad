@@ -4,7 +4,7 @@ import py.test
 
 
 def test_PitchSet___slots___01():
-    r'''Named chromatic pitch sets are immutable.
+    r'''Named pitch sets are immutable.
     '''
 
     pitch_classes = ['bf', 'bqf', "fs'", "g'", 'bqf', "g'"]
