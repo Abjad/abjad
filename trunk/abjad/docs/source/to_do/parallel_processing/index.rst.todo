@@ -28,7 +28,7 @@ and arguments, it will create as many worker-processes as you have cores.
       con.extend(leaftools.make_repeated_notes(notes_to_make))
       return con
    
-   def make(parallel = True):
+   def make(parallel=True):
       notes_per_fragment = range(1, 4)
       if parallel:
          pool = Pool()
@@ -41,12 +41,12 @@ and arguments, it will create as many worker-processes as you have cores.
 
 ::
 
-   >>> make(parallel = True)
+   >>> make(parallel=True)
    [{c'8}, {c'8, c'8}, {c'8, c'8, c'8}]
 
 ::
 
-   >>> make(parallel = False)
+   >>> make(parallel=False)
    [{c'8}, {c'8, c'8}, {c'8, c'8, c'8}]
 
 A few words of caution about the above code fragment:

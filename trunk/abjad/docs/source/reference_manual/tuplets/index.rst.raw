@@ -1,6 +1,7 @@
 Tuplets
 =======
 
+
 Making a tuplet from a LilyPond input string
 --------------------------------------------
 
@@ -14,10 +15,12 @@ tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
 show(tuplet)
 </abjad>
 
+
 Making a tuplet from a list of other Abjad components
 -----------------------------------------------------
 
-You can also make a tuplet from a multiplier and a list of other Abjad components:
+You can also make a tuplet from a multiplier and a list of other Abjad
+components:
 
 <abjad>
 leaves = [Note("fs'8"), Note("g'8"), Rest('r8')]
@@ -31,10 +34,11 @@ tuplet = Tuplet(Fraction(2, 3), leaves)
 show(tuplet)
 </abjad>
 
-Understanding the interpreter display of a tuplet
--------------------------------------------------
 
-The interprer display of an Abjad tuplet contains three parts:
+Understanding the interpreter representation of a tuplet
+--------------------------------------------------------
+
+The interprer representation of an Abjad tuplet contains three parts:
 
 <abjad>
 tuplet
@@ -44,7 +48,9 @@ tuplet
 
 ``2/3`` tells you the tuplet's multiplier.
 
-The list ``[fs'8, g'8, r8]`` shows the top-level components the tuplet contains.
+The list ``[fs'8, g'8, r8]`` shows the top-level components the tuplet
+contains.
+
 
 Understanding the string representation of a tuplet
 ---------------------------------------------------
@@ -55,14 +61,15 @@ The string representation of a tuplet contains four parts:
 print tuplet
 </abjad>
 
-Curly braces ``{`` and ``}`` indicate that the tuplet's music is interpreted sequentially
-instead of in parallel.
+Curly braces ``{`` and ``}`` indicate that the tuplet's music is interpreted
+sequentially instead of simultaneously.
 
 The asterisks ``*`` denote a fixed-multiplier tuplet.
 
 ``3:2`` tells you the tuplet's ratio.
 
 The remaining arguments show the top-level components of tuplet.
+
 
 Inspecting the LilyPond format of a tuplet
 ------------------------------------------
@@ -79,6 +86,7 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 f(tuplet)
 </abjad>
 
+
 Inspecting the music in a tuplet
 --------------------------------
 
@@ -90,6 +98,7 @@ tuplet.music
 
 Abjad returns a read-only tuple of components.
 
+
 Inspecting a tuplet's leaves
 ----------------------------
 
@@ -100,6 +109,7 @@ tuplet.select_leaves()
 </abjad>
 
 Abjad returns a read-only selection of leaves.
+
 
 Getting the length of a tuplet
 ------------------------------
@@ -113,6 +123,7 @@ len(tuplet)
 The length of every Abjad container is defined equal to the number of
 top-level components present in the container.
 
+
 Getting the duration attributes of a tuplet
 -------------------------------------------
 
@@ -122,23 +133,26 @@ You set the multiplier of a tuplet at initialization:
 tuplet.multiplier
 </abjad>
 
-The contents durations of a tuplet equals the sum of written durations of the components in the tuplet:
+The contents durations of a tuplet equals the sum of written durations of the
+components in the tuplet:
 
 <abjad>
 tuplet._contents_duration
 </abjad>
 
-The multiplied duration of a tuplet equals the product of the tuplet's multiplier
-and the tuplet's contents duration:
+The multiplied duration of a tuplet equals the product of the tuplet's
+multiplier and the tuplet's contents duration:
 
 <abjad>
 tuplet.multiplied_duration
 </abjad>
 
+
 Understanding rhythmic augmentation and diminution
 --------------------------------------------------
 
-A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic diminution:
+A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic
+diminution:
 
 <abjad>
 tuplet.multiplier
@@ -148,16 +162,19 @@ tuplet.multiplier
 tuplet.is_diminution
 </abjad>
 
-A tuplet with a multiplier greater than ``1`` is a type of rhythmic augmentation:
+A tuplet with a multiplier greater than ``1`` is a type of rhythmic
+augmentation:
 
 <abjad>
 tuplet.is_augmentation
 </abjad>
 
+
 Understanding binary and nonbinary tuplets
 ------------------------------------------
 
-A tuplet is considered binary if the numerator of the tuplet multiplier is an integer power of ``2``:
+A tuplet is considered binary if the numerator of the tuplet multiplier is an
+integer power of ``2``:
 
 <abjad>
 tuplet.multiplier
@@ -173,6 +190,7 @@ Other tuplets are nonbinary:
 tuplet.has_non_power_of_two_denominator
 </abjad>
 
+
 Adding one component to the end of a tuplet
 --------------------------------------------
 
@@ -185,6 +203,7 @@ tuplet.append(Note("e'4."))
 <abjad>
 show(tuplet)
 </abjad>
+
 
 Adding many components to the end of a tuplet
 ---------------------------------------------
@@ -200,6 +219,7 @@ tuplet.extend(notes)
 show(tuplet)
 </abjad>
 
+
 Finding the index of a component in a tuplet
 --------------------------------------------
 
@@ -212,6 +232,7 @@ notes[1]
 <abjad>
 tuplet.index(notes[1])
 </abjad>
+
 
 Removing a tuplet component by index
 ------------------------------------
@@ -230,6 +251,7 @@ tuplet.pop(7)
 show(tuplet)
 </abjad>
 
+
 Removing a tuplet component by reference
 ----------------------------------------
 
@@ -243,6 +265,7 @@ tuplet.remove(tuplet[3])
 show(tuplet)
 </abjad>
 
+
 Overriding attributes of the LilyPond tuplet number grob
 --------------------------------------------------------
 
@@ -253,8 +276,9 @@ tuplet.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fra
 tuplet.override.tuplet_number.color = 'red'
 </abjad>
 
-We'll place the tuplet into a Staff object, so that LilyPond does not complain about
-the overrides we've applied, which lexically cannot appear in a \score block.
+We'll place the tuplet into a Staff object, so that LilyPond does not complain
+about the overrides we've applied, which lexically cannot appear in a \score
+block.
 
 <abjad>
 staff = Staff([tuplet])
@@ -266,6 +290,7 @@ show(staff)
 </abjad>
 
 See the LilyPond docs for lists of grob attributes available.
+
 
 Overriding attributes of the LilyPond tuplet bracket grob
 ---------------------------------------------------------

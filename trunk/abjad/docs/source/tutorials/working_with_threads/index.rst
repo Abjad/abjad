@@ -5,7 +5,8 @@ Working with threads
 What is a thread?
 -----------------
 
-A thread is a structural relationship binding a set of strictly sequential voice-level components.
+A thread is a structural relationship binding a set of strictly sequential
+voice-level components.
 
 Threads may be explicitly defined via voice instances:
 
@@ -14,14 +15,16 @@ Threads may be explicitly defined via voice instances:
    >>> v = Voice()
 
 
-Or they may exist implicitly in certain score constructs in the absence of voice containers:
+Or they may exist implicitly in certain score constructs in the absence of
+voice containers:
 
 ::
 
    >>> staff = Staff("c'8 d'8 e'8 f'8")
 
 
-Two contiguous voices must have the same name in order to be part of the same thread.
+Two contiguous voices must have the same name in order to be part of the same
+thread.
 
 Here a thread does **not** exist between notes in different voices:
 
@@ -66,6 +69,7 @@ Here a thread does exist:
    }
 
 
+
 What are threads for?
 ---------------------
 
@@ -73,14 +77,15 @@ Consider the following situation:
 
 .. image:: images/thread-resolution-1.png
 
-Are the two eighth notes in the second half of the measure the continuation
-of the ascending line in the first half, or is it the quarter note?
-Is the very last *C* the continuation of the top melodic line or is it the *A*?
-The stems might suggest an answer, but for Abjad, stem direction is not structural.
-What path should Abjad take to traverse this little score from the first note to the last *A*?
-This same problem appears when trying to apply spanners to parallel structures.
-Thus, threads are important in both score navigation and the application of spanners.
-In fact, threads are a requirement for spanner application.
+Are the two eighth notes in the second half of the measure the continuation of
+the ascending line in the first half, or is it the quarter note? Is the very
+last *C* the continuation of the top melodic line or is it the *A*? The stems
+might suggest an answer, but for Abjad, stem direction is not structural. What
+path should Abjad take to traverse this little score from the first note to the
+last *A*? This same problem appears when trying to apply spanners to
+simultaneous structures. Thus, threads are important in both score navigation
+and the application of spanners. In fact, threads are a requirement for
+spanner application.
 
 In Abjad, the ambiguity is resolved through the explicit use of named voices.
 
@@ -133,34 +138,34 @@ The musical fragment above is constructed with the following code:
 .. image:: images/index-1.png
 
 
-There's a staff that sequentially contains a voice and a parallel container.
-The container in turn holds two voices running simultaneously.
+There's a staff that sequentially contains a voice and a simultaneous
+container. The container in turn holds two voices running simultaneously.
 
-It is now clear from the code that the last *A* belongs with the two descending eighth notes.
-But there's still no indication about a relationship of continuity between the first voice
-in the sequence (`vA`) and any of the two following voices.
-Note that, while the LilyPond voice number commands setting may suggest
-that vA and vB belong together, this is not the case.
-The LilyPond voice number commands simply set the direction of stems in printed output.
+It is now clear from the code that the last *A* belongs with the two descending
+eighth notes. But there's still no indication about a relationship of
+continuity between the first voice in the sequence (`vA`) and any of the two
+following voices. Note that, while the LilyPond voice number commands setting
+may suggest that vA and vB belong together, this is not the case. The LilyPond
+voice number commands simply set the direction of stems in printed output.
 
 To see this more clearly, suppose we want to add a slur spanner starting on the
-first note and ending on one of the last simultaneous notes.
-To attach the slur spanner to the voices we could try either:
+first note and ending on one of the last simultaneous notes. To attach the
+slur spanner to the voices we could try either:
 
 ::
 
    >>> spannertools.SlurSpanner([vA, vB])
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 37, in __init__
-       DirectedSpanner.__init__(self, components, direction)
-     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 13, in __init__
-       Spanner.__init__(self, components)
-     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 45, in __init__
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 48, in __init__
+       overrides=overrides,
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 24, in __init__
+       overrides=overrides,
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 47, in __init__
        self._initialize_components(components)
-     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 220, in _initialize_components
-       assert componenttools.all_are_contiguous_components_in_same_logical_voice(leaves)
-   AssertionError
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 316, in _initialize_components
+       for x in components), repr(components)
+   AssertionError: [Voice{4}, Voice{3}]
 
 
 ... or ...
@@ -170,19 +175,19 @@ To attach the slur spanner to the voices we could try either:
    >>> spannertools.SlurSpanner([vA, vC])
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 37, in __init__
-       DirectedSpanner.__init__(self, components, direction)
-     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 13, in __init__
-       Spanner.__init__(self, components)
-     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 45, in __init__
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 48, in __init__
+       overrides=overrides,
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 24, in __init__
+       overrides=overrides,
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 47, in __init__
        self._initialize_components(components)
-     File "/home/josiah/Documents/Development/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 220, in _initialize_components
-       assert componenttools.all_are_contiguous_components_in_same_logical_voice(leaves)
-   AssertionError
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 316, in _initialize_components
+       for x in components), repr(components)
+   AssertionError: [Voice{4}, Voice{2}]
 
 
-But both raise a contiguity error.
-Abjad needs to see an explicit connection between either `vA` and `vB` or between `vA` and `vC`.
+But both raise a contiguity error. Abjad needs to see an explicit connection
+between either `vA` and `vB` or between `vA` and `vC`.
 
 Observe the behavior of the
 :func:`~abjad.tools.iterationtools.iterate_logical_voice_in_expr`
@@ -191,25 +196,49 @@ iterator on the `staff`:
 ::
 
    >>> vA_thread_signature = vA.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vA_thread_signature)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vA_thread_signature' is not defined
    >>> print list(notes)
-   [Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8")]
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'notes' is not defined
 
 
 ::
 
    >>> vB_thread_signature = vB.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vB_thread_signature)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vB_thread_signature' is not defined
    >>> print list(notes)
-   [Note("c''8"), Note("b'8"), Note("a'4")]
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'notes' is not defined
 
 
 ::
 
    >>> vC_thread_signature = vC.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vC_thread_signature)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vC_thread_signature' is not defined
    >>> print list(notes)
-   [Note("c''4"), Note("c''4")]
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'notes' is not defined
 
 
 In each case we are passing a different **thread signature** to the
@@ -222,22 +251,37 @@ by printing it:
 ::
 
    >>> vA_thread_signature = vA.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> vA_thread_signature
-   LogicalVoiceIndicator(Voice-151537580, Voice-151537580, Staff-156803500)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vA_thread_signature' is not defined
 
 
 ::
 
    >>> vB_thread_signature = vB.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> vB_thread_signature
-   LogicalVoiceIndicator(Voice-151536940, Voice-151536940, Staff-156803500)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vB_thread_signature' is not defined
 
 
 ::
 
    >>> vC_thread_signature = vC.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> vC_thread_signature
-   LogicalVoiceIndicator(Voice-156803372, Voice-156803372, Staff-156803500)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vC_thread_signature' is not defined
 
 
 And by comparing them with the binary equality operator:
@@ -245,16 +289,22 @@ And by comparing them with the binary equality operator:
 ::
 
    >>> vA_thread_signature == vB_thread_signature
-   False
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vA_thread_signature' is not defined
    >>> vA_thread_signature == vC_thread_signature
-   False
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vA_thread_signature' is not defined
    >>> vB_thread_signature == vC_thread_signature
-   False
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vB_thread_signature' is not defined
 
 
-To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging together,
-we explicitly define a thread between them.
-To do this  all we need to do is give both voices the same name:
+To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging
+together, we explicitly define a thread between them. To do this all we need
+to do is give both voices the same name:
 
 ::
 
@@ -267,7 +317,9 @@ Now `vA` and `vB` and all their content belong to the same thread:
 ::
 
    >>> vA_thread_signature == vB_thread_signature
-   False
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vA_thread_signature' is not defined
 
 
 Note how the thread signatures have changed:
@@ -275,28 +327,37 @@ Note how the thread signatures have changed:
 ::
 
    >>> vA_thread_signature = vA.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> print vA_thread_signature
-        staff: Staff-156803500
-        voice: Voice-'piccolo'
-         self: Voice-'piccolo'
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vA_thread_signature' is not defined
 
 
 ::
 
    >>> vB_thread_signature = vB.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> print vB_thread_signature
-        staff: Staff-156803500
-        voice: Voice-'piccolo'
-         self: Voice-'piccolo'
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vB_thread_signature' is not defined
 
 
 ::
 
    >>> vC_thread_signature = vC.parentage.logical_voice_indicator
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Voice' object has no attribute 'parentage'
    >>> print vC_thread_signature
-        staff: Staff-156803500
-        voice: Voice-156803372
-         self: Voice-156803372
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vC_thread_signature' is not defined
 
 
 And how the ``iterationtools.iterate_logical_voice_in_expr()`` function returns
@@ -306,8 +367,13 @@ and the thread signature of `vA`:
 ::
 
    >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vA_thread_signature)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vA_thread_signature' is not defined
    >>> print list(notes)
-   [Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8"), Note("b'8"), Note("a'4")]
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'notes' is not defined
 
 
 Now the slur spanner can be applied to voices `vA` and `vB`:
@@ -315,7 +381,17 @@ Now the slur spanner can be applied to voices `vA` and `vB`:
 ::
 
    >>> spannertools.SlurSpanner([vA, vB])
-   SlurSpanner({f'8, g'8, a'8, b'8}, {c''8, b'8, a'4})
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 48, in __init__
+       overrides=overrides,
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 24, in __init__
+       overrides=overrides,
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 47, in __init__
+       self._initialize_components(components)
+     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 316, in _initialize_components
+       for x in components), repr(components)
+   AssertionError: [Voice-"piccolo"{4}, Voice-"piccolo"{3}]
 
 
 or directly to the notes returned by the
@@ -325,8 +401,13 @@ iteration tool, which are the notes belonging to both `vA` and `vB`:
 ::
 
    >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vA_thread_signature)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'vA_thread_signature' is not defined
    >>> spannertools.SlurSpanner(list(notes))
-   SlurSpanner(f'8, g'8, a'8, b'8, c''8, b'8, a'4)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'notes' is not defined
 
 
 ::
@@ -380,3 +461,4 @@ one of them starting with a LilyPond skip:
    >>> show(staff, docs=True)
 
 .. image:: images/index-3.png
+

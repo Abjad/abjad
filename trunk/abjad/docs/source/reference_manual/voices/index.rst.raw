@@ -1,6 +1,7 @@
 Voices
 ======
 
+
 Making a voice from a LilyPond input string
 -------------------------------------------
 
@@ -13,6 +14,7 @@ voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
 <abjad>
 show(voice)
 </abjad>
+
 
 Making a voice from a list of other Abjad components
 ----------------------------------------------------
@@ -31,8 +33,9 @@ voice = Voice(components)
 show(voice)
 </abjad>
 
-Understanding the ``repr`` of a voice
--------------------------------------
+
+Understanding the interpreter representation of a voice
+-------------------------------------------------------
 
 The ``repr`` of an Abjad voice contains three parts:
 
@@ -46,7 +49,8 @@ voice
 top-level components the voice contains).
 
 Curly braces ``{`` and ``}`` tell you that the music inside the voice is
-interpreted sequentially rather than in parallel.
+interpreted sequentially rather than simultaneously.
+
 
 Inspecting the LilyPond format of a voice
 -----------------------------------------
@@ -63,6 +67,7 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 f(voice)
 </abjad>
 
+
 Inspecting the music in a voice
 -------------------------------
 
@@ -74,6 +79,7 @@ voice.music
 
 Abjad returns a read-only tuple of components.
 
+
 Inspecting a voice's leaves
 ---------------------------
 
@@ -84,6 +90,7 @@ voice.select_leaves()
 </abjad>
 
 Abjad returns a read-only selection of leaves.
+
 
 Getting the length of a voice
 -----------------------------
@@ -97,22 +104,26 @@ len(voice)
 The length of a voice is defined equal to the number of
 top-level components the voice contains.
 
+
 Getting the duration attributes of a voice
 ------------------------------------------
 
-The contents durations of a voice equals the sum of durations of the components in the voice:
+The contents durations of a voice equals the sum of durations of the components
+in the voice:
 
 <abjad>
 voice._contents_duration
 </abjad>
 
-The preprolated duration of a voice is usually equal to the voice's contents duration:
+The preprolated duration of a voice is usually equal to the voice's contents
+duration:
 
 <abjad>
 voice.preprolated_duration
 </abjad>
 
-The prolated duration of a voice is usually equal to the voice's contents duration, too:
+The prolated duration of a voice is usually equal to the voice's contents
+duration, too:
 
 <abjad>
 voice.preprolated_duration
@@ -129,6 +140,7 @@ voice.prolation
 
 All voice duration attributes are read-only.
 
+
 Adding one component to the end of a voice
 ------------------------------------------
 
@@ -141,6 +153,7 @@ voice.append(Note("af'2"))
 <abjad>
 show(voice)
 </abjad>
+
 
 Adding many components to the end of a voice
 --------------------------------------------
@@ -156,6 +169,7 @@ voice.extend(notes)
 show(voice)
 </abjad>
 
+
 Finding the index of a component in a voice
 -------------------------------------------
 
@@ -168,6 +182,7 @@ notes[0]
 <abjad>
 voice.index(notes[0])
 </abjad>
+
 
 Removing a voice component by index
 -----------------------------------
@@ -186,6 +201,7 @@ voice.pop(5)
 show(voice)
 </abjad>
 
+
 Removing a voice component by reference
 ---------------------------------------
 
@@ -198,6 +214,7 @@ voice.remove(voice[-1])
 <abjad>
 show(voice)
 </abjad>
+
 
 Naming voices
 -------------
@@ -219,6 +236,7 @@ But not in notational output:
 <abjad>
 show(voice)
 </abjad>
+
 
 Changing the context of a voice
 -------------------------------
