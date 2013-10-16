@@ -100,7 +100,7 @@ class TonalAnalysisAgent(object):
                     tokens=mathtools.difference_series(ordered_npcs),
                     item_class=pitchtools.NamedInversionEquivalentIntervalClass,
                     )
-                #ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
+                #ordered_npcs.inversion_equivalent_named_interval_class_segment
             if segment.is_tertian:
                 break
         else:

@@ -74,7 +74,7 @@ class Scale(PitchClassSegment):
         from abjad.tools import pitchtools
         from abjad.tools import tonalanalysistools
 
-        dicg = self.diatonic_interval_class_segment
+        dicg = self.named_interval_class_segment
         length = len(dicg)
 
         octave_number = 4
@@ -96,7 +96,7 @@ class Scale(PitchClassSegment):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def diatonic_interval_class_segment(self):
+    def named_interval_class_segment(self):
         dics = []
         for left, right in \
             sequencetools.iterate_sequence_pairwise_wrapped(self):
