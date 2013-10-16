@@ -1,0 +1,506 @@
+:tocdepth: 2
+
+Durations
+=========
+
+
+Assignability
+-------------
+
+Western notation readily admits rational values like ``1/4``.  But values like
+``1/5`` notate only with tuplet brackets or special time signatures.  Abjad
+formalizes the difference between rationals like ``1/4`` and ``1/5`` in the
+definition of rational assignability.
+
+Rational values ``n/d`` are assignable when and only when numerator ``n`` is of
+the form ``k(2**u-j)`` and denominator ``d`` is of the form ``2**v``.  In this
+definition ``u`` and ``v`` must be nonnegative integers, ``k`` must be a
+positive integer, and ``j`` must be either ``0`` or ``1``.
+
+Abjad initializes notes, rests and chords with assignable durations only.
+
+
+Duration initialization
+-----------------------
+
+Durated Abjad classes initialize duration from arguments in the form `(n, d)`
+with numerator `n` and denominator `d`.
+
+<abjad>
+note = Note("c'8.")
+</abjad>
+
+<abjad>
+show(note)
+iotools.write_expr_to_ly(note, 'duration-initialization-1') <hide
+</abjad>
+
+
+Durated classes include notes, rests, chords, skips, tuplets and measures.
+
+<abjad>
+tuplet = tuplettools.Tuplet((2, 3), "c'8 c'8 c'8")
+spannertools.BeamSpanner(tuplet)
+staff = stafftools.RhythmicStaff([tuplet])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'duration-initialization-2') <hide
+</abjad>
+
+
+Abjad restricts notes, rests, chords and skips to durations like ``3/16`` that
+can be written with dots, beams and flags without ties or brackets.  Abjad
+allows arbitrary positive durations like ``5/8`` for tuplets and measures.
+
+<abjad>
+tuplet = tuplettools.Tuplet((5, 4), "c'8 c'8 c'8 c'8")
+spannertools.BeamSpanner(tuplet)
+staff = stafftools.RhythmicStaff([tuplet])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'duration-initialization-3') <hide
+</abjad>
+
+
+Abjad supports breves.
+
+<abjad>
+note = Note(0, (2, 1))
+</abjad>
+
+<abjad>
+show(note)
+iotools.write_expr_to_ly(note, 'duration-initialization-4') <hide
+</abjad>
+
+
+And longas.
+
+<abjad>
+note = Note(0, (4, 1))
+</abjad>
+
+<abjad>
+show(note)
+iotools.write_expr_to_ly(note, 'duration-initialization-5') <hide
+</abjad>
+
+
+.. note::
+
+    The restriction that the written durations of notes, rests, chords and 
+    skips be expressible with some combination of dots, flags and beams 
+    without recourse to ties and brackets generalizes to the condition 
+    of note head assignability. Values `(n, d)` are note_head-assignable 
+    when and only when (1) d is a nonnegative integer power of 2; (2) n is 
+    either a nonnegative integer power of 2 or is a nonnegative integer 
+    power of 2, minus 1; and (3) n/d is less than or equal to 8. 
+    Condition (3) captures the fact that LilyPond provides no 
+    glyph with greater duration than the maxima (equal to eight whole notes).
+
+
+.. note::
+
+    Integer forms like ``4`` as a substitute for ``(4, 1)`` in 
+    ``Note(0, (4, 1))`` are undocumented but allowed.
+
+
+.. note::
+
+    Abjad allows maxima note heads as in ``Note(0, (8, 1))``.
+    LilyPond implements a ``\maxima`` command but does not supply a 
+    corresponding glyph for the note head.
+
+
+Prolation
+---------
+
+Abjad uses prolation as a cover term for rhythmic augmentation and diminution.
+Augmentation increases the duration of notes, rests and chords.
+Diminution does the opposite.
+Western notation employs tuplet brackets and special types of time signature to effect prolation.
+
+
+Tuplet prolation
+^^^^^^^^^^^^^^^^
+
+Tuplets prolate their contents:
+
+<abjad>
+tuplet = Tuplet(Fraction(5, 4), 'c8 c c c')
+staff = stafftools.RhythmicStaff([Measure((5, 8), [tuplet])])
+beam = spannertools.BeamSpanner(tuplet)
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+<abjad>
+note = tuplet[0]
+note.written_duration
+</abjad>
+
+<abjad>
+note.prolation
+</abjad>
+
+<abjad>
+note.duration
+</abjad>
+
+Notes here with written duration ``1/8`` carry prolation factor ``5/4``
+and prolated duration ``5/32``.
+
+Western notation does not recognize tuplet brackets carrying one-to-one ratios.
+Such trivial tuplets may, however, be useful during different stages of composition,
+and Abjad allows them for that reason.
+Trivial tuplets carry zero prolation.
+Zero-prolated tuplets neither augment nor diminish the music they contain.
+
+
+Meter prolation
+^^^^^^^^^^^^^^^
+
+Time signatures in western notation usually carry a denominator equal
+to a nonnegative integer power of ``2``.
+Abjad calls these conventional meters binary meters.
+Denominators equal to integers other than integer powers of ``2`` are also possible.
+Such nonbinary meters rhythmically diminish the contents of the measures they govern:
+
+<abjad>
+measure = Measure((4, 10), 'c8 c c c')
+beam = spannertools.BeamSpanner(measure)
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+<abjad>
+note = staff.select_leaves()[0]
+note.prolation
+</abjad>
+
+<abjad>
+note.duration
+</abjad>
+
+<abjad>
+note.prolation
+</abjad>
+
+<abjad>
+note.duration
+</abjad>
+
+Notes here with written duration ``1/8`` carry prolation factor ``4/5``
+and prolated duration ``1/10``.
+
+Abjad implements one of two competing nonbinary meter-interpretation schemes.
+The first, implicit meter-interpretation given here, follows, for example, Ferneyhough,
+in that nonbinary meters prolate the contents of the measures they govern implicitly, ie, without recourse to tuplet brackets.
+The second, explicit meter-interpretation, which we find in, for example, Sciarrino,
+insists instead on the presence of some tuplet bracket,
+usually engraved in some broken or incomplete way.
+The implicit meter-interpretation that Abjad implements differs from the explicit meter-interpretation native to LilyPond.
+Abjad will eventually implement both implicit and explicit meter-interpretation,
+settable on a container-by-container basis.
+
+
+The prolation chain
+^^^^^^^^^^^^^^^^^^^
+
+Tuplets nest and combine freely with different types of meter.
+When two or more prolation donors conspire, the prolation factor they
+collectively bestow on leaf-level music equals the cumulative product of all
+prolation factors in the prolation chain.
+All durated components carry a prolation chain:
+
+<abjad>
+tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), 'c16 c c c c c c')
+spannertools.BeamSpanner(tuplet)
+measure = Measure((4, 10), [tuplet])
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+<abjad>
+measure.prolation
+</abjad>
+
+<abjad>
+note = measure.select_leaves()[0]
+note.prolation
+</abjad>
+
+<abjad>
+note.duration
+</abjad>
+
+Notes here with written duration ``1/16`` carry prolated duration ``2/35``.
+
+
+Duration types
+--------------
+
+Abjad publishes duration information about all score components.
+
+
+Written duration
+^^^^^^^^^^^^^^^^
+
+Abjad uses written duration to refer to the face value of
+notes, rests and chords prior to prolation.
+Abjad written duration corresponds to the informal names most frequently used
+when talking about note duration.
+
+These sixteenth notes are worth a sixteenth of a whole note:
+
+<abjad>
+measure = Measure((5, 16), "c16 c c c c")
+beam = spannertools.BeamSpanner(measure)
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+<abjad>
+note = measure[0]
+note.written_duration
+</abjad>
+
+These sixteenth notes are worth more than a sixteenth of a whole note:
+
+<abjad>
+tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c8 c c c c")
+beam = spannertools.BeamSpanner(tuplet)
+measure = Measure((5, 16), [tuplet])
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+<abjad>
+note = tuplet[0]
+note.written_duration
+</abjad>
+
+The notes in these examples are 'sixteenth notes' that carry different prolated durations.
+Abjad written duration captures the fact that the note heads and flag counts of the two
+examples match.
+
+Written duration is a user-assignable rational number.
+Users can assign and reassign the written duration of notes, rests and chords
+at initialization and at any time during the life of the note, rest or chord.
+Written durations must be assignable;
+Note that Abjad containers do not carry written duration.
+
+
+Prolated duration
+^^^^^^^^^^^^^^^^^
+
+Prolation refers to the duration-scaling
+effects of tuplets and special types of time signature.
+Prolation is a way of thinking about the contribution that musical structure makes to
+the duration of score objects.
+All durated Abjad objects carry a prolated duration.
+Prolated duration is an emergent property of notes, tuplets and other durated objects.
+The prolated duration of notes, rests and chords equals the product
+of the written duration and prolation of those objects.
+The prolated duration of tuplets, measures and other containers equals the
+the container's duration interface multiplied by the container's prolation.
+
+
+Contents duration
+^^^^^^^^^^^^^^^^^
+
+Abjad defines the contents duration of tuplets, measures, voices, staves
+and other containers equal to the sum of the preprolated duration of each
+of the elements in the container.
+
+The measure here contains two eighth notes and tuplet.
+These elements carry preprolated durations equal to ``1/8``, ``1/8`` and ``2/8``, respectively:
+
+<abjad>
+notes = 2 * Note("c'8")
+beam = spannertools.BeamSpanner(notes)
+tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c c")
+beam = spannertools.BeamSpanner(tuplet)
+measure = Measure((4, 8), notes + [tuplet])
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+<abjad>
+measure._contents_duration
+</abjad>
+
+The contents duration of the measure here equals ``1/8 + 1/8 + 2/8 = 4/8``.
+
+
+Target duration
+^^^^^^^^^^^^^^^
+
+Abjad defines the target duration of fixed-duration tuplets equal to
+composer-settable duration to which the tuplet prolates its contents.
+
+This fixed-duration tuplet carries a target duration equal to ``4/8``:
+
+<abjad>
+tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 c c c c")
+beam = spannertools.BeamSpanner(tuplet)
+measure = Measure((4, 8), [tuplet])
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+<abjad>
+tuplet.target_duration
+</abjad>
+
+The tuplet contents sum to ``5/8``. But tuplet target duration always equals ``4/8``.
+
+
+Multiplied duration
+^^^^^^^^^^^^^^^^^^^
+
+Abjad defines the multiplied duration of notes, rests and chords equal to
+the product of written duration and leaf multiplier.
+
+The first two notes below carry leaf mulitipliers equal to ``2/1``:
+
+<abjad>
+notes = 4 * Note("c'16")
+notes[0].lilypond_duration_multiplier = Fraction(2, 1)
+notes[1].lilypond_duration_multiplier = Fraction(2, 1)
+measure = Measure((3, 8), notes)
+beam = spannertools.BeamSpanner(measure)
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+<abjad>
+note = measure[0]
+note.written_duration
+</abjad>
+
+<abjad>
+note.lilypond_duration_multiplier
+</abjad>
+
+<abjad>
+note.written_duration * note.lilypond_duration_multiplier
+note.multiplied_duration
+</abjad>
+
+The written duration of these first two notes equals ``1/16`` and so
+the multiplied duration of these first two notes equals ``1/16 * 2/1 = 1/8``.
+
+
+LilyPond multipliers
+--------------------
+
+LilyPond provides an asterisk `*` operator to scale the durations of
+notes, rests and chords by arbitrarily positive rational
+values. LilyPond multipliers are inivisible and generate no
+typographic output of their own. However, while independent from the
+typographic output, LilyPond multipliers do factor in in calculations
+of duration and time.
+
+Abjad implements LilyPond multpliers as the settable `duration.multiplier`
+attribute of notes, rests and chords.
+
+<abjad>
+note = Note("c'4")
+note.lilypond_duration_multiplier = Fraction(1, 2)
+note.lilypond_duration_multiplier
+</abjad>
+
+<abjad>
+f(note)
+</abjad>
+
+Abjad also implements a `duration.multiplied` attribute to examine the
+duration of a note, rest or chord as affected by the multiplier.
+
+<abjad>
+note.multiplied_duration
+</abjad>
+
+LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
+
+<abjad>
+notes = Note("c'4") * 4
+multiplied_note = Note(0, (1, 2))
+multiplied_note.lilypond_duration_multiplier = Fraction(1, 2)
+multiplied_notes = multiplied_note * 4
+top = stafftools.RhythmicStaff(notes)
+bottom = stafftools.RhythmicStaff(multiplied_notes)
+staves = scoretools.StaffGroup([top, bottom])
+</abjad>
+
+<abjad>
+show(staves)
+</abjad>
+
+.. note::
+
+    Abjad models multiplication fundamentally differently than prolation.
+
+.. note::
+
+    The LilyPond multiplication `*` operator differs from the Abjad
+    multiplication `*` operator. LilyPond multiplication scales duration
+    of LilyPond notes, rests and chords. Abjad multiplication
+    copies Abjad containers and leaves.
+
+
+Duration interfaces compared
+----------------------------
+
+=========== ====  ====  =========   =======  ======   =========   =========
+type        core  leaf  container   measure  tuplet   fd tuplet   fm tuplet 
+=========== ====  ====  =========   =======  ======   =========   =========
+contents    –     –     R           R        R        R           R
+multiplied  –     R     –           –        –        R           R
+multiplier  –     RW    –           R        R        R           RW 
+preprolated R     R     R           R        R        R           R 
+prolated    R     R     R           R        R        R           R
+prolation   R     R     R           R        R        R           R
+target      –     –     –           –        –        RW          – 
+written     –     RW    –           –        –        –           –
+=========== ====  ====  =========   =======  ======   =========   =========
+
+
+The table contains a total of only four settable duration attributes, divided
+among only three classes. Durated Abjad classes offer up many read-only
+duration attributes but very few read-write duration attributes.
+
+All classes carry all three prolation-related attributes because all
+classes can nest inside containers. It is possible, for example, to
+nest an entire voice within a fixed-duration tuplet.
+
+.. note::
+   Leaf multipliers and tuplet multipliers differ.
