@@ -1,8 +1,8 @@
 Articulations
 =============
 
-Articulations model staccati, marcati, tenuti and other symbols.
-Articulations attach notes, rests or chords.
+Articulations model staccato dots, marcato wedges and other symbols.
+Articulations attach to notes, rests or chords.
 
 
 Creating articulations
@@ -25,10 +25,10 @@ Attaching articulations to a leaf
 Use ``attach()`` to attach articulations to a leaf:
 
 <abjad>
-staff = Staff([])
+staff = Staff()
 key_signature = contexttools.KeySignatureMark('g', 'major')
 key_signature.attach(staff)
-time_signature = contexttools.TimeSignatureMark((2, 4), partial = Duration(1, 8))
+time_signature = contexttools.TimeSignatureMark((2, 4), partial=Duration(1, 8))
 time_signature.attach(staff)
 </abjad>
 
@@ -50,10 +50,13 @@ show(staff)
 Attaching articulations to many notes and chords at once
 --------------------------------------------------------
 
-Use ``marktools`` to attach articulations to many notes and chords at one time:
+Write a loop to attach articulations to many notes and chords at one time:
+
 
 <abjad>
-marktools.attach_articulations_to_notes_and_chords_in_expr(staff[:6], ['.'])
+for leaf in staff[:6]:
+    staccato = marktools.Articulation('staccato')
+    staccato.attach(leaf)
 </abjad>
 
 <abjad>
@@ -64,17 +67,17 @@ show(staff)
 Getting the articulations attached to a leaf
 --------------------------------------------
 
-Use ``marktools`` to get the articulations attached to a leaf:
+Use the inspector to get the articulations attached to a leaf:
 
 <abjad>
-marktools.get_articulations_attached_to_component(staff[5])
+inspect(staff[5]).get_marks(mark_classes=marktools.Articulation)
 </abjad>
 
 
-Detaching articulations from a leaf one at a time
--------------------------------------------------
+Detaching articulations from a leaf
+-----------------------------------
 
-Detach articulations by hand with ``detach()``:
+Detach articulations with ``detach()``:
 
 <abjad>
 articulation.detach()
@@ -92,14 +95,16 @@ show(staff)
 Detaching all articulations attached to a leaf at once
 ------------------------------------------------------
 
-Use ``marktools`` to detach all articulations attached to a leaf at once:
+Write a loop to detach all articulations attached to a leaf:
 
 <abjad>
 staff[0]
 </abjad>
 
 <abjad>
-marktools.detach_articulations_attached_to_component(staff[0])
+articulations = inspect(staff[0]).get_marks(marktools.Articulation)
+for articulation in articulations:
+    articulation.detach()
 </abjad>
 
 <abjad>
@@ -110,7 +115,8 @@ show(staff)
 Inspecting the leaf to which an articulation is attached
 --------------------------------------------------------
 
-Use ``start_component`` to inspect the component to which an articulation is attached:
+Use ``start_component`` to inspect the component to which 
+an articulation is attached:
 
 <abjad>
 articulation = marktools.Articulation('turn')
@@ -126,11 +132,11 @@ articulation.start_component
 </abjad>
 
 
-Understanding the interpreter display of an articulation that is not attached to a leaf
----------------------------------------------------------------------------------------
+Understanding the interpreter representation of an articulation that is not attached to a leaf
+----------------------------------------------------------------------------------------------
 
-The interpreter display of an articulation that is not attached to a leaf
-contains three parts:
+The interpreter representation of an articulation that is not attached 
+to a leaf contains three parts:
 
 <abjad>
 articulation = marktools.Articulation('staccato')
@@ -157,11 +163,11 @@ print repr(articulation)
 </abjad>
 
 
-Understanding the interpreter display of an articulation that is attached to a leaf
------------------------------------------------------------------------------------
+Understanding the interpreter representation of an articulation that is attached to a leaf
+------------------------------------------------------------------------------------------
 
-The interpreter display of an articulation that is attached to a leaf
-contains four parts:
+The interpreter representation of an articulation that is attached 
+to a leaf contains four parts:
 
 <abjad>
 articulation.attach(staff[-1])
@@ -266,7 +272,8 @@ show(staff)
 Getting and setting the name of an articulation
 -----------------------------------------------
 
-Set the ``name`` of an articulation to change the symbol an articulation prints:
+Set the ``name`` of an articulation to change the symbol 
+an articulation prints:
 
 <abjad>
 articulation.name = 'staccatissimo'
@@ -334,10 +341,6 @@ Override attributes of the LilyPond script grob like this:
 
 <abjad>
 staff.override.script.color = 'red'
-</abjad>
-
-<abjad>
-f(staff)
 </abjad>
 
 <abjad>

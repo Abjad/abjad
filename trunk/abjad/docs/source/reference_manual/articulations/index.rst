@@ -1,8 +1,8 @@
 Articulations
 =============
 
-Articulations model staccati, marcati, tenuti and other symbols.
-Articulations attach notes, rests or chords.
+Articulations model staccato dots, marcato wedges and other symbols.
+Articulations attach to notes, rests or chords.
 
 
 Creating articulations
@@ -29,11 +29,11 @@ Use ``attach()`` to attach articulations to a leaf:
 
 ::
 
-   >>> staff = Staff([])
+   >>> staff = Staff()
    >>> key_signature = contexttools.KeySignatureMark('g', 'major')
    >>> key_signature.attach(staff)
    KeySignatureMark(NamedPitchClass('g'), Mode('major'))(Staff{})
-   >>> time_signature = contexttools.TimeSignatureMark((2, 4), partial = Duration(1, 8))
+   >>> time_signature = contexttools.TimeSignatureMark((2, 4), partial=Duration(1, 8))
    >>> time_signature.attach(staff)
    TimeSignatureMark((2, 4), partial=Duration(1, 8))(Staff{})
 
@@ -62,11 +62,21 @@ Use ``attach()`` to attach articulations to a leaf:
 Attaching articulations to many notes and chords at once
 --------------------------------------------------------
 
-Use ``marktools`` to attach articulations to many notes and chords at one time:
+Write a loop to attach articulations to many notes and chords at one time:
+
 
 ::
 
-   >>> marktools.attach_articulations_to_notes_and_chords_in_expr(staff[:6], ['.'])
+   >>> for leaf in staff[:6]:
+   ...     staccato = marktools.Articulation('staccato')
+   ...     staccato.attach(leaf)
+   ... 
+   Articulation('staccato')(d'8)
+   Articulation('staccato')(f'8)
+   Articulation('staccato')(a'8)
+   Articulation('staccato')(d''8)
+   Articulation('staccato')(f''8)
+   Articulation('staccato')(gs'4)
 
 
 ::
@@ -80,19 +90,19 @@ Use ``marktools`` to attach articulations to many notes and chords at one time:
 Getting the articulations attached to a leaf
 --------------------------------------------
 
-Use ``marktools`` to get the articulations attached to a leaf:
+Use the inspector to get the articulations attached to a leaf:
 
 ::
 
-   >>> marktools.get_articulations_attached_to_component(staff[5])
-   (Articulation('turn')(gs'4), Articulation('.')(gs'4))
+   >>> inspect(staff[5]).get_marks(mark_classes=marktools.Articulation)
+   (Articulation('turn')(gs'4), Articulation('staccato')(gs'4))
 
 
 
-Detaching articulations from a leaf one at a time
--------------------------------------------------
+Detaching articulations from a leaf
+-----------------------------------
 
-Detach articulations by hand with ``detach()``:
+Detach articulations with ``detach()``:
 
 ::
 
@@ -117,7 +127,7 @@ Detach articulations by hand with ``detach()``:
 Detaching all articulations attached to a leaf at once
 ------------------------------------------------------
 
-Use ``marktools`` to detach all articulations attached to a leaf at once:
+Write a loop to detach all articulations attached to a leaf:
 
 ::
 
@@ -127,8 +137,11 @@ Use ``marktools`` to detach all articulations attached to a leaf at once:
 
 ::
 
-   >>> marktools.detach_articulations_attached_to_component(staff[0])
-   (Articulation('.'),)
+   >>> articulations = inspect(staff[0]).get_marks(marktools.Articulation)
+   >>> for articulation in articulations:
+   ...     articulation.detach()
+   ... 
+   Articulation('staccato')
 
 
 ::
@@ -142,7 +155,8 @@ Use ``marktools`` to detach all articulations attached to a leaf at once:
 Inspecting the leaf to which an articulation is attached
 --------------------------------------------------------
 
-Use ``start_component`` to inspect the component to which an articulation is attached:
+Use ``start_component`` to inspect the component to which 
+an articulation is attached:
 
 ::
 
@@ -165,11 +179,11 @@ Use ``start_component`` to inspect the component to which an articulation is att
 
 
 
-Understanding the interpreter display of an articulation that is not attached to a leaf
----------------------------------------------------------------------------------------
+Understanding the interpreter representation of an articulation that is not attached to a leaf
+----------------------------------------------------------------------------------------------
 
-The interpreter display of an articulation that is not attached to a leaf
-contains three parts:
+The interpreter representation of an articulation that is not attached 
+to a leaf contains three parts:
 
 ::
 
@@ -204,11 +218,11 @@ If you set the direction string of the articulation then that will appear, too:
 
 
 
-Understanding the interpreter display of an articulation that is attached to a leaf
------------------------------------------------------------------------------------
+Understanding the interpreter representation of an articulation that is attached to a leaf
+------------------------------------------------------------------------------------------
 
-The interpreter display of an articulation that is attached to a leaf
-contains four parts:
+The interpreter representation of an articulation that is attached 
+to a leaf contains four parts:
 
 ::
 
@@ -342,7 +356,8 @@ an articulation automatically:
 Getting and setting the name of an articulation
 -----------------------------------------------
 
-Set the ``name`` of an articulation to change the symbol an articulation prints:
+Set the ``name`` of an articulation to change the symbol 
+an articulation prints:
 
 ::
 
@@ -430,31 +445,6 @@ Override attributes of the LilyPond script grob like this:
 ::
 
    >>> staff.override.script.color = 'red'
-
-
-::
-
-   >>> f(staff)
-   \new Staff \with {
-       \override Script #'color = #red
-   } {
-       \key g \major
-       \partial 8
-       \time 2/4
-       d'8
-       f'8 -\staccatissimo -\staccato
-       a'8 -\staccato
-       d''8 -\staccato
-       f''8 -\staccato
-       gs'4 -\staccato
-       r8
-       e'8
-       gs'8
-       b'8
-       e''8
-       gs''8
-       a'4 -\staccatissimo -\turn
-   }
 
 
 ::
