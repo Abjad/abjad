@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def transpose_named_pitch_by_melodic_chromatic_interval_and_respell(
+def transpose_named_pitch_by_numbered_interval_and_respell(
     pitch, staff_spaces, melodic_chromatic_interval):
     '''Transpose named pitch by `melodic_chromatic_interval` and respell `staff_spaces`
     above or below:
@@ -12,7 +12,7 @@ def transpose_named_pitch_by_melodic_chromatic_interval_and_respell(
 
     ::
 
-        >>> pitchtools.transpose_named_pitch_by_melodic_chromatic_interval_and_respell(
+        >>> pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(
         ...     pitch, 1, 0.5)
         NamedPitch("dtqf'")
 
