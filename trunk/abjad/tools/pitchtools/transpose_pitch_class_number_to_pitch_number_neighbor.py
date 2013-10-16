@@ -12,9 +12,9 @@ def transpose_pitch_class_number_to_pitch_number_neighbor(
         ...     12, 4)
         16
 
-    Resulting chromatic pitch number must be within one tritone of `pitch_number`.
+    Resulting pitch number must be within one tritone of `pitch_number`.
 
-    Return chromatic pitch number.
+    Return pitch number.
     '''
 
     target_pc = pitch_number % 12

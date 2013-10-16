@@ -106,12 +106,33 @@ class NumberedPitch(Pitch):
             >>> pitchtools.NumberedPitch(13).apply_accidental('flat')
             NumberedPitch(12)
 
-        Return numbered chromatic pitch.
+        Emit new numbered pitch.
         '''
         from abjad.tools.pitchtools.Accidental import Accidental
         accidental = Accidental(accidental)
         semitones = abs(self) + accidental.semitones
         return type(self)(semitones)
+
+    def invert(self, axis=None):
+        r'''Invert around `axis`.
+
+        Not yet implemented.
+        '''
+        raise NotImplementedError
+    
+    def multiply(self, n=1):
+        r'''Multiply pitch-class by `n`, maintaining octave.
+        
+        ::
+
+            >>> pitchtools.NumberedPitch(14).multiply(3)
+            NumberedPitch(18)
+
+        Emit new numbered pitch.
+        '''
+        pitch_class_number = (self.pitch_class_number * n) % 12
+        octave_floor = (self.octave_number - 4) * 12
+        return type(self)(pitch_class_number + octave_floor)
 
     def transpose(self, n=0):
         r'''Tranpose by `n` semitones.
@@ -121,7 +142,7 @@ class NumberedPitch(Pitch):
             >>> pitchtools.NumberedPitch(13).transpose(1)
             NumberedPitch(14)
 
-        Return numbered chromatic pitch.
+        Emit new numbered pitch.
         '''
         semitones = abs(self) + n
         return type(self)(semitones)

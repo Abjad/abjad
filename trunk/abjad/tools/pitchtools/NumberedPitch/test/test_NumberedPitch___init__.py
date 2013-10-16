@@ -15,7 +15,7 @@ def test_NumberedPitch___init___01():
 
 
 def test_NumberedPitch___init___02():
-    r'''Init with other numbered chromatic pitch instance.
+    r'''Init with other numbered pitch instance.
     '''
 
     numbered_pitch_1 = pitchtools.NumberedPitch(13)

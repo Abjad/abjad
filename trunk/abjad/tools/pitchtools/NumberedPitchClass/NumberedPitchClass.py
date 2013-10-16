@@ -154,8 +154,14 @@ class NumberedPitchClass(PitchClass):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
-        r'''Emit new numbered chromatic pitch-class as sum
-        of self and accidental.
+        '''Apply `accidental`.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(1).apply_accidental('flat')
+            NumberedPitchClass(0)
+
+        Emit new numbered pitch-class.
         '''
         from abjad.tools import pitchtools
         accidental = pitchtools.Accidental(accidental)
@@ -164,16 +170,27 @@ class NumberedPitchClass(PitchClass):
 
     def invert(self):
         r'''Invert pitch-class.
+
+        Emit new numbered pitch-class.
         '''
         return type(self)(12 - abs(self))
 
-    def multiply(self, n):
-        r'''Multiply pitch-class by n.
+    def multiply(self, n=1):
+        r'''Multiply pitch-class number by `n`:
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(11).multiply(3)
+            NumberedPitchClass(9)
+
+        Emit new numbered pitch-class.
         '''
-        return type(self)(abs(self) * n)
+        return type(self)(self.pitch_class_number * n)
 
     def transpose(self, n):
         r'''Transpose pitch-class by n.
+
+        Emit new numbered pitch-class.
         '''
         return type(self)(abs(self) + n)
 

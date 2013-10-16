@@ -329,7 +329,7 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_named_pitch_repr(self):
-        r'''One-line named chromatic pitch repr of pitch of range:
+        r'''One-line named pitch repr of pitch of range:
 
         ::
 
@@ -351,7 +351,7 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_numbered_pitch_repr(self):
-        r'''One-line numbered chromatic pitch repr 
+        r'''One-line numbered pitch repr 
         of pitch of range:
 
         ::

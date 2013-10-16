@@ -256,6 +256,44 @@ class NamedPitch(Pitch):
 
     ### PUBLIC METHODS ###
 
+    def apply_accidental(self, accidental=None):
+        '''Apply `accidental` to named pitch.
+
+        ::
+
+            >>> pitchtools.NamedPitch("cs''").apply_accidental('s')
+            NamedPitch("css''")
+
+        Return new named pitch.
+        '''
+        from abjad.tools import pitchtools
+        accidental = pitchtools.Accidental(accidental)
+        new_accidental = self.accidental + accidental
+        new_name = self.diatonic_pitch_class_name
+        new_name += new_accidental.alphabetic_accidental_abbreviation
+        return type(self)(new_name, self.octave_number)
+
+    def invert(self, axis=None):
+        r'''Invert pitch around `axis`.
+
+        Not yet implemented.
+        '''
+        raise NotImplementedError
+
+    def multiply(self, n=1):
+        r'''Multiply pitch-class by `n`, maintaining octave.
+
+        ::
+
+            >>> pitchtools.NamedPitch('cs,').multiply(3)
+            NamedPitch('ef,')
+
+        Emit new numbered pitch.
+        '''
+        pitch_class_number = (self.pitch_class_number * n) % 12
+        octave_floor = (self.octave_number - 4) * 12
+        return type(self)(pitch_class_number + octave_floor)
+
     def respell_with_flats(self):
         from abjad.tools import pitchtools
         octave = pitchtools.OctaveIndication.from_pitch_number(
@@ -273,6 +311,13 @@ class NamedPitch(Pitch):
             self.pitch_class_number]
         pitch = type(self)(name, octave)
         return pitch
+
+    def transpose(self, expr):
+        r'''Transpose by `expr`.
+
+        Not yet implemented.
+        '''
+        raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 

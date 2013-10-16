@@ -2,7 +2,7 @@
 
 
 def get_numbered_pitch_class_from_pitch_carrier(pitch_carrier):
-    '''Get numbered chromatic pitch-class from `pitch_carrier`:
+    '''Get numbered pitch-class from `pitch_carrier`:
 
     ::
 
@@ -14,7 +14,7 @@ def get_numbered_pitch_class_from_pitch_carrier(pitch_carrier):
 
     Raise extra pitch error on many-note chords.
 
-    Return numbered chromatic pitch-class.
+    Return numbered pitch-class.
     '''
     from abjad.tools import pitchtools
 

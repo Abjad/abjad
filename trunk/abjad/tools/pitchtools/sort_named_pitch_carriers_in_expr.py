@@ -2,8 +2,8 @@
 
 
 def sort_named_pitch_carriers_in_expr(pitch_carriers):
-    '''List named chromatic pitch carriers in `expr` sorted by 
-    numbered chromatic pitch-class:
+    '''List named pitch carriers in `expr` sorted by 
+    numbered pitch-class:
 
     ::
 

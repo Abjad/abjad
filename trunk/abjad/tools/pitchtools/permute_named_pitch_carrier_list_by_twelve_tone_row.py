@@ -2,7 +2,7 @@
 
 
 def permute_named_pitch_carrier_list_by_twelve_tone_row(pitches, row):
-    '''Permute named chromatic pitch carrier list by twelve-tone `row`:
+    '''Permute named pitch carrier list by twelve-tone `row`:
 
     ::
 

@@ -190,7 +190,7 @@ class NamedPitchClass(PitchClass):
             >>> pitchtools.NamedPitchClass('cs').apply_accidental('qs')
             NamedPitchClass('ctqs')
 
-        Return named chromatic pitch-class.
+        Emit new named pitch-class.
         '''
         from abjad.tools import pitchtools
         accidental = pitchtools.Accidental(accidental)
@@ -199,8 +199,27 @@ class NamedPitchClass(PitchClass):
             new_accidental.alphabetic_accidental_abbreviation
         return type(self)(new_name)
 
-    def transpose(self, melodic_diatonic_interval):
-        r'''Transpose named chromatic pitch-class by
+    def invert(self):
+        r'''Invert pitch-class.
+
+        Not yet implemented.
+        '''
+        raise NotImplementedError
+
+    def multiply(self, n=1):
+        r'''Multiply pitch-class number by `n`:
+
+        ::
+
+            >>> pitchtools.NamedPitchClass('cs').multiply(3)
+            NamedPitchClass('ef')
+
+        Emit new named pitch-class.
+        '''
+        return type(self)(self.pitch_class_number * n)
+
+    def transpose(self, n):
+        r'''Transpose named pitch-class by
         `melodic_diatonic_interval`:
 
         ::
@@ -209,13 +228,14 @@ class NamedPitchClass(PitchClass):
             ...     pitchtools.NamedInterval('major', 2))
             NamedPitchClass('ds')
 
-        Return named chromatic pitch-class.
+        Emit new named pitch-class.
         '''
         from abjad.tools import pitchtools
+        named_interval = pitchtools.NamedInterval(n)
         pitch = pitchtools.NamedPitch(self, 4)
         transposed_pitch = \
             pitchtools.transpose_pitch_carrier_by_melodic_interval(
-                pitch, melodic_diatonic_interval)
+                pitch, named_interval)
         return type(self)(transposed_pitch)
 
     ### PUBLIC PROPERTIES ###

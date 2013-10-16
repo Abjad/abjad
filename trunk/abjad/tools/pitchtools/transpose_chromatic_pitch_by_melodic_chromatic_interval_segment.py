@@ -14,7 +14,7 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
     Transpose by each interval in `segment` such that each tranposition
     transposes the resulting pitch of the previous transposition.
 
-    Return list of numbered chromatic pitches.
+    Return list of numbered pitches.
     '''
     from abjad.tools import pitchtools
 

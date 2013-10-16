@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_NumberedPitch___sub___01():
-    r'''Subtract numbered chromatic pitch from numbered chromatic pitch.
+    r'''Subtract numbered pitch from numbered pitch.
     '''
 
     pitch_1 = pitchtools.NumberedPitch(12)
@@ -14,7 +14,7 @@ def test_NumberedPitch___sub___01():
 
 
 def test_NumberedPitch___sub___02():
-    r'''Subtract number from numbered chromatic pitch.
+    r'''Subtract number from numbered pitch.
     '''
 
     pitch_1 = pitchtools.NumberedPitch(12)

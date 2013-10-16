@@ -90,7 +90,7 @@ class PitchClassSet(Set):
             )
 
     def invert(self):
-        r'''Invert numbered chromatic pitch-class set:
+        r'''Invert numbered pitch-class set:
 
         ::
 
@@ -99,7 +99,7 @@ class PitchClassSet(Set):
             ...     ).invert()
             PitchClassSet([1.5, 2, 5, 6])
 
-        Return numbered chromatic pitch-class set.
+        Return numbered pitch-class set.
         '''
         return type(self)([pc.invert() for pc in self])
 
@@ -163,7 +163,7 @@ class PitchClassSet(Set):
             ...     ).multiply(5)
             PitchClassSet([2, 4.5, 6, 11])
 
-        Return numbered chromatic pitch-class set.
+        Return numbered pitch-class set.
         '''
         tokens = (pitch_class.multiply(n) for pitch_class in self)
         return self.new(tokens=tokens)

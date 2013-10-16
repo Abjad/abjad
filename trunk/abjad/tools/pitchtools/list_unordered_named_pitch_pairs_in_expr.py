@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def list_unordered_named_pitch_pairs_in_expr(expr):
-    '''List unordered named chromatic pitch pairs in `expr`:
+    '''List unordered named pitch pairs in `expr`:
 
     ::
 

@@ -3,7 +3,7 @@ import numbers
 
 
 def get_named_pitch_from_pitch_carrier(pitch_carrier):
-    '''Get named chromatic pitch from `pitch_carrier`:
+    '''Get named pitch from `pitch_carrier`:
 
     ::
 
@@ -46,7 +46,7 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
 
     Raise extra pitch error when `pitch_carrier` carries more than one pitch.
 
-    Return named chromatic pitch.
+    Return named pitch.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

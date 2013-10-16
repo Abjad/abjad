@@ -188,13 +188,13 @@ class PitchClass(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-#    @abc.abstractmethod
-#    def apply_accidental(self, accidental=None):
-#        raise NotImplementedError
+    @abc.abstractmethod
+    def apply_accidental(self, accidental=None):
+        raise NotImplementedError
 
-#    @abc.abstractmethod
-#    def invert(self, axis=None):
-#        raise NotImplementedError
+    @abc.abstractmethod
+    def invert(self, axis=None):
+        raise NotImplementedError
 
     @staticmethod
     def is_diatonic_pitch_class_name(expr):
@@ -238,7 +238,7 @@ class PitchClass(AbjadObject):
 
     @staticmethod
     def is_pitch_class_name(expr):
-        '''True when `expr` is a chromatic pitch-class name, otherwise false.
+        '''True when `expr` is a pitch-class name, otherwise false.
 
         ::
 
@@ -256,14 +256,14 @@ class PitchClass(AbjadObject):
 
     @staticmethod
     def is_pitch_class_number(expr):
-        '''True `expr` is a chromatic pitch-class number, otherwise false.
+        '''True `expr` is a pitch-class number, otherwise false.
 
         ::
 
             >>> pitchtools.PitchClass.is_pitch_class_number(1)
             True
 
-        The chromatic pitch-class numbers are equal to the set
+        The pitch-class numbers are equal to the set
         ``[0, 0.5, ..., 11, 11.5]``.
 
         Return boolean.
@@ -271,13 +271,13 @@ class PitchClass(AbjadObject):
 
         return expr in [(n).__truediv__(2) for n in range(24)]
 
-#    @abc.abstractmethod
-#    def multiply(self, n=1):
-#        raise NotImplementedError
+    @abc.abstractmethod
+    def multiply(self, n=1):
+        raise NotImplementedError
 
-#    @abc.abstractmethod
-#    def transpose(self, expr):
-#        raise NotImplementedError
+    @abc.abstractmethod
+    def transpose(self, expr):
+        raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 

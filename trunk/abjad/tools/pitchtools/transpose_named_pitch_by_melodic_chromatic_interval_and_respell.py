@@ -3,7 +3,7 @@
 
 def transpose_named_pitch_by_melodic_chromatic_interval_and_respell(
     pitch, staff_spaces, melodic_chromatic_interval):
-    '''Transpose named chromatic pitch by `melodic_chromatic_interval` and respell `staff_spaces`
+    '''Transpose named pitch by `melodic_chromatic_interval` and respell `staff_spaces`
     above or below:
 
     ::
@@ -16,7 +16,7 @@ def transpose_named_pitch_by_melodic_chromatic_interval_and_respell(
         ...     pitch, 1, 0.5)
         NamedPitch("dtqf'")
 
-    Return new named chromatic pitch.
+    Return new named pitch.
     '''
     from abjad.tools import pitchtools
 

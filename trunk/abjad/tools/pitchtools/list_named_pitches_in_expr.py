@@ -2,7 +2,7 @@
 
 
 def list_named_pitches_in_expr(expr):
-    '''List named chromatic pitches in `expr`:
+    '''List named pitches in `expr`:
 
     ::
 
