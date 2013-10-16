@@ -2,14 +2,14 @@
 from abjad.tools import sequencetools
 
 
-def inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
+def numbered_inversion_equivalent_interval_class_dictionary(pitches):
     r'''Change named chromatic `pitches` to inversion-equivalent chromatic interval-class number
     dictionary:
 
     ::
 
         >>> chord = Chord("<c' d' b''>4")
-        >>> vector = pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(
+        >>> vector = pitchtools.numbered_inversion_equivalent_interval_class_dictionary(
         ... chord.written_pitches)
         >>> for i in range(7):
         ...     print '\t%s\t%s' % (i, vector[i])

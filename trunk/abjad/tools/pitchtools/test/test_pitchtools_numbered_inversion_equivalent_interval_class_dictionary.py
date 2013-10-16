@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_pitchtools_inversion_equivalent_chromatic_interval_class_number_dictionary_01():
+def test_pitchtools_numbered_inversion_equivalent_interval_class_dictionary_01():
 
     chord = Chord([0, 2, 11], (1, 4))
-    vector = pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(chord.written_pitches)
+    vector = pitchtools.numbered_inversion_equivalent_interval_class_dictionary(chord.written_pitches)
 
     assert vector == {
         0: 0,
@@ -17,11 +17,11 @@ def test_pitchtools_inversion_equivalent_chromatic_interval_class_number_diction
         6: 0}
 
 
-def test_pitchtools_inversion_equivalent_chromatic_interval_class_number_dictionary_02():
+def test_pitchtools_numbered_inversion_equivalent_interval_class_dictionary_02():
 
     staff = Staff("c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8 c'8 d'8 e'8 f'8")
     pitches = pitchtools.list_named_pitches_in_expr(staff)
-    vector = pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(pitches)
+    vector = pitchtools.numbered_inversion_equivalent_interval_class_dictionary(pitches)
 
     assert vector == {
         0: 12,
@@ -33,10 +33,10 @@ def test_pitchtools_inversion_equivalent_chromatic_interval_class_number_diction
         6: 0}
 
 
-def test_pitchtools_inversion_equivalent_chromatic_interval_class_number_dictionary_03():
+def test_pitchtools_numbered_inversion_equivalent_interval_class_dictionary_03():
 
     chord = Chord([-2, -1.5, 9], (1, 4))
-    vector = pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(chord.written_pitches)
+    vector = pitchtools.numbered_inversion_equivalent_interval_class_dictionary(chord.written_pitches)
 
     assert vector == {
         0:   0,
