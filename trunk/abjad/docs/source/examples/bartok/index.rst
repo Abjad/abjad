@@ -13,9 +13,9 @@ Here is what we want to end up with:
 The score
 ---------
 
-We'll construct the fragment top-down from containers to notes.
-We could have done it the other way around but it will be easier to keep the big picture
-in mind this way. Later, you can rebuild the example bottom-up as an exercise.
+We'll construct the fragment top-down from containers to notes. We could have
+done it the other way around but it will be easier to keep the big picture in
+mind this way. Later, you can rebuild the example bottom-up as an exercise.
 
 First let's create an empty score with a pair of staves connected by a brace:
 
@@ -34,29 +34,26 @@ First let's create an empty score with a pair of staves connected by a brace:
    >>> score.append(piano_staff)
 
 
-Here we create an empty score and assign it to the ``score`` variable.
-Then we create an empty piano staff assigned to the ``piano_staff`` variable and
-two empty staves assigned to the ``upper_staff`` and ``lower_staff`` variables.
-Finally, we append the two staves to the piano staff and the piano staff to the score.
 
 The measures
 ------------
 
-Now let's add some measures to our score:
+Now let's add some empty measures:
 
 ::
 
-   >>> m1 = Measure((2, 4), [])
-   >>> m2 = Measure((3, 4), [])
-   >>> m3 = Measure((2, 4), [])
-   >>> m4 = Measure((2, 4), [])
-   >>> m5 = Measure((2, 4), [])
+   >>> upper_measures = []
+   >>> upper_measures.append(Measure((2, 4), []))
+   >>> upper_measures.append(Measure((3, 4), []))
+   >>> upper_measures.append(Measure((2, 4), []))
+   >>> upper_measures.append(Measure((2, 4), []))
+   >>> upper_measures.append(Measure((2, 4), []))
 
 
 ::
 
-   >>> upper_measures = [m1, m2, m3, m4, m5]
-   >>> lower_measures = componenttools.copy_components_and_covered_spanners(upper_measures)
+   >>> import copy
+   >>> lower_measures = copy.deepcopy(upper_measures)
 
 
 ::
@@ -65,137 +62,64 @@ Now let's add some measures to our score:
    >>> lower_staff.extend(lower_measures)
 
 
-The lower measures are copies of the upper measures.
-
-Note that we add lists of measures to staves with ``extend()``.
-This is because ``extend()`` is used for adding many objects to an iterable at once
-while ``append()`` is used to add only one object at a time.
-
 
 The notes
 ---------
 
-Now let's add some notes. We begin with the upper staff:
+Now let's add some notes.
+
+We begin with the upper staff:
 
 ::
 
-   >>> upper_measures[0].extend([Note(i, (1, 8)) for i in [9, 7, 5, 4]])
+   >>> upper_measures[0].extend("a'8 g'8 f'8 e'8")
+   >>> upper_measures[1].extend("d'4 g'8 f'8 e'8 d'8")
+   >>> upper_measures[2].extend("c'8 d'16 e'16 f'8 e'8")
+   >>> upper_measures[3].append("d'2")
+   >>> upper_measures[4].append("d'2")
 
 
-::
-
-   >>> upper_measures[1].extend(notetools.make_notes([2, 7, 5, 4, 2], [(1, 4)] + [(1, 8)] * 4))
-
-
-::
-
-   >>> notes = notetools.make_notes([0, 2, 4, 5, 4], [(1, 8), (1, 16), (1, 16), (1, 8), (1, 8)])
-   >>> upper_measures[2].extend(notes)
-
+The first three measures of the lower staff contain only one voice:
 
 ::
 
-   >>> upper_measures[3].append(Note("d'2"))
+   >>> lower_measures[0].extend("b4 d'8 c'8")
+   >>> lower_measures[1].extend("b8 a8 af4 c'8 bf8")
+   >>> lower_measures[2].extend("a8 g8 fs8 g16 a16")
 
 
-::
+The last two measures of the lower staff contain two voices each.
 
-   >>> upper_measures[4].append(Note("d'2"))
-
-
-Now let's add notes to the lower staff.
-This will be a more intricate process than that needed for the upper staff.
-We added notes directly to the measures of the upper staff.
-But this will not be possible for the lower staff because of the simultaneous voices
-the lower staff contains.
-
-We add notes to the lower staff measure by measure:
+We use LilyPond ``\voiceOne`` and ``\voiceTwo`` commands to set
+the direction of stems in different voices. And we set ``is_simltaneous``
+to true for each of the last two measures:
 
 ::
 
-   >>> main_voice_m1 = Voice("b4 d'8 c'8")
-   >>> main_voice_m1.name = 'main_voice'
-   >>> lower_measures[0].append(main_voice_m1)
-
-
-::
-
-   >>> main_voice_m2 = Voice("b8 a8 af4 c'8 bf8")
-   >>> main_voice_m2.name = 'main_voice'
-   >>> lower_measures[1].append(main_voice_m2)
+   >>> upper_voice = Voice("b2", name='upper voice')
+   >>> command = marktools.LilyPondCommandMark('voiceOne')
+   >>> command.attach(upper_voice)
+   LilyPondCommandMark('voiceOne')(Voice-"upper voice"{1})
+   >>> lower_voice = Voice("b4 a4", name='lower voice')
+   >>> command = marktools.LilyPondCommandMark('voiceTwo')
+   >>> command.attach(lower_voice)
+   LilyPondCommandMark('voiceTwo')(Voice-"lower voice"{2})
+   >>> lower_measures[3].extend([upper_voice, lower_voice])
+   >>> lower_measures[3].is_simultaneous = True
 
 
 ::
 
-   >>> main_voice_m3 = Voice("a8 g8 fs8 g16 a16")
-   >>> main_voice_m3.name = 'main_voice'
-   >>> lower_measures[2].append(main_voice_m3)
-
-
-Notice that we give the same name to the three voices contained in
-the first three measures of the lower staff.
-
-It is in the last two measures of the lower staff where Bartók writes two voices at once.
-We'll name the second of these two voices the `appendix_voice`:
-
-::
-
-   >>> appendix_voice_m4 = Voice([Note("b2")])
-   >>> appendix_voice_m4.name = 'appendix_voice'
-   >>> lilypond_command_mark = marktools.LilyPondCommandMark('voiceOne')
-   >>> lilypond_command_mark.attach(appendix_voice_m4)
-   LilyPondCommandMark('voiceOne')(Voice-"appendix_voice"{1})
-
-
-::
-
-   >>> main_voice_m4 = Voice("b4 a4")
-   >>> main_voice_m4.name = 'main_voice'
-   >>> lilypond_command_mark = marktools.LilyPondCommandMark('voiceTwo')
-   >>> lilypond_command_mark.attach(main_voice_m4)
-   LilyPondCommandMark('voiceTwo')(Voice-"main_voice"{2})
-
-
-::
-
-   >>> container = Container([appendix_voice_m4, main_voice_m4])
-   >>> container.is_simultaneous = True
-   >>> lower_measures[3].append(container)
-
-
-The LilyPond ``\voiceOne`` and ``\voiceTwo`` commands determine the direction
-of the stems in different voices.
-
-Note that we must put both voices in a parallel container
-because they occur at the same time in the score.
-We do this by creating an Abjad container and then setting
-the ``is_simultaneous`` attribute of the container to true.
-
-We now do a similar thing for the last measure:
-
-::
-
-   >>> appendix_voice_m5 = Voice("b2")
-   >>> appendix_voice_m5.name = 'appendix_voice'
-   >>> lilypond_command_mark = marktools.LilyPondCommandMark('voiceOne')
-   >>> lilypond_command_mark.attach(appendix_voice_m5)
-   LilyPondCommandMark('voiceOne')(Voice-"appendix_voice"{1})
-
-
-::
-
-   >>> main_voice_m5 =  Voice("g2")
-   >>> main_voice_m5.name = 'main_voice'
-   >>> lilypond_command_mark = marktools.LilyPondCommandMark('voiceTwo')
-   >>> lilypond_command_mark.attach(main_voice_m5)
-   LilyPondCommandMark('voiceTwo')(Voice-"main_voice"{1})
-
-
-::
-
-   >>> container = Container([appendix_voice_m5, main_voice_m5])
-   >>> container.is_simultaneous = True
-   >>> lower_measures[4].append(container)
+   >>> upper_voice = Voice("b2", name='upper voice')
+   >>> command = marktools.LilyPondCommandMark('voiceOne')
+   >>> command.attach(upper_voice)
+   LilyPondCommandMark('voiceOne')(Voice-"upper voice"{1})
+   >>> lower_voice = Voice("g2", name='lower voice')
+   >>> command = marktools.LilyPondCommandMark('voiceTwo')
+   >>> command.attach(lower_voice)
+   LilyPondCommandMark('voiceTwo')(Voice-"lower voice"{1})
+   >>> lower_measures[4].extend([upper_voice, lower_voice])
+   >>> lower_measures[4].is_simultaneous = True
 
 
 Here's our work so far:
@@ -207,34 +131,50 @@ Here's our work so far:
 .. image:: images/index-1.png
 
 
+
 The details
 -----------
 
-Ok, let's add the details.
-First, notice that the bottom staff has a treble clef just like the top staff.
-Let's change that:
+Ok, let's add the details. First, notice that the bottom staff has a treble
+clef just like the top staff. Let's change that:
 
 ::
 
-   >>> contexttools.ClefMark('bass')(lower_staff)
+   >>> clef = contexttools.ClefMark('bass')
+   >>> clef.attach(lower_staff)
    ClefMark('bass')(Staff{5})
 
 
-Now let's add dynamic marks.
-For the top staff, we'll add them to the first note of the first measure
-and the second note of the second measure.
-For the bottom staff, we'll add dynamic markings to the second note
-of the first measure and the fourth note of the second measure.
+Now let's add dynamic marks. For the top staff, we'll add them to the first
+note of the first measure and the second note of the second measure. For the
+bottom staff, we'll add dynamic markings to the second note of the first
+measure and the fourth note of the second measure:
 
 ::
 
-   >>> contexttools.DynamicMark('pp')(upper_measures[0][0])
+   >>> dynamic = contexttools.DynamicMark('pp')
+   >>> dynamic.attach(upper_measures[0][0])
    DynamicMark('pp')(a'8)
-   >>> contexttools.DynamicMark('mp')(upper_measures[1][1])
+
+
+::
+
+   >>> dynamic = contexttools.DynamicMark('mp')
+   >>> dynamic.attach(upper_measures[1][1])
    DynamicMark('mp')(g'8)
-   >>> contexttools.DynamicMark('pp')(lower_measures[0][0][1])
+
+
+::
+
+   >>> dynamic = contexttools.DynamicMark('pp')
+   >>> dynamic.attach(lower_measures[0][1])
    DynamicMark('pp')(d'8)
-   >>> contexttools.DynamicMark('mp')(lower_measures[1][0][3])
+
+
+::
+
+   >>> dynamic = contexttools.DynamicMark('mp')
+   >>> dynamic.attach(lower_measures[1][3])
    DynamicMark('mp')(c'8)
 
 
@@ -242,8 +182,7 @@ Let's add a double bar to the end of the piece:
 
 ::
 
-   >>> bar_line = marktools.BarLine('|.')
-   >>> bar_line.attach(lower_staff.leaves[-1])
+   >>> score.add_double_bar()
    BarLine('|.')(g2)
 
 
@@ -256,20 +195,33 @@ And see how things are coming out:
 .. image:: images/index-2.png
 
 
-Notice that the beams of the eighth and sixteenth notes appear
-as you would usually expect: grouped by beat.
-We get this for free thanks to LilyPond's default beaming algorithm.
-But this is not the way Bartók notated the beams.
+Notice that the beams of the eighth and sixteenth notes appear as you would
+usually expect: grouped by beat. We get this for free thanks to LilyPond's
+default beaming algorithm. But this is not the way Bartók notated the beams.
 Let's set the beams as Bartók did with some crossing the bar lines:
 
 ::
 
-   >>> spannertools.BeamSpanner(upper_measures[0])
-   BeamSpanner(|2/4(4)|)
-   >>> spannertools.BeamSpanner(lower_staff.leaves[1:5])
-   BeamSpanner(d'8, c'8, b8, a8)
-   >>> spannertools.BeamSpanner(lower_staff.leaves[6:10])
-   BeamSpanner(c'8, bf8, a8, g8)
+   >>> upper_leaves = upper_staff.select_leaves(allow_discontiguous_leaves=True)
+   >>> lower_leaves = lower_staff.select_leaves(allow_discontiguous_leaves=True)
+
+
+::
+
+   >>> beam = spannertools.BeamSpanner()
+   >>> beam.attach(upper_leaves[:4])
+
+
+::
+
+   >>> beam = spannertools.BeamSpanner()
+   >>> beam.attach(lower_leaves[1:5])
+
+
+::
+
+   >>> beam = spannertools.BeamSpanner()
+   >>> beam.attach(lower_leaves[6:10])
 
 
 ::
@@ -283,42 +235,62 @@ Now some slurs:
 
 ::
 
-   >>> spannertools.SlurSpanner(upper_staff.leaves[0:5])
-   SlurSpanner(a'8, g'8, f'8, e'8, d'4)
-   >>> spannertools.SlurSpanner(upper_staff.leaves[5:])
-   SlurSpanner(g'8, f'8, ... [7] ..., d'2, d'2)
-   >>> spannertools.SlurSpanner(lower_staff.leaves[1:6])
-   SlurSpanner(d'8, c'8, b8, a8, af4)
-   >>> spannertools.SlurSpanner(lower_staff.leaves[6:13] + (main_voice_m4, main_voice_m5))
-   SlurSpanner(c'8, bf8, ... [5] ..., {b4, a4}, {g2})
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(upper_leaves[:5])
+
+
+::
+
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(upper_leaves[5:])
+
+
+
+::
+
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(lower_leaves[1:6])
 
 
 Hairpins:
 
 ::
 
-   >>> spannertools.CrescendoSpanner(upper_staff.leaves[-7:-2])
-   CrescendoSpanner(c'8, d'16, e'16, f'8, e'8)
-   >>> spannertools.DecrescendoSpanner(upper_staff.leaves[-2:])
-   DecrescendoSpanner(d'2, d'2)
+   >>> crescendo = spannertools.CrescendoSpanner()
+   >>> crescendo.attach(upper_leaves[-7:-2])
+
+
+::
+
+   >>> decrescendo = spannertools.DecrescendoSpanner()
+   >>> decrescendo.attach(upper_leaves[-2:])
 
 
 A ritardando marking above the last seven notes of the upper staff:
 
 ::
 
-   >>> text_spanner = spannertools.TextSpanner(upper_staff.leaves[-7:])
-   >>> text_spanner.override.text_spanner.bound_details__left__text = markuptools.Markup('ritard.')
+   >>> markup = markuptools.Markup('ritard.')
+   >>> text_spanner = spannertools.TextSpanner()
+   >>> text_spanner.override.text_spanner.bound_details__left__text = markup
+   >>> text_spanner.attach(upper_leaves[-7:])
 
 
 And ties connecting the last two notes in each staff:
 
 ::
 
-   >>> spannertools.TieSpanner(upper_staff[-2:])
-   TieSpanner(|2/4(1)|, |2/4(1)|)
-   >>> spannertools.TieSpanner([appendix_voice_m4[0], appendix_voice_m5[0]])
-   TieSpanner(b2, b2)
+   >>> tie = spannertools.TieSpanner()
+   >>> tie.attach(upper_leaves[-2:])
+
+
+::
+
+   >>> note_1 = lower_staff[-2]['upper voice'][0]
+   >>> note_2 = lower_staff[-1]['upper voice'][0]
+   >>> notes = [note_1, note_2]
+   >>> tie = spannertools.TieSpanner()
+   >>> tie.attach(notes)
 
 
 The final result:
@@ -328,3 +300,4 @@ The final result:
    >>> show(score)
 
 .. image:: images/index-4.png
+

@@ -3,13 +3,17 @@ from abjad.tools.contexttools.Context import Context
 
 
 class Score(Context):
-    r'''Abjad model of a score:
+    r'''A score.
 
     ::
 
         >>> staff_1 = Staff("c'8 d'8 e'8 f'8")
         >>> staff_2 = Staff("c'8 d'8 e'8 f'8")
         >>> score = Score([staff_1, staff_2])
+        >>> show(score) # doctest: +SKIP
+
+    ..  doctest::
+
         >>> f(score)
         \new Score <<
             \new Staff {
@@ -26,7 +30,6 @@ class Score(Context):
             }
         >>
 
-    Return Score instance.
     '''
 
     ### CLASS VARIABLES ###
