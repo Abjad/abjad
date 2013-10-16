@@ -21,7 +21,9 @@ class AttributeInspectionAgent(object):
         Returns string.
         '''
         return '{}({})'.format(
-            self.__class__.__name__, self._client)
+            self.__class__.__name__, 
+            self._component
+            )
 
     ### PUBLIC METHODS ###
 

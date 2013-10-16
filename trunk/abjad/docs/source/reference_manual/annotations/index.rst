@@ -1,7 +1,7 @@
 Annotations
 ===========
 
-Annotate components with user-specific information for future use.
+Annotate components with user-specific information.
 
 Annotations do not impact formatting.
 
@@ -13,13 +13,13 @@ Use mark tools to create annotations:
 
 ::
 
-   >>> annotation = marktools.Annotation('special pitch', pitchtools.NamedPitch('bs'))
+   >>> annotation_1 = marktools.Annotation('is inner voice', True)
 
 
 ::
 
-   >>> annotation
-   Annotation('special pitch', NamedPitch('bs'))
+   >>> annotation_1
+   Annotation('is inner voice', True)
 
 
 
@@ -31,92 +31,78 @@ Attach annotations to any component with ``attach()``:
 ::
 
    >>> note = Note("c'4")
-   >>> annotation.attach(note)
-   Annotation('special pitch', NamedPitch('bs'))(c'4)
+   >>> annotation_1.attach(note)
+   Annotation('is inner voice', True)(c'4)
 
 
 ::
 
-   >>> annotation
-   Annotation('special pitch', NamedPitch('bs'))(c'4)
+   >>> annotation_1
+   Annotation('is inner voice', True)(c'4)
 
 
 ::
 
-   >>> another_annotation = marktools.Annotation('special pitch', pitchtools.NamedPitch('bs'))
-   >>> another_annotation.attach(note)
-   Annotation('special pitch', NamedPitch('bs'))(c'4)
+   >>> annotation_2 = marktools.Annotation('is phrase-initial', False)
+   >>> annotation_2.attach(note)
+   Annotation('is phrase-initial', False)(c'4)
 
 
 ::
 
-   >>> another_annotation
-   Annotation('special pitch', NamedPitch('bs'))(c'4)
+   >>> annotation_2
+   Annotation('is phrase-initial', False)(c'4)
 
 
 
 Getting the annotations attached to a component
 -----------------------------------------------
 
-Use mark tools to get all the annotations attached to a component:
+Use the inspector to get all the annotations attached to a component:
 
 ::
 
-   >>> marktools.get_annotations_attached_to_component(note)
-   (Annotation('special pitch', NamedPitch('bs'))(c'4), Annotation('special pitch', NamedPitch('bs'))(c'4))
+   >>> annotations = inspect(note).get_marks(mark_classes=marktools.Annotation)
+   >>> for annotation in annotations: annotation
+   ... 
+   Annotation('is inner voice', True)(c'4)
+   Annotation('is phrase-initial', False)(c'4)
 
 
 
-Detaching annotations from a component one at a time
-----------------------------------------------------
+Detaching annotations from a component
+--------------------------------------
 
-Use ``detach()`` to detach annotations from a component one at a time:
-
-::
-
-   >>> annotation.detach()
-   Annotation('special pitch', NamedPitch('bs'))
-
+Use ``detach()`` to detach annotations from a component:
 
 ::
 
-   >>> annotation
-   Annotation('special pitch', NamedPitch('bs'))
-
-
-
-Detaching all annotations attached to a component at once
----------------------------------------------------------
-
-Or use mark tools to detach all annotations attachd to a component at once:
-
-::
-
-   >>> print marktools.detach_annotations_attached_to_component(note)
-   (Annotation('special pitch', NamedPitch('bs')),)
+   >>> annotation_1.detach()
+   Annotation('is inner voice', True)
 
 
 ::
 
-   >>> marktools.get_annotations_attached_to_component(note)
-   ()
+   >>> annotation_1
+   Annotation('is inner voice', True)
 
 
 
 Inspecting the component to which an annotation is attached
 -----------------------------------------------------------
 
-Use ``start_component`` to inspect the component to which an annotation is attached:
+Use ``start_component`` to inspect the component to which an annotation 
+is attached:
 
 ::
 
-   >>> annotation.attach(note)
-   Annotation('special pitch', NamedPitch('bs'))(c'4)
+   >>> annotation_1.attach(note)
+   Annotation('is inner voice', True)(c'4)
 
 
 ::
 
-   >>> annotation.start_component
+   >>> annotation_1.start_component
    Note("c'4")
 
 
@@ -128,17 +114,30 @@ Use ``name`` to get the name of any annotation:
 
 ::
 
-   >>> annotation.name
-   'special pitch'
+   >>> annotation_1.name
+   'is inner voice'
 
 
 
 Inspecting annotation value
 ---------------------------
 
-And use ``value`` to get the value of any annotation:
+Use ``value`` to get the value of any annotation:
 
 ::
 
-   >>> annotation.value
-   NamedPitch('bs')
+   >>> annotation_1.value
+   True
+
+
+
+Getting the value of an annotation in a single call
+---------------------------------------------------
+
+Use the inspector to the get the value of an annotation in a single call:
+
+::
+
+   >>> inspect(note).get_annotation('is inner voice')
+   True
+
