@@ -6,8 +6,8 @@ def test_pitchtools_transpose_pitch_carrier_by_interval_01():
 
     pitch = pitchtools.NamedPitch(12)
 
-    diatonic_interval = pitchtools.NamedInterval('minor', 2)
-    transposed = pitchtools.transpose_pitch_carrier_by_interval(pitch, diatonic_interval)
+    named_interval = pitchtools.NamedInterval('minor', 2)
+    transposed = pitchtools.transpose_pitch_carrier_by_interval(pitch, named_interval)
 
     assert transposed == pitchtools.NamedPitch('df', 5)
 

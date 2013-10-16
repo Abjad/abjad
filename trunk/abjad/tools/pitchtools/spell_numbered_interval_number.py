@@ -2,8 +2,8 @@
 from abjad.tools import mathtools
 
 
-def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_number):
-    '''Spell `numbered_interval_number` according to `diatonic_interval_number`:
+def spell_numbered_interval_number(named_interval_number, numbered_interval_number):
+    '''Spell `numbered_interval_number` according to `named_interval_number`:
 
     ::
 
@@ -19,7 +19,7 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
 
     direction_number = mathtools.sign(numbered_interval_number)
 
-    if diatonic_interval_number == 1:
+    if named_interval_number == 1:
         if numbered_interval_number % 12 == 11:
             quality_string = 'augmented'
         elif numbered_interval_number % 12 == 0:
@@ -27,14 +27,14 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
         elif numbered_interval_number % 12 == 1:
             quality_string = 'augmented'
         if not direction_number == 0:
-            diatonic_interval_number *= direction_number
-        diatonic_interval = pitchtools.NamedInterval(quality_string, diatonic_interval_number)
-        return diatonic_interval
+            named_interval_number *= direction_number
+        named_interval = pitchtools.NamedInterval(quality_string, named_interval_number)
+        return named_interval
 
-    diatonic_interval_class_number = diatonic_interval_number % 7
+    named_interval_class_number = named_interval_number % 7
     numbered_interval_class_number = abs(numbered_interval_number) % 12
 
-    if diatonic_interval_class_number == 0:
+    if named_interval_class_number == 0:
         if numbered_interval_class_number == 9:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 10:
@@ -43,14 +43,14 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
             quality_string = 'major'
         elif numbered_interval_class_number == 0:
             quality_string = 'augmented'
-    elif diatonic_interval_class_number == 1:
+    elif named_interval_class_number == 1:
         if numbered_interval_class_number == 11:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 0:
             quality_string = 'perfect'
         elif numbered_interval_class_number == 1:
             quality_string = 'augmented'
-    elif diatonic_interval_class_number == 2:
+    elif named_interval_class_number == 2:
         if numbered_interval_class_number == 0:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 1:
@@ -59,7 +59,7 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
             quality_string = 'major'
         elif numbered_interval_class_number == 3:
             quality_string = 'augmented'
-    elif diatonic_interval_class_number == 3:
+    elif named_interval_class_number == 3:
         if numbered_interval_class_number == 2:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 3:
@@ -68,21 +68,21 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
             quality_string = 'major'
         elif numbered_interval_class_number == 5:
             quality_string = 'augmented'
-    elif diatonic_interval_class_number == 4:
+    elif named_interval_class_number == 4:
         if numbered_interval_class_number == 4:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 5:
             quality_string = 'perfect'
         elif numbered_interval_class_number == 6:
             quality_string = 'augmented'
-    elif diatonic_interval_class_number == 5:
+    elif named_interval_class_number == 5:
         if numbered_interval_class_number == 6:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 7:
             quality_string = 'perfect'
         elif numbered_interval_class_number == 8:
             quality_string = 'augmented'
-    elif diatonic_interval_class_number == 6:
+    elif named_interval_class_number == 6:
         if numbered_interval_class_number == 7:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 8:
@@ -91,7 +91,7 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
             quality_string = 'major'
         elif numbered_interval_class_number == 10:
             quality_string = 'augmented'
-    elif diatonic_interval_class_number == 7:
+    elif named_interval_class_number == 7:
         if numbered_interval_class_number == 9:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 10:
@@ -100,7 +100,7 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
             quality_string = 'major'
         elif numbered_interval_class_number == 0:
             quality_string = 'augmented'
-    elif diatonic_interval_class_number == 8:
+    elif named_interval_class_number == 8:
         if numbered_interval_class_number == 11:
             quality_string = 'diminished'
         elif numbered_interval_class_number == 0:
@@ -109,8 +109,8 @@ def spell_numbered_interval_number(diatonic_interval_number, numbered_interval_n
             quality_string = 'augmented'
 
     if not direction_number == 0:
-        diatonic_interval_number *= direction_number
+        named_interval_number *= direction_number
 
-    diatonic_interval = pitchtools.NamedInterval(quality_string, diatonic_interval_number)
+    named_interval = pitchtools.NamedInterval(quality_string, named_interval_number)
 
-    return diatonic_interval
+    return named_interval

@@ -5,9 +5,9 @@ from abjad import *
 def test_NamedPitch___add___01():
 
     pitch = pitchtools.NamedPitch(12)
-    diatonic_interval = pitchtools.NamedInterval('minor', 2)
+    named_interval = pitchtools.NamedInterval('minor', 2)
 
-    assert pitch + diatonic_interval == pitchtools.NamedPitch('df', 5)
+    assert pitch + named_interval == pitchtools.NamedPitch('df', 5)
 
 
 def test_NamedPitch___add___02():

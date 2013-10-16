@@ -32,6 +32,6 @@ def test_NumberedInterval___init___04():
     r'''Init from named interval.
     '''
 
-    diatonic_interval = pitchtools.NamedInterval('perfect', 4)
-    i = pitchtools.NumberedInterval(diatonic_interval)
+    named_interval = pitchtools.NamedInterval('perfect', 4)
+    i = pitchtools.NumberedInterval(named_interval)
     assert i.number == 5
