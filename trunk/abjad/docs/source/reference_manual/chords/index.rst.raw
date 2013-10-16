@@ -14,10 +14,11 @@ chord = Chord("<c' d' bf'>4")
 show(chord)
 </abjad>
 
-Making chords from chromatic pitch numbers and duration
--------------------------------------------------------
 
-You can also make chords from chromatic pitch numbers and duration:
+Making chords from numbers
+--------------------------
+
+You can also make chords from pitch numbers and duration:
 
 <abjad>
 chord = Chord([0, 2, 10], Duration(1, 4))
@@ -26,6 +27,7 @@ chord = Chord([0, 2, 10], Duration(1, 4))
 <abjad>
 show(chord)
 </abjad>
+
 
 Getting all the written pitches of a chord at once
 --------------------------------------------------
@@ -36,7 +38,8 @@ You can get all the written pitches of a chord at one time:
 chord.written_pitches
 </abjad>
 
-Abjad returns a read-only tuple of named chromatic pitches.
+Abjad returns a read-only tuple of named pitches.
+
 
 Getting the written pitches of a chord one at a time
 ----------------------------------------------------
@@ -47,14 +50,16 @@ You can get the written pitches of a chord one at a time:
 chord.written_pitches[0]
 </abjad>
 
-Chords index the pitch they contain starting from ``0`` (just like tuples and lists).
+Chords index the pitch they contain starting from ``0`` 
+(just like tuples and lists).
+
 
 Adding one pitch to a chord at a time
 -------------------------------------
 
-Use ``append()`` to add one note to a chord.
+Use ``append()`` to add one pitch to a chord.
 
-You can add a pitch to a chord with a chromatic pitch number:
+You can add a pitch to a chord with a pitch number:
 
 <abjad>
 chord.append(9)
@@ -64,7 +69,7 @@ chord.append(9)
 show(chord)
 </abjad>
 
-Or you can add a pitch to a chord with a chromatic pitch name:
+Or you can add a pitch to a chord with a pitch name:
 
 <abjad>
 chord.append("df''")
@@ -78,12 +83,13 @@ Chords sort their pitches every time you add a new one.
 
 This means you can add pitches to your chord in any order.
 
+
 Adding many pitches to a chord at once
 --------------------------------------
 
 Use ``extend()`` to add many pitches to a chord.
 
-You can use chromatic pitch numbers:
+You can use pitch numbers:
 
 <abjad>
 chord.extend([3, 4, 14])
@@ -93,7 +99,7 @@ chord.extend([3, 4, 14])
 show(chord)
 </abjad>
 
-Or you can chromatic pitch names:
+Or you can use pitch names:
 
 <abjad>
 chord.extend(["g''", "af''"])
@@ -103,18 +109,11 @@ chord.extend(["g''", "af''"])
 show(chord)
 </abjad>
 
+
 Deleting pitches from a chord
 -----------------------------
 
 Delete pitches from a chord with ``del()``:
-
-<abjad>
-del(chord[0])
-</abjad>
-
-<abjad>
-show(chord)
-</abjad>
 
 <abjad>
 del(chord[0])
@@ -134,20 +133,23 @@ del(chord[-1])
 show(chord)
 </abjad>
 
+
 Formatting chords
 -----------------
 
-Get the LilyPond input format of any Abjad object with ``format``:
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
 
 <abjad>
 chord.lilypond_format
 </abjad>
 
-Use ``f()`` as a short-cut to print the LilyPond input format of any Abjad object:
+Use ``f()`` as a short-cut to print the LilyPond input format 
+of any Abjad object:
 
 <abjad>
 f(chord)
 </abjad>
+
 
 Working with note heads
 -----------------------
@@ -159,16 +161,13 @@ But you can get the note heads of a chord, too:
 chord.note_heads
 </abjad>
 
-This is useful when you want to apply LilyPond overrides to note heads in a chord one at a time:
+This is useful when you want to apply LilyPond overrides to note 
+heads in a chord one at a time:
 
 <abjad>
 chord[2].tweak.color = 'red'
 chord[3].tweak.color = 'blue'
 chord[4].tweak.color = 'green'
-</abjad>
-
-<abjad>
-f(chord)
 </abjad>
 
 <abjad>

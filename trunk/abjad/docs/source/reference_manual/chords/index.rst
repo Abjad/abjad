@@ -18,10 +18,11 @@ You can make chords from a LilyPond input string:
 .. image:: images/index-1.png
 
 
-Making chords from chromatic pitch numbers and duration
--------------------------------------------------------
 
-You can also make chords from chromatic pitch numbers and duration:
+Making chords from numbers
+--------------------------
+
+You can also make chords from pitch numbers and duration:
 
 ::
 
@@ -35,6 +36,7 @@ You can also make chords from chromatic pitch numbers and duration:
 .. image:: images/index-2.png
 
 
+
 Getting all the written pitches of a chord at once
 --------------------------------------------------
 
@@ -46,7 +48,8 @@ You can get all the written pitches of a chord at one time:
    (NamedPitch("c'"), NamedPitch("d'"), NamedPitch("bf'"))
 
 
-Abjad returns a read-only tuple of named chromatic pitches.
+Abjad returns a read-only tuple of named pitches.
+
 
 Getting the written pitches of a chord one at a time
 ----------------------------------------------------
@@ -59,14 +62,16 @@ You can get the written pitches of a chord one at a time:
    NamedPitch("c'")
 
 
-Chords index the pitch they contain starting from ``0`` (just like tuples and lists).
+Chords index the pitch they contain starting from ``0`` 
+(just like tuples and lists).
+
 
 Adding one pitch to a chord at a time
 -------------------------------------
 
-Use ``append()`` to add one note to a chord.
+Use ``append()`` to add one pitch to a chord.
 
-You can add a pitch to a chord with a chromatic pitch number:
+You can add a pitch to a chord with a pitch number:
 
 ::
 
@@ -80,7 +85,7 @@ You can add a pitch to a chord with a chromatic pitch number:
 .. image:: images/index-3.png
 
 
-Or you can add a pitch to a chord with a chromatic pitch name:
+Or you can add a pitch to a chord with a pitch name:
 
 ::
 
@@ -98,12 +103,13 @@ Chords sort their pitches every time you add a new one.
 
 This means you can add pitches to your chord in any order.
 
+
 Adding many pitches to a chord at once
 --------------------------------------
 
 Use ``extend()`` to add many pitches to a chord.
 
-You can use chromatic pitch numbers:
+You can use pitch numbers:
 
 ::
 
@@ -117,7 +123,7 @@ You can use chromatic pitch numbers:
 .. image:: images/index-5.png
 
 
-Or you can chromatic pitch names:
+Or you can use pitch names:
 
 ::
 
@@ -129,6 +135,7 @@ Or you can chromatic pitch names:
    >>> show(chord)
 
 .. image:: images/index-6.png
+
 
 
 Deleting pitches from a chord
@@ -148,18 +155,6 @@ Delete pitches from a chord with ``del()``:
 .. image:: images/index-7.png
 
 
-::
-
-   >>> del(chord[0])
-
-
-::
-
-   >>> show(chord)
-
-.. image:: images/index-8.png
-
-
 Negative indices work too:
 
 ::
@@ -171,26 +166,29 @@ Negative indices work too:
 
    >>> show(chord)
 
-.. image:: images/index-9.png
+.. image:: images/index-8.png
+
 
 
 Formatting chords
 -----------------
 
-Get the LilyPond input format of any Abjad object with ``format``:
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
 
 ::
 
    >>> chord.lilypond_format
-   "<ef' e' a' bf' df'' d'' g''>4"
+   "<d' ef' e' a' bf' df'' d'' g''>4"
 
 
-Use ``f()`` as a short-cut to print the LilyPond input format of any Abjad object:
+Use ``f()`` as a short-cut to print the LilyPond input format 
+of any Abjad object:
 
 ::
 
    >>> f(chord)
-   <ef' e' a' bf' df'' d'' g''>4
+   <d' ef' e' a' bf' df'' d'' g''>4
+
 
 
 Working with note heads
@@ -202,10 +200,11 @@ But you can get the note heads of a chord, too:
 ::
 
    >>> chord.note_heads
-   (NoteHead("ef'"), NoteHead("e'"), NoteHead("a'"), NoteHead("bf'"), NoteHead("df''"), NoteHead("d''"), NoteHead("g''"))
+   (NoteHead("d'"), NoteHead("ef'"), NoteHead("e'"), NoteHead("a'"), NoteHead("bf'"), NoteHead("df''"), NoteHead("d''"), NoteHead("g''"))
 
 
-This is useful when you want to apply LilyPond overrides to note heads in a chord one at a time:
+This is useful when you want to apply LilyPond overrides to note 
+heads in a chord one at a time:
 
 ::
 
@@ -216,26 +215,9 @@ This is useful when you want to apply LilyPond overrides to note heads in a chor
 
 ::
 
-   >>> f(chord)
-   <
-       ef'
-       e'
-       \tweak #'color #red
-       a'
-       \tweak #'color #blue
-       bf'
-       \tweak #'color #green
-       df''
-       d''
-       g''
-   >4
-
-
-::
-
    >>> show(chord)
 
-.. image:: images/index-10.png
+.. image:: images/index-9.png
 
 
 
@@ -272,4 +254,5 @@ into it chord in any of the ways described above:
 
    >>> show(chord)
 
-.. image:: images/index-11.png
+.. image:: images/index-10.png
+
