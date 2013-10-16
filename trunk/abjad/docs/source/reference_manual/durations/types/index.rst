@@ -197,7 +197,9 @@ The first two notes below carry leaf mulitipliers equal to ``2/1``:
    >>> note.written_duration * note.lilypond_duration_multiplier
    Duration(1, 8)
    >>> note.multiplied_duration
-   Duration(1, 8)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'multiplied_duration'
 
 
 The written duration of these first two notes equals ``1/16`` and so

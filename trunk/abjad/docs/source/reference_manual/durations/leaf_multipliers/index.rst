@@ -31,7 +31,9 @@ duration of a note, rest or chord as affected by the multiplier.
 ::
 
    >>> note.multiplied_duration
-   Duration(1, 8)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'multiplied_duration'
 
 
 LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.

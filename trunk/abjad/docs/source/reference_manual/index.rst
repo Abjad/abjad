@@ -12,7 +12,7 @@ Reference manual
    containers/index
    durations/index
    instrument_marks/index
-   io/index
+   input_output/index
    lilypond_command_marks/index
    lilypond_comments/index
    lilypond_files/index

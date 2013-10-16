@@ -37,13 +37,17 @@ Tuplets prolate their contents:
 ::
 
    >>> note.prolation
-   Multiplier(5, 4)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'prolation'
 
 
 ::
 
    >>> note.duration
-   Duration(5, 32)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'duration'
 
 
 Notes here with written duration ``1/8`` carry prolation factor ``5/4``
@@ -83,25 +87,33 @@ Such nonbinary meters rhythmically diminish the contents of the measures they go
 
    >>> note = staff.select_leaves()[0]
    >>> note.prolation
-   Multiplier(4, 5)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'prolation'
 
 
 ::
 
    >>> note.duration
-   Duration(1, 10)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'duration'
 
 
 ::
 
    >>> note.prolation
-   Multiplier(4, 5)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'prolation'
 
 
 ::
 
    >>> note.duration
-   Duration(1, 10)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'duration'
 
 
 Notes here with written duration ``1/8`` carry prolation factor ``4/5``
@@ -146,20 +158,26 @@ All durated components carry a prolation chain:
 ::
 
    >>> measure.prolation
-   Fraction(1, 1)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Measure' object has no attribute 'prolation'
 
 
 ::
 
    >>> note = measure.select_leaves()[0]
    >>> note.prolation
-   Multiplier(32, 35)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'prolation'
 
 
 ::
 
    >>> note.duration
-   Duration(2, 35)
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   AttributeError: 'Note' object has no attribute 'duration'
 
 
 Notes here with written duration ``1/16`` carry prolated duration ``2/35``.
