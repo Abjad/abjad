@@ -25,7 +25,7 @@ def color_note_head_by_numbered_pitch_class_color_map(pitch_carrier):
 
         >>> show(note) # doctest: +SKIP
 
-    Numbered chromatic pitch-class color map:
+    Numbered pitch-class color map:
 
     ::
 
@@ -43,7 +43,7 @@ def color_note_head_by_numbered_pitch_class_color_map(pitch_carrier):
         11: SeaGreen
         12: LimeGreen
 
-    Numbered chromatic pitch-class color map can not be changed.
+    Numbered pitch-class color map can not be changed.
 
     Raise type error when `pitch_carrier` is not a pitch carrier.
 

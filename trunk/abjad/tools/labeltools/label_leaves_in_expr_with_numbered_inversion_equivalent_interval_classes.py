@@ -7,14 +7,14 @@ from abjad.tools import notetools
 from abjad.tools import pitchtools
 
 
-def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(expr, markup_direction=Up):
-    r"""Label leaves in `expr` with inversion-equivalent chromatic interval classes:
+def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(expr, markup_direction=Up):
+    r"""Label leaves in `expr` with numbered inversion-equivalent interval classes:
 
     ::
 
         >>> notes = notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)])
         >>> staff = Staff(notes)
-        >>> labeltools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(
+        >>> labeltools.label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(
         ...     staff)
 
     ..  doctest::

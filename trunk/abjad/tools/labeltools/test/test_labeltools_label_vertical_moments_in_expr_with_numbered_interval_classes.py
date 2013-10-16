@@ -11,7 +11,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_numbered_interval_classe
     score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
     contexttools.ClefMark('bass')(score[2])
     score[2].append(Note(-24, (1, 2)))
-    labeltools.label_vertical_moments_in_expr_with_chromatic_interval_classes(score)
+    labeltools.label_vertical_moments_in_expr_with_numbered_interval_classes(score)
 
     r'''
     \new Score <<

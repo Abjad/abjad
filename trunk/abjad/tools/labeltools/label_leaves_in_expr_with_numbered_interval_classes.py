@@ -8,7 +8,7 @@ from abjad.tools import pitchtools
 
 
 def label_leaves_in_expr_with_numbered_interval_classes(expr, markup_direction=Up):
-    r"""Label leaves in `expr` with melodic chromatic interval classes:
+    r"""Label leaves in `expr` with numbered interval classes:
 
     ::
 

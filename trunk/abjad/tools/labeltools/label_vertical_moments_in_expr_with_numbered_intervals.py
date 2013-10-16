@@ -5,9 +5,9 @@ from abjad.tools import notetools
 from abjad.tools import pitchtools
 
 
-def label_vertical_moments_in_expr_with_chromatic_intervals(
+def label_vertical_moments_in_expr_with_numbered_intervals(
     expr, markup_direction=Down):
-    r'''Label harmonic chromatic intervals of every vertical moment in `expr`:
+    r'''Label numbered intervals of every vertical moment in `expr`:
 
     ::
 
@@ -21,7 +21,7 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(
 
     ::
 
-        >>> labeltools.label_vertical_moments_in_expr_with_chromatic_intervals(
+        >>> labeltools.label_vertical_moments_in_expr_with_numbered_intervals(
         ...     score)
 
     ..  doctest::
