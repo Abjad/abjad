@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_NamedInterval_melodic_diatonic_interval_class_01():
+def test_NamedInterval_named_interval_class_01():
 
     diatonic_interval = pitchtools.NamedInterval('perfect', 1)
     #assert pitchtools.NamedIntervalClass(diatonic_interval) == 1
@@ -30,7 +30,7 @@ def test_NamedInterval_melodic_diatonic_interval_class_01():
     assert ic == pitchtools.NamedIntervalClass('major', 3)
 
 
-def test_NamedInterval_melodic_diatonic_interval_class_02():
+def test_NamedInterval_named_interval_class_02():
 
     diatonic_interval = pitchtools.NamedInterval('perfect', 8)
     #assert pitchtools.NamedIntervalClass(diatonic_interval) == 1
@@ -58,7 +58,7 @@ def test_NamedInterval_melodic_diatonic_interval_class_02():
     assert ic == pitchtools.NamedIntervalClass('major', 3)
 
 
-def test_NamedInterval_melodic_diatonic_interval_class_03():
+def test_NamedInterval_named_interval_class_03():
 
     diatonic_interval = pitchtools.NamedInterval('perfect', -8)
     #assert pitchtools.NamedIntervalClass(diatonic_interval) == -1

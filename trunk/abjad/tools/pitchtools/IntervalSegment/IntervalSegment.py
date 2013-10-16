@@ -91,7 +91,7 @@ class IntervalSegment(Segment):
 
     @property
     def slope(self):
-        r'''The slope of a melodic interval segment is the sum of its
+        r'''The slope of a interval segment is the sum of its
         intervals divided by its length:
 
         ::

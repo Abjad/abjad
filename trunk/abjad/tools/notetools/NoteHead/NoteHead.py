@@ -183,7 +183,7 @@ class NoteHead(AbjadObject):
 
     @property
     def named_pitch(self):
-        r'''Named chromatic pitch equal to note head:
+        r'''Named pitch equal to note head:
 
         ::
 

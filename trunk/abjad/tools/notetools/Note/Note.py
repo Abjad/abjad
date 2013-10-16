@@ -311,8 +311,8 @@ class Note(Leaf):
 
     # TODO: create ArtificialHarmonic class;
     #       replace this with ArtificialHarmonic(note, named_interval=None)
-    def add_artificial_harmonic(self, melodic_diatonic_interval=None):
-        r'''Adds artifical harmonic to note at `melodic_diatonic_interval`.
+    def add_artificial_harmonic(self, named_interval=None):
+        r'''Adds artifical harmonic to note at `named_interval`.
 
         ..  container:: example
 
@@ -356,8 +356,8 @@ class Note(Leaf):
                     f'4 ]
                 }
 
-        Sets `melodic_diatonic_interval` to a perfect fourth
-        above when ``melodic_diatonic_interval=None``.
+        Sets `named_interval` to a perfect fourth
+        above when ``named_interval=None``.
 
         Creates new chord from `note`.
 
@@ -369,15 +369,15 @@ class Note(Leaf):
         from abjad.tools import componenttools
         from abjad.tools import mutationtools
         from abjad.tools import pitchtools
-        if melodic_diatonic_interval is None:
-            melodic_diatonic_interval = \
+        if named_interval is None:
+            named_interval = \
                 pitchtools.NamedInterval('perfect', 4)
         chord = chordtools.Chord(self)
         chord.append(
             chord[0].written_pitch.numbered_pitch._pitch_number)
         chord[1].written_pitch = \
             pitchtools.transpose_pitch_carrier_by_interval(
-            chord[1].written_pitch, melodic_diatonic_interval)
+            chord[1].written_pitch, named_interval)
         chord[1].tweak.style = 'harmonic'
         parent = self._parent
         if self._parent:

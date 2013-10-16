@@ -13,7 +13,7 @@ class Mode(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_melodic_diatonic_interval_segment',
+        '_named_interval_segment',
         '_mode_name',
         )
 
@@ -32,7 +32,7 @@ class Mode(AbjadObject):
             raise TypeError('{} must be mode instance or mode name.'.format(
                 arg))
         mdi_segment = self._init_with_mode_name(mode_name)
-        self._melodic_diatonic_interval_segment = mdi_segment
+        self._named_interval_segment = mdi_segment
         self._mode_name = mode_name
 
     ### SPECIAL METHODS ###
@@ -43,7 +43,7 @@ class Mode(AbjadObject):
         return self.mode_name == arg.mode_name
 
     def __len__(self):
-        return len(self.melodic_diatonic_interval_segment)
+        return len(self.named_interval_segment)
 
     def __ne__(self, arg):
         return not self == arg
@@ -90,8 +90,8 @@ class Mode(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def melodic_diatonic_interval_segment(self):
-        return self._melodic_diatonic_interval_segment
+    def named_interval_segment(self):
+        return self._named_interval_segment
 
     @property
     def mode_name(self):

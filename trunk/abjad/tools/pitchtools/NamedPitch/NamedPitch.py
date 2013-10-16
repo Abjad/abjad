@@ -74,10 +74,10 @@ class NamedPitch(Pitch):
     def __abs__(self):
         return abs(self.pitch_number)
 
-    def __add__(self, melodic_interval):
+    def __add__(self, interval):
         from abjad.tools import pitchtools
         return pitchtools.transpose_pitch_carrier_by_interval(
-            self, melodic_interval)
+            self, interval)
 
     def __copy__(self, *args):
         return type(self)(self)

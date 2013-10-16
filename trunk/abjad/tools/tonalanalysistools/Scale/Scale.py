@@ -42,7 +42,7 @@ class Scale(PitchClassSegment):
         else:
             raise TypeError
         npcs = [key_signature.tonic]
-        for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
+        for mdi in key_signature.mode.named_interval_segment[:-1]:
             named_pitch_class = npcs[-1] + mdi
             npcs.append(named_pitch_class)
         PitchClassSegment.__init__(

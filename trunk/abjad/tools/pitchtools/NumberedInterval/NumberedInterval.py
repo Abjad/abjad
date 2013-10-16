@@ -62,7 +62,7 @@ class NumberedInterval(Interval):
             raise TypeError('%s must be numbered interval.' % arg)
         if not self.direction_number == arg.direction_number:
             raise ValueError(
-                'can only compare melodic intervals of same direction.')
+                'can only compare intervals of same direction.')
         return abs(self.number) >= abs(arg.number)
 
     def __gt__(self, arg):
@@ -70,7 +70,7 @@ class NumberedInterval(Interval):
             raise TypeError('%s must be numbered interval.' % arg)
         if not self.direction_number == arg.direction_number:
             raise ValueError(
-                'can only compare melodic intervals of same direction.')
+                'can only compare intervals of same direction.')
         return abs(self.number) > abs(arg.number)
 
     def __hash__(self):
@@ -84,7 +84,7 @@ class NumberedInterval(Interval):
             raise TypeError('%s must be numbered interval.' % arg)
         if not self.direction_number == arg.direction_number:
             raise ValueError(
-                'can only compare melodic intervals of same direction.')
+                'can only compare intervals of same direction.')
         return abs(self.number) <= abs(arg.number)
 
     def __lt__(self, arg):
@@ -92,7 +92,7 @@ class NumberedInterval(Interval):
             raise TypeError('%s must be numbered interval.' % arg)
         if not self.direction_number == arg.direction_number:
             raise ValueError(
-                'can only compare melodic intervals of same direction.')
+                'can only compare intervals of same direction.')
         return abs(self.number) < abs(arg.number)
 
     def __ne__(self, arg):
