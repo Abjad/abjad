@@ -8,7 +8,7 @@ from abjad.tools import pitchtools
 
 
 def label_leaves_in_expr_with_named_intervals(expr, markup_direction=Up):
-    r"""Label leaves in `expr` with melodic diatonic intervals:
+    r"""Label leaves in `expr` with named intervals:
 
     ::
 

@@ -5,9 +5,9 @@ from abjad.tools import notetools
 from abjad.tools import pitchtools
 
 
-def label_vertical_moments_in_expr_with_diatonic_intervals(
+def label_vertical_moments_in_expr_with_named_intervals(
     expr, markup_direction=Down):
-    r'''Label diatonic intervals of every vertical moment in `expr`:
+    r'''Label named intervals of every vertical moment in `expr`:
 
     ::
 
@@ -21,7 +21,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(
 
     ::
 
-        >>> labeltools.label_vertical_moments_in_expr_with_diatonic_intervals(score)
+        >>> labeltools.label_vertical_moments_in_expr_with_named_intervals(score)
 
     ..  doctest::
 
@@ -93,12 +93,12 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(
         notes.reverse()
         bass_note = notes[-1]
         upper_notes = notes[:-1]
-        diatonic_intervals = []
+        named_intervals = []
         for upper_note in upper_notes:
-            diatonic_interval = pitchtools.NamedInterval.from_pitch_carriers(
+            named_interval = pitchtools.NamedInterval.from_pitch_carriers(
                 bass_note.written_pitch, upper_note.written_pitch)
-            diatonic_intervals.append(diatonic_interval)
-        intervals = [x.number for x in diatonic_intervals]
+            named_intervals.append(named_interval)
+        intervals = [x.number for x in named_intervals]
         intervals = ' '.join([str(x) for x in intervals])
         intervals = r'\small \column { %s }' % intervals
         markup = markuptools.Markup(intervals, markup_direction)
