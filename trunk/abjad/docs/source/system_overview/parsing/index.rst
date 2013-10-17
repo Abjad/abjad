@@ -1,8 +1,8 @@
 Parsing
 =======
 
-Abjad provides a growing number of language parsers.
-The most important of these is a sophisticated LilyPond parser.
+Abjad provides a small number of domain-specific language parsers.  The most
+important of these is its LilyPond parser.
 
 LilyPond Parsing
 ----------------
@@ -23,50 +23,50 @@ LilyPond's syntax:
    ...         \new Staff {
    ...             r2 ^ \markup { \center-column { tutti \line { ( con sord. ) } } }
    ...             r8
-   ...             es'' ( \ppp
+   ...             es'' [ ( \ppp
    ...             fs'''
    ...             es'''
    ...             fs''' \flageolet
    ...             es'''
    ...             fs'''
    ...             es''
-   ...             fs'' )
+   ...             fs'' ] )
    ...             r
    ...             r4
    ...         }
    ...         \new Staff {
    ...             r4 ^ \markup { ( con sord. ) }
    ...             r8
-   ...             es' ( \ppp 
+   ...             es' [ ( \ppp 
    ...             fs''
-   ...             es'' )
+   ...             es'' ] )
    ...             r
-   ...             es' (
+   ...             es' [ (
    ...             fs''
    ...             es'
-   ...             fs' )
+   ...             fs' ] )
    ...             r
-   ...             fs'' (
+   ...             fs'' [ (
    ...             es'
-   ...             fs' )
+   ...             fs' ] )
    ...             r
    ...         }
    ...         \new Staff {
    ...             r8 ^ \markup { tutti }
-   ...             ds' ( \ppp
+   ...             ds' [ ( \ppp
    ...             es''
-   ...             ds''
-   ...             es'
+   ...             ds'' ]
+   ...             es' [
    ...             ds'
    ...             es''
-   ...             ds'' )
+   ...             ds'' ] )
    ...             r4
-   ...             es''8 (
+   ...             es''8 [ (
    ...             ds'
-   ...             es' )
+   ...             es' ] )
    ...             r
-   ...             es'' (
-   ...             ds' )
+   ...             es'' [ (
+   ...             ds' ] )
    ...         }
    ...     >>
    ... >>
@@ -99,14 +99,14 @@ LilyPond's syntax:
                            }
                        }
                r8
-               es''8 \ppp (
+               es''8 \ppp [ (
                fs'''8
                es'''8
                fs'''8 -\flageolet
                es'''8
                fs'''8
                es''8
-               fs''8 )
+               fs''8 ] )
                r8
                r4
            }
@@ -119,36 +119,36 @@ LilyPond's syntax:
                        )
                        }
                r8
-               es'8 \ppp (
+               es'8 \ppp [ (
                fs''8
-               es''8 )
+               es''8 ] )
                r8
-               es'8 (
+               es'8 [ (
                fs''8
                es'8
-               fs'8 )
+               fs'8 ] )
                r8
-               fs''8 (
+               fs''8 [ (
                es'8
-               fs'8 )
+               fs'8 ] )
                r8
            }
            \new Staff {
                r8 ^ \markup { tutti }
-               ds'8 \ppp (
+               ds'8 \ppp [ (
                es''8
-               ds''8
-               es'8
+               ds''8 ]
+               es'8 [
                ds'8
                es''8
-               ds''8 )
+               ds''8 ] )
                r4
-               es''8 (
+               es''8 [ (
                ds'8
-               es'8 )
+               es'8 ] )
                r8
-               es''8 (
-               ds'8 )
+               es''8 [ (
+               ds'8 ] )
            }
        >>
    >>
@@ -256,8 +256,8 @@ The LilyPond parser understands contexts and markup:
 .. image:: images/index-3.png
 
 
-The LilyPond parser even understands certain aspects of LilyPond file layouts,
-like header blocks:
+The LilyPond parser also understands certain aspects of LilyPond file layouts,
+such as header blocks:
 
 ::
 
@@ -282,8 +282,8 @@ like header blocks:
 ::
 
    >>> f(result)
-   % Abjad revision 12378
-   % 2013-10-17 19:24
+   % Abjad revision 12387
+   % 2013-10-17 19:39
    
    \version "2.17.28"
    \language "english"
@@ -327,9 +327,9 @@ like header blocks:
 The LilyPond parser supports a small number of LilyPond music functions, such
 as ``\relative`` and ``\transpose``.
 
-Music functions which mutate the score during compilation, result in a
-normalized Abjad score structure.  The resulting Abjad score structure
-corresponds to the music as it appears on the page:
+Music functions which mutate the score during compilation result in a
+normalized Abjad score structure.  The resulting structure corresponds to the
+music as it appears on the page, rather than as it was input to the parser:
 
 ::
 
@@ -382,7 +382,7 @@ RhythmTree Parsing
 
 Abjad's rhythm-tree parser parses a microlanguage resembling Ircam's RTM Lisp
 syntax, and generates a sequence of RhythmTree structures, which can be
-furthered manipulated by composers, before being converted into Abjad score
+furthered manipulated by composers, before being converted into an Abjad score
 object:
 
 ::
@@ -477,9 +477,9 @@ object:
 
 Abjad's "reduced-ly" parser parses the "reduced-ly" microlanguage, whose syntax
 combines a very small subset of LilyPond syntax, along with affordances for
-generating various types of Abjad containers, and speedups for rapidly notating
-notes and rests without needing to specify pitches.  It used mainly for
-creating Abjad documentation:
+generating various types of Abjad containers. It also allows for rapidly
+notating notes and rests without needing to specify pitches.  It is used mainly
+for creating Abjad documentation:
 
 ::
 
