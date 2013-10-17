@@ -17,7 +17,7 @@ Reference manual
    lilypond_files/index
    measures/index
    notes/index
-   named_pitch/index
+   pitches/index
    python_basics/index
    rests/index
    scores/index
