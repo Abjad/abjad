@@ -55,7 +55,7 @@ interpreted sequentially rather than simultaneously.
 Inspecting the LilyPond format of a voice
 -----------------------------------------
 
-Get the LilyPond input format of any Abjad object with ``format``:
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
 
 <abjad>
 voice.lilypond_format
@@ -68,28 +68,28 @@ f(voice)
 </abjad>
 
 
-Inspecting the music in a voice
--------------------------------
+Selecting the music in a voice
+------------------------------
 
-Get voice components with ``music``:
+Slice a voice to select its components:
 
 <abjad>
-voice.music
+voice[:]
 </abjad>
 
-Abjad returns a read-only tuple of components.
+Abjad returns a selection.
 
 
 Inspecting a voice's leaves
 ---------------------------
 
-Get the leaves in a voice with ``leaves``:
+Get the leaves in a voice with ``select_leaves()``:
 
 <abjad>
 voice.select_leaves()
 </abjad>
 
-Abjad returns a read-only selection of leaves.
+Abjad returns a selection.
 
 
 Getting the length of a voice
@@ -101,53 +101,37 @@ Get voice length with ``len()``:
 len(voice)
 </abjad>
 
-The length of a voice is defined equal to the number of
-top-level components the voice contains.
+The length of a voice is defined equal to the number of top-level components
+the voice contains.
 
 
-Getting the duration attributes of a voice
-------------------------------------------
+Inspecting duration
+-------------------
 
-The contents durations of a voice equals the sum of durations of the components
-in the voice:
-
-<abjad>
-voice._contents_duration
-</abjad>
-
-The preprolated duration of a voice is usually equal to the voice's contents
-duration:
+Use the inspector to get the duration of a voice:
 
 <abjad>
-voice.preprolated_duration
+inspect(voice).get_duration()
 </abjad>
-
-The prolated duration of a voice is usually equal to the voice's contents
-duration, too:
-
-<abjad>
-voice.preprolated_duration
-</abjad>
-
-Only when you nest a very small voice inside a tuplet will the prolated and
-preprolated duration of a voice differ.
-
-Voices that are not nested inside a tuplet carry a prolation of ``1``:
-
-<abjad>
-voice.prolation
-</abjad>
-
-All voice duration attributes are read-only.
 
 
 Adding one component to the end of a voice
 ------------------------------------------
 
-Add one component to the end of a voice with ``append``:
+Add one component to the end of a voice with ``append()``:
 
 <abjad>
 voice.append(Note("af'2"))
+</abjad>
+
+<abjad>
+show(voice)
+</abjad>
+
+You can also use a LilyPond input string:
+
+<abjad>
+voice.append("bf'2")
 </abjad>
 
 <abjad>
@@ -158,11 +142,21 @@ show(voice)
 Adding many components to the end of a voice
 --------------------------------------------
 
-Add many components to the end of a voice with ``extend``:
+Add many components to the end of a voice with ``extend()``:
 
 <abjad>
 notes = [Note("g'4"), Note("f'4")]
 voice.extend(notes)
+</abjad>
+
+<abjad>
+show(voice)
+</abjad>
+
+You can also use a LilyPond input string:
+
+<abjad>
+voice.extend("e'4 ef'4")
 </abjad>
 
 <abjad>
@@ -187,14 +181,10 @@ voice.index(notes[0])
 Removing a voice component by index
 -----------------------------------
 
-Use ``pop()`` to remove a voice component by index:
+Use ``pop()`` to remove the last component of a voice:
 
 <abjad>
-voice[5]
-</abjad>
-
-<abjad>
-voice.pop(5)
+voice.pop()
 </abjad>
 
 <abjad>
@@ -261,5 +251,5 @@ voice.context_name
 f(voice)
 </abjad>
 
-Change the context of a voice when you have defined
-a new LilyPond context based on a LilyPond voice.
+Change the context of a voice when you have defined a new LilyPond context
+based on a LilyPond voice.

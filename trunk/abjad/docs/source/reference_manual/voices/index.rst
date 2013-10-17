@@ -66,7 +66,7 @@ interpreted sequentially rather than simultaneously.
 Inspecting the LilyPond format of a voice
 -----------------------------------------
 
-Get the LilyPond input format of any Abjad object with ``format``:
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
 
 ::
 
@@ -91,26 +91,24 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 
 
-Inspecting the music in a voice
--------------------------------
+Selecting the music in a voice
+------------------------------
 
-Get voice components with ``music``:
+Slice a voice to select its components:
 
 ::
 
-   >>> voice.music
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'music'
+   >>> voice[:]
+   SliceSelection(Tuplet(2/3, [c'4, d'4, e'4]), Note("f'2"), Note("g'1"))
 
 
-Abjad returns a read-only tuple of components.
+Abjad returns a selection.
 
 
 Inspecting a voice's leaves
 ---------------------------
 
-Get the leaves in a voice with ``leaves``:
+Get the leaves in a voice with ``select_leaves()``:
 
 ::
 
@@ -118,7 +116,7 @@ Get the leaves in a voice with ``leaves``:
    ContiguousSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'2"), Note("g'1"))
 
 
-Abjad returns a read-only selection of leaves.
+Abjad returns a selection.
 
 
 Getting the length of a voice
@@ -132,64 +130,26 @@ Get voice length with ``len()``:
    3
 
 
-The length of a voice is defined equal to the number of
-top-level components the voice contains.
+The length of a voice is defined equal to the number of top-level components
+the voice contains.
 
 
-Getting the duration attributes of a voice
-------------------------------------------
+Inspecting duration
+-------------------
 
-The contents durations of a voice equals the sum of durations of the components
-in the voice:
+Use the inspector to get the duration of a voice:
 
 ::
 
-   >>> voice._contents_duration
+   >>> inspect(voice).get_duration()
    Duration(2, 1)
 
-
-The preprolated duration of a voice is usually equal to the voice's contents
-duration:
-
-::
-
-   >>> voice.preprolated_duration
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'preprolated_duration'
-
-
-The prolated duration of a voice is usually equal to the voice's contents
-duration, too:
-
-::
-
-   >>> voice.preprolated_duration
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'preprolated_duration'
-
-
-Only when you nest a very small voice inside a tuplet will the prolated and
-preprolated duration of a voice differ.
-
-Voices that are not nested inside a tuplet carry a prolation of ``1``:
-
-::
-
-   >>> voice.prolation
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'prolation'
-
-
-All voice duration attributes are read-only.
 
 
 Adding one component to the end of a voice
 ------------------------------------------
 
-Add one component to the end of a voice with ``append``:
+Add one component to the end of a voice with ``append()``:
 
 ::
 
@@ -203,11 +163,25 @@ Add one component to the end of a voice with ``append``:
 .. image:: images/index-3.png
 
 
+You can also use a LilyPond input string:
+
+::
+
+   >>> voice.append("bf'2")
+
+
+::
+
+   >>> show(voice)
+
+.. image:: images/index-4.png
+
+
 
 Adding many components to the end of a voice
 --------------------------------------------
 
-Add many components to the end of a voice with ``extend``:
+Add many components to the end of a voice with ``extend()``:
 
 ::
 
@@ -219,7 +193,21 @@ Add many components to the end of a voice with ``extend``:
 
    >>> show(voice)
 
-.. image:: images/index-4.png
+.. image:: images/index-5.png
+
+
+You can also use a LilyPond input string:
+
+::
+
+   >>> voice.extend("e'4 ef'4")
+
+
+::
+
+   >>> show(voice)
+
+.. image:: images/index-6.png
 
 
 
@@ -237,32 +225,26 @@ Find the index of a component in a voice with ``index()``:
 ::
 
    >>> voice.index(notes[0])
-   4
+   5
 
 
 
 Removing a voice component by index
 -----------------------------------
 
-Use ``pop()`` to remove a voice component by index:
+Use ``pop()`` to remove the last component of a voice:
 
 ::
 
-   >>> voice[5]
-   Note("f'4")
-
-
-::
-
-   >>> voice.pop(5)
-   Note("f'4")
+   >>> voice.pop()
+   Note("ef'4")
 
 
 ::
 
    >>> show(voice)
 
-.. image:: images/index-5.png
+.. image:: images/index-7.png
 
 
 
@@ -280,7 +262,7 @@ Remove voice components by reference with ``remove()``:
 
    >>> show(voice)
 
-.. image:: images/index-6.png
+.. image:: images/index-8.png
 
 
 
@@ -308,6 +290,9 @@ Voice names appear in LilyPond input:
        f'2
        g'1
        af'2
+       bf'2
+       g'4
+       f'4
    }
 
 
@@ -317,7 +302,7 @@ But not in notational output:
 
    >>> show(voice)
 
-.. image:: images/index-7.png
+.. image:: images/index-9.png
 
 
 
@@ -357,8 +342,11 @@ But you can change the context of a voice if you want:
        f'2
        g'1
        af'2
+       bf'2
+       g'4
+       f'4
    }
 
 
-Change the context of a voice when you have defined
-a new LilyPond context based on a LilyPond voice.
+Change the context of a voice when you have defined a new LilyPond context
+based on a LilyPond voice.
