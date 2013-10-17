@@ -1,10 +1,10 @@
 Staves
 ======
 
-Creating staves
----------------
+Making a staff from a LilyPond input string
+-------------------------------------------
 
-Create staves like this:
+You can make a staff from a LilyPond input string:
 
 <abjad>
 staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
@@ -14,37 +14,106 @@ staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
 show(staff)
 </abjad>
 
-Inspecting staff music
-----------------------
+Making a staff from a list of Abjad components
+----------------------------------------------
 
-Return staff components with ``music``:
+You can also make a staff from a list of other Abjad components:
 
 <abjad>
-staff.music
+components = [Tuplet(Fraction(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
 </abjad>
 
-Inspecting staff length
------------------------
+<abjad>
+staff = Staff(components)
+</abjad>
 
-Get staff length with ``len()``:
+<abjad>
+show(staff)
+</abjad>
+
+Understanding the interpreter representation of a staff
+-------------------------------------------------------
+
+The interpreter representation of a staff contains three parts:
+
+<abjad>
+staff
+</abjad>
+
+``Staff`` tells you the staff's class.
+
+``3`` tells you the staff's length (which is the number of top-level components
+the staff contains).
+
+Curly braces ``{`` and ``}`` tell you that the music inside the staff is
+interpreted sequentially rather than simultaneously.
+
+Inspecting the LilyPond format of a staff
+-----------------------------------------
+
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
+
+<abjad>
+staff.lilypond_format
+</abjad>
+
+Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
+
+<abjad>
+f(staff)
+</abjad>
+
+Selecting the music in a staff
+------------------------------
+
+Slice a staff to select its components:
+
+<abjad>
+staff[:]
+</abjad>
+
+Abjad returns a selection.
+
+
+Inspecting a staff's leaves
+---------------------------
+
+Get the leaves in a staff with ``select_leaves()``:
+
+<abjad>
+staff.select_leaves()
+</abjad>
+
+Abjad returns a selection.
+
+
+Getting the length of a staff
+-----------------------------
+
+Get the length of a staff with ``len()``:
 
 <abjad>
 len(staff)
 </abjad>
 
-Inspecting staff duration
--------------------------
+The length of a staff is defined equal to the number of top-level components
+the staff contains.
 
-Staff contents durations equals the sum of staff components' duration:
+
+Inspecting duration
+-------------------
+
+Use the inspector to get the duration of a staff:
 
 <abjad>
-staff._contents_duration
+inspect(staff).get_duration()
 </abjad>
+
 
 Adding one component to the end of a staff
 ------------------------------------------
 
-Add one component to the end of a staff with ``append``:
+Add one component to the end of a staff with ``append()``:
 
 <abjad>
 staff.append(Note("d''2"))
@@ -54,10 +123,21 @@ staff.append(Note("d''2"))
 show(staff)
 </abjad>
 
+You can also use a LilyPond input string:
+
+<abjad>
+staff.append("cs''2")
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+
 Adding many components to the end of a staff
 --------------------------------------------
 
-Add many components to the end of a staff with ``extend``:
+Add many components to the end of a staff with ``extend()``:
 
 <abjad>
 notes = [Note("e''8"), Note("d''8"), Note("c''4")]
@@ -68,10 +148,20 @@ staff.extend(notes)
 show(staff)
 </abjad>
 
-Finding the index of a staff component
---------------------------------------
+You can also use a LilyPond input string:
 
-Find staff component index with ``index``:
+<abjad>
+staff.extend("b'8 a'8 g'4")
+</abjad>
+
+<abjad>
+show(staff)
+</abjad>
+
+Finding the index of a component in a staff
+-------------------------------------------
+
+Find staff component index with ``index()``:
 
 <abjad>
 notes[0]
@@ -81,27 +171,29 @@ notes[0]
 staff.index(notes[0])
 </abjad>
 
+
 Removing a staff component by index
 -----------------------------------
 
-Use ``pop`` to remove a staff component by index:
+Use ``pop()`` to remove the last component of a staff:
 
 <abjad>
 staff[8]
 </abjad>
 
 <abjad>
-staff.pop(8)
+staff.pop()
 </abjad>
 
 <abjad>
 show(staff)
 </abjad>
 
+
 Removing a staff component by reference
 ---------------------------------------
 
-Remove staff components by reference with ``remove``:
+Remove staff components by reference with ``remove()``:
 
 <abjad>
 staff.remove(staff[-1])
@@ -110,6 +202,7 @@ staff.remove(staff[-1])
 <abjad>
 show(staff)
 </abjad>
+
 
 Naming staves
 -------------
@@ -132,16 +225,17 @@ But not in notational output:
 show(staff)
 </abjad>
 
-Forcing context
----------------
 
-Staff context equals ``'Staff'`` by default:
+Changing the context of a voice
+-------------------------------
+
+The context of a staff is set to ``Staff`` by default:
 
 <abjad>
 staff.context_name
 </abjad>
 
-You can force staff context:
+But you can change the context of a staff if you want:
 
 <abjad>
 staff.context_name = 'CustomUserStaff'
@@ -155,4 +249,22 @@ staff.context_name
 f(staff)
 </abjad>
 
-Force context when you have defined a new LilyPond context.
+Change the context of a voice when you have defined a new LilyPond context
+based on a LilyPond staff.
+
+
+Making parallel voices in a staff
+---------------------------------
+
+You can make a staff treat its contents as simultaneous with
+``is_simultaneous``:
+
+<abjad>
+soprano_voice = Voice(r"b'4 a'8 g'8 a'4 d''4 b'4 g'4 a'2 \fermata")
+alto_voice = Voice(r"d'4 d'4 d'4 fs'4 d'4 d'8 e'8 fs'2") 
+soprano_voice.override.stem.direction = Up
+alto_voice.override.stem.direction = Down
+staff = Staff([soprano_voice, alto_voice])
+staff.is_simultaneous = True
+show(staff)
+</abjad>
