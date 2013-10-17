@@ -1,56 +1,62 @@
 Notes
 =====
 
-Making notes from a string
---------------------------
 
-You can make notes from string:
+Making notes from a LilyPond input string
+-----------------------------------------
+
+You can make notes from a LilyPond input string:
 
 <abjad>
 note = Note("c'4")
-</abjad>
-
-<abjad>
 show(note)
 </abjad>
 
-Making notes from chromatic pitch number and duration
------------------------------------------------------
 
-You can also make notes from chromatic pitch number and duration:
+Making notes from numbers
+-------------------------
+
+You can also make notes from a pitch number and duration:
 
 <abjad>
 note = Note(0, Duration(1, 4))
-</abjad>
-
-<abjad>
 show(note)
 </abjad>
 
-(You even use ``Note("c'4")`` to create notes with numbers alone.)
 
-Getting the written pitch of notes
-----------------------------------
+Getting and setting the written pitch of notes
+----------------------------------------------
 
-You can get the written pitch of notes:
+Get the written pitch of notes like this:
 
 <abjad>
 note.written_pitch
 </abjad>
 
-Changing the written pitch of notes
------------------------------------
-
-And you can change the written pitch of notes:
+Set the written pitch of notes like this:
 
 <abjad>
-note.written_pitch = "cs'"
+note.written_pitch = NamedPitch("cs'")
+show(note)
 </abjad>
 
-(You can use ``note.written_pitch = 1`` to change pitch with numbers, too.)
+Or this:
 
-Getting the duration attributes of notes
-----------------------------------------
+<abjad>
+note.written_pitch = "d'"
+show(note)
+</abjad>
+
+Or this:
+
+<abjad>
+note.written_pitch = 3
+show(note)
+</abjad>
+
+
+Getting and setting the written duration of notes
+-------------------------------------------------
 
 Get the written duration of notes like this:
 
@@ -58,66 +64,13 @@ Get the written duration of notes like this:
 note.written_duration
 </abjad>
 
-Which is usually the same as preprolated duration:
+Set the written duration of notes like this:
 
 <abjad>
-note.preprolated_duration
+note.written_duration = Duration(3, 16)
+show(note)
 </abjad>
 
-And prolated duration:
-
-<abjad>
-note.duration
-</abjad>
-
-Except for notes inside a tuplet:
-
-<abjad>
-tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
-</abjad>
-
-<abjad>
-show(tuplet)
-</abjad>
-
-<abjad>
-note = tuplet[0]
-</abjad>
-
-Tupletted notes carry written duration:
-
-<abjad>
-note.written_duration
-</abjad>
-
-Prolation:
-
-<abjad>
-note.prolation
-</abjad>
-
-And prolated duration that is the product of the two:
-
-<abjad>
-note.duration
-</abjad>
-
-Changing the written duration of notes
---------------------------------------
-
-You can change the written duration of notes:
-
-<abjad>
-tuplet[0].written_duration = Duration(1, 8)
-tuplet[1].written_duration = Duration(1, 8)
-tuplet[2].written_duration = Duration(1, 8)
-</abjad>
-
-<abjad>
-show(tuplet)
-</abjad>
-
-Other duration attributes are read-only.
 
 Overriding notes
 ----------------
@@ -129,44 +82,24 @@ staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
 slur_1 = spannertools.SlurSpanner(staff[:2])
 slur_2 = spannertools.SlurSpanner(staff[2:4])
 slur_3 = spannertools.SlurSpanner(staff[4:6])
-</abjad>
-
-<abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
-But you can override LilyPond grobs to change the look of notes, rests and chords:
+You can override LilyPond grobs to change the way notes look:
 
 <abjad>
 staff[-1].override.note_head.color = 'red'
 staff[-1].override.stem.color = 'red'
-</abjad>
-
-<abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
+
 
 Removing note overrides
 -----------------------
 
-Delete grob overrides you no longer want:
+Delete grob overrides you no longer want like this:
 
 <abjad>
 del(staff[-1].override.stem)
-</abjad>
-
-<abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
