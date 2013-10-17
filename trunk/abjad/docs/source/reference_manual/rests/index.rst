@@ -1,10 +1,11 @@
 Rests
 =====
 
+
 Making rests from strings
 -------------------------
 
-You can make rests from a string:
+You can make a rest from a LilyPond input string:
 
 ::
 
@@ -16,6 +17,7 @@ You can make rests from a string:
    >>> show(rest)
 
 .. image:: images/index-1.png
+
 
 
 Making rests from durations
@@ -37,80 +39,82 @@ You can also make rests from a duration:
 
 (You can even use ``Rest((1, 8))`` to make rests from a duration pair.)
 
-Getting the duration attributes of rests
-----------------------------------------
 
-Get the written duration of rests like this:
+Making rests from other Abjad leaves
+------------------------------------
 
-::
-
-   >>> rest.written_duration
-   Duration(1, 4)
-
-
-Which is usually the same as preprolated duration:
+You can make rests from other Abjad leaves:
 
 ::
 
-   >>> rest.preprolated_duration
-   Duration(1, 4)
-
-
-And prolated duration:
-
-::
-
-   >>> rest.duration
-   Duration(1, 4)
-
-
-Except for rests inside a tuplet:
-
-::
-
-   >>> tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
+   >>> note = Note("d'4..")
 
 
 ::
 
-   >>> show(tuplet)
+   >>> show(note)
 
 .. image:: images/index-3.png
 
 
 ::
 
-   >>> rest = tuplet[1]
+   >>> rest = Rest(note)
 
-
-Tupletted rests carry written duration:
 
 ::
 
-   >>> rest.written_duration
-   Duration(1, 4)
+   >>> show(rest)
+
+.. image:: images/index-4.png
 
 
-Prolation:
 
-::
+Making multi-measure rests
+--------------------------
 
-   >>> rest.prolation
-   Multiplier(2, 3)
-
-
-And prolated duration that is the product of the two:
+You can create multi-measure rests too:
 
 ::
 
-   >>> rest.duration
-   Duration(1, 6)
+   >>> multimeasure_rest = resttools.MultimeasureRest('R1')
+
+
+::
+
+   >>> show(multimeasure_rest)
+
+.. image:: images/index-5.png
+
+
+::
+
+   >>> multimeasure_rest.lilypond_duration_multiplier = 4
+   >>> staff = Staff([multimeasure_rest])
+   >>> show(staff)
+
+.. image:: images/index-6.png
+
+
+::
+
+   >>> compress_full_bar_rests = marktools.LilyPondCommandMark('compressFullBarRests')
+   >>> compress_full_bar_rests.attach(staff)
+   LilyPondCommandMark('compressFullBarRests')(Staff{1})
+   >>> show(staff)
+
+.. image:: images/index-7.png
 
 
 Changing the written duration of rests
 --------------------------------------
 
 You can change the written duration of notes and rests:
+
+::
+
+   >>> tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
+
 
 ::
 
@@ -123,7 +127,5 @@ You can change the written duration of notes and rests:
 
    >>> show(tuplet)
 
-.. image:: images/index-4.png
+.. image:: images/index-8.png
 
-
-Other duration attributes are read-only.

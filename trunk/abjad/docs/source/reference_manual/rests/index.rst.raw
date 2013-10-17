@@ -1,10 +1,11 @@
 Rests
 =====
 
+
 Making rests from strings
 -------------------------
 
-You can make rests from a string:
+You can make a rest from a LilyPond input string:
 
 <abjad>
 rest = Rest('r8')
@@ -13,6 +14,7 @@ rest = Rest('r8')
 <abjad>
 show(rest)
 </abjad>
+
 
 Making rests from durations
 ---------------------------
@@ -29,63 +31,62 @@ show(rest)
 
 (You can even use ``Rest((1, 8))`` to make rests from a duration pair.)
 
-Getting the duration attributes of rests
-----------------------------------------
 
-Get the written duration of rests like this:
+Making rests from other Abjad leaves
+------------------------------------
 
-<abjad>
-rest.written_duration
-</abjad>
-
-Which is usually the same as preprolated duration:
+You can make rests from other Abjad leaves:
 
 <abjad>
-rest.preprolated_duration
-</abjad>
-
-And prolated duration:
-
-<abjad>
-rest.duration
-</abjad>
-
-Except for rests inside a tuplet:
-
-<abjad>
-tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
+note = Note("d'4..")
 </abjad>
 
 <abjad>
-show(tuplet)
+show(note)
 </abjad>
 
 <abjad>
-rest = tuplet[1]
+rest = Rest(note)
 </abjad>
 
-Tupletted rests carry written duration:
-
 <abjad>
-rest.written_duration
+show(rest)
 </abjad>
 
-Prolation:
+
+Making multi-measure rests
+--------------------------
+
+You can create multi-measure rests too:
 
 <abjad>
-rest.prolation
+multimeasure_rest = resttools.MultimeasureRest('R1')
 </abjad>
 
-And prolated duration that is the product of the two:
+<abjad>
+show(multimeasure_rest)
+</abjad>
 
 <abjad>
-rest.duration
+multimeasure_rest.lilypond_duration_multiplier = 4
+staff = Staff([multimeasure_rest])
+show(staff)
+</abjad>
+
+<abjad>
+compress_full_bar_rests = marktools.LilyPondCommandMark('compressFullBarRests')
+compress_full_bar_rests.attach(staff)
+show(staff)
 </abjad>
 
 Changing the written duration of rests
 --------------------------------------
 
 You can change the written duration of notes and rests:
+
+<abjad>
+tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
+</abjad>
 
 <abjad>
 tuplet[0].written_duration = Duration(1, 8)
@@ -96,5 +97,3 @@ tuplet[2].written_duration = Duration(1, 8)
 <abjad>
 show(tuplet)
 </abjad>
-
-Other duration attributes are read-only.
