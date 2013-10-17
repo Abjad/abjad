@@ -1,10 +1,32 @@
 Scores
 ======
 
-Creating scores
----------------
 
-Create a score like this:
+Making a score from a LilyPond input string
+-------------------------------------------
+
+You can make an Abjad score from a LilyPond input string:
+
+<abjad>
+input = r'''
+\new Staff { e''4 d''8 ( c''8 ) d''4 g'4 }
+\new Staff { \clef bass c4 a,4 b,4 e4 }
+'''
+</abjad>
+
+<abjad>
+score = Score(input)
+</abjad>
+
+<abjad>
+show(score)
+</abjad>
+
+
+Making a score from a list of Abjad components
+----------------------------------------------
+
+You can also make a score from a list of other Abjad components:
 
 <abjad>
 treble_staff_1 = Staff("e'4 d'4 e'4 f'4 g'1")
@@ -19,41 +41,97 @@ score = Score([treble_staff_1, treble_staff_2])
 show(score)
 </abjad>
 
-Inspecting score music
-----------------------
 
-Return score components with ``music``:
+Understanding the interpreter representation of a score
+-------------------------------------------------------
+
+The interpreter representation of an Abjad score contains three parts:
 
 <abjad>
-score.music
+score
 </abjad>
 
-Inspecting score length
------------------------
+``Score`` tells you the score's class.
 
-Get score length with ``len()``:
+``3`` tells you the score's length (which is the number of top-level components
+the score contains).
+
+Curly braces ``{`` and ``}`` tell you that the music inside the score is
+interpreted sequentially rather than simultaneously.
+
+
+Inspecting the LilyPond format of a score
+-----------------------------------------
+
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
+
+<abjad>
+score.lilypond_format
+</abjad>
+
+Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
+
+<abjad>
+f(score)
+</abjad>
+
+
+Selecting the music in a score
+------------------------------
+
+Slice a score to select its components:
+
+<abjad>
+score[:]
+</abjad>
+
+Abjad returns a selection.
+
+
+Inspecting a score's leaves
+---------------------------
+
+Get the leaves in a score with ``select_leaves()``:
+
+<abjad>
+score.select_leaves(allow_discontiguous_leaves=True)
+</abjad>
+
+Abjad returns a selection.
+
+
+Getting the length of a score
+-----------------------------
+
+Get the length of a score with ``len()``:
 
 <abjad>
 len(score)
 </abjad>
 
-Inspecting score duration
--------------------------
+The length of a score is defined equal to the number of top-level components
+the score contains.
 
-Score contents duration is equal to the duration of the longest component in score:
+
+Inspecting duration
+-------------------
+
+Use the inspector to get the duration of a score:
 
 <abjad>
-score._contents_duration
+inspect(score).get_duration()
 </abjad>
+
 
 Adding one component to the bottom of a score
 ---------------------------------------------
 
-Add one component to the bottom of a score with ``append``:
+Add one component to the bottom of a score with ``append()``:
 
 <abjad>
 bass_staff = Staff("g4 f4 e4 d4 d1")
-contexttools.ClefMark('bass')(bass_staff)
+bass_clef = contexttools.ClefMark('bass')
+bass_clef.attach(bass_staff)
 </abjad>
 
 <abjad>
@@ -64,19 +142,21 @@ score.append(bass_staff)
 show(score)
 </abjad>
 
+
 Finding the index of a score component
 --------------------------------------
 
-Find the index of a score component with ``index``:
+Find the index of a score component with ``index()``:
 
 <abjad>
 score.index(treble_staff_1)
 </abjad>
 
+
 Removing a score component by index
 -----------------------------------
 
-Use ``pop`` to remove a score component by index:
+Use ``pop()`` to remove a score component by index:
 
 <abjad>
 score.pop(1)
@@ -86,10 +166,11 @@ score.pop(1)
 show(score)
 </abjad>
 
+
 Removing a score component by reference
 ---------------------------------------
 
-Remove a score component by reference with ``remove``:
+Remove a score component by reference with ``remove()``:
 
 <abjad>
 score.remove(treble_staff_1)
@@ -99,8 +180,9 @@ score.remove(treble_staff_1)
 show(score)
 </abjad>
 
-Testing score containment
--------------------------
+
+Inspecting whether or not a score contains a component
+------------------------------------------------------
 
 Use ``in`` to find out whether a score contains a given component:
 
@@ -115,6 +197,7 @@ treble_staff_2 in score
 <abjad>
 bass_staff in score
 </abjad>
+
 
 Naming scores
 -------------

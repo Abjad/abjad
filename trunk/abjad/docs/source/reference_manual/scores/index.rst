@@ -1,10 +1,37 @@
 Scores
 ======
 
-Creating scores
----------------
 
-Create a score like this:
+Making a score from a LilyPond input string
+-------------------------------------------
+
+You can make an Abjad score from a LilyPond input string:
+
+::
+
+   >>> input = r'''
+   ... \new Staff { e''4 d''8 ( c''8 ) d''4 g'4 }
+   ... \new Staff { \clef bass c4 a,4 b,4 e4 }
+   ... '''
+
+
+::
+
+   >>> score = Score(input)
+
+
+::
+
+   >>> show(score)
+
+.. image:: images/index-1.png
+
+
+
+Making a score from a list of Abjad components
+----------------------------------------------
+
+You can also make a score from a list of other Abjad components:
 
 ::
 
@@ -21,24 +48,96 @@ Create a score like this:
 
    >>> show(score)
 
-.. image:: images/index-1.png
+.. image:: images/index-2.png
 
 
-Inspecting score music
-----------------------
 
-Return score components with ``music``:
+Understanding the interpreter representation of a score
+-------------------------------------------------------
+
+The interpreter representation of an Abjad score contains three parts:
 
 ::
 
-   >>> score.music
-   (Staff{5}, Staff{4})
+   >>> score
+   Score<<2>>
 
 
-Inspecting score length
------------------------
+``Score`` tells you the score's class.
 
-Get score length with ``len()``:
+``3`` tells you the score's length (which is the number of top-level components
+the score contains).
+
+Curly braces ``{`` and ``}`` tell you that the music inside the score is
+interpreted sequentially rather than simultaneously.
+
+
+Inspecting the LilyPond format of a score
+-----------------------------------------
+
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
+
+::
+
+   >>> score.lilypond_format
+   "\\new Score <<\n\t\\new Staff {\n\t\te'4\n\t\td'4\n\t\te'4\n\t\tf'4\n\t\tg'1\n\t}\n\t\\new Staff {\n\t\tc'2.\n\t\tb8\n\t\ta8\n\t\tb1\n\t}\n>>"
+
+
+Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
+
+::
+
+   >>> f(score)
+   \new Score <<
+       \new Staff {
+           e'4
+           d'4
+           e'4
+           f'4
+           g'1
+       }
+       \new Staff {
+           c'2.
+           b8
+           a8
+           b1
+       }
+   >>
+
+
+
+Selecting the music in a score
+------------------------------
+
+Slice a score to select its components:
+
+::
+
+   >>> score[:]
+   SimultaneousSelection(Staff{5}, Staff{4})
+
+
+Abjad returns a selection.
+
+
+Inspecting a score's leaves
+---------------------------
+
+Get the leaves in a score with ``select_leaves()``:
+
+::
+
+   >>> score.select_leaves(allow_discontiguous_leaves=True)
+   Selection(Note("e'4"), Note("d'4"), Note("e'4"), Note("f'4"), Note("g'1"), Note("c'2."), Note('b8'), Note('a8'), Note('b1'))
+
+
+Abjad returns a selection.
+
+
+Getting the length of a score
+-----------------------------
+
+Get the length of a score with ``len()``:
 
 ::
 
@@ -46,26 +145,32 @@ Get score length with ``len()``:
    2
 
 
-Inspecting score duration
--------------------------
+The length of a score is defined equal to the number of top-level components
+the score contains.
 
-Score contents duration is equal to the duration of the longest component in score:
+
+Inspecting duration
+-------------------
+
+Use the inspector to get the duration of a score:
 
 ::
 
-   >>> score._contents_duration
+   >>> inspect(score).get_duration()
    Duration(2, 1)
+
 
 
 Adding one component to the bottom of a score
 ---------------------------------------------
 
-Add one component to the bottom of a score with ``append``:
+Add one component to the bottom of a score with ``append()``:
 
 ::
 
    >>> bass_staff = Staff("g4 f4 e4 d4 d1")
-   >>> contexttools.ClefMark('bass')(bass_staff)
+   >>> bass_clef = contexttools.ClefMark('bass')
+   >>> bass_clef.attach(bass_staff)
    ClefMark('bass')(Staff{5})
 
 
@@ -78,13 +183,14 @@ Add one component to the bottom of a score with ``append``:
 
    >>> show(score)
 
-.. image:: images/index-2.png
+.. image:: images/index-3.png
+
 
 
 Finding the index of a score component
 --------------------------------------
 
-Find the index of a score component with ``index``:
+Find the index of a score component with ``index()``:
 
 ::
 
@@ -92,10 +198,11 @@ Find the index of a score component with ``index``:
    0
 
 
+
 Removing a score component by index
 -----------------------------------
 
-Use ``pop`` to remove a score component by index:
+Use ``pop()`` to remove a score component by index:
 
 ::
 
@@ -107,13 +214,14 @@ Use ``pop`` to remove a score component by index:
 
    >>> show(score)
 
-.. image:: images/index-3.png
+.. image:: images/index-4.png
+
 
 
 Removing a score component by reference
 ---------------------------------------
 
-Remove a score component by reference with ``remove``:
+Remove a score component by reference with ``remove()``:
 
 ::
 
@@ -124,11 +232,12 @@ Remove a score component by reference with ``remove``:
 
    >>> show(score)
 
-.. image:: images/index-4.png
+.. image:: images/index-5.png
 
 
-Testing score containment
--------------------------
+
+Inspecting whether or not a score contains a component
+------------------------------------------------------
 
 Use ``in`` to find out whether a score contains a given component:
 
@@ -148,6 +257,7 @@ Use ``in`` to find out whether a score contains a given component:
 
    >>> bass_staff in score
    True
+
 
 
 Naming scores
@@ -183,4 +293,5 @@ But do not appear in notational output:
 
    >>> show(score)
 
-.. image:: images/index-5.png
+.. image:: images/index-6.png
+
