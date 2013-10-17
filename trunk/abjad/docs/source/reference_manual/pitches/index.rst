@@ -1,11 +1,14 @@
 Pitches
 =======
 
-Named chromatic pitches are the everyday pitches attached to notes and chords:
+Named pitches are the everyday pitches attached to notes and chords:
 
 ::
 
    >>> note = Note("cs''8")
+   >>> show(note)
+
+.. image:: images/index-1.png
 
 
 ::
@@ -18,11 +21,11 @@ Named chromatic pitches are the everyday pitches attached to notes and chords:
 Creating pitches
 ----------------
 
-Use pitch tools to create named chromatic pitches:
+Create named pitches like this:
 
 ::
 
-   >>> named_pitch = pitchtools.NamedPitch("cs''")
+   >>> named_pitch = NamedPitch("cs''")
 
 
 ::
@@ -35,7 +38,7 @@ Use pitch tools to create named chromatic pitches:
 Inspecting the name of a pitch
 ------------------------------
 
-Use ``str()`` to get the name of named chromatic pitches:
+Use ``str()`` to get the name of named pitches:
 
 ::
 
@@ -47,7 +50,7 @@ Use ``str()`` to get the name of named chromatic pitches:
 Inspecting the octave of a pitch
 --------------------------------
 
-Get the octave number of named chromatic pitches with ``octave_number``:
+Get the octave number of named pitches with ``octave_number``:
 
 ::
 
@@ -56,52 +59,10 @@ Get the octave number of named chromatic pitches with ``octave_number``:
 
 
 
-Working with pitch deviation
-----------------------------
-
-Use deviation to model the fact that two pitches differ by a fraction of a semitone:
-
-::
-
-   >>> note_1 = Note(24, (1, 2))
-   >>> note_2 = Note(24, (1, 2))
-   >>> staff = Staff([note_1, note_2])
-
-
-::
-
-   >>> show(staff)
-
-.. image:: images/index-1.png
-
-
-::
-
-   >>> note_2.written_pitch = pitchtools.NamedPitch(24, deviation = -31)
-
-
-The pitch of the the first note is greater than the pitch of the second:
-
-::
-
-   >>> note_1.written_pitch > note_2.written_pitch
-   False
-
-
-Use markup to include indications of pitch deviation in your score:
-
-::
-
-   >>> markuptools.Markup(note_2.written_pitch.deviation_in_cents, Up)(note_2)
-   Markup(None, direction=Up)(c'''2)
-
-
-
 Sorting pitches
 ---------------
 
-Named chromatic pitches sort by octave, diatonic pitch-class and accidental,
-in that order:
+Named pitches sort by octave, diatonic pitch-class and accidental:
 
 ::
 
@@ -113,7 +74,7 @@ in that order:
 Comparing pitches
 -----------------
 
-Compare named chromatic pitches to each other:
+You can compare named pitches to each other:
 
 ::
 
@@ -158,18 +119,10 @@ Compare named chromatic pitches to each other:
 
 
 
-Converting one type of pitch to another
----------------------------------------
+Converting a named pitch to a numbered pitch
+--------------------------------------------
 
-Convert any named chromatic pitch to a named diatonic pitch:
-
-::
-
-   >>> named_pitch.named_diatonic_pitch
-   NamedDiatonicPitch("c''")
-
-
-To a numbered chromatic pitch:
+Convert a named pitch to a numbered pitch like this:
 
 ::
 
@@ -177,19 +130,19 @@ To a numbered chromatic pitch:
    NumberedPitch(13)
 
 
-Or to a numbered diatonic pitch:
+Or like this:
 
 ::
 
-   >>> named_pitch.numbered_diatonic_pitch
-   NumberedDiatonicPitch(7)
+   >>> pitchtools.NumberedPitch(named_pitch)
+   NumberedPitch(13)
 
 
 
-Converting pitches to pitch-classes
------------------------------------
+Converting a named pitch to a named pitch-class
+-----------------------------------------------
 
-Convert any named chromatic pitch to a named chromatic pitch-class:
+Convert a named pitch to a named pitch-class like this:
 
 ::
 
@@ -197,15 +150,19 @@ Convert any named chromatic pitch to a named chromatic pitch-class:
    NamedPitchClass('cs')
 
 
-To a named diatonic pitch-class:
+Or like this:
 
 ::
 
-   >>> named_pitch.named_diatonic_pitch_class
-   NamedDiatonicPitchClass('c')
+   >>> pitchtools.NamedPitchClass(named_pitch)
+   NamedPitchClass('cs')
 
 
-To a numbered chromatic pitch-class:
+
+Converting a named pitch to a numbered pitch-class
+--------------------------------------------------
+
+Convert a named pitch to a numbered pitch-class like this:
 
 ::
 
@@ -213,19 +170,19 @@ To a numbered chromatic pitch-class:
    NumberedPitchClass(1)
 
 
-Or to a numbered diatonic pitch-class:
+Or like this:
 
 ::
 
-   >>> named_pitch.numbered_diatonic_pitch_class
-   NumberedDiatonicPitchClass(0)
+   >>> pitchtools.NumberedPitchClass(named_pitch)
+   NumberedPitchClass(1)
 
 
 
 Copying pitches
 ---------------
 
-Use ``copy.copy()`` to copy named chromatic pitches:
+Use ``copy.copy()`` to copy named pitches:
 
 ::
 
@@ -249,98 +206,138 @@ Abjad abbreviates accidentals according to the LilyPond ``english.ly`` module:
     ======================         ============================
     accidental name                  abbreviation
     ======================         ============================
-    quarter sharp                      'qs'
-    quarter flat                        'qf'
-    sharp                                 's'
-    flat                                  'f'
-    three-quarters sharp             'tqs'
-    three-quarters flat              'tqf'
-    double sharp                        'ss'
-    double flat                         'ff'
+    quarter sharp                  'qs'
+    quarter flat                   'qf'
+    sharp                          's'
+    flat                           'f'
+    three-quarters sharp           'tqs'
+    three-quarters flat            'tqf'
+    double sharp                   'ss'
+    double flat                    'ff'
     ======================         ============================
 
 
-Chromatic pitch numbers
------------------------
+Pitch numbers
+-------------
 
-Abjad numbers chromatic pitches by semitone with middle C set equal to 0:
+Abjad numbers pitches like this:
 
-.. image:: images/chromatic-pitch-numbers.png
+::
 
-The code to generate this table is as follows::
+   >>> score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
+   >>> duration = Duration(1, 32)
 
-    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
-    duration = Fraction(1, 32)
 
-    treble = measuretools.AnonymousMeasure([])
-    bass = measuretools.AnonymousMeasure([])
+::
 
-    treble_staff.append(treble)
-    bass_staff.append(bass)
+   >>> pitches = range(-12, 12 + 1)
+   >>> abjad_configuration.set_default_accidental_spelling('sharps')
 
-    pitches = range(-12, 12 + 1)
 
-    pitchtools.set_default_accidental_spelling('sharps')
+::
 
-    for i in pitches:
-        note = Note(i, duration)
-        rest = Rest(duration)
-        clef = pitchtools.suggest_clef_for_named_pitches([note.pitch])
-        if clef == contexttools.ClefMark('treble'):
-            treble.append(note)
-            bass.append(rest)
-        else:
-            treble.append(rest)
-            bass.append(note)
-        diatonic_pitch_number = str(note.pitch.numbered_pitch)
-        markuptools.Markup(diatonic_pitch_number, Down)(bass[-1])
+   >>> for pitch in pitches:
+   ...     note = Note(pitch, duration)
+   ...     rest = Rest(duration)
+   ...     clef = pitchtools.suggest_clef_for_named_pitches([note.written_pitch])
+   ...     if clef == contexttools.ClefMark('treble'):
+   ...         treble_staff.append(note)
+   ...         bass_staff.append(rest)
+   ...     else:
+   ...         treble_staff.append(rest)
+   ...         bass_staff.append(note)
+   ...     pitch_number = note.written_pitch.pitch_number
+   ...     markup = markuptools.Markup(str(pitch_number), Down)
+   ...     markup = markup.attach(bass_staff[-1])
+   ... 
 
-    score.override.rest.transparent = True
-    score.override.stem.stencil = False
+
+::
+
+   >>> score.override.beam.transparent = True
+   >>> score.override.time_signature.stencil = False
+   >>> score.override.flag.transparent = True
+   >>> score.override.rest.transparent = True
+   >>> score.override.stem.stencil = False
+   >>> score.override.text_script.staff_padding = 6
+   >>> score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
+
+
+::
+
+   >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+   >>> lilypond_file.global_staff_size = 15
+   >>> show(lilypond_file)
+
+.. image:: images/index-2.png
+
+
 
 Diatonic pitch numbers
 ----------------------
 
-Abjad numbers diatonic pitches by staff space with middle C set equal to 0:
+Abjad numbers diatonic pitches like this:
 
-.. image:: images/diatonic-pitch-numbers.png
+::
 
-The code to generate this table is as follows::
+   >>> score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
+   >>> duration = Duration(1, 32)
 
-    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
-    duration = Fraction(1, 32)
 
-    treble = measuretools.AnonymousMeasure([])
-    bass = measuretools.AnonymousMeasure([])
+::
 
-    treble_staff.append(treble)
-    bass_staff.append(bass)
+   >>> pitches = []
+   >>> diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
 
-    pitches = []
-    diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
 
-    pitches.extend([-24 + x for x in diatonic_pitches])
-    pitches.extend([-12 + x for x in diatonic_pitches])
-    pitches.extend([0 + x for x in diatonic_pitches])
-    pitches.extend([12 + x for x in diatonic_pitches])
-    pitches.append(24)
-    pitchtools.set_default_accidental_spelling('sharps')
+::
 
-    for i in pitches:
-        note = Note(i, duration)
-        rest = Rest(duration)
-        clef = pitchtools.suggest_clef_for_named_pitches([note.pitch])
-        if clef == contexttools.ClefMark('treble'):
-            treble.append(note)
-            bass.append(rest)
-        else:
-            treble.append(rest)
-            bass.append(note)
-        diatonic_pitch_number = abs(note.pitch.numbered_diatonic_pitch)
-        markuptools.Markup(diatonic_pitch_number, Down)(bass[-1])
+   >>> pitches.extend([-24 + x for x in diatonic_pitches])
+   >>> pitches.extend([-12 + x for x in diatonic_pitches])
+   >>> pitches.extend([0 + x for x in diatonic_pitches])
+   >>> pitches.extend([12 + x for x in diatonic_pitches])
+   >>> pitches.append(24)
+   >>> abjad_configuration.set_default_accidental_spelling('sharps')
 
-    score.override.rest.transparent = True
-    score.override.stem.stencil = False
+
+::
+
+   >>> for pitch in pitches:
+   ...     note = Note(pitch, duration)
+   ...     rest = Rest(duration)
+   ...     clef = pitchtools.suggest_clef_for_named_pitches([note.written_pitch])
+   ...     if clef == contexttools.ClefMark('treble'):
+   ...         treble_staff.append(note)
+   ...         bass_staff.append(rest)
+   ...     else:
+   ...         treble_staff.append(rest)
+   ...         bass_staff.append(note)
+   ...     diatonic_pitch_number = note.written_pitch.diatonic_pitch_number
+   ...     markup = markuptools.Markup(str(diatonic_pitch_number), Down)
+   ...     markup = markup.attach(bass_staff[-1])
+   ... 
+
+
+::
+
+   >>> score.override.beam.transparent = True
+   >>> score.override.time_signature.stencil = False
+   >>> score.override.flag.transparent = True
+   >>> score.override.rest.transparent = True
+   >>> score.override.stem.stencil = False
+   >>> score.override.text_script.staff_padding = 6
+   >>> score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 52)
+
+
+::
+
+   >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+   >>> lilypond_file.global_staff_size = 15
+   >>> show(lilypond_file)
+
+.. image:: images/index-3.png
+
+
 
 Octave designation
 ------------------
@@ -350,14 +347,15 @@ Abjad designates octaves with both numbers and ticks:
     ===============        =============
     Octave notation        Tick notation
     ===============        =============
-            C7                         c''''
-            C6                         c'''
-            C5                         c''
-            C4                         c'
-            C3                         c
-            C2                         c,
-            C1                         c,,
+    C7                     c''''
+    C6                     c'''
+    C5                     c''
+    C4                     c'
+    C3                     c
+    C2                     c,
+    C1                     c,,
     ===============        =============
+
 
 Accidental spelling
 -------------------
@@ -366,20 +364,20 @@ Abjad chooses between enharmonic spellings at pitch-initialization
 according to the following table:
 
     ============================        ====================================
-    Chromatic pitch-class number        Chromatic pitch-class name (default)
+    Pitch-class number                  Pitch-class name (default)
     ============================        ====================================
-        0                                        C
-        1                                        C#
-        2                                        D
-        3                                        Eb
-        4                                        E
-        5                                        F
-        6                                        F#
-        7                                        G
-        8                                        Gb
-        9                                        A
-        10                                     Bb
-        11                                     B
+    0                                   C
+    1                                   C#
+    2                                   D
+    3                                   Eb
+    4                                   E
+    5                                   F
+    6                                   F#
+    7                                   G
+    8                                   Gb
+    9                                   A
+    10                                  Bb
+    11                                  B
     ============================        ====================================
 
 ::
@@ -387,24 +385,25 @@ according to the following table:
    >>> staff = Staff([Note(n, (1, 8)) for n in range(12)])
    >>> show(staff)
 
-.. image:: images/index-2.png
+.. image:: images/index-4.png
 
 
-Use pitch tools to respell with sharps:
+Use ``mutate()`` to respell with sharps:
 
 ::
 
-   >>> pitchtools.respell_named_pitches_in_expr_with_sharps(staff)
+   >>> mutate(staff).respell_with_sharps()
    >>> show(staff)
 
-.. image:: images/index-3.png
+.. image:: images/index-5.png
 
 
 Or flats:
 
 ::
 
-   >>> pitchtools.respell_named_pitches_in_expr_with_flats(staff)
+   >>> mutate(staff).respell_with_flats()
    >>> show(staff)
 
-.. image:: images/index-4.png
+.. image:: images/index-6.png
+
