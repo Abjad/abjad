@@ -1,10 +1,12 @@
 Measures
 ========
 
+
 Understanding measures in LilyPond
 ----------------------------------
 
-In LilyPond you specify time signatures by hand and LilyPond creates measures automatically:
+In LilyPond you specify time signatures by hand and LilyPond creates measures
+automatically:
 
 ::
 
@@ -29,30 +31,35 @@ staff = Staff("abj: | 3/8 c'8 d' e' || 3/8 d' e' f' || 2/4 g'4 e'4 || 2/4 f' d' 
 show(staff)
 </abjad>
 
-Here LilyPond creates five measures from two time signatures.
-This happens because behind-the-scenes LilyPond time-keeping tells the program
-when measures start and stop and how to draw the barlines that come between them.
+Here LilyPond creates five measures from two time signatures. This happens
+because behind-the-scenes LilyPond time-keeping tells the program when measures
+start and stop and how to draw the barlines that come between them.
+
 
 Understanding measures in Abjad
 -------------------------------
 
-Measures are optional in Abjad, too, and you may omit them in favor of time signatures:
+Measures are optional in Abjad, too, and you may omit them in favor of time
+signatures:
 
 <abjad>
 staff = Staff("c'8 d'8 e'8 d'8 e'8 f'8 g'4 e'4 f'4 d'4 c'2")
 </abjad>
 
 <abjad>
-contexttools.TimeSignatureMark((3, 8))(staff)
-contexttools.TimeSignatureMark((2, 4))(staff[6])
+time_signature_1 = contexttools.TimeSignatureMark((3, 8))
+time_signature_2 = contexttools.TimeSignatureMark((2, 4))
+time_signature_1.attach(staff)
+time_signature_2.attach(staff[6])
 </abjad>
 
 <abjad>
 show(staff)
 </abjad>
 
-But you may also include explicit measures in the Abjad scores you build.
-The following sections explain how.
+But you may also include explicit measures in the Abjad scores you build. The
+following sections explain how.
+
 
 Creating measures
 -----------------

@@ -1,10 +1,12 @@
 Measures
 ========
 
+
 Understanding measures in LilyPond
 ----------------------------------
 
-In LilyPond you specify time signatures by hand and LilyPond creates measures automatically:
+In LilyPond you specify time signatures by hand and LilyPond creates measures
+automatically:
 
 ::
 
@@ -27,14 +29,16 @@ In LilyPond you specify time signatures by hand and LilyPond creates measures au
 .. image:: images/index-1.png
 
 
-Here LilyPond creates five measures from two time signatures.
-This happens because behind-the-scenes LilyPond time-keeping tells the program
-when measures start and stop and how to draw the barlines that come between them.
+Here LilyPond creates five measures from two time signatures. This happens
+because behind-the-scenes LilyPond time-keeping tells the program when measures
+start and stop and how to draw the barlines that come between them.
+
 
 Understanding measures in Abjad
 -------------------------------
 
-Measures are optional in Abjad, too, and you may omit them in favor of time signatures:
+Measures are optional in Abjad, too, and you may omit them in favor of time
+signatures:
 
 ::
 
@@ -43,9 +47,11 @@ Measures are optional in Abjad, too, and you may omit them in favor of time sign
 
 ::
 
-   >>> contexttools.TimeSignatureMark((3, 8))(staff)
+   >>> time_signature_1 = contexttools.TimeSignatureMark((3, 8))
+   >>> time_signature_2 = contexttools.TimeSignatureMark((2, 4))
+   >>> time_signature_1.attach(staff)
    TimeSignatureMark((3, 8))(Staff{11})
-   >>> contexttools.TimeSignatureMark((2, 4))(staff[6])
+   >>> time_signature_2.attach(staff[6])
    TimeSignatureMark((2, 4))(g'4)
 
 
@@ -56,8 +62,9 @@ Measures are optional in Abjad, too, and you may omit them in favor of time sign
 .. image:: images/index-2.png
 
 
-But you may also include explicit measures in the Abjad scores you build.
-The following sections explain how.
+But you may also include explicit measures in the Abjad scores you build. The
+following sections explain how.
+
 
 Creating measures
 -----------------
@@ -85,3 +92,4 @@ Create a measure with a time signature and music:
    >>> show(measure)
 
 .. image:: images/index-3.png
+
