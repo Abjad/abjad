@@ -2,53 +2,171 @@ Parsing
 =======
 
 Abjad provides a growing number of language parsers.
-The most important of these is a sophisticate LilyPond parser.
+The most important of these is a sophisticated LilyPond parser.
 
 LilyPond Parsing
 ----------------
 
-``lilypondparsertools.LilyPondParser`` parses a large, although incomplete, subset of LilyPond's syntax:
+Abjad's LilyPond parser parses a large (although incomplete) subset of
+LilyPond's syntax:
 
 ::
 
    >>> parser = lilypondparsertools.LilyPondParser()
 
 
-The LilyPond parser understands notes, chords, skips and rests,
-including default durations and the ``q`` chord-repeat construct:
+::
+
+   >>> string = r"""
+   ... \new Score <<
+   ...     \new StaffGroup <<
+   ...         \new Staff {
+   ...             r2 ^ \markup { \center-column { tutti \line { ( con sord. ) } } }
+   ...             r8
+   ...             es'' ( \ppp
+   ...             fs'''
+   ...             es'''
+   ...             fs''' \flageolet
+   ...             es'''
+   ...             fs'''
+   ...             es''
+   ...             fs'' )
+   ...             r
+   ...             r4
+   ...         }
+   ...         \new Staff {
+   ...             r4 ^ \markup { ( con sord. ) }
+   ...             r8
+   ...             es' ( \ppp 
+   ...             fs''
+   ...             es'' )
+   ...             r
+   ...             es' (
+   ...             fs''
+   ...             es'
+   ...             fs' )
+   ...             r
+   ...             fs'' (
+   ...             es'
+   ...             fs' )
+   ...             r
+   ...         }
+   ...         \new Staff {
+   ...             r8 ^ \markup { tutti }
+   ...             ds' ( \ppp
+   ...             es''
+   ...             ds''
+   ...             es'
+   ...             ds'
+   ...             es''
+   ...             ds'' )
+   ...             r4
+   ...             es''8 (
+   ...             ds'
+   ...             es' )
+   ...             r
+   ...             es'' (
+   ...             ds' )
+   ...         }
+   ...     >>
+   ... >>
+   ... """
+
 
 ::
 
-   >>> string = r"{ c'\longa r4. <d' fs' bff'> g q8 s1 c''\breve. }"
-   >>> result = parser(string)
+   >>> parsed = parser(string)
 
 
 ::
 
-   >>> f(result)
-   {
-       c'\longa
-       r4.
-       <d' fs' bff'>4.
-       g4.
-       <d' fs' bff'>8
-       s1
-       c''\breve.
-   }
+   >>> f(parsed)
+   \new Score <<
+       \new StaffGroup <<
+           \new Staff {
+               r2
+                   ^ \markup {
+                       \center-column
+                           {
+                               tutti
+                               \line
+                                   {
+                                       (
+                                       con
+                                       sord.
+                                       )
+                                   }
+                           }
+                       }
+               r8
+               es''8 \ppp (
+               fs'''8
+               es'''8
+               fs'''8 -\flageolet
+               es'''8
+               fs'''8
+               es''8
+               fs''8 )
+               r8
+               r4
+           }
+           \new Staff {
+               r4
+                   ^ \markup {
+                       (
+                       con
+                       sord.
+                       )
+                       }
+               r8
+               es'8 \ppp (
+               fs''8
+               es''8 )
+               r8
+               es'8 (
+               fs''8
+               es'8
+               fs'8 )
+               r8
+               fs''8 (
+               es'8
+               fs'8 )
+               r8
+           }
+           \new Staff {
+               r8 ^ \markup { tutti }
+               ds'8 \ppp (
+               es''8
+               ds''8
+               es'8
+               ds'8
+               es''8
+               ds''8 )
+               r4
+               es''8 (
+               ds'8
+               es'8 )
+               r8
+               es''8 (
+               ds'8 )
+           }
+       >>
+   >>
 
 
 ::
 
-   >>> show(result)
+   >>> show(parsed)
 
 .. image:: images/index-1.png
 
 
-The LilyPond parser understands most spanners, articulations and dynamics too:
+The LilyPond parser understands most spanners, articulations and dynamics:
 
 ::
 
-   >>> string = r'''\new Staff {
+   >>> string = r'''
+   ... \new Staff {
    ...     c'8 \f \> (
    ...     d' -_ [
    ...     e' ^>
@@ -138,7 +256,8 @@ The LilyPond parser understands contexts and markup:
 .. image:: images/index-3.png
 
 
-The LilyPond parser even understands certain aspects of LilyPond file layouts, like header blocks:
+The LilyPond parser even understands certain aspects of LilyPond file layouts,
+like header blocks:
 
 ::
 
@@ -163,12 +282,11 @@ The LilyPond parser even understands certain aspects of LilyPond file layouts, l
 ::
 
    >>> f(result)
-   % Abjad revision 9810:9813
-   % 2013-03-24 23:45
+   % Abjad revision 12378
+   % 2013-10-17 19:24
    
-   \version "2.16.1"
+   \version "2.17.28"
    \language "english"
-   \include "/home/josiah/Documents/Development/abjad/trunk/abjad/cfg/abjad.scm"
    
    \header {
        composer = \markup {
@@ -206,13 +324,20 @@ The LilyPond parser even understands certain aspects of LilyPond file layouts, l
 .. image:: images/index-4.png
 
 
-A small number of music functions are also supported, such as ``\relative``. Music functions which mutate
-the score during compilation, result in a normalized Abjad score structure.  That is, the resulting Abjad
-structure corresponds to the music as it appears on the page:
+The LilyPond parser supports a small number of LilyPond music functions, such
+as ``\relative`` and ``\transpose``.
+
+Music functions which mutate the score during compilation, result in a
+normalized Abjad score structure.  The resulting Abjad score structure
+corresponds to the music as it appears on the page:
 
 ::
 
-   >>> string = r'''\new Staff \relative c { c32 d e f g a b c d e f g a b c d e f g a b c }'''
+   >>> string = r'''
+   ... \new Staff \relative c { 
+   ...     c32 d e f g a b c d e f g a b c d e f g a b c 
+   ... }
+   ... '''
    >>> result = parser(string)
 
 
@@ -255,9 +380,10 @@ structure corresponds to the music as it appears on the page:
 RhythmTree Parsing
 ------------------
 
-``rhythmtreetools.RhythmTreeParser`` parses a microlanguage resembling Ircam's RTM-style LISP syntax, and
-generates a sequence of RhythmTree structures, which can be furthered manipulated by composers, before
-being converted into Abjad score object:
+Abjad's rhythm-tree parser parses a microlanguage resembling Ircam's RTM Lisp
+syntax, and generates a sequence of RhythmTree structures, which can be
+furthered manipulated by composers, before being converted into Abjad score
+object:
 
 ::
 
@@ -266,7 +392,7 @@ being converted into Abjad score object:
 
 ::
 
-   >>> string = '(1 (1 (2 (1 1 1)) 2))'
+   >>> string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
    >>> result = parser(string)
    >>> result[0]
    RhythmTreeContainer(
@@ -277,12 +403,29 @@ being converted into Abjad score object:
                ),
            RhythmTreeContainer(
                children=(
+                   RhythmTreeContainer(
+                       children=(
+                           RhythmTreeLeaf(
+                               preprolated_duration=Duration(1, 1),
+                               is_pitched=True
+                               ),
+                           RhythmTreeLeaf(
+                               preprolated_duration=Duration(1, 1),
+                               is_pitched=True
+                               ),
+                           RhythmTreeLeaf(
+                               preprolated_duration=Duration(1, 1),
+                               is_pitched=True
+                               )
+                           ),
+                       preprolated_duration=Duration(2, 1)
+                       ),
                    RhythmTreeLeaf(
-                       preprolated_duration=Duration(1, 1),
+                       preprolated_duration=Duration(2, 1),
                        is_pitched=True
                        ),
                    RhythmTreeLeaf(
-                       preprolated_duration=Duration(1, 1),
+                       preprolated_duration=Duration(2, 1),
                        is_pitched=True
                        ),
                    RhythmTreeLeaf(
@@ -290,14 +433,10 @@ being converted into Abjad score object:
                        is_pitched=True
                        )
                    ),
-               preprolated_duration=Duration(2, 1)
-               ),
-           RhythmTreeLeaf(
-               preprolated_duration=Duration(2, 1),
-               is_pitched=True
+               preprolated_duration=Duration(1, 1)
                )
            ),
-       preprolated_duration=Duration(1, 1)
+       preprolated_duration=Duration(3, 1)
        )
 
 
@@ -305,14 +444,19 @@ being converted into Abjad score object:
 
    >>> tuplet = result[0]((1, 4))[0]
    >>> f(tuplet)
-   \times 4/5 {
-       c'16
-       \times 2/3 {
-           c'16
-           c'16
-           c'16
+   \tweak #'text #tuplet-number::calc-fraction-text
+   \times 3/4 {
+       c'2
+       \times 4/7 {
+           \times 2/3 {
+               c'8
+               c'8
+               c'8
+           }
+           c'4
+           c'4
+           c'8
        }
-       c'8
    }
 
 
@@ -323,7 +467,7 @@ being converted into Abjad score object:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-6.png
 
@@ -331,10 +475,11 @@ being converted into Abjad score object:
 "Reduced-Ly" Parsing
 --------------------
 
-``lilypondparsertools.ReducedLyParser`` parses the "reduced-ly" microlanguage, whose syntax combines a very
-small subset of LilyPond syntax, along with affordances for generating various types of Abjad containers, and
-speedups for rapidly notating notes and rests without needing to specify pitches.  It used mainly for creating
-Abjad documentation:
+Abjad's "reduced-ly" parser parses the "reduced-ly" microlanguage, whose syntax
+combines a very small subset of LilyPond syntax, along with affordances for
+generating various types of Abjad containers, and speedups for rapidly notating
+notes and rests without needing to specify pitches.  It used mainly for
+creating Abjad documentation:
 
 ::
 
@@ -371,3 +516,4 @@ Abjad documentation:
    >>> show(result)
 
 .. image:: images/index-7.png
+
