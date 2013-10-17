@@ -2,8 +2,8 @@ From Trevor, Josiah and Víctor
 ==============================
 
 We are composers `Trevor Bača <http://www.trevorbaca.com>`_,
-Josiah Oberholtzer (<http://www.josiahwolfoberholtzer.com>`_ and
-`Víctor Adán <http://www.victoradan.net>`__, creators of Abjad, and
+`Josiah Wolf Oberholtzer <http://www.josiahwolfoberholtzer.com>`_ and
+`Víctor Adán <http://www.victoradan.net>`_, creators of Abjad, and
 our earliest collaborative work dates back to shared undergraduate years
 in Austin. It was the mid- to late-90s and we found ourselves interested
 in ways of building up ever larger sets of musical materials in our

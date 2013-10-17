@@ -14,3 +14,5 @@ Table of Contents
    developer_documentation/index
    appendices/index
    api/index
+
+   in_conversation/index
