@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass
 
 
 class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
-    '''Abjad model of a numbered inversion-equivalent interval-class:
+    '''A numbered inversion-equivalent interval-class.
 
     ::
 

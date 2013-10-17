@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Accidental(AbjadObject):
-    '''Abjad model of the accidental:
+    '''An accidental.
 
     ::
 

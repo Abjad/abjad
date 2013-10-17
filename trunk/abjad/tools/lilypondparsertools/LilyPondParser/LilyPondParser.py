@@ -764,7 +764,7 @@ class LilyPondParser(abctools.Parser):
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
-        octave_ticks = str(pitchtools.OctaveIndication(new_oct))
+        octave_ticks = str(pitchtools.Octave(new_oct))
         pitch_class_name = \
             pitchtools.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
                 new_step % 7]
@@ -779,7 +779,7 @@ class LilyPondParser(abctools.Parser):
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
-        octave_ticks = str(pitchtools.OctaveIndication(new_oct))
+        octave_ticks = str(pitchtools.Octave(new_oct))
         #pitch_class_name = str(pitchtools.NamedDiatonicPitchClass(
         #    int(new_step)))
         pitch_class_name = \

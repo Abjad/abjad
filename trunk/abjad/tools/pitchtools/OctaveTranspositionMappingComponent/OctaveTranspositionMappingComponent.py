@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
 class OctaveTranspositionMappingComponent(AbjadObject):
-    '''Octave transposition mapping component:
+    '''An octave transposition mapping component.
 
     ::
 

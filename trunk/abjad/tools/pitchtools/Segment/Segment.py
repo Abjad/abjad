@@ -6,7 +6,7 @@ from abjad.tools.datastructuretools import TypedTuple
 
 
 class Segment(TypedTuple):
-    r'''Base class for ordered collections of pitch objects.
+    r'''Music-theoretic segment base class.
     '''
 
     ### CLASS VARIABLES ##

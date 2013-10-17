@@ -9,7 +9,7 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 # TODO: make iterable so that for x in PitchRange works
 class PitchRange(AbjadObject):
-    r"""Abjad model of pitch range:
+    r"""A pitch range.
 
     ::
 

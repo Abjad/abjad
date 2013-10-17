@@ -5,30 +5,30 @@ import re
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class OctaveIndication(AbjadObject):
-    r'''Abjad model of an octave indication:
+class Octave(AbjadObject):
+    r'''An octave.
 
     ::
 
-        >>> pitchtools.OctaveIndication(4)
-        OctaveIndication(4)
+        >>> pitchtools.Octave(4)
+        Octave(4)
 
     ::
 
-        >>> pitchtools.OctaveIndication(",,")
-        OctaveIndication(1)
+        >>> pitchtools.Octave(",,")
+        Octave(1)
 
     ::
 
-        >>> pitchtools.OctaveIndication(pitchtools.NamedPitch("cs''"))
-        OctaveIndication(5)
+        >>> pitchtools.Octave(pitchtools.NamedPitch("cs''"))
+        Octave(5)
 
     ::
 
-        >>> pitchtools.OctaveIndication(pitchtools.OctaveIndication(2))
-        OctaveIndication(2)
+        >>> pitchtools.Octave(pitchtools.Octave(2))
+        Octave(2)
 
-    Return octave indication.
+    Return octave.
     '''
 
     ### CLASS VARIABLES ###
@@ -57,7 +57,7 @@ class OctaveIndication(AbjadObject):
         elif isinstance(expr, str):
             match = self._octave_tick_regex.match(expr)
             if match is None:
-                raise Exception('Cannot instantiate octave indication from '
+                raise Exception('Cannot instantiate octave from '
                     '{!r}'.format(expr))
             group = match.group()
             if group == '':
@@ -71,29 +71,29 @@ class OctaveIndication(AbjadObject):
         elif isinstance(expr, type(self)):
             octave_number = expr.octave_number 
         else:
-            raise Exception('Cannot instantiate octave indication from '
+            raise Exception('Cannot instantiate octave from '
                 '{!r}'.format(expr))
         self._octave_number = octave_number
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, other):
-        r'''True if `other` is octave indication with same octave number:
+        r'''True if `other` is octave with same octave number, otherwise False.
 
         ::
 
-            >>> octave_indication = pitchtools.OctaveIndication(4)
-            >>> octave_indication == pitchtools.OctaveIndication(4)
+            >>> octave = pitchtools.Octave(4)
+            >>> octave == pitchtools.Octave(4)
             True
 
         ::
 
-            >>> octave_indication == pitchtools.OctaveIndication(3)
+            >>> octave == pitchtools.Octave(3)
             False
 
         ::
 
-            >>> octave_indication == 'foo'
+            >>> octave == 'foo'
             False
 
         Return boolean.
@@ -105,11 +105,11 @@ class OctaveIndication(AbjadObject):
             return False
 
     def __float__(self):
-        r'''Case octave indication as floating-point number:
+        r'''Cast octave as floating-point number.
 
         ::
 
-            >>> float(pitchtools.OctaveIndication(3))
+            >>> float(pitchtools.Octave(3))
             3.0
 
         Return floating-point number.
@@ -120,11 +120,11 @@ class OctaveIndication(AbjadObject):
         return hash(repr(self))
 
     def __int__(self):
-        r'''Cast octave indication as integer:
+        r'''Cast octave as integer.
 
         ::
 
-            >>> int(pitchtools.OctaveIndication(3))
+            >>> int(pitchtools.Octave(3))
             3
 
         Return integer.
@@ -135,21 +135,21 @@ class OctaveIndication(AbjadObject):
         return '{}({})'.format(self._class_name, self.octave_number)
 
     def __str__(self):
-        r'''LilyPond octave tick representation of octave indication:
+        r'''LilyPond octave tick representation of octave.
 
         ::
 
-            >>> str(pitchtools.OctaveIndication(4))
+            >>> str(pitchtools.Octave(4))
             "'"
 
         ::
 
-            >>> str(pitchtools.OctaveIndication(1))
+            >>> str(pitchtools.Octave(1))
             ',,'
 
         ::
 
-            >>> str(pitchtools.OctaveIndication(3))
+            >>> str(pitchtools.Octave(3))
             ''
 
         Return string.
@@ -164,12 +164,12 @@ class OctaveIndication(AbjadObject):
 
     @classmethod
     def from_pitch_name(cls, pitch_name):
-        '''Change `pitch_name` to octave indication:
+        '''Change `pitch_name` to octave.
 
         ::
 
-            >>> pitchtools.OctaveIndication.from_pitch_name('cs')
-            OctaveIndication(3)
+            >>> pitchtools.Octave.from_pitch_name('cs')
+            Octave(3)
 
         Return integer.
         '''
@@ -184,25 +184,25 @@ class OctaveIndication(AbjadObject):
 
     @classmethod
     def from_pitch_number(cls, pitch_number):
-        r'''Change `pitch_number` to octave indication:
+        r'''Change `pitch_number` to octave.
 
         ::
 
-            >>> pitchtools.OctaveIndication.from_pitch_number(13)
-            OctaveIndication(5)
+            >>> pitchtools.Octave.from_pitch_number(13)
+            Octave(5)
 
-        Return octave indication.
+        Return octave.
         '''
         octave_number = int(math.floor(pitch_number / 12)) + 4
         return cls(octave_number)
 
     @classmethod
     def is_octave_tick_string(cls, expr):
-        '''True when `expr` is an octave tick string. Otherwise false:
+        '''True when `expr` is an octave tick string, otherwise false.
 
         ::
 
-            >>> pitchtools.OctaveIndication.is_octave_tick_string(',,,')
+            >>> pitchtools.Octave.is_octave_tick_string(',,,')
             True
 
         The regex ``^,+|'+|$`` underlies this predicate.
@@ -217,11 +217,11 @@ class OctaveIndication(AbjadObject):
 
     @property
     def octave_number(self):
-        r'''Octave number of octave indication:
+        r'''Octave number of octave.
 
         ::
 
-            >>> pitchtools.OctaveIndication(5).octave_number
+            >>> pitchtools.Octave(5).octave_number
             5
 
         Return integer.
@@ -230,12 +230,12 @@ class OctaveIndication(AbjadObject):
 
     @property
     def octave_tick_string(self):
-        r"""LilyPond octave tick representation of octave indication:
+        r"""LilyPond octave tick representation of octave.
 
         ::
 
             >>> for i in range(-1, 9):
-            ...     print i, pitchtools.OctaveIndication(i).octave_tick_string
+            ...     print i, pitchtools.Octave(i).octave_tick_string
             -1 ,,,,
             0  ,,,
             1  ,,
@@ -253,21 +253,21 @@ class OctaveIndication(AbjadObject):
 
     @property
     def pitch_number(self):
-        r'''Pitch number of first note in octave:
+        r'''Pitch number of first note in octave.
 
         ::
 
-            >>> pitchtools.OctaveIndication(4).pitch_number
+            >>> pitchtools.Octave(4).pitch_number
             0
 
         ::
 
-            >>> pitchtools.OctaveIndication(5).pitch_number
+            >>> pitchtools.Octave(5).pitch_number
             12
 
         ::
 
-            >>> pitchtools.OctaveIndication(3).pitch_number
+            >>> pitchtools.Octave(3).pitch_number
             -12
 
         Return integer.
@@ -276,11 +276,11 @@ class OctaveIndication(AbjadObject):
 
     @property
     def pitch_range(self):
-        r'''Pitch range of octave:
+        r'''Pitch range of octave.
 
         ::
 
-            >>> pitchtools.OctaveIndication(5).pitch_range
+            >>> pitchtools.Octave(5).pitch_range
             PitchRange('[C5, C6)')
 
         Return pitch range.

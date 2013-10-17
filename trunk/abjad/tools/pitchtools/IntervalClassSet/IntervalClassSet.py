@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.Set import Set
 
 
 class IntervalClassSet(Set):
-    r'''Abjad model of an interval-class set.
+    r'''An interval-class set.
     '''
 
     ### CLASS VARIABLES ###

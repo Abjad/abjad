@@ -224,7 +224,7 @@ class NamedPitch(Pitch):
     def _init_by_pitch_name(self, pitch_string):
         from abjad.tools import pitchtools
         named_pitch_class = pitchtools.NamedPitchClass(pitch_string)
-        octave_number = pitchtools.OctaveIndication.from_pitch_name(
+        octave_number = pitchtools.Octave.from_pitch_name(
             pitch_string).octave_number
         self._init_by_named_pitch_class_and_octave_number(
             named_pitch_class, octave_number)
@@ -296,7 +296,7 @@ class NamedPitch(Pitch):
 
     def respell_with_flats(self):
         from abjad.tools import pitchtools
-        octave = pitchtools.OctaveIndication.from_pitch_number(
+        octave = pitchtools.Octave.from_pitch_number(
             abs(self.numbered_pitch)).octave_number
         name = pitchtools.PitchClass._pitch_class_number_to_pitch_class_name_with_flats[
             self.pitch_class_number]
@@ -305,7 +305,7 @@ class NamedPitch(Pitch):
 
     def respell_with_sharps(self):
         from abjad.tools import pitchtools
-        octave = pitchtools.OctaveIndication.from_pitch_number(
+        octave = pitchtools.Octave.from_pitch_number(
             abs(self.numbered_pitch)).octave_number
         name = pitchtools.PitchClass._pitch_class_number_to_pitch_class_name_with_sharps[
             self.pitch_class_number]
@@ -389,7 +389,7 @@ class NamedPitch(Pitch):
         '''
         return '{}{}'.format(
             self.diatonic_pitch_class_name,
-            self.octave_indication.octave_tick_string,
+            self.octave.octave_tick_string,
             )
 
     @property
@@ -475,18 +475,18 @@ class NamedPitch(Pitch):
         return pitchtools.NumberedPitchClass(self)
 
     @property
-    def octave_indication(self):
+    def octave(self):
         r'''Octave indication.
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").octave_indication
-            OctaveIndication(5)
+            >>> pitchtools.NamedPitch("cs''").octave
+            Octave(5)
 
-        Return octave indication.
+        Return octave.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.OctaveIndication(self._octave_number)
+        return pitchtools.Octave(self._octave_number)
 
     @property
     def octave_number(self):
@@ -565,7 +565,7 @@ class NamedPitch(Pitch):
         '''
         return '{}{}'.format(
             self.pitch_class_name,
-            self.octave_indication.octave_tick_string,
+            self.octave.octave_tick_string,
             )
 
     @property

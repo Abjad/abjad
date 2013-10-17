@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.Interval import Interval
 
 
 class NumberedInterval(Interval):
-    '''Abjad model of a numbered interval:
+    '''A numbered interval.
 
     ::
 

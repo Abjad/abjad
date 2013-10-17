@@ -35,6 +35,6 @@ def make_n_middle_c_centered_pitches(n):
     letters = ['c', 'd', 'e', 'f', 'g', 'a', 'b']
     tups = [divmod(x, 7) for x in centered]
     pitch_names = [
-        letters[x[1]] + str(pitchtools.OctaveIndication(x[0] + 4)) 
+        letters[x[1]] + str(pitchtools.Octave(x[0] + 4)) 
         for x in tups]
     return [pitchtools.NamedPitch(x) for x in pitch_names]

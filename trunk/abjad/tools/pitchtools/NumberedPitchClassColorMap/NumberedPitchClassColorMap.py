@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class NumberedPitchClassColorMap(AbjadObject):
-    '''Abjad model of a numbered pitch-class color map:
+    '''A numbered pitch-class color map.
 
     ::
 

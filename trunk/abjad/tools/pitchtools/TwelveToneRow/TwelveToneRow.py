@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.PitchClassSegment \
 
 
 class TwelveToneRow(PitchClassSegment):
-    '''Abjad model of twelve-tone row:
+    '''A twelve-tone row.
 
     ::
 
@@ -13,10 +13,10 @@ class TwelveToneRow(PitchClassSegment):
 
     Twelve-tone rows validate pitch-classes at initialization.
 
-    Twelve-tone rows inherit canonical operators from numbered 
+    Twelve-tone rows inherit canonical operators from numbered
     pitch-class segment.
 
-    Twelve-tone rows return numbered pitch-class segments 
+    Twelve-tone rows return numbered pitch-class segments
     on calls to getslice.
 
     Twelve-tone rows are immutable.

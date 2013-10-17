@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.Segment import Segment
 
 
 class PitchClassSegment(Segment):
-    '''Pitch-class segment base class:
+    '''A pitch-class segment.
 
     ::
 

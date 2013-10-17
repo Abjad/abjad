@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.Segment import Segment
 
 
 class IntervalClassSegment(Segment):
-    r'''Abjad model of an interval-class segment:
+    r'''An interval-class segment.
 
     ::
 

@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
 class PitchRangeInventory(TypedList):
-    r'''Abjad model of an ordered list of pitch ranges:
+    r'''An ordered list of pitch ranges.
 
     ::
 

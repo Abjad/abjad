@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.Segment import Segment
 
 
 class PitchSegment(Segment):
-    r'''Abjad model of a pitch segment:
+    r'''A pitch segment.
 
     ::
 

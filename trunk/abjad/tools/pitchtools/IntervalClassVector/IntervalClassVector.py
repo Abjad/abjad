@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.Vector import Vector
 
 
 class IntervalClassVector(Vector):
-    r'''Abjad model of an interval-class vector:
+    r'''An interval-class vector.
 
     ::
 

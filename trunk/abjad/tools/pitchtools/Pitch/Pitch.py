@@ -4,7 +4,7 @@ import re
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.pitchtools.PitchClass import PitchClass
 from abjad.tools.pitchtools.Accidental import Accidental
-from abjad.tools.pitchtools.OctaveIndication import OctaveIndication
+from abjad.tools.pitchtools.Octave import Octave
 
 
 class Pitch(AbjadObject):
@@ -23,7 +23,7 @@ class Pitch(AbjadObject):
         {}  # followed by exactly one octave tick string
         '''.format(
         PitchClass._diatonic_pitch_class_name_regex_body,
-        OctaveIndication._octave_tick_regex_body,
+        Octave._octave_tick_regex_body,
         )
 
     _diatonic_pitch_name_regex = re.compile(
@@ -52,7 +52,7 @@ class Pitch(AbjadObject):
         '''.format(
         PitchClass._diatonic_pitch_class_name_regex_body,
         Accidental._alphabetic_accidental_regex_body,
-        OctaveIndication._octave_tick_regex_body,
+        Octave._octave_tick_regex_body,
         )
 
     _pitch_name_regex = re.compile(
@@ -302,7 +302,7 @@ class Pitch(AbjadObject):
         raise NotImplementedError
 
     @abc.abstractproperty
-    def octave_indication(self):
+    def octave(self):
         r'''Octave indication.'''
         raise NotImplementedError
 

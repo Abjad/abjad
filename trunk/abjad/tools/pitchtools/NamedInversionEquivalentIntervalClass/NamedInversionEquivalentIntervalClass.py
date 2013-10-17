@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
 
 
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
-    '''Abjad model of inversion-equivalent diatonic interval-class:
+    '''An inversion-equivalent diatonic interval-class.
 
     ::
 

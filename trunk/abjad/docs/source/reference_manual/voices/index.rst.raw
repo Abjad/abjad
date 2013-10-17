@@ -37,7 +37,7 @@ show(voice)
 Understanding the interpreter representation of a voice
 -------------------------------------------------------
 
-The ``repr`` of an Abjad voice contains three parts:
+The interpreter representation of an Abjad voice contains three parts:
 
 <abjad>
 voice
@@ -95,7 +95,7 @@ Abjad returns a selection.
 Getting the length of a voice
 -----------------------------
 
-Get voice length with ``len()``:
+Get the length of a voice with ``len()``:
 
 <abjad>
 len(voice)

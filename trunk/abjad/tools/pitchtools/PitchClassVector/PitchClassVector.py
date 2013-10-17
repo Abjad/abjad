@@ -2,6 +2,8 @@ from abjad.tools.pitchtools.Vector import Vector
 
 
 class PitchClassVector(Vector):
+    '''A pitch-class vector.
+    '''
 
     ### PRIVATE PROPERTIES ###
 
@@ -9,7 +11,7 @@ class PitchClassVector(Vector):
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedPitchClass
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
