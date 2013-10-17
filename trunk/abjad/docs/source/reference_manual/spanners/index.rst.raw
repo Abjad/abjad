@@ -1,6 +1,7 @@
 Spanners
 ========
 
+
 Overriding spanners
 -------------------
 
@@ -8,13 +9,21 @@ The symbols below are black with fixed thickness and predetermined spacing:
 
 <abjad>
 staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
-slur_1 = spannertools.SlurSpanner(staff[:2])
-slur_2 = spannertools.SlurSpanner(staff[2:4])
-slur_3 = spannertools.SlurSpanner(staff[4:6])
 </abjad>
 
 <abjad>
-f(staff)
+slur_1 = spannertools.SlurSpanner()
+slur_1.attach(staff[:2])
+</abjad>
+
+<abjad>
+slur_2 = spannertools.SlurSpanner()
+slur_2.attach(staff[2:4])
+</abjad>
+
+<abjad>
+slur_3 = spannertools.SlurSpanner()
+slur_3.attach(staff[4:6])
 </abjad>
 
 <abjad>
@@ -29,12 +38,9 @@ slur_3.override.slur.color = 'red'
 </abjad>
 
 <abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
+
 
 Overriding the components to which spanners attach
 --------------------------------------------------
@@ -48,12 +54,9 @@ slur_2.override.stem.color = 'blue'
 </abjad>
 
 <abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
+
 
 Removing spanner overrides
 --------------------------
@@ -63,10 +66,6 @@ Delete grob overrides you no longer want:
 <abjad>
 del(slur_1.override.slur)
 del(slur_3.override.slur)
-</abjad>
-
-<abjad>
-f(staff)
 </abjad>
 
 <abjad>
