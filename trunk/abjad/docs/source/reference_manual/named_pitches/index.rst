@@ -1,5 +1,5 @@
-Pitches
-=======
+Named pitches
+=============
 
 Named pitches are the everyday pitches attached to notes and chords:
 
@@ -18,8 +18,8 @@ Named pitches are the everyday pitches attached to notes and chords:
 
 
 
-Creating pitches
-----------------
+Creating named pitches
+----------------------
 
 Create named pitches like this:
 
@@ -35,8 +35,8 @@ Create named pitches like this:
 
 
 
-Inspecting the name of a pitch
-------------------------------
+Inspecting the name of a named pitch
+------------------------------------
 
 Use ``str()`` to get the name of named pitches:
 
@@ -47,8 +47,8 @@ Use ``str()`` to get the name of named pitches:
 
 
 
-Inspecting the octave of a pitch
---------------------------------
+Inspecting the octave of a named pitch
+--------------------------------------
 
 Get the octave number of named pitches with ``octave_number``:
 
@@ -59,8 +59,8 @@ Get the octave number of named pitches with ``octave_number``:
 
 
 
-Sorting pitches
----------------
+Sorting named pitches
+---------------------
 
 Named pitches sort by octave, diatonic pitch-class and accidental:
 
@@ -71,8 +71,8 @@ Named pitches sort by octave, diatonic pitch-class and accidental:
 
 
 
-Comparing pitches
------------------
+Comparing named pitches
+-----------------------
 
 You can compare named pitches to each other:
 
@@ -179,8 +179,8 @@ Or like this:
 
 
 
-Copying pitches
----------------
+Copying named pitches
+---------------------
 
 Use ``copy.copy()`` to copy named pitches:
 

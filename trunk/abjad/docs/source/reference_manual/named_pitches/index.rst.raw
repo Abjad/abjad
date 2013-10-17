@@ -1,5 +1,5 @@
-Pitches
-=======
+Named pitches
+=============
 
 Named pitches are the everyday pitches attached to notes and chords:
 
@@ -13,8 +13,8 @@ note.written_pitch
 </abjad>
 
 
-Creating pitches
-----------------
+Creating named pitches
+----------------------
 
 Create named pitches like this:
 
@@ -27,8 +27,8 @@ named_pitch
 </abjad>
 
 
-Inspecting the name of a pitch
-------------------------------
+Inspecting the name of a named pitch
+------------------------------------
 
 Use ``str()`` to get the name of named pitches:
 
@@ -37,8 +37,8 @@ str(named_pitch)
 </abjad>
 
 
-Inspecting the octave of a pitch
---------------------------------
+Inspecting the octave of a named pitch
+--------------------------------------
 
 Get the octave number of named pitches with ``octave_number``:
 
@@ -47,8 +47,8 @@ named_pitch.octave_number
 </abjad>
 
 
-Sorting pitches
----------------
+Sorting named pitches
+---------------------
 
 Named pitches sort by octave, diatonic pitch-class and accidental:
 
@@ -57,8 +57,8 @@ pitchtools.NamedPitch('es') < pitchtools.NamedPitch('ff')
 </abjad>
 
 
-Comparing pitches
------------------
+Comparing named pitches
+-----------------------
 
 You can compare named pitches to each other:
 
@@ -140,8 +140,8 @@ pitchtools.NumberedPitchClass(named_pitch)
 </abjad>
 
 
-Copying pitches
----------------
+Copying named pitches
+---------------------
 
 Use ``copy.copy()`` to copy named pitches:
 
