@@ -38,7 +38,7 @@ show(tuplet)
 Understanding the interpreter representation of a tuplet
 --------------------------------------------------------
 
-The interprer representation of an Abjad tuplet contains three parts:
+The interprer representation of an tuplet contains three parts:
 
 <abjad>
 tuplet
@@ -74,7 +74,7 @@ The remaining arguments show the top-level components of tuplet.
 Inspecting the LilyPond format of a tuplet
 ------------------------------------------
 
-Get the LilyPond input format of any Abjad object with ``format``:
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
 
 <abjad>
 tuplet.lilypond_format
@@ -87,64 +87,50 @@ f(tuplet)
 </abjad>
 
 
-Inspecting the music in a tuplet
---------------------------------
+Selecting the music in a tuplet
+-------------------------------
 
-Get the music in any Abjad container with ``music``:
+Slice a tuplet to select its components:
 
 <abjad>
-tuplet.music
+tuplet[:]
 </abjad>
 
-Abjad returns a read-only tuple of components.
+Abjad returns a selection.
 
 
 Inspecting a tuplet's leaves
 ----------------------------
 
-Get the leaves in any Abjad container with ``leaves``:
+Get the leaves in a tuplet with ``select_leaves()``:
 
 <abjad>
 tuplet.select_leaves()
 </abjad>
 
-Abjad returns a read-only selection of leaves.
+Abjad returns a selection.
 
 
 Getting the length of a tuplet
 ------------------------------
 
-Get the length of any Abjad container with ``len()``:
+Get the length of a tuplet with ``len()``:
 
 <abjad>
 len(tuplet)
 </abjad>
 
-The length of every Abjad container is defined equal to the number of
-top-level components present in the container.
+The length of a tuplet is defined equal to the number of top-level components
+the tuplet contains.
 
 
-Getting the duration attributes of a tuplet
--------------------------------------------
+Inspecting duration
+-------------------
 
-You set the multiplier of a tuplet at initialization:
-
-<abjad>
-tuplet.multiplier
-</abjad>
-
-The contents durations of a tuplet equals the sum of written durations of the
-components in the tuplet:
+Use the inspector to get the duration of a voice:
 
 <abjad>
-tuplet._contents_duration
-</abjad>
-
-The multiplied duration of a tuplet equals the product of the tuplet's
-multiplier and the tuplet's contents duration:
-
-<abjad>
-tuplet.multiplied_duration
+inspect(tuplet).get_duration()
 </abjad>
 
 
@@ -170,26 +156,18 @@ tuplet.is_augmentation
 </abjad>
 
 
-Understanding binary and nonbinary tuplets
-------------------------------------------
+Changing the multiplier of a tuplet
+-----------------------------------
 
-A tuplet is considered binary if the numerator of the tuplet multiplier is an
-integer power of ``2``:
+You can change the multiplier of a tuplet with ``multiplier``:
 
 <abjad>
-tuplet.multiplier
+tuplet.multiplier = Multiplier(4, 5)
 </abjad>
 
 <abjad>
-tuplet.has_power_of_two_denominator
+show(tuplet)
 </abjad>
-
-Other tuplets are nonbinary:
-
-<abjad>
-tuplet.has_non_power_of_two_denominator
-</abjad>
-
 
 Adding one component to the end of a tuplet
 --------------------------------------------
@@ -204,6 +182,15 @@ tuplet.append(Note("e'4."))
 show(tuplet)
 </abjad>
 
+You can also use a LilyPond input string:
+
+<abjad>
+tuplet.append("bf8")
+</abjad>
+
+<abjad>
+show(tuplet)
+</abjad>
 
 Adding many components to the end of a tuplet
 ---------------------------------------------
@@ -211,7 +198,7 @@ Adding many components to the end of a tuplet
 Add many components to the end of a tuplet with ``extend``:
 
 <abjad>
-notes = [Note("fs'8"), Note("e'8"), Note("d'8"), Note("c'4.")]
+notes = [Note("fs'32"), Note("e'32"), Note("d'32"), Rest((1, 32))]
 tuplet.extend(notes)
 </abjad>
 
@@ -219,6 +206,15 @@ tuplet.extend(notes)
 show(tuplet)
 </abjad>
 
+You can also use a LilyPond input string:
+
+<abjad>
+tuplet.extend("gs'8 a8") 
+</abjad>
+
+<abjad>
+show(tuplet)
+</abjad>
 
 Finding the index of a component in a tuplet
 --------------------------------------------
@@ -237,14 +233,10 @@ tuplet.index(notes[1])
 Removing a tuplet component by index
 ------------------------------------
 
-Use ``pop()`` to remove a tuplet component by index:
+Use ``pop()`` to remove the last component of a tuplet:
 
 <abjad>
-tuplet[7]
-</abjad>
-
-<abjad>
-tuplet.pop(7)
+tuplet.pop()
 </abjad>
 
 <abjad>
@@ -272,7 +264,8 @@ Overriding attributes of the LilyPond tuplet number grob
 Override attributes of the LilyPond tuplet number grob like this:
 
 <abjad>
-tuplet.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+tuplet.override.tuplet_number.text = schemetools.Scheme(
+    'tuplet-number::calc-fraction-text')
 tuplet.override.tuplet_number.color = 'red'
 </abjad>
 
@@ -282,14 +275,10 @@ block.
 
 <abjad>
 staff = Staff([tuplet])
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
-See the LilyPond docs for lists of grob attributes available.
+See LilyPond's documentation for lists of grob attributes available.
 
 
 Overriding attributes of the LilyPond tuplet bracket grob
@@ -302,11 +291,7 @@ tuplet.override.tuplet_bracket.color = 'red'
 </abjad>
 
 <abjad>
-f(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
-See the LilyPond docs for lists of grob attributes available.
+See LilyPond's documentation for lists of grob attributes available.

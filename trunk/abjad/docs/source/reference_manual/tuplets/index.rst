@@ -47,7 +47,7 @@ components:
 Understanding the interpreter representation of a tuplet
 --------------------------------------------------------
 
-The interprer representation of an Abjad tuplet contains three parts:
+The interprer representation of an tuplet contains three parts:
 
 ::
 
@@ -87,7 +87,7 @@ The remaining arguments show the top-level components of tuplet.
 Inspecting the LilyPond format of a tuplet
 ------------------------------------------
 
-Get the LilyPond input format of any Abjad object with ``format``:
+Get the LilyPond input format of any Abjad object with ``lilypond_format``:
 
 ::
 
@@ -108,26 +108,24 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 
 
-Inspecting the music in a tuplet
---------------------------------
+Selecting the music in a tuplet
+-------------------------------
 
-Get the music in any Abjad container with ``music``:
+Slice a tuplet to select its components:
 
 ::
 
-   >>> tuplet.music
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Tuplet' object has no attribute 'music'
+   >>> tuplet[:]
+   SliceSelection(Note("fs'8"), Note("g'8"), Rest('r8'))
 
 
-Abjad returns a read-only tuple of components.
+Abjad returns a selection.
 
 
 Inspecting a tuplet's leaves
 ----------------------------
 
-Get the leaves in any Abjad container with ``leaves``:
+Get the leaves in a tuplet with ``select_leaves()``:
 
 ::
 
@@ -135,13 +133,13 @@ Get the leaves in any Abjad container with ``leaves``:
    ContiguousSelection(Note("fs'8"), Note("g'8"), Rest('r8'))
 
 
-Abjad returns a read-only selection of leaves.
+Abjad returns a selection.
 
 
 Getting the length of a tuplet
 ------------------------------
 
-Get the length of any Abjad container with ``len()``:
+Get the length of a tuplet with ``len()``:
 
 ::
 
@@ -149,36 +147,18 @@ Get the length of any Abjad container with ``len()``:
    3
 
 
-The length of every Abjad container is defined equal to the number of
-top-level components present in the container.
+The length of a tuplet is defined equal to the number of top-level components
+the tuplet contains.
 
 
-Getting the duration attributes of a tuplet
--------------------------------------------
+Inspecting duration
+-------------------
 
-You set the multiplier of a tuplet at initialization:
-
-::
-
-   >>> tuplet.multiplier
-   Multiplier(2, 3)
-
-
-The contents durations of a tuplet equals the sum of written durations of the
-components in the tuplet:
+Use the inspector to get the duration of a voice:
 
 ::
 
-   >>> tuplet._contents_duration
-   Duration(3, 8)
-
-
-The multiplied duration of a tuplet equals the product of the tuplet's
-multiplier and the tuplet's contents duration:
-
-::
-
-   >>> tuplet.multiplied_duration
+   >>> inspect(tuplet).get_duration()
    Duration(1, 4)
 
 
@@ -211,35 +191,21 @@ augmentation:
 
 
 
-Understanding binary and nonbinary tuplets
-------------------------------------------
+Changing the multiplier of a tuplet
+-----------------------------------
 
-A tuplet is considered binary if the numerator of the tuplet multiplier is an
-integer power of ``2``:
-
-::
-
-   >>> tuplet.multiplier
-   Multiplier(2, 3)
-
+You can change the multiplier of a tuplet with ``multiplier``:
 
 ::
 
-   >>> tuplet.has_power_of_two_denominator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Tuplet' object has no attribute 'has_power_of_two_denominator'
+   >>> tuplet.multiplier = Multiplier(4, 5)
 
-
-Other tuplets are nonbinary:
 
 ::
 
-   >>> tuplet.has_non_power_of_two_denominator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Tuplet' object has no attribute 'has_non_power_of_two_denominator'
+   >>> show(tuplet)
 
+.. image:: images/index-3.png
 
 
 Adding one component to the end of a tuplet
@@ -256,8 +222,21 @@ Add one component to the end of a tuplet with ``append``:
 
    >>> show(tuplet)
 
-.. image:: images/index-3.png
+.. image:: images/index-4.png
 
+
+You can also use a LilyPond input string:
+
+::
+
+   >>> tuplet.append("bf8")
+
+
+::
+
+   >>> show(tuplet)
+
+.. image:: images/index-5.png
 
 
 Adding many components to the end of a tuplet
@@ -267,7 +246,7 @@ Add many components to the end of a tuplet with ``extend``:
 
 ::
 
-   >>> notes = [Note("fs'8"), Note("e'8"), Note("d'8"), Note("c'4.")]
+   >>> notes = [Note("fs'32"), Note("e'32"), Note("d'32"), Rest((1, 32))]
    >>> tuplet.extend(notes)
 
 
@@ -275,8 +254,21 @@ Add many components to the end of a tuplet with ``extend``:
 
    >>> show(tuplet)
 
-.. image:: images/index-4.png
+.. image:: images/index-6.png
 
+
+You can also use a LilyPond input string:
+
+::
+
+   >>> tuplet.extend("gs'8 a8") 
+
+
+::
+
+   >>> show(tuplet)
+
+.. image:: images/index-7.png
 
 
 Finding the index of a component in a tuplet
@@ -287,38 +279,32 @@ Find the index of a component in a tuplet with ``index()``:
 ::
 
    >>> notes[1]
-   Note("e'8")
+   Note("e'32")
 
 
 ::
 
    >>> tuplet.index(notes[1])
-   5
+   6
 
 
 
 Removing a tuplet component by index
 ------------------------------------
 
-Use ``pop()`` to remove a tuplet component by index:
+Use ``pop()`` to remove the last component of a tuplet:
 
 ::
 
-   >>> tuplet[7]
-   Note("c'4.")
-
-
-::
-
-   >>> tuplet.pop(7)
-   Note("c'4.")
+   >>> tuplet.pop()
+   Note('a8')
 
 
 ::
 
    >>> show(tuplet)
 
-.. image:: images/index-5.png
+.. image:: images/index-8.png
 
 
 
@@ -336,7 +322,7 @@ Remove tuplet components by reference with ``remove()``:
 
    >>> show(tuplet)
 
-.. image:: images/index-6.png
+.. image:: images/index-9.png
 
 
 
@@ -347,7 +333,8 @@ Override attributes of the LilyPond tuplet number grob like this:
 
 ::
 
-   >>> tuplet.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+   >>> tuplet.override.tuplet_number.text = schemetools.Scheme(
+   ...     'tuplet-number::calc-fraction-text')
    >>> tuplet.override.tuplet_number.color = 'red'
 
 
@@ -358,31 +345,12 @@ block.
 ::
 
    >>> staff = Staff([tuplet])
-   >>> f(staff)
-   \new Staff {
-       \override TupletNumber #'color = #red
-       \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-       \times 2/3 {
-           fs'8
-           g'8
-           r8
-           fs'8
-           e'8
-           d'8
-       }
-       \revert TupletNumber #'color
-       \revert TupletNumber #'text
-   }
-
-
-::
-
    >>> show(staff)
 
-.. image:: images/index-7.png
+.. image:: images/index-10.png
 
 
-See the LilyPond docs for lists of grob attributes available.
+See LilyPond's documentation for lists of grob attributes available.
 
 
 Overriding attributes of the LilyPond tuplet bracket grob
@@ -397,30 +365,9 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 
 ::
 
-   >>> f(staff)
-   \new Staff {
-       \override TupletBracket #'color = #red
-       \override TupletNumber #'color = #red
-       \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-       \times 2/3 {
-           fs'8
-           g'8
-           r8
-           fs'8
-           e'8
-           d'8
-       }
-       \revert TupletBracket #'color
-       \revert TupletNumber #'color
-       \revert TupletNumber #'text
-   }
-
-
-::
-
    >>> show(staff)
 
-.. image:: images/index-8.png
+.. image:: images/index-11.png
 
 
-See the LilyPond docs for lists of grob attributes available.
+See LilyPond's documentation for lists of grob attributes available.
