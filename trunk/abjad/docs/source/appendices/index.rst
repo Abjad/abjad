@@ -8,6 +8,5 @@ Appendices
    history/index
    text_alignment/index
    pitch_conventions/index
-   score_snippet_gallery/index
    change_log/index
    bibliography/index
