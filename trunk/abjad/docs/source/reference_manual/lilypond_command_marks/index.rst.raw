@@ -48,20 +48,20 @@ show(staff)
 </abjad>
 
 
-Getting the LilyPond command marks attached to an Abjad component
------------------------------------------------------------------
+Inspecting the LilyPond command marks attached to an Abjad component
+--------------------------------------------------------------------
 
-Use ``marktools`` to get the lilypond_command_marks attached to a leaf:
+Use the inspector to get the LilyPond command marks attached to a leaf:
 
 <abjad>
-marktools.get_lilypond_command_marks_attached_to_component(staff[-2])
+inspect(staff[-2]).get_marks(marktools.LilyPondCommandMark)
 </abjad>
 
 
-Detaching LilyPond command marks from components one at a time
---------------------------------------------------------------
+Detaching LilyPond command marks from a component
+-------------------------------------------------
 
-Use ``detach()`` to detach LilyPond command marks one at a time:
+Use ``detach()`` to detach LilyPond command marks from a component:
 
 <abjad>
 lilypond_command_mark.detach()
@@ -76,38 +76,11 @@ show(staff)
 </abjad>
 
 
-Detaching all LilyPond command marks attached to a component at once
---------------------------------------------------------------------
-
-Use ``marktools`` to detach all LilyPond command marks attached to a component at once:
-
-<abjad>
-lilypond_command_mark_1 = marktools.LilyPondCommandMark('bar "||"', 'closing')
-lilypond_command_mark_1.attach(staff[-2])
-</abjad>
-
-<abjad>
-lilypond_command_mark_2 = marktools.LilyPondCommandMark('bar "||"', 'closing')
-lilypond_command_mark_2.attach(staff[-16])
-</abjad>
-
-<abjad>
-show(staff)
-</abjad>
-
-<abjad>
-marktools.detach_lilypond_command_marks_attached_to_component(staff[-16])
-</abjad>
-
-<abjad>
-show(staff)
-</abjad>
-
-
 Inspecting the component to which a LilyPond command mark is attached
 ---------------------------------------------------------------------
 
-Use ``start_component`` to inspect the component to which a LilyPond command mark is attached:
+Use ``start_component`` to inspect the component to which a LilyPond command
+mark is attached:
 
 <abjad>
 lilypond_command_mark = marktools.LilyPondCommandMark('bar "||"', 'closing')

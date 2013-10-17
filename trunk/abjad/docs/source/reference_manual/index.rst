@@ -10,8 +10,8 @@ Reference manual
    articulations/index
    chords/index
    containers/index
-   instruments/index
    input_output/index
+   instruments/index
    lilypond_command_marks/index
    lilypond_comments/index
    lilypond_files/index

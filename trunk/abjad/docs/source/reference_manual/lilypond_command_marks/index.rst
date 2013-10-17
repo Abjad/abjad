@@ -58,22 +58,22 @@ Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
 
 
 
-Getting the LilyPond command marks attached to an Abjad component
------------------------------------------------------------------
+Inspecting the LilyPond command marks attached to an Abjad component
+--------------------------------------------------------------------
 
-Use ``marktools`` to get the lilypond_command_marks attached to a leaf:
+Use the inspector to get the LilyPond command marks attached to a leaf:
 
 ::
 
-   >>> marktools.get_lilypond_command_marks_attached_to_component(staff[-2])
+   >>> inspect(staff[-2]).get_marks(marktools.LilyPondCommandMark)
    (LilyPondCommandMark('bar "||"')(b'8),)
 
 
 
-Detaching LilyPond command marks from components one at a time
---------------------------------------------------------------
+Detaching LilyPond command marks from a component
+-------------------------------------------------
 
-Use ``detach()`` to detach LilyPond command marks one at a time:
+Use ``detach()`` to detach LilyPond command marks from a component:
 
 ::
 
@@ -95,50 +95,11 @@ Use ``detach()`` to detach LilyPond command marks one at a time:
 
 
 
-Detaching all LilyPond command marks attached to a component at once
---------------------------------------------------------------------
-
-Use ``marktools`` to detach all LilyPond command marks attached to a component at once:
-
-::
-
-   >>> lilypond_command_mark_1 = marktools.LilyPondCommandMark('bar "||"', 'closing')
-   >>> lilypond_command_mark_1.attach(staff[-2])
-   LilyPondCommandMark('bar "||"')(b'8)
-
-
-::
-
-   >>> lilypond_command_mark_2 = marktools.LilyPondCommandMark('bar "||"', 'closing')
-   >>> lilypond_command_mark_2.attach(staff[-16])
-   LilyPondCommandMark('bar "||"')(b'8)
-
-
-::
-
-   >>> show(staff)
-
-.. image:: images/index-3.png
-
-
-::
-
-   >>> marktools.detach_lilypond_command_marks_attached_to_component(staff[-16])
-   (LilyPondCommandMark('bar "||"'),)
-
-
-::
-
-   >>> show(staff)
-
-.. image:: images/index-4.png
-
-
-
 Inspecting the component to which a LilyPond command mark is attached
 ---------------------------------------------------------------------
 
-Use ``start_component`` to inspect the component to which a LilyPond command mark is attached:
+Use ``start_component`` to inspect the component to which a LilyPond command
+mark is attached:
 
 ::
 
@@ -151,7 +112,7 @@ Use ``start_component`` to inspect the component to which a LilyPond command mar
 
    >>> show(staff)
 
-.. image:: images/index-5.png
+.. image:: images/index-3.png
 
 
 ::
@@ -176,7 +137,7 @@ LilyPond command a LilyPond command mark prints:
 
    >>> show(staff)
 
-.. image:: images/index-6.png
+.. image:: images/index-4.png
 
 
 
@@ -211,7 +172,7 @@ Use ``copy.copy()`` to copy a LilyPond command mark:
 
    >>> show(staff)
 
-.. image:: images/index-7.png
+.. image:: images/index-5.png
 
 
 Or use ``copy.deepcopy()`` to do the same thing.
