@@ -1,33 +1,29 @@
-Instrument marks
-================
+Instruments
+===========
 
-Instrument marks appear as markup in the left margin of your score.
 
-Creating instrument marks
--------------------------
+Initializing instruments
+------------------------
 
-Use ``contexttools`` to create instrument marks:
+Use ``instrumenttools`` to initialize instruments:
 
 <abjad>
-instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
+violin = instrumenttools.Violin()
 </abjad>
 
 <abjad>
-instrument_mark
+violin
 </abjad>
 
-Attaching instrument marks to a component
------------------------------------------
 
-Use :py:meth:`~abjad.tools.marktools.Mark.attach` to attach any mark to a
-component:
+Attaching instruments to a component
+------------------------------------
+
+Use ``attach()`` to attach instruments to a component:
 
 <abjad>
 staff = Staff("c'4 d'4 e'4 f'4")
-</abjad>
-
-<abjad>
-instrument_mark.attach(staff)
+violin.attach(staff)
 </abjad>
 
 <abjad>
@@ -35,69 +31,37 @@ show(staff)
 </abjad>
 
 
-Getting the instrument mark attached to a component
----------------------------------------------------
+Getting the instrument attached to a component
+----------------------------------------------
 
-Use ``contexttools`` to get the instrument mark attached to a component:
+Use the inspector to get the instrument attached to a component:
 
 <abjad>
-contexttools.get_instrument_mark_attached_to_component(staff)
+inspect(staff).get_mark(instrumenttools.Instrument)
 </abjad>
 
 
 Getting the instrument in effect for a component
 ------------------------------------------------
 
-Or to get the instrument currently in effect for a component:
+Use the inspector to get the instrument currently in effect for a component:
 
 <abjad>
-contexttools.get_effective_instrument(staff[1])
+inspect(staff[1]).get_effective_context_mark(instrumenttools.Instrument)
 </abjad>
 
 
-Detaching instrument marks from a component one at a time
----------------------------------------------------------
+Detaching instruments from a component
+--------------------------------------
 
-Use :py:meth:`~abjad.tools.marktools.Mark.detach` to detach
-instrument marks from a component one at a time:
+Use ``detach()`` to detach an instrument from a component:
 
 <abjad>
-instrument_mark.detach()
+violin.detach()
 </abjad>
 
 <abjad>
-instrument_mark
-</abjad>
-
-<abjad>
-show(staff)
-</abjad>
-
-
-Detaching all instrument marks attached to a component at once
---------------------------------------------------------------
-
-Or use ``contexttools`` to detach instrument marks all at once:
-
-<abjad>
-instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
-instrument_mark.attach(staff)
-</abjad>
-
-<abjad>
-instrument_mark
-</abjad>
-
-<abjad>
-show(staff)
-</abjad>
-
-<abjad>
-contexttools.detach_instrument_marks_attached_to_component(staff)
-</abjad>
-
-<abjad>
-instrument_mark
+violin
 </abjad>
 
 <abjad>
@@ -105,15 +69,15 @@ show(staff)
 </abjad>
 
 
-Inspecting the component to which an instrument mark is attached
-----------------------------------------------------------------
+Inspecting the component to which an instrument is attached
+-----------------------------------------------------------
 
-Use :py:attr:`~abjad.tools.marktools.Mark.start_component`
-to inspect the component to which an instrument mark is attached:
+Use ``start_component`` to inspect the component to which an instrument is
+attached:
 
 <abjad>
-instrument_mark = contexttools.InstrumentMark('Flute ', 'Fl. ')
-instrument_mark.attach(staff)
+flute = instrumenttools.Flute()
+flute.attach(staff)
 </abjad>
 
 <abjad>
@@ -121,27 +85,40 @@ show(staff)
 </abjad>
 
 <abjad>
-instrument_mark.start_component
+flute.start_component
 </abjad>
 
 
-Inspecting the instrument name of an instrument mark
-----------------------------------------------------
+Inspecting the instrument name of an instrument
+-----------------------------------------------
 
-Use :py:attr:`~abjad.tools.contexttools.InstrumentMark.instrument_name_markup` to
-get the instrument name of any instrument mark:
+Use ``instrument_name`` to get the name of any instrument:
 
 <abjad>
-instrument_mark.instrument_name_markup
+flute.instrument_name
+</abjad>
+
+And use ``instrument_name_markup`` to get the instrument name markup of
+any instrument:
+
+<abjad>
+flute.instrument_name_markup
 </abjad>
 
 
-Inspecting the short instrument name of an instrument mark
-----------------------------------------------------------
+Inspecting the short instrument name of an instrument
+-----------------------------------------------------
 
-And use :py:attr:`~abjad.tools.contexttools.InstrumentMark.short_instrument_name_markup`
-to get the short instrument name of any instrument mark:
+Use ``short_instrument_name`` to get the short instrument name of any
+instrument:
 
 <abjad>
-instrument_mark.short_instrument_name_markup
+flute.short_instrument_name
+</abjad>
+
+And use ``short_instrument_name_markup`` to get the short instrument name
+markup of any instrument:
+
+<abjad>
+flute.short_instrument_name_markup
 </abjad>

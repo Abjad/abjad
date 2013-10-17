@@ -1,39 +1,34 @@
-Instrument marks
-================
+Instruments
+===========
 
-Instrument marks appear as markup in the left margin of your score.
 
-Creating instrument marks
--------------------------
+Initializing instruments
+------------------------
 
-Use ``contexttools`` to create instrument marks:
-
-::
-
-   >>> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
-
+Use ``instrumenttools`` to initialize instruments:
 
 ::
 
-   >>> instrument_mark
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')
+   >>> violin = instrumenttools.Violin()
 
 
-Attaching instrument marks to a component
------------------------------------------
+::
 
-Use :py:meth:`~abjad.tools.marktools.Mark.attach` to attach any mark to a
-component:
+   >>> violin
+   Violin()
+
+
+
+Attaching instruments to a component
+------------------------------------
+
+Use ``attach()`` to attach instruments to a component:
 
 ::
 
    >>> staff = Staff("c'4 d'4 e'4 f'4")
-
-
-::
-
-   >>> instrument_mark.attach(staff)
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
+   >>> violin.attach(staff)
+   Violin()(Staff{4})
 
 
 ::
@@ -44,15 +39,15 @@ component:
 
 
 
-Getting the instrument mark attached to a component
----------------------------------------------------
+Getting the instrument attached to a component
+----------------------------------------------
 
-Use ``contexttools`` to get the instrument mark attached to a component:
+Use the inspector to get the instrument attached to a component:
 
 ::
 
-   >>> contexttools.get_instrument_mark_attached_to_component(staff)
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
+   >>> inspect(staff).get_mark(instrumenttools.Instrument)
+   Violin()(Staff{4})
 
 
 
@@ -63,27 +58,26 @@ Or to get the instrument currently in effect for a component:
 
 ::
 
-   >>> contexttools.get_effective_instrument(staff[1])
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
+   >>> inspect(staff[1]).get_effective_context_mark(instrumenttools.Instrument)
+   Violin()(Staff{4})
 
 
 
-Detaching instrument marks from a component one at a time
----------------------------------------------------------
+Detaching instruments from a component
+--------------------------------------
 
-Use :py:meth:`~abjad.tools.marktools.Mark.detach` to detach
-instrument marks from a component one at a time:
-
-::
-
-   >>> instrument_mark.detach()
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')
-
+Use ``detach()`` to detach an instrument from a component:
 
 ::
 
-   >>> instrument_mark
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')
+   >>> violin.detach()
+   Violin()
+
+
+::
+
+   >>> violin
+   Violin()
 
 
 ::
@@ -94,22 +88,17 @@ instrument marks from a component one at a time:
 
 
 
-Detaching all instrument marks attached to a component at once
---------------------------------------------------------------
+Inspecting the component to which an instrument is attached
+-----------------------------------------------------------
 
-Or use ``contexttools`` to detach instrument marks all at once:
-
-::
-
-   >>> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
-   >>> instrument_mark.attach(staff)
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
-
+Use ``start_component`` to inspect the component to which an instrument is
+attached:
 
 ::
 
-   >>> instrument_mark
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
+   >>> flute = instrumenttools.Flute()
+   >>> flute.attach(staff)
+   Flute()(Staff{4})
 
 
 ::
@@ -121,71 +110,49 @@ Or use ``contexttools`` to detach instrument marks all at once:
 
 ::
 
-   >>> contexttools.detach_instrument_marks_attached_to_component(staff)
-   (InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. '),)
-
-
-::
-
-   >>> instrument_mark
-   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')
-
-
-::
-
-   >>> show(staff)
-
-.. image:: images/index-4.png
-
-
-
-Inspecting the component to which an instrument mark is attached
-----------------------------------------------------------------
-
-Use :py:attr:`~abjad.tools.marktools.Mark.start_component`
-to inspect the component to which an instrument mark is attached:
-
-::
-
-   >>> instrument_mark = contexttools.InstrumentMark('Flute ', 'Fl. ')
-   >>> instrument_mark.attach(staff)
-   InstrumentMark(instrument_name='Flute ', short_instrument_name='Fl. ')(Staff{4})
-
-
-::
-
-   >>> show(staff)
-
-.. image:: images/index-5.png
-
-
-::
-
-   >>> instrument_mark.start_component
+   >>> flute.start_component
    Staff{4}
 
 
 
-Inspecting the instrument name of an instrument mark
-----------------------------------------------------
+Inspecting the instrument name of an instrument
+-----------------------------------------------
 
-Use :py:attr:`~abjad.tools.contexttools.InstrumentMark.instrument_name_markup` to
-get the instrument name of any instrument mark:
+Use ``instrument_name`` to get the name of any instrument:
 
 ::
 
-   >>> instrument_mark.instrument_name_markup
+   >>> flute.instrument_name
+   'flute'
+
+
+And use ``instrument_name_markup`` to get the instrument name markup of
+any instrument:
+
+::
+
+   >>> flute.instrument_name_markup
    Markup(('Flute',))
 
 
 
-Inspecting the short instrument name of an instrument mark
-----------------------------------------------------------
+Inspecting the short instrument name of an instrument
+-----------------------------------------------------
 
-And use :py:attr:`~abjad.tools.contexttools.InstrumentMark.short_instrument_name_markup`
-to get the short instrument name of any instrument mark:
+Use ``short_instrument_name`` to get the short instrument name of any
+instrument:
 
 ::
 
-   >>> instrument_mark.short_instrument_name_markup
+   >>> flute.short_instrument_name
+   'fl.'
+
+
+And use ``short_instrument_name_markup`` to get the short instrument name
+markup of any instrument:
+
+::
+
+   >>> flute.short_instrument_name_markup
    Markup(('Fl.',))
+
