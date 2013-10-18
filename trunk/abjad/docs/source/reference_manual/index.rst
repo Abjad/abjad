@@ -18,7 +18,6 @@ Reference manual
    measures/index
    named_pitches/index
    notes/index
-   python_basics/index
    rests/index
    scores/index
    spanners/index

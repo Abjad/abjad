@@ -1,6 +1,7 @@
 Changing notes to rests
 =======================
 
+
 A series of notes
 -----------------
 
@@ -12,18 +13,22 @@ staff.extend([Note(i, (1,8)) for i in [0, 2, 4, 9, 7] * 4 ])
 show(staff)
 </abjad>
 
-In the above example, a single list comprehension takes care of creating our notes.
+In the above example, a single list comprehension takes care of creating our
+notes.
+
 
 Notes belonging to a staff can be iterated
 ------------------------------------------
 
-We will create our repeated pattern again. Note that you can do this in one line:
+We will create our repeated pattern again. Note that you can do this in one
+line:
 
 <abjad>
 staff = Staff([Note(i, (1,8)) for i in [0, 2, 4, 9, 7] * 4 ])
 </abjad>
 
-Now, iterate over the staff's contents, substituting an eighth rest for every fifth (count from zero!) Note element in the staff:
+Now, iterate over the staff's contents, substituting an eighth rest for every
+fifth (count from zero!) Note element in the staff:
 
 <abjad>
 for i, note in enumerate(staff):
@@ -33,10 +38,13 @@ for i, note in enumerate(staff):
 show(staff)
 </abjad>
 
+
 Notes can be used directly
 --------------------------
 
-In the previous example, we used an index (i) to keep track of where we are in the list of notes, and based our decision to flip on that index. We can also decide to flip a note to a rest based on the note iteself:
+In the previous example, we used an index (i) to keep track of where we are in
+the list of notes, and based our decision to flip on that index. We can also
+decide to flip a note to a rest based on the note iteself:
 
 <abjad>
 staff = Staff([Note(i, (1,8)) for i in [0, 2, 4, 9, 7] * 4 ])

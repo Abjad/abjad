@@ -15,6 +15,7 @@ Tutorials
    abjad_hello_world_at_the_interpreter/index
    abjad_hello_world_in_a_file/index
    more_about_abjad/index
+   working_with_lists_of_numbers/index
    changing_notes_to_rests/index
    creating_rest_delimited_slurs/index
    making_grob_overrides/index
