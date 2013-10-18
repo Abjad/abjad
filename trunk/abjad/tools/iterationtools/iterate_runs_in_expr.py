@@ -72,7 +72,7 @@ def iterate_runs_in_expr(sequence, classes):
         list,
         tuple,
         types.GeneratorType, 
-        selectiontools.SliceSelection)), repr(expr)
+        selectiontools.Selection)), repr(sequence)
 
     sequence = selectiontools.SliceSelection(sequence)
 
