@@ -11,7 +11,7 @@ The Abjad codebase comprises a small number of top-level directories:
 
    ls -x -F
 
-Of these, is is in the ``tools`` directory that the bulk of the musical
+Of these, it is in the ``tools`` directory that the bulk of the musical
 reasoning implemented in Abjad resides:
 
 .. shell::
@@ -25,9 +25,9 @@ familiarize developers coming to the project for the first time.
 Removing prebuilt versions of Abjad before you check out
 --------------------------------------------------------
 
-If you'd like to be at the cutting edge of the Abjad development then you
-should check out from Google Code and tell Python and your operating system
-about Abjad.  You can do this by following the steps below.
+If you'd like to be at the cutting edge of the Abjad development you first need
+to check the project out from Google Code, and then teach Python and your
+operating system about Abjad.  You can do this by following the steps below.
 
 But before you do this you should realize that there are two ways to get Abjad
 up and running on your computer.  The first way is by downloading a compressed
@@ -47,10 +47,23 @@ The reason you need to do this is that having both a prebuilt version of Abjad
 and a Subversion-managed version of Abjad on your machine can confuse your
 operating system and lead to weird results when you try to start Abjad.
 
-You remove prebuilt versions of Abjad resident on your computer by finding your
-site packages directory and removing the so-called Abjad 'egg' that Python has
-installed there. After you remove the Abjad egg from your site packages
-directory you will also need to remove the ``abj``, ``abjad`` and
+If you installed Abjad via ``pip``, you can simply say:
+
+.. code-block:: bash
+
+   $ sudo pip uninstall abjad
+
+to remove Abjad in one step. We recommend this as the simplest way of
+installing and uninstalling the packaged version of Abjad. You can download
+``pip`` from `<https://pypi.python.org/pypi/pip>`_.
+
+If you are unable or uninterested in uninstalling the packaged version of Abjad
+automatically with ``pip``, you'll have to uninstall manually.
+
+To remove prebuilt versions of Abjad resident on your computer manually, you
+need to find your site packages directory and remove the so-called Abjad 'egg'
+that Python has installed there. After you remove the Abjad egg from your site
+packages directory you will also need to remove the ``abj``, ``abjad`` and
 ``abjad-book`` scripts from ``/usr/local/bin`` or from the directory that is
 equivalent to ``/usr/local/bin`` under your opearting system.
 
