@@ -60,8 +60,8 @@ class ContiguousSelection(Selection):
         from abjad.tools import spannertools
         assert len(self) == 2
         left_leaf, right_leaf = self
-        assert isinstance(left_leaf, leaftools.Leaf)
-        assert isinstance(right_leaf, leaftools.Leaf)
+        assert isinstance(left_leaf, leaftools.Leaf), left_leaf
+        assert isinstance(right_leaf, leaftools.Leaf), right_leaf
         left_tie_chain = left_leaf._get_tie_chain()
         right_tie_chain = right_leaf._get_tie_chain()
         spanner_classes = (spannertools.TieSpanner,)
