@@ -5,13 +5,10 @@ Rests
 Making rests from strings
 -------------------------
 
-You can make a rest from a LilyPond input string:
+You can make rests from a LilyPond input string:
 
 <abjad>
 rest = Rest('r8')
-</abjad>
-
-<abjad>
 show(rest)
 </abjad>
 
@@ -23,13 +20,8 @@ You can also make rests from a duration:
 
 <abjad>
 rest = Rest(Duration(1, 4))
-</abjad>
-
-<abjad>
 show(rest)
 </abjad>
-
-(You can even use ``Rest((1, 8))`` to make rests from a duration pair.)
 
 
 Making rests from other Abjad leaves
@@ -39,17 +31,11 @@ You can make rests from other Abjad leaves:
 
 <abjad>
 note = Note("d'4..")
-</abjad>
-
-<abjad>
 show(note)
 </abjad>
 
 <abjad>
 rest = Rest(note)
-</abjad>
-
-<abjad>
 show(rest)
 </abjad>
 
@@ -57,13 +43,10 @@ show(rest)
 Making multi-measure rests
 --------------------------
 
-You can create multi-measure rests too:
+You can create multimeasure rests too:
 
 <abjad>
 multimeasure_rest = resttools.MultimeasureRest('R1')
-</abjad>
-
-<abjad>
 show(multimeasure_rest)
 </abjad>
 
@@ -74,26 +57,24 @@ show(staff)
 </abjad>
 
 <abjad>
-compress_full_bar_rests = marktools.LilyPondCommandMark('compressFullBarRests')
-compress_full_bar_rests.attach(staff)
+command = marktools.LilyPondCommandMark('compressFullBarRests')
+command.attach(staff)
 show(staff)
 </abjad>
 
-Changing the written duration of rests
---------------------------------------
 
-You can change the written duration of notes and rests:
+Getting and setting the written duration of rests
+-------------------------------------------------
+
+Get the written duration of rests like this:
 
 <abjad>
-tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
+rest.written_duration
 </abjad>
 
-<abjad>
-tuplet[0].written_duration = Duration(1, 8)
-tuplet[1].written_duration = Duration(1, 8)
-tuplet[2].written_duration = Duration(1, 8)
-</abjad>
+Set the written duration of rests like this:
 
 <abjad>
-show(tuplet)
+rest.written_duration = Duration(3, 16)
+show(rest)
 </abjad>
