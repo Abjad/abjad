@@ -1,119 +1,128 @@
 Tests
 =====
 
-Abjad includes an extensive battery of tests. 
-Abjad is in a state of rapid development and extension.
-Major refactoring efforts are common every six to eight months and
-are likely to remain so for several years.
-And yet Abjad continues to allow the creation
-of complex pieces of fully notated score in the midst of these changes.
-We believe this is due to the extensive coverage provided by 
-the automated regression battery described in the following sections.
+Abjad includes an extensive battery of tests.  Abjad is in a state of rapid
+development and extension.  Major refactoring efforts are common every six to
+eight months and are likely to remain so for several years.  And yet Abjad
+continues to allow the creation of complex pieces of fully notated score in the
+midst of these changes.  We believe this is due to the extensive coverage
+provided by the automated regression battery described in the following
+sections. Abjad 2.13 includes more than 10,000 tests.
 
 
 Automated regression?
 ---------------------
 
-A battery is any collection of tests. Regression tests differ from
-other types of test in that they are designed to be run again and
-again during many different stages of the development process.
-Regression tests help ensure that the system continues to function
-correctly as developers make changes to it. An automated regression
-battery is one that can be run automatically by some sort of driver with
-minimal manual intervention.
+A battery is any collection of tests. Regression tests differ from other types
+of test in that they are designed to be run again and again during many
+different stages of the development process.  Regression tests help ensure that
+the system continues to function correctly as developers make changes to it. An
+automated regression battery is one that can be run automatically by some sort
+of driver with minimal manual intervention.
 
-Several different test drivers are now in use in the Python community.
-Abjad uses `py.test <http://codespeak.net/py/dist/test/test.html>`_.
-The ``py.test`` distribution is not included in the Python
-standard library, so one of the first thing new contributors to Abjad
-should do is download and install ``py.test``, and then run the existing
-battery.
+Several different test drivers are now in use in the Python community.  Abjad
+uses `py.test <http://codespeak.net/py/dist/test/test.html>`_.  The ``py.test``
+distribution is not included in the Python standard library, so one of the
+first thing new contributors to Abjad should do is download and install
+``py.test``, and then run the existing battery.
 
 
 Running the battery
 -------------------
 
 Change to the directory where you have Abjad installed.
-Then run ``py.test``. ::
+Then run ``py.test``:
+
+..  code-block:: bash
 
     abjad$ py.test
-    =============================== test session starts ===================================
-    platform darwin -- Python 2.6.1 -- pytest-2.1.0
-    collected 4235 items 
+    ============================= test session starts ==============================
+    platform darwin -- Python 2.7.3 -- pytest-2.3.4
+    collected 4361 items / 3 skipped 
 
-    core/LilyPondContextProxy/test/test_LilypondContextProxy___eq__.py .
-    core/LilyPondContextProxy/test/test_LilypondContextProxy___repr__.py .
-    core/LilyPondContextProxy/test/test_LilypondContextProxy___setattr__.py ..
+    demos/desordre/test/test_demos_desordre.py .
+    demos/ferneyhough/test/test_demos_ferneyhough.py .
+    demos/mozart/test/test_demos_mozart.py .
+    demos/part/test/test_demos_part.py .
+    demos/part/test/test_demos_part_create_pitch_contour_reservoir.py .
+    demos/part/test/test_demos_part_durate_pitch_contour_reservoir.py .
+    demos/part/test/test_demos_part_shadow_pitch_contour_reservoir.py .
+    ly/test/test_ly_environment.py .
+    tools/abctools/AbjadObject/test/test_AbjadObject___repr__.py ..
+    tools/chordtools/Chord/test/test_Chord___contains__.py ..
+    tools/chordtools/Chord/test/test_Chord___copy__.py .....
+    tools/chordtools/Chord/test/test_Chord___deepcopy__.py .
+    ...
+    ...
+    ...
+    tools/tuplettools/Tuplet/test/test_Tuplet_toggle_prolation.py ..
+    tools/voicetools/Voice/test/test_Voice___copy__.py ..
+    tools/voicetools/Voice/test/test_Voice___delitem__.py .
+    tools/voicetools/Voice/test/test_Voice___len__.py ..
+    tools/voicetools/Voice/test/test_Voice___setattr__.py .
+    tools/voicetools/Voice/test/test_Voice_is_nonsemantic.py ...
+    tools/voicetools/Voice/test/test_lily_voice_resolution.py ....
 
-    ... (many lines omitted) ...
+    =================== 4359 passed, 5 skipped in 147.13 seconds ===================
 
-    tools/voicetools/test/test_voicetools_iterate_semantic_voices_in_expr.py .
-    tools/voicetools/test/test_voicetools_iterate_voices_backward_in_expr.py .
-    tools/voicetools/test/test_voicetools_iterate_voices_in_expr.py .
-
-    ============================ 4235 passed in 127.06 seconds ============================
-
-Abjad r4629 includes 4235 tests.
+Abjad 2.13 includes 4359 ``py.test`` tests.
 
 
 Reading test output
 -------------------
 
-``py.test`` crawls the entire directory structure from which 
-you call it, running tests in alphabetical order. 
-``py.test`` prints the total number of tests per file in square brackets
-and prints test results as a single ``.`` dot for success or else
-an ``F`` for failure.
+``py.test`` crawls the entire directory structure from which you call it,
+running tests in alphabetical order.  ``py.test`` prints the total number of
+tests per file in square brackets and prints test results as a single ``.`` dot
+for success or else an ``F`` for failure.
 
 
 Writing tests
 -------------
 
-Project check-in standards 
-ask that tests accompany all code committed to the Abjad repository. 
-If you add a new function, class or method to Abjad, you should add 
-a new test file for that function, class or method.
-If you fix or extend an existing function, class or method,
-you should find the existing test file that covers that code 
-and then either add a completely new test to the test file or 
-else update an existing test already present in the test file.
+Project check-in standards ask that tests accompany all code committed to the
+Abjad repository.  If you add a new function, class or method to Abjad, you
+should add a new test file for that function, class or method.  If you fix or
+extend an existing function, class or method, you should find the existing test
+file that covers that code and then either add a completely new test to the
+test file or else update an existing test already present in the test file.
 
 
 Test files start with ``test_``
 -------------------------------
 
-When ``py.test`` first starts up it crawls the entire directory structure
-from which you call it prior to running a single test. As ``py.test``
-executes this preflight work, it looks for any files beginning or ending
-with the string ``test`` and then collects and alphabetizes these.
-Only after making such a catalog of tests does ``py.test`` begin execution.
-This collect-and-cache behavior leads to the important point about naming,
-below.
+When ``py.test`` first starts up it crawls the entire directory structure from
+which you call it prior to running a single test. As ``py.test`` executes this
+preflight work, it looks for any files beginning or ending with the string
+``test`` and then collects and alphabetizes these.  Only after making such a
+catalog of tests does ``py.test`` begin execution.  This collect-and-cache
+behavior leads to the important point about naming, below.
 
 
 Avoiding name conflicts
 -----------------------
 
-Note that the names of **test functions** must be absolutely unique
-across the entire directory structure on which you call ``py.test``.
-You must never share names between test functions.
-For example, you must not have two tests named
-``test_grob_handling_01()`` **even if both tests live in different
-test files**. That is, a test named ``test_grob_handling_01()``
-living in the file ``test_accidental_grob_handling.py`` and a second
-test named ``test_grob_handling_01()`` living in the file
-``test_notehead_grob_handling.py`` will conflict with the each
-other when ``py.test`` runs. And, unfortunately, **``py.test is silent
-about such conflicts when it runs**. That is, should you run ``py.test``
-with the duplicate naming situation described here, what will happen
-is that ``py.test`` will correctly run and report results for the 
-**first** such test it finds. However, when ``py.test`` encounters
-the second like-named test, ``py.test`` will incorrectly report 
-cached results for the **first** test rather than the second.
-The take-away is to include some sort of namespacing indicators
-in every test name and not to be afraid of long test names.
-The ``test_grob_handling_01()`` example given here fixes easily when
-the two tests rename to ``test_accidental_grob_handling_01()`` and
+Note that the names of **test functions** must be absolutely unique across the
+entire directory structure on which you call ``py.test``.  You must never share
+names between test functions.  For example, you must not have two tests named
+``test_grob_handling_01()`` **even if both tests live in different test
+files**. That is, a test named ``test_grob_handling_01()`` living in the file
+``test_accidental_grob_handling.py`` and a second test named
+``test_grob_handling_01()`` living in the file
+``test_notehead_grob_handling.py`` will conflict with the each other when
+``py.test`` runs. And, unfortunately, **py.test is silent about such
+conflicts when it runs**.
+
+That is, should you run ``py.test`` with the duplicate naming situation
+described here, what will happen is that ``py.test`` will correctly run and
+report results for the first such test it finds.  However, when ``py.test``
+encounters the second like-named test, ``py.test`` will incorrectly report
+cached results for the first test rather than the second.
+
+The take-away is to include some sort of namespacing indicators in every test
+name and not to be afraid of long test names.  The ``test_grob_handling_01()``
+example given here fixes easily when the two tests rename to
+``test_accidental_grob_handling_01()`` and
 ``test_notehead_grob_handling_01()``.
 
 
@@ -122,9 +131,11 @@ Updating ``py.test``
 
 It is important periodically to update ``py.test``.
 
-The usual command to do this is::
+The usual command to do this is:
 
-    $ sudo easy_install -U pytest
+..  code-block:: bash
+
+    $ sudo pip install --upgrade pytest
 
 Note that ``pytest`` is here spelled without the intervening period.
 
@@ -134,25 +145,16 @@ Running ``doctest`` on the ``tools`` directory
 
 The Python standard library includes the ``doctest`` module as way of checking
 the correctness of examples included in Python docstrings.
-The module searches for instances of the Python interpreter prompt ``'>>>'`` and
-executes any code that follows.
-Abjad docs display the Abjad prompt ``'abjad>'`` instead of the Python prompt.
-This means that all instances of the Abjad prompt must be changed to Python
-prompts before running ``doctest`` on the Abjad codebase.
-Three scripts in ``abjad/scr/devel`` help do this.
 
-First change to the subdirectory of the Abjad source tree on which you'd like
-to run ``doctest``. Then run these scripts::
+You can use the Abjad ``ajv`` developer suite to run ``doctest`` anywhere in
+the codebase:
 
-   replace-abjad-prompts-with-python-prompts
+..  code-block:: bash
 
-::
+    abjad$ ajv doctest
+    Total modules: 954
 
-   run-doctest-on-all-modules-in-tree
+Output like that shown above indicates that all doctests pass; errors will
+print to the terminal.
 
-::
-
-   replace-python-prompts-with-abjad-prompts
-
-After running ``run-doctest-on-all-modules-in-tree`` you can inspect the results 
-that come back from ``doctest`` and make any fixes as required.
+Abjad 2.13 includes more than 7000 doctests.
