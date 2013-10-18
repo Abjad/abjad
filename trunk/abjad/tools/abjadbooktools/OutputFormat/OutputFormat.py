@@ -43,6 +43,11 @@ class OutputFormat(abctools.AbjadObject):
                     self.code_block_opening +
                     '\n'.join([(' ' * self.code_indent) + x for x in result]) +
                     self.code_block_closing)
+                for x in result:
+                    if 'Error:' in x or 'Exception:' in x:
+                        print '\nAbjadBookError:\n\n{}'.format(
+                            '\n'.join(result))
+                        break
 
             elif isinstance(result, dict):
                 file_name = result['file_name']
@@ -59,7 +64,8 @@ class OutputFormat(abctools.AbjadObject):
                             reformatted.append(
                                 self.image_block.format(image_file_name))
                     except KeyError:
-                        print 'Error:\n{}'.format('\n'.join(reformatted))
+                        print '\nAbjadBookError:\n\n{}'.format(
+                            '\n'.join(reformatted))
 
                 else:
                     for page_number, image_file_name in sorted(
