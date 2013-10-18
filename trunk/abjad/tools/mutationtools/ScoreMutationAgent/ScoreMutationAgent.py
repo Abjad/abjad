@@ -970,7 +970,7 @@ class ScoreMutationAgent(object):
         else:
             assert isinstance(self._client, selectiontools.Selection)
             for component in self._client:
-                component._scale()
+                component._scale(multiplier)
 
     def splice(
         self,
