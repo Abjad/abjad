@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import componenttools
 from abjad.tools import containertools
-from abjad.tools import leaftools
+from abjad.tools import mathtools
 from abjad.tools import mutationtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
@@ -947,6 +946,11 @@ def establish_metrical_hierarchy(
         else:
             #print 'DESCENDING:', item
             preprolated_duration = sum([x._preprolated_duration for x in item])
+            if preprolated_duration.numerator == 1:
+                preprolated_duration = mathtools.NonreducedFraction(
+                    preprolated_duration)
+                preprolated_duration = preprolated_duration.with_denominator(
+                    preprolated_duration.denominator * 4)
             sub_metrical_hierarchy = timesignaturetools.MetricalHierarchy(preprolated_duration)
             sub_boundary_depth = 1
             if boundary_depth is None:
