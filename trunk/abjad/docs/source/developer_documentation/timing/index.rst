@@ -1,7 +1,9 @@
 Timing code
 ===========
 
-You can time code with Python's built-in ``timeit`` module::
+You can time code with Python's built-in ``timeit`` module:
+
+..  code-block:: python
 
     from abjad import *
     import timeit
@@ -11,8 +13,8 @@ You can time code with Python's built-in ``timeit`` module::
 
 ::
 
-    0.225436925888
+    0.12424993515
  
-These results show that 1000 notes take 0.23 seconds to create.
+These results show that 1000 notes take 0.12 seconds to create.
 
 Other Python timing modules are available for download on the public Internet.
