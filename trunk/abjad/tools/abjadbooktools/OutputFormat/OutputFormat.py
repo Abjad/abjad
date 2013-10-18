@@ -46,7 +46,7 @@ class OutputFormat(abctools.AbjadObject):
                 for x in result:
                     if 'Error:' in x or 'Exception:' in x:
                         print '\nAbjadBookError:\n\n{}'.format(
-                            '\n'.join(result))
+                            '\n'.join(reformatted))
                         break
 
             elif isinstance(result, dict):
