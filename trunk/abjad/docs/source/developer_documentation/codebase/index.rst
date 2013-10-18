@@ -9,53 +9,50 @@ The Abjad codebase comprises a small number of top-level directories:
 
 .. shell::
 
-   ls -x -F --width 80
-
+   ls -x -F
 
 Of these, is is in the ``tools`` directory that the bulk of the musical
 reasoning implemented in Abjad resides:
 
 .. shell::
 
-   ls tools/ -x -F --width 80
+   ls -x -F tools/
 
-
-The remaining sections of this chapter cover the topics necessary
-to familiarize developers coming to the project for the first time.
+The remaining sections of this chapter cover the topics necessary to
+familiarize developers coming to the project for the first time.
 
 
 Removing prebuilt versions of Abjad before you check out
 --------------------------------------------------------
 
-If you'd like to be at the cutting edge of the Abjad development then
-you should check out from Google Code and tell Python and your operating system about Abjad.
-You can do this by following the steps below.
+If you'd like to be at the cutting edge of the Abjad development then you
+should check out from Google Code and tell Python and your operating system
+about Abjad.  You can do this by following the steps below.
 
-But before you do this you should realize that there are two ways to 
-get Abjad up and running on your computer.
-The first way is by downloading a compressed version of Abjad from the
-`Python Package Index <http://pypi.python.org/pypi/Abjad/>`_.
-You probably did this when you first discovered Abjad and started to use the system.
-The second way is by following the steps below to check out a copy of
-the most recent version of the Abjad repository hosted on Google Code.
-If you already have a version of Abjad running on your computer 
-but you haven't yet followed the steps below to check out from Google Code,
-then you probably downloaded a compressed version of Abjad from the Python Package Index.
+But before you do this you should realize that there are two ways to get Abjad
+up and running on your computer.  The first way is by downloading a compressed
+version of Abjad from the `Python Package Index
+<http://pypi.python.org/pypi/Abjad/>`_.  You probably did this when you first
+discovered Abjad and started to use the system.  The second way is by following
+the steps below to check out a copy of the most recent version of the Abjad
+repository hosted on Google Code.  If you already have a version of Abjad
+running on your computer but you haven't yet followed the steps below to check
+out from Google Code, then you probably downloaded a compressed version of
+Abjad from the Python Package Index.
 
-**Before you check out from Google Code you should remove all prebuilt
-versions of Abjad from your machine.**
+**Before you check out from Google Code you should remove all prebuilt versions
+of Abjad from your machine.**
 
 The reason you need to do this is that having both a prebuilt version of Abjad
-and a Subversion-managed version of Abjad on your machine can confuse your operating
-system and lead to weird results when you try to start Abjad.
+and a Subversion-managed version of Abjad on your machine can confuse your
+operating system and lead to weird results when you try to start Abjad.
 
-You remove prebuilt versions of Abjad resident on your computer 
-by finding your site packages directory and removing the so-called Abjad
-'egg' that Python has installed there. After you remove
-the Abjad egg from your site packages directory you will also
-need to remove the ``abj``, ``abjad`` and ``abjad-book`` scripts
-from ``/usr/local/bin`` or from the directory that is equivalent
-to ``/usr/local/bin`` under your opearting system.
+You remove prebuilt versions of Abjad resident on your computer by finding your
+site packages directory and removing the so-called Abjad 'egg' that Python has
+installed there. After you remove the Abjad egg from your site packages
+directory you will also need to remove the ``abj``, ``abjad`` and
+``abjad-book`` scripts from ``/usr/local/bin`` or from the directory that is
+equivalent to ``/usr/local/bin`` under your opearting system.
 
 First note the version of Python you're currently running:
 
@@ -64,18 +61,19 @@ First note the version of Python you're currently running:
    python --version
 
 This is important because you may have more than one version of Python
-installed on your machine. (Which tends especially to be the case 
-if you're running a Apple's OS X.)
+installed on your machine. (Which tends especially to be the case if you're
+running a Apple's OS X.)
 
-Then note that the site packages directory is a part of your filesystem 
-into which Python installs third-party Python packages like Abjad. 
-The location of the site packages directory varies from one operating system to the next
-and you may have to Google to find the exact location of the site packages
-directory on your machine. Under OS X you can check ``/Library/Python/2.x/site-packages/``.
-Under Linux  the site packages directory is usually ``/usr/lib/python2.x/site-packages``.
+Then note that the site packages directory is a part of your filesystem into
+which Python installs third-party Python packages like Abjad.  The location of
+the site packages directory varies from one operating system to the next and
+you may have to Google to find the exact location of the site packages
+directory on your machine. Under OS X you can check
+``/Library/Python/2.x/site-packages/``.  Under Linux  the site packages
+directory is usually ``/usr/lib/python2.x/site-packages``.
 
-Once you've found your site packages directory you can list its contents to see if
-Python has installed an Abjad egg in it:
+Once you've found your site packages directory you can list its contents to see
+if Python has installed an Abjad egg in it:
 
 .. code-block:: bash
 
@@ -110,8 +108,8 @@ Now proceed to the steps below to check out from Google Code.
 Installing the development version
 ----------------------------------
 
-Follow the steps listed above to remove prebuilt versions of Abjad from your machine.
-Then follow the steps below to check out from Google Code.
+Follow the steps listed above to remove prebuilt versions of Abjad from your
+machine.  Then follow the steps below to check out from Google Code.
 
 1. Make sure Subversion is installed on your machine:
 
@@ -128,7 +126,8 @@ Then follow the steps below to check out from Google Code.
 
       svn checkout http://abjad.googlecode.com/svn/abjad/trunk abjad-trunk
 
-3. Add the abjad trunk directory to your your ``PYTHONPATH`` environment variable:
+3. Add the abjad trunk directory to your your ``PYTHONPATH`` environment
+   variable:
 
    .. code-block:: bash 
 
