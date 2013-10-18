@@ -10,7 +10,7 @@ Developer documentation
    documentation/index
    tests/index
    ajv/index
-   abjad_book/index
+   ajv_book/index
    timing/index
    profiling/index
    memory/index
