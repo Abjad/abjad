@@ -1,7 +1,7 @@
-Using the ``ajv`` developer suite
-=================================
+Using ``ajv``
+=============
 
-Abjad ships with an extensive collection of developer tools.  The tools are
+Abjad ships with an extensive collection of developer tools. The tools are
 accessible through the ``ajv`` developer suite.
 
 You'll find ``ajv`` in the ``abjad/scr/`` directory. Make sure to add that

@@ -9,7 +9,7 @@ Developer documentation
    codebase/index
    documentation/index
    tests/index
-   scripts/index
+   ajv/index
    abjad_book/index
    timing/index
    profiling/index
