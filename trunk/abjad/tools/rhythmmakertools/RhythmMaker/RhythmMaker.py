@@ -148,6 +148,8 @@ class RhythmMaker(Maker):
         return result
 
     def _trivial_helper(self, talea, seeds):
+        if isinstance(seeds, int) and len(talea):
+            return sequencetools.rotate_sequence(talea, seeds)
         return talea
 
     ### PUBLIC METHODS ###
