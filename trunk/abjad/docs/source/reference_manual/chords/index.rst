@@ -9,10 +9,6 @@ You can make chords from a LilyPond input string:
 ::
 
    >>> chord = Chord("<c' d' bf'>4")
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-1.png
@@ -27,10 +23,6 @@ You can also make chords from pitch numbers and duration:
 ::
 
    >>> chord = Chord([0, 2, 10], Duration(1, 4))
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-2.png
@@ -62,8 +54,8 @@ You can get the written pitches of a chord one at a time:
    NamedPitch("c'")
 
 
-Chords index the pitch they contain starting from ``0`` 
-(just like tuples and lists).
+Chords index the pitch they contain starting from ``0``, just like tuples and
+lists.
 
 
 Adding one pitch to a chord at a time
@@ -76,10 +68,6 @@ You can add a pitch to a chord with a pitch number:
 ::
 
    >>> chord.append(9)
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-3.png
@@ -90,10 +78,6 @@ Or you can add a pitch to a chord with a pitch name:
 ::
 
    >>> chord.append("df''")
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-4.png
@@ -114,10 +98,6 @@ You can use pitch numbers:
 ::
 
    >>> chord.extend([3, 4, 14])
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-5.png
@@ -128,10 +108,6 @@ Or you can use pitch names:
 ::
 
    >>> chord.extend(["g''", "af''"])
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-6.png
@@ -146,10 +122,6 @@ Delete pitches from a chord with ``del()``:
 ::
 
    >>> del(chord[0])
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-7.png
@@ -160,10 +132,6 @@ Negative indices work too:
 ::
 
    >>> del(chord[-1])
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-8.png
@@ -211,10 +179,6 @@ heads in a chord one at a time:
    >>> chord[2].tweak.color = 'red'
    >>> chord[3].tweak.color = 'blue'
    >>> chord[4].tweak.color = 'green'
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-9.png
@@ -248,10 +212,6 @@ into it chord in any of the ways described above:
 ::
 
    >>> chord.extend(["gf'", "df''", "g''"])
-
-
-::
-
    >>> show(chord)
 
 .. image:: images/index-10.png

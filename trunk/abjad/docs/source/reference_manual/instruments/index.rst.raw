@@ -24,9 +24,6 @@ Use ``attach()`` to attach instruments to a component:
 <abjad>
 staff = Staff("c'4 d'4 e'4 f'4")
 violin.attach(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -58,13 +55,6 @@ Use ``detach()`` to detach an instrument from a component:
 
 <abjad>
 violin.detach()
-</abjad>
-
-<abjad>
-violin
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -78,9 +68,6 @@ attached:
 <abjad>
 flute = instrumenttools.Flute()
 flute.attach(staff)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 

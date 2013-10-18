@@ -11,10 +11,6 @@ Create a container with components:
 
    >>> notes = [Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")]
    >>> container = Container(notes)
-
-
-::
-
    >>> show(container)
 
 .. image:: images/index-1.png
@@ -27,10 +23,6 @@ Or with a LilyPond input string:
 ::
 
    >>> container = Container("ds'16 cs'16 e'16 c'16 d'2 ~ d'8")
-
-
-::
-
    >>> show(container)
 
 .. image:: images/index-2.png
@@ -81,10 +73,6 @@ Add one component to the end of a container with ``append()``:
 ::
 
    >>> container.append(Note("af'32"))
-
-
-::
-
    >>> show(container)
 
 .. image:: images/index-3.png
@@ -99,10 +87,6 @@ Add many components to the end of a container with ``extend()``:
 ::
 
    >>> container.extend([Note("c''32"), Note("a'32")])
-
-
-::
-
    >>> show(container)
 
 .. image:: images/index-4.png
@@ -134,10 +118,6 @@ Insert a component by index with ``insert()``:
 ::
 
    >>> container.insert(-3, Note("g'32"))
-
-
-::
-
    >>> show(container)
 
 .. image:: images/index-5.png
@@ -153,10 +133,6 @@ Remove a component by index with ``pop()``:
 
    >>> container.pop(-1)
    Note("a'32")
-
-
-::
-
    >>> show(container)
 
 .. image:: images/index-6.png
@@ -171,18 +147,12 @@ Remove a component by reference with ``remove()``:
 ::
 
    >>> container.remove(container[-1])
-
-
-::
-
    >>> show(container)
 
 .. image:: images/index-7.png
 
 
-.. note::
-
-    ``__getslice__``, ``__setslice__`` and ``__delslice__`` 
+..  ``__getslice__``, ``__setslice__`` and ``__delslice__`` 
     remain to be documented.
 
 
@@ -377,10 +347,6 @@ But you can override LilyPond grobs to change the look of Abjad containers:
 ::
 
    >>> staff.override.staff_symbol.color = 'blue'
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-13.png
@@ -397,10 +363,6 @@ contents, too:
 
    >>> staff.override.note_head.color = 'red'
    >>> staff.override.stem.color = 'red'
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-14.png
@@ -415,10 +377,6 @@ Delete grob overrides you no longer want:
 ::
 
    >>> del(staff.override.staff_symbol)
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-15.png

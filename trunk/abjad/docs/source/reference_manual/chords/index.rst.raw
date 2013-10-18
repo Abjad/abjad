@@ -8,9 +8,6 @@ You can make chords from a LilyPond input string:
 
 <abjad>
 chord = Chord("<c' d' bf'>4")
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -22,9 +19,6 @@ You can also make chords from pitch numbers and duration:
 
 <abjad>
 chord = Chord([0, 2, 10], Duration(1, 4))
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -50,8 +44,8 @@ You can get the written pitches of a chord one at a time:
 chord.written_pitches[0]
 </abjad>
 
-Chords index the pitch they contain starting from ``0`` 
-(just like tuples and lists).
+Chords index the pitch they contain starting from ``0``, just like tuples and
+lists.
 
 
 Adding one pitch to a chord at a time
@@ -63,9 +57,6 @@ You can add a pitch to a chord with a pitch number:
 
 <abjad>
 chord.append(9)
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -73,9 +64,6 @@ Or you can add a pitch to a chord with a pitch name:
 
 <abjad>
 chord.append("df''")
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -93,9 +81,6 @@ You can use pitch numbers:
 
 <abjad>
 chord.extend([3, 4, 14])
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -103,9 +88,6 @@ Or you can use pitch names:
 
 <abjad>
 chord.extend(["g''", "af''"])
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -117,9 +99,6 @@ Delete pitches from a chord with ``del()``:
 
 <abjad>
 del(chord[0])
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -127,9 +106,6 @@ Negative indices work too:
 
 <abjad>
 del(chord[-1])
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -168,9 +144,6 @@ heads in a chord one at a time:
 chord[2].tweak.color = 'red'
 chord[3].tweak.color = 'blue'
 chord[4].tweak.color = 'green'
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>
 
@@ -198,8 +171,5 @@ into it chord in any of the ways described above:
 
 <abjad>
 chord.extend(["gf'", "df''", "g''"])
-</abjad>
-
-<abjad>
 show(chord)
 </abjad>

@@ -10,9 +10,6 @@ Create a container with components:
 <abjad>
 notes = [Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")]
 container = Container(notes)
-</abjad>
-
-<abjad>
 show(container)
 </abjad>
 
@@ -22,9 +19,6 @@ Or with a LilyPond input string:
 
 <abjad>
 container = Container("ds'16 cs'16 e'16 c'16 d'2 ~ d'8")
-</abjad>
-
-<abjad>
 show(container)
 </abjad>
 
@@ -66,9 +60,6 @@ Add one component to the end of a container with ``append()``:
 
 <abjad>
 container.append(Note("af'32"))
-</abjad>
-
-<abjad>
 show(container)
 </abjad>
 
@@ -80,9 +71,6 @@ Add many components to the end of a container with ``extend()``:
 
 <abjad>
 container.extend([Note("c''32"), Note("a'32")])
-</abjad>
-
-<abjad>
 show(container)
 </abjad>
 
@@ -108,9 +96,6 @@ Insert a component by index with ``insert()``:
 
 <abjad>
 container.insert(-3, Note("g'32"))
-</abjad>
-
-<abjad>
 show(container)
 </abjad>
 
@@ -122,9 +107,6 @@ Remove a component by index with ``pop()``:
 
 <abjad>
 container.pop(-1)
-</abjad>
-
-<abjad>
 show(container)
 </abjad>
 
@@ -136,15 +118,10 @@ Remove a component by reference with ``remove()``:
 
 <abjad>
 container.remove(container[-1])
-</abjad>
-
-<abjad>
 show(container)
 </abjad>
 
-.. note::
-
-    ``__getslice__``, ``__setslice__`` and ``__delslice__`` 
+..  ``__getslice__``, ``__setslice__`` and ``__delslice__`` 
     remain to be documented.
 
 
@@ -311,9 +288,6 @@ But you can override LilyPond grobs to change the look of Abjad containers:
 
 <abjad>
 staff.override.staff_symbol.color = 'blue'
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -327,9 +301,6 @@ contents, too:
 <abjad>
 staff.override.note_head.color = 'red'
 staff.override.stem.color = 'red'
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -341,8 +312,5 @@ Delete grob overrides you no longer want:
 
 <abjad>
 del(staff.override.staff_symbol)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>

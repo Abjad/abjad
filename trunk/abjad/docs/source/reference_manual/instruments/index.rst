@@ -29,10 +29,6 @@ Use ``attach()`` to attach instruments to a component:
    >>> staff = Staff("c'4 d'4 e'4 f'4")
    >>> violin.attach(staff)
    Violin()(Staff{4})
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-1.png
@@ -54,7 +50,7 @@ Use the inspector to get the instrument attached to a component:
 Getting the instrument in effect for a component
 ------------------------------------------------
 
-Or to get the instrument currently in effect for a component:
+Use the inspector to get the instrument currently in effect for a component:
 
 ::
 
@@ -72,16 +68,6 @@ Use ``detach()`` to detach an instrument from a component:
 
    >>> violin.detach()
    Violin()
-
-
-::
-
-   >>> violin
-   Violin()
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-2.png
@@ -99,10 +85,6 @@ attached:
    >>> flute = instrumenttools.Flute()
    >>> flute.attach(staff)
    Flute()(Staff{4})
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-3.png

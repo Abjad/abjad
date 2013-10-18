@@ -22,10 +22,10 @@ Make a basic LilyPond file with the ``lilypondfiletools`` package:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 12365:12366
-   % 2013-10-17 15:54
+   % Abjad revision 12391:12394
+   % 2013-10-18 11:14
    
-   \version "2.17.28"
+   \version "2.17.27"
    \language "english"
    
    \score {
@@ -84,10 +84,10 @@ Set default LilyPond global staff size and paper size like this:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 12365:12366
-   % 2013-10-17 15:54
+   % Abjad revision 12391:12394
+   % 2013-10-18 11:14
    
-   \version "2.17.28"
+   \version "2.17.27"
    \language "english"
    
    #(set-default-paper-size "A7" 'portrait)
@@ -130,10 +130,10 @@ information:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 12365:12366
-   % 2013-10-17 15:54
+   % Abjad revision 12391:12394
+   % 2013-10-18 11:14
    
-   \version "2.17.28"
+   \version "2.17.27"
    \language "english"
    
    #(set-default-paper-size "A7" 'portrait)

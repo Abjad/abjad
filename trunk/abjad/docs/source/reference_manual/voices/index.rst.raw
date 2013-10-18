@@ -9,9 +9,6 @@ You can make an Abjad voice from a LilyPond input string:
 
 <abjad>
 voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
-</abjad>
-
-<abjad>
 show(voice)
 </abjad>
 
@@ -23,13 +20,7 @@ You can also make a voice from a list of other Abjad components:
 
 <abjad>
 components = [Tuplet(Fraction(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
-</abjad>
-
-<abjad>
 voice = Voice(components)
-</abjad>
-
-<abjad>
 show(voice)
 </abjad>
 
@@ -77,8 +68,6 @@ Slice a voice to select its components:
 voice[:]
 </abjad>
 
-Abjad returns a selection.
-
 
 Inspecting a voice's leaves
 ---------------------------
@@ -89,20 +78,18 @@ Get the leaves in a voice with ``select_leaves()``:
 voice.select_leaves()
 </abjad>
 
-Abjad returns a selection.
-
 
 Getting the length of a voice
 -----------------------------
+
+The length of a voice is defined equal to the number of top-level components
+the voice contains.
 
 Get the length of a voice with ``len()``:
 
 <abjad>
 len(voice)
 </abjad>
-
-The length of a voice is defined equal to the number of top-level components
-the voice contains.
 
 
 Inspecting duration
@@ -122,9 +109,6 @@ Add one component to the end of a voice with ``append()``:
 
 <abjad>
 voice.append(Note("af'2"))
-</abjad>
-
-<abjad>
 show(voice)
 </abjad>
 
@@ -132,9 +116,6 @@ You can also use a LilyPond input string:
 
 <abjad>
 voice.append("bf'2")
-</abjad>
-
-<abjad>
 show(voice)
 </abjad>
 
@@ -147,9 +128,6 @@ Add many components to the end of a voice with ``extend()``:
 <abjad>
 notes = [Note("g'4"), Note("f'4")]
 voice.extend(notes)
-</abjad>
-
-<abjad>
 show(voice)
 </abjad>
 
@@ -157,9 +135,6 @@ You can also use a LilyPond input string:
 
 <abjad>
 voice.extend("e'4 ef'4")
-</abjad>
-
-<abjad>
 show(voice)
 </abjad>
 
@@ -185,9 +160,6 @@ Use ``pop()`` to remove the last component of a voice:
 
 <abjad>
 voice.pop()
-</abjad>
-
-<abjad>
 show(voice)
 </abjad>
 
@@ -199,9 +171,6 @@ Remove voice components by reference with ``remove()``:
 
 <abjad>
 voice.remove(voice[-1])
-</abjad>
-
-<abjad>
 show(voice)
 </abjad>
 

@@ -1,6 +1,7 @@
 Staves
 ======
 
+
 Making a staff from a LilyPond input string
 -------------------------------------------
 
@@ -9,13 +10,10 @@ You can make a staff from a LilyPond input string:
 ::
 
    >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-1.png
+
 
 
 Making a staff from a list of Abjad components
@@ -25,19 +23,12 @@ You can also make a staff from a list of other Abjad components:
 
 ::
 
-   >>> components = [Tuplet(Fraction(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
-
-
-::
-
+   >>> components = [Tuplet(Multiplier(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
    >>> staff = Staff(components)
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-2.png
+
 
 
 Understanding the interpreter representation of a staff
@@ -58,6 +49,7 @@ the staff contains).
 
 Curly braces ``{`` and ``}`` tell you that the music inside the staff is
 interpreted sequentially rather than simultaneously.
+
 
 Inspecting the LilyPond format of a staff
 -----------------------------------------
@@ -86,6 +78,7 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
    }
 
 
+
 Selecting the music in a staff
 ------------------------------
 
@@ -96,8 +89,6 @@ Slice a staff to select its components:
    >>> staff[:]
    SliceSelection(Tuplet(2/3, [c'4, d'4, e'4]), Note("f'2"), Note("g'1"))
 
-
-Abjad returns a selection.
 
 
 Inspecting a staff's leaves
@@ -111,11 +102,12 @@ Get the leaves in a staff with ``select_leaves()``:
    ContiguousSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'2"), Note("g'1"))
 
 
-Abjad returns a selection.
-
 
 Getting the length of a staff
 -----------------------------
+
+The length of a staff is defined equal to the number of top-level components
+the staff contains.
 
 Get the length of a staff with ``len()``:
 
@@ -124,9 +116,6 @@ Get the length of a staff with ``len()``:
    >>> len(staff)
    3
 
-
-The length of a staff is defined equal to the number of top-level components
-the staff contains.
 
 
 Inspecting duration
@@ -149,10 +138,6 @@ Add one component to the end of a staff with ``append()``:
 ::
 
    >>> staff.append(Note("d''2"))
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-3.png
@@ -163,10 +148,6 @@ You can also use a LilyPond input string:
 ::
 
    >>> staff.append("cs''2")
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-4.png
@@ -182,10 +163,6 @@ Add many components to the end of a staff with ``extend()``:
 
    >>> notes = [Note("e''8"), Note("d''8"), Note("c''4")]
    >>> staff.extend(notes)
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-5.png
@@ -196,13 +173,10 @@ You can also use a LilyPond input string:
 ::
 
    >>> staff.extend("b'8 a'8 g'4")
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-6.png
+
 
 
 Finding the index of a component in a staff
@@ -238,10 +212,6 @@ Use ``pop()`` to remove the last component of a staff:
 
    >>> staff.pop()
    Note("g'4")
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-7.png
@@ -256,10 +226,6 @@ Remove staff components by reference with ``remove()``:
 ::
 
    >>> staff.remove(staff[-1])
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-8.png

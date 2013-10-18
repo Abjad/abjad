@@ -9,9 +9,6 @@ You can make an Abjad tuplet from a multiplier and a LilyPond input string:
 
 <abjad>
 tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
 
@@ -24,13 +21,7 @@ components:
 
 <abjad>
 leaves = [Note("fs'8"), Note("g'8"), Rest('r8')]
-</abjad>
-
-<abjad>
 tuplet = Tuplet(Fraction(2, 3), leaves)
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
 
@@ -96,8 +87,6 @@ Slice a tuplet to select its components:
 tuplet[:]
 </abjad>
 
-Abjad returns a selection.
-
 
 Inspecting a tuplet's leaves
 ----------------------------
@@ -108,20 +97,18 @@ Get the leaves in a tuplet with ``select_leaves()``:
 tuplet.select_leaves()
 </abjad>
 
-Abjad returns a selection.
-
 
 Getting the length of a tuplet
 ------------------------------
+
+The length of a tuplet is defined equal to the number of top-level components
+the tuplet contains.
 
 Get the length of a tuplet with ``len()``:
 
 <abjad>
 len(tuplet)
 </abjad>
-
-The length of a tuplet is defined equal to the number of top-level components
-the tuplet contains.
 
 
 Inspecting duration
@@ -163,11 +150,9 @@ You can change the multiplier of a tuplet with ``multiplier``:
 
 <abjad>
 tuplet.multiplier = Multiplier(4, 5)
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
+
 
 Adding one component to the end of a tuplet
 --------------------------------------------
@@ -176,9 +161,6 @@ Add one component to the end of a tuplet with ``append``:
 
 <abjad>
 tuplet.append(Note("e'4."))
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
 
@@ -186,11 +168,9 @@ You can also use a LilyPond input string:
 
 <abjad>
 tuplet.append("bf8")
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
+
 
 Adding many components to the end of a tuplet
 ---------------------------------------------
@@ -200,9 +180,6 @@ Add many components to the end of a tuplet with ``extend``:
 <abjad>
 notes = [Note("fs'32"), Note("e'32"), Note("d'32"), Rest((1, 32))]
 tuplet.extend(notes)
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
 
@@ -210,11 +187,9 @@ You can also use a LilyPond input string:
 
 <abjad>
 tuplet.extend("gs'8 a8") 
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
+
 
 Finding the index of a component in a tuplet
 --------------------------------------------
@@ -237,9 +212,6 @@ Use ``pop()`` to remove the last component of a tuplet:
 
 <abjad>
 tuplet.pop()
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
 
@@ -251,9 +223,6 @@ Remove tuplet components by reference with ``remove()``:
 
 <abjad>
 tuplet.remove(tuplet[3])
-</abjad>
-
-<abjad>
 show(tuplet)
 </abjad>
 
@@ -264,14 +233,14 @@ Overriding attributes of the LilyPond tuplet number grob
 Override attributes of the LilyPond tuplet number grob like this:
 
 <abjad>
-tuplet.override.tuplet_number.text = schemetools.Scheme(
-    'tuplet-number::calc-fraction-text')
+string = 'tuplet-number::calc-fraction-text'
+tuplet.override.tuplet_number.text = schemetools.Scheme(string)
 tuplet.override.tuplet_number.color = 'red'
 </abjad>
 
 We'll place the tuplet into a Staff object, so that LilyPond does not complain
-about the overrides we've applied, which lexically cannot appear in a \score
-block.
+about the overrides we've applied, which lexically cannot appear in a
+``\score`` block.
 
 <abjad>
 staff = Staff([tuplet])
@@ -288,9 +257,6 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 
 <abjad>
 tuplet.override.tuplet_bracket.color = 'red'
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 

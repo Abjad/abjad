@@ -10,10 +10,6 @@ You can make an Abjad voice from a LilyPond input string:
 ::
 
    >>> voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
-
-
-::
-
    >>> show(voice)
 
 .. image:: images/index-1.png
@@ -28,15 +24,7 @@ You can also make a voice from a list of other Abjad components:
 ::
 
    >>> components = [Tuplet(Fraction(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
-
-
-::
-
    >>> voice = Voice(components)
-
-
-::
-
    >>> show(voice)
 
 .. image:: images/index-2.png
@@ -46,7 +34,7 @@ You can also make a voice from a list of other Abjad components:
 Understanding the interpreter representation of a voice
 -------------------------------------------------------
 
-The ``repr`` of an Abjad voice contains three parts:
+The interpreter representation of an Abjad voice contains three parts:
 
 ::
 
@@ -102,8 +90,6 @@ Slice a voice to select its components:
    SliceSelection(Tuplet(2/3, [c'4, d'4, e'4]), Note("f'2"), Note("g'1"))
 
 
-Abjad returns a selection.
-
 
 Inspecting a voice's leaves
 ---------------------------
@@ -116,22 +102,20 @@ Get the leaves in a voice with ``select_leaves()``:
    ContiguousSelection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'2"), Note("g'1"))
 
 
-Abjad returns a selection.
-
 
 Getting the length of a voice
 -----------------------------
 
-Get voice length with ``len()``:
+The length of a voice is defined equal to the number of top-level components
+the voice contains.
+
+Get the length of a voice with ``len()``:
 
 ::
 
    >>> len(voice)
    3
 
-
-The length of a voice is defined equal to the number of top-level components
-the voice contains.
 
 
 Inspecting duration
@@ -154,10 +138,6 @@ Add one component to the end of a voice with ``append()``:
 ::
 
    >>> voice.append(Note("af'2"))
-
-
-::
-
    >>> show(voice)
 
 .. image:: images/index-3.png
@@ -168,10 +148,6 @@ You can also use a LilyPond input string:
 ::
 
    >>> voice.append("bf'2")
-
-
-::
-
    >>> show(voice)
 
 .. image:: images/index-4.png
@@ -187,10 +163,6 @@ Add many components to the end of a voice with ``extend()``:
 
    >>> notes = [Note("g'4"), Note("f'4")]
    >>> voice.extend(notes)
-
-
-::
-
    >>> show(voice)
 
 .. image:: images/index-5.png
@@ -201,10 +173,6 @@ You can also use a LilyPond input string:
 ::
 
    >>> voice.extend("e'4 ef'4")
-
-
-::
-
    >>> show(voice)
 
 .. image:: images/index-6.png
@@ -238,10 +206,6 @@ Use ``pop()`` to remove the last component of a voice:
 
    >>> voice.pop()
    Note("ef'4")
-
-
-::
-
    >>> show(voice)
 
 .. image:: images/index-7.png
@@ -256,10 +220,6 @@ Remove voice components by reference with ``remove()``:
 ::
 
    >>> voice.remove(voice[-1])
-
-
-::
-
    >>> show(voice)
 
 .. image:: images/index-8.png

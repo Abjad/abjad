@@ -1,6 +1,7 @@
 Staves
 ======
 
+
 Making a staff from a LilyPond input string
 -------------------------------------------
 
@@ -8,11 +9,9 @@ You can make a staff from a LilyPond input string:
 
 <abjad>
 staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
+
 
 Making a staff from a list of Abjad components
 ----------------------------------------------
@@ -20,16 +19,11 @@ Making a staff from a list of Abjad components
 You can also make a staff from a list of other Abjad components:
 
 <abjad>
-components = [Tuplet(Fraction(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
-</abjad>
-
-<abjad>
+components = [Tuplet(Multiplier(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
 staff = Staff(components)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
+
 
 Understanding the interpreter representation of a staff
 -------------------------------------------------------
@@ -48,6 +42,7 @@ the staff contains).
 Curly braces ``{`` and ``}`` tell you that the music inside the staff is
 interpreted sequentially rather than simultaneously.
 
+
 Inspecting the LilyPond format of a staff
 -----------------------------------------
 
@@ -63,6 +58,7 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 f(staff)
 </abjad>
 
+
 Selecting the music in a staff
 ------------------------------
 
@@ -71,8 +67,6 @@ Slice a staff to select its components:
 <abjad>
 staff[:]
 </abjad>
-
-Abjad returns a selection.
 
 
 Inspecting a staff's leaves
@@ -84,20 +78,18 @@ Get the leaves in a staff with ``select_leaves()``:
 staff.select_leaves()
 </abjad>
 
-Abjad returns a selection.
-
 
 Getting the length of a staff
 -----------------------------
+
+The length of a staff is defined equal to the number of top-level components
+the staff contains.
 
 Get the length of a staff with ``len()``:
 
 <abjad>
 len(staff)
 </abjad>
-
-The length of a staff is defined equal to the number of top-level components
-the staff contains.
 
 
 Inspecting duration
@@ -117,9 +109,6 @@ Add one component to the end of a staff with ``append()``:
 
 <abjad>
 staff.append(Note("d''2"))
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -127,9 +116,6 @@ You can also use a LilyPond input string:
 
 <abjad>
 staff.append("cs''2")
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -142,9 +128,6 @@ Add many components to the end of a staff with ``extend()``:
 <abjad>
 notes = [Note("e''8"), Note("d''8"), Note("c''4")]
 staff.extend(notes)
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -152,11 +135,9 @@ You can also use a LilyPond input string:
 
 <abjad>
 staff.extend("b'8 a'8 g'4")
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
+
 
 Finding the index of a component in a staff
 -------------------------------------------
@@ -183,9 +164,6 @@ staff[8]
 
 <abjad>
 staff.pop()
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 
@@ -197,9 +175,6 @@ Remove staff components by reference with ``remove()``:
 
 <abjad>
 staff.remove(staff[-1])
-</abjad>
-
-<abjad>
 show(staff)
 </abjad>
 

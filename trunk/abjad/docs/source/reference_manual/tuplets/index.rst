@@ -10,10 +10,6 @@ You can make an Abjad tuplet from a multiplier and a LilyPond input string:
 ::
 
    >>> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-1.png
@@ -29,15 +25,7 @@ components:
 ::
 
    >>> leaves = [Note("fs'8"), Note("g'8"), Rest('r8')]
-
-
-::
-
    >>> tuplet = Tuplet(Fraction(2, 3), leaves)
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-2.png
@@ -119,8 +107,6 @@ Slice a tuplet to select its components:
    SliceSelection(Note("fs'8"), Note("g'8"), Rest('r8'))
 
 
-Abjad returns a selection.
-
 
 Inspecting a tuplet's leaves
 ----------------------------
@@ -133,11 +119,12 @@ Get the leaves in a tuplet with ``select_leaves()``:
    ContiguousSelection(Note("fs'8"), Note("g'8"), Rest('r8'))
 
 
-Abjad returns a selection.
-
 
 Getting the length of a tuplet
 ------------------------------
+
+The length of a tuplet is defined equal to the number of top-level components
+the tuplet contains.
 
 Get the length of a tuplet with ``len()``:
 
@@ -146,9 +133,6 @@ Get the length of a tuplet with ``len()``:
    >>> len(tuplet)
    3
 
-
-The length of a tuplet is defined equal to the number of top-level components
-the tuplet contains.
 
 
 Inspecting duration
@@ -199,13 +183,10 @@ You can change the multiplier of a tuplet with ``multiplier``:
 ::
 
    >>> tuplet.multiplier = Multiplier(4, 5)
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-3.png
+
 
 
 Adding one component to the end of a tuplet
@@ -216,10 +197,6 @@ Add one component to the end of a tuplet with ``append``:
 ::
 
    >>> tuplet.append(Note("e'4."))
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-4.png
@@ -230,13 +207,10 @@ You can also use a LilyPond input string:
 ::
 
    >>> tuplet.append("bf8")
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-5.png
+
 
 
 Adding many components to the end of a tuplet
@@ -248,10 +222,6 @@ Add many components to the end of a tuplet with ``extend``:
 
    >>> notes = [Note("fs'32"), Note("e'32"), Note("d'32"), Rest((1, 32))]
    >>> tuplet.extend(notes)
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-6.png
@@ -262,13 +232,10 @@ You can also use a LilyPond input string:
 ::
 
    >>> tuplet.extend("gs'8 a8") 
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-7.png
+
 
 
 Finding the index of a component in a tuplet
@@ -298,10 +265,6 @@ Use ``pop()`` to remove the last component of a tuplet:
 
    >>> tuplet.pop()
    Note('a8')
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-8.png
@@ -316,10 +279,6 @@ Remove tuplet components by reference with ``remove()``:
 ::
 
    >>> tuplet.remove(tuplet[3])
-
-
-::
-
    >>> show(tuplet)
 
 .. image:: images/index-9.png
@@ -333,14 +292,14 @@ Override attributes of the LilyPond tuplet number grob like this:
 
 ::
 
-   >>> tuplet.override.tuplet_number.text = schemetools.Scheme(
-   ...     'tuplet-number::calc-fraction-text')
+   >>> string = 'tuplet-number::calc-fraction-text'
+   >>> tuplet.override.tuplet_number.text = schemetools.Scheme(string)
    >>> tuplet.override.tuplet_number.color = 'red'
 
 
 We'll place the tuplet into a Staff object, so that LilyPond does not complain
-about the overrides we've applied, which lexically cannot appear in a \score
-block.
+about the overrides we've applied, which lexically cannot appear in a
+``\score`` block.
 
 ::
 
@@ -361,10 +320,6 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 ::
 
    >>> tuplet.override.tuplet_bracket.color = 'red'
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-11.png

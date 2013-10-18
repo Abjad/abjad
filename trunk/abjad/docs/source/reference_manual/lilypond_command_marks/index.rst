@@ -12,12 +12,12 @@ Use ``marktools`` to create LilyPond command marks:
 
 ::
 
-   >>> lilypond_command_mark = marktools.LilyPondCommandMark('bar "||"', 'after')
+   >>> command = marktools.LilyPondCommandMark('bar "||"', 'after')
 
 
 ::
 
-   >>> lilypond_command_mark
+   >>> command
    LilyPondCommandMark('bar "||"')
 
 
@@ -46,7 +46,7 @@ Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
 
 ::
 
-   >>> lilypond_command_mark.attach(staff[-2])
+   >>> command.attach(staff[-2])
    LilyPondCommandMark('bar "||"')(b'8)
 
 
@@ -77,13 +77,13 @@ Use ``detach()`` to detach LilyPond command marks from a component:
 
 ::
 
-   >>> lilypond_command_mark.detach()
+   >>> command.detach()
    LilyPondCommandMark('bar "||"')
 
 
 ::
 
-   >>> lilypond_command_mark
+   >>> command
    LilyPondCommandMark('bar "||"')
 
 
@@ -103,8 +103,8 @@ mark is attached:
 
 ::
 
-   >>> lilypond_command_mark = marktools.LilyPondCommandMark('bar "||"', 'closing')
-   >>> lilypond_command_mark.attach(staff[-2])
+   >>> command = marktools.LilyPondCommandMark('bar "||"', 'closing')
+   >>> command.attach(staff[-2])
    LilyPondCommandMark('bar "||"')(b'8)
 
 
@@ -117,7 +117,7 @@ mark is attached:
 
 ::
 
-   >>> lilypond_command_mark.start_component
+   >>> command.start_component
    Note("b'8")
 
 
@@ -130,7 +130,7 @@ LilyPond command a LilyPond command mark prints:
 
 ::
 
-   >>> lilypond_command_mark.command_name = 'bar "|."'
+   >>> command.command_name = 'bar "|."'
 
 
 ::
@@ -153,18 +153,18 @@ Use ``copy.copy()`` to copy a LilyPond command mark:
 
 ::
 
-   >>> lilypond_command_mark_copy_1 = copy.copy(lilypond_command_mark)
+   >>> command_copy_1 = copy.copy(command)
 
 
 ::
 
-   >>> lilypond_command_mark_copy_1
+   >>> command_copy_1
    LilyPondCommandMark('bar "|."')
 
 
 ::
 
-   >>> lilypond_command_mark_copy_1.attach(staff[-1])
+   >>> command_copy_1.attach(staff[-1])
    LilyPondCommandMark('bar "|."')(c''2)
 
 
@@ -185,19 +185,19 @@ LilyPond command marks compare equal with equal command names:
 
 ::
 
-   >>> lilypond_command_mark.command_name
+   >>> command.command_name
    'bar "|."'
 
 
 ::
 
-   >>> lilypond_command_mark_copy_1.command_name
+   >>> command_copy_1.command_name
    'bar "|."'
 
 
 ::
 
-   >>> lilypond_command_mark == lilypond_command_mark_copy_1
+   >>> command == command_copy_1
    True
 
 

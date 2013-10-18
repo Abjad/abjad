@@ -11,11 +11,11 @@ Creating LilyPond command marks
 Use ``marktools`` to create LilyPond command marks:
 
 <abjad>
-lilypond_command_mark = marktools.LilyPondCommandMark('bar "||"', 'after')
+command = marktools.LilyPondCommandMark('bar "||"', 'after')
 </abjad>
 
 <abjad>
-lilypond_command_mark
+command
 </abjad>
 
 
@@ -40,7 +40,7 @@ staff.extend(p("{ a'8 b'8 c''2 }"))
 </abjad>
 
 <abjad>
-lilypond_command_mark.attach(staff[-2])
+command.attach(staff[-2])
 </abjad>
 
 <abjad>
@@ -64,11 +64,11 @@ Detaching LilyPond command marks from a component
 Use ``detach()`` to detach LilyPond command marks from a component:
 
 <abjad>
-lilypond_command_mark.detach()
+command.detach()
 </abjad>
 
 <abjad>
-lilypond_command_mark
+command
 </abjad>
 
 <abjad>
@@ -83,8 +83,8 @@ Use ``start_component`` to inspect the component to which a LilyPond command
 mark is attached:
 
 <abjad>
-lilypond_command_mark = marktools.LilyPondCommandMark('bar "||"', 'closing')
-lilypond_command_mark.attach(staff[-2])
+command = marktools.LilyPondCommandMark('bar "||"', 'closing')
+command.attach(staff[-2])
 </abjad>
 
 <abjad>
@@ -92,7 +92,7 @@ show(staff)
 </abjad>
 
 <abjad>
-lilypond_command_mark.start_component
+command.start_component
 </abjad>
 
 
@@ -103,7 +103,7 @@ Set the ``command_name`` of a LilyPond command mark to change the
 LilyPond command a LilyPond command mark prints:
 
 <abjad>
-lilypond_command_mark.command_name = 'bar "|."'
+command.command_name = 'bar "|."'
 </abjad>
 
 <abjad>
@@ -121,15 +121,15 @@ import copy
 </abjad>
 
 <abjad>
-lilypond_command_mark_copy_1 = copy.copy(lilypond_command_mark)
+command_copy_1 = copy.copy(command)
 </abjad>
 
 <abjad>
-lilypond_command_mark_copy_1
+command_copy_1
 </abjad>
 
 <abjad>
-lilypond_command_mark_copy_1.attach(staff[-1])
+command_copy_1.attach(staff[-1])
 </abjad>
 
 <abjad>
@@ -145,15 +145,15 @@ Comparing LilyPond command marks
 LilyPond command marks compare equal with equal command names:
 
 <abjad>
-lilypond_command_mark.command_name
+command.command_name
 </abjad>
 
 <abjad>
-lilypond_command_mark_copy_1.command_name
+command_copy_1.command_name
 </abjad>
 
 <abjad>
-lilypond_command_mark == lilypond_command_mark_copy_1
+command == command_copy_1
 </abjad>
 
 Otherwise LilyPond command marks do not compare equal.

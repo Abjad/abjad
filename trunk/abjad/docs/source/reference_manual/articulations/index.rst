@@ -313,10 +313,6 @@ above the staff:
 ::
 
    >>> articulation.direction = '^'
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-7.png
@@ -328,10 +324,6 @@ above the staff:
 ::
 
    >>> articulation.direction = '_'
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-8.png
@@ -343,10 +335,6 @@ an articulation automatically:
 ::
 
    >>> articulation.direction = None
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-9.png
@@ -362,10 +350,6 @@ an articulation prints:
 ::
 
    >>> articulation.name = 'staccatissimo'
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-10.png
@@ -445,10 +429,6 @@ Override attributes of the LilyPond script grob like this:
 ::
 
    >>> staff.override.script.color = 'red'
-
-
-::
-
    >>> show(staff)
 
 .. image:: images/index-12.png
