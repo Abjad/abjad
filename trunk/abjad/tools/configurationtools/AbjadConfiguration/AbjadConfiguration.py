@@ -18,7 +18,7 @@ class AbjadConfiguration(Configuration):
 
         >>> configuration = configurationtools.AbjadConfiguration()
 
-    `AbjadConfiguration` creates the `$home/.abjad/` directory
+    `AbjadConfiguration` creates the `$HOME/.abjad/` directory
     on instantiation.
 
     `AbjadConfiguration` then attempts to read an `abjad.cfg` file in
@@ -50,8 +50,6 @@ class AbjadConfiguration(Configuration):
     @property
     def _initial_comment(self):
         return [
-            '-*- coding: utf-8 -*-',
-            '',
             'Abjad configuration file created by Abjad on {}.'.format(
                 self._current_time),
             'File is interpreted by ConfigObj and should follow ini syntax.',
@@ -66,7 +64,7 @@ class AbjadConfiguration(Configuration):
                     '',
                     'Set to the directory where all Abjad-generated files',
                     '(such as PDFs and LilyPond files) should be saved.',
-                    'Defaults to $home/.abjad/output/'
+                    'Defaults to $HOME/.abjad/output/'
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
