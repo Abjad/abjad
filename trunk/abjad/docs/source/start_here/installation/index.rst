@@ -128,7 +128,7 @@ The configuration file's contents should look approximately like this:
 
     # Set to the directory where all Abjad-generated files
     # (such as PDFs and LilyPond files) should be saved.
-    # Defaults to $home/.abjad/output/
+    # Defaults to $HOME.abjad/output/
     abjad_output = /Users/josiah/.abjad/output
 
     # Default accidental spelling (mixed|sharps|flats).
