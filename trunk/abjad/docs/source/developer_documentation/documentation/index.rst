@@ -62,9 +62,9 @@ need to download and install it.
 
 First check to see if Sphinx is already installed on your machine:
 
-..  code-block:: bash
+..  shell::
 
-    $ sphinx-build --version
+    sphinx-build --version
 
 If Sphinx responds then the program is already installed on your machine.
 Otherwise visit the `Sphinx <http://sphinx.pocoo.org/>`_ website.
@@ -91,8 +91,14 @@ Building the HTML docs
 ----------------------
 
 The ``ajv`` application ships with Abjad. The application helps developers
-manage the Ajbad codebase. You can use ``ajv`` to build the HTML docs. It
-doesn't matter what directory you're in when you run the following command:
+manage the Ajbad codebase.
+
+..  shell::
+
+    ajv api -h
+
+You can use ``ajv`` to build the HTML docs. It doesn't matter what directory
+you're in when you run the following command:
 
 ..  code-block:: bash
 
@@ -164,84 +170,57 @@ sequent builds, Sphinx reports changes only:
 Building a PDF of the docs
 --------------------------
 
-Building a PDF of the docs is a two-step process.  First you build a LaTeX
-version of the docs.  Then you typeset the LaTeX docs as a PDF.
-
-First change to the Abjad docs directory:
+Building a PDF of the docs is almost as simple as building the HTML
+documentation:
 
 ..  code-block:: bash
 
-    $abjad cd docs
+    abjad$ ajv api -M --format latexpdf
+    Now writing ReStructured Text files ...
 
-Then make LaTeX sources of the docs:
+    ... done.
 
-..  code-block:: bash
+    Now building the LATEXPDF docs ...
 
-    docs$ make latex
-    sphinx-build -b latex -d _build/doctrees   . _build/latex
-    Running Sphinx v1.0.7
+    sphinx-build -b latex -d build/doctrees   source build/latex
+    Running Sphinx v1.2b1
     loading pickled environment... done
     building [latex]: all documents
-    updating environment: 0 added, 0 changed, 0 removed
-    looking for now-outdated files... none found
-    processing Abjad.tex... 
-    chapters/start_here/abjad/index 
-    chapters/examples/bartok/index
+    updating environment: 0 added, 1 changed, 0 removed
+    reading sources... [100%] developer_documentation/index                                                                                                                             
+    looking for now-outdated files... 10 found
+    pickling environment... done
+    checking consistency... done
+    processing Abjad.tex..
     ...
     ...
     ...
-    chapters/appendices/pitch_conventions/images/example-3.png 
-    chapters/examples/ligeti/images/desordre.jpg
-    copying TeX support files... done
-    build succeeded.
+    Transcript written on AbjadAPI.log.
+    pdflatex finished; the PDF files are in build/latex.
 
-    Build finished; the LaTeX files are in _build/latex.
-    Run `make all-pdf' or `make all-ps' in that directory to run these through (pdf)latex.
-
-Now follow the instructions provided by Sphinx and make the PDF:
-
-..  code-block:: bash
-
-    $docs make latexpdf
-
-    pdflatex  'Abjad.tex'
-    This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6)
-     %&-line parsing enabled.
-    entering extended mode
-    (./Abjad.tex
-    LaTeX2e <2005/12/01>
-    Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
-    yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
-    erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
-    ...
-    ...
-
-The resulting docs will appear as ``Abjad.pdf`` in the LaTeX build directory.
+The resulting docs will appear as ``Abjad.pdf`` and ``AbjadAPI.pdf`` in the
+LaTeX build directory, ``docs/build/latex``.
 
 
 Building a coverage report
 --------------------------
 
-Change to the Abjad ``docs`` directory and call ``sphinx-build`` explicitly
-with the coverage builder, source directory and target directory:
+Build the coverage report with ``ajv api`` and the ``coverage`` format.
 
 ..  code-block:: bash
 
-    docs$ sphinx-build -b coverage . _build/coverage
-    Making output directory...
-    Running Sphinx v1.0.7
-    loading pickled environment... not found
+    abjad$ ajv api -M --format coverage
+    Now writing ReStructured Text files ...
+
+    ... done.
+
+    Now building the COVERAGE docs ...
+
+    Running Sphinx v1.2b1
+    loading pickled environment... done
     building [coverage]: coverage overview
-    updating environment: 568 added, 0 changed, 0 removed
-    reading sources... [ 37%] chapters/api/tools/clonewp/by_leaf_counts_with_parenta
-    reading sources... [ 38%] chapters/api/tools/clonewp/by_leaf_range_with_parentag
-    reading sources... [ 38%] chapters/api/tools/componenttools/get_duration_crosser
-    ...
-    ...
-    ...
-    reading sources... [ 85%] chapters/api/tools/spannertools/withdraw_from_containe
-    reading sources... [ 95%] chapters/fundamentals/duration/interfaces_compared/ind
-    reading sources... [100%] index                      t/indexdexexexng/indexxdexindex
+    updating environment: 0 added, 1 changed, 0 removed
+    reading sources... [100%] api/tools/developerscripttools/BuildApiScript/BuildApiScript                                                                                              
     looking for now-outdated files... none found
     pickling environment... done
     checking consistency... done
@@ -292,7 +271,7 @@ other versions of the Abjad docs that are available to build:
 Inserting images with ``abjad-book``
 ------------------------------------
 
-Use :doc:`abjad-book</developer_documentation/abjad_book/index>` to insert
+Use :doc:`ajv book </developer_documentation/ajv_book/index>` to insert
 snippets of notation in the docs you write in reST.
 
 Embed Abjad code between open and close \<abjad\> \</abjad\> tags in your
@@ -301,7 +280,7 @@ file:
 
 ..  code-block:: bash
 
-    $ abjad-book foo.rst.raw foo.rst
+    abjad$ ajv book foo.rst.raw
 
     Parsing file ...
     Rendering "example-1.ly" ...
@@ -311,7 +290,7 @@ You will need to build the HTML docs again to see your work:
 
 ..  code-block:: bash
 
-    $ make html
+    abjad$ ajv api -M
 
 
 Updating Sphinx
@@ -323,4 +302,4 @@ this:
 
 ..  code-block:: bash
 
-    $ sudo pip install --upgrade Sphinx
+    abjad$ sudo pip install --upgrade Sphinx
