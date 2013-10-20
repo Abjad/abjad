@@ -687,9 +687,9 @@ like this:
    >>> time_signature_mark(staff)
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/marktools/Mark/Mark.py", line 39, in __call__
+     File "/Users/josiah/Documents/Development/abjadroot/trunk/abjad/tools/marktools/Mark/Mark.py", line 39, in __call__
        return self.attach(args[0])
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/contexttools/TimeSignatureMark/TimeSignatureMark.py", line 509, in attach
+     File "/Users/josiah/Documents/Development/abjadroot/trunk/abjad/tools/contexttools/TimeSignatureMark/TimeSignatureMark.py", line 509, in attach
        raise ExtraMarkError(message)
    abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError: component already has context mark attached.
 
@@ -751,9 +751,9 @@ a single line:
    >>> contexttools.TimeSignatureMark((2, 4))(staff)
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/marktools/Mark/Mark.py", line 39, in __call__
+     File "/Users/josiah/Documents/Development/abjadroot/trunk/abjad/tools/marktools/Mark/Mark.py", line 39, in __call__
        return self.attach(args[0])
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/contexttools/TimeSignatureMark/TimeSignatureMark.py", line 509, in attach
+     File "/Users/josiah/Documents/Development/abjadroot/trunk/abjad/tools/contexttools/TimeSignatureMark/TimeSignatureMark.py", line 509, in attach
        raise ExtraMarkError(message)
    abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError: component already has context mark attached.
 

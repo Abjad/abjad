@@ -9,20 +9,9 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 class BuildApiScript(DeveloperScript):
     r'''Build the Abjad APIs:
 
-    ::
+    ..  shell::
 
-        bash$ ajv api -h
-        usage: build-api [-h] [--version] [-M] [-X] [-C] [--format FORMAT]
-
-        Build the Abjad APIs.
-
-        optional arguments:
-          -h, --help          show this help message and exit
-          --version           show program's version number and exit
-          -M, --mainline      build the mainline API
-          -X, --abjad.tools  build the abjad.tools API
-          -C, --clean         run "make clean" before building the api
-          --format FORMAT     Sphinx builder to use
+        ajv api --help
 
     Return `BuildApiScript` instance.
     '''
@@ -114,8 +103,13 @@ class BuildApiScript(DeveloperScript):
             print 'Cleaning build directory ...'
             iotools.spawn_subprocess('make clean')
 
-        # make html docs
-        iotools.spawn_subprocess('make {}'.format(format))
+        if format == 'coverage':
+            iotools.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
+                'source',
+                os.path.join('build', 'coverage'),
+                ))
+        else:
+            iotools.spawn_subprocess('make {}'.format(format))
 
     def _build_mainline_api(self, format='html', clean=False):
 
@@ -137,8 +131,13 @@ class BuildApiScript(DeveloperScript):
             print 'Cleaning build directory ...'
             iotools.spawn_subprocess('make clean')
 
-        # make html docs
-        iotools.spawn_subprocess('make {}'.format(format))
+        if format == 'coverage':
+            iotools.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
+                'source',
+                os.path.join('build', 'coverage'),
+                ))
+        else:
+            iotools.spawn_subprocess('make {}'.format(format))
 
     ### PUBLIC METHODS ###
 
@@ -181,7 +180,7 @@ class BuildApiScript(DeveloperScript):
 
         parser.add_argument('-X', '--experimental',
             action='store_true',
-            help='build the abjad.tools API'
+            help='build the experimental API'
             )
 
         parser.add_argument('-C', '--clean',
@@ -193,11 +192,16 @@ class BuildApiScript(DeveloperScript):
         parser.add_argument('-O', '--open',
             action='store_true',
             dest='openinbrowser',
-            help='open the docs in a web browser after building.',
+            help='open the docs in a web browser after building',
             )
 
         parser.add_argument('--format',
-            choices=('html', 'latex', 'latexpdf'),
+            choices=(
+                'coverage',
+                'html',
+                'latex',
+                'latexpdf',
+                ),
             dest='format',
             help='Sphinx builder to use',
             metavar='FORMAT',

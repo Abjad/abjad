@@ -70,32 +70,28 @@ If Sphinx responds then the program is already installed on your machine.
 Otherwise visit the `Sphinx <http://sphinx.pocoo.org/>`_ website.
 
 
-Removing old builds of the docs
--------------------------------
-
-After installing Sphinx, change to the Abjad ``docs`` directory:
-
-..  code-block:: bash
-
-    abjad$ cd docs/
-
-Then use the Sphinx makefile to clean the docs directory:
-
-..  code-block:: bash
-
-    docs$ make clean
-    rm -rf build/*
-
-
-Building the HTML docs
-----------------------
+Using ``ajv api``
+-----------------
 
 The ``ajv`` application ships with Abjad. The application helps developers
-manage the Ajbad codebase.
+manage the Ajbad codebase. The ``ajv`` subcommand ``api`` allows for building
+and cleaning various formats of Sphinx documentation.
 
 ..  shell::
 
-    ajv api -h
+    ajv api --help
+
+Removing old builds of the documentation
+----------------------------------------
+
+To remove old builds of the documentation, use the ``clean`` command:
+
+..  code-block:: bash
+
+    abjad$ ajv api --clean
+
+Building the HTML docs
+----------------------
 
 You can use ``ajv`` to build the HTML docs. It doesn't matter what directory
 you're in when you run the following command:

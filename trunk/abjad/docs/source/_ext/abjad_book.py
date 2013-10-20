@@ -31,7 +31,8 @@ class AbjadBookDirective(sphinx.util.compat.Directive):
         'errors-ok': docutils.parsers.rst.directives.flag,
         'hidden': docutils.parsers.rst.directives.flag,
         'strip-prompt': docutils.parsers.rst.directives.flag,
-    }
+        }
+
     def run(self):
         self.assert_has_content()
         code = u'\n'.join(self.content)
@@ -50,25 +51,41 @@ class ShellDirective(sphinx.util.compat.Directive):
     optional_arguments = 0
     final_argument_whitespace = False
     option_spec = {}
+
     def run(self):
         self.assert_has_content()
-        original_directory = os.path.abspath(os.path.curdir)
+        #original_directory = os.path.abspath(os.path.curdir)
         os.chdir(abjad_configuration.abjad_directory_path)
         result = []
         for line in self.content:
             prompt = '{}$ '.format(os.path.basename(os.path.abspath(os.path.curdir)))
             prompt += line
             result.append(prompt)
-            proc = subprocess.Popen(line.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            proc = subprocess.Popen(
+                line,
+                #line.split(),
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                )
             out, err = proc.communicate()
             result.extend(out.splitlines())
             result.extend(err.splitlines())
         code = u'\n'.join(result)
         literal = docutils.nodes.literal_block(code, code)
-        literal['language'] = 'bash'
+        literal['language'] = 'console'
         sphinx.util.nodes.set_source_info(self, literal)
-        os.chdir(original_directory)
+#        if literal.rawsource != literal.astext():
+#            print 'RAW:\n' + literal.rawsource
+#            print 'TXT:\n' + literal.asText()
+#            literal.rawsource = literal.asText()
         return [literal]
+
+#        literal = docutils.nodes.literal_block(code, code)
+#        literal['language'] = 'bash'
+#        sphinx.util.nodes.set_source_info(self, literal)
+#        os.chdir(original_directory)
+#        return [literal]
 
 
 def on_builder_inited(app):
