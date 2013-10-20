@@ -13,7 +13,9 @@ pre::-webkit-scrollbar-thumb {
 
 /* pygments style */
 .highlight .hll { background-color: #ffffcc }
-.highlight-bash, .highlight  { background: #002B36!important; color: #93A1A1 }
+.highlight-bash,
+.highlight-console,
+.highlight  { background: #002B36!important; color: #93A1A1 }
 .highlight .c { color: #586E75 } /* Comment */
 .highlight .err { color: #93A1A1 } /* Error */
 .highlight .g { color: #93A1A1 } /* Generic */
