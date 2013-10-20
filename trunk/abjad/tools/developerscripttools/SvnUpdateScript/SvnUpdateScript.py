@@ -9,24 +9,9 @@ from abjad.tools.developerscripttools.CleanScript import CleanScript
 class SvnUpdateScript(DirectoryScript):
     r'''Run `svn up` on various Abjad paths:
 
-    ::
+    ..  shell::
 
-        bash$ ajv svn up -h
-        usage: svn-update [-h] [--version] [-C] [-P PATH | -E | -M | -R]
-
-        "svn update" various paths.
-
-        optional arguments:
-          -h, --help            show this help message and exit
-          --version             show program's version number and exit
-          -C, --clean           remove .pyc files and __pycache__ directories before
-                                updating
-          -P PATH, --path PATH  update the path PATH
-          -E, --abjad.tools    update Abjad abjad.tools directory
-          -M, --mainline        update Abjad mainline directory
-          -R, --root            update Abjad root directory
-
-        If no path flag is specified, the current directory will be updated.
+        ajv svn up --help
 
     It is usually most useful to run the script with the `--clean` flag, 
     in case there are incoming deletes, as `svn` will not delete 

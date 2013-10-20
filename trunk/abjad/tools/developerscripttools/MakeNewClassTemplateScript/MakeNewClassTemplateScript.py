@@ -7,21 +7,9 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 class MakeNewClassTemplateScript(DeveloperScript):
     r'''Create class stubs, complete with test subdirectory:
 
-    ::
+    ..  shell::
 
-        bash$ ajv new class -h
-        usage: make-new-class-template [-h] [--version] (-X | -M) name
-
-        Make a new class template file.
-
-        positional arguments:
-          name                tools package qualified class name
-
-        optional arguments:
-          -h, --help          show this help message and exit
-          --version           show program's version number and exit
-          -X, --experimental  use the Abjad experimental tools path
-          -M, --mainline      use the Abjad mainline tools path
+        ajv new class --help
 
     Return `MakeNewClassTemplateScript` instance.
     '''

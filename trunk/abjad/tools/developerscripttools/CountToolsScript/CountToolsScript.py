@@ -9,19 +9,9 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 class CountToolsScript(DirectoryScript):
     r'''Count public and private functions and classes in a path:
 
-    ::
+    ..  shell::
 
-        bash$ ajv count tools -h
-        usage: count-tools [-h] [--version] path
-
-        Count tools in PATH.
-
-        positional arguments:
-          path        directory tree to be recursed over
-
-        optional arguments:
-          -h, --help  show this help message and exit
-          --version   show program's version number and exit
+        ajv count tools --help
 
     Return `CountToolsScript` instance.
     '''

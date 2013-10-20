@@ -9,22 +9,9 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 class PyTestScript(DirectoryScript):
     r'''Run `py.test` on various Abjad paths:
 
-    ::
+    ..  shell::
 
-        bash$ ajv test -h
-        usage: py-test [-h] [--version] [-p] [-x] [-A | -D | -M | -X]
-
-        Run "py.test" on various Abjad paths.
-
-        optional arguments:
-          -h, --help          show this help message and exit
-          --version           show program's version number and exit
-          -p, --parallel      run py.test with multiprocessing
-          -x, --exitfirst     stop on first failure
-          -A, --all           test all directories, including demos
-          -D, --demos         test demos directory
-          -M, --mainline      test mainline tools directory
-          -X, --experimental  test experimental directory
+        ajv test --help
 
     Return `PyTestScript` instance.
     '''

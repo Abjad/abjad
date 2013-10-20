@@ -5,16 +5,9 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 class AbjUpScript(DeveloperScript):
     r'''Run `ajv svn up -R -C`:
 
-    ::
+    ..  shell::
 
-        bash$ ajv up -h
-        usage: abj-up [-h] [--version]
-
-        run `ajv svn up -R -C`
-
-        optional arguments:
-          -h, --help  show this help message and exit
-          --version   show program's version number and exit
+        ajv up --help
 
     Return `AbjUpScript` instance.
     '''

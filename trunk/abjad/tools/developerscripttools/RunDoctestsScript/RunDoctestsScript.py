@@ -8,16 +8,9 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 class RunDoctestsScript(DirectoryScript):
     r'''Run doctests on all Python files in current directory recursively:
 
-    ::
+    ..  shell::
 
-        bash$ ajv doctest -h
-        usage: run-doctests [-h] [--version]
-
-        Run doctests on all modules in current path.
-
-        optional arguments:
-          -h, --help  show this help message and exit
-          --version   show program's version number and exit
+        ajv doctest --help
 
     Return `RunDoctestsScript` instance.
     '''

@@ -8,17 +8,9 @@ class SvnMessageScript(DeveloperScript):
     r'''Edit a temporary `svn` commit message, stored in the `.abjad` 
     directory:
 
-    ::
+    ..  shell::
 
-        bash$ ajv svn msg -h
-        usage: svn-message [-h] [--version] [-C]
-
-        Write commit message for future commit usage.
-
-        optional arguments:
-          -h, --help   show this help message and exit
-          --version    show program's version number and exit
-          -C, --clean  delete previous commit message before editing
+        ajv svn msg --help
 
     Return `SvnMessageScript` instance.
     '''

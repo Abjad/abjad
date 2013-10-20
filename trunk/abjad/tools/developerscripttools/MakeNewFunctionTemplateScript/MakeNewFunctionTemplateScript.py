@@ -6,21 +6,9 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 class MakeNewFunctionTemplateScript(DeveloperScript):
     r'''Create function stub files:
 
-    ::
+    ..  shell::
 
-        bash$ ajv new function -h
-        usage: make-new-function-template [-h] [--version] (-X | -M) name
-
-        Make a new function template file.
-
-        positional arguments:
-          name                tools package qualified function name
-
-        optional arguments:
-          -h, --help          show this help message and exit
-          --version           show program's version number and exit
-          -X, --experimental  use the Abjad experimental path
-          -M, --mainline      use the Abjad mainline tools path
+        ajv new function --help
 
     Return `MakeNewFunctionTemplateScript` instance.
     '''

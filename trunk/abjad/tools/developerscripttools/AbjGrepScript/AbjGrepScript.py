@@ -9,28 +9,9 @@ from abjad.tools.developerscripttools.CleanScript import CleanScript
 class AbjGrepScript(DirectoryScript):
     r'''Run `grep` against a path, ignoring `svn` and docs-related files:
 
-    ::
+    ..  shell::
 
-        bash$ ajv grep -h
-        usage: abj-grep [-h] [--version] [-W] [-P PATH | -X | -M | -T | -R] pattern
-
-        grep PATTERN in PATH
-
-        positional arguments:
-          pattern               pattern to search for
-
-        optional arguments:
-          -h, --help            show this help message and exit
-          --version             show program's version number and exit
-          -W, --whole-words-only
-                                match only whole words, similar to grep's "-w" flag
-          -P PATH, --path PATH  grep PATH
-          -X, --abjad.tools    grep Abjad abjad.tools directory
-          -M, --mainline        grep Abjad mainline directory
-          -T, --tools           grep Abjad mainline tools directory
-          -R, --root            grep Abjad root directory
-
-        If no PATH flag is specified, the current directory will be searched.
+        ajv grep --help
 
     Return `AbjGrepScript` instance.
     '''

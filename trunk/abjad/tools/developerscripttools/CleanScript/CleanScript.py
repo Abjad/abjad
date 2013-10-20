@@ -9,24 +9,9 @@ class CleanScript(DirectoryScript):
     r'''Remove *.pyc, *.swp files and __pycache__ and tmp* directories 
     recursively in a path:
 
-    ::
+    ..  shell::
 
-        bash$ ajv clean -h
-        usage: clean [-h] [--version] [--pyc] [--pycache] [--swp] [--tmp] path
-
-        Clean *.pyc, *.swp, __pycache__ and tmp* files and folders from PATH.
-
-        positional arguments:
-          path        directory tree to be recursed over
-
-        optional arguments:
-          -h, --help  show this help message and exit
-          --version   show program's version number and exit
-          --pyc       delete *.pyc files
-          --pycache   delete __pycache__ folders
-          --swp       delete Vim *.swp file
-          --tmp       delete tmp* folders
-
+        ajv clean --help
 
     Return `CleanScript` instance.
     '''

@@ -14,18 +14,9 @@ class RenameModulesScript(DeveloperScript):
     Handle renaming the module and package, as well as any tests, 
     documentation or mentions of the class throughout the Abjad codebase:
 
-    ::
+    ..  shell::
 
-        $ ajv rename -h
-        usage: rename-modules [-h] [--version] (-C | -F)
-
-        Rename public modules.
-
-        optional arguments:
-          -h, --help       show this help message and exit
-          --version        show program's version number and exit
-          -C, --classes    rename classes
-          -F, --functions  rename functions
+        ajv rename --help
 
     Return `RenameModulesScript` instance.
     '''

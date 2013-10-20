@@ -12,19 +12,9 @@ class SvnCommitScript(DirectoryScript):
     The commit message will be printed to the terminal, and must be manually
     accepted or rejected before proceeding:
 
-    ::
+    ..  shell::
 
-        bash$ ajv svn ci -h
-        usage: svn-commit [-h] [--version] path
-
-        "svn commit", using previously written commit message.
-
-        positional arguments:
-          path        commit the path PATH
-
-        optional arguments:
-          -h, --help  show this help message and exit
-          --version   show program's version number and exit
+        ajv svn ci --help
 
     Return `SvnCommitScript` instance.
     '''
