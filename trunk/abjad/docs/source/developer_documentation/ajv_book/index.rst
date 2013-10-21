@@ -99,7 +99,7 @@ any LaTeX you create. Type the sample code below into a file:
    This next bit of code knows about the measure we defined earlier.
 
    <abjad>
-   iotools.write_expr_to_ly(measure, 'ajv book-1', docs=True) <hide
+   show(measure)
    </abjad>
 
    And this is the end of the our sample LaTeX document.
@@ -192,5 +192,5 @@ only music notation:
 
    <abjad>[hide=true]
    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b''8")
-   iotools.write_expr_to_ly(staff, 'staff-example', docs=True)
+   show(staff)
    </abjad>
