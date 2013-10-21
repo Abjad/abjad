@@ -48,16 +48,24 @@ There are different ways to install Python packages on your computer. One of
 the most direct ways is with ``pip``, the package management tool recommended
 by the `Python Package Index <https://pypi.python.org/pypi>`_.
 
-.. code-block:: bash
+..  code-block:: bash
 
-   sudo pip install abjad --upgrade
+    sudo pip install abjad --upgrade
 
 Python will install Abjad in the site packages directory on your computer and
 you'll be ready to start using the system.
 
+If you don't have ``pip``, but you do have Python's ``easy_install`` (as is
+often the case), we strongly recommend using ``easy_install`` to install
+``pip``, and then ``pip`` to install Abjad.
 
-Installing the current packaged version of Abjad from the Python Package Index
-------------------------------------------------------------------------------
+..  code-block:: bash
+
+    sudo easy_install pip
+
+
+Manually installing Abjad from the Python Package Index
+-------------------------------------------------------
 
 If you do not have ``pip`` or ``easy_install`` installed on your computer you
 then should follow these steps to install the current packaged version of Abjad
