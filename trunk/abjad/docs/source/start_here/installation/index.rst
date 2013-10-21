@@ -5,7 +5,7 @@ Installation
 Abjad depends on Python
 -----------------------
 
-You must have Python 2.7 installed to run Abjad.
+You must have Python 2.7.5 installed to run Abjad.
 
 Abjad does not yet support the Python 3.x series of releases.
 
@@ -21,7 +21,7 @@ You can download different versions of Python at http://www.python.org.
 Abjad depends on LilyPond
 -------------------------
 
-You must have LilyPond 2.16 or greater installed for Abjad to work properly.
+You must have LilyPond 2.17 or greater installed for Abjad to work properly.
 
 You can download LilyPond at http://www.lilypond.org.
 
@@ -54,17 +54,6 @@ by the `Python Package Index <https://pypi.python.org/pypi>`_.
 
 Python will install Abjad in the site packages directory on your computer and
 you'll be ready to start using the system.
-
-
-Installing the current packaged version of Abjad with ``easy_install``
-----------------------------------------------------------------------
-
-If you have ``easy_install`` installed on your computer then you can install
-Abjad with this command:
-
-.. code-block:: bash
-
-    sudo easy_install -U abjad
 
 
 Installing the current packaged version of Abjad from the Python Package Index
@@ -110,14 +99,13 @@ These commands will cause Python to install Abjad in your site packages
 directory.  You'll then be ready to start using Abjad.
 
 
-After install
--------------
+Configuring Abjad
+-----------------
 
-When first run, Abjad creates an ``.abjad`` directory in your own ``$HOME``
-directory.  In ``$HOME/.abjad`` you will find the Abjad configuration file:
-``abjad.cfg``. Here you can tell Abjad about your preferred PDF file viewer,
-MIDI player, your preferred LilyPond language, etc.  All relevant variables
-have defaults that you can change to suit your needs.
+Abjad creates a ``~/.abjad`` directory the first time it runs.  In ``~/.abjad``
+you will find a the file ``abjad.cfg``.  This is the Abjad configuration file.
+You can use the Abjad configuration file to tell Abjad about your preferred PDF
+file viewer, MIDI player, your preferred LilyPond language and so on.
 
 The configuration file's contents should look approximately like this:
 
@@ -159,18 +147,5 @@ The configuration file's contents should look approximately like this:
 In Linux, for example, you might want to set your ``pdf_viewer`` to ``evince``
 and your ``midi_player`` to ``tiMIDIty``.
 
-``abjad.cfg`` is a regular Python file, so you should make sure the file
-follows Python syntax.
-
-
-Note for Linux users
---------------------
-
-Abjad defaults to ``xdg-open`` to display PDF files using your default PDF
-viewer.  Most Linux distributions now come with ``xdg-utils`` installed.
-
-If you do not have ``xdg-utils`` installed, you can download it from 
-http://www.portland.freedsektop.org.
-
-Alternatively you can set the ``pdf_viewer`` variable in
-``$HOME.abjad/config`` to your favorite PDF viewer. 
+The Abjad configuration file is a regular Python file. Make sure the changes
+you make to the Abjad configuration file follow Python syntax.
