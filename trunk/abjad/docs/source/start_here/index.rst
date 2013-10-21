@@ -5,4 +5,4 @@ Start Here
 
    abjad/index
    installation/index
-   versions/index
+   version_history/index
