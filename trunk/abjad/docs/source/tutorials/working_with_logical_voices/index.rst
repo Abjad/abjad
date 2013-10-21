@@ -1,464 +1,223 @@
-Working with threads
-====================
+Working with logical voices
+===========================
 
 
-What is a thread?
------------------
+What is a logical voice?
+------------------------
 
-A thread is a structural relationship binding a set of strictly sequential
-voice-level components.
+A logical voice is a structural relationship. Abjad uses the concept of the
+logical voice to bind together all the notes, rests, chords and tuplets that
+comprise a single musical voice.
 
-Threads may be explicitly defined via voice instances:
-
-::
-
-   >>> v = Voice()
-
-
-Or they may exist implicitly in certain score constructs in the absence of
-voice containers:
-
-::
-
-   >>> staff = Staff("c'8 d'8 e'8 f'8")
+It's important to understand what logical voices are and how they impact the
+way that you may group notes, rests and chords together with beams, slurs and
+other spanners.
 
 
-Two contiguous voices must have the same name in order to be part of the same
-thread.
+Logical voices vs. explicit voices
+----------------------------------
 
-Here a thread does **not** exist between notes in different voices:
+Logical voices and explicit voices are different things. The staff below
+contains an explicit voice. You can slur these notes together because notes
+contained in an explicit voice always belong to the same logical voice:
 
 ::
 
-   >>> v_one = Voice("c'16 d'16 e'16 f'16")
-   >>> v_two = Voice("c'8 d'8")
-   >>> staff = Staff([v_one, v_two])
-   >>> f(staff)
-   \new Staff {
-       \new Voice {
-           c'16
-           d'16
-           e'16
-           f'16
-       }
-       \new Voice {
-           c'8
-           d'8
-       }
-   }
-
-
-Here a thread does exist:
-
-::
-
-   >>> v_one.name = 'flute'
-   >>> v_two.name = 'flute'
-   >>> f(staff)
-   \new Staff {
-       \context Voice = "flute" {
-           c'16
-           d'16
-           e'16
-           f'16
-       }
-       \context Voice = "flute" {
-           c'8
-           d'8
-       }
-   }
-
-
-
-What are threads for?
----------------------
-
-Consider the following situation:
-
-.. image:: images/thread-resolution-1.png
-
-Are the two eighth notes in the second half of the measure the continuation of
-the ascending line in the first half, or is it the quarter note? Is the very
-last *C* the continuation of the top melodic line or is it the *A*? The stems
-might suggest an answer, but for Abjad, stem direction is not structural. What
-path should Abjad take to traverse this little score from the first note to the
-last *A*? This same problem appears when trying to apply spanners to
-simultaneous structures. Thus, threads are important in both score navigation
-and the application of spanners. In fact, threads are a requirement for
-spanner application.
-
-In Abjad, the ambiguity is resolved through the explicit use of named voices.
-
-The musical fragment above is constructed with the following code:
-
-::
-
-   >>> vA = Voice(notetools.make_notes([5, 7, 9, 11], [(1, 8)] * 4))
-   >>> vB = Voice(notetools.make_notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
-   >>> vC = Voice(Note(12, (1, 4)) * 2)
-   >>> mark = marktools.LilyPondCommandMark('voiceOne')(vA[0])
-   >>> mark = marktools.LilyPondCommandMark('voiceOne')(vB[0])
-   >>> mark = marktools.LilyPondCommandMark('voiceTwo')(vC[0])
-   >>> p = Container([vB, vC])
-   >>> p.is_simultaneous = True
-   >>> staff = Staff([vA, p])
-
-
-::
-
-   >>> f(staff)
-   \new Staff {
-       \new Voice {
-           \voiceOne
-           f'8
-           g'8
-           a'8
-           b'8
-       }
-       <<
-           \new Voice {
-               \voiceOne
-               c''8
-               b'8
-               a'4
-           }
-           \new Voice {
-               \voiceTwo
-               c''4
-               c''4
-           }
-       >>
-   }
-
-
-::
-
+   >>> voice = Voice("c'8 d'8 e'8 f'8")
+   >>> staff = Staff([voice])
+   >>> notes = voice.select_leaves()
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(notes)
    >>> show(staff)
 
 .. image:: images/index-1.png
 
 
-There's a staff that sequentially contains a voice and a simultaneous
-container. The container in turn holds two voices running simultaneously.
-
-It is now clear from the code that the last *A* belongs with the two descending
-eighth notes. But there's still no indication about a relationship of
-continuity between the first voice in the sequence (`vA`) and any of the two
-following voices. Note that, while the LilyPond voice number commands setting
-may suggest that vA and vB belong together, this is not the case. The LilyPond
-voice number commands simply set the direction of stems in printed output.
-
-To see this more clearly, suppose we want to add a slur spanner starting on the
-first note and ending on one of the last simultaneous notes. To attach the
-slur spanner to the voices we could try either:
+Here is a staff without an explicit voice. You can slur these notes together
+because both Abjad and LilyPond recognize that the notes belong to the same
+logical voice even though no explicit voice is present:
 
 ::
 
-   >>> spannertools.SlurSpanner([vA, vB])
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 48, in __init__
-       overrides=overrides,
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 24, in __init__
-       overrides=overrides,
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 47, in __init__
-       self._initialize_components(components)
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 316, in _initialize_components
-       for x in components), repr(components)
-   AssertionError: [Voice{4}, Voice{3}]
-
-
-... or ...
-
-::
-
-   >>> spannertools.SlurSpanner([vA, vC])
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 48, in __init__
-       overrides=overrides,
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 24, in __init__
-       overrides=overrides,
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 47, in __init__
-       self._initialize_components(components)
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 316, in _initialize_components
-       for x in components), repr(components)
-   AssertionError: [Voice{4}, Voice{2}]
-
-
-But both raise a contiguity error. Abjad needs to see an explicit connection
-between either `vA` and `vB` or between `vA` and `vC`.
-
-Observe the behavior of the
-:func:`~abjad.tools.iterationtools.iterate_logical_voice_in_expr`
-iterator on the `staff`:
-
-::
-
-   >>> vA_thread_signature = vA.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vA_thread_signature)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vA_thread_signature' is not defined
-   >>> print list(notes)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'notes' is not defined
-
-
-::
-
-   >>> vB_thread_signature = vB.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vB_thread_signature)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vB_thread_signature' is not defined
-   >>> print list(notes)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'notes' is not defined
-
-
-::
-
-   >>> vC_thread_signature = vC.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vC_thread_signature)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vC_thread_signature' is not defined
-   >>> print list(notes)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'notes' is not defined
-
-
-In each case we are passing a different **thread signature** to the
-:func:`~abjad.tools.iterationtools.iterate_logical_voice_in_expr`
-iterator, so each case returns a different list of notes.
-
-We can see that the thread signature of each voice is indeed different
-by printing it:
-
-::
-
-   >>> vA_thread_signature = vA.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> vA_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vA_thread_signature' is not defined
-
-
-::
-
-   >>> vB_thread_signature = vB.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> vB_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vB_thread_signature' is not defined
-
-
-::
-
-   >>> vC_thread_signature = vC.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> vC_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vC_thread_signature' is not defined
-
-
-And by comparing them with the binary equality operator:
-
-::
-
-   >>> vA_thread_signature == vB_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vA_thread_signature' is not defined
-   >>> vA_thread_signature == vC_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vA_thread_signature' is not defined
-   >>> vB_thread_signature == vC_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vB_thread_signature' is not defined
-
-
-To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging
-together, we explicitly define a thread between them. To do this all we need
-to do is give both voices the same name:
-
-::
-
-   >>> vA.name = 'piccolo'
-   >>> vB.name = 'piccolo'
-
-
-Now `vA` and `vB` and all their content belong to the same thread:
-
-::
-
-   >>> vA_thread_signature == vB_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vA_thread_signature' is not defined
-
-
-Note how the thread signatures have changed:
-
-::
-
-   >>> vA_thread_signature = vA.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> print vA_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vA_thread_signature' is not defined
-
-
-::
-
-   >>> vB_thread_signature = vB.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> print vB_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vB_thread_signature' is not defined
-
-
-::
-
-   >>> vC_thread_signature = vC.parentage.logical_voice_indicator
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'Voice' object has no attribute 'parentage'
-   >>> print vC_thread_signature
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vC_thread_signature' is not defined
-
-
-And how the ``iterationtools.iterate_logical_voice_in_expr()`` function returns
-all the notes belonging to both `vA` and `vB` when passing it the full staff
-and the thread signature of `vA`:
-
-::
-
-   >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vA_thread_signature)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vA_thread_signature' is not defined
-   >>> print list(notes)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'notes' is not defined
-
-
-Now the slur spanner can be applied to voices `vA` and `vB`:
-
-::
-
-   >>> spannertools.SlurSpanner([vA, vB])
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 48, in __init__
-       overrides=overrides,
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 24, in __init__
-       overrides=overrides,
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 47, in __init__
-       self._initialize_components(components)
-     File "/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 316, in _initialize_components
-       for x in components), repr(components)
-   AssertionError: [Voice-"piccolo"{4}, Voice-"piccolo"{3}]
-
-
-or directly to the notes returned by the
-:func:`~abjad.tools.iterationtools.iterate_logical_voice_in_expr`
-iteration tool, which are the notes belonging to both `vA` and `vB`:
-
-::
-
-   >>> notes = iterationtools.iterate_logical_voice_in_expr(staff, Note, vA_thread_signature)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'vA_thread_signature' is not defined
-   >>> spannertools.SlurSpanner(list(notes))
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'notes' is not defined
-
-
-::
-
+   >>> staff = Staff("g'4 fs'8 e'8")
+   >>> notes = staff.select_leaves()
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(notes)
    >>> show(staff)
 
 .. image:: images/index-2.png
 
 
-Coda
-----
 
-We could have constructed this score in a simpler way with only two voices,
-one of them starting with a LilyPond skip:
+Different voice names determine different logical voices
+--------------------------------------------------------
 
-::
-
-   >>> vX = Voice(notetools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
-   >>> vY = Voice([skiptools.Skip((2, 4))] + Note(12, (1, 4)) * 2)
-   >>> mark = marktools.LilyPondCommandMark('voiceOne')(vX[0])
-   >>> mark = marktools.LilyPondCommandMark('voiceTwo')(vY[0])
-   >>> staff = Staff([vX, vY])
-   >>> staff.is_simultaneous = True
-
+Now let's consider a slightly more complex example.  The staff below contains
+two short voices written one after the other.  It's unusual to think of musical
+voices as following one after the other on the same staff. But the example 
+keeps things simple while we explore the way that the names of explicit voices
+impact Abjad's determination of logical voices:
 
 ::
 
-   >>> f(staff)
-   \new Staff <<
-       \new Voice {
-           \voiceOne
-           f'8
-           g'8
-           a'8
-           b'8
-           c''8
-           b'8
-           a'4
-       }
-       \new Voice {
-           \voiceTwo
-           s2
-           c''4
-           c''4
-       }
-   >>
-
-
-::
-
+   >>> voice_1 = Voice("c'16 d'16 e'16 f'16", name='First Short Voice')
+   >>> voice_2 = Voice("e'8 d'8", name='Second Short Voice')
+   >>> staff = Staff([voice_1, voice_2])
    >>> show(staff)
 
 .. image:: images/index-3.png
 
+
+You can't tell that the score above comprises two voices from the notation
+alone. But the LilyPond input makes this clear:
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       \context Voice = "First Short Voice" {
+           c'16
+           d'16
+           e'16
+           f'16
+       }
+       \context Voice = "Second Short Voice" {
+           e'8
+           d'8
+       }
+   }
+
+
+You can slur together the notes in the first voice:
+
+::
+
+   >>> notes = voice_1.select_leaves()
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(notes)
+   >>> show(staff)
+
+.. image:: images/index-4.png
+
+
+And you can slur together the notes in the second voice:
+
+::
+
+   >>> notes = voice_2.select_leaves()
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(notes)
+   >>> show(staff)
+
+.. image:: images/index-5.png
+
+
+But you can not slur together all the notes in the staff.
+
+Why? Because the six notes in the staff above belong to two different logical
+voices.  Abjad will raise an exception if you try to slur these notes together.
+And LilyPond would refuse to render the resulting input code even if you could.
+
+The important point here is that explicit voices carrying different names
+determine different logical voices. The practical upshot of this is that voice
+naming constrains which notes, rests and chords you can group together with
+slurs, beams and other spanners.
+
+
+Identical voice names determine a single logical voice
+------------------------------------------------------
+
+Now let's consider an example in which both voices carry the same name:
+
+::
+
+   >>> voice_1 = Voice("c''16 b'16 a'16 g'16", name='Unified Voice')
+   >>> voice_2 = Voice("fs'8 g'8", name='Unified Voice')
+   >>> staff = Staff([voice_1, voice_2])
+   >>> show(staff)
+
+.. image:: images/index-6.png
+
+
+All six notes in the staff now belong to the same logical voice. We can see
+that this is the case because it's now possible to slur all six notes together:
+
+::
+
+   >>> voice_1_notes = voice_1.select_leaves()
+   >>> voice_2_notes = voice_2.select_leaves()
+   >>> all_notes = voice_1_notes + voice_2_notes
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(all_notes)
+   >>> show(staff)
+
+.. image:: images/index-7.png
+
+
+We can say that this example comprises two explicit voices but only a single
+logical voice. The LilyPond input code also makes this clear:
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       \context Voice = "Unified Voice" {
+           c''16 (
+           b'16
+           a'16
+           g'16
+       }
+       \context Voice = "Unified Voice" {
+           fs'8
+           g'8 )
+       }
+   }
+
+
+
+The importance of naming voices
+-------------------------------
+
+What happens if we choose not to name the explicit voices we create?  It is
+clear that the staff below contains two explicit voices. But because the
+explicit voices are unnamed it isn't clear how many logical voices the staff
+defines.  Do the notes below belong to one logical voice or two?
+
+::
+
+   >>> voice_1 = Voice("c'8 e'16 fs'16")
+   >>> voice_2 = Voice("g'16 gs'16 a'16 as'16")
+   >>> staff = Staff([voice_1, voice_2])
+   >>> show(staff)
+
+.. image:: images/index-8.png
+
+
+Abjad defers to LilyPond in answering this question. LilyPond interprets
+successive unnamed voices as constituting different voices; Abjad follows this
+convention. This means that you can slur together the notes in the first voice.
+And you can slur together the notes in the second voice. But you can't slur
+together all of the notes at once:
+
+::
+
+   >>> voice_1_notes = voice_1.select_leaves()
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(voice_1_notes)
+   >>> voice_2_notes = voice_2.select_leaves()
+   >>> slur = spannertools.SlurSpanner()
+   >>> slur.attach(voice_2_notes)
+   >>> show(staff)
+
+.. image:: images/index-9.png
+
+
+This point can be something of a gotcha. If you start working with increasingly
+fancy ways of structuring your scores you can easily forget that notes in two
+successive (but unnamed) voices can not be beamed or slurred together.
+
+This leads to a best practice when working with Abjad: **name the explicit
+voices you create**. The small score snippets we've created for the docs don't
+really require that names for voices, staves and scores. But scores used to
+model serious music should provide explicit names for every context from the
+beginning.
