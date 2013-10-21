@@ -133,7 +133,7 @@ The musical fragment above is constructed with the following code:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-1.png
 
@@ -412,7 +412,7 @@ iteration tool, which are the notes belonging to both `vA` and `vB`:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-2.png
 
@@ -458,7 +458,7 @@ one of them starting with a LilyPond skip:
 
 ::
 
-   >>> show(staff, docs=True)
+   >>> show(staff)
 
 .. image:: images/index-3.png
 

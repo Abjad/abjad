@@ -22,4 +22,4 @@ Tutorials
    overriding_lilypond_grobs/index
    understanding_time_signature_marks/index
    working_with_component_parentage/index
-   working_with_threads/index
+   working_with_logical_voices/index
