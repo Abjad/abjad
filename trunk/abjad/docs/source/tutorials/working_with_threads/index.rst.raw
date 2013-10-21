@@ -80,7 +80,7 @@ f(staff)
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
 
 There's a staff that sequentially contains a voice and a simultaneous
@@ -219,7 +219,7 @@ spannertools.SlurSpanner(list(notes))
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
 
 Coda
@@ -242,5 +242,5 @@ f(staff)
 </abjad>
 
 <abjad>
-show(staff, docs=True)
+show(staff)
 </abjad>
