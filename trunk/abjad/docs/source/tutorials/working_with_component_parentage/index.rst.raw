@@ -4,63 +4,55 @@ Working with component parentage
 Many score objects contain other score objects.
 
 <abjad>
-tuplet = Tuplet(Fraction(2, 3), "c'4 d'4 e'4")
+tuplet = Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
 staff = Staff(2 * tuplet)
 score = Score([staff])
-</abjad>
-
-<abjad>
-show(score, docs=True)
+show(score)
 </abjad>
 
 Abjad uses the idea of parentage to model the way objects contain each other.
 
-Improper parentage
-------------------
 
-The improper parentage of the first note in score begins with the note itself:
+Getting the parentage of a component
+------------------------------------
+
+Use the inspector to get the parentage of any component:
 
 <abjad>
-note = score.leaves[0]
+note = score.select_leaves()[0]
+parentage = inspect(note).get_parentage()
 </abjad>
 
 <abjad>
-note.parentage
+parentage
 </abjad>
 
-<abjad>
-note.parentage[:]
-</abjad>
+Abjad returns a special type of selection.
 
-Proper parentage
-----------------
-
-The proper parentage of the note begins with only the immediate parent of the note:
-
-<abjad>
-note.parentage[1:]
-</abjad>
-
-.. note:: the length of the improper parentage of any component equals
-    the length of the proper parentage of the component plus ``1``.
 
 Parentage attributes
 --------------------
 
-Use Parentage to find score depth:
+Use parentage to find the immediate parent of a component:
 
 <abjad>
-note.parentage.depth
+parentage.parent
 </abjad>
 
-Or score root:
+Or the root of the score in the which the component resides:
 
 <abjad>
-note.parentage.root
+parentage.root
 </abjad>
 
-Or to find whether a component has no (proper) parentage at all:
+Or to find the depth at which the component is embedded in its score:
 
 <abjad>
-note.parentage.is_orphan
+parentage.depth
+</abjad>
+
+Or the number of tuplets in which the component is nested:
+
+<abjad>
+parentage.tuplet_depth
 </abjad>

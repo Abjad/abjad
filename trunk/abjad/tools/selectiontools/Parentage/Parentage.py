@@ -7,17 +7,22 @@ from abjad.tools.selectiontools.SimultaneousSelection \
 
 
 class Parentage(SimultaneousSelection):
-    r'''A component's parent components.
+    r'''The parentage of a component.
 
     ..  container:: example
 
         ::
 
             >>> score = Score()
-            >>> score.append(Staff(r"""\new Voice = "Treble Voice" { c'4 }""",
-            ...     name='Treble Staff'))
-            >>> score.append(Staff(r"""\new Voice = "Bass Voice" { b,4 }""",
-            ...     name='Bass Staff'))
+            >>> string = r"""\new Voice = "Treble Voice" { e'4 }"""
+            >>> treble_staff = Staff(string, name='Treble Staff')
+            >>> score.append(treble_staff)
+            >>> string = r"""\new Voice = "Bass Voice" { c4 }"""
+            >>> bass_staff = Staff(string, name='Bass Staff')
+            >>> clef = contexttools.ClefMark('bass')
+            >>> clef = clef.attach(bass_staff)
+            >>> score.append(bass_staff)
+            >>> show(score) # doctest: +SKIP
 
         ..  doctest::
 
@@ -25,31 +30,28 @@ class Parentage(SimultaneousSelection):
             \new Score <<
                 \context Staff = "Treble Staff" {
                     \context Voice = "Treble Voice" {
-                        c'4
+                        e'4
                     }
                 }
                 \context Staff = "Bass Staff" {
+                    \clef "bass"
                     \context Voice = "Bass Voice" {
-                        b,4
+                        c4
                     }
                 }
             >>
 
         ::
 
-            >>> parentage = inspect(score).get_parentage()
-            >>> for x in parentage: x
-            ...
-            Score<<2>>
-
-        ::
-
             >>> bass_voice = score['Bass Voice']
             >>> note = bass_voice[0]
             >>> parentage = inspect(note).get_parentage()
+
+        ::
+
             >>> for x in parentage: x
             ...
-            Note('b,4')
+            Note('c4')
             Voice-"Bass Voice"{1}
             Staff-"Bass Staff"{1}
             Score<<2>>
@@ -119,6 +121,8 @@ class Parentage(SimultaneousSelection):
     @property
     def component(self):
         r'''The component from which the selection was derived.
+
+        Returns component.
         '''
         return self._component
 
@@ -126,7 +130,7 @@ class Parentage(SimultaneousSelection):
     def depth(self):
         r'''Length of proper parentage of component.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self[1:])
 
@@ -135,7 +139,7 @@ class Parentage(SimultaneousSelection):
         r'''True when component has no parent.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.parent is None
 
@@ -145,11 +149,10 @@ class Parentage(SimultaneousSelection):
 
         ::
 
-            >>> score = Score(
-            ... r"""\context Staff = "CustomStaff" { """
-            ...     r"""\context Voice = "CustomVoice" { c' d' e' f' } }""")
-            >>> score.name = 'CustomScore'
-
+            >>> voice = Voice("c'4 d'4 e'4 f'4", name='CustomVoice')
+            >>> staff = Staff([voice], name='CustomStaff')
+            >>> score = Score([staff], name='CustomScore')
+            >>> show(score) # doctest: +SKIP
 
         ..  doctest::
 
@@ -170,6 +173,9 @@ class Parentage(SimultaneousSelection):
             >>> leaf = score.select_leaves()[0]
             >>> parentage = inspect(leaf).get_parentage()
             >>> indicator = parentage.logical_voice_indicator
+
+        ::
+
             >>> for key, value in indicator.iteritems():
             ...     print '%12s: %s' % (key, value)
             ...
@@ -178,7 +184,7 @@ class Parentage(SimultaneousSelection):
                      staff: Staff-'CustomStaff'
                      voice: Voice-'CustomVoice'
 
-        Return ordered dictionary.
+        Returns ordered dictionary.
         '''
         from abjad.tools import componenttools
         from abjad.tools import scoretools
@@ -209,15 +215,21 @@ class Parentage(SimultaneousSelection):
 
     @property
     def parent(self):
-        r'''Parent of component or none when component is orphan.
+        r'''Parent of component.
 
-        Return component or none.
+        Returns none when component has no parent.
+
+        Returns component or none.
         '''
         if 1 < len(self):
             return self[1]
 
     @property
     def prolation(self):
+        r'''Prolation governing component.
+
+        Returns multiplier.
+        '''
         prolations = [durationtools.Multiplier(1)] + self._prolations
         products = mathtools.cumulative_products(prolations)
         return products[-1]
@@ -225,19 +237,21 @@ class Parentage(SimultaneousSelection):
     @property
     def root(self):
         r'''Last element in parentage.
+
+        Returns component.
         '''
         return self[-1]
 
     @property
     def score_index(self):
-        r'''Score index of component:
+        r'''Score index of component.
 
         ::
 
-            >>> staff_1 = Staff(
-            ...     r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
-            >>> staff_2 = Staff(r"\times 2/3 { b'8 c''8 d''8 }")
+            >>> staff_1 = Staff(r"\times 2/3 { c''2 b'2 a'2 }")
+            >>> staff_2 = Staff("c'2 d'2")
             >>> score = Score([staff_1, staff_2])
+            >>> show(score) # doctest: +SKIP
 
         ..  doctest::
 
@@ -245,42 +259,31 @@ class Parentage(SimultaneousSelection):
             \new Score <<
                 \new Staff {
                     \times 2/3 {
-                        c'8
-                        d'8
-                        e'8
-                    }
-                    \times 2/3 {
-                        f'8
-                        g'8
-                        a'8
+                        c''2
+                        b'2
+                        a'2
                     }
                 }
                 \new Staff {
-                    \times 2/3 {
-                        b'8
-                        c''8
-                        d''8
-                    }
+                        c'2
+                        d'2
                 }
             >>
 
         ::
 
-            >>> for leaf in score.select_leaves(
-            ...     allow_discontiguous_leaves=True):
-            ...     leaf, inspect(leaf).get_parentage().score_index
+            >>> leaves = score.select_leaves(allow_discontiguous_leaves=True)
+            >>> for leaf in leaves:
+            ...     parentage = inspect(leaf).get_parentage()
+            ...     leaf, parentage.score_index
             ...
-            (Note("c'8"), (0, 0, 0))
-            (Note("d'8"), (0, 0, 1))
-            (Note("e'8"), (0, 0, 2))
-            (Note("f'8"), (0, 1, 0))
-            (Note("g'8"), (0, 1, 1))
-            (Note("a'8"), (0, 1, 2))
-            (Note("b'8"), (1, 0, 0))
-            (Note("c''8"), (1, 0, 1))
-            (Note("d''8"), (1, 0, 2))
+            (Note("c''2"), (0, 0, 0))
+            (Note("b'2"), (0, 0, 1))
+            (Note("a'2"), (0, 0, 2))
+            (Note("c'2"), (1, 0))
+            (Note("d'2"), (1, 1))
 
-        Return tuple of zero or more nonnegative integers.
+        Returns tuple of zero or more nonnegative integers.
         '''
         result = []
         cur = self[0]
@@ -293,14 +296,14 @@ class Parentage(SimultaneousSelection):
 
     @property
     def tuplet_depth(self):
-        r'''Tuplet-depth of component:
+        r'''Tuplet depth of component.
 
         ::
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(
-            ...     Duration(2, 8), "c'8 d'8 e'8")
+            >>> tuplet = Tuplet(Multiplier(2, 3), "c'2 d'2 e'2")
             >>> staff = Staff([tuplet])
             >>> note = staff.select_leaves()[0]
+            >>> show(staff) # doctest: +SKIP
 
         ::
 
@@ -317,7 +320,7 @@ class Parentage(SimultaneousSelection):
             >>> inspect(staff).get_parentage().tuplet_depth
             0
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         from abjad.tools import tuplettools
         from abjad.tools import componenttools
@@ -334,9 +337,9 @@ class Parentage(SimultaneousSelection):
     ### PUBLIC METHODS ###
 
     def get_first(self, component_classes=None):
-        r'''Get first instance of `component_classes` in parentage.
+        r'''Gets first instance of `component_classes` in parentage.
 
-        Return component or none.
+        Returns component or none.
         '''
         from abjad.tools import componenttools
         if component_classes is None:
