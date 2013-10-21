@@ -8,7 +8,7 @@ At the end of the tutorial you'll understand how time signature marks are
 created.
 
 You'll also understand how the states of different objects change when
-time signature marks are attached and detached.
+you attach and detach time signature marks.
 
 
 Getting started
@@ -20,16 +20,15 @@ We start by creating a staff full of notes:
 staff = Staff("c'4 d'4 e'4 f'4 g'2")
 </abjad>
 
-If we ask the Abjad interpreter about our staff reference Abjad will respond
-with the interpreter display of the object:
+The interpreter representation of our staff looks like this:
 
 <abjad>
 staff
 </abjad>
 
-The ``5`` in ``Staff{5}`` shows that the staff contains 5 top-level components.
-The curly braces in ``Staff{5}`` show that the contents of the staff are to be
-read sequentially through time rather than simultaneously.
+The ``5`` in ``Staff{5}`` shows that the staff contains five top-level
+components.  The curly braces in ``Staff{5}`` show that the contents of the
+staff are to be read sequentially through time rather than simultaneously.
 
 Before we get to time signature marks let's take a moment and examine the state
 of the staff we've created. We can motivate this a bit by asking two questions:
@@ -43,18 +42,17 @@ within the staff we have just created?
 The answer to both questions is the same: there is no time signature currently
 in effect for either our staff or for the five notes it contains.
 
-We can see that this is the case with tools from the API:
+We can use the inspector to see that this is the case:
 
 <abjad>
-contexttools.get_effective_time_signature(staff) is None
+print inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
 </abjad>
 
 And:
 
 <abjad>
-for leaf in staff:
-    contexttools.get_effective_time_signature(leaf) is None
-
+for leaf in staff.select_leaves():
+    print inspect(leaf).get_effective_context_mark(contexttools.TimeSignatureMark)
 </abjad>
 
 And we can iterate both the staff and its leaves at one and the same time like
@@ -62,11 +60,11 @@ this:
 
 <abjad>
 for component in iterationtools.iterate_components_in_expr(staff):
-    component, contexttools.get_effective_time_signature(component)
-
+    effective_time_signature = inspect(component).get_effective_context_mark(contexttools.TimeSignatureMark)
+    print component, effective_time_signature
 </abjad>
 
-This confirms the answer to our questions that there is not yet any time
+This confirms the answers to our questions. There is not yet any time
 signature in effect for any component in our staff because we have not yet
 attached a time signature mark to any component in our staff.
 
@@ -122,8 +120,7 @@ First, we create a ``3/4`` time signature mark:
 time_signature_mark = contexttools.TimeSignatureMark((3, 4))
 </abjad>
 
-If we ask the Abjad interpreter for the interpreter dispaly of
-our time signature mark we get the following:
+The interpreter representation of our time signature looks like this:
 
 <abjad>
 time_signature_mark
@@ -151,10 +148,11 @@ time_signature_mark.attach(staff)
 Abjad responds immediately by returning the time signature mark we have just
 attached.
 
-Notice that our time signature mark's repr has changed. The repr of our
-``3/4`` time signature mark now includes the repr of the staff to which we have
-just attached the time signature mark. That is to say that the repr of our
-time signature mark is statal.
+Notice that the interpreter representation of our time signature mark has
+changed. The interpreter representation of our ``3/4`` time signature mark now
+includes the staff to which we have just attached the time signature mark. That
+is to say that the interpreter representation of our time signature mark is
+statal.
 
 Our time signature mark has transitioned from an "unattached" state to an
 "attached" state. We can see this like so:
@@ -167,7 +165,7 @@ And our staff has likewise transitioned from a state of having no effective
 time signature to a state of having an effective time signature:
 
 <abjad>
-contexttools.get_effective_time_signature(staff)
+inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
 </abjad>
 
 And what about the leaves inside our staff?
@@ -176,12 +174,12 @@ Do the leaves now "know" that they are governed by a ``3/4`` time signature?
 Indeed they do:
 
 <abjad>
-for leaf in staff.leaves:
-    leaf, contexttools.get_effective_time_signature(leaf)
-
+for leaf in staff.select_leaves():
+    effective_time_signature = inspect(leaf).get_effective_context_mark(contexttools.TimeSignatureMark)
+    print leaf, effective_time_signature
 </abjad>
 
-So to briefly resume:
+Briefly to resume:
 
 What we just did was to:
 
@@ -190,11 +188,6 @@ What we just did was to:
 
 This 2-step pattern is always the same when dealing with context marks: create
 then attach.
-
-(We will find out later that there are short-cuts for different parts of this
-process.  Right now we've chosen to create in a first step and attach in a
-second step so that we can examine the changing states of the objects
-involved.)
 
 Before moving on let's look at the PDF corresponding to our staff:
 
@@ -213,7 +206,7 @@ attached an Abjad time signature mark to the staff.
 
 What we've just been through above will cover over 80% of what you'll ever wind
 up doing with time signature marks: creating them and attaching them directly
-to staves. But what if we wanna get rid of a time signature mark? Or what if
+to staves. But what if we wan to get rid of a time signature mark? Or what if
 the time signature will be changing all over the place? We cover those cases
 next.
 
@@ -223,9 +216,9 @@ Detaching a time signature mark is easy:
 time_signature_mark.detach()
 </abjad>
 
-The Abjad returns the mark we have just detached. And, observing the repr of
-the time signature mark, we see that the time signature mark has again changed
-state: the time signature mark has transitioned from attached to unattached.
+Abjad returns the mark we have just detached. And the interpreter
+representation of the time signature mark has again changed state:
+the time signature mark has transitioned from attached to unattached.
 We confirm this like so:
 
 <abjad>
@@ -235,14 +228,12 @@ time_signature_mark.start_component is None
 And also like so:
 
 <abjad>
-contexttools.get_effective_time_signature(staff) is None
+print inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
 </abjad>
 
-Yup: our time signature mark knows nothing about our staff. And vice versa.
-This is good.
+Our time signature mark now knows nothing about our staff. And vice versa.
 
-So now what if we want to set up a time signature of ``2/4``? That fits our
-music, too.
+So now what if we want to set up a time signature of ``2/4``?
 
 We have a couple of options.
 
@@ -275,7 +266,7 @@ duple_time_signature_mark.detach()
 ... confirm that our staff is now time signatureless ...
 
 <abjad>
-contexttools.get_effective_time_signature(staff) is None
+print inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
 </abjad>
 
 <abjad>
@@ -297,7 +288,7 @@ time_signature_mark.numerator = 2
 ... and check to make sure that everything is as it should be:
 
 <abjad>
-contexttools.get_effective_time_signature(staff)
+inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
 time_signature_mark.start_component
 </abjad>
 
@@ -311,11 +302,15 @@ show(staff)
 
 And everything works as it should.
 
-To change to, for example, ``4/4`` we change just change the time signature
-mark's numerator again:
+To change to ``4/4`` we change just change the time signature mark's numerator
+again:
 
 <abjad>
 time_signature_mark.numerator = 4
+</abjad>
+
+<abjad>
+show(staff)
 </abjad>
 
 <abjad>
@@ -412,117 +407,3 @@ options for where to attach our ``2/4`` time signature mark. If, for example,
 we had chosen to populate our staff with a series of measures then it's
 possible we could have attached our ``2/4`` time signature to a measure instead
 of a note.
-
-
-Time signature API
-------------------
-
-That covers the vast majority of things you'll do with time signature marks.
-
-But before we stop we should mention another useful API function
-and then talk about some short-cuts.
-
-First an API function to detach ALL context marks attaching to a component:
-
-We call the function a first time:
-
-<abjad>
-contexttools.detach_context_marks_attached_to_component(staff)
-</abjad>
-
-<abjad>
-f(staff)
-</abjad>
-
-And then a second time:
-
-<abjad>
-contexttools.detach_context_marks_attached_to_component(staff[4])
-</abjad>
-
-<abjad>
-f(staff)
-</abjad>
-
-Now there are now context marks of any sort attached to our staff or to the
-notes in our staff.
-
-Be careful with this function, though: it removes *all* context marks. So even
-though we just used the function to remove time signature marks, it also would
-have removed any clef marks or tempo marks if we had had those attached to our
-score, too.
-
-And now for the short-cuts:
-
-Our staff currently has no time signature marks attached:
-
-<abjad>
-f(staff)
-</abjad>
-
-So to recreate our ``3/4`` time signature we can do this ...
-
-<abjad>
-time_signature_mark = contexttools.TimeSignatureMark((3, 4))
-</abjad>
-
-... and then use a short-cut to avoid calling ``time_signature_mark.attach()``
-like this:
-
-<abjad>
-time_signature_mark(staff)
-</abjad>
-
-<abjad>
-f(staff)
-</abjad>
-
-What's going on here is that all context marks implement the special
-``__call__()`` method as a short-cut for ``attach()``. What is the special
-``__call__()`` method? The ``__call__()`` method is what makes a function,
-class or any other Python object callable. The statement
-``time_signature_mark(staff)`` has has parentheses in it because the time
-signature mark is callable; and the time signature mark is callable because all
-context marks implement the special ``__call__()`` method.
-
-Note too that all context marks understand an *empty call* as a short-cut
-for ``detach()``. Like this:
-
-<abjad>
-time_signature_mark()
-</abjad>
-
-<abjad>
-f(staff)
-</abjad>
-
-The empty call made against the time signature mark causes the time signature
-mark to detach from its start component.
-
-The fact that context marks implement the special ``__call__()`` method as a
-short-cut for attach() means that context marks can be created and attached in
-a single line:
-
-<abjad>
-contexttools.TimeSignatureMark((2, 4))(staff)
-</abjad>
-
-<abjad>
-f(staff)
-</abjad>
-
-What's going on here?
-
-What's going on is that ``contexttools.TimeSignatureMark((2, 4))`` creates a
-time signature mark in the usual way and that -- immediately after this -- the
-newly created time signature mark is available for us to call it against our
-staff.
-
-This last short-cut form of ...
-
-::
-
-    >>> contexttools.TimeSignatureMark((2, 4))(staff)
-
-... is the usual way that you will see context marks of all sorts presented in
-the docs.
