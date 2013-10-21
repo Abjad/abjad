@@ -1,4 +1,4 @@
-Start Here
+Start here
 ==========
 
 .. toctree::

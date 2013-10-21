@@ -84,10 +84,10 @@ yet have what you need.
 
 Once you understand the basics about how to work with Abjad you should spend
 some time with the :doc:`Abjad API </api/index>`.  The API documents all the
-functionality available in the system.  Abjad comprises about 168,000 lines of
+functionality available in the system.  Abjad comprises about 199,000 lines of
 code.  About half of these implement the automated tests that check the
-correctness of Abjad.  The rest of the code implements 39 packages comprising
-221 classes and 1029 functions.  All of these are documented in the API.
+correctness of Abjad.  The rest of the code implements 58 packages comprising
+501 classes and 526 functions.  All of these are documented in the API.
 
 
 Mailing lists
