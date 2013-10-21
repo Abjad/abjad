@@ -12,8 +12,8 @@ class ClassDocumenter(Documenter):
         >>> documenter = documentationtools.ClassDocumenter(cls)
         >>> restructured_text = documenter()
         >>> print restructured_text
-        :py:mod:`documentationtools <abjad.tools.documentationtools>`.ClassDocumenter
-        =============================================================================
+        documentationtools.ClassDocumenter
+        ==================================
         <BLANKLINE>
         .. abjad-lineage:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
         <BLANKLINE>
@@ -49,13 +49,13 @@ class ClassDocumenter(Documenter):
         Bases
         -----
         <BLANKLINE>
-        - :class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`
+        - :py:class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`
         <BLANKLINE>
-        - :class:`abctools.Maker <abjad.tools.abctools.Maker.Maker.Maker>`
+        - :py:class:`abctools.Maker <abjad.tools.abctools.Maker.Maker.Maker>`
         <BLANKLINE>
-        - :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+        - :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
         <BLANKLINE>
-        - :class:`__builtin__.object <object>`
+        - :py:class:`__builtin__.object <object>`
         <BLANKLINE>
         Read-only properties
         --------------------
