@@ -1,7 +1,7 @@
 Tutorials
 =========
 
-   Welcome to Abjad!  If you're new to Python, LilyPond or anything in between,
+   Welcome to Abjad! If you're new to Python, LilyPond or anything in between,
    this is the place to get started.
 
 .. toctree::
@@ -18,9 +18,8 @@ Tutorials
    working_with_lists_of_numbers/index
    changing_notes_to_rests/index
    creating_rest_delimited_slurs/index
-   making_grob_overrides/index
    mapping_lists_to_rhythms/index
-   understanding_lilypond_grobs/index
+   overriding_lilypond_grobs/index
    understanding_time_signature_marks/index
    working_with_component_parentage/index
    working_with_threads/index
