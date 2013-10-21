@@ -107,7 +107,8 @@ you will find a the file ``abjad.cfg``.  This is the Abjad configuration file.
 You can use the Abjad configuration file to tell Abjad about your preferred PDF
 file viewer, MIDI player, your preferred LilyPond language and so on.
 
-The configuration file's contents should look approximately like this:
+By default, your configuration file's contents will look approximately like
+this:
 
 .. code-block:: bash
 
@@ -147,5 +148,5 @@ The configuration file's contents should look approximately like this:
 In Linux, for example, you might want to set your ``pdf_viewer`` to ``evince``
 and your ``midi_player`` to ``tiMIDIty``.
 
-The Abjad configuration file is a regular Python file. Make sure the changes
-you make to the Abjad configuration file follow Python syntax.
+The configuration file is in ``ini`` syntax, so make sure to follow those
+conventions when editing.
