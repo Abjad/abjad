@@ -20,8 +20,11 @@ Introducing ``inspect()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A new top-level ``inspect()`` function is now available when you start Abjad.
-Use the function to inspect a large number of derived attributes that
-pertain to score components. Example:
+``inspect()`` is a factory function that returns an instance of the new
+AttributeInspectionAgent (or just "the inspector"). The inspector allows you
+to get a large number of different score component attributes determined by
+score structure. Here's an example of using ``inspect()`` to get the duration
+of a tupletted note:
 
 ::
 
@@ -29,16 +32,40 @@ pertain to score components. Example:
     >>> note = tuplet[0]
     >>> note.written_duration
     Duration(1, 4)
-
     >>> inspect(note).get_duration()
     Duration(1, 6)
 
-Introducing ``select()``
-^^^^^^^^^^^^^^^^^^^^^^^^
+It now makes sense to speak of an "inspection interface" availabe in the
+system:
 
-Slicing now returns a selection. Tie chains are now implemented as selections.
-And you may use the newly added ``select()`` function to create selections by
-hand.
+::
+
+    AttributeInspectionAgent.get_annotation()
+    AttributeInspectionAgent.get_badly_formed_components()
+    AttributeInspectionAgent.get_components()
+    AttributeInspectionAgent.get_contents()
+    AttributeInspectionAgent.get_descendants()
+    AttributeInspectionAgent.get_duration()
+    AttributeInspectionAgent.get_effective_context_mark()
+    AttributeInspectionAgent.get_effective_staff()
+    AttributeInspectionAgent.get_grace_containers()
+    AttributeInspectionAgent.get_leaf()
+    AttributeInspectionAgent.get_lineage()
+    AttributeInspectionAgent.get_mark()
+    AttributeInspectionAgent.get_marks()
+    AttributeInspectionAgent.get_markup()
+    AttributeInspectionAgent.get_parentage()
+    AttributeInspectionAgent.get_spanner()
+    AttributeInspectionAgent.get_spanners()
+    AttributeInspectionAgent.get_tie_chain()
+    AttributeInspectionAgent.get_timespan()
+    AttributeInspectionAgent.get_vertical_moment()
+    AttributeInspectionAgent.get_vertical_moment_at()
+    AttributeInspectionAgent.is_bar_line_crossing()
+    AttributeInspectionAgent.is_well_formed()
+    AttributeInspectionAgent.report_modifications()
+    AttributeInspectionAgent.tabulate_well_formedness_violations()
+
 
 Introducing  ``mutate()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -61,17 +88,25 @@ system:
 
 ::
 
-    ScoreMutationAgent.copy([n, include_enclosing_containers])
-    ScoreMutationAgent.extract([scale_contents])
+    ScoreMutationAgent.copy()
+    ScoreMutationAgent.extract()
     ScoreMutationAgent.fuse()
-    ScoreMutationAgent.replace(recipients)
-    ScoreMutationAgent.scale(multiplier)
-    ScoreMutationAgent.splice(components[, direction, grow_spanners])
-    ScoreMutationAgent.split(durations[, fracture_spanners, ...])
+    ScoreMutationAgent.replace()
+    ScoreMutationAgent.scale()
+    ScoreMutationAgent.splice()
+    ScoreMutationAgent.split()
 
 ``mutate()`` cleans up a number of previously complex parts of the system.
 There are, for example, now only a single copy function, a single split
 function and a single fuse function implemented in all of Abjad.
+
+
+Selection objects
+^^^^^^^^^^^^^^^^^
+
+Slicing now returns a selection. Tie chains are now implemented as selections.
+And you may use the newly added ``select()`` function to create selections by
+hand.
 
 
 Collections
@@ -99,9 +134,8 @@ Other features
 ClefMark now understands octavation suffixes such as _8, _15, ^8 and ^15.
 It takes these suffixes into account when determining its middle-C position.
 
-
-
-
+A new ``StringOrchestraScoreTemplate`` is now available in the
+``scoretemplatetools`` package.
 
 
 
