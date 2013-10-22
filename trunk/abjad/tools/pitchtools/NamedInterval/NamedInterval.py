@@ -301,6 +301,12 @@ class NamedInterval(Interval):
             7: 10,
             8: 0,
             }
+        perfect_interval_classes = (
+            1,
+            4,
+            5,
+            8,
+            )
         interval_class_number = abs(
             pitchtools.NamedIntervalClass(self).number)
         result += interval_class_number_to_semitones[interval_class_number]
@@ -313,6 +319,9 @@ class NamedInterval(Interval):
             'diminished': -1,
             }
         result += quality_string_to_semitones[self.quality_string]
+        if interval_class_number not in perfect_interval_classes and \
+            self.quality_string == "augmented":
+            result += 1
         if self.number < 0:
             result *= -1
         return result

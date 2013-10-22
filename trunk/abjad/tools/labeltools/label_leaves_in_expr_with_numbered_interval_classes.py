@@ -22,7 +22,7 @@ def label_leaves_in_expr_with_numbered_interval_classes(expr, markup_direction=U
         \new Staff {
             c'8 ^ \markup { +1 }
             cs'''8 ^ \markup { -2 }
-            b'8 ^ \markup { -2 }
+            b'8 ^ \markup { -3 }
             af8 ^ \markup { -10 }
             bf,8 ^ \markup { +1 }
             b,8 ^ \markup { +10 }

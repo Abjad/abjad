@@ -13,7 +13,7 @@ def test_labeltools_label_leaves_in_expr_with_numbered_inversion_equivalent_inte
         \new Staff {
             c'8 ^ \markup { 1 }
             cs'''8 ^ \markup { 2 }
-            b'8 ^ \markup { 2 }
+            b'8 ^ \markup { 3 }
             af8 ^ \markup { 2 }
             bf,8 ^ \markup { 1 }
             b,8 ^ \markup { 2 }
