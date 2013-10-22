@@ -12,7 +12,6 @@ class NamedInterval(Interval):
         >>> pitchtools.NamedInterval('+M9')
         NamedInterval('+M9')
 
-    Return named interval
     '''
 
     ### CLASS VARIABLES ##
@@ -64,8 +63,6 @@ class NamedInterval(Interval):
 
     def __copy__(self, *args):
         return type(self)(self.quality_string, self.number)
-
-    __deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -169,7 +166,7 @@ class NamedInterval(Interval):
 
     @property
     def _format_string(self):
-        return '%s%s' % (self._quality_abbreviation, self.number)
+        return '{}{}'.format(self._quality_abbreviation, self.number)
 
     @property
     def _interval_string(self):

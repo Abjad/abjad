@@ -36,7 +36,7 @@ class Interval(AbjadObject):
         re.VERBOSE,
         )
 
-    __slots__ = ('_format_string', )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
