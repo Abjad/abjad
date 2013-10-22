@@ -114,12 +114,15 @@ There are now only a single copy function, a single split
 function and a single fuse function implemented in Abjad.
 
 
-Selection objects
-^^^^^^^^^^^^^^^^^
+Selections
+^^^^^^^^^^
 
-Slicing now returns a selection. Tie chains are now implemented as selections.
-And you may use the newly added ``select()`` function to create selections by
-hand.
+Abjad 2.13 uses a collection of classes implemented in the ``selectiontools``
+package to group together the components output by most functions in the API.
+Container slice operations, for example, now return a selection of components
+instead of a list of components. You can also create your own selections of
+components with the new ``select()`` function that is available when you start
+Abjad.
 
 
 Collections
