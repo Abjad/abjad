@@ -1,7 +1,40 @@
 Reference manual
 ================
 
-   Wondering how to work with notes, staves or pitches?
+Wondering how to work with notes, staves or pitches?
+
+Leaves
+------
+
+..  container:: two-column
+
+    ..  toctree::
+        :numbered:
+
+        chords/index
+        notes/index
+        rests/index
+
+
+Containers
+----------
+
+..  container:: two-column
+
+    ..  toctree::
+        :numbered:
+
+        containers/index
+        lilypond_files/index
+        measures/index
+        scores/index
+        staves/index
+        tuplets/index
+        voices/index
+
+
+Attachments
+-----------
 
 ..  container:: two-column
 
@@ -10,19 +43,19 @@ Reference manual
 
         annotations/index
         articulations/index
-        chords/index
-        containers/index
-        input_output/index
         instruments/index
         lilypond_command_marks/index
         lilypond_comments/index
-        lilypond_files/index
-        measures/index
-        named_pitches/index
-        notes/index
-        rests/index
-        scores/index
         spanners/index
-        staves/index
-        tuplets/index
-        voices/index
+
+
+Pitches
+-------
+
+..  container:: two-column
+
+    ..  toctree::
+        :numbered:
+
+        named_pitches/index
+
