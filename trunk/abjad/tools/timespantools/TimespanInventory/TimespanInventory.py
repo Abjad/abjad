@@ -42,7 +42,7 @@ class TimespanInventory(TypedList):
                 ])
 
     ..  container:: example
-    
+
         **Example 2:**
 
         ::
@@ -72,7 +72,7 @@ class TimespanInventory(TypedList):
                 ])
 
     ..  container:: example
-    
+
         **Example 3.** Empty timespan inventory:
 
         ::
@@ -243,7 +243,7 @@ class TimespanInventory(TypedList):
         False when timespans are overlapping:
 
         ::
-        
+
             >>> timespan_inventory_2.all_are_nonoverlapping
             False
 
@@ -416,7 +416,7 @@ class TimespanInventory(TypedList):
         Return offset or none.
         '''
         if self:
-            return min([self._get_timespan(expr).start_offset 
+            return min([self._get_timespan(expr).start_offset
                 for expr in self])
         else:
             return NegativeInfinity
@@ -479,7 +479,7 @@ class TimespanInventory(TypedList):
         r'''Compute logical AND of timespans.
 
         ..  container:: example
-    
+
             **Example 1:**
 
             ::
@@ -503,7 +503,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 2:**
 
             ::
@@ -528,7 +528,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 3:**
 
             ::
@@ -573,7 +573,7 @@ class TimespanInventory(TypedList):
         r'''Compute logical OR of timespans.
 
         ..  container:: example
-    
+
             **Example 1:**
 
             ::
@@ -590,7 +590,7 @@ class TimespanInventory(TypedList):
                 timespantools.TimespanInventory([])
 
         ..  container:: example
-    
+
             **Example 2:**
 
             ::
@@ -614,7 +614,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 3:**
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -637,7 +637,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 4:**
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -661,7 +661,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 5:**
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -705,7 +705,7 @@ class TimespanInventory(TypedList):
         r'''Compute logical XOR of timespans.
 
         ..  container:: example
-    
+
             **Example 1:**
 
             ::
@@ -722,7 +722,7 @@ class TimespanInventory(TypedList):
                 timespantools.TimespanInventory([])
 
         ..  container:: example
-    
+
             **Example 2:**
 
             ::
@@ -746,7 +746,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 3:**
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -773,7 +773,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 4:**
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -805,7 +805,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 5:**
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -832,7 +832,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 6:**
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -860,7 +860,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 7:**
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -910,7 +910,7 @@ class TimespanInventory(TypedList):
             ...     timespantools.Timespan(20, 25),
             ...     timespantools.Timespan(20, 30),
             ...     ])
-        
+
         ..  container:: example
 
             **Example 1.** Compute overlap factor across the entire inventory:
@@ -1005,7 +1005,7 @@ class TimespanInventory(TypedList):
         return overlap_factor
 
     def compute_overlap_factor_mapping(self):
-        r'''Compute overlap factor for each consecutive offset pair in 
+        r'''Compute overlap factor for each consecutive offset pair in
         timespans:
 
         ::
@@ -1046,7 +1046,7 @@ class TimespanInventory(TypedList):
         r'''Count offsets in inventory:
 
         ..  container:: example
-    
+
             **Example 1:**
 
             ::
@@ -1079,7 +1079,7 @@ class TimespanInventory(TypedList):
                 (Offset(10, 1), 1)
 
         ..  container:: example
-    
+
             **Example 2:**
 
             ::
@@ -1135,7 +1135,7 @@ class TimespanInventory(TypedList):
 
         Return counter.
         '''
-        counter = collections.Counter() 
+        counter = collections.Counter()
         for timespan in self:
             counter[timespan.start_offset] += 1
             counter[timespan.stop_offset] += 1
@@ -1164,7 +1164,7 @@ class TimespanInventory(TypedList):
 
         ..  container:: example
 
-            **Example 1.** Explode timespans into the optimal number of 
+            **Example 1.** Explode timespans into the optimal number of
             non-overlapping inventories:
 
             ::
@@ -1293,7 +1293,7 @@ class TimespanInventory(TypedList):
 
         ..  container:: example
 
-            **Example 3.** Explode timespans into a greater-than-optimal number 
+            **Example 3.** Explode timespans into a greater-than-optimal number
             of non-overlapping inventories:
 
             ::
@@ -1366,7 +1366,7 @@ class TimespanInventory(TypedList):
         Return inventories.
         '''
         from abjad.tools import timespantools
-         
+
         assert isinstance(inventory_count, (type(None), int))
         if isinstance(inventory_count, int):
             assert 0 < inventory_count
@@ -1440,13 +1440,13 @@ class TimespanInventory(TypedList):
             ...     time_relation)
             Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
-        Return timespan when timespan inventory contains exactly one 
+        Return timespan when timespan inventory contains exactly one
         timespan that satisfies `time_relation`.
 
         Raise exception when timespan inventory contains no timespan
         that satisfies `time_relation`.
 
-        Raise exception when timespan inventory contains more than one 
+        Raise exception when timespan inventory contains more than one
         timespan that satisfies `time_relation`.
         '''
         timespans = self.get_timespans_that_satisfy_time_relation(
@@ -1508,7 +1508,7 @@ class TimespanInventory(TypedList):
         return type(self)(result)
 
     def has_timespan_that_satisfies_time_relation(self, time_relation):
-        r'''True when timespan inventory has timespan that 
+        r'''True when timespan inventory has timespan that
         satisfies `time_relation`:
 
         ::
@@ -1661,7 +1661,7 @@ class TimespanInventory(TypedList):
                         start_offset=durationtools.Offset(6, 1),
                         stop_offset=durationtools.Offset(10, 1)
                         )
-                    ])    
+                    ])
 
         Return 0 or more inventories.
         '''
@@ -1690,7 +1690,7 @@ class TimespanInventory(TypedList):
         r'''Reflect timespans.
 
         ..  container:: example
-    
+
             **Example 1.** Reflect timespans about timespan inventory axis:
 
             ::
@@ -1724,7 +1724,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 2.** Reflect timespans about arbitrary axis:
 
             ::
@@ -1866,7 +1866,7 @@ class TimespanInventory(TypedList):
         r'''Rotate by `count` contiguous timespans.
 
         ..  container:: example
-    
+
             **Example 1.** Rotate by one timespan to the left:
 
             ::
@@ -1900,7 +1900,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 2.** Rotate by one timespan to the right:
 
             ::
@@ -1965,7 +1965,7 @@ class TimespanInventory(TypedList):
         `multiplier`:
 
         ..  container:: example
-    
+
             **Example 1:**
 
             ::
@@ -1975,10 +1975,11 @@ class TimespanInventory(TypedList):
                 ...     timespantools.Timespan(3, 6),
                 ...     timespantools.Timespan(6, 10),
                 ...     ])
-            
+
             ::
 
-                >>> z(timespan_inventory.round_offsets(3))
+                >>> rounded_inventory = timespan_inventory.round_offsets(3)
+                >>> z(rounded_inventory)
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -1995,7 +1996,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 2:**
 
             ::
@@ -2005,10 +2006,11 @@ class TimespanInventory(TypedList):
                 ...     timespantools.Timespan(3, 6),
                 ...     timespantools.Timespan(6, 10),
                 ...     ])
-            
+
             ::
 
-                >>> z(timespan_inventory.round_offsets(5))
+                >>> rounded_inventory = timespan_inventory.round_offsets(5)
+                >>> z(rounded_inventory)
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2025,7 +2027,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 3:**
 
             ::
@@ -2035,13 +2037,14 @@ class TimespanInventory(TypedList):
                 ...     timespantools.Timespan(3, 6),
                 ...     timespantools.Timespan(6, 10),
                 ...     ])
-            
+
             ::
 
-                >>> z(timespan_inventory.round_offsets(
+                >>> rounded_inventory = timespan_inventory.round_offsets(
                 ...     5,
                 ...     anchor=Right,
-                ...     ))
+                ...     )
+                >>> z(rounded_inventory)
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(-5, 1),
@@ -2058,7 +2061,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 4:**
 
             ::
@@ -2068,14 +2071,15 @@ class TimespanInventory(TypedList):
                 ...     timespantools.Timespan(3, 6),
                 ...     timespantools.Timespan(6, 10),
                 ...     ])
-            
+
             ::
 
-                >>> z(timespan_inventory.round_offsets(
+                >>> rounded_inventory = timespan_inventory.round_offsets(
                 ...     5,
                 ...     anchor=Right,
                 ...     must_be_well_formed=False,
-                ...     ))
+                ...     )
+                >>> z(rounded_inventory)
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2096,7 +2100,7 @@ class TimespanInventory(TypedList):
         timespans = []
         for timespan in self:
             timespan = timespan.round_offsets(
-                multiplier, 
+                multiplier,
                 anchor=anchor,
                 must_be_well_formed=must_be_well_formed,
                 )
@@ -2108,7 +2112,7 @@ class TimespanInventory(TypedList):
         r'''Scale timespan by `multiplier` relative to `anchor`.
 
         ..  container:: example
-    
+
             **Example 1.** Scale timespans relative to timespan inventory start offset:
 
             ::
@@ -2142,7 +2146,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 2.** Scale timespans relative to timespan inventory stop offset:
 
                 >>> timespan_inventory = timespantools.TimespanInventory([
@@ -2194,7 +2198,7 @@ class TimespanInventory(TypedList):
             ...     ])
 
         ..  container:: example
-    
+
             **Example 1:**
 
             ::
@@ -2228,9 +2232,9 @@ class TimespanInventory(TypedList):
                         stop_offset=durationtools.Offset(10, 1)
                         )
                     ])
-                
+
         ..  container:: example
-    
+
             **Example 2:**
 
             ::
@@ -2262,7 +2266,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 3:**
 
             ::
@@ -2294,7 +2298,7 @@ class TimespanInventory(TypedList):
 
         Return inventories.
         '''
-        offset = durationtools.Offset(offset) 
+        offset = durationtools.Offset(offset)
         during_time_relation = timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 'timespan.start < offset',
@@ -2348,7 +2352,7 @@ class TimespanInventory(TypedList):
             >>> offsets = [-1, 3, 6, 12, 13]
 
         ..  container:: example
-    
+
             **Example 1:**
 
             ::
@@ -2386,7 +2390,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-    
+
             **Example 2:**
 
             ::
@@ -2401,7 +2405,7 @@ class TimespanInventory(TypedList):
         if not self:
             return inventories
         offsets = sorted(set(durationtools.Offset(x) for x in offsets))
-        offsets = [x for x in offsets 
+        offsets = [x for x in offsets
             if self.start_offset < x < self.stop_offset]
         for offset in offsets:
             shards = [x for x in inventories[-1].split_at_offset(offset)
@@ -2414,8 +2418,8 @@ class TimespanInventory(TypedList):
         r'''Stretch timespans by `multiplier` relative to `anchor`.
 
         ..  container:: example
-    
-            **Example 1:** Stretch timespans relative to timespan inventory 
+
+            **Example 1:** Stretch timespans relative to timespan inventory
             start offset:
 
             ::
@@ -2449,7 +2453,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-        
+
             **Example 2:** Stretch timespans relative to arbitrary anchor:
 
             ::
@@ -2498,7 +2502,7 @@ class TimespanInventory(TypedList):
         r'''Translate timespans by `translation`.
 
         ..  container:: example
-    
+
             **Example 1.** Translate timespan by offset ``50``:
 
             ::
@@ -2544,7 +2548,7 @@ class TimespanInventory(TypedList):
         and `stop_offset_translation`.
 
         ..  container:: example
-    
+
             **Example 1.** Translate timespan start- and stop-offsets equally:
 
             ::
@@ -2578,7 +2582,7 @@ class TimespanInventory(TypedList):
                     ])
 
         ..  container:: example
-        
+
             **Example 2.** Translate timespan stop-offsets only:
 
             ::
