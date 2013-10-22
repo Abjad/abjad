@@ -88,9 +88,6 @@ class NumberedPitchClass(PitchClass):
     def __copy__(self, *args):
         return type(self)(self)
 
-    # TODO: remove?
-    __deepcopy__ = __copy__
-
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             return self._pitch_class_number == \
