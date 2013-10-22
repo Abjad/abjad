@@ -26,7 +26,7 @@ def timespan_2_happens_during_timespan_1(timespan_1=None, timespan_2=None, hold=
         ...     timespan_1=timespan_1, timespan_2=timespan_2)
         True
 
-    Return time relation or boolean.
+    Returns time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

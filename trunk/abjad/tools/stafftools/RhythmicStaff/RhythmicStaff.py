@@ -23,7 +23,7 @@ class RhythmicStaff(Staff):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return RhythmicStaff instance.
+    Returns RhythmicStaff instance.
     '''
 
     ### CLASS VARIABLES ###

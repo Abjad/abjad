@@ -4,7 +4,7 @@ import py.test
 
 
 def test_ContiguousSelection__get_dominant_spanners_01():
-    r'''Return Python list of (spanner, index) pairs.
+    r'''Returns Python list of (spanner, index) pairs.
     Each (spanner, index) pair gives a spanner which dominates
     all components in list, together with the start-index
     at which spanner attaches to subelement of first

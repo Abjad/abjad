@@ -4,7 +4,7 @@
 def get_context_mark_format_pieces(mark):
     r'''Get context mark format pieces for `mark`.
 
-    Return list.
+    Returns list.
     '''
 
     from abjad.tools import contexttools

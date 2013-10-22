@@ -97,7 +97,7 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
         ...     timespan=timespan, offset=offset, hold=False)
         True
 
-    Return time relation or boolean.
+    Returns time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

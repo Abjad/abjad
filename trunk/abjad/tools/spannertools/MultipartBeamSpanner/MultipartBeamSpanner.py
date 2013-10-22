@@ -38,7 +38,7 @@ class MultipartBeamSpanner(BeamSpanner):
 
     Avoid large-duration notes.
 
-    Return multipart beam spanner.
+    Returns multipart beam spanner.
     '''
 
     ### INITIALIZER ###

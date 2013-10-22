@@ -19,7 +19,7 @@ def merge_duration_sequences(*sequences):
 
     The idea is that each sequence element represents a duration.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import sequencetools
 

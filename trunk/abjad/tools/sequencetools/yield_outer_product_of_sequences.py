@@ -26,7 +26,7 @@ def yield_outer_product_of_sequences(sequences):
         [2, 4, 6], [2, 4, 7], [2, 4, 8], [2, 5, 6], [2, 5, 7], [2, 5, 8],
         [3, 4, 6], [3, 4, 7], [3, 4, 8], [3, 5, 6], [3, 5, 7], [3, 5, 8]]
 
-    Return generator.
+    Returns generator.
     '''
 
     def _helper(list1, list2):

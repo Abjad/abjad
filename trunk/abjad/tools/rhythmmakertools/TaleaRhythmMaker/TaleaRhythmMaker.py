@@ -116,7 +116,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
                 tie_split_notes=True
                 )
 
-        Return string.
+        Returns string.
         '''
         return DivisionBurnishedTaleaRhythmMaker.storage_format(self)
 
@@ -158,7 +158,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new talea rhythm-maker.
+        Returns new talea rhythm-maker.
         '''
         return DivisionBurnishedTaleaRhythmMaker.new(self, **kwargs)
 
@@ -198,6 +198,6 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new talea rhythm-maker.
+        Returns new talea rhythm-maker.
         '''
         return DivisionBurnishedTaleaRhythmMaker.reverse(self)

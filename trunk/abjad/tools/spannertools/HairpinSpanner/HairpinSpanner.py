@@ -64,7 +64,7 @@ class HairpinSpanner(DirectedSpanner):
 
             >>> show(staff) # doctest: +SKIP
 
-    Return hairpin spanner.
+    Returns hairpin spanner.
     '''
 
     ### CLASS VARIABLES ###
@@ -313,7 +313,7 @@ class HairpinSpanner(DirectedSpanner):
             >>> spannertools.HairpinSpanner.is_hairpin_shape_string('<')
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return arg in HairpinSpanner._hairpin_shape_strings
 
@@ -331,7 +331,7 @@ class HairpinSpanner(DirectedSpanner):
             >>> spannertools.HairpinSpanner.is_hairpin_token(('f', '<', 'p'))
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         DynamicMark = contexttools.DynamicMark
         if isinstance(arg, tuple) and \

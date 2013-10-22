@@ -32,7 +32,7 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
 
     for i, note in enumerate(iterationtools.iterate_notes_in_expr(expr)):

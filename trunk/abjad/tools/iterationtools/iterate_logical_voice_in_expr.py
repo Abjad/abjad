@@ -63,7 +63,7 @@ def iterate_logical_voice_in_expr(
         Note("g'8")
         Note("a'8")
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 

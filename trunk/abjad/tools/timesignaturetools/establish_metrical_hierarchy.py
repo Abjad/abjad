@@ -791,7 +791,7 @@ def establish_metrical_hierarchy(
 
             >>> show(measure) # doctest: +SKIP
 
-    Operate in place and return none.
+    Operates in place and returns none.
     '''
     from abjad.tools import timesignaturetools
 
@@ -1055,7 +1055,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         TieChain(Note("b'4"),)
         TieChain(Note("c''4"),)
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

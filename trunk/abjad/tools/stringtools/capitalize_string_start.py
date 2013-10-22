@@ -22,7 +22,7 @@ def capitalize_string_start(string):
         >>> string.capitalize()
         'Violin i'
 
-    Return newly constructed string.
+    Returns newly constructed string.
     '''
 
     if not isinstance(string, str):

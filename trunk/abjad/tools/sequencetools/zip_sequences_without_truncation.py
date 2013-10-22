@@ -13,7 +13,7 @@ def zip_sequences_without_truncation(*sequences):
     Lengths of the tuples returned may differ but will always be
     greater than or equal to ``1``.
 
-    Return list of tuples.
+    Returns list of tuples.
     '''
 
     result = []

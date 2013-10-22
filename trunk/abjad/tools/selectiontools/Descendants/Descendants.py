@@ -52,7 +52,7 @@ class Descendants(SimultaneousSelection):
     Descendants is treated as the selection of the component's 
     improper descendants.
 
-    Return descendants instance.
+    Returns descendants instance.
     '''
 
     ### CLASS VARIABLES ###

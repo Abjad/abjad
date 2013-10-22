@@ -18,7 +18,7 @@ def is_fraction_equivalent_pair(expr):
         >>> sequencetools.is_fraction_equivalent_pair((2, 0))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return is_integer_equivalent_pair(expr) and not expr[1] == 0

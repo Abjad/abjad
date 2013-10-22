@@ -4,7 +4,7 @@
 def select(expr):
     r'''Select `expr` for tonal analysis.
 
-    Return tonal analysis selection.
+    Returns tonal analysis selection.
     '''
     from abjad.tools import componenttools
     from abjad.tools import tonalanalysistools

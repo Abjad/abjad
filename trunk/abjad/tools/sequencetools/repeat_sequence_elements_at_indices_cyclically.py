@@ -22,7 +22,7 @@ def repeat_sequence_elements_at_indices_cyclically(
         ...     range(10), sieve, 3)
         [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]
 
-    Return list.
+    Returns list.
     '''
 
     sieve = sievetools.Sieve.from_cycle_tokens(cycle_token)

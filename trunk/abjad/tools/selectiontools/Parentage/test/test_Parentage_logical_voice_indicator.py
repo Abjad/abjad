@@ -42,7 +42,7 @@ def test_Parentage_logical_voice_indicator_03():
 
 
 def test_Parentage_logical_voice_indicator_04():
-    r'''Return LogicalVoiceIndicator giving the root and
+    r'''Returns LogicalVoiceIndicator giving the root and
     first voice, staff and score in the parentage of component.
     '''
 
@@ -101,7 +101,7 @@ def test_Parentage_logical_voice_indicator_04():
 
 
 def test_Parentage_logical_voice_indicator_05():
-    r'''Return LogicalVoiceIndicator giving the root and
+    r'''Returns LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -168,7 +168,7 @@ def test_Parentage_logical_voice_indicator_05():
 
 
 def test_Parentage_logical_voice_indicator_06():
-    r'''Return LogicalVoiceIndicator giving the root and
+    r'''Returns LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -217,7 +217,7 @@ def test_Parentage_logical_voice_indicator_06():
 
 
 def test_Parentage_logical_voice_indicator_07():
-    r'''Return LogicalVoiceIndicator giving the root and
+    r'''Returns LogicalVoiceIndicator giving the root and
     first voice, staff and score in parentage of component.
     '''
 

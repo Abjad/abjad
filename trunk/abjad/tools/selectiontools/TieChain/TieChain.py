@@ -100,7 +100,7 @@ class TieChain(ContiguousSelection):
     def all_leaves_are_in_same_parent(self):
         r'''True when all leaves in tie chain are in same parent.
 
-        Return boolean.
+        Returns boolean.
         '''
         return sequencetools.all_are_equal(
             [leaf._parent for leaf in self.leaves])
@@ -109,7 +109,7 @@ class TieChain(ContiguousSelection):
     def head(self):
         r'''Reference to element ``0`` in tie chain.
 
-        Return component.
+        Returns component.
         '''
         if self._music:
             return self._music[0]
@@ -118,7 +118,7 @@ class TieChain(ContiguousSelection):
     def is_pitched(self):
         r'''True when tie chain head is a note or chord.
 
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import chordtools
         from abjad.tools import notetools
@@ -128,7 +128,7 @@ class TieChain(ContiguousSelection):
     def is_trivial(self):
         r'''True when length of tie chain is less than or equal to ``1``.
 
-        Return boolean.
+        Returns boolean.
         '''
         return len(self) <= 1
 
@@ -136,7 +136,7 @@ class TieChain(ContiguousSelection):
     def leaves(self):
         r'''Leaves in tie chain.
 
-        Return tuple.
+        Returns tuple.
         '''
         from abjad.tools import spannertools
         spanner_classes = (spannertools.TieSpanner,)
@@ -151,7 +151,7 @@ class TieChain(ContiguousSelection):
     def leaves_grouped_by_immediate_parents(self):
         r'''Leaves in tie chain grouped by immediate parents of leaves.
 
-        Return list of lists.
+        Returns list of lists.
         '''
         from abjad.tools import selectiontools
         result = []
@@ -165,7 +165,7 @@ class TieChain(ContiguousSelection):
     def tie_spanner(self):
         r'''Tie spanner governing tie chain.
 
-        Return tie spanner.
+        Returns tie spanner.
         '''
         from abjad.tools import spannertools
         if 1 < len(self):
@@ -182,7 +182,7 @@ class TieChain(ContiguousSelection):
     def written_duration(self):
         r'''Sum of written duration of all components in tie chain.
 
-        Return duration.
+        Returns duration.
         '''
         return sum([x.written_duration for x in self])
 
@@ -308,7 +308,7 @@ class TieChain(ContiguousSelection):
 
                 >>> show(staff) # doctest: +SKIP
 
-        Return tuplet.
+        Returns tuplet.
         '''
         from abjad.tools import componenttools
         from abjad.tools import mathtools

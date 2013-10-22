@@ -4,7 +4,7 @@
 def get_articulation_format_contributions(component):
     '''Get articulation format contributions for `component`.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import marktools
 

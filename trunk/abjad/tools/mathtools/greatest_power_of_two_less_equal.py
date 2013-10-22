@@ -44,7 +44,7 @@ def greatest_power_of_two_less_equal(n, i=0):
 
     Raise value error on nonpositive `n`.
 
-    Return positive integer.
+    Returns positive integer.
     '''
 
     if not isinstance(n, numbers.Number):

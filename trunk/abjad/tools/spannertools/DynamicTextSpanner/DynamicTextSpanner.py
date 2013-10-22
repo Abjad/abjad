@@ -30,7 +30,7 @@ class DynamicTextSpanner(Spanner):
 
     Format dynamic `mark` at first leaf in spanner.
 
-    Return dynamic text spanner.
+    Returns dynamic text spanner.
     '''
 
     ### INTIALIZER ###

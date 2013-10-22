@@ -54,7 +54,7 @@ def make_rests(
 
         >>> show(voice) # doctest: +SKIP
 
-    Return list of rests.
+    Returns list of rests.
     '''
     from abjad.tools import leaftools
     from abjad.tools import resttools

@@ -19,7 +19,7 @@ def partition_sequence_by_ratio_of_lengths(sequence, lengths):
 
     Use rounding magic to avoid fractional part lengths.
 
-    Return list of `sequence` objects.
+    Returns list of `sequence` objects.
     '''
     from abjad.tools import sequencetools
 

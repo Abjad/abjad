@@ -46,7 +46,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Call tuplet monad rhythm-maker on `divisions`.
 
-        Return list of tuplets.
+        Returns list of tuplets.
         '''
         result = []
         for division in divisions:
@@ -83,7 +83,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
                 beam_cells_together=False
                 )
 
-        Return string.
+        Returns string.
         '''
         return RhythmMaker.storage_format(self)
 
@@ -115,7 +115,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new tuplet monad rhythm-maker.
+        Returns new tuplet monad rhythm-maker.
         '''
         return RhythmMaker.new(self, **kwargs)
 
@@ -145,6 +145,6 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new tuplet monad rhythm-maker.
+        Returns new tuplet monad rhythm-maker.
         '''
         return RhythmMaker.reverse(self)

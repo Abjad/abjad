@@ -81,7 +81,7 @@ def transpose_pitch_number_by_octave_transposition_mapping(pitch_number, mapping
 
     And so on.
 
-    Return pitch number.
+    Returns pitch number.
     '''
 
     target_pitch_class = pitch_number % 12

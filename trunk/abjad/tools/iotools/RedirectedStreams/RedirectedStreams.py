@@ -16,7 +16,7 @@ class RedirectedStreams(ContextManager):
     >>> print result
     hello, world!
 
-    Return context manager.
+    Returns context manager.
     '''
 
     ### INITIALIZER ###

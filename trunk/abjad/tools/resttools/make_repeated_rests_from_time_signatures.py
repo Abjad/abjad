@@ -10,7 +10,7 @@ def make_repeated_rests_from_time_signatures(time_signatures):
         resttools.make_repeated_rests_from_time_signatures([(2, 8), (3, 32)])
         [[Rest('r8'), Rest('r8')], [Rest('r32'), Rest('r32'), Rest('r32')]]
 
-    Return two-dimensional list of newly constructed rest lists.
+    Returns two-dimensional list of newly constructed rest lists.
 
     Use ``sequencetools.flatten_sequence()`` to flatten output if required.
     '''

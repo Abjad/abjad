@@ -4,7 +4,7 @@
 def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
     r'''Partition integer `n` into canonic parts.
 
-    Return all parts positive on positive `n`:
+    Returns all parts positive on positive `n`:
 
     ::
 
@@ -22,7 +22,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
         9 (8, 1)
         10 (8, 2)
 
-    Return all parts negative on negative `n`:
+    Returns all parts negative on negative `n`:
 
     ::
 
@@ -40,7 +40,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
         -19 (-16, -3)
         -20 (-16, -4)
 
-    Return parts that increase monotonically:
+    Returns parts that increase monotonically:
 
     ::
 
@@ -59,11 +59,11 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
         19 (3, 16)
         20 (4, 16)
 
-    Return tuple with parts that decrease monotonically.
+    Returns tuple with parts that decrease monotonically.
 
     Raise type error on noninteger `n`.
 
-    Return tuple of one or more integers.
+    Returns tuple of one or more integers.
     '''
     from abjad.tools import mathtools
 

@@ -82,7 +82,7 @@ def label_vertical_moments_in_expr_with_numbered_pitch_classes(
 
         >>> show(score) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
 
     for vertical_moment in \

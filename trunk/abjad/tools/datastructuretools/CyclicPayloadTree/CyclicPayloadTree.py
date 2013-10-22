@@ -149,7 +149,7 @@ class CyclicPayloadTree(PayloadTree):
             CyclicPayloadTree(6)
             CyclicPayloadTree(5)
 
-        Return list of nodes.
+        Returns list of nodes.
         '''
         return PayloadTree.get_next_n_nodes_at_level(self, n, level)
 
@@ -181,7 +181,7 @@ class CyclicPayloadTree(PayloadTree):
             >>> cyclic_tree.get_node_at_position((82, 99))
             CyclicPayloadTree(5)
 
-        Return node.
+        Returns node.
         '''
         return PayloadTree.get_node_at_position(self, position)
 
@@ -252,7 +252,7 @@ class CyclicPayloadTree(PayloadTree):
                 CyclicPayloadTree(5)
                 CyclicPayloadTree(4)
 
-        Return node generator.
+        Returns node generator.
         '''
         while True:
             for node in PayloadTree.iterate_depth_first(self, reverse=reverse):

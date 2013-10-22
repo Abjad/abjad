@@ -16,7 +16,7 @@ def cumulative_sums_zero(sequence):
         >>> mathtools.cumulative_sums_zero([])
         [0]
 
-    Return list.
+    Returns list.
     '''
 
     result = [0]

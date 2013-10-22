@@ -10,7 +10,7 @@ def list_pitch_numbers_in_expr(expr):
         >>> pitchtools.list_pitch_numbers_in_expr(tuplet)
         (0, 2, 4)
 
-    Return tuple of zero or more numbers.
+    Returns tuple of zero or more numbers.
     '''
     from abjad.tools import pitchtools
 

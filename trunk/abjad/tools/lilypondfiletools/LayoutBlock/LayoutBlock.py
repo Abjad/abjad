@@ -27,7 +27,7 @@ class LayoutBlock(AttributedBlock):
             ragged-right = ##t
         }
 
-    Return layout block.
+    Returns layout block.
     '''
 
     ### INITIALIZER ###
@@ -90,7 +90,7 @@ class LayoutBlock(AttributedBlock):
                 }
             }
 
-        Return list.
+        Returns list.
         '''
         return self._context_blocks
 

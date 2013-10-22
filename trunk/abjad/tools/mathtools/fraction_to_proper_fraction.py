@@ -10,7 +10,7 @@ def fraction_to_proper_fraction(rational):
         >>> mathtools.fraction_to_proper_fraction(Fraction(116, 8))
         (14, Fraction(1, 2))
 
-    Return pair.
+    Returns pair.
     '''
 
     if not isinstance(rational, fractions.Fraction):

@@ -41,7 +41,7 @@ def requires(*tests):
         >>> multiply_string.func_closure[0].cell_contents # doctest: +SKIP
         (<function is_nonnegative_integer at 0x104725d70>, <type 'str'>)
 
-    Return decorated function in the form of function wrapper.
+    Returns decorated function in the form of function wrapper.
     '''
     def deco(func):
         '''

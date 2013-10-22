@@ -17,7 +17,7 @@ def is_integer_equivalent_n_tuple(expr, n):
         >>> sequencetools.is_integer_equivalent_n_tuple((2.5, '3', Fraction(4, 1)), 3)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == n and \

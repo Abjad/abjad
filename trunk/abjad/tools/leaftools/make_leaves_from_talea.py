@@ -97,7 +97,7 @@ def make_leaves_from_talea(
                 r16
             }
 
-    Return list of leaves.
+    Returns list of leaves.
     '''
     from abjad.tools import leaftools
 

@@ -10,7 +10,7 @@ def iterate_sequence_forward_and_backward_overlapping(sequence):
         >>> list(sequencetools.iterate_sequence_forward_and_backward_overlapping([1, 2, 3, 4, 5]))
         [1, 2, 3, 4, 5, 4, 3, 2]
 
-    Return generator.
+    Returns generator.
     '''
 
     sequence_copy = []

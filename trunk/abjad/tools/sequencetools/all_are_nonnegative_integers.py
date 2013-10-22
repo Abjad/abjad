@@ -17,7 +17,7 @@ def all_are_nonnegative_integers(expr):
         >>> sequencetools.all_are_nonnegative_integers([0, 1, 2, -99])
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

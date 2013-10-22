@@ -42,7 +42,7 @@ class Harpsichord(Instrument):
 
     The harpsichord targets piano staff context by default.
 
-    Return instrument.
+    Returns instrument.
     '''
 
     ### INITIALIZER ###

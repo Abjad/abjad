@@ -30,7 +30,7 @@ def is_permutation(expr, length=None):
         >>> sequencetools.is_permutation([4, 0, 3, 2, 1], length=6)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

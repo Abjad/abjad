@@ -17,7 +17,7 @@ def map_sequence_elements_to_numbered_sublists(sequence):
 
     Note that numbering starts at ``1``.
 
-    Return newly constructed list of lists.
+    Returns newly constructed list of lists.
     '''
 
     if not isinstance(sequence, list):

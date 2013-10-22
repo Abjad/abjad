@@ -119,7 +119,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
     def __repr__(self):
         r'''Note rhythm-maker interpreter representation.
 
-        Return string.
+        Returns string.
         '''
         return '%s()' % self._class_name
 
@@ -138,7 +138,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
                 tie_rests=False
                 )
 
-        Return string.
+        Returns string.
         '''
 
     ### PUBLIC METHODS ###
@@ -175,7 +175,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new note rhythm-maker.
+        Returns new note rhythm-maker.
         '''
         return DivisionIncisedNoteRhythmMaker.new(self, **kwargs)
 
@@ -211,6 +211,6 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new note rhythm-maker.
+        Returns new note rhythm-maker.
         '''
         return DivisionIncisedNoteRhythmMaker.reverse(self)

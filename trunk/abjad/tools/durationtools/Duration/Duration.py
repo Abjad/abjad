@@ -354,7 +354,7 @@ class Duration(AbjadObject, fractions.Fraction):
             15/16   3
             16/16   0
 
-        Return positive integer.
+        Returns positive integer.
 
         Raise assignability error when duration is not assignable.
         '''
@@ -394,7 +394,7 @@ class Duration(AbjadObject, fractions.Fraction):
             15/16   15/16
             16/16   1
 
-        Return new duration.
+        Returns new duration.
         '''
         good_denominator = mathtools.greatest_power_of_two_less_equal(
             self.denominator)
@@ -434,7 +434,7 @@ class Duration(AbjadObject, fractions.Fraction):
             15/16   1
             16/16   1
 
-        Return new duration.
+        Returns new duration.
         '''
         denominator_exponent = -int(math.ceil(math.log(self, 2)))
         return type(self)(1, 2) ** denominator_exponent
@@ -468,7 +468,7 @@ class Duration(AbjadObject, fractions.Fraction):
             15/16   15/16
             16/16   1
 
-        Return new duration.
+        Returns new duration.
         '''
         good_denominator = mathtools.least_power_of_two_greater_equal(
             self.denominator)
@@ -508,7 +508,7 @@ class Duration(AbjadObject, fractions.Fraction):
             15/16   1/2
             16/16   1
 
-        Return new duration.
+        Returns new duration.
         '''
         denominator_exponent = -int(math.floor(math.log(self, 2)))
         return type(self)(1, 2) ** denominator_exponent
@@ -541,7 +541,7 @@ class Duration(AbjadObject, fractions.Fraction):
             15/64   1
             16/64   0
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         # TODO: rewrite with only one operation per line
         flag_count = max(-int(math.floor(math.log(float(self.numerator) /
@@ -577,7 +577,7 @@ class Duration(AbjadObject, fractions.Fraction):
             1/15    False
             1/16    True
 
-        Return boolean.
+        Returns boolean.
         '''
         exponent = math.log(self.denominator, 2)
         return int(exponent) == exponent
@@ -610,7 +610,7 @@ class Duration(AbjadObject, fractions.Fraction):
             1/15    8/15
             1/16    1
 
-        Return new multipler.
+        Returns new multipler.
         '''
         from abjad.tools import durationtools
         numerator = \
@@ -646,7 +646,7 @@ class Duration(AbjadObject, fractions.Fraction):
             15/16   True
             16/16   True
 
-        Return boolean.
+        Returns boolean.
         '''
         if 0 < self < 16:
             if mathtools.is_nonnegative_integer_power_of_two(
@@ -662,7 +662,7 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> Duration(3, 16).lilypond_duration_string
             '8.'
 
-        Return string.
+        Returns string.
 
         Raise assignability error when duration is not assignable.
         '''
@@ -701,7 +701,7 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> duration.pair
             (3, 16)
 
-        Return integer pair.
+        Returns integer pair.
         '''
         return self.numerator, self.denominator
 
@@ -734,7 +734,7 @@ class Duration(AbjadObject, fractions.Fraction):
             3/4     4:3
             2/5     5:2
 
-        Return string.
+        Returns string.
         '''
         return '{}:{}'.format(self.denominator, self.numerator)
 
@@ -742,7 +742,7 @@ class Duration(AbjadObject, fractions.Fraction):
     def reciprocal(self):
         '''Reciprocal of duration.
 
-        Return newly constructed duration.
+        Returns newly constructed duration.
         '''
         return type(self)(self.denominator, self.numerator)
 
@@ -772,7 +772,7 @@ class Duration(AbjadObject, fractions.Fraction):
             NonreducedFraction(48, 16)
             NonreducedFraction(5, 16)
 
-        Return new object of `durations` type.
+        Returns new object of `durations` type.
         '''
         durations = [Duration(x) for x in durations]
         denominators = [duration.denominator for duration in durations]
@@ -793,7 +793,7 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> Duration.from_lilypond_duration_string('8.')
             Duration(3, 16)
 
-        Return duration.
+        Returns duration.
         '''
         fraction = Duration._init_from_lilypond_duration_string(
             lilypond_duration_string)
@@ -807,7 +807,7 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> Duration.is_token('8.')
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         try:
             Duration.__new__(Duration, expr)
@@ -847,7 +847,7 @@ class Duration(AbjadObject, fractions.Fraction):
                 >>> f(note)
                 c'4 ^ \markup { 1'57\\" }
 
-        Return string.
+        Returns string.
         '''
         if self < 0:
             raise ValueError('seconds must be positive.')
@@ -876,7 +876,7 @@ class Duration(AbjadObject, fractions.Fraction):
             4/16
             8/32
 
-        Return new duration.
+        Returns new duration.
         '''
         nonreduced_fraction = mathtools.NonreducedFraction(self)
         return nonreduced_fraction.with_denominator(denominator)
@@ -941,7 +941,7 @@ class Duration(AbjadObject, fractions.Fraction):
                 Duration(3, 4)
                 Duration(2, 5)
 
-        Return generator.
+        Returns generator.
         '''
         generator = mathtools.yield_nonreduced_fractions()
         while True:

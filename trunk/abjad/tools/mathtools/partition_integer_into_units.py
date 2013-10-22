@@ -23,7 +23,7 @@ def partition_integer_into_units(n):
         >>> mathtools.partition_integer_into_units(0)
         []
 
-    Return list of zero or more parts with absolute value equal to ``1``.
+    Returns list of zero or more parts with absolute value equal to ``1``.
     '''
     from abjad.tools import mathtools
 

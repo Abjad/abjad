@@ -17,7 +17,7 @@ def is_integer_equivalent_pair(expr):
         >>> sequencetools.is_integer_equivalent_pair((2.5, '3'))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == 2 and \

@@ -17,7 +17,7 @@ def is_integer_equivalent_number(expr):
         >>> mathtools.is_integer_equivalent_number(Duration(1, 2))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     if isinstance(expr, numbers.Number):

@@ -22,6 +22,6 @@ def named_pitch_and_clef_to_staff_position_number(pitch, clef):
         b'    0
         c''   1
 
-    Return integer.
+    Returns integer.
     '''
     return abs(pitch.diatonic_pitch_number) + clef.middle_c_position

@@ -32,7 +32,7 @@ def make_time_signature_context_block(
                 (basic-distance . 0) (minimum-distance . 0) (padding . 4) (stretchability . 0))
         }
 
-    Return context block.
+    Returns context block.
     '''
     from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools

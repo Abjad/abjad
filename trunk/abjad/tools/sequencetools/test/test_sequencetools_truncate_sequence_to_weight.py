@@ -23,7 +23,7 @@ def test_sequencetools_truncate_sequence_to_weight_01():
 
 
 def test_sequencetools_truncate_sequence_to_weight_02():
-    r'''Return empty list when total is zero.
+    r'''Returns empty list when total is zero.
     '''
 
     assert sequencetools.truncate_sequence_to_weight([1, 2, 3, 4, 5], 0) == []

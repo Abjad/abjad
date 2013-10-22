@@ -319,7 +319,7 @@ class PitchRange(AbjadObject):
         comma-separated pitch indicators enclosed in some combination of square 
         brackets and round parentheses.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -336,7 +336,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.one_line_named_pitch_repr
             '[C3, C7]'
 
-        Return string.
+        Returns string.
         '''
         result = []
         result.append(self._open_bracket_string)
@@ -359,7 +359,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.one_line_numbered_pitch_repr
             '[-12, 36]'
 
-        Return string.
+        Returns string.
         '''
         result = []
         result.append(self._open_bracket_string)
@@ -379,7 +379,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.pitch_range_name
             'four-octave range'
 
-        Return string or none.
+        Returns string or none.
         '''
         return self._pitch_range_name
 
@@ -395,7 +395,7 @@ class PitchRange(AbjadObject):
         Default to `pitch_range_name` when `pitch_range_name_markup` 
         not set explicitly.
 
-        Return markup or none.
+        Returns markup or none.
         '''
         from abjad.tools import markuptools
         if self._pitch_range_name_markup:
@@ -412,7 +412,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.start_pitch
             NamedPitch('c')
 
-        Return pitch.
+        Returns pitch.
         '''
         if self._start is None:
             return None
@@ -428,7 +428,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.start_pitch_is_included_in_range
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if self._start is None:
             return True
@@ -443,7 +443,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.stop_pitch
             NamedPitch("c''''")
 
-        Return pitch.
+        Returns pitch.
         """
         if self._stop is None:
             return None
@@ -459,7 +459,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.stop_pitch_is_included_in_range
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if self._stop is None:
             return True

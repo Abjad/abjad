@@ -54,7 +54,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     Format top-level `span` beam between measures.
 
-    Return measured complex beam spanner.
+    Returns measured complex beam spanner.
     '''
 
     ### INITIALIZER ###

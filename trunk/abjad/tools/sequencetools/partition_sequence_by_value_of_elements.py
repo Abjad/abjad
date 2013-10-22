@@ -14,7 +14,7 @@ def partition_sequence_by_value_of_elements(sequence):
         >>> sequencetools.partition_sequence_by_value_of_elements(sequence)
         [(0, 0), (-1, -1), (2,), (3,), (-5,), (1, 1), (5,), (-5,)]
 
-    Return list of tuples of `sequence` element references.
+    Returns list of tuples of `sequence` element references.
     '''
     result = []
     g = itertools.groupby(sequence, lambda x: x)

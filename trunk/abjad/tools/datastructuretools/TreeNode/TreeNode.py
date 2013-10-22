@@ -202,7 +202,7 @@ class TreeNode(AbjadObject):
             >>> a[0][0].depth
             2
 
-        Return int.
+        Returns int.
         '''
         node = self
         depth = 0
@@ -251,7 +251,7 @@ class TreeNode(AbjadObject):
             f
             g
 
-        Return dictionary.
+        Returns dictionary.
         '''
         inventory = {}
         def recurse(node):
@@ -304,7 +304,7 @@ class TreeNode(AbjadObject):
             >>> c.improper_parentage == (c, b, a)
             True
 
-        Return tuple of `TreeNode` instances.
+        Returns tuple of `TreeNode` instances.
         '''
         node = self
         parentage = [node]
@@ -379,7 +379,7 @@ class TreeNode(AbjadObject):
             >>> c.proper_parentage == (b, a)
             True
 
-        Return tuple of `TreeNode` instances.
+        Returns tuple of `TreeNode` instances.
         '''
         return self.improper_parentage[1:]
 

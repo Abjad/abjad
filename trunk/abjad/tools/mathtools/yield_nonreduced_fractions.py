@@ -29,7 +29,7 @@ def yield_nonreduced_fractions():
 
     .. note:: function should return nonreduced fraction generator instead of pair generator.
 
-    Return generator.
+    Returns generator.
     '''
 
     n = 2

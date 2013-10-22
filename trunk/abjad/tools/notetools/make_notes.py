@@ -61,7 +61,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     Set `durations` to a single duration or a list of durations.
 
-    Return list of newly constructed notes.
+    Returns list of newly constructed notes.
     '''
     from abjad.tools import leaftools
     from abjad.tools import notetools

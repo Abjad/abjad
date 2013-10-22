@@ -9,7 +9,7 @@ def is_positive_integer_equivalent_number(expr):
         >>> mathtools.is_positive_integer_equivalent_number(Duration(4, 2))
         True
 
-    Return boolean.
+    Returns boolean.
     '''
     from abjad.tools import mathtools
 

@@ -119,7 +119,7 @@ class Interval(AbjadObject):
 
         The regex ``^([+,-]?)(M|m|P|aug|dim)(\d+)$`` underlies this predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -137,7 +137,7 @@ class Interval(AbjadObject):
 
         The regex ``^M|m|P|aug|dim$`` underlies this predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False

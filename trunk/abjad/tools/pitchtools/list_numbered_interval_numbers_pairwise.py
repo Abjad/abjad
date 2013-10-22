@@ -63,7 +63,7 @@ def list_numbered_interval_numbers_pairwise(pitch_carriers, wrap=False):
     When ``wrap = True`` do return ``pitch_carriers[-1] - pitch_carriers[0]``
     as last in series.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import pitchtools
 

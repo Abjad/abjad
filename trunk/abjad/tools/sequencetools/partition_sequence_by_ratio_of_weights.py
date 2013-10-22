@@ -46,7 +46,7 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
     Weights of parts of returned list equal `weights_ratio` proportions
     with some rounding magic.
 
-    Return list of lists.
+    Returns list of lists.
     '''
     from abjad.tools import sequencetools
 

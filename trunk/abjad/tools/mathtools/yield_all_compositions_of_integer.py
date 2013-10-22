@@ -29,7 +29,7 @@ def yield_all_compositions_of_integer(n):
 
     Integer compositions are ordered integer partitions.
 
-    Return generator of positive integer tuples of length at least ``1``.
+    Returns generator of positive integer tuples of length at least ``1``.
     '''
     from abjad.tools import mathtools
 

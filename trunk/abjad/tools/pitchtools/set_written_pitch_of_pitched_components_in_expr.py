@@ -34,7 +34,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
     Use as a way of neutralizing pitch information in an arbitrary piece of score.
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import chordtools
     from abjad.tools import iterationtools

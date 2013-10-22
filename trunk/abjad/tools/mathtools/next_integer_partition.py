@@ -21,7 +21,7 @@ def next_integer_partition(integer_partition):
 
     Input `integer_partition` must be sequence of positive integers.
 
-    Return integer partition as tuple of positive integers.
+    Returns integer partition as tuple of positive integers.
     '''
 
     _validate_input(integer_partition)

@@ -43,7 +43,7 @@ class PitchArrayRow(AbjadObject):
         >>> array[0].pitches
         (NamedPitch("c'"), NamedPitch("d'"))
 
-    Return pitch array row.
+    Returns pitch array row.
     '''
 
     ### CLASS VARIABLES ###
@@ -369,7 +369,7 @@ class PitchArrayRow(AbjadObject):
                 <bf bqf>4
             }
 
-        Return measure.
+        Returns measure.
         '''
         time_signature = contexttools.TimeSignatureMark(
             (self.width, cell_duration_denominator))

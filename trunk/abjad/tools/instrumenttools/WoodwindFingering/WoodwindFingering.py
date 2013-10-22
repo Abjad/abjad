@@ -159,7 +159,7 @@ class WoodwindFingering(AbjadObject):
 
         >>> show(chord) # doctest: +SKIP
 
-    Return woodwind fingering.
+    Returns woodwind fingering.
     '''
 
     ### INITIALIZER ###
@@ -229,7 +229,7 @@ class WoodwindFingering(AbjadObject):
         >>> ww.center_column
         ('one', 'two', 'three', 'five')
 
-    Return tuple.
+    Returns tuple.
         '''
         return self._center_column
 
@@ -242,7 +242,7 @@ class WoodwindFingering(AbjadObject):
         >>> ww.instrument_name
         'clarinet'
 
-    Return string.
+    Returns string.
         '''
         return self._instrument_name
 
@@ -256,7 +256,7 @@ class WoodwindFingering(AbjadObject):
         >>> ww.left_hand
         ('R', 'thumb')
 
-    Return tuple.
+    Returns tuple.
         '''
         return self._left_hand
 
@@ -270,7 +270,7 @@ class WoodwindFingering(AbjadObject):
         >>> ww.right_hand
         ('e',)
 
-    Return tuple.
+    Returns tuple.
         '''
         return self._right_hand
 
@@ -297,7 +297,7 @@ class WoodwindFingering(AbjadObject):
         r'''Print read-only string containing instrument's valid key strings,
         instrument diagram, and syntax explanation.
 
-        Return string.
+        Returns string.
         '''
         if self._instrument_name == 'clarinet':
             lines = [

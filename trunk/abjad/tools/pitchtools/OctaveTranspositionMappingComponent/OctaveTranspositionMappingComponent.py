@@ -119,7 +119,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
                 >>> mc.source_pitch_range
                 PitchRange('[A0, C8]')
 
-            Return pitch range or none.
+            Returns pitch range or none.
             '''
             return self._source_pitch_range
         def fset(self, source_pitch_range):
@@ -136,7 +136,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
                 >>> mc.target_octave_start_pitch
                 NumberedPitch(15)
 
-            Return numbered pitch or none.
+            Returns numbered pitch or none.
             '''
             return self._target_octave_start_pitch
         def fset(self, target_octave_start_pitch):

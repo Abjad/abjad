@@ -11,7 +11,7 @@ def count_length_two_runs_in_sequence(sequence):
         >>> sequencetools.count_length_two_runs_in_sequence([0, 0, 1, 1, 1, 2, 3, 4, 5])
         3
 
-    Return nonnegative integer.
+    Returns nonnegative integer.
     '''
 
     total_repetitions = 0

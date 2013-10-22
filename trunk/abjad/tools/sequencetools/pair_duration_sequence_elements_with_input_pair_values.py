@@ -16,7 +16,7 @@ def pair_duration_sequence_elements_with_input_pair_values(duration_sequence, in
         ... duration_sequence, input_pairs)
         [(10, 'red'), (10, 'orange'), (10, 'yellow'), (10, 'yellow')]
 
-    Return a list of ``(element, value)`` output pairs.
+    Returns a list of ``(element, value)`` output pairs.
 
     The `input_pairs` argument must be a list of ``(value, duration)`` pairs.
 

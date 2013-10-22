@@ -137,7 +137,7 @@ class CyclicMatrix(Matrix):
             >>> cyclic_matrix.columns
             CyclicTuple([[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
-        Return cyclic tuple.
+        Returns cyclic tuple.
         '''
         return self._columns
 
@@ -155,6 +155,6 @@ class CyclicMatrix(Matrix):
             >>> cyclic_matrix.rows
             CyclicTuple([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
-        Return cyclic tuple.
+        Returns cyclic tuple.
         '''
         return self._rows

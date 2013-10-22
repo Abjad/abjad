@@ -4,7 +4,7 @@ import py.test
 
 
 def test_ContiguousSelection__get_crossing_spanners_01():
-    r'''Return unordered set of spanners crossing
+    r'''Returns unordered set of spanners crossing
     over the begin- or end-bounds of logical-voice-contiguous
     components.
     '''

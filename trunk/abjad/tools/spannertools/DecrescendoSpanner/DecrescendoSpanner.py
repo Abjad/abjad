@@ -81,7 +81,7 @@ class DecrescendoSpanner(HairpinSpanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return decrescendo spanner.
+    Returns decrescendo spanner.
     '''
 
     ### INITIALIZER ###

@@ -6,7 +6,7 @@ def concatenate_trees(trees, padding=0):
     r'''Merge all trees in `trees`, offsetting each subsequent tree
     to start_offset after the previous.
 
-    Return TimeIntervalTree.
+    Returns TimeIntervalTree.
     '''
     from abjad.tools import timeintervaltools
 

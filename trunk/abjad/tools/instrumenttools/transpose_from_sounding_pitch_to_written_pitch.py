@@ -44,7 +44,7 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
             fs'4
         }
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import instrumenttools
 

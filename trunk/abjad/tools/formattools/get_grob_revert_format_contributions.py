@@ -4,7 +4,7 @@
 def get_grob_revert_format_contributions(component):
     '''Get grob revert format contributions.
 
-    Return alphabetized list of LilyPond grob reverts.
+    Returns alphabetized list of LilyPond grob reverts.
     '''
     from abjad.tools.leaftools.Leaf import Leaf
 

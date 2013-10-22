@@ -56,7 +56,7 @@ def fit_metrical_hierarchies_to_expr(
     MetricalHierarchies are coerced from `metrical_hierarchies` 
     via `MetricalHierarchyInventory`.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import timesignaturetools
 

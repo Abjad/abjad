@@ -60,7 +60,7 @@ class MarkupCommand(AbjadObject):
 
     Markup commands are immutable.
 
-    Return markup command.
+    Returns markup command.
     '''
 
     ### CLASS VARIABLES ###

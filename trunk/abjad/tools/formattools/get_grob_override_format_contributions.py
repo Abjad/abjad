@@ -4,7 +4,7 @@
 def get_grob_override_format_contributions(component):
     r'''Get grob override format contributions for `component`.
 
-    Return alphabetized list of LilyPond grob overrides.
+    Returns alphabetized list of LilyPond grob overrides.
     '''
     from abjad.tools.leaftools.Leaf import Leaf
 

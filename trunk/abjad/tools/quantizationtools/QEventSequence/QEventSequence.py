@@ -65,7 +65,7 @@ class QEventSequence(AbjadObject):
             durationtools.Offset(4000, 1)
             )
 
-    Return q-event sequence.
+    Returns q-event sequence.
     '''
 
     ### CLASS VARIABLES ###
@@ -163,7 +163,7 @@ class QEventSequence(AbjadObject):
                 durationtools.Offset(4000, 1)
                 )
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._sequence
 

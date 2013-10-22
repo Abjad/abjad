@@ -32,7 +32,7 @@ def is_repetition_free_sequence(expr):
         >>> sequencetools.is_repetition_free_sequence(17)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

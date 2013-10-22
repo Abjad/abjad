@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Parentage__get_governor_01( ):
-    r'''Return the last sequential container in the parentage of client
+    r'''Returns the last sequential container in the parentage of client
     such that the next element in the parentage of client is
     either a simultaneous container or None.
     '''
@@ -43,7 +43,7 @@ def test_Parentage__get_governor_02( ):
 
 
 def test_Parentage__get_governor_03( ):
-    r'''Return the last sequential container in the parentage of client
+    r'''Returns the last sequential container in the parentage of client
         such that the next element in the parentage of client is
         either a simultaneous container or None.'''
 
@@ -69,7 +69,7 @@ def test_Parentage__get_governor_03( ):
 
 
 def test_Parentage__get_governor_04( ):
-    r'''Return the last sequential container in the parentage of client
+    r'''Returns the last sequential container in the parentage of client
     such that the next element in the parentage of client is
     either a simultaneous container or None.
     '''

@@ -58,7 +58,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
 
     Do not print bar lines or span bars.
 
-    Return score, treble staff, bass staff.
+    Returns score, treble staff, bass staff.
     '''
     from abjad.tools import contexttools
     from abjad.tools import layouttools

@@ -123,7 +123,7 @@ class QTargetBeat(AbjadObject):
             >>> q_target_beat.beatspan
             Duration(1, 8)
 
-        Return Duration.
+        Returns Duration.
         '''
         return self._beatspan
 
@@ -135,7 +135,7 @@ class QTargetBeat(AbjadObject):
 
         Used internally by the ``Quantizer``.
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._distances
 
@@ -148,7 +148,7 @@ class QTargetBeat(AbjadObject):
             >>> q_target_beat.duration_in_ms
             Duration(3750, 7)
 
-        Return Duration instance.
+        Returns Duration instance.
         '''
         from abjad.tools import quantizationtools
         return self.tempo.duration_to_milliseconds(self.beatspan)
@@ -162,7 +162,7 @@ class QTargetBeat(AbjadObject):
             >>> q_target_beat.offset_in_ms
             Offset(1500, 1)
 
-        Return Offset instance.
+        Returns Offset instance.
         '''
         return self._offset_in_ms
 
@@ -172,7 +172,7 @@ class QTargetBeat(AbjadObject):
 
         Used internally by the ``Quantizer``.
 
-        Return list.
+        Returns list.
         '''
         return self._q_events
 
@@ -192,7 +192,7 @@ class QTargetBeat(AbjadObject):
 
         Used internally by the ``Quantizer``.
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._q_grids
 

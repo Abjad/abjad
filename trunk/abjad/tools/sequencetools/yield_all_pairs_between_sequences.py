@@ -16,7 +16,7 @@ def yield_all_pairs_between_sequences(l, m):
         (3, 4)
         (3, 5)
 
-    Return pair generator.
+    Returns pair generator.
     '''
 
     for x in l:

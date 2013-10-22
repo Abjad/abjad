@@ -27,7 +27,7 @@ def make_big_centered_page_number_markup(text=None):
                 }
             }
 
-    Return markup.
+    Returns markup.
     '''
     from abjad.tools import markuptools
 

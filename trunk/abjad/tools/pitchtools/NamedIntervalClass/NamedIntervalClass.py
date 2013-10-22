@@ -11,7 +11,7 @@ class NamedIntervalClass(IntervalClass):
         >>> pitchtools.NamedIntervalClass('-M9')
         NamedIntervalClass('-M2')
 
-    Return named interval-class.
+    Returns named interval-class.
     '''
 
     ### INITIALIZER ###
@@ -175,7 +175,7 @@ class NamedIntervalClass(IntervalClass):
             ...     )
             NamedIntervalClass('+M2')
 
-        Return named interval-class.
+        Returns named interval-class.
         '''
         from abjad.tools import pitchtools
         named_interval = pitchtools.NamedInterval.from_pitch_carriers(

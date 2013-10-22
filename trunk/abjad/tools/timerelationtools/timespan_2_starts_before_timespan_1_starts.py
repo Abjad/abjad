@@ -15,7 +15,7 @@ def timespan_2_starts_before_timespan_1_starts(timespan_1=None, timespan_2=None,
                 )
             )
 
-    Return time relation or boolean.
+    Returns time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

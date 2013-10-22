@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_arithmetic_mean_01():
-    r'''Return an exact integer or rational.
+    r'''Returns an exact integer or rational.
     '''
 
     assert mathtools.arithmetic_mean([1, 2, 3, 4, 5]) == 3
@@ -14,7 +14,7 @@ def test_mathtools_arithmetic_mean_01():
 
 
 def test_mathtools_arithmetic_mean_02():
-    r'''Return float.
+    r'''Returns float.
     '''
 
     assert mathtools.arithmetic_mean([1.0, 2.0, 3.0, 4.0, 5.0]) == 3.0

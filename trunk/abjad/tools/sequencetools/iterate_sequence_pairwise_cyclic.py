@@ -27,7 +27,7 @@ def iterate_sequence_pairwise_cyclic(sequence):
         >>> generator.next()
         (1, 2)
 
-    Return pair generator.
+    Returns pair generator.
     '''
 
     i = 0

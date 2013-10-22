@@ -64,7 +64,7 @@ class Container(Component):
         r'''True when `expr` appears in container.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         for x in self._music:
             if x is expr:
@@ -78,7 +78,7 @@ class Container(Component):
         Withdraw component(s) from crossing spanners.
         Preserve spanners that component(s) cover(s).
 
-        Return none.
+        Returns none.
         '''
         components = self[i]
         #if not isinstance(components, selectiontools.SliceSelection):
@@ -92,7 +92,7 @@ class Container(Component):
         r'''Get container `i`.
         Shallow traversal of container for numeric indices only.
 
-        Return component.
+        Returns component.
         '''
         if isinstance(i, int):
             return self._music[i]
@@ -111,14 +111,14 @@ class Container(Component):
     def __len__(self):
         r'''Number of items in container.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self._music)
 
     def __repr__(self):
         r'''Representation of container in Python interpreter.
 
-        Return string.
+        Returns string.
         '''
         return self._compact_representation
 
@@ -129,7 +129,7 @@ class Container(Component):
         Reattach spanners to new contents.
         This operation always leaves score tree in tact.
 
-        Return none.
+        Returns none.
         '''
         return self._set_item(i, expr)
 

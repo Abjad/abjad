@@ -156,7 +156,7 @@ class Scheme(AbjadObject):
             ...     'foo', force_quotes=True)
             '"foo"'
 
-        Return string.
+        Returns string.
         '''
         from abjad.tools import schemetools
         if isinstance(value, str):

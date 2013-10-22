@@ -80,7 +80,7 @@ def label_vertical_moments_in_expr_with_named_intervals(
 
         >>> show(score) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
 
     for vertical_moment in \

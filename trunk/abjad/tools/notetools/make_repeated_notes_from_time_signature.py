@@ -17,7 +17,7 @@ def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
         >>> notetools.make_repeated_notes_from_time_signature((5, 32), pitch="d''")
         Selection(Note("d''32"), Note("d''32"), Note("d''32"), Note("d''32"), Note("d''32"))
 
-    Return list of notes.
+    Returns list of notes.
     '''
     from abjad.tools import contexttools
     from abjad.tools import notetools

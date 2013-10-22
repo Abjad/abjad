@@ -16,7 +16,7 @@ def is_integer_singleton(expr):
         >>> sequencetools.is_integer_singleton(('text',))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == 1 and isinstance(expr[0], int)

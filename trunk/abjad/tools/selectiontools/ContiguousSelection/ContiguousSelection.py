@@ -24,7 +24,7 @@ class ContiguousSelection(Selection):
     def __add__(self, expr):
         '''Add `expr` to slice selection.
 
-        Return new slice selection.
+        Returns new slice selection.
         '''
         from abjad.tools import componenttools
         from abjad.tools import selectiontools
@@ -41,7 +41,7 @@ class ContiguousSelection(Selection):
     def __radd__(self, expr):
         '''Add slice selection to `expr`.
 
-        Return new slice selection.
+        Returns new slice selection.
         '''
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
@@ -239,7 +239,7 @@ class ContiguousSelection(Selection):
     def _get_crossing_spanners(self):
         r'''Assert logical-voice-contiguous components.
         Collect spanners that attach to any component in selection.
-        Return unordered set of crossing spanners.
+        Returns unordered set of crossing spanners.
         A spanner P crosses a list of logical-voice-contiguous components C
         when P and C share at least one component and when it is the
         case that NOT ALL of the components in P are also in C.
@@ -300,7 +300,7 @@ class ContiguousSelection(Selection):
         r'''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.
         Remove music from each dominating spanner.
-        Return none.
+        Returns none.
         Not composer-safe.
         '''
         from abjad.tools import componenttools
@@ -365,7 +365,7 @@ class ContiguousSelection(Selection):
 
             * Fracture spanners that attach to components not in `components`.
 
-            * Return Python list of copied components.
+            * Returns Python list of copied components.
 
         ..  container:: example
 

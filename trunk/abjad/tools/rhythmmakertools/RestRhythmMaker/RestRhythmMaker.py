@@ -126,7 +126,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
                 forbidden_written_duration=durationtools.Duration(1, 4)
                 )
 
-        Return string.
+        Returns string.
         '''
         return DivisionIncisedRestRhythmMaker.storage_format.fget(self)
 
@@ -162,7 +162,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new rest rhythm-maker.
+        Returns new rest rhythm-maker.
         '''
         return DivisionIncisedRestRhythmMaker.new(self, **kwargs)
 
@@ -196,6 +196,6 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new rest rhythm-maker.
+        Returns new rest rhythm-maker.
         '''
         return DivisionIncisedRestRhythmMaker.reverse(self)

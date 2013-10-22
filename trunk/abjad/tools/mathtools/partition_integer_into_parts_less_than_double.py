@@ -37,7 +37,7 @@ def partition_integer_into_parts_less_than_double(n, m):
             23 (4, 4, 4, 4, 7)
             24 (4, 4, 4, 4, 4, 4)
 
-    Return tuple of one or more integers.
+    Returns tuple of one or more integers.
     '''
     from abjad.tools import mathtools
 

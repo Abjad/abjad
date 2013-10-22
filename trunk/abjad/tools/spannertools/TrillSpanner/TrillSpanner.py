@@ -31,7 +31,7 @@ class TrillSpanner(Spanner):
 
     Override LilyPond TrillSpanner grob.
 
-    Return trill spanner.
+    Returns trill spanner.
     '''
 
     ### INITIALIZER ###

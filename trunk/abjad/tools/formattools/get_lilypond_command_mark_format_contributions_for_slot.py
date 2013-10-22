@@ -4,7 +4,7 @@
 def get_lilypond_command_mark_format_contributions_for_slot(component, slot):
     '''Get LilyPond command mark format contributions for `component` at `slot`.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import marktools
 

@@ -25,7 +25,7 @@ def yield_all_partitions_of_integer(n):
         (2, 1, 1, 1, 1, 1)
         (1, 1, 1, 1, 1, 1, 1)
 
-    Return generator of positive integer tuples of length at least ``1``.
+    Returns generator of positive integer tuples of length at least ``1``.
     '''
     from abjad.tools import mathtools
 

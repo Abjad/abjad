@@ -80,7 +80,7 @@ class PitchArrayCell(AbjadObject):
         >>> cell.width
         2
 
-    Return pitch array cell.
+    Returns pitch array cell.
     '''
 
     ### INTIALIZER ###

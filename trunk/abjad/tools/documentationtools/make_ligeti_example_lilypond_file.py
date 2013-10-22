@@ -4,7 +4,7 @@
 def make_ligeti_example_lilypond_file(music=None):
     r'''Make Ligeti example LilyPond file.
 
-    Return LilyPond file.
+    Returns LilyPond file.
     '''
     from abjad.tools import lilypondfiletools
     from abjad.tools import schemetools

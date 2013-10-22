@@ -24,7 +24,7 @@ def arg_to_bidirectional_lilypond_symbol(arg):
 
     If `arg` is '^' or '_', `arg` will be returned.
 
-    Return str or None.
+    Returns str or None.
     '''
 
     lookup = {

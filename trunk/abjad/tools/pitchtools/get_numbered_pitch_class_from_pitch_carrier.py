@@ -14,7 +14,7 @@ def get_numbered_pitch_class_from_pitch_carrier(pitch_carrier):
 
     Raise extra pitch error on many-note chords.
 
-    Return numbered pitch-class.
+    Returns numbered pitch-class.
     '''
     from abjad.tools import pitchtools
 

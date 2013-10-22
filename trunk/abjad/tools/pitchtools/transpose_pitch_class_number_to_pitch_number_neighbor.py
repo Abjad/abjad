@@ -14,7 +14,7 @@ def transpose_pitch_class_number_to_pitch_number_neighbor(
 
     Resulting pitch number must be within one tritone of `pitch_number`.
 
-    Return pitch number.
+    Returns pitch number.
     '''
 
     target_pc = pitch_number % 12

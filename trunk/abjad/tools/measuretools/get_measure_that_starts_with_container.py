@@ -6,7 +6,7 @@ from abjad.tools import containertools
 def get_measure_that_starts_with_container(container):
     '''Get measure that starts with `container`.
 
-    Return measure or none.
+    Returns measure or none.
     '''
     from abjad.tools import measuretools
 

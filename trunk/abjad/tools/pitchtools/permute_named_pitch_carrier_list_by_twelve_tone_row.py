@@ -13,7 +13,7 @@ def permute_named_pitch_carrier_list_by_twelve_tone_row(pitches, row):
 
     Function works by reference only. No objects are copied.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import pitchtools
     from abjad.tools import notetools

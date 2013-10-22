@@ -28,7 +28,7 @@ class Octave(AbjadObject):
         >>> pitchtools.Octave(pitchtools.Octave(2))
         Octave(2)
 
-    Return octave.
+    Returns octave.
     '''
 
     ### CLASS VARIABLES ###
@@ -96,7 +96,7 @@ class Octave(AbjadObject):
             >>> octave == 'foo'
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         try:
             other = type(self)(other)
@@ -112,7 +112,7 @@ class Octave(AbjadObject):
             >>> float(pitchtools.Octave(3))
             3.0
 
-        Return floating-point number.
+        Returns floating-point number.
         '''
         return float(self.octave_number)
 
@@ -127,7 +127,7 @@ class Octave(AbjadObject):
             >>> int(pitchtools.Octave(3))
             3
 
-        Return integer.
+        Returns integer.
         '''
         return self.octave_number
 
@@ -152,7 +152,7 @@ class Octave(AbjadObject):
             >>> str(pitchtools.Octave(3))
             ''
 
-        Return string.
+        Returns string.
         '''
         if 3 < self.octave_number:
             return "'" * (self.octave_number - 3)
@@ -171,7 +171,7 @@ class Octave(AbjadObject):
             >>> pitchtools.Octave.from_pitch_name('cs')
             Octave(3)
 
-        Return integer.
+        Returns integer.
         '''
         from abjad.tools import pitchtools
         if not isinstance(pitch_name, str):
@@ -191,7 +191,7 @@ class Octave(AbjadObject):
             >>> pitchtools.Octave.from_pitch_number(13)
             Octave(5)
 
-        Return octave.
+        Returns octave.
         '''
         octave_number = int(math.floor(pitch_number / 12)) + 4
         return cls(octave_number)
@@ -207,7 +207,7 @@ class Octave(AbjadObject):
 
         The regex ``^,+|'+|$`` underlies this predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -224,7 +224,7 @@ class Octave(AbjadObject):
             >>> pitchtools.Octave(5).octave_number
             5
 
-        Return integer.
+        Returns integer.
         '''
         return self._octave_number
 
@@ -247,7 +247,7 @@ class Octave(AbjadObject):
             7  ''''
             8  '''''
 
-        Return string.
+        Returns string.
         """
         return str(self)
 
@@ -270,7 +270,7 @@ class Octave(AbjadObject):
             >>> pitchtools.Octave(3).pitch_number
             -12
 
-        Return integer.
+        Returns integer.
         '''
         return (self.octave_number - 4) * 12
 
@@ -283,7 +283,7 @@ class Octave(AbjadObject):
             >>> pitchtools.Octave(5).pitch_range
             PitchRange('[C5, C6)')
 
-        Return pitch range.
+        Returns pitch range.
         '''
         from abjad.tools import pitchtools
         return pitchtools.PitchRange(

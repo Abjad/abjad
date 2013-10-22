@@ -103,6 +103,6 @@ class BendAfter(Mark):
             >>> bend.lilypond_format
             "- \\bendAfter #'-4.0"
 
-        Return string.
+        Returns string.
         '''
         return str(self)

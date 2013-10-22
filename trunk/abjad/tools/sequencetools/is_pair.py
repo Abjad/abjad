@@ -16,7 +16,7 @@ def is_pair(expr):
         >>> sequencetools.is_pair((19, 20, 21))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == 2

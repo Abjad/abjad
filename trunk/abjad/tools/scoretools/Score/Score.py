@@ -91,7 +91,7 @@ class Score(Context):
 
             >>> show(score) # doctest: +SKIP
 
-        Return bar line.
+        Returns bar line.
         '''
         from abjad.tools import leaftools
         from abjad.tools import marktools

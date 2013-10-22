@@ -53,7 +53,7 @@ def timespan_2_starts_during_timespan_1(
 
             >>> show(score) # doctest: +SKIP
 
-    Return time relation or boolean.
+    Returns time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

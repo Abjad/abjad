@@ -94,7 +94,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         (Note("a'4"), Note("e'8"))
         (Note("a'4"), Note("f'8"))
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import componenttools
     from abjad.tools import containertools

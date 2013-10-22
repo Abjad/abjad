@@ -5,7 +5,7 @@ import py.test
 
 
 def test_mathtools_greatest_power_of_two_less_equal_01():
-    r'''Return greatest integer power of two
+    r'''Returns greatest integer power of two
         less than or equal to n.'''
 
     assert mathtools.greatest_power_of_two_less_equal(1) == 1

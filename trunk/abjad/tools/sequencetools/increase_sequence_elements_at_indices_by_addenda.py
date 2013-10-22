@@ -14,7 +14,7 @@ def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices)
         ...     sequence, [0.5, 0.5], [0, 4, 8])
         [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import sequencetools
 

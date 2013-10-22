@@ -19,7 +19,7 @@ def flatten_sequence_at_indices(sequence, indices, classes=None, depth=-1):
 
     Leave `sequence` unchanged.
 
-    Return newly constructed `sequence` object.
+    Returns newly constructed `sequence` object.
     '''
 
     if classes is None:

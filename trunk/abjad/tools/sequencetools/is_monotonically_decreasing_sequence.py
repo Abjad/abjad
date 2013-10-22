@@ -51,7 +51,7 @@ def is_monotonically_decreasing_sequence(expr):
         >>> sequencetools.is_monotonically_decreasing_sequence(17)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

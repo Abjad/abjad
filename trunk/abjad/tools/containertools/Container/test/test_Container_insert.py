@@ -7,7 +7,7 @@ def test_Container_insert_01():
     r'''Insert component into container at index i.
     Fracture spanners to the left of index i.
     Fracture spanners to the right of index i.
-    Return Python list of fractured spanners.
+    Returns Python list of fractured spanners.
     '''
 
     "Insert works just before a spanner."
@@ -258,7 +258,7 @@ def test_Container_insert_09():
     r'''Insert component into container at index i.
     Fracture spanners to the left of index i.
     Fracture spanners to the right of index i.
-    Return Python list of fractured spanners.
+    Returns Python list of fractured spanners.
     '''
 
     "Insert works just before a spanner."

@@ -7,7 +7,7 @@ from abjad.tools import sequencetools
 def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
     r'''Make test rhythm number `rhythm_number` that fits `grid_length`.
 
-    Return selection of one or more possibly tied notes.
+    Returns selection of one or more possibly tied notes.
 
     ..  container:: example
 

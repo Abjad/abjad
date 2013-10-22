@@ -145,7 +145,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
             >>
         >>
 
-    Return score template.
+    Returns score template.
     '''
 
     ### INITIALIZER ###

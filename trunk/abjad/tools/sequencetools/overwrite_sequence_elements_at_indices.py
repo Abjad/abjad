@@ -11,7 +11,7 @@ def overwrite_sequence_elements_at_indices(sequence, pairs):
 
     Set `pairs` to a list of ``(anchor_index, length)`` pairs.
 
-    Return new list.
+    Returns new list.
     '''
 
     result = sequence[:]

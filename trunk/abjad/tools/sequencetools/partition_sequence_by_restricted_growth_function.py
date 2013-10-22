@@ -21,7 +21,7 @@ def partition_sequence_by_restricted_growth_function(
     Raise value error when `sequence` length does not equal
     `restricted_growth_function` length.
 
-    Return list of lists.
+    Returns list of lists.
     '''
     from abjad.tools import sequencetools
 

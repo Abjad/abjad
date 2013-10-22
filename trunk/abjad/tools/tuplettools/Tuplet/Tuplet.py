@@ -599,7 +599,7 @@ class Tuplet(Container):
             >>> tuplet.is_trivial
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.multiplier == 1
 

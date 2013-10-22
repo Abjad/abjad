@@ -138,7 +138,7 @@ class IncisedRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Call incised rhythm-maker on `divisions`.
 
-        Return list of tuplets or return list of leaf lists.
+        Returns list of tuplets or return list of leaf lists.
         '''
         duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = self._prepare_input(seeds)
@@ -253,7 +253,7 @@ class IncisedRhythmMaker(RhythmMaker):
     def reverse(self):
         r'''Reverse incised rhythm-maker.
 
-        Return newly constructed rhythm-maker.
+        Returns newly constructed rhythm-maker.
         '''
         new = copy.deepcopy(self)
         new.prefix_talea.reverse()

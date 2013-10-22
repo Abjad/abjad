@@ -23,7 +23,7 @@ def clef_and_staff_position_number_to_named_pitch(clef, staff_position_number):
         treble   4  f''
         treble   5  g''
 
-    Return named pitch.
+    Returns named pitch.
     '''
     from abjad.tools import pitchtools
 

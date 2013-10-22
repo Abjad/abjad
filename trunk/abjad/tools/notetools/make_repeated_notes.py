@@ -36,7 +36,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
 
     Set pitch of all notes created to middle C.
 
-    Return list of zero or more newly constructed notes or list of one newly constructed tuplet.
+    Returns list of zero or more newly constructed notes or list of one newly constructed tuplet.
     '''
     from abjad.tools import notetools
 

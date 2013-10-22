@@ -185,7 +185,7 @@ class Sieve(BaseResidueClass):
                 >>> e.get_congruent_bases(-6, 6)
                 [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
-        Return list.
+        Returns list.
         '''
         minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
@@ -216,7 +216,7 @@ class Sieve(BaseResidueClass):
                 >>> e.get_congruent_bases(-6, 6)
                 [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
-        Return list.
+        Returns list.
         '''
         minimum, maximum = self._process_min_max_attribute(*min_max)
         if self.logical_operator == 'or':

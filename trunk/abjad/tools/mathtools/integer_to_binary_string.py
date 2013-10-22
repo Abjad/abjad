@@ -26,7 +26,7 @@ def integer_to_binary_string(n):
         15 1111
         16 10000
 
-    Return string.
+    Returns string.
     '''
 
     if n == 0:

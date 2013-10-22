@@ -11,7 +11,7 @@ def interpolate_exponential(y1, y2, mu, exp=1):
 
     Set `exp` equal to the exponent of interpolation.
 
-    Return float.
+    Returns float.
     '''
 
     result = (y1 * (1 - mu ** exp) + y2 * mu ** exp)

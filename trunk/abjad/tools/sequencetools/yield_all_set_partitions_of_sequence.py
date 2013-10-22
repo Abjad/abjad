@@ -26,7 +26,7 @@ def yield_all_set_partitions_of_sequence(sequence):
         [[21], [22], [23, 24]]
         [[21], [22], [23], [24]]
 
-    Return generator of list of lists.
+    Returns generator of list of lists.
     '''
     from abjad.tools import sequencetools
 

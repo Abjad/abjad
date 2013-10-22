@@ -21,7 +21,7 @@ def test_sequencetools_rotate_sequence_02():
 
 
 def test_sequencetools_rotate_sequence_03():
-    r'''Return sequence type.
+    r'''Returns sequence type.
     '''
 
     sequence = range(10)

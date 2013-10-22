@@ -3,7 +3,7 @@ import math
 
 
 def least_multiple_greater_equal(m, n):
-    r'''Return the least integer multiple of `m`
+    r'''Returns the least integer multiple of `m`
     greater than or equal to `n`:
 
     ::
@@ -41,7 +41,7 @@ def least_multiple_greater_equal(m, n):
         84 80
         91 90
 
-    Return integer.
+    Returns integer.
     '''
 
     result = m * int(math.ceil(n / float(m)))

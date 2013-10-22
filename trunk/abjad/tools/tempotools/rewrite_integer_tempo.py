@@ -25,7 +25,7 @@ def rewrite_integer_tempo(integer_tempo, maximum_numerator=None, maximum_denomin
         (Multiplier(3, 2), 87)
         (Multiplier(2, 1), 116)
 
-    Return list.
+    Returns list.
     '''
 
     # find divisors

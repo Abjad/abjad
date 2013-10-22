@@ -10,7 +10,7 @@ def join_subsequences(sequence):
         >>> sequencetools.join_subsequences([(1, 2, 3), (), (4, 5), (), (6,)])
         (1, 2, 3, 4, 5, 6)
 
-    Return newly constructed object of subsequence type.
+    Returns newly constructed object of subsequence type.
     '''
 
     return mathtools.cumulative_sums(sequence)[-1]

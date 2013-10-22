@@ -98,7 +98,7 @@ def test_TonalAnalysisAgent_analyze_chords_04():
 
 
 def test_TonalAnalysisAgent_analyze_chords_05():
-    r'''Return none when chord does not analyze.
+    r'''Returns none when chord does not analyze.
     '''
 
     chord = Chord('<c cs d>4')

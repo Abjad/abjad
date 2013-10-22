@@ -13,7 +13,7 @@ def interval_string_to_pair_and_indicators(interval_string):
 
     Parse parentheses as open interval bounds.
 
-    Return triple.
+    Returns triple.
     '''
 
     assert isinstance(interval_string, str)

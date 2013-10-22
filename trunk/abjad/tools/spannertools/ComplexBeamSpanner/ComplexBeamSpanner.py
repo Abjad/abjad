@@ -51,7 +51,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return complex beam spanner.
+    Returns complex beam spanner.
     '''
 
     ### INITIALIZER ###

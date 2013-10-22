@@ -20,7 +20,7 @@ def list_named_pitches_in_expr(expr):
         NamedPitch("e'")
         NamedPitch("f'")
 
-    Return tuple.
+    Returns tuple.
     '''
     from abjad.tools import spannertools
     from abjad.tools import iterationtools

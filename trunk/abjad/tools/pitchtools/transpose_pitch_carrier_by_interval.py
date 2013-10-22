@@ -28,7 +28,7 @@ def transpose_pitch_carrier_by_interval(
         >>> pitchtools.transpose_pitch_carrier_by_interval(chord, 1)
         Chord("<cs' f' af'>4")
 
-    Return non-pitch-carrying input unchaged:
+    Returns non-pitch-carrying input unchaged:
 
     ::
 

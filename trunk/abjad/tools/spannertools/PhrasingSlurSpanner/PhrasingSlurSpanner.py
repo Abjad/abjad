@@ -30,7 +30,7 @@ class PhrasingSlurSpanner(DirectedSpanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return phrasing slur spanner.
+    Returns phrasing slur spanner.
     '''
 
     ### INITIALIZER ###

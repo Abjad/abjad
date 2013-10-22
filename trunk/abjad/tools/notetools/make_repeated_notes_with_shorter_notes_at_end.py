@@ -69,7 +69,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
 
     Set `prolation` when making notes in a measure with a non-power-of-two denominator.
 
-    Return list of components.
+    Returns list of components.
     '''
     from abjad.tools import notetools
 

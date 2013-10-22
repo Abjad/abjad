@@ -4,7 +4,7 @@
 def get_context_setting_format_contributions(component):
     r'''Get context setting format contributions for `component`.
 
-    Return sorted list.
+    Returns sorted list.
     '''
     result = []
     from abjad.tools.leaftools.Leaf import Leaf

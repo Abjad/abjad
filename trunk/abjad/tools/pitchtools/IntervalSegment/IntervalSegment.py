@@ -13,7 +13,7 @@ class IntervalSegment(Segment):
         >>> pitchtools.IntervalSegment(intervals)
         IntervalSegment(['+m2', '+M10', '-aug4', '+P5'])
 
-    Return interval segment.
+    Returns interval segment.
     '''
 
     ### CLASS VARIABLES ###
@@ -50,7 +50,7 @@ class IntervalSegment(Segment):
             ...     staff, item_class=pitchtools.NumberedInterval)
             IntervalSegment([+2, +2, +1, +2, +2, +2, +1])
 
-        Return interval segment.
+        Returns interval segment.
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
@@ -84,7 +84,7 @@ class IntervalSegment(Segment):
             >>> segment.has_duplicates
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import pitchtools
         return len(pitchtools.IntervalSet(self)) < len(self)
@@ -99,7 +99,7 @@ class IntervalSegment(Segment):
             >>> pitchtools.IntervalSegment([1, 2]).slope
             Multiplier(3, 2)
 
-        Return multiplier.
+        Returns multiplier.
         '''
         return durationtools.Multiplier.from_float(
             sum([x.number for x in self])) / len(self)
@@ -119,7 +119,7 @@ class IntervalSegment(Segment):
             >>> pitchtools.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
             NumberedInterval(+5.0)
 
-        Return numbered interval.
+        Returns numbered interval.
         '''
         from abjad.tools import pitchtools
         current = maximum = minimum = 0

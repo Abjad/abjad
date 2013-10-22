@@ -44,7 +44,7 @@ class ResidueClass(BaseResidueClass):
                 [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
-    Return residue class.
+    Returns residue class.
     '''
 
     ### CLASS VARIABLES ###
@@ -162,7 +162,7 @@ class ResidueClass(BaseResidueClass):
                 >>> r.get_congruent_bases(-6, 6)
                 [-6, -3, 0, 3, 6]
 
-        Return list.
+        Returns list.
         '''
         minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
@@ -195,7 +195,7 @@ class ResidueClass(BaseResidueClass):
                 >>> r.get_congruent_bases(-6, 6)
                 [-6, -3, 0, 3, 6]
 
-        Return list.
+        Returns list.
         '''
         minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []

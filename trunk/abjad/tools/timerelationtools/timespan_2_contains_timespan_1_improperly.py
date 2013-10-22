@@ -39,7 +39,7 @@ def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, 
             >>> labeltools.color_leaves_in_expr(selected_notes, 'red')
             >>> show(staff) # doctest: +SKIP
 
-    Return time relation or boolean.
+    Returns time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

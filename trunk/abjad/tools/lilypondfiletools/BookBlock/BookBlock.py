@@ -20,7 +20,7 @@ class BookBlock(NonattributedBlock):
         >>> f(book_block)
         \book {}
 
-    Return book block.
+    Returns book block.
     '''
 
     def __init__(self):

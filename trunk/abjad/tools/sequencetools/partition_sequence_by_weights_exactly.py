@@ -73,7 +73,7 @@ def partition_sequence_by_weights_exactly(
             ...     )
             [[3, 3, 3, 3], [4, 4, 4], [4, 5]]
 
-    Return list sequence objects.
+    Returns list sequence objects.
     '''
     from abjad.tools import sequencetools
 

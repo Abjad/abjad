@@ -67,7 +67,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
                 beam_cells_together=False
                 )
 
-        Return string.
+        Returns string.
         '''
         return OutputIncisedRhythmMaker.storage_format(self)
 
@@ -113,7 +113,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new output-incised note rhythm-maker.
+        Returns new output-incised note rhythm-maker.
         '''
         return OutputIncisedRhythmMaker.new(self, **kwargs)
 
@@ -157,6 +157,6 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new output-incised note rhythm-maker.
+        Returns new output-incised note rhythm-maker.
         '''
         return OutputIncisedRhythmMaker.reverse(self)

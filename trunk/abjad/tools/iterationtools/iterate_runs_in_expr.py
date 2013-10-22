@@ -63,7 +63,7 @@ def iterate_runs_in_expr(sequence, classes):
             (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))
             (Chord("<b' d''>8"), Chord("<c'' e''>8"))
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import componenttools
     from abjad.tools import selectiontools

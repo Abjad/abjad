@@ -13,7 +13,7 @@ class NumberedInterval(Interval):
         >>> numbered_interval
         NumberedInterval(-14)
 
-    Return numbered interval.
+    Returns numbered interval.
     '''
 
     ### CLASS VARIABLES ###
@@ -134,7 +134,7 @@ class NumberedInterval(Interval):
             ...     )
             NumberedInterval(+14)
 
-        Return numbered interval.
+        Returns numbered interval.
         '''
         from abjad.tools import pitchtools
         # get pitches
@@ -161,7 +161,7 @@ class NumberedInterval(Interval):
             >>> pitchtools.NumberedInterval(-14).numbered_interval_number
             -14
 
-        Return integer or float.
+        Returns integer or float.
         '''
         return self._number
 
@@ -174,7 +174,7 @@ class NumberedInterval(Interval):
             >>> pitchtools.NumberedInterval(-14).direction_number
             -1
 
-        Return integer.
+        Returns integer.
         '''
         return mathtools.sign(self.number)
 

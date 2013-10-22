@@ -224,7 +224,7 @@ class Scale(PitchClassSegment):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return list of notes.
+        Returns list of notes.
         '''
         written_duration = written_duration or durationtools.Duration(1, 8)
         result = notetools.make_notes(n * [0], [written_duration])
@@ -270,7 +270,7 @@ class Scale(PitchClassSegment):
 
             >>> show(score) # doctest: +SKIP
 
-        Return score.
+        Returns score.
         '''
         ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
         descending_notes = copy.deepcopy(ascending_notes[:-1])

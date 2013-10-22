@@ -19,7 +19,7 @@ def binomial_coefficient(n, k):
         6  28
         7  8
 
-    Return positive integer.
+    Returns positive integer.
     '''
 
     return math.factorial(n) / (math.factorial(n - k) * math.factorial(k))

@@ -33,7 +33,7 @@ class BarLine(LilyPondCommandMark):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return bar line.
+    Returns bar line.
     '''
 
     ### INITIALIZER ##

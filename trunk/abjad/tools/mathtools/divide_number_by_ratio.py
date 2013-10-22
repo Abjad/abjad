@@ -30,7 +30,7 @@ def divide_number_by_ratio(number, ratio):
 
     Raise type error on noninteger in `ratio`.
 
-    Return list of fractions or list of floats.
+    Returns list of fractions or list of floats.
     '''
     from abjad.tools import mathtools
 

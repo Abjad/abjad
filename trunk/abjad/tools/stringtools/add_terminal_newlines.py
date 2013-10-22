@@ -16,7 +16,7 @@ def add_terminal_newlines(lines):
         >>> stringtools.add_terminal_newlines(lines)
         ['first line\n', 'second line\n']
 
-    Return newly constructed object of `lines` type.
+    Returns newly constructed object of `lines` type.
     '''
 
     terminated_lines = []

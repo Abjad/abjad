@@ -87,7 +87,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation_2 == time_relation_2
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             if self.inequality == expr.inequality:
@@ -108,7 +108,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation.is_fully_loaded
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.timespan is not None and self.offset is not None
 
@@ -122,7 +122,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation.is_fully_unloaded
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.timespan is None and self.offset is None
 
@@ -135,7 +135,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation.offset
             Offset(5, 1)
 
-        Return offset or none.
+        Returns offset or none.
         '''
         return self._offset
 
@@ -160,7 +160,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
                 offset=durationtools.Offset(5, 1)
                 )
 
-        Return string.
+        Returns string.
         '''
         return TimeRelation.storage_format.fget(self)
 
@@ -173,6 +173,6 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
 
-        Return timespan or none.
+        Returns timespan or none.
         '''
         return self._timespan

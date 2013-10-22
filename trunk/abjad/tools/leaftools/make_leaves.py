@@ -321,7 +321,7 @@ def make_leaves(
                 g'4
             }
 
-    Return selection of unincorporated leaves.
+    Returns selection of unincorporated leaves.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

@@ -101,6 +101,6 @@ class SchemeMoment(Scheme):
             >>> scheme_moment.duration
             Duration(1, 68)
 
-        Return duration.
+        Returns duration.
         '''
         return self._value

@@ -24,7 +24,7 @@ def truncate_sequence_to_sum(sequence, target_sum):
         8 [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
         9 [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
 
-    Return empty list when `target_sum` is ``0``:
+    Returns empty list when `target_sum` is ``0``:
 
     ::
 
@@ -35,7 +35,7 @@ def truncate_sequence_to_sum(sequence, target_sum):
 
     Raise value error on negative `target_sum`.
 
-    Return new list.
+    Returns new list.
     '''
 
     if not isinstance(sequence, list):

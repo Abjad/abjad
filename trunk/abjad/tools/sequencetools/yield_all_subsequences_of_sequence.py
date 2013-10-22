@@ -49,7 +49,7 @@ def yield_all_subsequences_of_sequence(sequence, min_length=0, max_length=None):
         ...     [0, 1, 2, 3, 4], min_length=3, max_length=3))
         [[0, 1, 2], [1, 2, 3], [2, 3, 4]]
 
-    Return generator of newly created `sequence` slices.
+    Returns generator of newly created `sequence` slices.
     '''
 
     len_sequence = len(sequence)

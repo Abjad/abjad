@@ -9,7 +9,7 @@ def least_common_multiple(*integers):
         >>> mathtools.least_common_multiple(2, 4, 5, 10, 20)
         20
 
-    Return positive integer.
+    Returns positive integer.
     '''
     from abjad.tools import mathtools
 

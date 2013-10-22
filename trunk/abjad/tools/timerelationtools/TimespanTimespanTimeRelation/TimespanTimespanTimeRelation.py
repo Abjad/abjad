@@ -269,7 +269,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> time_relation_2 == time_relation_2
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             if self.inequality == expr.inequality:
@@ -298,7 +298,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> time_relation.is_fully_loaded
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.timespan_1 is not None and self.timespan_2 is not None
 
@@ -310,7 +310,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> time_relation.is_fully_unloaded
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.timespan_1 is None and self.timespan_2 is None
 
@@ -323,7 +323,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> time_relation.timespan_1
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
 
-        Return timespan.
+        Returns timespan.
         '''
         return self._timespan_1
 
@@ -336,7 +336,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> time_relation.timespan_2
             Timespan(start_offset=Offset(5, 1), stop_offset=Offset(15, 1))
 
-        Return timespan.
+        Returns timespan.
         '''
         return self._timespan_2
 
@@ -382,7 +382,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         The call shown here takes 78355 function calls under r9686.
 
-        Return selection.
+        Returns selection.
         '''
         from abjad.tools import selectiontools
         from abjad.tools import timerelationtools
@@ -439,7 +439,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
                 >>> time_relation.get_offset_indices(start_offsets, stop_offsets)
                 (2, 8)
 
-        Return nonnegative integer pair.
+        Returns nonnegative integer pair.
         '''
         from abjad.tools import timerelationtools
         from abjad.tools import timespantools

@@ -25,7 +25,7 @@ def all_are_pairs_of_types(expr, first_type, second_type):
         >>> sequencetools.all_are_pairs_of_types('foo', float, str)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

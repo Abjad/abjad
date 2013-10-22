@@ -10,7 +10,7 @@ def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
         ...     (1, 2, 3, 4), [1, 2, 3, 0]))
         [(1, 2, 3, 4), (2, 3, 4, 1), (3, 4, 1, 2), (4, 1, 2, 3)]
 
-    Return generator of `sequence` objects.
+    Returns generator of `sequence` objects.
     '''
     from abjad.tools import sequencetools
 

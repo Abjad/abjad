@@ -56,7 +56,7 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 0, 1]):
 
     When ``1`` in `sign`, sum consecutive positive elements.
 
-    Return list.
+    Returns list.
     '''
 
     result = []

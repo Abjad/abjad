@@ -83,7 +83,7 @@ class MetricalKernel(AbjadObject):
     def kernel(self):
         r'''The kernel datastructure.
 
-        Return dict.
+        Returns dict.
         '''
         return self._kernel.copy()
 
@@ -161,7 +161,7 @@ class MetricalKernel(AbjadObject):
                 (Offset(15, 1), 2)
                 (Offset(20, 1), 1)
 
-        Return counter.
+        Returns counter.
         '''
         counter = collections.Counter()
         for x in expr:

@@ -29,7 +29,7 @@ def factors(n):
 
     Raise value error on nonpositive `n`.
 
-    Return list of one or more positive integers.
+    Returns list of one or more positive integers.
     '''
     from abjad.tools import mathtools
 

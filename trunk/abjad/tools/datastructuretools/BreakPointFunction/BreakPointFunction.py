@@ -33,7 +33,7 @@ class BreakPointFunction(AbjadObject):
         0.25
         0.25
 
-    Return break-point function instance.
+    Returns break-point function instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -198,7 +198,7 @@ class BreakPointFunction(AbjadObject):
             ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).bpf
             {0.0: (0.25,), 0.5: (1.3,), 1.0: (0.9,)}
 
-        Return dict.
+        Returns dict.
         '''
         return self._bpf.copy()
 
@@ -213,7 +213,7 @@ class BreakPointFunction(AbjadObject):
             ...     ).dc_bias
             0.4
 
-        Return number.
+        Returns number.
         '''
         return self._dc_bias
 
@@ -245,7 +245,7 @@ class BreakPointFunction(AbjadObject):
             ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_center
             0.5
 
-        Return number.
+        Returns number.
         '''
         return (self.x_range[1] + self.x_range[0]) / 2
 
@@ -259,7 +259,7 @@ class BreakPointFunction(AbjadObject):
             ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_range
             (0.0, 1.0)
 
-        Return pair.
+        Returns pair.
         '''
         return self.x_values[0], self.x_values[-1]
 
@@ -273,7 +273,7 @@ class BreakPointFunction(AbjadObject):
             ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_values
             (0.0, 0.5, 1.0)
 
-        Return tuple.
+        Returns tuple.
         '''
         return tuple(sorted(self._bpf))
 
@@ -287,7 +287,7 @@ class BreakPointFunction(AbjadObject):
             ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_center
             0.775
 
-        Return number.
+        Returns number.
         '''
         return (self.y_range[1] + self.y_range[0]) / 2
 
@@ -301,7 +301,7 @@ class BreakPointFunction(AbjadObject):
             ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_range
             (0.25, 1.3)
 
-        Return pair.
+        Returns pair.
         '''
         return self._y_range
 
@@ -503,7 +503,7 @@ class BreakPointFunction(AbjadObject):
             >>> bpf.get_y_at_x(1000)
             0.5
 
-        Return Number.
+        Returns Number.
         '''
         if x <= self.x_values[0]:
             return self._bpf[self.x_values[0]][0]
@@ -732,7 +732,7 @@ class BreakPointFunction(AbjadObject):
                 1.0: (1.0,)
             })
 
-        Operate in place and return None.
+        Operates in place and returns None.
         '''
         assert isinstance(x, numbers.Real)
         if isinstance(y, numbers.Real):

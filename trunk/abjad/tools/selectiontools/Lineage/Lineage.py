@@ -51,7 +51,7 @@ class Lineage(SimultaneousSelection):
         Voice-"Bass Voice"{1}
         Note('b,4')
 
-    Return lineage instance.
+    Returns lineage instance.
     '''
 
     ### CLASS VARIABLES ###

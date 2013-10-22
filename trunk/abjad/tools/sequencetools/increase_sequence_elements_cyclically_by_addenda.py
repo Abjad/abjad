@@ -18,7 +18,7 @@ def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield=T
         ...         range(10), [10, -10], shield=True)
         [10, 1, 12, 1, 14, 1, 16, 1, 18, 1]
 
-    Return list.
+    Returns list.
     '''
 
     if not isinstance(sequence, (list, tuple)):

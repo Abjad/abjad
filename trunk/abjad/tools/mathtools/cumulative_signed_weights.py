@@ -14,7 +14,7 @@ def cumulative_signed_weights(sequence):
 
     For cumulative (unsigned) weights use ``mathtools.cumulative_sums([abs(x) for x in l])``.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import mathtools
 

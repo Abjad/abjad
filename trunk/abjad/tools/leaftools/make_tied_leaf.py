@@ -122,7 +122,7 @@ def make_tied_leaf(
                 cs''4
             }
 
-    Return selection of unincorporated leaves.
+    Returns selection of unincorporated leaves.
     '''
     from abjad.tools import spannertools
 

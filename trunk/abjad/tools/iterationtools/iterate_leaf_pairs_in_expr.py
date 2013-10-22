@@ -56,7 +56,7 @@ def iterate_leaf_pairs_in_expr(expr):
 
     Iterate leaf pairs left-to-right and top-to-bottom.
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 

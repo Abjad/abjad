@@ -21,7 +21,7 @@ def make_n_middle_c_centered_pitches(n):
         NamedPitch("d'")
         NamedPitch("f'")
 
-    Return list of zero or more named pitches.
+    Returns list of zero or more named pitches.
     '''
     from abjad.tools import pitchtools
 

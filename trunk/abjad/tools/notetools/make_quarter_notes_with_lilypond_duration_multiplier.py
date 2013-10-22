@@ -33,7 +33,7 @@ def make_quarter_notes_with_lilypond_duration_multiplier(
         Selection(Note("c'4 * 4/5"), Note("d'4 * 4/5"), Note("e'4 * 4/5"),
         Note("f'4 * 4/5"))
 
-    Return list of zero or more newly constructed notes.
+    Returns list of zero or more newly constructed notes.
     '''
     from abjad.tools import notetools
 

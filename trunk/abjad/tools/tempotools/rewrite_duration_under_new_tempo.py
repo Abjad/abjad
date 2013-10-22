@@ -48,7 +48,7 @@ def rewrite_duration_under_new_tempo(duration, tempo_mark_1, tempo_mark_2):
             ...     Duration(1, 8), tempo_mark_1, tempo_mark_2)
             Duration(3, 16)
 
-    Return duration.
+    Returns duration.
     '''
 
     tempo_ratio = tempo_mark_2 / tempo_mark_1

@@ -27,7 +27,7 @@ def resolve_overlaps_between_nonoverlapping_trees(trees, minimum_duration=None):
             TimeInterval(Offset(5, 1), Offset(6, 1), {'c': 3})
         ])
 
-    Return TimeIntervalTree.
+    Returns TimeIntervalTree.
     '''
     from abjad.tools import timeintervaltools
 

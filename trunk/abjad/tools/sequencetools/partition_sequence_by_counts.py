@@ -126,7 +126,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]
 
-    Return list of sequence objects.
+    Returns list of sequence objects.
     '''
     from abjad.tools import sequencetools
 

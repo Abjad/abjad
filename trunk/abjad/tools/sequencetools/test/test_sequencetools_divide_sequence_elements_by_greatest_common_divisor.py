@@ -27,7 +27,7 @@ def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_02():
 
 
 def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_03():
-    r'''Raise exception when zero in input.
+    r'''Raises exception when zero in input.
     '''
 
     assert py.test.raises(NotImplementedError,

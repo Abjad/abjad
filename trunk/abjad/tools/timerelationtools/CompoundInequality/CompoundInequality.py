@@ -39,7 +39,7 @@ class CompoundInequality(TypedList):
             logical_operator='or'
             )
 
-    Return compound inequality.
+    Returns compound inequality.
     '''
 
     ### CLASS VARIABLES ###

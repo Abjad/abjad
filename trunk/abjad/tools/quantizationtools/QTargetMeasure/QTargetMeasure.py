@@ -204,7 +204,7 @@ class QTargetMeasure(AbjadObject):
                     )
                 )
 
-        Return tuple.
+        Returns tuple.
         '''
 
         return self._beats
@@ -218,7 +218,7 @@ class QTargetMeasure(AbjadObject):
             >>> q_target_measure.duration_in_ms
             Duration(4000, 1)
 
-        Return Duration.
+        Returns Duration.
         '''
         from abjad.tools import quantizationtools
         return self.tempo.duration_to_milliseconds(
@@ -233,7 +233,7 @@ class QTargetMeasure(AbjadObject):
             >>> q_target_measure.offset_in_ms
             Offset(1000, 1)
 
-        Return Offset.
+        Returns Offset.
         '''
         return self._offset_in_ms
 
@@ -287,6 +287,6 @@ class QTargetMeasure(AbjadObject):
             >>> q_target_measure.use_full_measure
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._use_full_measure

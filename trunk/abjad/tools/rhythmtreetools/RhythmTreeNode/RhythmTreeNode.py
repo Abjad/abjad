@@ -152,7 +152,7 @@ class RhythmTreeNode(TreeNode):
             >>> e.parentage_ratios
             (Duration(1, 1), (Duration(2, 1), Duration(5, 1)), (Duration(5, 1), Duration(9, 1)))
 
-        Return tuple.
+        Returns tuple.
         '''
         result = []
         node = self
@@ -181,7 +181,7 @@ class RhythmTreeNode(TreeNode):
                 >>> node.preprolated_duration
                 Duration(2, 1)
 
-            Return int.
+            Returns int.
             '''
             return self._duration
         def fset(self, arg):
@@ -209,7 +209,7 @@ class RhythmTreeNode(TreeNode):
                     1
                     1))))
 
-        Return string.
+        Returns string.
         '''
         return '\n'.join(self._pretty_rtm_format_pieces)
 
@@ -238,7 +238,7 @@ class RhythmTreeNode(TreeNode):
             >>> tree.rtm_format
             '(1 ((1 (1 1)) (1 (1 1))))'
 
-        Return string.
+        Returns string.
         '''
         raise NotImplemented
 
@@ -266,7 +266,7 @@ class RhythmTreeNode(TreeNode):
             >>> tree[0][1].start_offset
             Offset(1, 4)
 
-        Return Offset instance.
+        Returns Offset instance.
         '''
         self._update_offsets_of_entire_tree_if_necessary()
         return self._offset

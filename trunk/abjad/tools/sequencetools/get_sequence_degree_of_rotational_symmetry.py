@@ -24,7 +24,7 @@ def get_sequence_degree_of_rotational_symmetry(sequence):
         >>> sequencetools.get_sequence_degree_of_rotational_symmetry([1, 1, 1, 1, 1, 1])
         6
 
-    Return positive integer.
+    Returns positive integer.
     '''
 
     degree_of_rotational_symmetry = 0

@@ -24,7 +24,7 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
 
     Number leaves starting from ``1``.
 
-    Return none.
+    Returns none.
     '''
 
     for i, leaf in enumerate(iterationtools.iterate_leaves_in_expr(expr)):

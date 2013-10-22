@@ -28,7 +28,7 @@ def make_vertically_adjusted_composer_markup(composer,
                 }
             }
 
-    Return markup.
+    Returns markup.
     '''
     from abjad.tools import markuptools
 

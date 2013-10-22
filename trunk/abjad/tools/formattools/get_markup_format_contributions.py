@@ -4,7 +4,7 @@
 def get_markup_format_contributions(component):
     '''Get markup format contributions for `component`.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import markuptools
 

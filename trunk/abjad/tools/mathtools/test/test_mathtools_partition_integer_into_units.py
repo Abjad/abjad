@@ -23,7 +23,7 @@ def test_mathtools_partition_integer_into_units_02():
 
 def test_mathtools_partition_integer_into_units_03():
     r'''Partition integer n into n equal parts.
-        Return empty list when n is 0.'''
+        Returns empty list when n is 0.'''
 
     t = mathtools.partition_integer_into_units(0)
 

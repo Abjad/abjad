@@ -13,7 +13,7 @@ def upper_camel_case_to_snake_case(string):
         >>> stringtools.upper_camel_case_to_snake_case(string)
         'key_signature_mark'
 
-    Return string.
+    Returns string.
     '''
 
     words = []

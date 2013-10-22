@@ -126,7 +126,7 @@ class FixedDurationTuplet(Tuplet):
             >>> tuplet.multiplied_duration
             Duration(1, 4)
 
-        Return duration.
+        Returns duration.
         '''
         return self.target_duration
 
@@ -142,7 +142,7 @@ class FixedDurationTuplet(Tuplet):
                 >>> tuplet.multiplier
                 Multiplier(2, 3)
 
-            Return multiplier.
+            Returns multiplier.
             '''
             if 0 < len(self):
                 return durationtools.Multiplier(
@@ -185,7 +185,7 @@ class FixedDurationTuplet(Tuplet):
                     e'8
                 }
 
-            Return duration.
+            Returns duration.
             '''
             return self._target_duration
         def fset(self, expr):
@@ -224,7 +224,7 @@ class FixedDurationTuplet(Tuplet):
                 >>> new_tuplet
                 Tuplet(2/3, [c'8, d'8, e'8])
 
-        Return new tuplet.
+        Returns new tuplet.
         '''
         from abjad.tools import tuplettools
         new_tuplet = tuplettools.Tuplet(self.multiplier, [])
@@ -261,7 +261,7 @@ class FixedDurationTuplet(Tuplet):
 
         Adjust fixed-duration tuplet duration.
 
-        Return none.
+        Returns none.
         '''
         if stop != 'unused':
             assert not (start == 0 and (stop is None or len(self) <= stop))

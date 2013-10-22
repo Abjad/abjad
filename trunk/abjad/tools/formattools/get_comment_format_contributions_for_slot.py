@@ -4,7 +4,7 @@
 def get_comment_format_contributions_for_slot(component, slot):
     '''Get comment format contributions for `component` at `slot`.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import marktools
 

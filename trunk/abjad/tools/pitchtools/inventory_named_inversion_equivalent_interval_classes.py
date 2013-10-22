@@ -25,7 +25,7 @@ def inventory_inversion_equivalent_named_interval_classes():
 
     It is an open question as to whether octaves should be included.
 
-    Return list of inversion-equivalent diatonic interval-classes.
+    Returns list of inversion-equivalent diatonic interval-classes.
     '''
     from abjad.tools import pitchtools
 

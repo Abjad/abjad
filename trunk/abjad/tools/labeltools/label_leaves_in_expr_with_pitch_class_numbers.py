@@ -51,7 +51,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
 
     You can set `number` and `color` at the same time.
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import labeltools
 

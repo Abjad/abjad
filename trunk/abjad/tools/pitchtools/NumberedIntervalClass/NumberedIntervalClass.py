@@ -12,7 +12,7 @@ class NumberedIntervalClass(IntervalClass):
         >>> pitchtools.NumberedIntervalClass(-14)
         NumberedIntervalClass(-2)
 
-    Return numbered interval-class.
+    Returns numbered interval-class.
     '''
 
     ### INITIALIZER ###
@@ -87,7 +87,7 @@ class NumberedIntervalClass(IntervalClass):
             ...     )
             NumberedIntervalClass(+2)
 
-        Return numbered interval-class.
+        Returns numbered interval-class.
         '''
         from abjad.tools import pitchtools
         # get numbered interval

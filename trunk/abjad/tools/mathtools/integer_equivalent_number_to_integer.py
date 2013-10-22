@@ -10,7 +10,7 @@ def integer_equivalent_number_to_integer(number):
         >>> mathtools.integer_equivalent_number_to_integer(17.0)
         17
 
-    Return noninteger-equivalent number unchanged:
+    Returns noninteger-equivalent number unchanged:
 
     ::
 
@@ -19,7 +19,7 @@ def integer_equivalent_number_to_integer(number):
 
     Raise type error on nonnumber input.
 
-    Return number.
+    Returns number.
     '''
     from abjad.tools import mathtools
 

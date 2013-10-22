@@ -16,7 +16,7 @@ def is_integer_n_tuple(expr, n):
         >>> sequencetools.is_integer_n_tuple((19, 20, 'text'), 3)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == n and all(isinstance(x, int) for x in expr)

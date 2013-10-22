@@ -119,7 +119,7 @@ class Pitch(AbjadObject):
 
         The regex ``(^[a-g,A-G])(,+|'+|)$`` underlies this predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -136,7 +136,7 @@ class Pitch(AbjadObject):
 
         The diatonic pitch numbers are equal to the set of integers.
 
-        Return boolean.
+        Returns boolean.
         '''
         return isinstance(expr, (int, long))
 
@@ -151,7 +151,7 @@ class Pitch(AbjadObject):
             >>> pitchtools.Pitch.is_pitch_carrier(note)
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import chordtools
         from abjad.tools import notetools
@@ -180,7 +180,7 @@ class Pitch(AbjadObject):
         The regex ``^([A-G])([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)([-]?[0-9]+)$``
         underlies this predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -198,7 +198,7 @@ class Pitch(AbjadObject):
         The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[f,s]|)!?)(,+|'+|)$``
         underlies this predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -216,7 +216,7 @@ class Pitch(AbjadObject):
         The pitch numbers are equal to the set of all integers in
         union with the set of all integers plus of minus ``0.5``.
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, (int, long, float)):
             return expr % 0.5 == 0
@@ -246,7 +246,7 @@ class Pitch(AbjadObject):
             >>> pitchtools.NamedPitch("c").accidental_spelling
             'mixed'
 
-        Return string.
+        Returns string.
         '''
         from abjad import abjad_configuration
         return abjad_configuration['accidental_spelling']

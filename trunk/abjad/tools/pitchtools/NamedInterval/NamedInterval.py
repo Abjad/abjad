@@ -12,6 +12,7 @@ class NamedInterval(Interval):
         >>> pitchtools.NamedInterval('+M9')
         NamedInterval('+M9')
 
+    Returns named interval
     '''
 
     ### CLASS VARIABLES ##
@@ -225,7 +226,7 @@ class NamedInterval(Interval):
             ...     )
             NamedInterval('+M9')
 
-        Return named interval.
+        Returns named interval.
         '''
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier_1)

@@ -39,7 +39,7 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return spanner.
+    Returns spanner.
     '''
     from abjad.tools import spannertools
 

@@ -10,7 +10,7 @@ def integer_to_base_k_tuple(n, k):
         >>> mathtools.integer_to_base_k_tuple(1066, 10)
         (1, 0, 6, 6)
 
-    Return tuple of one or more positive integers.
+    Returns tuple of one or more positive integers.
     '''
 
     if not isinstance(n, int):

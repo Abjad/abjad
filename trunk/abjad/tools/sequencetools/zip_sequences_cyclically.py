@@ -19,7 +19,7 @@ def zip_sequences_cyclically(*sequences):
 
     Cycle over the elements of the sequences of shorter length.
 
-    Return list of length equal to sequence of greatest length in `sequences`.
+    Returns list of length equal to sequence of greatest length in `sequences`.
     '''
 
     # make sure sequences are, in fact, all sequences

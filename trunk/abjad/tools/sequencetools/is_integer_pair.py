@@ -16,7 +16,7 @@ def is_integer_pair(expr):
         >>> sequencetools.is_integer_pair(('some', 'text'))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == 2 and \

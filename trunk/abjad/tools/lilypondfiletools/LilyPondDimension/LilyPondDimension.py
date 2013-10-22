@@ -14,7 +14,7 @@ class LilyPondDimension(abctools.AbjadObject):
         >>> f(dimension)
         2.0\in
 
-    Return LilyPondDimension instance.
+    Returns LilyPondDimension instance.
     '''
 
     ### CLASS VARIABLES ###

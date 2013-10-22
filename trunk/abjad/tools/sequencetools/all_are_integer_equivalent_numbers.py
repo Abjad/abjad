@@ -17,7 +17,7 @@ def all_are_integer_equivalent_numbers(expr):
         >>> sequencetools.all_are_integer_equivalent_numbers([1, 2, 3.5, 4])
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

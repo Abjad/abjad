@@ -37,7 +37,7 @@ def remove_markup_from_leaves_in_expr(expr):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):

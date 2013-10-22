@@ -108,7 +108,7 @@ class StaffChangeMark(ContextMark):
             >>> staff_change.lilypond_format
             '\\change Staff = RHStaff'
 
-        Return string.
+        Returns string.
         '''
         return r'\change Staff = %s' % self.staff.name
 
@@ -135,7 +135,7 @@ class StaffChangeMark(ContextMark):
                 >>> staff_change.staff
                 Staff-"LHStaff"{1}
 
-            Return staff.
+            Returns staff.
             '''
             return self._staff
         def fset(self, staff):

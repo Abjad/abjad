@@ -25,7 +25,7 @@ class Context(Container):
         \context TimeSignatureContext = "MeterVoice" {
         }
 
-    Return context object.
+    Returns context object.
     '''
 
     ### CLASS VARIABLES ###
@@ -273,7 +273,7 @@ class Context(Container):
                 >>> voice.is_nonsemantic
                 False
 
-            Return boolean.
+            Returns boolean.
 
             The intent of this read / write attribute is to allow composers 
             to tag invisible voices used to house time signatures indications, 

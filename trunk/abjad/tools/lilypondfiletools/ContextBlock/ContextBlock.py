@@ -34,7 +34,7 @@ class ContextBlock(AttributedBlock):
             proportionalNotationDuration = #(ly:make-moment 1 45)
         }
 
-    Return context block.
+    Returns context block.
     '''
 
     ### INITIALIZER ###

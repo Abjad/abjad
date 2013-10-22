@@ -425,7 +425,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             >>> fraction.denominator
             3
 
-        Return positive integer.
+        Returns positive integer.
         '''
         return self._denominator
 

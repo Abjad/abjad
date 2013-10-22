@@ -27,7 +27,7 @@ class HeaderBlock(AttributedBlock):
             title = \markup { Missa sexti tonus }
         }
 
-    Return header block.
+    Returns header block.
     '''
 
     def __init__(self):

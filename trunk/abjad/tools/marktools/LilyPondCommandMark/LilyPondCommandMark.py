@@ -163,7 +163,7 @@ class LilyPondCommandMark(Mark):
             >>> lilypond_command.lilypond_format
             '\\slurDotted'
 
-        Return string.
+        Returns string.
         '''
         from abjad.tools import stringtools
         command = self._command_name

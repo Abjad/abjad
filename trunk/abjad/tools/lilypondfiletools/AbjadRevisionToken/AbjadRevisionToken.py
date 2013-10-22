@@ -10,7 +10,7 @@ class AbjadRevisionToken(AbjadObject):
         >>> lilypondfiletools.AbjadRevisionToken()
         AbjadRevisionToken(Abjad revision ...)
 
-    Return Abjad version token.
+    Returns Abjad version token.
     '''
 
     ### INITIALIZER ###
@@ -34,7 +34,7 @@ class AbjadRevisionToken(AbjadObject):
             >>> lilypondfiletools.AbjadRevisionToken().lilypond_format
             'Abjad revision ...'
 
-        Return string.
+        Returns string.
         '''
         from abjad import abjad_configuration
         abjad_revision_string = abjad_configuration.get_abjad_revision_string()

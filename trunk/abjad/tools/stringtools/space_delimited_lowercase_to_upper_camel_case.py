@@ -10,7 +10,7 @@ def space_delimited_lowercase_to_upper_camel_case(string):
         >>> stringtools.space_delimited_lowercase_to_upper_camel_case(string)
         'BassFigureAlignmentPositioning'
 
-    Return string.
+    Returns string.
     '''
 
     parts = string.split(' ')

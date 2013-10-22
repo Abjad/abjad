@@ -144,7 +144,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Call burnished rhythm-maker on `divisions`.
 
-        Return either list of tuplets or else list of note-lists.
+        Returns either list of tuplets or else list of note-lists.
         '''
         duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         octuplet = self._prepare_input(seeds)
@@ -302,7 +302,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     def storage_format(self):
         r'''Burnished rhythm-maker storage format.
 
-        Return string.
+        Returns string.
         '''
         return RhythmMaker.storage_format.fget(self)
 
@@ -325,7 +325,7 @@ class BurnishedRhythmMaker(RhythmMaker):
             new.right_lengths
             new.secondary_divisions
 
-        Return newly constructed rhythm-maker.
+        Returns newly constructed rhythm-maker.
         '''
         new = copy.deepcopy(self)
         new.talea.reverse()

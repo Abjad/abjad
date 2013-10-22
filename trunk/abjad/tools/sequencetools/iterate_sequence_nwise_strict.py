@@ -17,7 +17,7 @@ def iterate_sequence_nwise_strict(sequence, n):
         (5, 6, 7, 8)
         (6, 7, 8, 9)
 
-    Return generator.
+    Returns generator.
     '''
 
     element_buffer = []

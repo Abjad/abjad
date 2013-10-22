@@ -47,7 +47,7 @@ def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
         Staff{}
         Staff{}
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 

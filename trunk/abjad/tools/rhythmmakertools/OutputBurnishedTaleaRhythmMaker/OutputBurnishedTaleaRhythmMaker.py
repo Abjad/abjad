@@ -143,7 +143,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
                 tie_rests=False
                 )
 
-        Return string.
+        Returns string.
         '''
         return BurnishedRhythmMaker.storage_format.fget(self)
 
@@ -192,7 +192,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new output-burnished talea rhythm-maker.
+        Returns new output-burnished talea rhythm-maker.
         '''
         return BurnishedRhythmMaker.new(self, **kwargs)
 
@@ -239,6 +239,6 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new output-burnished talea rhythm-maker.
+        Returns new output-burnished talea rhythm-maker.
         '''
         return BurnishedRhythmMaker.reverse(self)

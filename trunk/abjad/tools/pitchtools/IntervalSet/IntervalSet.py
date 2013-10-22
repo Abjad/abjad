@@ -62,7 +62,7 @@ class IntervalSet(Set):
             NamedInterval('-m3')
             NamedInterval('+P5')
         
-        Return interval set.
+        Returns interval set.
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)

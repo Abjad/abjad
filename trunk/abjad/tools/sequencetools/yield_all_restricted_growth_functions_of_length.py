@@ -26,7 +26,7 @@ def yield_all_restricted_growth_functions_of_length(length):
         (1, 2, 3, 3)
         (1, 2, 3, 4)
 
-    Return generator of tuples.
+    Returns generator of tuples.
     '''
 
     if not mathtools.is_positive_integer(length):

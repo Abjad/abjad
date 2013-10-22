@@ -37,7 +37,7 @@ def inventory_aggregate_subsets():
 
     This is ``U*`` in [Morris 1987].
 
-    Return list of numbered pitch-class sets.
+    Returns list of numbered pitch-class sets.
     '''
     from abjad.tools import pitchtools
 

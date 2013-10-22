@@ -32,7 +32,7 @@ class StaffGroup(Context):
             }
         >>
 
-    Return staff group.
+    Returns staff group.
     '''
 
     ### CLASS VARIABLES ###

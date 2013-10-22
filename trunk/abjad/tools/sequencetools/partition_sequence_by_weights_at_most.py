@@ -74,7 +74,7 @@ def partition_sequence_by_weights_at_most(
             ...     )
             [[3, 3, 3], [3], [4, 4], [4], [4, 5], [5]]
 
-    Return list of sequence objects.
+    Returns list of sequence objects.
     '''
     if not cyclic:
         return _partition_sequence_once_by_weights_at_most(

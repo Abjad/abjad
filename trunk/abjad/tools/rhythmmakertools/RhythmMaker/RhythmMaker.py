@@ -34,7 +34,7 @@ class RhythmMaker(Maker):
 
         Change none `seeds` into empty list.
 
-        Return duration pairs and seed list.
+        Returns duration pairs and seed list.
         '''
         duration_pairs = [durationtools.Duration(x).pair for x in divisions]
         seeds = self._none_to_new_list(seeds)
@@ -45,7 +45,7 @@ class RhythmMaker(Maker):
         with the equal public nonhelper properties.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             if self._positional_argument_values == \
@@ -64,7 +64,7 @@ class RhythmMaker(Maker):
     def __repr__(self):
         r'''Rhythm-maker interpreter representation.
 
-        Return string.
+        Returns string.
         '''
         if getattr(self, 'name', None) is not None:
             return '{}({!r})'.format(self._class_name, self.name)
@@ -191,7 +191,7 @@ class RhythmMaker(Maker):
                 }
             }
 
-        Return new rhythm-maker.
+        Returns new rhythm-maker.
         '''
         new = copy.deepcopy(self)
         for key, value in kwargs.iteritems():
@@ -212,7 +212,7 @@ class RhythmMaker(Maker):
 
         Directed rhythm-maker child classes should override this method.
 
-        Return newly constructed rhythm-maker.
+        Returns newly constructed rhythm-maker.
         '''
         new = copy.deepcopy(self)
         return new

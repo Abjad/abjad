@@ -30,7 +30,7 @@ class SlurSpanner(DirectedSpanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return slur spanner.
+    Returns slur spanner.
     '''
 
     ### INITIALIZER ###

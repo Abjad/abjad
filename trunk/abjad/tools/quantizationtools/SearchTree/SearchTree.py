@@ -88,7 +88,7 @@ class SearchTree(AbjadObject):
     def default_definition(self):
         r'''The default search tree definition.
 
-        Return dictionary.
+        Returns dictionary.
         '''
         raise NotImplemented
 
@@ -96,7 +96,7 @@ class SearchTree(AbjadObject):
     def definition(self):
         r'''The search tree definition.
 
-        Return dictionary.
+        Returns dictionary.
         '''
         return copy.deepcopy(self._definition)
 

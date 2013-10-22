@@ -9,7 +9,7 @@ def default_instrument_name_to_instrument_class(default_instrument_name):
         >>> instrumenttools.default_instrument_name_to_instrument_class('clarinet in E-flat')
         <class 'abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet'>
 
-    Return class.
+    Returns class.
 
     When `default_instrument_name` matches no instrument class:
 
@@ -18,7 +18,7 @@ def default_instrument_name_to_instrument_class(default_instrument_name):
         >>> instrumenttools.default_instrument_name_to_instrument_class('foo') is None
         True
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import instrumenttools
 

@@ -32,7 +32,7 @@ class GlissandoSpanner(Spanner):
 
     Format nonlast leaves in spanner with LilyPond glissando command.
 
-    Return glissando spanner.
+    Returns glissando spanner.
     '''
 
     ### INITIALIZER ###

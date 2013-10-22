@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Container__get_spanners_that_dominate_component_pair_01():
-    r'''Return Python list of (spanner, index) pairs.
+    r'''Returns Python list of (spanner, index) pairs.
     Each spanner dominates an empty slice between components.
     No spanners dominate voice[0:0].
     '''

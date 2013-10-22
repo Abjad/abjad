@@ -16,7 +16,7 @@ def is_n_tuple(expr, n):
         >>> sequencetools.is_n_tuple((19, 20, 21), 4)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == n

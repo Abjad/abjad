@@ -27,7 +27,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
         Chord("<c''' d''' e'''>4")
         Chord("<c'''' d'''' e''''>4")
 
-    Return list of newly created `pitch_carrier` objects.
+    Returns list of newly created `pitch_carrier` objects.
     """
     from abjad.tools import chordtools
     from abjad.tools import pitchtools

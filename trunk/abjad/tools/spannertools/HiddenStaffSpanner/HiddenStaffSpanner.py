@@ -32,7 +32,7 @@ class HiddenStaffSpanner(Spanner):
 
     Hide staff behind leaves in spanner.
 
-    Return hidden staff spanner.
+    Returns hidden staff spanner.
     '''
 
     ### INITIALIZER ###

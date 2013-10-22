@@ -190,7 +190,7 @@ class DynamicMark(ContextMark):
                 >>> dynamic.dynamic_name
                 'p'
 
-            Return string.
+            Returns string.
             '''
             return self._dynamic_name
         def fset(self, dynamic_name):
@@ -208,7 +208,7 @@ class DynamicMark(ContextMark):
             >>> dynamic_mark.lilypond_format
             '\\f'
 
-        Return string.
+        Returns string.
         '''
         return r'\%s' % self._dynamic_name
 
@@ -223,7 +223,7 @@ class DynamicMark(ContextMark):
             >>> contexttools.DynamicMark.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
             'p'
 
-        Return string.
+        Returns string.
         '''
         return DynamicMark._composite_dynamic_name_to_steady_state_dynamic_name[dynamic_name]
 
@@ -236,7 +236,7 @@ class DynamicMark(ContextMark):
             >>> contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal('fff')
             4
 
-        Return integer.
+        Returns integer.
         '''
         try:
             return DynamicMark._dynamic_name_to_dynamic_ordinal[dynamic_name]
@@ -254,7 +254,7 @@ class DynamicMark(ContextMark):
             >>> contexttools.DynamicMark.dynamic_ordinal_to_dynamic_name(-5)
             'pppp'
 
-        Return string.
+        Returns string.
         '''
         return DynamicMark._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
 
@@ -267,6 +267,6 @@ class DynamicMark(ContextMark):
             >>> contexttools.DynamicMark.is_dynamic_name('f')
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return arg in DynamicMark._dynamic_names

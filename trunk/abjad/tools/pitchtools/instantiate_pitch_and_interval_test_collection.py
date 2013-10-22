@@ -21,7 +21,7 @@ def instantiate_pitch_and_interval_test_collection():
 
     Use to test pitch and interval interface consistency.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import pitchtools
 

@@ -23,7 +23,7 @@ def remove_powers_of_two(n):
 
     Raise value error on nonpositive `n`.
 
-    Return positive integer.
+    Returns positive integer.
     '''
 
     if not isinstance(n, (int, long)):

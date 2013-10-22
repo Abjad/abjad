@@ -129,7 +129,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
             >>> bool(false_tree)
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return bool(len(self))
 
@@ -226,7 +226,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         r'''True when all intervals are contiguous and non-overlapping,
         otherwise False.
 
-        Return boolean.
+        Returns boolean.
         '''
         for first, second in sequencetools.iterate_sequence_pairwise_strict(
             self):
@@ -238,7 +238,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
     def intervals_are_nonoverlapping(self):
         r'''True when all intervals are non-overlapping, otherwise False.
 
-        Return boolean.
+        Returns boolean.
         '''
         for first, second in sequencetools.iterate_sequence_pairwise_strict(
             self):
@@ -720,7 +720,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                     TimeInterval(Offset(32, 1), Offset(34, 1), {'name': 'k'})
                 ])
 
-        Return 0 or more trees.
+        Returns 0 or more trees.
         '''
         from abjad.tools import timeintervaltools
 
@@ -1395,7 +1395,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 TimeInterval(Offset(0, 1), Offset(25, 1), {})
             ])
 
-        Return time interval tree.
+        Returns time interval tree.
         '''
         from abjad.tools import timeintervaltools
         trees = [timeintervaltools.TimeIntervalTree(group) for group in
@@ -1552,7 +1552,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 TimeInterval(Offset(9, 1), Offset(87, 5), {})
             ])
 
-        Return TimeIntervalTree.
+        Returns TimeIntervalTree.
         '''
         from abjad.tools import timeintervaltools
         rational = durationtools.Multiplier(rational)
@@ -1581,7 +1581,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 TimeInterval(Offset(9, 1), Offset(64, 7), {})
             ])
 
-        Return TimeIntervalTree.
+        Returns TimeIntervalTree.
         '''
         from abjad.tools import timeintervaltools
         rational = durationtools.Duration(rational)
@@ -1610,7 +1610,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 TimeInterval(Offset(7, 1), Offset(14, 1), {})
             ])
 
-        Return interval tree.
+        Returns interval tree.
         '''
         from abjad.tools import timeintervaltools
         rational = durationtools.Multiplier(rational)
@@ -1817,7 +1817,7 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
                 TimeInterval(Offset(3, 1), Offset(4, 1), {'name': 'three'})
             ])
 
-        Return tuple of `TimeIntervalTree` instances.
+        Returns tuple of `TimeIntervalTree` instances.
         '''
         assert 0 < len(rationals)
         rationals = sorted([durationtools.Offset(x) for x in rationals])

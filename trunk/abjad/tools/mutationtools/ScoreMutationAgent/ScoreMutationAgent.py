@@ -454,7 +454,7 @@ class ScoreMutationAgent(object):
                 f'8
             }
 
-        Return none.
+        Returns none.
         '''
         from abjad.tools import chordtools
         from abjad.tools import iterationtools
@@ -503,7 +503,7 @@ class ScoreMutationAgent(object):
                 f'8
             }
 
-        Return none.
+        Returns none.
         '''
         from abjad.tools import chordtools
         from abjad.tools import iterationtools

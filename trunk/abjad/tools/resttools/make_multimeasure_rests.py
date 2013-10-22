@@ -11,7 +11,7 @@ def make_multimeasure_rests(durations):
         >>> resttools.make_multimeasure_rests([(4, 4), (7, 4)])
         Selection(MultimeasureRest('R1'), MultimeasureRest('R1..'))
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import resttools
 

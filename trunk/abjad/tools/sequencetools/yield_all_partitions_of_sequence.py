@@ -19,7 +19,7 @@ def yield_all_partitions_of_sequence(sequence):
         [[0], [1], [2, 3]]
         [[0], [1], [2], [3]]
 
-    Return generator of newly created lists.
+    Returns generator of newly created lists.
     '''
 
     # TODO: remove type restriction #

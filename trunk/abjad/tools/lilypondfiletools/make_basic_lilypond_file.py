@@ -41,7 +41,7 @@ def make_basic_lilypond_file(music=None):
 
     Equip LilyPond file with header, layout and paper blocks.
 
-    Return LilyPond file.
+    Returns LilyPond file.
     '''
     from abjad.tools import lilypondfiletools
 

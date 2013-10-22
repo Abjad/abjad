@@ -48,7 +48,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
     Span leaves between duration groups according to `span`.
 
-    Return durated complex beam spanner.
+    Returns durated complex beam spanner.
     '''
 
     def __init__(self, 

@@ -212,7 +212,7 @@ class Articulation(DirectedMark):
             >>> articulation.lilypond_format
             '^\\marcato'
 
-        Return string.
+        Returns string.
         '''
         return str(self)
 

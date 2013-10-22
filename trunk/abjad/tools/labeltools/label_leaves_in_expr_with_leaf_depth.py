@@ -34,7 +34,7 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):

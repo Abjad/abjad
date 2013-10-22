@@ -37,7 +37,7 @@ def duration_and_possible_denominators_to_time_signature(
 
     .. note:: possibly divide this into two separate functions?
 
-    Return new time signature.
+    Returns new time signature.
     '''
 
     # check input

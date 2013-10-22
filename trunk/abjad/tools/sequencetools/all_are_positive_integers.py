@@ -17,7 +17,7 @@ def all_are_positive_integers(expr):
         >>> sequencetools.all_are_positive_integers(17)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

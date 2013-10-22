@@ -177,7 +177,7 @@ class QGrid(AbjadObject):
         r'''All of the leaf nodes in the QGrid, including the next 
         downbeat's node.
 
-        Return tuple of ``QGridLeaf`` instances.
+        Returns tuple of ``QGridLeaf`` instances.
         '''
         from abjad.tools import quantizationtools
         if isinstance(self._root_node, quantizationtools.QGridLeaf):
@@ -197,7 +197,7 @@ class QGrid(AbjadObject):
     def offsets(self):
         r'''The offsets between 0 and 1 of all of the leaf nodes in the QGrid.
 
-        Return tuple of ``Offset`` instances.
+        Returns tuple of ``Offset`` instances.
         '''
         return tuple([x.start_offset 
             for x in self.leaves[:-1]] + [durationtools.Offset(1)])
@@ -206,7 +206,7 @@ class QGrid(AbjadObject):
     def pretty_rtm_format(self):
         r'''The pretty RTM-format of the root node of the ``QGrid``.
 
-        Return string.
+        Returns string.
         '''
         return self._root_node.pretty_rtm_format
 
@@ -222,7 +222,7 @@ class QGrid(AbjadObject):
     def rtm_format(self):
         r'''The RTM format of the root node of the ``QGrid``.
 
-        Return string.
+        Returns string.
         '''
         return self._root_node.rtm_format
 
@@ -232,7 +232,7 @@ class QGrid(AbjadObject):
         r'''Fit each ``QEventProxy`` in ``q_event_proxies`` onto
         the contained ``QGridLeaf`` whose offset is nearest.
 
-        Return None
+        Returns None
         '''
         from abjad.tools import quantizationtools
         assert all(isinstance(x, quantizationtools.QEventProxy) 
@@ -255,7 +255,7 @@ class QGrid(AbjadObject):
         r'''Sort ``QEventProxies`` attached to each ``QGridLeaf`` in a
         ``QGrid`` by their index.
 
-        Return None.
+        Returns None.
         '''
         for leaf in self.leaves:
             leaf.q_event_proxies.sort(key=lambda x: x.index)
@@ -265,7 +265,7 @@ class QGrid(AbjadObject):
         by a ``QGridContainer`` containing ``QGridLeaves`` with durations
         equal to the ratio described in ``subdivisions``
 
-        Return the ``QEventProxies`` attached to ``leaf``.
+        Returns the ``QEventProxies`` attached to ``leaf``.
         '''
         from abjad.tools import quantizationtools
         container = quantizationtools.QGridContainer(
@@ -287,7 +287,7 @@ class QGrid(AbjadObject):
         ``QGridContainers`` containing ``QGridLeaves`` with durations
         equal to their respective subdivision-ratios.
 
-        Return the ``QEventProxies`` attached to thus subdivided ``QGridLeaf``.
+        Returns the ``QEventProxies`` attached to thus subdivided ``QGridLeaf``.
         '''
         pairs = sorted(dict(pairs).items())
         leaf_indices = [pair[0] for pair in pairs]

@@ -24,7 +24,7 @@ class PitchClassSegment(Segment):
         >>> named_pitch_class_segment
         PitchClassSegment(['c', 'ef', 'bqs', 'd'])
 
-    Return pitch-class segment.
+    Returns pitch-class segment.
     '''
 
     ### CLASS VARIABLES ###
@@ -99,7 +99,7 @@ class PitchClassSegment(Segment):
             >>> pitchtools.PitchClassSegment.from_selection(selection)
             PitchClassSegment(['c', 'd', 'fs', 'a', 'b', 'c', 'g'])
         
-        Return pitch-class segment.
+        Returns pitch-class segment.
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
@@ -128,7 +128,7 @@ class PitchClassSegment(Segment):
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`, otherwise False.
         
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import pitchtools
         if not isinstance(expr, type(self)):
@@ -195,7 +195,7 @@ class PitchClassSegment(Segment):
                 b'16
             }
 
-        Return list of notes.
+        Returns list of notes.
         '''
         from abjad.tools import iterationtools
         from abjad.tools import notetools
@@ -303,7 +303,7 @@ class PitchClassSegment(Segment):
             >>> pitch_class_segment.has_duplicates
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import pitchtools
         return len(pitchtools.PitchClassSet(self)) < len(self)

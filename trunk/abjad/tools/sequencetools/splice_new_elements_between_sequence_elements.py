@@ -41,7 +41,7 @@ def splice_new_elements_between_sequence_elements(sequence, new_elements, overha
         ...     sequence, new_elements, overhang=(1, 1))
         ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
 
-    Return newly constructed list.
+    Returns newly constructed list.
     '''
 
     result = []

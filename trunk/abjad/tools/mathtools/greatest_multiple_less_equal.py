@@ -45,7 +45,7 @@ def greatest_multiple_less_equal(m, n):
 
     Raise type error on nonnumeric `n`.
 
-    Return nonnegative integer.
+    Returns nonnegative integer.
     '''
 
     if not isinstance(m, numbers.Number):

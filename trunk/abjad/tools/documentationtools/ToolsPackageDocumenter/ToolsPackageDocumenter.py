@@ -32,7 +32,7 @@ class ToolsPackageDocumenter(Documenter):
             ...     notetools)
             >>> restructured_text = documenter()
 
-        Return string.
+        Returns string.
         '''
         from abjad.tools import documentationtools
         document = documentationtools.ReSTDocument()
@@ -137,7 +137,7 @@ class ToolsPackageDocumenter(Documenter):
             >>> documenter = documentationtools.ToolsPackageDocumenter(module)
             >>> result = documenter.create_api_toc_section()
 
-        Return list.
+        Returns list.
         '''
         from abjad.tools import documentationtools
         result = []

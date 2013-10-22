@@ -41,7 +41,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
             >>
         >>
 
-    Return score template.
+    Returns score template.
     '''
 
     ### CLASS VARIABLES ###

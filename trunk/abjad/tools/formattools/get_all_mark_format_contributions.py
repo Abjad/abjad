@@ -10,7 +10,7 @@ def get_all_mark_format_contributions(component):
     The second level of keys represent format contributor 
     ('articulations', 'markup', etc.).
 
-    Return dict.
+    Returns dict.
     '''
     from abjad.tools import componenttools
     from abjad.tools import contexttools

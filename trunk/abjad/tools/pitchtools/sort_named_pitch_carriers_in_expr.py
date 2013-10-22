@@ -16,7 +16,7 @@ def sort_named_pitch_carriers_in_expr(pitch_carriers):
 
     The elements in `pitch_carriers` are not changed in any way.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import pitchtools
 

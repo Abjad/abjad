@@ -34,7 +34,7 @@ def make_centered_title_markup(title, font_name='Times', font_size=18, vspace_be
                         }
             }
 
-    Return markup.
+    Returns markup.
     '''
     from abjad.tools import markuptools
 

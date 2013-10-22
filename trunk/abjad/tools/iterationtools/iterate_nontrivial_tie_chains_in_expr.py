@@ -44,7 +44,7 @@ def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
         TieChain(Note("f'4"), Note("f'16"))
         TieChain(Note("c'4"), Note("c'16"))
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import spannertools

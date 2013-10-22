@@ -28,7 +28,7 @@ class PaperBlock(AttributedBlock):
             print-page-number = ##t
         }
 
-    Return paper block.
+    Returns paper block.
     '''
 
     ### INITIALIZER ###

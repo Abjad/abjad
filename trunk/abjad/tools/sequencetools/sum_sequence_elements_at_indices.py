@@ -31,7 +31,7 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
 
     Indices in `pairs` must be less than `period` when `period` is not none.
 
-    Return new list.
+    Returns new list.
     '''
 
     assert isinstance(sequence, list)

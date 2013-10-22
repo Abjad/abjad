@@ -22,7 +22,7 @@ def make_empty_piano_score():
             >>
         >>
 
-    Return score, treble staff, bass staff.
+    Returns score, treble staff, bass staff.
     '''
     from abjad.tools import contexttools
     from abjad.tools import stafftools

@@ -37,7 +37,7 @@ def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=N
 
     Delete existing contents of measures in `expr`.
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools

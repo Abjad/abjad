@@ -22,7 +22,7 @@ def is_negative_integer(expr):
         >>> mathtools.is_negative_integer(99)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     if isinstance(expr, numbers.Number):

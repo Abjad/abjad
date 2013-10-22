@@ -41,7 +41,7 @@ def arg_to_tridirectional_lilypond_symbol(arg):
 
     If `arg` is '^', '-', or '_', `arg` will be returned.
 
-    Return string or None.
+    Returns string or None.
     '''
 
     lookup = {

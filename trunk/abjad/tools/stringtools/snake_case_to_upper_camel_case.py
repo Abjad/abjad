@@ -10,7 +10,7 @@ def snake_case_to_upper_camel_case(string):
         >>> stringtools.snake_case_to_upper_camel_case(string)
         'BassFigureAlignmentPositioning'
 
-    Return string.
+    Returns string.
     '''
 
     parts = string.split('_')

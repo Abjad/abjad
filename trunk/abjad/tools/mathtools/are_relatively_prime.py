@@ -31,7 +31,7 @@ def are_relatively_prime(expr):
         >>> mathtools.are_relatively_prime('foo')
         False
 
-    Return boolean.
+    Returns boolean.
     '''
     from abjad.tools import mathtools
 

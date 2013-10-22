@@ -51,7 +51,7 @@ class BracketSpanner(TextSpanner):
 
     Do not draw nibs at line breaks.
 
-    Return bracket spanner.
+    Returns bracket spanner.
     '''
 
     ### INITIALIZER ###

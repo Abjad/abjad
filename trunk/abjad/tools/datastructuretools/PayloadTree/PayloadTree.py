@@ -142,7 +142,7 @@ class PayloadTree(AbjadObject):
             >>> tree[-1][-1] in tree
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return expr in self._children
 
@@ -180,7 +180,7 @@ class PayloadTree(AbjadObject):
             >>> tree_3 == tree_3
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             if self.payload is not None or expr.payload is not None:
@@ -214,12 +214,12 @@ class PayloadTree(AbjadObject):
             >>> tree[-2:]
             [PayloadTree([4, 5]), PayloadTree([6, 7])]
 
-        Return node.
+        Returns node.
         '''
         return self._children[expr]
 
     def __len__(self):
-        r'''Return the number of children in tree:
+        r'''Returns the number of children in tree:
 
         ::
 
@@ -231,7 +231,7 @@ class PayloadTree(AbjadObject):
             >>> len(tree)
             4
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self._children)
 
@@ -248,7 +248,7 @@ class PayloadTree(AbjadObject):
             >>> tree
             PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
-        Return string.
+        Returns string.
         '''
         return '%s(%s)' % (self._class_name, self)
 
@@ -265,7 +265,7 @@ class PayloadTree(AbjadObject):
             >>> str(tree)
             '[[0, 1], [2, 3], [4, 5], [6, 7]]'
 
-        Return string.
+        Returns string.
         '''
         if self.payload is None:
             return '[%s]' % ', '.join(
@@ -325,7 +325,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].children
             (PayloadTree(2), PayloadTree(3))
 
-        Return tuple of zero or more nodes.
+        Returns tuple of zero or more nodes.
         '''
         return tuple(self._children)
 
@@ -343,7 +343,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].depth
             2
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         levels = set([])
         for node in self.iterate_depth_first():
@@ -368,7 +368,7 @@ class PayloadTree(AbjadObject):
             >>> graph = tree.graphviz_graph
             >>> iotools.graph(graph) # doctest: +SKIP
 
-        Return graphviz graph.
+        Returns graphviz graph.
         '''
         from abjad.tools import documentationtools
         graph = documentationtools.GraphvizGraph(name='G')
@@ -404,7 +404,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].improper_parentage
             (PayloadTree([2, 3]), PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]]))
 
-        Return tuple of one or more nodes.
+        Returns tuple of one or more nodes.
         '''
         result = [self]
         cur = self.parent
@@ -427,7 +427,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].index_in_parent
             1
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         if self.parent is not None:
             #return self.parent._children.index(self)
@@ -449,7 +449,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].level
             1
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.proper_parentage)
 
@@ -477,7 +477,7 @@ class PayloadTree(AbjadObject):
             >>> tree[-1][-1].manifest_payload
             [7]
 
-        Return list.
+        Returns list.
         '''
         if 0 <= self.level:
             return [x.payload for x in self.iterate_at_level(-1)]
@@ -498,7 +498,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].negative_level
             -2
 
-        Return negative integer.
+        Returns negative integer.
         '''
         return self.level - self.root.depth
 
@@ -511,7 +511,7 @@ class PayloadTree(AbjadObject):
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = datastructuretools.PayloadTree(sequence)
 
-        Return none for interior node:
+        Returns none for interior node:
 
         ::
 
@@ -523,12 +523,12 @@ class PayloadTree(AbjadObject):
             >>> tree[-1].payload is None
             True
 
-        Return unwrapped payload for leaf node:
+        Returns unwrapped payload for leaf node:
 
             >>> tree[-1][-1].payload
             7
 
-        Return arbitrary expression or none.
+        Returns arbitrary expression or none.
         '''
         return self._payload
 
@@ -546,7 +546,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].position
             (1,)
 
-        Return tuple of zero or more nonnegative integers.
+        Returns tuple of zero or more nonnegative integers.
         '''
         result = []
         for node in self.improper_parentage:
@@ -570,7 +570,7 @@ class PayloadTree(AbjadObject):
             (PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]]),)
 
 
-        Return tuple of zero or more nodes.
+        Returns tuple of zero or more nodes.
         '''
         return self.improper_parentage[1:]
 
@@ -588,7 +588,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].proper_parentage
             (PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]]),)
 
-        Return node.
+        Returns node.
         '''
         return self.improper_parentage[-1]
 
@@ -608,7 +608,7 @@ class PayloadTree(AbjadObject):
                 [[0, 1], [2, 3], [4, 5], [6, 7]]
                 )
 
-        Return string.
+        Returns string.
         '''
         return self._tools_package_qualified_indented_repr
 
@@ -626,7 +626,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1].width
             2
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(list(self.iterate_at_level(-1)))
 
@@ -770,7 +770,7 @@ class PayloadTree(AbjadObject):
 
         Trim first node if necessary.
 
-        Return list of arbitrary values.
+        Returns list of arbitrary values.
         '''
         result = []
         nodes = self.get_next_n_nodes_at_level(n, level)
@@ -848,7 +848,7 @@ class PayloadTree(AbjadObject):
 
         Trim first node if necessary.
 
-        Return list of nodes.
+        Returns list of nodes.
         '''
         return self._get_next_n_nodes_at_level_helper(
             n, level, nodes_must_be_complete=True)
@@ -933,7 +933,7 @@ class PayloadTree(AbjadObject):
 
         Trim first node if necessary.
 
-        Return list of nodes.
+        Returns list of nodes.
         '''
         return self._get_next_n_nodes_at_level_helper(
             n, level, nodes_must_be_complete=False)
@@ -951,7 +951,7 @@ class PayloadTree(AbjadObject):
             >>> tree.get_node_at_position((2, 1))
             PayloadTree(5)
 
-        Return node.
+        Returns node.
         '''
         result = self
         for idx in position:
@@ -972,7 +972,7 @@ class PayloadTree(AbjadObject):
             >>> tree[3].get_position_of_descendant(tree[3][0])
             (0,)
 
-        Return tuple of zero or more nonnegative integers.
+        Returns tuple of zero or more nonnegative integers.
         '''
         if descendant is self:
             return ()
@@ -998,7 +998,7 @@ class PayloadTree(AbjadObject):
             (PayloadTree(3), 4)
             (PayloadTree(4), 5)
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         for i, current_node in enumerate(self):
             if current_node is node:
@@ -1027,7 +1027,7 @@ class PayloadTree(AbjadObject):
 
         Works for positive, negative and zero-valued `level`.
 
-        Return boolean.
+        Returns boolean.
         '''
         if (0 <= level and self.level == level) or \
             self.negative_level == level:
@@ -1159,7 +1159,7 @@ class PayloadTree(AbjadObject):
             ...
             PayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
-        Return node generator.
+        Returns node generator.
         '''
         for x in self.iterate_depth_first(reverse=reverse):
             if 0 <= level:
@@ -1221,7 +1221,7 @@ class PayloadTree(AbjadObject):
                 PayloadTree(1)
                 PayloadTree(0)
 
-        Return node generator.
+        Returns node generator.
         '''
         yield self
         iterable_self = self
@@ -1280,7 +1280,7 @@ class PayloadTree(AbjadObject):
                 1
                 0
 
-        Return payload generator.
+        Returns payload generator.
         '''
         for leaf_node in self.iterate_at_level(-1, reverse=reverse):
             yield leaf_node.payload
@@ -1302,7 +1302,7 @@ class PayloadTree(AbjadObject):
             >>> tree
             PayloadTree([[0, 1], [4, 5], [6, 7]])
 
-        Return none.
+        Returns none.
         '''
         node.parent._children.remove(node)
         node.parent = None
@@ -1337,7 +1337,7 @@ class PayloadTree(AbjadObject):
 
         Modify in-place to root.
 
-        Return none.
+        Returns none.
         '''
         ## trim left-siblings of self and self
         parent = self.parent
@@ -1385,7 +1385,7 @@ class PayloadTree(AbjadObject):
             >>> tree.to_nested_lists()
             [[0, 1], [2, 3], [4, 5], [6, 7]]
 
-        Return list of lists.
+        Returns list of lists.
         '''
         if self.payload is not None:
             raise TypeError('leaf node is not iterable.')

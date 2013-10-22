@@ -16,7 +16,7 @@ def transpose_named_pitch_by_numbered_interval_and_respell(
         ...     pitch, 1, 0.5)
         NamedPitch("dtqf'")
 
-    Return new named pitch.
+    Returns new named pitch.
     '''
     from abjad.tools import pitchtools
 

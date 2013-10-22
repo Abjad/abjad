@@ -39,14 +39,14 @@ class QSchemaItem(AbjadObject):
 
     @abc.abstractmethod
     def __getnewargs__(self):
-        'Return self as a plain tuple.  Used by copy and pickle.'
+        'Returns self as a plain tuple.  Used by copy and pickle.'
         raise NotImplementedError
 
     @property
     def search_tree(self):
         r'''The optionally defined search tree.
 
-        Return search tree or none.
+        Returns search tree or none.
         '''
         return self._search_tree
 
@@ -54,6 +54,6 @@ class QSchemaItem(AbjadObject):
     def tempo(self):
         r'''The optionally defined tempo mark.
 
-        Return tempo mark or none.
+        Returns tempo mark or none.
         '''
         return self._tempo

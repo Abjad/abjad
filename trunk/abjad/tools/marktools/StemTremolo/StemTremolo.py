@@ -68,7 +68,7 @@ class StemTremolo(Mark):
             >>> stem_tremolo_1 is not stem_tremolo_2
             True
 
-        Return new stem tremolo.
+        Returns new stem tremolo.
         '''
         new = type(self)(self.tremolo_flags)
         new._format_slot = self._format_slot
@@ -105,7 +105,7 @@ class StemTremolo(Mark):
             >>> stem_tremolo_3 == stem_tremolo_3
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         assert isinstance(expr, type(self))
         if self.tremolo_flags == expr.tremolo_flags:
@@ -133,7 +133,7 @@ class StemTremolo(Mark):
             >>> stem_tremolo.lilypond_format
             ':16'
 
-        Return string.
+        Returns string.
         '''
         return str(self)
 

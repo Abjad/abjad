@@ -17,7 +17,7 @@ def is_integer_equivalent_singleton(expr):
         >>> sequencetools.is_integer_equivalent_singleton((2.5,))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == 1 and \

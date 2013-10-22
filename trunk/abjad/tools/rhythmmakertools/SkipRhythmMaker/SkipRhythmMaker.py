@@ -48,7 +48,7 @@ class SkipRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Call skip rhythm-maker on `divisions`.
 
-        Return list of skips.
+        Returns list of skips.
         '''
         result = []
         for division in divisions:
@@ -70,7 +70,7 @@ class SkipRhythmMaker(RhythmMaker):
             >>> z(maker)
             rhythmmakertools.SkipRhythmMaker()
 
-        Return string.
+        Returns string.
         '''
         return RhythmMaker.storage_format(self)
 
@@ -104,7 +104,7 @@ class SkipRhythmMaker(RhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new skip rhythm-maker.
+        Returns new skip rhythm-maker.
         '''
         return RhythmMaker.new(self, **kwargs)
 
@@ -136,6 +136,6 @@ class SkipRhythmMaker(RhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new skip rhythm-maker.
+        Returns new skip rhythm-maker.
         '''
         return RhythmMaker.reverse(self)

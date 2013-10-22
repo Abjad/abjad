@@ -36,7 +36,7 @@ class HorizontalBracketSpanner(Spanner):
 
         >>> show(voice) # doctest: +SKIP
 
-    Return horizontal bracket spanner.
+    Returns horizontal bracket spanner.
     '''
 
     ### INITIALIZER ###

@@ -66,7 +66,7 @@ class TreeContainer(TreeNode):
             >>> b in container
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         for x in self._children:
             if x is expr:
@@ -119,7 +119,7 @@ class TreeContainer(TreeNode):
     def __eq__(self, expr):
         r'''True if type, duration and children are equivalent, otherwise False.
 
-        Return boolean.
+        Returns boolean.
         '''
         if type(self) == type(expr):
             if self.children == expr.children:
@@ -127,7 +127,7 @@ class TreeContainer(TreeNode):
         return False
 
     def __getitem__(self, i):
-        r'''Return node at index `i` in container:
+        r'''Returns node at index `i` in container:
 
         ::
 
@@ -204,7 +204,7 @@ class TreeContainer(TreeNode):
             yield child
 
     def __len__(self):
-        r'''Return nonnegative integer number of nodes in container.
+        r'''Returns nonnegative integer number of nodes in container.
         '''
         return len(self._children)
 
@@ -323,7 +323,7 @@ class TreeContainer(TreeNode):
             >>> e.children == ()
             True
 
-        Return tuple of `TreeNode` instances.
+        Returns tuple of `TreeNode` instances.
         '''
         return tuple(self._children)
 
@@ -353,7 +353,7 @@ class TreeContainer(TreeNode):
             e
             c
 
-        Return tuple.
+        Returns tuple.
         '''
         def recurse(node):
             result = []
@@ -418,7 +418,7 @@ class TreeContainer(TreeNode):
             >>> nodes[4] is c
             True
 
-        Return tuple.
+        Returns tuple.
         '''
         def recurse(container):
             result = []
@@ -530,7 +530,7 @@ class TreeContainer(TreeNode):
             >>> a.index(c)
             1
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         for i, element in enumerate(self._children):
             if element is node:
@@ -626,7 +626,7 @@ class TreeContainer(TreeNode):
                     )
                 )
 
-        Return node.
+        Returns node.
         '''
         node = self[i]
         del(self[i])

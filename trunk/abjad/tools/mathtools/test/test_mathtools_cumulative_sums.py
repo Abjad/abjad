@@ -5,7 +5,7 @@ import py.test
 
 
 def test_mathtools_cumulative_sums_01():
-    r'''Return list of the cumulative sums of the integer elements in input.
+    r'''Returns list of the cumulative sums of the integer elements in input.
     '''
 
     assert mathtools.cumulative_sums([1, 2, 3]) == [1, 3, 6]

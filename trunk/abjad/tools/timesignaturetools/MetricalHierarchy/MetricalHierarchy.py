@@ -114,7 +114,7 @@ class MetricalHierarchy(AbjadObject):
                 1/8
                 1/8))))
 
-    Return metrical hierarchy object.
+    Returns metrical hierarchy object.
     '''
 
     ### CLASS VARIABLES ###
@@ -368,7 +368,7 @@ class MetricalHierarchy(AbjadObject):
                         1/4
                         1/4))))
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._decrease_durations_monotonically
 
@@ -381,7 +381,7 @@ class MetricalHierarchy(AbjadObject):
             >>> metrical_hierarchy.denominator
             4
 
-        Return positive integer.
+        Returns positive integer.
         '''
         return self._denominator
 
@@ -398,7 +398,7 @@ class MetricalHierarchy(AbjadObject):
             1 (Offset(0, 1), Offset(3, 4), Offset(5, 4))
             2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4))
 
-        Return dictionary.
+        Returns dictionary.
         '''
         inventory = []
         for depth, nodes in sorted(
@@ -448,7 +448,7 @@ class MetricalHierarchy(AbjadObject):
 
             >>> iotools.graph(metrical_hierarchy) # doctest: +SKIP
 
-        Return string.
+        Returns string.
         '''
         return self.root_node.graphviz_format
 
@@ -461,7 +461,7 @@ class MetricalHierarchy(AbjadObject):
             >>> timesignaturetools.MetricalHierarchy((4, 4)).implied_time_signature
             TimeSignatureMark((4, 4))
 
-        Return TimeSignatureMark object.
+        Returns TimeSignatureMark object.
         '''
         return contexttools.TimeSignatureMark(
             self.root_node.preprolated_duration)
@@ -475,7 +475,7 @@ class MetricalHierarchy(AbjadObject):
             >>> metrical_hierarchy.numerator
             5
 
-        Return positive integer.
+        Returns positive integer.
         '''
         return self._numerator
 
@@ -488,7 +488,7 @@ class MetricalHierarchy(AbjadObject):
             >>> metrical_hierarchy.preprolated_duration
             Duration(5, 4)
 
-        Return preprolated_duration.
+        Returns preprolated_duration.
         '''
         return durationtools.Duration(self.numerator, self.denominator)
 
@@ -508,7 +508,7 @@ class MetricalHierarchy(AbjadObject):
                     1/4
                     1/4))))
 
-        Return string.
+        Returns string.
         '''
         return self.root_node.pretty_rtm_format
 
@@ -555,7 +555,7 @@ class MetricalHierarchy(AbjadObject):
                 preprolated_duration=NonreducedFraction(5, 4)
                 )
 
-        Return rhythm tree node.
+        Returns rhythm tree node.
         '''
         return self._root_node
 
@@ -568,7 +568,7 @@ class MetricalHierarchy(AbjadObject):
             >>> metrical_hierarchy.rtm_format
             '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
 
-        Return string.
+        Returns string.
         '''
         return self._root_node.rtm_format
 
@@ -583,7 +583,7 @@ class MetricalHierarchy(AbjadObject):
                 '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
                 )
 
-        Return string.
+        Returns string.
         '''
         return self._tools_package_qualified_indented_repr
 
@@ -622,7 +622,7 @@ class MetricalHierarchy(AbjadObject):
         This is useful for testing how strongly a collection of offsets
         responds to a given metrical hierarchy.
 
-        Return dictionary.
+        Returns dictionary.
         '''
         from abjad.tools import timesignaturetools
         assert mathtools.is_positive_integer_power_of_two(

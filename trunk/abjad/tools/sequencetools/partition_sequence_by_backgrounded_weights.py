@@ -68,7 +68,7 @@ def partition_sequence_by_backgrounded_weights(sequence, weights):
     the other partitioning functions in the API, the distinguishing feature
     is this funciton is its ability to produce empty lists as output.
 
-    Return list of `sequence` objects.
+    Returns list of `sequence` objects.
     '''
     from abjad.tools import sequencetools
 

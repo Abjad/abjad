@@ -23,7 +23,7 @@ def pluralize_string(string):
         >>> stringtools.pluralize_string('shape')
         'shapes'
 
-    Return string.
+    Returns string.
     '''
     if string.endswith('y'):
         return string[:-1] + 'ies'

@@ -20,7 +20,7 @@ def iterate_sequence_nwise_cyclic(sequence, n):
         (2, 3, 4)
         (3, 4, 5)
 
-    Return generator.
+    Returns generator.
     '''
 
     element_buffer = []

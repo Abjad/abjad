@@ -262,7 +262,7 @@ class Accidental(AbjadObject):
         The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this
         predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -282,7 +282,7 @@ class Accidental(AbjadObject):
         The regex ``^([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)$`` underlies this
         predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -300,7 +300,7 @@ class Accidental(AbjadObject):
             >>> accidental.alphabetic_accidental_abbreviation
             's'
 
-        Return string.
+        Returns string.
         '''
         return self._alphabetic_accidental_abbreviation
 
@@ -315,7 +315,7 @@ class Accidental(AbjadObject):
             >>> accidental.is_adjusted
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._is_adjusted
 
@@ -329,7 +329,7 @@ class Accidental(AbjadObject):
             >>> accidental.lilypond_format
             's'
 
-        Return string.
+        Returns string.
         '''
         return self._alphabetic_accidental_abbreviation
 
@@ -343,7 +343,7 @@ class Accidental(AbjadObject):
             >>> accidental.name
             'sharp'
 
-        Return string.
+        Returns string.
         '''
         return self._name
 
@@ -357,7 +357,7 @@ class Accidental(AbjadObject):
             >>> accidental.semitones
             1
 
-        Return number.
+        Returns number.
         '''
         return self._semitones
 
@@ -371,6 +371,6 @@ class Accidental(AbjadObject):
             >>> accidental.symbolic_accidental_string
             '#'
 
-        Return string.
+        Returns string.
         '''
         return self._symbolic_accidental_string

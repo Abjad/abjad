@@ -13,7 +13,7 @@ def all_are_nonnegative_integer_equivalent_numbers(expr):
         >>> sequencetools.all_are_nonnegative_integer_equivalent_numbers(expr)
         True
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

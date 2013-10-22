@@ -11,7 +11,7 @@ def contains_subsegment(pitch_class_numbers, pitch_numbers):
         >>> pitchtools.contains_subsegment(pcs, pitches)
         True
 
-    Return boolean.
+    Returns boolean.
     '''
 
     pcs_start_index = [p % 12 for p in pitch_numbers].index(

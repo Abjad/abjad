@@ -148,7 +148,7 @@ class Performer(AbjadObject):
             ('violinist', 'vn.')
             ('violist', 'va.')
 
-        Return list.
+        Returns list.
         '''
         from abjad.tools import instrumenttools
         performer_names = set([])
@@ -180,7 +180,7 @@ class Performer(AbjadObject):
             >>> performer.instrument_count
             2
 
-        Return nonnegative integer
+        Returns nonnegative integer
         '''
         return len(self.instruments)
 
@@ -194,7 +194,7 @@ class Performer(AbjadObject):
                 >>> performer.instruments
                 InstrumentInventory([Flute(), Piccolo()])
 
-            Return instrument inventory.
+            Returns instrument inventory.
             '''
             return self._instruments
         def fset(self, instruments):
@@ -219,7 +219,7 @@ class Performer(AbjadObject):
             >>> performer.is_doubling
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return 1 < self.instrument_count
 
@@ -239,7 +239,7 @@ class Performer(AbjadObject):
             'Flute'
             'Piccolo'
 
-        Return list.
+        Returns list.
         '''
         dictionary = self.make_performer_name_instrument_dictionary()
         try:
@@ -257,7 +257,7 @@ class Performer(AbjadObject):
             >>> performer.most_likely_instrument_based_on_performer_name
             <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
 
-        Return instrument class.
+        Returns instrument class.
         '''
         for likely_instrument_class in \
             self.likely_instruments_based_on_performer_name:
@@ -275,7 +275,7 @@ class Performer(AbjadObject):
                 >>> performer.name
                 'flutist'
 
-            Return string.
+            Returns string.
             '''
             return self._name
         def fset(self, name):
@@ -499,7 +499,7 @@ class Performer(AbjadObject):
             xylophonist:
                 Xylophone
 
-        Return ordered dictionary.
+        Returns ordered dictionary.
         '''
         from abjad.tools import instrumenttools
         result = collections.OrderedDict()

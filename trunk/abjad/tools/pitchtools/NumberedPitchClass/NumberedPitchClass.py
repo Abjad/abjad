@@ -42,7 +42,7 @@ class NumberedPitchClass(PitchClass):
         >>> pitchtools.NumberedPitchClass(Note("a'8."))
         NumberedPitchClass(9)
 
-    Return numbered pitch-class.
+    Returns numbered pitch-class.
     '''
 
     ### CLASS VARIABLES ###
@@ -202,7 +202,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(1).accidental
             Accidental('s')
 
-        Return accidental.
+        Returns accidental.
         '''
         from abjad.tools import pitchtools
         return pitchtools.Accidental(self.alteration_in_semitones)
@@ -221,7 +221,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(10.5).alteration_in_semitones
             -0.5
 
-        Return integer or float.
+        Returns integer or float.
         '''
         return (self.pitch_class_number -
             self._diatonic_pitch_class_number_to_pitch_class_number[
@@ -236,7 +236,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(1).diatonic_pitch_class_name
             'c'
 
-        Return string.
+        Returns string.
         '''
         return self.pitch_class_name[0]
 
@@ -249,7 +249,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(1).diatonic_pitch_class_number
             0
 
-        Return integer.
+        Returns integer.
         '''
         return self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
             self.diatonic_pitch_class_name]
@@ -263,7 +263,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(13).named_pitch_class
             NamedPitchClass('cs')
 
-        Return named pitch-class.
+        Returns named pitch-class.
         '''
         from abjad.tools import pitchtools
         return pitchtools.NamedPitchClass(self)
@@ -277,7 +277,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(13).numbered_pitch_class
             NumberedPitchClass(1)
 
-        Return numbered pitch-class.
+        Returns numbered pitch-class.
         '''
         return type(self)(self)
 
@@ -290,7 +290,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(13).pitch_class_label
             'C#'
 
-        Return string.
+        Returns string.
         '''
         return '{}{}'.format(
             self.diatonic_pitch_class_name.upper(),
@@ -306,7 +306,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(1).pitch_class_name
             'cs'
 
-        Return string.
+        Returns string.
         '''
         if self.accidental_spelling == 'mixed':
             return self._pitch_class_number_to_pitch_class_name[
@@ -329,6 +329,6 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(1).pitch_class_number
             1
 
-        Return integer or float.
+        Returns integer or float.
         '''
         return self._pitch_class_number

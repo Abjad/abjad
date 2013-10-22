@@ -9,7 +9,7 @@ def class_to_tools_package_qualified_class_name(current_class):
         >>> introspectiontools.class_to_tools_package_qualified_class_name(Note)
         'notetools.Note'
 
-    Return string.
+    Returns string.
     '''
 
     module_parts = current_class.__module__.split('.')

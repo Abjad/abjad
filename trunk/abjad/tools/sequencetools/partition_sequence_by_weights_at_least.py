@@ -58,7 +58,7 @@ def partition_sequence_by_weights_at_least(
             ...     sequence, [10, 4], cyclic=True, overhang=True)
             [[3, 3, 3, 3], [4], [4, 4, 4], [5], [5]]
 
-    Return list of sequence objects.
+    Returns list of sequence objects.
     '''
 
     if not cyclic:

@@ -16,7 +16,7 @@ class ChordQualityIndicator(IntervalSegment):
         ...     )
         GermanAugmentedSixthInRootPosition('P1', '+M3', '+m3', '+aug2')
 
-    Return chord quality indicator.
+    Returns chord quality indicator.
     '''
 
     ### CLASS VARIABLES ###

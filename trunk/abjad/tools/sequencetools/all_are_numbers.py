@@ -24,7 +24,7 @@ def all_are_numbers(expr):
         >>> sequencetools.all_are_numbers(17)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

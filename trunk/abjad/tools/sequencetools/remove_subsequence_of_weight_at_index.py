@@ -13,7 +13,7 @@ def remove_subsequence_of_weight_at_index(sequence, weight, index):
         >>> sequencetools.remove_subsequence_of_weight_at_index(sequence, 13, 4)
         (1, 1, 2, 3, 5, 5, 6)
 
-    Return newly constructed `sequence` object.
+    Returns newly constructed `sequence` object.
     '''
 
     result = list(sequence[:index])

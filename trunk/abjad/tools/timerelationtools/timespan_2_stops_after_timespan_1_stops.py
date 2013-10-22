@@ -15,7 +15,7 @@ def timespan_2_stops_after_timespan_1_stops(timespan_1=None, timespan_2=None, ho
                 )
             )
 
-    Return time relation or boolean.
+    Returns time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

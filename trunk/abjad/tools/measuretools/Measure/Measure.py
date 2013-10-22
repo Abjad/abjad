@@ -308,7 +308,7 @@ class Measure(FixedDurationContainer):
 
             Default to false.
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._always_format_time_signature
         def fset(self, expr):
@@ -344,7 +344,7 @@ class Measure(FixedDurationContainer):
 
             Default to false.
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._automatically_adjust_time_signature
         def fset(self, expr):
@@ -371,7 +371,7 @@ class Measure(FixedDurationContainer):
             >>> measure.has_non_power_of_two_denominator
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         time_signature = self.time_signature
         return time_signature.has_non_power_of_two_denominator
@@ -395,7 +395,7 @@ class Measure(FixedDurationContainer):
             >>> measure.has_power_of_two_denominator
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return not self.has_non_power_of_two_denominator
 
@@ -412,7 +412,7 @@ class Measure(FixedDurationContainer):
             >>> measure.implied_prolation
             Multiplier(2, 3)
 
-        Return multiplier.
+        Returns multiplier.
         '''
         time_signature = self.time_signature
         return time_signature.implied_prolation
@@ -432,7 +432,7 @@ class Measure(FixedDurationContainer):
 
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return FixedDurationContainer.is_full.fget(self)
 
@@ -470,7 +470,7 @@ class Measure(FixedDurationContainer):
             >>> measure.is_misfilled
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return FixedDurationContainer.is_overfull.fget(self)
 
@@ -489,7 +489,7 @@ class Measure(FixedDurationContainer):
 
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return FixedDurationContainer.is_overfull.fget(self)
 
@@ -508,7 +508,7 @@ class Measure(FixedDurationContainer):
 
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return FixedDurationContainer.is_underfull.fget(self)
 
@@ -554,7 +554,7 @@ class Measure(FixedDurationContainer):
             >>> staff[1].measure_number
             2
 
-        Return positive integer.
+        Returns positive integer.
         '''
         self._update_now(offsets=True)
         return self._measure_number
@@ -564,7 +564,7 @@ class Measure(FixedDurationContainer):
         r'''Target duration of measure always equal to duration 
         of effective time signature.
 
-        Return duration.
+        Returns duration.
         '''
         return self.time_signature.duration
 
@@ -572,7 +572,7 @@ class Measure(FixedDurationContainer):
     def time_signature(self):
         r'''Effective time signature of measure.
 
-        Return time signature or none.
+        Returns time signature or none.
         '''
         from abjad.tools import contexttools
         return self._get_effective_context_mark(contexttools.TimeSignatureMark)

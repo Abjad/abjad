@@ -5,7 +5,7 @@ import py.test
 
 
 def test_mathtools_cumulative_products_01():
-    r'''Return list of the cumulative products of the elements in input.
+    r'''Returns list of the cumulative products of the elements in input.
     '''
 
     assert mathtools.cumulative_products([1, 2, 3]) == [1, 2, 6]

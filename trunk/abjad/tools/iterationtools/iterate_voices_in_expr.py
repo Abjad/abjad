@@ -47,7 +47,7 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
         Voice{2}
         Voice{4}
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 

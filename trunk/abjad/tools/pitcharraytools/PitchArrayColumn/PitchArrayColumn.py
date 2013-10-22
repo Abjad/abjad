@@ -31,7 +31,7 @@ class PitchArrayColumn(AbjadObject):
         [  ]
         [g'     ]
 
-    Return pitch array column.
+    Returns pitch array column.
     '''
 
     ### CLASS VARIABLES ###

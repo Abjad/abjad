@@ -54,7 +54,7 @@ def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):
         ...   voice
         Voice-"MusicVoice"{5}
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 

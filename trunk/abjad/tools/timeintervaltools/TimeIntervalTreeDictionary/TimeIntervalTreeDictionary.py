@@ -1592,7 +1592,7 @@ class TimeIntervalTreeDictionary(dict, TimeIntervalAggregateMixin):
                 ]),
             })
 
-        Return tuple of `TimeIntervalTreeDictionary` instances.
+        Returns tuple of `TimeIntervalTreeDictionary` instances.
         '''
         assert 0 < len(rationals)
         rationals = sorted([durationtools.Offset(x) for x in rationals])

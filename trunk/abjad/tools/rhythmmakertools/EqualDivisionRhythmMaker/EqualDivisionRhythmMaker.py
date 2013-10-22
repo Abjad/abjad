@@ -63,7 +63,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Call equal-division rhythm-maker on `divisions`.
 
-        Return list of tuplet lists.
+        Returns list of tuplet lists.
         '''
         result = []
         for division in divisions:
@@ -98,7 +98,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             >>> maker.is_diminution
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._is_diminution
 
@@ -111,7 +111,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             >>> maker.leaf_count
             4
 
-        Return positive integer.
+        Returns positive integer.
         '''
         return self._leaf_count
 
@@ -129,7 +129,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 beam_cells_together=False
                 )
 
-        Return string.
+        Returns string.
         '''
         return RhythmMaker.storage_format.fget(self)
 
@@ -168,7 +168,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new equal-division rhythm-maker.
+        Returns new equal-division rhythm-maker.
         '''
         return RhythmMaker.new(self, **kwargs)
 
@@ -207,6 +207,6 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         Defined equal to copy of maker.
 
-        Return new equal-division rhythm-maker.
+        Returns new equal-division rhythm-maker.
         '''
         return RhythmMaker.new(self)

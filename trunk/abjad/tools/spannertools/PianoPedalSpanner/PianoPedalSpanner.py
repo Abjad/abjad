@@ -29,7 +29,7 @@ class PianoPedalSpanner(Spanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return piano pedal spanner.
+    Returns piano pedal spanner.
     '''
 
     ### CLASS VARIABLES ###

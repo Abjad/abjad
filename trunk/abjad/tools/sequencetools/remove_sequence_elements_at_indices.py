@@ -11,7 +11,7 @@ def remove_sequence_elements_at_indices(sequence, indices):
 
     Ignore negative indices.
 
-    Return list.
+    Returns list.
     '''
 
     result = []

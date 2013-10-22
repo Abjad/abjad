@@ -153,7 +153,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             node_0_1 -> node_1;
         }
 
-    Return GraphvizGraph instance.
+    Returns GraphvizGraph instance.
     '''
 
     ### INITIALIZER ###

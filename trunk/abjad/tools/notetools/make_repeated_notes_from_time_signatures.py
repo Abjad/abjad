@@ -17,7 +17,7 @@ def make_repeated_notes_from_time_signatures(time_signatures, pitch="c'"):
         >>> notetools.make_repeated_notes_from_time_signatures([(2, 8), (3, 32)], pitch="d''")
         [Selection(Note("d''8"), Note("d''8")), Selection(Note("d''32"), Note("d''32"), Note("d''32"))]
 
-    Return two-dimensional list of note lists.
+    Returns two-dimensional list of note lists.
 
     Use ``sequencetools.flatten_sequence()`` to flatten output if required.
     '''

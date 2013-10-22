@@ -21,6 +21,6 @@ def report_component_format_contributions(component, verbose=False):
         slot 7:
         <BLANKLINE>
 
-    Return string.
+    Returns string.
     '''
     return component._report_format_contributors()

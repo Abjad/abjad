@@ -13,7 +13,7 @@ def get_sequence_elements_frequency_distribution(sequence):
         >>> sequencetools.get_sequence_elements_frequency_distribution(sequence)
         [(1, 4), (2, 3), (3, 5)]
 
-    Return list of element / count pairs.
+    Returns list of element / count pairs.
     '''
     from abjad.tools import sequencetools
 

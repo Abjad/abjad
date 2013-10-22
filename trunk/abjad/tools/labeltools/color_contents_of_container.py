@@ -42,7 +42,7 @@ def color_contents_of_container(container, color):
 
         >>> show(measure) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
 
     container.override.accidental.color = color

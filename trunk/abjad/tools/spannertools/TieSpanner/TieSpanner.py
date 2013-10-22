@@ -27,7 +27,7 @@ class TieSpanner(DirectedSpanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return tie spanner.
+    Returns tie spanner.
     '''
 
     ### INITIALIZER ###

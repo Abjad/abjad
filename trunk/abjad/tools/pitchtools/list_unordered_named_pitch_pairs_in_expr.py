@@ -21,7 +21,7 @@ def list_unordered_named_pitch_pairs_in_expr(expr):
         (NamedPitch("cs'"), NamedPitch("ef'"))
         (NamedPitch("d'"), NamedPitch("ef'"))
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import pitchtools
 

@@ -207,7 +207,7 @@ class ClassDocumenter(Documenter):
     def __call__(self):
         r'''Generate documentation.
 
-        Return string.
+        Returns string.
         '''
         from abjad.tools import documentationtools
 

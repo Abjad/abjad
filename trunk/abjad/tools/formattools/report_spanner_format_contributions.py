@@ -27,7 +27,7 @@ def report_spanner_format_contributions(spanner):
              after: []
              right: [']']
 
-    Return none or return string.
+    Returns none or return string.
     '''
     result = ''
     for leaf in spanner.leaves:

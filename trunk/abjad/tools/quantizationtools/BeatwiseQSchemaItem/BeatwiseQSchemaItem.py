@@ -40,7 +40,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
             beatspan=durationtools.Duration(1, 8)
             )
 
-    Return beat-wise q-schema item.
+    Returns beat-wise q-schema item.
     '''
 
     ### CLASS VARIABLES ###
@@ -81,6 +81,6 @@ class BeatwiseQSchemaItem(QSchemaItem):
     def beatspan(self):
         r'''The optionally defined beatspan duration.
 
-        Return duration or none.
+        Returns duration or none.
         '''
         return self._beatspan

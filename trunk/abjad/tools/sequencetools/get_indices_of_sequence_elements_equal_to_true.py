@@ -13,7 +13,7 @@ def get_indices_of_sequence_elements_equal_to_true(sequence):
         >>> sequencetools.get_indices_of_sequence_elements_equal_to_true(sequence)
         (3, 4, 5, 9, 10, 11, 12)
 
-    Return newly constructed tuple of zero or more nonnegative integers.
+    Returns newly constructed tuple of zero or more nonnegative integers.
     '''
 
     result = []

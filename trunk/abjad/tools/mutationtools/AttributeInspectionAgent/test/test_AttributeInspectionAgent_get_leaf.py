@@ -686,7 +686,7 @@ def test_AttributeInspectionAgent_get_leaf_18():
 
 
 def test_AttributeInspectionAgent_get_leaf_19():
-    r'''Return none in asymmetric logical voice parentage structures.
+    r'''Returns none in asymmetric logical voice parentage structures.
     '''
 
     voice_1 = Voice([Note(i , (1,8)) for i in range(3)])
@@ -896,7 +896,7 @@ def test_AttributeInspectionAgent_get_leaf_24():
 
 
 def test_AttributeInspectionAgent_get_leaf_25():
-    r'''Return none on nested *differently* named voices.
+    r'''Returns none on nested *differently* named voices.
     '''
 
     inner_voice = Voice([Note(i, (1,8)) for i in range(3)])
@@ -928,7 +928,7 @@ def test_AttributeInspectionAgent_get_leaf_25():
 
 
 def test_AttributeInspectionAgent_get_leaf_26():
-    r'''Return none on nested *differently* named Voices.
+    r'''Returns none on nested *differently* named Voices.
     '''
 
     inner_voice = Voice([Note(i, (1,8)) for i in range(1, 4)])

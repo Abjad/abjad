@@ -83,7 +83,7 @@ def label_vertical_moments_in_expr_with_pitch_numbers(
 
         >>> show(score) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
 
     for vertical_moment in iterationtools.iterate_vertical_moments_in_expr(expr):

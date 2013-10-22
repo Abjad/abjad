@@ -31,7 +31,7 @@ def partition_sequence_extended_to_counts(sequence, counts, overhang=True):
             ...     )
             [(1, 2, 3, 4, 1, 2), (3, 4, 1, 2, 3, 4), (1, 2, 3, 4, 1, 2)]
 
-    Return sequence of sequence objects.
+    Returns sequence of sequence objects.
     '''
     from abjad.tools import sequencetools
 

@@ -16,7 +16,7 @@ def divide_sequence_elements_by_greatest_common_divisor(sequence):
 
     Raise not implemented error when ``0`` in `sequence`.
 
-    Return new `sequence` object.
+    Returns new `sequence` object.
     '''
 
     gcd = mathtools.greatest_common_divisor(*sequence)

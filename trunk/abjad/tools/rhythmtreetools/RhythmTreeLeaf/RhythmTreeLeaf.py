@@ -64,7 +64,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
             >>> leaf((1, 4))
             Selection(Note("c'1"), Note("c'4"))
 
-        Return sequence of components.
+        Returns sequence of components.
         '''
         pulse_duration = durationtools.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
@@ -110,7 +110,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
             >>> rhythmtreetools.RhythmTreeLeaf(5, is_pitched=False).rtm_format
             '-5'
 
-        Return string.
+        Returns string.
         '''
         if self.is_pitched:
             return '{}'.format(self.preprolated_duration)
@@ -135,7 +135,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
                 >>> leaf.is_pitched
                 False
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._is_pitched
         def fset(self, arg):

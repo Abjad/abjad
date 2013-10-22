@@ -22,7 +22,7 @@ def is_positive_integer(expr):
         >>> mathtools.is_positive_integer(-1)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     if isinstance(expr, numbers.Number):

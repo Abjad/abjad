@@ -81,7 +81,7 @@ class CrescendoSpanner(HairpinSpanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return crescendo spanner.
+    Returns crescendo spanner.
     '''
 
     ### INITIALIZER ###

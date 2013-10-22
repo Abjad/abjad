@@ -40,7 +40,7 @@ class StaffLinesSpanner(Spanner):
     as well as automatically stopping and restarting the staff
     so that the change may take place.
 
-    Return staff lines spanner.
+    Returns staff lines spanner.
     '''
 
     ### INITIALIZER ###

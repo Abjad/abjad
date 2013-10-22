@@ -119,7 +119,7 @@ class ImportManager(object):
 
         Set `package_root_name` to the root any Abjad-like package structure.
 
-        Return none.
+        Returns none.
         '''
         ImportManager.import_public_names_from_filesystem_path_into_namespace(
             path, namespace, package_root_name)

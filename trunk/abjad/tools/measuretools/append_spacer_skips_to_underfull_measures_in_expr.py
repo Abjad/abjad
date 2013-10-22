@@ -57,7 +57,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
             }
         }
 
-    Return measures treated.
+    Returns measures treated.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import measuretools

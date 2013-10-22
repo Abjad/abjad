@@ -4,7 +4,7 @@
 def get_stem_tremolo_format_contributions(component):
     '''Get stem tremolo format contributions for `component`.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import marktools
 

@@ -36,7 +36,7 @@ def label_leaves_in_expr_with_numbered_interval_classes(expr, markup_direction=U
 
         >>> show(staff) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     """
 
     for note in iterationtools.iterate_notes_in_expr(expr):

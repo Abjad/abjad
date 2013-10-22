@@ -29,7 +29,7 @@ class FixedDurationContainer(Container):
     Fixed-duration containers extend container behavior with format-time
     checking against a user-specified target duration.
 
-    Return fixed-duration container.
+    Returns fixed-duration container.
     '''
 
     ### CLASS VARIABLES ###

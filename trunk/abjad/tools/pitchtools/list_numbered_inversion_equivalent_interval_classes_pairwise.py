@@ -102,7 +102,7 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(pitch_carriers,
 
     When ``wrap=True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
 
-    Return list.
+    Returns list.
     '''
     from abjad.tools import pitchtools
 

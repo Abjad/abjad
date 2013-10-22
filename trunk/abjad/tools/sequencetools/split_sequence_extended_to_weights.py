@@ -26,7 +26,7 @@ def split_sequence_extended_to_weights(sequence, weights, overhang=True):
             ...     [1, 2, 3, 4, 5], [7, 7, 7], overhang=False)
             [[1, 2, 3, 1], [3, 4], [1, 1, 2, 3]]
 
-    Return sequence of sequence objects.
+    Returns sequence of sequence objects.
     '''
     from abjad.tools import sequencetools
 

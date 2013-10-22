@@ -23,7 +23,7 @@ def map_sequence_elements_to_canonic_tuples(sequence, decrease_parts_monotonical
 
     Raise value error on noninteger elements in `sequence`.
 
-    Return list of tuples.
+    Returns list of tuples.
     '''
 
     if not isinstance(sequence, list):

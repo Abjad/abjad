@@ -4,7 +4,7 @@
 def get_all_format_contributions(component):
     r'''Get all format contributions for `component`.
 
-    Return nested dictionary.
+    Returns nested dictionary.
     '''
     from abjad.tools import formattools
 

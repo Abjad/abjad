@@ -16,7 +16,7 @@ def timespan_2_overlaps_stop_of_timespan_1(timespan_1=None, timespan_2=None, hol
                 )
             )
 
-    Return time relation or boolean.
+    Returns time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 

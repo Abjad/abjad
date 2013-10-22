@@ -27,7 +27,7 @@ class Cluster(Container):
 
         >>> show(cluster) # doctest: +SKIP
 
-    Return cluster object.
+    Returns cluster object.
     '''
 
     ### CLASS VARIABLES ###

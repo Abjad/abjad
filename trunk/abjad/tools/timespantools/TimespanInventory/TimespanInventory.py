@@ -123,7 +123,7 @@ class TimespanInventory(TypedList):
                     )
                 ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         new_timespans = []
         for current_timespan in self[:]:
@@ -170,7 +170,7 @@ class TimespanInventory(TypedList):
                     )
                 ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         new_timespans = []
         for current_timespan in self[:]:
@@ -219,7 +219,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.all_are_contiguous
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if len(self) <= 1:
             return True
@@ -254,7 +254,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.all_are_nonoverlapping
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if len(self) <= 1:
             return True
@@ -290,7 +290,7 @@ class TimespanInventory(TypedList):
 
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return all(self._get_timespan(expr).is_well_formed for expr in self)
 
@@ -313,7 +313,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.axis is None
             True
 
-        Return offset or none.
+        Returns offset or none.
         '''
         if self:
             return (self.start_offset + self.stop_offset) / 2
@@ -339,7 +339,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.duration
             Duration(0, 1)
 
-        Return duration.
+        Returns duration.
         '''
         if self.stop_offset is not Infinity and \
             self.start_offset is not NegativeInfinity:
@@ -379,7 +379,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory.is_sorted
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         if len(self) < 2:
             return True
@@ -413,7 +413,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.start_offset
             NegativeInfinity
 
-        Return offset or none.
+        Returns offset or none.
         '''
         if self:
             return min([self._get_timespan(expr).start_offset
@@ -442,7 +442,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.stop_offset
             Infinity
 
-        Return offset or none.
+        Returns offset or none.
         '''
         if self:
             return max([self._get_timespan(expr).stop_offset for expr in self])
@@ -468,7 +468,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.timespan
             Timespan(start_offset=NegativeInfinity, stop_offset=Infinity)
 
-        Return timespan.
+        Returns timespan.
         '''
         from abjad.tools import timespantools
         return timespantools.Timespan(self.start_offset, self.stop_offset)
@@ -555,7 +555,7 @@ class TimespanInventory(TypedList):
 
         Same as setwise intersection.
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         if 1 < len(self):
             result = self[0]
@@ -687,7 +687,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         timespans = []
         if self:
@@ -877,7 +877,7 @@ class TimespanInventory(TypedList):
                 >>> z(timespan_inventory)
                 timespantools.TimespanInventory([])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         all_fragments = []
         for i, timespan_1 in enumerate(self):
@@ -990,7 +990,7 @@ class TimespanInventory(TypedList):
                 ...     timespan=timespantools.Timespan(15, 30))
                 Multiplier(1, 1)
 
-        Return multiplier.
+        Returns multiplier.
         '''
         from abjad.tools import timespantools
         if timespan is None:
@@ -1030,7 +1030,7 @@ class TimespanInventory(TypedList):
             (Offset(20, 1), Offset(25, 1), Multiplier(2, 1))
             (Offset(25, 1), Offset(30, 1), Multiplier(1, 1))
 
-        Return mapping.
+        Returns mapping.
         '''
         from abjad.tools import timespantools
         mapping = collections.OrderedDict()
@@ -1133,7 +1133,7 @@ class TimespanInventory(TypedList):
                 (Offset(6, 1), 1)
                 (Offset(9, 1), 1)
 
-        Return counter.
+        Returns counter.
         '''
         counter = collections.Counter()
         for timespan in self:
@@ -1363,7 +1363,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Return inventories.
+        Returns inventories.
         '''
         from abjad.tools import timespantools
 
@@ -1440,13 +1440,13 @@ class TimespanInventory(TypedList):
             ...     time_relation)
             Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
-        Return timespan when timespan inventory contains exactly one
+        Returns timespan when timespan inventory contains exactly one
         timespan that satisfies `time_relation`.
 
-        Raise exception when timespan inventory contains no timespan
+        Raises exception when timespan inventory contains no timespan
         that satisfies `time_relation`.
 
-        Raise exception when timespan inventory contains more than one
+        Raises exception when timespan inventory contains more than one
         timespan that satisfies `time_relation`.
         '''
         timespans = self.get_timespans_that_satisfy_time_relation(
@@ -1488,7 +1488,7 @@ class TimespanInventory(TypedList):
                     )
                 ])
 
-        Return new timespan inventory.
+        Returns new timespan inventory.
         '''
         from abjad.tools import timerelationtools
         result = []
@@ -1539,7 +1539,7 @@ class TimespanInventory(TypedList):
             ...     time_relation)
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return bool(
             self.get_timespans_that_satisfy_time_relation(time_relation))
@@ -1663,7 +1663,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Return 0 or more inventories.
+        Returns 0 or more inventories.
         '''
         if not self:
             return []
@@ -1757,7 +1757,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         if axis is None:
             axis = self.axis
@@ -1798,7 +1798,7 @@ class TimespanInventory(TypedList):
                     )
                 ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         timespans = [x for x in self if x.is_well_formed]
         self[:] = timespans
@@ -1845,7 +1845,7 @@ class TimespanInventory(TypedList):
                     )
                 ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         assert self.is_sorted
         stop_offset = durationtools.Offset(stop_offset)
@@ -1933,7 +1933,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         assert isinstance(count, int)
         assert self.all_are_contiguous
@@ -2095,7 +2095,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         timespans = []
         for timespan in self:
@@ -2177,7 +2177,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         timespans = []
         for timespan in self:
@@ -2296,7 +2296,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Return inventories.
+        Returns inventories.
         '''
         offset = durationtools.Offset(offset)
         during_time_relation = timerelationtools.OffsetTimespanTimeRelation(
@@ -2399,7 +2399,7 @@ class TimespanInventory(TypedList):
                 >>> timespan_inventory.split_at_offsets(offsets)
                 [TimespanInventory([])]
 
-        Return 1 or more inventories.
+        Returns 1 or more inventories.
         '''
         inventories = [self]
         if not self:
@@ -2487,7 +2487,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         timespans = []
         if anchor is None:
@@ -2535,7 +2535,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         return self.translate_offsets(translation, translation)
 
@@ -2616,7 +2616,7 @@ class TimespanInventory(TypedList):
                         )
                     ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         timespans = []
         for timespan in self:

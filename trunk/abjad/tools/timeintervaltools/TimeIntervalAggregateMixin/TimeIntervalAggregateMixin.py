@@ -81,7 +81,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         the values of the mean, and the depth of each interval in the depth
         tree of `intervals` make up the weights.
 
-        Return Offset.
+        Returns Offset.
         '''
         if not self:
             return None
@@ -94,13 +94,13 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         return durationtools.Offset(weighted_centroids) / sum_of_weights
 
     def calculate_depth_density(self, bounding_interval=None):
-        r'''Return a fraction, of the duration of each interval in the
+        r'''Returns a fraction, of the duration of each interval in the
         depth tree of `intervals`, multiplied by the depth at that interval,
         divided by the overall duration of `intervals`.
 
         The depth density of a single interval is `1`:
 
-        Return multiplier.
+        Returns multiplier.
         '''
         from abjad.tools import timeintervaltools
         tree = self
@@ -133,7 +133,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             for interval in self)) / len(self.intervals)
 
     def calculate_minimum_mean_and_maximum_depths(self):
-        r'''Return a 3-tuple of the minimum, mean and maximum depth of 
+        r'''Returns a 3-tuple of the minimum, mean and maximum depth of 
         `intervals`.
 
         If `intervals` is empty, return None.
@@ -149,7 +149,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         return min(depths), mean, max(depths)
 
     def calculate_minimum_mean_and_maximum_durations(self):
-        r'''Return a 3-tuple of the minimum, mean and maximum duration of all 
+        r'''Returns a 3-tuple of the minimum, mean and maximum duration of all 
         intervals in `intervals`.
 
         If `intervals` is empty, return None.
@@ -169,7 +169,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
             bounding_interval)) / bounding_interval.duration
 
     def calculate_sustain_centroid(self):
-        r'''Return a weighted mean, such that the centroid of each interval
+        r'''Returns a weighted mean, such that the centroid of each interval
         in `intervals` are the values, and the weights are their durations.
         '''
         if not self:
@@ -223,7 +223,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
                 TimeInterval(Offset(15, 1), Offset(16, 1), {'depth': 0})
             ])
             
-        Return interval tree.
+        Returns interval tree.
         '''
         from abjad.tools import sequencetools
         from abjad.tools import timeintervaltools
@@ -268,7 +268,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     def compute_logical_and(self, bounding_interval=None):
         r'''Compute logical AND of intervals.
 
-        Return time interval tree.
+        Returns time interval tree.
         '''
         from abjad.tools import timeintervaltools
         return timeintervaltools.TimeIntervalTree((
@@ -278,7 +278,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     def compute_logical_not(self, bounding_interval=None):
         r'''Compute logical NOT of intervals.
 
-        Return time interval tree.
+        Returns time interval tree.
         '''
         from abjad.tools import timeintervaltools
         return timeintervaltools.TimeIntervalTree((
@@ -288,7 +288,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     def compute_logical_or(self, bounding_interval=None):
         r'''Compute logical OR of intervals.
 
-        Return time interval tree.
+        Returns time interval tree.
         '''
         from abjad.tools import timeintervaltools
         return timeintervaltools.TimeIntervalTree((
@@ -298,7 +298,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     def compute_logical_xor(self, bounding_interval=None):
         r'''Compute logical XOR of intervals.
 
-        Return time interval tree.
+        Returns time interval tree.
         '''
         from abjad.tools import timeintervaltools
         return timeintervaltools.TimeIntervalTree((
@@ -441,7 +441,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
                 TimeInterval(Offset(34, 1), Offset(37, 1), {'name': 'l'})
             ])
             
-        Return 0 or more trees.
+        Returns 0 or more trees.
         '''
         from abjad.tools import timeintervaltools
         groups = []

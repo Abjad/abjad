@@ -121,7 +121,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             ...     )
             NamedInversionEquivalentIntervalClass('+M2')
 
-        Return named inversion-equivalent interval-class.
+        Returns named inversion-equivalent interval-class.
         '''
         from abjad.tools import pitchtools
         named_interval = pitchtools.NamedInterval.from_pitch_carriers(

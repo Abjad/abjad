@@ -24,7 +24,7 @@ def all_are_assignable_integers(expr):
         >>> sequencetools.all_are_assignable_integers('foo')
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

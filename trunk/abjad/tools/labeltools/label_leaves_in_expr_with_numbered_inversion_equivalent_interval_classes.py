@@ -37,7 +37,7 @@ def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(exp
 
         >>> show(staff) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     """
 
     for note in iterationtools.iterate_notes_in_expr(expr):

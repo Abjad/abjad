@@ -28,7 +28,7 @@ class Voice(Context):
 
         >>> show(voice) # doctest: +SKIP
 
-    Return voice instance.
+    Returns voice instance.
     '''
 
     ### CLASS VARIABLES ###

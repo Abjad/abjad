@@ -16,21 +16,21 @@ def string_to_space_delimited_lowercase(string):
         >>> stringtools.string_to_space_delimited_lowercase('tie_spanner')
         'tie spanner'
 
-    Return space-delimited string unchanged:
+    Returns space-delimited string unchanged:
 
     ::
 
         >>> stringtools.string_to_space_delimited_lowercase('tie spanner')
         'tie spanner'
 
-    Return empty `string` unchanged:
+    Returns empty `string` unchanged:
 
     ::
 
         >>> stringtools.string_to_space_delimited_lowercase('')
         ''
 
-    Return string.
+    Returns string.
     '''
     from abjad.tools import stringtools
 

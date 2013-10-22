@@ -24,7 +24,7 @@ def arg_to_bidirectional_direction_string(arg):
 
     If `arg` is 'up' or 'down', `arg` will be returned.
 
-    Return string or none.
+    Returns string or none.
     '''
 
     lookup = {

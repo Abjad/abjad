@@ -19,7 +19,7 @@ def is_upper_camel_case_string(expr):
         >>> stringtools.is_upper_camel_case_string('fooBar')
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     if not isinstance(expr, str):

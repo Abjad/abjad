@@ -103,7 +103,7 @@ class UnweightedSearchTree(SearchTree):
              11: None,
              13: None}
 
-        Return dictionary.
+        Returns dictionary.
         '''
         return {
             2: {                 # 1/2

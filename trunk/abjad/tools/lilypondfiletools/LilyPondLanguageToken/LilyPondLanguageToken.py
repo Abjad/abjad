@@ -10,7 +10,7 @@ class LilyPondLanguageToken(AbjadObject):
         >>> lilypondfiletools.LilyPondLanguageToken()
         LilyPondLanguageToken('english')
 
-    Return LilyPond language token.
+    Returns LilyPond language token.
     '''
 
     ### INITIALIZER ###
@@ -36,7 +36,7 @@ class LilyPondLanguageToken(AbjadObject):
             >>> lilypondfiletools.LilyPondLanguageToken().lilypond_format
             '\\language "english"'
 
-        Return string.
+        Returns string.
         '''
         from abjad import abjad_configuration
         lilypond_language = abjad_configuration['lilypond_language']

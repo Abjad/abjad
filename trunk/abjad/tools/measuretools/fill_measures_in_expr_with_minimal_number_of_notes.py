@@ -47,7 +47,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_
             }
         }
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools

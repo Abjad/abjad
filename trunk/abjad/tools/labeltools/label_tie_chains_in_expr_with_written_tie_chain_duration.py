@@ -27,7 +27,7 @@ def label_tie_chains_in_expr_with_written_tie_chain_duration(
 
         >>> show(staff) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import labeltools
 

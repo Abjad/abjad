@@ -19,7 +19,7 @@ def parse_reduced_ly_syntax(string):
         Tuplet(5/3, [])
         Note("c'4")
 
-    Return list.
+    Returns list.
     '''
 
     return ReducedLyParser()(string)

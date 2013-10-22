@@ -20,7 +20,7 @@ def repeat_sequence_to_length(sequence, length, start=0):
         >>> sequencetools.repeat_sequence_to_length(range(5), 11, start=2)
         [2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2]
 
-    Return newly constructed `sequence` object.
+    Returns newly constructed `sequence` object.
     '''
 
     if not mathtools.is_nonnegative_integer(length):

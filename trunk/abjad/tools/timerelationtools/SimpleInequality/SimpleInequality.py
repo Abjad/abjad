@@ -125,7 +125,7 @@ class SimpleInequality(AbjadObject):
             >>> z(simple_inequality)
             timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
 
-        Return string.
+        Returns string.
         '''
         return AbjadObject.storage_format.fget(self)
 
@@ -136,7 +136,7 @@ class SimpleInequality(AbjadObject):
             >>> simple_inequality.template
             'timespan_2.start_offset < timespan_1.start_offset'
 
-        Return string.
+        Returns string.
         '''
         return self._template
 
@@ -171,7 +171,7 @@ class SimpleInequality(AbjadObject):
 
         .. todo:: add example.
 
-        Return nonnegative integer pair.
+        Returns nonnegative integer pair.
         '''
         simple_inequality = self.template
         assert isinstance(simple_inequality, str), repr(simple_inequality)

@@ -74,6 +74,6 @@ class BFlatClarinet(Instrument):
             'clarinettist'
             'clarinetist'
 
-        Return list.
+        Returns list.
         '''
         return super(BFlatClarinet, self)._get_performer_names()

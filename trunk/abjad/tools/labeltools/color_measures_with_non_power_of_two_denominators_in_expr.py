@@ -71,7 +71,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
 
         >>> show(staff) # doctest: +SKIP
 
-    Return list of measures colored.
+    Returns list of measures colored.
 
     Color names appear in LilyPond Learning Manual appendix B.5.
     '''

@@ -53,7 +53,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
 
     Tie chains are not pitched if they comprise rests or skips.
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import spannertools

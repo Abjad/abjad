@@ -42,7 +42,7 @@ def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):
 
     When ``lowest_treble_pitch=None`` set to B3.
 
-    Return score, treble staff, bass staff.
+    Returns score, treble staff, bass staff.
     """
     from abjad.tools import pitchtools
     from abjad.tools import scoretools

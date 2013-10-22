@@ -16,7 +16,7 @@ def is_singleton(expr):
         >>> sequencetools.is_singleton((19, 20, 21))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and len(expr) == 1

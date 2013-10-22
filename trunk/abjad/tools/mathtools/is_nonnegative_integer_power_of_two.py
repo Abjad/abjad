@@ -23,7 +23,7 @@ def is_nonnegative_integer_power_of_two(expr):
 
     Otherwise false.
 
-    Return boolean.
+    Returns boolean.
     '''
 
     if isinstance(expr, (int, long)):

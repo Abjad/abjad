@@ -5,7 +5,7 @@ import py.test
 
 
 def test_mathtools_integer_to_binary_string_01():
-    r'''Return base-2 representation of integer n as string.
+    r'''Returns base-2 representation of integer n as string.
     '''
 
     assert mathtools.integer_to_binary_string(1) == '1'

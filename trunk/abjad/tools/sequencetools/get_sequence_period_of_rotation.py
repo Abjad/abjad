@@ -22,7 +22,7 @@ def get_sequence_period_of_rotation(sequence, n):
         >>> sequencetools.get_sequence_period_of_rotation([1, 2, 3, 1, 2, 3], 3)
         1
 
-    Return positive integer.
+    Returns positive integer.
     '''
 
     degree = get_sequence_degree_of_rotational_symmetry(sequence)

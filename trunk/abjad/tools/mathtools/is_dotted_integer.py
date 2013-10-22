@@ -30,7 +30,7 @@ def is_dotted_integer(expr):
 
     Otherwise false.
 
-    Return boolean.
+    Returns boolean.
 
     Integer `n` qualifies as dotted when ``abs(n)`` is of the form
     ``2**j * (2**k - 1)`` with integers ``0 <= j``, ``2 < k``.

@@ -10,7 +10,7 @@ def spell_pitch_number(pitch_number, diatonic_pitch_class_name):
         >>> pitchtools.spell_pitch_number(14, 'c')
         (Accidental('ss'), 5)
 
-    Return accidental / octave-number pair.
+    Returns accidental / octave-number pair.
     '''
     from abjad.tools import pitchtools
 

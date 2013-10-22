@@ -61,7 +61,7 @@ def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
             ...     )
             [(3,), (7, -8), (-2, 1)]
 
-    Return list of sequence types.
+    Returns list of sequence types.
     '''
     from abjad.tools import sequencetools
 

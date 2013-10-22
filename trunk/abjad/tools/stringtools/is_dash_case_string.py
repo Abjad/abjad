@@ -20,7 +20,7 @@ def is_dash_case_string(expr):
         >>> stringtools.is_dash_case_string('foo bar')
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     if not isinstance(expr, str):

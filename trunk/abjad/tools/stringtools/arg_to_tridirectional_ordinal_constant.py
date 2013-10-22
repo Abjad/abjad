@@ -24,7 +24,7 @@ def arg_to_tridirectional_ordinal_constant(arg):
 
     If `arg` is Up, Center or Down, `arg` will be returned.
 
-    Return OrdinalConstant or None.
+    Returns OrdinalConstant or None.
     '''
 
     lookup = {

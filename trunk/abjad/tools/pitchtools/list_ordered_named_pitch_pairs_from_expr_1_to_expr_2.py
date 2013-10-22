@@ -22,7 +22,7 @@ def list_ordered_named_pitch_pairs_from_expr_1_to_expr_2(expr_1, expr_2):
         (NamedPitch("d'"), NamedPitch("ef'"))
         (NamedPitch("d'"), NamedPitch("e'"))
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import pitchtools
 

@@ -12,7 +12,7 @@ class IntervalClassSegment(Segment):
         >>> pitchtools.IntervalClassSegment(intervals)
         IntervalClassSegment(['+m2', '+M3', '-aug4', '+P5'])
 
-    Return interval-class segment.
+    Returns interval-class segment.
     '''
 
     ### CLASS VARIABLES ###
@@ -50,7 +50,7 @@ class IntervalClassSegment(Segment):
             >>> pitchtools.IntervalClassSegment.from_selection(selection)
             IntervalClassSegment(['-M2', '-M3', '-m3', '+m7', '+M7', '-P5'])        
 
-        Return interval-class segment.
+        Returns interval-class segment.
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
@@ -81,7 +81,7 @@ class IntervalClassSegment(Segment):
             >>> segment.has_duplicates
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import pitchtools
         return len(pitchtools.IntervalClassSet(
@@ -101,7 +101,7 @@ class IntervalClassSegment(Segment):
             >>> interval_class_segment.is_tertian
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import pitchtools
         inversion_equivalent_interval_class_segment = self.new(

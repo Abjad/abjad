@@ -222,7 +222,7 @@ class TimeSignatureMark(ContextMark):
                 >>> time_signature.denominator
                 16
 
-            Return integer.
+            Returns integer.
             '''
             return self._denominator
         def fset(self, denominator):
@@ -239,7 +239,7 @@ class TimeSignatureMark(ContextMark):
             >>> contexttools.TimeSignatureMark((3, 8)).duration
             Duration(3, 8)
 
-        Return duration.
+        Returns duration.
         '''
         return durationtools.Duration(self.numerator, self.denominator)
 
@@ -247,7 +247,7 @@ class TimeSignatureMark(ContextMark):
     def effective_context(self):
         r'''Time signature mark effective context.
 
-        Return none when time signature mark is not yet attached:
+        Returns none when time signature mark is not yet attached:
 
         ::
 
@@ -258,7 +258,7 @@ class TimeSignatureMark(ContextMark):
             >>> time_signature.effective_context is None
             True
 
-        Return context when time signature mark is attached:
+        Returns context when time signature mark is attached:
 
         ::
 
@@ -271,7 +271,7 @@ class TimeSignatureMark(ContextMark):
             >>> time_signature.effective_context
             Staff{}
 
-        Return context or none.
+        Returns context or none.
         '''
         return ContextMark.effective_context.fget(self)
 
@@ -293,7 +293,7 @@ class TimeSignatureMark(ContextMark):
             >>> time_signature.has_non_power_of_two_denominator
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._has_non_power_of_two_denominator
 
@@ -321,7 +321,7 @@ class TimeSignatureMark(ContextMark):
                 >>> contexttools.TimeSignatureMark((7, 12)).implied_prolation
                 Multiplier(2, 3)
 
-        Return multiplier.
+        Returns multiplier.
         '''
         dummy_duration = durationtools.Duration(1, self.denominator)
         return dummy_duration.implied_prolation
@@ -335,7 +335,7 @@ class TimeSignatureMark(ContextMark):
             >>> contexttools.TimeSignatureMark((3, 8)).lilypond_format
             '\\time 3/8'
 
-        Return string.
+        Returns string.
         '''
         if self.suppress:
             return []
@@ -385,7 +385,7 @@ class TimeSignatureMark(ContextMark):
             >>> contexttools.TimeSignatureMark((3, 8)).pair
             (3, 8)
 
-        Return pair.
+        Returns pair.
         '''
         return (self.numerator, self.denominator)
 
@@ -422,7 +422,7 @@ class TimeSignatureMark(ContextMark):
     def start_component(self):
         r'''Time signature mark start component.
 
-        Return none when time signature mark is not yet attached:
+        Returns none when time signature mark is not yet attached:
 
         ::
 
@@ -430,7 +430,7 @@ class TimeSignatureMark(ContextMark):
             >>> time_signature.start_component is None
             True
 
-        Return component when time signature mark is attached:
+        Returns component when time signature mark is attached:
 
         ::
 
@@ -443,7 +443,7 @@ class TimeSignatureMark(ContextMark):
             >>> time_signature.start_component
             Staff{}
 
-        Return component or none.
+        Returns component or none.
         '''
         return ContextMark.start_component.fget(self)
 
@@ -458,7 +458,7 @@ class TimeSignatureMark(ContextMark):
                 (3, 8)
                 )
 
-        Return string.
+        Returns string.
         '''
         return ContextMark.storage_format.fget(self)
 
@@ -475,7 +475,7 @@ class TimeSignatureMark(ContextMark):
 
         This can be changed at initialization.
 
-        Return class.
+        Returns class.
         '''
         return ContextMark.target_context.fget(self)
 
@@ -499,7 +499,7 @@ class TimeSignatureMark(ContextMark):
             >>> time_signature.attach(staff)
             TimeSignatureMark((3, 8))(Staff{})
 
-        Return time signature mark.
+        Returns time signature mark.
         '''
         from abjad.tools import contexttools
         from abjad.tools import marktools
@@ -543,7 +543,7 @@ class TimeSignatureMark(ContextMark):
             >>> time_signature.with_power_of_two_denominator()
             TimeSignatureMark((2, 8))
 
-        Return new time signature mark.
+        Returns new time signature mark.
         '''
         # check input
         contents_multiplier = durationtools.Multiplier(contents_multiplier)

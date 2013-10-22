@@ -126,7 +126,7 @@ class TimeIntervalMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get_overlap_with_interval(self, interval):
-        r'''Return amount of overlap with `interval`.
+        r'''Returns amount of overlap with `interval`.
         '''
         assert isinstance(interval, TimeIntervalMixin)
 

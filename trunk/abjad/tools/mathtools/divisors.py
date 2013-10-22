@@ -44,7 +44,7 @@ def divisors(n):
 
     Raise not implemented error on ``0``.
 
-    Return list of positive integers.
+    Returns list of positive integers.
     '''
 
     if not isinstance(n, (int, long)):

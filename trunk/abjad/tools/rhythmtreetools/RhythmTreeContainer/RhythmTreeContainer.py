@@ -168,7 +168,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                 preprolated_duration=Duration(3, 1)
                 )
 
-        Return new RhythmTreeContainer.
+        Returns new RhythmTreeContainer.
         '''
         from abjad.tools.rhythmtreetools.RhythmTreeParser \
             import RhythmTreeParser
@@ -196,7 +196,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             >>> tree((1, 4))
             [FixedDurationTuplet(1/4, [c'16, {@ 3:2 c'16, c'16, c'16 @}, c'8])]
 
-        Return sequence of components.
+        Returns sequence of components.
         '''
         pulse_duration = durationtools.Duration(pulse_duration)
         assert 0 < pulse_duration
@@ -229,7 +229,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         r'''True if type, preprolated_duration and children are equivalent.
         Otherwise False.
 
-        Return boolean.
+        Returns boolean.
         '''
         if type(self) == type(expr):
             if self.preprolated_duration == expr.preprolated_duration:
@@ -344,7 +344,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             >>> tree[1]._contents_duration
             Duration(3, 1)
 
-        Return int.
+        Returns int.
         '''
         return sum([x.preprolated_duration for x in self])
 
@@ -437,7 +437,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             >>> tree.rtm_format
             '(1 ((1 (1 1)) (1 (1 1))))'
 
-        Return string.
+        Returns string.
         '''
         return '({} ({}))'.format(
             self.preprolated_duration,

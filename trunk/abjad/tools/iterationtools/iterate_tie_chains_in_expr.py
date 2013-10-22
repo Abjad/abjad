@@ -45,7 +45,7 @@ def iterate_tie_chains_in_expr(expr, reverse=False):
         TieChain(Note("d'8"),)
         TieChain(Note("c'4"), Note("c'16"))
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import spannertools

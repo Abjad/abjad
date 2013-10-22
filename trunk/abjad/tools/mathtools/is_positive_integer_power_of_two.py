@@ -22,7 +22,7 @@ def is_positive_integer_power_of_two(expr):
 
     Otherwise false.
 
-    Return boolean.
+    Returns boolean.
     '''
     from abjad.tools import mathtools
 

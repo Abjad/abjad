@@ -24,7 +24,7 @@ def arithmetic_mean(sequence):
         >>> mathtools.arithmetic_mean([2, 2, 20.0])
         8.0
 
-    Return number.
+    Returns number.
     '''
 
     sum_l = sum(sequence)

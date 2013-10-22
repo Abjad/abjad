@@ -71,7 +71,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
                 beam_cells_together=False
                 )
 
-        Return string.
+        Returns string.
         '''
         return OutputIncisedRhythmMaker.storage_format.fget(self)
 
@@ -117,7 +117,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new output-incised rest rhythm-maker.
+        Returns new output-incised rest rhythm-maker.
         '''
         return OutputIncisedRhythmMaker.new(self, **kwargs)
 
@@ -161,6 +161,6 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new output-incised rest rhythm-maker.
+        Returns new output-incised rest rhythm-maker.
         '''
         return OutputIncisedRhythmMaker.reverse(self)

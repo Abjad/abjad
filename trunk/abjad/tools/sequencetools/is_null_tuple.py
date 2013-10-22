@@ -16,7 +16,7 @@ def is_null_tuple(expr):
         >>> sequencetools.is_null_tuple((19, 20, 21))
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     return isinstance(expr, tuple) and not len(expr)

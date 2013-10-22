@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Parentage__id_string_01():
-    r'''Return component name if it exists, otherwise Python ID.
+    r'''Returns component name if it exists, otherwise Python ID.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -12,7 +12,7 @@ def test_Parentage__id_string_01():
 
 
 def test_Parentage__id_string_02():
-    r'''Return component name if it exists, otherwise Python ID.
+    r'''Returns component name if it exists, otherwise Python ID.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")

@@ -84,7 +84,7 @@ def iterate_named_pitch_pairs_in_expr(expr):
         (NamedPitch("e'"), NamedPitch("g''"))
         (NamedPitch("f''"), NamedPitch("g''"))
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import pitchtools

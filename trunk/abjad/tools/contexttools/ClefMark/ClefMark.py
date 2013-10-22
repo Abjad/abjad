@@ -210,7 +210,7 @@ class ClefMark(ContextMark):
             'treble'
             'varbaritone'
 
-        Return list of strings.
+        Returns list of strings.
         '''
         return list(sorted(cls._clef_name_to_middle_c_position))
 

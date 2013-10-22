@@ -24,7 +24,7 @@ def is_integer_equivalent_expr(expr):
         >>> mathtools.is_integer_equivalent_expr('foo')
         False
 
-    Return boolean.
+    Returns boolean.
     '''
     from abjad.tools import mathtools
 

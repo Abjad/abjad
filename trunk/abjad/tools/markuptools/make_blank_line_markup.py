@@ -18,7 +18,7 @@ def make_blank_line_markup():
         >>> f(markup)
         \markup { \fill-line { " " } }
 
-    Return markup.
+    Returns markup.
     '''
     from abjad.tools import markuptools
 

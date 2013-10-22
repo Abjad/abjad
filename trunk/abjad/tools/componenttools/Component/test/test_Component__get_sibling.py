@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Component__get_sibling_01():
-    '''Return component when index is in range.
+    '''Returns component when index is in range.
     '''
 
     staff = Staff("c' d' e' f'")
@@ -14,7 +14,7 @@ def test_Component__get_sibling_01():
 
 
 def test_Component__get_sibling_02():
-    r'''Return none when index is out of range.
+    r'''Returns none when index is out of range.
     '''
 
     staff = Staff("c' d' e' f'")
@@ -22,7 +22,7 @@ def test_Component__get_sibling_02():
 
 
 def test_Component__get_sibling_03():
-    r'''Return none when component has no parent.
+    r'''Returns none when component has no parent.
     '''
 
     staff = Staff("c' d' e' f'")

@@ -41,7 +41,7 @@ def is_restricted_growth_function(expr):
     A restricted growth function is a sequence ``l`` such that ``l[0] == 1``
     and such that ``l[i] <= max(l[:i]) + 1`` for ``1 <= i <= len(l)``.
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

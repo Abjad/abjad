@@ -33,7 +33,7 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
                 }
             }
 
-    Return selection of unincorporated measures.
+    Returns selection of unincorporated measures.
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools

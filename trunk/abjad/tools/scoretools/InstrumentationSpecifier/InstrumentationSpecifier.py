@@ -44,7 +44,7 @@ class InstrumentationSpecifier(AbjadObject):
                 ])
             )
 
-    Return instrumentation specifier.
+    Returns instrumentation specifier.
     '''
 
     def __init__(self, performers=None):
@@ -70,7 +70,7 @@ class InstrumentationSpecifier(AbjadObject):
             >>> instrumentation_specifier.instrument_count
             3
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.instruments)
 
@@ -83,7 +83,7 @@ class InstrumentationSpecifier(AbjadObject):
             >>> instrumentation_specifier.instruments
             [Flute(), AltoFlute(), Guitar()]
 
-        Return list.
+        Returns list.
         '''
         instruments = []
         for performer in self.performers:
@@ -99,7 +99,7 @@ class InstrumentationSpecifier(AbjadObject):
             >>> instrumentation_specifier.performer_count
             2
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.performers)
 
@@ -112,7 +112,7 @@ class InstrumentationSpecifier(AbjadObject):
             >>> instrumentation_specifier.performer_name_string
             'Flute, Guitar'
 
-        Return string.
+        Returns string.
         '''
         if self.performers:
             return ', '.join([performer.name 
@@ -144,7 +144,7 @@ class InstrumentationSpecifier(AbjadObject):
                         )
                     ])
 
-            Return performer inventory.
+            Returns performer inventory.
             '''
             return self._performers
         def fset(self, performers):

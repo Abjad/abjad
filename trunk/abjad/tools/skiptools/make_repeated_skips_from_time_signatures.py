@@ -10,7 +10,7 @@ def make_repeated_skips_from_time_signatures(time_signatures):
         skiptools.make_repeated_skips_from_time_signatures([(2, 8), (3, 32)])
         [Selection(Skip('s8'), Skip('s8')), Selection(Skip('s32'), Skip('s32'), Skip('s32'))]
 
-    Return two-dimensional list of newly constructed skip lists.
+    Returns two-dimensional list of newly constructed skip lists.
     '''
     from abjad.tools import skiptools
 

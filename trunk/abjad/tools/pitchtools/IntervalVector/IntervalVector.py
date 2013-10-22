@@ -41,7 +41,7 @@ class IntervalVector(Vector):
         +9 2
         +10 1
 
-    Return pitch segment.
+    Returns pitch segment.
     '''
 
     ### INITIALIZER ###

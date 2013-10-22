@@ -10,7 +10,7 @@ def reverse_sequence_elements(sequence):
         >>> sequencetools.reverse_sequence_elements([1, (2, 3, 4), 5, (6, 7)])
         [1, (4, 3, 2), 5, (7, 6)]
 
-    Return new `sequence` object.
+    Returns new `sequence` object.
     '''
 
     result = []

@@ -18,7 +18,7 @@ def cumulative_products(sequence):
 
     Raise value error on empty `sequence`.
 
-    Return list.
+    Returns list.
     '''
 
     if not isinstance(sequence, (list, tuple)):

@@ -235,7 +235,7 @@ class ChordClass(PitchClassSet):
                 >>> tonalanalysistools.ChordClass.cardinality_to_extent(4)
                 7
 
-        Return integer.
+        Returns integer.
         '''
         return ChordClass._cardinality_to_extent[cardinality]
 
@@ -253,7 +253,7 @@ class ChordClass(PitchClassSet):
                 >>> tonalanalysistools.ChordClass.extent_to_cardinality(7)
                 4
 
-        Return integer.
+        Returns integer.
         '''
         return ChordClass._extent_to_cardinality[extent]
 
@@ -270,7 +270,7 @@ class ChordClass(PitchClassSet):
                 >>> tonalanalysistools.ChordClass.extent_to_extent_name(7)
                 'seventh'
 
-        Return string.
+        Returns string.
         '''
         return ChordClass._extent_to_extent_name[extent]
 

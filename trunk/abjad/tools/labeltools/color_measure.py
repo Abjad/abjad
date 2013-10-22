@@ -50,7 +50,7 @@ def color_measure(measure, color='red'):
 
         >>> show(measure) # doctest: +SKIP
 
-    Return colored `measure`.
+    Returns colored `measure`.
 
     Color names appear in LilyPond Learning Manual appendix B.5.
     '''

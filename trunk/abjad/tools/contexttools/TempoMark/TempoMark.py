@@ -240,7 +240,7 @@ class TempoMark(ContextMark):
                 >>> tempo.duration
                 Duration(1, 4)
 
-            Return duration, or None if tempo mark is imprecise.
+            Returns duration, or None if tempo mark is imprecise.
             '''
             return self._duration
         def fset(self, duration):
@@ -270,7 +270,7 @@ class TempoMark(ContextMark):
             >>> contexttools.TempoMark(Duration(1, 4), (35, 50)).is_imprecise
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if self.duration is not None:
             if self.units_per_minute is not None:
@@ -300,7 +300,7 @@ class TempoMark(ContextMark):
             >>> tempo.lilypond_format
             '\\tempo Gingerly 8=52~56'
 
-        Return string.
+        Returns string.
         '''
         text, equation = None, None
 
@@ -329,7 +329,7 @@ class TempoMark(ContextMark):
             >>> tempo.quarters_per_minute
             Fraction(104, 1)
 
-        Return fraction.
+        Returns fraction.
 
         Or tuple if tempo mark `units_per_minute` is a range.
 
@@ -359,7 +359,7 @@ class TempoMark(ContextMark):
                 >>> tempo.textual_indication
                 'Langsam'
 
-            Return string or None.
+            Returns string or None.
             '''
             return self._textual_indication
         def fset(self, textual_indication):
@@ -386,7 +386,7 @@ class TempoMark(ContextMark):
                 >>> tempo.units_per_minute
                 56
 
-            Return number.
+            Returns number.
             '''
             return self._units_per_minute
         def fset(self, units_per_minute):
@@ -403,7 +403,7 @@ class TempoMark(ContextMark):
     ### PUBLIC METHODS ###
 
     def duration_to_milliseconds(self, duration):
-        r'''Return the millisecond value of `duration` under a given tempo:
+        r'''Returns the millisecond value of `duration` under a given tempo:
 
         ::
 
@@ -412,7 +412,7 @@ class TempoMark(ContextMark):
             >>> tempo.duration_to_milliseconds(duration)
             Duration(1000, 1)
 
-        Return duration.
+        Returns duration.
         '''
         duration = durationtools.Duration(duration)
         whole_note_duration = 1000 \
@@ -442,7 +442,7 @@ class TempoMark(ContextMark):
             >>> tempo_mark.is_tempo_mark_token(84)
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         try:
             tempo_mark = type(self)(expr)

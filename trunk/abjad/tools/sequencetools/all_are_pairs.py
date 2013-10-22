@@ -23,7 +23,7 @@ def all_are_pairs(expr):
         >>> sequencetools.all_are_pairs('foo')
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

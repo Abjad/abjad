@@ -53,7 +53,7 @@ def color_leaves_in_expr(expr, color):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return none.
+    Returns none.
     """
     from abjad.tools import labeltools
 

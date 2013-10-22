@@ -49,7 +49,7 @@ def make_reference_manual_lilypond_file(music=None):
             >>
         }
 
-    Return LilyPond file.
+    Returns LilyPond file.
     '''
     from abjad.tools import lilypondfiletools
     from abjad.tools import schemetools

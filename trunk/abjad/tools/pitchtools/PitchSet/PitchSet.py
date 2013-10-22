@@ -23,7 +23,7 @@ class PitchSet(Set):
         >>> named_pitch_set
         PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
 
-    Return pitch segment.
+    Returns pitch segment.
     '''
 
     ### CLASS VARIABLES ###
@@ -67,7 +67,7 @@ class PitchSet(Set):
             >>> pitchtools.PitchSet.from_selection(selection)
             PitchSet(['c', 'g', 'b', "c'", "d'", "fs'", "a'"])
         
-        Return pitch set.
+        Returns pitch set.
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
@@ -88,7 +88,7 @@ class PitchSet(Set):
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`, otherwise False.
         
-        Return boolean.
+        Returns boolean.
         '''
         from abjad.tools import pitchtools
         if not isinstance(expr, type(self)):

@@ -17,7 +17,7 @@ class LilyPondVersionToken(AbjadObject):
         >>> f(lilypondfiletools.LilyPondVersionToken('2.16.0'))
         \version "2.16.0"
 
-    Return LilyPond version token.
+    Returns LilyPond version token.
     '''
 
     ### INITIALIZER ###
@@ -42,7 +42,7 @@ class LilyPondVersionToken(AbjadObject):
             >>> lilypondfiletools.LilyPondVersionToken().lilypond_format
             '\\version "..."'
 
-        Return string.
+        Returns string.
         '''
         return r'\version "{}"'.format(self.version)
 

@@ -23,7 +23,7 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
             TimeInterval(Offset(5, 1), Offset(11, 1), {'b': 2})
         ])
 
-    Return TimeIntervalTree.
+    Returns TimeIntervalTree.
     '''
     from abjad.tools import timeintervaltools
 

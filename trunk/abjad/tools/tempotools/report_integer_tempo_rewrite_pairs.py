@@ -44,7 +44,7 @@ def report_integer_tempo_rewrite_pairs(integer_tempo,
         2:3     87
         1:2     116
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import tempotools
 

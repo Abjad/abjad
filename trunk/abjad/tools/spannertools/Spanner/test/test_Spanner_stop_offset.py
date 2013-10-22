@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_Spanner_stop_offset_01():
-    r'''Return stop time of spanner in score.
+    r'''Returns stop time of spanner in score.
     '''
 
     container = Container("c'8 d'8 e'8 f'8")

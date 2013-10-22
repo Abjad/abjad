@@ -38,7 +38,7 @@ class OctaveTranspositionMapping(TypedList):
             >>> mapping([0, 2, 1, 3])
             [36, 38, 37, 27]
 
-        Return list.
+        Returns list.
         '''
         transposed_pitches = [self._transpose_pitch(x) for x in pitches]
         return transposed_pitches
@@ -115,6 +115,6 @@ class OctaveTranspositionMapping(TypedList):
                     )
                 ])
 
-        Return string.
+        Returns string.
         '''
         return TypedList.storage_format.fget(self)

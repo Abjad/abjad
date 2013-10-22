@@ -14,7 +14,7 @@ def make_notes_with_multiplied_durations(
 
     Useful for making spatially positioned notes.
 
-    Return list of notes.
+    Returns list of notes.
     '''
     from abjad.tools import notetools
     from abjad.tools import selectiontools

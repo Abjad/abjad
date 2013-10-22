@@ -149,7 +149,7 @@ class LilyPondComment(Mark):
             >>> comment.lilypond_format
             '% this is a comment.'
 
-        Return string.
+        Returns string.
         '''
         from abjad.tools import stringtools
         command = stringtools.snake_case_to_lower_camel_case(

@@ -15,7 +15,7 @@ def greatest_common_divisor(*integers):
 
     Raise not implemented error when ``0`` is included in input.
 
-    Return positive integer.
+    Returns positive integer.
     '''
     from abjad.tools import mathtools
 

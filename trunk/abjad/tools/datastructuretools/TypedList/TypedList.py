@@ -119,7 +119,7 @@ class TypedList(TypedCollection):
                 item_class=contexttools.DynamicMark
                 )
 
-        Return collection.
+        Returns collection.
         '''
         self.extend(expr)
         return self
@@ -253,7 +253,7 @@ class TypedList(TypedCollection):
             >>> integer_collection[:]
             [1, 2, 3]
 
-        Return none.
+        Returns none.
         '''
         item = self._item_callable(token)
         self._collection.append(item)
@@ -274,7 +274,7 @@ class TypedList(TypedCollection):
             >>> integer_collection.count(0)
             3
 
-        Return count.
+        Returns count.
         '''
         item = self._item_callable(token)
         return self._collection.count(item)
@@ -290,7 +290,7 @@ class TypedList(TypedCollection):
             >>> integer_collection[:]
             [0, 1, 2, 3]
 
-        Return none.
+        Returns none.
         '''
         for token in tokens:
             self.append(token)
@@ -306,7 +306,7 @@ class TypedList(TypedCollection):
             >>> pitch_collection.index("as'")
             1
 
-        Return index.
+        Returns index.
         '''
         item = self._item_callable(token)
         return self._collection.index(item)
@@ -334,7 +334,7 @@ class TypedList(TypedCollection):
             >>> integer_collection[:]
             [0, 9, 1, 2, 4]
 
-        Return none.
+        Returns none.
         '''
         item = self._item_callable(token)
         return self._collection.insert(i, item)
@@ -361,7 +361,7 @@ class TypedList(TypedCollection):
             >>> integer_collection[:]
             [0, 2, 3]
 
-        Return none.
+        Returns none.
         '''
         item = self._item_callable(token)
         self._collection.remove(item)

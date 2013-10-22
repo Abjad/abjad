@@ -97,7 +97,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def beatspan(self):
         r'''The beatspan duration, if a time signature was defined.
 
-        Return duration or none.
+        Returns duration or none.
         '''
         if self.time_signature is not None:
             if self.use_full_measure:
@@ -111,7 +111,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def time_signature(self):
         r'''The optionally defined TimeSignatureMark.
 
-        Return time signature mark or none
+        Returns time signature mark or none
         '''
         return self._time_signature
 
@@ -119,6 +119,6 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def use_full_measure(self):
         r'''If True, use the full measure as the beatspan.
 
-        Return boolean or none.
+        Returns boolean or none.
         '''
         return self._use_full_measure

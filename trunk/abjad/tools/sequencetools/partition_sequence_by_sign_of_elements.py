@@ -64,7 +64,7 @@ def partition_sequence_by_sign_of_elements(sequence, sign=[-1, 0, 1]):
 
     When ``1`` in ``sign``, group positive elements.
 
-    Return list of tuples of `sequence` element references.
+    Returns list of tuples of `sequence` element references.
     '''
     result = []
     g = itertools.groupby(sequence, mathtools.sign)

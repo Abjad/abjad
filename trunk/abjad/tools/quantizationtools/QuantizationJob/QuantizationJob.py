@@ -127,7 +127,7 @@ class QuantizationJob(AbjadObject):
         Only meaningful when the job is processed via multiprocessing,
         as the job id is necessary to reconstruct the order of jobs.
 
-        Return int.
+        Returns int.
         '''
         return self._job_id
 
@@ -164,7 +164,7 @@ class QuantizationJob(AbjadObject):
                 durationtools.Offset(3, 4)
                 )
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._q_event_proxies
 
@@ -182,7 +182,7 @@ class QuantizationJob(AbjadObject):
             (1 (1 1))
             (1 ((1 (1 1)) (1 (1 1))))
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._q_grids
 

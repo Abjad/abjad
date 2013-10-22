@@ -11,7 +11,7 @@ def remove_sequence_elements_at_indices_cyclically(sequence, indices, period, of
 
     Ignore negative indices.
 
-    Return list.
+    Returns list.
     '''
 
     result = []

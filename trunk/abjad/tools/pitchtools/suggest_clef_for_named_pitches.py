@@ -11,7 +11,7 @@ def suggest_clef_for_named_pitches(pitches):
 
     Suggest clef based on minimal number of ledger lines.
 
-    Return clef mark.
+    Returns clef mark.
     '''
     from abjad.tools import contexttools
     from abjad.tools import pitchtools

@@ -23,7 +23,7 @@ class PitchClassSet(Set):
         >>> named_pitch_class_set
         PitchClassSet(['c', 'd', 'ef', 'bqs'])
 
-    Return pitch-class set.
+    Returns pitch-class set.
     '''
 
     ### CLASS VARIABLES ###
@@ -79,7 +79,7 @@ class PitchClassSet(Set):
             >>> pitchtools.PitchClassSet.from_selection(selection)
             PitchClassSet(['c', 'd', 'fs', 'g', 'a', 'b'])
         
-        Return pitch-class set.
+        Returns pitch-class set.
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
@@ -99,7 +99,7 @@ class PitchClassSet(Set):
             ...     ).invert()
             PitchClassSet([1.5, 2, 5, 6])
 
-        Return numbered pitch-class set.
+        Returns numbered pitch-class set.
         '''
         return type(self)([pc.invert() for pc in self])
 
@@ -121,7 +121,7 @@ class PitchClassSet(Set):
             >>> pitch_class_set_1.is_transposed_subset(pitch_class_set_2)
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         for n in range(12):
             if self.transpose(n).issubset(pcset):
@@ -146,7 +146,7 @@ class PitchClassSet(Set):
             >>> pitch_class_set_2.is_transposed_superset(pitch_class_set_1)
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         for n in range(12):
             if self.transpose(n).issuperset(pcset):
@@ -163,7 +163,7 @@ class PitchClassSet(Set):
             ...     ).multiply(5)
             PitchClassSet([2, 4.5, 6, 11])
 
-        Return numbered pitch-class set.
+        Returns numbered pitch-class set.
         '''
         tokens = (pitch_class.multiply(n) for pitch_class in self)
         return self.new(tokens=tokens)

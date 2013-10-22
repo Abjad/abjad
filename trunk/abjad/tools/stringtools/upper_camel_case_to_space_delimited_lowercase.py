@@ -13,7 +13,7 @@ def upper_camel_case_to_space_delimited_lowercase(string):
         >>> stringtools.upper_camel_case_to_space_delimited_lowercase(string)
         'key signature mark'
 
-    Return string.
+    Returns string.
     '''
 
     words = []

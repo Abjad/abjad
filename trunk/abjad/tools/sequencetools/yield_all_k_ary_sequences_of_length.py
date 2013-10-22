@@ -19,7 +19,7 @@ def yield_all_k_ary_sequences_of_length(k, length):
         (1, 1, 0)
         (1, 1, 1)
 
-    Return generator of tuples.
+    Returns generator of tuples.
     '''
 
     assert isinstance(k, int) and 1 <= k

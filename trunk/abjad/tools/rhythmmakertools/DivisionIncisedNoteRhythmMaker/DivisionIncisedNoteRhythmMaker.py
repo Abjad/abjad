@@ -197,7 +197,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new division-incised note rhythm-maker.
+        Returns new division-incised note rhythm-maker.
         '''
         return DivisionIncisedRhythmMaker.new(self, **kwargs)
 
@@ -278,7 +278,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return division-incised note rhythm-maker.
+        Returns division-incised note rhythm-maker.
         '''
         return DivisionIncisedRhythmMaker.reverse(self)
 
@@ -303,6 +303,6 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
                 beam_cells_together=False
                 )
 
-        Return string.
+        Returns string.
         '''
         return DivisionIncisedRhythmMaker.storage_format.fget(self)

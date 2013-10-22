@@ -26,7 +26,7 @@ def interpolate_divide(total, start_fraction, stop_fraction, exp='cosine'):
 
     Scale resulting segments so that their sum equals exactly `total`.
 
-    Return a list of floats.
+    Returns a list of floats.
     '''
     from abjad.tools import mathtools
 

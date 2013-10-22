@@ -22,7 +22,7 @@ def truncate_sequence_to_weight(sequence, weight):
         8 [-1, 2, -3, 2]
         9 [-1, 2, -3, 3]
 
-    Return empty list when `weight` is ``0``:
+    Returns empty list when `weight` is ``0``:
 
     ::
 
@@ -33,7 +33,7 @@ def truncate_sequence_to_weight(sequence, weight):
 
     Raise value error on negative `weight`.
 
-    Return new list.
+    Returns new list.
     '''
 
     if not isinstance(sequence, list):

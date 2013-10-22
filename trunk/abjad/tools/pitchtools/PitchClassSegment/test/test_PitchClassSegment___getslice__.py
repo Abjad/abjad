@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_PitchClassSegment___getslice___01():
-    r'''Return new pitch-class segment.
+    r'''Returns new pitch-class segment.
     '''
 
     pitch_class_tokens = [-2, -1.5, 6, 7, -1.5, 7]
@@ -16,7 +16,7 @@ def test_PitchClassSegment___getslice___01():
 
 
 def test_PitchClassSegment___getslice___02():
-    r'''Return new pitch-class segment.
+    r'''Returns new pitch-class segment.
     '''
 
     pitch_class_tokens = [-2, -1.5, 6, 7, -1.5, 7]

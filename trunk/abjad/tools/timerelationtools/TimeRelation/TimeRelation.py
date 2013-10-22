@@ -57,7 +57,7 @@ class TimeRelation(AbjadObject):
             >>> time_relation()
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         pass
 
@@ -66,7 +66,7 @@ class TimeRelation(AbjadObject):
         r'''True when `expr` is a equal-valued time relation.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         pass
 
@@ -88,7 +88,7 @@ class TimeRelation(AbjadObject):
             >>> time_relation.is_fully_loaded
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         pass
 
@@ -102,7 +102,7 @@ class TimeRelation(AbjadObject):
             >>> time_relation.is_fully_unloaded
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         pass
 
@@ -130,7 +130,7 @@ class TimeRelation(AbjadObject):
                     )
                 )
 
-        Return string.
+        Returns string.
         '''
         return AbjadObject.storage_format.fget(self)
 
@@ -172,7 +172,7 @@ class TimeRelation(AbjadObject):
                     )
                 )
 
-        Return newly constructed time relation.
+        Returns newly constructed time relation.
         '''
         keyword_argument_dictionary = self._keyword_argument_dictionary
         for key, value in kwargs.iteritems():

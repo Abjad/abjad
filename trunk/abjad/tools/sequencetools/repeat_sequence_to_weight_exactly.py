@@ -12,7 +12,7 @@ def repeat_sequence_to_weight_exactly(sequence, weight):
         >>> sequencetools.repeat_sequence_to_weight_exactly((5, -5, -5), 23)
         (5, -5, -5, 5, -3)
 
-    Return newly constructed `sequence` object.
+    Returns newly constructed `sequence` object.
     '''
 
     # check input

@@ -112,7 +112,7 @@ def label_leaves_in_expr_with_leaf_durations(
                 }
             }
 
-    Return none.
+    Returns none.
     '''
 
     spanner_classes = (spannertools.TieSpanner,)

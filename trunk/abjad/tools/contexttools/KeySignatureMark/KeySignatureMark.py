@@ -89,7 +89,7 @@ class KeySignatureMark(ContextMark):
             >>> key_signature.lilypond_format
             '\\key e \\major'
 
-        Return string.
+        Returns string.
         '''
         return r'\key %s \%s' % (self.tonic, self.mode)
 
@@ -112,7 +112,7 @@ class KeySignatureMark(ContextMark):
                 >>> key_signature.mode
                 Mode('minor')
 
-            Return mode.
+            Returns mode.
             '''
             return self._mode
         def fset(self, mode):
@@ -131,7 +131,7 @@ class KeySignatureMark(ContextMark):
             >>> key_signature.name
             'E major'
 
-        Return string.
+        Returns string.
         '''
         if self.mode.mode_name == 'major':
             tonic = str(self.tonic).upper()
@@ -158,7 +158,7 @@ class KeySignatureMark(ContextMark):
                 >>> key_signature.tonic
                 NamedPitchClass('d')
 
-            Return named pitch.
+            Returns named pitch.
             '''
             return self._tonic
         def fset(self, tonic):

@@ -95,7 +95,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     def __call__(self, divisions, seeds=None):
         r'''Call even-run rhythm-maker on `divisions`.
 
-        Return list of container lists.
+        Returns list of container lists.
         '''
         result = []
         for division in divisions:
@@ -131,7 +131,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> maker.denominator_multiplier_exponent
             1
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return self._denominator_multiplier_exponent
 
@@ -148,7 +148,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 beam_cells_together=False
                 )
 
-        Return string.
+        Returns string.
         '''
         return RhythmMaker.storage_format.fget(self)
 
@@ -186,7 +186,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
             >>> show(staff) # doctest: +SKIP
 
-        Return new even-run rhythm-maker.
+        Returns new even-run rhythm-maker.
         '''
         return RhythmMaker.new(self, **kwargs)
 
@@ -224,6 +224,6 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         Defined equal to copy of even-run rhythm-maker.
 
-        Return new even-run rhythm-maker.
+        Returns new even-run rhythm-maker.
         '''
         return RhythmMaker.reverse(self)

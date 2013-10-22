@@ -22,7 +22,7 @@ def numbered_inversion_equivalent_interval_class_dictionary(pitches):
             5  0
             6  0
 
-    Return dictionary.
+    Returns dictionary.
     '''
     from abjad.tools import pitchtools
 

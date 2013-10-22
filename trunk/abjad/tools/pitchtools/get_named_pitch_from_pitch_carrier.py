@@ -46,7 +46,7 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
 
     Raise extra pitch error when `pitch_carrier` carries more than one pitch.
 
-    Return named pitch.
+    Returns named pitch.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

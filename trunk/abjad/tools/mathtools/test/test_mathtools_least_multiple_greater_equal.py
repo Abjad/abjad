@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_least_multiple_greater_equal_01():
-    r'''Return the least multiple of m greater than or equal to n.
+    r'''Returns the least multiple of m greater than or equal to n.
     '''
 
     assert mathtools.least_multiple_greater_equal(10, 0) == 0
@@ -17,7 +17,7 @@ def test_mathtools_least_multiple_greater_equal_01():
 
 
 def test_mathtools_least_multiple_greater_equal_02():
-    r'''Return the least multiple of m greater than or equal to n.
+    r'''Returns the least multiple of m greater than or equal to n.
     '''
 
     assert mathtools.least_multiple_greater_equal(7, 0) == 0

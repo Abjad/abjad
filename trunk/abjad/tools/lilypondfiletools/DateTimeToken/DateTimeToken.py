@@ -11,7 +11,7 @@ class DateTimeToken(AbjadObject):
         >>> lilypondfiletools.DateTimeToken()
         DateTimeToken(...)
 
-    Return date / time token.
+    Returns date / time token.
     '''
 
     ### INITIALIZER ###
@@ -35,7 +35,7 @@ class DateTimeToken(AbjadObject):
             >>> lilypondfiletools.DateTimeToken().lilypond_format
             '...'
 
-        Return string.
+        Returns string.
         '''
         current_time_string = time.strftime('%Y-%m-%d %H:%M')
         return current_time_string

@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_NumberedPitch___float___01():
-    r'''Return pitch number of 12-ET numbered pitch as float.
+    r'''Returns pitch number of 12-ET numbered pitch as float.
     '''
 
     numbered_pitch = pitchtools.NumberedPitch(13)
@@ -12,7 +12,7 @@ def test_NumberedPitch___float___01():
 
 
 def test_NumberedPitch___float___02():
-    r'''Return pitch number of 24-ET numbered pitch as float.
+    r'''Returns pitch number of 24-ET numbered pitch as float.
     '''
 
     numbered_pitch = pitchtools.NumberedPitch(13.5)

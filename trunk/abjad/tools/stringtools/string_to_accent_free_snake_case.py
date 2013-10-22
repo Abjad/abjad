@@ -15,7 +15,7 @@ def string_to_accent_free_snake_case(string):
     Change all punctuation (including spaces) to underscore.
     Set to lowercase.
 
-    Return string.
+    Returns string.
     '''
 
     assert isinstance(string, str)

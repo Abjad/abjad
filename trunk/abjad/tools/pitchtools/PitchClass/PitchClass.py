@@ -207,7 +207,7 @@ class PitchClass(AbjadObject):
 
         The regex ``^[a-g,A-G]$`` underlies this predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -230,7 +230,7 @@ class PitchClass(AbjadObject):
         The diatonic pitch-class numbers are equal to the set
         ``[0, 1, 2, 3, 4, 5, 6]``.
 
-        Return boolean.
+        Returns boolean.
         '''
         if expr in range(7):
             return True
@@ -248,7 +248,7 @@ class PitchClass(AbjadObject):
         The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies
         this predicate.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, str):
             return False
@@ -266,7 +266,7 @@ class PitchClass(AbjadObject):
         The pitch-class numbers are equal to the set
         ``[0, 0.5, ..., 11, 11.5]``.
 
-        Return boolean.
+        Returns boolean.
         '''
 
         return expr in [(n).__truediv__(2) for n in range(24)]
@@ -295,7 +295,7 @@ class PitchClass(AbjadObject):
             >>> pitchtools.NamedPitch("c").accidental_spelling
             'mixed'
 
-        Return string.
+        Returns string.
         '''
         from abjad import abjad_configuration
         return abjad_configuration['accidental_spelling']

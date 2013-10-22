@@ -19,7 +19,7 @@ def strip_diacritics_from_binary_string(binary_string):
         >>> stringtools.strip_diacritics_from_binary_string(binary_string)
         'Dvorak'
 
-    Return ASCII string.
+    Returns ASCII string.
     '''
 
     unicode_string = unicode(binary_string, 'utf-8')

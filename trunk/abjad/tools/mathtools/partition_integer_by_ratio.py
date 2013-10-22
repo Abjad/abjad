@@ -30,11 +30,11 @@ def partition_integer_by_ratio(n, ratio):
         >>> mathtools.partition_integer_by_ratio(-10, [1, -2])
         [-3, 7]
 
-    Return result with weight equal to absolute value of `n`.
+    Returns result with weight equal to absolute value of `n`.
 
     Raise type error on noninteger `n`.
 
-    Return list of integers.
+    Returns list of integers.
     '''
     from abjad.tools import mathtools
 

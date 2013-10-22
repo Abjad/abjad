@@ -113,7 +113,7 @@ class PitchArray(AbjadObject):
             [ ] [     ] [ ] [     ] [         ] [ ] [ ]
             [     ] [ ] [ ] [         ] [     ] [ ] [ ]
 
-        Return self.
+        Returns self.
         '''
         if not isinstance(arg, PitchArray):
             raise TypeError('must be pitch array.')
@@ -445,7 +445,7 @@ class PitchArray(AbjadObject):
                 [c'                   ] [d'                   ]
                 [c'] [d'     ] [e'] [c'] [d'     ] [e']
     
-        Return pitch array.
+        Returns pitch array.
         '''
         time_intervals = \
             PitchArray._get_composite_offset_difference_series_from_leaves_in_expr(
@@ -527,7 +527,7 @@ class PitchArray(AbjadObject):
             [ ]
             [ ]
 
-        Return list.
+        Returns list.
         '''
         unspanned_indices = []
         for i in range(self.width + 1):
@@ -621,7 +621,7 @@ class PitchArray(AbjadObject):
                 r8
             }
 
-        Return list of measures.
+        Returns list of measures.
         '''
         measures = []
         for row in self.rows:

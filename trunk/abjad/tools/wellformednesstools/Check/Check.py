@@ -55,7 +55,7 @@ class Check(AbjadObject):
             OverlappingOctavationCheck()
             ShortHairpinCheck()
 
-        Return list of checks.
+        Returns list of checks.
         '''
         from abjad.tools import wellformednesstools
         result = []

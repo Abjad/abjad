@@ -4,7 +4,7 @@ import py.test
 
 
 def test_NumberedPitch___int___01():
-    r'''Return pitch number of 12-ET numbered pitch as int.
+    r'''Returns pitch number of 12-ET numbered pitch as int.
     '''
 
     numbered_pitch = pitchtools.NumberedPitch(13)

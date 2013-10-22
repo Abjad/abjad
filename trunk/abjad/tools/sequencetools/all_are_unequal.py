@@ -23,7 +23,7 @@ def all_are_unequal(expr):
         >>> sequencetools.all_are_unequal(17)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

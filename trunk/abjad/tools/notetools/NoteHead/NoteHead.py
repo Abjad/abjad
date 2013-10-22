@@ -112,7 +112,7 @@ class NoteHead(AbjadObject):
                 >>> note_head = notetools.NoteHead("cs''")
                 >>> note_head.is_cautionary = True
 
-            Return boolean.
+            Returns boolean.
             '''
             return self._is_cautionary
         def fset(self, arg):
@@ -136,7 +136,7 @@ class NoteHead(AbjadObject):
             >>> note_head = notetools.NoteHead("cs''")
             >>> note_head.is_forced = True
 
-        Return boolean.
+        Returns boolean.
         '''
         def fget(self):
             return self._is_forced
@@ -154,7 +154,7 @@ class NoteHead(AbjadObject):
             >>> note_head.lilypond_format
             "cs''"
 
-        Return string.
+        Returns string.
         '''
         from abjad.tools import formattools
         from abjad.tools import chordtools
@@ -191,7 +191,7 @@ class NoteHead(AbjadObject):
             >>> note_head.named_pitch
             NamedPitch("cs''")
 
-        Return named pitch.
+        Returns named pitch.
         '''
         return self.written_pitch
 
@@ -205,7 +205,7 @@ class NoteHead(AbjadObject):
             >>> note_head.tweak
             LilyPondTweakReservoir()
 
-        Return LilyPond tweak reservoir.
+        Returns LilyPond tweak reservoir.
         '''
         if not hasattr(self, '_tweak'):
             self._tweak = LilyPondTweakReservoir()

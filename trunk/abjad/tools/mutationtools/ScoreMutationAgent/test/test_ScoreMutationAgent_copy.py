@@ -6,7 +6,7 @@ def test_ScoreMutationAgent_copy_01():
     r'''Deep copy components in 'components'.
     Deep copy spanners that attach to any component in 'components'.
     Fracture spanners that attach to components not in 'components'.
-    Return Python list of copied components.
+    Returns Python list of copied components.
     '''
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")

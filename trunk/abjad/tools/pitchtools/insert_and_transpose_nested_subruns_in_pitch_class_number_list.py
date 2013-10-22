@@ -64,7 +64,7 @@ def insert_and_transpose_nested_subruns_in_pitch_class_number_list(notes, subrun
     precomposition when other, similar abstract pitch transforms
     may be common.
 
-    Return list of integers and / or floats.
+    Returns list of integers and / or floats.
     '''
     from abjad.tools import notetools
     from abjad.tools import pitchtools

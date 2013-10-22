@@ -4,7 +4,7 @@
 def select(expr=None, contiguous=False):
     r'''Select `expr`.
 
-    Return selection.
+    Returns selection.
     '''
     from abjad.tools import componenttools
     from abjad.tools import selectiontools

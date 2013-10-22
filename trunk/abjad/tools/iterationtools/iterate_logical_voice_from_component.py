@@ -121,7 +121,7 @@ def iterate_logical_voice_from_component(
         Note("f'8")
         Note("e'8")
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 

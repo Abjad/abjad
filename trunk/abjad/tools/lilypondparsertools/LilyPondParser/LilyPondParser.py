@@ -184,7 +184,7 @@ class LilyPondParser(abctools.Parser):
             svenska
             vlaams
 
-        Return tuple.
+        Returns tuple.
         '''
         return tuple(sorted(self._language_pitch_names.keys()))
 
@@ -228,7 +228,7 @@ class LilyPondParser(abctools.Parser):
                 >>> parser('{ c des e fis }')
                 {c4, df4, e4, fs4}
 
-            Return string.
+            Returns string.
             '''
             return self._default_language
         def fset(self, arg):
@@ -721,7 +721,7 @@ class LilyPondParser(abctools.Parser):
 
         This function was reverse-engineered from LilyPond's source code.
 
-        Return NamedPitch.
+        Returns NamedPitch.
         '''
         if not isinstance(pitch_a, pitchtools.NamedPitch):
             pitch_a = pitchtools.NamedPitch(pitch_a)
@@ -832,7 +832,7 @@ class LilyPondParser(abctools.Parser):
             VaticanaVoice
             Voice
 
-        Return list.
+        Returns list.
         '''
         from abjad.ly import contexts
         return sorted(contexts.keys())
@@ -985,7 +985,7 @@ class LilyPondParser(abctools.Parser):
             VoltaBracket
             VoltaBracketSpanner
 
-        Return tuple.
+        Returns tuple.
         '''
         from abjad.ly import grob_interfaces
         return sorted(grob_interfaces.keys())
@@ -1013,7 +1013,7 @@ class LilyPondParser(abctools.Parser):
             svenska
             vlaams
 
-        Return list.
+        Returns list.
         '''
         from abjad.ly import language_pitch_names
         return sorted(language_pitch_names.keys())
@@ -1171,7 +1171,7 @@ class LilyPondParser(abctools.Parser):
             wordwrap-string
             wordwrap-string-internal
 
-        Return list.
+        Returns list.
         '''
         from abjad.ly import markup_functions
         from abjad.ly import markup_list_functions
@@ -1202,7 +1202,7 @@ class LilyPondParser(abctools.Parser):
             times
             transpose
 
-        Return list.
+        Returns list.
         '''
         from abjad.ly import current_module
         from abjad.tools import lilypondparsertools
@@ -1240,7 +1240,7 @@ class LilyPondParser(abctools.Parser):
         understood by LilyPond.  Consult LilyPond's documentation for a complete
         list of all understood type-predicates.
 
-        Return None
+        Returns None
         '''
 
         from abjad.ly.markup_functions import markup_functions

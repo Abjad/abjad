@@ -35,7 +35,7 @@ class TextScriptSpanner(Spanner):
 
     Override LilyPond TextScript grob.
 
-    Return text script spanner.
+    Returns text script spanner.
     '''
 
     ### INITIALIZER ###

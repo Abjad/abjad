@@ -50,7 +50,7 @@ def is_strictly_decreasing_sequence(expr):
         >>> sequencetools.is_strictly_decreasing_sequence(17)
         False
 
-    Return boolean.
+    Returns boolean.
     '''
 
     try:

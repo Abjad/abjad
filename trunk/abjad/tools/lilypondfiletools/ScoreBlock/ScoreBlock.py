@@ -33,7 +33,7 @@ class ScoreBlock(NonattributedBlock):
         >>> score_block.lilypond_format == ''
         True
 
-    Return score block.
+    Returns score block.
     '''
 
     ### INITIALIZER ###

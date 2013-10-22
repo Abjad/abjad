@@ -44,7 +44,7 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
 
     Set `length` to number of elements to return. Set to ``'inf'`` to return infinitely.
 
-    Return generator.
+    Returns generator.
     '''
 
     assert isinstance(step, int)

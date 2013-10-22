@@ -24,7 +24,7 @@ class Staff(Context):
 
         >>> show(staff) # doctest: +SKIP
 
-    Return Staff instance.
+    Returns Staff instance.
     '''
 
     ### CLASS VARIABLES ###

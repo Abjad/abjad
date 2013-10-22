@@ -32,7 +32,7 @@ class GrandStaff(StaffGroup):
             }
         >>
 
-    Return grand staff.
+    Returns grand staff.
     '''
 
     ### CLASS VARIABLES ###

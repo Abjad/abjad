@@ -41,7 +41,7 @@ def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
 
     Iterates across different logical voices.
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import iterationtools
 

@@ -56,7 +56,7 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets(expr, supplement):
             }
         }
 
-    Return none.
+    Returns none.
     '''
     from abjad.tools import measuretools
 

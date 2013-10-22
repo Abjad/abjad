@@ -99,7 +99,7 @@ class PitchArrayInventory(TypedList):
 
         Create one staff per pitch-array row.
 
-        Return score.
+        Returns score.
         '''
         score = scoretools.Score([])
         staff_group = scoretools.StaffGroup([])

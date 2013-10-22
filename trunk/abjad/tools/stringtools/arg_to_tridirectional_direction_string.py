@@ -39,7 +39,7 @@ def arg_to_tridirectional_direction_string(arg):
 
     If `arg` is None, None will be returned.
 
-    Return str or None.
+    Returns str or None.
     '''
 
     lookup = {

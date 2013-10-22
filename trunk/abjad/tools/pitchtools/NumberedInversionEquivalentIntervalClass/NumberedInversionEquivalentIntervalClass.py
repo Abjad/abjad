@@ -11,7 +11,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         >>> pitchtools.NumberedInversionEquivalentIntervalClass(1)
         NumberedInversionEquivalentIntervalClass(1)
 
-    Return numbered inversion-equivalent interval-class.
+    Returns numbered inversion-equivalent interval-class.
     '''
 
     ### CLASS VARIABLES ###

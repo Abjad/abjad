@@ -10,7 +10,7 @@ def spell_numbered_interval_number(named_interval_number, numbered_interval_numb
         >>> pitchtools.spell_numbered_interval_number(2, 1)
         NamedInterval('+m2')
 
-    Return named interval.
+    Returns named interval.
     '''
     from abjad.tools import pitchtools
 

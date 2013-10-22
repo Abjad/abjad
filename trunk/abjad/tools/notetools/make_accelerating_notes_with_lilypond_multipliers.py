@@ -46,7 +46,7 @@ def make_accelerating_notes_with_lilypond_multipliers(
 
     Set note pitches cyclically from `pitches`.
 
-    Return as many interpolation values as necessary to fill the `total` duration requested.
+    Returns as many interpolation values as necessary to fill the `total` duration requested.
 
     Interpolate durations from `start` to `stop`.
 
@@ -54,7 +54,7 @@ def make_accelerating_notes_with_lilypond_multipliers(
 
     Interprete `written=None` as eighth notes.
 
-    Return list of notes.
+    Returns list of notes.
     '''
     from abjad.tools import notetools
     from abjad.tools import selectiontools

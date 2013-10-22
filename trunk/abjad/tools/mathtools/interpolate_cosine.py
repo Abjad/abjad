@@ -10,7 +10,7 @@ def interpolate_cosine(y1, y2, mu):
         >>> mathtools.interpolate_cosine(0, 1, 0.5)
         0.49999999999999994
 
-    Return float.
+    Returns float.
     '''
 
     mu2 = (1 - math.cos(mu * math.pi)) / 2

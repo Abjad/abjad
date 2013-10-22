@@ -75,7 +75,7 @@ class Markup(DirectedMark):
 
     Markup objects are immutable.
 
-    Return markup instance.
+    Returns markup instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -175,7 +175,7 @@ class Markup(DirectedMark):
             >>> markup.contents
             (MarkupCommand('bold', ['This is markup text.']),)
 
-        Return string
+        Returns string
         '''
         return self._contents
 
@@ -194,7 +194,7 @@ class Markup(DirectedMark):
                     }
                 }
 
-        Return string.
+        Returns string.
         '''
         return '\n'.join(self._get_format_pieces(is_indented=True))
 
@@ -209,7 +209,7 @@ class Markup(DirectedMark):
             >>> markup.lilypond_format
             '\\markup { \\bold { "This is markup text." } }'
 
-        Return string.
+        Returns string.
         '''
         return ' '.join(self._get_format_pieces(is_indented=False))
 
@@ -228,7 +228,7 @@ class Markup(DirectedMark):
             >>> markup.markup_name
             'non troppo'
 
-        Return string or none.
+        Returns string or none.
         '''
         return self._markup_name
 

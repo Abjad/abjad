@@ -10,6 +10,6 @@ def apply_accidental_to_named_pitch(named_pitch, accidental=None):
         >>> pitchtools.apply_accidental_to_named_pitch(pitch, 'f')
         NamedPitch("c''")
 
-    Return new named pitch.
+    Returns new named pitch.
     '''
     return named_pitch.apply_accidental(accidental)

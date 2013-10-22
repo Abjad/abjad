@@ -381,7 +381,7 @@ class AbjadConfiguration(Configuration):
 
         Mixed test case must appear last here for doc tests to check correctly.
 
-        Return none.
+        Returns none.
         '''
         from abjad import abjad_configuration
         if spelling not in ('mixed', 'sharps', 'flats'):

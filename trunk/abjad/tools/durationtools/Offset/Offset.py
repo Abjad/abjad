@@ -37,7 +37,7 @@ class Offset(Duration):
             >>> durationtools.Offset(2) - Fraction(1, 2)
             Duration(3, 2)
 
-        Return duration or offset.
+        Returns duration or offset.
         '''
         if isinstance(expr, type(self)):
             return Duration(Duration.__sub__(self, expr))
