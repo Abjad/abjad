@@ -116,7 +116,7 @@ class Timespan(BoundedObject):
         return False
 
     def __ge__(self, expr):
-        r'''True when `expr` start offset is greater or equal 
+        r'''True when `expr` start offset is greater or equal
         to timespan start offset:
 
         ::
@@ -144,7 +144,7 @@ class Timespan(BoundedObject):
         return self.start_offset >= expr.start_offset
 
     def __gt__(self, expr):
-        r'''True when `expr` start offset is greater than 
+        r'''True when `expr` start offset is greater than
         timespan start offset:
 
         ::
@@ -172,7 +172,7 @@ class Timespan(BoundedObject):
         return self.start_offset > expr.start_offset
 
     def __le__(self, expr):
-        r'''True when `expr` start offset is less than or equal to 
+        r'''True when `expr` start offset is less than or equal to
         timespan start offset:
 
         ::
@@ -269,7 +269,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_1 | timespan_2)
+            >>> new_timespan = timespan_1 | timespan_2
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -279,7 +280,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_1 | timespan_3)
+            >>> new_timespan = timespan_1 | timespan_3
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
@@ -290,7 +292,8 @@ class Timespan(BoundedObject):
         ::
 
 
-            >>> z(timespan_1 | timespan_4)
+            >>> new_timespan = timespan_1 | timespan_4
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -300,7 +303,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_2 | timespan_3)
+            >>> new_timespan = timespan_2 | timespan_3
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
@@ -314,7 +318,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_2 | timespan_4)
+            >>> new_timespan = timespan_2 | timespan_4
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
@@ -324,7 +329,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_3 | timespan_4)
+            >>> new_timespan = timespan_3 | timespan_4
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
@@ -506,7 +512,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_1 ^ timespan_2)
+            >>> new_timespan = timespan_1 ^ timespan_2
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -520,7 +527,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_1 ^ timespan_3)
+            >>> new_timespan = timespan_1 ^ timespan_3
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
@@ -534,7 +542,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_1 ^ timespan_4)
+            >>> new_timespan = timespan_1 ^ timespan_4
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -548,7 +557,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_2 ^ timespan_3)
+            >>> new_timespan = timespan_2 ^ timespan_3
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
@@ -562,7 +572,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_2 ^ timespan_4)
+            >>> new_timespan = timespan_2 ^ timespan_4
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
@@ -576,7 +587,8 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> z(timespan_3 ^ timespan_4)
+            >>> new_timespan = timespan_3 ^ timespan_4
+            >>> z(new_timespan)
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
@@ -849,7 +861,7 @@ class Timespan(BoundedObject):
     ### PUBLIC METHODS ###
 
     def contains_timespan_improperly(self, timespan):
-        r'''True when timespan contains `timespan` improperly. 
+        r'''True when timespan contains `timespan` improperly.
         Otherwise false:
 
         ::
@@ -1175,7 +1187,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def overlaps_only_start_of_timespan(self, timespan):
-        r'''True when timespan overlaps only start of `timespan`. 
+        r'''True when timespan overlaps only start of `timespan`.
         Otherwise false:
 
         ::
@@ -1203,7 +1215,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def overlaps_only_stop_of_timespan(self, timespan):
-        r'''True when timespan overlaps only stop of `timespan`. 
+        r'''True when timespan overlaps only stop of `timespan`.
         Otherwise false:
 
         ::
@@ -1231,7 +1243,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def overlaps_start_of_timespan(self, timespan):
-        r'''True when timespan overlaps start of `timespan`. 
+        r'''True when timespan overlaps start of `timespan`.
         Otherwise false:
 
         ::
@@ -1259,7 +1271,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def overlaps_stop_of_timespan(self, timespan):
-        r'''True when timespan overlaps start of `timespan`. 
+        r'''True when timespan overlaps start of `timespan`.
         Otherwise false:
 
         ::
@@ -1323,9 +1335,9 @@ class Timespan(BoundedObject):
         ::
 
             >>> timespan = timespantools.Timespan((1, 5), (4, 5))
-            
+
         ::
-        
+
             >>> timespan.round_offsets(1)
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 1))
 
@@ -1337,7 +1349,7 @@ class Timespan(BoundedObject):
         ::
 
             >>> timespan.round_offsets(
-            ...     2, 
+            ...     2,
             ...     anchor=Right,
             ...     )
             Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(0, 1))
@@ -1346,7 +1358,7 @@ class Timespan(BoundedObject):
 
             >>> timespan.round_offsets(
             ...     2,
-            ...     anchor=Right, 
+            ...     anchor=Right,
             ...     must_be_well_formed=False,
             ...     )
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(0, 1))
@@ -1375,7 +1387,7 @@ class Timespan(BoundedObject):
             >>> timespan = timespantools.Timespan(3, 6)
 
         ..  container:: example
-        
+
             **Example 1.** Scale timespan relative to timespan start offset:
 
             ::
@@ -1649,7 +1661,7 @@ class Timespan(BoundedObject):
         return self.start_offset < offset
 
     def starts_before_or_at_offset(self, offset):
-        r'''True when timespan starts before or at `offset`. 
+        r'''True when timespan starts before or at `offset`.
         Otherwise false:
 
         ::
@@ -1671,7 +1683,7 @@ class Timespan(BoundedObject):
         return self.start_offset <= offset
 
     def starts_before_timespan_starts(self, timespan):
-        r'''True when timespan starts before `timespan` starts. 
+        r'''True when timespan starts before `timespan` starts.
         Otherwise false:
 
         ::
