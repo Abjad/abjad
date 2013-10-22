@@ -7,24 +7,43 @@ Version history
 Abjad 2.13
 ----------
 
-Released 2013-10-18. Built from r12,311.
-Implements 500 public classes and 526 functions totaling 199,255.
+Released 2013-10-23. Built from r12,499.  Implements 485 public classes and 465
+functions totaling 198,812 lines.
+
 
 API refactoring
 ^^^^^^^^^^^^^^^
 
-We're moved half of the API functionality from functions to class methods.
-This is true for almost every package in the system.
+More than half the functionality of the Abjad API has migrated from functions
+to class methods. This means that the total number of functions in the API has
+decreased from 1045 in Abjad 2.12 to only 465 in Abjad 2.13. This also means
+that many classes now provide additional functionality in the form of public
+methods. Check the API entries of the Abjad classes you work with the most
+often for new features. And note that essentially all functionality
+available in Abjad 2.12 has been ported to Abjad 2.13, usually with an
+interface that is easier to use and better documented.
+
+For example, the predicates previously implemented as ``pitchtools`` functions
+are now implemented as methods bound to the Abjad ``NamedPitch`` class:
+
+- ``NamedPitch.is_diatonic_pitch_name()``
+- ``NamedPitch.is_diatonic_pitch_number()``
+- ``NamedPitch.is_pitch_carrier()``
+- ``NamedPitch.is_pitch_class_octave_number_string()``
+- ``NamedPitch.is_pitch_name()``
+- ``NamedPitch.is_pitch_number()``
+
+
 
 Introducing ``inspect()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A new top-level ``inspect()`` function is now available when you start Abjad.
+A new ``inspect()`` function is now available when you start Abjad.
 ``inspect()`` is a factory function that returns an instance of the new
-AttributeInspectionAgent (or just "the inspector"). The inspector allows you
-to get a large number of different score component attributes determined by
-score structure. Here's an example of using ``inspect()`` to get the duration
-of a tupletted note:
+``AttributeInspectionAgent`` ("the inspector") when called on any score
+component. Use the inspector to examine component attributes determined by
+score structure.  Here's how to use ``inspect()`` to get the duration of a
+tupletted note:
 
 ::
 
@@ -35,46 +54,43 @@ of a tupletted note:
     >>> inspect(note).get_duration()
     Duration(1, 6)
 
-It now makes sense to speak of an "inspection interface" availabe in the
-system:
+These are the methods available as part of the new inspection interface:
 
-::
-
-    AttributeInspectionAgent.get_annotation()
-    AttributeInspectionAgent.get_badly_formed_components()
-    AttributeInspectionAgent.get_components()
-    AttributeInspectionAgent.get_contents()
-    AttributeInspectionAgent.get_descendants()
-    AttributeInspectionAgent.get_duration()
-    AttributeInspectionAgent.get_effective_context_mark()
-    AttributeInspectionAgent.get_effective_staff()
-    AttributeInspectionAgent.get_grace_containers()
-    AttributeInspectionAgent.get_leaf()
-    AttributeInspectionAgent.get_lineage()
-    AttributeInspectionAgent.get_mark()
-    AttributeInspectionAgent.get_marks()
-    AttributeInspectionAgent.get_markup()
-    AttributeInspectionAgent.get_parentage()
-    AttributeInspectionAgent.get_spanner()
-    AttributeInspectionAgent.get_spanners()
-    AttributeInspectionAgent.get_tie_chain()
-    AttributeInspectionAgent.get_timespan()
-    AttributeInspectionAgent.get_vertical_moment()
-    AttributeInspectionAgent.get_vertical_moment_at()
-    AttributeInspectionAgent.is_bar_line_crossing()
-    AttributeInspectionAgent.is_well_formed()
-    AttributeInspectionAgent.report_modifications()
-    AttributeInspectionAgent.tabulate_well_formedness_violations()
+- ``AttributeInspectionAgent.get_annotation()``
+- ``AttributeInspectionAgent.get_badly_formed_components()``
+- ``AttributeInspectionAgent.get_components()``
+- ``AttributeInspectionAgent.get_contents()``
+- ``AttributeInspectionAgent.get_descendants()``
+- ``AttributeInspectionAgent.get_duration()``
+- ``AttributeInspectionAgent.get_effective_context_mark()``
+- ``AttributeInspectionAgent.get_effective_staff()``
+- ``AttributeInspectionAgent.get_grace_containers()``
+- ``AttributeInspectionAgent.get_leaf()``
+- ``AttributeInspectionAgent.get_lineage()``
+- ``AttributeInspectionAgent.get_mark()``
+- ``AttributeInspectionAgent.get_marks()``
+- ``AttributeInspectionAgent.get_markup()``
+- ``AttributeInspectionAgent.get_parentage()``
+- ``AttributeInspectionAgent.get_spanner()``
+- ``AttributeInspectionAgent.get_spanners()``
+- ``AttributeInspectionAgent.get_tie_chain()``
+- ``AttributeInspectionAgent.get_timespan()``
+- ``AttributeInspectionAgent.get_vertical_moment()``
+- ``AttributeInspectionAgent.get_vertical_moment_at()``
+- ``AttributeInspectionAgent.is_bar_line_crossing()``
+- ``AttributeInspectionAgent.is_well_formed()``
+- ``AttributeInspectionAgent.report_modifications()``
+- ``AttributeInspectionAgent.tabulate_well_formedness_violations()``
 
 
 Introducing  ``mutate()``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Abjad now ships with a top-level ``mutate()`` function availble when you start
-the system. ``mutate()`` is a factory function that returns an instance of the
-new ScoreMutationAgent class when called on any score component. The
-ScoreMutationAgent then allows you to make structural changes to the component
-or components on which it was called. Here's an example of using ``mutate()``
+A new ``mutate()`` function is now availble when you start Abjad.
+``mutate()`` is a factory function that returns an instance of the
+new ``ScoreMutationAgent`` class when called on any score component. Use
+the ``ScoreMutationAgent`` to make structural changes to the component
+or components on which it was called. Here's how to use ``mutate()``
 to split the notes in a staff:
 
 ::
@@ -83,22 +99,19 @@ to split the notes in a staff:
     >>> mutate(staff).split([Duration(3, 8)])
     >>> show(staff)
 
-It now makes sense to speak of a "mutatation interface" available in the
-system:
+These are the methods available as part of the new mutation interface:
 
-::
+- ``ScoreMutationAgent.copy()``
+- ``ScoreMutationAgent.extract()``
+- ``ScoreMutationAgent.fuse()``
+- ``ScoreMutationAgent.replace()``
+- ``ScoreMutationAgent.scale()``
+- ``ScoreMutationAgent.splice()``
+- ``ScoreMutationAgent.split()``
 
-    ScoreMutationAgent.copy()
-    ScoreMutationAgent.extract()
-    ScoreMutationAgent.fuse()
-    ScoreMutationAgent.replace()
-    ScoreMutationAgent.scale()
-    ScoreMutationAgent.splice()
-    ScoreMutationAgent.split()
-
-``mutate()`` cleans up a number of previously complex parts of the system.
-There are, for example, now only a single copy function, a single split
-function and a single fuse function implemented in all of Abjad.
+``mutate()`` cleans up previously complex parts of the system.
+There are now only a single copy function, a single split
+function and a single fuse function implemented in Abjad.
 
 
 Selection objects
