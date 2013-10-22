@@ -98,7 +98,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
     def start_offset(self):
         r'''Mixed-source timespan expression start offset.
 
-        Return offset expression.
+        Returns offset expression.
         '''
         return self._start_offset
 
@@ -106,6 +106,6 @@ class MixedSourceTimespanExpression(TimespanExpression):
     def stop_offset(self):
         r'''Mixed-source timespan expression stop offset.
 
-        Return offset expression.
+        Returns offset expression.
         '''
         return self._stop_offset

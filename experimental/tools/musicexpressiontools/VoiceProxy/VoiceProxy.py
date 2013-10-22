@@ -27,7 +27,7 @@ class VoiceProxy(AbjadObject):
     def leaf_start_offsets(self):
         r'''Voice proxy leaf start offsets.
 
-        Return list of offsets.
+        Returns list of offsets.
         '''
         return self._leaf_start_offsets
 
@@ -35,7 +35,7 @@ class VoiceProxy(AbjadObject):
     def leaf_stop_offsets(self):
         r'''Voice proxy leaf stop offsets.
 
-        Return list of offsets.
+        Returns list of offsets.
         '''
         return self._leaf_stop_offsets
 
@@ -43,7 +43,7 @@ class VoiceProxy(AbjadObject):
     def leaves(self):
         r'''Voice proxy leaves.
 
-        Return list of leaves.
+        Returns list of leaves.
         '''
         return self._leaves
 
@@ -51,7 +51,7 @@ class VoiceProxy(AbjadObject):
     def payload_expressions_by_attribute(self):
         r'''Voice proxy payload expressions by attribute.
 
-        Return attribute dictionary.
+        Returns attribute dictionary.
         '''
         return self._payload_expressions_by_attribute
 
@@ -59,6 +59,6 @@ class VoiceProxy(AbjadObject):
     def voice_division_list(self):
         r'''Voice proxy voice division list.
 
-        Return voice division list.
+        Returns voice division list.
         '''
         return self._voice_division_list

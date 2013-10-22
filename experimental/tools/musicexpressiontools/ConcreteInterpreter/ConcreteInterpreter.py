@@ -19,7 +19,7 @@ class ConcreteInterpreter(Interpreter):
             * interpret rhythm scorewide
             * interpret additional parameters.
 
-        Return Abjad score object.
+        Returns Abjad score object.
         '''
         from experimental.tools import musicexpressiontools
         start_time = time.time()

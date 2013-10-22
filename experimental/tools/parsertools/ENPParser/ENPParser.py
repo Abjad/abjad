@@ -28,7 +28,7 @@ class ENPParser(Parser):
               (1 :x-offset 1.0  :notes  ((73 :enharmonic 1)) :expressions (:slur/1 :f/1))
               (6  :x-offset 2.0 :notes (79) :expressions (:f/1))))))))
 
-    Return `ENPParser` instance.
+    Returns `ENPParser` instance.
     '''
 
     ### PUBLIC PROPERTIES ###

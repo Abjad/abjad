@@ -14,7 +14,7 @@ class ScoreManager(ScoreManagerObject):
         >>> score_manager
         ScoreManager()
 
-    Return score manager.
+    Returns score manager.
     '''
 
     ### INITIALIZER ###
@@ -77,7 +77,7 @@ class ScoreManager(ScoreManagerObject):
                 self.interactively_edit_score(result)
 
     def _handle_repository_menu_result(self, result):
-        r'''Return true to exit the repository menu.
+        r'''Returns true to exit the repository menu.
         '''
         this_result = False
         if result == 'add':
@@ -197,7 +197,7 @@ class ScoreManager(ScoreManagerObject):
             >>> score_manager.material_package_maker_wrangler
             MaterialPackageMakerWrangler()
 
-        Return material package maker wrangler.
+        Returns material package maker wrangler.
         '''
         return self._material_package_maker_wrangler
 
@@ -210,7 +210,7 @@ class ScoreManager(ScoreManagerObject):
             >>> score_manager.material_package_wrangler
             MaterialPackageWrangler()
 
-        Return material package wrangler.
+        Returns material package wrangler.
         '''
         return self._material_package_wrangler
 
@@ -223,7 +223,7 @@ class ScoreManager(ScoreManagerObject):
             >>> score_manager.score_package_wrangler
             ScorePackageWrangler()
 
-        Return score package wrangler.
+        Returns score package wrangler.
         '''
         return self._score_package_wrangler
 
@@ -236,7 +236,7 @@ class ScoreManager(ScoreManagerObject):
             >>> score_manager.segment_package_wrangler
             SegmentPackageWrangler()
 
-        Return segment package wrangler.
+        Returns segment package wrangler.
         '''
         return self._segment_package_wrangler
 
@@ -249,7 +249,7 @@ class ScoreManager(ScoreManagerObject):
             >>> score_manager.stylesheet_file_wrangler
             StylesheetFileWrangler()
 
-        Return stylesheet file wrangler.
+        Returns stylesheet file wrangler.
         '''
         return self._stylesheet_file_wrangler
 

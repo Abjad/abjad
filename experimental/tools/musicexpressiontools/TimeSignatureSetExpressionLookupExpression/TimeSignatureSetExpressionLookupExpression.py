@@ -24,7 +24,7 @@ class TimeSignatureSetExpressionLookupExpression(
     def evaluate(self):
         r'''Evaluate time signature set expression lookup expression.
 
-        Return payload expression.
+        Returns payload expression.
         '''
         from experimental.tools import musicexpressiontools
         time_signatures = self.root_specification.time_signatures[:]

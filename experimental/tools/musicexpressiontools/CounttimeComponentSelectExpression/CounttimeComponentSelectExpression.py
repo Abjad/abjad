@@ -134,7 +134,7 @@ class CounttimeComponentSelectExpression(
     def classes(self):
         r'''Counttime component select expression classes.
 
-        Return class inventory or none.
+        Returns class inventory or none.
         '''
         return self._classes
 
@@ -143,9 +143,9 @@ class CounttimeComponentSelectExpression(
     def evaluate(self):
         r'''Evaluate counttime component select expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned rhythm payload expression when evaluable.
+        Returns start-positioned rhythm payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         anchor_timespan = self._evaluate_anchor_timespan()
@@ -185,7 +185,7 @@ class CounttimeComponentSelectExpression(
     def evaluate_against_score(self, score):
         r'''Evaluate counttime component select expression against `score`.
 
-        Return iterable payload expression.
+        Returns iterable payload expression.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(score, scoretools.Score), repr(score)

@@ -12,7 +12,7 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
     ### PUBLIC METHODS ###
 
     def sort_and_split_set_expressions(self):
-        r'''Operate in place and return inventory.
+        r'''Operates in place and returns inventory.
         '''
         cooked_set_expressions = []
         for raw_set_expression in self[:]:
@@ -78,7 +78,7 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
 
     def supply_missing_set_expressions(
         self, attribute, score_specification, voice_name):
-        r'''Operate in place and return inventory.
+        r'''Operates in place and returns inventory.
         '''
         assert self.is_sorted
         if not self and not score_specification.time_signatures:

@@ -22,9 +22,9 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
     def evaluate(self):
         r'''Evaluate rhythm set expression lookup expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned rhythm payload expression when evaluable.
+        Returns start-positioned rhythm payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         expression = self.offset.evaluate()

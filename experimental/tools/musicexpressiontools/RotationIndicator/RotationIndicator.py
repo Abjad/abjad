@@ -45,7 +45,7 @@ class RotationIndicator(abctools.AbjadObject):
             >>> rotation_indicator.fracture_spanners
             False
 
-        Return boolean or none.
+        Returns boolean or none.
         '''
         return self._fracture_spanners
 
@@ -58,7 +58,7 @@ class RotationIndicator(abctools.AbjadObject):
             >>> rotation_indicator.index
             -1
 
-        Return integer.
+        Returns integer.
         '''
         return self._index
 
@@ -71,6 +71,6 @@ class RotationIndicator(abctools.AbjadObject):
             >>> rotation_indicator.level
             2
 
-        Return integer.
+        Returns integer.
         '''
         return self._level

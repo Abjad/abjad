@@ -51,7 +51,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
         ''
         "That's it!"
 
-    Return document handler.
+    Returns document handler.
     """
 
     ### PUBLIC PROPERTIES ###

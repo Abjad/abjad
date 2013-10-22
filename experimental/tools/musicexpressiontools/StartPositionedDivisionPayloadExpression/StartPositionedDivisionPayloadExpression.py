@@ -137,7 +137,7 @@ class StartPositionedDivisionPayloadExpression(
             >>> z(result)
             timespantools.TimespanInventory([])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         return StartPositionedPayloadExpression.__and__(self, timespan)
 
@@ -160,7 +160,7 @@ class StartPositionedDivisionPayloadExpression(
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Return newly constructed start-positioned division payload expression.
+        Returns newly constructed start-positioned division payload expression.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(expr, (slice, int)), repr(expr)
@@ -218,7 +218,7 @@ class StartPositionedDivisionPayloadExpression(
                     )
                 ])
 
-        Return timespan inventory.
+        Returns timespan inventory.
         '''
         return StartPositionedPayloadExpression.__or__(self, expr)
 
@@ -327,7 +327,7 @@ class StartPositionedDivisionPayloadExpression(
                     )
                 ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         return StartPositionedPayloadExpression.__sub__(self, timespan)
 
@@ -361,7 +361,7 @@ class StartPositionedDivisionPayloadExpression(
             Division('[6, 8]', start_offset=Offset(3, 4)),
             Division('[3, 4]', start_offset=Offset(3, 2))]
 
-        Return list.
+        Returns list.
         '''
         return self.payload.divisions
 
@@ -375,7 +375,7 @@ class StartPositionedDivisionPayloadExpression(
             >>> expression.elements_are_time_contiguous
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return StartPositionedPayloadExpression.elements_are_time_contiguous.fget(self)
 
@@ -388,7 +388,7 @@ class StartPositionedDivisionPayloadExpression(
             >>> expression.payload
             DivisionList('[6, 8], [6, 8], [3, 4]')
 
-        Return division list.
+        Returns division list.
         '''
         return StartPositionedPayloadExpression.payload.fget(self)
 
@@ -401,7 +401,7 @@ class StartPositionedDivisionPayloadExpression(
             >>> expression.start_offset
             Offset(0, 1)
 
-        Return offset.
+        Returns offset.
         '''
         return StartPositionedPayloadExpression.start_offset.fget(self)
 
@@ -414,7 +414,7 @@ class StartPositionedDivisionPayloadExpression(
             >>> expression.stop_offset
             Offset(9, 4)
 
-        Return offset.
+        Returns offset.
         '''
         return StartPositionedPayloadExpression.stop_offset.fget(self)
 
@@ -435,7 +435,7 @@ class StartPositionedDivisionPayloadExpression(
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Return string.
+        Returns string.
         '''
         return StartPositionedPayloadExpression.storage_format.fget(self)
 
@@ -448,7 +448,7 @@ class StartPositionedDivisionPayloadExpression(
             >>> expression.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 4))
 
-        Return timespan.
+        Returns timespan.
         '''
         return StartPositionedPayloadExpression.timespan.fget(self)
 
@@ -461,7 +461,7 @@ class StartPositionedDivisionPayloadExpression(
             >>> expression.voice_name is None
             True
 
-        Return string.
+        Returns string.
         '''
         return StartPositionedPayloadExpression.voice_name.fget(self)
 
@@ -504,7 +504,7 @@ class StartPositionedDivisionPayloadExpression(
                     )
                 ])
 
-        Operate in place and return newly constructed inventory.
+        Operates in place and returns newly constructed inventory.
         '''
         return StartPositionedPayloadExpression.partition_by_ratio(self, ratio)
 
@@ -546,7 +546,7 @@ class StartPositionedDivisionPayloadExpression(
                     )
                 ])
 
-        Operate in place and return newly constructed inventory.
+        Operates in place and returns newly constructed inventory.
         '''
         return StartPositionedPayloadExpression.partition_by_ratio_of_durations(self, ratio)
 
@@ -576,7 +576,7 @@ class StartPositionedDivisionPayloadExpression(
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return division payload expression.
+        Operates in place and returns division payload expression.
         '''
         return StartPositionedPayloadExpression.reflect(self)
 
@@ -608,7 +608,7 @@ class StartPositionedDivisionPayloadExpression(
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Return newly constructed start-positioned division payload expression.
+        Returns newly constructed start-positioned division payload expression.
         '''
         divisions = sequencetools.repeat_sequence_to_weight_exactly(self.payload, duration)
         result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
@@ -642,7 +642,7 @@ class StartPositionedDivisionPayloadExpression(
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Return newly constructed start-positioned division payload expression.
+        Returns newly constructed start-positioned division payload expression.
         '''
         divisions = sequencetools.repeat_sequence_to_length(self.payload, length)
         result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=self.start_offset)
@@ -674,7 +674,7 @@ class StartPositionedDivisionPayloadExpression(
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return division payload expression.
+        Operates in place and returns division payload expression.
         '''
         return StartPositionedPayloadExpression.rotate(self, rotation)
 
@@ -704,7 +704,7 @@ class StartPositionedDivisionPayloadExpression(
                 start_offset=durationtools.Offset(10, 1)
                 )
 
-        Operate in place and return division payload expression.
+        Operates in place and returns division payload expression.
         '''
         new_start_offset = self.start_offset + translation
         result = type(self)(

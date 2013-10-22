@@ -21,7 +21,7 @@ class AssetOutputProxy(OutputProxy):
 
         Based on the name of the output proxy's class.
 
-        Return string.
+        Returns string.
         '''
         return self.__class__.__name__.partition('OutputProxy')[0].lower()
 
@@ -33,7 +33,7 @@ class AssetOutputProxy(OutputProxy):
         Based on the class of the output proxy and a hash of the textual
         contents of the proxy's payload.
 
-        Return string.
+        Returns string.
         '''
         md5 = hashlib.md5(self.payload).hexdigest()
         return '-'.join((self.file_name_prefix, md5))

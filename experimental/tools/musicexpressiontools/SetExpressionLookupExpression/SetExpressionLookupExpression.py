@@ -64,7 +64,7 @@ class SetExpressionLookupExpression(
     def attribute(self):
         r'''Set expression lookup expression attribute.
 
-        Return string.
+        Returns string.
         '''
         return self._attribute
 
@@ -72,7 +72,7 @@ class SetExpressionLookupExpression(
     def offset(self):
         r'''Set expression lookup expression offset.
 
-        Return offset expression.
+        Returns offset expression.
         '''
         return self.anchor
 
@@ -80,7 +80,7 @@ class SetExpressionLookupExpression(
     def voice_name(self):
         r'''Set expression lookup expression voice name.
 
-        Return string.
+        Returns string.
         '''
         return self._voice_name
 
@@ -90,6 +90,6 @@ class SetExpressionLookupExpression(
     def evaluate(self):
         r'''Evaluate set expression lookup expression.
 
-        Return payload expression.
+        Returns payload expression.
         '''
         pass

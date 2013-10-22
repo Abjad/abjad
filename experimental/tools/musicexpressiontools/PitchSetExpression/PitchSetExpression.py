@@ -38,7 +38,7 @@ class PitchSetExpression(LeafSetExpression):
     def level(self):
         r'''Pitch set expression level.
 
-        Return integer or none.
+        Returns integer or none.
         '''
         return self._level
 
@@ -46,7 +46,7 @@ class PitchSetExpression(LeafSetExpression):
     def node_count(self):
         r'''Pitch set expression node count.
 
-        Return nonnegative integer or none.
+        Returns nonnegative integer or none.
         '''
         return self._node_count
 

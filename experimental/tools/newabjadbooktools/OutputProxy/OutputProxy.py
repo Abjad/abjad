@@ -35,7 +35,7 @@ class OutputProxy(AbjadObject):
         >>> output_proxy.generate_document_representation(rest_handler)
         ['.. image:: assets/lilypond-....png']
 
-    Return output proxy.
+    Returns output proxy.
     '''
 
     ### INITIALIZER ###

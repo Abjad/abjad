@@ -40,7 +40,7 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return beat select expression.
+        Returns beat select expression.
         '''
         from experimental.tools import musicexpressiontools
         select_expression = musicexpressiontools.BeatSelectExpression(
@@ -66,7 +66,7 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return division select expression.
+        Returns division select expression.
         '''
         from experimental.tools import musicexpressiontools
         select_expression = \
@@ -96,7 +96,7 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return counttime component select expression.
+        Returns counttime component select expression.
         '''
         from experimental.tools import musicexpressiontools
         select_expression = \
@@ -124,7 +124,7 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return measure select expression.
+        Returns measure select expression.
         '''
         from experimental.tools import musicexpressiontools
         select_expression = \
@@ -156,7 +156,7 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return counttime component select expression.
+        Returns counttime component select expression.
         '''
         from experimental.tools import musicexpressiontools
         select_expression = \
@@ -183,7 +183,7 @@ class SelectMethodMixin(AbjadObject):
 #                voice_name='Voice 1'
 #                )
 #
-#        Return segment select expression.
+#        Returns segment select expression.
 #        '''
 #        from experimental.tools import musicexpressiontools
 #        select_expression = musicexpressiontools.SegmentSelectExpression(voice_name=voice_name)
@@ -206,7 +206,7 @@ class SelectMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return time signature select expression.
+        Returns time signature select expression.
         '''
         from experimental.tools import musicexpressiontools
         select_expression = \

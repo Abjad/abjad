@@ -15,9 +15,9 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
     def evaluate(self):
         r'''Evaluate select expression rhythm region expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned rhythm payload expression when evaluable.
+        Returns start-positioned rhythm payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         expression = self.source_expression.evaluate()

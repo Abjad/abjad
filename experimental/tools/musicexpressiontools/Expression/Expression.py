@@ -18,7 +18,7 @@ class Expression(AbjadObject):
         and when positional and keyword argument values equal.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, type(self)):
             return False
@@ -33,7 +33,7 @@ class Expression(AbjadObject):
     def __hash__(self):
         r'''Expression hash.
 
-        Return hash of expression repr.
+        Returns hash of expression repr.
         '''
         return hash(repr(self))
 
@@ -65,9 +65,9 @@ class Expression(AbjadObject):
     def evaluate(self):
         r'''Evaluate expression.
 
-        Return new expression when evaluable.
+        Returns new expression when evaluable.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
         '''
         pass
 

@@ -57,9 +57,9 @@ class DivisionSelectExpression(SelectExpression):
     def evaluate(self):
         r'''Evaluate division select expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned division payload expression when evaluable.
+        Returns start-positioned division payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         anchor_timespan = self._evaluate_anchor_timespan()

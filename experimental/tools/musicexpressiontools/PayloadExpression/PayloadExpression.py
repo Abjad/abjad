@@ -33,7 +33,7 @@ class PayloadExpression(Expression):
             >>> payload_expression.payload
             'foo'
 
-        Return arbitrary value.
+        Returns arbitrary value.
         '''
         return self._payload
 
@@ -45,6 +45,6 @@ class PayloadExpression(Expression):
             >>> payload_expression.evaluate()
             PayloadExpression('foo')
 
-        Return payload expression.
+        Returns payload expression.
         '''
         return self

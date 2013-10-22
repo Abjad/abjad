@@ -37,9 +37,9 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     def evaluate(self):
         r'''Evaluate lookup expression rhythm region expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned rhythm payload expression when evaluable.
+        Returns start-positioned rhythm payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         expression = self.source_expression.evaluate()
@@ -80,7 +80,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     def division_list(self):
         r'''Lookup expression rhythm region expression division list.
 
-        Return division list.
+        Returns division list.
         '''
         return self._division_list
 
@@ -88,6 +88,6 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
     def region_start_offset(self):
         r'''Lookup expression rhythm region expression region start offset.
 
-        Return offset.
+        Returns offset.
         '''
         return self._region_start_offset

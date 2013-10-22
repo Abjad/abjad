@@ -123,9 +123,9 @@ class SegmentSelectExpression(SelectExpression):
     def evaluate(self):
         r'''Evaluate segment select expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned payload expression when evaluable.
+        Returns start-positioned payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         segments = self.score_specification.segment_specifications[:]

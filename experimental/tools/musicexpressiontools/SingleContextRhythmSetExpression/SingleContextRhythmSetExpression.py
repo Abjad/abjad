@@ -32,7 +32,7 @@ class SingleContextRhythmSetExpression(SingleContextSetExpression):
     def evaluate(self):
         r'''Evaluate single-context rhythm set expression.
 
-        Return timespan-scoped single-context rhythm set expression.
+        Returns timespan-scoped single-context rhythm set expression.
         '''
         from experimental.tools import musicexpressiontools
         target_timespan = self._evaluate_anchor_timespan()

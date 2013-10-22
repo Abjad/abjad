@@ -34,7 +34,7 @@ class ExpressionInventory(TypedList, IterablePayloadExpression):
     def evaluate(self):
         r'''Evaluate expression inventory.
 
-        Return newly constructed expression inventory.
+        Returns newly constructed expression inventory.
         '''
         result = type(self)()
         for expression in self:

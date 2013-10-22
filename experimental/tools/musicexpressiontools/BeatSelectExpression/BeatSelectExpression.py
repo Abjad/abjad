@@ -68,9 +68,9 @@ class BeatSelectExpression(SelectExpression):
     def evaluate(self):
         r'''Evaluate beat select expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned division payload expression 
+        Returns start-positioned division payload expression 
         when evaluable.
         '''
         from experimental.tools import musicexpressiontools

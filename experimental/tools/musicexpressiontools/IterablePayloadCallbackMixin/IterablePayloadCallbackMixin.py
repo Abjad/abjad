@@ -16,7 +16,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def __and__(self, timespan):
         r'''Logical AND of payload and `timespan`.
 
-        Return copy of expression with callback.
+        Returns copy of expression with callback.
         '''
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         callback = 'result = self._and__(payload_expression, {!r})'
@@ -26,7 +26,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def __getitem__(self, payload_expression):
         r'''Get payload item.
 
-        Return copy of expression with callback.
+        Returns copy of expression with callback.
         '''
         callback = 'result = self._getitem__(payload_expression, {!r})'
         callback = callback.format(payload_expression)
@@ -122,7 +122,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def map_to_each(self):
         r'''Map to each element in payload.
 
-        Return copy of expression with callback.
+        Returns copy of expression with callback.
         '''
         callback = 'result = self._map_to_each(payload_expression)'
         return self._copy_and_append_callback(callback)
@@ -130,7 +130,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def partition_by_ratio(self, ratio):
         r'''Partition payload by `ratio`.
 
-        Return tuple of newly constructed expressions with callbacks.
+        Returns tuple of newly constructed expressions with callbacks.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
@@ -144,7 +144,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def partition_by_ratio_of_durations(self, ratio):
         r'''Partition payload by `ratio` of durations.
 
-        Return tuple of newly constructed expressions with callbacks.
+        Returns tuple of newly constructed expressions with callbacks.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
@@ -158,7 +158,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def reflect(self):
         r'''Reflect payload.
 
-        Return copy of expression with callback.
+        Returns copy of expression with callback.
         '''
         callback = 'result = self._reflect(payload_expression)'
         return self._copy_and_append_callback(callback)
@@ -166,7 +166,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def repeat_to_duration(self, duration):
         r'''Repeat payload to `duration`.
 
-        Return copy of expression with callback.
+        Returns copy of expression with callback.
         '''
         duration = durationtools.Duration(duration)
         callback = 'result = self._repeat_to_duration(payload_expression, {!r})'
@@ -176,7 +176,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def repeat_to_length(self, length):
         r'''Repeat payload to `length`.
 
-        Return copy of expression with callback.
+        Returns copy of expression with callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
         callback = 'result = self._repeat_to_length(payload_expression, {!r})'
@@ -186,7 +186,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
     def rotate(self, index):
         r'''Rotate payload.
 
-        Return copy of expression with callback.
+        Returns copy of expression with callback.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(index, (int, 

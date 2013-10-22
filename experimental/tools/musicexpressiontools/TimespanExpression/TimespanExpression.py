@@ -51,9 +51,9 @@ class TimespanExpression(
     def evaluate(self):
         r'''Evaluate timespan expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return timespan when evaluable.
+        Returns timespan when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         result = self._evaluate_anchor_timespan()

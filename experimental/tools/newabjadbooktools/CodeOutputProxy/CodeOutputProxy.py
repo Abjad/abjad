@@ -18,7 +18,7 @@ class CodeOutputProxy(OutputProxy):
             'hello, world!',
             ))
 
-    Return output proxy.
+    Returns output proxy.
     '''
 
     ### INITIALIZER ###
@@ -55,7 +55,7 @@ class CodeOutputProxy(OutputProxy):
             'hello, world!'
             '</pre>'
 
-        Return list.
+        Returns list.
         '''
         result = []
         result.append('<pre class="abjad">')
@@ -85,7 +85,7 @@ class CodeOutputProxy(OutputProxy):
             'hello, world!'
             '\\end{lstlisting}'
 
-        Return list.
+        Returns list.
         '''
         result = []
         result.append('\\begin{lstlisting}[')
@@ -115,7 +115,7 @@ class CodeOutputProxy(OutputProxy):
             '\t>>> print "hello, world!"'
             '\thello, world!'
 
-        Return list.
+        Returns list.
         '''
         result = [
             '::',

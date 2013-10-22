@@ -45,7 +45,7 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
     def persist(self):
         r'''True when set expression should persist.
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._persist
 
@@ -53,7 +53,7 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
     def target_timespan(self):
         r'''Anchored set expression target timespan.
 
-        Return timespan expression.
+        Returns timespan expression.
         '''
         return self.anchor
 
@@ -61,6 +61,6 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
     def truncate(self):
         r'''True when set expression should truncate.
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._truncate

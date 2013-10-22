@@ -35,7 +35,7 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
     def evaluate(self):
         r'''Evaluate single-context division set expression.
 
-        Return timespan-scoped single-context division set expression.
+        Returns timespan-scoped single-context division set expression.
         '''
         from experimental.tools import musicexpressiontools
         target_timespan = self._evaluate_anchor_timespan()

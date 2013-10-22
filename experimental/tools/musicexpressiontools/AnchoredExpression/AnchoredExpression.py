@@ -42,9 +42,9 @@ class AnchoredExpression(Expression):
     def _evaluate_anchor_timespan(self):
         r'''Evaluate anchor timespan.
 
-        Return timespan when anchor timespan is evaluable.
+        Returns timespan when anchor timespan is evaluable.
 
-        Return none when anchor timespan is nonevaluable.
+        Returns none when anchor timespan is nonevaluable.
         '''
         if isinstance(self.anchor, str):
             return self.root_specification.timespan
@@ -89,12 +89,12 @@ class AnchoredExpression(Expression):
     def anchor(self):
         r'''Anchored expression anchor.
 
-        Return none when anchored expression anchors to the entire score.
+        Returns none when anchored expression anchors to the entire score.
 
-        Return string name of segment when anchored expression anchors 
+        Returns string name of segment when anchored expression anchors 
         to a single segment.
 
-        Return expression when anchored expression anchors 
+        Returns expression when anchored expression anchors 
         to another expression.
         '''
         return self._anchor
@@ -104,7 +104,7 @@ class AnchoredExpression(Expression):
         r'''True when anchored expression is score-rooted.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return self.root_specification_identifier is None
 
@@ -113,7 +113,7 @@ class AnchoredExpression(Expression):
         r'''True when anchored expression is segment-rooted.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return isinstance(self.root_specification_identifier, str)
 
@@ -121,7 +121,7 @@ class AnchoredExpression(Expression):
     def root_specification(self):
         r'''Anchored expression root specification.
 
-        Return specification.
+        Returns specification.
         '''
         if self.is_segment_rooted:
             return self.score_specification.segment_specifications[
@@ -146,7 +146,7 @@ class AnchoredExpression(Expression):
     def score_specification(self):
         r'''Anchored expression score specification.
 
-        Return score specification.
+        Returns score specification.
         '''
         return self._score_specification
 
@@ -154,7 +154,7 @@ class AnchoredExpression(Expression):
     def start_offset(self):
         r'''Anchored expression start offset.
 
-        Return offset expression.
+        Returns offset expression.
         '''
         from experimental.tools import musicexpressiontools
         result = musicexpressiontools.OffsetExpression(
@@ -166,7 +166,7 @@ class AnchoredExpression(Expression):
     def stop_offset(self):
         r'''Anchored expression stop offset.
 
-        Return offset expression.
+        Returns offset expression.
         '''
         from experimental.tools import musicexpressiontools
         result = musicexpressiontools.OffsetExpression(

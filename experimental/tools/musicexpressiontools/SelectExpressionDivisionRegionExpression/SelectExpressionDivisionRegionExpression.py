@@ -33,9 +33,9 @@ class SelectExpressionDivisionRegionExpression(DivisionRegionExpression):
     def evaluate(self):
         r'''Evaluate select expression division region expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned division payload expression when evaluable.
+        Returns start-positioned division payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         expression = self.source_expression.evaluate()

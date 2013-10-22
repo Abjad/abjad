@@ -64,7 +64,7 @@ def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
 
     When `minimum_written_duration` is none set to ``1/128``.
 
-    Return generator.
+    Returns generator.
     '''
     from abjad.tools import durationtools
 

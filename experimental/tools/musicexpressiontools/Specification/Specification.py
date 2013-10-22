@@ -99,7 +99,7 @@ class Specification(AbjadObject):
     def context_name_abbreviations(self):
         r'''Specification context name abbreviations.
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._context_name_abbreviations
 
@@ -107,7 +107,7 @@ class Specification(AbjadObject):
     def context_names(self):
         r'''Specification context names.
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._context_names
 
@@ -115,7 +115,7 @@ class Specification(AbjadObject):
     def fresh_single_context_set_expressions(self):
         r'''Specification fresh single-context set expressions.
 
-        Return timespan inventory.
+        Returns timespan inventory.
         '''
         return self._fresh_single_context_set_expressions
 
@@ -123,7 +123,7 @@ class Specification(AbjadObject):
     def score_model(self):
         r'''Specification score model.
 
-        Return score.
+        Returns score.
         '''
         return self._score_model
 
@@ -131,7 +131,7 @@ class Specification(AbjadObject):
     def score_name(self):
         r'''Specification score name.
 
-        Return string or none.
+        Returns string or none.
         '''
         return self._score_name
 
@@ -139,7 +139,7 @@ class Specification(AbjadObject):
     def score_template(self):
         r'''Specification score template.
 
-        Return score template.
+        Returns score template.
         '''
         return self._score_template
 
@@ -147,7 +147,7 @@ class Specification(AbjadObject):
     def single_context_set_expressions_by_context(self):
         r'''Specification single-context set expressions by context.
 
-        Return context dictionary.
+        Returns context dictionary.
         '''
         return self._single_context_set_expressions_by_context
 
@@ -155,7 +155,7 @@ class Specification(AbjadObject):
     def timespan(self):
         r'''Specification timespan.
 
-        Return timespan.
+        Returns timespan.
         '''
         return self._timespan
 
@@ -188,7 +188,7 @@ class Specification(AbjadObject):
             >>> score_specification.compare_context_names('Voice 1', 'Voice 1')
             0
 
-        Return -1, 0 or 1.
+        Returns -1, 0 or 1.
         '''
         x_depth = self.context_name_to_depth(x)
         y_depth = self.context_name_to_depth(y)
@@ -235,7 +235,7 @@ class Specification(AbjadObject):
             >>> score_specification.context_name_to_depth('Voice 1')
             3
 
-        Return nonzero integer.
+        Returns nonzero integer.
         '''
         assert isinstance(context_name, (str, type(None)))
         if context_name is None:
@@ -251,7 +251,7 @@ class Specification(AbjadObject):
         r'''Get single-context set expressions rooted to specification 
         that govern `context_name`.
 
-        Return list such that highest level (most general) context 
+        Returns list such that highest level (most general) context 
         set expressions appear first.
 
         Lowest level (most specific) context set expressions appear last.

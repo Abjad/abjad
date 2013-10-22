@@ -39,7 +39,7 @@ class LeafSetExpression(Expression):
     def source_expression(self):
         r'''Leaf set expression source expression.
 
-        Return expression.
+        Returns expression.
         '''
         return self._source_expression
 
@@ -47,7 +47,7 @@ class LeafSetExpression(Expression):
     def target_select_expression_inventory(self):
         r'''Leaf set expression target select expression inventory.
 
-        Return select expression inventory.
+        Returns select expression inventory.
         '''
         return self._target_select_expression_inventory
 

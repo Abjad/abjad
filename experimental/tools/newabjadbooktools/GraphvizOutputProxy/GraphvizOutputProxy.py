@@ -33,7 +33,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
         >>> output_proxy = \
         ...     newabjadbooktools.GraphvizOutputProxy(metrical_hierarchy)
 
-    Return output proxy.
+    Returns output proxy.
     '''
 
     ### INITIALIZER ###
@@ -56,7 +56,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_html_document_environment(document_handler)
             ['<img alt="" src="assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.png"/>']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_html_document_environment(
             self,
@@ -72,7 +72,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_latex_document_environment(document_handler)
             ['\\includegraphics{assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.pdf}']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_latex_document_environment(
             self,
@@ -88,7 +88,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_rest_document_environment(document_handler)
             ['.. image:: assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.png']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_rest_document_environment(
             self,

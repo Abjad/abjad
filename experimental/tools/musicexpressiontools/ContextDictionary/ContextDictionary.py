@@ -54,7 +54,7 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
     def score(self):
         r'''Context dictionary score.
 
-        Return score.
+        Returns score.
         '''
         return self._score
 
@@ -62,7 +62,7 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
     def score_name(self):
         r'''Context dictionary score name.
 
-        Return string or none.
+        Returns string or none.
         '''
         for context in iterationtools.iterate_contexts_in_expr(self.score):
             if isinstance(context, scoretools.Score):
@@ -72,6 +72,6 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
     def score_proxy(self):
         r'''Context dictionary score proxy.
 
-        Return context proxy.
+        Returns context proxy.
         '''
         return self[self.score_name]

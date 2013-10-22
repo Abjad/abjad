@@ -13,7 +13,7 @@ class LiteralDivisionRegionExpression(DivisionRegionExpression):
     def evaluate(self):
         r'''Evaluate literal division region expression.
 
-        Return start-positioned division payload expression.
+        Returns start-positioned division payload expression.
         '''
         from experimental.tools import musicexpressiontools
         divisions = [

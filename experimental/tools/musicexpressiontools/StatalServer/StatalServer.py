@@ -16,7 +16,7 @@ class StatalServer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, position=None, reverse=False):
-        r'''Return statal server cursor.
+        r'''Returns statal server cursor.
         '''
         from experimental.tools import musicexpressiontools
         cursor = musicexpressiontools.StatalServerCursor(

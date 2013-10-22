@@ -101,7 +101,7 @@ class SetMethodMixin(AbjadObject):
     def set_aggregate(self, source_expression):
         r'''Set aggregate to `source_expression`.
 
-        Return aggregate set expression.
+        Returns aggregate set expression.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, list), repr(source_expression)
@@ -113,7 +113,7 @@ class SetMethodMixin(AbjadObject):
     def set_articulation(self, source_expression):
         r'''Set articulation to `source_expression`.
 
-        Return articulation set expression.
+        Returns articulation set expression.
         '''
         from experimental.tools import musicexpressiontools
         if isinstance(source_expression, marktools.Articulation):
@@ -132,7 +132,7 @@ class SetMethodMixin(AbjadObject):
     def set_dynamic(self, source_expression):
         r'''Set dynamic to `source_expression`.
 
-        Return dynamic set expression.
+        Returns dynamic set expression.
         '''
         from experimental.tools import musicexpressiontools
         dynamic_mark = contexttools.DynamicMark(source_expression)
@@ -144,7 +144,7 @@ class SetMethodMixin(AbjadObject):
     def set_leaf_color(self, source_expression):
         r'''Set leaf color to `source_expression`.
 
-        Return leaf color set expression.
+        Returns leaf color set expression.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, str), repr(source_expression)
@@ -156,7 +156,7 @@ class SetMethodMixin(AbjadObject):
     def set_mark(self, source_expression):
         r'''Set mark to `source_expression`.
 
-        Return mark set expression.
+        Returns mark set expression.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, marktools.Mark)
@@ -168,7 +168,7 @@ class SetMethodMixin(AbjadObject):
     def set_markup(self, source_expression):
         r'''Set markup to `source_expression`.
 
-        Return markup set expression.
+        Returns markup set expression.
         '''
         from experimental.tools import musicexpressiontools
         source_expression = \
@@ -180,7 +180,7 @@ class SetMethodMixin(AbjadObject):
         node_count=None, level=None, trope=None):
         r'''Set pitches to `source_expression`.
 
-        Return pitch set expression.
+        Returns pitch set expression.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(
@@ -201,7 +201,7 @@ class SetMethodMixin(AbjadObject):
     def set_pitch_class_transform(self, source_expression):
         r'''Set pitch class transform to `source_expression`.
 
-        Return pitch-class transform set expression.
+        Returns pitch-class transform set expression.
         '''
         from experimental.tools import musicexpressiontools
         pitch_class_transform_expression = \
@@ -216,7 +216,7 @@ class SetMethodMixin(AbjadObject):
     def set_register(self, source_expression):
         r'''Set register to `source_expression`.
 
-        Return register set expression.
+        Returns register set expression.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(
@@ -230,7 +230,7 @@ class SetMethodMixin(AbjadObject):
     def set_tempo(self, source_expression):
         r'''Set tempo to `source_expresion`.
 
-        Return tempo set expression.
+        Returns tempo set expression.
         '''
         from experimental.tools import musicexpressiontools
         source_expression = contexttools.TempoMark(source_expression)

@@ -69,7 +69,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     def division_list(self):
         r'''Rhythm-maker rhythm region expression division list.
 
-        Return division list.
+        Returns division list.
         '''
         return self._division_list
 
@@ -78,9 +78,9 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
     def evaluate(self):
         r'''Evaluate rhythm-maker rhythm region expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned rhythm payload expression when evaluable.
+        Returns start-positioned rhythm payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         if not self.division_list:

@@ -119,7 +119,7 @@ class Division(NonreducedFraction, BoundedObject):
     def duration(self):
         r'''Division duration.
 
-        Return duration.
+        Returns duration.
         '''
         return durationtools.Duration(self.numerator, self.denominator)
 
@@ -130,7 +130,7 @@ class Division(NonreducedFraction, BoundedObject):
 
         .. note:: remove in favor of ``self.timespan``.
 
-        Return offset or none.
+        Returns offset or none.
         '''
         return self._start_offset
 
@@ -144,7 +144,7 @@ class Division(NonreducedFraction, BoundedObject):
 
         Defined equal to none when start offset is none.
 
-        Return offset or none.
+        Returns offset or none.
         '''
         if self.start_offset is not None:
             return self.start_offset + self.duration
@@ -154,7 +154,7 @@ class Division(NonreducedFraction, BoundedObject):
     def timespan(self):
         r'''Division timespan.
 
-        Return timespan.
+        Returns timespan.
 
         .. note:: Deprecated. Use get_timespan() instead.
         '''
@@ -166,14 +166,14 @@ class Division(NonreducedFraction, BoundedObject):
     def _get_timespan(self):
         '''Get timespan of division.
 
-        Return timespan.
+        Returns timespan.
         '''
         return timespantools.Timespan(self.start_offset, self.stop_offset)
 
     def get_timespan(self):
         '''Get timespan of division.
 
-        Return timespan.
+        Returns timespan.
         '''
         return timespantools.Timespan(self.start_offset, self.stop_offset)
 

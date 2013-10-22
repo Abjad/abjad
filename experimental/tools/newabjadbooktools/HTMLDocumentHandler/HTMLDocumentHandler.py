@@ -79,7 +79,7 @@ class HTMLDocumentHandler(TextualDocumentHandler):
         '</body>'
         '</html>'
 
-    Return document handler.
+    Returns document handler.
     """
 
     ### PUBLIC PROPERTIES ###

@@ -35,7 +35,7 @@ class RegionExpression(Expression):
     def source_expression(self):
         r'''Region expression source expression.
 
-        Return expression.
+        Returns expression.
         '''
         return self._source_expression
 
@@ -43,7 +43,7 @@ class RegionExpression(Expression):
     def start_offset(self):
         r'''Region expression start offset.
 
-        Return offset.
+        Returns offset.
         '''
         return self._start_offset
 
@@ -51,7 +51,7 @@ class RegionExpression(Expression):
     def total_duration(self):
         r'''Region expression total duration.
 
-        Return duration.
+        Returns duration.
         '''
         return self._total_duration
 
@@ -59,6 +59,6 @@ class RegionExpression(Expression):
     def voice_name(self):
         r'''Region expression voice name.
 
-        Return string.
+        Returns string.
         '''
         return self._voice_name

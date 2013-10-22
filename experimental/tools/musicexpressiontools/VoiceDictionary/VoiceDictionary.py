@@ -47,6 +47,6 @@ class VoiceDictionary(AbjadObject, collections.OrderedDict):
     def score(self):
         r'''Voice dictionary score.
 
-        Return score.
+        Returns score.
         '''
         return self._score

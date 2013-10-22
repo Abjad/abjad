@@ -44,7 +44,7 @@ class LookupMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return lookup expression.
+        Returns lookup expression.
         '''
         from experimental.tools import musicexpressiontools
         lookup = \
@@ -75,7 +75,7 @@ class LookupMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return lookup expression.
+        Returns lookup expression.
         '''
         from experimental.tools import musicexpressiontools
         lookup = musicexpressiontools.RhythmSetExpressionLookupExpression(
@@ -105,7 +105,7 @@ class LookupMethodMixin(AbjadObject):
                 voice_name='Voice 1'
                 )
 
-        Return lookup expression.
+        Returns lookup expression.
         '''
         from experimental.tools import musicexpressiontools
         lookup = \

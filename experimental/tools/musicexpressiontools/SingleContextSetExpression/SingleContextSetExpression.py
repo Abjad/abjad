@@ -99,7 +99,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
         Set copy `fresh` to false.
 
-        Return copy.
+        Returns copy.
         '''
         assert isinstance(root, (str, type(None)))
         new_set_expression = copy.deepcopy(self)
@@ -115,7 +115,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         from explicit composer input.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._fresh
 
@@ -123,7 +123,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     def target_context_name(self):
         r'''Single-context set expression context name.
 
-        Return string or none.
+        Returns string or none.
         '''
         return self._target_context_name
 
@@ -133,7 +133,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     def evaluate(self):
         r'''Evaluate single-context set expression.
 
-        Return timespan-scoped single-context set expression.
+        Returns timespan-scoped single-context set expression.
         '''
         pass
 

@@ -76,7 +76,7 @@ class ScoreSpecification(Specification):
             >>> score_specification
             ScoreSpecification('red', 'orange', 'yellow')
 
-        Return string.
+        Returns string.
         '''
         segment_specification_names = [
             repr(x.specification_name) for x in self.segment_specifications]
@@ -122,7 +122,7 @@ class ScoreSpecification(Specification):
             'Staff 2'
             'Voice 2'
 
-        Return list of strings.
+        Returns list of strings.
         '''
         return Specification.context_names.fget(self)
 
@@ -135,7 +135,7 @@ class ScoreSpecification(Specification):
             >>> z(score_specification.fresh_single_context_set_expressions)
             timespantools.TimespanInventory([])
 
-        Return timespan inventory.
+        Returns timespan inventory.
         '''
         return Specification.fresh_single_context_set_expressions.fget(self)
 
@@ -148,7 +148,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.interface
             ScoreSpecificationInterface()
 
-        Return score specification interface.
+        Returns score specification interface.
         '''
         return self._interface
 
@@ -202,7 +202,7 @@ class ScoreSpecification(Specification):
                     )
                 ])
 
-        Return context dictionary.
+        Returns context dictionary.
         '''
         return self._multiple_context_set_expressions
 
@@ -215,7 +215,7 @@ class ScoreSpecification(Specification):
             >>> z(score_specification.postrhythm_set_expressions)
             musicexpressiontools.ExpressionInventory([])
 
-        Return expression inventory.
+        Returns expression inventory.
         '''
         return self._postrhythm_set_expressions
 
@@ -294,7 +294,7 @@ class ScoreSpecification(Specification):
                     )
                 ])
 
-        Return attribute dictionary.
+        Returns attribute dictionary.
         '''
         return self._region_expressions_by_attribute
 
@@ -307,7 +307,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.score_model
             Score-"Grouped Rhythmic Staves Score"<<1>>
 
-        Return score.
+        Returns score.
         '''
         return Specification.score_model.fget(self)
 
@@ -320,7 +320,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.score_name
             'Grouped Rhythmic Staves Score'
 
-        Return string.
+        Returns string.
         '''
         return Specification.score_name.fget(self)
 
@@ -333,7 +333,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.score_template
             GroupedRhythmicStavesScoreTemplate(staff_count=2)
 
-        Return score template.
+        Returns score template.
         '''
         return Specification.score_template.fget(self)
 
@@ -346,7 +346,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.segment_names
             ['red', 'orange', 'yellow']
 
-        Return list.
+        Returns list.
         '''
         return [segment_specification.segment_name 
             for segment_specification in self.segment_specifications]
@@ -360,7 +360,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.segment_specification_class
             <class 'experimental.tools.musicexpressiontools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
 
-        Return segment specification class.
+        Returns segment specification class.
         '''
         return self._segment_specification_class
 
@@ -378,7 +378,7 @@ class ScoreSpecification(Specification):
             SegmentSpecification('orange')
             SegmentSpecification('yellow')
 
-        Return segment specification inventory.
+        Returns segment specification inventory.
         '''
         return self._segment_specifications
 
@@ -399,7 +399,7 @@ class ScoreSpecification(Specification):
             'Voice 1'
             'Voice 2'
 
-        Return context proxy dictionary.
+        Returns context proxy dictionary.
         '''
         return Specification.single_context_set_expressions_by_context.fget(self)
 
@@ -437,7 +437,7 @@ class ScoreSpecification(Specification):
                     )
                 ])
 
-        Return timespan inventory.
+        Returns timespan inventory.
         '''
         return self._single_context_time_signature_set_expressions
 
@@ -450,7 +450,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.specification_name is None
             True
 
-        Return none.
+        Returns none.
         '''
         return
 
@@ -467,7 +467,7 @@ class ScoreSpecification(Specification):
                     )
                 )
 
-        Return string.
+        Returns string.
         '''
         return Specification.storage_format.fget(self)
 
@@ -487,7 +487,7 @@ class ScoreSpecification(Specification):
             NonreducedFraction(5, 16)
             NonreducedFraction(5, 16)
 
-        Return list.
+        Returns list.
         '''
         if hasattr(self, '_time_signatures'):
             return self._time_signatures
@@ -506,7 +506,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 4))
 
-        Return timespan.
+        Returns timespan.
         '''
         return Specification.timespan.fget(self)
 
@@ -575,7 +575,7 @@ class ScoreSpecification(Specification):
                     )
                 ])
 
-        Return voice dictionary.
+        Returns voice dictionary.
         '''
         return self._voice_data_structures_by_voice
 
@@ -591,7 +591,7 @@ class ScoreSpecification(Specification):
 
         Assign segment `name` or first unused segment number to segment.
 
-        Return segment specification interface.
+        Returns segment specification interface.
         '''
         from experimental.tools import musicexpressiontools
         name = name or str(self._find_first_unused_segment_number())
@@ -629,7 +629,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.get_segment_specification(expression)
             SegmentSpecification('yellow')
 
-        Return segment specification.
+        Returns segment specification.
         '''
         if isinstance(expr, (str, int)):
             return self.segment_specifications[expr]
@@ -659,7 +659,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.get_time_signature_slice(timespan)
             [(2, 8), (3, 8), (4, 8), (2, 16)]
 
-        Return list.
+        Returns list.
         '''
         assert self.time_signatures
         weights = [timespan.start_offset, timespan.duration]
@@ -675,7 +675,7 @@ class ScoreSpecification(Specification):
     def interpret(self):
         r'''Interpret score specification.
 
-        Return Abjad score object.
+        Returns Abjad score object.
         '''
         from experimental.tools import musicexpressiontools
         interpreter = musicexpressiontools.ConcreteInterpreter()

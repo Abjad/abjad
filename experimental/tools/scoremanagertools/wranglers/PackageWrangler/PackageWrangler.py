@@ -51,7 +51,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
         ):
         r'''Interactively gets available packagesystem path.
 
-        Return string.
+        Returns string.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
         while True:

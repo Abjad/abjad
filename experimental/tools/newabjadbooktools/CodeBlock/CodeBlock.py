@@ -120,7 +120,7 @@ class CodeBlock(AbjadObject):
         ...
         MIDIOutputProxy()
 
-    Return code block instance.
+    Returns code block instance.
     '''
 
     ### CLASS VARIABLES ###

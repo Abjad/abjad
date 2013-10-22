@@ -75,7 +75,7 @@ class TextualDocumentHandler(DocumentHandler):
         True
         False
 
-    Return textual document handler.
+    Returns textual document handler.
     """
 
     ### INITIALIZER ###
@@ -102,7 +102,7 @@ class TextualDocumentHandler(DocumentHandler):
             >>> document_handler.asset_output_directory_name
             'assets'
             
-        Return string.
+        Returns string.
         '''
         return 'assets'
 
@@ -115,7 +115,7 @@ class TextualDocumentHandler(DocumentHandler):
             >>> document_handler.document_file_name
             'baz.rst'
 
-        Return string.
+        Returns string.
         '''
         return self._document_file_name
 
@@ -142,7 +142,7 @@ class TextualDocumentHandler(DocumentHandler):
             >>> document_handler.extract_code_block_options(source_line)
             {'hide': False, 'strip_prompt': True}
 
-        Return dictionary.
+        Returns dictionary.
         '''
         options = {}
         line = source_line.strip()
@@ -232,7 +232,7 @@ class TextualDocumentHandler(DocumentHandler):
                 strip_prompt=False
                 )
 
-        Return mapping.
+        Returns mapping.
         """
         in_block = False
         starting_line_number = None

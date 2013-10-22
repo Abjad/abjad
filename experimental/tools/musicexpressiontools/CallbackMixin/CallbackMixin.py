@@ -41,6 +41,6 @@ class CallbackMixin(AbjadObject):
     def callbacks(self):
         r'''Read-only list of callbacks to be applied during evaluation.
 
-        Return callback inventory.
+        Returns callback inventory.
         '''
         return self._callbacks

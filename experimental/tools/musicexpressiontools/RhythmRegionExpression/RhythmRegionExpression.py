@@ -15,7 +15,7 @@ class RhythmRegionExpression(RegionExpression):
         expression source_expression.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             if self.source_expression == expr.source_expression:

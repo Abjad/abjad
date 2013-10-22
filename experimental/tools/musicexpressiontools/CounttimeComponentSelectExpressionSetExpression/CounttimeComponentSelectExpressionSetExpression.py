@@ -31,7 +31,7 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
         r'''Counttime component select expression set expression 
         source expression.
 
-        Return expression.
+        Returns expression.
         '''
         return self._source_expression
 
@@ -40,7 +40,7 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
         r'''Counttime component select expression set expression
         target select expression inventory.
 
-        Return counttime component select expression.
+        Returns counttime component select expression.
         '''
         return self._target_counttime_component_select_expression
 

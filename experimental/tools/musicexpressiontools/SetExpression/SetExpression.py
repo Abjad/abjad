@@ -38,7 +38,7 @@ class SetExpression(Expression):
     def attribute(self):
         r'''Set expression attribute.
 
-        Return string.
+        Returns string.
         '''
         return self._attribute
 
@@ -46,7 +46,7 @@ class SetExpression(Expression):
     def source_expression(self):
         r'''Set expression source expression.
 
-        Return expression.
+        Returns expression.
         '''
         return self._source_expression
 
@@ -54,7 +54,7 @@ class SetExpression(Expression):
     def target_timespan(self):
         r'''Set expression target timespan.
 
-        Return timespan or timespan expression.
+        Returns timespan or timespan expression.
         '''
         return self._target_timespan
 
@@ -62,6 +62,6 @@ class SetExpression(Expression):
     def timespan(self):
         r'''Alias of set expression target timespan.
 
-        Return timespan or timespan expression.
+        Returns timespan or timespan expression.
         '''
         return self.target_timespan

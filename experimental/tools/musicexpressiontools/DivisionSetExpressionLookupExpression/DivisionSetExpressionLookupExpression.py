@@ -59,7 +59,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
     def evaluate(self):
         r'''Evaluate division set expression lookup expression.
 
-        Return payload expression.
+        Returns payload expression.
         '''
         from experimental.tools import musicexpressiontools
         expression = self.offset.evaluate()

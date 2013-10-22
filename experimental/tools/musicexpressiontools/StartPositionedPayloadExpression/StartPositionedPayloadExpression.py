@@ -36,7 +36,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         r'''Keep intersection of start-positioned payload expression 
         and `timespan`.
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         if timespan.contains_timespan_improperly(self):
             result = timespantools.TimespanInventory([self])
@@ -77,7 +77,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def __getitem__(self, expr):
         r'''Start-positioned payload expression get item.
 
-        Return newly constructed start-positioned payload expression
+        Returns newly constructed start-positioned payload expression
         with referenced payload.
         '''
         assert isinstance(expr, (int, slice)), repr(expr)
@@ -98,7 +98,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def __len__(self):
         r'''Start-positioned payload expression length.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.payload)
 
@@ -110,7 +110,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if self.timespan.starts_before_timespan_starts(expr):
             return True
@@ -123,7 +123,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
         Payload expression must be able to fuse.
 
-        Return timespan inventory.
+        Returns timespan inventory.
         '''
         assert self._can_fuse(expr)
         if isinstance(self.payload, containertools.Container):
@@ -148,7 +148,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def __sub__(self, timespan):
         r'''Subtract `timespan` from start-positioned payload expression.
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         if timespan.delays_timespan(self):
             split_offset = durationtools.Offset(timespan.stop_offset)
@@ -249,7 +249,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def elements(self):
         r'''Start-positioned payload expression elements.
 
-        Return tuple or list.
+        Returns tuple or list.
         '''
         return self.payload
 
@@ -259,7 +259,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         are time-contiguous.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if len(self.elements):
             last_element = self.elements[0]
@@ -276,7 +276,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def payload(self):
         r'''Start-postioned payload expression payload.
 
-        Return tuple or list.
+        Returns tuple or list.
         '''
         return self._payload
 
@@ -284,7 +284,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def start_offset(self):
         r'''Start-positioned payload expression start-offset.
 
-        Return offset.
+        Returns offset.
         '''
         return self._start_offset
 
@@ -292,7 +292,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def stop_offset(self):
         r'''Start-positioned payload expression stop-offset.
 
-        Return offset.
+        Returns offset.
         '''
         return self.timespan.stop_offset
 
@@ -300,7 +300,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def timespan(self):
         r'''Start-positioned payload expression timespan.
 
-        Return timespan.
+        Returns timespan.
         '''
         return timespantools.Timespan(self.start_offset, self._stop_offset)
 
@@ -308,7 +308,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def voice_name(self):
         r'''Start-positioned payload expression voice name.
 
-        Return string.
+        Returns string.
         '''
         return self._voice_name
 
@@ -322,7 +322,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         r'''Get start-positioned payload expression elements that satisfy 
         `time_relation`.
 
-        Return newly constructed start-positioned payload expression.
+        Returns newly constructed start-positioned payload expression.
         '''
         key = (repr(self), repr(time_relation))
         if key not in callback_cache or not callback_cache[key]:
@@ -344,7 +344,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def partition_by_ratio(self, ratio):
         r'''Partition start-positioned payload expression by ratio.
 
-        Operate in place and return newly constructed inventory.
+        Operates in place and returns newly constructed inventory.
         '''
         from experimental.tools import musicexpressiontools
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(
@@ -372,7 +372,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         r'''Partition start-positioned payload expression 
         by ratio of durations.
 
-        Operate in place and return newly constructed inventory.
+        Operates in place and returns newly constructed inventory.
         '''
         from experimental.tools import musicexpressiontools
         element_durations = [
@@ -405,7 +405,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def reflect(self):
         r'''Reflect start-positioned payload expression about axis.
 
-        Operate in place and return payload expression.
+        Operates in place and returns payload expression.
         '''
         payload = self.payload.reflect()
         if payload is not None:
@@ -415,7 +415,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def rotate(self, rotation):
         r'''Rotate start-positioned payload expression by `rotation`.
 
-        Operate in place and return payload expression.
+        Operates in place and returns payload expression.
         '''
         payload = self.payload.rotate(rotation)
         self._payload = payload
@@ -424,7 +424,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     def translate(self, translation):
         r'''Translate start-positioned payload expression by `translation`.
 
-        Operate in place and return payload expression.
+        Operates in place and returns payload expression.
         '''
         translation = durationtools.Duration(translation)
         new_start_offset = self.start_offset + translation

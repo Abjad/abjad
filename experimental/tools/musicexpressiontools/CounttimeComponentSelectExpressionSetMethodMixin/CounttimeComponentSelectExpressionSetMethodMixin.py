@@ -35,7 +35,7 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
     def set_dynamic_handler(self, source_expression):
         r'''Set dynamic handler to `source_expression`.
 
-        Return dynamic set expression.
+        Returns dynamic set expression.
         '''
         from experimental.tools import handlertools
         from experimental.tools import musicexpressiontools
@@ -49,7 +49,7 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
     def set_spanner(self, source_expression):
         r'''Set spanner to `source_expression`.
 
-        Return spanner set expression.
+        Returns spanner set expression.
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, spannertools.Spanner)

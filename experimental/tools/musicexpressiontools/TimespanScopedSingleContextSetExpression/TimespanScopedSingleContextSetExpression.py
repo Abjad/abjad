@@ -42,7 +42,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         with same source_expression, target timespan and target context name.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             if self.source_expression == expr.source_expression and \
@@ -56,7 +56,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         target timespan is less than `expr` target_timespan.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if self.target_timespan.starts_before_timespan_starts(expr):
             return True
@@ -68,10 +68,10 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         r'''Logical OR of timespan-scoped single-context set expression 
         and `set_expression`.
 
-        Raise exception when timespan-scoped single-context set expression 
+        Raises exception when timespan-scoped single-context set expression 
         can not fuse with `set_expression`.
 
-        Return timespan inventory.
+        Returns timespan inventory.
         '''
         assert self._can_fuse(set_expression)
         stop_offset = self.target_timespan.stop_offset + \
@@ -84,7 +84,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         r'''Subtract `timespan` from timespan-scoped single-context 
         set expression.
 
-        Operate in place and return timespan-scoped single-context 
+        Operates in place and returns timespan-scoped single-context 
         set expression inventory.
         '''
         from experimental.tools import musicexpressiontools
@@ -109,7 +109,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         r'''True when set expression was generated in response
         to explicit user input. Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._fresh
 
@@ -120,7 +120,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
         .. note:: remove and use ``self.timespan.start_offset`` instead.
 
-        Return offset.
+        Returns offset.
         '''
         return self.target_timespan.start_offset
 
@@ -131,7 +131,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
         .. note:: remove and use ``self.timespan.stop_offset`` instead.
 
-        Return offset.
+        Returns offset.
         '''
         return self.target_timespan.stop_offset
 
@@ -139,7 +139,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     def target_context_name(self):
         r'''Set expression context name.
 
-        Return string.
+        Returns string.
         '''
         return self._target_context_name
 
@@ -149,6 +149,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     def evaluate(self):
         r'''Evaluate timespan-scoped single-context set expression.
 
-        Return region expression.
+        Returns region expression.
         '''
         pass

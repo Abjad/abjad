@@ -17,7 +17,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
         >>> print output_proxy
         LilyPondOutputProxy()
 
-    Return output proxy.
+    Returns output proxy.
     '''
 
     ### INITIALIZER ###
@@ -48,7 +48,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_html_document_environment(document_handler)
             ['<img alt="" src="assets/lilypond-....png"/>']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_html_document_environment(
             self,
@@ -64,7 +64,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_latex_document_environment(document_handler)
             ['\\includegraphics{assets/lilypond-....pdf}']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_latex_document_environment(
             self,
@@ -80,7 +80,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_rest_document_environment(document_handler)
             ['.. image:: assets/lilypond-....png']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_rest_document_environment(
             self,

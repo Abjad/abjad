@@ -42,7 +42,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
             >>> red_segment
             SegmentSpecificationInterface('red')
 
-        Return string.
+        Returns string.
         '''
         return '{}({!r})'.format(self.__class__.__name__, self.segment_name)
 
@@ -61,7 +61,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
                     )
                 )
 
-        Return score specification.
+        Returns score specification.
         '''
         return SpecificationInterface.score_specification.fget(self)
 
@@ -74,7 +74,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
             >>> red_segment.segment_name
             'red'
 
-        Return string.
+        Returns string.
         '''
         return self._segment_name
 
@@ -87,7 +87,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
             >>> red_segment.specification
             SegmentSpecification('red')
 
-        Return segment specification.
+        Returns segment specification.
         '''
         return self._specification
 
@@ -100,7 +100,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
             >>> red_segment.specification_name
             'red'
 
-        Return string.
+        Returns string.
         '''
         return self.segment_name
 
@@ -120,7 +120,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
                 'red'
                 )
 
-        Return string.
+        Returns string.
         '''
         return SpecificationInterface.storage_format.fget(self)
 
@@ -133,7 +133,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
             >>> red_segment.timespan
             TimespanExpression(anchor='red')
 
-        Return timespan expression.
+        Returns timespan expression.
         '''
         from experimental.tools import musicexpressiontools
         timespan = musicexpressiontools.TimespanExpression(

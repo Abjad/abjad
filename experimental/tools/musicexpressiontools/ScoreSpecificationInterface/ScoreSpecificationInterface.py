@@ -47,7 +47,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             >>> score_specification.score_specification
             ScoreSpecification('red', 'orange', 'yellow')
 
-        Return score specification.
+        Returns score specification.
         '''
         return SpecificationInterface.score_specification.fget(self)
 
@@ -60,7 +60,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             >>> score_specification.score_template
             GroupedRhythmicStavesScoreTemplate(staff_count=4)
 
-        Return score template.
+        Returns score template.
         '''
         return self._score_template
 
@@ -73,7 +73,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             >>> score_specification.specification
             ScoreSpecification('red', 'orange', 'yellow')
 
-        Return score specification.
+        Returns score specification.
         '''
         return self._score_specification
 
@@ -86,7 +86,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             >>> score_specification.specification_name is None
             True
 
-        Return none.
+        Returns none.
         '''
         return SpecificationInterface.specification_name.fget(self)
 
@@ -103,7 +103,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
                     )
                 )
 
-        Return string.
+        Returns string.
         '''
         return SpecificationInterface.storage_format.fget(self)
 
@@ -116,7 +116,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             >>> score_specification.timespan
             TimespanExpression()
 
-        Return timespan expression.
+        Returns timespan expression.
         '''
         return SpecificationInterface.timespan.fget(self)
 
@@ -130,7 +130,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             >>> score_specification.append_segment(name='green')
             SegmentSpecificationInterface('green')
 
-        Return segment specification interface.
+        Returns segment specification interface.
         '''
         return self.score_specification.append_segment(name=name)
 
@@ -152,7 +152,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
                     ])
                 )
 
-        Return offset expression.
+        Returns offset expression.
         '''
         offset = self.timespan.start_offset.translate(offset)
         return offset
@@ -160,14 +160,14 @@ class ScoreSpecificationInterface(SpecificationInterface):
     def interpret(self):
         r'''Interpret score specification.
 
-        Return score.
+        Returns score.
         '''
         return self.score_specification.interpret()
 
     def pop(self, n=None):
         r'''Pop segment specification off of score specification.
 
-        Return segment specification.
+        Returns segment specification.
         '''
         if n is None:
             return self.score_specification.segment_specifications.pop()
@@ -189,7 +189,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
                 voice_name='Voice 1'
                 )
 
-        Return segment select expression.
+        Returns segment select expression.
         '''
         from experimental.tools import musicexpressiontools
         select_expression = musicexpressiontools.SegmentSelectExpression(

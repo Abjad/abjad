@@ -36,7 +36,7 @@ class FilesystemAssetManager(ScoreManagerObject):
     def __repr__(self):
         r'''Interpreter representation of filesystem assset manager.
 
-        Return string.
+        Returns string.
         '''
         return '{}({!r})'.format(self.__class__.__name__, self.filesystem_path)
 

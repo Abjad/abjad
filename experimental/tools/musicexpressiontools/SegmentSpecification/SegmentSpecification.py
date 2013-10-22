@@ -66,7 +66,7 @@ class SegmentSpecification(Specification):
             >>> red_segment
             SegmentSpecification('red')
 
-        Return string.
+        Returns string.
         '''
         return '{}({!r})'.format(self.__class__.__name__, self.segment_name)
 
@@ -88,7 +88,7 @@ class SegmentSpecification(Specification):
             'Staff 2'
             'Voice 2'
 
-        Return list.
+        Returns list.
         '''
         return Specification.context_names.fget(self)
 
@@ -126,7 +126,7 @@ class SegmentSpecification(Specification):
                     )
                 ])
 
-        Return timespan inventory.
+        Returns timespan inventory.
         '''
         return Specification.fresh_single_context_set_expressions.fget(self)
 
@@ -139,7 +139,7 @@ class SegmentSpecification(Specification):
             >>> red_segment.score_model
             Score-"Grouped Rhythmic Staves Score"<<1>>
 
-        Return score.
+        Returns score.
         '''
         return Specification.score_model.fget(self)
 
@@ -152,7 +152,7 @@ class SegmentSpecification(Specification):
             >>> red_segment.score_name
             'Grouped Rhythmic Staves Score'
 
-        Return string.
+        Returns string.
         '''
         return Specification.score_name.fget(self)
 
@@ -165,7 +165,7 @@ class SegmentSpecification(Specification):
             >>> red_segment.score_template
             GroupedRhythmicStavesScoreTemplate(staff_count=2)
 
-        Return score template.
+        Returns score template.
         '''
         return Specification.score_template.fget(self)
 
@@ -178,7 +178,7 @@ class SegmentSpecification(Specification):
             >>> red_segment.segment_name
             'red'
 
-        Return string.
+        Returns string.
         '''
         return self._segment_name
 
@@ -199,7 +199,7 @@ class SegmentSpecification(Specification):
             'Voice 1'
             'Voice 2'
 
-        Return context proxy dictionary.
+        Returns context proxy dictionary.
         '''
         return Specification.single_context_set_expressions_by_context.fget(
             self)
@@ -213,7 +213,7 @@ class SegmentSpecification(Specification):
             >>> red_segment.specification_name
             'red'
 
-        Return string.
+        Returns string.
         '''
         return self.segment_name
 
@@ -231,7 +231,7 @@ class SegmentSpecification(Specification):
                 'red'
                 )
 
-        Return string.
+        Returns string.
         '''
         return Specification.storage_format.fget(self)
 
@@ -244,7 +244,7 @@ class SegmentSpecification(Specification):
                 >>> red_segment.time_signatures
                 [NonreducedFraction(2, 8), NonreducedFraction(3, 8), NonreducedFraction(4, 8)]
 
-        Return list.
+        Returns list.
         '''
         return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
 
@@ -257,6 +257,6 @@ class SegmentSpecification(Specification):
             >>> red_segment.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 8))
 
-        Return timespan.
+        Returns timespan.
         '''
         return Specification.timespan.fget(self)

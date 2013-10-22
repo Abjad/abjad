@@ -44,7 +44,7 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
         r'''Read-only reference to score against which segment 
         specification is defined.
 
-        Return score specification.
+        Returns score specification.
         '''
         return self._score_specification
 
@@ -52,7 +52,7 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
     def specification(self):
         r'''Specification interface specification.
 
-        Return specification.
+        Returns specification.
         '''
         return self._specification
 

@@ -15,6 +15,6 @@ class SelectExpressionInventory(ExpressionInventory, SetMethodMixin):
     def score_specification(self):
         r'''Select expression inventory score specification.
 
-        Return score specification.
+        Returns score specification.
         '''
         return self._score_specification

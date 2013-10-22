@@ -118,7 +118,7 @@ class ScorePackageWrangler(PackageWrangler):
         ):
         r'''Interactively makes asset.
 
-        Return none.
+        Returns none.
         '''
         self.session.io_manager.assign_user_input(pending_user_input)
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
@@ -489,7 +489,7 @@ class ScorePackageWrangler(PackageWrangler):
     def repository_add_assets(self, is_interactive=True):
         r'''Adds assets to repository.
 
-        Return none.
+        Returns none.
         '''
         if hasattr(self, 'list_visible_asset_managers'):
             managers = self.list_visible_asset_managers()

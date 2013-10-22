@@ -49,7 +49,7 @@ class MenuEntry(AbjadObject):
     def __repr__(self):
         r'''Interpreter representation of menu entry.
 
-        Return string.
+        Returns string.
         '''
         return '<{}: {!r}>'.format(self.__class__.__name__, self.display_string)
 

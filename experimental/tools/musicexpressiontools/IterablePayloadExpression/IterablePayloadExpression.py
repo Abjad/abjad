@@ -71,7 +71,7 @@ class IterablePayloadExpression(PayloadExpression):
                     )
                 ])
 
-        Return newly constructed payload expression.
+        Returns newly constructed payload expression.
         '''
         from experimental.tools import musicexpressiontools
         if not sequencetools.all_are_numbers(self.payload):
@@ -103,7 +103,7 @@ class IterablePayloadExpression(PayloadExpression):
                 payload=((4, 16),)
                 )
 
-        Return newly constructed payload expression
+        Returns newly constructed payload expression
         with referenced payload.
         '''
         payload = self.payload.__getitem__(expr)
@@ -136,7 +136,7 @@ class IterablePayloadExpression(PayloadExpression):
             48
             5
 
-        Return new object of `durations` type.
+        Returns new object of `durations` type.
         '''
         from abjad.tools import durationtools
         # change to nonreduced fractions
@@ -170,7 +170,7 @@ class IterablePayloadExpression(PayloadExpression):
             >>> payload_expression.elements
             ((4, 16), (2, 16))
 
-        Return tuple.
+        Returns tuple.
         '''
         return self.payload[:]
 
@@ -183,7 +183,7 @@ class IterablePayloadExpression(PayloadExpression):
             >>> payload_expression.payload
             ((4, 16), (2, 16))
 
-        Return tuple or string.
+        Returns tuple or string.
         '''
         return self._payload
 
@@ -198,7 +198,7 @@ class IterablePayloadExpression(PayloadExpression):
                 payload=((4, 16), (2, 16))
                 )
 
-        Return string.
+        Returns string.
         '''
         return PayloadExpression.storage_format.fget(self)
 
@@ -210,7 +210,7 @@ class IterablePayloadExpression(PayloadExpression):
             >>> payload_expression.evaluate()
             IterablePayloadExpression(payload=((4, 16), (2, 16)))
 
-        Return payload expression.
+        Returns payload expression.
         '''
         return PayloadExpression.evaluate(self)
 
@@ -232,7 +232,7 @@ class IterablePayloadExpression(PayloadExpression):
                 payload=((2, 16),)
                 )
 
-        Return list of newly constructed payload expressions.
+        Returns list of newly constructed payload expressions.
         '''
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(
             self.payload, ratio)
@@ -261,7 +261,7 @@ class IterablePayloadExpression(PayloadExpression):
                 payload=((2, 16),)
                 )
 
-        Return newly constructed payload expression.
+        Returns newly constructed payload expression.
         '''
         element_durations = [self._duration_helper(x) for x in self.payload]
         element_tokens = self._durations_to_integers(element_durations)
@@ -292,7 +292,7 @@ class IterablePayloadExpression(PayloadExpression):
                 payload=((2, 16), (4, 16))
                 )
 
-        Return newly constructed payload expression.
+        Returns newly constructed payload expression.
         '''
         assert isinstance(self.payload, tuple), repr(self.payload)
         payload = type(self.payload)(reversed(self.payload))
@@ -318,7 +318,7 @@ class IterablePayloadExpression(PayloadExpression):
                 NonreducedFraction(1, 16))
                 )
 
-        Return newly constructed payload expression.
+        Returns newly constructed payload expression.
         '''
         if not sequencetools.all_are_numbers(self.payload):
             payload = [mathtools.NonreducedFraction(x) for x in self.payload]
@@ -343,7 +343,7 @@ class IterablePayloadExpression(PayloadExpression):
                 payload=((4, 16), (2, 16), (4, 16), (2, 16))
                 )
 
-        Return newly constructed payload expression.
+        Returns newly constructed payload expression.
         '''
         payload = sequencetools.repeat_sequence_to_length(
             self.payload, length)
@@ -364,7 +364,7 @@ class IterablePayloadExpression(PayloadExpression):
                 payload=((2, 16), (4, 16))
                 )
 
-        Return newly constructed payload expression.
+        Returns newly constructed payload expression.
         '''
         payload = sequencetools.rotate_sequence(self.payload, n)
         result = self.new(payload=payload)

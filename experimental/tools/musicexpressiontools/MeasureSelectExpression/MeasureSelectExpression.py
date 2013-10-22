@@ -81,9 +81,9 @@ class MeasureSelectExpression(SelectExpression):
     def evaluate(self):
         r'''Evaluate measure select expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return start-positioned division payload expression when evaluable.
+        Returns start-positioned division payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         anchor_timespan = self._evaluate_anchor_timespan()
@@ -110,7 +110,7 @@ class MeasureSelectExpression(SelectExpression):
         Special definition because time signatures can be evaluated
         without knowing the timespan they occupy.
 
-        Return start-positioned division payload expression.
+        Returns start-positioned division payload expression.
         '''
         from experimental.tools import musicexpressiontools
         time_signatures = self.root_specification.time_signatures[:]

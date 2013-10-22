@@ -18,7 +18,7 @@ class GnuplotOutputProxy(ImageOutputProxy):
 
         >>> output_proxy = newabjadbooktools.GnuplotOutputProxy(bpf)
 
-    Return output proxy.
+    Returns output proxy.
     '''
 
     ### INITIALIZER ###
@@ -41,7 +41,7 @@ class GnuplotOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_html_document_environment(document_handler)
             ['<img alt="" src="assets/gnuplot-14219af1a9b714fc222091106ca83f50.png"/>']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_html_document_environment(
             self,
@@ -57,7 +57,7 @@ class GnuplotOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_latex_document_environment(document_handler)
             ['\\includegraphics{assets/gnuplot-14219af1a9b714fc222091106ca83f50.pdf}']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_latex_document_environment(
             self,
@@ -73,7 +73,7 @@ class GnuplotOutputProxy(ImageOutputProxy):
             >>> output_proxy.handle_rest_document_environment(document_handler)
             ['.. image:: assets/gnuplot-14219af1a9b714fc222091106ca83f50.png']
 
-        Return list.
+        Returns list.
         '''
         return ImageOutputProxy.handle_rest_document_environment(
             self,

@@ -17,7 +17,7 @@ class MIDIOutputProxy(AssetOutputProxy):
         >>> print output_proxy
         MIDIOutputProxy()
 
-    Return output_proxy.
+    Returns output_proxy.
     '''
 
     ### INITIALIZER ###
@@ -69,7 +69,7 @@ class MIDIOutputProxy(AssetOutputProxy):
             '\t<source src="assets/midi-....mid">'
             '</audio>'
 
-        Return list.
+        Returns list.
         '''
         asset_path = self.get_asset_output_relative_file_path(document_handler)
         result = [
@@ -91,7 +91,7 @@ class MIDIOutputProxy(AssetOutputProxy):
             >>> print result
             []
 
-        Return list.
+        Returns list.
         '''
         result = []
         return result
@@ -105,7 +105,7 @@ class MIDIOutputProxy(AssetOutputProxy):
             >>> output_proxy.handle_rest_document_environment(document_handler)
             [':download:`MIDI <assets/midi-....mid>`']
 
-        Return list.
+        Returns list.
         '''
         asset_path = self.get_asset_output_relative_file_path(document_handler)
         result = [

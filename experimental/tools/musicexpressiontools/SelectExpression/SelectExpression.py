@@ -62,7 +62,7 @@ class SelectExpression(
     def time_relation(self):
         r'''Select expression time relation.
 
-        Return time relation or none.
+        Returns time relation or none.
         '''
         return self._time_relation
 
@@ -70,7 +70,7 @@ class SelectExpression(
     def timespan(self):
         r'''Select expression timespan.
 
-        Return timespan expression.
+        Returns timespan expression.
         '''
         from experimental.tools import musicexpressiontools
         timespan = musicexpressiontools.TimespanExpression(anchor=self)
@@ -81,6 +81,6 @@ class SelectExpression(
     def voice_name(self):
         r'''Select expression voice name.
 
-        Return string.
+        Returns string.
         '''
         return self._voice_name

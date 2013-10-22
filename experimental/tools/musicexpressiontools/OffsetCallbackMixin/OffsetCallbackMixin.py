@@ -84,7 +84,7 @@ class OffsetCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return offset expression copy with callback.
+        Returns offset expression copy with callback.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         callback = 'self._scale(offset, {!r})'
@@ -111,7 +111,7 @@ class OffsetCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return offset expression copy with callback.
+        Returns offset expression copy with callback.
         '''
         translation = durationtools.Duration(translation)
         callback = 'self._translate(offset, {!r})'

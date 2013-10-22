@@ -7,7 +7,7 @@ class UserInputGetterPrompt(AbjadObject):
 
     .. note:: add doctests.
 
-    Return user input getter prompt.
+    Returns user input getter prompt.
     '''
 
     ### INITIALIZER ###

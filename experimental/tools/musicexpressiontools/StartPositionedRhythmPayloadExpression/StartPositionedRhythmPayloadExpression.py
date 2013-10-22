@@ -131,7 +131,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> z(result)
             timespantools.TimespanInventory([])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         return StartPositionedPayloadExpression.__and__(self, timespan)
 
@@ -152,7 +152,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Return newly constructed start-positioned rhythm payload expression.
+        Returns newly constructed start-positioned rhythm payload expression.
         '''
         assert isinstance(expr, slice), repr(expr)
         leaves = self.payload.select_leaves().__getitem__(expr)
@@ -180,7 +180,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> len(expression)
             4
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.payload.select_leaves())
 
@@ -246,7 +246,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(1, 2)
                 )
 
-        Return timespan inventory.
+        Returns timespan inventory.
         '''
         return StartPositionedPayloadExpression.__or__(self, expr)
 
@@ -349,7 +349,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     )
                 ])
 
-        Operate in place and return timespan inventory.
+        Operates in place and returns timespan inventory.
         '''
         return StartPositionedPayloadExpression.__sub__(self, timespan)
 
@@ -397,7 +397,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression.elements
             ContiguousSelection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
 
-        Return leaf selection.
+        Returns leaf selection.
         '''
         return self.payload.select_leaves()
 
@@ -411,7 +411,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression.elements_are_time_contiguous
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return StartPositionedPayloadExpression.elements_are_time_contiguous.fget(self)
 
@@ -424,7 +424,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression.payload
             {{c'8, d'8, e'8, f'8}}
 
-        Return container.
+        Returns container.
         '''
         return StartPositionedPayloadExpression.payload.fget(self)
 
@@ -437,7 +437,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression.start_offset
             Offset(0, 1)
 
-        Return offset.
+        Returns offset.
         '''
         return StartPositionedPayloadExpression.start_offset.fget(self)
 
@@ -450,7 +450,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression.stop_offset
             Offset(1, 2)
 
-        Return offset.
+        Returns offset.
         '''
         return StartPositionedPayloadExpression.stop_offset.fget(self)
 
@@ -468,7 +468,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Return string.
+        Returns string.
         '''
         return StartPositionedPayloadExpression.storage_format.fget(self)
 
@@ -481,7 +481,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression.timespan
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 2))
 
-        Return timespan.
+        Returns timespan.
         '''
         return StartPositionedPayloadExpression.timespan.fget(self)
 
@@ -494,7 +494,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression.voice_name is None
             True
 
-        Return string.
+        Returns string.
         '''
         return StartPositionedPayloadExpression.voice_name.fget(self)
 
@@ -538,7 +538,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     )
                 ])
 
-        Operate in place and return newly constructed region expression inventory.
+        Operates in place and returns newly constructed region expression inventory.
         '''
         return StartPositionedPayloadExpression.partition_by_ratio(self, ratio)
 
@@ -575,7 +575,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                     )
                 ])
 
-        Operate in place and return newly constructed region 
+        Operates in place and returns newly constructed region 
         expression inventory.
         '''
         return StartPositionedPayloadExpression.partition_by_ratio_of_durations(
@@ -605,7 +605,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return start-positioned rhythm 
+        Operates in place and returns start-positioned rhythm 
         payload expression.
         '''
         for container in iterationtools.iterate_containers_in_expr(self.payload):
@@ -665,7 +665,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return start-positioned rhythm 
+        Operates in place and returns start-positioned rhythm 
         payload expression.
         '''
         if self.timespan.duration < duration:
@@ -732,7 +732,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return start-positioned rhythm 
+        Operates in place and returns start-positioned rhythm 
         payload expression.
         '''
         leaves = datastructuretools.CyclicTuple(self.payload.select_leaves())
@@ -764,7 +764,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return start-positioned rhythm 
+        Operates in place and returns start-positioned rhythm 
         payload expression.
         '''
         stop_offset = durationtools.Offset(stop_offset)
@@ -837,7 +837,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(0, 1)
                 )
 
-        Operate in place and return start-positioned rhythm 
+        Operates in place and returns start-positioned rhythm 
         payload expression.
         '''
         from experimental.tools import musicexpressiontools
@@ -962,6 +962,6 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 start_offset=durationtools.Offset(10, 1)
                 )
 
-        Operate in place and return start-positioned rhythm payload expression.
+        Operates in place and returns start-positioned rhythm payload expression.
         '''
         return StartPositionedPayloadExpression.translate(self, translation)

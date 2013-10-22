@@ -32,7 +32,7 @@ class SegmentIdentifierExpression(AbjadObject):
         r'''True when mandatory and keyword arguments compare equal.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if not isinstance(expr, type(self)):
             return False
@@ -60,6 +60,6 @@ class SegmentIdentifierExpression(AbjadObject):
             >>> segment_identifier_expression.string
             "'red' + 3"
 
-        Return string.
+        Returns string.
         '''
         return self._string

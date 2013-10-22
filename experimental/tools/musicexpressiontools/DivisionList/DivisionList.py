@@ -112,7 +112,7 @@ class DivisionList(BoundedObject):
             >>> left + right
             DivisionList('[1, 16], [2, 16], [3, 16], [4, 16]')
 
-        Return newly constructed division list.
+        Returns newly constructed division list.
         '''
         assert isinstance(expr, type(self)), repr(expr)
         if self.is_right_open and expr.is_left_open:
@@ -125,21 +125,21 @@ class DivisionList(BoundedObject):
     def __getitem__(self, expr):
         r'''Get division list item.
 
-        Return division.
+        Returns division.
         '''
         return self.divisions.__getitem__(expr)
 
     def __len__(self):
         r'''Division list length.
 
-        Return nonnegative integer.
+        Returns nonnegative integer.
         '''
         return len(self.divisions)
 
     def __repr__(self):
         r'''Division list interpreter representation.
 
-        Return string.
+        Returns string.
         '''
         return '{}({!r})'.format(self.__class__.__name__, self._contents_string)
 
@@ -188,7 +188,7 @@ class DivisionList(BoundedObject):
             Division('[3, 16]', start_offset=Offset(9, 4))
             Division('[3, 16]', start_offset=Offset(39, 16))
 
-        Return list.
+        Returns list.
         '''
         return self._divisions
 
@@ -201,7 +201,7 @@ class DivisionList(BoundedObject):
             >>> division_list.duration
             Duration(21, 8)
 
-        Return duration.
+        Returns duration.
         '''
         return sum([division.duration for division in self.divisions])
 
@@ -214,7 +214,7 @@ class DivisionList(BoundedObject):
             >>> division_list.is_left_closed
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return self[0].is_left_closed
 
@@ -227,7 +227,7 @@ class DivisionList(BoundedObject):
             >>> division_list.is_left_open
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self[0].is_left_open
 
@@ -240,7 +240,7 @@ class DivisionList(BoundedObject):
             >>> division_list.is_right_closed
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         return self[-1].is_right_closed
 
@@ -253,7 +253,7 @@ class DivisionList(BoundedObject):
             >>> division_list.is_right_open
             False
 
-        Return boolean.
+        Returns boolean.
         '''
         return self[-1].is_right_open
 
@@ -267,7 +267,7 @@ class DivisionList(BoundedObject):
             >>> division_list.is_well_formed
             True
 
-        Return boolean.
+        Returns boolean.
         '''
         if 1 < len(self) and self[0].is_right_open:
             return False
@@ -297,7 +297,7 @@ class DivisionList(BoundedObject):
             (3, 16)
             (3, 16)
 
-        Return list.
+        Returns list.
         '''
         return [division.pair for division in self]
 
@@ -310,7 +310,7 @@ class DivisionList(BoundedObject):
             >>> division_list.start_offset
             Offset(0, 1)
 
-        Return offset.
+        Returns offset.
         '''
         if self:
             return self[0].start_offset
@@ -324,7 +324,7 @@ class DivisionList(BoundedObject):
             >>> division_list.voice_name
             'Voice 1'
 
-        Return string.
+        Returns string.
         '''
         return self._voice_name
 
@@ -333,7 +333,7 @@ class DivisionList(BoundedObject):
     def new(self, **kwargs):
         r'''Initialize new division list with ``kwargs``.
 
-        Return newly constructed division list.
+        Returns newly constructed division list.
         '''
         positional_argument_dictionary = self._positional_argument_dictionary
         keyword_argument_dictionary = self._keyword_argument_dictionary

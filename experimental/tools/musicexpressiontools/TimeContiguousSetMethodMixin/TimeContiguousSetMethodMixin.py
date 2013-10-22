@@ -87,7 +87,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
                 persist=True
                 )
 
-        Return multiple-context set expression.
+        Returns multiple-context set expression.
         '''
         attribute = 'divisions'
         return self._store_multiple_context_set_expression(
@@ -134,7 +134,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
                 persist=True
                 )
 
-        Return multiple-context set expression.
+        Returns multiple-context set expression.
         '''
         attribute = 'rhythm'
         return self._store_multiple_context_set_expression(
@@ -173,7 +173,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
                 persist=True
                 )
 
-        Return multiple-context set expression.
+        Returns multiple-context set expression.
         '''
         attribute = 'time_signatures'
         return self._store_multiple_context_set_expression(

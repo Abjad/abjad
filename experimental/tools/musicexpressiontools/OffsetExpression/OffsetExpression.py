@@ -64,7 +64,7 @@ class OffsetExpression(
     def edge(self):
         r'''Offset expression edge.
 
-        Return boolean or none.
+        Returns boolean or none.
         '''
         return self._edge
 
@@ -73,9 +73,9 @@ class OffsetExpression(
     def evaluate(self):
         r'''Evaluate offset expression.
 
-        Return none when nonevaluable.
+        Returns none when nonevaluable.
 
-        Return payload expression when evaluable.
+        Returns payload expression when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         edge = self.edge or Left

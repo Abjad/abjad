@@ -27,7 +27,7 @@ class ContextProxy(AbjadObject):
     def single_context_set_expressions_by_attribute(self):
         r'''Context proxy single-context set expressions by attribute.
 
-        Return attribute dictionary.
+        Returns attribute dictionary.
         '''
         return self._single_context_set_expressions_by_attribute
 
@@ -36,6 +36,6 @@ class ContextProxy(AbjadObject):
         r'''Context proxy timespan-scoped
         single-context set expressions by attribute.
 
-        Return attribute dictionary.
+        Returns attribute dictionary.
         '''
         return self._timespan_scoped_single_context_set_expressions_by_attribute

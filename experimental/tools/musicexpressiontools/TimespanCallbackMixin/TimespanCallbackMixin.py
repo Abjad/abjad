@@ -195,7 +195,7 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return tuple of newly constructed timespans with callback.
+        Returns tuple of newly constructed timespans with callback.
         '''
         result = []
         if mathtools.is_positive_integer_equivalent_number(ratio):
@@ -224,7 +224,7 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return copy of timespan expression with callback.
+        Returns copy of timespan expression with callback.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         callback = \
@@ -250,7 +250,7 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return copy of timespan expression with callback.
+        Returns copy of timespan expression with callback.
         '''
         duration = durationtools.Duration(duration)
         callback = \
@@ -277,7 +277,7 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return copy of timespan expression with callback.
+        Returns copy of timespan expression with callback.
         '''
         if start_offset is not None:
             start_offset = durationtools.Offset(start_offset)
@@ -306,7 +306,7 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return copy of timespan expression with callback.
+        Returns copy of timespan expression with callback.
         '''
         callback = \
             'self._translate(original_start_offset, original_stop_offset, {!r})'
@@ -338,7 +338,7 @@ class TimespanCallbackMixin(CallbackMixin):
                     ])
                 )
 
-        Return copy of timespan expression with callback.
+        Returns copy of timespan expression with callback.
         '''
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0

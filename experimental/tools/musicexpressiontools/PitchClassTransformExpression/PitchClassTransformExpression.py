@@ -55,6 +55,6 @@ class PitchClassTransformExpression(PayloadExpression):
     def transform_functions(self):
         r'''Pitch-class transform expression transform functions.
 
-        Return list.
+        Returns list.
         '''
         return self._transform_functions

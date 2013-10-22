@@ -36,6 +36,6 @@ class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
     def statal_server(self):
         r'''Statal server expression statal server.
 
-        Return statal server.
+        Returns statal server.
         '''
         return self._statal_server

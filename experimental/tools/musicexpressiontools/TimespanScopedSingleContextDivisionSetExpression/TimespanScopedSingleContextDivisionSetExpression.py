@@ -54,7 +54,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
         should truncate at segment boundaries.
         Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._truncate
 
@@ -62,7 +62,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
     def voice_name(self):
         r'''Aliased to `target_context_name`.
 
-        Return string.
+        Returns string.
         '''
         return self.target_context_name
 
@@ -71,7 +71,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
     def evaluate(self, voice_name):
         r'''Evaluate timespan-scoped single-context division set expression.
 
-        Return division region expression.
+        Returns division region expression.
         '''
         from experimental.tools import musicexpressiontools
         start_offset = self.target_timespan.start_offset

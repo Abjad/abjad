@@ -28,7 +28,7 @@ class StatalServerCursor(AbjadObject):
     def __call__(self, n=1, level=-1):
         r'''Get manifest payload of next `n` nodes at `level`.
 
-        Return list of arbitrary values.
+        Returns list of arbitrary values.
         '''
         return self._get_manifest_payload_of_next_n_nodes_at_level(
             n, level=level)
@@ -37,7 +37,7 @@ class StatalServerCursor(AbjadObject):
         r'''True `expr` is a statal server cursor and keyword 
         argument values are equal. Otherwise false.
 
-        Return boolean.
+        Returns boolean.
         '''
         if isinstance(expr, type(self)):
             return self._keyword_argument_values == \
@@ -65,7 +65,7 @@ class StatalServerCursor(AbjadObject):
     def position(self):
         r'''Statal server cursor position.
 
-        Return tuple.
+        Returns tuple.
         '''
         return self._position
 
@@ -76,7 +76,7 @@ class StatalServerCursor(AbjadObject):
         False when cursor reads from left to right.
         True when cursor reads from right to left.
 
-        Return boolean.
+        Returns boolean.
         '''
         return self._reverse
 
@@ -84,6 +84,6 @@ class StatalServerCursor(AbjadObject):
     def statal_server(self):
         r'''Statal server cursor statal server.
 
-        Return statal server.
+        Returns statal server.
         '''
         return self._statal_server
