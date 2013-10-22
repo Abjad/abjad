@@ -45,14 +45,22 @@ component. Use the inspector to examine component attributes determined by
 score structure.  Here's how to use ``inspect()`` to get the duration of a
 tupletted note:
 
-::
+<abjad>
+staff = Staff(r"\times 4/5 { c'4 d'4 e'4 g'4 fs'4 }")
+notes = staff.select_leaves()
+note = notes[1]
+note.override.note_head.color = 'red'
+note.override.stem.color = 'red'
+show(staff)
+</abjad>
 
-    >>> tuplet = Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
-    >>> note = tuplet[0]
-    >>> note.written_duration
-    Duration(1, 4)
-    >>> inspect(note).get_duration()
-    Duration(1, 6)
+<abjad>
+note.written_duration
+</abjad>
+
+<abjad>
+inspect(note).get_duration()
+</abjad>
 
 These are the methods available as part of the new inspection interface:
 
@@ -93,11 +101,16 @@ the ``ScoreMutationAgent`` to make structural changes to the component
 or components on which it was called. Here's how to use ``mutate()``
 to split the notes in a staff:
 
-::
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4")
+show(staff)
+</abjad>
 
-    >>> staff = Staff("c'4 d'4 e'4 f'4")
-    >>> mutate(staff).split([Duration(3, 8)])
-    >>> show(staff)
+<abjad>
+leaves = staff.select_leaves()
+result = mutate(leaves).split([Duration(5, 16)], cyclic=True)
+show(staff)
+</abjad>
 
 These are the methods available as part of the new mutation interface:
 
@@ -120,28 +133,81 @@ Selections
 Abjad 2.13 uses a collection of classes implemented in the ``selectiontools``
 package to group together the components output by most functions in the API.
 Container slice operations, for example, now return a selection of components
-instead of a list of components. You can also create your own selections of
-components with the new ``select()`` function that is available when you start
-Abjad.
+instead of a list of components:
 
+<abjad>
+staff = Staff()
+key_signature = contexttools.KeySignatureMark('g', 'major')
+key_signature = key_signature.attach(staff)
+time_signature = contexttools.TimeSignatureMark((2, 4), partial=Duration(1, 8))
+time_signature = time_signature.attach(staff)
+staff.extend("d'8 f'8 a'8 d''8 f''8 gs'4 r8 e'8 gs'8 b'8 e''8 gs''8 a'4")
+articulation = marktools.Articulation('turn')
+articulation = articulation.attach(staff[5])
+show(staff)
+</abjad>
 
-Collections
-^^^^^^^^^^^
+<abjad>
+staff[:4]
+</abjad>
 
-ObjectInventory has been generalized by a collected of five new type collection
-classes: ``TypedCollection``, ``TypedCounter``, ``TypedSet``, ``TypedTuple``,
-``TypedList``.
-
+You can also create your own selections of components with the new ``select()``
+function that is available when you start Abjad.
 
 
 ``pitchtools`` refactoring
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The Abjad 2.13 ``pitchtools`` package has been greatly revised.  The package
+has been reduced from 98 classes to 32 classes.  More than half the 
+functions in the module have been eliminated or reimplemented as class methods.
+``pitchtools`` collection classes like ``PitchClassSet`` and
+``IntervalVector`` have been reimplemented in terms of five new generalized
+collection classes introduced in the ``datastructuretools`` package:
+
+- ``datastructuretools.TypedCounter``
+- ``datastructuretools.TypedFrozenset``
+- ``datastructuretools.TypedList``
+- ``datastructuretools.TypedTuple``
+
+Initialize a numbered pitch-class set like this:
+
+<abjad>
+pitch_numbers = [-2, -1.5, 6, 7, -1.5, 7]
+numbered_pitch_class_set = pitchtools.PitchClassSet(pitch_numbers)
+numbered_pitch_class_set
+</abjad>
+
+Change a numbered pitch-class set to a named pitch-class set like this:
+
+<abjad>
+numbered_pitch_class_set.new(item_class=pitchtools.NamedPitchClass)
+</abjad>
+
+The interfaces of all ``pitchtools`` classes have been made easier to use.
 
 
-Improvements to the docs
-^^^^^^^^^^^^^^^^^^^^^^^^
+Docs
+^^^^
 
+All parts of the docs have been updated for Abjad 2.13.
+
+Some of the new features you'll find:
+
+- Extensive notation examples have been added to the API.
+- LilyPond input code is now visible everywhere in the API.
+  Click any piece of notation to see the LilyPond input code
+  Abjad generated to create the image.
+- Attribute summary tables now appear at the top of each class's API entry.
+- Inheritance indicators now appear to the left of inherited class attributes
+  and link back to the parent class.
+- Static method indicators and class method indicators now accompany
+  static and class methods everywhere in the API.
+- Inheritance diagrams are cleaner and easier to read.
+- All API entries have been edited for clarity and continuity.
+
+Other new features will become apparent as you read through different parts of
+the docs.
 
 
 Other features

@@ -13,17 +13,16 @@ Reduced the number of public classes from 559 to 485.
 
 Added top-level ``inspect()``, ``mutate()`` and ``select()`` functions.
 
-Removed the terms 'prolated' and 'preprolated' from the system.
+Removed the terms `prolated` and `preprolated` from the system.
 Use ``note.duration`` and ``inspect(note).get_duration()`` to work with
 duration attributes.
 
-Changed all occurrences of 'klass' and 'klasses' to 'class' and 'classes' in
-the functions of the API.
+Changed all occurrences of `klass` to `class` in the functions of the API.
 
-Removed the terms 'melodic' and 'harmonic' from the system in reference to the
+Removed the terms `melodic` and `harmonic` from the system in reference to the
 directedness of intervals.
 
-Removed the terms 'chromatic' and 'diatonic' from the system in reference to
+Removed the terms `chromatic` and `diatonic` from the system in reference to
 pitches and pitch classes.
 
 
