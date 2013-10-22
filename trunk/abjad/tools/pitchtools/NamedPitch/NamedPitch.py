@@ -82,9 +82,6 @@ class NamedPitch(Pitch):
     def __copy__(self, *args):
         return type(self)(self)
 
-    # TODO: remove?
-    __deepcopy__ = __copy__
-
     def __eq__(self, arg):
         try:
             arg = type(self)(arg)

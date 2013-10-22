@@ -30,11 +30,13 @@ class NamedInterval(Interval):
             quality_string = args[0].quality_string
             number = args[0].number
         elif len(args) == 1 and isinstance(args[0], str):
-            match = pitchtools.Interval._interval_name_abbreviation_regex.match(args[0])
+            match = \
+                pitchtools.Interval._interval_name_abbreviation_regex.match(
+                args[0])
             if match is None:
-                raise ValueError(
-                    '"%s" does not have the form of a mdi abbreviation.' %
-                    args[0])
+                message = '{!r} does not have the form of a mdi abbreviation.'
+                message = message.format(args[0])
+                raise ValueError(message)
             direction_string, quality_abbreviation, number_string = \
                 match.groups()
             quality_string = self._quality_abbreviation_to_quality_string[
@@ -53,7 +55,8 @@ class NamedInterval(Interval):
     def __add__(self, arg):
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be named interval.' % arg)
+            message = '{} must be named interval.'.format(arg)
+            raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self + arg
         return pitchtools.NamedInterval.from_pitch_carriers(
