@@ -38,10 +38,6 @@ class TimeRelation(AbjadObject):
     Time relations are immutable.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
-
     ### INITIALIZER ###
 
     def __init__(self, inequality):

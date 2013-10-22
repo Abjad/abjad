@@ -20,8 +20,6 @@ class Component(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __metaclass__ = abc.ABCMeta
-
     __slots__ = (
         '_dependent_context_marks',
         '_is_forbidden_to_update', 

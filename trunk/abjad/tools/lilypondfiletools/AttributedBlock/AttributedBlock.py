@@ -7,10 +7,6 @@ class AttributedBlock(list, AbjadObject):
     '''Abjad model of LilyPond input file block with attributes.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
-
     ### INITIALIZER ###
 
     @abc.abstractmethod

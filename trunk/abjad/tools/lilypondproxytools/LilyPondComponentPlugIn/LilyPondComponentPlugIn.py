@@ -8,10 +8,6 @@ class LilyPondComponentPlugIn(AbjadObject):
     '''Shared LilyPond grob proxy and LilyPond context proxy functionality.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
-
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):

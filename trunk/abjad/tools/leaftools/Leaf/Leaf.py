@@ -14,8 +14,6 @@ class Leaf(Component):
 
     ### CLASS VARIABLES ##
 
-    __metaclass__ = abc.ABCMeta
-
     # TODO: see if _grace and _after_grace can be removed
     __slots__ = (
         '_after_grace', 

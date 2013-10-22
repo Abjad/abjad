@@ -7,10 +7,6 @@ class NonattributedBlock(list, AbjadObject):
     r'''Abjad model of LilyPond input file block with no attributes.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
-
     ### INITIALIZER ###
 
     @abc.abstractmethod

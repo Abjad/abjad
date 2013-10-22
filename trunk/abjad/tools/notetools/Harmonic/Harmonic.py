@@ -8,9 +8,7 @@ class Harmonic(AbjadObject):
     Abstract base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = abc.ABCMeta
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

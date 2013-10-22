@@ -30,8 +30,6 @@ class Context(Container):
 
     ### CLASS VARIABLES ###
 
-    __metaclass__ = abc.ABCMeta
-
     __slots__ = (
         '_context_name', 
         '_engraver_consists', 

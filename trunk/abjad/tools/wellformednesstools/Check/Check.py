@@ -6,10 +6,6 @@ from abjad.tools.abctools import AbjadObject
 
 class Check(AbjadObject):
 
-    ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
-
     ### INITIALIZER ###
 
     def __init__(self):

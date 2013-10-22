@@ -31,8 +31,6 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
-    __metaclass__ = abc.ABCMeta
-
     _default_positional_input_arguments = (
         [-1, 4, -2, 3], 
         16,
