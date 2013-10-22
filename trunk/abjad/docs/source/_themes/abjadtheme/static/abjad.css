@@ -413,3 +413,15 @@ div.example {
     box-shadow: 0px 0px 10px #eee;
     }
 
+div.two-column div.toctree-wrapper > ul {
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+    column-count: 2;
+    column-gap: 20px;
+    }
+
+div.two-column div.toctree-wrapper ul li.toctree-l1 {
+    margin-bottom: 1em;
+    }
