@@ -19,7 +19,12 @@ Let's start with the note input like this:
 
 ::
 
-   >>> string = r"\times 2/3 { c'4 d' r } r8 e'4 <fs' a' c''>8 ~ q4 \times 4/5 { r16 g' r b' d'' } df'4 c' ~ c'1"
+   >>> string = r"""
+   ...     \times 2/3 { c'4 d' r } 
+   ...     r8 e'4 <fs' a' c''>8 ~ q4 
+   ...     \times 4/5 { r16 g' r b' d'' } 
+   ...     df'4 c' ~ c'1
+   ...     """
    >>> staff = Staff(string)
    >>> show(staff)
 
@@ -89,3 +94,4 @@ And here's the corrected result:
    >>> show(staff)
 
 .. image:: images/index-4.png
+
