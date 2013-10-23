@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class OmissionIndicator(AbjadObject):
-    '''Indicator of missing chord tones.
+    '''An indicator of missing chord tones.
 
     Value object that can not be chnaged after instantiation.
     '''

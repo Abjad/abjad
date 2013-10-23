@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QualityIndicator(AbjadObject):
-    '''Indicator of chord quality, such as major, minor, dominant,
+    '''An indicator of chord quality, such as major, minor, dominant,
     diminished, etc.
 
     Value object that can not be changed after instantiation.

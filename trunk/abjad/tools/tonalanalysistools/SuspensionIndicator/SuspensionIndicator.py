@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SuspensionIndicator(AbjadObject):
-    '''Indicator of 9-8, 7-6, 4-3, 2-1 and other types of
+    '''An indicator of 9-8, 7-6, 4-3, 2-1 and other types of
     suspension typical of, for example, the Bach chorales.
 
     Value object that can not be changed after instantiation.

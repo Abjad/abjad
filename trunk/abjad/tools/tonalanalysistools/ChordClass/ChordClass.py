@@ -5,7 +5,7 @@ from abjad.tools.pitchtools import PitchClassSet
 
 
 class ChordClass(PitchClassSet):
-    '''Abjad model of tonal chords like G 7, G 6/5, G half-diminished 6/5, etc.
+    '''A tonal chord class such as G 7, G 6/5, G half-diminished 6/5, etc.
 
     Note that notions like G 7 represent an entire *class of* chords because
     there are many different spacings and registrations of a G 7 chord.
@@ -14,8 +14,8 @@ class ChordClass(PitchClassSet):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_bass', 
-        '_quality_indicator', 
+        '_bass',
+        '_quality_indicator',
         '_root',
         )
 

@@ -3,7 +3,7 @@ from abjad.tools.contexttools.Context import Context
 
 
 class Voice(Context):
-    r'''Abjad model of a voice:
+    r'''A musical voice.
 
     ::
 

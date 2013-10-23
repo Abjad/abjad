@@ -6,7 +6,7 @@ from abjad.tools.pitchtools import IntervalSegment
 
 
 class ChordQualityIndicator(IntervalSegment):
-    r'''Chord quality indicator:
+    r'''A chord quality indicator.
 
     ::
 

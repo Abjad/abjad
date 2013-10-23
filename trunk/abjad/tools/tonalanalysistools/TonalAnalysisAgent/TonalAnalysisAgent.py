@@ -6,7 +6,7 @@ from abjad.tools import sequencetools
 
 
 class TonalAnalysisAgent(object):
-    r'''Tonal analysis interface.
+    r'''A tonal analysis interface.
 
     ..  container:: example
 

@@ -3,8 +3,10 @@ from abjad.tools.abctools import AbjadObject
 
 
 class InversionIndicator(AbjadObject):
-    '''Indicator of the inversion of tertian chords: 5, 63, 64 and
-    also 7, 65, 43, 42, etc. Also root position, first, second, third
+    '''An inversion indicator for tertian chords: 5, 63, 64 and
+    also 7, 65, 43, 42, etc.
+    
+    Also root position, first, second, third
     inversions, etc.
 
     Value object that can not be changed once initialized.

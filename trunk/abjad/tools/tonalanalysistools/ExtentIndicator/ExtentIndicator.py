@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ExtentIndicator(AbjadObject):
-    '''Indicator of chord extent, such as triad, seventh chord, ninth chord,
+    '''A chord extent indicator, such as triad, seventh chord, ninth chord,
     etc.
 
     Value object that can not be changed after instantiation.

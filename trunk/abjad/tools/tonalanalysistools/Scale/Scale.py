@@ -15,7 +15,12 @@ from abjad.tools.pitchtools.PitchClassSegment \
 
 
 class Scale(PitchClassSegment):
-    '''Abjad model of diatonic scale.
+    '''A diatonic scale.
+
+    ::
+
+        >>> scale = tonalanalysistools.Scale('c', 'minor')
+
     '''
 
     ### CLASS VARIABLES ###
