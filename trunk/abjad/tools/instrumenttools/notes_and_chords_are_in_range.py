@@ -5,7 +5,7 @@ from abjad.tools import pitchtools
 from abjad.tools import voicetools
 
 
-def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
+def notes_and_chords_are_in_range(expr):
     '''True when notes and chords in `expr` are 
     within traditional instrument ranges.
 
@@ -17,7 +17,7 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(
+        >>> instrumenttools.notes_and_chords_are_in_range(
         ...     staff)
         True
 
@@ -31,7 +31,7 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(
+        >>> instrumenttools.notes_and_chords_are_in_range(
         ...     staff)
         False
 

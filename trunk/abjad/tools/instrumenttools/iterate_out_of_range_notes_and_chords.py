@@ -4,7 +4,7 @@ from abjad.tools import pitchtools
 from abjad.tools import voicetools
 
 
-def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr):
+def iterate_out_of_range_notes_and_chords(expr):
     '''Iterates notes and chords in `expr` 
     outside traditional instrument ranges:
 
@@ -17,7 +17,7 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
     ::
 
         >>> list(
-        ... instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(
+        ... instrumenttools.iterate_out_of_range_notes_and_chords(
         ... staff))
         [Chord('<d fs>8')]
 

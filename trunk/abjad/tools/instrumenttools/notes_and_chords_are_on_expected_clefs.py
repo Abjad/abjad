@@ -3,7 +3,7 @@ from abjad.tools import contexttools
 from abjad.tools import iterationtools
 
 
-def notes_and_chords_in_expr_are_on_expected_clefs(
+def notes_and_chords_are_on_expected_clefs(
     expr, 
     percussion_clef_is_allowed=True,
     ):
@@ -19,7 +19,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
+        >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
         True
 
     False otherwise:
@@ -34,7 +34,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
+        >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
         False
 
     Allows percussion clef when `percussion_clef_is_allowed` is true:
@@ -62,7 +62,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(
+        >>> instrumenttools.notes_and_chords_are_on_expected_clefs(
         ...     staff, percussion_clef_is_allowed=True)
         True
 
@@ -70,7 +70,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(
+        >>> instrumenttools.notes_and_chords_are_on_expected_clefs(
         ...     staff, percussion_clef_is_allowed=False)
         False
 
