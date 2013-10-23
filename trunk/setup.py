@@ -32,7 +32,7 @@ long_description += ' notation package, you can use Abjad to control'
 long_description += ' the typographic details of all the symbols on the page.'
 
 author = [
-    'Trevor Baca'
+    'Trevor Baca',
     'Josiah Wolf Oberholtzer', 
     'Victor Adan',
     ]
