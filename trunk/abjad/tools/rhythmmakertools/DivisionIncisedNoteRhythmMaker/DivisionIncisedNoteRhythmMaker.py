@@ -136,6 +136,34 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         else:
             return ()
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        r'''Division-incised note rhythm-maker storage format:
+
+        ::
+
+            >>> print maker.storage_format
+            rhythmmakertools.DivisionIncisedNoteRhythmMaker(
+                prefix_talea=[-1],
+                prefix_lengths=[0, 1],
+                suffix_talea=[-1],
+                suffix_lengths=[1],
+                talea_denominator=16,
+                body_ratio=mathtools.Ratio(1, 1),
+                prolation_addenda=[],
+                secondary_divisions=[],
+                decrease_durations_monotonically=True,
+                tie_rests=False,
+                beam_each_cell=False,
+                beam_cells_together=False
+                )
+
+        Returns string.
+        '''
+        return super(DivisionIncisedNoteRhythmMaker, self).storage_format
+
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
@@ -143,7 +171,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[0, 1],
@@ -165,7 +193,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[1],
@@ -206,7 +234,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         Nonreversed output:
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[0, 1],
@@ -246,7 +274,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[1, 0],
@@ -282,27 +310,3 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         '''
         return DivisionIncisedRhythmMaker.reverse(self)
 
-    def storage_format(self):
-        r'''Division-incised note rhythm-maker storage format:
-
-        ::
-
-            >>> z(maker)
-            rhythmmakertools.DivisionIncisedNoteRhythmMaker(
-                prefix_talea=[-1],
-                prefix_lengths=[0, 1],
-                suffix_talea=[-1],
-                suffix_lengths=[1],
-                talea_denominator=16,
-                body_ratio=mathtools.Ratio(1, 1),
-                prolation_addenda=[],
-                secondary_divisions=[],
-                decrease_durations_monotonically=True,
-                tie_rests=False,
-                beam_each_cell=False,
-                beam_cells_together=False
-                )
-
-        Returns string.
-        '''
-        return DivisionIncisedRhythmMaker.storage_format.fget(self)

@@ -77,7 +77,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.TupletMonadRhythmMaker(
                 beam_each_cell=False,
                 beam_cells_together=False
@@ -85,7 +85,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         Returns string.
         '''
-        return RhythmMaker.storage_format(self)
+        return super(TupletMonadRhythmMaker, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -98,7 +98,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.TupletMonadRhythmMaker(
                 beam_each_cell=False,
                 beam_cells_together=False
@@ -128,7 +128,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.TupletMonadRhythmMaker(
                 beam_each_cell=False,
                 beam_cells_together=False

@@ -125,7 +125,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.OutputBurnishedTaleaRhythmMaker(
                 talea=[1, 2, 3],
                 talea_denominator=16,
@@ -158,7 +158,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.OutputBurnishedTaleaRhythmMaker(
                 talea=[1, 2, 3],
                 talea_denominator=16,
@@ -205,7 +205,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.OutputBurnishedTaleaRhythmMaker(
                 talea=[3, 2, 1],
                 talea_denominator=16,

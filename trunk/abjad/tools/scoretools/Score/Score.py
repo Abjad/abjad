@@ -114,7 +114,7 @@ class Score(Context):
 
         ::
 
-            >>> z(markup)
+            >>> print markup.storage_format
             markuptools.Markup((
                 markuptools.MarkupCommand(
                     'italic',

@@ -15,7 +15,10 @@ class TypedList(TypedCollection):
         >>> object_collection.append(False)
         >>> object_collection.append((1, 2, 3))
         >>> object_collection.append(3.14159)
-        >>> z(object_collection)
+
+    ::
+
+        >>> print object_collection.storage_format
         datastructuretools.TypedList([
             23,
             'foo',
@@ -32,7 +35,10 @@ class TypedList(TypedCollection):
         >>> pitch_collection.append("d'")
         >>> pitch_collection.append(('e', 4))
         >>> pitch_collection.append(pitchtools.NamedPitch("f'"))
-        >>> z(pitch_collection)
+
+    ::
+
+        >>> print pitch_collection.storage_format
         datastructuretools.TypedList([
             pitchtools.NamedPitch("c'"),
             pitchtools.NamedPitch("d'"),
@@ -93,7 +99,10 @@ class TypedList(TypedCollection):
             ...     item_class=contexttools.DynamicMark)
             >>> dynamic_collection.append('ppp')
             >>> dynamic_collection += ['p', 'mp', 'mf', 'fff']
-            >>> z(dynamic_collection)
+
+        ::
+
+            >>> print dynamic_collection.storage_format
             datastructuretools.TypedList([
                 contexttools.DynamicMark(
                     'ppp',
@@ -135,7 +144,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> pitch_collection[-1] = 'gqs,'
-            >>> z(pitch_collection)
+            >>> print pitch_collection.storage_format
             datastructuretools.TypedList([
                 pitchtools.NamedPitch("c'"),
                 pitchtools.NamedPitch("d'"),
@@ -148,7 +157,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> pitch_collection[-1:] = ["f'", "g'", "a'", "b'", "c''"]
-            >>> z(pitch_collection)
+            >>> print pitch_collection.storage_format
             datastructuretools.TypedList([
                 pitchtools.NamedPitch("c'"),
                 pitchtools.NamedPitch("d'"),

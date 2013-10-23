@@ -52,7 +52,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[1, 2, 3, 4],
@@ -78,7 +78,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[1, 2, 3, 4],
@@ -99,7 +99,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[1, 2, 3, 4],
@@ -139,7 +139,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[1, 2, 3, 4],
@@ -160,7 +160,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[4, 3, 2, 1],

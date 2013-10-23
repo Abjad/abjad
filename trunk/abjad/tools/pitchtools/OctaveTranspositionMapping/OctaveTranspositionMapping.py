@@ -99,7 +99,7 @@ class OctaveTranspositionMapping(TypedList):
 
         ::
 
-            >>> z(mapping)
+            >>> print mapping.storage_format
             pitchtools.OctaveTranspositionMapping([
                 pitchtools.OctaveTranspositionMappingComponent(
                     pitchtools.PitchRange(

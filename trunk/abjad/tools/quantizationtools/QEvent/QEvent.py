@@ -68,3 +68,11 @@ class QEvent(AbjadObject):
         r'''The offset in milliseconds of the event.
         '''
         return self._offset
+
+    @property
+    def storage_format(self):
+        r'''Storage format of q-event.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr

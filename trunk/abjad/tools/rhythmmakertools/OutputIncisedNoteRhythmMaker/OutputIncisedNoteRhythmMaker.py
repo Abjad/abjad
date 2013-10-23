@@ -52,7 +52,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
                 prefix_talea=[-8, -7],
                 prefix_lengths=[2],
@@ -69,7 +69,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         Returns string.
         '''
-        return OutputIncisedRhythmMaker.storage_format(self)
+        return super(OutputIncisedNoteRhythmMaker, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -82,7 +82,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
                 prefix_talea=[-7],
                 prefix_lengths=[2],
@@ -126,7 +126,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
                 prefix_talea=[-7, -8],
                 prefix_lengths=[2],

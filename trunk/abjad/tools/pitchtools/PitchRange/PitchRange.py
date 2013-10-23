@@ -15,7 +15,7 @@ class PitchRange(AbjadObject):
 
         >>> pitch_range = pitchtools.PitchRange(-12, 36,
         ...     pitch_range_name='four-octave range')
-        >>> z(pitch_range)
+        >>> print pitch_range.storage_format
         pitchtools.PitchRange(
             '[C3, C7]',
             pitch_range_name='four-octave range',

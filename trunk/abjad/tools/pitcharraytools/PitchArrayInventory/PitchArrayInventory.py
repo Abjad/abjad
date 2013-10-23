@@ -25,7 +25,7 @@ class PitchArrayInventory(TypedList):
 
     ::
 
-        >>> z(inventory)
+        >>> print inventory.storage_format
         pitcharraytools.PitchArrayInventory([
             pitcharraytools.PitchArray(),
             pitcharraytools.PitchArray()

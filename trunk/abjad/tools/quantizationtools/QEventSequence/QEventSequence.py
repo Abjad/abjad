@@ -134,7 +134,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence.sequence:
-            ...     z(q_event)
+            ...     print q_event.storage_format
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
@@ -166,6 +166,39 @@ class QEventSequence(AbjadObject):
         Returns tuple.
         '''
         return self._sequence
+
+    @property
+    def storage_format(self):
+        r'''Storage format of Q event sequence.
+
+            >>> print sequence.storage_format
+            quantizationtools.QEventSequence(
+                (quantizationtools.PitchedQEvent(
+                durationtools.Offset(0, 1),
+                (NamedPitch("c'"),),
+                attachments=()
+                ), quantizationtools.SilentQEvent(
+                durationtools.Offset(1000, 1),
+                attachments=()
+                ), quantizationtools.PitchedQEvent(
+                durationtools.Offset(1500, 1),
+                (NamedPitch("c'"),),
+                attachments=()
+                ), quantizationtools.SilentQEvent(
+                durationtools.Offset(2750, 1),
+                attachments=()
+                ), quantizationtools.PitchedQEvent(
+                durationtools.Offset(3250, 1),
+                (NamedPitch("c'"),),
+                attachments=()
+                ), quantizationtools.TerminalQEvent(
+                durationtools.Offset(4000, 1)
+                ))
+                )
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

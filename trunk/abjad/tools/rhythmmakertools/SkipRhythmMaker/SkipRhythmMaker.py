@@ -67,12 +67,12 @@ class SkipRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.SkipRhythmMaker()
 
         Returns string.
         '''
-        return RhythmMaker.storage_format(self)
+        return super(SkipRhythmMaker, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -85,7 +85,7 @@ class SkipRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.SkipRhythmMaker()
 
         ::
@@ -117,7 +117,7 @@ class SkipRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.SkipRhythmMaker()
 
         ::

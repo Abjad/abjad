@@ -11,7 +11,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ::
 
         >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem()
-        >>> z(q_schema_item)
+        >>> print q_schema_item.storage_format
         quantizationtools.MeasurewiseQSchemaItem()
 
     Define a change in tempo:
@@ -21,7 +21,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
         ...     tempo=((1, 4), 60),
         ...     )
-        >>> z(q_schema_item)
+        >>> print q_schema_item.storage_format
         quantizationtools.MeasurewiseQSchemaItem(
             tempo=contexttools.TempoMark(
                 durationtools.Duration(1, 4),
@@ -36,7 +36,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         >>> q_schema_item = quantizationtools.MeasurewiseQSchemaItem(
         ...     time_signature=(6, 8),
         ...     )
-        >>> z(q_schema_item)
+        >>> print q_schema_item.storage_format
         quantizationtools.MeasurewiseQSchemaItem(
             time_signature=contexttools.TimeSignatureMark(
                 (6, 8)

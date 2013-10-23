@@ -89,7 +89,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[1, 1, 2, 4],
                 talea_denominator=16,
@@ -109,7 +109,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         Returns string.
         '''
-        return BurnishedTaleaRhythmMaker.storage_format.fget(self)
+        return super(DivisionBurnishedTaleaRhythmMaker, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -118,7 +118,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[1, 1, 2, 4],
                 talea_denominator=16,
@@ -142,7 +142,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[1, 1, 2],
                 talea_denominator=16,
@@ -187,7 +187,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[1, 1, 2, 4],
                 talea_denominator=16,
@@ -229,7 +229,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[4, 2, 1, 1],
                 talea_denominator=16,

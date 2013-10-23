@@ -61,3 +61,11 @@ class PitchedQEvent(QEvent):
     @property
     def pitches(self):
         return self._pitches
+
+    @property
+    def storage_format(self):
+        r'''Storage format of pitch q-event.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr

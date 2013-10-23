@@ -105,7 +105,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.TaleaRhythmMaker(
                 talea=[5],
                 talea_denominator=16,
@@ -118,7 +118,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
         Returns string.
         '''
-        return DivisionBurnishedTaleaRhythmMaker.storage_format(self)
+        return super(TaleaRhythmMaker, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -131,7 +131,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.TaleaRhythmMaker(
                 talea=[5],
                 talea_denominator=16,
@@ -171,7 +171,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.TaleaRhythmMaker(
                 talea=[5],
                 talea_denominator=16,

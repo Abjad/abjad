@@ -603,7 +603,7 @@ class PayloadTree(AbjadObject):
 
         ::
 
-            >>> z(tree)
+            >>> print tree.storage_format
             datastructuretools.PayloadTree(
                 [[0, 1], [2, 3], [4, 5], [6, 7]]
                 )

@@ -141,7 +141,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.EvenRunRhythmMaker(
                 denominator_multiplier_exponent=1,
                 beam_each_cell=True,
@@ -163,7 +163,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.EvenRunRhythmMaker(
                 denominator_multiplier_exponent=0,
                 beam_each_cell=True,
@@ -199,7 +199,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.EvenRunRhythmMaker(
                 denominator_multiplier_exponent=1,
                 beam_each_cell=True,

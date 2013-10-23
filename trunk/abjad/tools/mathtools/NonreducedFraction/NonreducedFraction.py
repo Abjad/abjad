@@ -495,12 +495,12 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         ::
 
-            >>> z(fraction)
+            >>> print fraction.storage_format
             mathtools.NonreducedFraction(-6, 3)
 
         Returns string.
         '''
-        return AbjadObject.storage_format.fget(self)
+        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

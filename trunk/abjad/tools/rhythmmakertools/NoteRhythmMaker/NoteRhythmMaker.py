@@ -131,7 +131,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=True,
                 forbidden_written_duration=durationtools.Duration(1, 2),
@@ -140,6 +140,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         Returns string.
         '''
+        return super(NoteRhythmMaker, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -152,7 +153,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
                 forbidden_written_duration=durationtools.Duration(1, 2),
@@ -188,7 +189,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
                 forbidden_written_duration=durationtools.Duration(1, 2),

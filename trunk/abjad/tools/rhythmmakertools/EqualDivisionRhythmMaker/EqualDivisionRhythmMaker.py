@@ -121,7 +121,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.EqualDivisionRhythmMaker(
                 leaf_count=4,
                 is_diminution=True,
@@ -144,7 +144,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.EqualDivisionRhythmMaker(
                 leaf_count=4,
                 is_diminution=False,
@@ -181,7 +181,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.EqualDivisionRhythmMaker(
                 leaf_count=4,
                 is_diminution=True,

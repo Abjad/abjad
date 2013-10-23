@@ -15,7 +15,7 @@ class Performer(AbjadObject):
 
     ::
 
-        >>> z(performer)
+        >>> print performer.storage_format
         scoretools.Performer(
             name='flutist',
             instruments=instrumenttools.InstrumentInventory([

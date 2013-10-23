@@ -56,7 +56,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.OutputIncisedRestRhythmMaker(
                 prefix_talea=[7, 8],
                 prefix_lengths=[2],
@@ -86,7 +86,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.OutputIncisedRestRhythmMaker(
                 prefix_talea=[7],
                 prefix_lengths=[2],
@@ -130,7 +130,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.OutputIncisedRestRhythmMaker(
                 prefix_talea=[8, 7],
                 prefix_lengths=[2],

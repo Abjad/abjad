@@ -51,6 +51,14 @@ class QSchemaItem(AbjadObject):
         return self._search_tree
 
     @property
+    def storage_format(self):
+        r'''Storage format of q-schema item.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
+    @property
     def tempo(self):
         r'''The optionally defined tempo mark.
 

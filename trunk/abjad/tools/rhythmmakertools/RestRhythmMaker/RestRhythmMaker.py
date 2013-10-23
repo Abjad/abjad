@@ -121,7 +121,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         ::
 
-            >>> z(maker)
+            >>> print maker.storage_format
             rhythmmakertools.RestRhythmMaker(
                 forbidden_written_duration=durationtools.Duration(1, 4)
                 )
@@ -141,7 +141,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         ::
 
-            >>> z(new_maker)
+            >>> print new_maker.storage_format
             rhythmmakertools.RestRhythmMaker(
                 forbidden_written_duration=durationtools.Duration(1, 4)
                 )
@@ -175,7 +175,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         ::
 
-            >>> z(reversed_maker)
+            >>> print reversed_maker.storage_format
             rhythmmakertools.RestRhythmMaker(
                 forbidden_written_duration=durationtools.Duration(1, 4)
                 )

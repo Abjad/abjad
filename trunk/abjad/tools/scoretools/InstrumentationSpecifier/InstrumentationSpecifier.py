@@ -25,7 +25,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     ::
 
-        >>> z(instrumentation_specifier)
+        >>> print instrumentation_specifier.storage_format
         scoretools.InstrumentationSpecifier(
             performers=scoretools.PerformerInventory([
                 scoretools.Performer(
@@ -127,7 +127,7 @@ class InstrumentationSpecifier(AbjadObject):
 
             ::
 
-                >>> z(instrumentation_specifier.performers)
+                >>> print instrumentation_specifier.performers.storage_format
                 scoretools.PerformerInventory([
                     scoretools.Performer(
                         name='Flute',
