@@ -7,8 +7,8 @@ Version history
 Abjad 2.13
 ----------
 
-Released 2013-10-23. Built from r12,499.  Implements 485 public classes and 465
-functions totaling 198,812 lines.
+Released 2013-10-23. Built from r12,468. Implements 459 public classes and 465
+functions totaling 199,144 lines of code.
 
 
 API refactoring
