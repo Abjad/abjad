@@ -49,7 +49,7 @@ setuptools.setup(
     version=__version__,
     description='Abjad is a Python API for Formalized Score Control.',
     long_description=long_description,
-    author='Trevor Baca, Josiah Oberholtzer, Victor Adan',
+    author='Trevor Baca, Josiah Wolf Oberholtzer, Victor Adan',
     author_email=author_email,
     url='http://www.projectabjad.org',
     keywords=keywords,
