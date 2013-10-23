@@ -1,8 +1,6 @@
 Reference manual
 ================
 
-Wondering how to work with notes, staves or pitches?
-
 Leaves
 ------
 
