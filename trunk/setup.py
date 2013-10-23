@@ -16,6 +16,8 @@ version_file_path = os.path.join(
     )
 execfile(version_file_path, {}, locals())
 
+description = 'Abjad is a Python API for Formalized Score Control.'
+
 long_description = 'Abjad is an interactive software system designed'
 long_description += ' to help composers build up complex pieces of'
 long_description += ' music notation in an iterative and incremental way.'
@@ -28,6 +30,13 @@ long_description += ' your music as you work.'
 long_description += ' And because Abjad wraps the powerful LilyPond music'
 long_description += ' notation package, you can use Abjad to control'
 long_description += ' the typographic details of all the symbols on the page.'
+
+author = [
+    'Trevor Baca'
+    'Josiah Wolf Oberholtzer', 
+    'Victor Adan',
+    ]
+author = ', '.join(author)
 
 author_email = [
     'trevorbaca@gmail.com',
@@ -47,9 +56,9 @@ keywords = ', '.join(keywords)
 setuptools.setup(
     name='Abjad',
     version=__version__,
-    description='Abjad is a Python API for Formalized Score Control.',
+    description=description,
     long_description=long_description,
-    author='Trevor Baca, Josiah Wolf Oberholtzer, Victor Adan',
+    author=author,
     author_email=author_email,
     url='http://www.projectabjad.org',
     keywords=keywords,
@@ -68,8 +77,6 @@ setuptools.setup(
     include_package_data=True,
     entry_points={'console_scripts':[
         'abjad = abjad.tools.iotools.run_abjad:run_abjad',
-        'abjad-book = abjad.tools.abjadbooktools.run_abjad_book:run_abjad_book',
-        'abj-dev = abjad.tools.developerscripttools.run_abjdev:run_abjdev',
         'ajv = abjad.tools.developerscripttools.run_abjdev:run_abjdev',
         ]},
     )
