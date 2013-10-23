@@ -78,7 +78,7 @@ Abjad packaging checklist:
     Commit.
 
  4. Run the following codebase maintenance scripts on the root Abjad directory:
-        find-and-fix-manual-class-package-initializers
+        find-and-fix-manual-class-package-initializers (PORT FORWARD)
         find-all-executables
         find-duplicate-modules-names
         find-import-as-statements
