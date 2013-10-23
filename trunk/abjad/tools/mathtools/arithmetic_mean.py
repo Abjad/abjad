@@ -3,7 +3,7 @@ import fractions
 
 
 def arithmetic_mean(sequence):
-    '''Arithmetic means of `sequence` as an exact integer:
+    '''Arithmetic means of `sequence` as an exact integer.
 
     ::
 

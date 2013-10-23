@@ -2,7 +2,7 @@
 
 
 def yield_all_partitions_of_integer(n):
-    r'''Yield all partitions of positive integer `n` in descending lex order:
+    r'''Yields all partitions of positive integer `n` in descending lex order:
 
     ::
 

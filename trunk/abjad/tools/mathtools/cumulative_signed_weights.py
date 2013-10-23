@@ -2,7 +2,7 @@
 
 
 def cumulative_signed_weights(sequence):
-    r'''Cumulative signed weights of `sequence`:
+    r'''Cumulative signed weights of `sequence`.
 
     ::
 
@@ -10,9 +10,10 @@ def cumulative_signed_weights(sequence):
         >>> mathtools.cumulative_signed_weights(l)
         [1, -3, -6, 10, -15, -21, 28, -36, -45, 55]
 
-    Raise type error when `sequence` is not a list.
+    Raises type error when `sequence` is not a list.
 
-    For cumulative (unsigned) weights use ``mathtools.cumulative_sums([abs(x) for x in l])``.
+    Use ``mathtools.cumulative_sums([abs(x) for x in l])``
+    for cumulative (unsigned) weights 
 
     Returns list.
     '''

@@ -4,10 +4,11 @@ import math
 
 # TODO: replace string-value bigger='left' and even='allowed' keywords with constant-valued keywords
 def partition_integer_into_halves(n, bigger='left', even='allowed'):
-    r'''Write positive integer `n` as the pair ``t = (left, right)``
+    r'''Writes positive integer `n` as the pair ``t = (left, right)``
     such that ``n == left + right``.
 
-    When `n` is odd the greater part of ``t`` corresponds to the value of `bigger`:
+    When `n` is odd the greater part of ``t`` corresponds 
+    to the value of `bigger`:
 
     ::
 
@@ -25,7 +26,8 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
         >>> mathtools.partition_integer_into_halves(8, bigger='right', even='disallowed')
         (3, 5)
 
-    But when `n` is even and ``even = 'allowed'`` then ``left == right`` and `bigger` is ignored:
+    But when `n` is even and ``even = 'allowed'`` 
+    then ``left == right`` and `bigger` is ignored:
 
     ::
 
@@ -43,11 +45,11 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
         >>> mathtools.partition_integer_into_halves(0)
         (0, 0)
 
-    When `n` is ``0`` and ``even = 'disallowed'`` raise partition error.
+    When `n` is ``0`` and ``even = 'disallowed'`` raises partition error.
 
-    Raise type error on noninteger `n`.
+    Raises type error on noninteger `n`.
 
-    Raise value error on negative `n`.
+    Raises value error on negative `n`.
 
     Returns pair of positive integers.
     '''

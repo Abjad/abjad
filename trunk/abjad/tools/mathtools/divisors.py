@@ -3,7 +3,7 @@ import math
 
 
 def divisors(n):
-    r'''Positive divisors of integer `n` in increasing order:
+    r'''Positive divisors of integer `n` in increasing order.
 
     ::
 
@@ -26,7 +26,7 @@ def divisors(n):
         18 [1, 2, 3, 6, 9, 18]
         19 [1, 19]
 
-    Allow nonpositive `n`:
+    Allows nonpositive `n`:
 
     ::
 
@@ -37,18 +37,22 @@ def divisors(n):
 
     ::
 
-        >>> iotools.count_function_calls('mathtools.divisors(100000000)', globals())
+        >>> iotools.count_function_calls(
+        ...     'mathtools.divisors(100000000)', 
+        ...     globals(),
+        ...     )
         50
 
-    Raise type error on noninteger `n`.
+    Raises type error on noninteger `n`.
 
-    Raise not implemented error on ``0``.
+    Raises not implemented error on ``0``.
 
     Returns list of positive integers.
     '''
 
     if not isinstance(n, (int, long)):
-        raise TypeError('"%s" must be integer.' % str(n))
+        message = '{!r} must be integer.'.format(n)
+        raise TypeError(message)
 
     if n == 0:
         raise NotImplementedError('all numbers divide zero evenly.')

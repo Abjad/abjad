@@ -3,7 +3,7 @@ import math
 
 
 def integer_to_base_k_tuple(n, k):
-    '''Nonnegative integer `n` to base-`k` tuple:
+    '''Nonnegative integer `n` to base-`k` tuple.
 
     ::
 

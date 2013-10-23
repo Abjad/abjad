@@ -3,7 +3,7 @@ import numbers
 
 
 def is_negative_integer(expr):
-    '''True when `expr` equals a negative integer:
+    '''True when `expr` equals a negative integer.
 
     ::
 

@@ -3,7 +3,7 @@
 
 def is_assignable_integer(expr):
     r'''True when `expr` is equivalent to an integer and
-    can be written without recourse to ties:
+    can be written without recourse to ties.
 
     ::
 

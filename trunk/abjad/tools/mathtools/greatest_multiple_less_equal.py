@@ -4,7 +4,7 @@ import numbers
 
 
 def greatest_multiple_less_equal(m, n):
-    r'''Greatest integer multiple of `m` less than or equal to `n`:
+    r'''Greatest integer multiple of `m` less than or equal to `n`.
 
     ::
 
@@ -41,9 +41,9 @@ def greatest_multiple_less_equal(m, n):
         77 80
         84 90
 
-    Raise type error on nonnumeric `m`.
+    Raises type error on nonnumeric `m`.
 
-    Raise type error on nonnumeric `n`.
+    Raises type error on nonnumeric `n`.
 
     Returns nonnegative integer.
     '''

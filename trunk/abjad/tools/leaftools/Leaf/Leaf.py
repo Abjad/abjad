@@ -607,8 +607,6 @@ class Leaf(Component):
 
             Set to positive multiplier or none.
 
-            ..  note:: Attribute will migrate to ``Duration`` in Abjad 2.14.
-
             Returns positive multiplier or none.
             '''
             return self._lilypond_duration_multiplier

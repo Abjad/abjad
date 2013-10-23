@@ -3,7 +3,7 @@ import numbers
 
 
 def is_integer_equivalent_number(expr):
-    '''True when `expr` is a number and `expr` is equivalent to an integer:
+    '''True when `expr` is a number and `expr` is equivalent to an integer.
 
     ::
 

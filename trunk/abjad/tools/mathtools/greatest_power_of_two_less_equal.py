@@ -4,7 +4,7 @@ import numbers
 
 
 def greatest_power_of_two_less_equal(n, i=0):
-    r'''Greatest integer power of two less than or equal to positive `n`:
+    r'''Greatest integer power of two less than or equal to positive `n`.
 
     ::
 
@@ -22,7 +22,8 @@ def greatest_power_of_two_less_equal(n, i=0):
             18 16
             19 16
 
-    Greatest-but-``i`` integer power of ``2`` less than or equal to positive `n`:
+    Greatest-but-``i`` integer power of ``2`` less than or 
+    equal to positive `n`:
 
     ::
 
@@ -40,9 +41,9 @@ def greatest_power_of_two_less_equal(n, i=0):
             18 8
             19 8
 
-    Raise type error on nonnumeric `n`.
+    Raises type error on nonnumeric `n`.
 
-    Raise value error on nonpositive `n`.
+    Raises value error on nonpositive `n`.
 
     Returns positive integer.
     '''

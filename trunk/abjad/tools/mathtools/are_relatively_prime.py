@@ -3,7 +3,7 @@
 
 def are_relatively_prime(expr):
     '''True when `expr` is a sequence comprising zero or more numbers,
-    all of which are relatively prime:
+    all of which are relatively prime.
 
     ::
 
@@ -17,14 +17,14 @@ def are_relatively_prime(expr):
         >>> mathtools.are_relatively_prime([13, 14, 15, 16])
         False
 
-    Note that function returns true when `expr` is an empty sequence:
+    Returns true when `expr` is an empty sequence:
 
     ::
 
         >>> mathtools.are_relatively_prime([])
         True
 
-    Function returns false when `expr` is nonsensical type:
+    Returns false when `expr` is nonsensical type:
 
     ::
 

@@ -2,7 +2,7 @@
 
 
 def remove_powers_of_two(n):
-    r'''Remove powers of ``2`` from the factors of positive integer `n`:
+    r'''Removes powers of ``2`` from the factors of positive integer `n`:
 
     ::
 
@@ -19,9 +19,9 @@ def remove_powers_of_two(n):
             80 5
             90 45
 
-    Raise type error on noninteger `n`.
+    Raises type error on noninteger `n`.
 
-    Raise value error on nonpositive `n`.
+    Raises value error on nonpositive `n`.
 
     Returns positive integer.
     '''

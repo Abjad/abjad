@@ -2,7 +2,7 @@
 
 
 def factors(n):
-    r'''Integer factors of positive integer `n` in increasing order:
+    r'''Integer factors of positive integer `n` in increasing order.
 
     ::
 
@@ -25,16 +25,17 @@ def factors(n):
         18 [1, 2, 3, 3]
         19 [1, 19]
 
-    Raise type error on noninteger `n`.
+    Raises type error on noninteger `n`.
 
-    Raise value error on nonpositive `n`.
+    Raises value error on nonpositive `n`.
 
     Returns list of one or more positive integers.
     '''
     from abjad.tools import mathtools
 
     if not mathtools.is_positive_integer(n):
-        raise TypeError('"%s" must be positive integer.' % str(n))
+        message = '{!r} must be positive integer.'.format(n)
+        raise TypeError(message)
 
     d = 2
     factors = [1]

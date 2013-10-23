@@ -2,18 +2,18 @@
 
 
 def greatest_common_divisor(*integers):
-    '''Calculate greatest common divisor of `integers`:
+    '''Calculates greatest common divisor of `integers`.
 
     ::
 
         >>> mathtools.greatest_common_divisor(84, -94, -144)
         2
 
-    Allow nonpositive input.
+    Allows nonpositive input.
 
-    Raise type error on noninteger input.
+    Raises type error on noninteger input.
 
-    Raise not implemented error when ``0`` is included in input.
+    Raises not implemented error when ``0`` is included in input.
 
     Returns positive integer.
     '''

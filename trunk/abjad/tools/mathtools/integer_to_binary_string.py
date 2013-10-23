@@ -2,7 +2,7 @@
 
 
 def integer_to_binary_string(n):
-    r'''Positive integer `n` to binary string:
+    r'''Positive integer `n` to binary string.
 
     ::
 

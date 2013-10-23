@@ -2,7 +2,7 @@
 
 
 def difference_series(sequence):
-    r'''Difference series of `sequence`:
+    r'''Difference series of `sequence`.
 
     ::
 

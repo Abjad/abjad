@@ -4,7 +4,7 @@ import math
 
 def least_multiple_greater_equal(m, n):
     r'''Returns the least integer multiple of `m`
-    greater than or equal to `n`:
+    greater than or equal to `n`.
 
     ::
 

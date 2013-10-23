@@ -4,7 +4,7 @@ import math
 
 def is_dotted_integer(expr):
     '''True when `expr` is equivalent to a positive integer and
-    can be written with zero or more dots:
+    can be written with zero or more dots.
 
     ::
 

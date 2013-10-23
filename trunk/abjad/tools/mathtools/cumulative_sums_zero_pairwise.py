@@ -2,7 +2,7 @@
 
 
 def cumulative_sums_zero_pairwise(sequence):
-    r'''List pairwise cumulative sums of `sequence` from ``0``:
+    r'''Lists pairwise cumulative sums of `sequence` from ``0``.
 
     ::
 

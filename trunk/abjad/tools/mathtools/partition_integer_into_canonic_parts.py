@@ -2,7 +2,7 @@
 
 
 def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
-    r'''Partition integer `n` into canonic parts.
+    r'''Partitions integer `n` into canonic parts.
 
     Returns all parts positive on positive `n`:
 
@@ -61,7 +61,7 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
 
     Returns tuple with parts that decrease monotonically.
 
-    Raise type error on noninteger `n`.
+    Raises type error on noninteger `n`.
 
     Returns tuple of one or more integers.
     '''

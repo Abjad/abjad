@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 
+# TODO: function should return nonreduced fraction generator instead 
+#       of pair generator.
 def yield_nonreduced_fractions():
-    '''Yield positive nonreduced fractions in Cantor diagonalized order:
+    '''Yields positive nonreduced fractions in Cantor diagonalized order:
 
     ::
 
@@ -26,8 +28,6 @@ def yield_nonreduced_fractions():
         (4, 2)
         (5, 1)
         (6, 1)
-
-    .. note:: function should return nonreduced fraction generator instead of pair generator.
 
     Returns generator.
     '''

@@ -2,35 +2,37 @@
 
 
 def get_shared_numeric_sign(sequence):
-    r'''Return ``1`` when all `sequence` elements are positive:
+    r'''Gets shared numeric sign of elements in `sequence`.
+
+    Returns ``1`` when all `sequence` elements are positive:
 
     ::
 
         >>> mathtools.get_shared_numeric_sign([1, 2, 3])
         1
 
-    Return ``-1`` when all `sequence` elements are negative:
+    Returns ``-1`` when all `sequence` elements are negative:
 
     ::
 
         >>> mathtools.get_shared_numeric_sign([-1, -2, -3])
         -1
 
-    Return ``0`` on empty `sequence`:
+    Returns ``0`` on empty `sequence`:
 
     ::
 
         >>> mathtools.get_shared_numeric_sign([])
         0
 
-    Otherwise return none:
+    Otherwise returns none:
 
     ::
 
         >>> mathtools.get_shared_numeric_sign([1, 2, -3]) is None
         True
 
-    Return ``1``, ``-1``, ``0`` or none.
+    Returns ``1``, ``-1``, ``0`` or none.
     '''
 
     if len(sequence) == 0:

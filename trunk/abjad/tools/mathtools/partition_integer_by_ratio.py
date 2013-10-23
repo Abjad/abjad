@@ -2,28 +2,28 @@
 
 
 def partition_integer_by_ratio(n, ratio):
-    r'''Partition positive integer-equivalent `n` by `ratio`:
+    r'''Partitions positive integer-equivalent `n` by `ratio`.
 
     ::
 
         >>> mathtools.partition_integer_by_ratio(10, [1, 2])
         [3, 7]
 
-    Partition positive integer-equivalent `n` by `ratio` with negative parts:
+    Partitions positive integer-equivalent `n` by `ratio` with negative parts:
 
     ::
 
         >>> mathtools.partition_integer_by_ratio(10, [1, -2])
         [3, -7]
 
-    Partition negative integer-equivalent `n` by `ratio`:
+    Partitions negative integer-equivalent `n` by `ratio`:
 
     ::
 
         >>> mathtools.partition_integer_by_ratio(-10, [1, 2])
         [-3, -7]
 
-    Partition negative integer-equivalent `n` by `ratio` with negative parts:
+    Partitions negative integer-equivalent `n` by `ratio` with negative parts:
 
     ::
 
@@ -32,7 +32,7 @@ def partition_integer_by_ratio(n, ratio):
 
     Returns result with weight equal to absolute value of `n`.
 
-    Raise type error on noninteger `n`.
+    Raises type error on noninteger `n`.
 
     Returns list of integers.
     '''

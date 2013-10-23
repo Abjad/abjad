@@ -3,7 +3,7 @@ import numbers
 
 
 def is_nonnegative_integer(expr):
-    '''True when `expr` equals a nonnegative integer:
+    '''True when `expr` equals a nonnegative integer.
 
     ::
 

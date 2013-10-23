@@ -3,7 +3,7 @@ import fractions
 
 
 def fraction_to_proper_fraction(rational):
-    '''Change `rational` to proper fraction:
+    '''Changes `rational` to proper fraction.
 
     ::
 

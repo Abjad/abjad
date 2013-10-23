@@ -3,7 +3,7 @@ import numbers
 
 
 def integer_equivalent_number_to_integer(number):
-    '''Integer-equivalent `number` to integer:
+    '''Integer-equivalent `number` to integer.
 
     ::
 
@@ -17,7 +17,7 @@ def integer_equivalent_number_to_integer(number):
         >>> mathtools.integer_equivalent_number_to_integer(17.5)
         17.5
 
-    Raise type error on nonnumber input.
+    Raises type error on nonnumber input.
 
     Returns number.
     '''
