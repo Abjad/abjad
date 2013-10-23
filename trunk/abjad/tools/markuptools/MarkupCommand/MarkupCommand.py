@@ -59,8 +59,6 @@ class MarkupCommand(AbjadObject):
         >>> show(note) # doctest: +SKIP
 
     Markup commands are immutable.
-
-    Returns markup command.
     '''
 
     ### CLASS VARIABLES ###
@@ -130,6 +128,14 @@ class MarkupCommand(AbjadObject):
         '''
 
         return ' '.join(self._format_pieces)
+
+    @property
+    def storage_format(self):
+        r'''Storage format of markup command.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
 
     ### PRIVATE METHODS ###
 

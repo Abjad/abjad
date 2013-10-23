@@ -4,6 +4,9 @@ from abjad.tools import mathtools
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
+# TODO: add more initializer examples.
+# TODO: add example of `suppress` keyword.
+# TODO: turn `suppress` into managed attribute.
 class TimeSignatureMark(ContextMark):
     r'''A time signature.
 
@@ -40,11 +43,6 @@ class TimeSignatureMark(ContextMark):
         >>> contexttools.TimeSignatureMark((4, 8), target_context=Score)
         TimeSignatureMark((4, 8), target_context=Score)
 
-    .. note:: add more initializer examples.
-
-    .. note:: add example of `suppress` keyword.
-
-    .. note:: turn `suppress` into managed attribute.
     '''
 
     ### CLASS VARIABLES ###

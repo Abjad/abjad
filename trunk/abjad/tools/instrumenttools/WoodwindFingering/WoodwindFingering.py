@@ -21,8 +21,16 @@ class WoodwindFingering(AbjadObject):
         ...     left_hand=left_hand,
         ...     right_hand=right_hand,
         ...     )
-        >>> woodwind_fingering
-        WoodwindFingering('clarinet', center_column=('one', 'two', 'three', 'five'), left_hand=('R', 'thumb'), right_hand=('e',))
+
+    ::
+
+        >>> print woodwind_fingering.storage_format
+        instrumenttools.WoodwindFingering(
+            'clarinet',
+            center_column=('one', 'two', 'three', 'five'),
+            left_hand=('R', 'thumb'),
+            right_hand=('e',)
+            )
 
     Initialize a WoodwindFingering from another WoodwindFingering:
 
@@ -30,16 +38,27 @@ class WoodwindFingering(AbjadObject):
 
         >>> woodwind_fingering_2 = instrumenttools.WoodwindFingering(
         ...     woodwind_fingering)
-        >>> woodwind_fingering_2
-        WoodwindFingering('clarinet', center_column=('one', 'two', 'three', 'five'), left_hand=('R', 'thumb'), right_hand=('e',))
+        >>> print woodwind_fingering_2.storage_format
+        instrumenttools.WoodwindFingering(
+            'clarinet',
+            center_column=('one', 'two', 'three', 'five'),
+            left_hand=('R', 'thumb'),
+            right_hand=('e',)
+            )
 
     Call a WoodwindFingering to create a woodwind diagram MarkupCommand:
 
     ::
 
         >>> fingering_command = woodwind_fingering()
-        >>> fingering_command
-        MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'five'))), SchemePair(('lh', ('R', 'thumb'))), SchemePair(('rh', ('e',)))]))
+        >>> print fingering_command.storage_format
+        markuptools.MarkupCommand(
+            'woodwind-diagram',
+            schemetools.Scheme('c', 'l', 'a', 'r', 'i', 'n', 'e', 't'),
+            schemetools.Scheme(schemetools.SchemePair('cc', ('one', 'two', 'three', 'five')), 
+                schemetools.SchemePair('lh', ('R', 'thumb')), 
+                schemetools.SchemePair('rh', ('e',)))
+            )
 
     Attach the MarkupCommand to score components, such as a chord
     representing a multiphonic sound:
@@ -48,8 +67,8 @@ class WoodwindFingering(AbjadObject):
 
         >>> markup = markuptools.Markup(fingering_command, direction=Down)
         >>> chord = Chord("<ds' fs''>4")
-        >>> markup.attach(chord)
-        Markup((MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'five'))), SchemePair(('lh', ('R', 'thumb'))), SchemePair(('rh', ('e',)))])),), direction=Down)(<ds' fs''>4)
+        >>> markup = markup.attach(chord)
+        >>> show(chord) # doctest: +SKIP
 
     ..  doctest::
 
@@ -61,17 +80,14 @@ class WoodwindFingering(AbjadObject):
 			                #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
 			        }
 
-    ::
-
-        >>> show(chord) # doctest: +SKIP
-
     Initialize fingerings for eight different woodwind instruments:
 
     ::
 
         >>> instrument_names = [
         ...     'piccolo', 'flute', 'oboe', 'clarinet', 'bass-clarinet',
-        ...     'saxophone', 'bassoon', 'contrabassoon' ]
+        ...     'saxophone', 'bassoon', 'contrabassoon',
+        ...     ]
         >>> for name in instrument_names:
         ...    instrumenttools.WoodwindFingering(name)
         ...
@@ -100,8 +116,8 @@ class WoodwindFingering(AbjadObject):
         ...     schemetools.SchemePair('graphical', False))
         >>> markup = markuptools.Markup(
         ...     [not_graphical, diagram], direction=Down)
-        >>> markup.attach(chord)
-        Markup((MarkupCommand('override', SchemePair(('graphical', False))), MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'four'))), SchemePair(('lh', ('R', 'cis'))), SchemePair(('rh', ('fis',)))]))), direction=Down)(<e' as' gqf''>1)
+        >>> markup = markup.attach(chord)
+        >>> show(chord) # doctest: +SKIP
 
     ..  doctest::
 
@@ -114,10 +130,6 @@ class WoodwindFingering(AbjadObject):
 			                    #'clarinet
 			                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
 		                }
-
-    ::
-
-        >>> show(chord) # doctest: +SKIP
 
     The thickness and size of diagrams can also be changed with overrides:
 
@@ -140,8 +152,8 @@ class WoodwindFingering(AbjadObject):
         ...     'override', schemetools.SchemePair('thickness', .4))
         >>> markup = markuptools.Markup(
         ...     [not_graphical, size, thickness, diagram], direction=Down)
-        >>> markup.attach(chord)
-        Markup((MarkupCommand('override', SchemePair(('graphical', False))), MarkupCommand('override', SchemePair(('size', 0.5))), MarkupCommand('override', SchemePair(('thickness', 0.4))), MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'four'))), SchemePair(('lh', ('R', 'cis'))), SchemePair(('rh', ('fis',)))]))), direction=Down)(<e' as' gqf''>1)
+        >>> markup = markup.attach(chord)
+        >>> show(chord) # doctest: +SKIP
 
     ..  doctest::
 
@@ -158,10 +170,6 @@ class WoodwindFingering(AbjadObject):
 			                    #'clarinet
 			                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
 		                }
-
-    ::
-
-        >>> show(chord) # doctest: +SKIP
 
     Inspired by Mike Solomon's LilyPond woodwind diagrams.
     '''
@@ -294,6 +302,16 @@ class WoodwindFingering(AbjadObject):
             self._instrument_name, quoting="'")
         return markuptools.MarkupCommand(
             'woodwind-diagram', instrument_as_scheme, key_groups_as_scheme)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        r'''Storage format of woodwind fingering.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

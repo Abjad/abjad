@@ -198,3 +198,11 @@ class Scheme(AbjadObject):
         if self._quoting is not None:
             return '#' + self._quoting + self._formatted_value
         return '#%s' % self._formatted_value
+
+    @property
+    def storage_format(self):
+        r'''Scheme storage format.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
