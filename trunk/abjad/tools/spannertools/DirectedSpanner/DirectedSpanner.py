@@ -5,21 +5,21 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class DirectedSpanner(Spanner):
-    r'''Abstract Spanner subclass for spanners which may take an 
-    "up" or "down" indication.
+    r'''Abstract base class for spanners which may take an "up" or "down"
+    indication.
     '''
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(
-        self, 
-        components=[], 
+        self,
+        components=[],
         direction=None,
         overrides=None,
         ):
         Spanner.__init__(
-            self, 
+            self,
             components,
             overrides=overrides,
             )

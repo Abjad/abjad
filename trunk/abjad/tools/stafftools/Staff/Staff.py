@@ -3,7 +3,7 @@ from abjad.tools.contexttools.Context import Context
 
 
 class Staff(Context):
-    r'''Abjad model of a staff:
+    r'''A staff.
 
     ::
 

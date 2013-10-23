@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 # TODO: remove and just use Spanner instead with overrides
 class TextScriptSpanner(Spanner):
-    r'''Abjad text script spanner:
+    r'''A text script spanner.
 
     ::
 

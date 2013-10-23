@@ -5,7 +5,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class GlissandoSpanner(Spanner):
-    r'''Abjad glissando spanner:
+    r'''A glissando spanner.
 
     ::
 

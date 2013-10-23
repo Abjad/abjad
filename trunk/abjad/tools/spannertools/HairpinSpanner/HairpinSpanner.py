@@ -8,7 +8,7 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
 
 
 class HairpinSpanner(DirectedSpanner):
-    r'''Hairpin spanner.
+    r'''A dynamic hairpin spanner.
 
     ..  container:: example
 

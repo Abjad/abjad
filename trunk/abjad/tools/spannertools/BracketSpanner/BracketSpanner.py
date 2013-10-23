@@ -5,7 +5,7 @@ from abjad.tools.spannertools.TextSpanner import TextSpanner
 
 
 class BracketSpanner(TextSpanner):
-    r'''Abjad bracket spanner:
+    r'''A bracket spanner.
 
     ::
 

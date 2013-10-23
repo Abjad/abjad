@@ -3,7 +3,7 @@ from abjad.tools.spannertools.BeamSpanner import BeamSpanner
 
 
 class MultipartBeamSpanner(BeamSpanner):
-    r'''Abjad multipart beam spanner:
+    r'''A multipart beam spanner.
 
     ::
 

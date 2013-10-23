@@ -3,7 +3,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class DynamicTextSpanner(Spanner):
-    r'''Abjad dynamic text spanner:
+    r'''A dynamic text spanner.
 
     ::
 

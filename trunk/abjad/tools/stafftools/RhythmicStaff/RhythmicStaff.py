@@ -3,7 +3,7 @@ from abjad.tools.stafftools.Staff import Staff
 
 
 class RhythmicStaff(Staff):
-    r'''Abjad model of a rhythmic staff:
+    r'''A rhythmic staff.
 
     ::
 

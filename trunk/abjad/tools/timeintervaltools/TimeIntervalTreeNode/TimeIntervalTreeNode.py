@@ -7,7 +7,7 @@ class TimeIntervalTreeNode(AbjadObject):
     r'''A red-black node in an TimeIntervalTree.
 
     Duplicate payloads are supported by maintaining a list of TimeIntervals.
-    
+
     Not composer-safe.
     '''
 
@@ -20,7 +20,7 @@ class TimeIntervalTreeNode(AbjadObject):
         '_left',
         '_parent',
         '_payload',
-        '_red', 
+        '_red',
         '_right',
         )
 
@@ -37,10 +37,10 @@ class TimeIntervalTreeNode(AbjadObject):
         self._right = None
         self._payload = []
         if isinstance(intervals, (list, set, tuple)):
-            assert all(isinstance(interval, timeintervaltools.TimeInterval) 
+            assert all(isinstance(interval, timeintervaltools.TimeInterval)
                 for interval in intervals)
             self.payload.extend(intervals)
-        elif isinstance(intervals, (timeintervaltools.TimeInterval, 
+        elif isinstance(intervals, (timeintervaltools.TimeInterval,
             type(None))):
             self.payload.append(intervals)
         else:
@@ -108,7 +108,7 @@ class TimeIntervalTreeNode(AbjadObject):
     @property
     def payload(self):
         return self._payload
-        
+
     @apply
     def red():
         def fget(self):

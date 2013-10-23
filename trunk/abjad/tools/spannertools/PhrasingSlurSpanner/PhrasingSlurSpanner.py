@@ -5,7 +5,7 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
 
 
 class PhrasingSlurSpanner(DirectedSpanner):
-    r'''Abjad phrasing slur spanner:
+    r'''A phrasing slur spanner.
 
     ::
 

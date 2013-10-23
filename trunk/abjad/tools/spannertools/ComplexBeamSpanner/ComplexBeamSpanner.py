@@ -4,7 +4,7 @@ from abjad.tools.spannertools.BeamSpanner.BeamSpanner import BeamSpanner
 
 
 class ComplexBeamSpanner(BeamSpanner):
-    r'''Abjad complex beam spanner:
+    r'''A complex beam spanner.
 
     ::
 

@@ -3,7 +3,7 @@ from abjad.tools.spannertools.HairpinSpanner import HairpinSpanner
 
 
 class DecrescendoSpanner(HairpinSpanner):
-    r'''Abjad decrescendo spanner that includes rests:
+    r'''A decrescendo spanner that includes rests.
 
     ::
 

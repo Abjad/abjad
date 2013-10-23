@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class TrillSpanner(Spanner):
-    r'''Abjad trill spanner:
+    r'''A trill spanner.
 
     ::
 

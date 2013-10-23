@@ -3,7 +3,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class PianoPedalSpanner(Spanner):
-    r'''Abjad piano pedal spanner:
+    r'''A piano pedal spanner.
 
     ::
 

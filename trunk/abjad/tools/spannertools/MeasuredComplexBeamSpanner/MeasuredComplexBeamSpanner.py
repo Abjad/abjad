@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 
 
 class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
-    r'''Abjad measured complex beam spanner:
+    r'''A measured complex beam spanner.
 
     ::
 

@@ -1,11 +1,11 @@
-# -*- encoding: utf-8 -*-
+#[ -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
-    r'''Abjad durated complex beam spanner:
+    r'''A durated complex beam spanner.
 
     ::
 

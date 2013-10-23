@@ -5,7 +5,7 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
 
 
 class TieSpanner(DirectedSpanner):
-    r'''Abjad tie spanner:
+    r'''A tie spanner.
 
     ::
 

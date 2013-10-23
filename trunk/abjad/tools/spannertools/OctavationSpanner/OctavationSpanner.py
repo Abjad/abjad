@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class OctavationSpanner(Spanner):
-    r'''A octavation spanner.
+    r'''An octavation spanner.
 
     ..  container:: example
 

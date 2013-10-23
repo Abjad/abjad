@@ -5,7 +5,7 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
 
 
 class SlurSpanner(DirectedSpanner):
-    r'''Abjad slur spanner:
+    r'''A slur spanner.
 
     ::
 

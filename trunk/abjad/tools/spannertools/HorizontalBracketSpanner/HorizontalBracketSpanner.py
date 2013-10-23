@@ -3,7 +3,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class HorizontalBracketSpanner(Spanner):
-    r'''Abjad horizontal bracket spanner:
+    r'''A horizontal bracket spanner.
 
     ::
 
