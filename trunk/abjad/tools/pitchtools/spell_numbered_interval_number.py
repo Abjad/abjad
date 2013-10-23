@@ -2,7 +2,10 @@
 from abjad.tools import mathtools
 
 
-def spell_numbered_interval_number(named_interval_number, numbered_interval_number):
+def spell_numbered_interval_number(
+    named_interval_number, 
+    numbered_interval_number,
+    ):
     '''Spell `numbered_interval_number` according to `named_interval_number`:
 
     ::
@@ -15,7 +18,7 @@ def spell_numbered_interval_number(named_interval_number, numbered_interval_numb
     from abjad.tools import pitchtools
 
     if not isinstance(numbered_interval_number, int):
-        raise IntervalError('can not determine diatonic interval from float.')
+        raise TypeError('can not determine diatonic interval from float.')
 
     direction_number = mathtools.sign(numbered_interval_number)
 
@@ -28,7 +31,8 @@ def spell_numbered_interval_number(named_interval_number, numbered_interval_numb
             quality_string = 'augmented'
         if not direction_number == 0:
             named_interval_number *= direction_number
-        named_interval = pitchtools.NamedInterval(quality_string, named_interval_number)
+        named_interval = pitchtools.NamedInterval(
+            quality_string, named_interval_number)
         return named_interval
 
     named_interval_class_number = named_interval_number % 7

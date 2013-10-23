@@ -106,34 +106,58 @@ def test_Container_reverse_07():
     assert inspect(staff).is_well_formed()
 
 
-# TODO: Add well-formedness check for measure contiguity
 def test_Container_reverse_08():
-    r'''Retrograde unable to apply because of measure contiguity.
-    '''
 
     notes = [Note("c'8"), Note("d'8")]
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = Staff([measure] + notes)
     beam = spannertools.BeamSpanner(staff[:])
 
-    r'''
-    \new Staff {
-            \time 1/1
-            c'8 [
-            d'8
-            e'8
-            f'8
-            g'8
-            a'8
-            b'8
-            c''8
-        c'8
-        d'8 ]
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 4/4
+                c'8 [
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8
+            }
+            c'8
+            d'8 ]
+        }
+        '''
+        )
 
-    # TODO: Make MeasureContiguityError raise here #
-    #assert py.test.raises(MeasureContiguityError, 'staff.reverse()')
+    staff.reverse()
+
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            d'8 [
+            c'8
+            {
+                \time 4/4
+                c'8
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ]
+            }
+        }
+        '''
+        )
+
+    assert inspect(staff).is_well_formed()
 
 
 def test_Container_reverse_09():
@@ -141,13 +165,13 @@ def test_Container_reverse_09():
     and with spanners at all levels.
     '''
 
-    m1 = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    m2 = Measure((3, 8), "c'8 d'8 e'8")
-    container = Container([m1, m2])
+    measure_1 = Measure((4, 8), "c'8 d'8 e'8 f'8")
+    measure_2 = Measure((3, 8), "c'8 d'8 e'8")
+    container = Container([measure_1, measure_2])
     pedal = spannertools.PianoPedalSpanner(container)
     trill = spannertools.TrillSpanner(container[:])
-    beam1 = spannertools.BeamSpanner(container[0])
-    beam2 = spannertools.BeamSpanner(container[1])
+    beam_1 = spannertools.BeamSpanner(container[0])
+    beam_2 = spannertools.BeamSpanner(container[1])
     gliss = spannertools.GlissandoSpanner(container.select_leaves())
 
     assert testtools.compare(
@@ -196,13 +220,13 @@ def test_Container_reverse_09():
         '''
         )
 
-    assert container[0] is m2
-    assert container[1] is m1
-    assert len(m2) == 3
-    assert len(m1) == 4
+    assert container[0] is measure_2
+    assert container[1] is measure_1
+    assert len(measure_2) == 3
+    assert len(measure_1) == 4
     assert pedal.components == (container, )
     assert trill.components == tuple(container[:])
-    assert beam1.components == (m1, )
-    assert beam2.components == (m2, )
+    assert beam_1.components == (measure_1, )
+    assert beam_2.components == (measure_2, )
     assert gliss.components == tuple(container.select_leaves())
     assert inspect(container).is_well_formed()

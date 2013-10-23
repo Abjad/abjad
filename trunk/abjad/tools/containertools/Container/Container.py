@@ -385,7 +385,7 @@ class Container(Component):
             assert all(isinstance(x, componenttools.Component) for x in [expr])
             if any(isinstance(x, containertools.GraceContainer) for x in [expr]):
                 message = 'must attach grace container to note or chord.'
-                raise GraceContainerError(message)
+                raise Exception(message)
             old = self[i]
             selection = selectiontools.ContiguousSelection(old)
             spanners_receipt = selection._get_dominant_spanners()
@@ -416,7 +416,7 @@ class Container(Component):
             assert all(isinstance(x, componenttools.Component) for x in expr)
             if any(isinstance(x, containertools.GraceContainer) for x in expr):
                 message = 'must attach grace container to note or chord.'
-                raise GraceContainerError(message)
+                raise Exception(message)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0
@@ -800,7 +800,8 @@ class Container(Component):
                     break
             else:
                 message = 'can not split empty container {!r}.'
-                raise ContainmentError(message.format(bottom))
+                message = message.format(bottom)
+                raise Exception(message)
         # find component to right of split that is also immediate child of 
         # last duration-crossing container
         for component in \

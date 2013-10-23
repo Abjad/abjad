@@ -178,7 +178,7 @@ class Octave(AbjadObject):
             raise TypeError('pitch string must be string.')
         match = re.match('^([a-z]+)(\,*|\'*)$', pitch_name)
         if match is None:
-            raise PitchError('incorrect pitch string format.')
+            raise TypeError('incorrect pitch string format.')
         name, tick_string = match.groups()
         return cls(tick_string)
 

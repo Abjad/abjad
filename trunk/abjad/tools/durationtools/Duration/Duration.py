@@ -296,7 +296,7 @@ class Duration(AbjadObject, fractions.Fraction):
         match = re.match(pattern, duration_string)
         if match is None:
             message = 'incorrect duration string format: {!r}.'
-            raise DurationError(message.format(duration_string))
+            raise TypeError(message.format(duration_string))
         body_string, dots_string = match.groups()
         try:
             body_denominator = int(body_string)
