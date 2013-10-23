@@ -134,7 +134,8 @@ Most of the time you will work with the pitches of a chord.
 But you can get the note heads of a chord, too:
 
 <abjad>
-chord.note_heads
+for note_head in chord.note_heads:
+    note_head
 </abjad>
 
 This is useful when you want to apply LilyPond overrides to note 

@@ -167,8 +167,17 @@ But you can get the note heads of a chord, too:
 
 ::
 
-   >>> chord.note_heads
-   (NoteHead("d'"), NoteHead("ef'"), NoteHead("e'"), NoteHead("a'"), NoteHead("bf'"), NoteHead("df''"), NoteHead("d''"), NoteHead("g''"))
+   >>> for note_head in chord.note_heads:
+   ...     note_head
+   ... 
+   NoteHead("d'")
+   NoteHead("ef'")
+   NoteHead("e'")
+   NoteHead("a'")
+   NoteHead("bf'")
+   NoteHead("df''")
+   NoteHead("d''")
+   NoteHead("g''")
 
 
 This is useful when you want to apply LilyPond overrides to note 
