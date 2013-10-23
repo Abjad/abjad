@@ -68,15 +68,19 @@ class OutputFormat(abctools.AbjadObject):
                             '\n'.join(reformatted))
 
                 else:
-                    for page_number, image_file_name in sorted(
-                        image_dict[image_count].items()):
-                        if page_number in page_range:
-                            image_file_name = \
-                                image_file_name.rpartition('.')[0]
-                            reformatted.append(
-                                self.image_block.format(image_file_name))
-                        else:
-                            os.remove(image_file_name)
+                    try:
+                        for page_number, image_file_name in sorted(
+                            image_dict[image_count].items()):
+                            if page_number in page_range:
+                                image_file_name = \
+                                    image_file_name.rpartition('.')[0]
+                                reformatted.append(
+                                    self.image_block.format(image_file_name))
+                            else:
+                                os.remove(image_file_name)
+                    except KeyError:
+                        print '\nAbjadBookError:\n\n{}'.format(
+                            '\n'.join(reformatted))
 
         return tuple(reformatted)
 
