@@ -1,110 +1,141 @@
 # -*- encoding: utf-8 -*-
 
 
-def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False):
-    r'''Make time relation indicating that `offset` happens before `timespan` starts:
+def offset_happens_before_timespan_starts(
+    timespan=None, 
+    offset=None, 
+    hold=False,
+    ):
+    r'''Makes time relation indicating that `offset` happens 
+    before `timespan` starts.
 
-    ::
+    ..  container:: example
 
-        >>> z(timerelationtools.offset_happens_before_timespan_starts())
-        timerelationtools.OffsetTimespanTimeRelation(
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('offset < timespan.start')
-                ],
-                logical_operator='and'
+        **Example 1.** Makes time relation indicating that `offset` 
+        happens before `timespan` starts:
+
+        ::
+
+            >>> relation = timerelationtools.offset_happens_before_timespan_starts()
+            >>> print relation.storage_format
+            timerelationtools.OffsetTimespanTimeRelation(
+                timerelationtools.CompoundInequality([
+                    timerelationtools.SimpleInequality('offset < timespan.start')
+                    ],
+                    logical_operator='and'
+                    )
                 )
-            )
 
-    Make time relation indicating that offset ``1/2`` happens before `timespan` starts:
+    ..  container:: example
 
-    ::
+        **Example 2.** Makes time relation indicating that offset ``1/2`` 
+        happens before `timespan` starts:
 
-        >>> offset = durationtools.Offset(1, 2)
+        ::
 
-    ::
+            >>> offset = durationtools.Offset(1, 2)
 
-        >>> time_relation = timerelationtools.offset_happens_before_timespan_starts(
-        ...     offset=offset)
+        ::
 
-    ::
+            >>> relation = \
+            ...     timerelationtools.offset_happens_before_timespan_starts(
+            ...     offset=offset)
 
-        >>> z(time_relation)
-        timerelationtools.OffsetTimespanTimeRelation(
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('offset < timespan.start')
-                ],
-                logical_operator='and'
-                ),
-            offset=durationtools.Offset(1, 2)
-            )
+        ::
 
-    Make time relation indicating that `offset` happens before timespan ``[2, 8)`` starts:
-
-    ::
-
-        >>> timespan = timespantools.Timespan(2, 8)
-
-    ::
-
-        >>> time_relation = timerelationtools.offset_happens_before_timespan_starts(
-        ...     timespan=timespan)
-
-    ::
-
-        >>> z(time_relation)
-        timerelationtools.OffsetTimespanTimeRelation(
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('offset < timespan.start')
-                ],
-                logical_operator='and'
-                ),
-            timespan=timespantools.Timespan(
-                start_offset=durationtools.Offset(2, 1),
-                stop_offset=durationtools.Offset(8, 1)
+            >>> print relation.storage_format
+            timerelationtools.OffsetTimespanTimeRelation(
+                timerelationtools.CompoundInequality([
+                    timerelationtools.SimpleInequality('offset < timespan.start')
+                    ],
+                    logical_operator='and'
+                    ),
+                offset=durationtools.Offset(1, 2)
                 )
-            )
 
-    Make time relation indicating that offset ``1/2`` happens before
-    timespan ``[2, 8)`` starts:
+    ..  container:: example
 
-    ::
+        **Example 3.** Makes time relation indicating that `offset` happens 
+        before timespan ``[2, 8)`` starts:
 
-        >>> time_relation = timerelationtools.offset_happens_before_timespan_starts(
-        ...     timespan=timespan, offset=offset, hold=True)
+        ::
 
-    ::
+            >>> timespan = timespantools.Timespan(2, 8)
 
-        >>> z(time_relation)
-        timerelationtools.OffsetTimespanTimeRelation(
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('offset < timespan.start')
-                ],
-                logical_operator='and'
-                ),
-            timespan=timespantools.Timespan(
-                start_offset=durationtools.Offset(2, 1),
-                stop_offset=durationtools.Offset(8, 1)
-                ),
-            offset=durationtools.Offset(1, 2)
-            )
+        ::
 
-    Evaluate time relation indicating that offset ``1/2`` happens before
-    timespan ``[2, 8)`` starts:
+            >>> relation = \
+            ...     timerelationtools.offset_happens_before_timespan_starts(
+            ...     timespan=timespan)
 
-    ::
+        ::
 
-        >>> timerelationtools.offset_happens_before_timespan_starts(
-        ...     timespan=timespan, offset=offset, hold=False)
-        True
+            >>> print relation.storage_format
+            timerelationtools.OffsetTimespanTimeRelation(
+                timerelationtools.CompoundInequality([
+                    timerelationtools.SimpleInequality('offset < timespan.start')
+                    ],
+                    logical_operator='and'
+                    ),
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(2, 1),
+                    stop_offset=durationtools.Offset(8, 1)
+                    )
+                )
+
+    ..  container:: example
+
+        **Example 4.** Makes time relation indicating that offset ``1/2`` 
+        happens before timespan ``[2, 8)`` starts:
+
+        ::
+
+            >>> relation = timerelationtools.offset_happens_before_timespan_starts(
+            ...     timespan=timespan, 
+            ...     offset=offset, 
+            ...     hold=True,
+            ...     )
+
+        ::
+
+            >>> print relation.storage_format
+            timerelationtools.OffsetTimespanTimeRelation(
+                timerelationtools.CompoundInequality([
+                    timerelationtools.SimpleInequality('offset < timespan.start')
+                    ],
+                    logical_operator='and'
+                    ),
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(2, 1),
+                    stop_offset=durationtools.Offset(8, 1)
+                    ),
+                offset=durationtools.Offset(1, 2)
+                )
+
+    ..  container:: example
+
+        **Example 5.** Evaluates time relation indicating that offset ``1/2`` 
+        happens before timespan ``[2, 8)`` starts:
+
+        ::
+
+            >>> timerelationtools.offset_happens_before_timespan_starts(
+            ...     timespan=timespan, 
+            ...     offset=offset, 
+            ...     hold=False,
+            ...     )
+            True
 
     Returns time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 
+    inequality = timerelationtools.CompoundInequality([
+        'offset < timespan.start',
+        ])
+
     time_relation = timerelationtools.OffsetTimespanTimeRelation(
-        timerelationtools.CompoundInequality([
-            'offset < timespan.start',
-            ]),
+        inequality,
         timespan=timespan,
         offset=offset)
 

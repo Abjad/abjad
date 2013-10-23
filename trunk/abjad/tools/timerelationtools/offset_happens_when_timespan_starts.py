@@ -1,12 +1,18 @@
 # -*- encoding: utf-8 -*-
 
 
-def offset_happens_when_timespan_starts(timespan=None, offset=None, hold=False):
-    r'''Make time relation indicating that `offset` happens when `timespan` starts:
+def offset_happens_when_timespan_starts(
+    timespan=None, 
+    offset=None, 
+    hold=False,
+    ):
+    r'''Makes time relation indicating that `offset` happens 
+    when `timespan` starts.
 
     ::
 
-        >>> z(timerelationtools.offset_happens_when_timespan_starts())
+        >>> relation = timerelationtools.offset_happens_when_timespan_starts()
+        >>> print relation.storage_format
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('offset == timespan.start')
@@ -19,10 +25,12 @@ def offset_happens_when_timespan_starts(timespan=None, offset=None, hold=False):
     '''
     from abjad.tools import timerelationtools
 
+    inequality = timerelationtools.CompoundInequality([
+        'offset == timespan.start',
+        ])
+
     time_relation = timerelationtools.OffsetTimespanTimeRelation(
-        timerelationtools.CompoundInequality([
-            'offset == timespan.start',
-            ]),
+        inequality,
         timespan=timespan,
         offset=offset)
 

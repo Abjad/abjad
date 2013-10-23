@@ -122,12 +122,12 @@ class SimpleInequality(AbjadObject):
     def storage_format(self):
         r'''Simple inequality storage format.
 
-            >>> z(simple_inequality)
+            >>> print simple_inequality.storage_format
             timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
 
         Returns string.
         '''
-        return AbjadObject.storage_format.fget(self)
+        return self._tools_package_qualified_indented_repr
 
     @property
     def template(self):

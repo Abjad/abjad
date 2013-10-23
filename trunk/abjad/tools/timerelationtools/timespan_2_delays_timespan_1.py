@@ -2,11 +2,12 @@
 
 
 def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):
-    r'''Make time relation indicating that `timespan_2` delays `timespan_1`:
+    r'''Makes time relation indicating that `timespan_2` delays `timespan_1`.
 
     ::
 
-        >>> z(timerelationtools.timespan_2_delays_timespan_1())
+        >>> relation = timerelationtools.timespan_2_delays_timespan_1()
+        >>> print relation.storage_format
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
@@ -20,13 +21,16 @@ def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     '''
     from abjad.tools import timerelationtools
 
+    inequality = timerelationtools.CompoundInequality([
+        'timespan_2.start_offset <= timespan_1.start_offset',
+        'timespan_1.start_offset < timespan_2.stop_offset',
+        ])
+
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
-        timerelationtools.CompoundInequality([
-            'timespan_2.start_offset <= timespan_1.start_offset',
-            'timespan_1.start_offset < timespan_2.stop_offset',
-            ]),
+        inequality,
         timespan_1=timespan_1,
-        timespan_2=timespan_2)
+        timespan_2=timespan_2,
+        )
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

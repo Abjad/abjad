@@ -1,12 +1,18 @@
 # -*- encoding: utf-8 -*-
 
 
-def timespan_2_stops_before_timespan_1_stops(timespan_1=None, timespan_2=None, hold=False):
-    r'''Make time relation indicating that `timespan_2` happens during `timespan_1`:
+def timespan_2_stops_before_timespan_1_stops(
+    timespan_1=None, 
+    timespan_2=None, 
+    hold=False,
+    ):
+    r'''Makes time relation indicating that `timespan_2` 
+    happens during `timespan_1`.
 
     ::
 
-        >>> z(timerelationtools.timespan_2_stops_before_timespan_1_stops())
+        >>> time_relation = timerelationtools.timespan_2_stops_before_timespan_1_stops()
+        >>> print time_relation.storage_format
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_2.stop_offset < timespan_1.stop_offset')

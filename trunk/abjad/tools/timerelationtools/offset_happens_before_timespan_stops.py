@@ -1,12 +1,18 @@
 # -*- encoding: utf-8 -*-
 
 
-def offset_happens_before_timespan_stops(timespan=None, offset=None, hold=False):
-    r'''Make time relation indicating that `offset` happens before `timespan` stops:
+def offset_happens_before_timespan_stops(
+    timespan=None, 
+    offset=None, 
+    hold=False,
+    ):
+    r'''Makes time relation indicating that `offset` happens 
+    before `timespan` stops.
 
     ::
 
-        >>> z(timerelationtools.offset_happens_before_timespan_stops())
+        >>> relation = timerelationtools.offset_happens_before_timespan_stops()
+        >>> print relation.storage_format
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('offset < timespan.stop')
@@ -19,10 +25,12 @@ def offset_happens_before_timespan_stops(timespan=None, offset=None, hold=False)
     '''
     from abjad.tools import timerelationtools
 
+    inequality = timerelationtools.CompoundInequality([
+        'offset < timespan.stop',
+        ])
+
     time_relation = timerelationtools.OffsetTimespanTimeRelation(
-        timerelationtools.CompoundInequality([
-            'offset < timespan.stop',
-            ]),
+        inequality,
         timespan=timespan,
         offset=offset)
 

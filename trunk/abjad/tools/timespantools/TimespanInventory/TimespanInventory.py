@@ -25,7 +25,7 @@ class TimespanInventory(TypedList):
 
         ::
 
-            >>> z(timespan_inventory_1)
+            >>> print timespan_inventory_1.storage_format
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -55,7 +55,7 @@ class TimespanInventory(TypedList):
 
         ::
 
-            >>> z(timespan_inventory_2)
+            >>> print timespan_inventory_2.storage_format
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -81,7 +81,7 @@ class TimespanInventory(TypedList):
 
         ::
 
-            >>> z(timespan_inventory_3)
+            >>> print timespan_inventory_3.storage_format
             timespantools.TimespanInventory([])
 
     Operations on timespan currently work in place.
@@ -107,7 +107,7 @@ class TimespanInventory(TypedList):
 
         ::
 
-            >>> z(timespan_inventory)
+            >>> print timespan_inventory.storage_format
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
@@ -150,7 +150,7 @@ class TimespanInventory(TypedList):
 
         ::
 
-            >>> z(timespan_inventory)
+            >>> print timespan_inventory.storage_format
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
@@ -494,7 +494,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -519,7 +519,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(5, 1),
@@ -545,7 +545,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(5, 1),
@@ -586,7 +586,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([])
 
         ..  container:: example
@@ -605,7 +605,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -628,7 +628,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -652,7 +652,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(-2, 1),
@@ -675,7 +675,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(-2, 1),
@@ -718,7 +718,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([])
 
         ..  container:: example
@@ -737,7 +737,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -760,7 +760,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -788,7 +788,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(-2, 1),
@@ -819,7 +819,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(-2, 1),
@@ -847,7 +847,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -874,7 +874,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([])
 
         Operates in place and returns timespan inventory.
@@ -1051,7 +1051,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory_1)
+                >>> print timespan_inventory_1.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -1084,7 +1084,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory_2)
+                >>> print timespan_inventory_2.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -1170,7 +1170,7 @@ class TimespanInventory(TypedList):
             ::
 
                 >>> for exploded_inventory in timespan_inventory.explode():
-                ...     z(exploded_inventory)
+                ...     print exploded_inventory.storage_format
                 ...
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
@@ -1236,7 +1236,7 @@ class TimespanInventory(TypedList):
 
                 >>> for exploded_inventory in timespan_inventory.explode(
                 ...     inventory_count=2):
-                ...     z(exploded_inventory)
+                ...     print exploded_inventory.storage_format
                 ...
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
@@ -1300,7 +1300,7 @@ class TimespanInventory(TypedList):
 
                 >>> for exploded_inventory in timespan_inventory.explode(
                 ...     inventory_count=6):
-                ...     z(exploded_inventory)
+                ...     print exploded_inventory.storage_format
                 ...
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
@@ -1476,7 +1476,7 @@ class TimespanInventory(TypedList):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(3, 1),
@@ -1553,7 +1553,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory_1)
+                >>> print timespan_inventory_1.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -1572,7 +1572,7 @@ class TimespanInventory(TypedList):
             ::
 
                 >>> for inventory in timespan_inventory_1.partition():
-                ...     z(inventory)
+                ...     print inventory.storage_format
                 ...
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
@@ -1599,7 +1599,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory_2)
+                >>> print timespan_inventory_2.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -1618,7 +1618,7 @@ class TimespanInventory(TypedList):
             ::
 
                 >>> for inventory in timespan_inventory_2.partition():
-                ...     z(inventory)
+                ...     print inventory.storage_format
                 ...
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
@@ -1646,7 +1646,7 @@ class TimespanInventory(TypedList):
 
                 >>> for inventory in timespan_inventory_1.partition(
                 ...     include_tangent_timespans=True):
-                ...     z(inventory)
+                ...     print inventory.storage_format
                 ...
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
@@ -1707,7 +1707,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -1741,7 +1741,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(20, 1),
@@ -1786,7 +1786,7 @@ class TimespanInventory(TypedList):
 
         ::
 
-            >>> z(timespan_inventory)
+            >>> print timespan_inventory.storage_format
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
@@ -1821,7 +1821,7 @@ class TimespanInventory(TypedList):
 
         ::
 
-            >>> z(timespan_inventory)
+            >>> print timespan_inventory.storage_format
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -1883,7 +1883,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -1917,7 +1917,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -1979,7 +1979,7 @@ class TimespanInventory(TypedList):
             ::
 
                 >>> rounded_inventory = timespan_inventory.round_offsets(3)
-                >>> z(rounded_inventory)
+                >>> print rounded_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2010,7 +2010,7 @@ class TimespanInventory(TypedList):
             ::
 
                 >>> rounded_inventory = timespan_inventory.round_offsets(5)
-                >>> z(rounded_inventory)
+                >>> print rounded_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2044,7 +2044,7 @@ class TimespanInventory(TypedList):
                 ...     5,
                 ...     anchor=Right,
                 ...     )
-                >>> z(rounded_inventory)
+                >>> print rounded_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(-5, 1),
@@ -2079,7 +2079,7 @@ class TimespanInventory(TypedList):
                 ...     anchor=Right,
                 ...     must_be_well_formed=False,
                 ...     )
-                >>> z(rounded_inventory)
+                >>> print rounded_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2129,7 +2129,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2161,7 +2161,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(-3, 1),
@@ -2207,7 +2207,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(left)
+                >>> print left.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2221,7 +2221,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(right)
+                >>> print right.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(4, 1),
@@ -2243,7 +2243,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(left)
+                >>> print left.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2257,7 +2257,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(right)
+                >>> print right.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(6, 1),
@@ -2275,12 +2275,12 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(left)
+                >>> print left.storage_format
                 timespantools.TimespanInventory([])
 
             ::
 
-                >>> z(right)
+                >>> print right.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2358,7 +2358,7 @@ class TimespanInventory(TypedList):
             ::
 
                 >>> for inventory in timespan_inventory.split_at_offsets(offsets):
-                ...     z(inventory)
+                ...     print inventory.storage_format
                 ...
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
@@ -2436,7 +2436,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
@@ -2471,7 +2471,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(-8, 1),
@@ -2519,7 +2519,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(50, 1),
@@ -2565,7 +2565,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(50, 1),
@@ -2600,7 +2600,7 @@ class TimespanInventory(TypedList):
 
             ::
 
-                >>> z(timespan_inventory)
+                >>> print timespan_inventory.storage_format
                 timespantools.TimespanInventory([
                     timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),

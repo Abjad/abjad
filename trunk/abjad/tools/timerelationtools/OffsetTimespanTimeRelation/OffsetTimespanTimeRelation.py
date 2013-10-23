@@ -12,11 +12,14 @@ class OffsetTimespanTimeRelation(TimeRelation):
         >>> offset = Offset(5)
         >>> timespan = timespantools.Timespan(0, 10)
         >>> time_relation = timerelationtools.offset_happens_during_timespan(
-        ...     offset=offset, timespan=timespan, hold=True)
+        ...     offset=offset, 
+        ...     timespan=timespan, 
+        ...     hold=True,
+        ...     )
 
     ::
 
-        >>> z(time_relation)
+        >>> print time_relation.storage_format
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan.start <= offset'),
@@ -45,14 +48,14 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     # TODO: hoist to TimeRelation
     def __call__(self, timespan=None, offset=None):
-        r'''Evaluate time relation:
+        r'''Evaluates time relation:
 
             >>> time_relation()
             True
 
-        Raise value error is either `offset` or `timespan` is none.
+        Raises value error is either `offset` or `timespan` is none.
 
-        Otherwise return boolean.
+        Otherwise returns boolean.
         '''
         from abjad.tools import timespantools
         timespan = timespan or self.timespan
@@ -145,7 +148,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> z(time_relation)
+            >>> print time_relation.storage_format
             timerelationtools.OffsetTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
                     timerelationtools.SimpleInequality('timespan.start <= offset'),

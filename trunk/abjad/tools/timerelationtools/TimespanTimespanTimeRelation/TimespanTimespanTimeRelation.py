@@ -153,13 +153,15 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> time_relation = \
-                ...     timerelationtools.timespan_2_starts_during_timespan_1(
-                ...     timespan_1=timespan_1, timespan_2=timespan_2, hold=True)
+                >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
+                ...     timespan_1=timespan_1, 
+                ...     timespan_2=timespan_2, 
+                ...     hold=True,
+                ...     )
 
             ::
 
-                >>> z(time_relation)
+                >>> print time_relation.storage_format
                 timerelationtools.TimespanTimespanTimeRelation(
                     timerelationtools.CompoundInequality([
                         timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),

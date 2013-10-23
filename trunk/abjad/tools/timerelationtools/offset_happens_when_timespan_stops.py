@@ -2,11 +2,13 @@
 
 
 def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
-    r'''Make time relation indicating that `offset` happens when `timespan` stops:
+    r'''Makes time relation indicating that `offset` happens 
+    when `timespan` stops.
 
     ::
 
-        >>> z(timerelationtools.offset_happens_when_timespan_stops())
+        >>> relation = timerelationtools.offset_happens_when_timespan_stops()
+        >>> print relation.storage_format
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('offset == timespan.stop')
@@ -19,10 +21,12 @@ def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
     '''
     from abjad.tools import timerelationtools
 
+    inequality = timerelationtools.CompoundInequality([
+        'offset == timespan.stop',
+        ])
+
     time_relation = timerelationtools.OffsetTimespanTimeRelation(
-        timerelationtools.CompoundInequality([
-            'offset == timespan.stop',
-            ]),
+        inequality,
         timespan=timespan,
         offset=offset)
 

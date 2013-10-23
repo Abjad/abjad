@@ -12,12 +12,15 @@ class TimeRelation(AbjadObject):
         >>> timespan_2 = timespantools.Timespan(5, 15)
         >>> time_relation = \
         ...     timerelationtools.timespan_2_starts_during_timespan_1(
-        ...     timespan_1=timespan_1, timespan_2=timespan_2, hold=True)
+        ...     timespan_1=timespan_1, 
+        ...     timespan_2=timespan_2, 
+        ...     hold=True,
+        ...     )
 
 
     ::
 
-        >>> z(time_relation)
+        >>> print time_relation.storage_format
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
@@ -112,7 +115,7 @@ class TimeRelation(AbjadObject):
 
         ::
 
-            >>> z(time_relation)
+            >>> print time_relation.storage_format
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
                     timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
@@ -132,7 +135,7 @@ class TimeRelation(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.storage_format.fget(self)
+        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 
@@ -148,7 +151,7 @@ class TimeRelation(AbjadObject):
 
         ::
 
-            >>> z(time_relation)
+            >>> print time_relation.storage_format
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
                     timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset')
@@ -159,7 +162,7 @@ class TimeRelation(AbjadObject):
 
         ::
 
-            >>> z(new_time_relation)
+            >>> print new_time_relation.storage_format
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
                     timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset')
@@ -177,5 +180,8 @@ class TimeRelation(AbjadObject):
         keyword_argument_dictionary = self._keyword_argument_dictionary
         for key, value in kwargs.iteritems():
             keyword_argument_dictionary[key] = value
-        result = type(self)(*self._positional_argument_values, **keyword_argument_dictionary)
+        result = type(self)(
+            *self._positional_argument_values, 
+            **keyword_argument_dictionary
+            )
         return result

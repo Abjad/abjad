@@ -1,12 +1,18 @@
 # -*- encoding: utf-8 -*-
 
 
-def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, hold=False):
-    r'''Make time relation indicating that `timespan_2` contains `timespan_1` improperly:
+def timespan_2_contains_timespan_1_improperly(
+    timespan_1=None, 
+    timespan_2=None, 
+    hold=False,
+    ):
+    r'''Makes time relation indicating that `timespan_2` contains 
+    `timespan_1` improperly.
 
     ::
 
-        >>> z(timerelationtools.timespan_2_contains_timespan_1_improperly())
+        >>> relation = timerelationtools.timespan_2_contains_timespan_1_improperly()
+        >>> print relation.storage_format
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
@@ -24,6 +30,7 @@ def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, 
 
             >>> staff = Staff(r"c'8. \p \< fs'16 a'4 af'8 \f \> g'8 ~ g'16 f' e' ef' \p")
             >>> timespan_1 = timespantools.Timespan(Offset(1, 4), Offset(3, 8))
+            >>> show(staff) # doctest: +SKIP
 
         ::
 
@@ -43,13 +50,16 @@ def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, 
     '''
     from abjad.tools import timerelationtools
 
+    inequality = timerelationtools.CompoundInequality([
+        'timespan_2.start_offset <= timespan_1.start_offset',
+        'timespan_1.stop_offset <= timespan_2.stop_offset',
+        ])
+
     time_relation = timerelationtools.TimespanTimespanTimeRelation(
-        timerelationtools.CompoundInequality([
-            'timespan_2.start_offset <= timespan_1.start_offset',
-            'timespan_1.stop_offset <= timespan_2.stop_offset',
-            ]),
+        inequality,
         timespan_1=timespan_1,
-        timespan_2=timespan_2)
+        timespan_2=timespan_2,
+        )
 
     if time_relation.is_fully_loaded and not hold:
         return time_relation()

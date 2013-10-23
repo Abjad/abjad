@@ -12,7 +12,7 @@ class MetricalHierarchyInventory(TypedList):
 
     ::
 
-        >>> z(inventory)
+        >>> print inventory.storage_format
         timesignaturetools.MetricalHierarchyInventory([
             timesignaturetools.MetricalHierarchy(
                 '(4/4 (1/4 1/4 1/4 1/4))'

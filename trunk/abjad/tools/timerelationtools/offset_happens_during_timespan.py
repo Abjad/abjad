@@ -2,11 +2,12 @@
 
 
 def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
-    r'''Make time relation indicating that `offset` happens during `timespan`:
+    r'''MakeS time relation indicating that `offset` happens during `timespan`.
 
     ::
 
-        >>> z(timerelationtools.offset_happens_during_timespan())
+        >>> relation = timerelationtools.offset_happens_during_timespan()
+        >>> print relation.storage_format
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan.start <= offset'),
@@ -20,11 +21,13 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
     '''
     from abjad.tools import timerelationtools
 
+    inequality = timerelationtools.CompoundInequality([
+        'timespan.start <= offset',
+        'offset < timespan.stop',
+            ])
+
     time_relation = timerelationtools.OffsetTimespanTimeRelation(
-        timerelationtools.CompoundInequality([
-            'timespan.start <= offset',
-            'offset < timespan.stop',
-            ]),
+        inequality,
         timespan=timespan,
         offset=offset)
 
