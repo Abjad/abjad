@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class ClefMarkInventory(TypedList):
-    '''Abjad model of an ordered list of clefs:
+    '''An ordered list of clefs.
 
     ::
 

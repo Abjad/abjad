@@ -9,7 +9,7 @@ from abjad.tools.componenttools.Component import Component
 
 
 class Leaf(Component):
-    '''A note, rest, chord or skip.
+    '''Abstract base class for notes, rests, chords and skips.
     '''
 
     ### CLASS VARIABLES ##

@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class SopranoVoice(Instrument):
-    r'''Abjad model of the soprano voice:
+    r'''A soprano voice.
 
     ::
 

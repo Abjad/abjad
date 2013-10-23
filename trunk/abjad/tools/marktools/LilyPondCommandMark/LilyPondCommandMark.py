@@ -5,7 +5,7 @@ from abjad.tools.marktools.Mark import Mark
 
 # TODO: extend LilyPond command marks to attach to spanners.
 class LilyPondCommandMark(Mark):
-    r'''LilyPond command mark:
+    r'''A LilyPond command mark.
 
     ::
 
@@ -34,7 +34,7 @@ class LilyPondCommandMark(Mark):
         >>> show(staff) # doctest: +SKIP
 
     Initialize LilyPond command marks from command name; or from command name
-    with format slot; or from another LilyPond command mark; 
+    with format slot; or from another LilyPond command mark;
     or from another LilyPond command mark with format slot.
 
     LilyPond command marks implement ``__slots__``.
@@ -43,7 +43,7 @@ class LilyPondCommandMark(Mark):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_command_name', 
+        '_command_name',
         '_format_slot',
         )
 
@@ -122,8 +122,8 @@ class LilyPondCommandMark(Mark):
             ::
 
                 >>> note = Note("c'4")
-                >>> lilypond_command = \
-                ...     marktools.LilyPondCommandMark('break', 'after')
+                >>> lilypond_command = marktools.LilyPondCommandMark(
+                ...     'break', 'after')
                 >>> lilypond_command.format_slot
                 'after'
 
@@ -132,13 +132,13 @@ class LilyPondCommandMark(Mark):
             ::
 
                 >>> note = Note("c'4")
-                >>> lilypond_command = \
-                ...     marktools.LilyPondCommandMark('break', 'after')
+                >>> lilypond_command = marktools.LilyPondCommandMark(
+                ...     'break', 'after')
                 >>> lilypond_command.format_slot = 'before'
                 >>> lilypond_command.format_slot
                 'before'
 
-            Set to ``'before'``, ``'after'``, ``'opening'``, 
+            Set to ``'before'``, ``'after'``, ``'opening'``,
             ``'closing'``, ``'right'`` or none.
             '''
             return self._format_slot
@@ -158,8 +158,8 @@ class LilyPondCommandMark(Mark):
         ::
 
             >>> note = Note("c'4")
-            >>> lilypond_command = \
-            ...     marktools.LilyPondCommandMark('slurDotted')(note)
+            >>> lilypond_command = marktools.LilyPondCommandMark(
+            ...     'slurDotted')(note)
             >>> lilypond_command.lilypond_format
             '\\slurDotted'
 

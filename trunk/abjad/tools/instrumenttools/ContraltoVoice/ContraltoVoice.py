@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class ContraltoVoice(Instrument):
-    r'''Abjad model of the contralto voice:
+    r'''A contralto voice.
 
     ::
 

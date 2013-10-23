@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Viola(Instrument):
-    r'''Abjad model of the viola:
+    r'''A viola.
 
     ::
 

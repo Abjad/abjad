@@ -8,7 +8,7 @@ from abjad.tools.componenttools.Component import Component
 
 
 class Container(Component):
-    r'''Abjad model of an iterable container of music.
+    r'''An iterable container of music.
 
     **Example**:
 

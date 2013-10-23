@@ -7,7 +7,7 @@ import copy
 
 
 class Context(Container):
-    '''Abjad model of a horizontal layer of music.
+    '''A horizontal layer of music.
 
     ::
 

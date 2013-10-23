@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class UntunedPercussion(Instrument):
-    r'''Abjad model of untuned percussion:
+    r'''An untuned percussion instrument.
 
     ::
 

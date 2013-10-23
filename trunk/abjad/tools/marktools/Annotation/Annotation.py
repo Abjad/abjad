@@ -5,7 +5,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class Annotation(Mark):
-    r'''User-defined annotation:
+    r'''A user-defined annotation.
 
     ::
 

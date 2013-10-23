@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class ContrabassSaxophone(Instrument):
-    r'''Abjad model of the bass saxophone:
+    r'''A bass saxophone.
 
     ::
 

@@ -3,7 +3,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class BendAfter(Mark):
-    r'''Abjad model of a fall or doit:
+    r'''A *fall* or *doit*.
 
     ::
 

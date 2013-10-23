@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Tuba(Instrument):
-    r'''Abjad model of the tuba:
+    r'''A tuba.
 
     ::
 

@@ -7,11 +7,13 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Harpsichord(Instrument):
-    r'''Abjad model of the harpsichord:
+    r'''A harpsichord.
 
     ::
 
-        >>> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
+        >>> upper_staff = Staff("c'8 d'8 e'8 f'8")
+        >>> lower_staff = Staff("c'4 b4")
+        >>> piano_staff = scoretools.PianoStaff([upper_staff, lower_staff])
 
     ::
 

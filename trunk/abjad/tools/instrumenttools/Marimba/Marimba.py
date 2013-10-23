@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Marimba(Instrument):
-    r'''Abjad model of the marimba:
+    r'''A marimba.
 
     ::
 

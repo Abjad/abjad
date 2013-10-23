@@ -5,7 +5,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class TimeSignatureMark(ContextMark):
-    r'''Abjad model of a time signature:
+    r'''A time signature.
 
     ::
 

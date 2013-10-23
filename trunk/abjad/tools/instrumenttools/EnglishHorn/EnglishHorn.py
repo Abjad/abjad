@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class EnglishHorn(Instrument):
-    r'''Abjad model of the English horn:
+    r'''A English horn.
 
     ::
 

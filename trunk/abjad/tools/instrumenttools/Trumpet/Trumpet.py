@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Trumpet(Instrument):
-    r'''Abjad model of the trumpet:
+    r'''A trumpet.
 
     ::
 

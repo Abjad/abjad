@@ -5,7 +5,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class StemTremolo(Mark):
-    '''Abjad model of stem tremolo:
+    '''A stem tremolo.
 
     ::
 

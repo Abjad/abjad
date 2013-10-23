@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class TenorTrombone(Instrument):
-    r'''Abjad model of the tenor trombone:
+    r'''A tenor trombone.
 
     ::
 

@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Xylophone(Instrument):
-    r'''Abjad model of the xylphone:
+    r'''A xylphone.
 
     ::
 

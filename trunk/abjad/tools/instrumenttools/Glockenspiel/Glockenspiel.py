@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Glockenspiel(Instrument):
-    r'''Abjad model of the glockenspiel:
+    r'''A glockenspiel.
 
     ::
 

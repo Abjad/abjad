@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class EFlatClarinet(Instrument):
-    r'''Abjad model of the E-flat clarinet:
+    r'''A E-flat clarinet.
 
     ::
 

@@ -4,7 +4,7 @@ from abjad.tools.marktools.DirectedMark.DirectedMark import DirectedMark
 
 
 class Articulation(DirectedMark):
-    r'''Abjad model of musical articulation.
+    r'''A musical articulation.
 
     Initialize from articulation name:
 

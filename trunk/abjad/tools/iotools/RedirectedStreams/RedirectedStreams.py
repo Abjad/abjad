@@ -4,17 +4,19 @@ from abjad.tools.abctools import ContextManager
 
 
 class RedirectedStreams(ContextManager):
-    r'''A context manager for capturing stdout and stderr output:
+    r'''A context manager for capturing stdout and stderr output.
 
-    >>> import StringIO
-    >>> string_io = StringIO.StringIO()
-    >>> with iotools.RedirectedStreams(stdout=string_io):
-    ...     print "hello, world!"
-    ...
-    >>> result = string_io.getvalue()
-    >>> string_io.close()
-    >>> print result
-    hello, world!
+    ::
+
+        >>> import StringIO
+        >>> string_io = StringIO.StringIO()
+        >>> with iotools.RedirectedStreams(stdout=string_io):
+        ...     print "hello, world!"
+        ...
+        >>> result = string_io.getvalue()
+        >>> string_io.close()
+        >>> print result
+        hello, world!
 
     Returns context manager.
     '''

@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class Piccolo(Instrument):
-    r'''Abjad model of the piccolo:
+    r'''A piccolo.
 
     ::
 

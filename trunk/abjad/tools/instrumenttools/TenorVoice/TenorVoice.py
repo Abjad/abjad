@@ -6,7 +6,7 @@ from abjad.tools.instrumenttools.Instrument import Instrument
 
 
 class TenorVoice(Instrument):
-    r'''Abjad model of the tenor voice:
+    r'''A tenor voice.
 
     ::
 

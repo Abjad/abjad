@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.componenttools.Component import Component
 from abjad.tools.marktools.Mark import Mark
 
 
 class LilyPondComment(Mark):
-    r'''User-defined LilyPond comment:
+    r'''A user-defined LilyPond comment.
 
     ::
 
@@ -22,9 +21,9 @@ class LilyPondComment(Mark):
         % this is a comment
         c'4
 
-    Initialize LilyPond comment from contents string; 
-    or contents string and format slot; 
-    or from other LilyPond comment; 
+    Initialize LilyPond comment from contents string;
+    or contents string and format slot;
+    or from other LilyPond comment;
     or from other LilyPond comment and format slot.
 
     LilyPond comments implement ``__slots__``.
@@ -33,7 +32,7 @@ class LilyPondComment(Mark):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_contents_string', 
+        '_contents_string',
         '_format_slot',
         )
 
@@ -126,7 +125,7 @@ class LilyPondComment(Mark):
                 >>> lilypond_comment.format_slot
                 'after'
 
-            Set to ``'before'``, ``'after'``, ``'opening'``, 
+            Set to ``'before'``, ``'after'``, ``'opening'``,
             ``'closing'``, ``'right'`` or none.
             '''
             return self._format_slot

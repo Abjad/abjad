@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class InstrumentInventory(TypedList):
-    r'''Abjad model of an ordered list of instruments:
+    r'''An ordered list of instruments.
 
     ::
 

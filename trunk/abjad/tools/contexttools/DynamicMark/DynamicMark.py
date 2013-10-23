@@ -3,7 +3,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class DynamicMark(ContextMark):
-    r'''Abjad model of a dynamic mark.
+    r'''A dynamic mark.
 
     ..  container:: example
     

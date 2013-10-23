@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TempoMarkInventory(TypedList):
-    r'''Abjad model of an ordered list of tempo marks:
+    r'''An ordered list of tempo marks.
 
     ::
 

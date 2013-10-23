@@ -8,7 +8,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class TempoMark(ContextMark):
-    r'''Abjad model of a tempo indication:
+    r'''A tempo indication.
 
     ::
 

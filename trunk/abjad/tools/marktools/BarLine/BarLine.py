@@ -3,7 +3,7 @@ from abjad.tools.marktools.LilyPondCommandMark import LilyPondCommandMark
 
 
 class BarLine(LilyPondCommandMark):
-    r'''Abjad model of bar line:
+    r'''A bar line.
 
     ::
 
