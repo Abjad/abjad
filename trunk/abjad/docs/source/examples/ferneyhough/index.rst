@@ -261,7 +261,8 @@ Let's adjust the overall size of our output, and put everything together:
        lilypond_file.layout_block.indent = 0
        lilypond_file.layout_block.ragged_right = True
        lilypond_file.paper_block.ragged_bottom = True
-       lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 8, 0)
+       spacing_vector = layouttools.make_spacing_vector(0, 0, 8, 0)
+       lilypond_file.paper_block.system_system_spacing = spacing_vector
 
 
 ::

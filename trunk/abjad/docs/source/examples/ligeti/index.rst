@@ -1,8 +1,10 @@
 Ligeti: *Désordre*
 ==================
 
-.. note:: Explore the `abjad/demos/desordre/` directory for the complete code to this example,
-    or import it into your Python session directly with:
+.. note::
+
+    Explore the `abjad/demos/desordre/` directory for the complete code to this
+    example, or import it into your Python session directly with:
 
     * `from abjad.demos import desordre`
 
@@ -282,8 +284,32 @@ The final result:
 
 ::
 
-   >>> top = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]], [[2, 4, 5, 7, 9], [0, 5, 7]], [[-3, -1, 0, 2, 4, 5, 7]], [[-3, 2, 4], [-3, 2, 4, 5, 7]], [[2, 5, 7], [-3, 9, 11, 12, 14]], [[4, 5, 7, 9, 11], [2, 4, 5]], [[-5, 4, 5, 7, 9, 11, 12]], [[2, 9, 11], [2, 9, 11, 12, 14]]]
-   >>> bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
+   >>> top = [
+   ...     [[-1, 4, 5], [-1, 4, 5, 7, 9]], 
+   ...     [[0, 7, 9], [-1, 4, 5, 7, 9]], 
+   ...     [[2, 4, 5, 7, 9], [0, 5, 7]], 
+   ...     [[-3, -1, 0, 2, 4, 5, 7]], 
+   ...     [[-3, 2, 4], [-3, 2, 4, 5, 7]], 
+   ...     [[2, 5, 7], [-3, 9, 11, 12, 14]], 
+   ...     [[4, 5, 7, 9, 11], [2, 4, 5]], 
+   ...     [[-5, 4, 5, 7, 9, 11, 12]], 
+   ...     [[2, 9, 11], [2, 9, 11, 12, 14]],
+   ...     ]
+
+
+::
+
+   >>> bottom = [
+   ...     [[-9, -4, -2], [-9, -4, -2, 1, 3]], 
+   ...     [[-6, -2, 1], [-9, -4, -2, 1, 3]], 
+   ...     [[-4, -2, 1, 3, 6], [-4, -2, 1]], 
+   ...     [[-9, -6, -4, -2, 1, 3, 6, 1]], 
+   ...     [[-6, -2, 1], [-6, -2, 1, 3, -2]], 
+   ...     [[-4, 1, 3], [-6, 3, 6, -6, -4]], 
+   ...     [[-14, -11, -9, -6, -4], [-14, -11, -9]], 
+   ...     [[-11, -2, 1, -6, -4, -2, 1, 3]], 
+   ...     [[-6, 1, 3], [-6, -4, -2, 1, 3]],
+   ...     ]
 
 
 ::
@@ -313,7 +339,7 @@ Specifically, one must move the LilyPond ``Timing_translator`` out from the
 score context and into the staff context.
 
 (You can refer to the LilyPond documentation on
-`Polymetric notation <http://www.lilypond.org/doc/v2.16/Documentation/notation/displaying-rhythms#polymetric-notation>`_
+`Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_
 to learn all about how this works.)
 
 In this example we a custom ``documentationtools`` function to set up our

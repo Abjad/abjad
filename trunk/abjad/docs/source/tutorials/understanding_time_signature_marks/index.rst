@@ -58,7 +58,8 @@ And:
 ::
 
    >>> for leaf in staff.select_leaves():
-   ...     print inspect(leaf).get_effective_context_mark(contexttools.TimeSignatureMark)
+   ...     print inspect(leaf).get_effective_context_mark(
+   ...         contexttools.TimeSignatureMark)
    ... 
    None
    None
@@ -73,7 +74,8 @@ this:
 ::
 
    >>> for component in iterationtools.iterate_components_in_expr(staff):
-   ...     effective_time_signature = inspect(component).get_effective_context_mark(contexttools.TimeSignatureMark)
+   ...     effective_time_signature = inspect(component).get_effective_context_mark(
+   ...         contexttools.TimeSignatureMark)
    ...     print component, effective_time_signature
    ... 
    Staff{5} None
@@ -218,7 +220,8 @@ Indeed they do:
 ::
 
    >>> for leaf in staff.select_leaves():
-   ...     effective_time_signature = inspect(leaf).get_effective_context_mark(contexttools.TimeSignatureMark)
+   ...     effective_time_signature = inspect(leaf).get_effective_context_mark(
+   ...         contexttools.TimeSignatureMark)
    ...     print leaf, effective_time_signature
    ... 
    c'4 3/4
