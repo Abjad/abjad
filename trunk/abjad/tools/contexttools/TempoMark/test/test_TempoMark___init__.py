@@ -53,7 +53,7 @@ def test_TempoMark___init___06():
     '''
 
     tempomark = contexttools.TempoMark((1, 8), (52, 57.5))
-    assert tempomark.lilypond_format == '\\tempo 8=52~57.5'
+    assert tempomark.lilypond_format == '\\tempo 8=52-57.5'
 
 
 def test_TempoMark___init___07():
@@ -61,7 +61,7 @@ def test_TempoMark___init___07():
     '''
 
     tempomark = contexttools.TempoMark('Quick', Duration(1, 4), (120, 133))
-    assert tempomark.lilypond_format == '\\tempo Quick 4=120~133'
+    assert tempomark.lilypond_format == '\\tempo Quick 4=120-133'
 
 
 def test_TempoMark___init___08():
@@ -69,7 +69,7 @@ def test_TempoMark___init___08():
     '''
 
     tempomark = contexttools.TempoMark((Duration(1, 4), (120, 133)))
-    assert tempomark.lilypond_format == '\\tempo 4=120~133'
+    assert tempomark.lilypond_format == '\\tempo 4=120-133'
 
 
 def test_TempoMark___init___09():
@@ -77,4 +77,4 @@ def test_TempoMark___init___09():
     '''
 
     tempomark = contexttools.TempoMark(('Quick', Duration(1, 4), (120, 133)))
-    assert tempomark.lilypond_format == '\\tempo Quick 4=120~133'
+    assert tempomark.lilypond_format == '\\tempo Quick 4=120-133'

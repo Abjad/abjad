@@ -198,7 +198,7 @@ class TempoMark(ContextMark):
         r'''Dotted numeral and units per minute together around equal sign.
         '''
         if isinstance(self.units_per_minute, tuple):
-            return '%s=%s~%s' % (
+            return '%s=%s-%s' % (
                 self._dotted, 
                 self.units_per_minute[0], 
                 self.units_per_minute[1])
@@ -298,7 +298,7 @@ class TempoMark(ContextMark):
 
             >>> tempo.units_per_minute = (52, 56)
             >>> tempo.lilypond_format
-            '\\tempo Gingerly 8=52~56'
+            '\\tempo Gingerly 8=52-56'
 
         Returns string.
         '''
