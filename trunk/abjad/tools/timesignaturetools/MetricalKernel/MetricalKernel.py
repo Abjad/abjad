@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class MetricalKernel(AbjadObject):
-    r'''A metrical kernel, or offset-impulse-response-filter:
+    r'''A metrical kernel, or offset-impulse-response-filter.
 
     ::
 

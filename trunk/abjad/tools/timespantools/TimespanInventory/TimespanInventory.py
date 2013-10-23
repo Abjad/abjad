@@ -9,7 +9,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TimespanInventory(TypedList):
-    r'''Timespan inventory.
+    r'''A timespan inventory.
 
     ..  container:: example
 

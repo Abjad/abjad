@@ -5,15 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class TimeIntervalMixin(AbjadObject):
-    r'''Time-interval mixin.
-
-    For examples:
-
-    ::
-
-        >>> from abjad.tools.timeintervaltools import TimeInterval
-
-    Time-interval mixins provide time-interval functionality.
+    r'''A time-interval mixin.
     '''
 
     ### CLASS VARIABLES ###
@@ -33,7 +25,7 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            >>> interval = TimeInterval(2, 10)
+            >>> interval = timeintervaltools.TimeInterval(2, 10)
             >>> bounds = interval.bounds
             >>> bounds
             TimeInterval(Offset(2, 1), Offset(10, 1), {})
@@ -53,7 +45,7 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            >>> interval = TimeInterval(2, 10)
+            >>> interval = timeintervaltools.TimeInterval(2, 10)
             >>> interval.center
             Offset(6, 1)
 
@@ -69,7 +61,7 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            >>> interval = TimeInterval(2, 10)
+            >>> interval = timeintervaltools.TimeInterval(2, 10)
             >>> interval.duration
             Duration(8, 1)
 
@@ -85,7 +77,7 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            >>> interval = TimeInterval(2, 10)
+            >>> interval = timeintervaltools.TimeInterval(2, 10)
             >>> interval.signature
             (Offset(2, 1), Offset(10, 1))
 
@@ -101,7 +93,7 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            >>> interval = TimeInterval(2, 10)
+            >>> interval = timeintervaltools.TimeInterval(2, 10)
             >>> interval.start_offset
             Offset(2, 1)
 
@@ -115,7 +107,7 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            >>> interval = TimeInterval(2, 10)
+            >>> interval = timeintervaltools.TimeInterval(2, 10)
             >>> interval.stop_offset
             Offset(10, 1)
 

@@ -4,7 +4,7 @@ from abjad.tools.timerelationtools.TimeRelation import TimeRelation
 
 
 class TimespanTimespanTimeRelation(TimeRelation):
-    r'''Timespan / timespan time relation.
+    r'''A timespan vs. timespan time relation.
 
     Score for examples:
 

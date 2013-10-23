@@ -5,6 +5,8 @@ from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 
 
 class TimeIntervalAggregateMixin(TimeIntervalMixin):
+    r'''A time-interval aggregate mixin.
+    '''
 
     ### CLASS VARIABLES ###
 

@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class CompoundInequality(TypedList):
-    '''Compound inequality:
+    '''A compound time-relation inequality.
 
     ::
 

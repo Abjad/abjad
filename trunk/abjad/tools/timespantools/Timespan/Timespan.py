@@ -8,7 +8,7 @@ from abjad.tools.mathtools.BoundedObject import BoundedObject
 
 
 class Timespan(BoundedObject):
-    r'''Closed-open interval.
+    r'''A closed-open interval.
 
     ..  container:: example
 

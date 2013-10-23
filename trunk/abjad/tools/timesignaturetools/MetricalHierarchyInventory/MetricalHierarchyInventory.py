@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class MetricalHierarchyInventory(TypedList):
-    r'''Abjad model of an ordered list of metrical hierarchies:
+    r'''An ordered list of metrical hierarchies.
 
     ::
 
