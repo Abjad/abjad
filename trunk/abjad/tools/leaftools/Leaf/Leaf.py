@@ -16,14 +16,14 @@ class Leaf(Component):
 
     # TODO: see if _grace and _after_grace can be removed
     __slots__ = (
-        '_after_grace', 
-        '_grace', 
+        '_after_grace',
+        '_grace',
         '_leaf_index',
-        '_lilypond_duration_multiplier', 
+        '_lilypond_duration_multiplier',
         '_written_duration',
         '_written_pitch_indication_is_nonsemantic',
         '_written_pitch_indication_is_at_sounding_pitch',
-        'after_grace', 
+        'after_grace',
         'grace',
         )
 
@@ -31,6 +31,7 @@ class Leaf(Component):
 
     ### INITIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self, written_duration, lilypond_duration_multiplier=None):
         Component.__init__(self)
         self._lilypond_duration_multiplier = lilypond_duration_multiplier
@@ -78,7 +79,10 @@ class Leaf(Component):
         from abjad.tools import contexttools
         tempo = self._get_effective_context_mark(contexttools.TempoMark)
         if tempo is not None and not tempo.is_imprecise:
-            result = self._get_duration() / tempo.duration / tempo.units_per_minute * 60
+            result = (self._get_duration() /
+                tempo.duration /
+                tempo.units_per_minute * 60
+                )
             return durationtools.Duration(result)
         raise MissingTempoError
 
@@ -129,14 +133,14 @@ class Leaf(Component):
 
     def _format_after_slot(leaf, format_contributions):
         result = []
-        result.append(('spanners', 
+        result.append(('spanners',
             format_contributions.get('after', {}).get('spanners', [])))
-        result.append(('context marks', 
+        result.append(('context marks',
             format_contributions.get('after', {}).get('context marks', [])))
         result.append(('lilypond command marks',
             format_contributions.get(
                 'after', {}).get('lilypond command marks', [])))
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('after', {}).get('comments', [])))
         return result
 
@@ -158,18 +162,18 @@ class Leaf(Component):
     def _format_before_slot(leaf, format_contributions):
         result = []
         result.append(leaf._format_grace_body())
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('before', {}).get('comments', [])))
         result.append(('lilypond command marks',
             format_contributions.get(
                 'before', {}).get('lilypond command marks', [])))
-        result.append(('context marks', 
+        result.append(('context marks',
             format_contributions.get('before', {}).get('context marks', [])))
-        result.append(('grob overrides', 
+        result.append(('grob overrides',
             format_contributions.get('grob overrides', [])))
-        result.append(('context settings', 
+        result.append(('context settings',
             format_contributions.get('context settings', [])))
-        result.append(('spanners', 
+        result.append(('spanners',
             format_contributions.get('before', {}).get('spanners', [])))
         return result
 
@@ -179,14 +183,14 @@ class Leaf(Component):
     def _format_closing_slot(leaf, format_contributions):
         result = []
         result.append(leaf._format_agrace_body())
-        result.append(('spanners', 
+        result.append(('spanners',
             format_contributions.get('closing', {}).get('spanners', [])))
         result.append(('lilypond command marks',
             format_contributions.get(
                 'closing', {}).get('lilypond command marks', [])))
-        result.append(('context marks', 
+        result.append(('context marks',
             format_contributions.get('closing', {}).get('context marks', [])))
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('closing', {}).get('comments', [])))
         return result
 
@@ -227,7 +231,7 @@ class Leaf(Component):
         from abjad.tools.chordtools.Chord import Chord
         if not isinstance(leaf, Chord):
             return ['nucleus', leaf._body]
-        result =  []
+        result = []
         chord = leaf
         note_heads = chord.note_heads
         if any('\n' in x.lilypond_format for x in note_heads):
@@ -251,14 +255,14 @@ class Leaf(Component):
 
     def _format_opening_slot(leaf, format_contributions):
         result = []
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('context marks', 
+        result.append(('context marks',
             format_contributions.get('opening', {}).get('context marks', [])))
         result.append(('lilypond command marks',
             format_contributions.get(
                 'opening', {}).get('lilypond command marks', [])))
-        result.append(('spanners', 
+        result.append(('spanners',
             format_contributions.get('opening', {}).get('spanners', [])))
         result.append(leaf._format_agrace_opening())
         return result
@@ -267,6 +271,7 @@ class Leaf(Component):
         from abjad.tools import leaftools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
+
         def next(component):
             new_component = component._get_nth_component_in_time_order_from(1)
             if new_component is None:
@@ -278,6 +283,7 @@ class Leaf(Component):
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
+
         def previous(component):
             new_component = component._get_nth_component_in_time_order_from(-1)
             if new_component is None:
@@ -289,6 +295,7 @@ class Leaf(Component):
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
                     return candidate
+
         current_leaf = self
         if n < 0:
             for i in range(abs(n)):
@@ -414,12 +421,7 @@ class Leaf(Component):
         fracture_spanners=False,
         tie_split_notes=True,
         ):
-        from abjad.tools import componenttools
-        from abjad.tools import contexttools
         from abjad.tools import iterationtools
-        from abjad.tools import leaftools
-        from abjad.tools import marktools
-        from abjad.tools import mutationtools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
@@ -456,7 +458,7 @@ class Leaf(Component):
         selection = selectiontools.SliceSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent:
-            parent.__setitem__(slice(start, stop+1), flattened_result)
+            parent.__setitem__(slice(start, stop + 1), flattened_result)
         else:
             selection._give_dominant_spanners(flattened_result)
             selection._withdraw_from_crossing_spanners()
@@ -507,17 +509,13 @@ class Leaf(Component):
     #       The precondition is that self._split() must be
     #       extended to handle graces.
     def _split_by_duration(
-        self, 
-        duration, 
+        self,
+        duration,
         fracture_spanners=False,
-        tie_split_notes=True, 
+        tie_split_notes=True,
         ):
-        from abjad.tools import contexttools
-        from abjad.tools import leaftools
-        from abjad.tools import marktools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
-        from abjad.tools import spannertools
         # check input
         duration = durationtools.Duration(duration)
         # calculate durations
@@ -556,10 +554,10 @@ class Leaf(Component):
         return left_leaf_list, right_leaf_list
         # TODO: make this substitution work
         #return self._split(
-        #    leaf, 
-        #    [duration], 
+        #    leaf,
+        #    [duration],
         #    cyclic=False,
-        #    fracture_spanners=fracture_spanners, 
+        #    fracture_spanners=fracture_spanners,
         #    tie_split_notes=tie_split_notes,
         #    )
 
@@ -582,7 +580,7 @@ class Leaf(Component):
             notes = [notetools.Note(0, x) for x in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
-            note_durations = [durationtools.Duration(x, denominator) 
+            note_durations = [durationtools.Duration(x, denominator)
                 for x in proportions]
             notes = notetools.make_notes(0, note_durations)
         # make tuplet
@@ -669,6 +667,6 @@ class Leaf(Component):
             if not isinstance(expr, bool):
                 raise TypeError
             self._written_pitch_indication_is_nonsemantic = expr
-            if expr == True:
+            if expr is True:
                 self.written_pitch_indication_is_at_sounding_pitch = False
         return property(**locals())

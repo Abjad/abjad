@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
-import fractions
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import lilypondproxytools
@@ -22,18 +21,18 @@ class Component(AbjadObject):
 
     __slots__ = (
         '_dependent_context_marks',
-        '_is_forbidden_to_update', 
+        '_is_forbidden_to_update',
         '_marks_are_current',
-        '_offsets_are_current', 
-        '_offsets_in_seconds_are_current', 
-        '_override', 
+        '_offsets_are_current',
+        '_offsets_in_seconds_are_current',
+        '_override',
         '_parent',
-        '_set', 
+        '_set',
         '_spanners',
         '_start_marks',
-        '_start_offset', 
-        '_start_offset_in_seconds', 
-        '_stop_offset', 
+        '_start_offset',
+        '_start_offset_in_seconds',
+        '_stop_offset',
         '_stop_offset_in_seconds',
         '_timespan',
         'lilypond_file',
@@ -43,6 +42,7 @@ class Component(AbjadObject):
 
     ### INITIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self):
         self._dependent_context_marks = list()
         self._is_forbidden_to_update = False
@@ -313,12 +313,12 @@ class Component(AbjadObject):
                 formattools.get_all_format_contributions(self)
         result = []
         slots = (
-            'before', 
-            'open_brackets', 
+            'before',
+            'open_brackets',
             'opening',
-            'contents', 
-            'closing', 
-            'close_brackets', 
+            'contents',
+            'closing',
+            'close_brackets',
             'after',
             )
         if isinstance(n, str):
@@ -455,7 +455,7 @@ class Component(AbjadObject):
             if self._start_offset_in_seconds is None:
                 raise MissingTempoError
             return timespantools.Timespan(
-                start_offset=self._start_offset_in_seconds, 
+                start_offset=self._start_offset_in_seconds,
                 stop_offset=self._stop_offset_in_seconds,
                 )
         else:
@@ -705,9 +705,9 @@ class Component(AbjadObject):
                 component._offsets_in_seconds_are_current = False
 
     def _update_now(
-        self, 
-        offsets=False, 
-        offsets_in_seconds=False, 
+        self,
+        offsets=False,
+        offsets_in_seconds=False,
         marks=False,
         ):
         from abjad.tools import updatetools

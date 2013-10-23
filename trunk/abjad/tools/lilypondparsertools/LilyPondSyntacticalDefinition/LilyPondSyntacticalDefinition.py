@@ -10,6 +10,7 @@ from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import notetools
 from abjad.tools import resttools
+from abjad.tools import schemetools
 from abjad.tools import skiptools
 from abjad.tools.abctools import AbjadObject
 
@@ -29,18 +30,18 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     start = 'start_symbol'
 
     precedence = (
-#        ('nonassoc', 'REPEAT'),
-#        ('nonassoc', 'ALTERNATIVE'),
+        # ('nonassoc', 'REPEAT'),
+        # ('nonassoc', 'ALTERNATIVE'),
         ('nonassoc', 'COMPOSITE'),
-#        ('left', 'ADDLYRICS'),
+        # ('left', 'ADDLYRICS'),
         ('nonassoc', 'DEFAULT'),
         ('nonassoc', 'FUNCTION_ARGLIST'),
         ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH',
             'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),
         ('nonassoc', 'NUMBER_IDENTIFIER', '/'),
         ('left', '+', '-'),
-#        ('left', 'UNARY_MINUS')
-    )
+        # ('left', 'UNARY_MINUS')
+        )
 
     ### INITIALIZER ###
 
@@ -55,7 +56,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('start_symbol', p[1:])
 
-
     def p_start_symbol__lilypond(self, p):
         'start_symbol : lilypond'
         if 1 < len(p[1]):
@@ -67,69 +67,54 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             p[0] = None
 
-
     ### assignment ###
-
 
     def p_assignment__assignment_id__Chr61__identifier_init(self, p):
         "assignment : assignment_id '=' identifier_init"
         p[0] = [p[1], p[3]]
 
-
 #    def p_assignment__assignment_id__property_path__Chr61__identifier_init(self, p):
 #        "assignment : assignment_id property_path '=' identifier_init"
 #        p[0] = [p[1], p[3]]
-
 
     def p_assignment__embedded_scm(self, p):
         'assignment : embedded_scm'
         p[0] = None
 
-
     ### assignment_id ###
-
 
 #    def p_assignment_id__LYRICS_STRING(self, p):
 #        'assignment_id : LYRICS_STRING'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('assignment_id', p[1:])
 
-
     def p_assignment_id__STRING(self, p):
         'assignment_id : STRING'
         p[0] = p[1]
 
-
     ### bare_number ###
-
 
     def p_bare_number__REAL__NUMBER_IDENTIFIER(self, p):
         'bare_number : REAL NUMBER_IDENTIFIER'
         p[0] = p[1]
 
-
     def p_bare_number__UNSIGNED__NUMBER_IDENTIFIER(self, p):
         'bare_number : UNSIGNED NUMBER_IDENTIFIER'
         p[0] = p[1]
-
 
     def p_bare_number__bare_number_closed(self, p):
         'bare_number : bare_number_closed'
         p[0] = p[1]
 
-
     ### bare_number_closed ###
-
 
     def p_bare_number_closed__NUMBER_IDENTIFIER(self, p):
         'bare_number_closed : NUMBER_IDENTIFIER'
         p[0] = p[1]
 
-
     def p_bare_number_closed__REAL(self, p):
         'bare_number_closed : REAL'
         p[0] = p[1]
-
 
     def p_bare_number_closed__UNSIGNED(self, p):
         'bare_number_closed : UNSIGNED'
@@ -3119,7 +3104,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'simple_markup : STRING_IDENTIFIER'
         p[0] = p[1]
 
-
     def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
         'simple_markup : markup_scm MARKUP_IDENTIFIER'
         if isinstance(p[2], str):
@@ -3128,24 +3112,19 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### simple_music ###
 
-
     def p_simple_music__context_change(self, p):
         'simple_music : context_change'
         p[0] = p[1]
-
 
     def p_simple_music__event_chord(self, p):
         'simple_music : event_chord'
         p[0] = p[1]
 
-
     def p_simple_music__music_property_def(self, p):
         'simple_music : music_property_def'
         p[0] = p[1]
 
-
     ### simple_music_property_def ###
-
 
     def p_simple_music_property_def__OVERRIDE__context_prop_spec__property_path__Chr61__scalar(self, p):
         "simple_music_property_def : OVERRIDE context_prop_spec property_path '=' scalar"
@@ -3156,18 +3135,15 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             property=p[3],
             value=p[5])
 
-
     def p_simple_music_property_def__REVERT__context_prop_spec__embedded_scm(self, p):
         'simple_music_property_def : REVERT context_prop_spec embedded_scm'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('simple_music_property_def', p[1:])
 
-
     def p_simple_music_property_def__SET__context_prop_spec__Chr61__scalar(self, p):
         "simple_music_property_def : SET context_prop_spec '=' scalar"
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('simple_music_property_def', p[1:])
-
 
     def p_simple_music_property_def__UNSET__context_prop_spec(self, p):
         'simple_music_property_def : UNSET context_prop_spec'
@@ -3177,16 +3153,13 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### simple_string ###
 
-
 #    def p_simple_string__LYRICS_STRING(self, p):
 #        'simple_string : LYRICS_STRING'
 #        p[0] = p[1]
 
-
     def p_simple_string__STRING(self, p):
         'simple_string : STRING'
         p[0] = p[1]
-
 
     def p_simple_string__STRING_IDENTIFIER(self, p):
         'simple_string : STRING_IDENTIFIER'
@@ -3195,11 +3168,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### simultaneous_music ###
 
-
     def p_simultaneous_music__DOUBLE_ANGLE_OPEN__music_list__DOUBLE_ANGLE_CLOSE(self, p):
         'simultaneous_music : DOUBLE_ANGLE_OPEN music_list DOUBLE_ANGLE_CLOSE'
         p[0] = self.client._construct_simultaneous_music(p[2])
-
 
     def p_simultaneous_music__SIMULTANEOUS__braced_music_list(self, p):
         'simultaneous_music : SIMULTANEOUS braced_music_list'
@@ -3207,7 +3178,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
 
     ### steno_duration ###
-
 
     def p_steno_duration__DURATION_IDENTIFIER__dots(self, p):
         'steno_duration : DURATION_IDENTIFIER dots'
@@ -3222,7 +3192,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             duration = durationtools.Duration.from_lilypond_duration_string(duration)
         p[0] = lilypondparsertools.LilyPondDuration(duration, multiplier)
 
-
     def p_steno_duration__bare_unsigned__dots(self, p):
         'steno_duration : bare_unsigned dots'
         from abjad.tools import lilypondparsertools
@@ -3236,16 +3205,13 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### steno_pitch ###
 
-
     def p_steno_pitch__NOTENAME_PITCH(self, p):
         'steno_pitch : NOTENAME_PITCH'
         p[0] = pitchtools.NamedPitch(str(p[1]))
 
-
     def p_steno_pitch__NOTENAME_PITCH__sub_quotes(self, p):
         'steno_pitch : NOTENAME_PITCH sub_quotes'
         p[0] = pitchtools.NamedPitch(str(p[1]) + ',' * p[2])
-
 
     def p_steno_pitch__NOTENAME_PITCH__sup_quotes(self, p):
         'steno_pitch : NOTENAME_PITCH sup_quotes'
@@ -3254,18 +3220,15 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### steno_tonic_pitch ###
 
-
     def p_steno_tonic_pitch__TONICNAME_PITCH(self, p):
         'steno_tonic_pitch : TONICNAME_PITCH'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('steno_tonic_pitch', p[1:])
 
-
     def p_steno_tonic_pitch__TONICNAME_PITCH__sub_quotes(self, p):
         'steno_tonic_pitch : TONICNAME_PITCH sub_quotes'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('steno_tonic_pitch', p[1:])
-
 
     def p_steno_tonic_pitch__TONICNAME_PITCH__sup_quotes(self, p):
         'steno_tonic_pitch : TONICNAME_PITCH sup_quotes'
@@ -3275,18 +3238,15 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### step_number ###
 
-
 #    def p_step_number__bare_unsigned(self, p):
 #        'step_number : bare_unsigned'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('step_number', p[1:])
 
-
 #    def p_step_number__bare_unsigned__CHORD_MINUS(self, p):
 #        'step_number : bare_unsigned CHORD_MINUS'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('step_number', p[1:])
-
 
 #    def p_step_number__bare_unsigned__Chr43(self, p):
 #        "step_number : bare_unsigned '+'"
@@ -3296,12 +3256,10 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### step_numbers ###
 
-
 #    def p_step_numbers__step_number(self, p):
 #        'step_numbers : step_number'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('step_numbers', p[1:])
-
 
 #    def p_step_numbers__step_numbers__Chr46__step_number(self, p):
 #        "step_numbers : step_numbers '.' step_number"
@@ -3311,16 +3269,13 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### string ###
 
-
     def p_string__STRING(self, p):
         'string : STRING'
         p[0] = p[1]
 
-
     def p_string__STRING_IDENTIFIER(self, p):
         'string : STRING_IDENTIFIER'
         p[0] = p[1]
-
 
     def p_string__string__Chr43__string(self, p):
         "string : string '+' string"
@@ -3328,7 +3283,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
 
     ### string_number_event ###
-
 
     def p_string_number_event__E_UNSIGNED(self, p):
         'string_number_event : E_UNSIGNED'
@@ -3338,11 +3292,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### sub_quotes ###
 
-
     def p_sub_quotes__Chr44(self, p):
         "sub_quotes : ','"
         p[0] = 1
-
 
     def p_sub_quotes__sub_quotes__Chr44(self, p):
         "sub_quotes : sub_quotes ','"
@@ -3351,11 +3303,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### sup_quotes ###
 
-
     def p_sup_quotes__Chr39(self, p):
         "sup_quotes : '\\''"
         p[0] = 1
-
 
     def p_sup_quotes__sup_quotes__Chr39(self, p):
         "sup_quotes : sup_quotes '\\''"
@@ -3364,16 +3314,13 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### tempo_event ###
 
-
     def p_tempo_event__TEMPO__scalar(self, p):
         'tempo_event : TEMPO scalar'
         p[0] = contexttools.TempoMark(str(p[2]))
 
-
     def p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
         p[0] = contexttools.TempoMark(str(p[2]), p[3].duration, p[5])
-
 
     def p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO steno_duration '=' tempo_range"
@@ -3382,88 +3329,70 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### tempo_range ###
 
-
     def p_tempo_range__bare_unsigned(self, p):
         'tempo_range : bare_unsigned'
         p[0] = p[1]
 
 
-    def p_tempo_range__bare_unsigned__Chr126__bare_unsigned(self, p):
-        "tempo_range : bare_unsigned '~' bare_unsigned"
+    def p_tempo_range__bare_unsigned__Chr45__bare_unsigned(self, p):
+        "tempo_range : bare_unsigned '-' bare_unsigned"
         p[0] = (p[1], p[3])
 
-
     ### toplevel_expression ###
-
 
 #    def p_toplevel_expression__book_block(self, p):
 #        'toplevel_expression : book_block'
 #        p[0] = p[1]
 
-
 #    def p_toplevel_expression__bookpart_block(self, p):
 #        'toplevel_expression : bookpart_block'
 #        p[0] = p[1]
-
 
     def p_toplevel_expression__composite_music(self, p):
         'toplevel_expression : composite_music'
         p[0] = p[1]
 
-
     def p_toplevel_expression__full_markup(self, p):
         'toplevel_expression : full_markup'
         p[0] = p[1]
-
 
     def p_toplevel_expression__full_markup_list(self, p):
         'toplevel_expression : full_markup_list'
         p[0] = p[1]
 
-
     def p_toplevel_expression__lilypond_header(self, p):
         'toplevel_expression : lilypond_header'
         p[0] = p[1]
-
 
     def p_toplevel_expression__output_def(self, p):
         'toplevel_expression : output_def'
         p[0] = p[1]
 
-
     def p_toplevel_expression__score_block(self, p):
         'toplevel_expression : score_block'
         p[0] = p[1]
 
-
     ### tremolo_type ###
-
 
     def p_tremolo_type__Chr58(self, p):
         "tremolo_type : ':'"
         p[0] = None
 
-
     def p_tremolo_type__Chr58__bare_unsigned(self, p):
         "tremolo_type : ':' bare_unsigned"
         p[0] = marktools.StemTremolo(p[2])
 
-
     ### unsigned_number ###
-
 
 #    def p_unsigned_number__NUMBER_IDENTIFIER(self, p):
 #        'unsigned_number : NUMBER_IDENTIFIER'
 #        p[0] = p[1]
 
-
 #    def p_unsigned_number__UNSIGNED(self, p):
 #        'unsigned_number : UNSIGNED'
 #        p[0] = p[1]
 
-
     ### PLY error ###
-
 
     def p_error(self, p):
         #print p

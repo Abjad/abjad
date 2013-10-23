@@ -53,7 +53,7 @@ def test_LilyPondParser__marks__TempoMark_03():
     r'''
     \new Score <<
         \new Staff {
-            \tempo 4=59~63
+            \tempo 4=59-63
             c'1
         }
     >>
@@ -97,7 +97,7 @@ def test_LilyPondParser__marks__TempoMark_05():
     r'''
     \new Score <<
         \new Staff {
-            \tempo "Faster than a thousand suns" 16=34~55
+            \tempo "Faster than a thousand suns" 16=34-55
             c'1
         }
     >>
