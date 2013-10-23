@@ -11,13 +11,27 @@ def configure_lilypond_file(lilypond_file):
     context_block.override.vertical_axis_group.remove_first = True
     lilypond_file.layout_block.context_blocks.append(context_block)
 
-    lilypond_file.paper_block.system_separator_markup = marktools.LilyPondCommandMark('slashSeparator')
-    lilypond_file.paper_block.bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
-    lilypond_file.paper_block.top_margin =    lilypondfiletools.LilyPondDimension(0.5, 'in')
-    lilypond_file.paper_block.left_margin =   lilypondfiletools.LilyPondDimension(0.75, 'in')
-    lilypond_file.paper_block.right_margin =  lilypondfiletools.LilyPondDimension(0.5, 'in')
-    lilypond_file.paper_block.paper_width =   lilypondfiletools.LilyPondDimension(5.25, 'in')
-    lilypond_file.paper_block.paper_height =  lilypondfiletools.LilyPondDimension(7.25, 'in')
+    slash_separator = marktools.LilyPondCommandMark('slashSeparator')
+    lilypond_file.paper_block.system_separator_markup = slash_separator
+
+    bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
+    lilypond_file.paper_block.bottom_margin = bottom_margin
+
+    top_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
+    lilypond_file.paper_block.top_margin = top_margin
+
+    left_margin = lilypondfiletools.LilyPondDimension(0.75, 'in')
+    lilypond_file.paper_block.left_margin = left_margin
+
+    right_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
+    lilypond_file.paper_block.right_margin = right_margin
+
+    paper_width = lilypondfiletools.LilyPondDimension(5.25, 'in')
+    lilypond_file.paper_block.paper_width = paper_width
+
+    paper_height = lilypondfiletools.LilyPondDimension(7.25, 'in')
+    lilypond_file.paper_block.paper_height = paper_height
 
     lilypond_file.header_block.composer = markuptools.Markup('Arvo Pärt')
-    lilypond_file.header_block.title = markuptools.Markup('Cantus in Memory of Benjamin Britten (1980)')
+    title = 'Cantus in Memory of Benjamin Britten (1980)'
+    lilypond_file.header_block.title = markuptools.Markup(title)

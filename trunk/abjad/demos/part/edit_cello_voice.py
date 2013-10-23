@@ -23,4 +23,7 @@ def edit_cello_voice(score, durated_reservoir):
         marktools.Articulation('accent')(parent[index])
         marktools.Articulation('tenuto')(parent[index])
 
-    voice.extend('a,1. ~ a,2 b,1 ~ b,1. ~ b,1. a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,2 r4 r2.')
+    voice.extend('a,1. ~ a,2')
+    voice.extend('b,1 ~ b,1. ~ b,1.')
+    voice.extend('a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,2')
+    voice.extend('r4 r2.')

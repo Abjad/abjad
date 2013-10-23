@@ -5,10 +5,10 @@ from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools import scoretemplatetools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools import abctools
 
 
-class PartCantusScoreTemplate(AbjadObject):
+class PartCantusScoreTemplate(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
@@ -25,7 +25,8 @@ class PartCantusScoreTemplate(AbjadObject):
 
         # make first violin voice and staff
         first_violin_voice = voicetools.Voice(name='First Violin Voice')
-        first_violin_staff = stafftools.Staff([first_violin_voice], name='First Violin Staff')
+        first_violin_staff = stafftools.Staff([first_violin_voice],
+            name='First Violin Staff')
         contexttools.ClefMark('treble')(first_violin_staff)
         instrumenttools.Violin(
             instrument_name_markup='Violin I',
@@ -34,7 +35,8 @@ class PartCantusScoreTemplate(AbjadObject):
 
         # make second violin voice and staff
         second_violin_voice = voicetools.Voice(name='Second Violin Voice')
-        second_violin_staff = stafftools.Staff([second_violin_voice], name='Second Violin Staff')
+        second_violin_staff = stafftools.Staff([second_violin_voice],
+            name='Second Violin Staff')
         contexttools.ClefMark('treble')(second_violin_staff)
         instrumenttools.Violin(
             instrument_name_markup='Violin II',
