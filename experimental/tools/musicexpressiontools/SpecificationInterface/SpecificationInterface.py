@@ -61,6 +61,14 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
         return
 
     @property
+    def storage_format(self):
+        r'''Storage format of specification interface.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
+    @property
     def timespan(self):
         from experimental.tools import musicexpressiontools
         timespan = musicexpressiontools.TimespanExpression()

@@ -24,7 +24,7 @@ class RhythmMakerExpression(PayloadExpression):
             >>> rhythm_maker = library.dotted_sixteenths
             >>> payload_expression = \
             ...     musicexpressiontools.RhythmMakerExpression(rhythm_maker)
-            >>> z(payload_expression)
+            >>> print payload_expression.storage_format
             musicexpressiontools.RhythmMakerExpression(
                 payload=rhythmmakertools.TaleaRhythmMaker(
                     talea=[3, 1],
@@ -43,7 +43,7 @@ class RhythmMakerExpression(PayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.RhythmMakerExpression(
                 payload=rhythmmakertools.TaleaRhythmMaker(
                     talea=[1, 3],

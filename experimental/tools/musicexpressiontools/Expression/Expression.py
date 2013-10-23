@@ -59,6 +59,16 @@ class Expression(AbjadObject):
             result.remove('callbacks=CallbackInventory([])')
         return tuple(result)
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        r'''Storage format of expression.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
+
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod

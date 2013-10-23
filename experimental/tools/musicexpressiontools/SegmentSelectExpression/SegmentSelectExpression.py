@@ -29,7 +29,7 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> z(select_expression)
+        >>> print select_expression.storage_format
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1'
             )
@@ -43,7 +43,7 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> z(select_expression)
+        >>> print select_expression.storage_format
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory([
@@ -60,7 +60,7 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> z(select_expression)
+        >>> print select_expression.storage_format
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory([
@@ -77,7 +77,7 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> z(select_expression)
+        >>> print select_expression.storage_format
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory([
@@ -95,7 +95,7 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> z(select_expression)
+        >>> print select_expression.storage_format
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory([

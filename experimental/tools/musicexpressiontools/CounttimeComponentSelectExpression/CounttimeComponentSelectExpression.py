@@ -43,7 +43,7 @@ class CounttimeComponentSelectExpression(
 
     ::
 
-        >>> z(select_expression)
+        >>> print select_expression.storage_format
         musicexpressiontools.CounttimeComponentSelectExpression(
             classes=musicexpressiontools.ClassInventory([
                 leaftools.Leaf
@@ -59,7 +59,7 @@ class CounttimeComponentSelectExpression(
 
     ::
 
-        >>> z(select_expression)
+        >>> print select_expression.storage_format
         musicexpressiontools.CounttimeComponentSelectExpression(
             anchor='red',
             classes=musicexpressiontools.ClassInventory([

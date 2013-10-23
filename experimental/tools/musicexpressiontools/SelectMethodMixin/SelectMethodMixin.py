@@ -34,7 +34,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> z(beats)
+            >>> print beats.storage_format
             musicexpressiontools.BeatSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
@@ -60,7 +60,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> z(divisions)
+            >>> print divisions.storage_format
             musicexpressiontools.DivisionSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
@@ -87,7 +87,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> z(leaves)
+            >>> print leaves.storage_format
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
@@ -118,7 +118,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> z(measures)
+            >>> print measures.storage_format
             musicexpressiontools.MeasureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
@@ -146,7 +146,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> z(notes_and_chords)
+            >>> print notes_and_chords.storage_format
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
@@ -178,7 +178,7 @@ class SelectMethodMixin(AbjadObject):
 #
 #        ::
 #
-#            >>> z(select_expression)
+#            >>> print select_expression.storage_format
 #            musicexpressiontools.SegmentSelectExpression(
 #                voice_name='Voice 1'
 #                )
@@ -200,7 +200,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> z(time_signatures)
+            >>> print time_signatures.storage_format
             musicexpressiontools.TimeSignatureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'

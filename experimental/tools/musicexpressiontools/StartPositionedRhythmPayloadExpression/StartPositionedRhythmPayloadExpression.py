@@ -28,7 +28,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
     ::
 
-        >>> z(expression)
+        >>> print expression.storage_format
         musicexpressiontools.StartPositionedRhythmPayloadExpression(
             payload=containertools.Container(
                 music=[{c'8, d'8, e'8, f'8}]
@@ -65,7 +65,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -88,7 +88,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -108,7 +108,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -128,7 +128,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([])
 
         Operates in place and returns timespan inventory.
@@ -144,7 +144,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8}]
@@ -212,7 +212,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -226,7 +226,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression_1)
+            >>> print expression_1.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8, e'8, f'8}]
@@ -238,7 +238,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression_2)
+            >>> print expression_2.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{g'8, a'8, b'8, c''8}]
@@ -266,7 +266,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-                >>> z(result)
+                >>> print result.storage_format
                 timespantools.TimespanInventory([
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=containertools.Container(
@@ -288,7 +288,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -311,7 +311,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -339,7 +339,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -460,7 +460,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8, e'8, f'8}]
@@ -516,7 +516,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -559,7 +559,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=containertools.Container(
@@ -597,7 +597,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{f'8, e'8, d'8, c'8}]
@@ -633,7 +633,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8, e'16}]
@@ -657,7 +657,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'16}]
@@ -700,7 +700,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8, e'8}]
@@ -724,7 +724,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'8}]
@@ -756,7 +756,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'8, f'8}, {c'16}]
@@ -806,7 +806,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{d'8, e'8, f'8}, {c'8}]
@@ -829,7 +829,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{d'16, e'8, f'8}, {c'8, d'16}]
@@ -954,7 +954,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=containertools.Container(
                     music=[{c'8, d'8, e'8, f'8}]

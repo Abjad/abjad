@@ -98,7 +98,7 @@ class SegmentSpecification(Specification):
 
         ::
 
-            >>> z(red_segment.fresh_single_context_set_expressions)
+            >>> print red_segment.fresh_single_context_set_expressions.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=musicexpressiontools.IterablePayloadExpression(
@@ -223,7 +223,7 @@ class SegmentSpecification(Specification):
 
         ::
 
-            >>> z(red_segment)
+            >>> print red_segment.storage_format
             musicexpressiontools.SegmentSpecification(
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=2

@@ -19,7 +19,7 @@ class StartPositionedDivisionPayloadExpression(
 
     ::
 
-        >>> z(expression)
+        >>> print expression.storage_format
         musicexpressiontools.StartPositionedDivisionPayloadExpression(
             payload=musicexpressiontools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -66,7 +66,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -88,7 +88,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -110,7 +110,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -134,7 +134,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([])
 
         Operates in place and returns timespan inventory.
@@ -150,7 +150,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -204,7 +204,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -237,7 +237,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -261,7 +261,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -285,7 +285,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -314,7 +314,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -424,7 +424,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -482,7 +482,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -524,7 +524,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(
@@ -565,7 +565,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[3, 4]', start_offset=Offset(0, 1)),
@@ -595,7 +595,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -629,7 +629,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -663,7 +663,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(expression)
+            >>> print expression.storage_format
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -693,7 +693,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> z(result)
+            >>> print result.storage_format
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(10, 1)),

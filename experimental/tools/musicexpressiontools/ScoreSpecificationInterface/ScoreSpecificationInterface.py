@@ -96,7 +96,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> z(score_specification)
+            >>> print score_specification.storage_format
             musicexpressiontools.ScoreSpecificationInterface(
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=4
@@ -144,7 +144,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> z(offset_expression)
+            >>> print offset_expression.storage_format
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(),
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -184,7 +184,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> z(select_expression)
+            >>> print select_expression.storage_format
             musicexpressiontools.SegmentSelectExpression(
                 voice_name='Voice 1'
                 )

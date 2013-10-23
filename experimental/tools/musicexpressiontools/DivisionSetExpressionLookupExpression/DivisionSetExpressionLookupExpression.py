@@ -31,7 +31,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
 
     ::
 
-        >>> z(set_expression)
+        >>> print set_expression.storage_format
         musicexpressiontools.DivisionSetExpressionLookupExpression(
             offset=musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.MeasureSelectExpression(

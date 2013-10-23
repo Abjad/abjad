@@ -27,7 +27,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     ::
 
-        >>> z(multiple_context_set_expression)
+        >>> print multiple_context_set_expression.storage_format
         musicexpressiontools.MultipleContextSetExpression(
             attribute='time_signatures',
             source_expression=musicexpressiontools.IterablePayloadExpression(
