@@ -217,30 +217,28 @@ Abjad packaging checklist:
 25. Change to abjad/trunk.
     Upgrade setuptools with "sudo pip install --upgrade setuptools".
 
-26. Open setup.py and increment the version string found there.
-
-27. Run 'python setup.py register sdist upload'
+26. Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.
     You must have Abjad package owner credentials for this step to work.
     If you need Abjad package owner credentials, 
     talk to Trevor, Josiah or Víctor.
     PyPI should respond with "Server response (200): OK".
 
-28. Remove 'dist' and 'Abjad.egg-info'.
+27. Remove 'dist' and 'Abjad.egg-info'.
     The directories are no longer needed after upload to PyPI.
     The directories should not be checked into the Abjad repository.
 
-29. Log in to The PyPI website at pypi.python.org with Abjad owner credentials.
+28. Log in to The PyPI website at pypi.python.org with Abjad owner credentials.
     Talk to Trevor, Josiah or Víctor if you need Abjad owner credentials.
     Click on the Abjad link to edit PyPI's information about the package.
 
-30. Click your browser's "back" button to return to the 
+29. Click your browser's "back" button to return to the 
     "Package 'Abjad' Editing" page.
     Then click on the "edit" link to the left of the entry for the 
     new x.y version.
     This will take you to the "Submitting package information" page.
 
-31. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" 
+30. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" 
     in the "Author" field.
     (This is necessary because there's a bug in setup.py that fails on 
     UNICODE metadata.
@@ -250,38 +248,24 @@ Abjad packaging checklist:
     ("Josiah Wolf Oberholtzer" transmits fine here and doesn't 
     have to be tweaked.)
 
-32. Manually restore the spaces after each of the keyword phrases in
+31. Manually restore the spaces after each of the keyword phrases in
     "music composition, music notation, formalized score control, lilypond"
     in the "Keywords" field. (Again, setup.py mangles these on upload to PyPI.)
 
-33. Click the "Add information" button at the bottom of the page to confirm.
+32. Click the "Add information" button at the bottom of the page to confirm.
     All PyPI editing and uploading is now complete.
 
-34. Click around PyPI to make sure everything looks correct.
+33. Click around PyPI to make sure everything looks correct.
     Then leave PyPI.
     
-35. Edit _version.py and increment __version_info__ to the *next* minor
+34. Edit _version.py and increment __version_info__ to the *next* minor
     number.
 
-36. Commit.
+35. Commit.
 
-37. Author release announcement and mail to abjad-user@googlegroups.com.
+36. Author release announcement and mail to abjad-user@googlegroups.com.
     Release announcement should recapitulate version history.
     
 [2011-08-21, 2011-08-30, 2011-09-12, 2011-09-22, 
  2012-01-29, 2012-02-27, 2012-05-22, 2012-06-05, 2012-10-03, 2012-10-05,
- 2012-10-29, 2012-12-17, 2012-03-25]
-
-### The following steps are no longer necessary ###
-### because we are now hosting our own docs     ###
-
-    Change to docs/build/html and archive all 17 or 18 files and 
-    subdirectories therein.
-    You must create a single archive of all 17 or 18 files.
-    Through the Finder on the Mac you can shift-click all 17 or 18 files,
-    then control-click the selected files and choose "Compress 17 items"
-    from the context menu that appears.
-    (Note that archiving just the docs/build/html folder will not work.)
-    Name the archive Archive.zip.
-    Check the size of the archive.
-    The archive must be less than 25 megs.
+ 2012-10-29, 2012-12-17, 2012-03-25, 2013-10-23]
