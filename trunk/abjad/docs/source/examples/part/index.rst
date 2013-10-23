@@ -1,8 +1,10 @@
 Pärt: *Cantus in Memory of Benjamin Britten*
 ============================================
 
-.. note:: Explore the `abjad/demos/part/` directory for the complete code to this example,
-    or import it into your Python session directly with:
+..  note::
+
+    Explore the `abjad/demos/part/` directory for the complete code to this
+    example, or import it into your Python session directly with:
 
     * `from abjad.demos import part`
 
@@ -43,12 +45,7 @@ The score template
 
 ::
 
-   class PartCantusScoreTemplate(scoretemplatetools.ScoreTemplate):
-   
-       ### INITIALIZER ###
-   
-       def __init__(self):
-           pass
+   class PartCantusScoreTemplate(abctools.AbjadObject):
    
        ### SPECIAL METHODS ###
    
@@ -58,13 +55,15 @@ The score template
            bell_voice = voicetools.Voice(name='Bell Voice')
            bell_staff = stafftools.Staff([bell_voice], name='Bell Staff')
            contexttools.ClefMark('treble')(bell_staff)
-           contexttools.InstrumentMark('Campana in La', 'Camp.')(bell_staff)
+           bells = instrumenttools.Instrument('Campana in La', 'Camp.')
+           bells.attach(bell_staff)
            contexttools.TempoMark((1, 4), (112, 120))(bell_staff)
            contexttools.TimeSignatureMark((6, 4))(bell_staff)
    
            # make first violin voice and staff
            first_violin_voice = voicetools.Voice(name='First Violin Voice')
-           first_violin_staff = stafftools.Staff([first_violin_voice], name='First Violin Staff')
+           first_violin_staff = stafftools.Staff([first_violin_voice],
+               name='First Violin Staff')
            contexttools.ClefMark('treble')(first_violin_staff)
            instrumenttools.Violin(
                instrument_name_markup='Violin I',
@@ -73,7 +72,8 @@ The score template
    
            # make second violin voice and staff
            second_violin_voice = voicetools.Voice(name='Second Violin Voice')
-           second_violin_staff = stafftools.Staff([second_violin_voice], name='Second Violin Staff')
+           second_violin_staff = stafftools.Staff([second_violin_voice],
+               name='Second Violin Staff')
            contexttools.ClefMark('treble')(second_violin_staff)
            instrumenttools.Violin(
                instrument_name_markup='Violin II',
@@ -155,9 +155,10 @@ The bell music
 The string music
 ----------------
 
-Creating the music for the strings is a bit more involved, but conceptually falls into two steps.
-First, we'll procedurally generate basic pitches and rhythms for all string voices.  Then, we'll
-make edits to the generated material by hand.  The entire process is encapsulated in the following
+Creating the music for the strings is a bit more involved, but conceptually
+falls into two steps.  First, we'll procedurally generate basic pitches and
+rhythms for all string voices.  Then, we'll make edits to the generated
+material by hand.  The entire process is encapsulated in the following
 function:
 
 ::
@@ -186,21 +187,23 @@ function:
        edit_bass_voice(score, durated_reservoir)
    
        # chop all string parts into 6/4 measures
-       for voice in iterationtools.iterate_voices_in_expr(score['Strings Staff Group']):
-           for shard in componenttools.split(voice[:],
-               [(6, 4)], cyclic=True):
+       strings_staff_group = score['Strings Staff Group']
+       for voice in  iterationtools.iterate_voices_in_expr(strings_staff_group):
+           shards = mutate(voice[:]).split([(6, 4)], cyclic=True)
+           for shard in shards:
                measuretools.Measure((6, 4), shard)
 
 
-The pitch material is the same for all of the strings: a descending a-minor scale, generally
-decorated with diads.  But, each instrument uses a different overall range, with the lower
-instrument playing slower and slower than the higher instruments, creating a sort of mensuration
-canon.
+The pitch material is the same for all of the strings: a descending a-minor
+scale, generally decorated with diads.  But, each instrument uses a different
+overall range, with the lower instrument playing slower and slower than the
+higher instruments, creating a sort of mensuration canon.
 
-For each instrument, the descending scale is fragmented into what we'll call "descents".
-The first descent uses only the first note of that instrument's scale, while the second descent
-adds the second note, and the third another.  We'll generate as many descents per instruments
-as there are pitches in its overall scale:
+For each instrument, the descending scale is fragmented into what we'll call
+"descents".  The first descent uses only the first note of that instrument's
+scale, while the second descent adds the second note, and the third another.
+We'll generate as many descents per instruments as there are pitches in its
+overall scale:
 
 ::
 
@@ -218,7 +221,7 @@ as there are pitches in its overall scale:
        reservoir = {}
        for instrument_name, pitch_range in pitch_ranges.iteritems():
            pitch_set = scale.create_named_pitch_set_in_pitch_range(pitch_range)
-           pitches = sorted(pitch_set.named_pitches, reverse=True)
+           pitches = sorted(pitch_set, reverse=True)
            pitch_descents = []
            for i in xrange(len(pitches)):
                descent = tuple(pitches[:i + 1])
@@ -249,21 +252,22 @@ Here's what the first 10 descents for the first violin look like:
    a''' g''' f''' e''' d''' c''' b'' a'' g'' f''
 
 
-Next we add diads to all of the descents, except for the viola's.  We'll use a dictionary
-as a lookup table, to tell us what interval to add below a given pitch class:
+Next we add diads to all of the descents, except for the viola's.  We'll use a
+dictionary as a lookup table, to tell us what interval to add below a given
+pitch class:
 
 ::
 
    def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
    
        shadow_pitch_lookup = {
-           pitchtools.NamedDiatonicPitchClass('a'): -5, # add a P4 below
-           pitchtools.NamedDiatonicPitchClass('g'): -3, # add a m3 below
-           pitchtools.NamedDiatonicPitchClass('f'): -1, # add a m2 below
-           pitchtools.NamedDiatonicPitchClass('e'): -4, # add a M3 below
-           pitchtools.NamedDiatonicPitchClass('d'): -2, # add a M2 below
-           pitchtools.NamedDiatonicPitchClass('c'): -3, # add a m3 below
-           pitchtools.NamedDiatonicPitchClass('b'): -2, # add a M2 below
+           pitchtools.NamedPitchClass('a'): -5, # add a P4 below
+           pitchtools.NamedPitchClass('g'): -3, # add a m3 below
+           pitchtools.NamedPitchClass('f'): -1, # add a m2 below
+           pitchtools.NamedPitchClass('e'): -4, # add a M3 below
+           pitchtools.NamedPitchClass('d'): -2, # add a M2 below
+           pitchtools.NamedPitchClass('c'): -3, # add a m3 below
+           pitchtools.NamedPitchClass('b'): -2, # add a M2 below
        }
    
        shadowed_reservoir = {}
@@ -279,7 +283,7 @@ as a lookup table, to tell us what interval to add below a given pitch class:
            for pitch_contour in pitch_contours[:-1]:
                shadowed_pitch_contour = []
                for pitch in pitch_contour:
-                   pitch_class = pitch.named_diatonic_pitch_class
+                   pitch_class = pitch.named_pitch_class
                    shadow_pitch = pitch + shadow_pitch_lookup[pitch_class]
                    diad = (shadow_pitch, pitch)
                    shadowed_pitch_contour.append(diad)
@@ -288,7 +292,7 @@ as a lookup table, to tell us what interval to add below a given pitch class:
            # treat the final contour differently: the last note does not become a diad
            final_shadowed_pitch_contour = []
            for pitch in pitch_contours[-1][:-1]:
-               pitch_class = pitch.named_diatonic_pitch_class
+               pitch_class = pitch.named_pitch_class
                shadow_pitch = pitch + shadow_pitch_lookup[pitch_class]
                diad = (shadow_pitch, pitch)
                final_shadowed_pitch_contour.append(diad)
@@ -302,8 +306,8 @@ as a lookup table, to tell us what interval to add below a given pitch class:
 
 Finally, we'll add rhythms to the pitch contours we've been constructing.  Each
 string instrument plays twice as slow as the string instrument above it in the
-score.  Additionally, all the strings start with some rests, and use a "long-short"
-pattern for their rhythms:
+score.  Additionally, all the strings start with some rests, and use a
+"long-short" pattern for their rhythms:
 
 ::
 
@@ -360,15 +364,32 @@ reservoir from scratch, so you can see the process:
 
 Then we'll grab the sub-reservoir for the first violins, taking the first ten
 descents (which includes the silences we've been adding as well).  We'll label
-each descent with some markup, to distinguish them, throw them into a
-Staff and give them a 6/4 time signature, just so they line up properly.
+each descent with some markup, to distinguish them, throw them into a Staff and
+give them a 6/4 time signature, just so they line up properly.
 
 ::
 
    >>> descents = durated_reservoir['First Violin'][:10]
    >>> for i, descent in enumerate(descents[1:], 1):
-   ...     markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+   ...     markup = markuptools.Markup(
+   ...         r'\rounded-box \bold {}'.format(i),
+   ...         Up,
+   ...         )
+   ...     markup.attach(descent[0])
    ... 
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '1')),), direction=Up)(<e''' a'''>2)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '2')),), direction=Up)(<e''' a'''>4)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '3')),), direction=Up)(<e''' a'''>4)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '4')),), direction=Up)(<e''' a'''>2)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '5')),), direction=Up)(<e''' a'''>2)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '6')),), direction=Up)(<e''' a'''>4)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '7')),), direction=Up)(<e''' a'''>4)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '8')),), direction=Up)(<e''' a'''>2)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '9')),), direction=Up)(<e''' a'''>2)
+
+
+::
+
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
    >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
    >>> show(staff)
@@ -382,8 +403,25 @@ Let's look at the second violins too:
 
    >>> descents = durated_reservoir['Second Violin'][:10]
    >>> for i, descent in enumerate(descents[1:], 1):
-   ...     markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+   ...     markup = markuptools.Markup(
+   ...         r'\rounded-box \bold {}'.format(i),
+   ...         Up,
+   ...         )
+   ...     markup.attach(descent[0])
    ... 
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '1')),), direction=Up)(<e'' a''>1)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '2')),), direction=Up)(<e'' a''>2)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '3')),), direction=Up)(<e'' a''>2)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '4')),), direction=Up)(<e'' a''>1)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '5')),), direction=Up)(<e'' a''>1)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '6')),), direction=Up)(<e'' a''>2)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '7')),), direction=Up)(<e'' a''>2)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '8')),), direction=Up)(<e'' a''>1)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '9')),), direction=Up)(<e'' a''>1)
+
+
+::
+
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
    >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
    >>> show(staff)
@@ -391,26 +429,43 @@ Let's look at the second violins too:
 .. image:: images/index-2.png
 
 
-And, last we'll take a peek at the violas.  They have some longer notes,
-so we'll split their music cyclically every 3 half notes, just so nothing
-crosses the bar lines accidentally:
+And, last we'll take a peek at the violas.  They have some longer notes, so
+we'll split their music cyclically every 3 half notes, just so nothing crosses
+the bar lines accidentally:
 
 ::
 
    >>> descents = durated_reservoir['Viola'][:10]
    >>> for i, descent in enumerate(descents[1:], 1):
-   ...     markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+   ...     markup = markuptools.Markup(
+   ...         r'\rounded-box \bold {}'.format(i),
+   ...         Up,
+   ...         )
+   ...     markup.attach(descent[0])
    ... 
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '1')),), direction=Up)(a'\breve)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '2')),), direction=Up)(a'1)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '3')),), direction=Up)(a'1)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '4')),), direction=Up)(a'\breve)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '5')),), direction=Up)(a'\breve)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '6')),), direction=Up)(a'1)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '7')),), direction=Up)(a'1)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '8')),), direction=Up)(a'\breve)
+   Markup((MarkupCommand('rounded-box', MarkupCommand('bold', '9')),), direction=Up)(a'\breve)
+
+
+::
+
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
-   >>> shards = componenttools.split(staff[:], [(3, 2)], cyclic=True)
+   >>> shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
    >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-3.png
 
 
-You can see how each part is twice as slow as the previous, and starts a
-little bit later too.
+You can see how each part is twice as slow as the previous, and starts a little
+bit later too.
 
 The edits
 ---------
@@ -421,8 +476,10 @@ The edits
    
        voice = score['First Violin Voice']
        descents = durated_reservoir['First Violin']
+       descents = selectiontools.ContiguousSelection(descents)
    
-       copied_descent = componenttools.copy_components_and_detach_spanners(descents[-1])
+       last_descent = selectiontools.select(descents[-1], contiguous=True)
+       copied_descent = mutate(last_descent).copy()
        voice.extend(copied_descent)
    
        final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
@@ -439,7 +496,9 @@ The edits
        voice = score['Second Violin Voice']
        descents = durated_reservoir['Second Violin']
    
-       copied_descent = list(componenttools.copy_components_and_detach_spanners(descents[-1]))
+       last_descent = selectiontools.select(descents[-1], contiguous=True)
+       copied_descent = mutate(last_descent).copy()
+       copied_descent = list(copied_descent)
        copied_descent[-1].written_duration = durationtools.Duration(1, 1)
        copied_descent.append(notetools.Note('a2'))
        for leaf in copied_descent:
@@ -469,7 +528,8 @@ The edits
        for leaf in descents[-1]:
            marktools.Articulation('accent')(leaf)
            marktools.Articulation('tenuto')(leaf)
-       copied_descent = componenttools.copy_components_and_detach_spanners(descents[-1])
+       last_descent = selectiontools.select(descents[-1], contiguous=True)
+       copied_descent = mutate(last_descent).copy()
        for leaf in copied_descent:
            if leaf.written_duration == durationtools.Duration(4, 4):
                leaf.written_duration = durationtools.Duration(8, 4)
@@ -498,21 +558,26 @@ The edits
        voice = score['Cello Voice']
        descents = durated_reservoir['Cello']
    
-       tie_chain = tietools.get_tie_chain(voice[-1])
+       tie_chain = inspect(voice[-1]).get_tie_chain()
        for leaf in tie_chain.leaves:
-           parent = leaf.parent
+           parent = leaf._get_parentage().parent
            index = parent.index(leaf)
            parent[index] = chordtools.Chord(['e,', 'a,'], leaf.written_duration)
    
-       unison_descent = componenttools.copy_components_and_detach_spanners(voice[-len(descents[-1]):])
+       selection = voice[-len(descents[-1]):]
+       unison_descent = mutate(selection).copy()
        voice.extend(unison_descent)
        for chord in unison_descent:
-           index = chord.parent.index(chord)
-           parent[index] = notetools.Note(chord.written_pitches[1], chord.written_duration)
+           index = inspect(chord).get_parentage().parent.index(chord)
+           parent[index] = notetools.Note(
+               chord.written_pitches[1], chord.written_duration)
            marktools.Articulation('accent')(parent[index])
            marktools.Articulation('tenuto')(parent[index])
    
-       voice.extend('a,1. ~ a,2 b,1 ~ b,1. ~ b,1. a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,2 r4 r2.')
+       voice.extend('a,1. ~ a,2')
+       voice.extend('b,1 ~ b,1. ~ b,1.')
+       voice.extend('a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,1. ~ a,2')
+       voice.extend('r4 r2.')
 
 
 ::
@@ -531,15 +596,15 @@ Now we'll apply various kinds of marks, including dynamics, articulations,
 bowing indications, expressive instructures, page breaks and rehearsal marks.
 
 We'll start with the bowing marks.  This involves creating a piece of custom
-markup to indicate rebowing.  We accomplish this by aggregating together
-some `markuptools.MarkupCommand` and `markuptools.MusicGlyph` objects.  The
-completed `markuptools.Markup` object is then copied and attached at the correct
-locations in the score.
+markup to indicate rebowing.  We accomplish this by aggregating together some
+`markuptools.MarkupCommand` and `markuptools.MusicGlyph` objects.  The
+completed `markuptools.Markup` object is then copied and attached at the
+correct locations in the score.
 
-Why copy it?  A `Mark` can only be attached to a single
-`Component`.  If we attached the original piece of markup to each of our target
-components in turn, only the last would actually receive the markup, as it would
-have be detached from the preceding components.
+Why copy it?  A `Mark` can only be attached to a single `Component`.  If we
+attached the original piece of markup to each of our target components in turn,
+only the last would actually receive the markup, as it would have be detached
+from the preceding components.
 
 Let's take a look:
 
@@ -569,7 +634,8 @@ Let's take a look:
        copy.copy(rebow_markup)(score['Viola Voice'][86][0])
 
 
-After dealing with custom markup, applying dynamics is easy.  Just instantiate and attach:
+After dealing with custom markup, applying dynamics is easy.  Just instantiate
+and attach:
 
 ::
 
@@ -641,7 +707,8 @@ We apply expressive marks the same way we applied our dynamics:
    def apply_expressive_marks(score):
    
        voice = score['First Violin Voice']
-       markuptools.Markup(r'\left-column { div. \line { con sord. } }', Up)(voice[6][1])
+       markuptools.Markup(r'\left-column { div. \line { con sord. } }', Up)(
+           voice[6][1])
        markuptools.Markup('sim.', Up)(voice[8][0])
        markuptools.Markup('uniti', Up)(voice[58][3])
        markuptools.Markup('div.', Up)(voice[59][0])
@@ -666,11 +733,12 @@ We apply expressive marks the same way we applied our dynamics:
        voice = score['Bass Voice']
        markuptools.Markup('div.', Up)(voice[14][0])
        markuptools.Markup(r'\italic { espr. }', Down)(voice[86][0])
-       componenttools.split(voice[88][:], [Duration(1, 1), Duration(1, 2)])
+       mutate(voice[88][:]).split([Duration(1, 1), Duration(1, 2)])
        markuptools.Markup(r'\italic { molto espr. }', Down)(voice[88][1])
        markuptools.Markup('uniti', Up)(voice[99][1])
    
-       for voice in iterationtools.iterate_voices_in_expr(score['Strings Staff Group']):
+       strings_staff_group = score['Strings Staff Group']
+       for voice in iterationtools.iterate_voices_in_expr(strings_staff_group):
            markuptools.Markup(r'\italic { (non dim.) }', Down)(voice[102][0])
 
 
@@ -694,8 +762,7 @@ break in the exact same places as the original:
                )(bell_voice[measure_index])
 
 
-We'll make the rehearsal marks the exact same way we made our line
-breaks:
+We'll make the rehearsal marks the exact same way we made our line breaks:
 
 ::
 
@@ -731,10 +798,11 @@ The LilyPond file
 Finally, we create some functions to apply formatting directives to our `Score`
 object, then wrap it into a `LilyPondFile` and apply some more formatting.
 
-In our `configure_score()` functions, we use `layouttools.make_spacing_vector()`
-to create the correct Scheme construct to tell LilyPond how to handle vertical
-space for its staves and staff groups. You should consult LilyPond's vertical
-spacing documentation for a complete explanation of what this Scheme code means:
+In our `configure_score()` functions, we use
+`layouttools.make_spacing_vector()` to create the correct Scheme construct to
+tell LilyPond how to handle vertical space for its staves and staff groups. You
+should consult LilyPond's vertical spacing documentation for a complete
+explanation of what this Scheme code means:
 
 ::
 
@@ -754,9 +822,9 @@ spacing documentation for a complete explanation of what this Scheme code means:
        score.set.mark_formatter = schemetools.Scheme('format-mark-box-numbers')
 
 
-In our `configure_lilypond_file()` function, we need to construct a ContextBlock
-definition in order to tell LilyPond to hide empty staves, and additionally to
-hide empty staves if they appear in the first system:
+In our `configure_lilypond_file()` function, we need to construct a
+ContextBlock definition in order to tell LilyPond to hide empty staves, and
+additionally to hide empty staves if they appear in the first system:
 
 ::
 
@@ -769,16 +837,30 @@ hide empty staves if they appear in the first system:
        context_block.override.vertical_axis_group.remove_first = True
        lilypond_file.layout_block.context_blocks.append(context_block)
    
-       lilypond_file.paper_block.system_separator_markup = marktools.LilyPondCommandMark('slashSeparator')
-       lilypond_file.paper_block.bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
-       lilypond_file.paper_block.top_margin =    lilypondfiletools.LilyPondDimension(0.5, 'in')
-       lilypond_file.paper_block.left_margin =   lilypondfiletools.LilyPondDimension(0.75, 'in')
-       lilypond_file.paper_block.right_margin =  lilypondfiletools.LilyPondDimension(0.5, 'in')
-       lilypond_file.paper_block.paper_width =   lilypondfiletools.LilyPondDimension(5.25, 'in')
-       lilypond_file.paper_block.paper_height =  lilypondfiletools.LilyPondDimension(7.25, 'in')
+       slash_separator = marktools.LilyPondCommandMark('slashSeparator')
+       lilypond_file.paper_block.system_separator_markup = slash_separator
+   
+       bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
+       lilypond_file.paper_block.bottom_margin = bottom_margin
+   
+       top_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
+       lilypond_file.paper_block.top_margin = top_margin
+   
+       left_margin = lilypondfiletools.LilyPondDimension(0.75, 'in')
+       lilypond_file.paper_block.left_margin = left_margin
+   
+       right_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
+       lilypond_file.paper_block.right_margin = right_margin
+   
+       paper_width = lilypondfiletools.LilyPondDimension(5.25, 'in')
+       lilypond_file.paper_block.paper_width = paper_width
+   
+       paper_height = lilypondfiletools.LilyPondDimension(7.25, 'in')
+       lilypond_file.paper_block.paper_height = paper_height
    
        lilypond_file.header_block.composer = markuptools.Markup('Arvo Pärt')
-       lilypond_file.header_block.title = markuptools.Markup('Cantus in Memory of Benjamin Britten (1980)')
+       title = 'Cantus in Memory of Benjamin Britten (1980)'
+       lilypond_file.header_block.title = markuptools.Markup(title)
 
 
 Let's run our original toplevel function to build the complete score:
@@ -799,6 +881,6 @@ And here we show it:
 .. image:: images/index-4-page2.png
 
 
-.. note:
+..  note:
 
-   We only show the first two pages as the *Cantus* is still under copyright.
+    We only show the first two pages as the *Cantus* is still under copyright.
