@@ -22,22 +22,13 @@ class Check(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    @abc.abstractmethod
-    def _run(self, expr):
-        raise NotImplemented
-
-    ### PUBLIC METHODS ###
-
-    def check(self, expr):
-        return not self.violators(expr)
-
     @staticmethod
-    def list_checks():
+    def _list_checks():
         r'''List checks:
 
         ::
 
-            >>> for check in wellformednesstools.Check.list_checks():
+            >>> for check in wellformednesstools.Check._list_checks():
             ...     check
             BeamedQuarterNoteCheck()
             DiscontiguousSpannerCheck()
@@ -65,6 +56,15 @@ class Check(AbjadObject):
                     exec('check = wellformednesstools.{}()'.format(name))
                     result.append(check)
         return result
+
+    @abc.abstractmethod
+    def _run(self, expr):
+        raise NotImplemented
+
+    ### PUBLIC METHODS ###
+
+    def check(self, expr):
+        return not self.violators(expr)
 
     def report(self, expr):
         violators, total = self._run(expr)

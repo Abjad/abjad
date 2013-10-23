@@ -88,7 +88,7 @@ class AttributeInspectionAgent(object):
         '''
         from abjad.tools import wellformednesstools
         badly_formed_components = []
-        for checker in wellformednesstools.Check.list_checks():
+        for checker in wellformednesstools.Check._list_checks():
             badly_formed_components.extend(checker.violators(self._component))
         return badly_formed_components
 
@@ -483,7 +483,7 @@ class AttributeInspectionAgent(object):
         '''
         from abjad.tools import wellformednesstools
         results = []
-        for checker in wellformednesstools.Check.list_checks():
+        for checker in wellformednesstools.Check._list_checks():
             if allow_empty_containers:
                 if getattr(checker, 'runtime', False) == 'composition':
                     continue
@@ -608,7 +608,7 @@ class AttributeInspectionAgent(object):
         '''
         from abjad.tools import wellformednesstools
         lines = []
-        for checker in wellformednesstools.Check.list_checks():
+        for checker in wellformednesstools.Check._list_checks():
             lines.append(checker.report(self._component))
         result = '\n'.join(lines)
         return result
