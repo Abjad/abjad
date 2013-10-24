@@ -58,7 +58,11 @@ class ImportManager(object):
 
     @staticmethod
     def import_public_names_from_filesystem_path_into_namespace(
-        path, namespace, package_root_name='abjad'):
+        path, 
+        namespace, 
+        delete_importtools=True,
+        package_root_name='abjad',
+        ):
         r'''Inspect the top level of `path`.
 
         Find .py modules in path and import public functions from .py modules 
@@ -70,11 +74,9 @@ class ImportManager(object):
 
         Do not inspect lower levels of path.
         '''
-
         package_root_name += os.sep
         module = path[path.rindex(package_root_name):]
         module = module.replace(os.sep, '.')
-
         for element in os.listdir(path):
             if os.path.isfile(os.path.join(path, element)):
                 if not element.startswith('_') and element.endswith('.py'):
@@ -91,17 +93,22 @@ class ImportManager(object):
                         namespace[name] = f
             elif os.path.isdir(os.path.join(path, element)):
                 if not element in ('.svn', 'test', '__pycache__'):
-                    if os.path.exists(os.path.join(path, element, '__init__.py')):
+                    initializer_file_path = os.path.join(
+                        path, 
+                        element, 
+                        '__init__.py',
+                        )
+                    if os.path.exists(initializer_file_path):
                         submod = '.'.join([module, element])
                         namespace[element] = __import__(submod, fromlist=['*'])
             else:
-                raise ImportError('Not a dir, not a file, what is %s?' % element)
-
+                message = 'neither a directory or file: {!r}'.format(element)
+                raise ImportError(message)
         ImportManager._import_contents_of_public_packages_in_path_into_namespace(
             path, namespace, package_root_name)
-
-        if 'importtools' in namespace:
-            del(namespace['importtools'])
+        if delete_importtools:
+            if 'importtools' in namespace:
+                del(namespace['importtools'])
         if ImportManager.__name__ in namespace:
             del(namespace[ImportManager.__name__])
 
@@ -109,7 +116,9 @@ class ImportManager(object):
     def import_structured_package(
         path, 
         namespace, 
-        package_root_name='abjad'):
+        delete_importtools=True,
+        package_root_name='abjad',
+        ):
         r'''Import public names from `path` into `namespace`.
 
         This is the custom function that all Abjad packages use to import
@@ -122,8 +131,13 @@ class ImportManager(object):
         Returns none.
         '''
         ImportManager.import_public_names_from_filesystem_path_into_namespace(
-            path, namespace, package_root_name)
-        if 'importtools' in namespace:
-            del(namespace['importtools'])
+            path, 
+            namespace, 
+            delete_importtools=delete_importtools,
+            package_root_name=package_root_name,
+            )
+        if delete_importtools:
+            if 'importtools' in namespace:
+                del(namespace['importtools'])
         if ImportManager.__name__ in namespace:
             del(namespace[ImportManager.__name__])
