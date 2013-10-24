@@ -10,14 +10,17 @@ if not platform.python_version() in (('2.7.3', '2.7.4', '2.7.5')):
 del platform
 
 # set up tab completion
-import readline
-import rlcompleter
-if readline.__doc__ is not None and 'libedit' in readline.__doc__:
-    readline.parse_and_bind("bind ^I rl_complete")
-else:
-    readline.parse_and_bind("tab: complete")
-del readline
-del rlcompleter
+try:
+    import readline
+    import rlcompleter
+    if readline.__doc__ is not None and 'libedit' in readline.__doc__:
+        readline.parse_and_bind("bind ^I rl_complete")
+    else:
+        readline.parse_and_bind("tab: complete")
+    del readline
+    del rlcompleter
+except ImportError:
+    pass
 
 # ensure that the ~/.abjad directory and friends are setup,
 # and instantiate Abjad's configuration singleton

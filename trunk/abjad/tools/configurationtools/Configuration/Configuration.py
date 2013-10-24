@@ -156,6 +156,7 @@ class Configuration(abctools.AbjadObject):
 
         Returns string.
         '''
-        return os.environ.get('HOME') or \
+        path = os.environ.get('HOME') or \
             os.environ.get('HOMEPATH') or \
             os.environ.get('APPDATA')
+        return os.path.abspath(path)
