@@ -331,6 +331,26 @@ Phrase predicate docstrings like this:
             ...
             '''
 
+Do not place restructured text double colon `::` symbols at the end of a line
+of text. 
+
+Instead, place all restructured text double colon `::` symbols on lines by
+themselves, like this:
+
+::
+
+    def multiply(x, y):
+        r'''Multiplies x by y:
+
+        ::
+
+            >>> foo(10, 11)
+            110
+
+        Returns integer.
+        '''
+
+
 Quotation
 ---------
 
