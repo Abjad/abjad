@@ -136,14 +136,20 @@ class AbjadConfiguration(Configuration):
         ::
 
             >>> abjad_configuration.get_abjad_revision_string() # doctest: +SKIP
-            '11266'
+            '12486'
 
         Returns string.
         '''
         from abjad import abjad_configuration
-        command = 'svnversion {}'.format(abjad_configuration.abjad_directory_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        return proc.stdout.readlines()[0].strip().strip('M')
+        command = 'svnversion {}'
+        command = command.format(abjad_configuration.abjad_directory_path)
+        process = subprocess.Popen(
+            command, 
+            shell=True, 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.STDOUT,
+            )
+        return process.stdout.readlines()[0].strip().strip('M')
 
     @classmethod
     def get_abjad_startup_string(cls):
@@ -152,7 +158,7 @@ class AbjadConfiguration(Configuration):
         ::
 
             >>> abjad_configuration.get_abjad_startup_string() # doctest: +SKIP
-            'Abjad 2.13 (r12069)'
+            'Abjad 2.14 (r12486)'
 
         Returns string.
         '''
@@ -168,7 +174,7 @@ class AbjadConfiguration(Configuration):
         ::
 
             >>> abjad_configuration.get_abjad_version_string()
-            '2.13'
+            '2.14'
 
         Returns string.
         '''
@@ -202,7 +208,7 @@ class AbjadConfiguration(Configuration):
         ::
 
             >>> abjad_configuration.get_lilypond_version_string() # doctest: +SKIP
-            '2.13.61'
+            '2.17.28'
 
         Returns string.
         '''
@@ -232,7 +238,7 @@ class AbjadConfiguration(Configuration):
         ::
 
             >>> abjad_configuration.get_python_version_string() # doctest: +SKIP
-            '2.6.1'
+            '2.7.5'
 
         Returns string.
         '''
