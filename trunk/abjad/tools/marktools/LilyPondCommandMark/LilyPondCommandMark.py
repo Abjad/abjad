@@ -64,7 +64,8 @@ class LilyPondCommandMark(Mark):
             self.command_name = args[0]
             self.format_slot = args[1]
         else:
-            raise ValueError('Can not initialize LilyPond command mark.')
+            message = 'can not initialize LilyPond command mark.'
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 

@@ -53,7 +53,8 @@ class LilyPondComment(Mark):
             self.contents_string = args[0]
             self.format_slot = args[1]
         else:
-            raise ValueError('Can not initialize LilyPond comment.')
+            message = 'can not initialize LilyPond comment.'
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 

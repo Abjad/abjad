@@ -536,7 +536,8 @@ class TreeContainer(TreeNode):
             if element is node:
                 return i
         else:
-            raise ValueError('node {!r} not in {!r}.'.format(node, self))
+            message = 'node {!r} not in {!r}.'.format(node, self)
+            raise ValueError(message)
 
     def insert(self, i, node):
         r'''Insert `node` in container at index `i`:

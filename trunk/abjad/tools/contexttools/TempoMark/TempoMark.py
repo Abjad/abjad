@@ -82,7 +82,8 @@ class TempoMark(ContextMark):
                 textual_indication = None
                 duration, units_per_minute = args
         else:
-            raise ValueError('can not initialize tempo indication.')
+            message = 'can not initialize tempo indication.'
+            raise ValueError(message)
         assert isinstance(textual_indication, (str, type(None)))
         if duration:
             try:
@@ -134,7 +135,8 @@ class TempoMark(ContextMark):
                 raise ImpreciseTempoError
             result = self.quarters_per_minute / expr.quarters_per_minute
             return durationtools.Multiplier(result)
-        raise TypeError('must be tempo indication.')
+        message = 'must be tempo indication.'
+        raise TypeError(message)
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):

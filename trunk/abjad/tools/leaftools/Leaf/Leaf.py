@@ -633,7 +633,8 @@ class Leaf(Component):
             rational = durationtools.Duration(expr)
             if not rational.is_assignable:
                 message = 'not assignable duration: {!r}.'
-                raise AssignabilityError(message.format(rational))
+                message = message.format(rational)
+                raise AssignabilityError(message)
             self._written_duration = rational
         return property(**locals())
 

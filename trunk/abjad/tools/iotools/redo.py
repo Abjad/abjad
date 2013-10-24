@@ -55,7 +55,8 @@ def redo(target=-1, lily_time=10):
     elif isinstance(target, str):
         target_ly = os.path.join(abjad_output, target)
     else:
-        raise ValueError('can not get target LilyPond input from %s.' % target)
+        message = 'can not get target LilyPond input from {}.'.format(target)
+        raise ValueError(message)
 
     # render
     start_time = time.time()

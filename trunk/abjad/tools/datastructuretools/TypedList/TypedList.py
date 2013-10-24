@@ -239,7 +239,8 @@ class TypedList(TypedCollection):
             result.extend(keywords)
             result.append('{})'.format(prefix))
         else:
-            raise ValueError("how'd we get here?")
+            message = 'how did we get here?'
+            raise ValueError(message)
         return result
 
     ### PUBLIC METHODS ###

@@ -58,5 +58,6 @@ class PaperBlock(AttributedBlock):
             if isinstance(expr, (bool, type(None))):
                 self._minimal_page_breaking = expr
             else:
-                raise TypeError('must be boolean or none')
+                message = 'must be boolean or none.'
+                raise TypeError(message)
         return property(**locals())

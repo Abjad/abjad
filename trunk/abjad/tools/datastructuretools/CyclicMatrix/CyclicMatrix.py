@@ -87,7 +87,8 @@ class CyclicMatrix(Matrix):
             assert not args
             rows, columns = self._init_from_columns(kwargs['columns'])
         else:
-            raise ValueError('can not initialize matrix.')
+            message = 'can not initialize matrix.'
+            raise ValueError(message)
         self._rows = rows
         self._columns = columns
         self._n_rows = len(rows)

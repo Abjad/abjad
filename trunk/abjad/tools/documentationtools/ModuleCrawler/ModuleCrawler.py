@@ -30,8 +30,9 @@ class ModuleCrawler(AbjadObject):
 
         assert os.path.exists(code_root)
         if not os.path.exists(os.path.join(code_root, '__init__.py')):
-            raise ValueError('{} is not a Python package directory.'.format(
-                code_root))
+            message = '{} is not a Python package directory.'
+            message = message.format(code_root)
+            raise ValueError(message)
         code_root = os.path.abspath(code_root)
 
         if root_package_name is None:

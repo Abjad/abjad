@@ -810,7 +810,8 @@ class Container(Component):
                 highest_level_component_right_of_split = component
                 break
         else:
-            raise ValueError('should we be able to get here?')
+            message = 'should we be able to get here?'
+            raise ValueError(message)
         # crawl back up through duration-crossing containers and 
         # fracture spanners if requested
         if fracture_spanners:

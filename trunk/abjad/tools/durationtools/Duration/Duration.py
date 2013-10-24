@@ -296,7 +296,8 @@ class Duration(AbjadObject, fractions.Fraction):
         match = re.match(pattern, duration_string)
         if match is None:
             message = 'incorrect duration string format: {!r}.'
-            raise TypeError(message.format(duration_string))
+            message = message.format(duration_string)
+            raise TypeError(message)
         body_string, dots_string = match.groups()
         try:
             body_denominator = int(body_string)
@@ -310,7 +311,8 @@ class Duration(AbjadObject, fractions.Fraction):
                 body_duration = fractions.Fraction(8)
             else:
                 message = 'unknown body string: {!r}.'
-                raise ValueError(message.format(body_string))
+                message = message.format(body_string)
+                raise ValueError(message)
         rational = body_duration
         for n in range(len(dots_string)):
             exponent = n + 1
@@ -850,7 +852,8 @@ class Duration(AbjadObject, fractions.Fraction):
         Returns string.
         '''
         if self < 0:
-            raise ValueError('seconds must be positive.')
+            message = 'seconds must be positive.'
+            raise ValueError(message)
         minutes = int(self / 60)
         remaining_seconds = str(int(self - minutes * 60)).zfill(2)
         if escape_ticks:

@@ -38,7 +38,8 @@ class Mark(AbjadObject):
         elif len(args) == 1:
             return self.attach(args[0])
         else:
-            raise ValueError('must call mark with at most 1 argument.')
+            message = 'must call mark with at most 1 argument.'
+            raise ValueError(message)
 
     def __copy__(self, *args):
         r'''Copies mark.

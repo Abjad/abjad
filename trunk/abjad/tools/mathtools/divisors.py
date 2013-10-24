@@ -55,7 +55,8 @@ def divisors(n):
         raise TypeError(message)
 
     if n == 0:
-        raise NotImplementedError('all numbers divide zero evenly.')
+        message = 'all numbers divide zero evenly.'
+        raise NotImplementedError(message)
 
     # ensure positive n
     n = abs(n)

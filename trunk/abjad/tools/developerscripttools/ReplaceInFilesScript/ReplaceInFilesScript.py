@@ -98,7 +98,8 @@ class ReplaceInFilesScript(DirectoryScript):
                     self.whole_words_only = whole_words_only
                 except:
                     message = "can't compile {!r} as a regex pattern."
-                    raise ValueError(message.format(pattern))
+                    message = message.format(pattern)
+                    raise ValueError(message)
 
             def __call__(self, line, pos):
                 start, length = self._search(line, pos)
@@ -201,7 +202,8 @@ class ReplaceInFilesScript(DirectoryScript):
             index, length = args.old('', 0)
             if 0 <= index:
                 message = 'regex pattern {!r} matches the empty string.'
-                raise ValueError(message.format(args.old.pattern.pattern))
+                message = message.format(args.old.pattern.pattern)
+                raise ValueError(message)
         else:
             args.old = self._get_naive_search_callable(args)
 

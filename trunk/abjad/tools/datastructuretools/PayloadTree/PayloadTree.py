@@ -683,7 +683,8 @@ class PayloadTree(AbjadObject):
                     if node.is_at_level(level):
                         result.append(node)
         else:
-            raise ValueError('not enough nodes at level {}.'.format(level))
+            message = 'not enough nodes at level {}.'.format(level)
+            raise ValueError(message)
 
     def _initialize_children_list(self):
         return []
@@ -1003,7 +1004,8 @@ class PayloadTree(AbjadObject):
         for i, current_node in enumerate(self):
             if current_node is node:
                 return i
-        raise ValueError('{!r} is not in tree.'.format(node))
+        message = '{!r} is not in tree.'.format(node)
+        raise ValueError(message)
 
     def is_at_level(self, level):
         r'''True when node is at `level` in containing tree:
@@ -1388,7 +1390,8 @@ class PayloadTree(AbjadObject):
         Returns list of lists.
         '''
         if self.payload is not None:
-            raise TypeError('leaf node is not iterable.')
+            message = 'leaf node is not iterable.'
+            raise TypeError(message)
         else:
             result = []
             for child in self._noncyclic_children:

@@ -62,7 +62,8 @@ class Chord(Leaf):
         elif len(args) == 3:
             written_pitches, written_duration, lilypond_multiplier = args
         else:
-            raise ValueError('can not initialize chord from "%s".' % str(args))
+            message = 'can not initialize chord from {!r}.'.format(args)
+            raise ValueError(message)
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self.written_pitches = written_pitches
         for note_head, cautionary, forced in zip(

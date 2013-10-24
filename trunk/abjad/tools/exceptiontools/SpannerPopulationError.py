@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 class SpannerPopulationError(Exception):
     r'''Spanner contents incorrect.
 

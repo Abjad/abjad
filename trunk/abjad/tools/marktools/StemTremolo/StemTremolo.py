@@ -45,7 +45,8 @@ class StemTremolo(Mark):
         elif len(args) == 1 and not isinstance(args[0], type(self)):
             self.tremolo_flags = args[0]
         else:
-            raise ValueError('can not initialize stem tremolo.')
+            message = 'can not initialize stem tremolo.'
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 

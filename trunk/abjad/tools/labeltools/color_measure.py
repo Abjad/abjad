@@ -57,7 +57,8 @@ def color_measure(measure, color='red'):
 
     # check measure type
     if not isinstance(measure, measuretools.Measure):
-        raise TypeError('must be measure: %s' % measure)
+        message = 'must be measure: {}'.format(measure)
+        raise TypeError(message)
 
     # color measure
     measure.override.beam.color = color

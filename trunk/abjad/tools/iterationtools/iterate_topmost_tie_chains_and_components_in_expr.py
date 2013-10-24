@@ -57,7 +57,8 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
         if len(tie_chain) == 1:
             yield tie_chain
         else:
-            raise TieChainError('can not have only one leaf in tie chain.')
+            message = 'can not have only one leaf in tie chain.'
+            raise TieChainError(message)
     elif isinstance(
         expr, (list, containertools.Container, selectiontools.SliceSelection)):
         for component in expr:
@@ -69,4 +70,5 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
             elif isinstance(component, containertools.Container):
                 yield component
     else:
-        raise ValueError('input must be iterable: {!r}.'.format(expr))
+        message = 'input must be iterable: {!r}.'.format(expr)
+        raise ValueError(message)

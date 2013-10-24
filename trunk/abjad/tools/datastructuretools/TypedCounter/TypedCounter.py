@@ -126,10 +126,9 @@ class TypedCounter(TypedCollection):
 
     @classmethod
     def fromkeys(cls, iterable, v=None):
-        raise NotImplementedError(
-            '{}.fromkeys() is undefined. '
-            'Use {}(iterable) instead.'.format(cls.__name__, cls.__name__)
-            )
+        message = '{}.fromkeys() is undefined. Use {}(iterable) instead.'
+        message = message.format(cls.__name__, cls.__name__)
+        raise NotImplementedError(message)
 
     def items(self):
         return self._collection.items()

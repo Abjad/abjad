@@ -64,7 +64,8 @@ class Annotation(Mark):
             self._name = copy.copy(args[0])
             self._value = copy.copy(args[1])
         else:
-            raise ValueError('unknown annotation initialization signature.')
+            message = 'unknown annotation initialization signature.'
+            raise ValueError(message)
         self._format_slot = None
 
     ### SPECIAL METHODS ###

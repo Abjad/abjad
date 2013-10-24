@@ -18,8 +18,9 @@ class LilyPondContextSettingComponentPlugIn(LilyPondComponentPlugIn):
             try:
                 return vars(self)[name]
             except KeyError:
-                raise AttributeError('"%s" object has no attribute: "%s".' % (
-                    self.__class__.__name__, name))
+                message = '{!r} object has no attribute: {!r}.'
+                message = message.format(self.__class__.__name__, name)
+                raise AttributeError(message)
         elif stringtools.snake_case_to_upper_camel_case(name) in ly.contexts:
             try:
                 return vars(self)['_' + name]
@@ -31,8 +32,9 @@ class LilyPondContextSettingComponentPlugIn(LilyPondComponentPlugIn):
             try:
                 return vars(self)[name]
             except KeyError:
-                raise AttributeError('"%s" object has no attribute: "%s".' % (
-                    self.__class__.__name__, name))
+                message = '{!r} object has no attribute: {!r}.'
+                message = message.format(self.__class__.__name__, name)
+                raise AttributeError(message)
 
     def __repr__(self):
         body_string = ' '

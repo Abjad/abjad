@@ -17,10 +17,12 @@ def cumulative_sums(sequence):
     '''
 
     if not isinstance(sequence, (list, tuple)):
-        raise TypeError('sequence {!r} must be list or tuple.')
+        message = 'sequence {!r} must be list or tuple.'
+        raise TypeError(message)
 
     if len(sequence) == 0:
-        raise ValueError('sequence {!r} has length 0.'.format(sequence))
+        message = 'sequence {!r} has length 0.'.format(sequence)
+        raise ValueError(message)
 
     result = [sequence[0]]
     for element in sequence[1:]:

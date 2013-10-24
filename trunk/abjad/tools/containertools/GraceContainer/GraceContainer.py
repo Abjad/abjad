@@ -97,7 +97,8 @@ class GraceContainer(Container):
         if not isinstance(arg, leaftools.Leaf):
             message = 'object to which grace container attaches'
             message += ' must be leaf: "%s".'
-            raise TypeError(message.format(arg))
+            message = message.format(arg)
+            raise TypeError(message)
         if self.kind == 'after':
             arg._after_grace = self
             arg.after_grace = self
