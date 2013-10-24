@@ -195,9 +195,9 @@ def test_ScoreMutationAgent_fuse_08():
     r'''Fuse fixed-multiplier tuplets with same multiplier in score.
     '''
 
-    tuplet_1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+    tuplet_1 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
     spannertools.BeamSpanner(tuplet_1[:])
-    tuplet_2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8 g'8")
+    tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8 f'8 g'8")
     spannertools.SlurSpanner(tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
@@ -261,7 +261,7 @@ def test_ScoreMutationAgent_fuse_10():
     '''
 
     tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet_2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+    tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
     tuplets = select([tuplet_1, tuplet_2], contiguous=True)
 
     assert py.test.raises(Exception, 'mutate(tuplets).fuse()')

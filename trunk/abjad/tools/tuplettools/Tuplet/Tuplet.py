@@ -204,7 +204,7 @@ class Tuplet(Container):
             return
         # find tuplet multiplier
         integer_exponent = int(math.log(self.multiplier, 2))
-        leaf_multiplier = fractions.Fraction(2) ** integer_exponent
+        leaf_multiplier = durationtools.Multiplier(2) ** integer_exponent
         # scale leaves in tuplet by power of two
         for component in self:
             if isinstance(component, leaftools.Leaf):

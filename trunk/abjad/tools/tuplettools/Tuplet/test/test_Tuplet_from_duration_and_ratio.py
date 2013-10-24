@@ -4,7 +4,7 @@ from abjad import *
 
 def test_Tuplet_from_duration_and_ratio_01():
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1], avoid_dots=True, is_diminution=False)
@@ -78,7 +78,7 @@ def test_Tuplet_from_duration_and_ratio_01():
 
 def test_Tuplet_from_duration_and_ratio_02():
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1], avoid_dots=True, is_diminution=False)
@@ -154,7 +154,7 @@ def test_Tuplet_from_duration_and_ratio_03():
     r'''Interpret negative proportions as rests.
     '''
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=False)
@@ -177,7 +177,7 @@ def test_Tuplet_from_duration_and_ratio_04():
     r'''Reduce proportions relative to each other.
     '''
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     t1 = Tuplet.from_duration_and_ratio(
         duration, [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=False)
@@ -186,7 +186,7 @@ def test_Tuplet_from_duration_and_ratio_04():
     assert t1.lilypond_format == t2.lilypond_format
 
     tuplet = Tuplet.from_duration_and_ratio(
-        Fraction(1, 8), [27], avoid_dots=True, is_diminution=False)
+        Duration(1, 8), [27], avoid_dots=True, is_diminution=False)
     assert testtools.compare(
         tuplet,
         r'''
@@ -199,7 +199,7 @@ def test_Tuplet_from_duration_and_ratio_04():
 
 def test_Tuplet_from_duration_and_ratio_05():
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1], avoid_dots=False, is_diminution=False)
@@ -270,7 +270,7 @@ def test_Tuplet_from_duration_and_ratio_05():
 
 def test_Tuplet_from_duration_and_ratio_06():
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1], avoid_dots=False, is_diminution=False)
@@ -345,16 +345,27 @@ def test_Tuplet_from_duration_and_ratio_07():
     r'''Reduce proportions relative to each other.
     '''
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     t1 = Tuplet.from_duration_and_ratio(
-        duration, [1, 2, 2, 3, 3], avoid_dots=False, is_diminution=False)
+        duration, 
+        [1, 2, 2, 3, 3], 
+        avoid_dots=False, 
+        is_diminution=False,
+        )
     t2 = Tuplet.from_duration_and_ratio(
-        duration, [2, 4, 4, 6, 6], avoid_dots=False, is_diminution=False)
+        duration, 
+        [2, 4, 4, 6, 6], 
+        avoid_dots=False, 
+        is_diminution=False,
+        )
     assert t1.lilypond_format == t2.lilypond_format
 
     tuplet = Tuplet.from_duration_and_ratio(
-        Fraction(1, 8), [27], avoid_dots=False, is_diminution=False)
+        Duration(1, 8), 
+        [27], avoid_dots=False, 
+        is_diminution=False,
+        )
     assert testtools.compare(
         tuplet,
         r'''
@@ -367,7 +378,7 @@ def test_Tuplet_from_duration_and_ratio_07():
 
 def test_Tuplet_from_duration_and_ratio_08():
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1], avoid_dots=True, is_diminution=True)
@@ -441,7 +452,7 @@ def test_Tuplet_from_duration_and_ratio_08():
 
 def test_Tuplet_from_duration_and_ratio_09():
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1], avoid_dots=True, is_diminution=True)
@@ -517,7 +528,7 @@ def test_Tuplet_from_duration_and_ratio_10():
     r'''Interpret negative proportions as rests.
     '''
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=True)
@@ -540,16 +551,24 @@ def test_Tuplet_from_duration_and_ratio_11():
     r'''Reduce propotions relative to each other.
     '''
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     t1 = Tuplet.from_duration_and_ratio(
-        duration, [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=True)
+        duration, 
+        [1, -2, -2, 3, 3], 
+        avoid_dots=True, 
+        is_diminution=True,
+        )
     t2 = Tuplet.from_duration_and_ratio(
-        duration, [2, -4, -4, 6, 6], avoid_dots=True, is_diminution=True)
+        duration, 
+        [2, -4, -4, 6, 6], 
+        avoid_dots=True, 
+        is_diminution=True,
+        )
     assert t1.lilypond_format == t2.lilypond_format
 
-    tuplet = Tuplet.from_duration_and_ratio(
-        Fraction(1, 8), [27])
+    tuplet = Tuplet.from_duration_and_ratio(Duration(1, 8), [27])
+
     assert testtools.compare(
         tuplet,
         r'''
@@ -562,7 +581,7 @@ def test_Tuplet_from_duration_and_ratio_11():
 
 def test_Tuplet_from_duration_and_ratio_12():
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1], avoid_dots=False, is_diminution=True)
@@ -632,7 +651,7 @@ def test_Tuplet_from_duration_and_ratio_12():
 
 def test_Tuplet_from_duration_and_ratio_13():
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     tuplet = Tuplet.from_duration_and_ratio(
         duration, [1], avoid_dots=False, is_diminution=True)
@@ -706,16 +725,29 @@ def test_Tuplet_from_duration_and_ratio_14():
     r'''Reduce proportions relative to each other.
     '''
 
-    duration = Fraction(3, 16)
+    duration = Duration(3, 16)
 
     t1 = Tuplet.from_duration_and_ratio(
-        duration, [1, -2, -2, 3, 3], avoid_dots=False, is_diminution=True)
+        duration, 
+        [1, -2, -2, 3, 3], 
+        avoid_dots=False, 
+        is_diminution=True,
+        )
     t2 = Tuplet.from_duration_and_ratio(
-        duration, [2, -4, -4, 6, 6], avoid_dots=False, is_diminution=True)
+        duration, 
+        [2, -4, -4, 6, 6], 
+        avoid_dots=False, 
+        is_diminution=True,
+        )
     assert t1.lilypond_format == t2.lilypond_format
 
     tuplet = Tuplet.from_duration_and_ratio(
-        Fraction(1, 8), [27], avoid_dots=False, is_diminution=True)
+        Duration(1, 8), 
+        [27], 
+        avoid_dots=False, 
+        is_diminution=True,
+        )
+
     assert testtools.compare(
         tuplet,
         r'''

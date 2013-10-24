@@ -247,7 +247,7 @@ class FixedDurationTuplet(Tuplet):
         ::
 
             >>> tuplet = tuplettools.FixedDurationTuplet(
-            ...     Fraction(2, 8), "c'8 d'8 e'8")
+            ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> tuplet
             FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 

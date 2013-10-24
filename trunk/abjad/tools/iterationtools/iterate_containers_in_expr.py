@@ -3,12 +3,12 @@ from abjad.tools import containertools
 
 
 def iterate_containers_in_expr(expr, reverse=False, start=0, stop=None):
-    r'''Iterate containers forward in `expr`:
+    r'''Iterates containers in `expr`.
 
     ::
 
         >>> staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
-        >>> Tuplet(Fraction(2, 3), staff[1][:])
+        >>> Tuplet(Multiplier(2, 3), staff[1][:])
         Tuplet(2/3, [e'8, f'8, g'8])
         >>> staff.is_simultaneous = True
 

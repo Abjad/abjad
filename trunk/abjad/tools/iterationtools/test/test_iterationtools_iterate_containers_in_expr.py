@@ -5,7 +5,7 @@ from abjad import *
 def test_iterationtools_iterate_containers_in_expr_01():
 
     staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
-    tuplet = Tuplet(Fraction(2, 3), staff[1][:])
+    tuplet = Tuplet(Multiplier(2, 3), staff[1][:])
     staff.is_simultaneous = True
 
     containers = iterationtools.iterate_containers_in_expr(staff, reverse=True)
@@ -19,7 +19,7 @@ def test_iterationtools_iterate_containers_in_expr_01():
 def test_iterationtools_iterate_containers_in_expr_02():
 
     staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
-    tuplet = Tuplet(Fraction(2, 3), staff[1][:])
+    tuplet = Tuplet(Multiplier(2, 3), staff[1][:])
     staff.is_simultaneous = True
 
     containers = iterationtools.iterate_containers_in_expr(staff)

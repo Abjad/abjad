@@ -21,9 +21,9 @@ def test_FixedDurationTuplet___init___01():
         '''
         )
     assert len(tuplet) == 3
-    assert tuplet.target_duration == Fraction(1, 4)
-    assert tuplet.multiplier == Fraction(2, 3)
-    assert inspect(tuplet).get_duration() == Fraction(1, 4)
+    assert tuplet.target_duration == Duration(1, 4)
+    assert tuplet.multiplier == Multiplier(2, 3)
+    assert inspect(tuplet).get_duration() == Duration(1, 4)
 
 
 def test_FixedDurationTuplet___init___02():
@@ -35,6 +35,6 @@ def test_FixedDurationTuplet___init___02():
     assert repr(tuplet) == 'FixedDurationTuplet(1/4, [])'
     assert str(tuplet) == '{@ 1/4 @}'
     assert len(tuplet) == 0
-    assert tuplet.target_duration == Fraction(1, 4)
+    assert tuplet.target_duration == Duration(1, 4)
     assert tuplet.multiplier == None
-    assert inspect(tuplet).get_duration() == Fraction(1, 4)
+    assert inspect(tuplet).get_duration() == Duration(1, 4)

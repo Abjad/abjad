@@ -4,7 +4,7 @@ from abjad import *
 
 def test_Tuplet_set_minimum_denominator_01():
 
-    tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
+    tuplet = Tuplet(Multiplier(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(8)
 
     assert testtools.compare(
@@ -26,7 +26,7 @@ def test_Tuplet_set_minimum_denominator_01():
 
 def test_Tuplet_set_minimum_denominator_02():
 
-    tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
+    tuplet = Tuplet(Multiplier(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(16) 
     assert testtools.compare(
         tuplet,
@@ -47,7 +47,7 @@ def test_Tuplet_set_minimum_denominator_02():
 
 def test_Tuplet_set_minimum_denominator_03():
 
-    tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
+    tuplet = Tuplet(Multiplier(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(2)
 
     assert testtools.compare(

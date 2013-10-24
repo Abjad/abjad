@@ -13,15 +13,15 @@ def test_FixedDurationTuplet_01():
         Note(0, (1, 8))])
     assert repr(tuplet) == "FixedDurationTuplet(1/2, [{@ 3:2 c'8, c'8, c'8 @}, c'8, c'8, c'8])"
     assert str(tuplet) == "{@ 5:4 {@ 3:2 c'8, c'8, c'8 @}, c'8, c'8, c'8 @}"
-    assert tuplet.target_duration == Fraction(1, 2)
-    assert tuplet.multiplier == Fraction(4, 5)
-    assert inspect(tuplet).get_duration() == Fraction(1, 2)
+    assert tuplet.target_duration == Duration(1, 2)
+    assert tuplet.multiplier == Multiplier(4, 5)
+    assert inspect(tuplet).get_duration() == Duration(1, 2)
     assert repr(tuplet[0]) == "FixedDurationTuplet(1/4, [c'8, c'8, c'8])"
     assert str(tuplet[0]) == "{@ 3:2 c'8, c'8, c'8 @}"
     assert len(tuplet[0]) == 3
-    assert tuplet[0].target_duration == Fraction(1, 4)
-    assert tuplet[0].multiplier == Fraction(2, 3)
-    assert inspect(tuplet[0]).get_duration() == Fraction(1, 5)
+    assert tuplet[0].target_duration == Duration(1, 4)
+    assert tuplet[0].multiplier == Multiplier(2, 3)
+    assert inspect(tuplet[0]).get_duration() == Duration(1, 5)
 
 
 def test_FixedDurationTuplet_02():
@@ -35,15 +35,15 @@ def test_FixedDurationTuplet_02():
         Note(0, (1, 8))])
     assert repr(tuplet) == "FixedDurationTuplet(1/2, [{@ 1/4 @}, c'8, c'8, c'8])"
     assert str(tuplet) == "{@ 5:4 {@ 1/4 @}, c'8, c'8, c'8 @}"
-    assert tuplet.target_duration == Fraction(1, 2)
-    assert tuplet.multiplier == Fraction(4, 5)
-    assert inspect(tuplet).get_duration() == Fraction(1, 2)
+    assert tuplet.target_duration == Duration(1, 2)
+    assert tuplet.multiplier == Multiplier(4, 5)
+    assert inspect(tuplet).get_duration() == Duration(1, 2)
     assert repr(tuplet[0]) == 'FixedDurationTuplet(1/4, [])'
     assert str(tuplet[0]) == '{@ 1/4 @}'
     assert len(tuplet[0]) == 0
-    assert tuplet[0].target_duration == Fraction(1, 4)
+    assert tuplet[0].target_duration == Duration(1, 4)
     assert tuplet[0].multiplier == None
-    assert inspect(tuplet[0]).get_duration() == Fraction(1, 5)
+    assert inspect(tuplet[0]).get_duration() == Duration(1, 5)
 
 
 def test_FixedDurationTuplet_03():

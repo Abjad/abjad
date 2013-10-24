@@ -33,8 +33,7 @@ def test_FixedDurationTuplet_in_place_apply_02():
 
 
 def test_FixedDurationTuplet_in_place_apply_03():
-    #tuplet = Tuplet(Fraction(7, 8), [Note(n, (1, 8)) for n in range(8)])
-    tuplet = Tuplet(Fraction(7, 8), [Note(n, (1, 8)) for n in range(8)])
+    tuplet = Tuplet(Multiplier(7, 8), [Note(n, (1, 8)) for n in range(8)])
     leaves_before = tuplet.select_leaves()
     tuplettools.FixedDurationTuplet(Duration(2, 8), tuplet[0:3])
     leaves_after = tuplet.select_leaves()

@@ -4,7 +4,7 @@ from abjad import *
 
 def test_NonreducedFraction_with_multiple_of_denominator_01():
 
-    duration = Fraction(1, 2)
+    duration = Duration(1, 2)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(2) == mathtools.NonreducedFraction(1, 2)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(4) == mathtools.NonreducedFraction(2, 4)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(8) == mathtools.NonreducedFraction(4, 8)
@@ -13,7 +13,7 @@ def test_NonreducedFraction_with_multiple_of_denominator_01():
 
 def test_NonreducedFraction_with_multiple_of_denominator_02():
 
-    duration = Fraction(1, 2)
+    duration = Duration(1, 2)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(3) == mathtools.NonreducedFraction(3, 6)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(6) == mathtools.NonreducedFraction(3, 6)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(12) == mathtools.NonreducedFraction(6, 12)
@@ -22,7 +22,7 @@ def test_NonreducedFraction_with_multiple_of_denominator_02():
 
 def test_NonreducedFraction_with_multiple_of_denominator_03():
 
-    duration = Fraction(1, 2)
+    duration = Duration(1, 2)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(5) == mathtools.NonreducedFraction(5, 10)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(10) == mathtools.NonreducedFraction(5, 10)
     assert mathtools.NonreducedFraction(duration).with_multiple_of_denominator(20) == mathtools.NonreducedFraction(10, 20)
