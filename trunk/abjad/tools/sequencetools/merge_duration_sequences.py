@@ -25,7 +25,7 @@ def merge_duration_sequences(*sequences):
 
     offset_lists = []
     for sequence in sequences:
-        offset_list = mathtools.cumulative_sums(sequence)
+        offset_list = mathtools.cumulative_sums(sequence, start=None)
         offset_lists.append(offset_list)
 
     all_offsets = sequencetools.join_subsequences(offset_lists)

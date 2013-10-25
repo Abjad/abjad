@@ -13,4 +13,4 @@ def join_subsequences(sequence):
     Returns newly constructed object of subsequence type.
     '''
 
-    return mathtools.cumulative_sums(sequence)[-1]
+    return mathtools.cumulative_sums(sequence, start=None)[-1]

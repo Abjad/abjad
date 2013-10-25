@@ -957,7 +957,9 @@ class Timespan(BoundedObject):
         unit_duration = self.duration / sum(ratio)
         part_durations = [numerator * unit_duration for numerator in ratio]
         start_offsets = mathtools.cumulative_sums(
-            [self.start_offset] + part_durations)
+            [self.start_offset] + part_durations,
+            start=None,
+            )
         offset_pairs = sequencetools.iterate_sequence_pairwise_strict(
             start_offsets)
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]

@@ -47,7 +47,7 @@ def partition_integer_by_ratio(n, ratio):
     result = [0]
 
     divisions = [float(abs(n)) * abs(part) / mathtools.weight(ratio) for part in ratio]
-    cumulative_divisions = mathtools.cumulative_sums(divisions)
+    cumulative_divisions = mathtools.cumulative_sums(divisions, start=None)
 
     for division in cumulative_divisions:
         rounded_division = int(round(division)) - sum(result)

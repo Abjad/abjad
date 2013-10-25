@@ -52,7 +52,7 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
 
     list_weight = mathtools.weight(sequence)
     weights_parts = mathtools.partition_integer_by_ratio(list_weight, weights)
-    cumulative_weights = mathtools.cumulative_sums(weights_parts)
+    cumulative_weights = mathtools.cumulative_sums(weights_parts, start=None)
 
     result = []
     sublist = []
