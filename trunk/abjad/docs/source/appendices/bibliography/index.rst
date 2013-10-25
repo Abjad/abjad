@@ -41,6 +41,10 @@ Bibliography
    Nicholas Hopkins and John F. Link, eds.
    Carl Fischer, New York. 2002.
 
+.. [Forte1973] Alan Forte.
+   The Structure of Atonal Music.
+   Yale University Press, New Haven. 1973.
+
 .. [Haddad] Karim Haddad. 
    "Le Temps comme Territoire: pour une géographie temporelle."
 
@@ -72,6 +76,10 @@ Bibliography
    "Lilypond: A system for automated music engraving. "
    *Proceedings of the XIV Colloquium on Musical Informatics.*
    Firenze, Italy. May 8 - 10, 2003.
+
+.. [RebhahnSchäfer] Michael Rebhah and Thomas Schäfer.
+   *Darmstädter Beiträge zur Neuen Musik.* vol 21.
+   Schott Music GmbH & Co. KG, Mainz. 2012.
 
 .. [RiotteMesnage2006-1] André Riotte and Marcel Mesnage.
    *Formalisme et modèles musicaux. 1*
