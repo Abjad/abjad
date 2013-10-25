@@ -13,19 +13,9 @@ def test_PhrasingSlurSpanner___init___01():
 def test_PhrasingSlurSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    spannertools.PhrasingSlurSpanner(staff.select_leaves())
+    phrasing_slur = spannertools.PhrasingSlurSpanner()
+    phrasing_slur.attach(staff.select_leaves())
 
-
-    r'''
-    \new Staff {
-        c'8 \(
-        d'8
-        e'8
-        f'8 \)
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -37,3 +27,5 @@ def test_PhrasingSlurSpanner___init___02():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

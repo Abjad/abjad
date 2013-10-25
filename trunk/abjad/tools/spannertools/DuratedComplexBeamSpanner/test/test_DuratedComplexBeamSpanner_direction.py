@@ -3,13 +3,16 @@ from abjad import *
 
 
 def test_DuratedComplexBeamSpanner_direction_01():
+
     container = Container("c'16 d'16 e'16 f'16")
-    spannertools.DuratedComplexBeamSpanner(
-        container, 
+
+    beam = spannertools.DuratedComplexBeamSpanner(
         durations=[(1, 8), (1, 8)], 
         span=1, 
         direction=Up,
         )
+
+    beam.attach(container)
 
     assert testtools.compare(
         container,

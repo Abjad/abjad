@@ -7,24 +7,8 @@ def test_Spanner_append_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[1])
-
-    r'''
-    \new Voice {
-        {
-            c'8
-            d'8
-        }
-        {
-            e'8 [
-            f'8 ]
-        }
-        {
-            g'8
-            a'8
-        }
-    }
-    '''
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[1])
 
     assert testtools.compare(
         voice,
@@ -47,23 +31,6 @@ def test_Spanner_append_01():
         )
 
     beam.append(voice[2])
-
-    r'''
-    \new Voice {
-        {
-            c'8
-            d'8
-        }
-        {
-            e'8 [
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
 
     assert testtools.compare(
         voice,
@@ -91,24 +58,8 @@ def test_Spanner_append_02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[1])
-
-    r'''
-    \new Voice {
-        {
-            c'8
-            d'8
-        }
-        {
-            e'8 [
-            f'8 ]
-        }
-        {
-            g'8
-            a'8
-        }
-    }
-    '''
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[1])
 
     assert testtools.compare(
         voice,
@@ -131,23 +82,6 @@ def test_Spanner_append_02():
         )
 
     beam.append(voice[2][0])
-
-    r'''
-    \new Voice {
-        {
-            c'8
-            d'8
-        }
-        {
-            e'8 [
-            f'8
-        }
-        {
-            g'8 ]
-            a'8
-        }
-    }
-    '''
 
     assert testtools.compare(
         voice,

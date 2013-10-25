@@ -12,31 +12,9 @@ def test_Spanner__remove_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        c'8 [
-        d'8
-        e'8
-        f'8 ]
-    }
-    '''
-
-    beam._remove(beam.components[1])
-
-    "Spanner is now discontiguous: spannertools.BeamSpanner(c'8, e'8, f'8)."
-
-    r'''
-    \new Voice {
-        c'8 [
-        d'8
-        e'8
-        f'8 ]
-    }
-    '''
-
-    assert not inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -49,6 +27,24 @@ def test_Spanner__remove_01():
         '''
         )
 
+    beam._remove(beam.components[1])
+
+    "Spanner is now discontiguous: spannertools.BeamSpanner(c'8, e'8, f'8)."
+
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
+        )
+
+    assert not inspect(voice).is_well_formed()
+
 
 def test_Spanner__remove_02():
     r'''Remove last component from spanner.
@@ -60,45 +56,31 @@ def test_Spanner__remove_02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
         }
-        {
-            e'8
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     result = beam._remove(beam.components[2])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
-        }
-        {
-            e'8
-            f'8 ]
-        }
-        {
-            g'8
-            a'8
-        }
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -119,6 +101,8 @@ def test_Spanner__remove_02():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_Spanner__remove_03():
     r'''Remove works only on references and not on equality.
@@ -131,6 +115,7 @@ def test_Spanner__remove_03():
             pass
 
     note = Note("c'4")
-    spanner = MockSpanner([Note("c'4")])
+    spanner = MockSpanner()
+    spanner.attach(Note("c'4"))
 
     assert py.test.raises(Exception, 'spanner._remove(note)')

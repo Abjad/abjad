@@ -5,7 +5,8 @@ from abjad import *
 def test_SlurSpanner_direction_01():
 
     container = Container("c'8 d'8 e'8 f'8")
-    slur = spannertools.SlurSpanner(container, direction=Up)
+    slur = spannertools.SlurSpanner(direction=Up)
+    slur.attach(container)
 
     assert testtools.compare(
         container,

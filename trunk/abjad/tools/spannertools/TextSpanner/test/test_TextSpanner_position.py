@@ -6,7 +6,8 @@ from py.test import raises
 def test_TextSpanner_position_01():
 
     staff = Staff(notetools.make_repeated_notes(4))
-    text_spanner = spannertools.TextSpanner(staff[:])
+    text_spanner = spannertools.TextSpanner()
+    text_spanner.attach(staff[:])
 
     assert testtools.compare(
         staff,
@@ -24,7 +25,8 @@ def test_TextSpanner_position_01():
 def test_TextSpanner_position_02():
 
     staff = Staff(notetools.make_repeated_notes(4))
-    text_spanner = spannertools.TextSpanner(staff[:])
+    text_spanner = spannertools.TextSpanner()
+    text_spanner.attach(staff[:])
     marktools.LilyPondCommandMark('textSpannerNeutral')(text_spanner[0])
 
     assert testtools.compare(
@@ -44,7 +46,8 @@ def test_TextSpanner_position_02():
 def test_TextSpanner_position_03():
 
     staff = Staff(notetools.make_repeated_notes(4))
-    text_spanner = spannertools.TextSpanner(staff[:])
+    text_spanner = spannertools.TextSpanner()
+    text_spanner.attach(staff[:])
     marktools.LilyPondCommandMark('textSpannerUp')(text_spanner[0])
 
     assert testtools.compare(
@@ -64,7 +67,8 @@ def test_TextSpanner_position_03():
 def test_TextSpanner_position_04():
 
     staff = Staff(notetools.make_repeated_notes(4))
-    text_spanner = spannertools.TextSpanner(staff[:])
+    text_spanner = spannertools.TextSpanner()
+    text_spanner.attach(staff[:])
     marktools.LilyPondCommandMark('textSpannerDown')(text_spanner[0])
 
     assert testtools.compare(
@@ -86,7 +90,8 @@ def test_TextSpanner_position_05():
     '''
 
     container = Container(notetools.make_repeated_notes(4))
-    text_spanner = spannertools.TextSpanner(container)
+    text_spanner = spannertools.TextSpanner()
+    text_spanner.attach(container)
 
     assert testtools.compare(
         container,

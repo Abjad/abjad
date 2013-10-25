@@ -5,7 +5,8 @@ from abjad import *
 def test_GlissandoSpanner_01():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    gliss = spannertools.GlissandoSpanner(staff.select_leaves()[:4])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(staff.select_leaves()[:4])
 
     assert testtools.compare(
         staff,

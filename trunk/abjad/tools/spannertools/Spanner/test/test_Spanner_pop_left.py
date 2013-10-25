@@ -7,43 +7,30 @@ def test_Spanner_pop_left_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
         }
-        {
-            e'8
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     result = beam.pop_left()
-
-    r'''
-    \new Voice {
-        {
-            c'8
-            d'8
-        }
-        {
-            e'8 [
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
 
     assert testtools.compare(
         voice,
@@ -64,4 +51,5 @@ def test_Spanner_pop_left_01():
         }
         '''
         )
+
     assert result is voice[0]

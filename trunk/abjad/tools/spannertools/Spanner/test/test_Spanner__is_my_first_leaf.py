@@ -14,16 +14,20 @@ def test_Spanner__is_my_first_leaf_01():
             pass
 
     container = Container("c'8 cs'8 d'8 ef'8")
-    spanner = MockSpanner(container)
+    spanner = MockSpanner()
+    spanner.attach(container)
 
-    r'''
-    {
-        c'8
-        cs'8
-        d'8
-        ef'8
-    }
-    '''
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            c'8
+            cs'8
+            d'8
+            ef'8
+        }
+        '''
+        )
 
     assert spanner._is_my_first_leaf(container[0])
     for leaf in container[1:]:
@@ -45,7 +49,8 @@ def test_Spanner__is_my_first_leaf_02():
         def _copy_keyword_args(self, new):
             pass
 
-    container = Container(r'''
+    container = Container(
+        r'''
         c'8
         cs'8
         {
@@ -54,21 +59,27 @@ def test_Spanner__is_my_first_leaf_02():
         }
         e'8
         f'8
-        ''')
-    spanner = MockSpanner(container[:3])
+        '''
+        )
 
-    r'''
-    {
-        c'8
-        cs'8
+    spanner = MockSpanner()
+    spanner.attach(container[:3])
+
+    assert testtools.compare(
+        container,
+        r'''
         {
-            d'8
-            ef'8
+            c'8
+            cs'8
+            {
+                d'8
+                ef'8
+            }
+            e'8
+            f'8
         }
-        e'8
-        f'8
-    }
-    '''
+        '''
+        )
 
     assert spanner._is_my_first_leaf(container[0])
     assert spanner._is_my_last_leaf(container[2][1])

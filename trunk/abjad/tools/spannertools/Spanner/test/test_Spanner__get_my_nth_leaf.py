@@ -8,7 +8,8 @@ def test_Spanner__get_my_nth_leaf_01():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,

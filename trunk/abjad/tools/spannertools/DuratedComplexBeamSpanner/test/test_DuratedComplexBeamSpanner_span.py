@@ -7,8 +7,11 @@ def test_DuratedComplexBeamSpanner_span_01():
     '''
 
     container = Container("c'16 d'16 e'16 f'16")
-    spannertools.DuratedComplexBeamSpanner(
-        container, durations=[(1, 8), (1, 8)], span=1)
+    beam = spannertools.DuratedComplexBeamSpanner(
+        durations=[(1, 8), (1, 8)], 
+        span=1,
+        )
+    beam.attach(container)
 
     assert testtools.compare(
         container,
@@ -38,8 +41,11 @@ def test_DuratedComplexBeamSpanner_span_02():
     '''
 
     container = Container("c'16 d'16 e'16 f'16")
-    spannertools.DuratedComplexBeamSpanner(
-        container, durations=[(1, 8), (1, 8)], span=2)
+    beam = spannertools.DuratedComplexBeamSpanner(
+        durations=[(1, 8), (1, 8)], 
+        span=2,
+        )
+    beam.attach(container)
 
     assert testtools.compare(
         container,

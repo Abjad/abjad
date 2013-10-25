@@ -28,41 +28,9 @@ def test_MeasuredComplexBeamSpanner_direction_01():
     }
     '''
 
-    beam = spannertools.MeasuredComplexBeamSpanner(staff[:], direction=Down)
+    beam = spannertools.MeasuredComplexBeamSpanner(direction=Down)
+    beam.attach(staff[:])
 
-    r'''
-    \new Staff {
-        {
-            \time 2/16
-            \set stemLeftBeamCount = #0
-            \set stemRightBeamCount = #2
-            c'16 _ [
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #1
-            d'16
-        }
-        {
-            \time 2/16
-            \set stemLeftBeamCount = #1
-            \set stemRightBeamCount = #2
-            e'16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #1
-            f'16
-        }
-        {
-            \time 2/16
-            \set stemLeftBeamCount = #1
-            \set stemRightBeamCount = #2
-            g'16
-            \set stemLeftBeamCount = #2
-            \set stemRightBeamCount = #0
-            a'16 ]
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -97,3 +65,5 @@ def test_MeasuredComplexBeamSpanner_direction_01():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

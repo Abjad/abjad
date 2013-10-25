@@ -13,23 +13,8 @@ def test_ComplexBeamSpanner___init___01():
 def test_ComplexBeamSpanner___init___02():
 
     staff = Staff("c'16 e'16 r16 f'16 g'2")
-    spannertools.ComplexBeamSpanner(staff[:4])
-
-    r'''
-    \new Staff {
-        \set stemLeftBeamCount = #0
-        \set stemRightBeamCount = #2
-        c'16 [
-        \set stemLeftBeamCount = #2
-        \set stemRightBeamCount = #2
-        e'16 ]
-        r16
-        \set stemLeftBeamCount = #2
-        \set stemRightBeamCount = #0
-        f'16 [ ]
-        g'2
-    }
-    '''
+    beam = spannertools.ComplexBeamSpanner()
+    beam.attach(staff[:4])
 
     assert testtools.compare(
         staff,

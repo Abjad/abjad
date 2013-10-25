@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import py
+from abjad import *
 
 
 def test_BeamSpanner___init___01():
@@ -14,7 +14,8 @@ def test_BeamSpanner___init___01():
 def test_BeamSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
-    spannertools.BeamSpanner(staff[:4])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:4])
 
     assert testtools.compare(
         staff,
@@ -37,7 +38,8 @@ def test_BeamSpanner___init___03():
     '''
 
     container = Container([])
-    beam = spannertools.BeamSpanner(container)
+    beam = spannertools.BeamSpanner()
+    beam.attach(container)
 
     assert testtools.compare(
         container,
@@ -57,7 +59,8 @@ def test_BeamSpanner___init___04():
     '''
 
     container = Container("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
-    beam = spannertools.BeamSpanner(container)
+    beam = spannertools.BeamSpanner()
+    beam.attach(container)
 
     assert testtools.compare(
         container,
@@ -85,7 +88,8 @@ def test_BeamSpanner___init___05():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,
@@ -118,7 +122,8 @@ def test_BeamSpanner___init___06():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,
@@ -148,7 +153,8 @@ def test_BeamSpanner___init___07():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -176,7 +182,8 @@ def test_BeamSpanner___init___08():
     '''
 
     staff = Staff("{} {} {}")
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,
@@ -203,7 +210,8 @@ def test_BeamSpanner___init___09():
 
     staff = Staff(Container([]) * 2)
     staff.insert(1, Container(Note(0, (1, 8)) * 4))
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,
@@ -234,7 +242,8 @@ def test_BeamSpanner___init___10():
     '''
 
     voice = Voice("{ { c'8 cs'8 d'8 ef'8 } } { { e'8 f'8 fs'8 g'8 } }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     assert testtools.compare(
         voice,
@@ -264,22 +273,26 @@ def test_BeamSpanner___init___10():
     assert len(beam.leaves) == 8
 
     beam.detach()
-    beam = spannertools.BeamSpanner([voice[0], voice[1]])
+    beam = spannertools.BeamSpanner()
+    beam.attach([voice[0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
     beam.detach()
-    beam = spannertools.BeamSpanner([voice[0][0], voice[1][0]])
+    beam = spannertools.BeamSpanner()
+    beam.attach([voice[0][0], voice[1][0]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
     beam.detach()
-    beam = spannertools.BeamSpanner([voice[0], voice[1][0]])
+    beam = spannertools.BeamSpanner()
+    beam.attach([voice[0], voice[1][0]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
     beam.detach()
-    beam = spannertools.BeamSpanner([voice[0][0], voice[1]])
+    beam = spannertools.BeamSpanner()
+    beam.attach([voice[0][0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
@@ -289,21 +302,25 @@ def test_BeamSpanner___init___11():
     '''
 
     voice = Voice("{ { { c'8 cs'8 d'8 ef'8 } } } { e'8 f'8 fs'8 g'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     # note that calling testtools.compare() here breaks Python's assertions
 
-    beam = spannertools.BeamSpanner([voice[0], voice[1]])
+    beam = spannertools.BeamSpanner()
+    beam.attach([voice[0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
     beam.detach()
 
-    beam = spannertools.BeamSpanner([voice[0][0], voice[1]])
+    beam = spannertools.BeamSpanner()
+    beam.attach([voice[0][0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
     beam.detach()
 
-    beam = spannertools.BeamSpanner([voice[0][0][0], voice[1]])
+    beam = spannertools.BeamSpanner()
+    beam.attach([voice[0][0][0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
     beam.detach()
@@ -314,7 +331,8 @@ def test_BeamSpanner___init___12():
     '''
 
     voice = Voice("{ c'8 cs'8 } d'8 { ef'8 e'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     assert testtools.compare(
         voice,
@@ -343,7 +361,8 @@ def test_BeamSpanner___init___13():
     '''
 
     voice = Voice(r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     assert testtools.compare(
         voice,
@@ -390,12 +409,14 @@ def test_BeamSpanner___init___14():
         '''
         )
 
-    beam = spannertools.BeamSpanner(tuplet)
+    beam = spannertools.BeamSpanner()
+    beam.attach(tuplet)
     assert len(beam.components) == 1
     assert len(beam.leaves) == 5
     beam.detach()
 
-    beam = spannertools.BeamSpanner(tuplet[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(tuplet[:])
     assert len(beam.components) == 3
     assert len(beam.leaves) == 5
 
@@ -430,10 +451,11 @@ def test_BeamSpanner___init___15():
         '''
         )
 
-    statement = 'beam = spannertools.BeamSpanner([staff[0], staff[1]])'
+    beam = spannertools.BeamSpanner()
+    statement = 'beam.attach([staff[0], staff[1]])'
     assert py.test.raises(Exception, statement)
 
-    statement = 'beam = spannertools.BeamSpanner([staff[1], staff[2]])'
+    statement = 'beam.attach([staff[1], staff[2]])'
     assert py.test.raises(Exception, statement)
 
 
@@ -444,7 +466,8 @@ def test_BeamSpanner___init___16():
     staff = Staff([Voice("c'8 cs'8 d'8 ef'8"), Voice("e'8 f'8 fs'8 g'8")])
     staff[0].name = 'foo'
     staff[1].name = 'foo'
-    beam = spannertools.BeamSpanner(staff[0][:] + staff[1][:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0][:] + staff[1][:])
 
     assert testtools.compare(
         staff,
@@ -504,7 +527,9 @@ def test_BeamSpanner___init___17():
             }
         >>
         ''')
-    beam = spannertools.BeamSpanner(container[0][0][:] + container[1][1][:])
+
+    beam = spannertools.BeamSpanner()
+    beam.attach(container[0][0][:] + container[1][1][:])
 
     assert testtools.compare(
         container,
@@ -575,7 +600,9 @@ def test_BeamSpanner___init___18():
             }
         >>
         ''')
-    beam = spannertools.BeamSpanner(container[0][0][:] + container[1][0][:])
+
+    beam = spannertools.BeamSpanner()
+    beam.attach(container[0][0][:] + container[1][0][:])
 
     assert testtools.compare(
         container,
@@ -617,7 +644,8 @@ def test_BeamSpanner___init___19():
 
     container = Container([])
     container.is_simultaneous = True
-    beam = spannertools.BeamSpanner(container)
+    beam = spannertools.BeamSpanner()
+    beam.attach(container)
 
     assert len(beam.components) == 1
     assert beam.components[0] is container
@@ -653,7 +681,9 @@ def test_BeamSpanner___init___20():
             }
         >>
         ''')
-    beam = spannertools.BeamSpanner(container[0][:])
+
+    beam = spannertools.BeamSpanner()
+    beam.attach(container[0][:])
 
     assert testtools.compare(
         container,
@@ -732,7 +762,8 @@ def test_BeamSpanner___init___21():
         )
 
     leaves = staff[:2] + staff[-2:]
-    statement = 'beam = spannertools.BeamSpanner(leaves)'
+    beam = spannertools.BeamSpanner()
+    statement = 'beam.attacch(leaves)'
     assert py.test.raises(Exception, statement)
 
 
@@ -768,8 +799,10 @@ def test_BeamSpanner___init___22():
             ef''8
         }
         ''')
+
     leaves = staff[0][:] + staff[1][0][:] + staff[2][:]
-    beam = spannertools.BeamSpanner(leaves)
+    beam = spannertools.BeamSpanner()
+    beam.attach(leaves)
 
     assert testtools.compare(
         staff,
@@ -838,5 +871,6 @@ def test_BeamSpanner___init___23():
         )
 
     leaves = staff.select_leaves(allow_discontiguous_leaves=True)
-    statement = 'spannertools.BeamSpanner(leaves)'
+    beam = spannertools.BeamSpanner()
+    statement = 'beam.attach(leaves)'
     assert py.test.raises(Exception, statement)

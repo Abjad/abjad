@@ -8,10 +8,11 @@ def test_OctavationSpanner_01():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    o = spannertools.OctavationSpanner(staff[:])
+    octavation_spanner =  spannertools.OctavationSpanner()
+    octavation_spanner.attach(staff[:])
 
-    assert o.start == 1
-    assert o.stop == 0
+    assert octavation_spanner.start == 1
+    assert octavation_spanner.stop == 0
 
     assert testtools.compare(
         staff,
@@ -33,7 +34,8 @@ def test_OctavationSpanner_01():
 def test_OctavationSpanner_02():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(staff[:4], 1)
+    octavation_spanner = spannertools.OctavationSpanner(start=1)
+    octavation_spanner.attach(staff[:4])
 
     assert testtools.compare(
         staff,
@@ -59,7 +61,8 @@ def test_OctavationSpanner_02():
 def test_OctavationSpanner_03():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(staff[:4], 1, 2)
+    octavation_spanner = spannertools.OctavationSpanner(start=1, stop=2)
+    octavation_spanner.attach(staff[:4])
 
     assert testtools.compare(
         staff,
@@ -87,7 +90,8 @@ def test_OctavationSpanner_04():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(staff[0], 1)
+    octavation_spanner = spannertools.OctavationSpanner(start=1)
+    octavation_spanner.attach(staff[0])
 
     assert testtools.compare(
         staff,
@@ -117,8 +121,10 @@ def test_OctavationSpanner_05():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(staff[0], 1)
-    spannertools.OctavationSpanner(staff[1], 2)
+    octavation_spanner = spannertools.OctavationSpanner(start=1)
+    octavation_spanner.attach(staff[0])
+    octavation_spanner = spannertools.OctavationSpanner(start=2)
+    octavation_spanner.attach(staff[1])
 
     assert testtools.compare(
         staff,
@@ -148,8 +154,10 @@ def test_OctavationSpanner_06():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.OctavationSpanner(staff[:4], 1)
-    spannertools.OctavationSpanner(staff[2:6], 2)
+    octavation_spanner = spannertools.OctavationSpanner(start=1)
+    octavation_spanner.attach(staff[:4])
+    octavation_spanner = spannertools.OctavationSpanner(start=2)
+    octavation_spanner.attach(staff[2:6])
     checker = OverlappingOctavationCheck()
 
     assert testtools.compare(

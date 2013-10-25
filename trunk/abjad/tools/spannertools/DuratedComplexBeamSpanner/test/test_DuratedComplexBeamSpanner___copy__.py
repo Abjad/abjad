@@ -9,12 +9,17 @@ def test_DuratedComplexBeamSpanner___copy___01():
         Container("f'32 g'32 a'32"),
         Container("b'32 c'32")
         ])
-    durations = [x._preprolated_duration for x in staff]
+    durations = [inspect(x).get_duration() for x in staff]
+
     beam = spannertools.DuratedComplexBeamSpanner(
-        staff[:], durations=durations, span=2, direction=Down)
+        durations=durations, 
+        span=2, 
+        direction=Down,
+        )
+    beam.attach(staff[:])
 
     new_staff = mutate(staff).copy()
-    new_beam = new_staff[0]._get_spanner(spannertools.BeamSpanner)
+    new_beam = inspect(new_staff[0]).get_spanner(spannertools.BeamSpanner)
 
     assert staff.lilypond_format == new_staff.lilypond_format
     assert new_beam.durations == beam.durations

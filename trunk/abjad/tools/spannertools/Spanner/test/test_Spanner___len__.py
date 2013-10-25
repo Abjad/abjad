@@ -7,24 +7,28 @@ def test_Spanner___len___01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[1])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[1])
 
-    r'''
-    \new Voice {
-        {
-            c'8
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8
+                d'8
+            }
+            {
+                e'8 [
+                f'8 ]
+            }
+            {
+                g'8
+                a'8
+            }
         }
-        {
-            e'8 [
-            f'8 ]
-        }
-        {
-            g'8
-            a'8
-        }
-    }
-    '''
+        '''
+        )
 
     assert len(beam) == 1
     assert len(beam.components) == 1
@@ -36,24 +40,28 @@ def test_Spanner___len___02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
         }
-        {
-            e'8
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     assert len(beam) == 3
     assert len(beam.components) == 3

@@ -14,18 +14,9 @@ def test_Spanner_format_01():
             pass
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    spanner = MockSpanner(staff[:])
+    spanner = MockSpanner()
+    spanner.attach(staff[:])
 
-    r'''
-    \new Staff {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -37,3 +28,5 @@ def test_Spanner_format_01():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

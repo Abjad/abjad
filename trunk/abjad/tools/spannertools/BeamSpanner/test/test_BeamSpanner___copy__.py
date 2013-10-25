@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import copy
+from abjad import *
 
 
 def test_BeamSpanner___copy___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = spannertools.BeamSpanner(staff[:])
+    beam_1 = spannertools.BeamSpanner()
+    beam_1.attach(staff[:])
     beam_2 = copy.copy(beam_1)
 
     assert beam_1 is not beam_2

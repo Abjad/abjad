@@ -16,7 +16,8 @@ def test_BracketSpanner___init___02():
     '''
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    spannertools.BracketSpanner(staff[1])
+    bracket_spanner = spannertools.BracketSpanner()
+    bracket_spanner.attach(staff[1])
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert testtools.compare(

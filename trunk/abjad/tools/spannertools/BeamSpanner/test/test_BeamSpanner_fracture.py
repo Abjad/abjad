@@ -9,7 +9,8 @@ def test_BeamSpanner_fracture_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = spannertools.BeamSpanner(staff[:4])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:4])
     beam.fracture(0, direction=Left)
 
     assert testtools.compare(
@@ -34,7 +35,8 @@ def test_BeamSpanner_fracture_01():
 def test_BeamSpanner_fracture_02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = spannertools.BeamSpanner(staff[:4])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:4])
     beam.fracture(1, direction=Left)
 
     assert testtools.compare(
@@ -63,7 +65,8 @@ def test_BeamSpanner_fracture_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = spannertools.BeamSpanner(staff[:4])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:4])
     beam.fracture(-1, direction=Right)
 
     assert testtools.compare(
@@ -88,7 +91,8 @@ def test_BeamSpanner_fracture_03():
 def test_BeamSpanner_fracture_04():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = spannertools.BeamSpanner(staff[:4])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:4])
     beam.fracture(1, direction=Right)
 
     assert testtools.compare(
@@ -115,7 +119,8 @@ def test_BeamSpanner_fracture_05():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam = spannertools.BeamSpanner(staff[:5])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:5])
     beam.fracture(2, direction=None)
 
     assert testtools.compare(
@@ -142,7 +147,8 @@ def test_BeamSpanner_fracture_06():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam = spannertools.BeamSpanner(staff[:5])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:5])
     beam.fracture(0, direction=None)
 
     assert testtools.compare(
@@ -169,7 +175,8 @@ def test_BeamSpanner_fracture_07():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam = spannertools.BeamSpanner(staff[:5])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:5])
     beam.fracture(4, direction=None)
 
     assert testtools.compare(
@@ -196,7 +203,8 @@ def test_BeamSpanner_fracture_08():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam = spannertools.BeamSpanner(staff[:5])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:5])
     beam.fracture(-1, direction=None)
 
     assert testtools.compare(

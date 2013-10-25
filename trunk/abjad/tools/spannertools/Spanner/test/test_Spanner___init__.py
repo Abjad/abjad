@@ -17,16 +17,20 @@ def test_Spanner___init___02():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(container[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(container[:])
 
-    r'''
-    {
-        c'8 [
-        d'8
-        e'8
-        f'8 ]
-    }
-    '''
+    assert testtools.compare(
+        container,
+        r'''
+        {
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
+        }
+        '''
+        )
 
     assert len(beam) == 4
     assert beam[:] == container[:]

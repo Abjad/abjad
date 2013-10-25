@@ -7,8 +7,10 @@ def test_Spanner_start_offset_01():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(container[1:3])
-    glissando = spannertools.GlissandoSpanner([container])
+    beam = spannertools.BeamSpanner()
+    beam.attach(container[1:3])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach([container])
 
     assert testtools.compare(
         container,

@@ -6,7 +6,8 @@ def test_Spanner_fracture_01():
     r'''Fracture container spanner to the right of index 1.
     '''
 
-    staff = Staff(r'''
+    staff = Staff(
+        r'''
         {
             c'8
             cs'8
@@ -25,8 +26,11 @@ def test_Spanner_fracture_01():
             bf'8
             b'8
         }
-        ''')
-    beam = spannertools.BeamSpanner(staff[:])
+        '''
+        )
+
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     original, left, right = beam.fracture(1, direction=Right)
 
     assert len(original.components) == 3
@@ -69,26 +73,3 @@ def test_Spanner_fracture_01():
         }
         '''
         )
-
-    r'''
-    \new Staff {
-        {
-            c'8 [
-            cs'8
-            d'8
-            ef'8
-        }
-        {
-            e'8
-            f'8
-            fs'8
-            g'8 ]
-        }
-        {
-            af'8 [
-            a'8
-            bf'8
-            b'8 ]
-        }
-    }
-    '''

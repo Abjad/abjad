@@ -7,24 +7,28 @@ def test_Spanner___getitem___01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
         }
-        {
-            e'8
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     assert beam[0] is voice[0]
 
@@ -34,24 +38,28 @@ def test_Spanner___getitem___02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
         }
-        {
-            e'8
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     assert beam[-1] is voice[-1]
 
@@ -61,50 +69,59 @@ def test_Spanner___getitem___03():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
         }
-        {
-            e'8
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     assert beam[-2:] == voice[-2:]
 
 
 def test_Spanner___getitem___04():
     r'''Get all spanner components.
-        Equivalent to beam.clear().'''
+    Equivalent to beam.detach().
+    '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8 ]
+            }
         }
-        {
-            e'8
-            f'8
-        }
-        {
-            g'8
-            a'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     assert beam[:] == voice[:]

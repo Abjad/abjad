@@ -31,7 +31,8 @@ def test_MeasuredComplexBeamSpanner_01():
         '''
         )
 
-    beam = spannertools.MeasuredComplexBeamSpanner(staff[:])
+    beam = spannertools.MeasuredComplexBeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,

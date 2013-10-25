@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
+import py.test
 from abjad import *
 from abjad.tools.wellformednesstools import IntermarkedHairpinCheck
 from abjad.tools.wellformednesstools import ShortHairpinCheck
-import py.test
 
 
 def test_HairpinSpanner_01():
@@ -10,7 +10,8 @@ def test_HairpinSpanner_01():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.CrescendoSpanner(staff[:4])
+    crescendo = spannertools.CrescendoSpanner()
+    crescendo.attach(staff[:4])
 
     assert testtools.compare(
         staff,
@@ -36,7 +37,8 @@ def test_HairpinSpanner_02():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.CrescendoSpanner(staff[0:1])
+    crescendo = spannertools.CrescendoSpanner()
+    crescendo.attach(staff[0:1])
     checker = ShortHairpinCheck()
 
     assert testtools.compare(
@@ -63,7 +65,8 @@ def test_HairpinSpanner_03():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.CrescendoSpanner(staff[:4])
+    crescendo = spannertools.CrescendoSpanner()
+    crescendo.attach(staff[:4])
     contexttools.DynamicMark('p')(staff[0])
     contexttools.DynamicMark('f')(staff[3])
 
@@ -91,8 +94,10 @@ def test_HairpinSpanner_04():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    spannertools.CrescendoSpanner(staff[:4])
-    assert py.test.raises(WellFormednessError, "contexttools.DynamicMark('p')(staff[2])")
+    crescendo = spannertools.CrescendoSpanner()
+    crescendo.attach(staff[:4])
+    statement = "contexttools.DynamicMark('p')(staff[2])"
+    assert py.test.raises(WellFormednessError, statement)
 
 
 def test_HairpinSpanner_05():
@@ -101,11 +106,14 @@ def test_HairpinSpanner_05():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     contexttools.DynamicMark('p')(staff[0])
-    spannertools.CrescendoSpanner(staff[0:3])
+    crescendo = spannertools.CrescendoSpanner()
+    crescendo.attach(staff[0:3])
     contexttools.DynamicMark('f')(staff[2])
-    spannertools.DecrescendoSpanner(staff[2:5])
+    decrescendo = spannertools.DecrescendoSpanner()
+    decrescendo.attach(staff[2:5])
     contexttools.DynamicMark('p')(staff[4])
-    spannertools.CrescendoSpanner(staff[4:7])
+    crescendo = spannertools.CrescendoSpanner()
+    crescendo.attach(staff[4:7])
     contexttools.DynamicMark('f')(staff[6])
 
     assert testtools.compare(
@@ -132,7 +140,8 @@ def test_HairpinSpanner_06():
     '''
 
     staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-    spannertools.CrescendoSpanner(staff[:])
+    crescendo = spannertools.CrescendoSpanner()
+    crescendo.attach(staff[:])
 
     assert testtools.compare(
         staff,
@@ -162,10 +171,13 @@ def test_HairpinSpanner_07():
     staff[0] = rest
     rest = Rest(staff[-1])
     staff[-1] = rest
-    hairpin = spannertools.HairpinSpanner([], 'p < f', include_rests=False)
+    hairpin = spannertools.HairpinSpanner(
+        descriptor='p < f', 
+        include_rests=False,
+        )
     hairpin.attach(staff.select_leaves())
 
-    spanner_classes = (spannertools.HairpinSpanner,)
+    spanner_classes = spannertools.HairpinSpanner
     spanner = inspect(staff[0]).get_spanner(spanner_classes=spanner_classes)
     assert len(spanner.components) == len(staff)
 

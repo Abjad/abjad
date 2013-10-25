@@ -15,7 +15,8 @@ def test_SlurSpanner___init___02():
     all their subcontexts are equally named.
     '''
 
-    container = Container(r'''
+    container = Container(
+        r'''
         \context Staff = "foo" <<
             \context Voice = "first" {
                 c'8
@@ -44,9 +45,12 @@ def test_SlurSpanner___init___02():
                 ef''8
             }
         >>
-        ''')
+        '''
+        )
+
     leaves = container[0][0][:] + container[1][0][:]
-    slur = spannertools.SlurSpanner(leaves)
+    slur = spannertools.SlurSpanner()
+    slur.attach(leaves)
 
     assert testtools.compare(
         container,
@@ -92,7 +96,8 @@ def test_SlurSpanner___init___03():
     so long as the voices nested in the staves are named the same.
     '''
 
-    container = Container(r'''
+    container = Container(
+        r'''
         \context Staff = "foo" {
             \context Voice = "bar" {
                 c'8
@@ -109,8 +114,11 @@ def test_SlurSpanner___init___03():
                 g'8
             }
         }
-        ''')
-    slur = spannertools.SlurSpanner(container)
+        '''
+        )
+
+    slur = spannertools.SlurSpanner()
+    slur.attach(container)
 
     assert testtools.compare(
         container,

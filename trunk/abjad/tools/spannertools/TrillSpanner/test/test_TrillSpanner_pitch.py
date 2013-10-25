@@ -7,20 +7,10 @@ def test_TrillSpanner_pitch_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    trill = spannertools.TrillSpanner(staff[:2])
+    trill = spannertools.TrillSpanner()
+    trill.attach(staff[:2])
     trill.pitch = pitchtools.NamedPitch(1)
 
-    r'''
-    \new Staff {
-        \pitchedTrill
-        c'8 \startTrillSpan cs'
-        d'8 \stopTrillSpan
-        e'8
-        f'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -33,6 +23,8 @@ def test_TrillSpanner_pitch_01():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
 
 
 def test_TrillSpanner_pitch_02():
@@ -40,20 +32,10 @@ def test_TrillSpanner_pitch_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    trill = spannertools.TrillSpanner(staff[:2])
+    trill = spannertools.TrillSpanner()
+    trill.attach(staff[:2])
     trill.pitch = 1
 
-    r'''
-    \new Staff {
-        \pitchedTrill
-        c'8 \startTrillSpan cs'
-        d'8 \stopTrillSpan
-        e'8
-        f'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -67,26 +49,19 @@ def test_TrillSpanner_pitch_02():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_TrillSpanner_pitch_03():
     r'''Clear with None.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    trill = spannertools.TrillSpanner(staff[:2])
+    trill = spannertools.TrillSpanner()
+    trill.attach(staff[:2])
     trill.pitch = pitchtools.NamedPitch(1)
     trill.pitch = None
 
-    r'''
-    \new Staff {
-        c'8 \startTrillSpan
-        d'8 \stopTrillSpan
-        e'8
-        f'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -98,3 +73,5 @@ def test_TrillSpanner_pitch_03():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

@@ -43,7 +43,8 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
     '''
     from abjad.tools import spannertools
 
-    text_spanner = spannertools.TextSpanner(components)
+    text_spanner = spannertools.TextSpanner()
+    text_spanner.attach(components)
     text_spanner._dynamic_text = dynamic_text
     dynamic_text = markuptools.Markup(r'\dynamic { %s }' % dynamic_text)
     text_spanner.override.text_spanner.bound_details__left__text = dynamic_text

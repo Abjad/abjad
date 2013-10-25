@@ -37,31 +37,9 @@ def test_HiddenStaffSpanner___init___02():
     }
     '''
 
-    spannertools.HiddenStaffSpanner(staff[1])
+    spanner = spannertools.HiddenStaffSpanner()
+    spanner.attach(staff[1])
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'8
-            d'8
-        }
-        {
-            \time 2/8
-            \stopStaff
-            e'8
-            f'8
-            \startStaff
-        }
-        {
-            \time 2/8
-            g'8
-            a'8
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -87,21 +65,17 @@ def test_HiddenStaffSpanner___init___02():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_HiddenStaffSpanner___init___03():
     r'''Hide staff around one leaf.
     '''
 
     note = Note(0, (1, 8))
-    spannertools.HiddenStaffSpanner(note)
+    spanner = spannertools.HiddenStaffSpanner()
+    spanner.attach(note)
 
-    r'''
-    \stopStaff
-    c'8
-    \startStaff
-    '''
-
-    assert inspect(note).is_well_formed()
     assert testtools.compare(
         note,
         r'''
@@ -110,3 +84,5 @@ def test_HiddenStaffSpanner___init___03():
         \startStaff
         '''
         )
+
+    assert inspect(note).is_well_formed()

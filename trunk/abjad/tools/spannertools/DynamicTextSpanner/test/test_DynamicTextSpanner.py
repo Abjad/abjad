@@ -5,9 +5,12 @@ from abjad import *
 def test_DynamicTextSpanner_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
-    spannertools.DynamicTextSpanner(voice[:2], 'f')
-    spannertools.DynamicTextSpanner(voice[2:], 'p')
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
+    dynamic_text_spanner = spannertools.DynamicTextSpanner(mark='f')
+    dynamic_text_spanner.attach(voice[:2])
+    dynamic_text_spanner = spannertools.DynamicTextSpanner(mark='p')
+    dynamic_text_spanner.attach(voice[2:])
 
     assert testtools.compare(
         voice,
@@ -20,10 +23,5 @@ def test_DynamicTextSpanner_01():
         }
         '''
         )
-
-    #assert voice[0].dynamics.effective == 'f'
-    #assert voice[1].dynamics.effective == 'f'
-    #assert voice[2].dynamics.effective == 'p'
-    #assert voice[3].dynamics.effective == 'p'
 
     assert inspect(voice).is_well_formed()
