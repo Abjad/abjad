@@ -351,7 +351,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             self.elements, ratio)
         durations = [self._get_duration_of_list(part) for part in parts]
         payload_parts = self._split_payload_at_offsets(durations)
-        start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
+        start_offsets = mathtools.cumulative_sums(durations)[:-1]
         start_offsets = [
             self.start_offset + start_offset 
             for start_offset in start_offsets]
@@ -385,7 +385,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             self.elements, part_lengths)
         durations = [self._get_duration_of_list(part) for part in parts]
         payload_parts = self._split_payload_at_offsets(durations)
-        start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
+        start_offsets = mathtools.cumulative_sums(durations)[:-1]
         start_offsets = [
             self.start_offset + start_offset 
             for start_offset in start_offsets]

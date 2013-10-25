@@ -76,7 +76,7 @@ def partition_sequence_by_backgrounded_weights(sequence, weights):
     assert mathtools.weight(sequence) == mathtools.weight(weights)
 
     start_offsets = \
-        mathtools.cumulative_sums_zero([abs(x) for x in sequence])[:-1]
+        mathtools.cumulative_sums([abs(x) for x in sequence])[:-1]
     indicator = zip(start_offsets, sequence)
 
     result = []

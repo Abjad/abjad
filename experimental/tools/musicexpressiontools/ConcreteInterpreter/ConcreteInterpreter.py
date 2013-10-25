@@ -280,7 +280,7 @@ class ConcreteInterpreter(Interpreter):
             [x.duration for x in rhythm_region_division_lists]
         #self._debug(rhythm_region_durations, 'rrds')
         cumulative_sums = \
-            mathtools.cumulative_sums_zero(rhythm_region_durations)
+            mathtools.cumulative_sums(rhythm_region_durations)
         rhythm_region_start_offsets = cumulative_sums[:-1]
         rhythm_region_start_offsets = \
             [durationtools.Offset(x) for x in rhythm_region_start_offsets]

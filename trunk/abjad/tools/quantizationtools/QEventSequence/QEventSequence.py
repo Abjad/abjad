@@ -257,7 +257,7 @@ class QEventSequence(AbjadObject):
                     milliseconds, sign=[-1]) if x]
         else:
             durations = milliseconds
-        offsets = mathtools.cumulative_sums_zero([abs(x) for x in durations])
+        offsets = mathtools.cumulative_sums([abs(x) for x in durations])
         q_events = []
         for pair in zip(offsets, durations):
             offset = durationtools.Offset(pair[0])
@@ -399,7 +399,7 @@ class QEventSequence(AbjadObject):
                 duration = sum(x[0] for x in group)
                 groups.append((duration, None))
         # find offsets
-        offsets = mathtools.cumulative_sums_zero([abs(x[0]) for x in groups])
+        offsets = mathtools.cumulative_sums([abs(x[0]) for x in groups])
         # build QEvents
         q_events = []
         for pair in zip(offsets, groups):
@@ -470,7 +470,7 @@ class QEventSequence(AbjadObject):
                 sign=[-1],
                 ) if x]
         durations = [tempo.duration_to_milliseconds(x) for x in durations]
-        offsets = mathtools.cumulative_sums_zero(abs(x) for x in durations)
+        offsets = mathtools.cumulative_sums(abs(x) for x in durations)
         q_events = []
         for pair in zip(offsets, durations):
             offset = durationtools.Offset(pair[0])
