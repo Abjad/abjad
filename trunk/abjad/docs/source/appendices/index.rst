@@ -8,8 +8,8 @@ Appendices
         :numbered:
 
         pitch_conventions/index
-        change_log/index
         bibliography/index
+        change_log/index
 
 ..  only:: latex 
 
