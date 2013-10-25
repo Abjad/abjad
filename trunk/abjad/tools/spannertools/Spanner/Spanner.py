@@ -578,7 +578,8 @@ class Spanner(AbjadObject):
         Returns none.
         '''
         components = [component] + self[:1]
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(components)
+        assert Selection._all_are_contiguous_components_in_same_logical_voice(
+            components)
         component._spanners.add(self)
         self._components.insert(0, component)
 
@@ -589,8 +590,15 @@ class Spanner(AbjadObject):
 
         Returns none.
         '''
+        from abjad.tools import componenttools
+        from abjad.tools import selectiontools
         assert not self, repr(self)
-        self.extend(components)
+        if isinstance(components, componenttools.Component):
+            self.append(components)
+        elif isinstance(components, (list, tuple, selectiontools.Selection)):
+            self.extend(components)
+        else:
+            raise TypeError(components)
 
     def detach(self):
         r'''Detaches spanner.
