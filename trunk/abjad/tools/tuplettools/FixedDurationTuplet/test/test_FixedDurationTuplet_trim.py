@@ -1,106 +1,115 @@
 # -*- encoding: utf-8 -*-
+import py.test
 from abjad import *
-from py.test import raises
 
 
 def test_FixedDurationTuplet_trim_01():
-    r'''1-element index.
-    '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
+
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(0)
-    assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_pitch == 1
-    assert tuplet[1].written_pitch.numbered_pitch == 2
+
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 4/3 {
+            d'8
+            e'8
+        }
+        '''
+        )
+
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_trim_02():
-    r'''1-element index.
-    '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
+
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(1)
-    assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_pitch == 0
-    assert tuplet[1].written_pitch.numbered_pitch == 2
+
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 4/3 {
+            c'8
+            e'8
+        }
+        '''
+        )
+
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_trim_03():
-    r'''1-element index.
-    '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
-    tuplet.trim(2)
-    assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_pitch == 0
-    assert tuplet[1].written_pitch.numbered_pitch == 1
+
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    assert py.test.raises(Exception, 'tuplet.trim(99)')
 
 
 def test_FixedDurationTuplet_trim_04():
-    r'''Raises IndexError.
-    '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
-    assert raises(IndexError, 'tuplet.trim(3)')
+
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet.trim(0, 0)
+
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 4/3 {
+            c'8
+            d'8
+            e'8
+        }
+        '''
+        )
+
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_trim_05():
-    r'''0-element slice.
-    '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
-    tuplet.trim(0, 0)
-    assert len(tuplet) == 3
-    assert tuplet[0].written_pitch.numbered_pitch == 0
-    assert tuplet[1].written_pitch.numbered_pitch == 1
-    assert tuplet[2].written_pitch.numbered_pitch == 2
+
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet.trim(0, 1)
+
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 4/3 {
+            d'8
+            e'8
+        }
+        '''
+        )
+
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_trim_06():
-    r'''1-element slice.
-    '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
-    tuplet.trim(0, 1)
-    assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_pitch == 1
-    assert tuplet[1].written_pitch.numbered_pitch == 2
+
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet.trim(1, 2)
+
+    assert testtools.compare(
+        tuplet,
+        r'''
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 4/3 {
+            c'8
+            e'8
+        }
+        '''
+        )
+
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_FixedDurationTuplet_trim_07():
-    r'''1-element slice.
-    '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
-    tuplet.trim(1, 2)
-    assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_pitch == 0
-    assert tuplet[1].written_pitch.numbered_pitch == 2
-
-
-def test_FixedDurationTuplet_trim_08():
-    r'''1-element slice.
-    '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
-    tuplet.trim(2, 3)
-    assert len(tuplet) == 2
-    assert tuplet[0].written_pitch.numbered_pitch == 0
-    assert tuplet[1].written_pitch.numbered_pitch == 1
-
-
-def test_FixedDurationTuplet_trim_09():
     r'''Trimming all leaves raises an exception.
     '''
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 3)
-    for i, leaf in enumerate(tuplet.select_leaves()):
-        leaf.written_pitch = i
-    raises(AssertionError, 'tuplet.trim(0, 100)')
+
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet.trim(1, 2)
+
+    py.test.raises(Exception, 'tuplet.trim(0, 99)')

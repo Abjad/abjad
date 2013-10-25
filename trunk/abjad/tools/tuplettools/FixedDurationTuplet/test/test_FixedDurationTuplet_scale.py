@@ -150,7 +150,8 @@ def test_FixedDurationTuplet_scale_07():
 
 
 def test_FixedDurationTuplet_scale_08():
-    r'''Multiply undotted, unbracketted notes by 3/2; ie, add a single dot.
+    r'''Multiply undotted, unbracketted notes by 3/2.
+    That is, add a single dot.
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")
@@ -174,8 +175,7 @@ def test_FixedDurationTuplet_scale_09():
     r'''Binary target duration.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(
-        Duration(3, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'4 c'4.")
 
     mutate(tuplet).scale(Multiplier(2, 3))
 
@@ -196,8 +196,7 @@ def test_FixedDurationTuplet_scale_10():
     r'''Target duration without power-of-two denominator.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(
-        Duration(4, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'4 c'4.")
 
     assert testtools.compare(
         tuplet,

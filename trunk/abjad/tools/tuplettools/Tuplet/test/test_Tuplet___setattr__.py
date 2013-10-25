@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import py.test
+from abjad import *
 
 
 def test_Tuplet___setattr___01():

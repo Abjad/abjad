@@ -3,8 +3,6 @@ import py.test
 from abjad import *
 
 
-# TEST TYPICAL DIVIDE #
-
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_01():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
@@ -43,8 +41,6 @@ def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_04():
 
     assert str(tuplet) == "{@ 19:16 c'16.., c'16.., r16, r64 @}"
 
-
-# TEST DIVIDE, DOUBLE LIST #
 
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_05():
 
@@ -86,8 +82,6 @@ def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_08():
     assert str(tuplet) == "{@ 5:3 c'4, c'2, c'2 @}"
 
 
-# TEST DIVIDE, DOUBLE NUMERATOR #
-
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_09():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
@@ -127,8 +121,6 @@ def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_12():
 
     assert str(tuplet) == "{@ 5:6 c'4, c'2, c'2 @}"
 
-
-# TEST DIVIDE, DOUBLE DENOMINATOR #
 
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_13():
 
@@ -170,8 +162,6 @@ def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_16():
     assert str(tuplet) == "{@ 5:6 c'16, c'8, c'8 @}"
 
 
-# TEST DIVIDE, NO PROLATION #
-
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_17():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
@@ -211,8 +201,6 @@ def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_20():
 
     assert str(tuplet) == "{@ 1:1 c'16, c'16, c'16, c'16, r16, r16 @}"
 
-
-# TEST LONE DIVIDE #
 
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_21():
 
@@ -256,17 +244,20 @@ def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_24():
 
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_25():
 
-    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction([], (3, 16))'
+    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
+    statement += '([], (3, 16))'
     py.test.raises(Exception, statement)
 
 
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_26():
 
-    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction([0], (3, 16))'
+    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
+    statement += '([0], (3, 16))'
     py.test.raises(Exception, statement)
 
 
 def test_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_27():
 
-    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction([1, 1, 0, 1], (3, 16))'
+    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
+    statement += '([1, 1, 0, 1], (3, 16))'
     py.test.raises(Exception, statement)

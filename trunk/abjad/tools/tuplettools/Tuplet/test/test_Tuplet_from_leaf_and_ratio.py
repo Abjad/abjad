@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import py
+from abjad import *
 
 
 def test_Tuplet_from_leaf_and_ratio_01():
@@ -18,8 +18,7 @@ def test_Tuplet_from_leaf_and_ratio_01():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1, 2], is_diminution=False)
+    tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=False)
 
     assert testtools.compare(
         tuplet,
@@ -31,12 +30,11 @@ def test_Tuplet_from_leaf_and_ratio_01():
         '''
         )
 
-    # TODO: DECIDE ON DOTTED VALUES #
-    #tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2, 2], is_diminution=False)
-    #assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/5 {\n\tc'32\n\tc'16\n\tc'16\n}"
-
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1, 2, 2, 3], is_diminution=False)
+        note, 
+        [1, 2, 2, 3], 
+        is_diminution=False,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -52,7 +50,10 @@ def test_Tuplet_from_leaf_and_ratio_01():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1, 2, 2, 3, 3], is_diminution=False)
+        note, 
+        [1, 2, 2, 3, 3], 
+        is_diminution=False,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -69,7 +70,10 @@ def test_Tuplet_from_leaf_and_ratio_01():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1, 2, 2, 3, 3, 4], is_diminution=False)
+        note, 
+        [1, 2, 2, 3, 3, 4], 
+        is_diminution=False,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -91,8 +95,7 @@ def test_Tuplet_from_leaf_and_ratio_02():
 
     note = Note("c'8.")
 
-    tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1], is_diminution=True)
+    tuplet = Tuplet.from_leaf_and_ratio(note, [1], is_diminution=True)
 
     assert testtools.compare(
         tuplet,
@@ -103,8 +106,7 @@ def test_Tuplet_from_leaf_and_ratio_02():
         '''
         )
 
-    tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1, 2], is_diminution=True)
+    tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=True)
 
     assert testtools.compare(
         tuplet,
@@ -116,12 +118,7 @@ def test_Tuplet_from_leaf_and_ratio_02():
         '''
         )
 
-    # TODO: DECIDE ON DOTTED VALUES #
-    #tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2, 2], is_diminution=True)
-    #assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/5 {\n\tc'16\n\tc'8\n\tc'8\n}"
-
-    tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1, 2, 2, 3], is_diminution=True)
+    tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2, 2, 3], is_diminution=True)
 
     assert testtools.compare(
         tuplet,
@@ -137,7 +134,10 @@ def test_Tuplet_from_leaf_and_ratio_02():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1, 2, 2, 3, 3], is_diminution=True)
+        note, 
+        [1, 2, 2, 3, 3], 
+        is_diminution=True,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -154,7 +154,10 @@ def test_Tuplet_from_leaf_and_ratio_02():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, [1, 2, 2, 3, 3, 4], is_diminution=True)
+        note, 
+        [1, 2, 2, 3, 3, 4], 
+        is_diminution=True,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -178,7 +181,10 @@ def test_Tuplet_from_leaf_and_ratio_03():
     note = Note("c'8.")
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 1 * [1], is_diminution=False)
+        note, 
+        1 * [1], 
+        is_diminution=False,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -190,7 +196,10 @@ def test_Tuplet_from_leaf_and_ratio_03():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 2 * [1], is_diminution=False)
+        note, 
+        2 * [1], 
+        is_diminution=False,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -203,7 +212,10 @@ def test_Tuplet_from_leaf_and_ratio_03():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 3 * [1], is_diminution=False)
+        note, 
+        3 * [1], 
+        is_diminution=False,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -217,7 +229,10 @@ def test_Tuplet_from_leaf_and_ratio_03():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 4 * [1], is_diminution=False)
+        note, 
+        4 * [1], 
+        is_diminution=False,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -232,7 +247,10 @@ def test_Tuplet_from_leaf_and_ratio_03():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 5 * [1], is_diminution=False)
+        note, 
+        5 * [1], 
+        is_diminution=False,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -256,7 +274,10 @@ def test_Tuplet_from_leaf_and_ratio_04():
     note = Note("c'8.")
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 1 * [1], is_diminution=True)
+        note, 
+        1 * [1], 
+        is_diminution=True,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -268,7 +289,10 @@ def test_Tuplet_from_leaf_and_ratio_04():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 2 * [1], is_diminution=True)
+        note, 
+        2 * [1], 
+        is_diminution=True,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -281,7 +305,10 @@ def test_Tuplet_from_leaf_and_ratio_04():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 3 * [1], is_diminution=True)
+        note, 
+        3 * [1], 
+        is_diminution=True,
+        )
 
     assert testtools.compare(
         tuplet,
@@ -295,7 +322,10 @@ def test_Tuplet_from_leaf_and_ratio_04():
         )
 
     tuplet = Tuplet.from_leaf_and_ratio(
-        note, 4 * [1], is_diminution=True)
+        note, 
+        4 * [1], 
+        is_diminution=True,
+        )
 
     assert testtools.compare(
         tuplet,

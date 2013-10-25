@@ -33,8 +33,8 @@ def test_Tuplet__fix_01():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_Tuplet__fix_02():
@@ -70,8 +70,8 @@ def test_Tuplet__fix_02():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
+    assert inspect(tuplet).is_well_formed()
 
 
 def test_Tuplet__fix_03():
@@ -107,5 +107,5 @@ def test_Tuplet__fix_03():
         '''
         )
 
-    assert inspect(tuplet).is_well_formed()
     assert tuplet.multiplier.is_proper_tuplet_multiplier
+    assert inspect(tuplet).is_well_formed()
