@@ -31,6 +31,7 @@ def graph(expr, image_format='pdf', layout='dot'):
     layouts =('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
     assert layout in layouts
     message = 'Cannot find `{}` command-line tool.'.format(layout)
+    message += ' Please download Graphviz from graphviz.org.'
     assert iotools.which(layout), message
 
     if isinstance(expr, str):
