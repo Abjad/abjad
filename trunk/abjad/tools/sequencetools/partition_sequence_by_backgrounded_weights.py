@@ -81,7 +81,7 @@ def partition_sequence_by_backgrounded_weights(sequence, weights):
 
     result = []
     for interval_start, interval_stop in \
-        mathtools.cumulative_sums_zero_pairwise(weights):
+        mathtools.cumulative_sums_pairwise(weights):
         part = []
         for pair in indicator[:]:
             if interval_start <= pair[0] < interval_stop:

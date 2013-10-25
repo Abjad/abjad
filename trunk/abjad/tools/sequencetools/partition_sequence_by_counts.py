@@ -146,7 +146,7 @@ def partition_sequence_by_counts(
             counts = list(counts)
             counts.append(len(sequence) - weight_counts)
 
-    for start, stop in mathtools.cumulative_sums_zero_pairwise(counts):
+    for start, stop in mathtools.cumulative_sums_pairwise(counts):
         result.append(type(sequence)(sequence[start:stop]))
 
     return result

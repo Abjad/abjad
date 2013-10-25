@@ -835,7 +835,7 @@ class BreakPointFunction(AbjadObject):
         '''
         ratio = mathtools.Ratio(ratio)
         tessalated_bpf = None
-        for i, pair in enumerate(mathtools.cumulative_sums_zero_pairwise(
+        for i, pair in enumerate(mathtools.cumulative_sums_pairwise(
             [abs(x) for x in ratio])):
             sign = mathtools.sign(ratio[i])
             start, stop = pair

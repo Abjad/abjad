@@ -130,7 +130,7 @@ class ConcreteInterpreter(Interpreter):
                 timespantools.Timespan(score_start_offset, score_stop_offset)
             self.score_specification._timespan = score_timespan
             segment_offset_pairs = \
-                mathtools.cumulative_sums_zero_pairwise(segment_durations)
+                mathtools.cumulative_sums_pairwise(segment_durations)
             segment_offset_pairs = [
                 (durationtools.Offset(x[0]), durationtools.Offset(x[1])) 
                 for x in segment_offset_pairs]
