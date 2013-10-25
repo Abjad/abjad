@@ -19,11 +19,15 @@ Bibliography
    Doctoral Dissertation.
    The University of Rochester, Eastman School of Music. 1993.
 
+.. [AndreattaBardezRahn2008] Moren Andreatta, Jean-Michel Bardez and John Rahn.
+   *Around Set Theory.*
+   Éditions Delatour, Paris. 2008.
+
 .. [Ariza2005] Christopher Ariza.
    *An Open Design for Computer-Aided Algorithmic Music Composition: athenaCL.*
    Dissertation.com, Boca Raton. 2005.
 
-.. [BacaAdan2007] Trevor Bača & Víctor Adán. 
+.. [BačaAdan2007] Trevor Bača & Víctor Adán. 
    "Cuepatlahto and Lascaux:
    two approaches to the formalized control of musical score."
    Draft June 7, 2007.
@@ -51,6 +55,10 @@ Bibliography
    Part I: Time and Rhythmic Structures."
    In Bresson, Agon and Assayag (2008).
 
+.. [MazzolaAhn2007] Guerino Mazzola and Yun-Kang Ahn.
+   *La vérité du beau dans la musique.*
+   Éditions Delatour, Paris. 2007.
+
 .. [Morris1987] Robert Morris. 
    *Composition with Pitch-Classes.*
    Yale University Press, New Haven. 1987.
@@ -65,6 +73,14 @@ Bibliography
    *Proceedings of the XIV Colloquium on Musical Informatics.*
    Firenze, Italy. May 8 - 10, 2003.
 
+.. [RiotteMesnage2006-1] André Riotte and Marcel Mesnage.
+   *Formalisme et modèles musicaux. 1*
+   Éditions Delatour, Paris. 2006.
+   
+.. [RiotteMesnage2006-2] André Riotte and Marcel Mesnage.
+   *Formalisme et modèles musicaux. 2*
+   Éditions Delatour, Paris. 2006.
+
 .. [Ross1987] Ted Ross.
    *Teach Yourself The Art of Music Engraving and Processing.*
    Hansen House, Miami Beach. 1987.
@@ -72,6 +88,12 @@ Bibliography
 .. [Selfridge-Field1997] Eleanor Selfridge-Field, ed.
    *Beyond MIDI: The Handbook of Musical Codes.*
    The MIT Press. Cambridge, Massachusetts. 1997.
+
+.. [Treviño2013] Jeffrey Treviño.
+   *Compositional and Analytic Applications of Automated Music Notation via
+   Object-oriented Programming.*
+   Doctoral Dissertation.
+   University of California San Diego. 2013.
 
 .. [Valle] Andrea Valle. 
    "GeoGraphy: Notazione musicale e composizione algorithmica."
