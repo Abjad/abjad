@@ -12,8 +12,10 @@ def test_Container_remove_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.SlurSpanner(voice[:])
-    spannertools.BeamSpanner(voice[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[1])
 
     assert testtools.compare(
         voice,
@@ -59,7 +61,8 @@ def test_Container_remove_02():
 
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
     sequential = staff[0]
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,

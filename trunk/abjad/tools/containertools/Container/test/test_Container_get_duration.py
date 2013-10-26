@@ -9,22 +9,27 @@ def test_Container_get_duration_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TempoMark(Duration(1, 4), 38)(staff)
-    contexttools.TempoMark(Duration(1, 4), 42)(staff[2])
+    tempo = contexttools.TempoMark(Duration(1, 4), 38)
+    tempo.attach(staff)
+    tempo = contexttools.TempoMark(Duration(1, 4), 42)
+    tempo.attach(staff[2])
     score = Score([staff])
 
-    r'''
-    \new Score <<
-        \new Staff {
-            \tempo 4=38
-            c'8
-            d'8
-            \tempo 4=42
-            e'8
-            f'8
-        }
-    >>
-    '''
+    assert testtools.compare(
+        score,
+        r'''
+        \new Score <<
+            \new Staff {
+                \tempo 4=38
+                c'8
+                d'8
+                \tempo 4=42
+                e'8
+                f'8
+            }
+        >>
+        '''
+        )
 
     assert inspect(score).get_duration(in_seconds=True) == Duration(400, 133)
 

@@ -13,7 +13,8 @@ def test_Container_insert_01():
     "Insert works just before a spanner."
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     voice.insert(0, Rest((1, 8)))
 
     r'''
@@ -46,7 +47,8 @@ def test_Container_insert_02():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     voice.insert(1, Note(1, (1, 8)))
 
     r'''
@@ -80,7 +82,8 @@ def test_Container_insert_03():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)])
-    spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     staff.insert(4, Rest((1, 4)))
 
     r'''
@@ -113,7 +116,8 @@ def test_Container_insert_04():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)])
-    spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     staff.insert(1000, Rest((1, 4)))
 
     r'''
@@ -146,7 +150,8 @@ def test_Container_insert_05():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     voice.insert(-1, Note(4.5, (1, 8)))
 
     r'''
@@ -179,7 +184,8 @@ def test_Container_insert_06():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     voice.insert(-1000, Rest((1, 8)))
 
     r'''
@@ -226,7 +232,8 @@ def test_Container_insert_07():
 def test_Container_insert_08():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff.select_leaves())
     staff.insert(1, Note("cs'8"), fracture_spanners=False)
 
     r'''
@@ -264,7 +271,8 @@ def test_Container_insert_09():
     "Insert works just before a spanner."
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)])
-    spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     staff.insert(0, Rest('r4'), fracture_spanners=True)
 
     r'''
@@ -297,7 +305,8 @@ def test_Container_insert_10():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)])
-    spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     staff.insert(1, Rest('r4'), fracture_spanners=True)
 
     r'''
@@ -330,7 +339,8 @@ def test_Container_insert_11():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)])
-    spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     staff.insert(4, Rest('r4'), fracture_spanners=True)
 
     r'''
@@ -363,7 +373,8 @@ def test_Container_insert_12():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)])
-    spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     staff.insert(1000, Rest('r4'), fracture_spanners=True)
 
     r'''
@@ -396,7 +407,8 @@ def test_Container_insert_13():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)])
-    spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     staff.insert(-1, Rest('r4'), fracture_spanners=True)
 
     r'''
@@ -429,7 +441,8 @@ def test_Container_insert_14():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)])
-    spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     staff.insert(-1000, Rest('r4'), fracture_spanners=True)
 
     r'''

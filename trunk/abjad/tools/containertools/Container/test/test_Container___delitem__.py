@@ -11,9 +11,12 @@ def test_Container___delitem___01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(voice[:])
-    spannertools.SlurSpanner(voice[0][:])
-    spannertools.SlurSpanner(voice[1][:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
+    slur = spannertools.SlurSpanner()
+    slur.attach(voice[0][:])
+    slur = spannertools.SlurSpanner()
+    slur.attach(voice[1][:])
 
     assert testtools.compare(
         voice,
@@ -71,7 +74,8 @@ def test_Container___delitem___02():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     del(voice[1])
 
@@ -94,7 +98,8 @@ def test_Container___delitem___03():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     del(voice[1:3])
 
@@ -116,7 +121,8 @@ def test_Container___delitem___04():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     del(voice[:2])
 
@@ -138,7 +144,8 @@ def test_Container___delitem___05():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     del(voice[2:])
 
@@ -160,7 +167,8 @@ def test_Container___delitem___06():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     del(voice[:])
 
@@ -180,7 +188,8 @@ def test_Container___delitem___07():
     '''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(tuplet[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(tuplet[:])
 
     del(tuplet[1])
 
@@ -202,8 +211,10 @@ def test_Container___delitem___08():
     '''
 
     voice = Voice("c'8 { d'8 e'8 } f'8")
-    spannertools.BeamSpanner(voice.select_leaves())
-    spannertools.GlissandoSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,

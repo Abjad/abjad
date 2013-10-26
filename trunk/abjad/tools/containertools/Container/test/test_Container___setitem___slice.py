@@ -31,7 +31,8 @@ def test_Container___setitem___slice_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     note = Note(7, (1, 8))
     staff[2:2] = [note]
 
@@ -65,7 +66,8 @@ def test_Container___setitem___slice_03():
     end = notes[4:]
 
     staff = Staff(beginning + end)
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,
@@ -103,7 +105,8 @@ def test_Container___setitem___slice_04():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     note = Note(12, (1, 8))
     staff[1:3] = [note]
 
@@ -127,7 +130,8 @@ def test_Container___setitem___slice_05():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
     staff[1:3] = notes
         
@@ -152,7 +156,8 @@ def test_Container___setitem___slice_06():
     '''
 
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -196,7 +201,8 @@ def test_Container___setitem___slice_07():
     '''
 
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -240,7 +246,8 @@ def test_Container___setitem___slice_08():
     '''
 
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -282,7 +289,8 @@ def test_Container___setitem___slice_09():
     '''
 
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -328,7 +336,8 @@ def test_Container___setitem___slice_10():
     '''
 
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -389,7 +398,8 @@ def test_Container___setitem___slice_11():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     voice[-1000:-1000] = [Rest((1, 8))]
 
     assert testtools.compare(
@@ -426,7 +436,8 @@ def test_Container___setitem___slice_12():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     voice[1000:1000] = [Rest((1, 8))]
 
     assert testtools.compare(
@@ -458,7 +469,8 @@ def test_Container___setitem___slice_13():
     staff = Staff("c'8 d'8 e'8 f'8")
     inner = Container(staff[1:3])
     outer = Container([inner])
-    beam = spannertools.BeamSpanner(inner[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(inner[:])
 
     assert testtools.compare(
         staff,
@@ -507,7 +519,8 @@ def test_Container___setitem___slice_13():
     staff = Staff("c'8 d'8 e'8 f'8")
     inner = Container(staff[1:3])
     outer = Container([inner])
-    beam = spannertools.BeamSpanner(inner[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(inner[:])
 
     del(outer[:])
 

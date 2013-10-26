@@ -7,9 +7,12 @@ def test_Container__split_by_duration_01():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -60,9 +63,12 @@ def test_Container__split_by_duration_02():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -119,9 +125,12 @@ def test_Container__split_by_duration_03():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -188,9 +197,12 @@ def test_Container__split_by_duration_04():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -244,9 +256,12 @@ def test_Container__split_by_duration_05():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -305,9 +320,12 @@ def test_Container__split_by_duration_06():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -373,9 +391,12 @@ def test_Container__split_by_duration_07():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -437,9 +458,12 @@ def test_Container__split_by_duration_08():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -492,9 +516,12 @@ def test_Container__split_by_duration_09():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -551,9 +578,12 @@ def test_Container__split_by_duration_10():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -618,9 +648,12 @@ def test_Container__split_by_duration_11():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -675,9 +708,12 @@ def test_Container__split_by_duration_12():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -734,9 +770,12 @@ def test_Container__split_by_duration_13():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -788,7 +827,8 @@ def test_Container__split_by_duration_14():
     '''
 
     note = Note(0, (1, 8))
-    spannertools.BeamSpanner(note)
+    beam = spannertools.BeamSpanner()
+    beam.attach(note)
 
     assert note.lilypond_format == "c'8 [ ]"
 
@@ -812,9 +852,12 @@ def test_Container__split_by_duration_15():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -868,9 +911,12 @@ def test_Container__split_by_duration_16():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -929,9 +975,12 @@ def test_Container__split_by_duration_17():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -995,9 +1044,12 @@ def test_Container__split_by_duration_18():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1063,9 +1115,12 @@ def test_Container__split_by_duration_19():
     staff = Staff()
     staff.append(Measure((3, 8), "c'8 d'8 e'8"))
     staff.append(Measure((3, 8), "c'8 d'8 e'8"))
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1185,9 +1240,12 @@ def test_Container__split_by_duration_22():
     staff.append(Measure((2, 16), "e'8 f'8"))
     for leaf in staff.select_leaves():
         leaf.lilypond_duration_multiplier = Multiplier(1, 2)
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1246,9 +1304,12 @@ def test_Container__split_by_duration_23():
     staff.append(Measure((2, 16), "e'8 f'8"))
     for leaf in staff.select_leaves():
         leaf.lilypond_duration_multiplier = Multiplier(1, 2)
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1311,9 +1372,12 @@ def test_Container__split_by_duration_24():
     staff.append(Measure((2, 16), "e'8 f'8"))
     for leaf in staff.select_leaves():
         leaf.lilypond_duration_multiplier = Multiplier(1, 2)
-    spannertools.BeamSpanner(staff[0])
-    spannertools.BeamSpanner(staff[1])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1425,8 +1489,10 @@ def test_Container__split_by_duration_26():
 
     measure = Measure((15, 80), "c'32 d' e' f' g' a' b' c''64")
     staff = Staff([measure])
-    spannertools.BeamSpanner(staff[0])
-    spannertools.SlurSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[0])
+    slur = spannertools.SlurSpanner()
+    slur.attach(staff.select_leaves())
 
     assert testtools.compare(
         staff,

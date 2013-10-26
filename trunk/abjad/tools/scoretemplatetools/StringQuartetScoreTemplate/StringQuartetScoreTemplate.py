@@ -82,29 +82,37 @@ class StringQuartetScoreTemplate(AbjadObject):
         first_violin_voice = voicetools.Voice(name='First Violin Voice')
         first_violin_staff = stafftools.Staff(
             [first_violin_voice], name='First Violin Staff')
-        contexttools.ClefMark('treble')(first_violin_staff)
-        instrumenttools.Violin()(first_violin_staff)
+        clef = contexttools.ClefMark('treble')
+        clef.attach(first_violin_staff)
+        violin = instrumenttools.Violin()
+        violin.attach(first_violin_staff)
 
         # make second violin voice and staff
         second_violin_voice = voicetools.Voice(name='Second Violin Voice')
         second_violin_staff = stafftools.Staff(
             [second_violin_voice], name='Second Violin Staff')
-        contexttools.ClefMark('treble')(second_violin_staff)
-        instrumenttools.Violin()(second_violin_staff)
+        clef = contexttools.ClefMark('treble')
+        clef.attach(second_violin_staff)
+        violin = instrumenttools.Violin()
+        violin.attach(second_violin_staff)
 
         # make viola voice and staff
         viola_voice = voicetools.Voice(name='Viola Voice')
         viola_staff = stafftools.Staff(
             [viola_voice], name='Viola Staff')
-        contexttools.ClefMark('alto')(viola_staff)
-        instrumenttools.Viola()(viola_staff)
+        clef = contexttools.ClefMark('alto')
+        clef.attach(viola_staff)
+        viola = instrumenttools.Viola()
+        viola.attach(viola_staff)
 
         # make cello voice and staff
         cello_voice = voicetools.Voice(name='Cello Voice')
         cello_staff = stafftools.Staff(
             [cello_voice], name='Cello Staff')
-        contexttools.ClefMark('bass')(cello_staff)
-        instrumenttools.Cello()(cello_staff)
+        clef = contexttools.ClefMark('bass')
+        clef.attach(cello_staff)
+        cello = instrumenttools.Cello()
+        cello.attach(cello_staff)
 
         # make string quartet staff group
         string_quartet_staff_group = scoretools.StaffGroup([

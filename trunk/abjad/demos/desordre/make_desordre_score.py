@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
-from abjad.tools import scoretools
+from abjad import *
 from abjad.demos.desordre.make_desordre_staff import make_desordre_staff
 
 
 def make_desordre_score(pitches):
-    '''Returns a complete PianoStaff with Ligeti music!'''
+    '''Returns a complete piano staff with Ligeti music.
+    '''
 
     assert len(pitches) == 2
     piano_staff = scoretools.PianoStaff()
@@ -16,8 +16,10 @@ def make_desordre_score(pitches):
         piano_staff.append(staff)
 
     # set clef and key signature to left hand staff...
-    contexttools.ClefMark('bass')(piano_staff[1])
-    contexttools.KeySignatureMark('b', 'major')(piano_staff[1])
+    clef = contexttools.ClefMark('bass')
+    clef.attach(piano_staff[1])
+    key_signature = contexttools.KeySignatureMark('b', 'major')
+    key_signature.attach(piano_staff[1])
 
     # wrap the piano staff in a score, and return
     score = scoretools.Score([piano_staff])

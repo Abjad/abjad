@@ -64,26 +64,33 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
         rh_voice = voicetools.Voice(name='RH Voice')
         rh_staff = stafftools.Staff(
             [rh_voice], 
-            name='RH Staff')
-        contexttools.ClefMark('treble')(rh_staff)
+            name='RH Staff',
+            )
+        clef = contexttools.ClefMark('treble')
+        clef.attach(rh_staff)
 
         # make LH voice and staff
         lh_voice = voicetools.Voice(name='LH Voice')
         lh_staff = stafftools.Staff(
             [lh_voice], 
-            name='LH Staff')
-        contexttools.ClefMark('bass')(lh_staff)
+            name='LH Staff',
+            )
+        clef = contexttools.ClefMark('bass')
+        clef.attach(lh_staff)
 
         # make piano staff
         piano_staff = scoretools.PianoStaff(
             [rh_staff, lh_staff], 
-            name='Piano Staff')
-        instrumenttools.Piano()(piano_staff)
+            name='Piano Staff',
+            )
+        piano = instrumenttools.Piano()
+        piano.attach(piano_staff)
 
         # make two-staf piano score
         two_staff_piano_score = scoretools.Score(
             [piano_staff], 
-            name='Two-Staff Piano Score')
+            name='Two-Staff Piano Score',
+            )
 
         # return two-staff piano score
         return two_staff_piano_score
