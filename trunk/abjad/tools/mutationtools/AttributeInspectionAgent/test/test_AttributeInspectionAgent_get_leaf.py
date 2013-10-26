@@ -43,7 +43,7 @@ def test_AttributeInspectionAgent_get_leaf_02():
     r'''Voice.
     '''
 
-    voice = Voice([Note(i, (1,8)) for i in range(4)])
+    voice = Voice([Note(i, (1, 8)) for i in range(4)])
 
     assert inspect(voice[0]).get_leaf(1) is voice[1]
     assert inspect(voice[1]).get_leaf(1) is voice[2]
@@ -72,7 +72,7 @@ def test_AttributeInspectionAgent_get_leaf_03():
     r'''Staff.
     '''
 
-    staff = Staff([Note(i, (1,8)) for i in range(4)])
+    staff = Staff([Note(i, (1, 8)) for i in range(4)])
 
     assert inspect(staff[0]).get_leaf(1) is staff[1]
     assert inspect(staff[1]).get_leaf(1) is staff[2]
@@ -101,7 +101,7 @@ def test_AttributeInspectionAgent_get_leaf_04():
     r'''Container.
     '''
 
-    container = Container([Note(i, (1,8)) for i in range(4)])
+    container = Container([Note(i, (1, 8)) for i in range(4)])
 
     assert testtools.compare(
         container,
@@ -156,8 +156,8 @@ def test_AttributeInspectionAgent_get_leaf_06():
     r'''Contiguous containers inside a voice.
     '''
 
-    container_1 = Container([Note(i, (1,8)) for i in range(4)])
-    container_2 = Container([Note(i, (1,8)) for i in range(4,8)])
+    container_1 = Container([Note(i, (1, 8)) for i in range(4)])
+    container_2 = Container([Note(i, (1, 8)) for i in range(4, 8)])
     voice = Voice([container_1, container_2])
 
     assert testtools.compare(
@@ -230,8 +230,8 @@ def test_AttributeInspectionAgent_get_leaf_08():
     r'''Does not continue across contiguous anonymous voices inside a staff.
     '''
 
-    voice_1 = Voice([Note(i, (1,8)) for i in range(4)])
-    voice_2 = Voice([Note(i, (1,8)) for i in range(4,8)])
+    voice_1 = Voice([Note(i, (1, 8)) for i in range(4)])
+    voice_2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
     staff = Staff([voice_1, voice_2])
 
     assert testtools.compare(
@@ -262,23 +262,23 @@ def test_AttributeInspectionAgent_get_leaf_09():
     r'''Does cross contiguous equally named voices inside a staff.
     '''
 
-    voice_1 = Voice([Note(i, (1,8)) for i in range(4)])
-    voice_1.name = 'myvoice'
-    voice_2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-    voice_2.name = 'myvoice'
+    voice_1 = Voice([Note(i, (1, 8)) for i in range(4)])
+    voice_1.name = 'My Voice'
+    voice_2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
+    voice_2.name = 'My Voice'
     staff = Staff([voice_1, voice_2])
 
     assert testtools.compare(
         staff,
         r'''
         \new Staff {
-            \context Voice = "myvoice" {
+            \context Voice = "My Voice" {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "myvoice" {
+            \context Voice = "My Voice" {
                 e'8
                 f'8
                 fs'8
@@ -303,23 +303,23 @@ def test_AttributeInspectionAgent_get_leaf_10():
     r'''Does not connect through contiguous unequally named voices.
     '''
 
-    voice_1 = Voice([Note(i, (1,8)) for i in range(4)])
-    voice_1.name = 'yourvoice'
-    voice_2 = Voice([Note(i, (1,8)) for i in range(4,8)])
-    voice_2.name = 'myvoice'
+    voice_1 = Voice([Note(i, (1, 8)) for i in range(4)])
+    voice_1.name = 'Your Voice'
+    voice_2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
+    voice_2.name = 'My Voice'
     staff = Staff([voice_1, voice_2])
 
     assert testtools.compare(
         staff,
         r'''
         \new Staff {
-            \context Voice = "yourvoice" {
+            \context Voice = "Your Voice" {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "myvoice" {
+            \context Voice = "My Voice" {
                 e'8
                 f'8
                 fs'8
@@ -348,9 +348,9 @@ def test_AttributeInspectionAgent_get_leaf_11():
     containing like-named voices.
     '''
 
-    voice_1 = Voice([Note(i, (1,8)) for i in range(4)])
+    voice_1 = Voice([Note(i, (1, 8)) for i in range(4)])
     voice_1.name = 'low'
-    voice_2 = Voice([Note(i, (1,8)) for i in range(4,8)])
+    voice_2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
     voice_2.name = 'low'
 
     staff_1 = Staff([voice_1])
@@ -393,13 +393,13 @@ def test_AttributeInspectionAgent_get_leaf_12():
     like-named voices.
     '''
 
-    lower_voice_1 = Voice([Note(i, (1,8)) for i in range(4)])
+    lower_voice_1 = Voice([Note(i, (1, 8)) for i in range(4)])
     lower_voice_1.name = 'low'
-    lower_voice_2 = Voice([Note(i, (1,8)) for i in range(4,8)])
+    lower_voice_2 = Voice([Note(i, (1, 8)) for i in range(4 ,8)])
     lower_voice_2.name = 'low'
-    higher_voice_1 = Voice([Note(i, (1,8)) for i in range(12,16)])
+    higher_voice_1 = Voice([Note(i, (1 ,8)) for i in range(12,16)])
     higher_voice_1.name = 'high'
-    higher_voice_2 = Voice([Note(i, (1,8)) for i in range(16,20)])
+    higher_voice_2 = Voice([Note(i, (1 ,8)) for i in range(16,20)])
     higher_voice_2.name = 'high'
 
     staff_1 = Staff([higher_voice_1, lower_voice_1])
@@ -458,9 +458,9 @@ def test_AttributeInspectionAgent_get_leaf_13():
     r'''Does connect through symmetrical nested containers in a voice.
     '''
 
-    container_1 = Container([Note(i, (1,8)) for i in range(4)])
+    container_1 = Container([Note(i, (1 ,8)) for i in range(4)])
     container_1 = Container([container_1])
-    container_2 = Container([Note(i, (1,8)) for i in range(4,8)])
+    container_2 = Container([Note(i, (1 ,8)) for i in range(4 ,8)])
     container_2 = Container([container_2])
     voice = Voice([container_1, container_2])
 
@@ -504,8 +504,8 @@ def test_AttributeInspectionAgent_get_leaf_14():
     logical voice parentage.
     '''
 
-    container_1 = Container([Note(i, (1,8)) for i in range(4)])
-    container_2 = Container([Note(i, (1,8)) for i in range(4,8)])
+    container_1 = Container([Note(i, (1 ,8)) for i in range(4)])
+    container_2 = Container([Note(i, (1 ,8)) for i in range(4 ,8)])
     container_2 = Container([container_2])
     container_2 = Container([container_2])
     voice = Voice([container_1, container_2])
@@ -550,10 +550,10 @@ def test_AttributeInspectionAgent_get_leaf_15():
     lgoical voice parentage.
     '''
 
-    container_1 = Container([Note(i, (1,8)) for i in range(4)])
+    container_1 = Container([Note(i, (1 ,8)) for i in range(4)])
     container_1 = Container([container_1])
     container_1 = Container([container_1])
-    container_2 = Container([Note(i, (1,8)) for i in range(4,8)])
+    container_2 = Container([Note(i, (1 ,8)) for i in range(4 ,8)])
     voice = Voice([container_1, container_2])
 
     assert testtools.compare(
@@ -595,9 +595,9 @@ def test_AttributeInspectionAgent_get_leaf_16():
     r'''Does connect in sequence of alternating containers and notes.
     '''
 
-    container_1 = Container([Note(i, (1,8)) for i in range(2)])
-    container_2 = Container([Note(i, (1,8)) for i in range(3,5)])
-    voice = Voice([container_1, Note(2, (1,8)), container_2])
+    container_1 = Container([Note(i, (1 ,8)) for i in range(2)])
+    container_2 = Container([Note(i, (1 ,8)) for i in range(3,5)])
+    voice = Voice([container_1, Note(2, (1 ,8)), container_2])
 
     assert testtools.compare(
         voice,
@@ -627,9 +627,9 @@ def test_AttributeInspectionAgent_get_leaf_17():
     r'''Does connect in sequence of alternating tuplets and notes.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(4,7)])
-    voice = Voice([tuplet_1, Note(3, (1,8)), tuplet_2])
+    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(3)])
+    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(4,7)])
+    voice = Voice([tuplet_1, Note(3, (1 ,8)), tuplet_2])
 
     assert testtools.compare(
         voice,
@@ -689,9 +689,9 @@ def test_AttributeInspectionAgent_get_leaf_19():
     r'''Returns none in asymmetric logical voice parentage structures.
     '''
 
-    voice_1 = Voice([Note(i , (1,8)) for i in range(3)])
-    note = Note(3, (1,8))
-    voice_2 = Voice([Note(i , (1,8)) for i in range(4,8)])
+    voice_1 = Voice([Note(i , (1 ,8)) for i in range(3)])
+    note = Note(3, (1 ,8))
+    voice_2 = Voice([Note(i , (1 ,8)) for i in range(4 ,8)])
     staff = Staff([voice_1, note, voice_2])
 
     assert testtools.compare(
@@ -725,30 +725,30 @@ def test_AttributeInspectionAgent_get_leaf_20():
     r'''Non-contiguous or broken logical voices do not connect.
     '''
 
-    voice_1 = Voice([Note(i , (1,8)) for i in range(3)])
-    voice_1.name = 'myvoice'
-    voice_2 = Voice([Note(i , (1,8)) for i in range(4,8)])
-    voice_2.name = 'yourvoice'
-    voice_3 = Voice([Note(i , (1,8)) for i in range(4,8)])
-    voice_3.name = 'myvoice'
+    voice_1 = Voice([Note(i , (1 ,8)) for i in range(3)])
+    voice_1.name = 'My Voice'
+    voice_2 = Voice([Note(i , (1 ,8)) for i in range(4 ,8)])
+    voice_2.name = 'Your Voice'
+    voice_3 = Voice([Note(i , (1 ,8)) for i in range(4 ,8)])
+    voice_3.name = 'My Voice'
     staff = Staff([voice_1, voice_2, voice_3])
 
     assert testtools.compare(
         staff,
         r'''
         \new Staff {
-            \context Voice = "myvoice" {
+            \context Voice = "My Voice" {
                 c'8
                 cs'8
                 d'8
             }
-            \context Voice = "yourvoice" {
+            \context Voice = "Your Voice" {
                 e'8
                 f'8
                 fs'8
                 g'8
             }
-            \context Voice = "myvoice" {
+            \context Voice = "My Voice" {
                 e'8
                 f'8
                 fs'8
@@ -774,8 +774,8 @@ def test_AttributeInspectionAgent_get_leaf_21():
     r'''Does not connect through nested anonymous voices.
     '''
 
-    inner_voice = Voice([Note(i, (1,8)) for i in range(3)])
-    outer_voice = Voice([inner_voice, Note(3, (1,8))])
+    inner_voice = Voice([Note(i, (1 ,8)) for i in range(3)])
+    outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
 
     assert testtools.compare(
         outer_voice,
@@ -804,8 +804,8 @@ def test_AttributeInspectionAgent_get_leaf_22():
     r'''Does not connect through nested anonymous voices.
     '''
 
-    inner_voice = Voice([Note(i, (1,8)) for i in range(1,4)])
-    outer_voice = Voice([Note(0, (1,8)), inner_voice])
+    inner_voice = Voice([Note(i, (1 ,8)) for i in range(1,4)])
+    outer_voice = Voice([Note(0, (1 ,8)), inner_voice])
 
     assert testtools.compare(
         outer_voice,
@@ -835,16 +835,16 @@ def test_AttributeInspectionAgent_get_leaf_23():
     r'''Does connect through nested equally named voices.
     '''
 
-    inner_voice = Voice([Note(i, (1,8)) for i in range(3)])
-    inner_voice.name = 'myvoice'
-    outer_voice = Voice([inner_voice, Note(3, (1,8))])
-    outer_voice.name = 'myvoice'
+    inner_voice = Voice([Note(i, (1 ,8)) for i in range(3)])
+    inner_voice.name = 'My Voice'
+    outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
+    outer_voice.name = 'My Voice'
 
     assert testtools.compare(
         outer_voice,
         r'''
-        \context Voice = "myvoice" {
-            \context Voice = "myvoice" {
+        \context Voice = "My Voice" {
+            \context Voice = "My Voice" {
                 c'8
                 cs'8
                 d'8
@@ -867,17 +867,17 @@ def test_AttributeInspectionAgent_get_leaf_24():
     r'''Does connect through nested equally named voices.
     '''
 
-    inner_voice = Voice([Note(i, (1,8)) for i in range(1,4)])
-    inner_voice.name = 'myvoice'
-    outer_voice = Voice([Note(0, (1,8)), inner_voice])
-    outer_voice.name = 'myvoice'
+    inner_voice = Voice([Note(i, (1 ,8)) for i in range(1,4)])
+    inner_voice.name = 'My Voice'
+    outer_voice = Voice([Note(0, (1 ,8)), inner_voice])
+    outer_voice.name = 'My Voice'
 
     assert testtools.compare(
         outer_voice,
         r'''
-        \context Voice = "myvoice" {
+        \context Voice = "My Voice" {
             c'8
-            \context Voice = "myvoice" {
+            \context Voice = "My Voice" {
                 cs'8
                 d'8
                 ef'8
@@ -899,16 +899,16 @@ def test_AttributeInspectionAgent_get_leaf_25():
     r'''Returns none on nested *differently* named voices.
     '''
 
-    inner_voice = Voice([Note(i, (1,8)) for i in range(3)])
-    inner_voice.name = 'yourvoice'
-    outer_voice = Voice([inner_voice, Note(3, (1,8))])
-    outer_voice.name = 'myvoice'
+    inner_voice = Voice([Note(i, (1 ,8)) for i in range(3)])
+    inner_voice.name = 'Your Voice'
+    outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
+    outer_voice.name = 'My Voice'
 
     assert testtools.compare(
         outer_voice,
         r'''
-        \context Voice = "myvoice" {
-            \context Voice = "yourvoice" {
+        \context Voice = "My Voice" {
+            \context Voice = "Your Voice" {
                 c'8
                 cs'8
                 d'8
@@ -931,17 +931,17 @@ def test_AttributeInspectionAgent_get_leaf_26():
     r'''Returns none on nested *differently* named Voices.
     '''
 
-    inner_voice = Voice([Note(i, (1,8)) for i in range(1, 4)])
-    inner_voice.name = 'yourvoice'
-    outer_voice = Voice([Note(0, (1,8)), inner_voice])
-    outer_voice.name = 'myvoice'
+    inner_voice = Voice([Note(i, (1, 8)) for i in range(1, 4)])
+    inner_voice.name = 'Your Voice'
+    outer_voice = Voice([Note(0, (1, 8)), inner_voice])
+    outer_voice.name = 'My Voice'
 
     assert testtools.compare(
         outer_voice,
         r'''
-        \context Voice = "myvoice" {
+        \context Voice = "My Voice" {
             c'8
-            \context Voice = "yourvoice" {
+            \context Voice = "Your Voice" {
                 cs'8
                 d'8
                 ef'8

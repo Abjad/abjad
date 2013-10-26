@@ -8,11 +8,11 @@ def test_AttributeInspectionAgent_get_grace_containers_01():
 
     grace_container = containertools.GraceContainer(
         [Note("cs'16")], kind='grace')
-    grace_container(staff[1])
+    grace_container.attach(staff[1])
 
     after_grace_container = containertools.GraceContainer(
         [Note("ds'16")], kind='after')
-    after_grace_container(staff[1])
+    after_grace_container.attach(staff[1])
 
     grace_containers = inspect(staff[1]).get_grace_containers()
 

@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Mark(AbjadObject):
-    r'''Abstract base class from which concrete marks inherit.
+    r'''A mark.
     '''
 
     ### CLASS VARIABLES ###
@@ -33,6 +33,7 @@ class Mark(AbjadObject):
 
         Returns self.
         '''
+        #raise Exception('deprecated')
         if len(args) == 0:
             return self.detach()
         elif len(args) == 1:

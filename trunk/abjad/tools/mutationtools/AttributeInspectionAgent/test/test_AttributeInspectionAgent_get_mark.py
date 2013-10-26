@@ -6,7 +6,8 @@ import py.test
 def test_AttributeInspectionAgent_get_mark_01():
 
     note = Note("c'8")
-    annotation = marktools.Annotation('special information')(note)
+    annotation = marktools.Annotation('special information')
+    annotation.attach(note)
 
     assert inspect(note).get_mark(marktools.Annotation) is annotation
 
@@ -24,8 +25,10 @@ def test_AttributeInspectionAgent_get_mark_02():
 def test_AttributeInspectionAgent_get_mark_03():
 
     note = Note("c'8")
-    marktools.Annotation('special information')(note)
-    marktools.Annotation('more special information')(note)
+    annotation = marktools.Annotation('special information')
+    annotation.attach(note)
+    annotation = marktools.Annotation('more special information')
+    annotation.attach(note)
 
     assert py.test.raises(
         ExtraMarkError, 
@@ -36,7 +39,8 @@ def test_AttributeInspectionAgent_get_mark_03():
 def test_AttributeInspectionAgent_get_mark_04():
 
     note = Note("c'8")
-    articulation = marktools.Articulation('staccato')(note)
+    articulation = marktools.Articulation('staccato')
+    articulation.attach(note)
 
     assert inspect(note).get_mark(marktools.Articulation) is articulation
 
@@ -54,8 +58,10 @@ def test_AttributeInspectionAgent_get_mark_05():
 def test_AttributeInspectionAgent_get_mark_06():
 
     note = Note("c'8")
-    marktools.Articulation('staccato')(note)
-    marktools.Articulation('marcato')(note)
+    articulation = marktools.Articulation('staccato')
+    articulation.attach(note)
+    articulation = marktools.Articulation('marcato')
+    articulation.attach(note)
 
     assert py.test.raises(
         ExtraMarkError,
@@ -66,10 +72,10 @@ def test_AttributeInspectionAgent_get_mark_06():
 def test_AttributeInspectionAgent_get_mark_07():
 
     note = Note("c'8")
-    command = marktools.LilyPondCommandMark('stemUp')(note)
+    command = marktools.LilyPondCommandMark('stemUp')
+    command.attach(note)
 
-    assert inspect(note).get_mark(marktools.LilyPondCommandMark) is \
-        command
+    assert inspect(note).get_mark(marktools.LilyPondCommandMark) is command
 
 
 def test_AttributeInspectionAgent_get_mark_08():
@@ -85,8 +91,10 @@ def test_AttributeInspectionAgent_get_mark_08():
 def test_AttributeInspectionAgent_get_mark_09():
 
     note = Note("c'8")
-    marktools.LilyPondCommandMark('stemUp')(note)
-    marktools.LilyPondCommandMark('slurUp')(note)
+    command = marktools.LilyPondCommandMark('stemUp')
+    command.attach(note)
+    command = marktools.LilyPondCommandMark('slurUp')
+    command.attach(note)
 
     assert py.test.raises(
         ExtraMarkError,

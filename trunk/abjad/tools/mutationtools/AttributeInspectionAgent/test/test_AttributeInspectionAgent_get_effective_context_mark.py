@@ -18,7 +18,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.ClefMark('treble')(staff)
+    clef = contexttools.ClefMark('treble')
+    clef.attach(staff)
     for note in staff:
         clef = inspect(note).get_effective_context_mark(contexttools.ClefMark)
         assert clef == contexttools.ClefMark('treble')
@@ -30,7 +31,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.ClefMark('bass')(staff[4])
+    clef = contexttools.ClefMark('bass')
+    clef.attach(staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
             clef = inspect(note).get_effective_context_mark(
@@ -47,8 +49,10 @@ def test_AttributeInspectionAgent_get_effective_context_mark_04():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.ClefMark('treble')(staff[0])
-    contexttools.ClefMark('bass')(staff[4])
+    clef = contexttools.ClefMark('treble')
+    clef.attach(staff[0])
+    clef = contexttools.ClefMark('bass')
+    clef.attach(staff[4])
     result = [
         inspect(note).get_effective_context_mark(contexttools.ClefMark)
         for note in staff
@@ -66,10 +70,13 @@ def test_AttributeInspectionAgent_get_effective_context_mark_05():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    contexttools.ClefMark('treble')(staff[0])
-    contexttools.ClefMark('bass')(staff[4])
+    clef = contexttools.ClefMark('treble')
+    clef.attach(staff[0])
+    clef = contexttools.ClefMark('bass')
+    clef.attach(staff[4])
     clef = inspect(staff[4]).get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
+
     for note in staff:
         clef = inspect(note).get_effective_context_mark(contexttools.ClefMark)
         assert clef == contexttools.ClefMark('treble')
@@ -80,8 +87,10 @@ def test_AttributeInspectionAgent_get_effective_context_mark_06():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    contexttools.ClefMark('treble')(staff[0])
-    contexttools.ClefMark('treble')(staff[4])
+    clef = contexttools.ClefMark('treble')
+    clef.attach(staff[0])
+    clef = contexttools.ClefMark('treble')
+    clef.attach(staff[4])
 
     assert testtools.compare(
         staff,
@@ -109,8 +118,10 @@ def test_AttributeInspectionAgent_get_effective_context_mark_07():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    contexttools.ClefMark('treble_8')(staff[0])
-    contexttools.ClefMark('treble')(staff[4])
+    clef = contexttools.ClefMark('treble_8')
+    clef.attach(staff[0])
+    clef = contexttools.ClefMark('treble')
+    clef.attach(staff[4])
 
     assert testtools.compare(
         staff,
@@ -150,7 +161,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_08():
 def test_AttributeInspectionAgent_get_effective_context_mark_09():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contexttools.DynamicMark('f')(staff[2])
+    dynamic = contexttools.DynamicMark('f')
+    dynamic.attach(staff[2])
 
     assert testtools.compare(
         staff,
@@ -214,7 +226,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_11():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contexttools.KeySignatureMark('c', 'major')(staff)
+    key_signature = contexttools.KeySignatureMark('c', 'major')
+    key_signature.attach(staff)
 
     key_signature = inspect(staff).get_effective_context_mark(
         contexttools.KeySignatureMark)
@@ -251,8 +264,10 @@ def test_AttributeInspectionAgent_get_effective_context_mark_13():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)(staff)
-    contexttools.TempoMark(Duration(1, 8), 42, target_context=Staff)(staff[2])
+    tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo.attach(staff)
+    tempo = contexttools.TempoMark(Duration(1, 8), 42, target_context=Staff)
+    tempo.attach(staff[2])
 
     assert testtools.compare(
         staff,
@@ -284,14 +299,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_14():
     '''
 
     staff = Staff([Chord([2, 3, 4], (1, 4))])
-    contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)(staff[0])
-
-    r'''
-    \new Staff {
-        \tempo 8=38
-        <d' ef' e'>4
-    }
-    '''
+    tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo.attach(staff[0])
 
     assert testtools.compare(
         staff,
@@ -309,7 +318,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_15():
     '''
 
     staff = Staff([Note("c'4")])
-    contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)(staff[0])
+    tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo.attach(staff[0])
 
     assert testtools.compare(
         staff,
@@ -358,7 +368,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_18():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TimeSignatureMark((2, 8))(staff[0])
+    time_signature = contexttools.TimeSignatureMark((2, 8))
+    time_signature.attach(staff[0])
 
     assert testtools.compare(
         staff,
@@ -384,7 +395,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_19():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = contexttools.TimeSignatureMark((2, 8))(staff[0])
+    time_signature = contexttools.TimeSignatureMark((2, 8))
+    time_signature.attach(staff[0])
     time_signature.detach()
 
     assert testtools.compare(

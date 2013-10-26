@@ -38,7 +38,7 @@ def test_AttributeInspectionAgent_get_marks_02():
     slur = spannertools.SlurSpanner()
     slur.attach(staff.select_leaves())
     comment = marktools.LilyPondComment('beginning of note content')
-    comment.attch(staff[0])
+    comment.attach(staff[0])
     command = marktools.LilyPondCommandMark('slurDotted')
     command.attach(staff[0])
 

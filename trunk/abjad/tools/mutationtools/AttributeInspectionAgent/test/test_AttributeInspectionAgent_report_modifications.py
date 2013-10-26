@@ -1,19 +1,22 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import py.test
+from abjad import *
 
 
 def test_AttributeInspectionAgent_report_modifications_01():
 
-    t = Voice("c'8 d'8 e'8 f'8")
-    marktools.LilyPondComment('Example voice', 'before')(t)
-    t.override.note_head.color = 'red'
-    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
-    beam = spannertools.BeamSpanner(t[:])
+    voice = Voice("c'8 d'8 e'8 f'8")
+    comment = marktools.LilyPondComment('Example voice', 'before')
+    comment.attach(voice)
+    voice.override.note_head.color = 'red'
+    command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
+    command.attach(voice)
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     beam.override.beam.thickness = 3
 
     assert testtools.compare(
-        t,
+        voice,
         r'''
         % Example voice
         \new Voice \with {
@@ -30,7 +33,7 @@ def test_AttributeInspectionAgent_report_modifications_01():
         '''
         )
 
-    result = inspect(t).report_modifications()
+    result = inspect(voice).report_modifications()
 
     assert testtools.compare(
         result,
@@ -48,15 +51,18 @@ def test_AttributeInspectionAgent_report_modifications_01():
 
 def test_AttributeInspectionAgent_report_modifications_02():
 
-    t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    marktools.LilyPondComment('Example tuplet', 'before')(t)
-    t.override.note_head.color = 'red'
-    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
-    beam = spannertools.BeamSpanner(t[:])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    comment = marktools.LilyPondComment('Example tuplet', 'before')
+    comment.attach(tuplet)
+    tuplet.override.note_head.color = 'red'
+    command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
+    command.attach(tuplet)
+    beam = spannertools.BeamSpanner()
+    beam.attach(tuplet[:])
     beam.override.beam.thickness = 3
 
     assert testtools.compare(
-        t,
+        tuplet,
         r'''
         % Example tuplet
         \override NoteHead #'color = #red
@@ -72,7 +78,7 @@ def test_AttributeInspectionAgent_report_modifications_02():
         '''
         )
 
-    result = inspect(t).report_modifications()
+    result = inspect(tuplet).report_modifications()
 
     assert testtools.compare(
         result,

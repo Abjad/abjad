@@ -6,11 +6,12 @@ def test_AttributeInspectionAgent_get_effective_staff_01():
     r'''Staff changes work on the first note of a staff.
     '''
 
-    piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
+    piano = scoretools.PianoStaff(2 * Staff("c'8 d'8 e'8 f'8"))
     piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
-    contexttools.StaffChangeMark(piano[1])(piano[0][0])
+    staff_change = contexttools.StaffChangeMark(piano[1])
+    staff_change.attach(piano[0][0])
 
     assert testtools.compare(
         piano,
@@ -48,12 +49,14 @@ def test_AttributeInspectionAgent_get_effective_staff_02():
     r'''Staff changes work on middle notes of a staff.
     '''
 
-    piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
+    piano = scoretools.PianoStaff(2 * Staff("c'8 d'8 e'8 f'8"))
     piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
-    contexttools.StaffChangeMark(piano[1])(piano[0][0])
-    contexttools.StaffChangeMark(piano[0])(piano[0][2])
+    staff_change = contexttools.StaffChangeMark(piano[1])
+    staff_change.attach(piano[0][0])
+    staff_change = contexttools.StaffChangeMark(piano[0])
+    staff_change.attach(piano[0][2])
 
     assert testtools.compare(
         piano,
@@ -92,13 +95,13 @@ def test_AttributeInspectionAgent_get_effective_staff_03():
     r'''Staff changes work on the last note of a staff.
     '''
 
-    piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
+    piano = scoretools.PianoStaff(2 * Staff("c'8 d'8 e'8 f'8"))
     piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
-    contexttools.StaffChangeMark(piano[1])(piano[0][-1])
+    staff_change = contexttools.StaffChangeMark(piano[1])
+    staff_change.attach(piano[0][-1])
 
-    assert inspect(piano).is_well_formed()
     assert testtools.compare(
         piano,
         r'''
@@ -120,17 +123,21 @@ def test_AttributeInspectionAgent_get_effective_staff_03():
         '''
         )
 
+    assert inspect(piano).is_well_formed()
+
 
 def test_AttributeInspectionAgent_get_effective_staff_04():
     r'''Redudant staff changes are allowed.
     '''
 
-    piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
+    piano = scoretools.PianoStaff(2 * Staff("c'8 d'8 e'8 f'8"))
     piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
-    contexttools.StaffChangeMark(piano[1])(piano[0][0])
-    contexttools.StaffChangeMark(piano[1])(piano[0][1])
+    staff_change = contexttools.StaffChangeMark(piano[1])
+    staff_change.attach(piano[0][0])
+    staff_change = contexttools.StaffChangeMark(piano[1])
+    staff_change.attach(piano[0][1])
 
     assert testtools.compare(
         piano,
