@@ -7,19 +7,25 @@ def test_iterationtools_iterate_tie_chains_in_expr_01():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(staff[:2])
-    spannertools.TieSpanner(staff[2:])
+    tie = spannertools.TieSpanner()
+    tie.attach(staff[:2])
+    tie = spannertools.TieSpanner()
+    tie.attach(staff[2:])
 
-    r'''
-    \new Staff {
-        c'8 ~
-        c'8
-        c'8 ~
-        c'8
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8 ~
+            c'8
+            c'8 ~
+            c'8
+        }
+        '''
+        )
 
-    chains = list(iterationtools.iterate_tie_chains_in_expr(staff, reverse=True))
+    chains = list(
+        iterationtools.iterate_tie_chains_in_expr(staff, reverse=True))
 
     assert chains[0] == selectiontools.TieChain((staff[2], staff[3]))
     assert chains[1] == selectiontools.TieChain((staff[0], staff[1]))
@@ -31,16 +37,8 @@ def test_iterationtools_iterate_tie_chains_in_expr_02():
 
     staff = Staff(notetools.make_repeated_notes(4))
 
-    r'''
-    \new Staff {
-        c'8
-        c'8
-        c'8
-        c'8
-    }
-    '''
-
-    chains = list(iterationtools.iterate_tie_chains_in_expr(staff, reverse=True))
+    chains = list(
+        iterationtools.iterate_tie_chains_in_expr(staff, reverse=True))
 
     assert chains[0] == selectiontools.TieChain(staff[3])
     assert chains[1] == selectiontools.TieChain(staff[2])
@@ -53,17 +51,10 @@ def test_iterationtools_iterate_tie_chains_in_expr_03():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(staff[:2])
-    spannertools.TieSpanner(staff[2:])
-
-    r'''
-    \new Staff {
-        c'8 ~
-        c'8
-        c'8 ~
-        c'8
-    }
-    '''
+    tie = spannertools.TieSpanner()
+    tie.attach(staff[:2])
+    tie = spannertools.TieSpanner()
+    tie.attach(staff[2:])
 
     chains = list(iterationtools.iterate_tie_chains_in_expr(staff))
 

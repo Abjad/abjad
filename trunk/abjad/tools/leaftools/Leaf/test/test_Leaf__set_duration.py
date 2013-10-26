@@ -7,7 +7,8 @@ def test_Leaf__set_duration_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:2])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
 
     assert testtools.compare(
         voice,
@@ -44,8 +45,10 @@ def test_Leaf__set_duration_02():
     '''
 
     voice = Voice(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(voice[:2])
-    spannertools.BeamSpanner(voice[:2])
+    tie = spannertools.TieSpanner()
+    tie.attach(voice[:2])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
 
     assert testtools.compare(
         voice,
@@ -83,7 +86,8 @@ def test_Leaf__set_duration_03():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:2])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
 
     assert testtools.compare(
         voice,
@@ -120,7 +124,8 @@ def test_Leaf__set_duration_04():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:2])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
 
     assert testtools.compare(
         voice,
@@ -160,7 +165,8 @@ def test_Leaf__set_duration_05():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:2])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
 
     assert testtools.compare(
         voice,

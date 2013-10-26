@@ -7,18 +7,24 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_01():
     r'''Successful slurs, showing single leaf overlap.
     '''
-    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    spannertools.PhrasingSlurSpanner(target[2:])
-    spannertools.PhrasingSlurSpanner(target[:3])
 
-    r'''
-    {
-        c'4 \(
-        c'4
-        c'4 \) \(
-        c'4 \)
-    }
-    '''
+    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    phrasing_slur = spannertools.PhrasingSlurSpanner()
+    phrasing_slur.attach(target[2:])
+    phrasing_slur = spannertools.PhrasingSlurSpanner()
+    phrasing_slur.attach(target[:3])
+
+    assert testtools.compare(
+        target,
+        r'''
+        {
+            c'4 \(
+            c'4
+            c'4 \) \(
+            c'4 \)
+        }
+        '''
+        )
 
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
@@ -28,49 +34,59 @@ def test_LilyPondParser__spanners__PhrasingSlurSpanner_01():
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_02():
     r'''Swapped start and stop.
     '''
+
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    spannertools.PhrasingSlurSpanner(target[2:])
-    spannertools.PhrasingSlurSpanner(target[:3])
+    phrasing_slur = spannertools.PhrasingSlurSpanner()
+    phrasing_slur.attach(target[2:])
+    phrasing_slur = spannertools.PhrasingSlurSpanner()
+    phrasing_slur.attach(target[:3])
 
-    r'''
-    {
-        c'4 \(
-        c'4
-        c'4 \) \(
-        c'4 \)
-    }
-    '''
+    assert testtools.compare(
+        target,
+        r'''
+        {
+            c'4 \(
+            c'4
+            c'4 \) \(
+            c'4 \)
+        }
+        '''
+        )
 
-    input = r"\relative c' { c \( c c \( \) c \) }"
+    string = r"\relative c' { c \( c c \( \) c \) }"
 
     parser = LilyPondParser()
-    result = parser(input)
+    result = parser(string)
     assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_03():
     r'''Single leaf.
     '''
-    input = '{ c \( \) c c c }'
-    assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+    string = '{ c \( \) c c c }'
+    assert py.test.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_04():
     r'''Unterminated.
     '''
-    input = '{ c \( c c c }'
-    assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+    string = '{ c \( c c c }'
+    assert py.test.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_05():
     r'''Unstarted.
     '''
-    input = '{ c c c c \) }'
-    assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+    string = '{ c c c c \) }'
+    assert py.test.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_LilyPondParser__spanners__PhrasingSlurSpanner_06():
     r'''Nested.
     '''
-    input = '{ c \( c \( c \) c \) }'
-    assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+    string = '{ c \( c \( c \) c \) }'
+    assert py.test.raises(Exception, 'LilyPondParser()(string)')

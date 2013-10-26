@@ -8,43 +8,14 @@ def test_Measure___add___01():
     r'''Add outside-of-score measures.
     '''
 
-    t1 = Measure((1, 8), "c'16 d'16")
-    spannertools.BeamSpanner(t1[:])
-    t2 = Measure((2, 16), "c'16 d'16")
-    spannertools.SlurSpanner(t2[:])
+    measure_1 = Measure((1, 8), "c'16 d'16")
+    beam = spannertools.BeamSpanner()
+    beam.attach(measure_1[:])
+    measure_2 = Measure((2, 16), "c'16 d'16")
+    slur = spannertools.SlurSpanner()
+    slur.attach(measure_2[:])
+    new = measure_1 + measure_2
 
-    r'''
-    {
-        \time 1/8
-        c'16 [
-        d'16 ]
-    }
-    '''
-
-    r'''
-    {
-        \time 2/16
-        c'16 (
-        d'16 )
-    }
-    '''
-
-    new = t1 + t2
-
-    r'''
-    {
-        \time 2/8
-        c'16 [
-        d'16 ]
-        c'16 (
-        d'16 )
-    }
-    '''
-
-    assert new is not t1 and new is not t2
-    assert len(t1) == 0
-    assert len(t2) == 0
-    assert inspect(new).is_well_formed()
     assert testtools.compare(
         new,
         r'''
@@ -58,48 +29,48 @@ def test_Measure___add___01():
         '''
         )
 
+    assert new is not measure_1 and new is not measure_2
+    assert len(measure_1) == 0
+    assert len(measure_2) == 0
+    assert inspect(new).is_well_formed()
+
 
 def test_Measure___add___02():
     r'''Add measures in score.
     '''
 
-    t1 = Measure((1, 8), "c'16 d'16")
-    spannertools.BeamSpanner(t1[:])
-    t2 = Measure((2, 16), "c'16 d'16")
-    spannertools.SlurSpanner(t2[:])
-    staff = Staff([t1, t2])
+    measure_1 = Measure((1, 8), "c'16 d'16")
+    beam = spannertools.BeamSpanner()
+    beam.attach(measure_1[:])
+    measure_2 = Measure((2, 16), "c'16 d'16")
+    slur = spannertools.SlurSpanner()
+    slur.attach(measure_2[:])
+    staff = Staff([measure_1, measure_2])
 
-    r'''
-    \new Staff {
-        {
-            \time 1/8
-            c'16 [
-            d'16 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 1/8
+                c'16 [
+                d'16 ]
+            }
+            {
+                \time 2/16
+                c'16 (
+                d'16 )
+            }
         }
-        {
-            \time 2/16
-            c'16 (
-            d'16 )
-        }
-    }
-    '''
+        '''
+        )
 
-    new = t1 + t2
+    new = measure_1 + measure_2
 
-    r'''
-    {
-        \time 2/8
-        c'16 [
-        d'16 ]
-        c'16 (
-        d'16 )
-    }
-    '''
+    assert new is not measure_1 and new is not measure_2
+    assert len(measure_1) == 0
+    assert len(measure_2) == 0
 
-    assert new is not t1 and new is not t2
-    assert len(t1) == 0
-    assert len(t2) == 0
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -114,3 +85,5 @@ def test_Measure___add___02():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

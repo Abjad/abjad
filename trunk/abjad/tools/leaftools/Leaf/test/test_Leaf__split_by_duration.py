@@ -185,7 +185,8 @@ def test_Leaf__split_by_duration_06():
     '''
 
     voice = Voice(r"c'8 \times 2/3 { d'8 e'8 f'8 }")
-    spannertools.BeamSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -332,7 +333,8 @@ def test_Leaf__split_by_duration_12():
     '''
 
     staff = Staff([Note("c'4")])
-    tie = spannertools.TieSpanner(staff.select_leaves())
+    tie = spannertools.TieSpanner()
+    tie.attach(staff.select_leaves())
     halves = staff[0]._split_by_duration(Duration(1, 8))
 
     assert len(staff) == 2
@@ -349,7 +351,8 @@ def test_Leaf__split_by_duration_13():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    b = spannertools.BeamSpanner(staff.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff.select_leaves())
 
     halves = staff[0]._split_by_duration(
         Duration(1, 16), 
@@ -358,8 +361,8 @@ def test_Leaf__split_by_duration_13():
 
     assert len(staff) == 5
     for l in staff.select_leaves():
-        assert inspect(l).get_spanners() == set([b])
-        assert l._get_spanner(spannertools.BeamSpanner) is b
+        assert inspect(l).get_spanners() == set([beam])
+        assert l._get_spanner(spannertools.BeamSpanner) is beam
 
     assert inspect(staff).is_well_formed()
 
@@ -370,7 +373,8 @@ def test_Leaf__split_by_duration_14():
     '''
 
     staff = Staff([Note("c'4")])
-    tie = spannertools.TieSpanner(staff.select_leaves())
+    tie = spannertools.TieSpanner()
+    tie.attach(staff.select_leaves())
     halves = staff[0]._split_by_duration(Duration(5, 32))
 
     assert len(halves) == 2
@@ -389,7 +393,8 @@ def test_Leaf__split_by_duration_15():
     '''
 
     container = Container(notetools.make_repeated_notes(4))
-    tie = spannertools.TieSpanner(container)
+    tie = spannertools.TieSpanner()
+    tie.attach(container)
     halves = container[0]._split_by_duration(Duration(5, 64))
 
     assert inspect(container).get_spanner(spannertools.TieSpanner) is tie
@@ -406,7 +411,8 @@ def test_Leaf__split_by_duration_16():
     '''
 
     staff = Staff(Container(notetools.make_repeated_notes(4)) * 2)
-    tie = spannertools.TieSpanner(staff[:])
+    tie = spannertools.TieSpanner()
+    tie.attach(staff[:])
     halves = staff[0][0]._split_by_duration(Duration(5, 64))
 
     assert tie.components == tuple(staff[:])

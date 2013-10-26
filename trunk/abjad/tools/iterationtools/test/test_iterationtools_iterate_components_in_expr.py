@@ -4,7 +4,8 @@ from abjad import *
 def test_iterationtools_iterate_components_in_expr_01():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
 
     assert testtools.compare(
         staff,
@@ -38,7 +39,8 @@ def test_iterationtools_iterate_components_in_expr_01():
 def test_iterationtools_iterate_components_in_expr_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    spanner = spannertools.BeamSpanner(staff[2:])
+    spanner = spannertools.BeamSpanner()
+    spanner.attach(staff[2:])
 
     notes = iterationtools.iterate_components_in_expr(spanner)
     assert list(notes) == staff[2:]

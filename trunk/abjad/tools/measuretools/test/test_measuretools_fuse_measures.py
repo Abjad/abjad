@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import py.test
+from abjad import *
 
 
 @py.test.skip()
@@ -9,45 +9,32 @@ def test_measuretools_fuse_measures_01():
     time signatures with power-of-two denominators.
     '''
     
-    t1 = Measure((1, 8), "c'16 d'16")
-    spannertools.BeamSpanner(t1[:])
-    t2 = Measure((2, 16), "c'16 d'16")
-    spannertools.SlurSpanner(t2[:])
-    staff = Staff([t1, t2])
+    measure_1 = Measure((1, 8), "c'16 d'16")
+    spannertools.BeamSpanner(measure_1[:])
+    measure_2 = Measure((2, 16), "c'16 d'16")
+    spannertools.SlurSpanner(measure_2[:])
+    staff = Staff([measure_1, measure_2])
 
-    r'''
-    \new Staff {
-        {
-            \time 1/8
-            c'16 [
-            d'16 ]
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                \time 1/8
+                c'16 [
+                d'16 ]
+            }
+            {
+                \time 2/16
+                c'16 (
+                d'16 )
+            }
         }
-        {
-            \time 2/16
-            c'16 (
-            d'16 )
-        }
-    }
-    '''
+        '''
+        )
 
     new = measuretools.fuse_measures(staff[:])
 
-    r'''
-    \new Staff {
-        {
-            \time 2/8
-            c'16 [
-            d'16 ]
-            c'16 (
-            d'16 )
-        }
-    }
-    '''
-
-    assert new is not t1 and new is not t2
-    assert len(t1) == 0
-    assert len(t2) == 0
-    assert inspect(new).is_well_formed()
     assert testtools.compare(
         new,
         r'''
@@ -61,10 +48,15 @@ def test_measuretools_fuse_measures_01():
         '''
         )
 
+    assert new is not measure_1 and new is not measure_2
+    assert len(measure_1) == 0
+    assert len(measure_2) == 0
+    assert inspect(new).is_well_formed()
+
 
 def test_measuretools_fuse_measures_02():
-    r'''Fuse measures carrying time signatures with differing power-of-two denominators.
-    Helpers selects minimum of two denominators.
+    r'''Fuse measures carrying time signatures with differing 
+    power-of-two denominators. Helpers selects minimum of two denominators.
     Beams are OK because they attach to leaves rather than containers.
     '''
 

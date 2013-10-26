@@ -5,18 +5,22 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_LilyPondParser__spanners__GlissandoSpanner_01():
+
     target = Container([Note(0, 1), Note(0, 1)])
-    spannertools.GlissandoSpanner(target[:])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(target[:])
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__spanners__GlissandoSpanner_02():
-    input = r'{ c \glissando }'
-    assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+    string = r'{ c \glissando }'
+    assert py.test.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_LilyPondParser__spanners__GlissandoSpanner_03():
-    input = r'{ \glissando c }'
-    assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+    string = r'{ \glissando c }'
+    assert py.test.raises(Exception, 'LilyPondParser()(string)')
