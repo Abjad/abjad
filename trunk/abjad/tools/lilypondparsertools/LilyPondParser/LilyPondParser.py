@@ -614,7 +614,8 @@ class LilyPondParser(abctools.Parser):
                     if x.name == 'spanners'
                     ]
                 if not annotation:
-                    annotation = marktools.Annotation('spanners', [])(leaf)
+                    annotation = marktools.Annotation('spanners', [])
+                    annotation.attach(leaf)
                 else:
                     annotation = annotation[0]
                 annotation.value.append(post_event)

@@ -7,8 +7,10 @@ def test_ScoreMutationAgent_extract_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
-    spannertools.GlissandoSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[:])
 
     assert testtools.compare(
         voice,
@@ -45,8 +47,10 @@ def test_ScoreMutationAgent_extract_02():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(voice[:])
-    spannertools.GlissandoSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[:])
 
     assert testtools.compare(
         voice,
@@ -136,8 +140,10 @@ def test_ScoreMutationAgent_extract_04():
     voice.append(Container("c'8 d'8"))
     voice.append(Container("e'8 f'8"))
     voice.append(Container("g'8 a'8"))
-    spannertools.BeamSpanner(voice.select_leaves())
-    spannertools.GlissandoSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,

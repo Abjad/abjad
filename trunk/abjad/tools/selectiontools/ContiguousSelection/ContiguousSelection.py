@@ -82,7 +82,8 @@ class ContiguousSelection(Selection):
         elif left_tie_spanner is None and right_tie_spanner is not None:
             right_tie_spanner.append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
-            spannertools.TieSpanner([left_leaf, right_leaf])
+            tie = spannertools.TieSpanner()
+            tie.attach([left_leaf, right_leaf])
 
     def _copy_and_include_enclosing_containers(self):
         from abjad.tools import componenttools

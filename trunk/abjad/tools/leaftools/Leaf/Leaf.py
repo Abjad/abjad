@@ -396,7 +396,8 @@ class Leaf(Component):
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
             if not parentage._get_spanners(spannertools.TieSpanner):
-                spannertools.TieSpanner(all_leaves)
+                tie = spannertools.TieSpanner()
+                tie.attach(all_leaves)
             return all_leaves
         else:
             assert isinstance(components[0], tuplettools.Tuplet)
@@ -409,7 +410,8 @@ class Leaf(Component):
                 x.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             if not self._get_spanners(spannertools.TieSpanner):
-                spannertools.TieSpanner(all_leaves)
+                tie = spannertools.TieSpanner()
+                tie.attach(all_leaves)
             tuplet_multiplier = tuplet.multiplier
             tuplettools.Tuplet(tuplet_multiplier, all_leaves)
             return [tuplet]

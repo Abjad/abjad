@@ -149,7 +149,8 @@ def test_AttributeInspectionAgent_get_effective_context_mark_08():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contexttools.ClefMark('alto')(staff[0])
+    clef = contexttools.ClefMark('alto')
+    clef.attach(staff[0])
     clef = inspect(staff[0]).get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
 

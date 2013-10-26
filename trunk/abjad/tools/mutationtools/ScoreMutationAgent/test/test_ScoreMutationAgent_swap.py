@@ -9,7 +9,8 @@ def test_ScoreMutationAgent_swap_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    spannertools.BeamSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -62,8 +63,10 @@ def test_ScoreMutationAgent_swap_02():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     voice.name = 'foo'
-    spannertools.GlissandoSpanner(voice[:])
-    spannertools.BeamSpanner(voice.select_leaves())
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -117,8 +120,10 @@ def test_ScoreMutationAgent_swap_03():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    spannertools.GlissandoSpanner(voice[:])
-    spannertools.BeamSpanner(voice.select_leaves())
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -174,7 +179,8 @@ def test_ScoreMutationAgent_swap_04():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     note = Note("c'4")
     assert py.test.raises(
@@ -184,12 +190,13 @@ def test_ScoreMutationAgent_swap_04():
 
 
 def test_ScoreMutationAgent_swap_05():
-    r'''Trying to move parentage, children and spanners from nonempty container
-    to nonempty container raises exception.
+    r'''Trying to move parentage, children and spanners from 
+    nonempty container to nonempty container raises exception.
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     assert py.test.raises(
@@ -204,7 +211,8 @@ def test_ScoreMutationAgent_swap_06():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    spannertools.BeamSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,

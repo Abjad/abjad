@@ -67,7 +67,8 @@ class TieChain(ContiguousSelection):
                     leaf.written_duration = token.written_duration
                 ties = self[-1]._get_spanners(spannertools.TieSpanner)
                 if not ties:
-                    spannertools.TieSpanner(list(self))
+                    tie = spannertools.TieSpanner()
+                    tie.attach(list(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
             durations = notetools.make_notes(0, new_written_duration)
@@ -203,7 +204,8 @@ class TieChain(ContiguousSelection):
             ::
 
                 >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
-                >>> crescendo = spannertools.HairpinSpanner(staff[:], 'p < f')
+                >>> crescendo = spannertools.HairpinSpanner(descriptor='p < f')
+                >>> crescendo.attach(staff[:])
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = contexttools.TimeSignatureMark((7, 16))
                 >>> time_signature.attach(staff)
@@ -259,7 +261,8 @@ class TieChain(ContiguousSelection):
             ::
 
                 >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
-                >>> crescendo = spannertools.HairpinSpanner(staff[:], 'p < f')
+                >>> crescendo = spannertools.HairpinSpanner(descriptor='p < f')
+                >>> crescendo.attach(staff[:])
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = contexttools.TimeSignatureMark((7, 16))
                 >>> time_signature.attach(staff)

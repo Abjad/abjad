@@ -5,7 +5,8 @@ from abjad import *
 def test_ScoreMutationAgent_splice_01():
 
     voice = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     result = mutate(voice[-1]).splice(
         [Note("c'8"), Note("d'8"), Note("e'8")], 
@@ -34,13 +35,13 @@ def test_ScoreMutationAgent_splice_02():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     result = mutate(voice[1]).splice(
         [Note(2.5, (1, 8))], 
         grow_spanners=True,
         )
 
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -52,22 +53,24 @@ def test_ScoreMutationAgent_splice_02():
         }
         '''
         )
+
     assert result == voice[1:3]
+    assert inspect(voice).is_well_formed()
 
 
 def test_ScoreMutationAgent_splice_03():
     r'''Splice tuplet after tuplet.
     '''
 
-    voice = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    spannertools.BeamSpanner(voice[0])
+    voice = Voice(
+        [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[0])
     result = mutate(voice[-1]).splice(
         [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
         grow_spanners=True,
         )
 
-    assert inspect(voice).is_well_formed()
-    assert result == voice[:]
     assert testtools.compare(
         voice,
         r'''
@@ -86,19 +89,22 @@ def test_ScoreMutationAgent_splice_03():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+    assert result == voice[:]
+
 
 def test_ScoreMutationAgent_splice_04():
     r'''Splice after container with underspanners.
     '''
 
     voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    spannertools.BeamSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
     result = mutate(voice[0]).splice(
         [Note(2.5, (1, 8))], 
         grow_spanners=True,
         )
 
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -116,6 +122,7 @@ def test_ScoreMutationAgent_splice_04():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
     assert result == voice[0:2]
 
 
@@ -124,7 +131,8 @@ def test_ScoreMutationAgent_splice_05():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     result = mutate(voice[-1]).splice(
         [Note("c'8"), Note("d'8"), Note("e'8")], 
@@ -154,7 +162,8 @@ def test_ScoreMutationAgent_splice_06():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
     result = mutate(voice[1]).splice(
         [Note(2.5, (1, 8))], 
@@ -182,7 +191,8 @@ def test_ScoreMutationAgent_splice_07():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
     result = mutate(voice[0]).splice(
         notes, 
@@ -213,7 +223,8 @@ def test_ScoreMutationAgent_splice_08():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     result = mutate(voice[1]).splice(
         [Note(1.5, (1, 8))], 
         direction=Left, 
@@ -240,8 +251,10 @@ def test_ScoreMutationAgent_splice_09():
     r'''Splice tuplet left of tuplet.
     '''
 
-    voice = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    spannertools.BeamSpanner(voice[0])
+    voice = Voice([tuplettools.FixedDurationTuplet(
+        Duration(2, 8), "c'8 d'8 e'8")])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[0])
     result = mutate(voice[0]).splice(
         [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
         direction=Left,
@@ -275,7 +288,8 @@ def test_ScoreMutationAgent_splice_10():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
     result = mutate(voice[1]).splice(
         [Note("dqs'8")], 
         direction=Left,
@@ -308,7 +322,8 @@ def test_ScoreMutationAgent_splice_11():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
     result = mutate(voice[0]).splice(
         notes,
@@ -339,7 +354,8 @@ def test_ScoreMutationAgent_splice_12():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
     result = mutate(voice[1]).splice(
         [Note(1.5, (1, 8))], 
         direction=Left,

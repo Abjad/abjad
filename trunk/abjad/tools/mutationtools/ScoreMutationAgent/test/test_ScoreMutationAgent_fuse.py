@@ -91,10 +91,14 @@ def test_ScoreMutationAgent_fuse_06():
     r'''Fuse two unincorporated fixed-duration tuplets with same multiplier.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(tuplet_1[:])
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
-    spannertools.SlurSpanner(tuplet_2[:])
+    tuplet_1 = tuplettools.FixedDurationTuplet(
+        Duration(2, 8), "c'8 d'8 e'8")
+    beam = spannertools.BeamSpanner()
+    beam.attach(tuplet_1[:])
+    tuplet_2 = tuplettools.FixedDurationTuplet(
+        Duration(2, 16), "c'16 d'16 e'16")
+    slur = spannertools.SlurSpanner()
+    slur.attach(tuplet_2[:])
 
     assert testtools.compare(
         tuplet_1,
@@ -145,10 +149,14 @@ def test_ScoreMutationAgent_fuse_07():
     r'''Fuse fixed-duration tuplets with same multiplier in score.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(tuplet_1[:])
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
-    spannertools.SlurSpanner(tuplet_2[:])
+    tuplet_1 = tuplettools.FixedDurationTuplet(
+        Duration(2, 8), "c'8 d'8 e'8")
+    beam = spannertools.BeamSpanner()
+    beam.attach(tuplet_1[:])
+    tuplet_2 = tuplettools.FixedDurationTuplet(
+        Duration(2, 16), "c'16 d'16 e'16")
+    slur = spannertools.SlurSpanner()
+    slur.attach(tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -196,9 +204,11 @@ def test_ScoreMutationAgent_fuse_08():
     '''
 
     tuplet_1 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(tuplet_1[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(tuplet_1[:])
     tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8 f'8 g'8")
-    spannertools.SlurSpanner(tuplet_2[:])
+    slur = spannertools.SlurSpanner()
+    slur.attach(tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -250,7 +260,8 @@ def test_ScoreMutationAgent_fuse_09():
     '''
 
     tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8 f'8 g'8")
+    tuplet_2 = tuplettools.FixedDurationTuplet(
+        Duration(2, 8), "c'8 d'8 e'8 f'8 g'8")
     tuplets = select([tuplet_1, tuplet_2], contiguous=True)
 
     assert py.test.raises(Exception, 'mutate(tuplets).fuse()')
@@ -275,7 +286,8 @@ def test_ScoreMutationAgent_fuse_11():
         tuplettools.FixedDurationTuplet(Duration(1, 12), [Note(0, (1, 8))]),
         tuplettools.FixedDurationTuplet(Duration(1, 6), [Note("c'4")]),
         Note("c'4")])
-    spannertools.SlurSpanner(voice.select_leaves())
+    slur = spannertools.SlurSpanner()
+    slur.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -317,9 +329,11 @@ def test_ScoreMutationAgent_fuse_12():
     '''
     
     measure_1 = Measure((1, 8), "c'16 d'16")
-    spannertools.BeamSpanner(measure_1[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
-    spannertools.SlurSpanner(measure_2[:])
+    slur = spannertools.SlurSpanner()
+    slur.attach(measure_2[:])
     staff = Staff([measure_1, measure_2])
 
     assert testtools.compare(
@@ -345,7 +359,7 @@ def test_ScoreMutationAgent_fuse_12():
     assert new is not measure_1 and new is not measure_2
     assert len(measure_1) == 0
     assert len(measure_2) == 0
-    assert inspect(new).is_well_formed()
+
     assert testtools.compare(
         new,
         r'''
@@ -359,15 +373,18 @@ def test_ScoreMutationAgent_fuse_12():
         '''
         )
 
+    assert inspect(new).is_well_formed()
+
 
 def test_ScoreMutationAgent_fuse_13():
-    r'''Fuse measures carrying time signatures with differing power-of-two denominators.
-    Helpers selects minimum of two denominators.
+    r'''Fuse measures carrying time signatures with differing 
+    power-of-two denominators. Helpers selects minimum of two denominators.
     Beams are OK because they attach to leaves rather than containers.
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    beam = spannertools.BeamSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -389,7 +406,6 @@ def test_ScoreMutationAgent_fuse_13():
 
     mutate(voice[:]).fuse()
 
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -405,6 +421,8 @@ def test_ScoreMutationAgent_fuse_13():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_ScoreMutationAgent_fuse_14():
     r'''Fuse measures with differing power-of-two denominators.
@@ -413,7 +431,8 @@ def test_ScoreMutationAgent_fuse_14():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    spannertools.BeamSpanner(voice[0])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[0])
 
     assert testtools.compare(
         voice,
@@ -435,7 +454,6 @@ def test_ScoreMutationAgent_fuse_14():
 
     mutate(voice[:]).fuse()
 
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -451,6 +469,8 @@ def test_ScoreMutationAgent_fuse_14():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_ScoreMutationAgent_fuse_15():
     r'''Fuse measures with power-of-two-denominators together with measures
@@ -462,7 +482,8 @@ def test_ScoreMutationAgent_fuse_15():
     measure_1 = Measure((1, 8), "c'8")
     measure_2 = Measure((1, 12), "d'8")
     voice = Voice([measure_1, measure_2])
-    spannertools.BeamSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -484,7 +505,6 @@ def test_ScoreMutationAgent_fuse_15():
 
     mutate(voice[:]).fuse()
 
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -499,6 +519,8 @@ def test_ScoreMutationAgent_fuse_15():
         }
         '''
         )
+
+    assert inspect(voice).is_well_formed()
 
 
 def test_ScoreMutationAgent_fuse_16():
@@ -526,7 +548,8 @@ def test_ScoreMutationAgent_fuse_18():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
-    spannertools.BeamSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -551,7 +574,6 @@ def test_ScoreMutationAgent_fuse_18():
 
     mutate(voice[:]).fuse()
 
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -569,6 +591,8 @@ def test_ScoreMutationAgent_fuse_18():
         '''
         )
 
+    assert inspect(voice).is_well_formed()
+
 
 def test_ScoreMutationAgent_fuse_19():
     r'''Fusing measures with power-of-two denominators
@@ -579,7 +603,8 @@ def test_ScoreMutationAgent_fuse_19():
     staff = Staff([
         Measure((9, 80), []),
         Measure((2, 16), [])])
-    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(staff)
+    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(
+        staff)
 
     assert testtools.compare(
         staff,
@@ -610,7 +635,6 @@ def test_ScoreMutationAgent_fuse_19():
 
     new = mutate(staff[:]).fuse()
 
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -636,3 +660,5 @@ def test_ScoreMutationAgent_fuse_19():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()

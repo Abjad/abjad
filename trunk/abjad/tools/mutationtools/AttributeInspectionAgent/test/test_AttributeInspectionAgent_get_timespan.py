@@ -298,7 +298,8 @@ def test_AttributeInspectionAgent_get_timespan_26():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TempoMark(Duration(1, 8), 48, target_context=Staff)(staff)
+    tempo = contexttools.TempoMark(Duration(1, 8), 48, target_context=Staff)
+    tempo.attach(staff)
 
     assert testtools.compare(
         staff,
@@ -313,5 +314,7 @@ def test_AttributeInspectionAgent_get_timespan_26():
         '''
         )
 
-    assert inspect(staff[0]).get_timespan(in_seconds=True).start_offset == Duration(0)
-    assert inspect(staff[1]).get_timespan(in_seconds=True).start_offset == Duration(5, 4)
+    assert inspect(staff[0]).get_timespan(in_seconds=True).start_offset == \
+        Duration(0)
+    assert inspect(staff[1]).get_timespan(in_seconds=True).start_offset == \
+        Duration(5, 4)
