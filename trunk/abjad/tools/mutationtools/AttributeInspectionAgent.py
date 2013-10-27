@@ -64,8 +64,8 @@ class AttributeInspectionAgent(object):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> staff[1].written_duration = Duration(1, 4)
-                >>> spannertools.BeamSpanner(staff[:])
-                BeamSpanner(c'8, d'4, e'8, f'8)
+                >>> beam = spannertools.BeamSpanner()
+                >>> beam.attach(staff[:])
 
             ..  doctest::
 
@@ -566,8 +566,8 @@ class AttributeInspectionAgent(object):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> staff[1].written_duration = Duration(1, 4)
-                >>> spannertools.BeamSpanner(staff[:])
-                BeamSpanner(c'8, d'4, e'8, f'8)
+                >>> beam = spannertools.BeamSpanner()
+                >>> beam.attach(staff[:])
 
             ..  doctest::
 

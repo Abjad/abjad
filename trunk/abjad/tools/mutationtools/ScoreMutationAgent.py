@@ -214,11 +214,13 @@ class ScoreMutationAgent(object):
                 >>> tuplet_1 = tuplettools.FixedDurationTuplet(
                 ...     Duration(2, 8), [])
                 >>> tuplet_1.extend("c'8 d'8 e'8")
-                >>> beam = spannertools.BeamSpanner(tuplet_1[:])
-                >>> tuplet_2 = tuplettools.FixedDurationTuplet(
-                ...     Duration(2, 16), [])
+                >>> beam = spannertools.BeamSpanner()
+                >>> beam.attach(tuplet_1[:])
+                >>> duration = Duration(2, 16)
+                >>> tuplet_2 = tuplettools.FixedDurationTuplet(duration, [])
                 >>> tuplet_2.extend("c'16 d'16 e'16")
-                >>> slur = spannertools.SlurSpanner(tuplet_2[:])
+                >>> slur = spannertools.SlurSpanner()
+                >>> slur.attach(tuplet_2[:])
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> show(staff) # doctest: +SKIP
 
@@ -1009,7 +1011,8 @@ class ScoreMutationAgent(object):
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff.select_leaves()
-                >>> spanner = spannertools.HairpinSpanner(leaves, 'p < f')
+                >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
+                >>> hairpin.attach(leaves)
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -1064,7 +1067,8 @@ class ScoreMutationAgent(object):
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff.select_leaves()
-                >>> spanner = spannertools.HairpinSpanner(leaves, 'p < f')
+                >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
+                >>> hairpin.attach(leaves)
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -1120,7 +1124,8 @@ class ScoreMutationAgent(object):
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff.select_leaves()
-                >>> spanner = spannertools.HairpinSpanner(leaves, 'p < f')
+                >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
+                >>> hairpin.attach(leaves)
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -1178,7 +1183,8 @@ class ScoreMutationAgent(object):
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff.select_leaves()
-                >>> spanner = spannertools.HairpinSpanner(leaves, 'p < f')
+                >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
+                >>> hairpin.attach(leaves)
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -1240,7 +1246,8 @@ class ScoreMutationAgent(object):
                 >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
                 >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
                 >>> leaves = staff.select_leaves()
-                >>> spanner = spannertools.SlurSpanner(leaves)
+                >>> slur = spannertools.SlurSpanner()
+                >>> slur.attach(leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
