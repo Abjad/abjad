@@ -10,13 +10,13 @@ class ReSTLineageDirective(ReSTDirective):
 
         >>> documentationtools.ReSTLineageDirective(argument=spannertools.BeamSpanner)
         ReSTLineageDirective(
-            argument='abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner'
+            argument='abjad.tools.spannertools.BeamSpanner.BeamSpanner'
             )
 
     ::
 
         >>> print _.rest_format
-        .. abjad-lineage:: abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner
+        .. abjad-lineage:: abjad.tools.spannertools.BeamSpanner.BeamSpanner
 
     Return `ReSTLineageDirective` instance.
     '''

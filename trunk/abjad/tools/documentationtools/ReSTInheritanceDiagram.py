@@ -11,7 +11,7 @@ class ReSTInheritanceDiagram(ReSTDirective):
         >>> documentationtools.ReSTInheritanceDiagram(
         ...     argument=spannertools.BeamSpanner)
         ReSTInheritanceDiagram(
-            argument='abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner',
+            argument='abjad.tools.spannertools.BeamSpanner.BeamSpanner',
             options={
                 'private-bases': True
                 }
@@ -20,7 +20,7 @@ class ReSTInheritanceDiagram(ReSTDirective):
     ::
 
         >>> print _.rest_format
-        .. inheritance-diagram:: abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner
+        .. inheritance-diagram:: abjad.tools.spannertools.BeamSpanner.BeamSpanner
            :private-bases:
 
     Return `ReSTInheritanceDiagram` instance.

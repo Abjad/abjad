@@ -467,7 +467,7 @@ class TimeSignatureMark(ContextMark):
         ::
 
             >>> contexttools.TimeSignatureMark((3, 8)).target_context
-            <class 'abjad.tools.stafftools.Staff.Staff.Staff'>
+            <class 'abjad.tools.stafftools.Staff.Staff'>
 
         Time signature marks target the staff context by default.
 
