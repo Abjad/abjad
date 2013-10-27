@@ -9,25 +9,29 @@ def test_iterationtools_iterate_leaf_pairs_in_expr_01():
     score.append(Staff(notes))
     notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
     score.append(Staff(notes))
-    contexttools.ClefMark('bass')(score[1])
+    clef = contexttools.ClefMark('bass')
+    clef.attach(score[1])
 
-    r'''
-    \new Score <<
-      \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-            g'4
-      }
-      \new Staff {
-            \clef "bass"
-            c4
-            a,4
-            g,4
-      }
-    >>
-    '''
+    assert testtools.compare(
+        score,
+        r'''
+        \new Score <<
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+                g'4
+            }
+            \new Staff {
+                \clef "bass"
+                c4
+                a,4
+                g,4
+            }
+        >>
+        '''
+        )
 
     # make sure to show score if trying to verify test results     #
     # as the integer indices below are difficult to keep in mind. #
