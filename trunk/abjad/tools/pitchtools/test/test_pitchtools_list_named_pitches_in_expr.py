@@ -22,7 +22,8 @@ def test_pitchtools_list_named_pitches_in_expr_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(staff[:])
     named_pitches = pitchtools.list_named_pitches_in_expr(beam)
 
     assert named_pitches == (
