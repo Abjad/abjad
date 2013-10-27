@@ -1,0 +1,12 @@
+# -*- encoding: utf-8 -*-
+from abjad import *
+import py.test
+
+
+def test_voicetools_Voice___setattr___01():
+    r'''Slots constrain voice attributes.
+    '''
+
+    voice = Voice([])
+
+    assert py.test.raises(AttributeError, "voice.foo = 'bar'")

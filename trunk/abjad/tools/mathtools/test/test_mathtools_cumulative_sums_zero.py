@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 import py.test
 
 
-def test_mathtools_cumulative_sums_01():
+def test_mathtools_cumulative_sums_zero_01():
     r'''Returns list of the cumulative sums of the integer elements in input.
     '''
 
@@ -17,7 +17,7 @@ def test_mathtools_cumulative_sums_01():
 
 # Must allow generator input as l. #
 
-#def test_mathtools_cumulative_sums_02():
+#def test_mathtools_cumulative_sums_zero_02():
 #   r'''Raise TypeError when l is neither tuple nor list.
 #      Raise ValueError when l is empty.'''
 #

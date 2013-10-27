@@ -1,0 +1,12 @@
+# -*- encoding: utf-8 -*-
+from abjad import *
+import copy
+
+
+def test_pitchtools_NamedPitch___deepcopy___01():
+
+    pitch = pitchtools.NamedPitch(13)
+    new = copy.deepcopy(pitch)
+
+    assert new is not pitch
+    assert new.accidental is not pitch.accidental
