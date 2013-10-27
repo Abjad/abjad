@@ -3,12 +3,14 @@ from abjad import *
 
 
 def test_measuretools_append_spacer_skip_to_underfull_measure_01():
-    r'''Handles measure prolation from time signature non-power-of-two denominator.
+    r'''Handles measure prolation from time signature 
+    non-power-of-two denominator.
     '''
 
     measure = Measure((4, 12), "c'8 d'8 e'8 f'8")
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
-    contexttools.TimeSignatureMark((5, 12))(measure)
+    time_signature = contexttools.TimeSignatureMark((5, 12))
+    time_signature.attach(measure)
     assert measure.is_underfull
 
     measuretools.append_spacer_skip_to_underfull_measure(measure)
@@ -38,7 +40,8 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
-    contexttools.TimeSignatureMark((5, 8))(measure)
+    time_signature = contexttools.TimeSignatureMark((5, 8))
+    time_signature.attach(measure)
     assert measure.is_underfull
 
     measuretools.append_spacer_skip_to_underfull_measure(measure)
