@@ -7,12 +7,12 @@ def list_named_pitches_in_expr(expr):
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> beam_spanner = spannertools.BeamSpanner(staff[:])
+        >>> beam = spannertools.BeamSpanner()
+        >>> beam.attach(staff[:])
 
     ::
 
-        >>> for x in pitchtools.list_named_pitches_in_expr(
-        ...     beam_spanner):
+        >>> for x in pitchtools.list_named_pitches_in_expr(beam):
         ...     x
         ...
         NamedPitch("c'")
