@@ -44,7 +44,7 @@ def test_documentationtools_InheritanceGraph___init___05():
         addresses=(
             'abjad',
         ),
-        root_addresses=(('abjad.tools.abctools.AbjadObject.AbjadObject', 'AbjadObject'),)
+        root_addresses=(('abjad.tools.abctools.AbjadObject', 'AbjadObject'),)
         )
 
 
@@ -55,12 +55,12 @@ def test_documentationtools_InheritanceGraph___init___06():
             'abjad.tools.measuretools',
             'abjad.tools.notetools',
         ),
-        root_addresses=(('abjad.tools.abctools.AbjadObject.AbjadObject', 'AbjadObject'),)
+        root_addresses=(('abjad.tools.abctools.AbjadObject', 'AbjadObject'),)
         )
 
 
 def test_documentationtools_InheritanceGraph___init___07():
     graph = documentationtools.InheritanceGraph(
         lineage_addresses=(containertools.Container,),
-        root_addresses=(('abjad.tools.abctools.AbjadObject.AbjadObject', 'AbjadObject'),)
+        root_addresses=(('abjad.tools.abctools.AbjadObject', 'AbjadObject'),)
         )

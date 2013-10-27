@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
-from abjad.tools.abctools.AbjadObject.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Maker(AbjadObject):
