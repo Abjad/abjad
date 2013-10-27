@@ -10,22 +10,11 @@ class Annotation(Mark):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ..  doctest::
-
-        >>> f(staff)
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-
-    ::
-
         >>> pitch = pitchtools.NamedPitch('ds')
-        >>> marktools.Annotation('special pitch', pitch)(staff[0])
+        >>> annotation = marktools.Annotation('special pitch', pitch)
+        >>> annotation.attach(staff[0])
         Annotation('special pitch', NamedPitch('ds'))(c'8)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 

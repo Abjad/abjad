@@ -9,11 +9,10 @@ class LilyPondComment(Mark):
     ::
 
         >>> note = Note("c'4")
-
-    ::
-
-        >>> marktools.LilyPondComment('this is a comment')(note)
+        >>> comment = marktools.LilyPondComment('this is a comment')
+        >>> comment.attach(note)
         LilyPondComment('this is a comment')(c'4)
+        >>> show(note) # doctest: +SKIP
 
     ..  doctest::
 
@@ -21,7 +20,7 @@ class LilyPondComment(Mark):
         % this is a comment
         c'4
 
-    Initialize LilyPond comment from contents string;
+    Initializes LilyPond comment from contents string;
     or contents string and format slot;
     or from other LilyPond comment;
     or from other LilyPond comment and format slot.

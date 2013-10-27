@@ -43,15 +43,15 @@ class Articulation(DirectedMark):
 
     ::
 
-        >>> marktools.Articulation('staccato')(note)
+        >>> articulation = marktools.Articulation('staccato')
+        >>> articulation.attach(note)
         Articulation('staccato')(c'4)
-
-        >>> f(note)
-        c'4 -\staccato
+        >>> show(note) # doctest: +SKIP
 
     ::
 
-        >>> show(note) # doctest: +SKIP
+        >>> f(note)
+        c'4 -\staccato
 
     Articulations implement ``__slots__``.
     '''

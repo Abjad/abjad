@@ -8,20 +8,15 @@ class BendAfter(Mark):
     ::
 
         >>> note = Note("c'4")
-
-    ::
-
-        >>> marktools.BendAfter(-4)(note)
+        >>> bend = marktools.BendAfter(-4)
+        >>> bend.attach(note)
         BendAfter(-4.0)(c'4)
+        >>> show(note) # doctest: +SKIP
 
     ..  doctest::
 
         >>> f(note)
         c'4 - \bendAfter #'-4.0
-
-    ::
-
-        >>> show(note) # doctest: +SKIP
 
     BendAfter implements ``__slots__``.
     '''

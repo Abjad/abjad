@@ -10,20 +10,15 @@ class StemTremolo(Mark):
     ::
 
         >>> note = Note("c'4")
-
-    ::
-
-        >>> marktools.StemTremolo(16)(note)
+        >>> stem_tremolo = marktools.StemTremolo(16)
+        >>> stem_tremolo.attach(note)
         StemTremolo(16)(c'4)
+        >>> show(note) # doctest: +SKIP
 
     ..  doctest::
 
         >>> f(note)
         c'4 :16
-
-    ::
-
-        >>> show(note) # doctest: +SKIP
 
     Stem tremolos implement ``__slots__``.
     '''
