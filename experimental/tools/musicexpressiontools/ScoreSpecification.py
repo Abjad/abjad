@@ -358,7 +358,7 @@ class ScoreSpecification(Specification):
         ::
 
             >>> score_specification.segment_specification_class
-            <class 'experimental.tools.musicexpressiontools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
+            <class 'experimental.tools.musicexpressiontools.SegmentSpecification.SegmentSpecification'>
 
         Returns segment specification class.
         '''
