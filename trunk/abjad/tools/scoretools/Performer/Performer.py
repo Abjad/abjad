@@ -255,7 +255,7 @@ class Performer(AbjadObject):
         ::
 
             >>> performer.most_likely_instrument_based_on_performer_name
-            <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
+            <class 'abjad.tools.instrumenttools.Flute.Flute'>
 
         Returns instrument class.
         '''
