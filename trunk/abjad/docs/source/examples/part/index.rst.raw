@@ -20,7 +20,7 @@ from abjad import *
 The score template
 ------------------
 
-<abjadextract abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate \>[strip_prompt=true]
+<abjadextract abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate \>[strip_prompt=true]
 
 The bell music
 --------------
