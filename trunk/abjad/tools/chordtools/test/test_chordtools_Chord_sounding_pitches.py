@@ -5,7 +5,8 @@ from abjad import *
 def test_chordtools_Chord_sounding_pitches_01():
 
     staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-    glockenspiel = instrumenttools.Glockenspiel()(staff)
+    glockenspiel = instrumenttools.Glockenspiel()
+    glockenspiel.attach(staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
     assert testtools.compare(

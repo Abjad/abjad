@@ -9,13 +9,12 @@ class TextScriptSpanner(Spanner):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
         >>> spanner = spannertools.TextScriptSpanner(staff[:])
         >>> spanner.override.text_script.color = 'red'
-        >>> markuptools.Markup(r'\italic { espressivo }', Up)(staff[1])
+        >>> markup = markuptools.Markup(r'\italic { espressivo }', Up)
+        >>> markup.attach(staff[1])
         Markup((MarkupCommand('italic', ['espressivo']),), direction=Up)(d'8)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -29,13 +28,7 @@ class TextScriptSpanner(Spanner):
             \revert TextScript #'color
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
     Override LilyPond TextScript grob.
-
-    Returns text script spanner.
     '''
 
     ### INITIALIZER ###

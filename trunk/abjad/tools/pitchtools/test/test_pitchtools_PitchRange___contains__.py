@@ -158,7 +158,8 @@ def test_pitchtools_PitchRange___contains___14():
     '''
 
     staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-    glockenspiel = instrumenttools.Glockenspiel()(staff)
+    glockenspiel = instrumenttools.Glockenspiel()
+    glockenspiel.attach(staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
     assert testtools.compare(
@@ -185,7 +186,8 @@ def test_pitchtools_PitchRange___contains___15():
     '''
 
     staff = Staff("c'4 d'4 c4 d4")
-    flute = instrumenttools.Flute()(staff)
+    flute = instrumenttools.Flute()
+    flute.attach(staff)
     staff[2].written_pitch_indication_is_nonsemantic = True
     staff[3].written_pitch_indication_is_nonsemantic = True
     staff[2].override.note_head.style = 'cross'

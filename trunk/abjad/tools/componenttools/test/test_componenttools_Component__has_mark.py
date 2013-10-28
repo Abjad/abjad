@@ -49,7 +49,8 @@ def test_componenttools_Component__has_mark_04():
 def test_componenttools_Component__has_mark_05():
 
     staff = Staff("c'2 d'2")
-    marktools.Mark()(staff[0])
+    mark = marktools.Mark()
+    mark.attach(staff[0])
 
     assert staff[0]._has_mark()
     assert not staff[1]._has_mark()

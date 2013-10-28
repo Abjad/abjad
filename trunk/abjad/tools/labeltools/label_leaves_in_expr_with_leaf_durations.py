@@ -127,18 +127,22 @@ def label_leaves_in_expr_with_leaf_durations(
                 label = markuptools.MarkupCommand(
                     'small', '{}{}'.format(
                         str(leaf.written_duration), multiplier))
-                markuptools.Markup(label, markup_direction)(leaf)
+                markup = markuptools.Markup(label, markup_direction)
+                markup.attach(leaf)
             if label_durations:
                 label = markuptools.MarkupCommand(
                     'small', str(leaf._get_duration()))
-                markuptools.Markup(label, markup_direction)(leaf)
+                markup = markuptools.Markup(label, markup_direction)
+                markup.attach(leaf)
         elif tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
             tie = tie_spanners.pop()
             if label_written_durations:
                 written = sum([x.written_duration for x in tie])
                 label = markuptools.MarkupCommand('small', str(written))
-                markuptools.Markup(label, markup_direction)(leaf)
+                markup = markuptools.Markup(label, markup_direction)
+                markup.attach(leaf)
             if label_durations:
                 prolated = sum([x._get_duration() for x in tie])
                 label = markuptools.MarkupCommand('small', str(prolated))
-                markuptools.Markup(label, markup_direction)(leaf)
+                markup = markuptools.Markup(label, markup_direction)
+                markup.attach(leaf)

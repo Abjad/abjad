@@ -94,4 +94,5 @@ def label_vertical_moments_in_expr_with_pitch_numbers(
         pitch_numbers = [abs(pitch.numbered_pitch) for pitch in pitches]
         pitch_numbers = ' '.join([str(x) for x in pitch_numbers])
         pitch_numbers = r'\small \column { %s }' % pitch_numbers
-        markuptools.Markup(pitch_numbers, markup_direction)(vertical_moment.start_leaves[-1])
+        markup = markuptools.Markup(pitch_numbers, markup_direction)
+        markup.attach(vertical_moment.start_leaves[-1])

@@ -27,4 +27,5 @@ def label_leaves_in_expr_with_leaf_indices(expr, markup_direction=Down):
 
     for i, leaf in enumerate(iterationtools.iterate_leaves_in_expr(expr)):
         label = markuptools.MarkupCommand('small', str(i))
-        markuptools.Markup(label, markup_direction)(leaf)
+        markup = markuptools.Markup(label, markup_direction)
+        markup.attach(leaf)

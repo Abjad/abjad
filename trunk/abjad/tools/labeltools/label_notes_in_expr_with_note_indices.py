@@ -37,4 +37,5 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
 
     for i, note in enumerate(iterationtools.iterate_notes_in_expr(expr)):
         label = r'\small %s' % i
-        markuptools.Markup(label, markup_direction)(note)
+        markup = markuptools.Markup(label, markup_direction)
+        markup.attach(note)

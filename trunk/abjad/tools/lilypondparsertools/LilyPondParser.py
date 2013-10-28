@@ -478,7 +478,7 @@ class LilyPondParser(abctools.Parser):
                 and not isinstance(x, containertools.GraceContainer):
                 for mark in apply_forward:
                     if hasattr(mark, 'attach'):
-                        mark(x)
+                        mark.attach(x)
                 if previous_leaf:
                     for mark in apply_backward:
                         if hasattr(mark, 'attach'):
@@ -487,7 +487,7 @@ class LilyPondParser(abctools.Parser):
                     for mark in apply_backward:
                         if hasattr(mark, 'attach'):
                             mark.format_slot = 'before'
-                            mark(x)
+                            mark.attach(x)
                 apply_forward = []
                 apply_backward = []
                 previous_leaf = x

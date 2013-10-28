@@ -59,6 +59,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
         if number:
             label = markuptools.MarkupCommand(
                 'small', str(abs(note.written_pitch.numbered_pitch_class)))
-            markuptools.Markup(label, markup_direction)(note)
+            markup = markuptools.Markup(label, markup_direction)
+            markup.attach(note)
         if color:
             labeltools.color_note_head_by_numbered_pitch_class_color_map(note)

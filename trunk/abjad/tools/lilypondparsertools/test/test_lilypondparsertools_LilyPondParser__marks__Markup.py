@@ -6,7 +6,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__Markup_01():
 
     target = Staff([Note(0, 1)])
-    markuptools.Markup('hello!', Up)(target[0])
+    markup = markuptools.Markup('hello!', Up)
+    markup.attach(target[0])
 
     assert testtools.compare(
         target,
@@ -28,7 +29,8 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_01():
 def test_lilypondparsertools_LilyPondParser__marks__Markup_02():
 
     target = Staff([Note(0, (1, 4))])
-    markuptools.Markup(['X', 'Y', 'Z', 'a b c'], Down)(target[0])
+    markup = markuptools.Markup(['X', 'Y', 'Z', 'a b c'], Down)
+    markup.attach(target[0])
 
     assert testtools.compare(
         target,

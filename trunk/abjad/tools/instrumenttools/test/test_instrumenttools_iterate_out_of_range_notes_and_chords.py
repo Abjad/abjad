@@ -5,7 +5,8 @@ from abjad import *
 def test_instrumenttools_iterate_out_of_range_notes_and_chords_01():
 
     staff = Staff("c'8 r8 <d fs>8 r8")
-    instrumenttools.Violin()(staff)
+    violin = instrumenttools.Violin()
+    violin.attach(staff)
 
     leaves = instrumenttools.iterate_out_of_range_notes_and_chords(staff)
     leaves = list(leaves)

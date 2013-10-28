@@ -30,4 +30,5 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
     for i, leaf in enumerate(iterationtools.iterate_leaves_in_expr(expr)):
         leaf_number = i + 1
         label = markuptools.MarkupCommand('small', str(leaf_number))
-        markuptools.Markup(label, markup_direction)(leaf)
+        markup = markuptools.Markup(label, markup_direction)
+        markup.attach(leaf)

@@ -6,19 +6,23 @@ def test_notetools_Note_written_pitch_01():
 
 
     staff = Staff("d''8 e''8 f''8 g''8")
-    piccolo = instrumenttools.Piccolo()(staff)
+    piccolo = instrumenttools.Piccolo()
+    piccolo.attach(staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    r'''
-    \new Staff {
-        \set Staff.instrumentName = \markup { Piccolo }
-        \set Staff.shortInstrumentName = \markup { Picc. }
-        d'8
-        e'8
-        f'8
-        g'8
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \set Staff.instrumentName = \markup { Piccolo }
+            \set Staff.shortInstrumentName = \markup { Picc. }
+            d'8
+            e'8
+            f'8
+            g'8
+        }
+        '''
+        )
 
     assert staff[0].written_pitch == "d'"
     assert staff[1].written_pitch == "e'"

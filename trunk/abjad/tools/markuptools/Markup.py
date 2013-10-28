@@ -58,7 +58,7 @@ class Markup(DirectedMark):
 
     ::
 
-        >>> markup(note)
+        >>> markup.attach(note)
         Markup((MarkupCommand('italic', ['This is also markup text.']),), direction=Up)(c'4)
 
     ..  doctest::

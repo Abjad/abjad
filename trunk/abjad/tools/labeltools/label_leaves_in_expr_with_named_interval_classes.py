@@ -40,7 +40,9 @@ def label_leaves_in_expr_with_named_interval_classes(expr, markup_direction=Up):
     """
 
     for note in iterationtools.iterate_notes_in_expr(expr):
-        logical_voice_iterator = iterationtools.iterate_logical_voice_from_component(note, leaftools.Leaf)
+        logical_voice_iterator = \
+            iterationtools.iterate_logical_voice_from_component(
+            note, leaftools.Leaf)
         try:
             logical_voice_iterator.next()
             next_leaf = logical_voice_iterator.next()
@@ -48,6 +50,7 @@ def label_leaves_in_expr_with_named_interval_classes(expr, markup_direction=Up):
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
                     note, next_leaf)
                 mdic = pitchtools.NamedIntervalClass(mdi)
-                markuptools.Markup(mdic, markup_direction)(note)
+                markup = markuptools.Markup(mdic, markup_direction)
+                markup.attach(note)
         except StopIteration:
             pass

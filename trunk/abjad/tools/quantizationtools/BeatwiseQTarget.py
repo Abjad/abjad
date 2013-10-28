@@ -40,7 +40,8 @@ class BeatwiseQTarget(QTarget):
             attachment_target = components[0]
             if isinstance(attachment_target, containertools.Container):
                 attachment_target = attachment_target.select_leaves()[0]
-            copy.copy(beat.tempo)(attachment_target)
+            tempo = copy.copy(beat.tempo)
+            tempo.attach(attachment_target)
         voice.extend(components)
 
         # generate the rest pairwise, comparing tempi

@@ -41,7 +41,8 @@ class MeasurewiseQTarget(QTarget):
         for beat in q_target_measure.beats:
             measure.extend(beat.q_grid(beat.beatspan))
         if attach_tempo_marks:
-            copy.copy(q_target_measure.tempo)(measure)
+            tempo = copy.copy(q_target_measure.tempo)
+            tempo.attach(measure)
         voice.append(measure)
 
         # generate the rest pairwise, comparing tempi

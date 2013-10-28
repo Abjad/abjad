@@ -163,7 +163,8 @@ class Score(Context):
         selection = selectiontools.select(self)
         last_leaf = selection._get_component(leaftools.Leaf, -1)
         # TODO: copy markup direction from markup input
-        markup = markuptools.Markup(markup, Down)(last_leaf)
+        markup = markup = markuptools.Markup(markup, Down)
+        markup.attach(last_leaf)
         if extra_offset is not None:
             last_leaf.override.text_script.extra_offset = extra_offset
         return markup

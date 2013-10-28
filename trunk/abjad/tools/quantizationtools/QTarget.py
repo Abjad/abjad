@@ -186,8 +186,10 @@ class QTarget(AbjadObject):
             leaf._get_parentage().parent[
                 leaf._get_parentage().parent.index(leaf)] = new_leaf
             if tempo_marks:
-                tempo_marks[0](new_leaf)
-            spannertools.TieSpanner(new_leaf)
+                tempo = tempo_marks[0]
+                tempo.attach(new_leaf)
+            tie = spannertools.TieSpanner()
+            tie.attach(new_leaf)
             return new_leaf
         return leaf
 
