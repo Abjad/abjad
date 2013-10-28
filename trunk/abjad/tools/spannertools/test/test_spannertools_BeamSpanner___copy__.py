@@ -7,7 +7,7 @@ def test_spannertools_BeamSpanner___copy___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam_1 = spannertools.BeamSpanner()
-    beam_1.attach(staff[:])
+    attach(beam_1, staff[:])
     beam_2 = copy.copy(beam_1)
 
     assert beam_1 is not beam_2

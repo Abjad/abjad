@@ -2,6 +2,7 @@
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
+from abjad.tools.scoretools import attach
 
 
 def label_vertical_moments_in_expr_with_pitch_numbers(
@@ -95,4 +96,4 @@ def label_vertical_moments_in_expr_with_pitch_numbers(
         pitch_numbers = ' '.join([str(x) for x in pitch_numbers])
         pitch_numbers = r'\small \column { %s }' % pitch_numbers
         markup = markuptools.Markup(pitch_numbers, markup_direction)
-        markup.attach(vertical_moment.start_leaves[-1])
+        attach(markup, vertical_moment.start_leaves[-1])

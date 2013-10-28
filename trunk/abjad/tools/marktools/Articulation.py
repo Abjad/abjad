@@ -44,7 +44,7 @@ class Articulation(DirectedMark):
     ::
 
         >>> articulation = marktools.Articulation('staccato')
-        >>> articulation.attach(note)
+        >>> attach(articulation, note)
         Articulation('staccato')(c'4)
         >>> show(note) # doctest: +SKIP
 

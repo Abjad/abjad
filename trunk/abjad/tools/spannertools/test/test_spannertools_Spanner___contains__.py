@@ -13,6 +13,6 @@ def test_spannertools_Spanner___contains___01():
     note = Note("c'4")
 
     spanner = MockSpanner()
-    spanner.attach(Note("c'4"))
+    attach(spanner, Note("c'4"))
 
     assert not note in spanner

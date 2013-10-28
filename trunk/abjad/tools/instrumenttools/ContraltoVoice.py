@@ -12,7 +12,7 @@ class ContraltoVoice(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contralto = instrumenttools.ContraltoVoice()
-        >>> contralto.attach(staff)
+        >>> attach(contralto, staff)
         ContraltoVoice()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

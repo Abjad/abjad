@@ -13,7 +13,7 @@ def test_selectiontools_ContiguousSelection__get_crossing_spanners_01():
     slur = spannertools.SlurSpanner()
     attach(slur, voice[1][:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
 
     assert testtools.compare(
         voice,

@@ -13,6 +13,7 @@ from abjad.tools import resttools
 from abjad.tools import schemetools
 from abjad.tools import skiptools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.scoretools import attach
 
 
 class LilyPondSyntacticalDefinition(AbjadObject):
@@ -1103,7 +1104,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             chord.lilypond_duration_multiplier = p[2].multiplier
         self.client._process_post_events(chord, p[3])
         annotation = marktools.Annotation('UnrelativableMusic')
-        annotation.attach(chord)
+        attach(annotation, chord)
         if self.client._last_chord not in self.client._repeated_chords:
             self.client._repeated_chords[self.client._last_chord] = []
         self.client._repeated_chords[self.client._last_chord].append(chord)

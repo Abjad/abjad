@@ -52,7 +52,7 @@ def test_notetools_Note___copy___04():
     note_1 = Note("c'4")
     grace_container_1 = containertools.GraceContainer(
         [Note("d'32")], kind='after')
-    grace_container_1.attach(note_1)
+    attach(grace_container_1, note_1)
 
     assert testtools.compare(
         note_1,
@@ -89,9 +89,9 @@ def test_notetools_Note___copy___05():
 
     note = Note("c'4")
     articulation = marktools.Articulation('staccato')
-    articulation.attach(note)
+    attach(articulation, note)
     grace = containertools.GraceContainer("d'16")
-    grace.attach(note)
+    attach(grace, note)
     note.override.note_head.color = 'red'
 
     assert testtools.compare(
@@ -118,9 +118,9 @@ def test_notetools_Note___copy___06():
     staff = Staff("c'8 [ c'8 e'8 f'8 ]")
     note = staff[0]
     articulation = marktools.Articulation('staccato')
-    articulation.attach(note)
+    attach(articulation, note)
     grace = containertools.GraceContainer("d'16")
-    grace.attach(note)
+    attach(grace, note)
     note.override.note_head.color = 'red'
 
     assert testtools.compare(

@@ -11,9 +11,9 @@ def test_measuretools_Measure_simultaneous_01():
     measure.append(Voice("e'8 f'8"))
     measure.is_simultaneous = True
     command = marktools.LilyPondCommandMark('voiceOne')
-    command.attach(measure[0])
+    attach(command, measure[0])
     command = marktools.LilyPondCommandMark('voiceTwo')
-    command.attach(measure[1])
+    attach(command, measure[1])
     staff = Staff([measure])
 
     assert testtools.compare(

@@ -10,9 +10,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_01():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(target[2:])
+    attach(text_spanner, target[2:])
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(target[:3])
+    attach(text_spanner, target[:3])
 
     assert testtools.compare(
         target,
@@ -37,9 +37,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_02():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(target[2:])
+    attach(text_spanner, target[2:])
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(target[:3])
+    attach(text_spanner, target[:3])
 
     assert testtools.compare(
         target,

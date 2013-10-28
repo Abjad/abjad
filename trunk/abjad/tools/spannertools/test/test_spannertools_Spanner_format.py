@@ -15,7 +15,7 @@ def test_spannertools_Spanner_format_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     spanner = MockSpanner()
-    spanner.attach(staff[:])
+    attach(spanner, staff[:])
 
     assert testtools.compare(
         staff,

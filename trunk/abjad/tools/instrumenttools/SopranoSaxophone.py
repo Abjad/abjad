@@ -12,7 +12,7 @@ class SopranoSaxophone(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> sax = instrumenttools.SopranoSaxophone()
-        >>> sax.attach(staff)
+        >>> attach(sax, staff)
         SopranoSaxophone()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

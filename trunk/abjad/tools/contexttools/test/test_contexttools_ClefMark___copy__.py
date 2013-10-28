@@ -8,9 +8,9 @@ def test_contexttools_ClefMark___copy___01():
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff[0])
+    attach(clef, staff[0])
     clef = contexttools.ClefMark('bass')
-    clef.attach(staff[4])
+    attach(clef, staff[4])
     copied_notes = mutate(staff[:2]).copy()
     staff.extend(copied_notes)
 
@@ -64,9 +64,9 @@ def test_contexttools_ClefMark___copy___02():
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff[0])
+    attach(clef, staff[0])
     clef = contexttools.ClefMark('bass')
-    clef.attach(staff[4])
+    attach(clef, staff[4])
     copied_notes = mutate(staff[2:4]).copy()
     staff.extend(copied_notes)
 

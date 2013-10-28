@@ -12,7 +12,7 @@ class ClarinetInA(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> clarinet = instrumenttools.ClarinetInA()
-        >>> clarinet.attach(staff)
+        >>> attach(clarinet, staff)
         ClarinetInA()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

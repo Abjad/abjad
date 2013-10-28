@@ -13,7 +13,7 @@ def append_spacer_skip_to_underfull_measure(measure):
         >>> time_signature.detach()
         TimeSignatureMark((4, 12))
         >>> new_time_signature = contexttools.TimeSignatureMark((5, 12))
-        >>> new_time_signature.attach(measure)
+        >>> attach(new_time_signature, measure)
         TimeSignatureMark((5, 12))(|5/12 c'8 d'8 e'8 f'8|)
         >>> measure.is_underfull
         True

@@ -11,7 +11,7 @@ class BracketSpanner(TextSpanner):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> spanner = spannertools.BracketSpanner()
-        >>> spanner.attach(staff[:])
+        >>> attach(spanner, staff[:])
 
     ..  doctest::
 

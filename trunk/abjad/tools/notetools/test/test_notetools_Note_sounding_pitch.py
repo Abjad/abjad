@@ -7,7 +7,7 @@ def test_notetools_Note_sounding_pitch_01():
 
     staff = Staff("d''8 e''8 f''8 g''8")
     piccolo = instrumenttools.Piccolo()
-    piccolo.attach(staff)
+    attach(piccolo, staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
     assert testtools.compare(

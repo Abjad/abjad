@@ -6,6 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.scoretools import attach
 
 
 class TwoStaffPianoScoreTemplate(AbjadObject):
@@ -67,7 +68,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
             name='RH Staff',
             )
         clef = contexttools.ClefMark('treble')
-        clef.attach(rh_staff)
+        attach(clef, rh_staff)
 
         # make LH voice and staff
         lh_voice = voicetools.Voice(name='LH Voice')
@@ -76,7 +77,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
             name='LH Staff',
             )
         clef = contexttools.ClefMark('bass')
-        clef.attach(lh_staff)
+        attach(clef, lh_staff)
 
         # make piano staff
         piano_staff = scoretools.PianoStaff(
@@ -84,7 +85,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
             name='Piano Staff',
             )
         piano = instrumenttools.Piano()
-        piano.attach(piano_staff)
+        attach(piano, piano_staff)
 
         # make two-staf piano score
         two_staff_piano_score = scoretools.Score(

@@ -4,6 +4,7 @@ from abjad.tools import containertools
 from abjad.tools import sequencetools
 from abjad.tools import voicetools
 from abjad.tools.quantizationtools.QTarget import QTarget
+from abjad.tools.scoretools import attach
 
 
 class BeatwiseQTarget(QTarget):
@@ -41,7 +42,7 @@ class BeatwiseQTarget(QTarget):
             if isinstance(attachment_target, containertools.Container):
                 attachment_target = attachment_target.select_leaves()[0]
             tempo = copy.copy(beat.tempo)
-            tempo.attach(attachment_target)
+            attach(tempo, attachment_target)
         voice.extend(components)
 
         # generate the rest pairwise, comparing tempi
@@ -53,7 +54,7 @@ class BeatwiseQTarget(QTarget):
                 if isinstance(attachment_target, containertools.Container):
                     attachment_target = attachment_target.select_leaves()[0]
                 tempo = copy.copy(beat_two.tempo)
-                tempo.attach(attachment_target)
+                attach(tempo, attachment_target)
             voice.extend(components)
 
         # apply tie chains, pitches, grace containers

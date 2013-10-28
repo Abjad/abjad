@@ -11,7 +11,7 @@ def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_01():
     piano_staff.append(Staff("a'4 g'4"))
     piano_staff.append(Staff("f'8 e'8 d'8 c'8"))
     clef = contexttools.ClefMark('bass')
-    clef.attach(piano_staff[1])
+    attach(clef, piano_staff[1])
     score.append(piano_staff)
 
     assert testtools.compare(
@@ -71,7 +71,7 @@ def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_02():
     piano_staff.append(Staff("a'4 g'4"))
     piano_staff.append(Staff("f'8 e'8 d'8 c'8"))
     clef = contexttools.ClefMark('bass')
-    clef.attach(piano_staff[1])
+    attach(clef, piano_staff[1])
     score.append(piano_staff)
 
     assert testtools.compare(

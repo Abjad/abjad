@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
+from abjad.tools.scoretools import attach
 
 
 def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
@@ -31,4 +32,4 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
         leaf_number = i + 1
         label = markuptools.MarkupCommand('small', str(leaf_number))
         markup = markuptools.Markup(label, markup_direction)
-        markup.attach(leaf)
+        attach(markup, leaf)

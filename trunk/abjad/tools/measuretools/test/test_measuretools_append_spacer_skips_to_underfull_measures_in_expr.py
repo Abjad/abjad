@@ -7,10 +7,10 @@ def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01():
     staff = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
     inspect(staff[1]).get_mark(contexttools.TimeSignatureMark).detach()
     time_signature = contexttools.TimeSignatureMark((4, 8))
-    time_signature.attach(staff[1])
+    attach(time_signature, staff[1])
     inspect(staff[2]).get_mark(contexttools.TimeSignatureMark).detach()
     time_signature = contexttools.TimeSignatureMark((5, 8))
-    time_signature.attach(staff[2])
+    attach(time_signature, staff[2])
 
     assert not staff[0].is_underfull
     assert staff[1].is_underfull

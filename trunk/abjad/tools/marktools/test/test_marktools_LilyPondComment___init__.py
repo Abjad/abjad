@@ -10,7 +10,7 @@ def test_marktools_LilyPondComment___init___01():
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
     comment = marktools.LilyPondComment('beginning of note content')
-    comment.attach(staff[0])
+    attach(comment, staff[0])
 
     assert testtools.compare(
         staff,

@@ -10,7 +10,7 @@ def test_containertools_Container__get_spanners_that_dominate_slice_01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[:])
+    attach(glissando, voice[:])
 
     assert testtools.compare(
         voice,
@@ -38,7 +38,7 @@ def test_containertools_Container__get_spanners_that_dominate_slice_02():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[:])
+    attach(glissando, voice[:])
 
     assert testtools.compare(
         voice,
@@ -67,7 +67,7 @@ def test_containertools_Container__get_spanners_that_dominate_slice_03():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[:])
+    attach(glissando, voice[:])
 
     assert testtools.compare(
         voice,

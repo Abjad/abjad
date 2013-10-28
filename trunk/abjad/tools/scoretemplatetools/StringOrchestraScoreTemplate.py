@@ -6,6 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.scoretools import attach
 
 
 class StringOrchestraScoreTemplate(AbjadObject):
@@ -184,12 +185,13 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     )
                 violin_staff = stafftools.Staff(
                     [violin_voice], name='Violin {} Voice'.format(i))
-                contexttools.ClefMark('treble').attach(violin_staff)
+                clef = contexttools.ClefMark('treble')
+                attach(clef, violin_staff)
                 violin = instrumenttools.Violin(
                     instrument_name_markup='Violin {}'.format(i),
                     short_instrument_name_markup='Vln. {}'.format(i),
                     )
-                violin.attach(violin_staff)
+                attach(violin, violin_staff)
                 violin_staff_group.append(violin_staff)
             string_orchestra_score.append(violin_staff_group)
 
@@ -203,12 +205,13 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     )
                 viola_staff = stafftools.Staff(
                     [viola_voice], name='Viola {} Voice'.format(i))
-                contexttools.ClefMark('alto').attach(viola_staff)
+                clef = contexttools.ClefMark('alto')
+                attach(clef, viola_staff)
                 viola = instrumenttools.Viola(
                     instrument_name_markup='Viola {}'.format(i),
                     short_instrument_name_markup='Vla. {}'.format(i),
                     )
-                viola.attach(viola_staff)
+                attach(viola, viola_staff)
                 viola_staff_group.append(viola_staff)
             string_orchestra_score.append(viola_staff_group)
 
@@ -222,12 +225,13 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     )
                 cello_staff = stafftools.Staff(
                     [cello_voice], name='Cello {} Voice'.format(i))
-                contexttools.ClefMark('bass').attach(cello_staff)
+                clef = contexttools.ClefMark('bass')
+                attach(clef, cello_staff)
                 cello = instrumenttools.Cello(
                     instrument_name_markup='Cello {}'.format(i),
                     short_instrument_name_markup='Vc. {}'.format(i),
                     )
-                cello.attach(cello_staff)
+                attach(cello, cello_staff)
                 cello_staff_group.append(cello_staff)
             string_orchestra_score.append(cello_staff_group)
 
@@ -241,12 +245,13 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     )
                 contrabass_staff = stafftools.Staff(
                     [contrabass_voice], name='Contrabass {} Voice'.format(i))
-                contexttools.ClefMark('bass_8').attach(contrabass_staff)
+                clef = contexttools.ClefMark('bass_8')
+                attach(clef, contrabass_staff)
                 contrabass = instrumenttools.Contrabass(
                     instrument_name_markup='Contrabass {}'.format(i),
                     short_instrument_name_markup='Cb. {}'.format(i),
                     )
-                contrabass.attach(contrabass_staff)
+                attach(contrabass, contrabass_staff)
                 contrabass_staff_group.append(contrabass_staff)
             string_orchestra_score.append(contrabass_staff_group)
 

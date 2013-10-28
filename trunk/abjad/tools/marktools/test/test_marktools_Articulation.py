@@ -24,7 +24,7 @@ def test_marktools_Articulation_02():
 
     note = Note("c'4")
     articulation = marktools.Articulation('staccato')
-    articulation.attach(note)
+    attach(articulation, note)
     assert articulation.name == 'staccato'
     assert articulation.direction is None
 
@@ -35,7 +35,7 @@ def test_marktools_Articulation_03():
 
     note = Note("c'4")
     articulation = marktools.Articulation()
-    articulation.attach(note)
+    attach(articulation, note)
     assert articulation.name is None
     assert str(articulation) == ''
 
@@ -46,7 +46,7 @@ def test_marktools_Articulation_04():
 
     note = Note("c'4")
     articulation = marktools.Articulation('staccato', None)
-    articulation.attach(note)
+    attach(articulation, note)
     assert articulation.direction is None
     assert str(articulation) == r'-\staccato'
 
@@ -57,7 +57,7 @@ def test_marktools_Articulation_05():
 
     note = Note("c'4")
     articulation = marktools.Articulation('staccato', Up)
-    articulation.attach(note)
+    attach(articulation, note)
     assert articulation.direction is Up
     assert str(articulation) == r'^\staccato'
 
@@ -72,7 +72,7 @@ def test_marktools_Articulation_06():
 
     note = Note("c'4")
     articulation = marktools.Articulation('staccato', Down)
-    articulation.attach(note)
+    attach(articulation, note)
     assert articulation.direction is Down
     assert str(articulation) == r'_\staccato'
 
@@ -102,7 +102,7 @@ def test_marktools_Articulation_08():
 
     note = Note("c'4")
     articulation = marktools.Articulation('.')
-    articulation.attach(note)
+    attach(articulation, note)
     assert articulation.name == '.'
     assert str(articulation) == r'-\staccato'
 

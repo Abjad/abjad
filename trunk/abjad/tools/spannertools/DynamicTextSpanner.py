@@ -9,7 +9,7 @@ class DynamicTextSpanner(Spanner):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> spanner = spannertools.DynamicTextSpanner(mark='f')
-        >>> spanner.attach(staff[:])
+        >>> attach(spanner, staff[:])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -64,7 +64,7 @@ class DynamicTextSpanner(Spanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.DynamicTextSpanner(mark='f')
-                >>> spanner.attach(staff[:])
+                >>> attach(spanner, staff[:])
                 >>> spanner.mark
                 'f'
 
@@ -74,7 +74,7 @@ class DynamicTextSpanner(Spanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.DynamicTextSpanner(mark='f')
-                >>> spanner.attach(staff[:])
+                >>> attach(spanner, staff[:])
                 >>> spanner.mark = 'p'
                 >>> spanner.mark
                 'p'

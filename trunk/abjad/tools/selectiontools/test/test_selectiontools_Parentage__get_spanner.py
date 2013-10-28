@@ -13,7 +13,7 @@ def test_selectiontools_Parentage__get_spanner_01():
     slur = spannertools.SlurSpanner()
     attach(slur, container.select_leaves()[:-1])
     trill = spannertools.TrillSpanner()
-    trill.attach(container)
+    attach(trill, container)
 
     assert testtools.compare(
         container,

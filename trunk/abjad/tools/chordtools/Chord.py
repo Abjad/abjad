@@ -379,7 +379,7 @@ class Chord(Leaf):
 
                 >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
                 >>> glockenspiel = instrumenttools.Glockenspiel()
-                >>> glockenspiel = glockenspiel.attach(staff)
+                >>> glockenspiel = attach(glockenspiel, staff)
                 >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
                 ...     staff)
                 >>> show(staff) # doctest: +SKIP

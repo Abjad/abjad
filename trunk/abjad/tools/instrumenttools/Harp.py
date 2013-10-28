@@ -18,7 +18,7 @@ class Harp(Instrument):
     ::
 
         >>> harp = instrumenttools.Harp()
-        >>> harp.attach(piano_staff)
+        >>> attach(harp, piano_staff)
         Harp()(PianoStaff<<2>>)
         >>> show(piano_staff) # doctest: +SKIP
 

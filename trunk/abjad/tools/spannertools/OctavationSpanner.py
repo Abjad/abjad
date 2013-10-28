@@ -17,7 +17,7 @@ class OctavationSpanner(Spanner):
         ::
 
             >>> spanner = spannertools.OctavationSpanner(start=1)
-            >>> spanner.attach(staff[:])
+            >>> attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -82,7 +82,7 @@ class OctavationSpanner(Spanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.OctavationSpanner(start=1)
-                >>> spanner.attach(staff[:])
+                >>> attach(spanner, staff[:])
                 >>> spanner.start
                 1
 
@@ -92,7 +92,7 @@ class OctavationSpanner(Spanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.OctavationSpanner(start=1)
-                >>> spanner.attach(staff[:])
+                >>> attach(spanner, staff[:])
                 >>> spanner.start
                 1
 
@@ -113,7 +113,7 @@ class OctavationSpanner(Spanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
-                >>> spanner.attach(staff[:])
+                >>> attach(spanner, staff[:])
                 >>> spanner.stop
                 1
 
@@ -123,7 +123,7 @@ class OctavationSpanner(Spanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
-                >>> spanner.attach(staff[:])
+                >>> attach(spanner, staff[:])
                 >>> spanner.stop = 0
                 >>> spanner.stop
                 0
@@ -154,7 +154,7 @@ class OctavationSpanner(Spanner):
 
                 >>> measure = Measure((4, 8), "c'''8 d'''8 ef'''8 f'''8")
                 >>> octavation = spannertools.OctavationSpanner()
-                >>> octavation.attach(measure[:])
+                >>> attach(octavation, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ::

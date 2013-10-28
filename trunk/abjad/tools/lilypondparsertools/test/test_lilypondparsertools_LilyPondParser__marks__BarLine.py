@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__marks__BarLine_01():
 
     target = Staff(notetools.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
     bar_line = marktools.BarLine('|.')
-    bar_line.attach(target[-1])
+    attach(bar_line, target[-1])
 
     assert testtools.compare(
         target,

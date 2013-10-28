@@ -209,7 +209,7 @@ class Scale(PitchClassSegment):
             >>> notes = scale.make_notes(4, Duration(5, 16))
             >>> staff = Staff(notes)
             >>> time_signature = contexttools.TimeSignatureMark((5, 4))
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((5, 4))(Staff{8})
 
         ..  doctest::
@@ -279,6 +279,7 @@ class Scale(PitchClassSegment):
 
         Returns score.
         '''
+        from abjad.tools.scoretools import attach
         ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
         descending_notes = copy.deepcopy(ascending_notes[:-1])
         descending_notes = list(descending_notes)
@@ -288,7 +289,7 @@ class Scale(PitchClassSegment):
         notes[-1].written_duration = durationtools.Duration(1, 4)
         staff = stafftools.Staff(notes)
         key_signature = copy.copy(self.key_signature)
-        key_signature.attach(staff)
+        attach(key_signature, staff)
         score = scoretools.Score([staff])
         score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(30)
         return score

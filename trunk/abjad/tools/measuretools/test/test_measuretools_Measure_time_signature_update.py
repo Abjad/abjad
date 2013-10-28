@@ -10,7 +10,7 @@ def test_measuretools_Measure_time_signature_update_01():
     measure.pop()
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
     time_signature = contexttools.TimeSignatureMark((3, 8))
-    time_signature.attach(measure)
+    attach(time_signature, measure)
 
     assert testtools.compare(
         measure,

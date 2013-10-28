@@ -12,7 +12,7 @@ class Piccolo(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> piccolo = instrumenttools.Piccolo()
-        >>> piccolo.attach(staff)
+        >>> attach(piccolo, staff)
         Piccolo()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

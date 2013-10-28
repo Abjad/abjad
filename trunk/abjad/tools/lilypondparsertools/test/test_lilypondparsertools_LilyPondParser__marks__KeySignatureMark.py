@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__marks__KeySignatureMark_01():
 
     target = Staff([Note("fs'", 1)])
     key_signature = contexttools.KeySignatureMark('g', 'major')
-    key_signature.attach(target[0])
+    attach(key_signature, target[0])
 
     assert testtools.compare(
         target,

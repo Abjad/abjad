@@ -214,7 +214,7 @@ def test_containertools_Container___delitem___08():
     beam = spannertools.BeamSpanner()
     attach(beam, voice.select_leaves())
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice.select_leaves())
+    attach(glissando, voice.select_leaves())
 
     assert testtools.compare(
         voice,

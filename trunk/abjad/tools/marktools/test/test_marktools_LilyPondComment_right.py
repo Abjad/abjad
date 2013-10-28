@@ -12,9 +12,9 @@ def test_marktools_LilyPondComment_right_01():
     attach(beam, voice[:])
     beam.override.beam.thickness = 3
     comment = marktools.LilyPondComment('Voice right comments here.', 'right')
-    comment.attach(voice)
+    attach(comment, voice)
     comment = marktools.LilyPondComment('More voice right comments.', 'right')
-    comment.attach(voice)
+    attach(comment, voice)
 
 
     assert testtools.compare(
@@ -41,9 +41,9 @@ def test_marktools_LilyPondComment_right_02():
     note = Note(0, (1, 8))
     note.override.beam.thickness = 3
     comment = marktools.LilyPondComment('Leaf comments right here.', 'right')
-    comment.attach(note)
+    attach(comment, note)
     comment = marktools.LilyPondComment('More comments right.', 'right')
-    comment.attach(note)
+    attach(comment, note)
 
     assert testtools.compare(
         note,

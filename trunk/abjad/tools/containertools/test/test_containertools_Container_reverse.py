@@ -176,15 +176,15 @@ def test_containertools_Container_reverse_09():
     measure_2 = Measure((3, 8), "c'8 d'8 e'8")
     container = Container([measure_1, measure_2])
     pedal = spannertools.PianoPedalSpanner()
-    pedal.attach(container)
+    attach(pedal, container)
     trill = spannertools.TrillSpanner()
-    trill.attach(container[:])
+    attach(trill, container[:])
     beam_1 = spannertools.BeamSpanner()
-    beam_1.attach(container[0])
+    attach(beam_1, container[0])
     beam_2 = spannertools.BeamSpanner()
-    beam_2.attach(container[1])
+    attach(beam_2, container[1])
     gliss = spannertools.GlissandoSpanner()
-    gliss.attach(container.select_leaves())
+    attach(gliss, container.select_leaves())
 
     assert testtools.compare(
         container,

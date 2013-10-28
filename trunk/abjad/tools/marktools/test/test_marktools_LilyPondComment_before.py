@@ -11,9 +11,9 @@ def test_marktools_LilyPondComment_before_01():
     attach(beam, voice[:])
     beam.override.beam.thickness = 3
     comment = marktools.LilyPondComment('Voice before comments here.', 'before')
-    comment.attach(voice)
+    attach(comment, voice)
     comment = marktools.LilyPondComment('More voice before comments.', 'before')
-    comment.attach(voice)
+    attach(comment, voice)
 
     assert testtools.compare(
         voice,
@@ -41,9 +41,9 @@ def test_marktools_LilyPondComment_before_02():
     note = Note(0, (1, 8))
     note.override.beam.thickness = 3
     comment = marktools.LilyPondComment('Leaf comments before here.', 'before')
-    comment.attach(note)
+    attach(comment, note)
     comment = marktools.LilyPondComment('More comments before.', 'before')
-    comment.attach(note)
+    attach(comment, note)
 
     assert testtools.compare(
         note,

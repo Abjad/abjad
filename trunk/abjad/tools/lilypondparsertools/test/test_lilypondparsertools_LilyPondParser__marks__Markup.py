@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_01():
 
     target = Staff([Note(0, 1)])
     markup = markuptools.Markup('hello!', Up)
-    markup.attach(target[0])
+    attach(markup, target[0])
 
     assert testtools.compare(
         target,
@@ -30,7 +30,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_02():
 
     target = Staff([Note(0, (1, 4))])
     markup = markuptools.Markup(['X', 'Y', 'Z', 'a b c'], Down)
-    markup.attach(target[0])
+    attach(markup, target[0])
 
     assert testtools.compare(
         target,
@@ -62,9 +62,9 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_03():
 
     target = Staff([Note(0, (1, 4)), Note(2, (1, 4))])
     markup = markuptools.Markup('hello', Up)
-    markup.attach(target[0])
+    attach(markup, target[0])
     articulation = marktools.Articulation('.')
-    articulation.attach(target[0])
+    attach(articulation, target[0])
 
     assert testtools.compare(
         target,

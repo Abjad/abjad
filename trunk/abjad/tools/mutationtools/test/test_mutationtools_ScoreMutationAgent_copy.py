@@ -13,7 +13,7 @@ def test_mutationtools_ScoreMutationAgent_copy_01():
     slur = spannertools.SlurSpanner()
     attach(slur, voice[:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
 
@@ -63,7 +63,7 @@ def test_mutationtools_ScoreMutationAgent_copy_02():
     slur = spannertools.SlurSpanner()
     attach(slur, voice[:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
 
@@ -115,7 +115,7 @@ def test_mutationtools_ScoreMutationAgent_copy_03():
     slur = spannertools.SlurSpanner()
     attach(slur, voice[:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
 
@@ -166,7 +166,7 @@ def test_mutationtools_ScoreMutationAgent_copy_04():
     slur = spannertools.SlurSpanner()
     attach(slur, voice[:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(voice)

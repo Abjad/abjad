@@ -6,6 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.scoretools import attach
 
 
 class StringQuartetScoreTemplate(AbjadObject):
@@ -83,36 +84,36 @@ class StringQuartetScoreTemplate(AbjadObject):
         first_violin_staff = stafftools.Staff(
             [first_violin_voice], name='First Violin Staff')
         clef = contexttools.ClefMark('treble')
-        clef.attach(first_violin_staff)
+        attach(clef, first_violin_staff)
         violin = instrumenttools.Violin()
-        violin.attach(first_violin_staff)
+        attach(violin, first_violin_staff)
 
         # make second violin voice and staff
         second_violin_voice = voicetools.Voice(name='Second Violin Voice')
         second_violin_staff = stafftools.Staff(
             [second_violin_voice], name='Second Violin Staff')
         clef = contexttools.ClefMark('treble')
-        clef.attach(second_violin_staff)
+        attach(clef, second_violin_staff)
         violin = instrumenttools.Violin()
-        violin.attach(second_violin_staff)
+        attach(violin, second_violin_staff)
 
         # make viola voice and staff
         viola_voice = voicetools.Voice(name='Viola Voice')
         viola_staff = stafftools.Staff(
             [viola_voice], name='Viola Staff')
         clef = contexttools.ClefMark('alto')
-        clef.attach(viola_staff)
+        attach(clef, viola_staff)
         viola = instrumenttools.Viola()
-        viola.attach(viola_staff)
+        attach(viola, viola_staff)
 
         # make cello voice and staff
         cello_voice = voicetools.Voice(name='Cello Voice')
         cello_staff = stafftools.Staff(
             [cello_voice], name='Cello Staff')
         clef = contexttools.ClefMark('bass')
-        clef.attach(cello_staff)
+        attach(clef, cello_staff)
         cello = instrumenttools.Cello()
-        cello.attach(cello_staff)
+        attach(cello, cello_staff)
 
         # make string quartet staff group
         string_quartet_staff_group = scoretools.StaffGroup([

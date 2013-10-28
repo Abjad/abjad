@@ -5,6 +5,7 @@ from abjad.tools import leaftools
 from abjad.tools import markuptools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
+from abjad.tools.scoretools import attach
 
 
 def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(expr, markup_direction=Up):
@@ -52,6 +53,6 @@ def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(exp
                 iecic = \
                     pitchtools.NumberedInversionEquivalentIntervalClass(mdi)
                 markup = markuptools.Markup(iecic, markup_direction)
-                markup.attach(note)
+                attach(markup, note)
         except StopIteration:
             pass

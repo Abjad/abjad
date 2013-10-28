@@ -180,13 +180,13 @@ class AttributeInspectionAgent(object):
                 ...     [Note("cs'16")],
                 ...     kind='grace',
                 ...     )
-                >>> grace_container.attach(staff[1])
+                >>> attach(grace_container, staff[1])
                 Note("d'8")
                 >>> after_grace = containertools.GraceContainer(
                 ...     [Note("ds'16")],
                 ...     kind='after'
                 ...     )
-                >>> after_grace.attach(staff[1])
+                >>> attach(after_grace, staff[1])
                 Note("d'8")
                 >>> show(staff) # doctest: +SKIP
 
@@ -429,7 +429,7 @@ class AttributeInspectionAgent(object):
 
                 >>> staff = Staff("c'4 d'4 e'4")
                 >>> time_signature = contexttools.TimeSignatureMark((3, 8))
-                >>> time_signature.attach(staff)
+                >>> attach(time_signature, staff)
                 TimeSignatureMark((3, 8))(Staff{3})
                 >>> show(staff) # doctest: +SKIP
 

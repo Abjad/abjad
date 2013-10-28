@@ -6,7 +6,7 @@ def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
 
     staff = Staff("<c' e' g'>4 d'4 r4 e'4")
     clarinet = instrumenttools.BFlatClarinet()
-    clarinet.attach(staff)
+    attach(clarinet, staff)
     clarinet.instrument_name_markup = 'Clarinet in B-flat'
     clarinet.short_instrument_name_markup = 'Cl. B-flat'
 

@@ -9,7 +9,7 @@ class KeySignatureMark(ContextMark):
 
         >>> staff = Staff("e'8 fs'8 gs'8 a'8")
         >>> key_signature = contexttools.KeySignatureMark('e', 'major')
-        >>> key_signature.attach(staff)
+        >>> attach(key_signature, staff)
         KeySignatureMark(NamedPitchClass('e'), Mode('major'))(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

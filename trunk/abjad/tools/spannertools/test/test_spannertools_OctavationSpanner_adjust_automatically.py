@@ -7,7 +7,7 @@ def test_spannertools_OctavationSpanner_adjust_automatically_01():
     container = Container(notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
 
     octavation_spanner = spannertools.OctavationSpanner()
-    octavation_spanner.attach(container[:])
+    attach(octavation_spanner, container[:])
     octavation_spanner.adjust_automatically(ottava_breakpoint=14)
 
     assert testtools.compare(
@@ -33,7 +33,7 @@ def test_spannertools_OctavationSpanner_adjust_automatically_02():
     assert container[0].written_pitch.diatonic_pitch_number == 18
 
     octavation_spanner = spannertools.OctavationSpanner()
-    octavation_spanner.attach(container[:])
+    attach(octavation_spanner, container[:])
     octavation_spanner.adjust_automatically(
         ottava_breakpoint=15,
         quindecisima_breakpoint=19,

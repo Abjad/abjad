@@ -3,7 +3,10 @@ from abjad.tools import markuptools
 from abjad.tools import schemetools
 
 
-def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
+def make_dynamic_spanner_below_with_nib_at_right(
+    dynamic_text, 
+    components=None,
+    ):
     r'''Span `components` with text spanner.
     Position spanner below staff and configure with `dynamic_text`,
     solid line and upward-pointing nib at right:
@@ -43,9 +46,10 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
     Returns spanner.
     '''
     from abjad.tools import spannertools
+    from abjad.tools.scoretools import attach
 
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(components)
+    attach(text_spanner, components)
     text_spanner._dynamic_text = dynamic_text
     dynamic_text = markuptools.Markup(r'\dynamic { %s }' % dynamic_text)
     text_spanner.override.text_spanner.bound_details__left__text = dynamic_text

@@ -19,7 +19,7 @@ class Piano(Instrument):
     ::
 
         >>> piano = instrumenttools.Piano()
-        >>> piano.attach(piano_staff)
+        >>> attach(piano, piano_staff)
         Piano()(PianoStaff<<2>>)
         >>> show(piano_staff) # doctest: +SKIP
 

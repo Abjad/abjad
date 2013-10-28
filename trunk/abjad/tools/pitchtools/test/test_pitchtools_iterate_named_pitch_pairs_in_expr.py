@@ -10,7 +10,7 @@ def test_pitchtools_iterate_named_pitch_pairs_in_expr_01():
     notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
     score.append(Staff(notes))
     clef = contexttools.ClefMark('bass')
-    clef.attach(score[1])
+    attach(clef, score[1])
 
     assert testtools.compare(
         score,

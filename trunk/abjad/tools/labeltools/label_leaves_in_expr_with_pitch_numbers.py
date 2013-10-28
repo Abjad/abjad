@@ -2,6 +2,7 @@
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
+from abjad.tools.scoretools import attach
 
 
 def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
@@ -31,4 +32,4 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
             if pitch is not None:
                 label = markuptools.MarkupCommand('small', str(pitch.pitch_number))
                 markup = markuptools.Markup(label, markup_direction)
-                markup.attach(leaf)
+                attach(markup, leaf)

@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools import iterationtools
+from abjad.tools.scoretools import attach
 
 
 def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
@@ -38,4 +39,4 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
     for i, note in enumerate(iterationtools.iterate_notes_in_expr(expr)):
         label = r'\small %s' % i
         markup = markuptools.Markup(label, markup_direction)
-        markup.attach(note)
+        attach(markup, note)

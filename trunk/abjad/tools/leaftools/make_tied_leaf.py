@@ -27,7 +27,7 @@ def make_tied_leaf(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((2, 4))
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((2, 4))(Staff{1})
             >>> show(staff) # doctest: +SKIP
 
@@ -53,7 +53,7 @@ def make_tied_leaf(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((2, 4))
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((2, 4))(Staff{2})
             >>> show(staff) # doctest: +SKIP
 
@@ -82,7 +82,7 @@ def make_tied_leaf(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((9, 8))
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((9, 8))(Staff{5})
             >>> show(staff) # doctest: +SKIP
 
@@ -114,7 +114,7 @@ def make_tied_leaf(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((9, 8))
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((9, 8))(Staff{5})
             >>> show(staff) # doctest: +SKIP
 

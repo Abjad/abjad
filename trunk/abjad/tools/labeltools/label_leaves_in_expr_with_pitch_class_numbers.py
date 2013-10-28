@@ -3,6 +3,7 @@ from abjad.tools import componenttools
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import notetools
+from abjad.tools.scoretools import attach
 
 
 def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False,
@@ -60,6 +61,6 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
             label = markuptools.MarkupCommand(
                 'small', str(abs(note.written_pitch.numbered_pitch_class)))
             markup = markuptools.Markup(label, markup_direction)
-            markup.attach(note)
+            attach(markup, note)
         if color:
             labeltools.color_note_head_by_numbered_pitch_class_color_map(note)

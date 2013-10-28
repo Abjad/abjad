@@ -4,6 +4,7 @@ from abjad.tools import measuretools
 from abjad.tools import sequencetools
 from abjad.tools import voicetools
 from abjad.tools.quantizationtools.QTarget import QTarget
+from abjad.tools.scoretools import attach
 
 
 class MeasurewiseQTarget(QTarget):
@@ -42,7 +43,7 @@ class MeasurewiseQTarget(QTarget):
             measure.extend(beat.q_grid(beat.beatspan))
         if attach_tempo_marks:
             tempo = copy.copy(q_target_measure.tempo)
-            tempo.attach(measure)
+            attach(tempo, measure)
         voice.append(measure)
 
         # generate the rest pairwise, comparing tempi
@@ -54,7 +55,7 @@ class MeasurewiseQTarget(QTarget):
             if (q_target_measure_two.tempo != q_target_measure_one.tempo) \
                 and attach_tempo_marks:
                 tempo = copy.copy(q_target_measure_two.tempo)
-                tempo.attach(measure)
+                attach(tempo, measure)
             voice.append(measure)
 
         # apply tie chains, pitches, grace containers

@@ -11,7 +11,7 @@ def test_containertools_Container___setitem___integer_01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice.select_leaves())
+    attach(glissando, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -50,7 +50,7 @@ def test_containertools_Container___setitem___integer_02():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice.select_leaves())
+    attach(glissando, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -94,7 +94,7 @@ def test_containertools_Container___setitem___integer_03():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[:])
+    attach(glissando, voice[:])
 
     assert testtools.compare(
         voice,
@@ -139,7 +139,7 @@ def test_containertools_Container___setitem___integer_04():
     beam = spannertools.BeamSpanner()
     attach(beam, voice.select_leaves())
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice.select_leaves())
+    attach(glissando, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -183,7 +183,7 @@ def test_containertools_Container___setitem___integer_05():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[:])
+    attach(glissando, voice[:])
 
     assert testtools.compare(
         voice,
@@ -231,7 +231,7 @@ def test_containertools_Container___setitem___integer_06():
     beam = spannertools.BeamSpanner()
     attach(beam, voice.select_leaves())
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice.select_leaves())
+    attach(glissando, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -416,7 +416,7 @@ def test_containertools_Container___setitem___integer_09():
     u = Voice(notes[3:])
     Container(u[1:3])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(u.select_leaves())
+    attach(glissando, u.select_leaves())
     slur = spannertools.SlurSpanner()
     attach(slur, u[1].select_leaves())
 

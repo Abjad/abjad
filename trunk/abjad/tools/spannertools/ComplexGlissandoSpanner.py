@@ -11,7 +11,7 @@ class ComplexGlissandoSpanner(Spanner):
 
         >>> staff = Staff("c'16 r r g' r8 c'8")
         >>> glissando = spannertools.ComplexGlissandoSpanner()
-        >>> glissando.attach(staff[:])
+        >>> attach(glissando, staff[:])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

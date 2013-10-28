@@ -10,9 +10,9 @@ def test_marktools_LilyPondComment_closing_01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
     comment = marktools.LilyPondComment('Voice closing comments here.', 'closing')
-    comment.attach(voice)
+    attach(comment, voice)
     comment = marktools.LilyPondComment('More voice closing comments.', 'closing')
-    comment.attach(voice)
+    attach(comment, voice)
 
     assert testtools.compare(
         voice,
@@ -38,9 +38,9 @@ def test_marktools_LilyPondComment_closing_02():
     note = Note(0, (1, 8))
     note.override.beam.thickness = 3
     comment = marktools.LilyPondComment('Leaf closing comments here.', 'closing')
-    comment.attach(note)
+    attach(comment, note)
     comment = marktools.LilyPondComment('More leaf closing comments.', 'closing')
-    comment.attach(note)
+    attach(comment, note)
 
     assert testtools.compare(
         note,

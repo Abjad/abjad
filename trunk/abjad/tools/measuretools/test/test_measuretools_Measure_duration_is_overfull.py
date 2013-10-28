@@ -9,10 +9,10 @@ def test_measuretools_Measure_duration_is_overfull_01():
 
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
     time_signature = contexttools.TimeSignatureMark((2, 8))
-    time_signature.attach(measure)
+    attach(time_signature, measure)
     assert measure.is_overfull
 
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
     time_signature = contexttools.TimeSignatureMark((3, 8))
-    time_signature.attach(measure)
+    attach(time_signature, measure)
     assert not measure.is_overfull

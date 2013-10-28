@@ -12,7 +12,7 @@ class TenorVoice(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> tenor = instrumenttools.TenorVoice()
-        >>> tenor.attach(staff)
+        >>> attach(tenor, staff)
         TenorVoice()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

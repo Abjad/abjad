@@ -40,7 +40,7 @@ def test_iterationtools_iterate_components_in_expr_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     spanner = spannertools.BeamSpanner()
-    spanner.attach(staff[2:])
+    attach(spanner, staff[2:])
 
     notes = iterationtools.iterate_components_in_expr(spanner)
     assert list(notes) == staff[2:]

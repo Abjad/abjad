@@ -49,9 +49,9 @@ class BenchmarkScoreMaker(AbjadObject):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
             dynamic = contexttools.DynamicMark('p')
-            dynamic.attach(part[0])
+            attach(dynamic, part[0])
             dynamic = contexttools.DynamicMark('r')
-            dynamic.attach(part[-1])
+            attach(dynamic, part[-1])
         return voice
 
     def make_bound_hairpin_score_02(self):
@@ -73,9 +73,9 @@ class BenchmarkScoreMaker(AbjadObject):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
             dynamic = contexttools.DynamicMark('p')
-            dynamic.attach(part[0])
+            attach(dynamic, part[0])
             dynamic = contexttools.DynamicMark('r')
-            dynamic.attach(part[-1])
+            attach(dynamic, part[-1])
         return voice
 
     def make_bound_hairpin_score_03(self):
@@ -97,9 +97,9 @@ class BenchmarkScoreMaker(AbjadObject):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
             dynamic = contexttools.DynamicMark('p')
-            dynamic.attach(part[0])
+            attach(dynamic, part[0])
             dynamic = contexttools.DynamicMark('r')
-            dynamic.attach(part[-1])
+            attach(dynamic, part[-1])
         return voice
 
     def make_context_mark_score_01(self):
@@ -122,7 +122,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             dynamic = contexttools.DynamicMark('f')
-            dynamic.attach(part[0])
+            attach(dynamic, part[0])
         return staff
 
     def make_context_mark_score_02(self):
@@ -145,7 +145,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             dynamic = contexttools.DynamicMark('f')
-            dynamic.attach(part[0])
+            attach(dynamic, part[0])
         return staff
 
     def make_context_mark_score_03(self):
@@ -164,7 +164,7 @@ class BenchmarkScoreMaker(AbjadObject):
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for note in staff.select_leaves():
             dynamic = contexttools.DynamicMark('f')
-            dynamic.attach(note)
+            attach(dynamic, note)
         return staff
 
     def make_hairpin_score_01(self):

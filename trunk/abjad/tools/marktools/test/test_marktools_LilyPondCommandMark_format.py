@@ -6,7 +6,7 @@ def test_marktools_LilyPondCommandMark_format_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
-    command.attach(staff)
+    attach(command, staff)
 
     assert testtools.compare(
         staff,
@@ -26,7 +26,7 @@ def test_marktools_LilyPondCommandMark_format_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
-    command.attach(staff[1])
+    attach(command, staff[1])
 
     assert testtools.compare(
         staff,
@@ -48,7 +48,7 @@ def test_marktools_LilyPondCommandMark_format_03():
 
     note = Note("c'4")
     command = marktools.LilyPondCommandMark(r'break', 'after')
-    command.attach(note)
+    attach(command, note)
 
     assert testtools.compare(
         note,
@@ -65,7 +65,7 @@ def test_marktools_LilyPondCommandMark_format_04():
 
     staff = Staff()
     command = marktools.LilyPondCommandMark(r'break')
-    command.attach(staff)
+    attach(command, staff)
 
     assert testtools.compare(
         staff,
@@ -83,7 +83,7 @@ def test_marktools_LilyPondCommandMark_format_05():
 
     note = Note("c'4")
     command = marktools.LilyPondCommandMark('flageolet', 'right')
-    command.attach(note)
+    attach(command, note)
     assert note.lilypond_format == "c'4 \\flageolet"
 
 
@@ -93,7 +93,7 @@ def test_marktools_LilyPondCommandMark_format_06():
 
     note = Note("c'4")
     command = marktools.LilyPondCommandMark('flageolet', 'right')
-    command.attach(note)
+    attach(command, note)
     inspect(note).get_mark().detach()
     assert note.lilypond_format == "c'4"
 
@@ -102,7 +102,7 @@ def test_marktools_LilyPondCommandMark_format_07():
 
     staff = Staff([Note("c'4")])
     command = marktools.LilyPondCommandMark('compressFullBarRests')
-    command.attach(staff[0])
+    attach(command, staff[0])
 
     assert testtools.compare(
         staff,
@@ -119,7 +119,7 @@ def test_marktools_LilyPondCommandMark_format_08():
 
     staff = Staff([Note("c'4")])
     command = marktools.LilyPondCommandMark('expandFullBarRests')
-    command.attach(staff[0])
+    attach(command, staff[0])
 
     assert testtools.compare(
         staff,
@@ -138,7 +138,7 @@ def test_marktools_LilyPondCommandMark_format_09():
 
     voice = Voice(notetools.make_repeated_notes(4))
     command = marktools.LilyPondCommandMark('voiceOne')
-    command.attach(voice[0])
+    attach(command, voice[0])
 
     assert testtools.compare(
         voice,
@@ -161,7 +161,7 @@ def test_marktools_LilyPondCommandMark_format_10():
 
     voice = Voice(notetools.make_repeated_notes(4))
     command = marktools.LilyPondCommandMark('voiceOne')
-    command.attach(voice[0])
+    attach(command, voice[0])
     assert testtools.compare(
         voice,
         r'''
@@ -177,7 +177,7 @@ def test_marktools_LilyPondCommandMark_format_10():
 
     inspect(voice[0]).get_mark().detach()
     command = marktools.LilyPondCommandMark('voiceTwo')
-    command.attach(voice[0])
+    attach(command, voice[0])
     assert testtools.compare(
         voice,
         r'''
@@ -193,7 +193,7 @@ def test_marktools_LilyPondCommandMark_format_10():
 
     inspect(voice[0]).get_mark().detach()
     command = marktools.LilyPondCommandMark('voiceThree')
-    command.attach(voice[0])
+    attach(command, voice[0])
     assert testtools.compare(
         voice,
         r'''
@@ -209,7 +209,7 @@ def test_marktools_LilyPondCommandMark_format_10():
 
     inspect(voice[0]).get_mark().detach()
     command = marktools.LilyPondCommandMark('voiceFour')
-    command.attach(voice[0])
+    attach(command, voice[0])
     assert testtools.compare(
         voice,
         r'''
@@ -244,9 +244,9 @@ def test_marktools_LilyPondCommandMark_format_11():
 
     voice = Voice(notetools.make_repeated_notes(4))
     command = marktools.LilyPondCommandMark('voiceOne')
-    command.attach(voice)
+    attach(command, voice)
     command = marktools.LilyPondCommandMark('voiceTwo')
-    command.attach(voice[1])
+    attach(command, voice[1])
     assert testtools.compare(
         voice,
         r'''

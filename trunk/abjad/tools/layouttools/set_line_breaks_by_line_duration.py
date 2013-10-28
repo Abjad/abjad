@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import measuretools
+from abjad.tools.scoretools import attach
 
 
 # TODO: make public and possibly improve function name
@@ -43,7 +44,7 @@ def set_line_breaks_by_line_duration(
             cum_duration += current_duration
         elif candidate_duration == line_duration:
             command = marktools.LilyPondCommandMark('break', 'closing')
-            command.attach(cur)
+            attach(command, cur)
             if adjust_eol:
                 marktools.LilyPondCommandMark(
                     'adjustEOLTimeSignatureBarlineExtraOffset',
@@ -55,7 +56,7 @@ def set_line_breaks_by_line_duration(
         else:
             if prev is not None:
                 command = marktools.LilyPondCommandMark('break', 'closing')
-                command.attach(prev)
+                attach(command, prev)
                 if adjust_eol:
                     marktools.LilyPondCommandMark(
                         'adjustEOLTimeSignatureBarlineExtraOffset',

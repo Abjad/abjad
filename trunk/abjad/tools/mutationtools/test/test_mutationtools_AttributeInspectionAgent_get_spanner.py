@@ -11,7 +11,7 @@ def test_mutationtools_AttributeInspectionAgent_get_spanner_01():
     slur = spannertools.SlurSpanner()
     attach(slur, container.select_leaves()[:-1])
     trill = spannertools.TrillSpanner()
-    trill.attach(container)
+    attach(trill, container)
 
     assert testtools.compare(
         container,

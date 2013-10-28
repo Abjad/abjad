@@ -8,9 +8,9 @@ def test_mutationtools_AttributeInspectionAgent_get_markup_01():
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
     markup_1 = markuptools.Markup('foo')
-    markup_1.attach(staff[0])
+    attach(markup_1, staff[0])
     markup_2 = markuptools.Markup('bar')
-    markup_2.attach(staff[0])
+    attach(markup_2, staff[0])
 
     assert testtools.compare(
         staff,
@@ -41,9 +41,9 @@ def test_mutationtools_AttributeInspectionAgent_get_markup_02():
 
     chord = Chord([-11, 2, 5], (1, 4))
     up_markup = markuptools.Markup('UP', Up)
-    up_markup.attach(chord)
+    attach(up_markup, chord)
     down_markup = markuptools.Markup('DOWN', Down)
-    down_markup.attach(chord)
+    attach(down_markup, chord)
     found_markup = inspect(chord).get_markup(direction=Down)
     assert found_markup == (down_markup,) 
 
@@ -52,8 +52,8 @@ def test_mutationtools_AttributeInspectionAgent_get_markup_03():
 
     chord = Chord([-11, 2, 5], (1, 4))
     up_markup = markuptools.Markup('UP', Up)
-    up_markup.attach(chord)
+    attach(up_markup, chord)
     down_markup = markuptools.Markup('DOWN', Down)
-    down_markup.attach(chord)
+    attach(down_markup, chord)
     found_markup = inspect(chord).get_markup(direction=Up)
     assert found_markup == (up_markup,)

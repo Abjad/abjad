@@ -116,6 +116,6 @@ def test_spannertools_Spanner__remove_03():
 
     note = Note("c'4")
     spanner = MockSpanner()
-    spanner.attach(Note("c'4"))
+    attach(spanner, Note("c'4"))
 
     assert py.test.raises(Exception, 'spanner._remove(note)')

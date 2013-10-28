@@ -38,7 +38,7 @@ def test_spannertools_HiddenStaffSpanner___init___02():
     '''
 
     spanner = spannertools.HiddenStaffSpanner()
-    spanner.attach(staff[1])
+    attach(spanner, staff[1])
 
     assert testtools.compare(
         staff,
@@ -74,7 +74,7 @@ def test_spannertools_HiddenStaffSpanner___init___03():
 
     note = Note(0, (1, 8))
     spanner = spannertools.HiddenStaffSpanner()
-    spanner.attach(note)
+    attach(spanner, note)
 
     assert testtools.compare(
         note,

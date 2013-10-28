@@ -7,7 +7,7 @@ def test_spannertools_TextSpanner_position_01():
 
     staff = Staff(notetools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(staff[:])
+    attach(text_spanner, staff[:])
 
     assert testtools.compare(
         staff,
@@ -26,9 +26,9 @@ def test_spannertools_TextSpanner_position_02():
 
     staff = Staff(notetools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(staff[:])
+    attach(text_spanner, staff[:])
     command = marktools.LilyPondCommandMark('textSpannerNeutral')
-    command.attach(text_spanner[0])
+    attach(command, text_spanner[0])
 
     assert testtools.compare(
         staff,
@@ -48,9 +48,9 @@ def test_spannertools_TextSpanner_position_03():
 
     staff = Staff(notetools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(staff[:])
+    attach(text_spanner, staff[:])
     command = marktools.LilyPondCommandMark('textSpannerUp')
-    command.attach(text_spanner[0])
+    attach(command, text_spanner[0])
 
     assert testtools.compare(
         staff,
@@ -70,9 +70,9 @@ def test_spannertools_TextSpanner_position_04():
 
     staff = Staff(notetools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(staff[:])
+    attach(text_spanner, staff[:])
     command = marktools.LilyPondCommandMark('textSpannerDown')
-    command.attach(text_spanner[0])
+    attach(command, text_spanner[0])
 
     assert testtools.compare(
         staff,
@@ -94,7 +94,7 @@ def test_spannertools_TextSpanner_position_05():
 
     container = Container(notetools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(container)
+    attach(text_spanner, container)
 
     assert testtools.compare(
         container,

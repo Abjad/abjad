@@ -7,7 +7,7 @@ def test_tuplettools_Tuplet_get_timespan_01():
     staff = Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
     score = Score([staff])
     tempo = contexttools.TempoMark((1, 4), 60)
-    tempo.attach(staff.select_leaves()[0])
+    attach(tempo, staff.select_leaves()[0])
 
     assert testtools.compare(
         score,

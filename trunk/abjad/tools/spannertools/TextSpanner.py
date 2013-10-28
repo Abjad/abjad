@@ -23,7 +23,7 @@ class TextSpanner(Spanner):
         >>> right_markup = markuptools.Markup(markup_command)
         >>> grob.bound_details__right__text = right_markup
         >>> text_spanner.override.text_spanner.dash_fraction = 1
-        >>> text_spanner.attach([staff])
+        >>> attach(text_spanner, [staff])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

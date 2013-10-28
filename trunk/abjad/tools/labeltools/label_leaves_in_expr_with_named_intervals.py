@@ -5,6 +5,7 @@ from abjad.tools import leaftools
 from abjad.tools import markuptools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
+from abjad.tools.scoretools import attach
 
 
 def label_leaves_in_expr_with_named_intervals(expr, markup_direction=Up):
@@ -50,6 +51,6 @@ def label_leaves_in_expr_with_named_intervals(expr, markup_direction=Up):
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
                     note, next_leaf)
                 markup = markuptools.Markup(mdi, markup_direction)
-                markup.attach(note)
+                attach(markup, note)
         except StopIteration:
             pass

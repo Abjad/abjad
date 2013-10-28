@@ -18,6 +18,7 @@ from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
+from abjad.tools.scoretools import attach
 
 
 # apply monkey patch
@@ -283,10 +284,10 @@ class LilyPondParser(abctools.Parser):
                             hasattr(spanner_class, 'direction'):
                             spanner = spanner_class(
                                 direction=span_event.direction)
-                            spanner.attach([leaf, next_leaf])
+                            attach(spanner, [leaf, next_leaf])
                         else:
                             spanner = spanner_class()
-                            spanner.attach([leaf, next_leaf])
+                            attach(spanner, [leaf, next_leaf])
 
                 # otherwise throw an error
                 else:
@@ -425,7 +426,13 @@ class LilyPondParser(abctools.Parser):
             token.lineno = 0
             self._push_extra_token(token)
 
-    def _construct_context_specced_music(self, context, optional_id, optional_context_mod, music):
+    def _construct_context_specced_music(
+        self, 
+        context, 
+        optional_id, 
+        optional_context_mod, 
+        music,
+        ):
         known_contexts = {
             'ChoirStaff': scoretools.StaffGroup,
             'GrandStaff': scoretools.GrandStaff,
@@ -457,7 +464,7 @@ class LilyPondParser(abctools.Parser):
 
         marks = music._start_marks
         for mark in marks:
-            mark.attach(context)
+            attach(mark, context)
 
         return context
 
@@ -478,16 +485,16 @@ class LilyPondParser(abctools.Parser):
                 and not isinstance(x, containertools.GraceContainer):
                 for mark in apply_forward:
                     if hasattr(mark, 'attach'):
-                        mark.attach(x)
+                        attach(mark, x)
                 if previous_leaf:
                     for mark in apply_backward:
                         if hasattr(mark, 'attach'):
-                            mark.attach(previous_leaf)
+                            attach(mark, previous_leaf)
                 else:
                     for mark in apply_backward:
                         if hasattr(mark, 'attach'):
                             mark.format_slot = 'before'
-                            mark.attach(x)
+                            attach(mark, x)
                 apply_forward = []
                 apply_backward = []
                 previous_leaf = x
@@ -507,19 +514,19 @@ class LilyPondParser(abctools.Parser):
             for mark in apply_forward:
                 if hasattr(mark, 'attach'):
                     mark.format_slot = 'after'
-                    mark.attach(previous_leaf)
+                    attach(mark, previous_leaf)
             for mark in apply_backward:
                 if hasattr(mark, 'attach'):
-                    mark.attach(previous_leaf)
+                    attach(mark, previous_leaf)
         else:
             for mark in apply_forward:
                 if hasattr(mark, 'attach'):
                     mark.format_slot = 'opening'
-                    mark.attach(container)
+                    attach(mark, container)
             for mark in apply_backward:
                 if hasattr(mark, 'attach'):
                     mark.format_slot = 'opening'
-                    mark.attach(container)
+                    attach(mark, container)
 
         return container
 
@@ -607,7 +614,7 @@ class LilyPondParser(abctools.Parser):
     def _process_post_events(self, leaf, post_events):
         for post_event in post_events:
             if hasattr(post_event, 'attach'):
-                post_event.attach(leaf)
+                attach(post_event, leaf)
             else:
                 annotation = [
                     x for x in leaf._get_marks(marktools.Annotation)
@@ -615,7 +622,7 @@ class LilyPondParser(abctools.Parser):
                     ]
                 if not annotation:
                     annotation = marktools.Annotation('spanners', [])
-                    annotation.attach(leaf)
+                    attach(annotation, leaf)
                 else:
                     annotation = annotation[0]
                 annotation.value.append(post_event)

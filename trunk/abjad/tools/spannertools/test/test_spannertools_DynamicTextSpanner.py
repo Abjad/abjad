@@ -8,9 +8,9 @@ def test_spannertools_DynamicTextSpanner_01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
     spanner = spannertools.DynamicTextSpanner(mark='f')
-    spanner.attach(voice[:2])
+    attach(spanner, voice[:2])
     spanner = spannertools.DynamicTextSpanner(mark='p')
-    spanner.attach(voice[2:])
+    attach(spanner, voice[2:])
 
     assert testtools.compare(
         voice,

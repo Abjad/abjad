@@ -11,7 +11,7 @@ class StemTremolo(Mark):
 
         >>> note = Note("c'4")
         >>> stem_tremolo = marktools.StemTremolo(16)
-        >>> stem_tremolo.attach(note)
+        >>> attach(stem_tremolo, note)
         StemTremolo(16)(c'4)
         >>> show(note) # doctest: +SKIP
 

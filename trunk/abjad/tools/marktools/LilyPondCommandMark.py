@@ -16,7 +16,7 @@ class LilyPondCommandMark(Mark):
     ::
 
         >>> command = marktools.LilyPondCommandMark('slurDotted')
-        >>> command.attach(staff[0])
+        >>> attach(command, staff[0])
         LilyPondCommandMark('slurDotted')(c'8)
 
     ..  doctest::
@@ -158,7 +158,7 @@ class LilyPondCommandMark(Mark):
 
             >>> note = Note("c'4")
             >>> command = marktools.LilyPondCommandMark('slurDotted')
-            >>> command = command.attach(note)
+            >>> command = attach(command, note)
             >>> command.lilypond_format
             '\\slurDotted'
 

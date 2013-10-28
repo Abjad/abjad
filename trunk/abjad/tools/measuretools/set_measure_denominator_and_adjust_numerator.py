@@ -44,6 +44,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
     Return `measure`.
     '''
     from abjad.tools import measuretools
+    from abjad.tools.scoretools import attach
 
     if isinstance(measure, measuretools.Measure):
         # to allow iteration inside zero-update loop
@@ -54,6 +55,6 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         new_time_signature = contexttools.TimeSignatureMark(new_time_signature)
         for mark in measure._get_marks(contexttools.TimeSignatureMark):
             mark.detach()
-        new_time_signature.attach(measure)
+        attach(new_time_signature, measure)
 
     return measure

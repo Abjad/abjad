@@ -6,6 +6,7 @@ from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.scoretools import attach
 
 
 class QGrid(AbjadObject):
@@ -120,7 +121,7 @@ class QGrid(AbjadObject):
                     for q_event_proxy in q_grid_leaf.q_event_proxies]
                 q_events.sort(key=lambda x: x.index)
                 annotation = marktools.Annotation('q_events', tuple(q_events))
-                annotation.attach(result_leaf)
+                attach(annotation, result_leaf)
         return result
 
     def __copy__(self, *args):

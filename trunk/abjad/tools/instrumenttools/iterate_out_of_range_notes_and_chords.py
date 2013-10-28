@@ -12,7 +12,7 @@ def iterate_out_of_range_notes_and_chords(expr):
 
         >>> staff = Staff("c'8 r8 <d fs>8 r8")
         >>> violin = instrumenttools.Violin()
-        >>> violin.attach(staff)
+        >>> attach(violin, staff)
         Violin()(Staff{4})
 
     ::

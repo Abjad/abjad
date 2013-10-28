@@ -10,7 +10,7 @@ def test_spannertools_Spanner_start_offset_01():
     beam = spannertools.BeamSpanner()
     attach(beam, container[1:3])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach([container])
+    attach(glissando, [container])
 
     assert testtools.compare(
         container,

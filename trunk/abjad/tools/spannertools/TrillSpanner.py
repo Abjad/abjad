@@ -10,7 +10,7 @@ class TrillSpanner(Spanner):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> trill = spannertools.TrillSpanner()
-        >>> trill.attach(staff[:])
+        >>> attach(trill, staff[:])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -73,7 +73,7 @@ class TrillSpanner(Spanner):
 
                     >>> t = Staff("c'8 d'8 e'8 f'8")
                     >>> trill = spannertools.TrillSpanner()
-                    >>> trill.attach(t[:2])
+                    >>> attach(trill, t[:2])
                     >>> trill.pitch = pitchtools.NamedPitch('cs', 4)
 
                 ..  doctest::

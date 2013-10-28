@@ -12,7 +12,7 @@ class FrenchHorn(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> french_horn = instrumenttools.FrenchHorn()
-        >>> french_horn = french_horn.attach(staff)
+        >>> french_horn = attach(french_horn, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

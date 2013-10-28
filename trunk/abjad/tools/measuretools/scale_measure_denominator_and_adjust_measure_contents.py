@@ -58,6 +58,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     '''
     from abjad.tools import measuretools
     from abjad.tools import timesignaturetools
+    from abjad.tools.scoretools import attach
 
     # save old time signature duration
     old_time_signature_duration = measure.time_signature.duration
@@ -74,7 +75,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     # assign new time signature
     for mark in measure._get_marks(contexttools.TimeSignatureMark):
         mark.detach()
-    new_time_signature.attach(measure)
+    attach(new_time_signature, measure)
 
     # return measure
     return measure

@@ -126,6 +126,7 @@ class Component(AbjadObject):
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         from abjad.tools import marktools
+        from abjad.tools.scoretools import attach
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
@@ -133,7 +134,7 @@ class Component(AbjadObject):
             new._set = copy.copy(self.set)
         for mark in self._get_marks():
             new_mark = copy.copy(mark)
-            new_mark.attach(new)
+            attach(new_mark, new)
         return new
 
     def _detach_grace_containers(self, kind=None):
@@ -498,9 +499,10 @@ class Component(AbjadObject):
         return component in temporal_successors
 
     def _move_marks(self, recipient_component):
+        from abjad.tools.scoretools import attach
         result = []
         for mark in self._get_marks():
-            result.append(mark.attach(recipient_component))
+            result.append(attach(mark, recipient_component))
         return tuple(result)
 
     # TODO: eventually reimplement as a keyword option to remove()
@@ -508,6 +510,7 @@ class Component(AbjadObject):
         from abjad.tools import contexttools
         from abjad.tools import measuretools
         from abjad.tools import tuplettools
+        from abjad.tools.scoretools import attach
         prolated_leaf_duration = self._get_duration()
         parentage = self._get_parentage(include_self=False)
         prolations = parentage._prolations
@@ -529,7 +532,7 @@ class Component(AbjadObject):
                 better_time_signature = contexttools.TimeSignatureMark(better_time_signature)
                 for mark in parent._get_marks(contexttools.TimeSignatureMark):
                     mark.detach()
-                better_time_signature.attach(parent)
+                attach(better_time_signature, parent)
                 parent_time_signature = parent._get_mark(
                     contexttools.TimeSignatureMark)
                 new_denominator = parent_time_signature.denominator

@@ -6,7 +6,7 @@ def test_marktools_LilyPondCommandMark_format_slot_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     command = marktools.LilyPondCommandMark('break', 'closing')
-    command.attach(staff[0])
+    attach(command, staff[0])
 
     assert testtools.compare(
         staff,

@@ -7,8 +7,8 @@ def test_contexttools_TempoMark_attach_01():
 
     score = Score(r"\new Staff { c'' d'' e'' f'' } \new Staff { c' d' e' f' }")
     tempo = contexttools.TempoMark((1, 8), 52)
-    tempo.attach(score[0][0])
+    attach(tempo, score[0][0])
 
     tempo = contexttools.TempoMark((1, 8), 52)
-    assert py.test.raises(ExtraMarkError, 'tempo.attach(score[0][0])')
-    assert py.test.raises(ExtraMarkError, 'tempo.attach(score[1][0])')
+    assert py.test.raises(ExtraMarkError, 'attach(tempo, score[0][0])')
+    assert py.test.raises(ExtraMarkError, 'attach(tempo, score[1][0])')

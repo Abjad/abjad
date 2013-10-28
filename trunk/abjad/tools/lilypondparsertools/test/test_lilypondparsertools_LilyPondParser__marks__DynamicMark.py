@@ -8,17 +8,17 @@ def test_lilypondparsertools_LilyPondParser__marks__DynamicMark_01():
 
     target = Staff(Note(-12, (1, 2)) * 6)
     dynamic = contexttools.DynamicMark('ppp')
-    dynamic.attach(target[0])
+    attach(dynamic, target[0])
     dynamic = contexttools.DynamicMark('mp')
-    dynamic.attach(target[1])
+    attach(dynamic, target[1])
     dynamic = contexttools.DynamicMark('rfz')
-    dynamic.attach(target[2])
+    attach(dynamic, target[2])
     dynamic = contexttools.DynamicMark('mf')
-    dynamic.attach(target[3])
+    attach(dynamic, target[3])
     dynamic = contexttools.DynamicMark('spp')
-    dynamic.attach(target[4])
+    attach(dynamic, target[4])
     dynamic = contexttools.DynamicMark('ff')
-    dynamic.attach(target[5])
+    attach(dynamic, target[5])
 
     string = r'''\new Staff { c2\ppp c\mp c2\rfz c\mf c2\spp c\ff }'''
 

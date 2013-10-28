@@ -12,14 +12,14 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
         >>> time_signature.detach()
         TimeSignatureMark((3, 8))
         >>> new_time_signature = contexttools.TimeSignatureMark((4, 8))
-        >>> new_time_signature.attach(staff[1])
+        >>> attach(new_time_signature, staff[1])
         TimeSignatureMark((4, 8))(|4/8 c'8 d'8 e'8|)
         >>> time_signature = inspect(
         ...     staff[2]).get_mark(contexttools.TimeSignatureMark)
         >>> time_signature.detach()
         TimeSignatureMark((3, 8))
         >>> new_time_signature = contexttools.TimeSignatureMark((5, 8))
-        >>> new_time_signature.attach(staff[2])
+        >>> attach(new_time_signature, staff[2])
         TimeSignatureMark((5, 8))(|5/8 c'8 d'8 e'8|)
         >>> staff[1].is_underfull
         True

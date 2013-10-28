@@ -14,6 +14,7 @@ from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import tuplettools
+from abjad.tools.scoretools import attach
 
 
 class ReducedLyParser(abctools.Parser):
@@ -322,7 +323,7 @@ class ReducedLyParser(abctools.Parser):
         p[0] = p[1]
         if p[2]:
             annotation = marktools.Annotation('post events', p[2])
-            annotation.attach(p[0])
+            attach(annotation, p[0])
 
     def p_leaf_body__chord_body(self, p):
         r'''leaf_body : chord_body

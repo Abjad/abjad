@@ -10,9 +10,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__TrillSpanner_01():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     trill = spannertools.TrillSpanner()
-    trill.attach(target[2:])
+    attach(trill, target[2:])
     trill = spannertools.TrillSpanner()
-    trill.attach(target[:3])
+    attach(trill, target[:3])
 
     assert testtools.compare(
         target,
@@ -37,9 +37,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__TrillSpanner_02():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     trill = spannertools.TrillSpanner()
-    trill.attach(target[2:])
+    attach(trill, target[2:])
     trill = spannertools.TrillSpanner()
-    trill.attach(target[:3])
+    attach(trill, target[:3])
 
     assert testtools.compare(
         target,

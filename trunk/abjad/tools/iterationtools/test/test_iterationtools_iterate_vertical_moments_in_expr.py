@@ -11,7 +11,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_01():
     piano_staff = scoretools.PianoStaff()
     piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     clef = contexttools.ClefMark('bass')
-    clef.attach(piano_staff[1])
+    attach(clef, piano_staff[1])
     score.append(piano_staff)
 
     assert testtools.compare(
@@ -77,7 +77,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_02():
     piano_staff = scoretools.PianoStaff()
     piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     clef = contexttools.ClefMark('bass')
-    clef.attach(piano_staff[1])
+    attach(clef, piano_staff[1])
     score.append(piano_staff)
 
     assert testtools.compare(
@@ -140,7 +140,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_03():
     piano_staff = scoretools.PianoStaff()
     piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     clef = contexttools.ClefMark('bass')
-    clef.attach(piano_staff[1])
+    attach(clef, piano_staff[1])
     score.append(piano_staff)
 
     assert testtools.compare(
@@ -205,7 +205,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_04():
     piano_staff = scoretools.PianoStaff()
     piano_staff.extend([Staff("a'4 g'4"), Staff("f'8 e'8 d'8 c'8")])
     clef = contexttools.ClefMark('bass')
-    clef.attach(piano_staff[1])
+    attach(clef, piano_staff[1])
     score.append(piano_staff)
 
     assert testtools.compare(

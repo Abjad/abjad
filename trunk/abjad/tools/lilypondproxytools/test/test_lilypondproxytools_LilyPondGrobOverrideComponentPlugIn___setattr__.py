@@ -275,7 +275,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___12()
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
     dynamic_text_spanner = spannertools.DynamicTextSpanner(mark='f')
-    dynamic_text_spanner.attach(voice[:])
+    attach(dynamic_text_spanner, voice[:])
     dynamic_text_spanner.override.dynamic_text.thickness = 3
 
     assert testtools.compare(
@@ -349,7 +349,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___15()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[:])
+    attach(glissando, voice[:])
     glissando.override.glissando.thickness = 3
 
     assert testtools.compare(
@@ -424,7 +424,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___18()
     staff = Staff("c'8 d'8 e'8 f'8")
     score = Score([staff])
     tempo = contexttools.TempoMark(Duration(1, 4), 58)
-    tempo.attach(staff[0])
+    attach(tempo, staff[0])
     score.override.metronome_mark.color = 'red'
 
     assert testtools.compare(
@@ -686,7 +686,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___30()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     octavation_spanner = spannertools.OctavationSpanner(start=1)
-    octavation_spanner.attach(voice[:])
+    attach(octavation_spanner, voice[:])
     octavation_spanner.override.staff.ottava_bracket.staff_position = 4
 
     assert testtools.compare(
@@ -758,7 +758,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___33()
 
     note = Note("c'4")
     articulation = marktools.Articulation('staccato')
-    articulation.attach(note)
+    attach(articulation, note)
     note.override.script.color = 'red'
 
     assert testtools.compare(
@@ -1077,7 +1077,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___45()
 
     staff = Staff("c'8 d'8 e'8 f'8")
     text_script_spanner = spannertools.TextScriptSpanner()
-    text_script_spanner.attach(staff[:])
+    attach(text_script_spanner, staff[:])
     text_script_spanner.override.text_script.color = 'red'
 
     assert testtools.compare(
@@ -1103,7 +1103,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___46()
 
     staff = Staff(notetools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
-    text_spanner.attach(staff[:])
+    attach(text_spanner, staff[:])
     text_spanner.override.text_spanner.font_shape = 'italic'
 
     assert testtools.compare(
@@ -1237,7 +1237,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___52()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     trill = spannertools.TrillSpanner()
-    trill.attach(voice[:])
+    attach(trill, voice[:])
     trill.override.trill_spanner.color = 'red'
 
     assert testtools.compare(

@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__marks__StemTremolo_01():
 
     target = Staff([Note(0, 1)])
     stem_tremolo = marktools.StemTremolo(4)
-    stem_tremolo.attach(target[0])
+    attach(stem_tremolo, target[0])
 
     assert testtools.compare(
         target,

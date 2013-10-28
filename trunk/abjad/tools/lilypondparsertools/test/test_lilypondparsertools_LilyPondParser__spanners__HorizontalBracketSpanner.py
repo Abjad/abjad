@@ -8,11 +8,11 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     bracket = spannertools.HorizontalBracketSpanner()
-    bracket.attach(target[:])
+    attach(bracket, target[:])
     bracket = spannertools.HorizontalBracketSpanner()
-    bracket.attach(target[:2])
+    attach(bracket, target[:2])
     bracket = spannertools.HorizontalBracketSpanner()
-    bracket.attach(target[2:])
+    attach(bracket, target[2:])
 
     assert testtools.compare(
         target,

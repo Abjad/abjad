@@ -44,13 +44,13 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_02():
     ])
 
     dynamic = contexttools.DynamicMark('p')
-    dynamic.attach(target[0])
+    attach(dynamic, target[0])
     articulation = marktools.Articulation('staccatissimo')
-    articulation.attach(target[2])
+    attach(articulation, target[2])
     markup = markuptools.Markup('text', Up)
-    markup.attach(target[3])
+    attach(markup, target[3])
     articulation = marktools.Articulation('staccatissimo')
-    articulation.attach(target[-1])
+    attach(articulation, target[-1])
 
     assert testtools.compare(
         target,

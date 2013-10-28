@@ -19,6 +19,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     from abjad.tools import measuretools
     from abjad.tools import timesignaturetools
     from abjad.tools import tuplettools
+    from abjad.tools.scoretools import attach
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         effective_time_signature = measure.time_signature
@@ -34,7 +35,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
                 contents_multiplier)
             for mark in measure._get_marks(contexttools.TimeSignatureMark):
                 mark.detach()
-            power_of_two_time_signature.attach(measure)
+            attach(power_of_two_time_signature, measure)
 
             # find target duration and create tuplet
             target_duration = time_signature_multiplier * measure._contents_duration

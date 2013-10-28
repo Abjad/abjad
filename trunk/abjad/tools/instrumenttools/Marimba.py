@@ -12,7 +12,7 @@ class Marimba(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> marimba = instrumenttools.Marimba()
-        >>> marimba.attach(staff)
+        >>> attach(marimba, staff)
         Marimba()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

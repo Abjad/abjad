@@ -12,8 +12,8 @@ def test_mutationtools_ScoreMutationAgent_split_01():
     staff.append(Measure((2, 8), "e'8 f'8"))
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -71,8 +71,8 @@ def test_mutationtools_ScoreMutationAgent_split_02():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -132,8 +132,8 @@ def test_mutationtools_ScoreMutationAgent_split_03():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -199,8 +199,8 @@ def test_mutationtools_ScoreMutationAgent_split_04():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -275,8 +275,8 @@ def test_mutationtools_ScoreMutationAgent_split_05():
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([measures[0]])
-    beam_2.attach([measures[1]])
+    attach(beam_1, [measures[0]])
+    attach(beam_2, [measures[1]])
 
     result = mutate(measures).split(
         [Duration(3, 32)],
@@ -334,8 +334,8 @@ def test_mutationtools_ScoreMutationAgent_split_06():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -395,8 +395,8 @@ def test_mutationtools_ScoreMutationAgent_split_07():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -457,8 +457,8 @@ def test_mutationtools_ScoreMutationAgent_split_08():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -525,8 +525,8 @@ def test_mutationtools_ScoreMutationAgent_split_09():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -601,8 +601,8 @@ def test_mutationtools_ScoreMutationAgent_split_10():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -660,8 +660,8 @@ def test_mutationtools_ScoreMutationAgent_split_11():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -721,8 +721,8 @@ def test_mutationtools_ScoreMutationAgent_split_12():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -787,8 +787,8 @@ def test_mutationtools_ScoreMutationAgent_split_13():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -898,8 +898,8 @@ def test_mutationtools_ScoreMutationAgent_split_15():
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([measures[0]])
-    beam_2.attach([measures[1]])
+    attach(beam_1, [measures[0]])
+    attach(beam_2, [measures[1]])
 
     result = mutate(measures).split(
         [Duration(3, 32)],
@@ -957,8 +957,8 @@ def test_mutationtools_ScoreMutationAgent_split_16():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -1018,8 +1018,8 @@ def test_mutationtools_ScoreMutationAgent_split_17():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -1080,8 +1080,8 @@ def test_mutationtools_ScoreMutationAgent_split_18():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -1147,8 +1147,8 @@ def test_mutationtools_ScoreMutationAgent_split_19():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -1223,8 +1223,8 @@ def test_mutationtools_ScoreMutationAgent_split_20():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -1289,8 +1289,8 @@ def test_mutationtools_ScoreMutationAgent_split_21():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -1359,8 +1359,8 @@ def test_mutationtools_ScoreMutationAgent_split_22():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 
@@ -1425,8 +1425,8 @@ def test_mutationtools_ScoreMutationAgent_split_23():
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam_1 = spannertools.BeamSpanner()
     beam_2 = spannertools.BeamSpanner()
-    beam_1.attach([staff[0]])
-    beam_2.attach([staff[1]])
+    attach(beam_1, [staff[0]])
+    attach(beam_2, [staff[1]])
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
 

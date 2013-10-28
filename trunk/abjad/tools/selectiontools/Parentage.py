@@ -20,7 +20,7 @@ class Parentage(SimultaneousSelection):
             >>> string = r"""\new Voice = "Bass Voice" { c4 }"""
             >>> bass_staff = Staff(string, name='Bass Staff')
             >>> clef = contexttools.ClefMark('bass')
-            >>> clef = clef.attach(bass_staff)
+            >>> clef = attach(clef, bass_staff)
             >>> score.append(bass_staff)
             >>> show(score) # doctest: +SKIP
 

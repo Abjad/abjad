@@ -12,7 +12,7 @@ class AltoSaxophone(Instrument):
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> alto_sax = instrumenttools.AltoSaxophone()
-        >>> alto_sax = alto_sax.attach(staff)
+        >>> alto_sax = attach(alto_sax, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -70,7 +70,7 @@ class AltoSaxophone(Instrument):
                     >>> for clef in alto_sax.allowable_clefs:
                     ...     skip = skiptools.Skip((1, 8))
                     ...     clef = copy.copy(clef)
-                    ...     clef = clef.attach(skip)
+                    ...     clef = attach(clef, skip)
                     ...     skips.append(skip)
                     >>> staff = Staff(skips)
                     >>> staff.override.clef.full_size_change = True

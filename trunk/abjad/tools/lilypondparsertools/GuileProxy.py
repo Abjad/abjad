@@ -9,6 +9,7 @@ from abjad.tools import pitchtools
 from abjad.tools import stafftools
 from abjad.tools import tuplettools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.scoretools import attach
 
 
 class GuileProxy(AbjadObject):
@@ -221,7 +222,7 @@ class GuileProxy(AbjadObject):
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
             annotation = marktools.Annotation('UnrelativableMusic')
-            annotation.attach(music)
+            attach(annotation, music)
 
     def _to_relative_octave(self, pitch, reference):
         if pitch.pitch_class_number > \

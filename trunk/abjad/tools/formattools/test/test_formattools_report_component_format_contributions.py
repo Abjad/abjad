@@ -12,15 +12,15 @@ def test_formattools_report_component_format_contributions_01():
     t.override.note_head.color = 'red'
     t.override.stem.color = 'red'
     articulation = marktools.Articulation('staccato')
-    articulation.attach(t)
+    attach(articulation, t)
     articulation = marktools.Articulation('tenuto')
-    articulation.attach(t)
+    attach(articulation, t)
     markup = markuptools.Markup('some markup', Down)
-    markup.attach(t)
+    attach(markup, t)
     comment = marktools.LilyPondComment('textual information before', 'before')
-    comment.attach(t)
+    attach(comment, t)
     comment = marktools.LilyPondComment('textual information after', 'after')
-    comment.attach(t)
+    attach(comment, t)
 
     r'''
     slot 1:

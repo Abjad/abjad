@@ -143,7 +143,7 @@ class QTarget(AbjadObject):
         tempo_marks = leaf_two._get_marks(contexttools.TempoMark)
         if tempo_marks:
             tempo = tempo_marks[0]
-            tempo.attach(new_leaf)
+            attach(tempo, new_leaf)
         leaf_two._get_parentage().parent[index] = new_leaf
         return new_leaf
 
@@ -189,7 +189,7 @@ class QTarget(AbjadObject):
                 leaf._get_parentage().parent.index(leaf)] = new_leaf
             if tempo_marks:
                 tempo = tempo_marks[0]
-                tempo.attach(new_leaf)
+                attach(tempo, new_leaf)
             tie = spannertools.TieSpanner()
             attach(tie, new_leaf)
             return new_leaf

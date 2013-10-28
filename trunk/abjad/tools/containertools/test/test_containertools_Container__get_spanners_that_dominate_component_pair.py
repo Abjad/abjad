@@ -12,9 +12,9 @@ def test_containertools_Container__get_spanners_that_dominate_component_pair_01(
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[1:])
+    attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -50,9 +50,9 @@ def test_containertools_Container__get_spanners_that_dominate_component_pair_02(
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[1:])
+    attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -90,9 +90,9 @@ def test_containertools_Container__get_spanners_that_dominate_component_pair_03(
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[1:])
+    attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -130,9 +130,9 @@ def test_containertools_Container__get_spanners_that_dominate_component_pair_04(
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[1:])
+    attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
-    trill.attach(voice.select_leaves())
+    attach(trill, voice.select_leaves())
 
     assert testtools.compare(
         voice,

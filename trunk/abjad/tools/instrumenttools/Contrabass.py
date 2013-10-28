@@ -12,10 +12,10 @@ class Contrabass(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> clef = contexttools.ClefMark('bass')
-        >>> clef.attach(staff)
+        >>> attach(clef, staff)
         ClefMark('bass')(Staff{4})
         >>> contrabass = instrumenttools.Contrabass()
-        >>> contrabass.attach(staff)
+        >>> attach(contrabass, staff)
         Contrabass()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

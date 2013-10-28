@@ -3,6 +3,7 @@ from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
+from abjad.tools.scoretools import attach
 
 
 def label_vertical_moments_in_expr_with_numbered_interval_classes(
@@ -107,4 +108,4 @@ def label_vertical_moments_in_expr_with_numbered_interval_classes(
                     for interval_class in interval_classes)),
             markup_direction,
             )
-        markup.attach(vertical_moment.start_leaves[-1])
+        attach(markup, vertical_moment.start_leaves[-1])

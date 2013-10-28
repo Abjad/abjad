@@ -12,10 +12,10 @@ class BassTrombone(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> clef = contexttools.ClefMark('bass')
-        >>> clef.attach(staff)
+        >>> attach(clef, staff)
         ClefMark('bass')(Staff{4})
         >>> trombone = instrumenttools.BassTrombone()
-        >>> trombone.attach(staff)
+        >>> attach(trombone, staff)
         BassTrombone()(Staff{4})
 
     ..  doctest::

@@ -9,7 +9,7 @@ def test_mutationtools_AttributeInspectionAgent_is_bar_line_crossing_01():
     staff = Staff("c'8 d'8 e'4 f'8")
     time_signature = contexttools.TimeSignatureMark(
         (2, 8), partial=Duration(1, 8))
-    time_signature.attach(staff)
+    attach(time_signature, staff)
 
     assert testtools.compare(
         staff,

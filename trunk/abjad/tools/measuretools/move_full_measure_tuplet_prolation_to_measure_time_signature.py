@@ -33,6 +33,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     from abjad.tools import contexttools
     from abjad.tools import iterationtools
     from abjad.tools import tuplettools
+    from abjad.tools.scoretools import attach
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         if len(measure) == 1:
@@ -49,7 +50,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 time_signature = contexttools.TimeSignatureMark((numerator, denominator))
                 for mark in measure._get_marks(contexttools.TimeSignatureMark):
                     mark.detach()
-                time_signature.attach(measure)
+                attach(time_signature, measure)
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation
                 written_adjustment = tuplet_multiplier / time_signature_multiplier

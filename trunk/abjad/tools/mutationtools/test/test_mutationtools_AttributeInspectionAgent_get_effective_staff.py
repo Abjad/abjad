@@ -11,7 +11,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_staff_01():
     piano[0].name = 'RH'
     piano[1].name = 'LH'
     staff_change = contexttools.StaffChangeMark(piano[1])
-    staff_change.attach(piano[0][0])
+    attach(staff_change, piano[0][0])
 
     assert testtools.compare(
         piano,
@@ -54,9 +54,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_staff_02():
     piano[0].name = 'RH'
     piano[1].name = 'LH'
     staff_change = contexttools.StaffChangeMark(piano[1])
-    staff_change.attach(piano[0][0])
+    attach(staff_change, piano[0][0])
     staff_change = contexttools.StaffChangeMark(piano[0])
-    staff_change.attach(piano[0][2])
+    attach(staff_change, piano[0][2])
 
     assert testtools.compare(
         piano,
@@ -100,7 +100,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_staff_03():
     piano[0].name = 'RH'
     piano[1].name = 'LH'
     staff_change = contexttools.StaffChangeMark(piano[1])
-    staff_change.attach(piano[0][-1])
+    attach(staff_change, piano[0][-1])
 
     assert testtools.compare(
         piano,
@@ -135,9 +135,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_staff_04():
     piano[0].name = 'RH'
     piano[1].name = 'LH'
     staff_change = contexttools.StaffChangeMark(piano[1])
-    staff_change.attach(piano[0][0])
+    attach(staff_change, piano[0][0])
     staff_change = contexttools.StaffChangeMark(piano[1])
-    staff_change.attach(piano[0][1])
+    attach(staff_change, piano[0][1])
 
     assert testtools.compare(
         piano,

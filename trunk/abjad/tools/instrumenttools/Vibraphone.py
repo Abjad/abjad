@@ -12,7 +12,7 @@ class Vibraphone(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> vibraphone = instrumenttools.Vibraphone()
-        >>> vibraphone.attach(staff)
+        >>> attach(vibraphone, staff)
         Vibraphone()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

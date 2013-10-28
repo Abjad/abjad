@@ -7,7 +7,7 @@ def test_spannertools_PianoPedalSpanner_01():
 
     staff = Staff(notetools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
-    piano_pedal_spanner.attach(staff[:])
+    attach(piano_pedal_spanner, staff[:])
 
     assert testtools.compare(
         staff,
@@ -34,7 +34,7 @@ def test_spannertools_PianoPedalSpanner_02():
     staff = Staff(notetools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     piano_pedal_spanner.kind = 'sostenuto'
-    piano_pedal_spanner.attach(staff[:])
+    attach(piano_pedal_spanner, staff[:])
 
     assert testtools.compare(
         staff,
@@ -59,7 +59,7 @@ def test_spannertools_PianoPedalSpanner_03():
     staff = Staff(notetools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     piano_pedal_spanner.kind = 'corda'
-    piano_pedal_spanner.attach(staff[:])
+    attach(piano_pedal_spanner, staff[:])
 
     assert testtools.compare(
         staff,
@@ -83,7 +83,7 @@ def test_spannertools_PianoPedalSpanner_04():
 
     staff = Staff(notetools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
-    piano_pedal_spanner.attach(staff[:])
+    attach(piano_pedal_spanner, staff[:])
     assert piano_pedal_spanner.kind == 'sustain'
     piano_pedal_spanner.style = 'text'
 
@@ -109,7 +109,7 @@ def test_spannertools_PianoPedalSpanner_05():
 
     staff = Staff(notetools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
-    piano_pedal_spanner.attach(staff[:])
+    attach(piano_pedal_spanner, staff[:])
     assert piano_pedal_spanner.kind == 'sustain'
     piano_pedal_spanner.style = 'bracket'
 
@@ -135,9 +135,9 @@ def test_spannertools_PianoPedalSpanner_06():
 
     staff = Staff(notetools.make_repeated_notes(8))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
-    piano_pedal_spanner.attach(staff[:4])
+    attach(piano_pedal_spanner, staff[:4])
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
-    piano_pedal_spanner.attach(staff[3:])
+    attach(piano_pedal_spanner, staff[3:])
 
     assert testtools.compare(
         staff,
@@ -166,7 +166,7 @@ def test_spannertools_PianoPedalSpanner_07():
 
     staff = Staff(notetools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
-    piano_pedal_spanner.attach(staff[:])
+    attach(piano_pedal_spanner, staff[:])
 
     assert py.test.raises(ValueError, 'piano_pedal_spanner.kind = "abc"')
     assert py.test.raises(ValueError, 'piano_pedal_spanner.style = "abc"')

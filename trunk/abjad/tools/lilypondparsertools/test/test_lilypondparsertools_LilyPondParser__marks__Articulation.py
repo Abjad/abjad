@@ -8,19 +8,19 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_01():
 
     target = Staff(notetools.make_notes(["c''"], [(1, 4)] * 6 + [(1, 2)]))
     articulation = marktools.Articulation('marcato', Up)
-    articulation.attach(target[0])
+    attach(articulation, target[0])
     articulation = marktools.Articulation('stopped', Down)
-    articulation.attach(target[1])
+    attach(articulation, target[1])
     articulation = marktools.Articulation('tenuto')
-    articulation.attach(target[2])
+    attach(articulation, target[2])
     articulation = marktools.Articulation('staccatissimo')
-    articulation.attach(target[3])
+    attach(articulation, target[3])
     articulation = marktools.Articulation('accent')
-    articulation.attach(target[4])
+    attach(articulation, target[4])
     articulation = marktools.Articulation('staccato')
-    articulation.attach(target[5])
+    attach(articulation, target[5])
     articulation = marktools.Articulation('portato')
-    articulation.attach(target[6])
+    attach(articulation, target[6])
 
     assert testtools.compare(
         target,
@@ -51,19 +51,19 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_02():
 
     target = Staff([Note("c'", (1, 4))])
     articulation = marktools.Articulation('marcato', Up)
-    articulation.attach(target[0])
+    attach(articulation, target[0])
     articulation = marktools.Articulation('stopped', Down)
-    articulation.attach(target[0])
+    attach(articulation, target[0])
     articulation = marktools.Articulation('tenuto')
-    articulation.attach(target[0])
+    attach(articulation, target[0])
     articulation = marktools.Articulation('staccatissimo')
-    articulation.attach(target[0])
+    attach(articulation, target[0])
     articulation = marktools.Articulation('accent')
-    articulation.attach(target[0])
+    attach(articulation, target[0])
     articulation = marktools.Articulation('staccato')
-    articulation.attach(target[0])
+    attach(articulation, target[0])
     articulation = marktools.Articulation('portato')
-    articulation.attach(target[0])
+    attach(articulation, target[0])
 
     r'''
     \new Staff {
@@ -88,13 +88,13 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_03():
         [(1, 4), (1, 4), (1, 2), (1, 1)]))
 
     articulation = marktools.Articulation('staccato')
-    articulation.attach(target[0])
+    attach(articulation, target[0])
     articulation = marktools.Articulation('mordent')
-    articulation.attach(target[1])
+    attach(articulation, target[1])
     articulation = marktools.Articulation('turn')
-    articulation.attach(target[2])
+    attach(articulation, target[2])
     articulation = marktools.Articulation('fermata')
-    articulation.attach(target[3])
+    attach(articulation, target[3])
 
     assert testtools.compare(
         target,

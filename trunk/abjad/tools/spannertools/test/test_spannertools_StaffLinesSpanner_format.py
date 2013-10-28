@@ -9,7 +9,7 @@ def test_spannertools_StaffLinesSpanner_format_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     spanner = spannertools.StaffLinesSpanner(lines=3)
-    spanner.attach(staff[2:7])
+    attach(spanner, staff[2:7])
 
     assert testtools.compare(
         staff,
@@ -43,7 +43,7 @@ def test_spannertools_StaffLinesSpanner_format_02():
     spanner = spannertools.StaffLinesSpanner(
         lines=[-5, -4, -3, -2, -1, 0, 1.5, 3, 4.5],
         )
-    spanner.attach(staff[2:7])
+    attach(spanner, staff[2:7])
 
     assert testtools.compare(
         staff,
@@ -74,7 +74,7 @@ def test_spannertools_StaffLinesSpanner_format_03():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     spanner = spannertools.StaffLinesSpanner(lines=1)
-    spanner.attach(staff[1:3])
+    attach(spanner, staff[1:3])
     spanner.lines = [-1.5, 0, 1.5]
 
     assert testtools.compare(

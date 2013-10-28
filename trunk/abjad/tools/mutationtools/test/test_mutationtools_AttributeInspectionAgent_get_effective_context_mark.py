@@ -19,7 +19,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff)
+    attach(clef, staff)
     for note in staff:
         clef = inspect(note).get_effective_context_mark(contexttools.ClefMark)
         assert clef == contexttools.ClefMark('treble')
@@ -32,7 +32,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_03():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     clef = contexttools.ClefMark('bass')
-    clef.attach(staff[4])
+    attach(clef, staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
             clef = inspect(note).get_effective_context_mark(
@@ -50,9 +50,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_04():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff[0])
+    attach(clef, staff[0])
     clef = contexttools.ClefMark('bass')
-    clef.attach(staff[4])
+    attach(clef, staff[4])
     result = [
         inspect(note).get_effective_context_mark(contexttools.ClefMark)
         for note in staff
@@ -71,9 +71,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_05():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff[0])
+    attach(clef, staff[0])
     clef = contexttools.ClefMark('bass')
-    clef.attach(staff[4])
+    attach(clef, staff[4])
     clef = inspect(staff[4]).get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
 
@@ -88,9 +88,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_06():
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff[0])
+    attach(clef, staff[0])
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff[4])
+    attach(clef, staff[4])
 
     assert testtools.compare(
         staff,
@@ -119,9 +119,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_07():
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     clef = contexttools.ClefMark('treble_8')
-    clef.attach(staff[0])
+    attach(clef, staff[0])
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff[4])
+    attach(clef, staff[4])
 
     assert testtools.compare(
         staff,
@@ -150,7 +150,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_08():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     clef = contexttools.ClefMark('alto')
-    clef.attach(staff[0])
+    attach(clef, staff[0])
     clef = inspect(staff[0]).get_effective_context_mark(contexttools.ClefMark)
     clef.detach()
 
@@ -163,7 +163,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_09():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     dynamic = contexttools.DynamicMark('f')
-    dynamic.attach(staff[2])
+    attach(dynamic, staff[2])
 
     assert testtools.compare(
         staff,
@@ -193,7 +193,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_10():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     flute = instrumenttools.Flute()
-    flute.attach(staff)
+    attach(flute, staff)
 
     assert testtools.compare(
         staff,
@@ -228,7 +228,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_11():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     key_signature = contexttools.KeySignatureMark('c', 'major')
-    key_signature.attach(staff)
+    attach(key_signature, staff)
 
     key_signature = inspect(staff).get_effective_context_mark(
         contexttools.KeySignatureMark)
@@ -266,9 +266,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_13():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)
-    tempo.attach(staff)
+    attach(tempo, staff)
     tempo = contexttools.TempoMark(Duration(1, 8), 42, target_context=Staff)
-    tempo.attach(staff[2])
+    attach(tempo, staff[2])
 
     assert testtools.compare(
         staff,
@@ -301,7 +301,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_14():
 
     staff = Staff([Chord([2, 3, 4], (1, 4))])
     tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)
-    tempo.attach(staff[0])
+    attach(tempo, staff[0])
 
     assert testtools.compare(
         staff,
@@ -320,7 +320,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_15():
 
     staff = Staff([Note("c'4")])
     tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)
-    tempo.attach(staff[0])
+    attach(tempo, staff[0])
 
     assert testtools.compare(
         staff,
@@ -339,7 +339,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_16():
 
     staff = Staff([Note("c'4")])
     tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context=Staff)
-    tempo.attach(staff[0])
+    attach(tempo, staff[0])
     tempo.detach()
 
     assert testtools.compare(
@@ -370,7 +370,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_18():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     time_signature = contexttools.TimeSignatureMark((2, 8))
-    time_signature.attach(staff[0])
+    attach(time_signature, staff[0])
 
     assert testtools.compare(
         staff,
@@ -397,7 +397,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_19():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     time_signature = contexttools.TimeSignatureMark((2, 8))
-    time_signature.attach(staff[0])
+    attach(time_signature, staff[0])
     time_signature.detach()
 
     assert testtools.compare(

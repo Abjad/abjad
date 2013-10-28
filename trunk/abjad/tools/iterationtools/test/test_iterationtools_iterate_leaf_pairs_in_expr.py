@@ -10,7 +10,7 @@ def test_iterationtools_iterate_leaf_pairs_in_expr_01():
     notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
     score.append(Staff(notes))
     clef = contexttools.ClefMark('bass')
-    clef.attach(score[1])
+    attach(clef, score[1])
 
     assert testtools.compare(
         score,

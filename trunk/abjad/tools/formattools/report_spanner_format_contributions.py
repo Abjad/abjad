@@ -7,7 +7,7 @@ def report_spanner_format_contributions(spanner):
 
         >>> staff = Staff("c8 d e f")
         >>> spanner = spannertools.BeamSpanner()
-        >>> spanner.attach(staff[:])
+        >>> attach(spanner, staff[:])
 
     ::
 

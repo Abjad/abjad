@@ -6,7 +6,7 @@ def test_spannertools_GlissandoSpanner_01():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(staff.select_leaves()[:4])
+    attach(glissando, staff.select_leaves()[:4])
 
     assert testtools.compare(
         staff,

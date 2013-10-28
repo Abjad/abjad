@@ -12,7 +12,7 @@ class BassVoice(Instrument):
 
         >>> staff = Staff("c8 d8 e8 f8")
         >>> bass = instrumenttools.BassVoice()
-        >>> bass.attach(staff)
+        >>> attach(bass, staff)
         BassVoice()(Staff{4})
 
     ..  doctest::

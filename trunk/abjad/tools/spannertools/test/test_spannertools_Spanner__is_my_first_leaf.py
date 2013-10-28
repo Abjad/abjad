@@ -15,7 +15,7 @@ def test_spannertools_Spanner__is_my_first_leaf_01():
 
     container = Container("c'8 cs'8 d'8 ef'8")
     spanner = MockSpanner()
-    spanner.attach(container)
+    attach(spanner, container)
 
     assert testtools.compare(
         container,
@@ -63,7 +63,7 @@ def test_spannertools_Spanner__is_my_first_leaf_02():
         )
 
     spanner = MockSpanner()
-    spanner.attach(container[:3])
+    attach(spanner, container[:3])
 
     assert testtools.compare(
         container,

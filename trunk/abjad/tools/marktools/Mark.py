@@ -37,7 +37,7 @@ class Mark(AbjadObject):
         if len(args) == 0:
             return self.detach()
         elif len(args) == 1:
-            return self.attach(args[0])
+            return attach(self, args[0])
         else:
             message = 'must call mark with at most 1 argument.'
             raise ValueError(message)

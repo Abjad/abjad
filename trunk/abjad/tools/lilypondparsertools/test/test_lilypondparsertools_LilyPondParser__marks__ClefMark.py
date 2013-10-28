@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__marks__ClefMark_01():
 
     target = Staff([Note(0, 1)])
     clef = contexttools.ClefMark('bass')
-    clef.attach(target[0])
+    attach(clef, target[0])
 
     assert testtools.compare(
         target,

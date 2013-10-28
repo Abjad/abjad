@@ -8,9 +8,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_01():
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
     command_1 = marktools.LilyPondCommandMark('slurDotted')
-    command_1.attach(staff[0])
+    attach(command_1, staff[0])
     command_2 = marktools.LilyPondCommandMark('slurUp')
-    command_2.attach(staff[0])
+    attach(command_2, staff[0])
 
     assert testtools.compare(
         staff,
@@ -38,9 +38,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_02():
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
     comment = marktools.LilyPondComment('beginning of note content')
-    comment.attach(staff[0])
+    attach(comment, staff[0])
     command = marktools.LilyPondCommandMark('slurDotted')
-    command.attach(staff[0])
+    attach(command, staff[0])
 
     assert testtools.compare(
         staff,
@@ -66,9 +66,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff)
+    attach(clef, staff)
     dynamic = contexttools.DynamicMark('p')
-    dynamic.attach(staff[0])
+    attach(dynamic, staff[0])
 
     assert testtools.compare(
         staff,
@@ -92,9 +92,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_04():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     clef = contexttools.ClefMark('treble')
-    clef.attach(staff)
+    attach(clef, staff)
     dynamic = contexttools.DynamicMark('p')
-    dynamic.attach(staff[0])
+    attach(dynamic, staff[0])
 
     assert testtools.compare(
         staff,
@@ -118,9 +118,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_05():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     annotation_1 = marktools.Annotation('annotation 1')
-    annotation_1.attach(staff[0])
+    attach(annotation_1, staff[0])
     annotation_2 = marktools.Annotation('annotation 2')
-    annotation_2.attach(staff[0])
+    attach(annotation_2, staff[0])
 
     assert testtools.compare(
         staff,
@@ -142,9 +142,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_06():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     comment_1 = marktools.LilyPondComment('comment 1')
-    comment_1.attach(staff[0])
+    attach(comment_1, staff[0])
     comment_2 = marktools.LilyPondComment('comment 2')
-    comment_2.attach(staff[0])
+    attach(comment_2, staff[0])
 
     assert testtools.compare(
         staff,
@@ -170,7 +170,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_07():
 
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)
-    stem_tremolo.attach(note)
+    attach(stem_tremolo, note)
     stem_tremolos = inspect(note).get_marks(marktools.StemTremolo)
 
     assert stem_tremolos[0] is stem_tremolo

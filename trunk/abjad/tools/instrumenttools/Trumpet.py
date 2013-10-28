@@ -12,7 +12,7 @@ class Trumpet(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> trumpet = instrumenttools.Trumpet()
-        >>> trumpet.attach(staff)
+        >>> attach(trumpet, staff)
         Trumpet()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

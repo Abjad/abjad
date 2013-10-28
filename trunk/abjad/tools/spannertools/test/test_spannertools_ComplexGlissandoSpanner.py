@@ -6,7 +6,7 @@ def test_spannertools_ComplexGlissandoSpanner_01():
 
     staff = Staff("c'8 d'8 r8 e'8")
     glissando = spannertools.ComplexGlissandoSpanner()
-    glissando.attach(staff.select_leaves())
+    attach(glissando, staff.select_leaves())
 
     assert testtools.compare(
         staff,

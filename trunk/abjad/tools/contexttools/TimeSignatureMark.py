@@ -14,7 +14,7 @@ class TimeSignatureMark(ContextMark):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> time_signature = contexttools.TimeSignatureMark((4, 8))
-        >>> time_signature.attach(staff[0])
+        >>> attach(time_signature, staff[0])
         TimeSignatureMark((4, 8))(c'8)
         >>> show(staff) # doctest: +SKIP
 
@@ -256,7 +256,7 @@ class TimeSignatureMark(ContextMark):
         ::
 
             >>> staff = Staff()
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((3, 8))(Staff{})
 
         ::
@@ -428,7 +428,7 @@ class TimeSignatureMark(ContextMark):
         ::
 
             >>> staff = Staff()
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((3, 8))(Staff{})
 
         ::
@@ -489,7 +489,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((3, 8))(Staff{})
 
         Returns time signature mark.
@@ -512,7 +512,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> time_signature.attach(staff)
+            >>> attach(time_signature, staff)
             TimeSignatureMark((3, 8))(Staff{})
 
         ::

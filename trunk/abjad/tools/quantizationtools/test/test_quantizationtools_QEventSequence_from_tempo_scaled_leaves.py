@@ -98,9 +98,9 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_02():
     attach(tie, staff[7:11])
 
     tempo = contexttools.TempoMark((1, 4), 58, target_context=Staff)
-    tempo.attach(staff[0])
+    attach(tempo, staff[0])
     tempo = contexttools.TempoMark((1, 4), 77, target_context=Staff)
-    tempo.attach(staff[9])
+    attach(tempo, staff[9])
 
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
         staff.select_leaves())

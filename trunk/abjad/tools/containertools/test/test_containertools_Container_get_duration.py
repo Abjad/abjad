@@ -10,9 +10,9 @@ def test_containertools_Container_get_duration_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     tempo = contexttools.TempoMark(Duration(1, 4), 38)
-    tempo.attach(staff)
+    attach(tempo, staff)
     tempo = contexttools.TempoMark(Duration(1, 4), 42)
-    tempo.attach(staff[2])
+    attach(tempo, staff[2])
     score = Score([staff])
 
     assert testtools.compare(

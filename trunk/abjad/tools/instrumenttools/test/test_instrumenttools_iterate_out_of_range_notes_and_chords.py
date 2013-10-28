@@ -6,7 +6,7 @@ def test_instrumenttools_iterate_out_of_range_notes_and_chords_01():
 
     staff = Staff("c'8 r8 <d fs>8 r8")
     violin = instrumenttools.Violin()
-    violin.attach(staff)
+    attach(violin, staff)
 
     leaves = instrumenttools.iterate_out_of_range_notes_and_chords(staff)
     leaves = list(leaves)

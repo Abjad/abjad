@@ -10,7 +10,7 @@ def test_mutationtools_ScoreMutationAgent_extract_01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[:])
+    attach(glissando, voice[:])
 
     assert testtools.compare(
         voice,
@@ -50,7 +50,7 @@ def test_mutationtools_ScoreMutationAgent_extract_02():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[:])
+    attach(glissando, voice[:])
 
     assert testtools.compare(
         voice,
@@ -143,7 +143,7 @@ def test_mutationtools_ScoreMutationAgent_extract_04():
     beam = spannertools.BeamSpanner()
     attach(beam, voice.select_leaves())
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice.select_leaves())
+    attach(glissando, voice.select_leaves())
 
     assert testtools.compare(
         voice,

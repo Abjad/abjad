@@ -12,7 +12,7 @@ class Guitar(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> guitar = instrumenttools.Guitar()
-        >>> guitar.attach(staff)
+        >>> attach(guitar, staff)
         Guitar()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

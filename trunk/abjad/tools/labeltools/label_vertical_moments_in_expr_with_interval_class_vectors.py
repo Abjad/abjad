@@ -2,6 +2,7 @@
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
+from abjad.tools.scoretools import attach
 
 
 def label_vertical_moments_in_expr_with_interval_class_vectors(
@@ -77,7 +78,7 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(
             pitches)
         formatted = _format_interval_class_vector(interval_class_vector)
         markup = markuptools.Markup(formatted, markup_direction)
-        markup.attach(vertical_moment.start_leaves[-1])
+        attach(markup, vertical_moment.start_leaves[-1])
 
 
 def _format_interval_class_vector(interval_class_vector):

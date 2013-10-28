@@ -11,7 +11,7 @@ def test_marktools_LilyPondCommandMark___init___01():
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
     command = marktools.LilyPondCommandMark(r'slurDotted')
-    command.attach(staff[0])
+    attach(command, staff[0])
 
     assert testtools.compare(
         staff,
@@ -37,7 +37,7 @@ def test_marktools_LilyPondCommandMark___init___02():
     slur = spannertools.SlurSpanner()
     attach(slur, staff.select_leaves())
     command = marktools.LilyPondCommandMark(r'slurUp')
-    command.attach(staff[0])
+    attach(command, staff[0])
 
     assert testtools.compare(
         staff,

@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__marks__TimeSignatureMark_01():
 
     target = Score([Staff([Note(0, 1)])])
     time_signature = contexttools.TimeSignatureMark((8, 8))
-    time_signature.attach(target.select_leaves()[0])
+    attach(time_signature, target.select_leaves()[0])
 
     assert testtools.compare(
         target,

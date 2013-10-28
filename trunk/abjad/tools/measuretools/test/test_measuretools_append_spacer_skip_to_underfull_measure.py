@@ -10,7 +10,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01():
     measure = Measure((4, 12), "c'8 d'8 e'8 f'8")
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
     time_signature = contexttools.TimeSignatureMark((5, 12))
-    time_signature.attach(measure)
+    attach(time_signature, measure)
     assert measure.is_underfull
 
     measuretools.append_spacer_skip_to_underfull_measure(measure)
@@ -41,7 +41,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_02():
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
     time_signature = contexttools.TimeSignatureMark((5, 8))
-    time_signature.attach(measure)
+    attach(time_signature, measure)
     assert measure.is_underfull
 
     measuretools.append_spacer_skip_to_underfull_measure(measure)

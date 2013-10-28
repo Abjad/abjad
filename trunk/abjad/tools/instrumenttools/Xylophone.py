@@ -12,7 +12,7 @@ class Xylophone(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> xylophone = instrumenttools.Xylophone()
-        >>> xylophone.attach(staff)
+        >>> attach(xylophone, staff)
         Xylophone()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 

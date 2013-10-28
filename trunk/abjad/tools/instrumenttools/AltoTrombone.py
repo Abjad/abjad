@@ -12,9 +12,9 @@ class AltoTrombone(Instrument):
 
         >>> staff = Staff("c4 d4 e4 f4")
         >>> clef = contexttools.ClefMark('bass')
-        >>> clef = clef.attach(staff)
+        >>> clef = attach(clef, staff)
         >>> alto_trombone = instrumenttools.AltoTrombone()
-        >>> alto_trombone = alto_trombone.attach(staff)
+        >>> alto_trombone = attach(alto_trombone, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -76,7 +76,7 @@ class AltoTrombone(Instrument):
                     >>> for clef in alto_trombone.allowable_clefs:
                     ...     skip = skiptools.Skip((1, 8))
                     ...     clef = copy.copy(clef)
-                    ...     clef = clef.attach(skip)
+                    ...     clef = attach(clef, skip)
                     ...     skips.append(skip)
                     >>> staff = Staff(skips)
                     >>> staff.override.clef.full_size_change = True
