@@ -541,7 +541,8 @@ class ReducedLyParser(abctools.Parser):
                     if previous_tie:
                         previous_tie[0].append(next_leaf)
                     else:
-                        spannertools.TieSpanner((leaf, next_leaf))
+                        tie = spannertools.TieSpanner()
+                        tie.attach((leaf, next_leaf))
 
                 elif current_class is spannertools.BeamSpanner:
                     # A beam may begin and end on the same leaf

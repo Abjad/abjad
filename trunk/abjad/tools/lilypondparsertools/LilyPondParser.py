@@ -281,12 +281,12 @@ class LilyPondParser(abctools.Parser):
                     else:
                         if hasattr(span_event, 'direction') and \
                             hasattr(spanner_class, 'direction'):
-                            spanner_class(
-                                [leaf, next_leaf], 
-                                direction=span_event.direction
-                                )
+                            spanner = spanner_class(
+                                direction=span_event.direction)
+                            spanner.attach([leaf, next_leaf])
                         else:
-                            spanner_class([leaf, next_leaf])
+                            spanner = spanner_class()
+                            spanner.attach([leaf, next_leaf])
 
                 # otherwise throw an error
                 else:
