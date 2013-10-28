@@ -5,17 +5,8 @@ from abjad import *
 def test_marktools_LilyPondCommandMark_format_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(staff)
-
-    r'''
-    \new Staff {
-        #(set-accidental-style 'forget)
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
+    command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
+    command.attach(staff)
 
     assert testtools.compare(
         staff,
@@ -34,17 +25,8 @@ def test_marktools_LilyPondCommandMark_format_01():
 def test_marktools_LilyPondCommandMark_format_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(staff[1])
-
-    r'''
-    \new Staff {
-        c'8
-        #(set-accidental-style 'forget)
-        d'8
-        e'8
-        f'8
-    }
-    '''
+    command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
+    command.attach(staff[1])
 
     assert testtools.compare(
         staff,
@@ -65,12 +47,8 @@ def test_marktools_LilyPondCommandMark_format_03():
     '''
 
     note = Note("c'4")
-    marktools.LilyPondCommandMark(r'break', 'after')(note)
-
-    r'''
-    c'4
-    \break
-    '''
+    command = marktools.LilyPondCommandMark(r'break', 'after')
+    command.attach(note)
 
     assert testtools.compare(
         note,
@@ -86,13 +64,8 @@ def test_marktools_LilyPondCommandMark_format_04():
     '''
 
     staff = Staff()
-    marktools.LilyPondCommandMark(r'break')(staff)
-
-    r'''
-    \new Staff {
-        \break
-    }
-    '''
+    command = marktools.LilyPondCommandMark(r'break')
+    command.attach(staff)
 
     assert testtools.compare(
         staff,
@@ -109,7 +82,8 @@ def test_marktools_LilyPondCommandMark_format_05():
     '''
 
     note = Note("c'4")
-    marktools.LilyPondCommandMark('flageolet', 'right')(note)
+    command = marktools.LilyPondCommandMark('flageolet', 'right')
+    command.attach(note)
     assert note.lilypond_format == "c'4 \\flageolet"
 
 
@@ -118,7 +92,8 @@ def test_marktools_LilyPondCommandMark_format_06():
     '''
 
     note = Note("c'4")
-    marktools.LilyPondCommandMark('flageolet', 'right')(note)
+    command = marktools.LilyPondCommandMark('flageolet', 'right')
+    command.attach(note)
     inspect(note).get_mark().detach()
     assert note.lilypond_format == "c'4"
 
@@ -126,14 +101,8 @@ def test_marktools_LilyPondCommandMark_format_06():
 def test_marktools_LilyPondCommandMark_format_07():
 
     staff = Staff([Note("c'4")])
-    marktools.LilyPondCommandMark('compressFullBarRests')(staff[0])
-
-    r'''
-    \new Staff {
-        \compressFullBarRests
-        c'4
-    }
-    '''
+    command = marktools.LilyPondCommandMark('compressFullBarRests')
+    command.attach(staff[0])
 
     assert testtools.compare(
         staff,
@@ -149,14 +118,8 @@ def test_marktools_LilyPondCommandMark_format_07():
 def test_marktools_LilyPondCommandMark_format_08():
 
     staff = Staff([Note("c'4")])
-    marktools.LilyPondCommandMark('expandFullBarRests')(staff[0])
-
-    r'''
-    \new Staff {
-        \expandFullBarRests
-        c'4
-    }
-    '''
+    command = marktools.LilyPondCommandMark('expandFullBarRests')
+    command.attach(staff[0])
 
     assert testtools.compare(
         staff,
@@ -174,7 +137,8 @@ def test_marktools_LilyPondCommandMark_format_09():
     '''
 
     voice = Voice(notetools.make_repeated_notes(4))
-    marktools.LilyPondCommandMark('voiceOne')(voice[0])
+    command = marktools.LilyPondCommandMark('voiceOne')
+    command.attach(voice[0])
 
     assert testtools.compare(
         voice,
@@ -196,7 +160,8 @@ def test_marktools_LilyPondCommandMark_format_10():
     '''
 
     voice = Voice(notetools.make_repeated_notes(4))
-    marktools.LilyPondCommandMark('voiceOne')(voice[0])
+    command = marktools.LilyPondCommandMark('voiceOne')
+    command.attach(voice[0])
     assert testtools.compare(
         voice,
         r'''
@@ -211,7 +176,8 @@ def test_marktools_LilyPondCommandMark_format_10():
         )
 
     inspect(voice[0]).get_mark().detach()
-    marktools.LilyPondCommandMark('voiceTwo')(voice[0])
+    command = marktools.LilyPondCommandMark('voiceTwo')
+    command.attach(voice[0])
     assert testtools.compare(
         voice,
         r'''
@@ -226,7 +192,8 @@ def test_marktools_LilyPondCommandMark_format_10():
         )
 
     inspect(voice[0]).get_mark().detach()
-    marktools.LilyPondCommandMark('voiceThree')(voice[0])
+    command = marktools.LilyPondCommandMark('voiceThree')
+    command.attach(voice[0])
     assert testtools.compare(
         voice,
         r'''
@@ -241,7 +208,8 @@ def test_marktools_LilyPondCommandMark_format_10():
         )
 
     inspect(voice[0]).get_mark().detach()
-    marktools.LilyPondCommandMark('voiceFour')(voice[0])
+    command = marktools.LilyPondCommandMark('voiceFour')
+    command.attach(voice[0])
     assert testtools.compare(
         voice,
         r'''
@@ -270,12 +238,15 @@ def test_marktools_LilyPondCommandMark_format_10():
 
 
 def test_marktools_LilyPondCommandMark_format_11():
-    r'''Voice number can be set on a Voice container and on one of the leaves contained in it.
+    r'''Voice number can be set on a Voice container and on one of the 
+    leaves contained in it.
     '''
 
     voice = Voice(notetools.make_repeated_notes(4))
-    marktools.LilyPondCommandMark('voiceOne')(voice)
-    marktools.LilyPondCommandMark('voiceTwo')(voice[1])
+    command = marktools.LilyPondCommandMark('voiceOne')
+    command.attach(voice)
+    command = marktools.LilyPondCommandMark('voiceTwo')
+    command.attach(voice[1])
     assert testtools.compare(
         voice,
         r'''

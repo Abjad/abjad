@@ -22,16 +22,6 @@ def test_contexttools_TimeSignatureMark_numerator_02():
     time_signature = contexttools.TimeSignatureMark((4, 8))(staff)
     time_signature.numerator = 2
 
-    r'''
-    \new Staff {
-        \time 2/8
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
     assert testtools.compare(
         staff,
         r'''

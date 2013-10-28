@@ -3,22 +3,29 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
+# TODO: dynamics should accept direction strings.
 def test_lilypondparsertools_LilyPondParser__marks__DynamicMark_01():
-    # TODO: Dynamics should accept direction strings. #
 
     target = Staff(Note(-12, (1, 2)) * 6)
-    contexttools.DynamicMark('ppp')(target[0])
-    contexttools.DynamicMark('mp')(target[1])
-    contexttools.DynamicMark('rfz')(target[2])
-    contexttools.DynamicMark('mf')(target[3])
-    contexttools.DynamicMark('spp')(target[4])
-    contexttools.DynamicMark('ff')(target[5])
+    dynamic = contexttools.DynamicMark('ppp')
+    dynamic.attach(target[0])
+    dynamic = contexttools.DynamicMark('mp')
+    dynamic.attach(target[1])
+    dynamic = contexttools.DynamicMark('rfz')
+    dynamic.attach(target[2])
+    dynamic = contexttools.DynamicMark('mf')
+    dynamic.attach(target[3])
+    dynamic = contexttools.DynamicMark('spp')
+    dynamic.attach(target[4])
+    dynamic = contexttools.DynamicMark('ff')
+    dynamic.attach(target[5])
 
-    input = r'''\new Staff { c2\ppp c\mp c2\rfz c\mf c2\spp c\ff }'''
+    string = r'''\new Staff { c2\ppp c\mp c2\rfz c\mf c2\spp c\ff }'''
 
     parser = LilyPondParser()
-    result = parser(input)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    result = parser(string)
+    assert target.lilypond_format == result.lilypond_format and \
+        target is not result
     for x in result:
         dynamic_marks = inspect(x).get_marks(contexttools.DynamicMark)
         assert len(dynamic_marks) == 1

@@ -15,11 +15,10 @@ class TempoMark(ContextMark):
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-
-    ::
-
-        >>> contexttools.TempoMark(Duration(1, 8), 52)(staff[0])
+        >>> tempo = contexttools.TempoMark(Duration(1, 8), 52)
+        >>> tempo.attach(staff[0])
         TempoMark(Duration(1, 8), 52)(c'8)
+        >>> show(score) # doctest: +SKIP
 
     ..  doctest::
 
@@ -33,10 +32,6 @@ class TempoMark(ContextMark):
                 f'8
             }
         >>
-
-    ::
-
-        >>> show(score) # doctest: +SKIP
 
     Tempo marks target **score** context by default.
 

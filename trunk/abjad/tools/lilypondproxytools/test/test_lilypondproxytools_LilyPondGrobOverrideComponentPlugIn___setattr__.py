@@ -423,7 +423,8 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___18()
 
     staff = Staff("c'8 d'8 e'8 f'8")
     score = Score([staff])
-    contexttools.TempoMark(Duration(1, 4), 58)(staff[0])
+    tempo = contexttools.TempoMark(Duration(1, 4), 58)
+    tempo.attach(staff[0])
     score.override.metronome_mark.color = 'red'
 
     assert testtools.compare(

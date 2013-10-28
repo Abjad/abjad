@@ -220,7 +220,8 @@ class GuileProxy(AbjadObject):
 
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
-            marktools.Annotation('UnrelativableMusic')(music)
+            annotation = marktools.Annotation('UnrelativableMusic')
+            annotation.attach(music)
 
     def _to_relative_octave(self, pitch, reference):
         if pitch.pitch_class_number > \

@@ -321,7 +321,8 @@ class ReducedLyParser(abctools.Parser):
         '''
         p[0] = p[1]
         if p[2]:
-            marktools.Annotation('post events', p[2])(p[0])
+            annotation = marktools.Annotation('post events', p[2])
+            annotation.attach(p[0])
 
     def p_leaf_body__chord_body(self, p):
         r'''leaf_body : chord_body

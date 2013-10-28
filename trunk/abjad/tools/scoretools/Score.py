@@ -98,7 +98,8 @@ class Score(Context):
         from abjad.tools import selectiontools
         selection = selectiontools.select(self)
         last_leaf = selection._get_component(leaftools.Leaf, -1)
-        double_bar = marktools.BarLine('|.')(last_leaf)
+        double_bar = marktools.BarLine('|.')
+        double_bar.attach(last_leaf)
         return double_bar
 
     def add_final_markup(self, markup, extra_offset=None):

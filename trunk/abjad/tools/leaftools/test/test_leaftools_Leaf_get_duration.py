@@ -8,20 +8,25 @@ def test_leaftools_Leaf_get_duration_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TempoMark(Duration(1, 4), 38)(staff)
-    contexttools.TempoMark(Duration(1, 4), 42)(staff[2])
+    tempo = contexttools.TempoMark(Duration(1, 4), 38)
+    tempo.attach(staff)
+    tempo = contexttools.TempoMark(Duration(1, 4), 42)
+    tempo.attach(staff[2])
     Score([staff])
 
-    r'''
-    \new Staff {
-        \tempo 4=38
-        c'8
-        d'8
-        \tempo 4=42
-        e'8
-        f'8
-    }
-    '''
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \tempo 4=38
+            c'8
+            d'8
+            \tempo 4=42
+            e'8
+            f'8
+        }
+        '''
+        )
 
     assert inspect(staff[0]).get_duration(in_seconds=True) == Duration(15, 19)
     assert inspect(staff[1]).get_duration(in_seconds=True) == Duration(15, 19)
@@ -34,5 +39,5 @@ def test_leaftools_Leaf_get_duration_02():
     '''
 
     note = Note("c'4")
-    assert py.test.raises(MissingTempoError, 
-        'inspect(note).get_duration(in_seconds=True)')
+    statement = 'inspect(note).get_duration(in_seconds=True)'
+    assert py.test.raises(MissingTempoError, statement)

@@ -8,11 +8,10 @@ class KeySignatureMark(ContextMark):
     ::
 
         >>> staff = Staff("e'8 fs'8 gs'8 a'8")
-
-    ::
-
-        >>> contexttools.KeySignatureMark('e', 'major')(staff)
+        >>> key_signature = contexttools.KeySignatureMark('e', 'major')
+        >>> key_signature.attach(staff)
         KeySignatureMark(NamedPitchClass('e'), Mode('major'))(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -24,10 +23,6 @@ class KeySignatureMark(ContextMark):
             gs'8
             a'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     Key signature marks target staff context by default.
     '''

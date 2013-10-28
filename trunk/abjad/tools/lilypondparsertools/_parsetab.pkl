@@ -52494,7 +52494,7 @@ S'p_event_chord__MULTI_MEASURE_REST__optional_notemode_duration__post_events'
 p472
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p473
-I1113
+I1114
 tp474
 a(S'event_chord -> command_element'
 p475
@@ -52505,7 +52505,7 @@ S'p_event_chord__command_element'
 p477
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p478
-I1122
+I1123
 tp479
 a(S'event_chord -> note_chord_element'
 p480
@@ -52516,7 +52516,7 @@ S'p_event_chord__note_chord_element'
 p482
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p483
-I1127
+I1128
 tp484
 a(S'event_chord -> simple_chord_elements post_events'
 p485
@@ -52527,7 +52527,7 @@ S'p_event_chord__simple_chord_elements__post_events'
 p487
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p488
-I1133
+I1134
 tp489
 a(S'event_function_event -> EVENT_FUNCTION function_arglist_closed'
 p490
@@ -52538,7 +52538,7 @@ S'p_event_function_event__EVENT_FUNCTION__function_arglist_closed'
 p492
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p493
-I1142
+I1143
 tp494
 a(S'exclamations -> <empty>'
 p495
@@ -52549,7 +52549,7 @@ S'p_exclamations__Empty'
 p497
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p498
-I1151
+I1152
 tp499
 a(S'exclamations -> exclamations !'
 p500
@@ -52560,7 +52560,7 @@ S'p_exclamations__exclamations__Chr33'
 p502
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p503
-I1156
+I1157
 tp504
 a(S'fingering -> UNSIGNED'
 p505
@@ -52571,7 +52571,7 @@ S'p_fingering__UNSIGNED'
 p507
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p508
-I1236
+I1237
 tp509
 a(S'fraction -> FRACTION'
 p510
@@ -52582,7 +52582,7 @@ S'p_fraction__FRACTION'
 p512
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p513
-I1245
+I1246
 tp514
 a(S'fraction -> UNSIGNED / UNSIGNED'
 p515
@@ -52593,7 +52593,7 @@ S'p_fraction__UNSIGNED__Chr47__UNSIGNED'
 p517
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p518
-I1250
+I1251
 tp519
 a(S'full_markup -> MARKUP_IDENTIFIER'
 p520
@@ -52604,7 +52604,7 @@ S'p_full_markup__MARKUP_IDENTIFIER'
 p522
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p523
-I1258
+I1259
 tp524
 a(S'full_markup -> MARKUP markup_top'
 p525
@@ -52615,7 +52615,7 @@ S'p_full_markup__MARKUP__markup_top'
 p527
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p528
-I1264
+I1265
 tp529
 a(S'full_markup_list -> MARKUPLIST_IDENTIFIER'
 p530
@@ -52626,7 +52626,7 @@ S'p_full_markup_list__MARKUPLIST_IDENTIFIER'
 p532
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p533
-I1274
+I1275
 tp534
 a(S'full_markup_list -> MARKUPLIST markup_list'
 p535
@@ -52637,7 +52637,7 @@ S'p_full_markup_list__MARKUPLIST__markup_list'
 p537
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p538
-I1281
+I1282
 tp539
 a(S'function_arglist -> function_arglist_common'
 p540
@@ -52648,7 +52648,7 @@ S'p_function_arglist__function_arglist_common'
 p542
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p543
-I1291
+I1292
 tp544
 a(S'function_arglist -> function_arglist_nonbackup'
 p545
@@ -52659,7 +52659,7 @@ S'p_function_arglist__function_arglist_nonbackup'
 p547
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p548
-I1296
+I1297
 tp549
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_keep duration_length'
 p550
@@ -52670,7 +52670,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_
 p552
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p553
-I1304
+I1305
 tp554
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_keep pitch_also_in_chords'
 p555
@@ -52681,7 +52681,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_kee
 p557
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p558
-I1309
+I1310
 tp559
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_backup BACKUP'
 p560
@@ -52692,7 +52692,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_backu
 p562
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p563
-I1314
+I1315
 tp564
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep - NUMBER_IDENTIFIER'
 p565
@@ -52703,7 +52703,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_close
 p567
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p568
-I1320
+I1321
 tp569
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep - REAL'
 p570
@@ -52714,7 +52714,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_close
 p572
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p573
-I1329
+I1330
 tp574
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep - UNSIGNED'
 p575
@@ -52725,7 +52725,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_close
 p577
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p578
-I1339
+I1340
 tp579
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep FRACTION'
 p580
@@ -52736,7 +52736,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_close
 p582
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p583
-I1351
+I1352
 tp584
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep NUMBER_IDENTIFIER'
 p585
@@ -52747,7 +52747,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_close
 p587
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p588
-I1360
+I1361
 tp589
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep REAL'
 p590
@@ -52758,7 +52758,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_close
 p592
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p593
-I1369
+I1370
 tp594
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep UNSIGNED'
 p595
@@ -52769,7 +52769,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_close
 p597
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p598
-I1379
+I1380
 tp599
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep post_event_nofinger'
 p600
@@ -52780,7 +52780,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_close
 p602
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p603
-I1389
+I1390
 tp604
 a(S'function_arglist_backup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm_arg_closed'
 p605
@@ -52791,7 +52791,7 @@ S'p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep_
 p607
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p608
-I1398
+I1399
 tp609
 a(S'function_arglist_backup -> function_arglist_backup REPARSE bare_number'
 p610
@@ -52802,7 +52802,7 @@ S'p_function_arglist_backup__function_arglist_backup__REPARSE__bare_number'
 p612
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p613
-I1416
+I1417
 tp614
 a(S'function_arglist_backup -> function_arglist_backup REPARSE embedded_scm_arg_closed'
 p615
@@ -52813,7 +52813,7 @@ S'p_function_arglist_backup__function_arglist_backup__REPARSE__embedded_scm_arg_
 p617
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p618
-I1421
+I1422
 tp619
 a(S'function_arglist_backup -> function_arglist_backup REPARSE fraction'
 p620
@@ -52824,7 +52824,7 @@ S'p_function_arglist_backup__function_arglist_backup__REPARSE__fraction'
 p622
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p623
-I1426
+I1427
 tp624
 a(S'function_arglist_bare -> EXPECT_DURATION function_arglist_closed_optional duration_length'
 p625
@@ -52835,7 +52835,7 @@ S'p_function_arglist_bare__EXPECT_DURATION__function_arglist_closed_optional__du
 p627
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p628
-I1434
+I1435
 tp629
 a(S'function_arglist_bare -> EXPECT_NO_MORE_ARGS'
 p630
@@ -52846,7 +52846,7 @@ S'p_function_arglist_bare__EXPECT_NO_MORE_ARGS'
 p632
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p633
-I1439
+I1440
 tp634
 a(S'function_arglist_bare -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_skip DEFAULT'
 p635
@@ -52857,7 +52857,7 @@ S'p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_sk
 p637
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p638
-I1444
+I1445
 tp639
 a(S'function_arglist_bare -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_skip DEFAULT'
 p640
@@ -52868,7 +52868,7 @@ S'p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_skip_
 p642
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p643
-I1449
+I1450
 tp644
 a(S'function_arglist_bare -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_skip DEFAULT'
 p645
@@ -52879,7 +52879,7 @@ S'p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_skip__D
 p647
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p648
-I1454
+I1455
 tp649
 a(S'function_arglist_bare -> EXPECT_PITCH function_arglist_optional pitch_also_in_chords'
 p650
@@ -52890,7 +52890,7 @@ S'p_function_arglist_bare__EXPECT_PITCH__function_arglist_optional__pitch_also_i
 p652
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p653
-I1459
+I1460
 tp654
 a(S'function_arglist_closed -> function_arglist_closed_common'
 p655
@@ -52901,7 +52901,7 @@ S'p_function_arglist_closed__function_arglist_closed_common'
 p657
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p658
-I1467
+I1468
 tp659
 a(S'function_arglist_closed -> function_arglist_nonbackup'
 p660
@@ -52912,7 +52912,7 @@ S'p_function_arglist_closed__function_arglist_nonbackup'
 p662
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p663
-I1472
+I1473
 tp664
 a(S'function_arglist_closed_common -> EXPECT_SCM function_arglist_closed_optional - NUMBER_IDENTIFIER'
 p665
@@ -52923,7 +52923,7 @@ S'p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional
 p667
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p668
-I1480
+I1481
 tp669
 a(S'function_arglist_closed_common -> EXPECT_SCM function_arglist_closed_optional - REAL'
 p670
@@ -52934,7 +52934,7 @@ S'p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional
 p672
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p673
-I1485
+I1486
 tp674
 a(S'function_arglist_closed_common -> EXPECT_SCM function_arglist_closed_optional - UNSIGNED'
 p675
@@ -52945,7 +52945,7 @@ S'p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional
 p677
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p678
-I1490
+I1491
 tp679
 a(S'function_arglist_closed_common -> EXPECT_SCM function_arglist_closed_optional bare_number'
 p680
@@ -52956,7 +52956,7 @@ S'p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional
 p682
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p683
-I1495
+I1496
 tp684
 a(S'function_arglist_closed_common -> EXPECT_SCM function_arglist_closed_optional fraction'
 p685
@@ -52967,7 +52967,7 @@ S'p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional
 p687
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p688
-I1500
+I1501
 tp689
 a(S'function_arglist_closed_common -> EXPECT_SCM function_arglist_closed_optional post_event_nofinger'
 p690
@@ -52978,7 +52978,7 @@ S'p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional
 p692
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p693
-I1505
+I1506
 tp694
 a(S'function_arglist_closed_common -> EXPECT_SCM function_arglist_optional embedded_scm_arg_closed'
 p695
@@ -52989,7 +52989,7 @@ S'p_function_arglist_closed_common__EXPECT_SCM__function_arglist_optional__embed
 p697
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p698
-I1510
+I1511
 tp699
 a(S'function_arglist_closed_common -> function_arglist_bare'
 p700
@@ -53000,7 +53000,7 @@ S'p_function_arglist_closed_common__function_arglist_bare'
 p702
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p703
-I1520
+I1521
 tp704
 a(S'function_arglist_closed_keep -> function_arglist_backup'
 p705
@@ -53011,7 +53011,7 @@ S'p_function_arglist_closed_keep__function_arglist_backup'
 p707
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p708
-I1528
+I1529
 tp709
 a(S'function_arglist_closed_keep -> function_arglist_closed_common'
 p710
@@ -53022,7 +53022,7 @@ S'p_function_arglist_closed_keep__function_arglist_closed_common'
 p712
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p713
-I1533
+I1534
 tp714
 a(S'function_arglist_closed_optional -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_optional'
 p715
@@ -53033,7 +53033,7 @@ S'p_function_arglist_closed_optional__EXPECT_OPTIONAL__EXPECT_DURATION__function
 p717
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p718
-I1541
+I1542
 tp719
 a(S'function_arglist_closed_optional -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_closed_optional'
 p720
@@ -53044,7 +53044,7 @@ S'p_function_arglist_closed_optional__EXPECT_OPTIONAL__EXPECT_PITCH__function_ar
 p722
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p723
-I1546
+I1547
 tp724
 a(S'function_arglist_closed_optional -> function_arglist_backup BACKUP'
 p725
@@ -53055,7 +53055,7 @@ S'p_function_arglist_closed_optional__function_arglist_backup__BACKUP'
 p727
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p728
-I1551
+I1552
 tp729
 a(S'function_arglist_closed_optional -> function_arglist_closed_keep'
 p730
@@ -53066,7 +53066,7 @@ S'p_function_arglist_closed_optional__function_arglist_closed_keep'
 p732
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p733
-I1556
+I1557
 tp734
 a(S'function_arglist_common -> EXPECT_SCM function_arglist_closed_optional bare_number'
 p735
@@ -53077,7 +53077,7 @@ S'p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__bare_
 p737
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p738
-I1564
+I1565
 tp739
 a(S'function_arglist_common -> EXPECT_SCM function_arglist_closed_optional fraction'
 p740
@@ -53088,7 +53088,7 @@ S'p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__fract
 p742
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p743
-I1569
+I1570
 tp744
 a(S'function_arglist_common -> EXPECT_SCM function_arglist_closed_optional post_event_nofinger'
 p745
@@ -53099,7 +53099,7 @@ S'p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__post_
 p747
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p748
-I1574
+I1575
 tp749
 a(S'function_arglist_common -> EXPECT_SCM function_arglist_optional embedded_scm_arg'
 p750
@@ -53110,7 +53110,7 @@ S'p_function_arglist_common__EXPECT_SCM__function_arglist_optional__embedded_scm
 p752
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p753
-I1579
+I1580
 tp754
 a(S'function_arglist_common -> function_arglist_bare'
 p755
@@ -53121,7 +53121,7 @@ S'p_function_arglist_common__function_arglist_bare'
 p757
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p758
-I1584
+I1585
 tp759
 a(S'function_arglist_common -> function_arglist_common_minus'
 p760
@@ -53132,7 +53132,7 @@ S'p_function_arglist_common__function_arglist_common_minus'
 p762
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p763
-I1594
+I1595
 tp764
 a(S'function_arglist_common_minus -> EXPECT_SCM function_arglist_closed_optional - NUMBER_IDENTIFIER'
 p765
@@ -53143,7 +53143,7 @@ S'p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional_
 p767
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p768
-I1615
+I1616
 tp769
 a(S'function_arglist_common_minus -> EXPECT_SCM function_arglist_closed_optional - REAL'
 p770
@@ -53154,7 +53154,7 @@ S'p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional_
 p772
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p773
-I1620
+I1621
 tp774
 a(S'function_arglist_common_minus -> EXPECT_SCM function_arglist_closed_optional - UNSIGNED'
 p775
@@ -53165,7 +53165,7 @@ S'p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional_
 p777
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p778
-I1625
+I1626
 tp779
 a(S'function_arglist_common_minus -> function_arglist_common_minus REPARSE bare_number'
 p780
@@ -53176,7 +53176,7 @@ S'p_function_arglist_common_minus__function_arglist_common_minus__REPARSE__bare_
 p782
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p783
-I1630
+I1631
 tp784
 a(S'function_arglist_keep -> function_arglist_backup'
 p785
@@ -53187,7 +53187,7 @@ S'p_function_arglist_keep__function_arglist_backup'
 p787
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p788
-I1638
+I1639
 tp789
 a(S'function_arglist_keep -> function_arglist_common'
 p790
@@ -53198,7 +53198,7 @@ S'p_function_arglist_keep__function_arglist_common'
 p792
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p793
-I1643
+I1644
 tp794
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed duration_length'
 p795
@@ -53209,7 +53209,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_DURATION__function_argli
 p797
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p798
-I1651
+I1652
 tp799
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist pitch_also_in_chords'
 p800
@@ -53220,7 +53220,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_
 p802
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p803
-I1656
+I1657
 tp804
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist embedded_scm_arg_closed'
 p805
@@ -53231,7 +53231,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist__e
 p807
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p808
-I1661
+I1662
 tp809
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed - NUMBER_IDENTIFIER'
 p810
@@ -53242,7 +53242,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_cl
 p812
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p813
-I1666
+I1667
 tp814
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed - REAL'
 p815
@@ -53253,7 +53253,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_cl
 p817
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p818
-I1671
+I1672
 tp819
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed - UNSIGNED'
 p820
@@ -53264,7 +53264,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_cl
 p822
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p823
-I1676
+I1677
 tp824
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed FRACTION'
 p825
@@ -53275,7 +53275,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_cl
 p827
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p828
-I1681
+I1682
 tp829
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed bare_number_closed'
 p830
@@ -53286,7 +53286,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_cl
 p832
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p833
-I1686
+I1687
 tp834
 a(S'function_arglist_nonbackup -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed post_event_nofinger'
 p835
@@ -53297,7 +53297,7 @@ S'p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_cl
 p837
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p838
-I1691
+I1692
 tp839
 a(S'function_arglist_optional -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_optional'
 p840
@@ -53308,7 +53308,7 @@ S'p_function_arglist_optional__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglis
 p842
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p843
-I1699
+I1700
 tp844
 a(S'function_arglist_optional -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_optional'
 p845
@@ -53319,7 +53319,7 @@ S'p_function_arglist_optional__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_o
 p847
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p848
-I1704
+I1705
 tp849
 a(S'function_arglist_optional -> function_arglist_backup BACKUP'
 p850
@@ -53330,7 +53330,7 @@ S'p_function_arglist_optional__function_arglist_backup__BACKUP'
 p852
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p853
-I1709
+I1710
 tp854
 a(S'function_arglist_optional -> function_arglist_keep'
 p855
@@ -53341,7 +53341,7 @@ S'p_function_arglist_optional__function_arglist_keep'
 p857
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p858
-I1714
+I1715
 tp859
 a(S'function_arglist_skip -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_skip'
 p860
@@ -53352,7 +53352,7 @@ S'p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_sk
 p862
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p863
-I1722
+I1723
 tp864
 a(S'function_arglist_skip -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_skip'
 p865
@@ -53363,7 +53363,7 @@ S'p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_skip'
 p867
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p868
-I1727
+I1728
 tp869
 a(S'function_arglist_skip -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_skip'
 p870
@@ -53374,7 +53374,7 @@ S'p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_skip'
 p872
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p873
-I1732
+I1733
 tp874
 a(S'function_arglist_skip -> function_arglist_common'
 p875
@@ -53385,7 +53385,7 @@ S'p_function_arglist_skip__function_arglist_common'
 p877
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p878
-I1737
+I1738
 tp879
 a(S'gen_text_def -> full_markup'
 p880
@@ -53396,7 +53396,7 @@ S'p_gen_text_def__full_markup'
 p882
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p883
-I1745
+I1746
 tp884
 a(S'gen_text_def -> simple_string'
 p885
@@ -53407,7 +53407,7 @@ S'p_gen_text_def__simple_string'
 p887
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p888
-I1750
+I1751
 tp889
 a(S'grouped_music_list -> sequential_music'
 p890
@@ -53418,7 +53418,7 @@ S'p_grouped_music_list__sequential_music'
 p892
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p893
-I1758
+I1759
 tp894
 a(S'grouped_music_list -> simultaneous_music'
 p895
@@ -53429,7 +53429,7 @@ S'p_grouped_music_list__simultaneous_music'
 p897
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p898
-I1763
+I1764
 tp899
 a(S'identifier_init -> context_def_spec_block'
 p900
@@ -53440,7 +53440,7 @@ S'p_identifier_init__context_def_spec_block'
 p902
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p903
-I1783
+I1784
 tp904
 a(S'identifier_init -> context_modification'
 p905
@@ -53451,7 +53451,7 @@ S'p_identifier_init__context_modification'
 p907
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p908
-I1789
+I1790
 tp909
 a(S'identifier_init -> embedded_scm'
 p910
@@ -53462,7 +53462,7 @@ S'p_identifier_init__embedded_scm'
 p912
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p913
-I1795
+I1796
 tp914
 a(S'identifier_init -> full_markup'
 p915
@@ -53473,7 +53473,7 @@ S'p_identifier_init__full_markup'
 p917
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p918
-I1801
+I1802
 tp919
 a(S'identifier_init -> full_markup_list'
 p920
@@ -53484,7 +53484,7 @@ S'p_identifier_init__full_markup_list'
 p922
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p923
-I1807
+I1808
 tp924
 a(S'identifier_init -> music'
 p925
@@ -53495,7 +53495,7 @@ S'p_identifier_init__music'
 p927
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p928
-I1813
+I1814
 tp929
 a(S'identifier_init -> number_expression'
 p930
@@ -53506,7 +53506,7 @@ S'p_identifier_init__number_expression'
 p932
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p933
-I1819
+I1820
 tp934
 a(S'identifier_init -> output_def'
 p935
@@ -53517,7 +53517,7 @@ S'p_identifier_init__output_def'
 p937
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p938
-I1825
+I1826
 tp939
 a(S'identifier_init -> post_event_nofinger'
 p940
@@ -53528,7 +53528,7 @@ S'p_identifier_init__post_event_nofinger'
 p942
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p943
-I1831
+I1832
 tp944
 a(S'identifier_init -> score_block'
 p945
@@ -53539,7 +53539,7 @@ S'p_identifier_init__score_block'
 p947
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p948
-I1837
+I1838
 tp949
 a(S'identifier_init -> string'
 p950
@@ -53550,7 +53550,7 @@ S'p_identifier_init__string'
 p952
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p953
-I1843
+I1844
 tp954
 a(S'lilypond -> <empty>'
 p955
@@ -53561,7 +53561,7 @@ S'p_lilypond__Empty'
 p957
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p958
-I1852
+I1853
 tp959
 a(S'lilypond -> lilypond assignment'
 p960
@@ -53572,7 +53572,7 @@ S'p_lilypond__lilypond__assignment'
 p962
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p963
-I1862
+I1863
 tp964
 a(S'lilypond -> lilypond error'
 p965
@@ -53583,7 +53583,7 @@ S'p_lilypond__lilypond__error'
 p967
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p968
-I1869
+I1870
 tp969
 a(S'lilypond -> lilypond toplevel_expression'
 p970
@@ -53594,7 +53594,7 @@ S'p_lilypond__lilypond__toplevel_expression'
 p972
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p973
-I1874
+I1875
 tp974
 a(S'lilypond_header -> HEADER { lilypond_header_body }'
 p975
@@ -53605,7 +53605,7 @@ S'p_lilypond_header__HEADER__Chr123__lilypond_header_body__Chr125'
 p977
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p978
-I1882
+I1883
 tp979
 a(S'lilypond_header_body -> <empty>'
 p980
@@ -53616,7 +53616,7 @@ S'p_lilypond_header_body__Empty'
 p982
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p983
-I1891
+I1892
 tp984
 a(S'lilypond_header_body -> lilypond_header_body assignment'
 p985
@@ -53627,7 +53627,7 @@ S'p_lilypond_header_body__lilypond_header_body__assignment'
 p987
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p988
-I1897
+I1898
 tp989
 a(S'markup -> markup_head_1_list simple_markup'
 p990
@@ -53638,7 +53638,7 @@ S'p_markup__markup_head_1_list__simple_markup'
 p992
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p993
-I1974
+I1975
 tp994
 a(S'markup -> simple_markup'
 p995
@@ -53649,7 +53649,7 @@ S'p_markup__simple_markup'
 p997
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p998
-I1985
+I1986
 tp999
 a(S'markup_braced_list -> { markup_braced_list_body }'
 p1000
@@ -53660,7 +53660,7 @@ S'p_markup_braced_list__Chr123__markup_braced_list_body__Chr125'
 p1002
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1003
-I1993
+I1994
 tp1004
 a(S'markup_braced_list_body -> <empty>'
 p1005
@@ -53671,7 +53671,7 @@ S'p_markup_braced_list_body__Empty'
 p1007
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1008
-I2001
+I2002
 tp1009
 a(S'markup_braced_list_body -> markup_braced_list_body markup'
 p1010
@@ -53682,7 +53682,7 @@ S'p_markup_braced_list_body__markup_braced_list_body__markup'
 p1012
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1013
-I2006
+I2007
 tp1014
 a(S'markup_braced_list_body -> markup_braced_list_body markup_list'
 p1015
@@ -53693,7 +53693,7 @@ S'p_markup_braced_list_body__markup_braced_list_body__markup_list'
 p1017
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1018
-I2011
+I2012
 tp1019
 a(S'markup_command_basic_arguments -> EXPECT_MARKUP_LIST markup_command_list_arguments markup_list'
 p1020
@@ -53704,7 +53704,7 @@ S'p_markup_command_basic_arguments__EXPECT_MARKUP_LIST__markup_command_list_argu
 p1022
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1023
-I2019
+I2020
 tp1024
 a(S'markup_command_basic_arguments -> EXPECT_NO_MORE_ARGS'
 p1025
@@ -53715,7 +53715,7 @@ S'p_markup_command_basic_arguments__EXPECT_NO_MORE_ARGS'
 p1027
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1028
-I2024
+I2025
 tp1029
 a(S'markup_command_basic_arguments -> EXPECT_SCM markup_command_list_arguments embedded_scm_closed'
 p1030
@@ -53726,7 +53726,7 @@ S'p_markup_command_basic_arguments__EXPECT_SCM__markup_command_list_arguments__e
 p1032
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1033
-I2029
+I2030
 tp1034
 a(S'markup_command_list -> MARKUP_LIST_FUNCTION markup_command_list_arguments'
 p1035
@@ -53737,7 +53737,7 @@ S'p_markup_command_list__MARKUP_LIST_FUNCTION__markup_command_list_arguments'
 p1037
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1038
-I2037
+I2038
 tp1039
 a(S'markup_command_list_arguments -> EXPECT_MARKUP markup_command_list_arguments markup'
 p1040
@@ -53748,7 +53748,7 @@ S'p_markup_command_list_arguments__EXPECT_MARKUP__markup_command_list_arguments_
 p1042
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1043
-I2045
+I2046
 tp1044
 a(S'markup_command_list_arguments -> markup_command_basic_arguments'
 p1045
@@ -53759,7 +53759,7 @@ S'p_markup_command_list_arguments__markup_command_basic_arguments'
 p1047
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1048
-I2050
+I2051
 tp1049
 a(S'markup_composed_list -> markup_head_1_list markup_braced_list'
 p1050
@@ -53770,7 +53770,7 @@ S'p_markup_composed_list__markup_head_1_list__markup_braced_list'
 p1052
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1053
-I2058
+I2059
 tp1054
 a(S'markup_head_1_item -> MARKUP_FUNCTION EXPECT_MARKUP markup_command_list_arguments'
 p1055
@@ -53781,7 +53781,7 @@ S'p_markup_head_1_item__MARKUP_FUNCTION__EXPECT_MARKUP__markup_command_list_argu
 p1057
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1058
-I2072
+I2073
 tp1059
 a(S'markup_head_1_list -> markup_head_1_item'
 p1060
@@ -53792,7 +53792,7 @@ S'p_markup_head_1_list__markup_head_1_item'
 p1062
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1063
-I2080
+I2081
 tp1064
 a(S'markup_head_1_list -> markup_head_1_list markup_head_1_item'
 p1065
@@ -53803,7 +53803,7 @@ S'p_markup_head_1_list__markup_head_1_list__markup_head_1_item'
 p1067
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1068
-I2085
+I2086
 tp1069
 a(S'markup_list -> MARKUPLIST_IDENTIFIER'
 p1070
@@ -53814,7 +53814,7 @@ S'p_markup_list__MARKUPLIST_IDENTIFIER'
 p1072
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1073
-I2093
+I2094
 tp1074
 a(S'markup_list -> markup_braced_list'
 p1075
@@ -53825,7 +53825,7 @@ S'p_markup_list__markup_braced_list'
 p1077
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1078
-I2098
+I2099
 tp1079
 a(S'markup_list -> markup_command_list'
 p1080
@@ -53836,7 +53836,7 @@ S'p_markup_list__markup_command_list'
 p1082
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1083
-I2103
+I2104
 tp1084
 a(S'markup_list -> markup_composed_list'
 p1085
@@ -53847,7 +53847,7 @@ S'p_markup_list__markup_composed_list'
 p1087
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1088
-I2108
+I2109
 tp1089
 a(S'markup_list -> markup_scm MARKUPLIST_IDENTIFIER'
 p1090
@@ -53858,7 +53858,7 @@ S'p_markup_list__markup_scm__MARKUPLIST_IDENTIFIER'
 p1092
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1093
-I2113
+I2114
 tp1094
 a(S'markup_scm -> embedded_scm_bare BACKUP'
 p1095
@@ -53869,7 +53869,7 @@ S'p_markup_scm__embedded_scm_bare__BACKUP'
 p1097
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1098
-I2122
+I2123
 tp1099
 a(S'markup_top -> markup_head_1_list simple_markup'
 p1100
@@ -53880,7 +53880,7 @@ S'p_markup_top__markup_head_1_list__simple_markup'
 p1102
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1103
-I2141
+I2142
 tp1104
 a(S'markup_top -> markup_list'
 p1105
@@ -53891,7 +53891,7 @@ S'p_markup_top__markup_list'
 p1107
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1108
-I2152
+I2153
 tp1109
 a(S'markup_top -> simple_markup'
 p1110
@@ -53902,7 +53902,7 @@ S'p_markup_top__simple_markup'
 p1112
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1113
-I2157
+I2158
 tp1114
 a(S'multiplied_duration -> multiplied_duration * FRACTION'
 p1115
@@ -53913,7 +53913,7 @@ S'p_multiplied_duration__multiplied_duration__Chr42__FRACTION'
 p1117
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1118
-I2240
+I2241
 tp1119
 a(S'multiplied_duration -> multiplied_duration * bare_unsigned'
 p1120
@@ -53924,7 +53924,7 @@ S'p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned'
 p1122
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1123
-I2251
+I2252
 tp1124
 a(S'multiplied_duration -> steno_duration'
 p1125
@@ -53935,7 +53935,7 @@ S'p_multiplied_duration__steno_duration'
 p1127
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1128
-I2261
+I2262
 tp1129
 a(S'music -> composite_music'
 p1130
@@ -53946,7 +53946,7 @@ S'p_music__composite_music'
 p1132
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1133
-I2269
+I2270
 tp1134
 a(S'music -> simple_music'
 p1135
@@ -53957,7 +53957,7 @@ S'p_music__simple_music'
 p1137
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1138
-I2279
+I2280
 tp1139
 a(S'music_arg -> composite_music'
 p1140
@@ -53968,7 +53968,7 @@ S'p_music_arg__composite_music'
 p1142
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1143
-I2287
+I2288
 tp1144
 a(S'music_arg -> simple_music'
 p1145
@@ -53979,7 +53979,7 @@ S'p_music_arg__simple_music'
 p1147
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1148
-I2292
+I2293
 tp1149
 a(S'music_bare -> MUSIC_IDENTIFIER'
 p1150
@@ -53990,7 +53990,7 @@ S'p_music_bare__MUSIC_IDENTIFIER'
 p1152
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1153
-I2300
+I2301
 tp1154
 a(S'music_bare -> grouped_music_list'
 p1155
@@ -54001,7 +54001,7 @@ S'p_music_bare__grouped_music_list'
 p1157
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1158
-I2305
+I2306
 tp1159
 a(S'music_function_call -> MUSIC_FUNCTION function_arglist'
 p1160
@@ -54012,7 +54012,7 @@ S'p_music_function_call__MUSIC_FUNCTION__function_arglist'
 p1162
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1163
-I2319
+I2320
 tp1164
 a(S'music_function_chord_body -> MUSIC_FUNCTION music_function_chord_body_arglist'
 p1165
@@ -54023,7 +54023,7 @@ S'p_music_function_chord_body__MUSIC_FUNCTION__music_function_chord_body_arglist
 p1167
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1168
-I2327
+I2328
 tp1169
 a(S'music_function_chord_body_arglist -> EXPECT_SCM music_function_chord_body_arglist embedded_scm_chord_body'
 p1170
@@ -54034,7 +54034,7 @@ S'p_music_function_chord_body_arglist__EXPECT_SCM__music_function_chord_body_arg
 p1172
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1173
-I2336
+I2337
 tp1174
 a(S'music_function_chord_body_arglist -> function_arglist_bare'
 p1175
@@ -54045,7 +54045,7 @@ S'p_music_function_chord_body_arglist__function_arglist_bare'
 p1177
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1178
-I2341
+I2342
 tp1179
 a(S'music_function_event -> MUSIC_FUNCTION function_arglist_closed'
 p1180
@@ -54056,7 +54056,7 @@ S'p_music_function_event__MUSIC_FUNCTION__function_arglist_closed'
 p1182
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1183
-I2349
+I2350
 tp1184
 a(S'music_list -> <empty>'
 p1185
@@ -54067,7 +54067,7 @@ S'p_music_list__Empty'
 p1187
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1188
-I2358
+I2359
 tp1189
 a(S'music_list -> music_list embedded_scm'
 p1190
@@ -54078,7 +54078,7 @@ S'p_music_list__music_list__embedded_scm'
 p1192
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1193
-I2363
+I2364
 tp1194
 a(S'music_list -> music_list error'
 p1195
@@ -54089,7 +54089,7 @@ S'p_music_list__music_list__error'
 p1197
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1198
-I2368
+I2369
 tp1199
 a(S'music_list -> music_list music'
 p1200
@@ -54100,7 +54100,7 @@ S'p_music_list__music_list__music'
 p1202
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1203
-I2373
+I2374
 tp1204
 a(S'music_property_def -> simple_music_property_def'
 p1205
@@ -54111,7 +54111,7 @@ S'p_music_property_def__simple_music_property_def'
 p1207
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1208
-I2381
+I2382
 tp1209
 a(S'note_chord_element -> chord_body optional_notemode_duration post_events'
 p1210
@@ -54122,7 +54122,7 @@ S'p_note_chord_element__chord_body__optional_notemode_duration__post_events'
 p1212
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1213
-I2420
+I2421
 tp1214
 a(S'number_expression -> number_expression + number_term'
 p1215
@@ -54133,7 +54133,7 @@ S'p_number_expression__number_expression__Chr43__number_term'
 p1217
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1218
-I2440
+I2441
 tp1219
 a(S'number_expression -> number_expression - number_term'
 p1220
@@ -54144,7 +54144,7 @@ S'p_number_expression__number_expression__Chr45__number_term'
 p1222
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1223
-I2445
+I2446
 tp1224
 a(S'number_expression -> number_term'
 p1225
@@ -54155,7 +54155,7 @@ S'p_number_expression__number_term'
 p1227
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1228
-I2450
+I2451
 tp1229
 a(S'number_factor -> - number_factor'
 p1230
@@ -54166,7 +54166,7 @@ S'p_number_factor__Chr45__number_factor'
 p1232
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1233
-I2458
+I2459
 tp1234
 a(S'number_factor -> bare_number'
 p1235
@@ -54177,7 +54177,7 @@ S'p_number_factor__bare_number'
 p1237
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1238
-I2463
+I2464
 tp1239
 a(S'number_term -> number_factor'
 p1240
@@ -54188,7 +54188,7 @@ S'p_number_term__number_factor'
 p1242
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1243
-I2471
+I2472
 tp1244
 a(S'number_term -> number_factor * number_factor'
 p1245
@@ -54199,7 +54199,7 @@ S'p_number_term__number_factor__Chr42__number_factor'
 p1247
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1248
-I2476
+I2477
 tp1249
 a(S'number_term -> number_factor / number_factor'
 p1250
@@ -54210,7 +54210,7 @@ S'p_number_term__number_factor__Chr47__number_factor'
 p1252
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1253
-I2481
+I2482
 tp1254
 a(S'octave_check -> ='
 p1255
@@ -54221,7 +54221,7 @@ S'p_octave_check__Chr61'
 p1257
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1258
-I2489
+I2490
 tp1259
 a(S'octave_check -> = sub_quotes'
 p1260
@@ -54232,7 +54232,7 @@ S'p_octave_check__Chr61__sub_quotes'
 p1262
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1263
-I2495
+I2496
 tp1264
 a(S'octave_check -> = sup_quotes'
 p1265
@@ -54243,7 +54243,7 @@ S'p_octave_check__Chr61__sup_quotes'
 p1267
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1268
-I2501
+I2502
 tp1269
 a(S'octave_check -> <empty>'
 p1270
@@ -54254,7 +54254,7 @@ S'p_octave_check__Empty'
 p1272
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1273
-I2507
+I2508
 tp1274
 a(S'optional_context_mod -> <empty>'
 p1275
@@ -54265,7 +54265,7 @@ S'p_optional_context_mod__Empty'
 p1277
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1278
-I2516
+I2517
 tp1279
 a(S'optional_context_mod -> context_modification'
 p1280
@@ -54276,7 +54276,7 @@ S'p_optional_context_mod__context_modification'
 p1282
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1283
-I2521
+I2522
 tp1284
 a(S'optional_id -> = simple_string'
 p1285
@@ -54287,7 +54287,7 @@ S'p_optional_id__Chr61__simple_string'
 p1287
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1288
-I2529
+I2530
 tp1289
 a(S'optional_id -> <empty>'
 p1290
@@ -54298,7 +54298,7 @@ S'p_optional_id__Empty'
 p1292
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1293
-I2534
+I2535
 tp1294
 a(S'optional_notemode_duration -> <empty>'
 p1295
@@ -54309,7 +54309,7 @@ S'p_optional_notemode_duration__Empty'
 p1297
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1298
-I2542
+I2543
 tp1299
 a(S'optional_notemode_duration -> multiplied_duration'
 p1300
@@ -54320,7 +54320,7 @@ S'p_optional_notemode_duration__multiplied_duration'
 p1302
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1303
-I2547
+I2548
 tp1304
 a(S'optional_rest -> <empty>'
 p1305
@@ -54331,7 +54331,7 @@ S'p_optional_rest__Empty'
 p1307
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1308
-I2555
+I2556
 tp1309
 a(S'optional_rest -> REST'
 p1310
@@ -54342,7 +54342,7 @@ S'p_optional_rest__REST'
 p1312
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1313
-I2560
+I2561
 tp1314
 a(S'output_def -> output_def_body }'
 p1315
@@ -54353,7 +54353,7 @@ S'p_output_def__output_def_body__Chr125'
 p1317
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1318
-I2568
+I2569
 tp1319
 a(S'output_def_body -> output_def_body assignment'
 p1320
@@ -54364,7 +54364,7 @@ S'p_output_def_body__output_def_body__assignment'
 p1322
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1323
-I2579
+I2580
 tp1324
 a(S'output_def_body -> output_def_head_with_mode_switch {'
 p1325
@@ -54375,7 +54375,7 @@ S'p_output_def_body__output_def_head_with_mode_switch__Chr123'
 p1327
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1328
-I2598
+I2599
 tp1329
 a(S'output_def_body -> output_def_head_with_mode_switch { output_DEF_IDENTIFIER'
 p1330
@@ -54386,7 +54386,7 @@ S'p_output_def_body__output_def_head_with_mode_switch__Chr123__output_DEF_IDENTI
 p1332
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1333
-I2603
+I2604
 tp1334
 a(S'output_def_head -> LAYOUT'
 p1335
@@ -54397,7 +54397,7 @@ S'p_output_def_head__LAYOUT'
 p1337
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1338
-I2611
+I2612
 tp1339
 a(S'output_def_head -> MIDI'
 p1340
@@ -54408,7 +54408,7 @@ S'p_output_def_head__MIDI'
 p1342
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1343
-I2617
+I2618
 tp1344
 a(S'output_def_head -> PAPER'
 p1345
@@ -54419,7 +54419,7 @@ S'p_output_def_head__PAPER'
 p1347
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1348
-I2623
+I2624
 tp1349
 a(S'output_def_head_with_mode_switch -> output_def_head'
 p1350
@@ -54430,7 +54430,7 @@ S'p_output_def_head_with_mode_switch__output_def_head'
 p1352
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1353
-I2632
+I2633
 tp1354
 a(S'pitch -> PITCH_IDENTIFIER'
 p1355
@@ -54441,7 +54441,7 @@ S'p_pitch__PITCH_IDENTIFIER'
 p1357
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1358
-I2649
+I2650
 tp1359
 a(S'pitch -> steno_pitch'
 p1360
@@ -54452,7 +54452,7 @@ S'p_pitch__steno_pitch'
 p1362
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1363
-I2654
+I2655
 tp1364
 a(S'pitch_also_in_chords -> pitch'
 p1365
@@ -54463,7 +54463,7 @@ S'p_pitch_also_in_chords__pitch'
 p1367
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1368
-I2662
+I2663
 tp1369
 a(S'pitch_also_in_chords -> steno_tonic_pitch'
 p1370
@@ -54474,7 +54474,7 @@ S'p_pitch_also_in_chords__steno_tonic_pitch'
 p1372
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1373
-I2667
+I2668
 tp1374
 a(S'post_event -> - fingering'
 p1375
@@ -54485,7 +54485,7 @@ S'p_post_event__Chr45__fingering'
 p1377
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1378
-I2675
+I2676
 tp1379
 a(S'post_event -> post_event_nofinger'
 p1380
@@ -54496,7 +54496,7 @@ S'p_post_event__post_event_nofinger'
 p1382
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1383
-I2680
+I2681
 tp1384
 a(S'post_event_nofinger -> ^ fingering'
 p1385
@@ -54507,7 +54507,7 @@ S'p_post_event_nofinger__Chr94__fingering'
 p1387
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1388
-I2688
+I2689
 tp1389
 a(S'post_event_nofinger -> _ fingering'
 p1390
@@ -54518,7 +54518,7 @@ S'p_post_event_nofinger__Chr95__fingering'
 p1392
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1393
-I2693
+I2694
 tp1394
 a(S'post_event_nofinger -> EXTENDER'
 p1395
@@ -54529,7 +54529,7 @@ S'p_post_event_nofinger__EXTENDER'
 p1397
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1398
-I2698
+I2699
 tp1399
 a(S'post_event_nofinger -> HYPHEN'
 p1400
@@ -54540,7 +54540,7 @@ S'p_post_event_nofinger__HYPHEN'
 p1402
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1403
-I2703
+I2704
 tp1404
 a(S'post_event_nofinger -> direction_less_event'
 p1405
@@ -54551,7 +54551,7 @@ S'p_post_event_nofinger__direction_less_event'
 p1407
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1408
-I2708
+I2709
 tp1409
 a(S'post_event_nofinger -> script_dir direction_less_event'
 p1410
@@ -54562,7 +54562,7 @@ S'p_post_event_nofinger__script_dir__direction_less_event'
 p1412
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1413
-I2713
+I2714
 tp1414
 a(S'post_event_nofinger -> script_dir direction_reqd_event'
 p1415
@@ -54573,7 +54573,7 @@ S'p_post_event_nofinger__script_dir__direction_reqd_event'
 p1417
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1418
-I2719
+I2720
 tp1419
 a(S'post_event_nofinger -> script_dir music_function_event'
 p1420
@@ -54584,7 +54584,7 @@ S'p_post_event_nofinger__script_dir__music_function_event'
 p1422
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1423
-I2726
+I2727
 tp1424
 a(S'post_event_nofinger -> string_number_event'
 p1425
@@ -54595,7 +54595,7 @@ S'p_post_event_nofinger__string_number_event'
 p1427
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1428
-I2731
+I2732
 tp1429
 a(S'post_events -> <empty>'
 p1430
@@ -54606,7 +54606,7 @@ S'p_post_events__Empty'
 p1432
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1433
-I2739
+I2740
 tp1434
 a(S'post_events -> post_events post_event'
 p1435
@@ -54617,7 +54617,7 @@ S'p_post_events__post_events__post_event'
 p1437
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1438
-I2744
+I2745
 tp1439
 a(S'property_operation -> OVERRIDE simple_string property_path = scalar'
 p1440
@@ -54628,7 +54628,7 @@ S'p_property_operation__OVERRIDE__simple_string__property_path__Chr61__scalar'
 p1442
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1443
-I2752
+I2753
 tp1444
 a(S'property_operation -> REVERT simple_string embedded_scm'
 p1445
@@ -54639,7 +54639,7 @@ S'p_property_operation__REVERT__simple_string__embedded_scm'
 p1447
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1448
-I2762
+I2763
 tp1449
 a(S'property_operation -> STRING = scalar'
 p1450
@@ -54650,7 +54650,7 @@ S'p_property_operation__STRING__Chr61__scalar'
 p1452
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1453
-I2771
+I2772
 tp1454
 a(S'property_operation -> UNSET simple_string'
 p1455
@@ -54661,7 +54661,7 @@ S'p_property_operation__UNSET__simple_string'
 p1457
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1458
-I2780
+I2781
 tp1459
 a(S'property_path -> property_path_revved'
 p1460
@@ -54672,7 +54672,7 @@ S'p_property_path__property_path_revved'
 p1462
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1463
-I2791
+I2792
 tp1464
 a(S'property_path_revved -> embedded_scm_closed'
 p1465
@@ -54683,7 +54683,7 @@ S'p_property_path_revved__embedded_scm_closed'
 p1467
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1468
-I2799
+I2800
 tp1469
 a(S'property_path_revved -> property_path_revved embedded_scm_closed'
 p1470
@@ -54694,7 +54694,7 @@ S'p_property_path_revved__property_path_revved__embedded_scm_closed'
 p1472
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1473
-I2804
+I2805
 tp1474
 a(S'questions -> <empty>'
 p1475
@@ -54705,7 +54705,7 @@ S'p_questions__Empty'
 p1477
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1478
-I2812
+I2813
 tp1479
 a(S'questions -> questions ?'
 p1480
@@ -54716,7 +54716,7 @@ S'p_questions__questions__Chr63'
 p1482
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1483
-I2817
+I2818
 tp1484
 a(S'scalar -> bare_number'
 p1485
@@ -54727,7 +54727,7 @@ S'p_scalar__bare_number'
 p1487
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1488
-I2855
+I2856
 tp1489
 a(S'scalar -> embedded_scm_arg'
 p1490
@@ -54738,7 +54738,7 @@ S'p_scalar__embedded_scm_arg'
 p1492
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1493
-I2860
+I2861
 tp1494
 a(S'scalar_closed -> bare_number'
 p1495
@@ -54749,7 +54749,7 @@ S'p_scalar_closed__bare_number'
 p1497
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1498
-I2873
+I2874
 tp1499
 a(S'scalar_closed -> embedded_scm_arg_closed'
 p1500
@@ -54760,7 +54760,7 @@ S'p_scalar_closed__embedded_scm_arg_closed'
 p1502
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1503
-I2878
+I2879
 tp1504
 a(S'scm_function_call -> SCM_FUNCTION function_arglist'
 p1505
@@ -54771,7 +54771,7 @@ S'p_scm_function_call__SCM_FUNCTION__function_arglist'
 p1507
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1508
-I2891
+I2892
 tp1509
 a(S'scm_function_call_closed -> SCM_FUNCTION function_arglist_closed'
 p1510
@@ -54782,7 +54782,7 @@ S'p_scm_function_call_closed__SCM_FUNCTION__function_arglist_closed'
 p1512
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1513
-I2899
+I2900
 tp1514
 a(S'score_block -> SCORE { score_body }'
 p1515
@@ -54793,7 +54793,7 @@ S'p_score_block__SCORE__Chr123__score_body__Chr125'
 p1517
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1518
-I2907
+I2908
 tp1519
 a(S'score_body -> SCORE_IDENTIFIER'
 p1520
@@ -54804,7 +54804,7 @@ S'p_score_body__SCORE_IDENTIFIER'
 p1522
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1523
-I2917
+I2918
 tp1524
 a(S'score_body -> music'
 p1525
@@ -54815,7 +54815,7 @@ S'p_score_body__music'
 p1527
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1528
-I2922
+I2923
 tp1529
 a(S'score_body -> score_body lilypond_header'
 p1530
@@ -54826,7 +54826,7 @@ S'p_score_body__score_body__lilypond_header'
 p1532
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1533
-I2933
+I2934
 tp1534
 a(S'score_body -> score_body output_def'
 p1535
@@ -54837,7 +54837,7 @@ S'p_score_body__score_body__output_def'
 p1537
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1538
-I2938
+I2939
 tp1539
 a(S'script_abbreviation -> ANGLE_CLOSE'
 p1540
@@ -54848,7 +54848,7 @@ S'p_script_abbreviation__ANGLE_CLOSE'
 p1542
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1543
-I2946
+I2947
 tp1544
 a(S'script_abbreviation -> |'
 p1545
@@ -54859,7 +54859,7 @@ S'p_script_abbreviation__Chr124'
 p1547
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1548
-I2952
+I2953
 tp1549
 a(S'script_abbreviation -> +'
 p1550
@@ -54870,7 +54870,7 @@ S'p_script_abbreviation__Chr43'
 p1552
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1553
-I2958
+I2959
 tp1554
 a(S'script_abbreviation -> -'
 p1555
@@ -54881,7 +54881,7 @@ S'p_script_abbreviation__Chr45'
 p1557
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1558
-I2964
+I2965
 tp1559
 a(S'script_abbreviation -> .'
 p1560
@@ -54892,7 +54892,7 @@ S'p_script_abbreviation__Chr46'
 p1562
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1563
-I2970
+I2971
 tp1564
 a(S'script_abbreviation -> ^'
 p1565
@@ -54903,7 +54903,7 @@ S'p_script_abbreviation__Chr94'
 p1567
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1568
-I2976
+I2977
 tp1569
 a(S'script_abbreviation -> _'
 p1570
@@ -54914,7 +54914,7 @@ S'p_script_abbreviation__Chr95'
 p1572
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1573
-I2982
+I2983
 tp1574
 a(S'script_dir -> -'
 p1575
@@ -54925,7 +54925,7 @@ S'p_script_dir__Chr45'
 p1577
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1578
-I2991
+I2992
 tp1579
 a(S'script_dir -> ^'
 p1580
@@ -54936,7 +54936,7 @@ S'p_script_dir__Chr94'
 p1582
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1583
-I2996
+I2997
 tp1584
 a(S'script_dir -> _'
 p1585
@@ -54947,7 +54947,7 @@ S'p_script_dir__Chr95'
 p1587
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1588
-I3001
+I3002
 tp1589
 a(S'sequential_music -> SEQUENTIAL braced_music_list'
 p1590
@@ -54958,7 +54958,7 @@ S'p_sequential_music__SEQUENTIAL__braced_music_list'
 p1592
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1593
-I3009
+I3010
 tp1594
 a(S'sequential_music -> braced_music_list'
 p1595
@@ -54969,7 +54969,7 @@ S'p_sequential_music__braced_music_list'
 p1597
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1598
-I3014
+I3015
 tp1599
 a(S'simple_chord_elements -> simple_element'
 p1600
@@ -54980,7 +54980,7 @@ S'p_simple_chord_elements__simple_element'
 p1602
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1603
-I3034
+I3035
 tp1604
 a(S'simple_element -> RESTNAME optional_notemode_duration'
 p1605
@@ -54991,7 +54991,7 @@ S'p_simple_element__RESTNAME__optional_notemode_duration'
 p1607
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1608
-I3047
+I3048
 tp1609
 a(S'simple_element -> pitch exclamations questions octave_check optional_notemode_duration optional_rest'
 p1610
@@ -55002,7 +55002,7 @@ S'p_simple_element__pitch__exclamations__questions__octave_check__optional_notem
 p1612
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1613
-I3058
+I3059
 tp1614
 a(S'simple_markup -> MARKUP_FUNCTION markup_command_basic_arguments'
 p1615
@@ -55013,7 +55013,7 @@ S'p_simple_markup__MARKUP_FUNCTION__markup_command_basic_arguments'
 p1617
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1618
-I3081
+I3082
 tp1619
 a(S'simple_markup -> MARKUP_IDENTIFIER'
 p1620
@@ -55024,7 +55024,7 @@ S'p_simple_markup__MARKUP_IDENTIFIER'
 p1622
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1623
-I3088
+I3089
 tp1624
 a(S'simple_markup -> SCORE { score_body }'
 p1625
@@ -55035,7 +55035,7 @@ S'p_simple_markup__SCORE__Chr123__score_body__Chr125'
 p1627
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1628
-I3093
+I3094
 tp1629
 a(S'simple_markup -> STRING'
 p1630
@@ -55046,7 +55046,7 @@ S'p_simple_markup__STRING'
 p1632
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1633
-I3099
+I3100
 tp1634
 a(S'simple_markup -> STRING_IDENTIFIER'
 p1635
@@ -55057,7 +55057,7 @@ S'p_simple_markup__STRING_IDENTIFIER'
 p1637
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1638
-I3104
+I3105
 tp1639
 a(S'simple_markup -> markup_scm MARKUP_IDENTIFIER'
 p1640
@@ -55068,7 +55068,7 @@ S'p_simple_markup__markup_scm__MARKUP_IDENTIFIER'
 p1642
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1643
-I3108
+I3109
 tp1644
 a(S'simple_music -> context_change'
 p1645
@@ -55079,7 +55079,7 @@ S'p_simple_music__context_change'
 p1647
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1648
-I3116
+I3117
 tp1649
 a(S'simple_music -> event_chord'
 p1650
@@ -55090,7 +55090,7 @@ S'p_simple_music__event_chord'
 p1652
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1653
-I3120
+I3121
 tp1654
 a(S'simple_music -> music_property_def'
 p1655
@@ -55101,7 +55101,7 @@ S'p_simple_music__music_property_def'
 p1657
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1658
-I3124
+I3125
 tp1659
 a(S'simple_music_property_def -> OVERRIDE context_prop_spec property_path = scalar'
 p1660
@@ -55112,7 +55112,7 @@ S'p_simple_music_property_def__OVERRIDE__context_prop_spec__property_path__Chr61
 p1662
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1663
-I3130
+I3131
 tp1664
 a(S'simple_music_property_def -> REVERT context_prop_spec embedded_scm'
 p1665
@@ -55123,7 +55123,7 @@ S'p_simple_music_property_def__REVERT__context_prop_spec__embedded_scm'
 p1667
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1668
-I3139
+I3140
 tp1669
 a(S'simple_music_property_def -> SET context_prop_spec = scalar'
 p1670
@@ -55134,7 +55134,7 @@ S'p_simple_music_property_def__SET__context_prop_spec__Chr61__scalar'
 p1672
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1673
-I3144
+I3145
 tp1674
 a(S'simple_music_property_def -> UNSET context_prop_spec'
 p1675
@@ -55145,7 +55145,7 @@ S'p_simple_music_property_def__UNSET__context_prop_spec'
 p1677
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1678
-I3149
+I3150
 tp1679
 a(S'simple_string -> STRING'
 p1680
@@ -55156,7 +55156,7 @@ S'p_simple_string__STRING'
 p1682
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1683
-I3161
+I3162
 tp1684
 a(S'simple_string -> STRING_IDENTIFIER'
 p1685
@@ -55167,7 +55167,7 @@ S'p_simple_string__STRING_IDENTIFIER'
 p1687
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1688
-I3165
+I3166
 tp1689
 a(S'simultaneous_music -> DOUBLE_ANGLE_OPEN music_list DOUBLE_ANGLE_CLOSE'
 p1690
@@ -55178,7 +55178,7 @@ S'p_simultaneous_music__DOUBLE_ANGLE_OPEN__music_list__DOUBLE_ANGLE_CLOSE'
 p1692
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1693
-I3172
+I3173
 tp1694
 a(S'simultaneous_music -> SIMULTANEOUS braced_music_list'
 p1695
@@ -55189,7 +55189,7 @@ S'p_simultaneous_music__SIMULTANEOUS__braced_music_list'
 p1697
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1698
-I3176
+I3177
 tp1699
 a(S'steno_duration -> DURATION_IDENTIFIER dots'
 p1700
@@ -55200,7 +55200,7 @@ S'p_steno_duration__DURATION_IDENTIFIER__dots'
 p1702
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1703
-I3183
+I3184
 tp1704
 a(S'steno_duration -> bare_unsigned dots'
 p1705
@@ -55211,7 +55211,7 @@ S'p_steno_duration__bare_unsigned__dots'
 p1707
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1708
-I3196
+I3197
 tp1709
 a(S'steno_pitch -> NOTENAME_PITCH'
 p1710
@@ -55222,7 +55222,7 @@ S'p_steno_pitch__NOTENAME_PITCH'
 p1712
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1713
-I3209
+I3210
 tp1714
 a(S'steno_pitch -> NOTENAME_PITCH sub_quotes'
 p1715
@@ -55233,7 +55233,7 @@ S'p_steno_pitch__NOTENAME_PITCH__sub_quotes'
 p1717
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1718
-I3213
+I3214
 tp1719
 a(S'steno_pitch -> NOTENAME_PITCH sup_quotes'
 p1720
@@ -55244,7 +55244,7 @@ S'p_steno_pitch__NOTENAME_PITCH__sup_quotes'
 p1722
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1723
-I3217
+I3218
 tp1724
 a(S'steno_tonic_pitch -> TONICNAME_PITCH'
 p1725
@@ -55255,7 +55255,7 @@ S'p_steno_tonic_pitch__TONICNAME_PITCH'
 p1727
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1728
-I3224
+I3225
 tp1729
 a(S'steno_tonic_pitch -> TONICNAME_PITCH sub_quotes'
 p1730
@@ -55266,7 +55266,7 @@ S'p_steno_tonic_pitch__TONICNAME_PITCH__sub_quotes'
 p1732
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1733
-I3229
+I3230
 tp1734
 a(S'steno_tonic_pitch -> TONICNAME_PITCH sup_quotes'
 p1735
@@ -55277,7 +55277,7 @@ S'p_steno_tonic_pitch__TONICNAME_PITCH__sup_quotes'
 p1737
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1738
-I3234
+I3235
 tp1739
 a(S'string -> STRING'
 p1740
@@ -55288,7 +55288,7 @@ S'p_string__STRING'
 p1742
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1743
-I3273
+I3274
 tp1744
 a(S'string -> STRING_IDENTIFIER'
 p1745
@@ -55299,7 +55299,7 @@ S'p_string__STRING_IDENTIFIER'
 p1747
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1748
-I3277
+I3278
 tp1749
 a(S'string -> string + string'
 p1750
@@ -55310,7 +55310,7 @@ S'p_string__string__Chr43__string'
 p1752
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1753
-I3281
+I3282
 tp1754
 a(S'string_number_event -> E_UNSIGNED'
 p1755
@@ -55321,7 +55321,7 @@ S'p_string_number_event__E_UNSIGNED'
 p1757
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1758
-I3288
+I3289
 tp1759
 a(S'sub_quotes -> ,'
 p1760
@@ -55332,7 +55332,7 @@ S'p_sub_quotes__Chr44'
 p1762
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1763
-I3296
+I3297
 tp1764
 a(S'sub_quotes -> sub_quotes ,'
 p1765
@@ -55343,7 +55343,7 @@ S'p_sub_quotes__sub_quotes__Chr44'
 p1767
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1768
-I3300
+I3301
 tp1769
 a(S"sup_quotes -> '"
 p1770
@@ -55354,7 +55354,7 @@ S'p_sup_quotes__Chr39'
 p1772
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1773
-I3307
+I3308
 tp1774
 a(S"sup_quotes -> sup_quotes '"
 p1775
@@ -55365,7 +55365,7 @@ S'p_sup_quotes__sup_quotes__Chr39'
 p1777
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1778
-I3311
+I3312
 tp1779
 a(S'tempo_event -> TEMPO scalar'
 p1780
@@ -55376,7 +55376,7 @@ S'p_tempo_event__TEMPO__scalar'
 p1782
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1783
-I3318
+I3319
 tp1784
 a(S'tempo_event -> TEMPO scalar_closed steno_duration = tempo_range'
 p1785
@@ -55387,7 +55387,7 @@ S'p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range'
 p1787
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1788
-I3322
+I3323
 tp1789
 a(S'tempo_event -> TEMPO steno_duration = tempo_range'
 p1790
@@ -55398,7 +55398,7 @@ S'p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range'
 p1792
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1793
-I3326
+I3327
 tp1794
 a(S'tempo_range -> bare_unsigned'
 p1795
@@ -55409,7 +55409,7 @@ S'p_tempo_range__bare_unsigned'
 p1797
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1798
-I3333
+I3334
 tp1799
 a(S'tempo_range -> bare_unsigned - bare_unsigned'
 p1800
@@ -55420,7 +55420,7 @@ S'p_tempo_range__bare_unsigned__Chr45__bare_unsigned'
 p1802
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1803
-I3338
+I3339
 tp1804
 a(S'toplevel_expression -> composite_music'
 p1805
@@ -55431,7 +55431,7 @@ S'p_toplevel_expression__composite_music'
 p1807
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1808
-I3352
+I3353
 tp1809
 a(S'toplevel_expression -> full_markup'
 p1810
@@ -55442,7 +55442,7 @@ S'p_toplevel_expression__full_markup'
 p1812
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1813
-I3356
+I3357
 tp1814
 a(S'toplevel_expression -> full_markup_list'
 p1815
@@ -55453,7 +55453,7 @@ S'p_toplevel_expression__full_markup_list'
 p1817
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1818
-I3360
+I3361
 tp1819
 a(S'toplevel_expression -> lilypond_header'
 p1820
@@ -55464,7 +55464,7 @@ S'p_toplevel_expression__lilypond_header'
 p1822
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1823
-I3364
+I3365
 tp1824
 a(S'toplevel_expression -> output_def'
 p1825
@@ -55475,7 +55475,7 @@ S'p_toplevel_expression__output_def'
 p1827
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1828
-I3368
+I3369
 tp1829
 a(S'toplevel_expression -> score_block'
 p1830
@@ -55486,7 +55486,7 @@ S'p_toplevel_expression__score_block'
 p1832
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1833
-I3372
+I3373
 tp1834
 a(S'tremolo_type -> :'
 p1835
@@ -55497,7 +55497,7 @@ S'p_tremolo_type__Chr58'
 p1837
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1838
-I3378
+I3379
 tp1839
 a(S'tremolo_type -> : bare_unsigned'
 p1840
@@ -55508,6 +55508,6 @@ S'p_tremolo_type__Chr58__bare_unsigned'
 p1842
 S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondSyntacticalDefinition.py'
 p1843
-I3382
+I3383
 tp1844
 a.

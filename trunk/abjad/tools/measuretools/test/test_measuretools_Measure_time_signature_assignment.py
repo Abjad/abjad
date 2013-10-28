@@ -7,29 +7,10 @@ def test_measuretools_Measure_time_signature_assignment_01():
     '''
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-
-    r'''
-    {
-        \time 4/8
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
     measure.pop()
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
-    contexttools.TimeSignatureMark((3, 8))(measure)
-
-    r'''
-    {
-        \time 3/8
-        c'8
-        d'8
-        e'8
-    }
-    '''
+    time_signature = contexttools.TimeSignatureMark((3, 8))
+    time_signature.attach(measure)
 
     assert testtools.compare(
         measure,

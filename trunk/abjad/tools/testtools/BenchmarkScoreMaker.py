@@ -42,10 +42,16 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [4], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-            contexttools.DynamicMark('p')(part[0])
-            contexttools.DynamicMark('r')(part[-1])
+            voice[:], 
+            [4], 
+            cyclic=True,
+            ):
+            crescendo = spannertools.CrescendoSpanner()
+            crescendo.attach(part)
+            dynamic = contexttools.DynamicMark('p')
+            dynamic.attach(part[0])
+            dynamic = contexttools.DynamicMark('r')
+            dynamic.attach(part[-1])
         return voice
 
     def make_bound_hairpin_score_02(self):
@@ -60,10 +66,16 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [20], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-            contexttools.DynamicMark('p')(part[0])
-            contexttools.DynamicMark('r')(part[-1])
+            voice[:], 
+            [20], 
+            cyclic=True,
+            ):
+            crescendo = spannertools.CrescendoSpanner()
+            crescendo.attach(part)
+            dynamic = contexttools.DynamicMark('p')
+            dynamic.attach(part[0])
+            dynamic = contexttools.DynamicMark('r')
+            dynamic.attach(part[-1])
         return voice
 
     def make_bound_hairpin_score_03(self):
@@ -78,10 +90,16 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [100], cyclic=True):
-            spannertools.CrescendoSpanner(part)
-            contexttools.DynamicMark('p')(part[0])
-            contexttools.DynamicMark('r')(part[-1])
+            voice[:], 
+            [100], 
+            cyclic=True,
+            ):
+            crescendo = spannertools.CrescendoSpanner()
+            crescendo.attach(part)
+            dynamic = contexttools.DynamicMark('p')
+            dynamic.attach(part[0])
+            dynamic = contexttools.DynamicMark('r')
+            dynamic.attach(part[-1])
         return voice
 
     def make_context_mark_score_01(self):
@@ -99,8 +117,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            staff[:], [20], cyclic=True):
-            contexttools.DynamicMark('f')(part[0])
+            staff[:], 
+            [20], 
+            cyclic=True,
+            ):
+            dynamic = contexttools.DynamicMark('f')
+            dynamic.attach(part[0])
         return staff
 
     def make_context_mark_score_02(self):
@@ -118,8 +140,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            staff[:], [4], cyclic=True):
-            contexttools.DynamicMark('f')(part[0])
+            staff[:], 
+            [4], 
+            cyclic=True,
+            ):
+            dynamic = contexttools.DynamicMark('f')
+            dynamic.attach(part[0])
         return staff
 
     def make_context_mark_score_03(self):
@@ -137,7 +163,8 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
         for note in staff.select_leaves():
-            contexttools.DynamicMark('f')(note)
+            dynamic = contexttools.DynamicMark('f')
+            dynamic.attach(note)
         return staff
 
     def make_hairpin_score_01(self):
@@ -153,8 +180,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [4], cyclic=True):
-            spannertools.CrescendoSpanner(part)
+            voice[:], 
+            [4], 
+            cyclic=True,
+            ):
+            crescendo = spannertools.CrescendoSpanner()
+            crescendo.attach(part)
         return voice
 
     def make_hairpin_score_02(self):
@@ -170,8 +201,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [20], cyclic=True):
-            spannertools.CrescendoSpanner(part)
+            voice[:], 
+            [20], 
+            cyclic=True,
+            ):
+            crescendo = spannertools.CrescendoSpanner()
+            crescendo.attach(part)
         return voice
 
     def make_hairpin_score_03(self):
@@ -187,8 +222,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [100], cyclic=True):
-            spannertools.CrescendoSpanner(part)
+            voice[:], 
+            [100], 
+            cyclic=True,
+            ):
+            crescendo = spannertools.CrescendoSpanner()
+            crescendo.attach(part)
         return voice
 
     def make_score_00(self):
@@ -221,8 +260,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [4], cyclic=True):
-            spannertools.DuratedComplexBeamSpanner(part)
+            voice[:], 
+            [4], 
+            cyclic=True,
+            ):
+            beam = spannertools.DuratedComplexBeamSpanner()
+            beam.attach(part)
         return voice
 
     def make_spanner_score_02(self):
@@ -240,8 +283,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [20], cyclic=True):
-            spannertools.DuratedComplexBeamSpanner(part)
+            voice[:], 
+            [20], 
+            cyclic=True,
+            ):
+            beam = spannertools.DuratedComplexBeamSpanner()
+            beam.attach(part)
         return voice
 
     def make_spanner_score_03(self):
@@ -259,8 +306,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [100], cyclic=True):
-            spannertools.DuratedComplexBeamSpanner(part)
+            voice[:], 
+            [100], 
+            cyclic=True,
+            ):
+            beam = spannertools.DuratedComplexBeamSpanner()
+            beam.attach(part)
         return voice
 
     def make_spanner_score_04(self):
@@ -275,8 +326,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [4], cyclic=True):
-            spannertools.SlurSpanner(part)
+            voice[:], 
+            [4], 
+            cyclic=True,
+            ):
+            slur = spannertools.SlurSpanner()
+            slur.attach(part)
         return voice
 
     def make_spanner_score_05(self):
@@ -291,8 +346,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [20], cyclic=True):
-            spannertools.SlurSpanner(part)
+            voice[:], 
+            [20], 
+            cyclic=True,
+            ):
+            slur = spannertools.SlurSpanner()
+            slur.attach(part)
         return voice
 
     def make_spanner_score_06(self):
@@ -307,8 +366,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [100], cyclic=True):
-            spannertools.SlurSpanner(part)
+            voice[:], 
+            [100], 
+            cyclic=True,
+            ):
+            slur = spannertools.SlurSpanner()
+            slur.attach(part)
         return voice
 
     def make_spanner_score_07(self):
@@ -323,8 +386,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [4], cyclic=True):
-            spannertools.BeamSpanner(part)
+            voice[:], 
+            [4], 
+            cyclic=True,
+            ):
+            beam = spannertools.BeamSpanner()
+            beam.attach(part)
         return voice
 
     def make_spanner_score_08(self):
@@ -339,8 +406,12 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [20], cyclic=True):
-            spannertools.BeamSpanner(part)
+            voice[:], 
+            [20], 
+            cyclic=True,
+            ):
+            beam = spannertools.BeamSpanner()
+            beam.attach(part)
         return voice
 
     def make_spanner_score_09(self):
@@ -355,6 +426,10 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
-            voice[:], [100], cyclic=True):
-            spannertools.BeamSpanner(part)
+            voice[:], 
+            [100], 
+            cyclic=True,
+            ):
+            beam = spannertools.BeamSpanner()
+            beam.attach(part)
         return voice

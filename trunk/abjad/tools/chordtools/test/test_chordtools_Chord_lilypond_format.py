@@ -19,7 +19,8 @@ def test_chordtools_Chord_lilypond_format_02():
     '''
 
     chord = Chord("<d' ef' e'>4")
-    marktools.LilyPondCommandMark('glissando', 'right')(chord)
+    command = marktools.LilyPondCommandMark('glissando', 'right')
+    command.attach(chord)
 
     assert chord.lilypond_format == "<d' ef' e'>4 \\glissando"
 
@@ -30,7 +31,8 @@ def test_chordtools_Chord_lilypond_format_03():
 
     chord = Chord("<d' ef' e'>4")
     chord[0].tweak.color = 'red'
-    marktools.LilyPondCommandMark('glissando', 'right')(chord)
+    command = marktools.LilyPondCommandMark('glissando', 'right')
+    command.attach(chord)
 
     assert testtools.compare(
         chord,

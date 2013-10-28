@@ -119,7 +119,8 @@ class QGrid(AbjadObject):
                 q_events = [q_event_proxy.q_event 
                     for q_event_proxy in q_grid_leaf.q_event_proxies]
                 q_events.sort(key=lambda x: x.index)
-                marktools.Annotation('q_events', tuple(q_events))(result_leaf)
+                annotation = marktools.Annotation('q_events', tuple(q_events))
+                annotation.attach(result_leaf)
         return result
 
     def __copy__(self, *args):

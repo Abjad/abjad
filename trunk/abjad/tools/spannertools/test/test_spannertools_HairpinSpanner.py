@@ -67,8 +67,10 @@ def test_spannertools_HairpinSpanner_03():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
     crescendo.attach(staff[:4])
-    contexttools.DynamicMark('p')(staff[0])
-    contexttools.DynamicMark('f')(staff[3])
+    dynamic = contexttools.DynamicMark('p')
+    dynamic.attach(staff[0])
+    dynamic = contexttools.DynamicMark('f')
+    dynamic.attach(staff[3])
 
     assert testtools.compare(
         staff,
@@ -90,14 +92,14 @@ def test_spannertools_HairpinSpanner_03():
 
 
 def test_spannertools_HairpinSpanner_04():
-    r'''Internal marks raise well-formedness error.
-    '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
     crescendo.attach(staff[:4])
-    statement = "contexttools.DynamicMark('p')(staff[2])"
-    assert py.test.raises(WellFormednessError, statement)
+    dynamic = contexttools.DynamicMark('p')
+    dynamic.attach(staff[2])
+
+    assert not inspect(staff).is_well_formed()
 
 
 def test_spannertools_HairpinSpanner_05():
@@ -105,16 +107,20 @@ def test_spannertools_HairpinSpanner_05():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    contexttools.DynamicMark('p')(staff[0])
+    dynamic = contexttools.DynamicMark('p')
+    dynamic.attach(staff[0])
     crescendo = spannertools.CrescendoSpanner()
     crescendo.attach(staff[0:3])
-    contexttools.DynamicMark('f')(staff[2])
+    dynamic = contexttools.DynamicMark('f')
+    dynamic.attach(staff[2])
     decrescendo = spannertools.DecrescendoSpanner()
     decrescendo.attach(staff[2:5])
-    contexttools.DynamicMark('p')(staff[4])
+    dynamic = contexttools.DynamicMark('p')
+    dynamic.attach(staff[4])
     crescendo = spannertools.CrescendoSpanner()
     crescendo.attach(staff[4:7])
-    contexttools.DynamicMark('f')(staff[6])
+    dynamic = contexttools.DynamicMark('f')
+    dynamic.attach(staff[6])
 
     assert testtools.compare(
         staff,
