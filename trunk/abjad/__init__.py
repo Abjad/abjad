@@ -55,6 +55,7 @@ from abjad.tools.iotools import show
 from abjad.tools.iotools import z
 from abjad.tools.mutationtools import mutate
 from abjad.tools.mutationtools.AttributeInspectionAgent import inspect
+from abjad.tools.scoretools import attach
 from abjad.tools.selectiontools import select
 
 # import custom exceptions into the builtins module
