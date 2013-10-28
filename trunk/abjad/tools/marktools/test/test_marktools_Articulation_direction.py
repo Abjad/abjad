@@ -5,10 +5,11 @@ from abjad import *
 def test_marktools_Articulation_direction_01():
 
     note = Note("c'4")
-    a = marktools.Articulation('staccato')(note)
+    articulation = marktools.Articulation('staccato')
+    articulation.attach(note)
 
-    assert a.direction is None
+    assert articulation.direction is None
 
-    a.direction = '^'
+    articulation.direction = '^'
 
-    assert a.direction is Up
+    assert articulation.direction is Up

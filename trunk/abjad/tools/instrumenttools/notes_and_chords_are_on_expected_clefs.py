@@ -12,9 +12,11 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> contexttools.ClefMark('treble')(staff)
+        >>> clef = contexttools.ClefMark('treble')
+        >>> clef.attach(staff)
         ClefMark('treble')(Staff{4})
-        >>> instrumenttools.Violin()(staff)
+        >>> violin = instrumenttools.Violin()
+        >>> violin.attach(staff)
         Violin()(Staff{4})
 
     ::
@@ -27,9 +29,11 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> contexttools.ClefMark('alto')(staff)
+        >>> clef = contexttools.ClefMark('alto')
+        >>> clef.attach(staff)
         ClefMark('alto')(Staff{4})
-        >>> instrumenttools.Violin()(staff)
+        >>> violin = instrumenttools.Violin()
+        >>> violin.attach(staff)
         Violin()(Staff{4})
 
     ::
@@ -42,9 +46,11 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> contexttools.ClefMark('percussion')(staff)
+        >>> clef = contexttools.ClefMark('percussion')
+        >>> clef.attach(staff)
         ClefMark('percussion')(Staff{4})
-        >>> instrumenttools.Violin()(staff)
+        >>> violin = instrumenttools.Violin()
+        >>> violin.attach(staff)
         Violin()(Staff{4})
 
     ..  doctest::

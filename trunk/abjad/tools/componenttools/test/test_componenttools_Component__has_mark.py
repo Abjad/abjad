@@ -15,7 +15,8 @@ def test_componenttools_Component__has_mark_01():
 def test_componenttools_Component__has_mark_02():
 
     staff = Staff("c'2 d'2")
-    marktools.Articulation('staccato')(staff[0])
+    articulation = marktools.Articulation('staccato')
+    articulation.attach(staff[0])
 
     staff[0]._has_mark(marktools.Articulation)
     assert not staff[1]._has_mark(marktools.Articulation)

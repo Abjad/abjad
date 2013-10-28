@@ -12,14 +12,30 @@ class ClefMark(ContextMark):
 
     ::
 
-        >>> clef = contexttools.ClefMark('treble')(staff)
-        >>> clef = contexttools.ClefMark('alto')(staff[1])
-        >>> clef = contexttools.ClefMark('bass')(staff[2])
-        >>> clef = contexttools.ClefMark('treble^8')(staff[3])
-        >>> clef = contexttools.ClefMark('bass_8')(staff[4])
-        >>> clef = contexttools.ClefMark('tenor')(staff[5])
-        >>> clef = contexttools.ClefMark('bass^15')(staff[6])
-        >>> clef = contexttools.ClefMark('percussion')(staff[7])
+        >>> clef = contexttools.ClefMark('treble')
+        >>> clef.attach(staff)
+        ClefMark('treble')(Staff{8})
+        >>> clef = contexttools.ClefMark('alto')
+        >>> clef.attach(staff[1])
+        ClefMark('alto')(d'8)
+        >>> clef = contexttools.ClefMark('bass')
+        >>> clef.attach(staff[2])
+        ClefMark('bass')(e'8)
+        >>> clef = contexttools.ClefMark('treble^8')
+        >>> clef.attach(staff[3])
+        ClefMark('treble^8')(f'8)
+        >>> clef = contexttools.ClefMark('bass_8')
+        >>> clef.attach(staff[4])
+        ClefMark('bass_8')(g'8)
+        >>> clef = contexttools.ClefMark('tenor')
+        >>> clef.attach(staff[5])
+        ClefMark('tenor')(a'8)
+        >>> clef = contexttools.ClefMark('bass^15')
+        >>> clef.attach(staff[6])
+        ClefMark('bass^15')(b'8)
+        >>> clef = contexttools.ClefMark('percussion')
+        >>> clef.attach(staff[7])
+        ClefMark('percussion')(c''8)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

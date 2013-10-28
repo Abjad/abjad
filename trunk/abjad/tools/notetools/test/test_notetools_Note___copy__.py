@@ -52,26 +52,21 @@ def test_notetools_Note___copy___04():
     note_1 = Note("c'4")
     grace_container_1 = containertools.GraceContainer(
         [Note("d'32")], kind='after')
-    grace_container_1(note_1)
+    grace_container_1.attach(note_1)
 
-    r'''
-    \afterGrace
-    c'4
-    {
-        d'32
-    }
-    '''
+    assert testtools.compare(
+        note_1,
+        r'''
+        \afterGrace
+        c'4
+        {
+            d'32
+        }
+        '''
+        )
 
     note_2 = copy.copy(note_1)
     grace_container_2 = inspect(note_2).get_grace_containers()[0]
-
-    r'''
-    \afterGrace
-    c'4
-    {
-        d'32
-    }
-    '''
 
     assert note_1 is not note_2
     assert grace_container_1 is not grace_container_2
@@ -93,17 +88,22 @@ def test_notetools_Note___copy___05():
     '''
 
     note = Note("c'4")
-    marktools.Articulation('staccato')(note)
-    containertools.GraceContainer("d'16")
+    articulation = marktools.Articulation('staccato')
+    articulation.attach(note)
+    grace = containertools.GraceContainer("d'16")
+    grace.attach(note)
     note.override.note_head.color = 'red'
 
-    r'''
-    \grace {
-        d'16
-    }
-    \once \override NoteHead #'color = #red
-    c'4 -\staccato
-    '''
+    assert testtools.compare(
+        note,
+        r'''
+        \grace {
+            d'16
+        }
+        \once \override NoteHead #'color = #red
+        c'4 -\staccato
+        '''
+        )
 
     new_note = copy.deepcopy(note)
 
@@ -117,22 +117,27 @@ def test_notetools_Note___copy___06():
 
     staff = Staff("c'8 [ c'8 e'8 f'8 ]")
     note = staff[0]
-    marktools.Articulation('staccato')(note)
-    containertools.GraceContainer("d'16")
+    articulation = marktools.Articulation('staccato')
+    articulation.attach(note)
+    grace = containertools.GraceContainer("d'16")
+    grace.attach(note)
     note.override.note_head.color = 'red'
 
-    r'''
-    \new Staff {
-        \grace {
-            d'16
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            \grace {
+                d'16
+            }
+            \once \override NoteHead #'color = #red
+            c'8 -\staccato [
+            c'8
+            e'8
+            f'8 ]
         }
-        \once \override NoteHead #'color = #red
-        c'8 -\staccato [
-        c'8
-        e'8
-        f'8 ]
-    }
-    '''
+        '''
+        )
 
     new_note = copy.deepcopy(note)
 

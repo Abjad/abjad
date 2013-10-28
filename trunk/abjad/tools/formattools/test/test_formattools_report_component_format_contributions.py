@@ -3,18 +3,24 @@ from abjad import *
 
 
 def test_formattools_report_component_format_contributions_01():
-    r'''You can report_component_format_contributions on a heavily tweaked leaf.
+    r'''You can report_component_format_contributions on a heavily 
+    tweaked leaf.
     '''
 
     t = Note("c'4")
     t.override.note_head.style = 'cross'
     t.override.note_head.color = 'red'
     t.override.stem.color = 'red'
-    marktools.Articulation('staccato')(t)
-    marktools.Articulation('tenuto')(t)
-    markuptools.Markup('some markup', Down)(t)
-    marktools.LilyPondComment('textual information before', 'before')(t)
-    marktools.LilyPondComment('textual information after', 'after')(t)
+    articulation = marktools.Articulation('staccato')
+    articulation.attach(t)
+    articulation = marktools.Articulation('tenuto')
+    articulation.attach(t)
+    markup = markuptools.Markup('some markup', Down)
+    markup.attach(t)
+    comment = marktools.LilyPondComment('textual information before', 'before')
+    comment.attach(t)
+    comment = marktools.LilyPondComment('textual information after', 'after')
+    comment.attach(t)
 
     r'''
     slot 1:

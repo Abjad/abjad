@@ -756,7 +756,8 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___33()
     '''
 
     note = Note("c'4")
-    marktools.Articulation('staccato')(note)
+    articulation = marktools.Articulation('staccato')
+    articulation.attach(note)
     note.override.script.color = 'red'
 
     assert testtools.compare(

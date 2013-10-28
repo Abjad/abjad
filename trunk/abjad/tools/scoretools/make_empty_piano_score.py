@@ -31,12 +31,14 @@ def make_empty_piano_score():
     # make treble staff
     treble_staff = stafftools.Staff([])
     treble_staff.name = 'treble'
-    contexttools.ClefMark('treble')(treble_staff)
+    clef = contexttools.ClefMark('treble')
+    clef.attach(treble_staff)
 
     # make bass staff
     bass_staff = stafftools.Staff([])
     bass_staff.name = 'bass'
-    contexttools.ClefMark('bass')(bass_staff)
+    clef = contexttools.ClefMark('bass')
+    clef.attach(bass_staff)
 
     # make piano staff and score
     piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])
