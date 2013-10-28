@@ -185,7 +185,7 @@ class SetMethodMixin(AbjadObject):
         from experimental.tools import musicexpressiontools
         assert isinstance(
             source_expression,
-            musicexpressiontools.StatalServerCursor)
+            datastructuretools.StatalServerCursor)
         source_expression = \
             musicexpressiontools.StatalServerCursorExpression(
                 source_expression)

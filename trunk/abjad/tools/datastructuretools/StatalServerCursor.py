@@ -14,8 +14,8 @@ class StatalServerCursor(AbjadObject):
         position=None,
         reverse=False,
         ):
-        from experimental.tools import musicexpressiontools
-        assert isinstance(statal_server, musicexpressiontools.StatalServer)
+        from abjad.tools import datastructuretools
+        assert isinstance(statal_server, datastructuretools.StatalServer)
         assert isinstance(position, (tuple, type(None))), repr(position)
         assert isinstance(reverse, type(True)), repr(reverse)
         position = position or ()

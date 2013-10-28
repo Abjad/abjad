@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -10,6 +9,7 @@ class StatalServer(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, cyclic_tree=None):
+        from abjad.tools import datastructuretools
         assert cyclic_tree is not None, repr(cyclic_tree)
         self._cyclic_tree = datastructuretools.CyclicPayloadTree(cyclic_tree)
 
@@ -18,8 +18,8 @@ class StatalServer(AbjadObject):
     def __call__(self, position=None, reverse=False):
         r'''Returns statal server cursor.
         '''
-        from experimental.tools import musicexpressiontools
-        cursor = musicexpressiontools.StatalServerCursor(
+        from abjad.tools import datastructuretools
+        cursor = datastructuretools.StatalServerCursor(
             statal_server=self,
             position=position,
             reverse=reverse,

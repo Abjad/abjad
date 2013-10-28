@@ -10,6 +10,6 @@ class StatalServerCursorExpression(PayloadExpression):
     ### INITIALIZER ###
 
     def __init__(self, payload):
-        from experimental.tools import musicexpressiontools
-        assert isinstance(payload, musicexpressiontools.StatalServerCursor)
+        from abjad.tools import datastructuretools
+        assert isinstance(payload, datastructuretools.StatalServerCursor)
         PayloadExpression.__init__(self, payload)

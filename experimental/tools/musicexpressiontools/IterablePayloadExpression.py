@@ -39,7 +39,7 @@ class IterablePayloadExpression(PayloadExpression):
     def __init__(self, payload=None):
         from experimental.tools import musicexpressiontools
         assert not isinstance(payload, rhythmmakertools.RhythmMaker)
-        assert not isinstance(payload, musicexpressiontools.StatalServerCursor)
+        assert not isinstance(payload, datastructuretools.StatalServerCursor)
         assert isinstance(payload, (
             str, tuple, list, 
             containertools.Container,

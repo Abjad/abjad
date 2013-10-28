@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import datastructuretools
 from experimental.tools.musicexpressiontools.Expression import Expression
 from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin \
     import IterablePayloadCallbackMixin
@@ -11,7 +12,7 @@ class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
     ### INITIALIZER ###
 
     def __init__(self, statal_server=None, callbacks=None):
-        assert isinstance(statal_server, musicexpressiontools.StatalServer)
+        assert isinstance(statal_server, datastructuretools.StatalServer)
         Expression.__init__(self)
         IterablePayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._statal_server = statal_server
