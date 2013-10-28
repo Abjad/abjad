@@ -20,7 +20,7 @@ class HairpinSpanner(DirectedSpanner):
             ...     descriptor='p < f', 
             ...     include_rests=False,
             ...     )
-            >>> hairpin.attach(staff[:])
+            >>> attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -46,7 +46,7 @@ class HairpinSpanner(DirectedSpanner):
             ...     descriptor='p < f', 
             ...     include_rests=True,
             ...     )
-            >>> hairpin.attach(staff[:])
+            >>> attach(hairpin, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -191,7 +191,7 @@ class HairpinSpanner(DirectedSpanner):
                 ...     descriptor='p < f', 
                 ...     include_rests=True,
                 ...     )
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> hairpin.include_rests
                 True
 
@@ -204,7 +204,7 @@ class HairpinSpanner(DirectedSpanner):
                 ...     descriptor='p < f', 
                 ...     include_rests=True,
                 ...     )
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> hairpin.include_rests = False
                 >>> hairpin.include_rests
                 False
@@ -225,7 +225,7 @@ class HairpinSpanner(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> hairpin.shape_string
                 '<'
 
@@ -235,7 +235,7 @@ class HairpinSpanner(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> hairpin.shape_string = '>'
                 >>> hairpin.shape_string
                 '>'
@@ -257,7 +257,7 @@ class HairpinSpanner(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> hairpin.start_dynamic_string
                 'p'
 
@@ -267,7 +267,7 @@ class HairpinSpanner(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> hairpin.start_dynamic_string = 'mf'
                 >>> hairpin.start_dynamic_string
                 'mf'
@@ -288,7 +288,7 @@ class HairpinSpanner(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> hairpin.stop_dynamic_string
                 'f'
 
@@ -298,7 +298,7 @@ class HairpinSpanner(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> hairpin.stop_dynamic_string = 'mf'
                 >>> hairpin.stop_dynamic_string
                 'mf'

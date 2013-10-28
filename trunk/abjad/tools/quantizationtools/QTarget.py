@@ -9,6 +9,7 @@ from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.scoretools import attach
 
 
 class QTarget(AbjadObject):
@@ -190,7 +191,7 @@ class QTarget(AbjadObject):
                 tempo = tempo_marks[0]
                 tempo.attach(new_leaf)
             tie = spannertools.TieSpanner()
-            tie.attach(new_leaf)
+            attach(tie, new_leaf)
             return new_leaf
         return leaf
 

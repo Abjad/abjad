@@ -261,7 +261,7 @@ def test_containertools_Container_extend_08():
     beam = spannertools.BeamSpanner()
     attach(beam, u[:])
     slur = spannertools.SlurSpanner()
-    slur.attach(u[-2:])
+    attach(slur, u[-2:])
 
     r'''
     \new Voice {

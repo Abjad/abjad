@@ -6,7 +6,7 @@ def test_mutationtools_AttributeInspectionAgent_get_markup_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
     markup_1 = markuptools.Markup('foo')
     markup_1.attach(staff[0])
     markup_2 = markuptools.Markup('bar')

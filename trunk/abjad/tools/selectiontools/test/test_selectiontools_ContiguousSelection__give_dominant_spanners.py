@@ -12,11 +12,11 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(voice[:])
+    attach(crescendo, voice[:])
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[1:3])
+    attach(slur, voice[1:3])
 
     assert testtools.compare(
         voice,

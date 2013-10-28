@@ -8,7 +8,7 @@ def test_spannertools_HairpinSpanner_include_rests_01():
 
     staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
     crescendo = spannertools.CrescendoSpanner(include_rests=False)
-    crescendo.attach(staff[:])
+    attach(crescendo, staff[:])
 
     assert testtools.compare(
         staff,
@@ -35,7 +35,7 @@ def test_spannertools_HairpinSpanner_include_rests_02():
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
     crescendo = spannertools.CrescendoSpanner(include_rests=False)
-    crescendo.attach(staff[:])
+    attach(crescendo, staff[:])
 
 
     assert testtools.compare(

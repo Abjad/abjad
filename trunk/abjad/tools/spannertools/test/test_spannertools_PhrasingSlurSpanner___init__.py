@@ -14,7 +14,7 @@ def test_spannertools_PhrasingSlurSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     phrasing_slur = spannertools.PhrasingSlurSpanner()
-    phrasing_slur.attach(staff.select_leaves())
+    attach(phrasing_slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,

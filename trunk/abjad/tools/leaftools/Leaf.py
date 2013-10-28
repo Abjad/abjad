@@ -373,6 +373,7 @@ class Leaf(Component):
         from abjad.tools import notetools
         from abjad.tools import spannertools
         from abjad.tools import tuplettools
+        from abjad.tools.scoretools import attach
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self.lilypond_duration_multiplier is not None:
@@ -397,7 +398,7 @@ class Leaf(Component):
             parentage = self._get_parentage()
             if not parentage._get_spanners(spannertools.TieSpanner):
                 tie = spannertools.TieSpanner()
-                tie.attach(all_leaves)
+                attach(tie, all_leaves)
             return all_leaves
         else:
             assert isinstance(components[0], tuplettools.Tuplet)
@@ -411,7 +412,7 @@ class Leaf(Component):
             self._splice(tied_leaves, grow_spanners=True)
             if not self._get_spanners(spannertools.TieSpanner):
                 tie = spannertools.TieSpanner()
-                tie.attach(all_leaves)
+                attach(tie, all_leaves)
             tuplet_multiplier = tuplet.multiplier
             tuplettools.Tuplet(tuplet_multiplier, all_leaves)
             return [tuplet]

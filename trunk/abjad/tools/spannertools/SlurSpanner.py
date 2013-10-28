@@ -10,7 +10,7 @@ class SlurSpanner(DirectedSpanner):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> slur = spannertools.SlurSpanner()
-        >>> slur.attach(staff[:])
+        >>> attach(slur, staff[:])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

@@ -995,7 +995,7 @@ class Container(Component):
                 >>> container.extend("cs''16 e'' cs'' a'")
                 >>> container.extend("fs'16 e' cs' fs")
                 >>> slur = spannertools.SlurSpanner()
-                >>> slur.attach(container[:])
+                >>> attach(slur, container[:])
                 >>> slur.direction = Down
                 >>> show(container) # doctest: +SKIP
 
@@ -1052,7 +1052,7 @@ class Container(Component):
                 >>> container.extend("cs''16 e'' cs'' a'")
                 >>> container.extend("fs'16 e' cs' fs")
                 >>> slur = spannertools.SlurSpanner()
-                >>> slur.attach(container[:])
+                >>> attach(slur, container[:])
                 >>> slur.direction = Down
                 >>> show(container) # doctest: +SKIP
 

@@ -6,7 +6,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
     command_1 = marktools.LilyPondCommandMark('slurDotted')
     command_1.attach(staff[0])
     command_2 = marktools.LilyPondCommandMark('slurUp')
@@ -36,7 +36,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
     comment = marktools.LilyPondComment('beginning of note content')
     comment.attach(staff[0])
     command = marktools.LilyPondCommandMark('slurDotted')

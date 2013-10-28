@@ -31,6 +31,7 @@ class TieChain(ContiguousSelection):
         from abjad.tools import notetools
         from abjad.tools import spannertools
         from abjad.tools import tuplettools
+        from abjad.tools.scoretools import attach
         new_written_duration = durationtools.Duration(new_written_duration)
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
@@ -68,7 +69,7 @@ class TieChain(ContiguousSelection):
                 ties = self[-1]._get_spanners(spannertools.TieSpanner)
                 if not ties:
                     tie = spannertools.TieSpanner()
-                    tie.attach(list(self))
+                    attach(tie, list(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
             durations = notetools.make_notes(0, new_written_duration)
@@ -205,7 +206,7 @@ class TieChain(ContiguousSelection):
 
                 >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
                 >>> crescendo = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> crescendo.attach(staff[:])
+                >>> attach(crescendo, staff[:])
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = contexttools.TimeSignatureMark((7, 16))
                 >>> time_signature.attach(staff)
@@ -262,7 +263,7 @@ class TieChain(ContiguousSelection):
 
                 >>> staff = Staff(r"c'8 ~ c'16 cqs''4")
                 >>> crescendo = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> crescendo.attach(staff[:])
+                >>> attach(crescendo, staff[:])
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = contexttools.TimeSignatureMark((7, 16))
                 >>> time_signature.attach(staff)

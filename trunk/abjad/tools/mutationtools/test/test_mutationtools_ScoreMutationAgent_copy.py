@@ -11,7 +11,7 @@ def test_mutationtools_ScoreMutationAgent_copy_01():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[:])
+    attach(slur, voice[:])
     trill = spannertools.TrillSpanner()
     trill.attach(voice.select_leaves())
     beam = spannertools.BeamSpanner()
@@ -61,7 +61,7 @@ def test_mutationtools_ScoreMutationAgent_copy_02():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[:])
+    attach(slur, voice[:])
     trill = spannertools.TrillSpanner()
     trill.attach(voice.select_leaves())
     beam = spannertools.BeamSpanner()
@@ -113,7 +113,7 @@ def test_mutationtools_ScoreMutationAgent_copy_03():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[:])
+    attach(slur, voice[:])
     trill = spannertools.TrillSpanner()
     trill.attach(voice.select_leaves())
     beam = spannertools.BeamSpanner()
@@ -164,7 +164,7 @@ def test_mutationtools_ScoreMutationAgent_copy_04():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[:])
+    attach(slur, voice[:])
     trill = spannertools.TrillSpanner()
     trill.attach(voice.select_leaves())
     beam = spannertools.BeamSpanner()
@@ -230,7 +230,7 @@ def test_mutationtools_ScoreMutationAgent_copy_05():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0][:] + voice[1][:] + voice[2:])
+    attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
@@ -307,7 +307,7 @@ def test_mutationtools_ScoreMutationAgent_copy_06():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0][:] + voice[1][:] + voice[2:])
+    attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
@@ -379,7 +379,7 @@ def test_mutationtools_ScoreMutationAgent_copy_07():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0][:] + voice[1][:] + voice[2:])
+    attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
@@ -442,7 +442,7 @@ def test_mutationtools_ScoreMutationAgent_copy_08():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0][:] + voice[1][:] + voice[2:])
+    attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
@@ -510,7 +510,7 @@ def test_mutationtools_ScoreMutationAgent_copy_09():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0][:] + voice[1][:] + voice[2:])
+    attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
@@ -595,7 +595,7 @@ def test_mutationtools_ScoreMutationAgent_copy_10():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(staff[:4])
+    attach(crescendo, staff[:4])
 
     assert testtools.compare(
         staff,

@@ -25,7 +25,7 @@ class DecrescendoSpanner(HairpinSpanner):
     ::
 
         >>> decrescendo = spannertools.DecrescendoSpanner(include_rests=True)
-        >>> decrescendo.attach(staff[:])
+        >>> attach(decrescendo, staff[:])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -62,7 +62,7 @@ class DecrescendoSpanner(HairpinSpanner):
     ::
 
         >>> decrescendo = spannertools.DecrescendoSpanner(include_rests=False)
-        >>> decrescendo.attach(staff[:])
+        >>> attach(decrescendo, staff[:])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

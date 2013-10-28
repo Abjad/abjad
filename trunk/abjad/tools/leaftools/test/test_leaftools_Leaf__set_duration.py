@@ -46,7 +46,7 @@ def test_leaftools_Leaf__set_duration_02():
 
     voice = Voice(notetools.make_repeated_notes(4))
     tie = spannertools.TieSpanner()
-    tie.attach(voice[:2])
+    attach(tie, voice[:2])
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
 

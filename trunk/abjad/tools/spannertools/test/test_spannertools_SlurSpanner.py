@@ -8,7 +8,7 @@ def test_spannertools_SlurSpanner_01():
 
     container = Container("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(container)
+    attach(slur, container)
 
     assert testtools.compare(
         container,
@@ -31,7 +31,7 @@ def test_spannertools_SlurSpanner_02():
 
     container = Container("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(container[:])
+    attach(slur, container[:])
 
     assert testtools.compare(
         container,

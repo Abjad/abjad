@@ -9,7 +9,7 @@ def test_marktools_LilyPondCommandMark___init___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
     command = marktools.LilyPondCommandMark(r'slurDotted')
     command.attach(staff[0])
 
@@ -35,7 +35,7 @@ def test_marktools_LilyPondCommandMark___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
     command = marktools.LilyPondCommandMark(r'slurUp')
     command.attach(staff[0])
 

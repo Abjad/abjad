@@ -17,9 +17,9 @@ def test_spannertools_Spanner_get_duration_01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice.select_leaves())
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(voice[0][:])
+    attach(crescendo, voice[0][:])
     decrescendo = spannertools.DecrescendoSpanner()
-    decrescendo.attach(voice[1][:])
+    attach(decrescendo, voice[1][:])
 
     assert testtools.compare(
         voice,
@@ -56,9 +56,9 @@ def test_spannertools_Spanner_get_duration_02():
     beam = spannertools.BeamSpanner()
     attach(beam, voice.select_leaves())
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(voice[0][:])
+    attach(crescendo, voice[0][:])
     decrescendo = spannertools.DecrescendoSpanner()
-    decrescendo.attach(voice[1][:])
+    attach(decrescendo, voice[1][:])
 
     assert testtools.compare(
         voice,

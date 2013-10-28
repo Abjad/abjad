@@ -10,7 +10,7 @@ def test_selectiontools_Parentage__get_spanners_01():
     beam = spannertools.BeamSpanner()
     attach(beam, container.select_leaves())
     slur = spannertools.SlurSpanner()
-    slur.attach(container.select_leaves())
+    attach(slur, container.select_leaves())
     trill = spannertools.TrillSpanner()
     trill.attach(container)
 
@@ -40,7 +40,7 @@ def test_selectiontools_Parentage__get_spanners_02():
     beam = spannertools.BeamSpanner()
     attach(beam, container.select_leaves())
     slur = spannertools.SlurSpanner()
-    slur.attach(container.select_leaves())
+    attach(slur, container.select_leaves())
     trill = spannertools.TrillSpanner()
     trill.attach(container)
 

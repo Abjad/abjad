@@ -8,9 +8,9 @@ def test_iterationtools_iterate_tie_chains_in_expr_01():
 
     staff = Staff(notetools.make_repeated_notes(4))
     tie = spannertools.TieSpanner()
-    tie.attach(staff[:2])
+    attach(tie, staff[:2])
     tie = spannertools.TieSpanner()
-    tie.attach(staff[2:])
+    attach(tie, staff[2:])
 
     assert testtools.compare(
         staff,
@@ -52,9 +52,9 @@ def test_iterationtools_iterate_tie_chains_in_expr_03():
 
     staff = Staff(notetools.make_repeated_notes(4))
     tie = spannertools.TieSpanner()
-    tie.attach(staff[:2])
+    attach(tie, staff[:2])
     tie = spannertools.TieSpanner()
-    tie.attach(staff[2:])
+    attach(tie, staff[2:])
 
     chains = list(iterationtools.iterate_tie_chains_in_expr(staff))
 

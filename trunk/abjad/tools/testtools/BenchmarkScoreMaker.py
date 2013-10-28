@@ -47,7 +47,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             crescendo = spannertools.CrescendoSpanner()
-            crescendo.attach(part)
+            attach(crescendo, part)
             dynamic = contexttools.DynamicMark('p')
             dynamic.attach(part[0])
             dynamic = contexttools.DynamicMark('r')
@@ -71,7 +71,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             crescendo = spannertools.CrescendoSpanner()
-            crescendo.attach(part)
+            attach(crescendo, part)
             dynamic = contexttools.DynamicMark('p')
             dynamic.attach(part[0])
             dynamic = contexttools.DynamicMark('r')
@@ -95,7 +95,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             crescendo = spannertools.CrescendoSpanner()
-            crescendo.attach(part)
+            attach(crescendo, part)
             dynamic = contexttools.DynamicMark('p')
             dynamic.attach(part[0])
             dynamic = contexttools.DynamicMark('r')
@@ -185,7 +185,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             crescendo = spannertools.CrescendoSpanner()
-            crescendo.attach(part)
+            attach(crescendo, part)
         return voice
 
     def make_hairpin_score_02(self):
@@ -206,7 +206,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             crescendo = spannertools.CrescendoSpanner()
-            crescendo.attach(part)
+            attach(crescendo, part)
         return voice
 
     def make_hairpin_score_03(self):
@@ -227,7 +227,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             crescendo = spannertools.CrescendoSpanner()
-            crescendo.attach(part)
+            attach(crescendo, part)
         return voice
 
     def make_score_00(self):
@@ -331,7 +331,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             slur = spannertools.SlurSpanner()
-            slur.attach(part)
+            attach(slur, part)
         return voice
 
     def make_spanner_score_05(self):
@@ -351,7 +351,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             slur = spannertools.SlurSpanner()
-            slur.attach(part)
+            attach(slur, part)
         return voice
 
     def make_spanner_score_06(self):
@@ -371,7 +371,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             slur = spannertools.SlurSpanner()
-            slur.attach(part)
+            attach(slur, part)
         return voice
 
     def make_spanner_score_07(self):

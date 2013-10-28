@@ -14,9 +14,9 @@ def test_containertools_Container___delitem___01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0][:])
+    attach(slur, voice[0][:])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[1][:])
+    attach(slur, voice[1][:])
 
     assert testtools.compare(
         voice,

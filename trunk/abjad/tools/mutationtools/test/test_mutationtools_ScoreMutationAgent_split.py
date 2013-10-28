@@ -15,7 +15,7 @@ def test_mutationtools_ScoreMutationAgent_split_01():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -74,7 +74,7 @@ def test_mutationtools_ScoreMutationAgent_split_02():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -135,7 +135,7 @@ def test_mutationtools_ScoreMutationAgent_split_03():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -202,7 +202,7 @@ def test_mutationtools_ScoreMutationAgent_split_04():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -337,7 +337,7 @@ def test_mutationtools_ScoreMutationAgent_split_06():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -398,7 +398,7 @@ def test_mutationtools_ScoreMutationAgent_split_07():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -460,7 +460,7 @@ def test_mutationtools_ScoreMutationAgent_split_08():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -528,7 +528,7 @@ def test_mutationtools_ScoreMutationAgent_split_09():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -604,7 +604,7 @@ def test_mutationtools_ScoreMutationAgent_split_10():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -663,7 +663,7 @@ def test_mutationtools_ScoreMutationAgent_split_11():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -724,7 +724,7 @@ def test_mutationtools_ScoreMutationAgent_split_12():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -790,7 +790,7 @@ def test_mutationtools_ScoreMutationAgent_split_13():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -960,7 +960,7 @@ def test_mutationtools_ScoreMutationAgent_split_16():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1021,7 +1021,7 @@ def test_mutationtools_ScoreMutationAgent_split_17():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1083,7 +1083,7 @@ def test_mutationtools_ScoreMutationAgent_split_18():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1150,7 +1150,7 @@ def test_mutationtools_ScoreMutationAgent_split_19():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1226,7 +1226,7 @@ def test_mutationtools_ScoreMutationAgent_split_20():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1292,7 +1292,7 @@ def test_mutationtools_ScoreMutationAgent_split_21():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1362,7 +1362,7 @@ def test_mutationtools_ScoreMutationAgent_split_22():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -1428,7 +1428,7 @@ def test_mutationtools_ScoreMutationAgent_split_23():
     beam_1.attach([staff[0]])
     beam_2.attach([staff[1]])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -2317,7 +2317,7 @@ def test_mutationtools_ScoreMutationAgent_split_37():
     beam = spannertools.BeamSpanner()
     attach(beam, staff[1])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -2378,7 +2378,7 @@ def test_mutationtools_ScoreMutationAgent_split_38():
     beam = spannertools.BeamSpanner()
     attach(beam, staff[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,
@@ -2427,7 +2427,7 @@ def test_mutationtools_ScoreMutationAgent_split_39():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2489,7 +2489,7 @@ def test_mutationtools_ScoreMutationAgent_split_40():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2545,7 +2545,7 @@ def test_mutationtools_ScoreMutationAgent_split_41():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2608,7 +2608,7 @@ def test_mutationtools_ScoreMutationAgent_split_42():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2664,7 +2664,7 @@ def test_mutationtools_ScoreMutationAgent_split_43():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2716,7 +2716,7 @@ def test_mutationtools_ScoreMutationAgent_split_44():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2767,7 +2767,7 @@ def test_mutationtools_ScoreMutationAgent_split_45():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2830,7 +2830,7 @@ def test_mutationtools_ScoreMutationAgent_split_46():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2892,7 +2892,7 @@ def test_mutationtools_ScoreMutationAgent_split_47():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[0].select_leaves())
+    attach(slur, voice[0].select_leaves())
 
     assert testtools.compare(
         voice,
@@ -2979,7 +2979,7 @@ def test_mutationtools_ScoreMutationAgent_split_49():
     beam = spannertools.BeamSpanner()
     attach(beam, staff[0])
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
 
     assert testtools.compare(
         staff,

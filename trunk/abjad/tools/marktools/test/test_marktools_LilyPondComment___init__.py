@@ -8,7 +8,7 @@ def test_marktools_LilyPondComment___init___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(staff.select_leaves())
+    attach(slur, staff.select_leaves())
     comment = marktools.LilyPondComment('beginning of note content')
     comment.attach(staff[0])
 

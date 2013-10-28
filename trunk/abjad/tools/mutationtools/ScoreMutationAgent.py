@@ -86,7 +86,7 @@ class ScoreMutationAgent(object):
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
                 >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
-                >>> hairpin.attach(staff.select_leaves())
+                >>> attach(hairpin, staff.select_leaves())
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -135,7 +135,7 @@ class ScoreMutationAgent(object):
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
                 >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
-                >>> hairpin.attach(staff.select_leaves())
+                >>> attach(hairpin, staff.select_leaves())
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -220,7 +220,7 @@ class ScoreMutationAgent(object):
                 >>> tuplet_2 = tuplettools.FixedDurationTuplet(duration, [])
                 >>> tuplet_2.extend("c'16 d'16 e'16")
                 >>> slur = spannertools.SlurSpanner()
-                >>> slur.attach(tuplet_2[:])
+                >>> attach(slur, tuplet_2[:])
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> show(staff) # doctest: +SKIP
 
@@ -283,7 +283,7 @@ class ScoreMutationAgent(object):
                 >>> staff.append(Measure((1, 4), "c'8 d'8"))
                 >>> staff.append(Measure((2, 8), "e'8 f'8"))
                 >>> slur = spannertools.SlurSpanner()
-                >>> slur = slur.attach(staff[:])
+                >>> slur = attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -348,9 +348,9 @@ class ScoreMutationAgent(object):
                 >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
-                >>> hairpin.attach(staff[:])
+                >>> attach(hairpin, staff[:])
                 >>> slur = spannertools.SlurSpanner()
-                >>> slur.attach(staff.select_leaves())
+                >>> attach(slur, staff.select_leaves())
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1012,7 +1012,7 @@ class ScoreMutationAgent(object):
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(leaves)
+                >>> attach(hairpin, leaves)
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -1068,7 +1068,7 @@ class ScoreMutationAgent(object):
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(leaves)
+                >>> attach(hairpin, leaves)
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -1125,7 +1125,7 @@ class ScoreMutationAgent(object):
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(leaves)
+                >>> attach(hairpin, leaves)
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -1184,7 +1184,7 @@ class ScoreMutationAgent(object):
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-                >>> hairpin.attach(leaves)
+                >>> attach(hairpin, leaves)
                 >>> staff.override.dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -1247,7 +1247,7 @@ class ScoreMutationAgent(object):
                 >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
                 >>> leaves = staff.select_leaves()
                 >>> slur = spannertools.SlurSpanner()
-                >>> slur.attach(leaves)
+                >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1437,10 +1437,10 @@ class ScoreMutationAgent(object):
                 >>> staff.append(Measure((3, 4), "d'4 e'4 f'4"))
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
-                >>> hairpin.attach(leaves)
+                >>> attach(hairpin, leaves)
                 >>> measures = staff[:]
                 >>> slur = spannertools.SlurSpanner()
-                >>> slur.attach(measures)
+                >>> attach(slur, measures)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::

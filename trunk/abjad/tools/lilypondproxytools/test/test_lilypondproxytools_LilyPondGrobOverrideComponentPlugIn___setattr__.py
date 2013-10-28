@@ -225,7 +225,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___10()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     hairpin = spannertools.HairpinSpanner(descriptor='p < f')
-    hairpin.attach(voice[:])
+    attach(hairpin, voice[:])
     hairpin.override.dynamic_line_spanner.staff_padding = 4
 
     assert testtools.compare(

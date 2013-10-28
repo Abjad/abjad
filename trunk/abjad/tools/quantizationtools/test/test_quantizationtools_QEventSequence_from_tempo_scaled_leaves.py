@@ -21,11 +21,11 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_01():
     staff.append(Chord([0, 1, 4], (1, 4)))
 
     tie = spannertools.TieSpanner()
-    tie.attach(staff[3:5])
+    attach(tie, staff[3:5])
     tie = spannertools.TieSpanner()
-    tie.attach(staff[5:7])
+    attach(tie, staff[5:7])
     tie = spannertools.TieSpanner()
-    tie.attach(staff[7:11])
+    attach(tie, staff[7:11])
 
     tempo = contexttools.TempoMark((1, 4), 55)
 
@@ -91,11 +91,11 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_02():
     staff.append(Chord([0, 1, 4], (1, 4)))
 
     tie = spannertools.TieSpanner()
-    tie.attach(staff[3:5])
+    attach(tie, staff[3:5])
     tie = spannertools.TieSpanner()
-    tie.attach(staff[5:7])
+    attach(tie, staff[5:7])
     tie = spannertools.TieSpanner()
-    tie.attach(staff[7:11])
+    attach(tie, staff[7:11])
 
     tempo = contexttools.TempoMark((1, 4), 58, target_context=Staff)
     tempo.attach(staff[0])

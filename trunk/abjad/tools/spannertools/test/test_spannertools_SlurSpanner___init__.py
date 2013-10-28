@@ -50,7 +50,7 @@ def test_spannertools_SlurSpanner___init___02():
 
     leaves = container[0][0][:] + container[1][0][:]
     slur = spannertools.SlurSpanner()
-    slur.attach(leaves)
+    attach(slur, leaves)
 
     assert testtools.compare(
         container,
@@ -118,7 +118,7 @@ def test_spannertools_SlurSpanner___init___03():
         )
 
     slur = spannertools.SlurSpanner()
-    slur.attach(container)
+    attach(slur, container)
 
     assert testtools.compare(
         container,

@@ -7,9 +7,9 @@ def test_labeltools_label_tie_chains_in_expr_with_tie_chain_duration_01():
     staff = Staff(notetools.make_repeated_notes(4))
     tuplettools.FixedDurationTuplet(Duration(2, 8), staff[:3])
     tie = spannertools.TieSpanner()
-    tie.attach(staff.select_leaves()[:2])
+    attach(tie, staff.select_leaves()[:2])
     tie = spannertools.TieSpanner()
-    tie.attach(staff.select_leaves()[2:])
+    attach(tie, staff.select_leaves()[2:])
     labeltools.label_tie_chains_in_expr_with_tie_chain_duration(staff)
 
     assert testtools.compare(

@@ -133,6 +133,7 @@ def make_tied_leaf(
     Returns selection of unincorporated leaves.
     '''
     from abjad.tools import spannertools
+    from abjad.tools.scoretools import attach
 
     # check input
     duration = durationtools.Duration(duration)
@@ -194,7 +195,7 @@ def make_tied_leaf(
     # apply tie spanner if required
     if tie_parts and 1 < len(result):
         tie = spannertools.TieSpanner()
-        tie.attach(result)
+        attach(tie, result)
 
     # return result
     result = selectiontools.Selection(result)

@@ -11,7 +11,7 @@ def test_containertools_Container_pop_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(voice[:])
+    attach(slur, voice[:])
     beam = spannertools.BeamSpanner()
     attach(beam, voice[1])
 

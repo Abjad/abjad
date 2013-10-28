@@ -6,7 +6,7 @@ def test_selectiontools_TieChain_leaves_group_by_immediate_parents_01():
 
     staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
     tie = spannertools.TieSpanner()
-    tie.attach(staff.select_leaves())
+    attach(tie, staff.select_leaves())
 
     r'''
     \new Staff {

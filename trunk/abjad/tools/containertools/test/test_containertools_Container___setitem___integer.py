@@ -418,7 +418,7 @@ def test_containertools_Container___setitem___integer_09():
     glissando = spannertools.GlissandoSpanner()
     glissando.attach(u.select_leaves())
     slur = spannertools.SlurSpanner()
-    slur.attach(u[1].select_leaves())
+    attach(slur, u[1].select_leaves())
 
     assert testtools.compare(
         u,

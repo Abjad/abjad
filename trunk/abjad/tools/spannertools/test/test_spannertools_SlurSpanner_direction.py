@@ -6,7 +6,7 @@ def test_spannertools_SlurSpanner_direction_01():
 
     container = Container("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(direction=Up)
-    slur.attach(container)
+    attach(slur, container)
 
     assert testtools.compare(
         container,

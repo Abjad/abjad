@@ -508,6 +508,7 @@ class ReducedLyParser(abctools.Parser):
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, leaves):
+        from abjad.tools.scoretools import attach
 
         spanner_references = {
             spannertools.BeamSpanner: None,
@@ -542,7 +543,7 @@ class ReducedLyParser(abctools.Parser):
                         previous_tie[0].append(next_leaf)
                     else:
                         tie = spannertools.TieSpanner()
-                        tie.attach((leaf, next_leaf))
+                        attach(tie, (leaf, next_leaf))
 
                 elif current_class is spannertools.BeamSpanner:
                     # A beam may begin and end on the same leaf

@@ -10,9 +10,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_01():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     slur = spannertools.SlurSpanner()
-    slur.attach(target[2:])
+    attach(slur, target[2:])
     slur = spannertools.SlurSpanner()
-    slur.attach(target[:3])
+    attach(slur, target[:3])
 
     assert testtools.compare(
         target,
@@ -37,9 +37,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_02():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     slur = spannertools.SlurSpanner()
-    slur.attach(target[2:])
+    attach(slur, target[2:])
     slur = spannertools.SlurSpanner()
-    slur.attach(target[:3])
+    attach(slur, target[:3])
 
     assert testtools.compare(
         target,
@@ -98,9 +98,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_07():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     slur = spannertools.SlurSpanner(direction=Down)
-    slur.attach(target[:3])
+    attach(slur, target[:3])
     slur = spannertools.SlurSpanner(direction=Up)
-    slur.attach(target[2:])
+    attach(slur, target[2:])
 
     assert testtools.compare(
         target,

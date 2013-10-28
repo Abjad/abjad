@@ -215,7 +215,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
                         tie = spannertools.TieSpanner()
-                        tie.attach(leaves)
+                        attach(tie, leaves)
             if tuplet.multiplier == 1:
                 return tuplet[:]
             return [tuplet]

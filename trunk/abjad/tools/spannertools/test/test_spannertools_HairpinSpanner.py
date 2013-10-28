@@ -11,7 +11,7 @@ def test_spannertools_HairpinSpanner_01():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(staff[:4])
+    attach(crescendo, staff[:4])
 
     assert testtools.compare(
         staff,
@@ -38,7 +38,7 @@ def test_spannertools_HairpinSpanner_02():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(staff[0:1])
+    attach(crescendo, staff[0:1])
     checker = ShortHairpinCheck()
 
     assert testtools.compare(
@@ -66,7 +66,7 @@ def test_spannertools_HairpinSpanner_03():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(staff[:4])
+    attach(crescendo, staff[:4])
     dynamic = contexttools.DynamicMark('p')
     dynamic.attach(staff[0])
     dynamic = contexttools.DynamicMark('f')
@@ -95,7 +95,7 @@ def test_spannertools_HairpinSpanner_04():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(staff[:4])
+    attach(crescendo, staff[:4])
     dynamic = contexttools.DynamicMark('p')
     dynamic.attach(staff[2])
 
@@ -110,15 +110,15 @@ def test_spannertools_HairpinSpanner_05():
     dynamic = contexttools.DynamicMark('p')
     dynamic.attach(staff[0])
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(staff[0:3])
+    attach(crescendo, staff[0:3])
     dynamic = contexttools.DynamicMark('f')
     dynamic.attach(staff[2])
     decrescendo = spannertools.DecrescendoSpanner()
-    decrescendo.attach(staff[2:5])
+    attach(decrescendo, staff[2:5])
     dynamic = contexttools.DynamicMark('p')
     dynamic.attach(staff[4])
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(staff[4:7])
+    attach(crescendo, staff[4:7])
     dynamic = contexttools.DynamicMark('f')
     dynamic.attach(staff[6])
 
@@ -147,7 +147,7 @@ def test_spannertools_HairpinSpanner_06():
 
     staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
     crescendo = spannertools.CrescendoSpanner()
-    crescendo.attach(staff[:])
+    attach(crescendo, staff[:])
 
     assert testtools.compare(
         staff,
@@ -181,7 +181,7 @@ def test_spannertools_HairpinSpanner_07():
         descriptor='p < f', 
         include_rests=False,
         )
-    hairpin.attach(staff.select_leaves())
+    attach(hairpin, staff.select_leaves())
 
     spanner_classes = spannertools.HairpinSpanner
     spanner = inspect(staff[0]).get_spanner(spanner_classes=spanner_classes)

@@ -58,6 +58,7 @@ class ContiguousSelection(Selection):
     def _attach_tie_spanner_to_leaf_pair(self):
         from abjad.tools import leaftools
         from abjad.tools import spannertools
+        from abjad.tools.scoretools import attach
         assert len(self) == 2
         left_leaf, right_leaf = self
         assert isinstance(left_leaf, leaftools.Leaf), left_leaf
@@ -83,7 +84,7 @@ class ContiguousSelection(Selection):
             right_tie_spanner.append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
             tie = spannertools.TieSpanner()
-            tie.attach([left_leaf, right_leaf])
+            attach(tie, [left_leaf, right_leaf])
 
     def _copy_and_include_enclosing_containers(self):
         from abjad.tools import componenttools

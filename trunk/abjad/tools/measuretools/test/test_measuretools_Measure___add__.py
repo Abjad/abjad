@@ -13,7 +13,7 @@ def test_measuretools_Measure___add___01():
     attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
     slur = spannertools.SlurSpanner()
-    slur.attach(measure_2[:])
+    attach(slur, measure_2[:])
     new = measure_1 + measure_2
 
     assert testtools.compare(
@@ -44,7 +44,7 @@ def test_measuretools_Measure___add___02():
     attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
     slur = spannertools.SlurSpanner()
-    slur.attach(measure_2[:])
+    attach(slur, measure_2[:])
     staff = Staff([measure_1, measure_2])
 
     assert testtools.compare(

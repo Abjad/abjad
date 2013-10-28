@@ -334,7 +334,7 @@ def test_leaftools_Leaf__split_by_duration_12():
 
     staff = Staff([Note("c'4")])
     tie = spannertools.TieSpanner()
-    tie.attach(staff.select_leaves())
+    attach(tie, staff.select_leaves())
     halves = staff[0]._split_by_duration(Duration(1, 8))
 
     assert len(staff) == 2
@@ -374,7 +374,7 @@ def test_leaftools_Leaf__split_by_duration_14():
 
     staff = Staff([Note("c'4")])
     tie = spannertools.TieSpanner()
-    tie.attach(staff.select_leaves())
+    attach(tie, staff.select_leaves())
     halves = staff[0]._split_by_duration(Duration(5, 32))
 
     assert len(halves) == 2
@@ -394,7 +394,7 @@ def test_leaftools_Leaf__split_by_duration_15():
 
     container = Container(notetools.make_repeated_notes(4))
     tie = spannertools.TieSpanner()
-    tie.attach(container)
+    attach(tie, container)
     halves = container[0]._split_by_duration(Duration(5, 64))
 
     assert inspect(container).get_spanner(spannertools.TieSpanner) is tie
@@ -412,7 +412,7 @@ def test_leaftools_Leaf__split_by_duration_16():
 
     staff = Staff(Container(notetools.make_repeated_notes(4)) * 2)
     tie = spannertools.TieSpanner()
-    tie.attach(staff[:])
+    attach(tie, staff[:])
     halves = staff[0][0]._split_by_duration(Duration(5, 64))
 
     assert tie.components == tuple(staff[:])

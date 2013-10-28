@@ -98,7 +98,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_06():
     tuplet_2 = tuplettools.FixedDurationTuplet(
         Duration(2, 16), "c'16 d'16 e'16")
     slur = spannertools.SlurSpanner()
-    slur.attach(tuplet_2[:])
+    attach(slur, tuplet_2[:])
 
     assert testtools.compare(
         tuplet_1,
@@ -156,7 +156,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_07():
     tuplet_2 = tuplettools.FixedDurationTuplet(
         Duration(2, 16), "c'16 d'16 e'16")
     slur = spannertools.SlurSpanner()
-    slur.attach(tuplet_2[:])
+    attach(slur, tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -208,7 +208,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_08():
     attach(beam, tuplet_1[:])
     tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8 f'8 g'8")
     slur = spannertools.SlurSpanner()
-    slur.attach(tuplet_2[:])
+    attach(slur, tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -287,7 +287,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_11():
         tuplettools.FixedDurationTuplet(Duration(1, 6), [Note("c'4")]),
         Note("c'4")])
     slur = spannertools.SlurSpanner()
-    slur.attach(voice.select_leaves())
+    attach(slur, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -333,7 +333,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_12():
     attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
     slur = spannertools.SlurSpanner()
-    slur.attach(measure_2[:])
+    attach(slur, measure_2[:])
     staff = Staff([measure_1, measure_2])
 
     assert testtools.compare(

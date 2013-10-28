@@ -9,10 +9,10 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlurSpanner_01():
     '''
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    phrasing_slur = spannertools.PhrasingSlurSpanner()
-    phrasing_slur.attach(target[2:])
-    phrasing_slur = spannertools.PhrasingSlurSpanner()
-    phrasing_slur.attach(target[:3])
+    slur = spannertools.PhrasingSlurSpanner()
+    attach(slur, target[2:])
+    slur = spannertools.PhrasingSlurSpanner()
+    attach(slur, target[:3])
 
     assert testtools.compare(
         target,
@@ -36,10 +36,10 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlurSpanner_02():
     '''
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    phrasing_slur = spannertools.PhrasingSlurSpanner()
-    phrasing_slur.attach(target[2:])
-    phrasing_slur = spannertools.PhrasingSlurSpanner()
-    phrasing_slur.attach(target[:3])
+    slur = spannertools.PhrasingSlurSpanner()
+    attach(slur, target[2:])
+    slur = spannertools.PhrasingSlurSpanner()
+    attach(slur, target[:3])
 
     assert testtools.compare(
         target,

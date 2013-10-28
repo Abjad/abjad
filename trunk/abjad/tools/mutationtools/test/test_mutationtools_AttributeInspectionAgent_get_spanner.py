@@ -9,7 +9,7 @@ def test_mutationtools_AttributeInspectionAgent_get_spanner_01():
     beam = spannertools.BeamSpanner()
     attach(beam, container.select_leaves()[:-1])
     slur = spannertools.SlurSpanner()
-    slur.attach(container.select_leaves()[:-1])
+    attach(slur, container.select_leaves()[:-1])
     trill = spannertools.TrillSpanner()
     trill.attach(container)
 
