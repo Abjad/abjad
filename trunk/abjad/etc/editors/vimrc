@@ -177,20 +177,6 @@ call Pl#Theme#RemoveSegment('filetype')
 " 5. other
 " ========
 
-"" omnipopup (http://stackoverflow.com/a/2170800/70778)
-"function! OmniPopup(action)
-"    if pumvisible()
-"        if a:action == 'j'
-"            return "\<C-N>"
-"        elseif a:action == 'k'
-"            return "\<C-P>"
-"        endif
-"    endif
-"    return a:action
-"endfunction
-"inoremap <silent><C-j> <C-R>=OmniPopup('j')<cr>
-"inoremap <silent><C-k> <C-R>=OmniPopup('k')<cr>
-
 " show tab number (adapted from http://stackoverflow.com/q/5927952)
 if exists("+showtabline")
     function! MyTabLine()
@@ -240,3 +226,15 @@ function! MinimalFoldText()
 endfunction
 set foldtext=MinimalFoldText()
 highlight Folded term=standout ctermfg=Grey ctermbg=White guifg=DarkGrey guibg=LightGrey
+
+" use Qargs to populate the arglist with the contents of the quickfix list
+" taken from http://vimcasts.org/episodes/project-wide-find-and-replace/
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+function! QuickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
