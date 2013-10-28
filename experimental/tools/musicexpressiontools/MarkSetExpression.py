@@ -18,4 +18,4 @@ class MarkSetExpression(LeafSetExpression):
         assert isinstance(mark, marktools.Mark), repr(mark)
         for leaf in self._iterate_selected_leaves_in_score(score):
             new_mark = copy.deepcopy(mark)
-            new_mark(leaf)
+            new_mark.attach(leaf)

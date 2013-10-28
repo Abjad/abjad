@@ -19,8 +19,8 @@ class ReiteratedDynamicHandler(DynamicHandler):
         for note_or_chord in \
             iterationtools.iterate_notes_and_chords_in_expr(expr):
             #contexttools.DynamicMark(self.dynamic_name)(note_or_chord)
-            marktools.LilyPondCommandMark(self.dynamic_name, 'right')(
-                note_or_chord)
+            command = marktools.LilyPondCommandMark(self.dynamic_name, 'right')
+            command.attach(note_or_chord)
         return expr
 
     ### PUBLIC PROPERTIES ###
