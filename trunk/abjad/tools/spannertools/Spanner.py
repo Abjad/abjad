@@ -305,8 +305,8 @@ class Spanner(AbjadObject):
         raise IndexError
 
     def _initialize_components(self, components):
-        #if components:
-        #    raise Exception('deprecated')
+        if components:
+            raise Exception('deprecated')
         from abjad.tools import contexttools
         from abjad.tools import iterationtools
         if isinstance(components, componenttools.Component):
