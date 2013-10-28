@@ -7,29 +7,23 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_01(
     '''
 
     voice = Voice(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(voice[:2])
+    tie = spannertools.TieSpanner()
+    tie.attach(voice[:2])
 
-    r'''
-    \new Voice {
-        c'8 ~
-        c'8
-        c'8
-        c'8
-    }
-    '''
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 ~
+            c'8
+            c'8
+            c'8
+        }
+        '''
+        )
 
     voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
-    r'''
-    \new Voice {
-        c'8 ~
-        c'8 ~
-        c'8
-        c'8
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -41,6 +35,8 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_01(
         }
         '''
         )
+
+    assert inspect(voice).is_well_formed()
 
 
 def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_02():
@@ -48,30 +44,25 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_02(
     '''
 
     voice = Voice(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(voice[:2])
-    spannertools.TieSpanner(voice[2:])
+    tie = spannertools.TieSpanner()
+    tie.attach(voice[:2])
+    tie = spannertools.TieSpanner()
+    tie.attach(voice[2:])
 
-    r'''
-    \new Voice {
-        c'8 ~
-        c'8
-        c'8 ~
-        c'8
-    }
-    '''
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 ~
+            c'8
+            c'8 ~
+            c'8
+        }
+        '''
+        )
 
     voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
-    r'''
-    \new Voice {
-        c'8 ~
-        c'8 ~
-        c'8 ~
-        c'8
-    }
-    '''
-
-    assert inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -83,6 +74,8 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_02(
         }
         '''
         )
+
+    assert inspect(voice).is_well_formed()
 
 
 def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_03():

@@ -29,7 +29,7 @@ def test_spannertools_Spanner__remove_01():
 
     beam._remove(beam.components[1])
 
-    "Spanner is now discontiguous: spannertools.BeamSpanner(c'8, e'8, f'8)."
+    "Spanner is now discontiguous: c'8, e'8, f'8 but no d'8."
 
     assert testtools.compare(
         voice,

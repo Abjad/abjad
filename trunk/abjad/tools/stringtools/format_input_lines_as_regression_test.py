@@ -8,7 +8,8 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
 
         >>> input_lines = '''
         ... staff = Staff("c'8 d'8 e'8 f'8")
-        ... spannertools.BeamSpanner(staff.select_leaves())
+        ... beam = spannertools.BeamSpanner()
+        ... beam.attach(staff.select_leaves())
         ... f(staff)
         ...
         ... tuplettools.FixedDurationTuplet(Duration(2, 8), staff[:3])
@@ -20,7 +21,8 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
         >>> stringtools.format_input_lines_as_regression_test(input_lines) # doctest: +SKIP
 
             staff = Staff("c'8 d'8 e'8 f'8")
-            spannertools.BeamSpanner(staff.select_leaves())
+            beam = spannertools.BeamSpanner()
+            beam.attach(staff.select_leaves())
 
             r'''
             \new Staff {

@@ -8,15 +8,13 @@ class MultipartBeamSpanner(BeamSpanner):
     ::
 
         >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
-
-    ::
-
         >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> spannertools.MultipartBeamSpanner(staff[:])
-        MultipartBeamSpanner(c'8, d'8, e'4, f'8, g'8, r4)
+        >>> beam = spannertools.MultipartBeamSpanner()
+        >>> beam.attach(staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -30,15 +28,9 @@ class MultipartBeamSpanner(BeamSpanner):
             r4
         }
 
-    ::
+    Avoids rests.
 
-        >>> show(staff) # doctest: +SKIP
-
-    Avoid rests.
-
-    Avoid large-duration notes.
-
-    Returns multipart beam spanner.
+    Avoids large-duration notes.
     '''
 
     ### INITIALIZER ###

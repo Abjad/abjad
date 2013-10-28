@@ -8,9 +8,12 @@ def test_selectiontools_Parentage__get_spanner_01():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(container.select_leaves()[:-1])
-    slur = spannertools.SlurSpanner(container.select_leaves()[:-1])
-    trill = spannertools.TrillSpanner(container)
+    beam = spannertools.BeamSpanner()
+    beam.attach(container.select_leaves()[:-1])
+    slur = spannertools.SlurSpanner()
+    slur.attach(container.select_leaves()[:-1])
+    trill = spannertools.TrillSpanner()
+    trill.attach(container)
 
     assert testtools.compare(
         container,

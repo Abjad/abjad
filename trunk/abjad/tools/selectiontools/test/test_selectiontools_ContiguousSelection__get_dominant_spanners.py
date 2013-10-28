@@ -13,9 +13,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -49,9 +52,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     receipt = voice[1:2]._get_dominant_spanners()
 
@@ -66,9 +72,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_03():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     receipt = voice[-1:]._get_dominant_spanners()
 
@@ -82,9 +91,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_04():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     receipt= voice[:2]._get_dominant_spanners()
 
@@ -98,9 +110,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_05():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     receipt = voice[-2:]._get_dominant_spanners()
 
@@ -114,9 +129,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_06():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     receipt = voice[:]._get_dominant_spanners()
 
@@ -129,9 +147,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_07():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     receipt = select(voice)._get_dominant_spanners()
 
@@ -146,9 +167,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_08():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     receipt = voice.select_leaves()[:2]._get_dominant_spanners()
 
@@ -163,9 +187,12 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_09():
     '''
 
     voice = Voice(Container([]) * 3)
-    beam = spannertools.BeamSpanner(voice[:2])
-    glissando = spannertools.GlissandoSpanner(voice[1:])
-    trill = spannertools.TrillSpanner(voice.select_leaves())
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    glissando = spannertools.GlissandoSpanner()
+    glissando.attach(voice[1:])
+    trill = spannertools.TrillSpanner()
+    trill.attach(voice.select_leaves())
 
     assert testtools.compare(
         voice,

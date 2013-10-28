@@ -168,7 +168,8 @@ class BurnishedRhythmMaker(RhythmMaker):
             result = tuplets
         if self.beam_each_cell:
             for cell in result:
-                spannertools.MultipartBeamSpanner(cell)
+                beam = spannertools.MultipartBeamSpanner()
+                beam.attach(cell)
         if self.tie_split_notes:
             self._add_ties(result)
         assert isinstance(result, list), repr(result)

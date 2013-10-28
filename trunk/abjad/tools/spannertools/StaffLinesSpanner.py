@@ -9,11 +9,9 @@ class StaffLinesSpanner(Spanner):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> spannertools.StaffLinesSpanner(staff[:2], 1)
-        StaffLinesSpanner(c'8, d'8)
+        >>> spanner = spannertools.StaffLinesSpanner(lines=1)
+        >>> spanner.attach(staff[:2])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -30,10 +28,6 @@ class StaffLinesSpanner(Spanner):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     Staff lines spanner handles changing either the line-count
     or the line-positions property of the StaffSymbol grob,
@@ -99,7 +93,8 @@ class StaffLinesSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
+                >>> spanner = spannertools.StaffLinesSpanner(lines=1)
+                >>> spanner.attach(staff[:2])
                 >>> spanner.lines
                 1
 
@@ -108,7 +103,8 @@ class StaffLinesSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
+                >>> spanner = spannertools.StaffLinesSpanner(lines=1)
+                >>> spanner.attach(staff[:2])
                 >>> spanner.lines = 2
                 >>> spanner.lines
                 2

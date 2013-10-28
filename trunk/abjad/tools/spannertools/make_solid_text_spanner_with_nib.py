@@ -73,7 +73,8 @@ def make_solid_text_spanner_with_nib(
     from abjad.tools import spannertools
     assert direction in (Up, Down)
 
-    text_spanner = spannertools.TextSpanner(components)
+    text_spanner = spannertools.TextSpanner()
+    text_spanner.attach(components)
     left_text = markuptools.Markup(left_text)
     text_spanner.override.text_spanner.bound_details__left__text = left_text
     if direction is Up:

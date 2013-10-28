@@ -10,15 +10,17 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     ::
 
         >>> staff = Staff("c'16 d'16 e'16 f'16")
-
-    ::
-
         >>> show(staff) # doctest: +SKIP
 
     ::
 
         >>> durations = [Duration(1, 8), Duration(1, 8)]
-        >>> beam = spannertools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+        >>> beam = spannertools.DuratedComplexBeamSpanner(
+        ...     durations=durations, 
+        ...     span=1,
+        ...     )
+        >>> beam.attach(staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -37,10 +39,6 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
             \set stemRightBeamCount = #0
             f'16 ]
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     Beam all beamable leaves in spanner explicitly.
 

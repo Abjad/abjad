@@ -8,11 +8,9 @@ class DynamicTextSpanner(Spanner):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> spannertools.DynamicTextSpanner(staff[:], 'f')
-        DynamicTextSpanner(c'8, d'8, e'8, f'8)
+        >>> spanner = spannertools.DynamicTextSpanner(mark='f')
+        >>> spanner.attach(staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -23,10 +21,6 @@ class DynamicTextSpanner(Spanner):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     Format dynamic `mark` at first leaf in spanner.
 
@@ -69,9 +63,9 @@ class DynamicTextSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> dynamic_text_spanner = \
-                ...     spannertools.DynamicTextSpanner(staff[:], 'f')
-                >>> dynamic_text_spanner.mark
+                >>> spanner = spannertools.DynamicTextSpanner(mark='f')
+                >>> spanner.attach(staff[:])
+                >>> spanner.mark
                 'f'
 
             Set dynamic string:
@@ -79,10 +73,10 @@ class DynamicTextSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> dynamic_text_spanner = \
-                ...     spannertools.DynamicTextSpanner(staff[:], 'f')
-                >>> dynamic_text_spanner.mark = 'p'
-                >>> dynamic_text_spanner.mark
+                >>> spanner = spannertools.DynamicTextSpanner(mark='f')
+                >>> spanner.attach(staff[:])
+                >>> spanner.mark = 'p'
+                >>> spanner.mark
                 'p'
 
             Set string.

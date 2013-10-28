@@ -8,18 +8,16 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     ::
 
-        >>> staff = Staff(
-        ...     [Measure((2, 16), "c'16 d'16"), 
-        ...     Measure((2, 16), "e'16 f'16")])
-
-    ::
-
+        >>> staff = Staff()
+        >>> staff.append(Measure((2, 16), "c'16 d'16"))
+        >>> staff.append(Measure((2, 16), "e'16 f'16"))
         >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> spannertools.MeasuredComplexBeamSpanner(staff.select_leaves())
-        MeasuredComplexBeamSpanner(c'16, d'16, e'16, f'16)
+        >>> beam = spannertools.MeasuredComplexBeamSpanner()
+        >>> beam.attach(staff.select_leaves())
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -44,17 +42,11 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
             }
         }
 
-    ::
+    Beams leaves in spanner explicitly.
 
-        >>> show(staff) # doctest: +SKIP
+    Groups leaves by measures.
 
-    Beam leaves in spanner explicitly.
-
-    Group leaves by measures.
-
-    Format top-level `span` beam between measures.
-
-    Returns measured complex beam spanner.
+    Formats top-level `span` beam between measures.
     '''
 
     ### INITIALIZER ###
@@ -122,10 +114,11 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
             ::
 
-                >>> staff = Staff([
-                ...     Measure((2, 16), "c'16 d'16"), 
-                ...     Measure((2, 16), "e'16 f'16")])
-                >>> beam = spannertools.MeasuredComplexBeamSpanner(staff.select_leaves())
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 16), "c'16 d'16"))
+                >>> staff.append(Measure((2, 16), "e'16 f'16"))
+                >>> beam = spannertools.MeasuredComplexBeamSpanner()
+                >>> beam.attach(staff.select_leaves())
                 >>> beam.span
                 1
 
@@ -133,10 +126,11 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
             ::
 
-                >>> staff = Staff([
-                ...     Measure((2, 16), "c'16 d'16"), 
-                ...     Measure((2, 16), "e'16 f'16")])
-                >>> beam = spannertools.MeasuredComplexBeamSpanner(staff.select_leaves())
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 16), "c'16 d'16"))
+                >>> staff.append(Measure((2, 16), "e'16 f'16"))
+                >>> beam = spannertools.MeasuredComplexBeamSpanner()
+                >>> beam.attach(staff.select_leaves())
                 >>> beam.span = 2
                 >>> beam.span
                 2

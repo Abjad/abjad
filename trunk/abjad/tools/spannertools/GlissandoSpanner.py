@@ -10,11 +10,9 @@ class GlissandoSpanner(Spanner):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> spannertools.GlissandoSpanner(staff[:])
-        GlissandoSpanner(c'8, d'8, e'8, f'8)
+        >>> glissando = spannertools.GlissandoSpanner()
+        >>> glissando.attach(staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -26,13 +24,7 @@ class GlissandoSpanner(Spanner):
             f'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Format nonlast leaves in spanner with LilyPond glissando command.
-
-    Returns glissando spanner.
+    Formats nonlast leaves in spanner with LilyPond glissando command.
     '''
 
     ### INITIALIZER ###

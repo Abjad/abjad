@@ -9,7 +9,8 @@ class TextScriptSpanner(Spanner):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spanner = spannertools.TextScriptSpanner(staff[:])
+        >>> spanner = spannertools.TextScriptSpanner()
+        >>> spanner.attach(staff[:])
         >>> spanner.override.text_script.color = 'red'
         >>> markup = markuptools.Markup(r'\italic { espressivo }', Up)
         >>> markup.attach(staff[1])

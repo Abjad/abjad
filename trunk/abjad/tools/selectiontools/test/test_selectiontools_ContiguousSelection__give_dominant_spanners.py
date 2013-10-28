@@ -11,46 +11,45 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    spannertools.CrescendoSpanner(voice[:])
-    spannertools.BeamSpanner(voice[:2])
-    spannertools.SlurSpanner(voice[1:3])
+    crescendo = spannertools.CrescendoSpanner()
+    crescendo.attach(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:2])
+    slur = spannertools.SlurSpanner()
+    slur.attach(voice[1:3])
 
-    r'''
-    \new Voice {
-        c'8 [ \<
-        d'8 ] (
-        e'8 )
-        f'8 \!
-    }
-    '''
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [ \<
+            d'8 ] (
+            e'8 )
+            f'8 \!
+        }
+        '''
+        )
 
     recipient = Voice(notetools.make_repeated_notes(3, Duration(1, 16)))
-    spannertools.BeamSpanner(recipient[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(recipient[:])
 
-    r'''
-    \new Voice {
-        c'16 [
-        c'16
-        c'16 ]
-    }
-    '''
+    assert testtools.compare(
+        recipient,
+        r'''
+        \new Voice {
+            c'16 [
+            c'16
+            c'16 ]
+        }
+        '''
+        )
 
     voice[1:3]._give_dominant_spanners(recipient[:])
 
-    "Voice voice is now ..."
-
-    r'''
-    \new Voice {
-        c'8 [ \<
-        d'8 ]
-        e'8
-        f'8 \!
-    }
-    '''
 
     "Both crescendo and beam are now discontiguous."
 
-    assert not inspect(voice).is_well_formed()
     assert testtools.compare(
         voice,
         r'''
@@ -63,19 +62,10 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
         '''
         )
 
-    "Recipient is now ..."
-
-    r'''
-    \new Voice {
-        c'16 [ (
-        c'16
-        c'16 ] )
-    }
-    '''
+    assert not inspect(voice).is_well_formed()
 
     "Slur is contiguous but recipient participates in discont. cresc."
 
-    assert not inspect(recipient).is_well_formed()
     assert testtools.compare(
         recipient,
         r'''
@@ -87,45 +77,36 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
         '''
         )
 
+    assert not inspect(recipient).is_well_formed()
+
 
 def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
     r'''Not composer-safe.
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        {
-            c'8 [
-            d'8
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            {
+                c'8 [
+                d'8
+            }
+            {
+                e'8
+                f'8 ]
+            }
         }
-        {
-            e'8
-            f'8 ]
-        }
-    }
-    '''
+        '''
+        )
 
     donor = voice[0]
     recipient = Voice("c'8 d'8 e'8 f'8")
     voice[:1]._give_dominant_spanners([recipient])
-
-    "Container voice is now ..."
-
-    r'''
-    \new Voice {
-        {
-            c'8
-            d'8
-        }
-        {
-            e'8
-            f'8 ]
-        }
-    }
-    '''
 
     assert testtools.compare(
         voice,
@@ -143,17 +124,6 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
         '''
         )
 
-    "Recipient container is now ..."
-
-    r'''
-    \new Voice {
-        c'8 [
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
     assert testtools.compare(
         recipient,
         r'''
@@ -166,7 +136,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
         '''
         )
 
-    "Both container voice and recipient container carry discontiguous spanners."
+    "Both voice and recipient container carry discontiguous spanners."
 
     assert not inspect(voice).is_well_formed()
     assert not inspect(recipient).is_well_formed()

@@ -9,15 +9,13 @@ class HorizontalBracketSpanner(Spanner):
 
         >>> voice = Voice("c'4 d'4 e'4 f'4")
         >>> voice.engraver_consists.append('Horizontal_bracket_engraver')
+        >>> spanner = spannertools.HorizontalBracketSpanner()
+        >>> spanner.attach(voice[:])
+        >>> show(voice) # doctest: +SKIP
 
     ::
 
-        >>> horizontal_bracket_spanner = \
-        ...     spannertools.HorizontalBracketSpanner(voice[:])
-
-    ::
-
-        >>> horizontal_bracket_spanner
+        >>> spanner
         HorizontalBracketSpanner(c'4, d'4, e'4, f'4)
 
     ..  doctest::
@@ -32,11 +30,6 @@ class HorizontalBracketSpanner(Spanner):
             f'4 \stopGroup
         }
 
-    ::
-
-        >>> show(voice) # doctest: +SKIP
-
-    Returns horizontal bracket spanner.
     '''
 
     ### INITIALIZER ###

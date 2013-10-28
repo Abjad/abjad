@@ -27,7 +27,8 @@ class ComplexBeamSpanner(BeamSpanner):
 
     ::
 
-        >>> spannertools.ComplexBeamSpanner(staff[:4])
+        >>> beam = spannertools.ComplexBeamSpanner()
+        >>> beam.attach(staff[:4])
         ComplexBeamSpanner(c'16, e'16, r16, f'16)
 
     ..  doctest::

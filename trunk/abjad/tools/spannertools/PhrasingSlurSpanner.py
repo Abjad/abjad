@@ -9,11 +9,9 @@ class PhrasingSlurSpanner(DirectedSpanner):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> spannertools.PhrasingSlurSpanner(staff[:])
-        PhrasingSlurSpanner(c'8, d'8, e'8, f'8)
+        >>> slur = spannertools.PhrasingSlurSpanner()
+        >>> slur.attach(staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -25,11 +23,6 @@ class PhrasingSlurSpanner(DirectedSpanner):
             f'8 \)
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Returns phrasing slur spanner.
     '''
 
     ### INITIALIZER ###

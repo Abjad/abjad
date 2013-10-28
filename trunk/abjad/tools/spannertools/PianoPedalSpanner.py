@@ -8,11 +8,9 @@ class PianoPedalSpanner(Spanner):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> spannertools.PianoPedalSpanner(staff[:])
-        PianoPedalSpanner(c'8, d'8, e'8, f'8)
+        >>> pedal = spannertools.PianoPedalSpanner()
+        >>> pedal.attach(staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -25,11 +23,6 @@ class PianoPedalSpanner(Spanner):
             f'8 \sustainOff
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Returns piano pedal spanner.
     '''
 
     ### CLASS VARIABLES ###
@@ -91,7 +84,8 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(staff[:])
+                >>> spanner = spannertools.PianoPedalSpanner()
+                >>> spanner.attach(staff[:])
                 >>> spanner.kind
                 'sustain'
 
@@ -100,7 +94,8 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(staff[:])
+                >>> spanner = spannertools.PianoPedalSpanner()
+                >>> spanner.attach(staff[:])
                 >>> spanner.kind = 'sostenuto'
                 >>> spanner.kind
                 'sostenuto'
@@ -122,7 +117,8 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(staff[:])
+                >>> spanner = spannertools.PianoPedalSpanner()
+                >>> spanner.attach(staff[:])
                 >>> spanner.style
                 'mixed'
 
@@ -131,7 +127,8 @@ class PianoPedalSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner(staff[:])
+                >>> spanner = spannertools.PianoPedalSpanner()
+                >>> spanner.attach(staff[:])
                 >>> spanner.style = 'bracket'
                 >>> spanner.style
                 'bracket'

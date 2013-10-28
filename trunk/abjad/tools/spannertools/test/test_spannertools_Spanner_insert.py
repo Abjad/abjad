@@ -28,9 +28,6 @@ def test_spannertools_Spanner_insert_01():
 
     beam._insert(1, voice.select_leaves()[-1])
 
-    # Interior insert leaves discontiguous spanner: 
-    # spannertools.BeamSpanner(c'8, f'8, d'8)
-
     assert not inspect(voice).is_well_formed()
 
 

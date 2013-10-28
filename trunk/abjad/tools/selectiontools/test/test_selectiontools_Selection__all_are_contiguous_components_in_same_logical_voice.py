@@ -94,20 +94,25 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
-    spannertools.BeamSpanner(voice[:])
+    beam = spannertools.BeamSpanner()
+    beam.attach(voice[:])
 
-    r'''
-    \new Voice {
-        c'8 [
-        d'8
-        e'8
-        f'8
-        g'8
-        a'8 ]
-    }
-    '''
+    assert testtools.compare(
+        voice,
+        r'''
+        \new Voice {
+            c'8 [
+            d'8
+            e'8
+            f'8
+            g'8
+            a'8 ]
+        }
+        '''
+        )
 
-    assert not Selection._all_are_contiguous_components_in_same_logical_voice(voice[:2] + voice[-2:])
+    assert not Selection._all_are_contiguous_components_in_same_logical_voice(
+        voice[:2] + voice[-2:])
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical_voice_08():

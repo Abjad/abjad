@@ -7,7 +7,8 @@ def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_01():
     '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    spannertools.TieSpanner(staff.select_leaves())
+    tie = spannertools.TieSpanner()
+    tie.attach(staff.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     # comparison function breaks here for unknown reason
@@ -54,7 +55,8 @@ def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_02():
     '''
 
     staff = Staff(notetools.make_repeated_notes(4))
-    spannertools.TieSpanner(staff.select_leaves())
+    tie = spannertools.TieSpanner()
+    tie.attach(staff.select_leaves())
 
     # comparison function breaks here for unknown reason
     r'''

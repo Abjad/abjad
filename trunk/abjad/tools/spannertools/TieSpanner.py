@@ -9,8 +9,9 @@ class TieSpanner(DirectedSpanner):
     ::
 
         >>> staff = Staff(notetools.make_repeated_notes(4))
-        >>> spannertools.TieSpanner(staff[:])
-        TieSpanner(c'8, c'8, c'8, c'8)
+        >>> tie = spannertools.TieSpanner()
+        >>> tie.attach(staff[:])
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -22,11 +23,6 @@ class TieSpanner(DirectedSpanner):
             c'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    Returns tie spanner.
     '''
 
     ### INITIALIZER ###

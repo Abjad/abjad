@@ -473,17 +473,6 @@ class Spanner(AbjadObject):
     def components(self):
         r'''Components in spanner.
 
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.BeamSpanner(voice[:2])
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.components
-            (Note("c'8"), Note("d'8"))
-
         Returns tuple.
         '''
         return tuple(self._components[:])
@@ -491,17 +480,6 @@ class Spanner(AbjadObject):
     @property
     def leaves(self):
         r'''Leaves in spanner.
-
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.BeamSpanner(voice[:2])
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.leaves
-            (Note("c'8"), Note("d'8"))
 
         Returns tuple.
         '''
@@ -543,17 +521,6 @@ class Spanner(AbjadObject):
     def append(self, component):
         r'''Appends `component` to spanner.
 
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.BeamSpanner(voice[:2])
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.append(voice[2])
-            >>> show(voice) # doctest: +SKIP
-
         Returns none.
         '''
         if self._contiguity_constraint == 'logical voice':
@@ -565,17 +532,6 @@ class Spanner(AbjadObject):
 
     def append_left(self, component):
         r'''Appends `component` to left of spanner.
-
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.BeamSpanner(voice[2:])
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.append_left(voice[1])
-            >>> show(voice) # doctest: +SKIP
 
         Returns none.
         '''
@@ -605,34 +561,12 @@ class Spanner(AbjadObject):
     def detach(self):
         r'''Detaches spanner.
 
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.BeamSpanner(voice[:])
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.detach()
-            >>> show(voice) # doctest: +SKIP
-
         Returns none.
         '''
         self._sever_all_components()
 
     def extend(self, components):
         r'''Extends spanner with `components`.
-
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.BeamSpanner(voice[:2])
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.extend(voice[2:])
-            >>> show(voice) # doctest: +SKIP
 
         Returns none.
         '''
@@ -647,17 +581,6 @@ class Spanner(AbjadObject):
     def extend_left(self, components):
         r'''Extends left of spanner with `components`.
 
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.BeamSpanner(voice[2:])
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.extend_left(voice[:2])
-            >>> show(voice) # doctest: +SKIP
-
         Returns none.
         '''
         component_input = components + self[:1]
@@ -670,45 +593,6 @@ class Spanner(AbjadObject):
         r'''Fractures spanner at `direction` of component at index `i`.
 
         Valid values for `direction` are ``Left``, ``Right`` and ``None``.
-
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> beam = spannertools.BeamSpanner(voice[:])
-            >>> show(voice) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(voice)
-            \new Voice {
-                c'8 [
-                d'8
-                e'8
-                f'8 ]
-            }
-
-        ::
-
-            >>> result = beam.fracture(1, direction=Left)
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> for x in result:
-            ...     x 
-            BeamSpanner(c'8, d'8, e'8, f'8)
-            BeamSpanner(c'8)
-            BeamSpanner(d'8, e'8, f'8)
-
-        ..  doctest::
-
-            >>> f(voice)
-            \new Voice {
-                c'8 [ ]
-                d'8 [
-                e'8
-                f'8 ]
-            }
 
         Set `direction=None` to fracture on both left and right sides.
 
@@ -732,46 +616,6 @@ class Spanner(AbjadObject):
 
     def fuse(self, spanner):
         r'''Fuses spanner with contiguous `spanner`.
-
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> left_beam = spannertools.BeamSpanner(voice[:2])
-            >>> right_beam = spannertools.BeamSpanner(voice[2:])
-            >>> show(voice) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(voice)
-            \new Voice {
-                c'8 [
-                d'8 ]
-                e'8 [
-                f'8 ]
-            }
-
-        ::
-
-            >>> result = left_beam.fuse(right_beam)
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> for x in result[0]:
-            ...     x
-            BeamSpanner(c'8, d'8)
-            BeamSpanner(e'8, f'8)
-            BeamSpanner(c'8, d'8, e'8, f'8)
-
-        ..  doctest::
-
-            >>> f(voice)
-            \new Voice {
-                c'8 [
-                d'8
-                e'8
-                f'8 ]
-            }
 
         Returns list of left, right and new spanners.
         '''
@@ -808,17 +652,6 @@ class Spanner(AbjadObject):
     def index(self, component):
         r'''Returns index of `component` in spanner.
 
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.BeamSpanner(voice[2:])
-            >>> show(voice) # doctest: +SKIP
-
-        ::
-
-            >>> spanner.index(voice[-2])
-            0
-
         Returns nonnegative integer.
         '''
         for i, x in enumerate(self._components):
@@ -830,37 +663,6 @@ class Spanner(AbjadObject):
     def pop(self):
         r'''Pops rightmost component off of spanner.
 
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.SlurSpanner(voice[:])
-            >>> show(voice) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(voice)
-            \new Voice {
-                c'8 (
-                d'8
-                e'8
-                f'8 )
-            }
-
-        ::
-
-            >>> note = spanner.pop()
-            >>> show(voice) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(voice)
-            \new Voice {
-                c'8 (
-                d'8
-                e'8 )
-                f'8
-            }
-
         Returns component.
         '''
         component = self[-1]
@@ -869,37 +671,6 @@ class Spanner(AbjadObject):
 
     def pop_left(self):
         r'''Pops leftmost component off of spanner.
-
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = spannertools.SlurSpanner(voice[:])
-            >>> show(voice) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(voice)
-            \new Voice {
-                c'8 (
-                d'8
-                e'8
-                f'8 )
-            }
-
-        ::
-
-            >>> note = spanner.pop_left()
-            >>> show(voice) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(voice)
-            \new Voice {
-                c'8
-                d'8 (
-                e'8
-                f'8 )
-            }
 
         Returns component.
         '''

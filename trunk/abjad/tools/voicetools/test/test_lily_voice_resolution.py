@@ -94,6 +94,10 @@ def test_lily_voice_resolution_02():
 
 def test_lily_voice_resolution_03():
     r'''Two like-named voices in two differently named staves.
+    LilyPond gives unterminated beam warnings.
+    LilyPond gives grob direction programming errors.
+    We conclude that LilyPond identifies two separate voices.
+    Good example for Abjad voice resolution.
     '''
 
     container = Container()
@@ -103,22 +107,21 @@ def test_lily_voice_resolution_03():
     container[1].name = 'staff2'
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
-    py.test.raises(AssertionError, 'spannertools.BeamSpanner(container.select_leaves())')
-
-    r'''
-    LilyPond gives unterminated beam warnings.
-    LilyPond gives grob direction programming errors.
-    We conclude that LilyPond identifies two separate voices.
-    Good example for Abjad voice resolution.
-    '''
+    beam = spannertools.BeamSpanner()
+    statement = 'beam.attach(container.select_leaves())'
+    py.test.raises(AssertionError, statement)
 
 
 def test_lily_voice_resolution_04():
     r'''Container containing a run of leaves.
     Two like-structured simultaneouss in the middle of the run.
+    LilyPond handles this example perfectly.
+    LilyPond colors the four note_heads of the soprano voice red.
+    LilyPond colors all other note_heads black.
     '''
 
-    container = Container(r'''
+    container = Container(
+        r'''
         c'8
         <<
             \context Voice = "alto" {
@@ -141,7 +144,8 @@ def test_lily_voice_resolution_04():
             }
         >>
         e''8
-        ''')
+        '''
+        )
 
     container[1][1].override.note_head.color = 'red'
     container[2][1].override.note_head.color = 'red'
@@ -179,9 +183,3 @@ def test_lily_voice_resolution_04():
         }
         ''',
         )
-
-    r'''
-    LilyPond handles this example perfectly.
-    LilyPond colors the four note_heads of the soprano voice red.
-    LilyPond colors all other note_heads black.
-    '''
