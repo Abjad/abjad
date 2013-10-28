@@ -51,23 +51,32 @@ class TwoStageHairpinHandler(DynamicHandler):
             else:
                 right_leaves = leaves[-(middle_index+1):]
             if left_hairpin == '<':
-                spannertools.CrescendoSpanner(left_leaves)
+                crescendo = spannertools.CrescendoSpanner()
+                crescendo.attach(left_leaves)
             else:
-                spannertools.DecrescendoSpanner(left_leaves)
+                decrescendo = spannertools.DecrescendoSpanner()
+                decrescendo.attach(left_leaves)
             if right_hairpin == '<':
-                spannertools.CrescendoSpanner(right_leaves)
+                crescendo = spannertools.CrescendoSpanner()
+                crescendo.attach(right_leaves)
             else:
-                spannertools.DecrescendoSpanner(right_leaves)
+                decrescendo = spannertools.DecrescendoSpanner()
+                decrescendo.attach(right_leaves)
             return leaves
         elif len(leaves) == 2:
-            marktools.LilyPondCommandMark(start_dynamic, 'right')(leaves[0])
-            marktools.LilyPondCommandMark(peak_dynamic, 'right')(leaves[-1])
+            command = marktools.LilyPondCommandMark(start_dynamic, 'right')
+            command.attach(leaves[0])
+            command = marktools.LilyPondCommandMark(peak_dynamic, 'right')
+            command.attach(leaves[-1])
             if left_hairpin == '<':
-                spannertools.CrescendoSpanner(leaves)
+                crescendo = spannertools.CrescendoSpanner()
+                crescendo.attach(leaves)
             else:
-                spannertools.DecrescendoSpanner(leaves)
+                decrescendo = spannertools.DecrescendoSpanner()
+                decrescendo.attach(leaves)
         elif len(leaves) == 1:
-            marktools.LilyPondCommandMark(peak_dynamic, 'right')(leaves[0])
+            command = marktools.LilyPondCommandMark(peak_dynamic, 'right')
+            command.attach(leaves[0])
         else:
             raise ValueError(len(leaves))
 

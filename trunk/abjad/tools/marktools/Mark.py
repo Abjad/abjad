@@ -33,7 +33,7 @@ class Mark(AbjadObject):
 
         Returns self.
         '''
-        raise Exception('deprecated')
+        #raise Exception('deprecated')
         if len(args) == 0:
             return self.detach()
         elif len(args) == 1:

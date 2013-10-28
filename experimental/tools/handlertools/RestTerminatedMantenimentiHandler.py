@@ -30,7 +30,8 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
         for i, group in enumerate(
             iterationtools.iterate_runs_in_expr(
             expr, classes)):
-            spanner = spannertools.TextSpanner(group)
+            spanner = spannertools.TextSpanner()
+            spanner.attach(group)
             spanner.override.text_spanner.dash_fraction = 1
             dynamic_string = self.dynamics_talea[i]
             dynamic_markup = markuptools.Markup([

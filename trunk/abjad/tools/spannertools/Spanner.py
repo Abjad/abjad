@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+ # -*-encoding: utf-8 -*-
 import abc
 import copy
 from abjad.tools import componenttools
