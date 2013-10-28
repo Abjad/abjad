@@ -153,7 +153,9 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
                 >>> beam = spannertools.DuratedComplexBeamSpanner(
-                ...     staff[:], durations)
+                ...     durations=durations,
+                ...     )
+                >>> beam.attach(staff[:])
                 >>> beam.durations
                 [Duration(1, 8), Duration(1, 8)]
 
@@ -164,7 +166,9 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
                 >>> beam = spannertools.DuratedComplexBeamSpanner(
-                ...     staff[:], durations)
+                ...     durations=durations,
+                ...     )
+                >>> beam.attach(staff[:])
                 >>> beam.durations = [Duration(1, 4)]
                 >>> beam.durations
                 [Duration(1, 4)]
@@ -197,7 +201,10 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
                 >>> beam = spannertools.DuratedComplexBeamSpanner(
-                ...     staff[:], durations, 1)
+                ...     durations=durations, 
+                ...     span=1,
+                ...     )
+                >>> beam.attach(staff[:])
                 >>> beam.span
                 1
 
@@ -208,7 +215,10 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
                 >>> beam = spannertools.DuratedComplexBeamSpanner(
-                ...     staff[:], durations, 1)
+                ...     durations=durations, 
+                ...     span=1,
+                ...     )
+                >>> beam.attach(staff[:])
                 >>> beam.span = 2
                 >>> beam.span
                 2

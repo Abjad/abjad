@@ -12,7 +12,7 @@ class ComplexGlissandoSpanner(Spanner):
         >>> staff = Staff("c'16 r r g' r8 c'8")
         >>> glissando = spannertools.ComplexGlissandoSpanner()
         >>> glissando.attach(staff[:])
-        ComplexGlissandoSpanner(c'16, r16, r16, g'16, r8, c'8)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -32,21 +32,15 @@ class ComplexGlissandoSpanner(Spanner):
             c'8
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
     Should be used with BeamSpanner for best effect, along with
     an override of stemlet-length, in order to generate stemlets over
     each invisible rest.
 
-    Format nonlast leaves in spanner with LilyPond glissando command.
+    Formats nonlast leaves in spanner with LilyPond glissando command.
 
-    Set all Rest instances to transparent.
+    Sets all rests to transparent.
 
-    Set all NoteColumns filled with silences to be skipped by glissandi.
-
-    Return `ComplexGlissandoSpanner` instance.
+    Sets all NoteColumns filled with silences to be skipped by glissandi.
     '''
 
     ### INITIALIZER ###

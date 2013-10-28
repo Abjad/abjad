@@ -81,9 +81,9 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> octavation = spannertools.OctavationSpanner(
-                ...     staff[:], start=1)
-                >>> octavation.start
+                >>> spanner = spannertools.OctavationSpanner(start=1)
+                >>> spanner.attach(staff[:])
+                >>> spanner.start
                 1
 
             Set octavation start:
@@ -91,9 +91,9 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> octavation = spannertools.OctavationSpanner(
-                ...     staff[:], start=1)
-                >>> octavation.start
+                >>> spanner = spannertools.OctavationSpanner(start=1)
+                >>> spanner.attach(staff[:])
+                >>> spanner.start
                 1
 
             Set integer.
@@ -112,9 +112,9 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> octavation = spannertools.OctavationSpanner(
-                ...     staff[:], start=2, stop=1)
-                >>> octavation.stop
+                >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
+                >>> spanner.attach(staff[:])
+                >>> spanner.stop
                 1
 
             Set octavation stop:
@@ -122,10 +122,10 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> octavation = spannertools.OctavationSpanner(
-                ...     staff[:], start=2, stop=1)
-                >>> octavation.stop = 0
-                >>> octavation.stop
+                >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
+                >>> spanner.attach(staff[:])
+                >>> spanner.stop = 0
+                >>> spanner.stop
                 0
 
             Set integer.

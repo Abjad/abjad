@@ -26,7 +26,6 @@ class CrescendoSpanner(HairpinSpanner):
 
         >>> crescendo = spannertools.CrescendoSpanner(include_rests=True)
         >>> crescendo.attach(staff[:])
-        CrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -64,7 +63,6 @@ class CrescendoSpanner(HairpinSpanner):
 
         >>> crescendo = spannertools.CrescendoSpanner(include_rests=False)
         >>> crescendo.attach(staff[:])
-        CrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

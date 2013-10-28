@@ -188,7 +188,10 @@ class HairpinSpanner(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(
-                ...     staff[:], 'p < f', include_rests=True)
+                ...     descriptor='p < f', 
+                ...     include_rests=True,
+                ...     )
+                >>> hairpin.attach(staff[:])
                 >>> hairpin.include_rests
                 True
 
@@ -198,7 +201,10 @@ class HairpinSpanner(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.HairpinSpanner(
-                ...     staff[:], 'p < f', include_rests=True)
+                ...     descriptor='p < f', 
+                ...     include_rests=True,
+                ...     )
+                >>> hairpin.attach(staff[:])
                 >>> hairpin.include_rests = False
                 >>> hairpin.include_rests
                 False
