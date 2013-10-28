@@ -22,19 +22,25 @@ class WindungenScoreTemplate(AbjadObject):
             number = index + 1
             voice = voicetools.Voice(name='Voice {}'.format(number))
             staff = stafftools.Staff([voice], name='Staff {}'.format(number))
-            contexttools.ClefMark('bass')(staff)
-            instrumenttools.Cello(
+            clef = contexttools.ClefMark('bass')
+            clef.attach(staff)
+            cello = instrumenttools.Cello(
                 instrument_name='Cello {}'.format(number),
                 short_instrument_name='Vc. {}'.format(number),
-                )(staff)
+                )
+            cello.attach(staff)
             staff.override.stem.stemlet_length = 2
             staff.override.beam.damping = '+inf.0'
             staves.append(staff)
 
         windungen_staff_group = scoretools.StaffGroup(
-            staves, name='Windungen Staff Group')
+            staves, 
+            name='Windungen Staff Group',
+            )
 
         windungen_score = scoretools.Score(
-            [windungen_staff_group], name='Windungen Score')
+            [windungen_staff_group], 
+            name='Windungen Score',
+            )
 
         return windungen_score

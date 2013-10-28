@@ -13,17 +13,22 @@ def edit_second_violin_voice(score, durated_reservoir):
     copied_descent[-1].written_duration = durationtools.Duration(1, 1)
     copied_descent.append(notetools.Note('a2'))
     for leaf in copied_descent:
-        marktools.Articulation('accent')(leaf)
-        marktools.Articulation('tenuto')(leaf)
+        articulation = marktools.Articulation('accent')
+        articulation.attach(leaf)
+        articulation = marktools.Articulation('tenuto')
+        articulation.attach(leaf)
     voice.extend(copied_descent)
 
     final_sustain = []
     for _ in range(32):
         final_sustain.append(notetools.Note('a1.'))
     final_sustain.append(notetools.Note('a2'))
-    marktools.Articulation('accent')(final_sustain[0])
-    marktools.Articulation('tenuto')(final_sustain[0])
+    articulation = marktools.Articulation('accent')
+    articulation.attach(final_sustain[0])
+    articulation = marktools.Articulation('tenuto')
+    articulation.attach(final_sustain[0])
 
     voice.extend(final_sustain)
-    spannertools.TieSpanner(final_sustain)
+    tie = spannertools.TieSpanner()
+    tie.attach(final_sustain)
     voice.extend('r4 r2.')

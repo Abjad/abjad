@@ -7,7 +7,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__TempoMark_01():
 
     target = Score([Staff([Note(0, 1)])])
-    contexttools.TempoMark("As fast as possible", target_context=Staff)(target.select_leaves()[0])
+    tempo = contexttools.TempoMark("As fast as possible", target_context=Staff)
+    tempo.attach(target.select_leaves()[0])
 
     assert testtools.compare(
         target,
@@ -87,8 +88,13 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_03():
 def test_lilypondparsertools_LilyPondParser__marks__TempoMark_04():
 
     target = Score([Staff([Note(0, 1)])])
-    contexttools.TempoMark("Like a majestic swan, alive with youth and vigour!", \
-        (1, 4), 60, target_context=Staff)(target.select_leaves()[0])
+    tempo = contexttools.TempoMark(
+        "Like a majestic swan, alive with youth and vigour!",
+        (1, 4), 
+        60, 
+        target_context=Staff,
+        )
+    tempo.attach(target.select_leaves()[0])
 
     assert testtools.compare(
         target,
@@ -114,8 +120,12 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_04():
 def test_lilypondparsertools_LilyPondParser__marks__TempoMark_05():
 
     target = Score([Staff([Note(0, 1)])])
-    contexttools.TempoMark("Faster than a thousand suns",
-        (1, 16), (34, 55), target_context=Staff)(target.select_leaves()[0])
+    tempo = contexttools.TempoMark(
+        "Faster than a thousand suns",
+        (1, 16), (34, 55), 
+        target_context=Staff,
+        )
+    tempo.attach(target.select_leaves()[0])
 
     assert testtools.compare(
         target,

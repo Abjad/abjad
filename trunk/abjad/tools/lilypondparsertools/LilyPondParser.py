@@ -457,7 +457,7 @@ class LilyPondParser(abctools.Parser):
 
         marks = music._start_marks
         for mark in marks:
-            mark(context)
+            mark.attach(context)
 
         return context
 
@@ -482,7 +482,7 @@ class LilyPondParser(abctools.Parser):
                 if previous_leaf:
                     for mark in apply_backward:
                         if hasattr(mark, 'attach'):
-                            mark(previous_leaf)
+                            mark.attach(previous_leaf)
                 else:
                     for mark in apply_backward:
                         if hasattr(mark, 'attach'):
@@ -507,19 +507,19 @@ class LilyPondParser(abctools.Parser):
             for mark in apply_forward:
                 if hasattr(mark, 'attach'):
                     mark.format_slot = 'after'
-                    mark(previous_leaf)
+                    mark.attach(previous_leaf)
             for mark in apply_backward:
                 if hasattr(mark, 'attach'):
-                    mark(previous_leaf)
+                    mark.attach(previous_leaf)
         else:
             for mark in apply_forward:
                 if hasattr(mark, 'attach'):
                     mark.format_slot = 'opening'
-                    mark(container)
+                    mark.attach(container)
             for mark in apply_backward:
                 if hasattr(mark, 'attach'):
                     mark.format_slot = 'opening'
-                    mark(container)
+                    mark.attach(container)
 
         return container
 
@@ -606,8 +606,8 @@ class LilyPondParser(abctools.Parser):
 
     def _process_post_events(self, leaf, post_events):
         for post_event in post_events:
-            if hasattr(post_event, '__call__'):
-                post_event(leaf)
+            if hasattr(post_event, 'attach'):
+                post_event.attach(leaf)
             else:
                 annotation = [
                     x for x in leaf._get_marks(marktools.Annotation)

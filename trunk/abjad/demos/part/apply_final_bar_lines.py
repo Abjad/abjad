@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import iterationtools
-from abjad.tools import marktools
+from abjad import *
 
 
 def apply_final_bar_lines(score):
 
     for voice in iterationtools.iterate_voices_in_expr(score):
-        marktools.BarLine('|.')(voice[-1])
+        bar_line = marktools.BarLine('|.')
+        bar_line.attach(voice[-1])
