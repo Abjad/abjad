@@ -9,9 +9,9 @@ def edit_viola_voice(score, durated_reservoir):
 
     for leaf in descents[-1]:
         articulation = marktools.Articulation('accent')
-        articulation.attach(leaf)
+        attach(articulation, leaf)
         articulation = marktools.Articulation('tenuto')
-        articulation.attach(leaf)
+        attach(articulation, leaf)
     last_descent = selectiontools.select(descents[-1], contiguous=True)
     copied_descent = mutate(last_descent).copy()
     for leaf in copied_descent:
@@ -23,18 +23,18 @@ def edit_viola_voice(score, durated_reservoir):
 
     bridge = notetools.Note('e1')
     articulation = marktools.Articulation('tenuto')
-    articulation.attach(bridge)
+    attach(articulation, bridge)
     articulation = marktools.Articulation('accent')
-    articulation.attach(bridge)
+    attach(articulation, bridge)
     voice.append(bridge)
 
     final_sustain_rhythm = [(6, 4)] * 21 + [(1, 2)]
     final_sustain_notes = notetools.make_notes(['e'], final_sustain_rhythm)
     articulation = marktools.Articulation('accent')
-    articulation.attach(final_sustain_notes[0])
+    attach(articulation, final_sustain_notes[0])
     articulation = marktools.Articulation('tenuto')
-    articulation.attach(final_sustain_notes[0])
+    attach(articulation, final_sustain_notes[0])
     voice.extend(final_sustain_notes)
     tie = spannertools.TieSpanner()
-    tie.attach(final_sustain_notes)
+    attach(tie, final_sustain_notes)
     voice.extend('r4 r2.')

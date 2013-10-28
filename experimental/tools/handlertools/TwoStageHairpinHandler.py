@@ -6,6 +6,7 @@ from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import marktools
 from abjad.tools import spannertools
+from abjad.tools.scoretools import attach
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
@@ -52,31 +53,31 @@ class TwoStageHairpinHandler(DynamicHandler):
                 right_leaves = leaves[-(middle_index+1):]
             if left_hairpin == '<':
                 crescendo = spannertools.CrescendoSpanner()
-                crescendo.attach(left_leaves)
+                attach(crescendo, left_leaves)
             else:
                 decrescendo = spannertools.DecrescendoSpanner()
-                decrescendo.attach(left_leaves)
+                attach(decrescendo, left_leaves)
             if right_hairpin == '<':
                 crescendo = spannertools.CrescendoSpanner()
-                crescendo.attach(right_leaves)
+                attach(crescendo, right_leaves)
             else:
                 decrescendo = spannertools.DecrescendoSpanner()
-                decrescendo.attach(right_leaves)
+                attach(decrescendo, right_leaves)
             return leaves
         elif len(leaves) == 2:
             command = marktools.LilyPondCommandMark(start_dynamic, 'right')
-            command.attach(leaves[0])
+            attach(command, leaves[0])
             command = marktools.LilyPondCommandMark(peak_dynamic, 'right')
-            command.attach(leaves[-1])
+            attach(command, leaves[-1])
             if left_hairpin == '<':
                 crescendo = spannertools.CrescendoSpanner()
-                crescendo.attach(leaves)
+                attach(crescendo, leaves)
             else:
                 decrescendo = spannertools.DecrescendoSpanner()
-                decrescendo.attach(leaves)
+                attach(decrescendo, leaves)
         elif len(leaves) == 1:
             command = marktools.LilyPondCommandMark(peak_dynamic, 'right')
-            command.attach(leaves[0])
+            attach(command, leaves[0])
         else:
             raise ValueError(len(leaves))
 

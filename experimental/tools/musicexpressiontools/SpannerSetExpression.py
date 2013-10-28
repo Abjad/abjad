@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import spannertools
+from abjad.tools.scoretools import attach
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetExpression \
     import CounttimeComponentSelectExpressionSetExpression
 
@@ -21,8 +22,8 @@ class SpannerSetExpression(CounttimeComponentSelectExpressionSetExpression):
             for element in result:
                 leaves = element.payload
                 new_spanner = copy.copy(spanner)
-                new_spanner.attach(leaves)
+                attach(new_spanner, leaves)
         else:
             leaves = result.payload
             new_spanner = copy.copy(spanner)
-            new_spanner.attach(leaves)
+            attach(new_spanner, leaves)

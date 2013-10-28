@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import py.test
+from abjad import *
 
 
 def test_selectiontools_ContiguousSelection__get_dominant_spanners_01():
@@ -16,7 +16,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando.attach(voice[1:])
+    attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
     attach(trill, voice.select_leaves())
 

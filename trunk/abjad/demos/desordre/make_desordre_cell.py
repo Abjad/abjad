@@ -9,29 +9,29 @@ def make_desordre_cell(pitches):
     '''
     notes = [notetools.Note(pitch, (1, 8)) for pitch in pitches]
     beam = spannertools.BeamSpanner()
-    beam.attach(notes)
+    attach(beam, notes)
     slur = spannertools.SlurSpanner()
-    slur.attach(notes)
+    attach(slur, notes)
     clef = contexttools.DynamicMark('f')
-    clef.attach(notes[0])
+    attach(clef, notes[0])
     dynamic = contexttools.DynamicMark('p')
-    dynamic.attach(notes[1])
+    attach(dynamic, notes[1])
 
     # make the lower voice
     lower_voice = voicetools.Voice(notes)
     lower_voice.name = 'RH Lower Voice'
     command = marktools.LilyPondCommandMark('voiceTwo')
-    command.attach(lower_voice)
+    attach(command, lower_voice)
     n = int(math.ceil(len(pitches) / 2.))
     chord = chordtools.Chord([pitches[0], pitches[0] + 12], (n, 8))
     articulation = marktools.Articulation('>')
-    articulation.attach(chord)
+    attach(articulation, chord)
 
     # make the upper voice
     upper_voice = voicetools.Voice([chord])
     upper_voice.name = 'RH Upper Voice'
     command = marktools.LilyPondCommandMark('voiceOne')
-    command.attach(upper_voice)
+    attach(command, upper_voice)
 
     # combine them together
     container = containertools.Container([lower_voice, upper_voice])
@@ -40,6 +40,6 @@ def make_desordre_cell(pitches):
     # make all 1/8 beats breakable
     for leaf in lower_voice.select_leaves()[:-1]:
         bar_line = marktools.BarLine('')
-        bar_line.attach(leaf)
+        attach(bar_line, leaf)
 
     return container

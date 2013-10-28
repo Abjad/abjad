@@ -1,4 +1,4 @@
- # -*-encoding: utf-8 -*-
+# -*-encoding: utf-8 -*-
 import abc
 import copy
 from abjad.tools import componenttools
@@ -48,40 +48,6 @@ class Spanner(AbjadObject):
         self._apply_overrides(overrides)
 
     ### SPECIAL METHODS ###
-
-#    def __call__(self, expr):
-#        r'''Calls spanner on `expr`.
-#
-#        Same as attach.
-#
-#        ::
-#
-#            >>> staff = Staff("c'8 d'8 e'8 f'8")
-#            >>> show(staff) # doctest: +SKIP
-#
-#        ::
-#
-#            >>> beam = spannertools.BeamSpanner()
-#            >>> beam = beam(staff[:])
-#            >>> show(staff) # doctest: +SKIP
-#
-#        ..  doctest::
-#
-#            >>> f(staff)
-#            \new Staff {
-#                c'8 [
-#                d'8
-#                e'8
-#                f'8 ]
-#            }
-#
-#        The method is provided as an experimental way of unifying
-#        spanner and mark attachment syntax.
-#
-#        Returns spanner.
-#        '''
-#        self.extend(expr)
-#        return self
 
     def __contains__(self, expr):
         r'''True when spanner contains `expr`.
@@ -541,7 +507,7 @@ class Spanner(AbjadObject):
         component._spanners.add(self)
         self._components.insert(0, component)
 
-    def attach(self, components):
+    def _attach(self, components):
         r'''Attaches spanner to `components`.
 
         Spanner must be empty.

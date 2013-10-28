@@ -3,6 +3,7 @@ from abjad.tools import contexttools
 from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
+from abjad.tools.scoretools import attach
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
@@ -26,7 +27,7 @@ class TerracedDynamicsHandler(DynamicHandler):
             if self.minimum_duration <= note_or_chord._get_duration():
                 #contexttools.DynamicMark(dynamic_name)(note_or_chord)
                 command = marktools.LilyPondCommandMark(dynamic_name, 'right')
-                command.attach(note_or_chord)
+                attach(command, note_or_chord)
         return expr
 
     ###  PUBLIC PROPERTIES ###

@@ -12,10 +12,10 @@ def apply_bowing_marks(score):
             iterationtools.iterate_chords_in_expr(measure)):
             if i % 2 == 0:
                 articulation = marktools.Articulation('downbow')
-                articulation.attach(chord)
+                attach(articulation, chord)
             else:
                 articulation = marktools.Articulation('upbow')
-                articulation.attach(chord)
+                attach(articulation, chord)
 
     # create and apply rebowing markup
     rebow_markup = markuptools.Markup(
@@ -26,8 +26,8 @@ def apply_bowing_marks(score):
                 markuptools.MusicGlyph('scripts.upbow'),
             ]))
     markup = copy.copy(rebow_markup)
-    markup.attach(score['First Violin Voice'][64][0])
+    attach(markup, score['First Violin Voice'][64][0])
     markup = copy.copy(rebow_markup)
-    markup.attach(score['Second Violin Voice'][75][0])
+    attach(markup, score['Second Violin Voice'][75][0])
     markup = copy.copy(rebow_markup)
-    markup.attach(score['Viola Voice'][86][0])
+    attach(markup, score['Viola Voice'][86][0])

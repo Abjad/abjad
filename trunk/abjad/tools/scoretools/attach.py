@@ -6,4 +6,4 @@ def attach(attachable, component_expression):
     Returns none when attachable is a spanner.
     '''
 
-    return attachable.attach(component_expression)
+    return attachable._attach(component_expression)

@@ -7,6 +7,7 @@ from abjad.tools import marktools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
+from abjad.tools.scoretools import attach
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
@@ -37,14 +38,14 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             start_dynamic = self.hairpin_token[0]
             #contexttools.DynamicMark(start_dynamic)(group[0])
             command = marktools.LilyPondCommandMark(start_dynamic, 'right')
-            command.attach(group[0])
+            attach(command, group[0])
         else:
             descriptor = ' '.join([x for x in self.hairpin_token if x])
             hairpin = spannertools.HairpinSpanner(
                 descriptor=descriptor, 
                 include_rests=False,
                 )
-            hairpin.attach(group)
+            attach(hairpin, group)
         return expr
 
     ### PUBLIC PROPERTIES ###

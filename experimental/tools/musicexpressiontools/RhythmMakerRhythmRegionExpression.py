@@ -5,8 +5,10 @@ from abjad.tools import iterationtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
+from abjad.tools.scoretools import attach
 from experimental.tools.musicexpressiontools.RhythmRegionExpression import \
     RhythmRegionExpression
+    
 
 
 class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
@@ -52,7 +54,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
                 durations=durations, 
                 span=1,
                 )
-            beam.attach(rhythm_containers)
+            attach(beam, rhythm_containers)
         elif beam_each_cell:
             for container in iterationtools.iterate_components_in_expr(
                 rhythm_containers):
@@ -64,7 +66,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
                     durations=[rhythm_container._get_duration()], 
                     span=1,
                     )
-                beam.attach(rhythm_container) 
+                attach(beam, rhythm_container) 
 
     ### PUBLIC PROPERTIES ###
 

@@ -201,7 +201,7 @@ def set_vertical_positioning_pitch_on_rest_in_staff(staff, pitch):
     for rest in iterationtools.iterate_rests_in_expr(staff):
         note = Note(rest)
         command = contexttools.LilyPondCommandMark('rest')
-        command.attach(note)
+        attach(command, note)
 
 
 def clean_up_rests_in_score(score):
@@ -226,7 +226,7 @@ def make_empty_cello_score(numStaffs):
     for x in range(numStaffs):
         score.append( Staff([]) )
         clef = contexttools.ClefMark('bass')
-        clef.attach(score[x])
+        attach(clef, score[x])
         score[x].override.stem.stemlet_length = 2
         score[x].override.beam.damping = "+inf.0"
     return score

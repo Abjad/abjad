@@ -5,6 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.scoretools import attach
 
 
 class EvenRunRhythmMaker(RhythmMaker):
@@ -116,8 +117,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         notes = notetools.make_notes(numerator * [0], [unit_duration])
         container = containertools.Container(notes)
         if self.beam_each_cell:
-            beam_spanner = spannertools.BeamSpanner()
-            beam_spanner.attach(container)
+            beam = spannertools.BeamSpanner()
+            attach(beam, container)
         return container
 
     ### PUBLIC PROPERTIES ###

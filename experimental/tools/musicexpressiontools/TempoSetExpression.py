@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad import *
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -14,4 +15,4 @@ class TempoSetExpression(LeafSetExpression):
         '''
         tempo_mark = self.source_expression.payload
         first_leaf = self._iterate_selected_leaves_in_score(score)[0]
-        tempo_mark.attach(first_leaf)
+        attach(tempo_mark, first_leaf)

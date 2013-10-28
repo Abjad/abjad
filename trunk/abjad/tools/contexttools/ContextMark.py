@@ -123,7 +123,7 @@ class ContextMark(Mark):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, start_component):
+    def _attach(self, start_component):
         r'''Attaches context mark to `start_component`.
         
         Makes sure no context mark of same type is already attached 
@@ -141,7 +141,7 @@ class ContextMark(Mark):
                 message = 'effective context mark already attached'
                 message += ' to component starting at same time.'
                 raise ExtraMarkError(message)
-        return Mark.attach(self, start_component)
+        return Mark._attach(self, start_component)
 
     def detach(self):
         r'''Detaches context mark.

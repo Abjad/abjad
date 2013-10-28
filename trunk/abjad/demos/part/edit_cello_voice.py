@@ -21,9 +21,9 @@ def edit_cello_voice(score, durated_reservoir):
         parent[index] = notetools.Note(
             chord.written_pitches[1], chord.written_duration)
         articulation = marktools.Articulation('accent')
-        articulation.attach(parent[index])
+        attach(articulation, parent[index])
         articulation = marktools.Articulation('tenuto')
-        articulation.attach(parent[index])
+        attach(articulation, parent[index])
 
     voice.extend('a,1. ~ a,2')
     voice.extend('b,1 ~ b,1. ~ b,1.')

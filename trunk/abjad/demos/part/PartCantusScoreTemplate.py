@@ -1,11 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
-from abjad.tools import instrumenttools
-from abjad.tools import scoretools
-from abjad.tools import stafftools
-from abjad.tools import voicetools
-from abjad.tools import scoretemplatetools
-from abjad.tools import abctools
+from abjad import *
 
 
 class PartCantusScoreTemplate(abctools.AbjadObject):
@@ -18,13 +12,13 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         bell_voice = voicetools.Voice(name='Bell Voice')
         bell_staff = stafftools.Staff([bell_voice], name='Bell Staff')
         clef = contexttools.ClefMark('treble')
-        clef.attach(bell_staff)
+        attach(clef, bell_staff)
         bells = instrumenttools.Instrument('Campana in La', 'Camp.')
-        bells.attach(bell_staff)
+        attach(bells, bell_staff)
         tempo = contexttools.TempoMark((1, 4), (112, 120))
-        tempo.attach(bell_staff)
+        attach(tempo, bell_staff)
         time_signature = contexttools.TimeSignatureMark((6, 4))
-        time_signature.attach(bell_staff)
+        attach(time_signature, bell_staff)
 
         # make first violin voice and staff
         first_violin_voice = voicetools.Voice(name='First Violin Voice')
@@ -33,12 +27,12 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
             name='First Violin Staff',
             )
         clef = contexttools.ClefMark('treble')
-        clef.attach(first_violin_staff)
+        attach(clef, first_violin_staff)
         violin = instrumenttools.Violin(
             instrument_name_markup='Violin I',
             short_instrument_name_markup='Vl. I'
             )
-        violin.attach(first_violin_staff)
+        attach(violin, first_violin_staff)
 
         # make second violin voice and staff
         second_violin_voice = voicetools.Voice(name='Second Violin Voice')
@@ -47,38 +41,38 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
             name='Second Violin Staff',
             )
         clef = contexttools.ClefMark('treble')
-        clef.attach(second_violin_staff)
+        attach(clef, second_violin_staff)
         violin = instrumenttools.Violin(
             instrument_name_markup='Violin II',
             short_instrument_name_markup='Vl. II'
             )
-        violin.attach(second_violin_staff)
+        attach(violin, second_violin_staff)
 
         # make viola voice and staff
         viola_voice = voicetools.Voice(name='Viola Voice')
         viola_staff = stafftools.Staff([viola_voice], name='Viola Staff')
         clef = contexttools.ClefMark('alto')
-        clef.attach(viola_staff)
+        attach(clef, viola_staff)
         viola = instrumenttools.Viola()
-        viola.attach(viola_staff)
+        attach(viola, viola_staff)
 
         # make cello voice and staff
         cello_voice = voicetools.Voice(name='Cello Voice')
         cello_staff = stafftools.Staff([cello_voice], name='Cello Staff')
         clef = contexttools.ClefMark('bass')
-        clef.attach(cello_staff)
+        attach(clef, cello_staff)
         cello = instrumenttools.Cello()
-        cello.attach(cello_staff)
+        attach(cello, cello_staff)
 
         # make bass voice and staff
         bass_voice = voicetools.Voice(name='Bass Voice')
         bass_staff = stafftools.Staff([bass_voice], name='Bass Staff')
         clef = contexttools.ClefMark('bass')
-        clef.attach(bass_staff)
+        attach(clef, bass_staff)
         contrabass = instrumenttools.Contrabass(
             short_instrument_name_markup='Cb.'
             )
-        contrabass.attach(bass_staff)
+        attach(contrabass, bass_staff)
 
         # make strings staff group
         strings_staff_group = scoretools.StaffGroup([

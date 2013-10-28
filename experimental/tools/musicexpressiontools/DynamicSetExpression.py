@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
+from abjad.tools.scoretools import attach
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -18,4 +19,4 @@ class DynamicSetExpression(LeafSetExpression):
             for mark in leaf._get_marks(contexttools.DynamicMark):
                 mark.detach()
             dynamic = contexttools.DynamicMark(dynamic_mark)
-            dynamic.attach(leaf)
+            attach(dynamic, leaf)

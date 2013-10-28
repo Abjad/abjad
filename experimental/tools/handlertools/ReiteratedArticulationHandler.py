@@ -4,6 +4,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
+from abjad.tools.scoretools import attach
 from abjad.tools.selectiontools import select
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
@@ -68,7 +69,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 ]
             for articulation in articulation_list:
                 new_articulation = copy.copy(articulation)
-                new_articulation.attach(note_or_chord)
+                attach(new_articulation, note_or_chord)
         return expr
 
     ### PUBLIC PROPERTIES ###

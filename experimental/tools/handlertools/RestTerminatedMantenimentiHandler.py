@@ -7,6 +7,7 @@ from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import schemetools
 from abjad.tools import spannertools
+from abjad.tools.scoretools import attach
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
@@ -31,7 +32,7 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
             iterationtools.iterate_runs_in_expr(
             expr, classes)):
             spanner = spannertools.TextSpanner()
-            spanner.attach(group)
+            attach(spanner, group)
             spanner.override.text_spanner.dash_fraction = 1
             dynamic_string = self.dynamics_talea[i]
             dynamic_markup = markuptools.Markup([

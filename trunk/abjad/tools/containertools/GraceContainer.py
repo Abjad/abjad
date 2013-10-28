@@ -185,7 +185,7 @@ class GraceContainer(Container):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, leaf):
+    def _attach(self, leaf):
         r'''Attaches grace container to `leaf`.
 
         Returns grace container.

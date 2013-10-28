@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
+from abjad.tools.scoretools import attach
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -16,4 +17,4 @@ class MarkupSetExpression(LeafSetExpression):
         markup = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):
             new_markup = markuptools.Markup(markup)
-            new_markup.attach(leaf)
+            attach(new_markup, leaf)

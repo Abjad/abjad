@@ -484,15 +484,15 @@ class LilyPondParser(abctools.Parser):
             if isinstance(x, componenttools.Component) \
                 and not isinstance(x, containertools.GraceContainer):
                 for mark in apply_forward:
-                    if hasattr(mark, 'attach'):
+                    if hasattr(mark, '_attach'):
                         attach(mark, x)
                 if previous_leaf:
                     for mark in apply_backward:
-                        if hasattr(mark, 'attach'):
+                        if hasattr(mark, '_attach'):
                             attach(mark, previous_leaf)
                 else:
                     for mark in apply_backward:
-                        if hasattr(mark, 'attach'):
+                        if hasattr(mark, '_attach'):
                             mark.format_slot = 'before'
                             attach(mark, x)
                 apply_forward = []
@@ -512,19 +512,19 @@ class LilyPondParser(abctools.Parser):
         # there were no leaves
         if previous_leaf:
             for mark in apply_forward:
-                if hasattr(mark, 'attach'):
+                if hasattr(mark, '_attach'):
                     mark.format_slot = 'after'
                     attach(mark, previous_leaf)
             for mark in apply_backward:
-                if hasattr(mark, 'attach'):
+                if hasattr(mark, '_attach'):
                     attach(mark, previous_leaf)
         else:
             for mark in apply_forward:
-                if hasattr(mark, 'attach'):
+                if hasattr(mark, '_attach'):
                     mark.format_slot = 'opening'
                     attach(mark, container)
             for mark in apply_backward:
-                if hasattr(mark, 'attach'):
+                if hasattr(mark, '_attach'):
                     mark.format_slot = 'opening'
                     attach(mark, container)
 
@@ -613,7 +613,7 @@ class LilyPondParser(abctools.Parser):
 
     def _process_post_events(self, leaf, post_events):
         for post_event in post_events:
-            if hasattr(post_event, 'attach'):
+            if hasattr(post_event, '_attach'):
                 attach(post_event, leaf)
             else:
                 annotation = [

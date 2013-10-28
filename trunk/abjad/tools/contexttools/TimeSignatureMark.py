@@ -474,7 +474,7 @@ class TimeSignatureMark(ContextMark):
 
     ### PUBLIC METHODS ###
 
-    def attach(self, start_component):
+    def _attach(self, start_component):
         r'''Attach time signature mark to `start_component`:
 
         ::
@@ -495,7 +495,7 @@ class TimeSignatureMark(ContextMark):
         if start_component._has_mark(mark_classes=classes):
             message = 'component already has context mark attached.'
             raise ExtraMarkError(message)
-        return marktools.Mark.attach(self, start_component)
+        return marktools.Mark._attach(self, start_component)
 
     def detach(self):
         r'''Detaches time signature mark.
