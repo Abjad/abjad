@@ -8,7 +8,7 @@ def test_marktools_LilyPondComment_opening_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     comment = marktools.LilyPondComment('Voice opening comments here.', 'opening')
     comment.attach(voice)
     comment = marktools.LilyPondComment('More voice opening comments.', 'opening')

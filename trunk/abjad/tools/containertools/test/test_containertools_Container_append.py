@@ -9,7 +9,7 @@ def test_containertools_Container_append_01():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     voice.append(Container("e'8 f'8"))
 
     assert testtools.compare(
@@ -35,7 +35,7 @@ def test_containertools_Container_append_02():
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(tuplet[:])
+    attach(beam, tuplet[:])
     tuplet.append(Note(5, (1, 16)))
 
     assert testtools.compare(
@@ -59,7 +59,7 @@ def test_containertools_Container_append_03():
 
     voice = Voice("c'8 d'8 e'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     assert py.test.raises(Exception, "voice.append('foo')")
     assert py.test.raises(Exception, "voice.append(99)")
@@ -73,7 +73,7 @@ def test_containertools_Container_append_04():
 
     voice = Voice("c'8 d'8 e'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     assert testtools.compare(
         voice,
@@ -88,7 +88,7 @@ def test_containertools_Container_append_04():
 
     u = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(u[:])
+    attach(beam, u[:])
 
     assert testtools.compare(
         u,
@@ -143,7 +143,7 @@ def test_containertools_Container_append_05():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     assert testtools.compare(
         voice,

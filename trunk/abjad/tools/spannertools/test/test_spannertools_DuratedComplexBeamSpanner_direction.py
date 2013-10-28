@@ -12,7 +12,7 @@ def test_spannertools_DuratedComplexBeamSpanner_direction_01():
         direction=Up,
         )
 
-    beam.attach(container)
+    attach(beam, container)
 
     assert testtools.compare(
         container,

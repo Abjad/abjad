@@ -8,7 +8,7 @@ def test_spannertools_BeamSpanner_detach_01():
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[0])
+    attach(beam, staff[0])
 
     assert testtools.compare(
         staff,
@@ -53,7 +53,7 @@ def test_spannertools_BeamSpanner_detach_02():
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:4])
+    attach(beam, staff[:4])
 
     assert testtools.compare(
         staff,

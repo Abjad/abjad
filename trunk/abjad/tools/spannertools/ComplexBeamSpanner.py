@@ -25,7 +25,7 @@ class ComplexBeamSpanner(BeamSpanner):
     ::
 
         >>> beam = spannertools.ComplexBeamSpanner()
-        >>> beam.attach(staff[:4])
+        >>> attach(beam, staff[:4])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -213,7 +213,7 @@ class ComplexBeamSpanner(BeamSpanner):
             ::
 
                 >>> beam = spannertools.ComplexBeamSpanner(lone='left')
-                >>> beam.attach(note)
+                >>> attach(beam, note)
                 >>> show(note) # doctest: +SKIP
 
             ..  doctest::
@@ -232,7 +232,7 @@ class ComplexBeamSpanner(BeamSpanner):
             ::
 
                 >>> beam = spannertools.ComplexBeamSpanner(lone='right')
-                >>> beam.attach(note)
+                >>> attach(beam, note)
 
             ..  doctest::
 
@@ -250,7 +250,7 @@ class ComplexBeamSpanner(BeamSpanner):
             ::
 
                 >>> beam = spannertools.ComplexBeamSpanner(lone='both')
-                >>> beam.attach(note)
+                >>> attach(beam, note)
 
             ..  doctest::
 
@@ -269,7 +269,7 @@ class ComplexBeamSpanner(BeamSpanner):
             ::
 
                 >>> beam = spannertools.ComplexBeamSpanner(lone=True)
-                >>> beam.attach(note)
+                >>> attach(beam, note)
 
             ..  doctest::
 
@@ -287,7 +287,7 @@ class ComplexBeamSpanner(BeamSpanner):
             ::
 
                 >>> beam = spannertools.ComplexBeamSpanner(lone=False)
-                >>> beam.attach(note)
+                >>> attach(beam, note)
 
             ..  doctest::
 

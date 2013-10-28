@@ -30,7 +30,7 @@ def test_spannertools_Spanner_fracture_01():
         )
 
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     original, left, right = beam.fracture(1, direction=Right)
 
     assert len(original.components) == 3

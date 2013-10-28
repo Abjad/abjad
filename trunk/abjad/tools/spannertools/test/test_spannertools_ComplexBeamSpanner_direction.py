@@ -6,7 +6,7 @@ def test_spannertools_ComplexBeamSpanner_direction_01():
 
     staff = Staff("c'16 e'16 r16 f'16 g'2")
     beam = spannertools.ComplexBeamSpanner(direction=Up)
-    beam.attach(staff[:4])
+    attach(beam, staff[:4])
 
     assert testtools.compare(
         staff,
@@ -32,7 +32,7 @@ def test_spannertools_ComplexBeamSpanner_direction_02():
 
     staff = Staff("c'16 e'16 r16 f'16 g'2")
     beam = spannertools.ComplexBeamSpanner(direction=Down)
-    beam.attach(staff[:4])
+    attach(beam, staff[:4])
 
     assert testtools.compare(
         staff,

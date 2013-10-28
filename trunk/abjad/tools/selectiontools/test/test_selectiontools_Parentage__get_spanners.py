@@ -8,7 +8,7 @@ def test_selectiontools_Parentage__get_spanners_01():
 
     container = Container("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(container.select_leaves())
+    attach(beam, container.select_leaves())
     slur = spannertools.SlurSpanner()
     slur.attach(container.select_leaves())
     trill = spannertools.TrillSpanner()
@@ -38,7 +38,7 @@ def test_selectiontools_Parentage__get_spanners_02():
 
     container = Container("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(container.select_leaves())
+    attach(beam, container.select_leaves())
     slur = spannertools.SlurSpanner()
     slur.attach(container.select_leaves())
     trill = spannertools.TrillSpanner()

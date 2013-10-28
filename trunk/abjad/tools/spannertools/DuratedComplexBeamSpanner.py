@@ -19,7 +19,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         ...     durations=durations, 
         ...     span=1,
         ...     )
-        >>> beam.attach(staff[:])
+        >>> attach(beam, staff[:])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -155,7 +155,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 >>> beam = spannertools.DuratedComplexBeamSpanner(
                 ...     durations=durations,
                 ...     )
-                >>> beam.attach(staff[:])
+                >>> attach(beam, staff[:])
                 >>> beam.durations
                 [Duration(1, 8), Duration(1, 8)]
 
@@ -168,7 +168,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 >>> beam = spannertools.DuratedComplexBeamSpanner(
                 ...     durations=durations,
                 ...     )
-                >>> beam.attach(staff[:])
+                >>> attach(beam, staff[:])
                 >>> beam.durations = [Duration(1, 4)]
                 >>> beam.durations
                 [Duration(1, 4)]
@@ -204,7 +204,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 ...     durations=durations, 
                 ...     span=1,
                 ...     )
-                >>> beam.attach(staff[:])
+                >>> attach(beam, staff[:])
                 >>> beam.span
                 1
 
@@ -218,7 +218,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 ...     durations=durations, 
                 ...     span=1,
                 ...     )
-                >>> beam.attach(staff[:])
+                >>> attach(beam, staff[:])
                 >>> beam.span = 2
                 >>> beam.span
                 2

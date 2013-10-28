@@ -6,7 +6,7 @@ def test_spannertools_MultipartBeamSpanner_format_01():
 
     container = Container("c'8 d'8 r8 e'8 f'8 g'4")
     beam = spannertools.MultipartBeamSpanner()
-    beam.attach(container)
+    attach(beam, container)
 
     assert testtools.compare(
         container,

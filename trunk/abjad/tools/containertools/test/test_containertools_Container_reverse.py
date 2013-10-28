@@ -22,7 +22,7 @@ def test_containertools_Container_reverse_02():
 
     container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     beam = spannertools.BeamSpanner()
-    beam.attach(container)
+    attach(beam, container)
     leaves_rev = reversed(container.select_leaves())
     container.reverse()
 
@@ -38,7 +38,7 @@ def test_containertools_Container_reverse_03():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     beam = spannertools.BeamSpanner()
-    beam.attach(staff.select_leaves())
+    attach(beam, staff.select_leaves())
     leaves_rev = reversed(staff.select_leaves())
     staff.reverse()
 
@@ -54,7 +54,7 @@ def test_containertools_Container_reverse_04():
 
     staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[0])
+    attach(beam, staff[0])
     leaves_rev = reversed(staff[0].select_leaves())
     staff[0].reverse()
     assert list(leaves_rev) == list(staff[0].select_leaves())
@@ -70,7 +70,7 @@ def test_containertools_Container_reverse_05():
     staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + 
         notetools.make_repeated_notes(2))
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[0].select_leaves())
+    attach(beam, staff[0].select_leaves())
     leaves_rev = reversed(staff[0].select_leaves())
     staff[0].reverse()
     assert list(leaves_rev) == list(staff[0].select_leaves())
@@ -87,7 +87,7 @@ def test_containertools_Container_reverse_06():
     container = Container(
         [Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
     beam = spannertools.BeamSpanner()
-    beam.attach(container)
+    attach(beam, container)
     leaves_rev = reversed(container[0].select_leaves())
     container[0].reverse()
     assert list(leaves_rev) == list(container[0].select_leaves())
@@ -104,7 +104,7 @@ def test_containertools_Container_reverse_07():
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = Staff([measure] + notes)
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     leaves_rev = reversed(staff[0].select_leaves())
     staff[0].reverse()
     assert list(leaves_rev) == list(staff[0].select_leaves())
@@ -118,7 +118,7 @@ def test_containertools_Container_reverse_08():
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = Staff([measure] + notes)
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
 
     assert testtools.compare(
         staff,

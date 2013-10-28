@@ -16,7 +16,7 @@ def test_spannertools_DuratedComplexBeamSpanner___copy___01():
         span=2, 
         direction=Down,
         )
-    beam.attach(staff[:])
+    attach(beam, staff[:])
 
     new_staff = mutate(staff).copy()
     new_beam = inspect(new_staff[0]).get_spanner(spannertools.BeamSpanner)

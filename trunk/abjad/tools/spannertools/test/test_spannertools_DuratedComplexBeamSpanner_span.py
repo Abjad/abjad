@@ -11,7 +11,7 @@ def test_spannertools_DuratedComplexBeamSpanner_span_01():
         durations=[(1, 8), (1, 8)], 
         span=1,
         )
-    beam.attach(container)
+    attach(beam, container)
 
     assert testtools.compare(
         container,
@@ -45,7 +45,7 @@ def test_spannertools_DuratedComplexBeamSpanner_span_02():
         durations=[(1, 8), (1, 8)], 
         span=2,
         )
-    beam.attach(container)
+    attach(beam, container)
 
     assert testtools.compare(
         container,

@@ -8,7 +8,7 @@ def test_spannertools_DuratedComplexBeamSpanner_lone_01():
 
     container = Container("c'8")
     beam = spannertools.DuratedComplexBeamSpanner(lone=True)
-    beam.attach(container)
+    attach(beam, container)
 
     assert testtools.compare(
         container,
@@ -30,7 +30,7 @@ def test_spannertools_DuratedComplexBeamSpanner_lone_02():
 
     container = Container("c'8")
     beam = spannertools.DuratedComplexBeamSpanner(lone=False)
-    beam.attach(container)
+    attach(beam, container)
 
     assert testtools.compare(
         container,
@@ -50,7 +50,7 @@ def test_spannertools_DuratedComplexBeamSpanner_lone_03():
 
     container = Container("c'8 d'8")
     beam = spannertools.DuratedComplexBeamSpanner(lone=False)
-    beam.attach(container)
+    attach(beam, container)
 
     assert testtools.compare(
         container,

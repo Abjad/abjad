@@ -8,9 +8,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_01():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     beam = spannertools.BeamSpanner()
-    beam.attach(target[0:3])
+    attach(beam, target[0:3])
     beam = spannertools.BeamSpanner()
-    beam.attach(target[3:])
+    attach(beam, target[3:])
 
     assert testtools.compare(
         target,
@@ -35,9 +35,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_02():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     beam = spannertools.BeamSpanner()
-    beam.attach(target[0:3])
+    attach(beam, target[0:3])
     beam = spannertools.BeamSpanner()
-    beam.attach(target[3:])
+    attach(beam, target[3:])
 
     assert testtools.compare(
         target,
@@ -61,9 +61,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_03():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     beam = spannertools.BeamSpanner()
-    beam.attach(target[:])
+    attach(beam, target[:])
     beam = spannertools.BeamSpanner()
-    beam.attach(target[1:3])
+    attach(beam, target[1:3])
 
     assert testtools.compare(
         target,
@@ -84,9 +84,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_04():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     beam = spannertools.BeamSpanner()
-    beam.attach(target[:3])
+    attach(beam, target[:3])
     beam = spannertools.BeamSpanner()
-    beam.attach(target[2:])
+    attach(beam, target[2:])
 
     assert testtools.compare(
         target,
@@ -122,9 +122,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_07():
 
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     beam = spannertools.BeamSpanner(direction=Up)
-    beam.attach(target[0:3])
+    attach(beam, target[0:3])
     beam = spannertools.BeamSpanner(direction=Down)
-    beam.attach(target[3:])
+    attach(beam, target[3:])
 
     assert testtools.compare(
         target,

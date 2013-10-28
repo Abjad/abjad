@@ -8,7 +8,7 @@ def list_named_pitches_in_expr(expr):
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> beam = spannertools.BeamSpanner()
-        >>> beam.attach(staff[:])
+        >>> attach(beam, staff[:])
 
     ::
 

@@ -8,7 +8,7 @@ def test_iterationtools_iterate_components_and_grace_containers_in_expr_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
     containertools.GraceContainer(notes[:2], kind='grace')(voice[1])
     containertools.GraceContainer(notes[2:], kind='after')(voice[1])

@@ -9,7 +9,7 @@ def test_containertools_Container_extend_01():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     r'''
     \new Voice {
@@ -49,7 +49,7 @@ def test_containertools_Container_extend_02():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     r'''
     \new Voice {
@@ -60,7 +60,7 @@ def test_containertools_Container_extend_02():
 
     u = Voice([Note(4, (1, 8)), Note(5, (1, 8))])
     beam = spannertools.BeamSpanner()
-    beam.attach(u[:])
+    attach(beam, u[:])
     voice.extend(u)
 
     r'''
@@ -92,7 +92,7 @@ def test_containertools_Container_extend_03():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     voice.extend([])
 
     r'''
@@ -120,7 +120,7 @@ def test_containertools_Container_extend_04():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     voice.extend(Voice([]))
 
     r'''
@@ -148,7 +148,7 @@ def test_containertools_Container_extend_05():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     assert py.test.raises(Exception, 'voice.extend(7)')
     assert py.test.raises(Exception, "voice.extend('foo')")
@@ -160,7 +160,7 @@ def test_containertools_Container_extend_06():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     assert py.test.raises(Exception, 'voice.extend(Note(4, (1, 4)))')
     assert py.test.raises(AssertionError, "voice.extend(Chord([2, 3, 5], (1, 4)))")
@@ -172,7 +172,7 @@ def test_containertools_Container_extend_07():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     r'''
     \new Voice {
@@ -183,7 +183,7 @@ def test_containertools_Container_extend_07():
 
     u = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(u[:])
+    attach(beam, u[:])
 
     r'''
     \new Voice {
@@ -248,7 +248,7 @@ def test_containertools_Container_extend_08():
 
     voice = Voice("c'8 d'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     r'''
     \new Voice {
@@ -259,7 +259,7 @@ def test_containertools_Container_extend_08():
 
     u = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(u[:])
+    attach(beam, u[:])
     slur = spannertools.SlurSpanner()
     slur.attach(u[-2:])
 

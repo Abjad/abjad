@@ -242,7 +242,7 @@ def test_mutationtools_ScoreMutationAgent_replace_06():
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[0][:])
+    attach(beam, staff[0][:])
 
     assert testtools.compare(
         staff,

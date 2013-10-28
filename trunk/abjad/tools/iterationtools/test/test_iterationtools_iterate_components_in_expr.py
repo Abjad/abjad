@@ -5,7 +5,7 @@ def test_iterationtools_iterate_components_in_expr_01():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
 
     assert testtools.compare(
         staff,

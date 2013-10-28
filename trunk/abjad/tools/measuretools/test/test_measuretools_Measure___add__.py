@@ -10,7 +10,7 @@ def test_measuretools_Measure___add___01():
 
     measure_1 = Measure((1, 8), "c'16 d'16")
     beam = spannertools.BeamSpanner()
-    beam.attach(measure_1[:])
+    attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
     slur = spannertools.SlurSpanner()
     slur.attach(measure_2[:])
@@ -41,7 +41,7 @@ def test_measuretools_Measure___add___02():
 
     measure_1 = Measure((1, 8), "c'16 d'16")
     beam = spannertools.BeamSpanner()
-    beam.attach(measure_1[:])
+    attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
     slur = spannertools.SlurSpanner()
     slur.attach(measure_2[:])

@@ -14,7 +14,7 @@ def test_spannertools_ComplexBeamSpanner___init___02():
 
     staff = Staff("c'16 e'16 r16 f'16 g'2")
     beam = spannertools.ComplexBeamSpanner()
-    beam.attach(staff[:4])
+    attach(beam, staff[:4])
 
     assert testtools.compare(
         staff,

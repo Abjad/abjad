@@ -108,7 +108,7 @@ def test_lily_voice_resolution_03():
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
     beam = spannertools.BeamSpanner()
-    statement = 'beam.attach(container.select_leaves())'
+    statement = 'attach(beam, container.select_leaves())'
     py.test.raises(AssertionError, statement)
 
 

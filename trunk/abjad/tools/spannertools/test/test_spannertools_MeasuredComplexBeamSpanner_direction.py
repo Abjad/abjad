@@ -29,7 +29,7 @@ def test_spannertools_MeasuredComplexBeamSpanner_direction_01():
     '''
 
     beam = spannertools.MeasuredComplexBeamSpanner(direction=Down)
-    beam.attach(staff[:])
+    attach(beam, staff[:])
 
     assert testtools.compare(
         staff,

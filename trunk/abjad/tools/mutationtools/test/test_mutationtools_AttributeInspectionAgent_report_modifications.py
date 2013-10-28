@@ -12,7 +12,7 @@ def test_mutationtools_AttributeInspectionAgent_report_modifications_01():
     command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
     command.attach(voice)
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     beam.override.beam.thickness = 3
 
     assert testtools.compare(
@@ -58,7 +58,7 @@ def test_mutationtools_AttributeInspectionAgent_report_modifications_02():
     command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
     command.attach(tuplet)
     beam = spannertools.BeamSpanner()
-    beam.attach(tuplet[:])
+    attach(beam, tuplet[:])
     beam.override.beam.thickness = 3
 
     assert testtools.compare(

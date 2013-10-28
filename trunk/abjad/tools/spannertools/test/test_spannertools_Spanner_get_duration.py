@@ -15,7 +15,7 @@ def test_spannertools_Spanner_get_duration_01():
     tempo = contexttools.TempoMark(Duration(1, 8), 42, target_context=Voice)
     tempo.attach(voice)
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
     crescendo = spannertools.CrescendoSpanner()
     crescendo.attach(voice[0][:])
     decrescendo = spannertools.DecrescendoSpanner()
@@ -54,7 +54,7 @@ def test_spannertools_Spanner_get_duration_02():
         Measure((2, 8), "c'8 d'8")]
         )
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
     crescendo = spannertools.CrescendoSpanner()
     crescendo.attach(voice[0][:])
     decrescendo = spannertools.DecrescendoSpanner()

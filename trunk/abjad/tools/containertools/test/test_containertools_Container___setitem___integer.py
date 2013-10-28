@@ -9,7 +9,7 @@ def test_containertools_Container___setitem___integer_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:2])
+    attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
     glissando.attach(voice.select_leaves())
 
@@ -48,7 +48,7 @@ def test_containertools_Container___setitem___integer_02():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:2])
+    attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
     glissando.attach(voice.select_leaves())
 
@@ -92,7 +92,7 @@ def test_containertools_Container___setitem___integer_03():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     glissando = spannertools.GlissandoSpanner()
     glissando.attach(voice[:])
 
@@ -137,7 +137,7 @@ def test_containertools_Container___setitem___integer_04():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
     glissando = spannertools.GlissandoSpanner()
     glissando.attach(voice.select_leaves())
 
@@ -181,7 +181,7 @@ def test_containertools_Container___setitem___integer_05():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     glissando = spannertools.GlissandoSpanner()
     glissando.attach(voice[:])
 
@@ -229,7 +229,7 @@ def test_containertools_Container___setitem___integer_06():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
     glissando = spannertools.GlissandoSpanner()
     glissando.attach(voice.select_leaves())
 
@@ -274,7 +274,7 @@ def test_containertools_Container___setitem___integer_07():
     voice = Voice(Container(notetools.make_repeated_notes(4)) * 2)
     voice = Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves()[0:6])
+    attach(beam, voice.select_leaves()[0:6])
 
     assert testtools.compare(
         voice,
@@ -326,7 +326,7 @@ def test_containertools_Container___setitem___integer_08():
 
     voice = Voice(notes[:3])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     r'''
     \new Voice {
@@ -338,7 +338,7 @@ def test_containertools_Container___setitem___integer_08():
 
     u = Voice(notes[3:])
     beam = spannertools.BeamSpanner()
-    beam.attach(u[:])
+    attach(beam, u[:])
 
     r'''
     \new Voice {
@@ -400,7 +400,7 @@ def test_containertools_Container___setitem___integer_09():
         ]
     voice = Voice(notes[:3])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     assert testtools.compare(
         voice,

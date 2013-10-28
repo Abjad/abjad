@@ -108,7 +108,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___05()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     beam.override.beam.positions = (4, 4)
 
     assert testtools.compare(
@@ -273,7 +273,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___12()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     dynamic_text_spanner = spannertools.DynamicTextSpanner(mark='f')
     dynamic_text_spanner.attach(voice[:])
     dynamic_text_spanner.override.dynamic_text.thickness = 3
@@ -800,7 +800,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___35()
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     beam.override.score.spacing_spanner.strict_grace_spacing = True
     beam.override.score.spacing_spanner.strict_note_spacing = True
     beam.override.score.spacing_spanner.uniform_stretching = True
@@ -835,7 +835,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___36()
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     beam.override.score.spacing_spanner.strict_grace_spacing = True
     beam.override.score.spacing_spanner.strict_note_spacing = True
     beam.override.score.spacing_spanner.uniform_stretching = True
@@ -1261,7 +1261,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___53()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     voice.override.tuplet_bracket.direction = Down
 
     assert testtools.compare(
@@ -1287,7 +1287,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___54()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     voice[1].override.tuplet_bracket.direction = Down
 
     assert testtools.compare(
@@ -1335,7 +1335,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___56()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     voice.override.tuplet_number.fraction = True
 
     assert testtools.compare(
@@ -1361,7 +1361,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___57()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     voice[1].override.tuplet_number.fraction = True
 
     assert testtools.compare(
@@ -1386,7 +1386,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___58()
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     voice.override.tuplet_number.text = markuptools.Markup('6:4')
 
     assert testtools.compare(

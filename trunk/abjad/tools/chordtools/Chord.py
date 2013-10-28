@@ -351,7 +351,7 @@ class Chord(Leaf):
             ::
 
                 >>> beam = spannertools.BeamSpanner()
-                >>> beam.attach([chord])
+                >>> attach(beam, [chord])
                 >>> chord.set.stem_left_beam_count = 0
                 >>> chord.set.stem_right_beam_count = 2
                 >>> show(chord) # doctest: +SKIP

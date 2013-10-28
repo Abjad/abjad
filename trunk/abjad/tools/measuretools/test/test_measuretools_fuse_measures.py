@@ -11,7 +11,7 @@ def test_measuretools_fuse_measures_01():
     
     measure_1 = Measure((1, 8), "c'16 d'16")
     beam = spannertools.BeamSpanner()
-    beam.attach(measure_1[:])
+    attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
     slur = spannertools.SlurSpanner()
     slur.attach(measure_2[:])
@@ -64,7 +64,7 @@ def test_measuretools_fuse_measures_02():
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -112,7 +112,7 @@ def test_measuretools_fuse_measures_03():
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
 
     assert testtools.compare(
         voice,
@@ -163,7 +163,7 @@ def test_measuretools_fuse_measures_04():
     measure_2 = Measure((1, 12), "d'8")
     voice = Voice([measure_1, measure_2])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -229,7 +229,7 @@ def test_measuretools_fuse_measures_07():
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
     beam = beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
 
     assert testtools.compare(
         voice,

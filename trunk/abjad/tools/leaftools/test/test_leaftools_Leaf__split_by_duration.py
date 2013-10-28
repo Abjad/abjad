@@ -186,7 +186,7 @@ def test_leaftools_Leaf__split_by_duration_06():
 
     voice = Voice(r"c'8 \times 2/3 { d'8 e'8 f'8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
 
     assert testtools.compare(
         voice,
@@ -352,7 +352,7 @@ def test_leaftools_Leaf__split_by_duration_13():
 
     staff = Staff(notetools.make_repeated_notes(4))
     beam = spannertools.BeamSpanner()
-    beam.attach(staff.select_leaves())
+    attach(beam, staff.select_leaves())
 
     halves = staff[0]._split_by_duration(
         Duration(1, 16), 

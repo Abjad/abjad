@@ -54,7 +54,7 @@ def test_skiptools_Skip___init___05():
 
     staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     skip = skiptools.Skip(staff[0])
     assert isinstance(staff[0], Chord)
     assert isinstance(skip, skiptools.Skip)
@@ -91,7 +91,7 @@ def test_skiptools_Skip___init___08():
 
     staff = Staff(Note(0, (1, 8)) * 3)
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     skip = skiptools.Skip(staff[0])
     assert isinstance(staff[0], Note)
     assert isinstance(skip, skiptools.Skip)
@@ -133,7 +133,7 @@ def test_skiptools_Skip___init___11():
 
     staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     skip = skiptools.Skip(staff[1])
     assert isinstance(skip, skiptools.Skip)
     assert isinstance(staff[1], Rest)

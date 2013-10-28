@@ -1565,7 +1565,7 @@ def test_mutationtools_ScoreMutationAgent_split_26():
     voice.append(Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(Tuplet((2, 3), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     tuplets = voice[1:2]
     result = mutate(tuplets).split(
@@ -1605,7 +1605,7 @@ def test_mutationtools_ScoreMutationAgent_split_27():
     voice.append(Measure((3, 8), "c'8 d'8 e'8"))
     voice.append(Measure((3, 8), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     measures = voice[1:2]
     result = mutate(measures).split(
@@ -1648,7 +1648,7 @@ def test_mutationtools_ScoreMutationAgent_split_28():
     voice.append(Measure((3, 9), "c'8 d'8 e'8"))
     voice.append(Measure((3, 9), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     measures = voice[1:2]
     result = mutate(measures).split(
@@ -1798,7 +1798,7 @@ def test_mutationtools_ScoreMutationAgent_split_31():
     staff = Staff([Container("c'8 d'8 e'8 f'8")])
     voice = staff[0]
     beam = spannertools.BeamSpanner()
-    beam.attach(voice)
+    attach(beam, voice)
 
     result = mutate([voice]).split(
         [Duration(1, 4)],
@@ -1879,7 +1879,7 @@ def test_mutationtools_ScoreMutationAgent_split_32():
     voice = Voice([tuplet])
     staff = Staff([voice])
     beam = spannertools.BeamSpanner()
-    beam.attach(tuplet)
+    attach(beam, tuplet)
 
     result = mutate([tuplet]).split(
         [Duration(1, 5)],
@@ -1984,7 +1984,7 @@ def test_mutationtools_ScoreMutationAgent_split_33():
     voice.append(Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(Tuplet((2, 3), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     tuplet = voice[1]
 
     assert testtools.compare(
@@ -2066,7 +2066,7 @@ def test_mutationtools_ScoreMutationAgent_split_34():
     voice.append(Measure((3, 8), "c'8 d'8 e'8"))
     voice.append(Measure((3, 8), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     measure = voice[1]
 
     assert testtools.compare(
@@ -2154,7 +2154,7 @@ def test_mutationtools_ScoreMutationAgent_split_35():
     voice.append(Measure((3, 9), "c'8 d'8 e'8"))
     voice.append(Measure((3, 9), "f'8 g'8 a'8"))
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     measure = voice[1]
 
     assert testtools.compare(
@@ -2254,7 +2254,7 @@ def test_mutationtools_ScoreMutationAgent_split_36():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     assert testtools.compare(
         voice,
@@ -2313,9 +2313,9 @@ def test_mutationtools_ScoreMutationAgent_split_37():
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[0])
+    attach(beam, staff[0])
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[1])
+    attach(beam, staff[1])
     slur = spannertools.SlurSpanner()
     slur.attach(staff.select_leaves())
 
@@ -2376,7 +2376,7 @@ def test_mutationtools_ScoreMutationAgent_split_38():
 
     staff = Staff([Measure((3, 8), "c'8. d'8.")])
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[0])
+    attach(beam, staff[0])
     slur = spannertools.SlurSpanner()
     slur.attach(staff.select_leaves())
 
@@ -2425,7 +2425,7 @@ def test_mutationtools_ScoreMutationAgent_split_39():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2487,7 +2487,7 @@ def test_mutationtools_ScoreMutationAgent_split_40():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2543,7 +2543,7 @@ def test_mutationtools_ScoreMutationAgent_split_41():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2606,7 +2606,7 @@ def test_mutationtools_ScoreMutationAgent_split_42():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2662,7 +2662,7 @@ def test_mutationtools_ScoreMutationAgent_split_43():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2714,7 +2714,7 @@ def test_mutationtools_ScoreMutationAgent_split_44():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2765,7 +2765,7 @@ def test_mutationtools_ScoreMutationAgent_split_45():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2828,7 +2828,7 @@ def test_mutationtools_ScoreMutationAgent_split_46():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2890,7 +2890,7 @@ def test_mutationtools_ScoreMutationAgent_split_47():
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[0])
+    attach(beam, voice[0])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0].select_leaves())
 
@@ -2977,7 +2977,7 @@ def test_mutationtools_ScoreMutationAgent_split_49():
 
     staff = Staff([Measure((3, 12), "c'8. d'8.")])
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[0])
+    attach(beam, staff[0])
     slur = spannertools.SlurSpanner()
     slur.attach(staff.select_leaves())
 

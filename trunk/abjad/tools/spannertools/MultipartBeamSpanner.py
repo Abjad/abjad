@@ -13,7 +13,7 @@ class MultipartBeamSpanner(BeamSpanner):
     ::
 
         >>> beam = spannertools.MultipartBeamSpanner()
-        >>> beam.attach(staff[:])
+        >>> attach(beam, staff[:])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

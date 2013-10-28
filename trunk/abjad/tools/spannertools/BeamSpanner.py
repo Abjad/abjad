@@ -24,7 +24,7 @@ class BeamSpanner(DirectedSpanner):
     ::
 
         >>> beam = spannertools.BeamSpanner()
-        >>> beam.attach(staff[:4])
+        >>> attach(beam, staff[:4])
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

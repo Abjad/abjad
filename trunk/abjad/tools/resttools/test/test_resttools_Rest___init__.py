@@ -68,7 +68,7 @@ def test_resttools_Rest___init___06():
 
     staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     rest = Rest(staff[0])
     assert isinstance(rest, Rest)
     assert isinstance(staff[0], Chord)
@@ -110,7 +110,7 @@ def test_resttools_Rest___init___09():
 
     staff = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     rest = Rest(staff[1])
     assert isinstance(staff[1], skiptools.Skip)
     assert staff[1] in staff
@@ -154,7 +154,7 @@ def test_resttools_Rest___init___12():
 
     staff = Staff(Note(0, (1, 8)) * 3)
     beam = spannertools.BeamSpanner()
-    beam.attach(staff[:])
+    attach(beam, staff[:])
     rest = Rest(staff[0])
     assert isinstance(staff[0], Note)
     assert isinstance(rest, Rest)
@@ -168,7 +168,7 @@ def test_resttools_Rest___init___13():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     rest = Rest(voice[-1])
     voice[-1:] = [rest]
 
@@ -191,7 +191,7 @@ def test_resttools_Rest___init___14():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     for note in voice:
         rest = Rest(note)
         mutate(note).replace(rest)

@@ -265,7 +265,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             beam = spannertools.DuratedComplexBeamSpanner()
-            beam.attach(part)
+            attach(beam, part)
         return voice
 
     def make_spanner_score_02(self):
@@ -288,7 +288,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             beam = spannertools.DuratedComplexBeamSpanner()
-            beam.attach(part)
+            attach(beam, part)
         return voice
 
     def make_spanner_score_03(self):
@@ -311,7 +311,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             beam = spannertools.DuratedComplexBeamSpanner()
-            beam.attach(part)
+            attach(beam, part)
         return voice
 
     def make_spanner_score_04(self):
@@ -391,7 +391,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             beam = spannertools.BeamSpanner()
-            beam.attach(part)
+            attach(beam, part)
         return voice
 
     def make_spanner_score_08(self):
@@ -411,7 +411,7 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             beam = spannertools.BeamSpanner()
-            beam.attach(part)
+            attach(beam, part)
         return voice
 
     def make_spanner_score_09(self):
@@ -431,5 +431,5 @@ class BenchmarkScoreMaker(AbjadObject):
             cyclic=True,
             ):
             beam = spannertools.BeamSpanner()
-            beam.attach(part)
+            attach(beam, part)
         return voice

@@ -16,7 +16,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
     ::
 
         >>> beam = spannertools.MeasuredComplexBeamSpanner()
-        >>> beam.attach(staff.select_leaves())
+        >>> attach(beam, staff.select_leaves())
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -118,7 +118,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
                 >>> staff.append(Measure((2, 16), "c'16 d'16"))
                 >>> staff.append(Measure((2, 16), "e'16 f'16"))
                 >>> beam = spannertools.MeasuredComplexBeamSpanner()
-                >>> beam.attach(staff.select_leaves())
+                >>> attach(beam, staff.select_leaves())
                 >>> beam.span
                 1
 
@@ -130,7 +130,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
                 >>> staff.append(Measure((2, 16), "c'16 d'16"))
                 >>> staff.append(Measure((2, 16), "e'16 f'16"))
                 >>> beam = spannertools.MeasuredComplexBeamSpanner()
-                >>> beam.attach(staff.select_leaves())
+                >>> attach(beam, staff.select_leaves())
                 >>> beam.span = 2
                 >>> beam.span
                 2

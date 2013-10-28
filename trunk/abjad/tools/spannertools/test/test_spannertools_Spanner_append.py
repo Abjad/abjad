@@ -8,7 +8,7 @@ def test_spannertools_Spanner_append_01():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[1])
+    attach(beam, voice[1])
 
     assert testtools.compare(
         voice,
@@ -59,7 +59,7 @@ def test_spannertools_Spanner_append_02():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[1])
+    attach(beam, voice[1])
 
     assert testtools.compare(
         voice,

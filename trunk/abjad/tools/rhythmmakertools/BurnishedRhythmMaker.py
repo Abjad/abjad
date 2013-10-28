@@ -12,6 +12,7 @@ from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools import tuplettools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.scoretools import attach
 
 
 class BurnishedRhythmMaker(RhythmMaker):
@@ -169,7 +170,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         if self.beam_each_cell:
             for cell in result:
                 beam = spannertools.MultipartBeamSpanner()
-                beam.attach(cell)
+                attach(beam, cell)
         if self.tie_split_notes:
             self._add_ties(result)
         assert isinstance(result, list), repr(result)

@@ -12,7 +12,7 @@ def test_containertools_Container___delitem___01():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
     slur = spannertools.SlurSpanner()
     slur.attach(voice[0][:])
     slur = spannertools.SlurSpanner()
@@ -75,7 +75,7 @@ def test_containertools_Container___delitem___02():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     del(voice[1])
 
@@ -99,7 +99,7 @@ def test_containertools_Container___delitem___03():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     del(voice[1:3])
 
@@ -122,7 +122,7 @@ def test_containertools_Container___delitem___04():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     del(voice[:2])
 
@@ -145,7 +145,7 @@ def test_containertools_Container___delitem___05():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     del(voice[2:])
 
@@ -168,7 +168,7 @@ def test_containertools_Container___delitem___06():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice[:])
+    attach(beam, voice[:])
 
     del(voice[:])
 
@@ -189,7 +189,7 @@ def test_containertools_Container___delitem___07():
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(tuplet[:])
+    attach(beam, tuplet[:])
 
     del(tuplet[1])
 
@@ -212,7 +212,7 @@ def test_containertools_Container___delitem___08():
 
     voice = Voice("c'8 { d'8 e'8 } f'8")
     beam = spannertools.BeamSpanner()
-    beam.attach(voice.select_leaves())
+    attach(beam, voice.select_leaves())
     glissando = spannertools.GlissandoSpanner()
     glissando.attach(voice.select_leaves())
 
