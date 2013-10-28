@@ -12,9 +12,6 @@ class Violin(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> show(staff) # doctest: +SKIP
-
-    ::
-
         >>> violin = instrumenttools.Violin()
         >>> violin = violin.attach(staff)
         >>> show(staff) # doctest: +SKIP

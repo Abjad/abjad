@@ -53,7 +53,8 @@ class MeasurewiseQTarget(QTarget):
                 measure.extend(beat.q_grid(beat.beatspan))
             if (q_target_measure_two.tempo != q_target_measure_one.tempo) \
                 and attach_tempo_marks:
-                copy.copy(q_target_measure_two.tempo)(measure)
+                tempo = copy.copy(q_target_measure_two.tempo)
+                tempo.attach(measure)
             voice.append(measure)
 
         # apply tie chains, pitches, grace containers

@@ -12,13 +12,16 @@ class Piano(Instrument):
 
     ::
 
-        >>> piano_staff = scoretools.PianoStaff(
-        ...     [Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
+        >>> piano_staff = scoretools.PianoStaff()
+        >>> piano_staff.append(Staff("c'8 d'8 e'8 f'8"))
+        >>> piano_staff.append(Staff("c'4 b4"))
 
     ::
 
-        >>> instrumenttools.Piano()(piano_staff)
+        >>> piano = instrumenttools.Piano()
+        >>> piano.attach(piano_staff)
         Piano()(PianoStaff<<2>>)
+        >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -37,10 +40,6 @@ class Piano(Instrument):
                 b4
             }
         >>
-
-    ::
-
-        >>> show(piano_staff) # doctest: +SKIP
 
     The piano targets piano staff context by default.
     '''

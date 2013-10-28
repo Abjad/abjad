@@ -52,7 +52,8 @@ class BeatwiseQTarget(QTarget):
                 attachment_target = components[0]
                 if isinstance(attachment_target, containertools.Container):
                     attachment_target = attachment_target.select_leaves()[0]
-                copy.copy(beat_two.tempo)(attachment_target)
+                tempo = copy.copy(beat_two.tempo)
+                tempo.attach(attachment_target)
             voice.extend(components)
 
         # apply tie chains, pitches, grace containers

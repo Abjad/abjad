@@ -141,7 +141,8 @@ class QTarget(AbjadObject):
             new_leaf = resttools.Rest(duration)
         tempo_marks = leaf_two._get_marks(contexttools.TempoMark)
         if tempo_marks:
-            tempo_marks[0](new_leaf)
+            tempo = tempo_marks[0]
+            tempo.attach(new_leaf)
         leaf_two._get_parentage().parent[index] = new_leaf
         return new_leaf
 

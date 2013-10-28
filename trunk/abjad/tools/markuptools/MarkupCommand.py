@@ -32,7 +32,7 @@ class MarkupCommand(AbjadObject):
 
     ::
 
-        >>> markup = markup(note)
+        >>> markup = markup.attach(note)
 
     ..  doctest::
 

@@ -14,12 +14,10 @@ class Viola(Instrument):
         >>> clef = contexttools.ClefMark('alto')
         >>> clef.attach(staff)
         ClefMark('alto')(Staff{4})
-
-    ::
-
         >>> viola = instrumenttools.Viola()
         >>> viola.attach(staff)
         Viola()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 

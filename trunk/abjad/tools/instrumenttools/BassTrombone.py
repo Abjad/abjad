@@ -14,10 +14,8 @@ class BassTrombone(Instrument):
         >>> clef = contexttools.ClefMark('bass')
         >>> clef.attach(staff)
         ClefMark('bass')(Staff{4})
-
-    ::
-
-        >>> instrumenttools.BassTrombone()(staff)
+        >>> trombone = instrumenttools.BassTrombone()
+        >>> trombone.attach(staff)
         BassTrombone()(Staff{4})
 
     ..  doctest::

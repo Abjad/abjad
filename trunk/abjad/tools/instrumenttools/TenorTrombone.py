@@ -14,12 +14,10 @@ class TenorTrombone(Instrument):
         >>> clef = contexttools.ClefMark('bass')
         >>> clef.attach(staff)
         ClefMark('bass')(Staff{4})
-
-    ::
-
         >>> trombone = instrumenttools.TenorTrombone()
         >>> trombone.attach(staff)
         TenorTrombone()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -33,10 +31,6 @@ class TenorTrombone(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The tenor trombone targets staff context by default.
     '''

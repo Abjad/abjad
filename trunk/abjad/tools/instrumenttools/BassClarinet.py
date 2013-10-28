@@ -12,9 +12,6 @@ class BassClarinet(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> show(staff) # doctest: +SKIP
-
-    ::
-
         >>> bass_clarinet = instrumenttools.BassClarinet()
         >>> bass_clarinet = bass_clarinet.attach(staff)
         >>> show(staff) # doctest: +SKIP

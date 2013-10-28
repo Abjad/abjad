@@ -11,11 +11,10 @@ class ContrabassSaxophone(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.ContrabassSaxophone()(staff)
+        >>> sax = instrumenttools.ContrabassSaxophone()
+        >>> sax.attach(staff)
         ContrabassSaxophone()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class ContrabassSaxophone(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The contrabass saxophone is pitched in E-flat.
 

@@ -10,11 +10,10 @@ class ContrabassFlute(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.ContrabassFlute()(staff)
+        >>> contrabass_flute = instrumenttools.ContrabassFlute()
+        >>> contrabass_flute.attach(staff)
         ContrabassFlute()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -27,10 +26,6 @@ class ContrabassFlute(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The contrabass flute targets staff context by default.
     '''

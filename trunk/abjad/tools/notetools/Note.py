@@ -192,7 +192,9 @@ class Note(Leaf):
             ::
 
                 >>> staff = Staff("d''8 e''8 f''8 g''8")
-                >>> piccolo = instrumenttools.Piccolo()(staff)
+                >>> piccolo = instrumenttools.Piccolo()
+                >>> piccolo.attach(staff)
+                Piccolo()(Staff{4})
 
             ::
 

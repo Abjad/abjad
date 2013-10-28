@@ -17,8 +17,10 @@ class Harpsichord(Instrument):
 
     ::
 
-        >>> instrumenttools.Harpsichord()(piano_staff)
+        >>> harpsichord = instrumenttools.Harpsichord()
+        >>> harpsichord.attach(piano_staff)
         Harpsichord()(PianoStaff<<2>>)
+        >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -37,10 +39,6 @@ class Harpsichord(Instrument):
                 b4
             }
         >>
-
-    ::
-
-        >>> show(piano_staff) # doctest: +SKIP
 
     The harpsichord targets piano staff context by default.
 

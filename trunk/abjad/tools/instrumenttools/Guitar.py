@@ -11,11 +11,10 @@ class Guitar(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.Guitar()(staff)
+        >>> guitar = instrumenttools.Guitar()
+        >>> guitar.attach(staff)
         Guitar()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class Guitar(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The guitar targets staff context by default.
     '''

@@ -11,11 +11,10 @@ class Oboe(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.Oboe()(staff)
+        >>> oboe = instrumenttools.Oboe()
+        >>> oboe.attach(staff)
         Oboe()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class Oboe(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The oboe targets staff context by default.
     '''

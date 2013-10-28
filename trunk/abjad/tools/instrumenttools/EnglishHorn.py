@@ -11,11 +11,10 @@ class EnglishHorn(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.EnglishHorn()(staff)
+        >>> english_horn = instrumenttools.EnglishHorn()
+        >>> english_horn.attach(staff)
         EnglishHorn()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class EnglishHorn(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The English horn targets staff context by default.
     '''

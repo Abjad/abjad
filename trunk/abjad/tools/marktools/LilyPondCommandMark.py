@@ -15,8 +15,8 @@ class LilyPondCommandMark(Mark):
 
     ::
 
-        >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
-        >>> lilypond_command.attach(staff[0])
+        >>> command = marktools.LilyPondCommandMark('slurDotted')
+        >>> command.attach(staff[0])
         LilyPondCommandMark('slurDotted')(c'8)
 
     ..  doctest::
@@ -95,17 +95,16 @@ class LilyPondCommandMark(Mark):
 
             ::
 
-                >>> lilypond_command = marktools.LilyPondCommandMark(
-                ...     'slurDotted')
-                >>> lilypond_command.command_name
+                >>> command = marktools.LilyPondCommandMark('slurDotted')
+                >>> command.command_name
                 'slurDotted'
 
             Set command name of LilyPond command mark:
 
             ::
 
-                >>> lilypond_command.command_name = 'slurDashed'
-                >>> lilypond_command.command_name
+                >>> command.command_name = 'slurDashed'
+                >>> command.command_name
                 'slurDashed'
 
             Set string.
@@ -124,9 +123,8 @@ class LilyPondCommandMark(Mark):
             ::
 
                 >>> note = Note("c'4")
-                >>> lilypond_command = marktools.LilyPondCommandMark(
-                ...     'break', 'after')
-                >>> lilypond_command.format_slot
+                >>> command = marktools.LilyPondCommandMark('break', 'after')
+                >>> command.format_slot
                 'after'
 
             Set format slot of LiyPond command mark:
@@ -134,10 +132,9 @@ class LilyPondCommandMark(Mark):
             ::
 
                 >>> note = Note("c'4")
-                >>> lilypond_command = marktools.LilyPondCommandMark(
-                ...     'break', 'after')
-                >>> lilypond_command.format_slot = 'before'
-                >>> lilypond_command.format_slot
+                >>> command = marktools.LilyPondCommandMark('break', 'after')
+                >>> command.format_slot = 'before'
+                >>> command.format_slot
                 'before'
 
             Set to ``'before'``, ``'after'``, ``'opening'``,
@@ -160,9 +157,9 @@ class LilyPondCommandMark(Mark):
         ::
 
             >>> note = Note("c'4")
-            >>> lilypond_command = marktools.LilyPondCommandMark(
-            ...     'slurDotted')(note)
-            >>> lilypond_command.lilypond_format
+            >>> command = marktools.LilyPondCommandMark('slurDotted')
+            >>> command = command.attach(note)
+            >>> command.lilypond_format
             '\\slurDotted'
 
         Returns string.

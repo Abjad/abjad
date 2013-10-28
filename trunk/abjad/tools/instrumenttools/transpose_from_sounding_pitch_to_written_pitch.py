@@ -13,7 +13,8 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
     ::
 
         >>> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
-        >>> instrumenttools.BFlatClarinet()(staff)
+        >>> clarinet = instrumenttools.BFlatClarinet()
+        >>> clarinet.attach(staff)
         BFlatClarinet()(Staff{4})
 
     ..  doctest::

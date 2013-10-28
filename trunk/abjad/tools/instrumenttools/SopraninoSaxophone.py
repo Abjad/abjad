@@ -11,11 +11,10 @@ class SopraninoSaxophone(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.SopraninoSaxophone()(staff)
+        >>> sax = instrumenttools.SopraninoSaxophone()
+        >>> sax.attach(staff)
         SopraninoSaxophone()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class SopraninoSaxophone(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The sopranino saxophone is pitched in E-flat.
 

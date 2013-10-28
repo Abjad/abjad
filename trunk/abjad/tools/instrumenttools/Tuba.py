@@ -14,12 +14,10 @@ class Tuba(Instrument):
         >>> clef = contexttools.ClefMark('bass')
         >>> clef.attach(staff)
         ClefMark('bass')(Staff{4})
-
-    ::
-
         >>> tuba = instrumenttools.Tuba()
         >>> tuba.attach(staff)
         Tuba()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 

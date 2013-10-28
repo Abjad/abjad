@@ -11,11 +11,10 @@ class SopranoVoice(Instrument):
     ::
 
         >>> staff = Staff("c''8 d''8 e''8 f''8")
-
-    ::
-
-        >>> instrumenttools.SopranoVoice()(staff)
+        >>> soprano = instrumenttools.SopranoVoice()
+        >>> soprano.attach(staff)
         SopranoVoice()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class SopranoVoice(Instrument):
             e''8
             f''8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The soprano voice targets staff context by default.
     '''

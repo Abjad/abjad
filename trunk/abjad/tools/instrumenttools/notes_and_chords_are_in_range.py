@@ -12,13 +12,13 @@ def notes_and_chords_are_in_range(expr):
     ::
 
         >>> staff = Staff("c'8 r8 <d' fs'>8 r8")
-        >>> instrumenttools.Violin()(staff)
+        >>> violin = instrumenttools.Violin()
+        >>> violin.attach(staff)
         Violin()(Staff{4})
 
     ::
 
-        >>> instrumenttools.notes_and_chords_are_in_range(
-        ...     staff)
+        >>> instrumenttools.notes_and_chords_are_in_range(staff)
         True
 
     False otherwise:
@@ -26,13 +26,13 @@ def notes_and_chords_are_in_range(expr):
     ::
 
         >>> staff = Staff("c'8 r8 <d fs>8 r8")
-        >>> instrumenttools.Violin()(staff)
+        >>> violin = instrumenttools.Violin()
+        >>> violin.attach(staff)
         Violin()(Staff{4})
 
     ::
 
-        >>> instrumenttools.notes_and_chords_are_in_range(
-        ...     staff)
+        >>> instrumenttools.notes_and_chords_are_in_range(staff)
         False
 
     Returns boolean.

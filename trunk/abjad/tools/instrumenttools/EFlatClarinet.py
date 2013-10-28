@@ -11,11 +11,10 @@ class EFlatClarinet(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.EFlatClarinet()(staff)
+        >>> clarinet = instrumenttools.EFlatClarinet()
+        >>> clarinet.attach(staff)
         EFlatClarinet()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class EFlatClarinet(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The E-flat clarinet targets staff context by default.
     '''

@@ -11,12 +11,10 @@ class BFlatClarinet(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> clarinet = instrumenttools.BFlatClarinet()(staff)
-        >>> clarinet
+        >>> clarinet = instrumenttools.BFlatClarinet()
+        >>> clarinet.attach(staff)
         BFlatClarinet()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -29,10 +27,6 @@ class BFlatClarinet(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The B-flat clarinet targets staff context by default.
     '''

@@ -11,12 +11,16 @@ class Harp(Instrument):
 
     ::
 
-        >>> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
+        >>> piano_staff = scoretools.PianoStaff()
+        >>> piano_staff.append(Staff("c'8 d'8 e'8 f'8"))
+        >>> piano_staff.append(Staff("c'4 b4"))
 
     ::
 
-        >>> instrumenttools.Harp()(piano_staff)
+        >>> harp = instrumenttools.Harp()
+        >>> harp.attach(piano_staff)
         Harp()(PianoStaff<<2>>)
+        >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -35,10 +39,6 @@ class Harp(Instrument):
                 b4
             }
         >>
-
-    ::
-
-        >>> show(piano_staff) # doctest: +SKIP
 
     The harp targets piano staff context by default.
     '''

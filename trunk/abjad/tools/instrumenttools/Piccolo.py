@@ -11,11 +11,10 @@ class Piccolo(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.Piccolo()(staff)
+        >>> piccolo = instrumenttools.Piccolo()
+        >>> piccolo.attach(staff)
         Piccolo()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class Piccolo(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The piccolo targets staff context by default.
     '''

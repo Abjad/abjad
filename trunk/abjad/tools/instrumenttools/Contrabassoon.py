@@ -14,11 +14,10 @@ class Contrabassoon(Instrument):
         >>> clef = contexttools.ClefMark('bass')
         >>> clef.attach(staff)
         ClefMark('bass')(Staff{4})
-
-    ::
-
-        >>> instrumenttools.Contrabassoon()(staff)
+        >>> contrabassoon = instrumenttools.Contrabassoon()
+        >>> contrabassoon.attach(staff)
         Contrabassoon()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -32,10 +31,6 @@ class Contrabassoon(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The contrabassoon targets staff context by default.
     '''

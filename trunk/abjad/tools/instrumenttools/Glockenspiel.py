@@ -11,11 +11,10 @@ class Glockenspiel(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.Glockenspiel()(staff)
+        >>> glockenspiel = instrumenttools.Glockenspiel()
+        >>> glockenspiel.attach(staff)
         Glockenspiel()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class Glockenspiel(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The glockenspiel targets staff context by default.
     '''

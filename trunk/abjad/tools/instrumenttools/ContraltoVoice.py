@@ -11,11 +11,10 @@ class ContraltoVoice(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.ContraltoVoice()(staff)
+        >>> contralto = instrumenttools.ContraltoVoice()
+        >>> contralto.attach(staff)
         ContraltoVoice()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class ContraltoVoice(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The contralto voice targets staff context by default.
     '''

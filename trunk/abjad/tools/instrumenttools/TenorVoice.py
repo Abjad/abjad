@@ -11,11 +11,10 @@ class TenorVoice(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.TenorVoice()(staff)
+        >>> tenor = instrumenttools.TenorVoice()
+        >>> tenor.attach(staff)
         TenorVoice()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class TenorVoice(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The tenor voice targets staff context by default.
     '''

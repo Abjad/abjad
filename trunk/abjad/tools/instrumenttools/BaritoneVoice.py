@@ -12,9 +12,6 @@ class BaritoneVoice(Instrument):
 
         >>> staff = Staff("c8 d8 e8 f8")
         >>> show(staff) # doctest: +SKIP
-
-    ::
-
         >>> baritone_voice = instrumenttools.BaritoneVoice()
         >>> baritone_voice = baritone_voice.attach(staff)
         >>> show(staff) # doctest: +SKIP

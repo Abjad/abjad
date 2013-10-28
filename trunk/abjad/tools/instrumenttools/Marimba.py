@@ -11,11 +11,10 @@ class Marimba(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.Marimba()(staff)
+        >>> marimba = instrumenttools.Marimba()
+        >>> marimba.attach(staff)
         Marimba()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class Marimba(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The marimba targets staff context by default.
     '''

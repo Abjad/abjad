@@ -11,11 +11,10 @@ class ContrabassClarinet(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-
-    ::
-
-        >>> instrumenttools.ContrabassClarinet()(staff)
+        >>> clarinet = instrumenttools.ContrabassClarinet()
+        >>> clarinet.attach(staff)
         ContrabassClarinet()(Staff{4})
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -28,10 +27,6 @@ class ContrabassClarinet(Instrument):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     The contrabass clarinet targets staff context by default.
     '''
