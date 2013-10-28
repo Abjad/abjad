@@ -21,8 +21,8 @@ class SpannerSetExpression(CounttimeComponentSelectExpressionSetExpression):
             for element in result:
                 leaves = element.payload
                 new_spanner = copy.copy(spanner)
-                new_spanner(leaves)
+                new_spanner.attach(leaves)
         else:
             leaves = result.payload
             new_spanner = copy.copy(spanner)
-            new_spanner(leaves)
+            new_spanner.attach(leaves)

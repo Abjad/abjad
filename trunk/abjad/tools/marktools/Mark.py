@@ -26,21 +26,21 @@ class Mark(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, *args):
-        r'''Detaches mark from component when called with no arguments.
-
-        Attaches mark to component when called with one argument.
-
-        Returns self.
-        '''
-        raise Exception('deprecated')
-        if len(args) == 0:
-            return self.detach()
-        elif len(args) == 1:
-            return attach(self, args[0])
-        else:
-            message = 'must call mark with at most 1 argument.'
-            raise ValueError(message)
+#    def __call__(self, *args):
+#        r'''Detaches mark from component when called with no arguments.
+#
+#        Attaches mark to component when called with one argument.
+#
+#        Returns self.
+#        '''
+#        raise Exception('deprecated')
+#        if len(args) == 0:
+#            return self.detach()
+#        elif len(args) == 1:
+#            return attach(self, args[0])
+#        else:
+#            message = 'must call mark with at most 1 argument.'
+#            raise ValueError(message)
 
     def __copy__(self, *args):
         r'''Copies mark.

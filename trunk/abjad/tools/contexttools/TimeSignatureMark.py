@@ -474,11 +474,6 @@ class TimeSignatureMark(ContextMark):
 
     ### PUBLIC METHODS ###
 
-    # Time signature marks do not check for other conflicting time signature 
-    # marks at attachment. The reason for this is that voodoo is being done 
-    # to time signature marks elsewhere in the code. This is less than 
-    # optimal and someday time signature marks should check for conflicts 
-    # at attachment.
     def attach(self, start_component):
         r'''Attach time signature mark to `start_component`:
 

@@ -117,7 +117,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         container = containertools.Container(notes)
         if self.beam_each_cell:
             beam_spanner = spannertools.BeamSpanner()
-            beam_spanner(container)
+            beam_spanner.attach(container)
         return container
 
     ### PUBLIC PROPERTIES ###

@@ -16,7 +16,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_01():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:2])
     glissando = spannertools.GlissandoSpanner()
-    glissando(voice[1:])
+    glissando.attach(voice[1:])
     trill = spannertools.TrillSpanner()
     attach(trill, voice.select_leaves())
 

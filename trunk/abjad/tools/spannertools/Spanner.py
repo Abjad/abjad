@@ -49,39 +49,39 @@ class Spanner(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
-        r'''Calls spanner on `expr`.
-
-        Same as attach.
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> beam = spannertools.BeamSpanner()
-            >>> beam = beam(staff[:])
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                c'8 [
-                d'8
-                e'8
-                f'8 ]
-            }
-
-        The method is provided as an experimental way of unifying
-        spanner and mark attachment syntax.
-
-        Returns spanner.
-        '''
-        self.extend(expr)
-        return self
+#    def __call__(self, expr):
+#        r'''Calls spanner on `expr`.
+#
+#        Same as attach.
+#
+#        ::
+#
+#            >>> staff = Staff("c'8 d'8 e'8 f'8")
+#            >>> show(staff) # doctest: +SKIP
+#
+#        ::
+#
+#            >>> beam = spannertools.BeamSpanner()
+#            >>> beam = beam(staff[:])
+#            >>> show(staff) # doctest: +SKIP
+#
+#        ..  doctest::
+#
+#            >>> f(staff)
+#            \new Staff {
+#                c'8 [
+#                d'8
+#                e'8
+#                f'8 ]
+#            }
+#
+#        The method is provided as an experimental way of unifying
+#        spanner and mark attachment syntax.
+#
+#        Returns spanner.
+#        '''
+#        self.extend(expr)
+#        return self
 
     def __contains__(self, expr):
         r'''True when spanner contains `expr`.
