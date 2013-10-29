@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import componenttools
 from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
@@ -60,7 +60,7 @@ class DiatonicClusterHandler(PitchHandler):
                 ] 
             chord_pitches = [pitchtools.NamedPitch(x) 
                 for x in chromatic_numbers]
-            chord = chordtools.Chord(note)
+            chord = scoretools.Chord(note)
             chord[:] = []
             chord.extend(chord_pitches)
             mutationtools.mutate(note).replace(chord)

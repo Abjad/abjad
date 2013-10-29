@@ -9,8 +9,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    chordtools.iterate_chords_forward_in_expr()
-    chordtools.iterate_chords_backward_in_expr()
+    scoretools.iterate_chords_forward_in_expr()
+    scoretools.iterate_chords_backward_in_expr()
 
   ::
 
@@ -161,7 +161,7 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
-    chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
+    scoretools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
 
   ::
 

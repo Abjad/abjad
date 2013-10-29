@@ -562,7 +562,7 @@ The edits
        for leaf in tie_chain.leaves:
            parent = leaf._get_parentage().parent
            index = parent.index(leaf)
-           parent[index] = chordtools.Chord(['e,', 'a,'], leaf.written_duration)
+           parent[index] = scoretools.Chord(['e,', 'a,'], leaf.written_duration)
    
        selection = voice[-len(descents[-1]):]
        unison_descent = mutate(selection).copy()

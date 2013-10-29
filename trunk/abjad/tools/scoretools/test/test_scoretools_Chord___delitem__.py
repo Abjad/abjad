@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___delitem___01():
+def test_scoretools_Chord___delitem___01():
     '''Deletes note head.
     '''
 

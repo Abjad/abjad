@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import componenttools
 from abjad.tools import markuptools
 from abjad.tools import notetools
@@ -17,7 +17,7 @@ class RepeatedMarkupHandler(ArticulationHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        classes = (notetools.Note, chordtools.Chord)
+        classes = (notetools.Note, scoretools.Chord)
         markups = datastructuretools.CyclicTuple(self.markups)
         for i, leaf in  enumerate(
             componenttools.iterate_components_forward_in_expr(expr, classes)):

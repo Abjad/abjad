@@ -1057,7 +1057,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     Returns generator.
     '''
-    from abjad.tools import chordtools
+    from abjad.tools import scoretools
     from abjad.tools import notetools
     from abjad.tools import resttools
     from abjad.tools import selectiontools
@@ -1069,7 +1069,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
     current_leaf_group_is_silent = False
 
     for x in expr:
-        if isinstance(x, (notetools.Note, chordtools.Chord)):
+        if isinstance(x, (notetools.Note, scoretools.Chord)):
             this_tie_spanner = x._get_spanners(spannertools.TieSpanner) or None
             if current_leaf_group is None:
                 current_leaf_group = []

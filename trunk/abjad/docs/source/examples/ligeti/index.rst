@@ -145,7 +145,7 @@ will take only a list of pitches:
        lower_voice.name = 'RH Lower Voice'
        marktools.LilyPondCommandMark('voiceTwo')(lower_voice)
        n = int(math.ceil(len(pitches) / 2.))
-       chord = chordtools.Chord([pitches[0], pitches[0] + 12], (n, 8))
+       chord = scoretools.Chord([pitches[0], pitches[0] + 12], (n, 8))
        marktools.Articulation('>')(chord)
    
        # make the upper voice

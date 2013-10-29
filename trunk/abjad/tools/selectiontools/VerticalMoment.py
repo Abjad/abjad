@@ -184,11 +184,11 @@ class VerticalMoment(SimultaneousSelection):
         r'''Positive integer number of pitch carriers
         starting at vertical moment.
         '''
-        from abjad.tools import chordtools
+        from abjad.tools import scoretools
         from abjad.tools import notetools
         attack_carriers = []
         for leaf in self.start_leaves:
-            if isinstance(leaf, (notetools.Note, chordtools.Chord)):
+            if isinstance(leaf, (notetools.Note, scoretools.Chord)):
                 attack_carriers.append(leaf)
         return len(attack_carriers)
 

@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_chordtools_Chord_get_note_head_01():
+def test_scoretools_Chord_get_note_head_01():
     r'''Get note heads by pitch number.
     '''
 
@@ -19,7 +19,7 @@ def test_chordtools_Chord_get_note_head_01():
     assert note_head.written_pitch == 11
 
 
-def test_chordtools_Chord_get_note_head_02():
+def test_scoretools_Chord_get_note_head_02():
     r'''Get note heads by LilyPond input string.
     '''
 
@@ -35,7 +35,7 @@ def test_chordtools_Chord_get_note_head_02():
     assert note_head.written_pitch == 11
 
 
-def test_chordtools_Chord_get_note_head_03():
+def test_scoretools_Chord_get_note_head_03():
     r'''Get note heads by pitch.
     '''
 
@@ -54,7 +54,7 @@ def test_chordtools_Chord_get_note_head_03():
     assert note_head.written_pitch == 11
 
 
-def test_chordtools_Chord_get_note_head_04():
+def test_scoretools_Chord_get_note_head_04():
     '''Raise exceptions when chord has too few or too many note heads.
     '''
 

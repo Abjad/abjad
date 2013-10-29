@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import notetools
 from abjad.tools import resttools
 
@@ -81,7 +81,7 @@ def color_leaf(leaf, color):
     '''
 
     # color leaf
-    if isinstance(leaf, (notetools.Note, chordtools.Chord)):
+    if isinstance(leaf, (notetools.Note, scoretools.Chord)):
         leaf.override.accidental.color = color
         leaf.override.beam.color = color
         leaf.override.dots.color = color

@@ -32,7 +32,6 @@ del AbjadConfiguration
 from abjad.tools import *
 
 # import some frequently used classes for direct user access
-from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Multiplier
@@ -41,6 +40,7 @@ from abjad.tools.measuretools import Measure
 from abjad.tools.notetools import Note
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.resttools import Rest
+from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Score
 from abjad.tools.scoretools import Voice
 from abjad.tools.stafftools import Staff

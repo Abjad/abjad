@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import notetools
 from abjad.tools import contexttools
 from abjad.tools import stringtools
@@ -128,12 +128,12 @@ class HairpinSpanner(DirectedSpanner):
                         leaf._start_marks:
                         result.append('\\!')
         else:
-            if self._is_my_first(leaf, (chordtools.Chord, notetools.Note)):
+            if self._is_my_first(leaf, (scoretools.Chord, notetools.Note)):
                 result.append('%s\\%s' % (direction_string, self.shape_string))
                 if self.start_dynamic_string:
                     result.append('%s\\%s' % (
                         direction_string, self.start_dynamic_string))
-            if self._is_my_last(leaf, (chordtools.Chord, notetools.Note)):
+            if self._is_my_last(leaf, (scoretools.Chord, notetools.Note)):
                 if self.stop_dynamic_string:
                     result.append('%s\\%s' % (
                         direction_string, self.stop_dynamic_string))

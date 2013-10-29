@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___init___01():
+def test_scoretools_Chord___init___01():
     r'''Initialize empty chord.
     '''
 
@@ -10,7 +10,7 @@ def test_chordtools_Chord___init___01():
     assert chord.lilypond_format == "<>4"
 
 
-def test_chordtools_Chord___init___02():
+def test_scoretools_Chord___init___02():
     r'''Initialize chord with pitch numbers.
     '''
 
@@ -18,7 +18,7 @@ def test_chordtools_Chord___init___02():
     assert chord.lilypond_format == "<d' e' f'>4"
 
 
-def test_chordtools_Chord___init___03():
+def test_scoretools_Chord___init___03():
     r'''Initialize chord with pitch tokens.
     '''
 
@@ -26,7 +26,7 @@ def test_chordtools_Chord___init___03():
     assert chord.lilypond_format == "<ds' ef'>4"
 
 
-def test_chordtools_Chord___init___04():
+def test_scoretools_Chord___init___04():
     r'''Initialize chord with pitches.
     '''
 
@@ -37,7 +37,7 @@ def test_chordtools_Chord___init___04():
     assert chord.lilypond_format == "<ds' ef'>4"
 
 
-def test_chordtools_Chord___init___05():
+def test_scoretools_Chord___init___05():
     r'''Initialize chord with pitches and pitch numbers together.
     '''
 
@@ -46,7 +46,7 @@ def test_chordtools_Chord___init___05():
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
-def test_chordtools_Chord___init___06():
+def test_scoretools_Chord___init___06():
     r'''Initialize chord with list of pitch names.
     '''
 
@@ -55,7 +55,7 @@ def test_chordtools_Chord___init___06():
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
-def test_chordtools_Chord___init___07():
+def test_scoretools_Chord___init___07():
     r'''Initialize chord with LilyPond input string.
     '''
 
@@ -63,7 +63,7 @@ def test_chordtools_Chord___init___07():
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
-def test_chordtools_Chord___init___08():
+def test_scoretools_Chord___init___08():
     r'''Initialize chord from skip.
     '''
 
@@ -77,7 +77,7 @@ def test_chordtools_Chord___init___08():
     assert inspect(chord).is_well_formed()
 
 
-def test_chordtools_Chord___init___09():
+def test_scoretools_Chord___init___09():
     r'''Initialize chord from tupletized skip.
     '''
 
@@ -89,7 +89,7 @@ def test_chordtools_Chord___init___09():
     assert inspect(chord).is_well_formed()
 
 
-def test_chordtools_Chord___init___10():
+def test_scoretools_Chord___init___10():
     r'''Initialize chord from containerized skip.
     '''
 
@@ -102,7 +102,7 @@ def test_chordtools_Chord___init___10():
 
 
 
-def test_chordtools_Chord___init___11():
+def test_scoretools_Chord___init___11():
     r'''Initialize chord from beamed skip.
     '''
 
@@ -114,7 +114,7 @@ def test_chordtools_Chord___init___11():
     assert inspect(chord).is_well_formed()
 
 
-def test_chordtools_Chord___init___12():
+def test_scoretools_Chord___init___12():
     r'''Initialize chord from rest.
     '''
 
@@ -127,7 +127,7 @@ def test_chordtools_Chord___init___12():
     assert inspect(chord).is_well_formed()
 
 
-def test_chordtools_Chord___init___13():
+def test_scoretools_Chord___init___13():
     r'''Initialize chord from tupletized rest.
     '''
 
@@ -139,7 +139,7 @@ def test_chordtools_Chord___init___13():
     assert inspect(chord).get_parentage().parent is None
 
 
-def test_chordtools_Chord___init___14():
+def test_scoretools_Chord___init___14():
     r'''Initialize chord from note.
     '''
 
@@ -152,7 +152,7 @@ def test_chordtools_Chord___init___14():
     assert inspect(chord).is_well_formed()
 
 
-def test_chordtools_Chord___init___15():
+def test_scoretools_Chord___init___15():
     r'''Initialize chord from tupletized note.
     '''
 
@@ -164,7 +164,7 @@ def test_chordtools_Chord___init___15():
     assert inspect(chord).get_parentage().parent is None
 
 
-def test_chordtools_Chord___init___16():
+def test_scoretools_Chord___init___16():
     r'''Initialize chord from spanned note.
     '''
 
@@ -176,7 +176,7 @@ def test_chordtools_Chord___init___16():
     assert inspect(chord).get_parentage().parent is None
 
 
-def test_chordtools_Chord___init___17():
+def test_scoretools_Chord___init___17():
     r'''Initialize empty chord from LilyPond input string.
     '''
 
@@ -186,7 +186,7 @@ def test_chordtools_Chord___init___17():
     assert not len(chord)
 
 
-def test_chordtools_Chord___init___18():
+def test_scoretools_Chord___init___18():
     r'''Initialize chord from LilyPond input string with forced and 
     cautionary accidentals.
     '''
@@ -196,7 +196,7 @@ def test_chordtools_Chord___init___18():
     assert chord.lilypond_format == '<c!? e? g! b>4'
 
 
-def test_chordtools_Chord___init___19():
+def test_scoretools_Chord___init___19():
     r'''Initialize chord from note with forced and cautionary accidentals.
     '''
 

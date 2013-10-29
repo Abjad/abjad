@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools import notetools
@@ -18,7 +18,7 @@ class StemTremoloHandler(ArticulationHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        classes = (notetools.Note, chordtools.Chord)
+        classes = (notetools.Note, scoretools.Chord)
         hash_mark_counts = datastructuretools.CyclicTuple(self.hash_mark_counts)
         for i, leaf in enumerate(
             componenttools.iterate_components_forward_in_expr(expr, classes)):

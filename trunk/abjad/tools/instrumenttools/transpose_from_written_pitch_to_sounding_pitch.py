@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
 from abjad.tools import notetools
@@ -65,7 +65,7 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
             note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_interval(
                 note_or_chord.written_pitch, t_n)
             note_or_chord.written_pitch_indication_is_at_sounding_pitch = True
-        elif isinstance(note_or_chord, chordtools.Chord):
+        elif isinstance(note_or_chord, scoretools.Chord):
             pitches = [pitchtools.transpose_pitch_carrier_by_interval(pitch, t_n)
                 for pitch in note_or_chord.written_pitches]
             note_or_chord.written_pitches = pitches

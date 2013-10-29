@@ -2,7 +2,7 @@
 import copy
 import fractions
 from abjad.tools import abctools
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import marktools
@@ -243,12 +243,12 @@ class ReducedLyParser(abctools.Parser):
     def p_chord_body__chord_pitches(self, p):
         r'''chord_body : chord_pitches
         '''
-        p[0] = chordtools.Chord(p[1], self._default_duration)
+        p[0] = scoretools.Chord(p[1], self._default_duration)
 
     def p_chord_body__chord_pitches__positive_leaf_duration(self, p):
         r'''chord_body : chord_pitches positive_leaf_duration
         '''
-        p[0] = chordtools.Chord(p[1], p[2])
+        p[0] = scoretools.Chord(p[1], p[2])
 
     def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
         r'''chord_pitches : CARAT_L pitches CARAT_R

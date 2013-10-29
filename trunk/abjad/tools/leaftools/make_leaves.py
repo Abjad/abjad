@@ -323,7 +323,7 @@ def make_leaves(
 
     Returns selection of unincorporated leaves.
     '''
-    from abjad.tools import chordtools
+    from abjad.tools import scoretools
     from abjad.tools import notetools
     from abjad.tools import resttools
     from abjad.tools import tuplettools
@@ -402,7 +402,7 @@ def _make_leaf_on_pitch(
     forbidden_written_duration=None,
     tie_rests=False,
     ):
-    from abjad.tools import chordtools
+    from abjad.tools import scoretools
     from abjad.tools import leaftools
     from abjad.tools import notetools
     from abjad.tools import resttools
@@ -419,7 +419,7 @@ def _make_leaf_on_pitch(
             )
     elif isinstance(pitch, chord_types):
         leaves = leaftools.make_tied_leaf(
-            chordtools.Chord,
+            scoretools.Chord,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,

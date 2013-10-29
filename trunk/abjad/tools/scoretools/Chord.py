@@ -163,7 +163,7 @@ class Chord(Leaf):
         return new
 
     def _divide(self, pitch=None):
-        from abjad.tools import chordtools
+        from abjad.tools import scoretools
         from abjad.tools import markuptools
         from abjad.tools import notetools
         from abjad.tools import pitchtools
@@ -181,7 +181,7 @@ class Chord(Leaf):
                 treble = resttools.Rest(treble)
         elif isinstance(treble, resttools.Rest):
             pass
-        elif isinstance(treble, chordtools.Chord):
+        elif isinstance(treble, scoretools.Chord):
             for note_head in treble.note_heads:
                 if note_head.written_pitch < pitch:
                     treble.remove(note_head)
@@ -192,7 +192,7 @@ class Chord(Leaf):
                 bass = resttools.Rest(bass)
         elif isinstance(bass, resttools.Rest):
             pass
-        elif isinstance(bass, chordtools.Chord):
+        elif isinstance(bass, scoretools.Chord):
             for note_head in bass.note_heads:
                 if pitch <= note_head.written_pitch:
                     bass.remove(note_head)

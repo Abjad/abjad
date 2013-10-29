@@ -157,12 +157,12 @@ class NoteHead(AbjadObject):
         Returns string.
         '''
         from abjad.tools import formattools
-        from abjad.tools import chordtools
+        from abjad.tools import scoretools
         # make sure note head has pitch
         assert self.written_pitch
         result = []
         # format chord note head with optional tweaks
-        if isinstance(self._client, chordtools.Chord):
+        if isinstance(self._client, scoretools.Chord):
             for key, value in vars(self.tweak).iteritems():
                 if not key.startswith('_'):
                     result.append(

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___setitem___01():
+def test_scoretools_Chord___setitem___01():
     r'''Set note head with pitch number.
     '''
 
@@ -12,7 +12,7 @@ def test_chordtools_Chord___setitem___01():
     assert chord.lilypond_format == "<c' e'>4"
 
 
-def test_chordtools_Chord___setitem___02():
+def test_scoretools_Chord___setitem___02():
     '''Set note head with pitch.
     '''
 
@@ -22,7 +22,7 @@ def test_chordtools_Chord___setitem___02():
     assert chord.lilypond_format == "<c' e'>4"
 
 
-def test_chordtools_Chord___setitem___03():
+def test_scoretools_Chord___setitem___03():
     r'''Set note head with tweaked note head.
     '''
 

@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_chordtools_Chord___copy___01():
+def test_scoretools_Chord___copy___01():
 
     chord_1 = Chord("<ef' cs'' f''>4")
     chord_2 = copy.copy(chord_1)
@@ -14,7 +14,7 @@ def test_chordtools_Chord___copy___01():
     assert chord_1 is not chord_2
 
 
-def test_chordtools_Chord___copy___02():
+def test_scoretools_Chord___copy___02():
     r'''Chord copies LilyPond duration multiplier.
     '''
 
@@ -27,7 +27,7 @@ def test_chordtools_Chord___copy___02():
     assert chord_1 is not chord_2
 
 
-def test_chordtools_Chord___copy___03():
+def test_scoretools_Chord___copy___03():
     r'''Chord copies LilyPond grob overrides and LilyPond context settings.
     '''
 
@@ -43,7 +43,7 @@ def test_chordtools_Chord___copy___03():
     assert chord_1 is not chord_2
 
 
-def test_chordtools_Chord___copy___04():
+def test_scoretools_Chord___copy___04():
     r'''Chord copies tweaked note heads.
     '''
 
@@ -91,7 +91,7 @@ def test_chordtools_Chord___copy___04():
     assert chord_1[2] is not chord_2[2]
 
 
-def test_chordtools_Chord___copy___05():
+def test_scoretools_Chord___copy___05():
     r'''Chord coipes articulations and markup.
     '''
 

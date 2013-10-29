@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___ne___01():
+def test_scoretools_Chord___ne___01():
 
     chord_1 = Chord("<c' e' fs'>4")
     chord_2 = Chord("<c' e' fs'>4")

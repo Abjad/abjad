@@ -2,13 +2,12 @@
 from abjad import *
 
 
-def test_chordtools_Chord_remove_01():
-    '''Remove note head from chord.
+def test_scoretools_Chord_pop_01():
+    '''Pop note head from chord.
     '''
 
     chord = Chord("<ef' cs'' f''>4")
-    note_head = chord[1]
-    chord.remove(note_head)
+    note_head = chord.pop(1)
 
     assert note_head._client is None
     assert chord.lilypond_format == "<ef' f''>4"

@@ -122,9 +122,9 @@ class TieChain(ContiguousSelection):
 
         Returns boolean.
         '''
-        from abjad.tools import chordtools
+        from abjad.tools import scoretools
         from abjad.tools import notetools
-        return isinstance(self.head, (notetools.Note, chordtools.Chord))
+        return isinstance(self.head, (notetools.Note, scoretools.Chord))
 
     @property
     def is_trivial(self):

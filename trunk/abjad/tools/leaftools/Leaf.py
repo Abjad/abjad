@@ -228,7 +228,7 @@ class Leaf(Component):
 
     # TODO: subclass this properly for chord
     def _format_leaf_nucleus(leaf):
-        from abjad.tools.chordtools.Chord import Chord
+        from abjad.tools.scoretools.Chord import Chord
         if not isinstance(leaf, Chord):
             return ['nucleus', leaf._body]
         result = []

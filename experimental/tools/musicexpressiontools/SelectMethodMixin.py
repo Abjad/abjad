@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import leaftools
 from abjad.tools import notetools
 from abjad.tools.abctools import AbjadObject
@@ -151,7 +151,7 @@ class SelectMethodMixin(AbjadObject):
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
                     notetools.Note,
-                    chordtools.Chord
+                    scoretools.Chord
                     ]),
                 voice_name='Voice 1'
                 )
@@ -163,7 +163,7 @@ class SelectMethodMixin(AbjadObject):
             musicexpressiontools.CounttimeComponentSelectExpression(
             anchor=self._expression_abbreviation,
             time_relation=time_relation,
-            classes=(notetools.Note, chordtools.Chord),
+            classes=(notetools.Note, scoretools.Chord),
             voice_name=voice_name,
             )
         select_expression._score_specification = self.score_specification

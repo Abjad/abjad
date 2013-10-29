@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import leaftools
@@ -112,7 +112,7 @@ class GuileProxy(AbjadObject):
         def recurse(component, pitch):
             if self._is_unrelativable(component):
                 return pitch
-            elif isinstance(component, (chordtools.Chord, notetools.Note)):
+            elif isinstance(component, (scoretools.Chord, notetools.Note)):
                 pitch = self._make_relative_leaf(component, pitch)
                 if component in self.client._repeated_chords:
                     for repeated_chord in \
@@ -167,7 +167,7 @@ class GuileProxy(AbjadObject):
                 music.written_pitch = \
                     lilypondparsertools.LilyPondParser._transpose_enharmonically(
                     from_pitch, to_pitch, music.written_pitch)
-            elif isinstance(music, chordtools.Chord):
+            elif isinstance(music, scoretools.Chord):
                 for note_head in music.note_heads:
                     note_head.written_pitch = \
                         lilypondparsertools.LilyPondParser._transpose_enharmonically(
@@ -208,7 +208,7 @@ class GuileProxy(AbjadObject):
         elif isinstance(leaf, notetools.Note):
             pitch = self._to_relative_octave(leaf.written_pitch, pitch)
             leaf.written_pitch = pitch
-        elif isinstance(leaf, chordtools.Chord):
+        elif isinstance(leaf, scoretools.Chord):
             # TODO: This is not ideal w/r/t post events as LilyPond does 
             # not sort chord contents
             chord_pitches = self.client._chord_pitch_orders[leaf]

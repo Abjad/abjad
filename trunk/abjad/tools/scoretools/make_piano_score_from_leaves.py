@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
 
 
 def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):

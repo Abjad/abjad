@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 
 
 def iterate_chords_in_expr(expr, reverse=False, start=0, stop=None):
@@ -46,7 +46,7 @@ def iterate_chords_in_expr(expr, reverse=False, start=0, stop=None):
 
     return iterationtools.iterate_components_in_expr(
         expr,
-        component_class=chordtools.Chord,
+        component_class=scoretools.Chord,
         reverse=reverse,
         start=start,
         stop=stop,

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___len___01():
+def test_scoretools_Chord___len___01():
 
     assert len(Chord('<>4')) == 0
     assert len(Chord("<ef'>4")) == 1

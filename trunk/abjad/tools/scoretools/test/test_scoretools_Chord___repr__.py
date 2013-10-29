@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___repr___01():
+def test_scoretools_Chord___repr___01():
     r'''Chord repr is evaluable.
     '''
 
@@ -15,7 +15,7 @@ def test_chordtools_Chord___repr___01():
     assert chord_1 is not chord_2
 
 
-def test_chordtools_Chord___repr___02():
+def test_scoretools_Chord___repr___02():
     '''Chord repr works with forced and cautionary accidentals.
     '''
 

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___contains___01():
+def test_scoretools_Chord___contains___01():
 
     chord = Chord("<ef' cs'' f''>4")
 
@@ -14,7 +14,7 @@ def test_chordtools_Chord___contains___01():
     assert notetools.NoteHead("f''") in chord
 
 
-def test_chordtools_Chord___contains___02():
+def test_scoretools_Chord___contains___02():
 
     chord = Chord("<ef' cs'' f''>4")
 

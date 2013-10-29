@@ -23,7 +23,7 @@ def make_desordre_cell(pitches):
     command = marktools.LilyPondCommandMark('voiceTwo')
     attach(command, lower_voice)
     n = int(math.ceil(len(pitches) / 2.))
-    chord = chordtools.Chord([pitches[0], pitches[0] + 12], (n, 8))
+    chord = scoretools.Chord([pitches[0], pitches[0] + 12], (n, 8))
     articulation = marktools.Articulation('>')
     attach(articulation, chord)
 

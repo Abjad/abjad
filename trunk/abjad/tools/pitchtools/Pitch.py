@@ -153,7 +153,7 @@ class Pitch(AbjadObject):
 
         Returns boolean.
         '''
-        from abjad.tools import chordtools
+        from abjad.tools import scoretools
         from abjad.tools import notetools
         from abjad.tools import pitchtools
         return isinstance(
@@ -161,7 +161,7 @@ class Pitch(AbjadObject):
                 pitchtools.NamedPitch,
                 notetools.Note,
                 notetools.NoteHead,
-                chordtools.Chord
+                scoretools.Chord
                 )
             )
 

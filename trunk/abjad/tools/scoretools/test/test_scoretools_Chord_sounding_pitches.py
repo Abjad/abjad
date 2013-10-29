@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord_sounding_pitches_01():
+def test_scoretools_Chord_sounding_pitches_01():
 
     staff = Staff("<c''' e'''>4 <d''' fs'''>4")
     glockenspiel = instrumenttools.Glockenspiel()

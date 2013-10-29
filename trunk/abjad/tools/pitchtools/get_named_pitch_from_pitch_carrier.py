@@ -48,7 +48,7 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
 
     Returns named pitch.
     '''
-    from abjad.tools import chordtools
+    from abjad.tools import scoretools
     from abjad.tools import notetools
     from abjad.tools import pitchtools
 
@@ -70,7 +70,7 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
             return get_named_pitch_from_pitch_carrier(pitch)
         else:
             raise MissingPitchError
-    elif isinstance(pitch_carrier, chordtools.Chord):
+    elif isinstance(pitch_carrier, scoretools.Chord):
         pitches = pitch_carrier.written_pitches
         if len(pitches) == 0:
             raise MissingPitchError

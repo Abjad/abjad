@@ -29,7 +29,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
 
     Returns list of newly created `pitch_carrier` objects.
     """
-    from abjad.tools import chordtools
+    from abjad.tools import scoretools
     from abjad.tools import pitchtools
 
     if not isinstance(pitch_range, pitchtools.PitchRange):
@@ -38,7 +38,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
     if all(isinstance(x, (int, long, float)) for x in pitch_carrier):
         return _pitch_number_list_octave_transpositions(pitch_carrier, pitch_range)
 
-    if not isinstance(pitch_carrier, (chordtools.Chord, pitchtools.PitchSet)):
+    if not isinstance(pitch_carrier, (scoretools.Chord, pitchtools.PitchSet)):
         raise TypeError('must be chord or pitch set.')
 
     result = []

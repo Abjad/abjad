@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_chordtools_Chord_written_pitches_01():
+def test_scoretools_Chord_written_pitches_01():
     r'''Returns immutable tuple of pitches in chord.
     '''
 
@@ -16,7 +16,7 @@ def test_chordtools_Chord_written_pitches_01():
     assert py.test.raises(Exception, 'pitches.remove(pitches[0])')
 
 
-def test_chordtools_Chord_written_pitches_02():
+def test_scoretools_Chord_written_pitches_02():
     r'''Equivalent written pitches compare equal.
     '''
 
@@ -26,7 +26,7 @@ def test_chordtools_Chord_written_pitches_02():
     assert chord_1.written_pitches == chord_2.written_pitches
 
 
-def test_chordtools_Chord_written_pitches_03():
+def test_scoretools_Chord_written_pitches_03():
     '''Transpose sounding pitches to written pitches.
     '''
 
@@ -52,7 +52,7 @@ def test_chordtools_Chord_written_pitches_03():
         )
 
 
-def test_chordtools_Chord_written_pitches_04():
+def test_scoretools_Chord_written_pitches_04():
     r'''Set written pitches with pitch numbers.
     '''
 
@@ -64,7 +64,7 @@ def test_chordtools_Chord_written_pitches_04():
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
-def test_chordtools_Chord_written_pitches_05():
+def test_scoretools_Chord_written_pitches_05():
     r'''Set written pitches with pitches.
     '''
 
@@ -78,7 +78,7 @@ def test_chordtools_Chord_written_pitches_05():
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
-def test_chordtools_Chord_written_pitches_06():
+def test_scoretools_Chord_written_pitches_06():
     r'''Set written pitches with both pitches and pitch numbers.
     '''
 

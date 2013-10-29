@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import notetools
 from abjad.tools.spannertools.Spanner import Spanner
 
@@ -48,6 +48,6 @@ class GlissandoSpanner(Spanner):
     def _format_right_of_leaf(self, leaf):
         result = []
         if not self._is_my_last_leaf(leaf) and \
-            isinstance(leaf, (chordtools.Chord, notetools.Note)):
+            isinstance(leaf, (scoretools.Chord, notetools.Note)):
             result.append(r'\glissando')
         return result

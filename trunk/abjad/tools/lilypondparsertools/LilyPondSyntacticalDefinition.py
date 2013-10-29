@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import fractions
 from ply import lex
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import lilypondfiletools
@@ -1098,7 +1098,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'event_chord : CHORD_REPETITION optional_notemode_duration post_events'
         pitches = self.client._last_chord.written_pitches
         duration = p[2].duration
-        chord = chordtools.Chord(pitches, duration)
+        chord = scoretools.Chord(pitches, duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             chord.lilypond_duration_multiplier = p[2].multiplier
@@ -2420,7 +2420,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_note_chord_element__chord_body__optional_notemode_duration__post_events(self, p):
         'note_chord_element : chord_body optional_notemode_duration post_events'
-        chord = chordtools.Chord([], p[2].duration)
+        chord = scoretools.Chord([], p[2].duration)
         pitches = []
         post_events =[]
         for node in p[1]:

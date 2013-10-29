@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import componenttools
 from abjad.tools import datastructuretools
 from abjad.tools import leaftools
@@ -27,7 +27,7 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
     def __call__(self, expr):
         assert self.dynamics_talea, repr(self.dynamics_talea)
         groups = []
-        classes = (notetools.Note, chordtools.Chord)
+        classes = (notetools.Note, scoretools.Chord)
         for i, group in enumerate(
             iterationtools.iterate_runs_in_expr(
             expr, classes)):

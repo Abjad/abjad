@@ -2,7 +2,7 @@
 import itertools
 import ply
 from abjad.tools import abctools
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import contexttools
@@ -671,7 +671,7 @@ class LilyPondParser(abctools.Parser):
         self._lexer.push_state('notes')
         self._default_duration = lilypondparsertools.LilyPondDuration(durationtools.Duration(1, 4), None)
         self._last_chord = None
-        # self._last_chord = chordtools.Chord(['c', 'g', "c'"], (1, 4)) # LilyPond's default!
+        # self._last_chord = scoretools.Chord(['c', 'g', "c'"], (1, 4)) # LilyPond's default!
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
 

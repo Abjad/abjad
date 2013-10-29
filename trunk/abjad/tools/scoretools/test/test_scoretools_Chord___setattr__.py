@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_chordtools_Chord___setattr___01():
+def test_scoretools_Chord___setattr___01():
     r'''Slots constrain chord attributes.
     '''
 

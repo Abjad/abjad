@@ -458,10 +458,10 @@ class ScoreMutationAgent(object):
 
         Returns none.
         '''
-        from abjad.tools import chordtools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
         for leaf in iterationtools.iterate_leaves_in_expr(self._client):
-            if isinstance(leaf, chordtools.Chord):
+            if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = \
                         note_head.written_pitch.respell_with_flats()
@@ -507,10 +507,10 @@ class ScoreMutationAgent(object):
 
         Returns none.
         '''
-        from abjad.tools import chordtools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
         for leaf in iterationtools.iterate_leaves_in_expr(self._client):
-            if isinstance(leaf, chordtools.Chord):
+            if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = \
                         note_head.written_pitch.respell_with_sharps()

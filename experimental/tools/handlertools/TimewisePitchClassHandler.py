@@ -13,14 +13,14 @@ class TimewisePitchClassHandler(PitchHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        classes = (notetools.Note, chordtools.Chord)
+        classes = (notetools.Note, scoretools.Chord)
         for leaf in \
             componenttools.iterate_components_forward_in_expr(expr, classes):
             if isinstance(leaf, notetools.Note):
                 pitch_class = \
                     self.pitch_class_server.get_next_n_nodes_at_level(1, -1)
                 leaf.written_pitch = pitch_class
-            elif isinstance(leaf, chordtools.Chord):
+            elif isinstance(leaf, scoretools.Chord):
                 pitch_classes = \
                     self.pitch_class_server.get_next_n_nodes_at_level(
                         len(leaf), -1)

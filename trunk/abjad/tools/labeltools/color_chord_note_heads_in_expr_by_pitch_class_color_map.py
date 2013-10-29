@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import notetools
 
 
@@ -77,7 +77,7 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
     Return `chord`.
     '''
 
-    if isinstance(chord, chordtools.Chord):
+    if isinstance(chord, scoretools.Chord):
         for note_head in chord:
             pc = note_head.written_pitch.numbered_pitch_class
             color = color_map.get(pc, None)

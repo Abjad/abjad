@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import chordtools
+from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import componenttools
 from abjad.tools import datastructuretools
@@ -28,7 +28,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
     def __call__(self, expr, offset=0):
         leaves = list(iterationtools.iterate_leaves_in_expr(expr))
         groups = list(iterationtools.iterate_runs_in_expr(
-            leaves, (notetools.Note, chordtools.Chord)))
+            leaves, (notetools.Note, scoretools.Chord)))
         hairpin_tokens = datastructuretools.CyclicList(self.hairpin_tokens)
         for i, group in enumerate(groups):
             if not isinstance(group, selectiontools.SliceSelection):

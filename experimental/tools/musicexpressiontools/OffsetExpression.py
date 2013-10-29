@@ -39,7 +39,7 @@ class OffsetExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
                     notetools.Note,
-                    chordtools.Chord
+                    scoretools.Chord
                     ]),
                 voice_name='Voice 1'
                 ),

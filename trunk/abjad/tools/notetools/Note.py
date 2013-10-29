@@ -367,14 +367,14 @@ class Note(Leaf):
 
         Returns chord.
         '''
-        from abjad.tools import chordtools
+        from abjad.tools import scoretools
         from abjad.tools import componenttools
         from abjad.tools import mutationtools
         from abjad.tools import pitchtools
         if named_interval is None:
             named_interval = \
                 pitchtools.NamedInterval('perfect', 4)
-        chord = chordtools.Chord(self)
+        chord = scoretools.Chord(self)
         chord.append(
             chord[0].written_pitch.numbered_pitch._pitch_number)
         chord[1].written_pitch = \

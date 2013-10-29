@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord_append_01():
+def test_scoretools_Chord_append_01():
     r'''Append tweaked note head to chord.
     '''
 

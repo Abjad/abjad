@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord_lilypond_format_01():
+def test_scoretools_Chord_lilypond_format_01():
     r'''Format chord with one note head.
     '''
 
@@ -14,7 +14,7 @@ def test_chordtools_Chord_lilypond_format_01():
     assert len(chord.written_pitches) == 1
 
 
-def test_chordtools_Chord_lilypond_format_02():
+def test_scoretools_Chord_lilypond_format_02():
     r'''Format chord with LilyPond command mark.
     '''
 
@@ -25,7 +25,7 @@ def test_chordtools_Chord_lilypond_format_02():
     assert chord.lilypond_format == "<d' ef' e'>4 \\glissando"
 
 
-def test_chordtools_Chord_lilypond_format_03():
+def test_scoretools_Chord_lilypond_format_03():
     r'''Format tweaked chord with LilyPond command mark.
     '''
 

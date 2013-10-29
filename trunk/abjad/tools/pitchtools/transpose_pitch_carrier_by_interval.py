@@ -41,7 +41,7 @@ def transpose_pitch_carrier_by_interval(
 
     Return `pitch_carrier`.
     '''
-    from abjad.tools import chordtools
+    from abjad.tools import scoretools
     from abjad.tools import componenttools
     from abjad.tools import notetools
     from abjad.tools import pitchtools
@@ -75,7 +75,7 @@ def transpose_pitch_carrier_by_interval(
             new_pitch = pitchtools.NamedPitch(number)
             new_note.written_pitch = new_pitch
             return new_note
-        elif isinstance(pitch_carrier, chordtools.Chord):
+        elif isinstance(pitch_carrier, scoretools.Chord):
             new_chord = copy.copy(pitch_carrier)
             for new_nh, old_nh in \
                 zip(new_chord.note_heads, pitch_carrier.note_heads):
@@ -99,7 +99,7 @@ def transpose_pitch_carrier_by_interval(
                 pitch_carrier.written_pitch, mdi)
             new_note.written_pitch = new_pitch
             return new_note
-        elif isinstance(pitch_carrier, chordtools.Chord):
+        elif isinstance(pitch_carrier, scoretools.Chord):
             new_chord = copy.copy(pitch_carrier)
             for new_nh, old_nh in \
                 zip(new_chord.note_heads, pitch_carrier.note_heads):

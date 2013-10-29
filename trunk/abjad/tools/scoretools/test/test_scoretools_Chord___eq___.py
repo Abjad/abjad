@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___eq____01():
+def test_scoretools_Chord___eq____01():
     '''True only when chords have the same object ID.
     '''
 

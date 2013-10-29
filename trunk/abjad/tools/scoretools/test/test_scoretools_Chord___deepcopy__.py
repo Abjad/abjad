@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_chordtools_Chord___deepcopy___01():
+def test_scoretools_Chord___deepcopy___01():
     r'''Chord deepchopies note heads.
     '''
 

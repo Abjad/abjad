@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_chordtools_Chord___getitem___01():
+def test_scoretools_Chord___getitem___01():
     '''Gets note head from chord.
     '''
 

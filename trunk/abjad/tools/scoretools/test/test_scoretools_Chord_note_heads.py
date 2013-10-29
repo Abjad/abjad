@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_chordtools_Chord_note_heads_01():
+def test_scoretools_Chord_note_heads_01():
     r'''Chord returns note heads as an immutable tuple.
     '''
 
@@ -16,7 +16,7 @@ def test_chordtools_Chord_note_heads_01():
     assert py.test.raises(Exception, 'note_heads.remove(note_heads[0])')
 
 
-def test_chordtools_Chord_note_heads_02():
+def test_scoretools_Chord_note_heads_02():
     r'''Note heads of chords with equivalent pitches compare equal.
     '''
 
@@ -26,7 +26,7 @@ def test_chordtools_Chord_note_heads_02():
     assert chord_1.note_heads == chord_2.note_heads
 
 
-def test_chordtools_Chord_note_heads_03():
+def test_scoretools_Chord_note_heads_03():
     r'''Set note heads with pitch numbers.
     '''
 
@@ -36,7 +36,7 @@ def test_chordtools_Chord_note_heads_03():
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
-def test_chordtools_Chord_note_heads_04():
+def test_scoretools_Chord_note_heads_04():
     r'''Set note heads with pitches.
     '''
 
@@ -50,7 +50,7 @@ def test_chordtools_Chord_note_heads_04():
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
-def test_chordtools_Chord_note_heads_05():
+def test_scoretools_Chord_note_heads_05():
     r'''Set note heads with both pitches and pitch numbers.
     '''
 
@@ -64,7 +64,7 @@ def test_chordtools_Chord_note_heads_05():
     assert chord.lilypond_format == "<d' ef' e'>4"
 
 
-def test_chordtools_Chord_note_heads_06():
+def test_scoretools_Chord_note_heads_06():
     r'''Set note heads with a LilyPond input string.
     '''
 
@@ -74,7 +74,7 @@ def test_chordtools_Chord_note_heads_06():
     assert chord.lilypond_format == "<c' d' e'>4"
 
 
-def test_chordtools_Chord_note_heads_07():
+def test_scoretools_Chord_note_heads_07():
     r'''Set note head color with the LilyPond tweak reservoir.
     '''
 
