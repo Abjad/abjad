@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_Component__get_sibling_01():
+def test_scoretools_Component__get_sibling_01():
     '''Returns component when index is in range.
     '''
 
@@ -13,7 +13,7 @@ def test_componenttools_Component__get_sibling_01():
     assert staff[1]._get_sibling(-1) is staff[0]
 
 
-def test_componenttools_Component__get_sibling_02():
+def test_scoretools_Component__get_sibling_02():
     r'''Returns none when index is out of range.
     '''
 
@@ -21,7 +21,7 @@ def test_componenttools_Component__get_sibling_02():
     assert staff[1]._get_sibling(99) is None
 
 
-def test_componenttools_Component__get_sibling_03():
+def test_scoretools_Component__get_sibling_03():
     r'''Returns none when component has no parent.
     '''
 

@@ -29,7 +29,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
 
     Returns none.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import contexttools
     from abjad.tools import iterationtools
     from abjad.tools import tuplettools

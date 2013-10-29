@@ -806,7 +806,7 @@ class::
     Ratio(1, 2, 1)
 
 
-Added new ``componenttools.ScoreSelection`` subclasses. All selections are
+Added new ``scoretools.ScoreSelection`` subclasses. All selections are
 improper::
 
     selectiontools.Descendants

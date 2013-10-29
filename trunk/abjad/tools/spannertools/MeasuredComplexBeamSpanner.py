@@ -75,7 +75,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         new.span = self.span
 
     def _format_before_leaf(self, leaf):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import measuretools
         result = []
         left, right = None, None

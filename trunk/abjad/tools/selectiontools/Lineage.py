@@ -63,8 +63,8 @@ class Lineage(SimultaneousSelection):
     ### INITIALIZER ###
 
     def __init__(self, component):
-        from abjad.tools import componenttools
-        assert isinstance(component, componenttools.Component)
+        from abjad.tools import scoretools
+        assert isinstance(component, scoretools.Component)
         music = []
         music.extend(reversed(component._get_parentage(include_self=False)))
         music.append(component)

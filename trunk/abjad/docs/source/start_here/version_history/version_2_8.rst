@@ -315,7 +315,7 @@ All score components are now public.
 
 - The following classes are now publically available for the first time::
 
-    componenttools.Component
+    scoretools.Component
     contexttools.Context
     leaftools.Leaf
 

@@ -72,10 +72,10 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     ``sequencetools.repeat_subruns_to_weight()``  and
     ``sequencetools.repeat_subruns_to_sum()``.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
 
     assert isinstance(sequence, list)
-    assert all(not isinstance(x, componenttools.Component) for x in sequence)
+    assert all(not isinstance(x, scoretools.Component) for x in sequence)
     assert isinstance(indicators, list)
     assert all(len(x) == 3 for x in indicators)
 

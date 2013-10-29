@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from abjad.tools import markuptools
 from abjad.tools import notetools
 from experimental.tools.handlertools.ArticulationHandler \
@@ -20,7 +20,7 @@ class RepeatedMarkupHandler(ArticulationHandler):
         classes = (notetools.Note, scoretools.Chord)
         markups = datastructuretools.CyclicTuple(self.markups)
         for i, leaf in  enumerate(
-            componenttools.iterate_components_forward_in_expr(expr, classes)):
+            scoretools.iterate_components_forward_in_expr(expr, classes)):
             markup = markup[i]
             markup = markuptools.Markup(markup)
             markup(leaf)

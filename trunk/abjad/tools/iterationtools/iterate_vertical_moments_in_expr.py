@@ -96,14 +96,14 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     Returns generator.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import containertools
     from abjad.tools import durationtools
     from abjad.tools import iterationtools
     from abjad.tools import selectiontools
 
     def _buffer_components_starting_with(component, buffer, stop_offsets):
-        if not isinstance(component, componenttools.Component):
+        if not isinstance(component, scoretools.Component):
             raise TypeError
         buffer.append(component)
         stop_offsets.append(component._get_timespan().stop_offset)
@@ -117,7 +117,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
                         component[0], buffer, stop_offsets)
 
     def _iterate_vertical_moments_forward_in_expr(expr):
-        if not isinstance(expr, componenttools.Component):
+        if not isinstance(expr, scoretools.Component):
             raise TypeError
         governors = (expr, )
         current_offset, stop_offsets, buffer = durationtools.Offset(0), [], []
@@ -135,7 +135,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
             _update_buffer(current_offset, buffer, stop_offsets)
 
     def _next_in_parent(component):
-        if not isinstance(component, componenttools.Component):
+        if not isinstance(component, scoretools.Component):
             raise TypeError
         selection = component.select(sequential=True)
         parent, start, stop = selection._get_parent_and_start_stop_indices()

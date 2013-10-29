@@ -4,7 +4,7 @@
 def is_formattable_context_mark_for_component(mark, component):
     r'''Returns True if ContextMark `mark` can format for `component`.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import contexttools
     from abjad.tools import measuretools
 

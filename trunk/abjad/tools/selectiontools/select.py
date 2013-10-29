@@ -6,7 +6,7 @@ def select(expr=None, contiguous=False):
 
     Returns selection.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import selectiontools
     from abjad.tools import spannertools
     Selection = selectiontools.Selection
@@ -14,7 +14,7 @@ def select(expr=None, contiguous=False):
         if isinstance(expr, (list, tuple)):
             assert Selection._all_are_contiguous_components_in_same_logical_voice(expr)
         return selectiontools.ContiguousSelection(expr)
-    elif isinstance(expr, componenttools.Component):
+    elif isinstance(expr, scoretools.Component):
         return selectiontools.ContiguousSelection(expr)
     elif hasattr(expr, '_music'):
         music = expr._music

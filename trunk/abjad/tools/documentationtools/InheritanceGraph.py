@@ -60,14 +60,14 @@ class InheritanceGraph(AbjadObject):
         ...     root_addresses=(Container,)
         ...     )
 
-    To document only those classes whose lineage pass through componenttools,
+    To document only those classes whose lineage pass through scoretools,
     use this formulation:
 
     ::
 
         >>> graph = documentationtools.InheritanceGraph(
         ...     addresses=('abjad',),
-        ...     lineage_addresses=(componenttools,),
+        ...     lineage_addresses=(scoretools,),
         ...     )
 
     When creating the Graphviz representation, classes in the inheritance 

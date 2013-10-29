@@ -36,7 +36,7 @@ Grouping notes and chords
 -------------------------
 
 Next we'll group notes and chords together with one of the functions
-available in the ``componenttools`` package.
+available in the ``scoretools`` package.
 
 We add slur spanners inside our loop:
 

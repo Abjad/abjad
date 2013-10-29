@@ -135,18 +135,18 @@ class VerticalMoment(SimultaneousSelection):
 
     @staticmethod
     def _from_expr_and_offset(expr, offset):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         offset = durationtools.Offset(offset)
         governors = []
         message = 'must be Abjad component or tuple of Abjad components.'
-        if isinstance(expr, componenttools.Component):
+        if isinstance(expr, scoretools.Component):
             governors.append(expr)
         #elif isinstance(expr, (list, tuple, selectiontools.SliceSelection)):
         elif isinstance(
             expr, (list, tuple, selectiontools.SimultaneousSelection)):
             for x in expr:
-                if isinstance(x, componenttools.Component):
+                if isinstance(x, scoretools.Component):
                     governors.append(x)
                 else:
                     raise TypeError(message)
@@ -239,7 +239,7 @@ class VerticalMoment(SimultaneousSelection):
     def next_vertical_moment(self):
         r'''Reference to next vertical moment forward in time.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import leaftools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
@@ -320,7 +320,7 @@ class VerticalMoment(SimultaneousSelection):
     def previous_vertical_moment(self):
         r'''Reference to prev vertical moment backward in time.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import leaftools
         if self.offset == 0:
             raise IndexError

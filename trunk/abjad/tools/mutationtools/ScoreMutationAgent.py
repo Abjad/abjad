@@ -54,9 +54,9 @@ class ScoreMutationAgent(object):
 
         Returns new component.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        if isinstance(self._client, componenttools.Component):
+        if isinstance(self._client, scoretools.Component):
             selection = selectiontools.ContiguousSelection(self._client)
         else:
             selection = self._client
@@ -64,7 +64,7 @@ class ScoreMutationAgent(object):
             n=n,
             include_enclosing_containers=include_enclosing_containers,
             )
-        if isinstance(self._client, componenttools.Component):
+        if isinstance(self._client, scoretools.Component):
             if len(result) == 1:
                 result = result[0]
         return result
@@ -324,9 +324,9 @@ class ScoreMutationAgent(object):
 
         Returns fused mutation client.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        if isinstance(self._client, componenttools.Component):
+        if isinstance(self._client, scoretools.Component):
             selection = selectiontools.ContiguousSelection(self._client)
             return selection._fuse()
         elif isinstance(self._client, selectiontools.Selection) and \
@@ -965,7 +965,7 @@ class ScoreMutationAgent(object):
 
         Returns none.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         if hasattr(self._client, '_scale'):
             self._client._scale(multiplier)
@@ -1295,17 +1295,17 @@ class ScoreMutationAgent(object):
 
         Returns list of selections.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import leaftools
         from abjad.tools import selectiontools
         # check input
         components = self._client
         single_component_input = False
-        if isinstance(components, componenttools.Component):
+        if isinstance(components, scoretools.Component):
             single_component_input = True
             components = selectiontools.Selection(components)
         assert all(
-            isinstance(x, componenttools.Component) for x in components)
+            isinstance(x, scoretools.Component) for x in components)
         if not isinstance(components, selectiontools.Selection):
             components = selectiontools.Selection(components)
         durations = [durationtools.Duration(x) for x in durations]

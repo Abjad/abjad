@@ -10,7 +10,7 @@ def get_context_mark_format_contributions_for_slot(component, slot):
 
     Returns list.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import contexttools
     from abjad.tools import measuretools
 

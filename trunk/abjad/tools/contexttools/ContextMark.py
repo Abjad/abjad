@@ -62,7 +62,7 @@ class ContextMark(Mark):
         self._update_effective_context()
 
     def _find_correct_effective_context(self):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         target_context = self.target_context
         if target_context is None:
             return None

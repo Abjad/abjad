@@ -121,7 +121,7 @@ class Selection(object):
     @staticmethod
     def _all_are_components_in_same_logical_voice(
         expr, component_classes=None, allow_orphans=True):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
             list,
@@ -131,7 +131,7 @@ class Selection(object):
             )
         if not isinstance(expr, allowable_types):
             return False
-        component_classes = component_classes or (componenttools.Component,)
+        component_classes = component_classes or (scoretools.Component,)
         if not isinstance(component_classes, tuple):
             component_classes = (component_classes, )
         assert isinstance(component_classes, tuple)
@@ -174,7 +174,7 @@ class Selection(object):
     @staticmethod
     def _all_are_contiguous_components_in_same_logical_voice(
         expr, component_classes=None, allow_orphans=True):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
             list,
@@ -184,7 +184,7 @@ class Selection(object):
             )
         if not isinstance(expr, allowable_types):
             return False
-        component_classes = component_classes or (componenttools.Component,)
+        component_classes = component_classes or (scoretools.Component,)
         if not isinstance(component_classes, tuple):
             component_classes = (component_classes, )
         assert isinstance(component_classes, tuple)
@@ -231,7 +231,7 @@ class Selection(object):
     @staticmethod
     def _all_are_contiguous_components_in_same_parent(
         expr, component_classes=None, allow_orphans=True):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
             list,
@@ -241,7 +241,7 @@ class Selection(object):
             )
         if not isinstance(expr, allowable_types):
             return False
-        component_classes = component_classes or (componenttools.Component, )
+        component_classes = component_classes or (scoretools.Component, )
         if not isinstance(component_classes, tuple):
             component_classes = (component_classes, )
         assert isinstance(component_classes, tuple)
@@ -301,9 +301,9 @@ class Selection(object):
         return music
 
     def _get_component(self, component_classes=None, n=0, recurse=True):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
-        component_classes = component_classes or (componenttools.Component,)
+        component_classes = component_classes or (scoretools.Component,)
         if not isinstance(component_classes, tuple):
             component_classes = (component_classes,)
         if 0 <= n:

@@ -368,7 +368,7 @@ class Note(Leaf):
         Returns chord.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import mutationtools
         from abjad.tools import pitchtools
         if named_interval is None:

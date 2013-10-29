@@ -12,7 +12,7 @@ def get_all_mark_format_contributions(component):
 
     Returns dict.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import contexttools
     from abjad.tools import formattools
     from abjad.tools import marktools

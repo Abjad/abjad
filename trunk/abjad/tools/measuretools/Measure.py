@@ -245,12 +245,12 @@ class Measure(FixedDurationContainer):
     @staticmethod
     def _get_likely_multiplier_of_components(components):
         pass
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools import selectiontools
         from abjad.tools import sequencetools
-        assert all(isinstance(x, componenttools.Component) for x in components)
+        assert all(isinstance(x, scoretools.Component) for x in components)
         chain_duration_numerators = []
         for expr in \
             iterationtools.iterate_topmost_tie_chains_and_components_in_expr(

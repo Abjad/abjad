@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 import math
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from abjad.tools import containertools
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools

@@ -18,19 +18,19 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    componenttools.iterate_components_depth_first()
-    componenttools.iterate_components_forward_in_expr()
-    componenttools.iterate_components_backward_in_expr()
-    componenttools.iterate_namesakes_forward_from_component()
-    componenttools.iterate_namesakes_backward_from_component()
-    componenttools.iterate_thread_forward_from_component()
-    componenttools.iterate_thread_backward_from_component()
-    componenttools.iterate_thread_forward_in_expr()
-    componenttools.iterate_thread_backward_in_expr()
-    componenttools.iterate_timeline_forward_from_component()
-    componenttools.iterate_timeline_backward_from_component()
-    componenttools.iterate_timeline_forward_in_expr()
-    componenttools.iterate_timeline_backward_in_expr()
+    scoretools.iterate_components_depth_first()
+    scoretools.iterate_components_forward_in_expr()
+    scoretools.iterate_components_backward_in_expr()
+    scoretools.iterate_namesakes_forward_from_component()
+    scoretools.iterate_namesakes_backward_from_component()
+    scoretools.iterate_thread_forward_from_component()
+    scoretools.iterate_thread_backward_from_component()
+    scoretools.iterate_thread_forward_in_expr()
+    scoretools.iterate_thread_backward_in_expr()
+    scoretools.iterate_timeline_forward_from_component()
+    scoretools.iterate_timeline_backward_from_component()
+    scoretools.iterate_timeline_forward_in_expr()
+    scoretools.iterate_timeline_backward_in_expr()
 
   ::
 
@@ -291,8 +291,8 @@ Renamed all functions that contained ``big_endian``::
 
 Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
-    componenttools.copy_governed_component_subtree_from_prolated_offset_to()
-    componenttools.get_improper_descendents_of_component_that_cross_prolated_offset()
+    scoretools.copy_governed_component_subtree_from_prolated_offset_to()
+    scoretools.get_improper_descendents_of_component_that_cross_prolated_offset()
     containertools.delete_contents_of_container_starting_at_or_after_prolated_offset()
     containertools.delete_contents_of_container_starting_before_or_at_prolated_offset()
     containertools.delete_contents_of_container_starting_strictly_after_prolated_offset()
@@ -307,8 +307,8 @@ Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
 ::
 
-    componenttools.copy_and_trim()
-    componenttools.get_improper_descendants_of_component_that_cross_offset()
+    scoretools.copy_and_trim()
+    scoretools.get_improper_descendants_of_component_that_cross_offset()
     containertools.delete_contents_of_container_starting_at_or_after_offset()
     containertools.delete_contents_of_container_starting_before_or_at_offset()
     containertools.delete_contents_of_container_starting_strictly_after_offset()
@@ -323,21 +323,21 @@ Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
 Renamed ``prolated_duration`` to ``offset`` in some functions::
 
-    componenttools.split_component_at_prolated_duration()
-    componenttools.split_components_by_prolated_durations()
+    scoretools.split_component_at_prolated_duration()
+    scoretools.split_components_by_prolated_durations()
     leaftools.split_leaf_at_prolated_duration()
     leaftools.split_leaf_at_prolated_duration_and_rest_right_half()
 
 ::
 
-    componenttools.split_component_by_duration()
-    componenttools.split_components_by_offsets()
+    scoretools.split_component_by_duration()
+    scoretools.split_components_by_offsets()
     leaftools.split_leaf_by_duration()
     leaftools.split_leaf_by_duration_and_rest_right_half()
 
 Renamed all functions that contained ``as_string``::
 
-    componenttools.report_component_format_contributions_as_string()
+    scoretools.report_component_format_contributions_as_string()
     containertools.report_container_modifications_as_string()
     measuretools.report_meter_distribution_as_string()
 
@@ -347,9 +347,9 @@ Renamed all functions that contained ``as_string``::
     containertools.report_container_modifications()
     measuretools.report_time_signature_distribution()
 
-Changes to the ``componenttools`` package:
+Changes to the ``scoretools`` package:
 
-- The ``componenttools.split()`` function no longer 
+- The ``scoretools.split()`` function no longer 
   implements a ``tie_after keyword``.
   Use the new ``tie_split_notes`` and ``tie_split_rests`` keywords.
   Note that the new ``tie_split_rests``
@@ -358,82 +358,82 @@ Changes to the ``componenttools`` package:
 
 - Renamed::
 
-    componenttools.extend_left_in_parent_of_component_and_grow_spanners()
-    componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners()
+    scoretools.extend_left_in_parent_of_component_and_grow_spanners()
+    scoretools.extend_left_in_parent_of_component_and_do_not_grow_spanners()
 
   ::
 
-    componenttools.extend_left_in_parent_of_component(grow_spanners=[True, False])
+    scoretools.extend_left_in_parent_of_component(grow_spanners=[True, False])
 
 - Renamed::
 
-    componenttools.splice_of_component_and_grow_spanners()
-    componenttools.splice_of_component_and_do_not_grow_spanners()
+    scoretools.splice_of_component_and_grow_spanners()
+    scoretools.splice_of_component_and_do_not_grow_spanners()
 
   ::
 
-    componenttools.splice_of_component(grow_spanners=[True, False])
+    scoretools.splice_of_component(grow_spanners=[True, False])
 
 - Renamed::
 
-    componenttools.number_is_between_prolated_start_and_stop_offsets_of_component()
+    scoretools.number_is_between_prolated_start_and_stop_offsets_of_component()
 
   ::
 
-    componenttools.number_is_between_start_and_stop_offsets_of_component()
+    scoretools.number_is_between_start_and_stop_offsets_of_component()
 
 - Renamed::
 
-    componenttools.partition_components_cyclically_by_durations_in_seconds_exactly_with_overhang()
-    componenttools.partition_components_cyclically_by_durations_in_seconds_exactly_without_overhang()
-    componenttools.partition_components_cyclically_by_durations_in_seconds_ge_with_overhang()
-    componenttools.partition_components_cyclically_by_durations_in_seconds_ge_without_overhang()
-    componenttools.partition_components_cyclically_by_durations_in_seconds_le_with_overhang()
-    componenttools.partition_components_cyclically_by_durations_in_seconds_le_without_overhang()
-    componenttools.partition_components_cyclically_by_prolated_durations_exactly_with_overhang()
-    componenttools.partition_components_cyclically_by_prolated_durations_exactly_without_overhang()
-    componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang()
-    componenttools.partition_components_cyclically_by_prolated_durations_ge_without_overhang()
-    componenttools.partition_components_cyclically_by_prolated_durations_le_with_overhang()
-    componenttools.partition_components_cyclically_by_prolated_durations_le_without_overhang()
-    componenttools.partition_components_once_by_durations_in_seconds_exactly_with_overhang()
-    componenttools.partition_components_once_by_durations_in_seconds_exactly_without_overhang()
-    componenttools.partition_components_once_by_durations_in_seconds_ge_with_overhang()
-    componenttools.partition_components_once_by_durations_in_seconds_ge_without_overhang()
-    componenttools.partition_components_once_by_durations_in_seconds_le_with_overhang()
-    componenttools.partition_components_once_by_durations_in_seconds_le_without_overhang()
-    componenttools.partition_components_once_by_prolated_durations_exactly_with_overhang()
-    componenttools.partition_components_once_by_prolated_durations_exactly_without_overhang()
-    componenttools.partition_components_once_by_prolated_durations_ge_with_overhang()
-    componenttools.partition_components_once_by_prolated_durations_ge_without_overhang()
-    componenttools.partition_components_once_by_prolated_durations_le_with_overhang()
-    componenttools.partition_components_once_by_prolated_durations_le_without_overhang()
+    scoretools.partition_components_cyclically_by_durations_in_seconds_exactly_with_overhang()
+    scoretools.partition_components_cyclically_by_durations_in_seconds_exactly_without_overhang()
+    scoretools.partition_components_cyclically_by_durations_in_seconds_ge_with_overhang()
+    scoretools.partition_components_cyclically_by_durations_in_seconds_ge_without_overhang()
+    scoretools.partition_components_cyclically_by_durations_in_seconds_le_with_overhang()
+    scoretools.partition_components_cyclically_by_durations_in_seconds_le_without_overhang()
+    scoretools.partition_components_cyclically_by_prolated_durations_exactly_with_overhang()
+    scoretools.partition_components_cyclically_by_prolated_durations_exactly_without_overhang()
+    scoretools.partition_components_cyclically_by_prolated_durations_ge_with_overhang()
+    scoretools.partition_components_cyclically_by_prolated_durations_ge_without_overhang()
+    scoretools.partition_components_cyclically_by_prolated_durations_le_with_overhang()
+    scoretools.partition_components_cyclically_by_prolated_durations_le_without_overhang()
+    scoretools.partition_components_once_by_durations_in_seconds_exactly_with_overhang()
+    scoretools.partition_components_once_by_durations_in_seconds_exactly_without_overhang()
+    scoretools.partition_components_once_by_durations_in_seconds_ge_with_overhang()
+    scoretools.partition_components_once_by_durations_in_seconds_ge_without_overhang()
+    scoretools.partition_components_once_by_durations_in_seconds_le_with_overhang()
+    scoretools.partition_components_once_by_durations_in_seconds_le_without_overhang()
+    scoretools.partition_components_once_by_prolated_durations_exactly_with_overhang()
+    scoretools.partition_components_once_by_prolated_durations_exactly_without_overhang()
+    scoretools.partition_components_once_by_prolated_durations_ge_with_overhang()
+    scoretools.partition_components_once_by_prolated_durations_ge_without_overhang()
+    scoretools.partition_components_once_by_prolated_durations_le_with_overhang()
+    scoretools.partition_components_once_by_prolated_durations_le_without_overhang()
 
   ::
 
-    componenttools.partition_components_by_durations_exactly()
-    componenttools.partition_components_by_durations_not_less_than()
-    componenttools.partition_components_by_durations_not_greater_than()
+    scoretools.partition_components_by_durations_exactly()
+    scoretools.partition_components_by_durations_not_less_than()
+    scoretools.partition_components_by_durations_not_greater_than()
 
 - Renamed::
 
-    componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners()
-    componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners()
+    scoretools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners()
+    scoretools.split_component_at_prolated_duration_and_fracture_crossing_spanners()
 
   ::
 
-    componenttools.split_component_by_duration(fracture_spanners=[True, False])
+    scoretools.split_component_by_duration(fracture_spanners=[True, False])
 
 - Renamed::
 
-    componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners()
-    componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners()
-    componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners()
-    componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners()
+    scoretools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners()
+    scoretools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners()
+    scoretools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners()
+    scoretools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners()
 
   ::
 
-    componenttools.split(fracture_spanners=[True, False], cyclic=[True, False])
+    scoretools.split(fracture_spanners=[True, False], cyclic=[True, False])
 
 Changeds to the ``continertools`` package:
 

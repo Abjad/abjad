@@ -65,7 +65,7 @@ def iterate_runs_in_expr(sequence, classes):
 
     Returns generator.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import selectiontools
 
     assert isinstance(sequence, (

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import py.test
 from abjad import *
-Component = componenttools.Component
+Component = scoretools.Component
 Selection = selectiontools.Selection
 
 

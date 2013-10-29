@@ -1,7 +1,7 @@
 # -*-encoding: utf-8 -*-
 import abc
 import copy
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import lilypondproxytools
@@ -275,7 +275,7 @@ class Spanner(AbjadObject):
             raise Exception('deprecated')
         from abjad.tools import contexttools
         from abjad.tools import iterationtools
-        if isinstance(components, componenttools.Component):
+        if isinstance(components, scoretools.Component):
             components = [components]
         elif not components:
             components = []
@@ -514,10 +514,10 @@ class Spanner(AbjadObject):
 
         Returns none.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         assert not self, repr(self)
-        if isinstance(components, componenttools.Component):
+        if isinstance(components, scoretools.Component):
             self.append(components)
         elif isinstance(components, (list, tuple, selectiontools.Selection)):
             self.extend(components)

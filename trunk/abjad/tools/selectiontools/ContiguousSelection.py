@@ -26,7 +26,7 @@ class ContiguousSelection(Selection):
 
         Returns new slice selection.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         assert isinstance(expr, (Selection, list, tuple))
         if isinstance(expr, type(self)):
@@ -87,7 +87,7 @@ class ContiguousSelection(Selection):
             attach(tie, [left_leaf, right_leaf])
 
     def _copy_and_include_enclosing_containers(self):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools.mutationtools import mutate
@@ -305,7 +305,7 @@ class ContiguousSelection(Selection):
         Returns none.
         Not composer-safe.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import spannertools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         assert self._all_are_contiguous_components_in_same_logical_voice(
@@ -338,7 +338,7 @@ class ContiguousSelection(Selection):
     def _withdraw_from_crossing_spanners(self):
         r'''Not composer-safe.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
         from abjad.tools import spannertools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
@@ -495,7 +495,7 @@ class ContiguousSelection(Selection):
         Returns contiguous selection.
         '''
         from abjad.tools import spannertools
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
         # check input
         assert self._all_are_contiguous_components_in_same_logical_voice(self)

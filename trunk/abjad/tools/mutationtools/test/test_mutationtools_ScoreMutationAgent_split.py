@@ -2966,8 +2966,8 @@ def test_mutationtools_ScoreMutationAgent_split_48():
 
 
 # container._split_at_index() works here;
-# componenttools.split() doesn't work here.
-# eventually make componenttools.split() work here.
+# scoretools.split() doesn't work here.
+# eventually make scoretools.split() work here.
 def test_mutationtools_ScoreMutationAgent_split_49():
     r'''Split in-score measure without power-of-two time 
     signature denominator. Fractured spanners but do not tie 

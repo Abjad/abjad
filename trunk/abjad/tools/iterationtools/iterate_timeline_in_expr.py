@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from abjad.tools import leaftools
 
 
@@ -67,7 +67,7 @@ def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
 
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import iterationtools
     from abjad.tools import leaftools
 

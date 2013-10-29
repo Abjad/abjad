@@ -6,9 +6,9 @@ def select(expr):
 
     Returns tonal analysis selection.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import tonalanalysistools
-    if isinstance(expr, componenttools.Component):
+    if isinstance(expr, scoretools.Component):
         return tonalanalysistools.TonalAnalysisAgent(expr)
     elif hasattr(expr, '_music'):
         music = expr._music

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_01():
+def test_scoretools_Component__is_immediate_temporal_successor_of_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
 
@@ -11,7 +11,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_01():
     assert voice[2]._is_immediate_temporal_successor_of(voice[3])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_02():
+def test_scoretools_Component__is_immediate_temporal_successor_of_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -20,7 +20,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_02():
     assert staff[2]._is_immediate_temporal_successor_of(staff[3])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_03():
+def test_scoretools_Component__is_immediate_temporal_successor_of_03():
 
     container = Container("c'8 d'8 e'8 f'8")
 
@@ -29,7 +29,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_03():
     assert container[2]._is_immediate_temporal_successor_of(container[3])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_04():
+def test_scoretools_Component__is_immediate_temporal_successor_of_04():
 
     tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
 
@@ -37,7 +37,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_04():
     assert tuplet[1]._is_immediate_temporal_successor_of(tuplet[2])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_05():
+def test_scoretools_Component__is_immediate_temporal_successor_of_05():
 
     voice = Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
 
@@ -67,7 +67,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_05():
     assert voice[0][-1]._is_immediate_temporal_successor_of(voice[1][0])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_06():
+def test_scoretools_Component__is_immediate_temporal_successor_of_06():
 
     voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
 
@@ -96,7 +96,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_06():
 
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_07():
+def test_scoretools_Component__is_immediate_temporal_successor_of_07():
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
 
@@ -126,7 +126,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_07():
     assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1][0])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_08():
+def test_scoretools_Component__is_immediate_temporal_successor_of_08():
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
     staff[0].name = 'foo'
@@ -158,7 +158,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_08():
 
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_09():
+def test_scoretools_Component__is_immediate_temporal_successor_of_09():
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
     staff[0].name = 'foo'
@@ -189,7 +189,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_09():
     assert staff[0][-1]._is_immediate_temporal_successor_of(staff[1])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_10():
+def test_scoretools_Component__is_immediate_temporal_successor_of_10():
 
     staff_1 = Staff([Voice("c'8 d'8 e'8 f'8")])
     staff_2 = Staff([Voice("g'8 a'8 b'8 c''8")])
@@ -232,7 +232,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_10():
     assert staff_1[0][-1]._is_immediate_temporal_successor_of(staff_2[0][0])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_11():
+def test_scoretools_Component__is_immediate_temporal_successor_of_11():
 
     upper_voice_1 = Voice("c''8 d''8 e''8 f''8")
     upper_voice_2 = Voice("g''8 a''8 b''8 c''8")
@@ -311,7 +311,7 @@ def test_componenttools_Component__is_immediate_temporal_successor_of_11():
     assert staff_1[1][-1]._is_immediate_temporal_successor_of(staff_2[1][0])
 
 
-def test_componenttools_Component__is_immediate_temporal_successor_of_12():
+def test_scoretools_Component__is_immediate_temporal_successor_of_12():
 
     voice = Voice("{ { c'8 d'8 e'8 f'8 } } { { g'8 a'8 b'8 c''8 } }")
 

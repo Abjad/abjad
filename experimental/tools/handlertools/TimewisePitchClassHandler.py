@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from experimental.tools.handlertools.PitchHandler import PitchHandler
 
 
@@ -15,7 +15,7 @@ class TimewisePitchClassHandler(PitchHandler):
     def __call__(self, expr):
         classes = (notetools.Note, scoretools.Chord)
         for leaf in \
-            componenttools.iterate_components_forward_in_expr(expr, classes):
+            scoretools.iterate_components_forward_in_expr(expr, classes):
             if isinstance(leaf, notetools.Note):
                 pitch_class = \
                     self.pitch_class_server.get_next_n_nodes_at_level(1, -1)

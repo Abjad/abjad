@@ -2,7 +2,7 @@
 import collections
 import itertools
 import numbers
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools

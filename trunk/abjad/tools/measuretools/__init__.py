@@ -6,7 +6,7 @@
     The ``measuretools`` package may import all leaf packages at top level.
 
     The ``measuretools`` package may import all parent component packages
-    at top level. These are ``containertools`` and ``componenttools``.
+    at top level. These are ``containertools`` and ``scoretools``.
 
     The ``measuretools`` package should not import sibling- or cousin-related
     container packages at top level. This includes ``tuplettools`` and other

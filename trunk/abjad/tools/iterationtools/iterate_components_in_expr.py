@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 
 
 def iterate_components_in_expr(
@@ -13,7 +13,7 @@ def iterate_components_in_expr(
     '''
     from abjad.tools import spannertools
 
-    component_class = component_class or componenttools.Component
+    component_class = component_class or scoretools.Component
 
     def component_iterator(expr, component_class, reverse=False):
         if isinstance(expr, component_class):

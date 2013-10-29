@@ -69,9 +69,9 @@ class Descendants(SimultaneousSelection):
         cross_offset=None,
         include_self=True,
         ):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
-        assert isinstance(component, (componenttools.Component, type(None)))
+        assert isinstance(component, (scoretools.Component, type(None)))
         if component is None:
             music = ()
         else:

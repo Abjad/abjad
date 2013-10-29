@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 
 
 def iterate_logical_voice_from_component(
@@ -127,7 +127,7 @@ def iterate_logical_voice_from_component(
 
     # set default class
     if component_class is None:
-        component_class = componenttools.Component
+        component_class = scoretools.Component
 
     # save logical voice signature of input component
     signature = component._get_parentage().logical_voice_indicator

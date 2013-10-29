@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import math
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools

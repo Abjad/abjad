@@ -388,7 +388,7 @@ class Component(AbjadObject):
         return markup
 
     def _get_nth_component_in_time_order_from(self, n):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         assert mathtools.is_integer_equivalent_expr(n)
         def next(component):
             if component is not None:
@@ -485,7 +485,7 @@ class Component(AbjadObject):
             self._set_keyword_value(key, value)
 
     def _is_immediate_temporal_successor_of(self, component):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         temporal_successors = []
         current = self
         while current is not None:
@@ -565,7 +565,7 @@ class Component(AbjadObject):
         self._parent = None
 
     def _remove_named_children_from_parentage(self, name_dictionary):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         if self._parent is not None and name_dictionary:
             for parent in self._get_parentage(include_self=False):
                 named_children = parent._named_children
@@ -576,7 +576,7 @@ class Component(AbjadObject):
                         del named_children[name]
 
     def _restore_named_children_to_parentage(self, name_dictionary):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         if self._parent is not None and name_dictionary:
             for parent in self._get_parentage(include_self=False):
                 named_children = parent._named_children
@@ -638,10 +638,10 @@ class Component(AbjadObject):
         direction=Right,
         grow_spanners=True,
         ):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
-        assert all(isinstance(x, componenttools.Component) for x in components)
+        assert all(isinstance(x, scoretools.Component) for x in components)
         selection = selectiontools.ContiguousSelection(self)
         if direction == Right:
             if grow_spanners:

@@ -68,8 +68,8 @@ class Parentage(SimultaneousSelection):
     ### INITIALIZER ###
 
     def __init__(self, component=None, include_self=True):
-        from abjad.tools import componenttools
-        assert isinstance(component, (componenttools.Component, type(None)))
+        from abjad.tools import scoretools
+        assert isinstance(component, (scoretools.Component, type(None)))
         if component is None:
             music = ()
         else:
@@ -100,7 +100,7 @@ class Parentage(SimultaneousSelection):
 
     def _get_governor(self):
         from abjad.tools import containertools
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         for component in self:
             if isinstance(component, containertools.Container) and \
                 not component.is_simultaneous:
@@ -186,7 +186,7 @@ class Parentage(SimultaneousSelection):
 
         Returns ordered dictionary.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import stafftools
@@ -323,7 +323,7 @@ class Parentage(SimultaneousSelection):
         Returns nonnegative integer.
         '''
         from abjad.tools import tuplettools
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         result = 0
         # should probably interate up to only first simultaneous container 
         # in parentage.
@@ -341,9 +341,9 @@ class Parentage(SimultaneousSelection):
 
         Returns component or none.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         if component_classes is None:
-            component_classes = (componenttools.Component,)
+            component_classes = (scoretools.Component,)
         if not isinstance(component_classes, tuple):
             component_classes = (component_classes,)
         for component in self:

@@ -3,7 +3,7 @@ import itertools
 import ply
 from abjad.tools import abctools
 from abjad.tools import scoretools
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
@@ -481,7 +481,7 @@ class LilyPondParser(abctools.Parser):
         # sort events into forward or backwards attaching, and attach them to
         # the proper leaf
         for x in music:
-            if isinstance(x, componenttools.Component) \
+            if isinstance(x, scoretools.Component) \
                 and not isinstance(x, containertools.GraceContainer):
                 for mark in apply_forward:
                     if hasattr(mark, '_attach'):
@@ -568,7 +568,7 @@ class LilyPondParser(abctools.Parser):
             'integer?':           lambda x: isinstance(x, int),
             'list?':              lambda x: isinstance(x, (list, tuple)),
             'ly:duration?':       lambda x: isinstance(x, lilypondparsertools.LilyPondDuration),
-            'ly:music?':          lambda x: isinstance(x, (componenttools.Component, marktools.Mark)),
+            'ly:music?':          lambda x: isinstance(x, (scoretools.Component, marktools.Mark)),
             'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedPitch),
             'markup?':            lambda x: isinstance(x, markuptools.MarkupCommand),
             'number-list?':       lambda x: isinstance(x, (list, tuple)) and \

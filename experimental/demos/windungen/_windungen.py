@@ -101,7 +101,7 @@ def pair_pitches_with_splits(matrix, splits, phaseOffset):
 def add_split_to_score_by_tuple(split, score, tuple):
     for x,staff in enumerate(score):
         if x in tuple:
-            copied = componenttools.copy_components_and_covered_spanners(
+            copied = scoretools.copy_components_and_covered_spanners(
                 split)
             score[x].extend(copied[:])
         else:
@@ -119,7 +119,7 @@ def add_splits_to_score_by_tuples(score, splitTuplePairs):
 
 
 def fuse_rests_in_beat(beat):
-    for group in componenttools.yield_groups_of_mixed_classes(beat, Rest):
+    for group in scoretools.yield_groups_of_mixed_classes(beat, Rest):
         leaftools.fuse_leaves(group[:])
 
 

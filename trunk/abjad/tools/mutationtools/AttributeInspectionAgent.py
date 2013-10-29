@@ -9,8 +9,8 @@ class AttributeInspectionAgent(object):
     ### INITIALIZER ###
 
     def __init__(self, component):
-        from abjad.tools import componenttools
-        assert isinstance(component, componenttools.Component)
+        from abjad.tools import scoretools
+        assert isinstance(component, scoretools.Component)
         self._component = component
 
     ### SPECIAL METHODS ###

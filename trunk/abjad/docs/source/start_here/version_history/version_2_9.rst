@@ -627,26 +627,26 @@ New spanners and spanner handlers are now available.
   the attachment syntax of spanners and marks.
 
 
-Many new functions are available in the ``componenttools`` package.
+Many new functions are available in the ``scoretools`` package.
 
 - New getters::
 
-    componenttools.get_proper_contents_of_component()
-    componenttools.get_improper_contents_of_component()
-    componenttools.get_improper_contents_of_component_that_start_with_component()
-    componenttools.get_improper_contents_of_component_that_stop_with_component()
-    componenttools.get_proper_descendants_of_component()
-    componenttools.get_improper_descendants_of_component()
-    componenttools.get_improper_descendents_of_component_that_cross_prolated_offset
-    componenttools.get_improper_descendants_of_component_that_start_with_component
-    componenttools.get_improper_descendants_of_component_that_stop_with_component
-    componenttools.get_lineage_of_component()
-    componenttools.get_lineage_of_component_that_start_with_component()
-    componenttools.get_lineage_of_component_that_stop_with_component()
-    componenttools.get_nth_sibling_from_component(component, n)
-    componenttools.get_nth_component_from_component_in_time_order(component, n)
-    componenttools.get_nth_namesake_from_component
-    componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component()
+    scoretools.get_proper_contents_of_component()
+    scoretools.get_improper_contents_of_component()
+    scoretools.get_improper_contents_of_component_that_start_with_component()
+    scoretools.get_improper_contents_of_component_that_stop_with_component()
+    scoretools.get_proper_descendants_of_component()
+    scoretools.get_improper_descendants_of_component()
+    scoretools.get_improper_descendents_of_component_that_cross_prolated_offset
+    scoretools.get_improper_descendants_of_component_that_start_with_component
+    scoretools.get_improper_descendants_of_component_that_stop_with_component
+    scoretools.get_lineage_of_component()
+    scoretools.get_lineage_of_component_that_start_with_component()
+    scoretools.get_lineage_of_component_that_stop_with_component()
+    scoretools.get_nth_sibling_from_component(component, n)
+    scoretools.get_nth_component_from_component_in_time_order(component, n)
+    scoretools.get_nth_namesake_from_component
+    scoretools.get_most_distant_sequential_container_in_improper_parentage_of_component()
 
   Use these functions to interrogate the structural relations of components resident
   inside arbitrarily complex pieces of score.
@@ -656,17 +656,17 @@ Many new functions are available in the ``componenttools`` package.
 
 - Note the difference between the 'contents' of a component and the 'descendents' of a component::
 
-    >>> componenttools.get_proper_contents_of_component(staff)
+    >>> scoretools.get_proper_contents_of_component(staff)
     [Note("c'4"), Tuplet(2/3, [d'8, e'8, f'8])]
 
   Versus::
 
-    >>> componenttools.get_proper_descendants_of_component(staff)
+    >>> scoretools.get_proper_descendants_of_component(staff)
     [Note("c'4"), Tuplet(2/3, [d'8, e'8, f'8]), Note("d'8"), Note("e'8"), Note("f'8")]
 
-- Also add the following ``componenttools`` predicate::
+- Also add the following ``scoretools`` predicate::
 
-    componenttools.is_immediate_temporal_successor_of_component()
+    scoretools.is_immediate_temporal_successor_of_component()
 
 
 Further new functionality:
@@ -720,27 +720,27 @@ Changes to end-user functionality:
 
 - Changed::
 
-    componenttools.copy_components_and_remove_all_spanners()
+    scoretools.copy_components_and_remove_all_spanners()
 
   ::
 
-    componenttools.copy_components_and_detach_spanners()
+    scoretools.copy_components_and_detach_spanners()
 
 - Changed::
 
-    componenttools.get_improper_contents_of_component_that_cross_prolated_offset()
+    scoretools.get_improper_contents_of_component_that_cross_prolated_offset()
 
   ::
 
-    componenttools.get_leftmost_components_with_total_duration_at_most()
+    scoretools.get_leftmost_components_with_total_duration_at_most()
 
 - Changed::
 
-    componenttools.list_improper_contents_of_component_that_cross_prolated_offset()
+    scoretools.list_improper_contents_of_component_that_cross_prolated_offset()
 
   ::
 
-    componenttools.list_leftmost_components_with_prolated_duration_at_most()
+    scoretools.list_leftmost_components_with_prolated_duration_at_most()
 
 - Changed::
 
@@ -814,7 +814,7 @@ Changes to end-user functionality:
 
     scr/devel/rename-public-function
 
-- Removed the ``threadtools`` package and moved all functions to ``componenttools``.
+- Removed the ``threadtools`` package and moved all functions to ``scoretools``.
 
   Instead of these::
 
@@ -826,11 +826,11 @@ Changes to end-user functionality:
 
   Use these::
 
-    componenttools.iterate_thread_backward_from_component()
-    componenttools.iterate_thread_backward_in_expr()
-    componenttools.iterate_thread_forward_from_component()
-    componenttools.iterate_thread_forward_in_expr()
-    componenttools.component_to_logical_voice_indicator()
+    scoretools.iterate_thread_backward_from_component()
+    scoretools.iterate_thread_backward_in_expr()
+    scoretools.iterate_thread_forward_from_component()
+    scoretools.iterate_thread_forward_in_expr()
+    scoretools.component_to_logical_voice_indicator()
 
 - Removed the read-only ``Component.marks`` property entirely.
 

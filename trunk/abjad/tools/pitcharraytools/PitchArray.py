@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import componenttools
+from abjad.tools import scoretools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools

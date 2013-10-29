@@ -42,7 +42,7 @@ def transpose_pitch_carrier_by_interval(
     Return `pitch_carrier`.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import componenttools
+    from abjad.tools import scoretools
     from abjad.tools import notetools
     from abjad.tools import pitchtools
 

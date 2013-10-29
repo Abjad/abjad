@@ -27,7 +27,7 @@ class TieChain(ContiguousSelection):
 
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import notetools
         from abjad.tools import spannertools
         from abjad.tools import tuplettools
@@ -314,7 +314,7 @@ class TieChain(ContiguousSelection):
 
         Returns tuplet.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import mathtools
         from abjad.tools import mutationtools
         from abjad.tools import notetools

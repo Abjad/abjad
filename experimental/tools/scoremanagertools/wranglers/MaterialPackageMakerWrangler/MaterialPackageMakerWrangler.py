@@ -339,7 +339,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         lines.append('')
         lines.append('    illustration_builder = staticmethod(make_illustration_from_output_material)')
         lines.append('')
-        lines.append('    output_material_checker = staticmethod(componenttools.all_are_components)')
+        lines.append('    output_material_checker = staticmethod(scoretools.all_are_components)')
         lines.append('')
         lines.append('    output_material_maker = staticmethod(foo)')
         lines.append('')

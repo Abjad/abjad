@@ -3,7 +3,7 @@ from abjad import *
 
 
 
-def test_componenttools_Component__has_mark_01():
+def test_scoretools_Component__has_mark_01():
 
     staff = Staff("c'2 d'2")
     annotation = marktools.Annotation('name', 'value')
@@ -13,7 +13,7 @@ def test_componenttools_Component__has_mark_01():
     assert not staff[1]._has_mark(marktools.Annotation)
 
 
-def test_componenttools_Component__has_mark_02():
+def test_scoretools_Component__has_mark_02():
 
     staff = Staff("c'2 d'2")
     articulation = marktools.Articulation('staccato')
@@ -23,7 +23,7 @@ def test_componenttools_Component__has_mark_02():
     assert not staff[1]._has_mark(marktools.Articulation)
 
 
-def test_componenttools_Component__has_mark_03():
+def test_scoretools_Component__has_mark_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     command = marktools.LilyPondCommandMark('break', 'closing')
@@ -36,7 +36,7 @@ def test_componenttools_Component__has_mark_03():
 
 
 
-def test_componenttools_Component__has_mark_04():
+def test_scoretools_Component__has_mark_04():
 
     staff = Staff("c'2 d'2")
     comment = marktools.LilyPondComment('comment')
@@ -46,7 +46,7 @@ def test_componenttools_Component__has_mark_04():
     assert not staff[1]._has_mark(marktools.LilyPondComment)
 
 
-def test_componenttools_Component__has_mark_05():
+def test_scoretools_Component__has_mark_05():
 
     staff = Staff("c'2 d'2")
     mark = marktools.Mark()
@@ -56,7 +56,7 @@ def test_componenttools_Component__has_mark_05():
     assert not staff[1]._has_mark()
 
 
-def test_componenttools_Component__has_mark_06():
+def test_scoretools_Component__has_mark_06():
 
     staff = Staff("c'2 d'2")
     stem_tremolo = marktools.StemTremolo(16)
@@ -66,7 +66,7 @@ def test_componenttools_Component__has_mark_06():
     assert not staff[1]._has_mark(marktools.StemTremolo)
 
 
-def test_componenttools_Component__has_mark_07():
+def test_scoretools_Component__has_mark_07():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     time_signature = contexttools.TimeSignatureMark((4, 8))

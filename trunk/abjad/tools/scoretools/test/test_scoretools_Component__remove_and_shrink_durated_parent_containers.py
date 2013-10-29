@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_01():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
     r'''Remove leaf from tuplet and measure.
     '''
 
@@ -54,7 +54,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(measure).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_02():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
     r'''Remove leaf from tuplet and measure.
     '''
 
@@ -115,7 +115,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(measure).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_03():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
     r'''Remove leaf from tuplet and measure.
     '''
 
@@ -187,7 +187,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(measure).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_04():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
     r'''Remove leaf that conflicts with time signature duration.
     Change time signature denominator and reset tuplet target durations.
     '''
@@ -259,7 +259,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(measure).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_05():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
     r'''Remove leaf that conflicts with time signature duration.
     Trigger tuplet insertion.
     '''
@@ -329,7 +329,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(measure).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_06():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_06():
     r'''Remove leaf that matches time signature duration.
     Does not trigger trivial 1:1 tuplet insertion.
     '''
@@ -390,7 +390,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(measure).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_07():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_07():
     r'''Nested fixed-duration tuplet.
     '''
 
@@ -443,7 +443,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(measure).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_08():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_08():
     r'''Remove leaf from container.
     '''
 
@@ -467,7 +467,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(container).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_09():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_09():
     r'''Remove leaf from voice.
     '''
 
@@ -491,7 +491,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_0
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_10():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_10():
     r'''Remove leaf from staff.
     '''
 
@@ -515,7 +515,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(staff).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_11():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_11():
     r'''Remove fixed-duration tuplet from container.
     '''
 
@@ -559,7 +559,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(container).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_12():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_12():
     r'''Remove fixed-duration tuplet from voice.
     '''
 
@@ -603,7 +603,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_13():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_13():
     r'''Remove fixed-duration tuplet from staff.
     '''
 
@@ -647,7 +647,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(staff).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_14():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_14():
     r'''Remove leaf from fixed-duration tuplet in container.
     '''
 
@@ -695,7 +695,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(container).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_15():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_15():
     r'''Remove leaf form fixed-duration tuplet in voice.
     '''
 
@@ -743,7 +743,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(voice).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_16():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_16():
     r'''Remove leaf from fixed-duration tuplet in staff.
     '''
 
@@ -791,7 +791,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(staff).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_17():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_17():
     r'''Remove leaf from nested tuplet of length 1.
     '''
 
@@ -828,7 +828,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(tuplet[0]).get_duration() == Duration(1, 6)
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_18():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_18():
     r'''Remove leaf from nested tuplet of length 1.
     '''
 
@@ -869,7 +869,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(tuplet).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_19():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_19():
     r'''Remove leaf from nested fixed-duration tuplet.
     '''
 
@@ -916,7 +916,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_1
     assert inspect(tuplet).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_20():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_20():
     r'''Excise leaf from fixed-duration tuplet.
     '''
 
@@ -953,7 +953,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_2
     assert inspect(tuplet).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_21():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_21():
     r'''Remove leaf from tuplet.
     '''
 
@@ -989,7 +989,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_2
     assert inspect(tuplet).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_22():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
     r'''Remove leaf from nested fixed-duration tuplet.
     '''
 
@@ -1031,7 +1031,7 @@ def test_componenttools_Component__remove_and_shrink_durated_parent_containers_2
     assert inspect(tuplet).is_well_formed()
 
 
-def test_componenttools_Component__remove_and_shrink_durated_parent_containers_23():
+def test_scoretools_Component__remove_and_shrink_durated_parent_containers_23():
     r'''Remove leaf from nested tuplet.
     '''
 

@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools.componenttools.Component import Component
+from abjad.tools.scoretools.Component import Component
 
 
 class Container(Component):
@@ -365,7 +365,7 @@ class Container(Component):
         constitutes a composer-unsafe use of this method.
         Only private methods should set this keyword.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import containertools
         from abjad.tools import contexttools
         from abjad.tools import iterationtools
@@ -382,7 +382,7 @@ class Container(Component):
                 expr = self._parse_string(expr)[:]
                 assert len(expr) == 1, repr(expr)
                 expr = expr[0]
-            assert all(isinstance(x, componenttools.Component) for x in [expr])
+            assert all(isinstance(x, scoretools.Component) for x in [expr])
             if any(isinstance(x, containertools.GraceContainer) for x in [expr]):
                 message = 'must attach grace container to note or chord.'
                 raise Exception(message)
@@ -413,7 +413,7 @@ class Container(Component):
                 len(expr) == 1 and \
                 isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
-            assert all(isinstance(x, componenttools.Component) for x in expr)
+            assert all(isinstance(x, scoretools.Component) for x in expr)
             if any(isinstance(x, containertools.GraceContainer) for x in expr):
                 message = 'must attach grace container to note or chord.'
                 raise Exception(message)
@@ -534,7 +534,7 @@ class Container(Component):
             return self._simultaneous
         def fset(self, expr):
             from abjad.tools.contexttools.Context import Context
-            from abjad.tools import componenttools
+            from abjad.tools import scoretools
             assert isinstance(expr, bool), repr(expr)
             if expr == True:
                 assert all(isinstance(x, Context) for x in self._music)
@@ -546,16 +546,16 @@ class Container(Component):
 
     @staticmethod
     def _all_are_orphan_components(expr):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         for component in expr:
-            if not isinstance(component, componenttools.Component):
+            if not isinstance(component, scoretools.Component):
                 return False
             if not component._get_parentage().is_orphan:
                 return False
         return True
 
     def _initialize_music(self, music):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         Selection = selectiontools.Selection
         if music is None:
             music = []
@@ -705,7 +705,7 @@ class Container(Component):
         fracture_spanners=False,
         tie_split_notes=True,
         ):
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import containertools
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
@@ -1100,11 +1100,11 @@ class Container(Component):
 
         Returns none.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import containertools
         from abjad.tools import leaftools
         from abjad.tools import spannertools
-        assert isinstance(component, componenttools.Component)
+        assert isinstance(component, scoretools.Component)
         assert isinstance(i, int)
         if not fracture_spanners:
             self.__setitem__(slice(i, i), [component])
@@ -1283,7 +1283,7 @@ class Container(Component):
 
         Returns contiguous leaf selection or free leaf selection.
         '''
-        from abjad.tools import componenttools
+        from abjad.tools import scoretools
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools import selectiontools

@@ -165,22 +165,22 @@ Removed ``durationtools.is_lilypond_duration_string()``.
 Removed ``durationtools.is_lilypond_duration_name()``.
 Just instantiate durations instead.
 
-Removed ``componenttools.component_to_score_root()``.
+Removed ``scoretools.component_to_score_root()``.
 Use ``Component.parentage.root`` instead.
 
-Removed ``componenttools.component_to_pitch_and_rhyhtm_skeleton()``.
+Removed ``scoretools.component_to_pitch_and_rhyhtm_skeleton()``.
 Use the parser instead.
 
-Removed ``componenttools.component_to_score_depth()``.
+Removed ``scoretools.component_to_score_depth()``.
 Use ``Component.parentage.depth`` property instead.
 
-Removed unused ``componenttools.all_are_orphan_components()`` function.
+Removed unused ``scoretools.all_are_orphan_components()`` function.
 
-Removed unused ``componenttools.all_are_components_in_same_parent()`` function.
+Removed unused ``scoretools.all_are_components_in_same_parent()`` function.
 
-Removed unused ``componenttools.all_are_components_in_same_score()`` function.
+Removed unused ``scoretools.all_are_components_in_same_score()`` function.
 
-Removed unused ``componenttools.all_are_contiguous_components_in_same_score()`` function.
+Removed unused ``scoretools.all_are_contiguous_components_in_same_score()`` function.
 
 Renamed ``leaftools.make_leaves_from_note_value_signal()``.
 The new name is ``leaftools.make_leaves_from_talea()``.
@@ -197,10 +197,10 @@ Use ``TimeSignatureMark.with_power_of_two_denominator()`` method instead.
 Remvoed ``timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator()`` function.
 Use ``TimeSignatureMark.with_power_of_two_denominator()`` method instead.
 
-Moved one function from ``componenttools`` to ``measuretools``.
+Moved one function from ``scoretools`` to ``measuretools``.
 The function is ``get_likely_multiplier_components()``.
 
-Moved one function from ``componenttools`` to ``formattools``.
+Moved one function from ``scoretools`` to ``formattools``.
 The function is ``report_component_format_contributions()``.
 
 Globally replaced rhythm maker ``pattern`` names to ``talea``.
@@ -222,32 +222,32 @@ Just instantiate pitches instead.
 Removed the term ``signal`` from the ``rhythmmakertools`` package.
 Use ``talea`` instead. The plural of ``talea`` is ``talee``.
 
-Moved ``componenttools.component_to_tuplet_depth()``.
+Moved ``scoretools.component_to_tuplet_depth()``.
 The function is now bound to parentage as the ``Component.parentage.tuplet_depth`` property.
 
-Moved ``componenttools.component_to_score_index()``.
+Moved ``scoretools.component_to_score_index()``.
 The function is now bound to parentage as the ``Component.parentage.score_index`` property.
 
-Moved ``componenttools.component_to_logical_voice_indicator()``.
+Moved ``scoretools.component_to_logical_voice_indicator()``.
 The function is now bound to parentage as the ``Component.parentage.logical_voice_indicator`` property.
 
-Moved ``componenttools.component_to_parentage_signature()``.
+Moved ``scoretools.component_to_parentage_signature()``.
 The function is now bound to parentage as the ``Component.parentage.parentage_signature`` property.
 
-Renamed ``componenttools.cut_component_by_at_prolated_duration()``.
-The new name is ``componenttools.shorten_component_by_prolated_duration()``.
+Renamed ``scoretools.cut_component_by_at_prolated_duration()``.
+The new name is ``scoretools.shorten_component_by_prolated_duration()``.
 
-Renamed ``componenttools.get_leftmost_components_with_prolated_duration_at_most()``.
-The new name is ``componenttools.get_leftmost_components_with_total_duration_at_most()``.
+Renamed ``scoretools.get_leftmost_components_with_prolated_duration_at_most()``.
+The new name is ``scoretools.get_leftmost_components_with_total_duration_at_most()``.
 
-Renamed ``componenttools.shorten_component_by_prolated_duration()``.
-The new name is ``componenttools.shorten_component_by_duration()``.
+Renamed ``scoretools.shorten_component_by_prolated_duration()``.
+The new name is ``scoretools.shorten_component_by_duration()``.
 
-Renamed ``componenttools.sum_prolated_duration_of_components()``.
-The new name is ``componenttools.sum_duration_of_components()``.
+Renamed ``scoretools.sum_prolated_duration_of_components()``.
+The new name is ``scoretools.sum_duration_of_components()``.
 
-Renamed ``componenttools.yield_components_grouped_by_prolated_duration()``.
-The new name is ``componenttools.yield_components_grouped_by_duration()``.
+Renamed ``scoretools.yield_components_grouped_by_prolated_duration()``.
+The new name is ``scoretools.yield_components_grouped_by_duration()``.
 
 Renamed ``labeltools.label_leaves_in_expr_with_prolated_leaf_duration()``.
 The new name is ``labeltools.label_leaves_in_expr_with_leaf_duration()``.
@@ -269,35 +269,35 @@ The new name is ``leaftools.list_durations_of_leaves_in_expr()``.
 
 Renamed ``VerticalMoment.prolated_offset`` to ``VerticalMoment.offset``.
 
-Merged ``componenttools.extend_left_in_parent_of_component()`` into 
-``componenttools.splice_of_component()``.
+Merged ``scoretools.extend_left_in_parent_of_component()`` into 
+``scoretools.splice_of_component()``.
 Use the ``left=True`` keyword.
 
-Removed ``componenttools.extend_left_in_parent_of_component()``
-Use ``componenttools.splice_of_component(left=True)`` instead.
+Removed ``scoretools.extend_left_in_parent_of_component()``
+Use ``scoretools.splice_of_component(left=True)`` instead.
 
-Removed ``componenttools.get_component_start_offset()``.
-Removed ``componenttools.get_component_stop_offset()``.
+Removed ``scoretools.get_component_start_offset()``.
+Removed ``scoretools.get_component_stop_offset()``.
 Use the ``Component.start_offset`` and ``Component.stop_offset`` properties instead.
 
-Removed ``componenttools.get_component_start_offset_in_seconds()``.
-Removed ``componenttools.get_component_stop_offset_in_seconds()``.
+Removed ``scoretools.get_component_start_offset_in_seconds()``.
+Removed ``scoretools.get_component_stop_offset_in_seconds()``.
 Use the ``Component.start_offset_in_seconds`` and ``Component.stop_offset_in_seconds`` properties instead.
 
-Removed ``componenttools.is_orphan_component()``.
+Removed ``scoretools.is_orphan_component()``.
 Use the new ``Component.parentage.is_orphan`` property instead.
 
-Renamed ``componenttools.partition_components_by_durations_ge()``
-The new name is ``componenttools.partition_components_by_durations_not_less_than()``
+Renamed ``scoretools.partition_components_by_durations_ge()``
+The new name is ``scoretools.partition_components_by_durations_not_less_than()``
 
-Renamed ``componenttools.partition_components_by_durations_le()``
-The new name is ``componenttools.partition_components_by_durations_not_greater_than()``
+Renamed ``scoretools.partition_components_by_durations_le()``
+The new name is ``scoretools.partition_components_by_durations_not_greater_than()``
 
-emoved ``componenttools.sum_preprolated_duration_of_components()``
-Use ``componenttools.sum_duration_of_components(preprolated=True)`` instead.
+emoved ``scoretools.sum_preprolated_duration_of_components()``
+Use ``scoretools.sum_duration_of_components(preprolated=True)`` instead.
 
-Removed ``componenttools.sum_duration_of_components_in_seconds()``.
-Use ``componenttools.sum_duration_of_components(in_seconds=True)`` instead.
+Removed ``scoretools.sum_duration_of_components_in_seconds()``.
+Use ``scoretools.sum_duration_of_components(in_seconds=True)`` instead.
 
 Changed ratio objects to reduce terms at initialization.
 
@@ -307,19 +307,19 @@ Changed ``diminution`` keyword to ``is_diminution`` in three functions::
     tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
     tietools.tie_chain_to_tuplet_with_proportions()
 
-Moved three functions from ``componenttools`` to ``wellformednesstools``.
+Moved three functions from ``scoretools`` to ``wellformednesstools``.
 The functions are these::
 
     is_well_formed_component()
     list_badly_formed_components_in_expr()
     tabulate_well_formedness_violations_in_expr()
 
-Removed two ``componenttools`` functions.
+Removed two ``scoretools`` functions.
 Use ``timerelationtools`` instead.
 The functions are these::
 
-    componenttools.number_is_between_start_and_stop_offsets_of_component()
-    componenttools.number_is_between_start_and_stop_offsets_of_component_in_seconds()
+    scoretools.number_is_between_start_and_stop_offsets_of_component()
+    scoretools.number_is_between_start_and_stop_offsets_of_component_in_seconds()
 
 Renamed ``tied=True`` keyword in four functions::
 
