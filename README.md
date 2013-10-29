@@ -11,3 +11,5 @@ Because Abjad extends the Python programming language, you can use Abjad to make
 systematic changes to your music as you work. And because Abjad wraps the powerful
 LilyPond music notation package, you can use Abjad to control the typographic details
 of the symbols on the page.
+
+You can find Abjad's documentation here: [http://projectabjad.org](http://projectabjad.org)
