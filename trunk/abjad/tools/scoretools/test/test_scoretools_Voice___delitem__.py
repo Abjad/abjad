@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_voicetools_Voice___delitem___01():
+def test_scoretools_Voice___delitem___01():
     r'''Delete container from voice.
     '''
 

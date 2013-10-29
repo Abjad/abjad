@@ -2,7 +2,7 @@
 import copy
 from abjad.tools import containertools
 from abjad.tools import sequencetools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 from abjad.tools.quantizationtools.QTarget import QTarget
 from abjad.tools.scoretools import attach
 
@@ -32,7 +32,7 @@ class BeatwiseQTarget(QTarget):
 
     def _notate(self, 
         grace_handler, attack_point_optimizer, attach_tempo_marks):
-        voice = voicetools.Voice()
+        voice = scoretools.Voice()
 
         # generate the first
         beat = self.items[0]

@@ -190,11 +190,11 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import stafftools
-        from abjad.tools import voicetools
+        from abjad.tools import scoretools
         keys = ('score', 'staff group', 'staff', 'voice')
         indicator = collections.OrderedDict.fromkeys(keys, '')
         for component in self:
-            if isinstance(component, voicetools.Voice):
+            if isinstance(component, scoretools.Voice):
                 if not indicator['voice']:
                     indicator['voice'] = self._id_string(component)
             elif isinstance(component, stafftools.Staff):

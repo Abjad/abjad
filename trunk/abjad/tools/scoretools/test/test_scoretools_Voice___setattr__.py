@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_voicetools_Voice___setattr___01():
+def test_scoretools_Voice___setattr___01():
     r'''Slots constrain voice attributes.
     '''
 

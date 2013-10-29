@@ -141,7 +141,7 @@ will take only a list of pitches:
        contexttools.DynamicMark('p')(notes[1])
    
        # make the lower voice
-       lower_voice = voicetools.Voice(notes)
+       lower_voice = scoretools.Voice(notes)
        lower_voice.name = 'RH Lower Voice'
        marktools.LilyPondCommandMark('voiceTwo')(lower_voice)
        n = int(math.ceil(len(pitches) / 2.))
@@ -149,7 +149,7 @@ will take only a list of pitches:
        marktools.Articulation('>')(chord)
    
        # make the upper voice
-       upper_voice = voicetools.Voice([chord])
+       upper_voice = scoretools.Voice([chord])
        upper_voice.name = 'RH Upper Voice'
        marktools.LilyPondCommandMark('voiceOne')(upper_voice)
    

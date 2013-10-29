@@ -30,7 +30,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'sievetools', 'skiptools', 'spannertools', 'stafftools', 'stringtools',
     'tempotools', 'tietools', 'timeintervaltools', 'timesignaturetools',
     'rhythmmakertools', 'tonalanalysistools', 'tuplettools',
-    'verticalitytools', 'voicetools', 'wellformednesstools', 'z']
+    'verticalitytools', 'scoretools', 'wellformednesstools', 'z']
 
 Calling ``from abjad import *`` causes Python to load hundreds or thousands of
 lines of Abjad's code into the global namespace for you to use.  Abjad's code

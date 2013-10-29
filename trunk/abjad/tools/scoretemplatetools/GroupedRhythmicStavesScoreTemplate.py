@@ -4,7 +4,7 @@ from abjad.tools import contexttools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -116,7 +116,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
         if isinstance(self.staff_count, int):
             for index in range(self.staff_count):
                 number = index + 1
-                voice = voicetools.Voice(name='Voice {}'.format(number))
+                voice = scoretools.Voice(name='Voice {}'.format(number))
                 staff = stafftools.RhythmicStaff(
                     [voice], name='Staff {}'.format(number))
                 staves.append(staff)
@@ -136,7 +136,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
                         voice_identifier = '{}-{}'.format(
                             staff_number, voice_number)
                         staff.is_simultaneous = True
-                    voice = voicetools.Voice(
+                    voice = scoretools.Voice(
                         name='Voice {}'.format(voice_identifier))
                     staff.append(voice)
                     self.context_name_abbreviations[

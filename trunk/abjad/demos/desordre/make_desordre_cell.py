@@ -18,7 +18,7 @@ def make_desordre_cell(pitches):
     attach(dynamic, notes[1])
 
     # make the lower voice
-    lower_voice = voicetools.Voice(notes)
+    lower_voice = scoretools.Voice(notes)
     lower_voice.name = 'RH Lower Voice'
     command = marktools.LilyPondCommandMark('voiceTwo')
     attach(command, lower_voice)
@@ -28,7 +28,7 @@ def make_desordre_cell(pitches):
     attach(articulation, chord)
 
     # make the upper voice
-    upper_voice = voicetools.Voice([chord])
+    upper_voice = scoretools.Voice([chord])
     upper_voice.name = 'RH Upper Voice'
     command = marktools.LilyPondCommandMark('voiceOne')
     attach(command, upper_voice)

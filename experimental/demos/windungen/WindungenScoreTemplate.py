@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -20,7 +20,7 @@ class WindungenScoreTemplate(AbjadObject):
         staves = []
         for index in range(self.staff_count):
             number = index + 1
-            voice = voicetools.Voice(name='Voice {}'.format(number))
+            voice = scoretools.Voice(name='Voice {}'.format(number))
             staff = stafftools.Staff([voice], name='Staff {}'.format(number))
             clef = contexttools.ClefMark('bass')
             attach(clef, staff)

@@ -4,7 +4,7 @@ from abjad.tools import contexttools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.scoretools import attach
 
@@ -62,7 +62,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
     def __call__(self):
 
         # make RH voice and staff
-        rh_voice = voicetools.Voice(name='RH Voice')
+        rh_voice = scoretools.Voice(name='RH Voice')
         rh_staff = stafftools.Staff(
             [rh_voice], 
             name='RH Staff',
@@ -71,7 +71,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
         attach(clef, rh_staff)
 
         # make LH voice and staff
-        lh_voice = voicetools.Voice(name='LH Voice')
+        lh_voice = scoretools.Voice(name='LH Voice')
         lh_staff = stafftools.Staff(
             [lh_voice], 
             name='LH Staff',

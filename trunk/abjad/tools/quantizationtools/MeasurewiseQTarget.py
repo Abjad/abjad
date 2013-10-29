@@ -2,7 +2,7 @@
 import copy
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 from abjad.tools.quantizationtools.QTarget import QTarget
 from abjad.tools.scoretools import attach
 
@@ -34,7 +34,7 @@ class MeasurewiseQTarget(QTarget):
         attack_point_optimizer,
         attach_tempo_marks,
         ):
-        voice = voicetools.Voice()
+        voice = scoretools.Voice()
 
         # generate the first
         q_target_measure = self.items[0]

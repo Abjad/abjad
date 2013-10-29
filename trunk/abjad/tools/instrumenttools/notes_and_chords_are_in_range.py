@@ -2,7 +2,7 @@
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
 from abjad.tools import pitchtools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 
 
 def notes_and_chords_are_in_range(expr):

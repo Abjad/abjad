@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_lily_voice_resolution_01():
+def test_scoretools_Voice_lilypond_voice_resolution_01():
     r'''Anonymous voice with a sequence of leaves,
     in the middle of which there is a simultaneous,
     which in turn contains two anonymous voices.
@@ -48,7 +48,7 @@ def test_lily_voice_resolution_01():
     '''
 
 
-def test_lily_voice_resolution_02():
+def test_scoretools_Voice_lilypond_voice_resolution_02():
     r'''Named voice with  with a sequence of leaves,
     in the middle of which there is a simultaneous,
     which in turn contains one like-named and one differently named voice.
@@ -92,7 +92,7 @@ def test_lily_voice_resolution_02():
     '''
 
 
-def test_lily_voice_resolution_03():
+def test_scoretools_Voice_lilypond_voice_resolution_03():
     r'''Two like-named voices in two differently named staves.
     LilyPond gives unterminated beam warnings.
     LilyPond gives grob direction programming errors.
@@ -112,7 +112,7 @@ def test_lily_voice_resolution_03():
     py.test.raises(AssertionError, statement)
 
 
-def test_lily_voice_resolution_04():
+def test_scoretools_Voice_lilypond_voice_resolution_04():
     r'''Container containing a run of leaves.
     Two like-structured simultaneouss in the middle of the run.
     LilyPond handles this example perfectly.

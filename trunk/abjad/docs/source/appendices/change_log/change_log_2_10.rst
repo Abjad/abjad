@@ -147,15 +147,15 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    voicetools.iterate_semantic_voices_forward_in_expr()
-    voicetools.iterate_semantic_voices_backward_in_expr()
-    voicetools.iterate_voices_forward_in_expr()
-    voicetools.iterate_voices_backward_in_expr()
+    scoretools.iterate_semantic_voices_forward_in_expr()
+    scoretools.iterate_semantic_voices_backward_in_expr()
+    scoretools.iterate_voices_forward_in_expr()
+    scoretools.iterate_voices_backward_in_expr()
 
   ::
 
-    voicetools.iterate_semantic_voices_in_expr(reverse=[True, False])
-    voicetools.iterate_voices_in_expr(reverse=[True, False])
+    scoretools.iterate_semantic_voices_in_expr(reverse=[True, False])
+    scoretools.iterate_voices_in_expr(reverse=[True, False])
 
 All labeling functions are now housed in the new ``labeltools`` package:
 

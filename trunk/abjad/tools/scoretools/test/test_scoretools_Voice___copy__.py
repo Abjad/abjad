@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_voicetools_Voice___copy___01():
+def test_scoretools_Voice___copy___01():
     r'''Voices copy name, engraver removals, engraver consists,
     grob overrides and context settings. Voices do not copy musical
     content.
@@ -56,7 +56,7 @@ def test_voicetools_Voice___copy___01():
         )
 
 
-def test_voicetools_Voice___copy___02():
+def test_scoretools_Voice___copy___02():
     r'''Voice copies semanticity indicator.
     '''
 

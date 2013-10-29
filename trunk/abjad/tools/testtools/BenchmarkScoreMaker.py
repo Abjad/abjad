@@ -4,7 +4,7 @@ from abjad.tools import notetools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import stafftools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -40,7 +40,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
             2.12 (r9726) LilyPond format:       124,517 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [4], 
@@ -64,7 +64,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
             2.12 (r9726) LilyPond format:       117,846 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [20], 
@@ -88,7 +88,7 @@ class BenchmarkScoreMaker(AbjadObject):
 
             2.12 (r9726) LilyPond format:       116,534 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [100], 
@@ -178,7 +178,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       138,313 function calls
             2.12 (r9728) LilyPond format:       134,563 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [4], 
@@ -199,7 +199,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       134,586 function calls
             2.12 (r9728) LilyPond format:       129,836 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [20], 
@@ -220,7 +220,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       133,898 function calls
             2.12 (r9728) LilyPond format:       128,948 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [100], 
@@ -242,7 +242,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9710) LilyPond format:       100,126 function calls
             2.12 (r9726) LilyPond format:       105,778 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         return voice
 
     def make_spanner_score_01(self):
@@ -258,7 +258,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9710) LilyPond format:       426,652 function calls
             2.12 (r9724) LilyPond format:       441,884 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [4], 
@@ -281,7 +281,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9710) LilyPond format:       496,572 function calls
             2.12 (r9724) LilyPond format:       511,471 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [20], 
@@ -304,7 +304,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9710) LilyPond format:       510,556 function calls
             2.12 (r9724) LilyPond format:       525,463 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [100], 
@@ -324,7 +324,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9703) LilyPond format:       125,577 function calls
             2.12 (r9724) LilyPond format:       111,341 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [4], 
@@ -344,7 +344,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9703) LilyPond format:       122,177 function calls
             2.12 (r9724) LilyPond format:       107,486 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [20], 
@@ -364,7 +364,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9703) LilyPond format:       121,497 function calls
             2.12 (r9724) LilyPond format:       106,718 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [100], 
@@ -384,7 +384,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9703) LilyPond format:       125,577 function calls
             2.12 (r9724) LilyPond format:       132,556 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [4], 
@@ -404,7 +404,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9703) LilyPond format:       122,177 function calls
             2.12 (r9724) LilyPond format:       129,166 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [20], 
@@ -424,7 +424,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9703) LilyPond format:       121,497 function calls
             2.12 (r9724) LilyPond format:       128,494 function calls
         '''
-        voice = voicetools.Voice(200 * notetools.Note("c'16"))
+        voice = scoretools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], 
             [100], 

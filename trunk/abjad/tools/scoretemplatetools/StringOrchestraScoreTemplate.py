@@ -4,7 +4,7 @@ from abjad.tools import contexttools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.scoretools import attach
 
@@ -180,7 +180,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 name='Violin Staff Group',
                 )
             for i in range(1, self.violin_count + 1):
-                violin_voice = voicetools.Voice(
+                violin_voice = scoretools.Voice(
                     name='Violin {} Voice'.format(i),
                     )
                 violin_staff = stafftools.Staff(
@@ -200,7 +200,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 name='Viola Staff Group',
                 )
             for i in range(1, self.viola_count + 1):
-                viola_voice = voicetools.Voice(
+                viola_voice = scoretools.Voice(
                     name='Viola {} Voice'.format(i),
                     )
                 viola_staff = stafftools.Staff(
@@ -220,7 +220,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 name='Cello Staff Group',
                 )
             for i in range(1, self.cello_count + 1):
-                cello_voice = voicetools.Voice(
+                cello_voice = scoretools.Voice(
                     name='Cello {} Voice'.format(i),
                     )
                 cello_staff = stafftools.Staff(
@@ -240,7 +240,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 name='Contrabass Staff Group',
                 )
             for i in range(1, self.contrabass_count + 1):
-                contrabass_voice = voicetools.Voice(
+                contrabass_voice = scoretools.Voice(
                     name='Contrabass {} Voice'.format(i),
                     )
                 contrabass_staff = stafftools.Staff(

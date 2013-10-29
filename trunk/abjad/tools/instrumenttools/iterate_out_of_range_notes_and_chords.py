@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import pitchtools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 
 
 def iterate_out_of_range_notes_and_chords(expr):

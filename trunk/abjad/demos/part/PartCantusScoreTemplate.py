@@ -9,7 +9,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
     def __call__(self):
 
         # make bell voice and staff
-        bell_voice = voicetools.Voice(name='Bell Voice')
+        bell_voice = scoretools.Voice(name='Bell Voice')
         bell_staff = stafftools.Staff([bell_voice], name='Bell Staff')
         clef = contexttools.ClefMark('treble')
         attach(clef, bell_staff)
@@ -21,7 +21,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         attach(time_signature, bell_staff)
 
         # make first violin voice and staff
-        first_violin_voice = voicetools.Voice(name='First Violin Voice')
+        first_violin_voice = scoretools.Voice(name='First Violin Voice')
         first_violin_staff = stafftools.Staff(
             [first_violin_voice],
             name='First Violin Staff',
@@ -35,7 +35,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         attach(violin, first_violin_staff)
 
         # make second violin voice and staff
-        second_violin_voice = voicetools.Voice(name='Second Violin Voice')
+        second_violin_voice = scoretools.Voice(name='Second Violin Voice')
         second_violin_staff = stafftools.Staff(
             [second_violin_voice],
             name='Second Violin Staff',
@@ -49,7 +49,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         attach(violin, second_violin_staff)
 
         # make viola voice and staff
-        viola_voice = voicetools.Voice(name='Viola Voice')
+        viola_voice = scoretools.Voice(name='Viola Voice')
         viola_staff = stafftools.Staff([viola_voice], name='Viola Staff')
         clef = contexttools.ClefMark('alto')
         attach(clef, viola_staff)
@@ -57,7 +57,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         attach(viola, viola_staff)
 
         # make cello voice and staff
-        cello_voice = voicetools.Voice(name='Cello Voice')
+        cello_voice = scoretools.Voice(name='Cello Voice')
         cello_staff = stafftools.Staff([cello_voice], name='Cello Staff')
         clef = contexttools.ClefMark('bass')
         attach(clef, cello_staff)
@@ -65,7 +65,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         attach(cello, cello_staff)
 
         # make bass voice and staff
-        bass_voice = voicetools.Voice(name='Bass Voice')
+        bass_voice = scoretools.Voice(name='Bass Voice')
         bass_staff = stafftools.Staff([bass_voice], name='Bass Staff')
         clef = contexttools.ClefMark('bass')
         attach(clef, bass_staff)

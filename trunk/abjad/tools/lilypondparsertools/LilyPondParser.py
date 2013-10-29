@@ -15,7 +15,7 @@ from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import stafftools
-from abjad.tools import voicetools
+from abjad.tools import scoretools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 from abjad.tools.scoretools import attach
@@ -440,7 +440,7 @@ class LilyPondParser(abctools.Parser):
             'Score': scoretools.Score,
             'Staff': stafftools.Staff,
             'StaffGroup': scoretools.StaffGroup,
-            'Voice': voicetools.Voice,
+            'Voice': scoretools.Voice,
         }
         if context in known_contexts:
             context = known_contexts[context]([])

@@ -42,9 +42,9 @@ from abjad.tools.notetools import Note
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.resttools import Rest
 from abjad.tools.scoretools import Score
+from abjad.tools.scoretools import Voice
 from abjad.tools.stafftools import Staff
 from abjad.tools.tuplettools import Tuplet
-from abjad.tools.voicetools import Voice
 from fractions import Fraction
 
 # import some frequently used functions for direct user access

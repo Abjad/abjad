@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_voicetools_Voice___len___01():
+def test_scoretools_Voice___len___01():
     r'''Voice length returns the number of elements in voice.
     '''
 
@@ -10,7 +10,7 @@ def test_voicetools_Voice___len___01():
     assert len(voice) == 0
 
 
-def test_voicetools_Voice___len___02():
+def test_scoretools_Voice___len___02():
     r'''Voice length returns the number of elements in voice.
     '''
 
