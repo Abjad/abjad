@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 
-def p(arg, language='english'):
+def parse(arg, language='english'):
     r'''Parses `arg` as LilyPond string.
 
     ::
 
-        >>> p("{c'4 d'4 e'4 f'4}")
+        >>> parse("{c'4 d'4 e'4 f'4}")
         {c'4, d'4, e'4, f'4}
 
     ::
@@ -27,7 +27,7 @@ def p(arg, language='english'):
 
     ::
 
-        >>> p("{c'8 des' e' fis'}", language='nederlands')
+        >>> parse("{c'8 des' e' fis'}", language='nederlands')
         {c'8, df'8, e'8, fs'8}
 
     Returns Abjad expression.

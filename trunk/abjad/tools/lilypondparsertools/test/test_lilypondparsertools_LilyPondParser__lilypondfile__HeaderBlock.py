@@ -18,7 +18,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     }
     '''
 
-    result = p(string)
+    result = parse(string)
 
     assert isinstance(result, lilypondfiletools.LilyPondFile)
     assert len(result) == 2

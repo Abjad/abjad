@@ -183,7 +183,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> parseable = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
-            >>> measure = p(parseable)
+            >>> measure = parse(parseable)
 
         ..  doctest::
 
@@ -230,7 +230,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> measure = p(parseable)
+            >>> measure = parse(parseable)
             >>> timesignaturetools.establish_metrical_hierarchy(
             ...     measure[:],
             ...     measure,
@@ -259,7 +259,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> measure = p(parseable)
+            >>> measure = parse(parseable)
             >>> timesignaturetools.establish_metrical_hierarchy(
             ...     measure[:],
             ...     measure,
@@ -289,7 +289,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> measure = p(parseable)
+            >>> measure = parse(parseable)
             >>> timesignaturetools.establish_metrical_hierarchy(
             ...     measure[:],
             ...     measure,
@@ -349,7 +349,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> parseable = "abj: | 9/8 c'2 d'2 e'8 |"
-            >>> measure = p(parseable)
+            >>> measure = parse(parseable)
 
         ..  doctest::
         
@@ -394,7 +394,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> measure = p(parseable)
+            >>> measure = parse(parseable)
             >>> timesignaturetools.establish_metrical_hierarchy(
             ...     measure[:],
             ...     measure,
@@ -423,7 +423,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> measure = p(parseable)
+            >>> measure = parse(parseable)
             >>> timesignaturetools.establish_metrical_hierarchy(
             ...     measure[:],
             ...     measure,
@@ -724,7 +724,7 @@ def establish_metrical_hierarchy(
             >>> parseable = "abj: | 4/4 c'16 ~ c'4 d'8. ~ "
             >>> parseable += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
             >>> parseable += "f'4 |"
-            >>> measure = p(parseable)
+            >>> measure = parse(parseable)
 
         ..  doctest::
         

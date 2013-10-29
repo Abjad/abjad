@@ -49,7 +49,7 @@ from fractions import Fraction
 
 # import some frequently used functions for direct user access
 from abjad.tools.iotools import f
-from abjad.tools.iotools import p
+from abjad.tools.iotools import parse
 from abjad.tools.iotools import play
 from abjad.tools.iotools import show
 from abjad.tools.iotools import z

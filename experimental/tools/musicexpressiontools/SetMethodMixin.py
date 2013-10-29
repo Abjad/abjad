@@ -66,7 +66,7 @@ class SetMethodMixin(AbjadObject):
             (tuple, list, datastructuretools.TypedList)):
             return musicexpressiontools.IterablePayloadExpression(expr)
         elif isinstance(expr, (str)):
-            component = iotools.p(expr)
+            component = iotools.parse(expr)
             return musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 [component], start_offset=0)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):

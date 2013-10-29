@@ -4,10 +4,10 @@ from experimental.demos.bach.chorale import es_ist_genug
 
 def build_chorale():
 
-    soprano = p(r'\new Voice = "soprano" {{ {} }}'.format(es_ist_genug['soprano']))
-    alto =    p(r'\new Voice = "alto" {{ {} }}'.format(es_ist_genug['alto']))
-    tenor =   p(r'\new Voice = "tenor" {{ {} }}'.format(es_ist_genug['tenor']))
-    bass =    p(r'\new Voice = "bass" {{ {} }}'.format(es_ist_genug['bass']))
+    soprano = parse(r'\new Voice = "soprano" {{ {} }}'.format(es_ist_genug['soprano']))
+    alto =    parse(r'\new Voice = "alto" {{ {} }}'.format(es_ist_genug['alto']))
+    tenor =   parse(r'\new Voice = "tenor" {{ {} }}'.format(es_ist_genug['tenor']))
+    bass =    parse(r'\new Voice = "bass" {{ {} }}'.format(es_ist_genug['bass']))
 
     treble_staff = Staff([soprano, alto])
     bass_staff = Staff([tenor, bass])
