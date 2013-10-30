@@ -62,9 +62,9 @@ lower Voice will hold the eighth note run. First the eighth notes:
    BeamSpanner(cs'8, d'8, ef'8)
    >>> spannertools.SlurSpanner(notes)
    SlurSpanner(cs'8, d'8, ef'8)
-   >>> contexttools.DynamicMark('f')(notes[0])
+   >>> marktools.DynamicMark('f')(notes[0])
    DynamicMark('f')(cs'8)
-   >>> contexttools.DynamicMark('p')(notes[1])
+   >>> marktools.DynamicMark('p')(notes[1])
    DynamicMark('p')(d'8)
 
 
@@ -137,8 +137,8 @@ will take only a list of pitches:
        notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
        spannertools.BeamSpanner(notes)
        spannertools.SlurSpanner(notes)
-       contexttools.DynamicMark('f')(notes[0])
-       contexttools.DynamicMark('p')(notes[1])
+       marktools.DynamicMark('f')(notes[0])
+       marktools.DynamicMark('p')(notes[1])
    
        # make the lower voice
        lower_voice = scoretools.Voice(notes)
@@ -265,8 +265,8 @@ Finally a function that will generate the whole opening section of the piece
            piano_staff.append(staff)
    
        # set clef and key signature to left hand staff...
-       contexttools.ClefMark('bass')(piano_staff[1])
-       contexttools.KeySignatureMark('b', 'major')(piano_staff[1])
+       marktools.ClefMark('bass')(piano_staff[1])
+       marktools.KeySignatureMark('b', 'major')(piano_staff[1])
    
        # wrap the piano staff in a score, and return
        score = scoretools.Score([piano_staff])

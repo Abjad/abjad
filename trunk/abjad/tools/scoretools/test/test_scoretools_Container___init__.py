@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container___init___01():
+def test_scoretools_Container___init___01():
     r'''Init empty container.
     '''
 
@@ -23,7 +23,7 @@ def test_containertools_Container___init___01():
         )
 
 
-def test_containertools_Container___init___02():
+def test_scoretools_Container___init___02():
     r'''Init container with LilyPond note-entry string.
     '''
 
@@ -50,7 +50,7 @@ def test_containertools_Container___init___02():
         )
 
 
-def test_containertools_Container___init___03():
+def test_scoretools_Container___init___03():
     r'''Init container with RTM-syntax string.
     '''
 
@@ -98,7 +98,7 @@ def test_containertools_Container___init___03():
         '''
         )
 
-def test_containertools_Container___init___04():
+def test_scoretools_Container___init___04():
     r'''Init container with "reduced ly" syntax string.
     '''
 

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container___contains___01():
+def test_scoretools_Container___contains___01():
 
     note = Note("c'4")
     voice = Voice([Note("c'4")])

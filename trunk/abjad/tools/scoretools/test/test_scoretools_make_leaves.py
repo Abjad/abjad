@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_leaftools_make_leaves_01():
+def test_scoretools_make_leaves_01():
     r'''Leaves constructor can create chords, notes and rests simultaneously.
     '''
 
@@ -14,7 +14,7 @@ def test_leaftools_make_leaves_01():
       assert l.written_duration == Duration(1, 4)
 
 
-def test_leaftools_make_leaves_02():
+def test_scoretools_make_leaves_02():
     r'''Leaves constructor can create prolated chords, notes and rests
     simultaneously. Contiguous leaves with the same prolation are
     put together inside a tuplet.
@@ -38,7 +38,7 @@ def test_leaftools_make_leaves_02():
     assert tuplet2[0].written_duration == Duration(1, 4)
 
 
-def test_leaftools_make_leaves_03():
+def test_scoretools_make_leaves_03():
     r'''Leaves constructor can create prolated and unprolated chords,
     notes and rests simultaneously.
     '''
@@ -57,7 +57,7 @@ def test_leaftools_make_leaves_03():
     assert isinstance(tuplet2[0], Rest)
 
 
-def test_leaftools_make_leaves_04():
+def test_scoretools_make_leaves_04():
     r'''Leaves constructor can take an optional tie_rests=False keyword argument.
     '''
 
@@ -73,7 +73,7 @@ def test_leaftools_make_leaves_04():
     assert tie_3 is tie_4
 
 
-def test_leaftools_make_leaves_05():
+def test_scoretools_make_leaves_05():
     r'''Do not tie rests unless specified.
     '''
 
@@ -82,7 +82,7 @@ def test_leaftools_make_leaves_05():
     assert all(len(inspect(x).get_tie_chain()) == 1 for x in leaves)
 
 
-def test_leaftools_make_leaves_06():
+def test_scoretools_make_leaves_06():
     r'''Works with quarter-tone pitch numbers.
     '''
 
@@ -91,7 +91,7 @@ def test_leaftools_make_leaves_06():
         [12, 12.5, 13, 13.5]
 
 
-def test_leaftools_make_leaves_07():
+def test_scoretools_make_leaves_07():
     r'''Works with pitch instances.
     '''
 
@@ -99,7 +99,7 @@ def test_leaftools_make_leaves_07():
     assert [leaf.written_pitch.numbered_pitch._pitch_number for leaf in leaves] == [0, 0, 0]
 
 
-def test_leaftools_make_leaves_08():
+def test_scoretools_make_leaves_08():
     r'''Chords work with pitch-class / octave strings.
     '''
 
@@ -124,7 +124,7 @@ def test_leaftools_make_leaves_08():
         )
 
 
-def test_leaftools_make_leaves_09():
+def test_scoretools_make_leaves_09():
     r'''Notes work with pitch-class / octave strings.
     '''
 
@@ -149,7 +149,7 @@ def test_leaftools_make_leaves_09():
         )
 
 
-def test_leaftools_make_leaves_10():
+def test_scoretools_make_leaves_10():
     r'''Works with space-delimited string of pitch names.
     '''
 

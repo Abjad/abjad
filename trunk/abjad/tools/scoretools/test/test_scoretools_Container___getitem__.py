@@ -3,7 +3,7 @@ import py.test
 from abjad import *
 
 
-def test_containertools_Container___getitem___01():
+def test_scoretools_Container___getitem___01():
     r'''Get one container component with positive index.
     '''
 
@@ -16,7 +16,7 @@ def test_containertools_Container___getitem___01():
     assert voice[3] is notes[3]
 
 
-def test_containertools_Container___getitem___02():
+def test_scoretools_Container___getitem___02():
     r'''Get one container component with negative index.
     '''
 
@@ -29,7 +29,7 @@ def test_containertools_Container___getitem___02():
     assert voice[-4] is notes[0]
 
 
-def test_containertools_Container___getitem___03():
+def test_scoretools_Container___getitem___03():
     r'''Get slice from container.
     '''
 
@@ -42,7 +42,7 @@ def test_containertools_Container___getitem___03():
     assert voice[:4] == notes[:4]
 
 
-def test_containertools_Container___getitem___04():
+def test_scoretools_Container___getitem___04():
     r'''Bad index raises IndexError.
     '''
 
@@ -51,7 +51,7 @@ def test_containertools_Container___getitem___04():
     assert py.test.raises(IndexError, 'voice[99]')
 
 
-def test_containertools_Container___getitem___05():
+def test_scoretools_Container___getitem___05():
     r'''Get one named component in subtree rooted at container.
     '''
 
@@ -62,7 +62,7 @@ def test_containertools_Container___getitem___05():
     assert score['First Violin Voice'].name == 'First Violin Voice'
 
 
-def test_containertools_Container___getitem___06():
+def test_scoretools_Container___getitem___06():
     r'''Bad name raises exception.
     '''
 
@@ -72,7 +72,7 @@ def test_containertools_Container___getitem___06():
     assert py.test.raises(Exception, "score['Foo']")
 
 
-def test_containertools_Container___getitem___07():
+def test_scoretools_Container___getitem___07():
     r'''Duplicate named contexts raise exception.
     '''
 

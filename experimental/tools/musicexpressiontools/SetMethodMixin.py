@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import datastructuretools
 from abjad.tools import iotools
 from abjad.tools import marktools
@@ -135,7 +135,7 @@ class SetMethodMixin(AbjadObject):
         Returns dynamic set expression.
         '''
         from experimental.tools import musicexpressiontools
-        dynamic_mark = contexttools.DynamicMark(source_expression)
+        dynamic_mark = marktools.DynamicMark(source_expression)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=dynamic_mark)
         attribute = 'dynamic'
@@ -233,7 +233,7 @@ class SetMethodMixin(AbjadObject):
         Returns tempo set expression.
         '''
         from experimental.tools import musicexpressiontools
-        source_expression = contexttools.TempoMark(source_expression)
+        source_expression = marktools.TempoMark(source_expression)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'tempo'

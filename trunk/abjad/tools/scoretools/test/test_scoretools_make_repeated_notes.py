@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_make_repeated_notes_01():
+def test_scoretools_make_repeated_notes_01():
     r'''Allow nonassignable durations.
     '''
 

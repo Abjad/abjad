@@ -140,7 +140,7 @@ class PitchSegment(Segment):
 
             >>> notes = named_pitch_segment.make_notes(4, Duration(5, 16))
             >>> staff = Staff(notes)
-            >>> time_signature = contexttools.TimeSignatureMark((5, 4))
+            >>> time_signature = marktools.TimeSignatureMark((5, 4))
             >>> attach(time_signature, staff)
             TimeSignatureMark((5, 4))(Staff{8})
             >>> show(staff) # doctest: +SKIP

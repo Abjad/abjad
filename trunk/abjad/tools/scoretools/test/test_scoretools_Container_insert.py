@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_Container_insert_01():
+def test_scoretools_Container_insert_01():
     r'''Insert component into container at index i.
     Fracture spanners to the left of index i.
     Fracture spanners to the right of index i.
@@ -42,7 +42,7 @@ def test_containertools_Container_insert_01():
         )
 
 
-def test_containertools_Container_insert_02():
+def test_scoretools_Container_insert_02():
     r'''Insert works inside a spanner.
     '''
 
@@ -77,7 +77,7 @@ def test_containertools_Container_insert_02():
 
 
 
-def test_containertools_Container_insert_03():
+def test_scoretools_Container_insert_03():
     r'''Insert works just after a spanner.
     '''
 
@@ -111,7 +111,7 @@ def test_containertools_Container_insert_03():
         )
 
 
-def test_containertools_Container_insert_04():
+def test_scoretools_Container_insert_04():
     r'''Insert works with really big positive values.
     '''
 
@@ -145,7 +145,7 @@ def test_containertools_Container_insert_04():
         )
 
 
-def test_containertools_Container_insert_05():
+def test_scoretools_Container_insert_05():
     r'''Insert works with negative values.
     '''
 
@@ -179,7 +179,7 @@ def test_containertools_Container_insert_05():
         )
 
 
-def test_containertools_Container_insert_06():
+def test_scoretools_Container_insert_06():
     r'''Insert works with really big negative values.
     '''
 
@@ -213,7 +213,7 @@ def test_containertools_Container_insert_06():
         )
 
 
-def test_containertools_Container_insert_07():
+def test_scoretools_Container_insert_07():
     r'''Inserting a note from one container into another container
     changes note parent from first container to second.
     '''
@@ -229,7 +229,7 @@ def test_containertools_Container_insert_07():
     assert note._parent is staff
 
 
-def test_containertools_Container_insert_08():
+def test_scoretools_Container_insert_08():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
@@ -261,7 +261,7 @@ def test_containertools_Container_insert_08():
         )
 
 
-def test_containertools_Container_insert_09():
+def test_scoretools_Container_insert_09():
     r'''Insert component into container at index i.
     Fracture spanners to the left of index i.
     Fracture spanners to the right of index i.
@@ -300,7 +300,7 @@ def test_containertools_Container_insert_09():
         )
 
 
-def test_containertools_Container_insert_10():
+def test_scoretools_Container_insert_10():
     r'''Insert works inside a spanner.
     '''
 
@@ -334,7 +334,7 @@ def test_containertools_Container_insert_10():
         )
 
 
-def test_containertools_Container_insert_11():
+def test_scoretools_Container_insert_11():
     r'''Insert works just after a spanner.
     '''
 
@@ -368,7 +368,7 @@ def test_containertools_Container_insert_11():
         )
 
 
-def test_containertools_Container_insert_12():
+def test_scoretools_Container_insert_12():
     r'''Insert works with really big positive values.
     '''
 
@@ -402,7 +402,7 @@ def test_containertools_Container_insert_12():
         )
 
 
-def test_containertools_Container_insert_13():
+def test_scoretools_Container_insert_13():
     r'''Insert works with negative values.
     '''
 
@@ -436,7 +436,7 @@ def test_containertools_Container_insert_13():
         )
 
 
-def test_containertools_Container_insert_14():
+def test_scoretools_Container_insert_14():
     r'''Insert works with really big negative values.
     '''
 
@@ -470,7 +470,7 @@ def test_containertools_Container_insert_14():
         )
 
 
-def test_containertools_Container_insert_15():
+def test_scoretools_Container_insert_15():
     r'''Inserting a note from one container into another container
     changes note parent from first container to second.
     '''

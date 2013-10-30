@@ -5,7 +5,7 @@ def is_formattable_context_mark_for_component(mark, component):
     r'''Returns True if ContextMark `mark` can format for `component`.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import scoretools
 
     if mark.start_component is None:
@@ -13,7 +13,7 @@ def is_formattable_context_mark_for_component(mark, component):
 
     if isinstance(mark.start_component, scoretools.Measure):
         if mark.start_component is component:
-            if not isinstance(mark, contexttools.TimeSignatureMark):
+            if not isinstance(mark, marktools.TimeSignatureMark):
                 return True
             elif component.always_format_time_signature:
                 return True

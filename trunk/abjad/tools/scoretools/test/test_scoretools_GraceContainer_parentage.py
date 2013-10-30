@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_GraceContainer_parentage_01():
+def test_scoretools_GraceContainer_parentage_01():
     r'''Lone grace container carrier is none.
     '''
 
@@ -10,7 +10,7 @@ def test_containertools_GraceContainer_parentage_01():
     assert gracecontainer._carrier is None
 
 
-def test_containertools_GraceContainer_parentage_02():
+def test_scoretools_GraceContainer_parentage_02():
     r'''Grace containers bound to leaf do have parent.
     '''
 
@@ -21,7 +21,7 @@ def test_containertools_GraceContainer_parentage_02():
     assert note.grace._carrier is note
 
 
-def test_containertools_GraceContainer_parentage_03():
+def test_scoretools_GraceContainer_parentage_03():
     r'''Grace containers bound to leaf have their correct carrier after assignment.
     '''
 

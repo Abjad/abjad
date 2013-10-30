@@ -76,8 +76,8 @@ class Leaf(Component):
 
     @property
     def _duration_in_seconds(self):
-        from abjad.tools import contexttools
-        tempo = self._get_effective_context_mark(contexttools.TempoMark)
+        from abjad.tools import marktools
+        tempo = self._get_effective_context_mark(marktools.TempoMark)
         if tempo is not None and not tempo.is_imprecise:
             result = (self._get_duration() /
                 tempo.duration /

@@ -13,7 +13,7 @@ def suggest_clef_for_named_pitches(pitches):
 
     Returns clef mark.
     '''
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import pitchtools
 
     pitches = pitchtools.list_named_pitches_in_expr(pitches)
@@ -34,6 +34,6 @@ def suggest_clef_for_named_pitches(pitches):
     candidate_steps_above_bass = max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
 
     if candidate_steps_above_bass < candidate_steps_below_treble:
-        return contexttools.ClefMark('bass')
+        return marktools.ClefMark('bass')
     else:
-        return contexttools.ClefMark('treble')
+        return marktools.ClefMark('treble')

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import spannertools
 from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
@@ -17,7 +17,7 @@ class IntermarkedHairpinCheck(Check):
         for hairpin in hairpins:
             if 2 < len(hairpin.leaves):
                 for leaf in hairpin.leaves[1:-1]:
-                    if leaf._get_marks(contexttools.DynamicMark):
+                    if leaf._get_marks(marktools.DynamicMark):
                         violators.append(hairpin)
                         bad += 1
                         break

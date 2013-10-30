@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_NoteHead_is_cautionary_01():
+def test_scoretools_NoteHead_is_cautionary_01():
 
     note_head = scoretools.NoteHead(written_pitch="c'")
     assert note_head.is_cautionary == False

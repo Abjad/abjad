@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
@@ -83,7 +83,7 @@ class StringQuartetScoreTemplate(AbjadObject):
         first_violin_voice = scoretools.Voice(name='First Violin Voice')
         first_violin_staff = scoretools.Staff(
             [first_violin_voice], name='First Violin Staff')
-        clef = contexttools.ClefMark('treble')
+        clef = marktools.ClefMark('treble')
         attach(clef, first_violin_staff)
         violin = instrumenttools.Violin()
         attach(violin, first_violin_staff)
@@ -92,7 +92,7 @@ class StringQuartetScoreTemplate(AbjadObject):
         second_violin_voice = scoretools.Voice(name='Second Violin Voice')
         second_violin_staff = scoretools.Staff(
             [second_violin_voice], name='Second Violin Staff')
-        clef = contexttools.ClefMark('treble')
+        clef = marktools.ClefMark('treble')
         attach(clef, second_violin_staff)
         violin = instrumenttools.Violin()
         attach(violin, second_violin_staff)
@@ -101,7 +101,7 @@ class StringQuartetScoreTemplate(AbjadObject):
         viola_voice = scoretools.Voice(name='Viola Voice')
         viola_staff = scoretools.Staff(
             [viola_voice], name='Viola Staff')
-        clef = contexttools.ClefMark('alto')
+        clef = marktools.ClefMark('alto')
         attach(clef, viola_staff)
         viola = instrumenttools.Viola()
         attach(viola, viola_staff)
@@ -110,7 +110,7 @@ class StringQuartetScoreTemplate(AbjadObject):
         cello_voice = scoretools.Voice(name='Cello Voice')
         cello_staff = scoretools.Staff(
             [cello_voice], name='Cello Staff')
-        clef = contexttools.ClefMark('bass')
+        clef = marktools.ClefMark('bass')
         attach(clef, cello_staff)
         cello = instrumenttools.Cello()
         attach(cello, cello_staff)

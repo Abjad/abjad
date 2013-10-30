@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_Container_is_simultaneous_01():
+def test_scoretools_Container_is_simultaneous_01():
     r'''True when container encloses contents in LilyPond << >> brackets,
     otherwise False.
     '''
@@ -22,7 +22,7 @@ def test_containertools_Container_is_simultaneous_01():
     assert not Voice([]).is_simultaneous
 
 
-def test_containertools_Container_is_simultaneous_02():
+def test_scoretools_Container_is_simultaneous_02():
     r'''True when container encloses contents in LilyPond << >> brackets,
     otherwise False.
     '''
@@ -32,7 +32,7 @@ def test_containertools_Container_is_simultaneous_02():
     assert container.is_simultaneous
 
 
-def test_containertools_Container_is_simultaneous_03():
+def test_scoretools_Container_is_simultaneous_03():
     r'''Container 'simultaneous' is settable.
     '''
 
@@ -43,7 +43,7 @@ def test_containertools_Container_is_simultaneous_03():
     assert container.is_simultaneous
 
 
-def test_containertools_Container_is_simultaneous_04():
+def test_scoretools_Container_is_simultaneous_04():
     r'''A simultaneous container can hold Contexts.
     '''
 
@@ -82,7 +82,7 @@ def test_containertools_Container_is_simultaneous_04():
 
 # simultaneous Errors #
 
-def test_containertools_Container_is_simultaneous_05():
+def test_scoretools_Container_is_simultaneous_05():
     r'''simultaneous containers must contain only Contexts.
     It cannot take leaves.
         '''
@@ -91,7 +91,7 @@ def test_containertools_Container_is_simultaneous_05():
     py.test.raises(AssertionError, 'container.is_simultaneous = True')
 
 
-def test_containertools_Container_is_simultaneous_06():
+def test_scoretools_Container_is_simultaneous_06():
     r'''simultaneous containers must contain only Contexts.
     It cannot take Containers.
     '''

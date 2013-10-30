@@ -4,7 +4,7 @@ from abjad.tools.scoretools.Context import Context
 import py.test
 
 
-def test_contexttools_Context___setattr___01():
+def test_scoretools_Context___setattr___01():
     r'''Slots constrain context attributes.
     '''
 

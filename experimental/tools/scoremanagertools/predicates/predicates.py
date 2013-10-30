@@ -30,8 +30,8 @@ def is_class_name_or_none(expr):
 
 def is_clef_token(expr):
     try:
-        result = contexttools.ClefMark(expr)
-        return isinstance(result, contexttools.ClefMark)
+        result = marktools.ClefMark(expr)
+        return isinstance(result, marktools.ClefMark)
     except:
         return False
 
@@ -47,8 +47,8 @@ def is_duration_token(expr):
 
 def is_dynamic_token(expr):
     try:
-        result = contexttools.DynamicMark(expr)
-        return isinstance(result, contexttools.DynamicMark)
+        result = marktools.DynamicMark(expr)
+        return isinstance(result, marktools.DynamicMark)
     except:
         return False
 
@@ -113,9 +113,9 @@ def is_string_or_none(expr):
 def is_tempo_token(expr):
     try:
         exec('from abjad import *')
-        command = 'tempo_mark = contexttools.TempoMark({})'.format(expr)
+        command = 'tempo_mark = marktools.TempoMark({})'.format(expr)
         exec(command)
-        return isinstance(tempo_mark, contexttools.TempoMark)
+        return isinstance(tempo_mark, marktools.TempoMark)
     except:
         return False
 

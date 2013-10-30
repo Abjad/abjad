@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
@@ -185,7 +185,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     )
                 violin_staff = scoretools.Staff(
                     [violin_voice], name='Violin {} Voice'.format(i))
-                clef = contexttools.ClefMark('treble')
+                clef = marktools.ClefMark('treble')
                 attach(clef, violin_staff)
                 violin = instrumenttools.Violin(
                     instrument_name_markup='Violin {}'.format(i),
@@ -205,7 +205,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     )
                 viola_staff = scoretools.Staff(
                     [viola_voice], name='Viola {} Voice'.format(i))
-                clef = contexttools.ClefMark('alto')
+                clef = marktools.ClefMark('alto')
                 attach(clef, viola_staff)
                 viola = instrumenttools.Viola(
                     instrument_name_markup='Viola {}'.format(i),
@@ -225,7 +225,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     )
                 cello_staff = scoretools.Staff(
                     [cello_voice], name='Cello {} Voice'.format(i))
-                clef = contexttools.ClefMark('bass')
+                clef = marktools.ClefMark('bass')
                 attach(clef, cello_staff)
                 cello = instrumenttools.Cello(
                     instrument_name_markup='Cello {}'.format(i),
@@ -245,7 +245,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                     )
                 contrabass_staff = scoretools.Staff(
                     [contrabass_voice], name='Contrabass {} Voice'.format(i))
-                clef = contexttools.ClefMark('bass_8')
+                clef = marktools.ClefMark('bass_8')
                 attach(clef, contrabass_staff)
                 contrabass = instrumenttools.Contrabass(
                     instrument_name_markup='Contrabass {}'.format(i),

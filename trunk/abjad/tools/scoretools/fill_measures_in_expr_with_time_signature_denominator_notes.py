@@ -38,7 +38,7 @@ def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=N
 
     Returns none.
     '''
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import iterationtools
     from abjad.tools import scoretools
 

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -48,9 +48,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
-            dynamic = contexttools.DynamicMark('p')
+            dynamic = marktools.DynamicMark('p')
             attach(dynamic, part[0])
-            dynamic = contexttools.DynamicMark('r')
+            dynamic = marktools.DynamicMark('r')
             attach(dynamic, part[-1])
         return voice
 
@@ -72,9 +72,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
-            dynamic = contexttools.DynamicMark('p')
+            dynamic = marktools.DynamicMark('p')
             attach(dynamic, part[0])
-            dynamic = contexttools.DynamicMark('r')
+            dynamic = marktools.DynamicMark('r')
             attach(dynamic, part[-1])
         return voice
 
@@ -96,9 +96,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
-            dynamic = contexttools.DynamicMark('p')
+            dynamic = marktools.DynamicMark('p')
             attach(dynamic, part[0])
-            dynamic = contexttools.DynamicMark('r')
+            dynamic = marktools.DynamicMark('r')
             attach(dynamic, part[-1])
         return voice
 
@@ -121,7 +121,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20], 
             cyclic=True,
             ):
-            dynamic = contexttools.DynamicMark('f')
+            dynamic = marktools.DynamicMark('f')
             attach(dynamic, part[0])
         return staff
 
@@ -144,7 +144,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4], 
             cyclic=True,
             ):
-            dynamic = contexttools.DynamicMark('f')
+            dynamic = marktools.DynamicMark('f')
             attach(dynamic, part[0])
         return staff
 
@@ -163,7 +163,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         staff = scoretools.Staff(200 * scoretools.Note("c'16"))
         for note in staff.select_leaves():
-            dynamic = contexttools.DynamicMark('f')
+            dynamic = marktools.DynamicMark('f')
             attach(dynamic, note)
         return staff
 

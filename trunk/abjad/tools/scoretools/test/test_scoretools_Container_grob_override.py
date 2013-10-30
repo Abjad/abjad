@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container_grob_override_01():
+def test_scoretools_Container_grob_override_01():
     r'''Noncontext containers bracket grob overrides at opening and closing.
     '''
 

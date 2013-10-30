@@ -7,7 +7,7 @@ def get_context_mark_format_pieces(mark):
     Returns list.
     '''
 
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import scoretools
 
     #print mark, mark.lilypond_format
@@ -22,7 +22,7 @@ def get_context_mark_format_pieces(mark):
     # currently used only in metric grid formatting
     if mark.effective_context is not None or \
         getattr(mark, '_is_cosmetic_mark', False) or \
-        (isinstance(mark, contexttools.TimeSignatureMark) and
+        (isinstance(mark, marktools.TimeSignatureMark) and
         isinstance(mark.start_component, scoretools.Measure)):
         return addenda
         #result.extend(addenda)

@@ -23,13 +23,13 @@ These five type of functions are now implemented for the following marks::
 
 The same type of functions are likewise implemented for the following context marks::
 
-    contexttools.ClefMark
-    contexttools.DynamicMark
-    contexttools.InstrumentMark
-    contexttools.KeySignatureMark
-    contexttools.StaffChangeMark
-    contexttools.TempoMark
-    contexttools.TimeSignatureMark
+    marktools.ClefMark
+    marktools.DynamicMark
+    marktools.InstrumentMark
+    marktools.KeySignatureMark
+    marktools.StaffChangeMark
+    marktools.TempoMark
+    marktools.TimeSignatureMark
 
 * Extended ``Container.extend()`` to allow for LilyPond input strings. You can now say ``container.extend("c'4 d'4 e'4 f'4")``.
 
@@ -45,4 +45,4 @@ The same type of functions are likewise implemented for the following context ma
 * Renamed ``Mark.attach_mark()`` to ``Mark.attach()``.
 * Renamed ``Mark.detach_mark()`` to ``Mark.detach()``.
 * Renamed ``marktools.Comment`` to ``marktools.LilyPondComment``. This matches ``marktools.LilyPondCommandMark``.
-* Removed ``contexttools.TimeSignatureMark(3, 8)`` initialization. You must now say ``contexttools.TimeSignatureMark((3, 8))`` instead. This parallels the initialization syntax for rests, skips and measures.
+* Removed ``marktools.TimeSignatureMark(3, 8)`` initialization. You must now say ``marktools.TimeSignatureMark((3, 8))`` instead. This parallels the initialization syntax for rests, skips and measures.

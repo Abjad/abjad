@@ -15,7 +15,7 @@ class SpacingIndication(AbjadObject):
 
     ::
 
-        >>> tempo = contexttools.TempoMark(Duration(1, 8), 44)
+        >>> tempo = marktools.TempoMark(Duration(1, 8), 44)
         >>> indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
 
     ::
@@ -50,13 +50,13 @@ class SpacingIndication(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        from abjad.tools import contexttools
+        from abjad.tools import marktools
         if len(args) == 1 and isinstance(args[0], type(self)):
             self._tempo_indication = args[0].tempo_indication
             self._proportional_notation_duration = \
                 args[0].proportional_notation_duration
         elif len(args) == 2:
-            tempo_indication = contexttools.TempoMark(args[0])
+            tempo_indication = marktools.TempoMark(args[0])
             proportional_notation_duration = durationtools.Duration(args[1])
             self._tempo_indication = tempo_indication
             self._proportional_notation_duration = \

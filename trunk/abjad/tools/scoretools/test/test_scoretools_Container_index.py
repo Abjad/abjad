@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container_index_01():
+def test_scoretools_Container_index_01():
     r'''Elements that compare equal return different indices in container.
     '''
 

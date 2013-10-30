@@ -8,8 +8,8 @@ def test_scoretools_Measure_time_signature_update_01():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     measure.pop()
-    inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()
-    time_signature = contexttools.TimeSignatureMark((3, 8))
+    inspect(measure).get_mark(marktools.TimeSignatureMark).detach()
+    time_signature = marktools.TimeSignatureMark((3, 8))
     attach(time_signature, measure)
 
     assert testtools.compare(

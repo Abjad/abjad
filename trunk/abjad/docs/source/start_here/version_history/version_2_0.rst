@@ -13,16 +13,16 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
     scoretools/        intervaltreetools/ scoretools/      schemetools/       threadtools/
     scoretools/    iotools/           metertools/        scoretools/        tietools/
     scoretools/    layouttools/       musicxmltools/     seqtools/          tonalanalysistools/
-    contexttools/      scoretools/         scoretools/         sievetools/        scoretools/
+    marktools/      scoretools/         scoretools/         sievetools/        scoretools/
     durtools/          lilyfiletools/     pitcharraytools/   scoretools/         verticalitytools/
     gracetools/        marktools/         pitchtools/        spannertools/      scoretools/
     importtools/       markuptools/       quantizationtools/ scoretools/
 
 * The name of almost every function in the public API has been changed to better indication what the function does. While this has the effect of making Abjad 2.0 largely non-backwards compatible with code written in Abjad 1.x, the longer and much more explicit function names in Abjad 2.0 make code used to structure complex scores dramatically easier to maintain and understand.
 
-* The ``contexttools``, ``instrumenttools``, ``intervaltreetools``, ``lilyfiletools``, ``marktools``, ``pitcharraytools``, ``quantizationtools``, ``sievetools``, ``tonalanalysistools`` and ``verticalitytools`` packages are completely new.
+* The ``marktools``, ``instrumenttools``, ``intervaltreetools``, ``lilyfiletools``, ``marktools``, ``pitcharraytools``, ``quantizationtools``, ``sievetools``, ``tonalanalysistools`` and ``verticalitytools`` packages are completely new.
 
-* The classes implemented in the ``contexttools`` and ``marktools`` packages provide an object-oriented interfaces to clefs, time signatures, key signatures, articulations, tempo marks and other symbols stuck to the outside of the hierarchical score tree. The classes implemented in ``contexttools`` and ``marktools`` model information outside the score tree much the way that the classes implemented in ``spannertools`` implement object-oriented interfaces to beams, brackets, hairpins, glissandi and other line-like symbols.
+* The classes implemented in the ``marktools`` and ``marktools`` packages provide an object-oriented interfaces to clefs, time signatures, key signatures, articulations, tempo marks and other symbols stuck to the outside of the hierarchical score tree. The classes implemented in ``marktools`` and ``marktools`` model information outside the score tree much the way that the classes implemented in ``spannertools`` implement object-oriented interfaces to beams, brackets, hairpins, glissandi and other line-like symbols.
 
 * The ``instrumenttools`` package provides an object-oriented model of most of the conventional instruments of the orchestra.
 

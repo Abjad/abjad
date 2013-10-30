@@ -3,14 +3,14 @@ from abjad import *
 import py.test
 
 
-def test_notetools_Note_written_pitch_indication_is_nonsemantic_01():
+def test_scoretools_Note_written_pitch_indication_is_nonsemantic_01():
 
     note = Note("c'4")
 
     assert not note.written_pitch_indication_is_nonsemantic
 
 
-def test_notetools_Note_written_pitch_indication_is_nonsemantic_02():
+def test_scoretools_Note_written_pitch_indication_is_nonsemantic_02():
 
     note = Note("c'4")
     note.written_pitch_indication_is_nonsemantic = True
@@ -19,7 +19,7 @@ def test_notetools_Note_written_pitch_indication_is_nonsemantic_02():
     assert not note.written_pitch_indication_is_at_sounding_pitch
 
 
-def test_notetools_Note_written_pitch_indication_is_nonsemantic_03():
+def test_scoretools_Note_written_pitch_indication_is_nonsemantic_03():
 
     note = Note("c'4")
 

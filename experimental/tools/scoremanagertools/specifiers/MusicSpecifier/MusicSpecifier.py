@@ -12,7 +12,7 @@ class MusicSpecifier(Specifier, TypedList):
 
     storage_module_import_statements = [
         'from abjad import *',
-        'from abjad.tools import contexttools',
+        'from abjad.tools import marktools',
         'from abjad.tools import durationtools',
         'from experimental.tools.scoremanagertools import specifiers',
         ]

@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_GraceContainer_01():
+def test_scoretools_GraceContainer_01():
     r'''Grace music is a container.
     '''
 
@@ -31,7 +31,7 @@ def test_containertools_GraceContainer_01():
     '''
 
 
-def test_containertools_GraceContainer_02():
+def test_scoretools_GraceContainer_02():
     r'''GraceContainer.kind is managed attribute.
         GraceContainer.kind knows about "after", "grace",
         "acciaccatura", "appoggiatura"'''
@@ -48,7 +48,7 @@ def test_containertools_GraceContainer_02():
     assert py.test.raises(AssertionError, 'gracecontainer.kind = "blah"')
 
 
-def test_containertools_GraceContainer_03():
+def test_scoretools_GraceContainer_03():
     r'''Grace formats correctly as grace.
     '''
 
@@ -74,7 +74,7 @@ def test_containertools_GraceContainer_03():
     '''
 
 
-def test_containertools_GraceContainer_04():
+def test_scoretools_GraceContainer_04():
     r'''Grace formats correctly as acciaccatura.
     '''
 
@@ -100,7 +100,7 @@ def test_containertools_GraceContainer_04():
     '''
 
 
-def test_containertools_GraceContainer_05():
+def test_scoretools_GraceContainer_05():
     r'''Grace formats correctly as appoggiatura.
     '''
 
@@ -126,7 +126,7 @@ def test_containertools_GraceContainer_05():
     '''
 
 
-def test_containertools_GraceContainer_06():
+def test_scoretools_GraceContainer_06():
     r'''Grace formats correctly as after grace.
     '''
 
@@ -152,7 +152,7 @@ def test_containertools_GraceContainer_06():
     '''
 
 
-def test_containertools_GraceContainer_07():
+def test_scoretools_GraceContainer_07():
     r'''Grace containers can be appended.
     '''
 
@@ -163,7 +163,7 @@ def test_containertools_GraceContainer_07():
     assert gracecontainer[-1] is note
 
 
-def test_containertools_GraceContainer_08():
+def test_scoretools_GraceContainer_08():
     r'''Grace containers can be extended.
     '''
 

@@ -3,7 +3,7 @@ from abjad import *
 import py
 
 
-def test_leaftools_Leaf__split_by_duration_01():
+def test_scoretools_Leaf__split_by_duration_01():
     r'''Split note into assignable notes.
     Don't fracture spanners. Don't tie split notes.
     '''
@@ -42,7 +42,7 @@ def test_leaftools_Leaf__split_by_duration_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_02():
+def test_scoretools_Leaf__split_by_duration_02():
     r'''Split note into assignable notes.
     Fracture spanners. But don't tie split notes.
     '''
@@ -81,7 +81,7 @@ def test_leaftools_Leaf__split_by_duration_02():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_03():
+def test_scoretools_Leaf__split_by_duration_03():
     r'''Split note into assignable notes.
     Don't fracture spanners. But do tie split notes.
     '''
@@ -120,7 +120,7 @@ def test_leaftools_Leaf__split_by_duration_03():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_04():
+def test_scoretools_Leaf__split_by_duration_04():
     r'''Split note into assignable notes.
     Fracture spanners and tie split notes.
     '''
@@ -148,7 +148,7 @@ def test_leaftools_Leaf__split_by_duration_04():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_05():
+def test_scoretools_Leaf__split_by_duration_05():
     r'''Split note into tuplet monads.
     Don't fracture spanners. Don't tie split notes.
     '''
@@ -179,7 +179,7 @@ def test_leaftools_Leaf__split_by_duration_05():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_06():
+def test_scoretools_Leaf__split_by_duration_06():
     r'''Notehead-assignable duration produces two notes.
     This test comes from a container-crossing spanner bug.
     '''
@@ -225,7 +225,7 @@ def test_leaftools_Leaf__split_by_duration_06():
     assert inspect(voice).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_07():
+def test_scoretools_Leaf__split_by_duration_07():
     r'''Split duration equal to zero produces no change.
     '''
 
@@ -241,7 +241,7 @@ def test_leaftools_Leaf__split_by_duration_07():
     assert right[0].written_duration == Duration(1, 4)
 
 
-def test_leaftools_Leaf__split_by_duration_08():
+def test_scoretools_Leaf__split_by_duration_08():
     r'''Leaf duration less than split duration produces no change.
     '''
 
@@ -257,7 +257,7 @@ def test_leaftools_Leaf__split_by_duration_08():
     assert len(right) == 0
 
 
-def test_leaftools_Leaf__split_by_duration_09():
+def test_scoretools_Leaf__split_by_duration_09():
     r'''Split returns two lists of zero or more leaves.
     '''
 
@@ -282,7 +282,7 @@ def test_leaftools_Leaf__split_by_duration_09():
     assert len(inspect(halves[1][0]).get_tie_chain()) == 1
 
 
-def test_leaftools_Leaf__split_by_duration_10():
+def test_scoretools_Leaf__split_by_duration_10():
     r'''Split returns two lists of zero or more.
     '''
 
@@ -299,7 +299,7 @@ def test_leaftools_Leaf__split_by_duration_10():
     assert halves[1][0].written_duration == Duration(3, 16)
 
 
-def test_leaftools_Leaf__split_by_duration_11():
+def test_scoretools_Leaf__split_by_duration_11():
     r'''Nonassignable split duration with power-of-two denominator
     produces two lists.
     Left list contains two notes tied together.
@@ -328,7 +328,7 @@ def test_leaftools_Leaf__split_by_duration_11():
     assert len(inspect(halves[1][0]).get_tie_chain()) == 1
 
 
-def test_leaftools_Leaf__split_by_duration_12():
+def test_scoretools_Leaf__split_by_duration_12():
     r'''Lone spanned Leaf results in two spanned leaves.
     '''
 
@@ -346,7 +346,7 @@ def test_leaftools_Leaf__split_by_duration_12():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_13():
+def test_scoretools_Leaf__split_by_duration_13():
     r'''Spanners are unaffected by leaf split.
     '''
 
@@ -367,7 +367,7 @@ def test_leaftools_Leaf__split_by_duration_13():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_14():
+def test_scoretools_Leaf__split_by_duration_14():
     r'''Split returns three leaves, two are tied.
     Spanner is shared by all 3 leaves.
     '''
@@ -387,7 +387,7 @@ def test_leaftools_Leaf__split_by_duration_14():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_15():
+def test_scoretools_Leaf__split_by_duration_15():
     r'''Split leaf is not tied again when a container containing it 
     is already tie-spanned.
     '''
@@ -405,7 +405,7 @@ def test_leaftools_Leaf__split_by_duration_15():
     assert inspect(container).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_16():
+def test_scoretools_Leaf__split_by_duration_16():
     r'''Split leaf is not tied again when a container containing it 
     is already tie-spanned.
     '''
@@ -425,7 +425,7 @@ def test_leaftools_Leaf__split_by_duration_16():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__split_by_duration_17():
+def test_scoretools_Leaf__split_by_duration_17():
     r'''After grace notes are removed from first leaf in bipartition.
     '''
 
@@ -437,7 +437,7 @@ def test_leaftools_Leaf__split_by_duration_17():
     assert len(halves[1][0].after_grace) == 1
 
 
-def test_leaftools_Leaf__split_by_duration_18():
+def test_scoretools_Leaf__split_by_duration_18():
     r'''After grace notes are removed from first tied leaves in bipartition.
     '''
 
@@ -452,7 +452,7 @@ def test_leaftools_Leaf__split_by_duration_18():
     assert len(halves[1][0].after_grace) == 1
 
 
-def test_leaftools_Leaf__split_by_duration_19():
+def test_scoretools_Leaf__split_by_duration_19():
     r'''Grace notes are removed from second leaf in bipartition.
     '''
 

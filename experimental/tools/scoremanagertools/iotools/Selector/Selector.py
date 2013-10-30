@@ -143,9 +143,9 @@ class Selector(ScoreManagerObject):
     def make_clef_name_selector(
         session=None, 
         ):
-        from abjad.tools import contexttools
+        from abjad.tools import marktools
         selector = Selector(session=session)
-        selector.items = contexttools.ClefMark.list_clef_names()
+        selector.items = marktools.ClefMark.list_clef_names()
         return selector
 
     @staticmethod

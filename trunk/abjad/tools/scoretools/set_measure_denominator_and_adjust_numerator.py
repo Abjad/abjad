@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 
@@ -52,8 +52,8 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         old_time_signature_pair = (old_time_signature.numerator, old_time_signature.denominator)
         new_time_signature = mathtools.NonreducedFraction(old_time_signature_pair)
         new_time_signature = new_time_signature.with_denominator(denominator)
-        new_time_signature = contexttools.TimeSignatureMark(new_time_signature)
-        for mark in measure._get_marks(contexttools.TimeSignatureMark):
+        new_time_signature = marktools.TimeSignatureMark(new_time_signature)
+        for mark in measure._get_marks(marktools.TimeSignatureMark):
             mark.detach()
         attach(new_time_signature, measure)
 

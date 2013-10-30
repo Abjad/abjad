@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_Note_add_artificial_harmonic_01():
+def test_scoretools_Note_add_artificial_harmonic_01():
     r'''Adds a perfect fourth by default.
     '''
 
@@ -28,7 +28,7 @@ def test_notetools_Note_add_artificial_harmonic_01():
     '''
 
 
-def test_notetools_Note_add_artificial_harmonic_02():
+def test_scoretools_Note_add_artificial_harmonic_02():
     r'''Specify other diatonic intervals explicitly.
     '''
 
@@ -55,7 +55,7 @@ def test_notetools_Note_add_artificial_harmonic_02():
     '''
 
 
-def test_notetools_Note_add_artificial_harmonic_03():
+def test_scoretools_Note_add_artificial_harmonic_03():
     r'''Works in staves.
     '''
 

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 
@@ -54,14 +54,14 @@ def duration_and_possible_denominators_to_time_signature(
             candidate_pair = \
                 nonreduced_fraction.with_denominator(desired_denominator)
             if candidate_pair.denominator == desired_denominator:
-                return contexttools.TimeSignatureMark(candidate_pair)
+                return marktools.TimeSignatureMark(candidate_pair)
     if factor is not None:
         if factor in mathtools.factors(duration.denominator):
-            return contexttools.TimeSignatureMark(duration)
+            return marktools.TimeSignatureMark(duration)
         else:
             time_signature_numerator = factor * duration.numerator
             time_signature_denominator = factor * duration.denominator
-            return contexttools.TimeSignatureMark(
+            return marktools.TimeSignatureMark(
                 (time_signature_numerator, time_signature_denominator))
     else:
-        return contexttools.TimeSignatureMark(duration)
+        return marktools.TimeSignatureMark(duration)

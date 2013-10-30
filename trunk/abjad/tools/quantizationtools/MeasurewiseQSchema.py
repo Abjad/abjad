@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchema import QSchema
 
@@ -26,11 +26,11 @@ class MeasurewiseQSchema(QSchema):
                     11: None,
                     13: None}
                 ),
-            tempo=contexttools.TempoMark(
+            tempo=marktools.TempoMark(
                 durationtools.Duration(1, 4),
                 60
                 ),
-            time_signature=contexttools.TimeSignatureMark(
+            time_signature=marktools.TimeSignatureMark(
                 (4, 4)
                 ),
             use_full_measure=False,
@@ -49,8 +49,8 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
-        >>> time_signature = contexttools.TimeSignatureMark((3, 4))
-        >>> tempo = contexttools.TempoMark((1, 4), 54)
+        >>> time_signature = marktools.TimeSignatureMark((3, 4))
+        >>> tempo = marktools.TempoMark((1, 4), 54)
         >>> use_full_measure = True
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
         ...     search_tree=search_tree,
@@ -152,9 +152,9 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> a = {'time_signature': contexttools.TimeSignatureMark((7, 32))}
-        >>> b = {'time_signature': contexttools.TimeSignatureMark((3, 4))}
-        >>> c = {'time_signature': contexttools.TimeSignatureMark((5, 8))}
+        >>> a = {'time_signature': marktools.TimeSignatureMark((7, 32))}
+        >>> b = {'time_signature': marktools.TimeSignatureMark((3, 4))}
+        >>> c = {'time_signature': marktools.TimeSignatureMark((5, 8))}
 
     ::
 
@@ -213,9 +213,9 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
-        ...     (2, {'time_signature': contexttools.TimeSignatureMark((7, 32))}),
-        ...     (4, {'time_signature': contexttools.TimeSignatureMark((3, 4))}),
-        ...     (6, {'time_signature': contexttools.TimeSignatureMark((5, 8))}),
+        ...     (2, {'time_signature': marktools.TimeSignatureMark((7, 32))}),
+        ...     (4, {'time_signature': marktools.TimeSignatureMark((3, 4))}),
+        ...     (6, {'time_signature': marktools.TimeSignatureMark((5, 8))}),
         ...     )
 
     Return ``MeasurewiseQSchema`` instance.
@@ -242,11 +242,11 @@ class MeasurewiseQSchema(QSchema):
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 
-        self._tempo = contexttools.TempoMark(
+        self._tempo = marktools.TempoMark(
             kwargs.get('tempo',
                 ((1, 4), 60)))
 
-        self._time_signature = contexttools.TimeSignatureMark(
+        self._time_signature = marktools.TimeSignatureMark(
             kwargs.get('time_signature',
                 (4, 4)))
 

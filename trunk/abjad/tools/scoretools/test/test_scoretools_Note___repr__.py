@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_Note___repr___01():
+def test_scoretools_Note___repr___01():
     r'''Note repr is evaluable.
     '''
 

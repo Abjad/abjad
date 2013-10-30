@@ -63,7 +63,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
     Returns measures iterated.
     '''
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import scoretools
     from abjad.tools.scoretools import attach
 
@@ -97,9 +97,9 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         # otherwise restore current measure and advance to next measure
         else:
             current_time_signature = \
-                contexttools.TimeSignatureMark(current_time_signature)
+                marktools.TimeSignatureMark(current_time_signature)
             for mark in current_measure._get_marks(
-                contexttools.TimeSignatureMark):
+                marktools.TimeSignatureMark):
                 mark.detach()
             attach(current_time_signature, current_measure)
             scoretools.append_spacer_skips_to_underfull_measures_in_expr(
@@ -116,8 +116,8 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
     # restore last iterated measure
     current_time_signature = \
-        contexttools.TimeSignatureMark(current_time_signature)
-    for mark in current_measure._get_marks(contexttools.TimeSignatureMark):
+        marktools.TimeSignatureMark(current_time_signature)
+    for mark in current_measure._get_marks(marktools.TimeSignatureMark):
         mark.detach()
     attach(current_time_signature, current_measure)
     scoretools.append_spacer_skips_to_underfull_measures_in_expr(

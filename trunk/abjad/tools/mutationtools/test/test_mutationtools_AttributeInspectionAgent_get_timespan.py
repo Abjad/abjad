@@ -298,7 +298,7 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_26():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = contexttools.TempoMark(Duration(1, 8), 48, target_context=Staff)
+    tempo = marktools.TempoMark(Duration(1, 8), 48, target_context=Staff)
     attach(tempo, staff)
 
     assert testtools.compare(

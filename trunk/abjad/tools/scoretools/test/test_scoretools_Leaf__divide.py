@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_leaftools_Leaf__divide_01():
+def test_scoretools_Leaf__divide_01():
     r'''Divide chord at D4.
     '''
 
@@ -25,7 +25,7 @@ def test_leaftools_Leaf__divide_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__divide_02():
+def test_scoretools_Leaf__divide_02():
     r'''Divide chord at Eb4.
     '''
 
@@ -48,7 +48,7 @@ def test_leaftools_Leaf__divide_02():
     assert inspect(staff).is_well_formed()
 
 
-def test_leaftools_Leaf__divide_03():
+def test_scoretools_Leaf__divide_03():
     r'''Divide chord at E4.
     '''
 

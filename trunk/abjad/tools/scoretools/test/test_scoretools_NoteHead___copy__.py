@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_notetools_NoteHead___copy___01():
+def test_scoretools_NoteHead___copy___01():
 
     note_head_1 = scoretools.NoteHead("cs''")
     note_head_1.is_cautionary = True

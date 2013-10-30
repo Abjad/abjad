@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container__split_by_duration_01():
+def test_scoretools_Container__split_by_duration_01():
 
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
@@ -58,7 +58,7 @@ def test_containertools_Container__split_by_duration_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_02():
+def test_scoretools_Container__split_by_duration_02():
 
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
@@ -118,7 +118,7 @@ def test_containertools_Container__split_by_duration_02():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_03():
+def test_scoretools_Container__split_by_duration_03():
     '''Split staff. Resulting halves are not well-formed.
     '''
 
@@ -189,7 +189,7 @@ def test_containertools_Container__split_by_duration_03():
     assert not inspect(halves[1][0]).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_04():
+def test_scoretools_Container__split_by_duration_04():
     r'''Split one leaf in score.
     Do not fracture spanners. But do tie after split.
     '''
@@ -248,7 +248,7 @@ def test_containertools_Container__split_by_duration_04():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_05():
+def test_scoretools_Container__split_by_duration_05():
     r'''Split one measure in score.
     Do not fracture spanners. But do add tie after split.
     '''
@@ -311,7 +311,7 @@ def test_containertools_Container__split_by_duration_05():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_06():
+def test_scoretools_Container__split_by_duration_06():
     r'''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do not fracture spanners and do not tie leaves after split.
@@ -382,7 +382,7 @@ def test_containertools_Container__split_by_duration_06():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_07():
+def test_scoretools_Container__split_by_duration_07():
     r'''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
@@ -451,7 +451,7 @@ def test_containertools_Container__split_by_duration_07():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_08():
+def test_scoretools_Container__split_by_duration_08():
     r'''Split leaf in score and fracture spanners.
     '''
 
@@ -509,7 +509,7 @@ def test_containertools_Container__split_by_duration_08():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_09():
+def test_scoretools_Container__split_by_duration_09():
     r'''Split measure in score and fracture spanners.
     '''
 
@@ -571,7 +571,7 @@ def test_containertools_Container__split_by_duration_09():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_10():
+def test_scoretools_Container__split_by_duration_10():
     r'''Split staff outside of score and fracture spanners.
     '''
 
@@ -639,7 +639,7 @@ def test_containertools_Container__split_by_duration_10():
         )
 
 
-def test_containertools_Container__split_by_duration_11():
+def test_scoretools_Container__split_by_duration_11():
     r'''Split leaf in score at nonzero index.
     Fracture spanners.
     Test comes from a bug fix.
@@ -699,7 +699,7 @@ def test_containertools_Container__split_by_duration_11():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_12():
+def test_scoretools_Container__split_by_duration_12():
     r'''Split container over leaf at nonzero index.
     Fracture spanners.
     Test results from bug fix.
@@ -763,7 +763,7 @@ def test_containertools_Container__split_by_duration_12():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_13():
+def test_scoretools_Container__split_by_duration_13():
     r'''Split container between leaves and fracture spanners.
     '''
 
@@ -822,7 +822,7 @@ def test_containertools_Container__split_by_duration_13():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_14():
+def test_scoretools_Container__split_by_duration_14():
     r'''Split leaf outside of score and fracture spanners.
     '''
 
@@ -844,7 +844,7 @@ def test_containertools_Container__split_by_duration_14():
     assert inspect(halves[1][0]).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_15():
+def test_scoretools_Container__split_by_duration_15():
     r'''Split leaf in score and fracture spanners.
     Tie leaves after split.
     '''
@@ -903,7 +903,7 @@ def test_containertools_Container__split_by_duration_15():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_16():
+def test_scoretools_Container__split_by_duration_16():
     r'''Split measure in score and fracture spanners.
     Tie leaves after split.
     '''
@@ -966,7 +966,7 @@ def test_containertools_Container__split_by_duration_16():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_17():
+def test_scoretools_Container__split_by_duration_17():
     r'''Split in-score measure with power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Do fracture spanners but do not tie leaves after split.
@@ -1035,7 +1035,7 @@ def test_containertools_Container__split_by_duration_17():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_18():
+def test_scoretools_Container__split_by_duration_18():
     r'''Split in-score measure with power-of-two time signature denominator at
     split offset without power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
@@ -1104,7 +1104,7 @@ def test_containertools_Container__split_by_duration_18():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_19():
+def test_scoretools_Container__split_by_duration_19():
     r'''Split measure with power-of-two time signature denominator at
     split offset without power-of-two denominator.
     Do fracture spanners but do not tie across split locus.
@@ -1179,7 +1179,7 @@ def test_containertools_Container__split_by_duration_19():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_20():
+def test_scoretools_Container__split_by_duration_20():
     r'''Split leaf with LilyPond multiplier.
     Split at split offset with power-of-two denominator.
     Halves carry original written duration.
@@ -1204,7 +1204,7 @@ def test_containertools_Container__split_by_duration_20():
     assert inspect(halves[1][0]).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_21():
+def test_scoretools_Container__split_by_duration_21():
     r'''Split leaf with LilyPond multiplier.
     Split at offset without power-of-two denominator.
     Halves carry original written duration.
@@ -1229,7 +1229,7 @@ def test_containertools_Container__split_by_duration_21():
     assert inspect(halves[1][0]).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_22():
+def test_scoretools_Container__split_by_duration_22():
     r'''Split measure with power-of-two time signature denominator 
     with multiplied leaes. Split at between-leaf offset with 
     power-of-two denominator. Leaves remain unaltered.
@@ -1292,7 +1292,7 @@ def test_containertools_Container__split_by_duration_22():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_23():
+def test_scoretools_Container__split_by_duration_23():
     r'''Split measure with power-of-two time signature denominator 
     with multiplied leaves. Split at through-leaf offset with 
     power-of-two denominator. Leaf written durations stay the same 
@@ -1359,7 +1359,7 @@ def test_containertools_Container__split_by_duration_23():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_24():
+def test_scoretools_Container__split_by_duration_24():
     r'''Split measure with power-of-two time signature denominator 
     with multiplied leaves. Split at through-leaf offset without 
     power-of-two denominator. Leaf written durations adjust for change 
@@ -1431,7 +1431,7 @@ def test_containertools_Container__split_by_duration_24():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_25():
+def test_scoretools_Container__split_by_duration_25():
     r'''Split measure with power-of-two time signature denominator 
     with multiplied leaves. Time signature carries numerator that 
     necessitates ties. Split at through-leaf offset without 
@@ -1480,7 +1480,7 @@ def test_containertools_Container__split_by_duration_25():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_26():
+def test_scoretools_Container__split_by_duration_26():
     r'''Split measure without power-of-two time signature denominator
     at split offset without power-of-two denominator.
     Measure multiplier and split offset multiplier match.
@@ -1549,7 +1549,7 @@ def test_containertools_Container__split_by_duration_26():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container__split_by_duration_27():
+def test_scoretools_Container__split_by_duration_27():
     r'''Make sure tie (re)application happens only where sensible.
     '''
 

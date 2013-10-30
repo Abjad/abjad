@@ -8,10 +8,10 @@ def append_spacer_skip_to_underfull_measure(measure):
 
         >>> measure = Measure((4, 12), "c'8 d'8 e'8 f'8")
         >>> time_signature = inspect(measure).get_mark(
-        ...     contexttools.TimeSignatureMark)
+        ...     marktools.TimeSignatureMark)
         >>> time_signature.detach()
         TimeSignatureMark((4, 12))
-        >>> new_time_signature = contexttools.TimeSignatureMark((5, 12))
+        >>> new_time_signature = marktools.TimeSignatureMark((5, 12))
         >>> attach(new_time_signature, measure)
         TimeSignatureMark((5, 12))(|5/12 c'8 d'8 e'8 f'8|)
         >>> measure.is_underfull
@@ -40,7 +40,7 @@ def append_spacer_skip_to_underfull_measure(measure):
 
     Return `measure`.
     '''
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import scoretools
     from abjad.tools import scoretools
 

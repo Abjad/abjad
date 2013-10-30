@@ -65,9 +65,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_02():
 def test_mutationtools_AttributeInspectionAgent_get_marks_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = contexttools.ClefMark('treble')
+    clef = marktools.ClefMark('treble')
     attach(clef, staff)
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, staff[0])
 
     assert testtools.compare(
@@ -83,7 +83,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_03():
         '''
         )
 
-    context_marks = inspect(staff[0]).get_marks(contexttools.ContextMark)
+    context_marks = inspect(staff[0]).get_marks(marktools.ContextMark)
     assert dynamic in context_marks
     assert len(context_marks) == 1
 
@@ -91,9 +91,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_03():
 def test_mutationtools_AttributeInspectionAgent_get_marks_04():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = contexttools.ClefMark('treble')
+    clef = marktools.ClefMark('treble')
     attach(clef, staff)
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, staff[0])
 
     assert testtools.compare(
@@ -109,7 +109,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_04():
         '''
         )
 
-    dynamics = inspect(staff[0]).get_marks(contexttools.DynamicMark)
+    dynamics = inspect(staff[0]).get_marks(marktools.DynamicMark)
     assert dynamic in dynamics
     assert len(dynamics) == 1
 

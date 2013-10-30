@@ -140,7 +140,7 @@ clef just like the top staff. Let's change that:
 
 ::
 
-   >>> clef = contexttools.ClefMark('bass')
+   >>> clef = marktools.ClefMark('bass')
    >>> clef.attach(lower_staff)
    ClefMark('bass')(Staff{5})
 
@@ -152,28 +152,28 @@ measure and the fourth note of the second measure:
 
 ::
 
-   >>> dynamic = contexttools.DynamicMark('pp')
+   >>> dynamic = marktools.DynamicMark('pp')
    >>> dynamic.attach(upper_measures[0][0])
    DynamicMark('pp')(a'8)
 
 
 ::
 
-   >>> dynamic = contexttools.DynamicMark('mp')
+   >>> dynamic = marktools.DynamicMark('mp')
    >>> dynamic.attach(upper_measures[1][1])
    DynamicMark('mp')(g'8)
 
 
 ::
 
-   >>> dynamic = contexttools.DynamicMark('pp')
+   >>> dynamic = marktools.DynamicMark('pp')
    >>> dynamic.attach(lower_measures[0][1])
    DynamicMark('pp')(d'8)
 
 
 ::
 
-   >>> dynamic = contexttools.DynamicMark('mp')
+   >>> dynamic = marktools.DynamicMark('mp')
    >>> dynamic.attach(lower_measures[1][3])
    DynamicMark('mp')(c'8)
 

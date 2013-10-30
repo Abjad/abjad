@@ -123,8 +123,8 @@ Added object inventories for several classes.
 
 - This release contains inventories for the following classes::
 
-    contexttools.ClefMarkInventory
-    contexttools.TempoMarkInventory
+    marktools.ClefMarkInventory
+    marktools.TempoMarkInventory
     instrumenttools.InstrumentInventory
     markuptools.MarkupInventory
     pitchtools.OctaveTranspositionMappingInventory
@@ -329,9 +329,9 @@ Further new functionality:
     >>> f(n)
     c'1 - \bendAfter #'8.0
 
-- Added public ``pair`` property to ``contexttools.TimeSignatureMark``::
+- Added public ``pair`` property to ``marktools.TimeSignatureMark``::
 
-    >>> time_signature = contexttools.TimeSignatureMark((3, 16))
+    >>> time_signature = marktools.TimeSignatureMark((3, 16))
     >>> time_signature.pair
     (3, 16)
 
@@ -350,9 +350,9 @@ Further new functionality:
   voices containing copies of those leaves in both voices. This is useful for
   generating stemmed-glissandi structures.
 
-- Added ``contexttools.list_clef_names()``::
+- Added ``marktools.list_clef_names()``::
 
-    >>> contexttools.list_clef_names()
+    >>> marktools.list_clef_names()
     ['alto', 'baritone', 'bass', 'mezzosoprano', 'percussion', 'soprano', 'treble']
 
 - Added ``find-slots-implementation-inconsistencies`` development script.

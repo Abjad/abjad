@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
@@ -25,7 +25,7 @@ class TerracedDynamicsHandler(DynamicHandler):
             iterationtools.iterate_notes_and_chords_in_expr(expr)):
             dynamic_name = dynamics[offset+i]
             if self.minimum_duration <= note_or_chord._get_duration():
-                #contexttools.DynamicMark(dynamic_name)(note_or_chord)
+                #marktools.DynamicMark(dynamic_name)(note_or_chord)
                 command = marktools.LilyPondCommandMark(dynamic_name, 'right')
                 attach(command, note_or_chord)
         return expr
@@ -40,7 +40,7 @@ class TerracedDynamicsHandler(DynamicHandler):
             if dynamics is None:
                 self._dynamics = dynamics
             elif all(
-                contexttools.DynamicMark.is_dynamic_name(x) for x in dynamics):
+                marktools.DynamicMark.is_dynamic_name(x) for x in dynamics):
                 self._dynamics = dynamics
             else:
                 raise TypeError(dynamics)

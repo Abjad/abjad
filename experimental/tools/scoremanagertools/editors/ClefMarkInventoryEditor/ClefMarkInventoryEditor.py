@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.editors.ClefMarkEditor \
     import ClefMarkEditor
@@ -15,7 +15,7 @@ class ClefMarkInventoryEditor(ObjectInventoryEditor):
 
     ### CLASS VARIABLES ###
 
-    item_class = contexttools.ClefMark
+    item_class = marktools.ClefMark
 
     item_editor_class = ClefMarkEditor
 
@@ -24,6 +24,6 @@ class ClefMarkInventoryEditor(ObjectInventoryEditor):
     item_identifier = 'clef mark'
 
     target_manifest = TargetManifest(
-        contexttools.ClefMarkInventory,
+        marktools.ClefMarkInventory,
         target_name_attribute='name',
         )

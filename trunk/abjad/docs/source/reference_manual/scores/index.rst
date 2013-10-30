@@ -169,7 +169,7 @@ Add one component to the bottom of a score with ``append()``:
 ::
 
    >>> bass_staff = Staff("g4 f4 e4 d4 d1")
-   >>> bass_clef = contexttools.ClefMark('bass')
+   >>> bass_clef = marktools.ClefMark('bass')
    >>> bass_clef.attach(bass_staff)
    ClefMark('bass')(Staff{5})
 

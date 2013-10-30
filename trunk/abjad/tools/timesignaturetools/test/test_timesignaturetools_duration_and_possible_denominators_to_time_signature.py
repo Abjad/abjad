@@ -8,7 +8,7 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
     duration = timesignaturetools.duration_and_possible_denominators_to_time_signature(
         Duration(3, 2), [5, 6, 7, 8, 9])
-    assert duration == contexttools.TimeSignatureMark((9, 6))
+    assert duration == marktools.TimeSignatureMark((9, 6))
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_02():
@@ -17,7 +17,7 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
     duration = timesignaturetools.duration_and_possible_denominators_to_time_signature(
         Duration(3, 2), [4, 8, 16, 32])
-    assert duration == contexttools.TimeSignatureMark((6, 4))
+    assert duration == marktools.TimeSignatureMark((6, 4))
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_03():
@@ -26,7 +26,7 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
     duration = timesignaturetools.duration_and_possible_denominators_to_time_signature(
         Duration(3, 2))
-    assert duration == contexttools.TimeSignatureMark((3, 2))
+    assert duration == marktools.TimeSignatureMark((3, 2))
 
 
 def test_timesignaturetools_duration_and_possible_denominators_to_time_signature_04():
@@ -36,4 +36,4 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
     t = timesignaturetools.duration_and_possible_denominators_to_time_signature(
         Duration(3, 2), [7, 11, 13, 19])
-    assert t == contexttools.TimeSignatureMark((3, 2))
+    assert t == marktools.TimeSignatureMark((3, 2))

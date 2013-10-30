@@ -11,14 +11,14 @@ def get_context_mark_format_contributions_for_slot(component, slot):
     Returns list.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import scoretools
 
     result = []
     marks = set([])
     parentage = component._get_parentage(include_self=True)
     candidates = parentage._get_marks(
-        mark_classes=contexttools.ContextMark,
+        mark_classes=marktools.ContextMark,
         recurse=False,
         )
 

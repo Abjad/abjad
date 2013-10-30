@@ -3,7 +3,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_notetools_Note___init___01():
+def test_scoretools_Note___init___01():
     r'''Init note with pitch in octave zero.
     '''
 
@@ -11,14 +11,14 @@ def test_notetools_Note___init___01():
     assert note.lilypond_format == 'b,,,4'
 
 
-def test_notetools_Note___init___02():
+def test_scoretools_Note___init___02():
     r'''Init note with non-assignable duration.
     '''
 
     raises(AssignabilityError, 'Note(0, (5, 8))')
 
 
-def test_notetools_Note___init___03():
+def test_scoretools_Note___init___03():
     r'''Init note with LilyPond-style pitch string.
     '''
 
@@ -26,7 +26,7 @@ def test_notetools_Note___init___03():
     assert note.lilypond_format == 'c,,4'
 
 
-def test_notetools_Note___init___04():
+def test_scoretools_Note___init___04():
     r'''Init note with complete LilyPond-style note string.
     '''
 
@@ -34,7 +34,7 @@ def test_notetools_Note___init___04():
     assert note.lilypond_format == 'cs8.'
 
 
-def test_notetools_Note___init___05():
+def test_scoretools_Note___init___05():
     r'''Init note with pitch, written duration and LilyPond multiplier.
     '''
 
@@ -42,7 +42,7 @@ def test_notetools_Note___init___05():
     assert isinstance(note, Note)
 
 
-def test_notetools_Note___init___06():
+def test_scoretools_Note___init___06():
     r'''Init note from chord.
     '''
 
@@ -57,7 +57,7 @@ def test_notetools_Note___init___06():
     assert note.written_duration == duration
 
 
-def test_notetools_Note___init___07():
+def test_scoretools_Note___init___07():
     r'''Init note from tupletized chord.
     '''
 
@@ -70,7 +70,7 @@ def test_notetools_Note___init___07():
     assert isinstance(note, Note)
 
 
-def test_notetools_Note___init___08():
+def test_scoretools_Note___init___08():
     r'''Init note from beamed chord.
     '''
 
@@ -83,7 +83,7 @@ def test_notetools_Note___init___08():
     assert isinstance(note, Note)
 
 
-def test_notetools_Note___init___09():
+def test_scoretools_Note___init___09():
     r'''Init note from rest.
     '''
 
@@ -99,7 +99,7 @@ def test_notetools_Note___init___09():
     assert isinstance(rest, Rest)
 
 
-def test_notetools_Note___init___10():
+def test_scoretools_Note___init___10():
     r'''Init note from tupletized rest.
     '''
 
@@ -113,7 +113,7 @@ def test_notetools_Note___init___10():
     assert note._parent is None
 
 
-def test_notetools_Note___init___11():
+def test_scoretools_Note___init___11():
     r'''Init note from beamed rest.
     '''
 
@@ -127,7 +127,7 @@ def test_notetools_Note___init___11():
     assert note._parent is None
 
 
-def test_notetools_Note___init___12():
+def test_scoretools_Note___init___12():
     r'''Cast skip as note.
     '''
     skip = scoretools.Skip((1, 8))
@@ -140,7 +140,7 @@ def test_notetools_Note___init___12():
     assert note.written_duration == d
 
 
-def test_notetools_Note___init___13():
+def test_scoretools_Note___init___13():
     r'''Init note from tupletized skip.
     '''
 
@@ -154,7 +154,7 @@ def test_notetools_Note___init___13():
     assert note._parent is None
 
 
-def test_notetools_Note___init___14():
+def test_scoretools_Note___init___14():
     r'''Init note from beamed skip.
     '''
 
@@ -168,7 +168,7 @@ def test_notetools_Note___init___14():
     assert note._parent is None
 
 
-def test_notetools_Note___init___15():
+def test_scoretools_Note___init___15():
     r'''Init note with cautionary accidental.
     '''
 
@@ -176,7 +176,7 @@ def test_notetools_Note___init___15():
     assert note.lilypond_format == "c'?4"
 
 
-def test_notetools_Note___init___16():
+def test_scoretools_Note___init___16():
     r'''Init note with forced accidental.
     '''
 
@@ -184,7 +184,7 @@ def test_notetools_Note___init___16():
     assert note.lilypond_format == "c'!4"
 
 
-def test_notetools_Note___init___17():
+def test_scoretools_Note___init___17():
     r'''Init note with both forced and cautionary accidental.
     '''
 
@@ -192,7 +192,7 @@ def test_notetools_Note___init___17():
     assert note.lilypond_format == "c'!?4"
 
 
-def test_notetools_Note___init___18():
+def test_scoretools_Note___init___18():
     r'''Init note from chord with forced and cautionary accidental.
     '''
 

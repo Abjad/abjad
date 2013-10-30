@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_Container___setattr___01():
+def test_scoretools_Container___setattr___01():
     r'''Slots constrain container attributes.
     '''
 

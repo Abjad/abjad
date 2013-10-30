@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_NaturalHarmonic___init___01():
+def test_scoretools_NaturalHarmonic___init___01():
     r'''Init natural harmonic from note.
     '''
 

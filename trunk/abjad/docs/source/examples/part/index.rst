@@ -54,17 +54,17 @@ The score template
            # make bell voice and staff
            bell_voice = scoretools.Voice(name='Bell Voice')
            bell_staff = scoretools.Staff([bell_voice], name='Bell Staff')
-           contexttools.ClefMark('treble')(bell_staff)
+           marktools.ClefMark('treble')(bell_staff)
            bells = instrumenttools.Instrument('Campana in La', 'Camp.')
            bells.attach(bell_staff)
-           contexttools.TempoMark((1, 4), (112, 120))(bell_staff)
-           contexttools.TimeSignatureMark((6, 4))(bell_staff)
+           marktools.TempoMark((1, 4), (112, 120))(bell_staff)
+           marktools.TimeSignatureMark((6, 4))(bell_staff)
    
            # make first violin voice and staff
            first_violin_voice = scoretools.Voice(name='First Violin Voice')
            first_violin_staff = scoretools.Staff([first_violin_voice],
                name='First Violin Staff')
-           contexttools.ClefMark('treble')(first_violin_staff)
+           marktools.ClefMark('treble')(first_violin_staff)
            instrumenttools.Violin(
                instrument_name_markup='Violin I',
                short_instrument_name_markup='Vl. I'
@@ -74,7 +74,7 @@ The score template
            second_violin_voice = scoretools.Voice(name='Second Violin Voice')
            second_violin_staff = scoretools.Staff([second_violin_voice],
                name='Second Violin Staff')
-           contexttools.ClefMark('treble')(second_violin_staff)
+           marktools.ClefMark('treble')(second_violin_staff)
            instrumenttools.Violin(
                instrument_name_markup='Violin II',
                short_instrument_name_markup='Vl. II'
@@ -83,13 +83,13 @@ The score template
            # make viola voice and staff
            viola_voice = scoretools.Voice(name='Viola Voice')
            viola_staff = scoretools.Staff([viola_voice], name='Viola Staff')
-           contexttools.ClefMark('alto')(viola_staff)
+           marktools.ClefMark('alto')(viola_staff)
            instrumenttools.Viola()(viola_staff)
    
            # make cello voice and staff
            cello_voice = scoretools.Voice(name='Cello Voice')
            cello_staff = scoretools.Staff([cello_voice], name='Cello Staff')
-           contexttools.ClefMark('bass')(cello_staff)
+           marktools.ClefMark('bass')(cello_staff)
            instrumenttools.Cello(
                short_instrument_name_markup='Vc.'
                )(cello_staff)
@@ -97,7 +97,7 @@ The score template
            # make bass voice and staff
            bass_voice = scoretools.Voice(name='Bass Voice')
            bass_staff = scoretools.Staff([bass_voice], name='Bass Staff')
-           contexttools.ClefMark('bass')(bass_staff)
+           marktools.ClefMark('bass')(bass_staff)
            instrumenttools.Contrabass(
                short_instrument_name_markup='Cb.'
                )(bass_staff)
@@ -391,7 +391,7 @@ give them a 6/4 time signature, just so they line up properly.
 ::
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
-   >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
+   >>> time_signature = marktools.TimeSignatureMark((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-1.png
@@ -423,7 +423,7 @@ Let's look at the second violins too:
 ::
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
-   >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
+   >>> time_signature = marktools.TimeSignatureMark((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-2.png
@@ -458,7 +458,7 @@ the bar lines accidentally:
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
    >>> shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
-   >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
+   >>> time_signature = marktools.TimeSignatureMark((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-3.png
@@ -642,62 +642,62 @@ and attach:
    def apply_dynamic_marks(score):
    
        voice = score['Bell Voice']
-       contexttools.DynamicMark('ppp')(voice[0][1])
-       contexttools.DynamicMark('pp')(voice[8][1])
-       contexttools.DynamicMark('p')(voice[18][1])
-       contexttools.DynamicMark('mp')(voice[26][1])
-       contexttools.DynamicMark('mf')(voice[34][1])
-       contexttools.DynamicMark('f')(voice[42][1])
-       contexttools.DynamicMark('ff')(voice[52][1])
-       contexttools.DynamicMark('fff')(voice[60][1])
-       contexttools.DynamicMark('ff')(voice[68][1])
-       contexttools.DynamicMark('f')(voice[76][1])
-       contexttools.DynamicMark('mf')(voice[84][1])
-       contexttools.DynamicMark('pp')(voice[-1][0])
+       marktools.DynamicMark('ppp')(voice[0][1])
+       marktools.DynamicMark('pp')(voice[8][1])
+       marktools.DynamicMark('p')(voice[18][1])
+       marktools.DynamicMark('mp')(voice[26][1])
+       marktools.DynamicMark('mf')(voice[34][1])
+       marktools.DynamicMark('f')(voice[42][1])
+       marktools.DynamicMark('ff')(voice[52][1])
+       marktools.DynamicMark('fff')(voice[60][1])
+       marktools.DynamicMark('ff')(voice[68][1])
+       marktools.DynamicMark('f')(voice[76][1])
+       marktools.DynamicMark('mf')(voice[84][1])
+       marktools.DynamicMark('pp')(voice[-1][0])
    
        voice = score['First Violin Voice']
-       contexttools.DynamicMark('ppp')(voice[6][1])
-       contexttools.DynamicMark('pp')(voice[15][0])
-       contexttools.DynamicMark('p')(voice[22][3])
-       contexttools.DynamicMark('mp')(voice[31][0])
-       contexttools.DynamicMark('mf')(voice[38][3])
-       contexttools.DynamicMark('f')(voice[47][0])
-       contexttools.DynamicMark('ff')(voice[55][2])
-       contexttools.DynamicMark('fff')(voice[62][2])
+       marktools.DynamicMark('ppp')(voice[6][1])
+       marktools.DynamicMark('pp')(voice[15][0])
+       marktools.DynamicMark('p')(voice[22][3])
+       marktools.DynamicMark('mp')(voice[31][0])
+       marktools.DynamicMark('mf')(voice[38][3])
+       marktools.DynamicMark('f')(voice[47][0])
+       marktools.DynamicMark('ff')(voice[55][2])
+       marktools.DynamicMark('fff')(voice[62][2])
    
        voice = score['Second Violin Voice']
-       contexttools.DynamicMark('pp')(voice[7][0])
-       contexttools.DynamicMark('p')(voice[12][0])
-       contexttools.DynamicMark('p')(voice[16][0])
-       contexttools.DynamicMark('mp')(voice[25][1])
-       contexttools.DynamicMark('mf')(voice[34][1])
-       contexttools.DynamicMark('f')(voice[44][1])
-       contexttools.DynamicMark('ff')(voice[54][0])
-       contexttools.DynamicMark('fff')(voice[62][1])
+       marktools.DynamicMark('pp')(voice[7][0])
+       marktools.DynamicMark('p')(voice[12][0])
+       marktools.DynamicMark('p')(voice[16][0])
+       marktools.DynamicMark('mp')(voice[25][1])
+       marktools.DynamicMark('mf')(voice[34][1])
+       marktools.DynamicMark('f')(voice[44][1])
+       marktools.DynamicMark('ff')(voice[54][0])
+       marktools.DynamicMark('fff')(voice[62][1])
    
        voice = score['Viola Voice']
-       contexttools.DynamicMark('p')(voice[8][0])
-       contexttools.DynamicMark('mp')(voice[19][1])
-       contexttools.DynamicMark('mf')(voice[30][0])
-       contexttools.DynamicMark('f')(voice[36][0])
-       contexttools.DynamicMark('f')(voice[42][0])
-       contexttools.DynamicMark('ff')(voice[52][0])
-       contexttools.DynamicMark('fff')(voice[62][0])
+       marktools.DynamicMark('p')(voice[8][0])
+       marktools.DynamicMark('mp')(voice[19][1])
+       marktools.DynamicMark('mf')(voice[30][0])
+       marktools.DynamicMark('f')(voice[36][0])
+       marktools.DynamicMark('f')(voice[42][0])
+       marktools.DynamicMark('ff')(voice[52][0])
+       marktools.DynamicMark('fff')(voice[62][0])
    
        voice = score['Cello Voice']
-       contexttools.DynamicMark('p')(voice[10][0])
-       contexttools.DynamicMark('mp')(voice[21][0])
-       contexttools.DynamicMark('mf')(voice[31][0])
-       contexttools.DynamicMark('f')(voice[43][0])
-       contexttools.DynamicMark('ff')(voice[52][1])
-       contexttools.DynamicMark('fff')(voice[62][0])
+       marktools.DynamicMark('p')(voice[10][0])
+       marktools.DynamicMark('mp')(voice[21][0])
+       marktools.DynamicMark('mf')(voice[31][0])
+       marktools.DynamicMark('f')(voice[43][0])
+       marktools.DynamicMark('ff')(voice[52][1])
+       marktools.DynamicMark('fff')(voice[62][0])
    
        voice = score['Bass Voice']
-       contexttools.DynamicMark('mp')(voice[14][0])
-       contexttools.DynamicMark('mf')(voice[27][0])
-       contexttools.DynamicMark('f')(voice[39][0])
-       contexttools.DynamicMark('ff')(voice[51][0])
-       contexttools.DynamicMark('fff')(voice[62][0])
+       marktools.DynamicMark('mp')(voice[14][0])
+       marktools.DynamicMark('mf')(voice[27][0])
+       marktools.DynamicMark('f')(voice[39][0])
+       marktools.DynamicMark('ff')(voice[51][0])
+       marktools.DynamicMark('fff')(voice[62][0])
 
 
 We apply expressive marks the same way we applied our dynamics:

@@ -43,7 +43,7 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_02():
         Chord([0, 4, 7], (1, 4))
     ])
 
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, target[0])
     articulation = marktools.Articulation('staccatissimo')
     attach(articulation, target[2])

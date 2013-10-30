@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -48,9 +48,9 @@ class Accordion(Instrument):
             target_context=target_context, 
             **kwargs
             )
-        self._default_allowable_clefs = contexttools.ClefMarkInventory([
-            contexttools.ClefMark('treble'), 
-            contexttools.ClefMark('bass'),
+        self._default_allowable_clefs = marktools.ClefMarkInventory([
+            marktools.ClefMark('treble'), 
+            marktools.ClefMark('bass'),
             ])
         self._default_instrument_name = 'accordion'
         self._default_performer_names.extend([
@@ -59,9 +59,9 @@ class Accordion(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(-32, 48)
         self._default_short_instrument_name = 'acc.'
-        self._default_starting_clefs = contexttools.ClefMarkInventory([
-            contexttools.ClefMark('treble'), 
-            contexttools.ClefMark('bass'),
+        self._default_starting_clefs = marktools.ClefMarkInventory([
+            marktools.ClefMark('treble'), 
+            marktools.ClefMark('bass'),
             ])
         self._is_primary_instrument = True
 
@@ -434,8 +434,8 @@ class Accordion(Instrument):
                     short_instrument_name_markup=markuptools.Markup((
                         'Fis.',
                         )),
-                    allowable_clefs=contexttools.ClefMarkInventory([
-                        contexttools.ClefMark(
+                    allowable_clefs=marktools.ClefMarkInventory([
+                        marktools.ClefMark(
                             'treble',
                             target_context=scoretools.Staff
                             )

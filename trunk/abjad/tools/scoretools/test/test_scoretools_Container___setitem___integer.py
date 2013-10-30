@@ -3,7 +3,7 @@ import py.test
 from abjad import *
 
 
-def test_containertools_Container___setitem___integer_01():
+def test_scoretools_Container___setitem___integer_01():
     r'''Spanned leaves exchange correctly.
     '''
 
@@ -42,7 +42,7 @@ def test_containertools_Container___setitem___integer_01():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___integer_02():
+def test_scoretools_Container___setitem___integer_02():
     r'''Spanned leaf hands position over to container correctly.
     '''
 
@@ -85,7 +85,7 @@ def test_containertools_Container___setitem___integer_02():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___integer_03():
+def test_scoretools_Container___setitem___integer_03():
     r'''Directly spanned contains hand over correctly to a single leaf.
     Note here that only the sequentials are initially spanned.
     '''
@@ -130,7 +130,7 @@ def test_containertools_Container___setitem___integer_03():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___integer_04():
+def test_scoretools_Container___setitem___integer_04():
     r'''Indirectly spanned containers hand over correctly to a single leaf.
     Notice here that only LEAVES are initially spanned.
     '''
@@ -175,7 +175,7 @@ def test_containertools_Container___setitem___integer_04():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___integer_05():
+def test_scoretools_Container___setitem___integer_05():
     r'''Directly spanned containers hand over to other containers correctly.
     '''
 
@@ -223,7 +223,7 @@ def test_containertools_Container___setitem___integer_05():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___integer_06():
+def test_scoretools_Container___setitem___integer_06():
     r'''Indirectly spanned containers hand over correctly to a single leaf.
     '''
 
@@ -267,7 +267,7 @@ def test_containertools_Container___setitem___integer_06():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___integer_07():
+def test_scoretools_Container___setitem___integer_07():
     r'''Indirectly HALF-spanned containers hand over correctly to a
     single leaf. WOW!'''
 
@@ -316,7 +316,7 @@ def test_containertools_Container___setitem___integer_07():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___integer_08():
+def test_scoretools_Container___setitem___integer_08():
     r'''Take spanned leaf from donor container
     and insert into recipient container.
     Both donor and recipient check after set item.
@@ -388,7 +388,7 @@ def test_containertools_Container___setitem___integer_08():
     assert inspect(u).is_well_formed()
 
 
-def test_containertools_Container___setitem___integer_09():
+def test_scoretools_Container___setitem___integer_09():
     r'''Take down-spanned container with completely covered spanner
     from donor container and insert into recipient container.
     Both donor and recipient check after set item.

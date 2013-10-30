@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_containertools_GraceContainer___copy___01():
+def test_scoretools_GraceContainer___copy___01():
     r'''Grace containers copy kind.
     '''
 

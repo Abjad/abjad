@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import math
 from abjad.tools import scoretools
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools import marktools
@@ -37,13 +37,13 @@ class TwoStageHairpinHandler(DynamicHandler):
         for leaf in leaves:
             marktools.detach_lilypond_command_marks_attached_to_component(leaf)
         if 3 <= len(leaves):
-            #contexttools.DynamicMark(start_dynamic)(leaves[0])
-            #contexttools.DynamicMark(stop_dynamic)(leaves[-1])
+            #marktools.DynamicMark(start_dynamic)(leaves[0])
+            #marktools.DynamicMark(stop_dynamic)(leaves[-1])
             marktools.LilyPondCommandMark(start_dynamic, 'right')(leaves[0])
             marktools.LilyPondCommandMark(stop_dynamic, 'right')(leaves[-1])
             middle_index = int(len(leaves) / 2.0)
             middle_leaf = leaves[middle_index]
-            #contexttools.DynamicMark(peak_dynamic)(middle_leaf)
+            #marktools.DynamicMark(peak_dynamic)(middle_leaf)
             marktools.LilyPondCommandMark(peak_dynamic, 'right')(middle_leaf)
             half_count = middle_index + 1
             left_leaves = leaves[:half_count]

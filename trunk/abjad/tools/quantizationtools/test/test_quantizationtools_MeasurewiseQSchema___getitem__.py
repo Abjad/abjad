@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import quantizationtools
 
 
@@ -9,8 +9,8 @@ def test_quantizationtools_MeasurewiseQSchema___getitem___01():
 
     assert schema[0] == schema[1] == schema[2] == {
         'search_tree': quantizationtools.UnweightedSearchTree(),
-        'tempo': contexttools.TempoMark((1, 4), 60),
-        'time_signature': contexttools.TimeSignatureMark((4, 4)),
+        'tempo': marktools.TempoMark((1, 4), 60),
+        'time_signature': marktools.TimeSignatureMark((4, 4)),
         'use_full_measure': False,
     }
 
@@ -35,35 +35,35 @@ def test_quantizationtools_MeasurewiseQSchema___getitem___02():
 
     assert schema[0] == schema[1] == {
         'search_tree': quantizationtools.UnweightedSearchTree({3: None}),
-        'tempo': contexttools.TempoMark((1, 8), 58),
-        'time_signature': contexttools.TimeSignatureMark((5, 8)),
+        'tempo': marktools.TempoMark((1, 8), 58),
+        'time_signature': marktools.TimeSignatureMark((5, 8)),
         'use_full_measure': False,
     }
 
     assert schema[2] == schema[3] == {
         'search_tree': quantizationtools.UnweightedSearchTree({2: None}),
-        'tempo': contexttools.TempoMark((1, 8), 58),
-        'time_signature': contexttools.TimeSignatureMark((5, 8)),
+        'tempo': marktools.TempoMark((1, 8), 58),
+        'time_signature': marktools.TimeSignatureMark((5, 8)),
         'use_full_measure': False,
     }
 
     assert schema[4] == schema[5] == schema[6] == {
         'search_tree': quantizationtools.UnweightedSearchTree({2: None}),
-        'tempo': contexttools.TempoMark((1, 4), 76),
-        'time_signature': contexttools.TimeSignatureMark((5, 8)),
+        'tempo': marktools.TempoMark((1, 4), 76),
+        'time_signature': marktools.TimeSignatureMark((5, 8)),
         'use_full_measure': False,
     }
 
     assert schema[7] == {
         'search_tree': quantizationtools.UnweightedSearchTree({2: None}),
-        'tempo': contexttools.TempoMark((1, 4), 76),
-        'time_signature': contexttools.TimeSignatureMark((3, 4)),
+        'tempo': marktools.TempoMark((1, 4), 76),
+        'time_signature': marktools.TimeSignatureMark((3, 4)),
         'use_full_measure': False,
     }
 
     assert schema[8] == schema[9] == schema[1000] == {
         'search_tree': quantizationtools.UnweightedSearchTree({5: None}),
-        'tempo': contexttools.TempoMark((1, 4), 76),
-        'time_signature': contexttools.TimeSignatureMark((3, 4)),
+        'tempo': marktools.TempoMark((1, 4), 76),
+        'time_signature': marktools.TimeSignatureMark((3, 4)),
         'use_full_measure': True,
     }

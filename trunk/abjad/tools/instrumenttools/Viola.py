@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -11,7 +11,7 @@ class Viola(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = contexttools.ClefMark('alto')
+        >>> clef = marktools.ClefMark('alto')
         >>> attach(clef, staff)
         ClefMark('alto')(Staff{4})
         >>> viola = instrumenttools.Viola()
@@ -48,8 +48,8 @@ class Viola(Instrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self._starting_clefs = [contexttools.ClefMark('alto')]
+        self._starting_clefs = [marktools.ClefMark('alto')]
         self.allowable_clefs = [
-            contexttools.ClefMark('alto'),
-            contexttools.ClefMark('treble')]
+            marktools.ClefMark('alto'),
+            marktools.ClefMark('treble')]
         self._default_pitch_range = pitchtools.PitchRange(-12, 28)

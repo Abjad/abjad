@@ -16,9 +16,9 @@ def make_desordre_score(pitches):
         piano_staff.append(staff)
 
     # set clef and key signature to left hand staff...
-    clef = contexttools.ClefMark('bass')
+    clef = marktools.ClefMark('bass')
     attach(clef, piano_staff[1])
-    key_signature = contexttools.KeySignatureMark('b', 'major')
+    key_signature = marktools.KeySignatureMark('b', 'major')
     attach(key_signature, piano_staff[1])
 
     # wrap the piano staff in a score, and return

@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
 
     pitches = ["e'", "gs'", "b'", "e''"]
     target = Staff(scoretools.make_notes(pitches, (1, 4)))
-    key_signature = contexttools.KeySignatureMark('e', 'major')
+    key_signature = marktools.KeySignatureMark('e', 'major')
     attach(key_signature, target[0])
 
     assert testtools.compare(
@@ -33,7 +33,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
 
     pitches = ["ef'", "f'", "g'", "bf'"]
     target = Staff(scoretools.make_notes(pitches, (1, 4)))
-    key_signature = contexttools.KeySignatureMark('ef', 'major')
+    key_signature = marktools.KeySignatureMark('ef', 'major')
     attach(key_signature, target[0])
 
     assert testtools.compare(

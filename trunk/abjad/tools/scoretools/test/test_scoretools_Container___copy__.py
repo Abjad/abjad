@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_containertools_Container___copy___01():
+def test_scoretools_Container___copy___01():
     r'''Containes copy simultaneous indicator.
     '''
 

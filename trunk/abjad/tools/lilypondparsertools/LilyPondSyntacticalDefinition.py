@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import fractions
 from ply import lex
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools import marktools
@@ -3316,15 +3316,15 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_tempo_event__TEMPO__scalar(self, p):
         'tempo_event : TEMPO scalar'
-        p[0] = contexttools.TempoMark(str(p[2]))
+        p[0] = marktools.TempoMark(str(p[2]))
 
     def p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
-        p[0] = contexttools.TempoMark(str(p[2]), p[3].duration, p[5])
+        p[0] = marktools.TempoMark(str(p[2]), p[3].duration, p[5])
 
     def p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO steno_duration '=' tempo_range"
-        p[0] = contexttools.TempoMark(p[2].duration, p[4])
+        p[0] = marktools.TempoMark(p[2].duration, p[4])
 
 
     ### tempo_range ###

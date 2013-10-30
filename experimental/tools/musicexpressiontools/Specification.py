@@ -73,7 +73,7 @@ class Specification(AbjadObject):
             context_names = context_token
         elif isinstance(context_token, scoretools.Context):
             context_names = [context_token.name]
-        elif contexttools.all_are_contexts(context_token):
+        elif marktools.all_are_contexts(context_token):
             context_names = [context.name for context in context_token]
         else:
             raise ValueError('invalid context token: {!r}'.format(context_token))

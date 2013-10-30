@@ -67,9 +67,9 @@ def test_spannertools_HairpinSpanner_03():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
     attach(crescendo, staff[:4])
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, staff[0])
-    dynamic = contexttools.DynamicMark('f')
+    dynamic = marktools.DynamicMark('f')
     attach(dynamic, staff[3])
 
     assert testtools.compare(
@@ -96,7 +96,7 @@ def test_spannertools_HairpinSpanner_04():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = spannertools.CrescendoSpanner()
     attach(crescendo, staff[:4])
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, staff[2])
 
     assert not inspect(staff).is_well_formed()
@@ -107,19 +107,19 @@ def test_spannertools_HairpinSpanner_05():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, staff[0])
     crescendo = spannertools.CrescendoSpanner()
     attach(crescendo, staff[0:3])
-    dynamic = contexttools.DynamicMark('f')
+    dynamic = marktools.DynamicMark('f')
     attach(dynamic, staff[2])
     decrescendo = spannertools.DecrescendoSpanner()
     attach(decrescendo, staff[2:5])
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, staff[4])
     crescendo = spannertools.CrescendoSpanner()
     attach(crescendo, staff[4:7])
-    dynamic = contexttools.DynamicMark('f')
+    dynamic = marktools.DynamicMark('f')
     attach(dynamic, staff[6])
 
     assert testtools.compare(

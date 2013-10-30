@@ -151,9 +151,9 @@ instead of a list of components:
 ::
 
    >>> staff = Staff()
-   >>> key_signature = contexttools.KeySignatureMark('g', 'major')
+   >>> key_signature = marktools.KeySignatureMark('g', 'major')
    >>> key_signature = key_signature.attach(staff)
-   >>> time_signature = contexttools.TimeSignatureMark((2, 4), partial=Duration(1, 8))
+   >>> time_signature = marktools.TimeSignatureMark((2, 4), partial=Duration(1, 8))
    >>> time_signature = time_signature.attach(staff)
    >>> staff.extend("d'8 f'8 a'8 d''8 f''8 gs'4 r8 e'8 gs'8 b'8 e''8 gs''8 a'4")
    >>> articulation = marktools.Articulation('turn')

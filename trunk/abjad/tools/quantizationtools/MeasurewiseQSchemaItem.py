@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
@@ -23,7 +23,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print q_schema_item.storage_format
         quantizationtools.MeasurewiseQSchemaItem(
-            tempo=contexttools.TempoMark(
+            tempo=marktools.TempoMark(
                 durationtools.Duration(1, 4),
                 60
                 )
@@ -38,7 +38,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print q_schema_item.storage_format
         quantizationtools.MeasurewiseQSchemaItem(
-            time_signature=contexttools.TimeSignatureMark(
+            time_signature=marktools.TimeSignatureMark(
                 (6, 8)
                 )
             )
@@ -75,7 +75,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
             tempo=tempo,
             )
         if time_signature is not None:
-            time_signature = contexttools.TimeSignatureMark(time_signature)
+            time_signature = marktools.TimeSignatureMark(time_signature)
         self._time_signature = time_signature
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)

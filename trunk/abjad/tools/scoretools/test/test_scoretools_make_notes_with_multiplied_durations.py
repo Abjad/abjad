@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_make_notes_with_multiplied_durations_01():
+def test_scoretools_make_notes_with_multiplied_durations_01():
 
     notes = scoretools.make_notes_with_multiplied_durations(
         0, Duration(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)])

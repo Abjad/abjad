@@ -16,8 +16,8 @@ def rewrite_duration_under_new_tempo(duration, tempo_mark_1, tempo_mark_2):
         
         ::
 
-            >>> tempo_mark_1 = contexttools.TempoMark(Duration(1, 4), 60)
-            >>> tempo_mark_2 = contexttools.TempoMark(Duration(1, 4), 90)
+            >>> tempo_mark_1 = marktools.TempoMark(Duration(1, 4), 60)
+            >>> tempo_mark_2 = marktools.TempoMark(Duration(1, 4), 90)
 
         The first tempo indication specifies quarter equal to ``60 MM``.
 

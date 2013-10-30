@@ -96,7 +96,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> dynamic_collection = datastructuretools.TypedList(
-            ...     item_class=contexttools.DynamicMark)
+            ...     item_class=marktools.DynamicMark)
             >>> dynamic_collection.append('ppp')
             >>> dynamic_collection += ['p', 'mp', 'mf', 'fff']
 
@@ -104,28 +104,28 @@ class TypedList(TypedCollection):
 
             >>> print dynamic_collection.storage_format
             datastructuretools.TypedList([
-                contexttools.DynamicMark(
+                marktools.DynamicMark(
                     'ppp',
                     target_context=scoretools.Staff
                     ),
-                contexttools.DynamicMark(
+                marktools.DynamicMark(
                     'p',
                     target_context=scoretools.Staff
                     ),
-                contexttools.DynamicMark(
+                marktools.DynamicMark(
                     'mp',
                     target_context=scoretools.Staff
                     ),
-                contexttools.DynamicMark(
+                marktools.DynamicMark(
                     'mf',
                     target_context=scoretools.Staff
                     ),
-                contexttools.DynamicMark(
+                marktools.DynamicMark(
                     'fff',
                     target_context=scoretools.Staff
                     )
                 ],
-                item_class=contexttools.DynamicMark
+                item_class=marktools.DynamicMark
                 )
 
         Returns collection.

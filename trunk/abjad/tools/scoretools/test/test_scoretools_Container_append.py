@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_Container_append_01():
+def test_scoretools_Container_append_01():
     r'''Append sequential to voice.
     '''
 
@@ -29,7 +29,7 @@ def test_containertools_Container_append_01():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container_append_02():
+def test_scoretools_Container_append_02():
     r'''Append leaf to tuplet.
     '''
 
@@ -53,7 +53,7 @@ def test_containertools_Container_append_02():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_containertools_Container_append_03():
+def test_scoretools_Container_append_03():
     r'''Trying to append noncomponent to container raises TypeError.
     '''
 
@@ -67,7 +67,7 @@ def test_containertools_Container_append_03():
     assert py.test.raises(Exception, "voice.append([Note(0, (1, 8))])")
 
 
-def test_containertools_Container_append_04():
+def test_scoretools_Container_append_04():
     r'''Append spanned leaf from donor container to recipient container.
     '''
 
@@ -136,7 +136,7 @@ def test_containertools_Container_append_04():
     assert inspect(u).is_well_formed()
 
 
-def test_containertools_Container_append_05():
+def test_scoretools_Container_append_05():
     r'''Append spanned leaf from donor container to recipient container.
     Donor and recipient containers are the same.
     '''
@@ -174,7 +174,7 @@ def test_containertools_Container_append_05():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container_append_06():
+def test_scoretools_Container_append_06():
     r'''Can not insert grace container into container.
     '''
 

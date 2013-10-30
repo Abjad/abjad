@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools.scoretools import attach
@@ -19,7 +19,7 @@ class ReiteratedDynamicHandler(DynamicHandler):
     def __call__(self, expr):
         for note_or_chord in \
             iterationtools.iterate_notes_and_chords_in_expr(expr):
-            #contexttools.DynamicMark(self.dynamic_name)(note_or_chord)
+            #marktools.DynamicMark(self.dynamic_name)(note_or_chord)
             command = marktools.LilyPondCommandMark(self.dynamic_name, 'right')
             attach(command, note_or_chord)
         return expr
@@ -33,7 +33,7 @@ class ReiteratedDynamicHandler(DynamicHandler):
         def fset(self, dynamic_name):
             if dynamic_name is None:
                 self._dynamic_name = dynamic_name
-            elif contexttools.DynamicMark.is_dynamic_name(dynamic_name):
+            elif marktools.DynamicMark.is_dynamic_name(dynamic_name):
                 self._dynamic_name = dynamic_name
             else:
                 raise TypeError(dynamic_name)

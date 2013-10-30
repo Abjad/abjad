@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
@@ -12,7 +12,7 @@ class QTargetBeat(AbjadObject):
         >>> beatspan = (1, 8)
         >>> offset_in_ms = 1500
         >>> search_tree = quantizationtools.UnweightedSearchTree({3: None})
-        >>> tempo = contexttools.TempoMark((1, 4), 56)
+        >>> tempo = marktools.TempoMark((1, 4), 56)
 
     ::
 
@@ -32,7 +32,7 @@ class QTargetBeat(AbjadObject):
             search_tree=quantizationtools.UnweightedSearchTree(
                 definition={   3: None}
                 ),
-            tempo=contexttools.TempoMark(
+            tempo=marktools.TempoMark(
                 durationtools.Duration(1, 4),
                 56
                 )
@@ -75,7 +75,7 @@ class QTargetBeat(AbjadObject):
         if search_tree is None:
             search_tree = quantizationtools.UnweightedSearchTree()
         assert isinstance(search_tree, quantizationtools.SearchTree)
-        tempo = contexttools.TempoMark(tempo)
+        tempo = marktools.TempoMark(tempo)
         assert not tempo.is_imprecise
 
         q_events = []

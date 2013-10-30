@@ -12,9 +12,9 @@ def make_desordre_cell(pitches):
     attach(beam, notes)
     slur = spannertools.SlurSpanner()
     attach(slur, notes)
-    clef = contexttools.DynamicMark('f')
+    clef = marktools.DynamicMark('f')
     attach(clef, notes[0])
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, notes[1])
 
     # make the lower voice

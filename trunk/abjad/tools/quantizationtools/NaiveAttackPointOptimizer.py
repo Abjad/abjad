@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools import iterationtools
 from abjad.tools import selectiontools
@@ -26,7 +26,7 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
             sub_chains = []
             current_sub_chain = []
             for leaf in tie_chain:
-                tempo_marks = leaf._get_marks(contexttools.TempoMark)
+                tempo_marks = leaf._get_marks(marktools.TempoMark)
                 if tempo_marks:
                     if current_sub_chain:
                         current_sub_chain = \

@@ -11,7 +11,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_01():
     attach(hairpin, target[:3])
     hairpin = spannertools.HairpinSpanner(descriptor='>')
     attach(hairpin, target[2:])
-    dynamic = contexttools.DynamicMark('ppp')
+    dynamic = marktools.DynamicMark('ppp')
     attach(dynamic, target[-1])
 
     assert testtools.compare(
@@ -69,9 +69,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_03():
     attach(hairpin, target[0:2])
     hairpin = spannertools.HairpinSpanner(descriptor='>')
     attach(hairpin, target[1:])
-    dynamic = contexttools.DynamicMark('p')
+    dynamic = marktools.DynamicMark('p')
     attach(dynamic, target[1])
-    dynamic = contexttools.DynamicMark('f')
+    dynamic = marktools.DynamicMark('f')
     attach(dynamic, target[-1])
 
     assert testtools.compare(
@@ -124,7 +124,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_07():
     attach(hairpin, target[:3])
     hairpin = spannertools.HairpinSpanner(descriptor='>', direction=Down)
     attach(hairpin, target[2:])
-    dynamic = contexttools.DynamicMark('ppp')
+    dynamic = marktools.DynamicMark('ppp')
     attach(dynamic, target[-1])
 
     assert testtools.compare(

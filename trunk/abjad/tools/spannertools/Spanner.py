@@ -273,7 +273,7 @@ class Spanner(AbjadObject):
     def _initialize_components(self, components):
         if components:
             raise Exception('deprecated')
-        from abjad.tools import contexttools
+        from abjad.tools import marktools
         from abjad.tools import iterationtools
         if isinstance(components, scoretools.Component):
             components = [components]

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_Note_written_pitch_01():
+def test_scoretools_Note_written_pitch_01():
 
 
     staff = Staff("d''8 e''8 f''8 g''8")

@@ -8,7 +8,7 @@
     The ``pitchtools`` package should not import any component packages 
     at top level.
 
-    The ``pitchtools`` package should not import ``contexttools`` at
+    The ``pitchtools`` package should not import ``marktools`` at
     top level, and vice versa.
 
 '''

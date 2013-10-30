@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
@@ -213,7 +213,7 @@ class MetricalHierarchy(AbjadObject):
                 fraction = mathtools.NonreducedFraction(arg)
             elif isinstance(arg, scoretools.Measure):
                 time_signature = arg._get_effective_context_mark(
-                    contexttools.TimeSignatureMark)
+                    marktools.TimeSignatureMark)
                 fraction = mathtools.NonreducedFraction(
                     time_signature.numerator, time_signature.denominator)
             else:
@@ -463,7 +463,7 @@ class MetricalHierarchy(AbjadObject):
 
         Returns TimeSignatureMark object.
         '''
-        return contexttools.TimeSignatureMark(
+        return marktools.TimeSignatureMark(
             self.root_node.preprolated_duration)
 
     @property

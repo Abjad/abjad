@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container__get_spanners_that_dominate_slice_01():
+def test_scoretools_Container__get_spanners_that_dominate_slice_01():
     r'''Get dominant spanners over zero-length slice.
     '''
 
@@ -30,7 +30,7 @@ def test_containertools_Container__get_spanners_that_dominate_slice_01():
     assert (glissando, 2) in receipt
 
 
-def test_containertools_Container__get_spanners_that_dominate_slice_02():
+def test_scoretools_Container__get_spanners_that_dominate_slice_02():
     r'''Get dominant spanners over one-component slice.
     '''
 
@@ -59,7 +59,7 @@ def test_containertools_Container__get_spanners_that_dominate_slice_02():
     assert (glissando, 1) in receipt
 
 
-def test_containertools_Container__get_spanners_that_dominate_slice_03():
+def test_scoretools_Container__get_spanners_that_dominate_slice_03():
     r'''Get dominant spanners over four-component slice.
     '''
 

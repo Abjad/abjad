@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_leaftools_Leaf__get_leaf_index_01():
+def test_scoretools_Leaf__get_leaf_index_01():
     r'''Leaves in staff number correctly.
     '''
 
@@ -13,7 +13,7 @@ def test_leaftools_Leaf__get_leaf_index_01():
     assert staff[2]._get_leaf_index() == 2
 
 
-def test_leaftools_Leaf__get_leaf_index_02():
+def test_scoretools_Leaf__get_leaf_index_02():
     r'''Leaves in measure in staff number correctly.
     '''
 
@@ -24,7 +24,7 @@ def test_leaftools_Leaf__get_leaf_index_02():
     assert leaves[2]._get_leaf_index() == 2
 
 
-def test_leaftools_Leaf__get_leaf_index_03():
+def test_scoretools_Leaf__get_leaf_index_03():
     r'''Leaves in multiple measures in staff number corretly.
     '''
 
@@ -38,7 +38,7 @@ def test_leaftools_Leaf__get_leaf_index_03():
     assert leaves[5]._get_leaf_index() == 5
 
 
-def test_leaftools_Leaf__get_leaf_index_04():
+def test_scoretools_Leaf__get_leaf_index_04():
     r'''Orphan leaves number correctly.
     '''
 
@@ -46,7 +46,7 @@ def test_leaftools_Leaf__get_leaf_index_04():
     assert note._get_leaf_index() == 0
 
 
-def test_leaftools_Leaf__get_leaf_index_05():
+def test_scoretools_Leaf__get_leaf_index_05():
     r'''Leaves number correctly after contents rotation.
     '''
 

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import iterationtools
 
 
@@ -12,7 +12,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = contexttools.ClefMark('treble')
+        >>> clef = marktools.ClefMark('treble')
         >>> attach(clef, staff)
         ClefMark('treble')(Staff{4})
         >>> violin = instrumenttools.Violin()
@@ -29,7 +29,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = contexttools.ClefMark('alto')
+        >>> clef = marktools.ClefMark('alto')
         >>> attach(clef, staff)
         ClefMark('alto')(Staff{4})
         >>> violin = instrumenttools.Violin()
@@ -46,7 +46,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = contexttools.ClefMark('percussion')
+        >>> clef = marktools.ClefMark('percussion')
         >>> attach(clef, staff)
         ClefMark('percussion')(Staff{4})
         >>> violin = instrumenttools.Violin()
@@ -89,10 +89,10 @@ def notes_and_chords_are_on_expected_clefs(
             instrumenttools.Instrument)
         if not instrument:
             return False
-        clef = note_or_chord._get_effective_context_mark(contexttools.ClefMark)
+        clef = note_or_chord._get_effective_context_mark(marktools.ClefMark)
         if not clef:
             return False
-        if clef == contexttools.ClefMark('percussion'):
+        if clef == marktools.ClefMark('percussion'):
             if percussion_clef_is_allowed:
                 return True
             else:

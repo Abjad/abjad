@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_Note_grace_01():
+def test_scoretools_Note_grace_01():
     r'''Attach one grace note.
     '''
 
@@ -27,7 +27,7 @@ def test_notetools_Note_grace_01():
         )
 
 
-def test_notetools_Note_grace_02():
+def test_scoretools_Note_grace_02():
     r'''Attach several grace notes.
     '''
 
@@ -56,7 +56,7 @@ def test_notetools_Note_grace_02():
         )
 
 
-def test_notetools_Note_grace_03():
+def test_scoretools_Note_grace_03():
     r'''Attach one appoggiatura.
     '''
 
@@ -81,7 +81,7 @@ def test_notetools_Note_grace_03():
         )
 
 
-def test_notetools_Note_grace_04():
+def test_scoretools_Note_grace_04():
     r'''Attach one acciaccatura.
     '''
 
@@ -106,7 +106,7 @@ def test_notetools_Note_grace_04():
         )
 
 
-def test_notetools_Note_grace_05():
+def test_scoretools_Note_grace_05():
     r'''Attach one after grace note.
     '''
 
@@ -133,7 +133,7 @@ def test_notetools_Note_grace_05():
         )
 
 
-def test_notetools_Note_grace_06():
+def test_scoretools_Note_grace_06():
     r'''Attach several after grace notes.
     '''
 

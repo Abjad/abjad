@@ -47,8 +47,8 @@ signatures:
 
 ::
 
-   >>> time_signature_1 = contexttools.TimeSignatureMark((3, 8))
-   >>> time_signature_2 = contexttools.TimeSignatureMark((2, 4))
+   >>> time_signature_1 = marktools.TimeSignatureMark((3, 8))
+   >>> time_signature_2 = marktools.TimeSignatureMark((2, 4))
    >>> time_signature_1.attach(staff)
    TimeSignatureMark((3, 8))(Staff{11})
    >>> time_signature_2.attach(staff[6])

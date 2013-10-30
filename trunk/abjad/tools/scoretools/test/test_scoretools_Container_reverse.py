@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_Container_reverse_01():
+def test_scoretools_Container_reverse_01():
     r'''Retrograde works on a depth-0 container with no spanners and no parent.
     '''
 
@@ -15,7 +15,7 @@ def test_containertools_Container_reverse_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container_reverse_02():
+def test_scoretools_Container_reverse_02():
     r'''Retrograde works on a depth-0 container with one spanner 
     attached and no parent.
     '''
@@ -31,7 +31,7 @@ def test_containertools_Container_reverse_02():
     assert inspect(container).is_well_formed()
 
 
-def test_containertools_Container_reverse_03():
+def test_scoretools_Container_reverse_03():
     r'''Retrograde works on a depth-0 container with one spanner attached
     to its leaves and with no parent.
     '''
@@ -47,7 +47,7 @@ def test_containertools_Container_reverse_03():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container_reverse_04():
+def test_scoretools_Container_reverse_04():
     r'''Retrograde works on a depth-0 container with one spanner
     attached to itself and with a parent.
     '''
@@ -62,7 +62,7 @@ def test_containertools_Container_reverse_04():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container_reverse_05():
+def test_scoretools_Container_reverse_05():
     r'''Retrograde works on a depth-0 container with one spanner
     attached to its leaves and with a parent.
     '''
@@ -78,7 +78,7 @@ def test_containertools_Container_reverse_05():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container_reverse_06():
+def test_scoretools_Container_reverse_06():
     r'''Retrograde works on a depth-0 container with one spanner 
     attached to its parent.
     '''
@@ -95,7 +95,7 @@ def test_containertools_Container_reverse_06():
     assert inspect(container).is_well_formed()
 
 
-def test_containertools_Container_reverse_07():
+def test_scoretools_Container_reverse_07():
     r'''Retrograde works on a depth-0 container with one spanner
     attached to its parent's contents.
     '''
@@ -112,7 +112,7 @@ def test_containertools_Container_reverse_07():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container_reverse_08():
+def test_scoretools_Container_reverse_08():
 
     notes = [Note("c'8"), Note("d'8")]
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
@@ -167,7 +167,7 @@ def test_containertools_Container_reverse_08():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container_reverse_09():
+def test_scoretools_Container_reverse_09():
     r'''Retrograde works on a depth-2 container with no parent 
     and with spanners at all levels.
     '''

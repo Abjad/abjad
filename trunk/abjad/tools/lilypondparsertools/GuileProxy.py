@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import scoretools
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools import marktools
 from abjad.tools import scoretools
@@ -55,7 +55,7 @@ class GuileProxy(AbjadObject):
         return marktools.LilyPondCommandMark('breathe', 'after')
 
     def clef(self, string):
-        return contexttools.ClefMark(string)
+        return marktools.ClefMark(string)
 
     def grace(self, music):
         return scoretools.GraceContainer(music[:])
@@ -63,7 +63,7 @@ class GuileProxy(AbjadObject):
     def key(self, notename_pitch, number_list):
         if number_list is None:
             number_list = 'major'
-        return contexttools.KeySignatureMark(notename_pitch, number_list)
+        return marktools.KeySignatureMark(notename_pitch, number_list)
 
     def language(self, string):
         if string in self.client._language_pitch_names:
@@ -143,7 +143,7 @@ class GuileProxy(AbjadObject):
 
     def time(self, number_list, fraction):
         n, d = fraction.numerator, fraction.denominator
-        return contexttools.TimeSignatureMark(
+        return marktools.TimeSignatureMark(
             (n, d), target_context=scoretools.Staff)
 
     def times(self, fraction, music):
@@ -157,7 +157,7 @@ class GuileProxy(AbjadObject):
         from abjad.tools import lilypondparsertools
         self._make_unrelativable(music)
         def recurse(music):
-            key_signatures = music._get_marks(contexttools.KeySignatureMark)
+            key_signatures = music._get_marks(marktools.KeySignatureMark)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedPitch(x.tonic, 4)

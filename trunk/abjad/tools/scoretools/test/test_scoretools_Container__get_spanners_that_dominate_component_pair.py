@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container__get_spanners_that_dominate_component_pair_01():
+def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
     r'''Returns Python list of (spanner, index) pairs.
     Each spanner dominates an empty slice between components.
     No spanners dominate voice[0:0].
@@ -42,7 +42,7 @@ def test_containertools_Container__get_spanners_that_dominate_component_pair_01(
     assert receipt == set([])
 
 
-def test_containertools_Container__get_spanners_that_dominate_component_pair_02():
+def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
     r'''Beam and trill both dominate crack at voice[1:1].
     '''
 
@@ -82,7 +82,7 @@ def test_containertools_Container__get_spanners_that_dominate_component_pair_02(
     assert (trill, 2) in receipt
 
 
-def test_containertools_Container__get_spanners_that_dominate_component_pair_03():
+def test_scoretools_Container__get_spanners_that_dominate_component_pair_03():
     r'''Glissando and trill both dominate crack at voice[2:2].
     '''
 
@@ -122,7 +122,7 @@ def test_containertools_Container__get_spanners_that_dominate_component_pair_03(
     assert (trill, 4) in receipt
 
 
-def test_containertools_Container__get_spanners_that_dominate_component_pair_04():
+def test_scoretools_Container__get_spanners_that_dominate_component_pair_04():
     r'''No spanners dominate empty slice following voice.
     '''
 

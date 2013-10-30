@@ -4,7 +4,7 @@ from abjad import *
 
 def test_tonalanalysistools_TonalAnalysisAgent_analyze_tonal_functions_01():
 
-    key_signature = contexttools.KeySignatureMark('c', 'major')
+    key_signature = marktools.KeySignatureMark('c', 'major')
     chord = Chord('<c e g>4')
     tonal_function = tonalanalysistools.RomanNumeral(1, 'major', 5, 0)
     selection = tonalanalysistools.select(chord)
@@ -26,7 +26,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_analyze_tonal_functions_01():
 
 def test_tonalanalysistools_TonalAnalysisAgent_analyze_tonal_functions_02():
 
-    key_signature = contexttools.KeySignatureMark('c', 'major')
+    key_signature = marktools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'ef', 'g'], (1, 4))
     tonal_function = tonalanalysistools.RomanNumeral(1, 'minor', 5, 0)
     selection = tonalanalysistools.select(chord)
@@ -48,7 +48,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_analyze_tonal_functions_02():
 
 def test_tonalanalysistools_TonalAnalysisAgent_analyze_tonal_functions_03():
 
-    key_signature = contexttools.KeySignatureMark('c', 'major')
+    key_signature = marktools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'e', 'g', 'bf'], (1, 4))
     tonal_function = tonalanalysistools.RomanNumeral(1, 'dominant', 7, 0)
     selection = tonalanalysistools.select(chord)
@@ -76,7 +76,7 @@ def test_tonalanalysistools_TonalAnalysisAgent_analyze_tonal_functions_03():
 
 def test_tonalanalysistools_TonalAnalysisAgent_analyze_tonal_functions_04():
 
-    key_signature = contexttools.KeySignatureMark('c', 'major')
+    key_signature = marktools.KeySignatureMark('c', 'major')
     chord = Chord(['c', 'cs', 'd'], (1, 4))
     selection = tonalanalysistools.select(chord)
     result = selection.analyze_tonal_functions(key_signature)

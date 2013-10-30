@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_Container___setitem___slice_01():
+def test_scoretools_Container___setitem___slice_01():
     r'''Containers set single leaves correctly in an unspanned structure.
     '''
 
@@ -26,7 +26,7 @@ def test_containertools_Container___setitem___slice_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_02():
+def test_scoretools_Container___setitem___slice_02():
     r'''Set single leaf between spanned components.
     '''
 
@@ -52,7 +52,7 @@ def test_containertools_Container___setitem___slice_02():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_03():
+def test_scoretools_Container___setitem___slice_03():
     r'''Containers set sequence of leaves between spanned components.
     '''
 
@@ -100,7 +100,7 @@ def test_containertools_Container___setitem___slice_03():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_04():
+def test_scoretools_Container___setitem___slice_04():
     r'''Replace sequence of spanned components with a single leaf.
     '''
 
@@ -124,7 +124,7 @@ def test_containertools_Container___setitem___slice_04():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_05():
+def test_scoretools_Container___setitem___slice_05():
     r'''Replace a sequence of multiple components with
     a different sequence of multiple components.
     '''
@@ -151,7 +151,7 @@ def test_containertools_Container___setitem___slice_05():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_06():
+def test_scoretools_Container___setitem___slice_06():
     r'''Donor and recipient container are the same.
     '''
 
@@ -196,7 +196,7 @@ def test_containertools_Container___setitem___slice_06():
     assert len(sequential) == 0
 
 
-def test_containertools_Container___setitem___slice_07():
+def test_scoretools_Container___setitem___slice_07():
     r'''Donor and recipient container are the same.
     '''
 
@@ -241,7 +241,7 @@ def test_containertools_Container___setitem___slice_07():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_08():
+def test_scoretools_Container___setitem___slice_08():
     r'''Donor and recipient container are the same.
     '''
 
@@ -284,7 +284,7 @@ def test_containertools_Container___setitem___slice_08():
         )
 
 
-def test_containertools_Container___setitem___slice_09():
+def test_scoretools_Container___setitem___slice_09():
     r'''Donor and recipient container are the same.
     '''
 
@@ -331,7 +331,7 @@ def test_containertools_Container___setitem___slice_09():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_10():
+def test_scoretools_Container___setitem___slice_10():
     r'''Donor and recipient container are the same.
     '''
 
@@ -393,7 +393,7 @@ def test_containertools_Container___setitem___slice_10():
     assert inspect(staff).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_11():
+def test_scoretools_Container___setitem___slice_11():
     r'''Extremely small coequal indices act as zero.
     '''
 
@@ -431,7 +431,7 @@ def test_containertools_Container___setitem___slice_11():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_12():
+def test_scoretools_Container___setitem___slice_12():
     r'''Extremely large, coequal indices work correctly.
     '''
 
@@ -456,7 +456,7 @@ def test_containertools_Container___setitem___slice_12():
     assert inspect(voice).is_well_formed()
 
 
-def test_containertools_Container___setitem___slice_13():
+def test_scoretools_Container___setitem___slice_13():
     r'''You can use setitem to empty the contents of a container.
     When you do this, emptied components withdraw
     from absolutely all spanners.

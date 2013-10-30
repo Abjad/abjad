@@ -4,7 +4,7 @@ from abjad import *
 
 def test_timesignaturetools_MetricalHierarchy___iter___01():
 
-    bh = timesignaturetools.MetricalHierarchy(contexttools.TimeSignatureMark((3, 8)))
+    bh = timesignaturetools.MetricalHierarchy(marktools.TimeSignatureMark((3, 8)))
 
     result = [x for x in bh]
 

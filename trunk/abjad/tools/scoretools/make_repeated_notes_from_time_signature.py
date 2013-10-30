@@ -19,11 +19,11 @@ def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
 
     Returns list of notes.
     '''
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import scoretools
 
     # afford basic input polymorphism
-    time_signature = contexttools.TimeSignatureMark(time_signature)
+    time_signature = marktools.TimeSignatureMark(time_signature)
 
     # check input
     if time_signature.has_non_power_of_two_denominator:

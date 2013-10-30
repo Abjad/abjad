@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
@@ -49,7 +49,7 @@ class Measure(FixedDurationContainer):
         FixedDurationContainer.__init__(self, time_signature, music)
         self._always_format_time_signature = False
         self._measure_number = None
-        time_signature = contexttools.TimeSignatureMark(time_signature)
+        time_signature = marktools.TimeSignatureMark(time_signature)
         attach(time_signature, self)
         self._initialize_keyword_values(**kwargs)
 
@@ -86,7 +86,7 @@ class Measure(FixedDurationContainer):
         Returns string.
         '''
         class_name = self._class_name
-        forced_time_signature = self._get_mark(contexttools.TimeSignatureMark)
+        forced_time_signature = self._get_mark(marktools.TimeSignatureMark)
         summary = self._summary
         length = len(self)
         if forced_time_signature and length:
@@ -146,7 +146,7 @@ class Measure(FixedDurationContainer):
         from abjad.tools.scoretools import attach
         new = type(self)(*self.__getnewargs__())
         # only the following line differs from Conatainer
-        for mark in new._get_marks(contexttools.TimeSignatureMark):
+        for mark in new._get_marks(marktools.TimeSignatureMark):
             mark.detach()
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
@@ -168,7 +168,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def _preprolated_duration(self):
-        from abjad.tools import contexttools
+        from abjad.tools import marktools
         time_signature = self.time_signature
         return time_signature.implied_prolation * self._contents_duration
 
@@ -185,7 +185,7 @@ class Measure(FixedDurationContainer):
         return True
 
     def _check_duration(self):
-        from abjad.tools import contexttools
+        from abjad.tools import marktools
         effective_time_signature = self.time_signature
         if effective_time_signature.has_non_power_of_two_denominator and \
             effective_time_signature.suppress:
@@ -206,8 +206,8 @@ class Measure(FixedDurationContainer):
             better_time_signature = \
                 better_time_signature.with_denominator(old_denominator)
             better_time_signature = \
-                contexttools.TimeSignatureMark(better_time_signature)
-            for mark in self._get_marks(contexttools.TimeSignatureMark):
+                marktools.TimeSignatureMark(better_time_signature)
+            for mark in self._get_marks(marktools.TimeSignatureMark):
                 mark.detach()
             attach(better_time_signature, self)
 
@@ -269,7 +269,7 @@ class Measure(FixedDurationContainer):
     #       with self.scale_and_adjust_time_signature()
     def _scale(self, multiplier=None):
         from abjad.tools import scoretools
-        from abjad.tools import contexttools
+        from abjad.tools import marktools
         from abjad.tools import iterationtools
         from abjad.tools import timesignaturetools
         from abjad.tools.scoretools import attach
@@ -283,7 +283,7 @@ class Measure(FixedDurationContainer):
             old_denominator = old_time_signature.denominator
             new_denominator = old_denominator / multiplier.numerator
             pair = (old_numerator, new_denominator)
-            new_time_signature = contexttools.TimeSignatureMark(pair)
+            new_time_signature = marktools.TimeSignatureMark(pair)
         else:
             old_denominator = old_time_signature.denominator
             old_duration = old_time_signature.duration
@@ -291,7 +291,7 @@ class Measure(FixedDurationContainer):
             new_time_signature = \
                 timesignaturetools.duration_and_possible_denominators_to_time_signature(
                 new_duration, [old_denominator], multiplier.denominator)
-        for mark in self._get_marks(contexttools.TimeSignatureMark):
+        for mark in self._get_marks(marktools.TimeSignatureMark):
             mark.detach()
         attach(new_time_signature, self)
         contents_multiplier_denominator = \
@@ -578,8 +578,8 @@ class Measure(FixedDurationContainer):
 
         Returns time signature or none.
         '''
-        from abjad.tools import contexttools
-        return self._get_effective_context_mark(contexttools.TimeSignatureMark)
+        from abjad.tools import marktools
+        return self._get_effective_context_mark(marktools.TimeSignatureMark)
 
     ### PUBLIC METHODS ###
 
@@ -627,7 +627,7 @@ class Measure(FixedDurationContainer):
         Returns none.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import contexttools
+        from abjad.tools import marktools
         from abjad.tools.scoretools import attach
         if multiplier == 0:
             raise ZeroDivisionError
@@ -647,8 +647,8 @@ class Measure(FixedDurationContainer):
             new_pair = mathtools.NonreducedFraction(old_pair)
             new_pair = \
                 new_pair.multiply_with_numerator_preservation(multiplier)
-            new_time_signature = contexttools.TimeSignatureMark(new_pair)
-            for mark in self._get_marks(contexttools.TimeSignatureMark):
+            new_time_signature = marktools.TimeSignatureMark(new_pair)
+            for mark in self._get_marks(marktools.TimeSignatureMark):
                 mark.detach()
             attach(new_time_signature, self)
             remaining_multiplier = durationtools.Multiplier(reduced_pair)
@@ -672,16 +672,16 @@ class Measure(FixedDurationContainer):
                     multiplier)
             elif multiplier == durationtools.Multiplier(0):
                 raise ZeroDivisionError
-            new_time_signature = contexttools.TimeSignatureMark(new_pair)
-            for mark in self._get_marks(contexttools.TimeSignatureMark):
+            new_time_signature = marktools.TimeSignatureMark(new_pair)
+            for mark in self._get_marks(marktools.TimeSignatureMark):
                 mark.detach()
             attach(new_time_signature, self)
         else:
             new_pair = mathtools.NonreducedFraction(old_pair)
             new_pair = new_pair.multiply_with_numerator_preservation(
                 multiplier)
-            new_time_signature = contexttools.TimeSignatureMark(new_pair)
-            for mark in self._get_marks(contexttools.TimeSignatureMark):
+            new_time_signature = marktools.TimeSignatureMark(new_pair)
+            for mark in self._get_marks(marktools.TimeSignatureMark):
                 mark.detach()
             attach(new_time_signature, self)
             remaining_multiplier = \

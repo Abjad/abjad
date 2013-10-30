@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_containertools_Container_remove_01():
+def test_scoretools_Container_remove_01():
     r'''Containers remove leaves correctly.
     Leaf detaches from parentage.
     Leaf withdraws from crossing spanners.
@@ -51,7 +51,7 @@ def test_containertools_Container_remove_01():
     assert inspect(note).is_well_formed()
 
 
-def test_containertools_Container_remove_02():
+def test_scoretools_Container_remove_02():
     r'''Containers remove nested containers correctly.
     Container detaches from parentage.
     Container withdraws from crossing spanners.
@@ -109,7 +109,7 @@ def test_containertools_Container_remove_02():
     assert inspect(sequential).is_well_formed()
 
 
-def test_containertools_Container_remove_03():
+def test_scoretools_Container_remove_03():
     r'''Container remove works on identity and not equality.
     '''
 

@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_notetools_NoteHead_written_pitch_01():
+def test_scoretools_NoteHead_written_pitch_01():
     r'''Set Note head pitch with integer.
     '''
 
@@ -16,7 +16,7 @@ def test_notetools_NoteHead_written_pitch_01():
     assert note.note_head.written_pitch.numbered_pitch._pitch_number == 14
 
 
-def test_notetools_NoteHead_written_pitch_02():
+def test_scoretools_NoteHead_written_pitch_02():
     r'''Set Note head pitch with pitch.
     '''
 
@@ -29,7 +29,7 @@ def test_notetools_NoteHead_written_pitch_02():
     assert note.note_head.written_pitch.numbered_pitch._pitch_number == 14
 
 
-def test_notetools_NoteHead_written_pitch_03():
+def test_scoretools_NoteHead_written_pitch_03():
     r'''Can not set note head pitch to none.
     '''
 
@@ -38,7 +38,7 @@ def test_notetools_NoteHead_written_pitch_03():
     assert py.test.raises(Exception, 'note.note_head.written_pitch = None')
 
 
-def test_notetools_NoteHead_written_pitch_04():
+def test_scoretools_NoteHead_written_pitch_04():
     r'''Set note head pitch from another note or note head.
     Make sure this does not cause reference problems.
     '''

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container_pop_01():
+def test_scoretools_Container_pop_01():
     r'''Containers pop leaves correctly.
     Popped leaves detach from parent.
     Popped leaves withdraw from crossing spanners.
@@ -48,7 +48,7 @@ def test_containertools_Container_pop_01():
     assert result.lilypond_format == "d'8 [ ]"
 
 
-def test_containertools_Container_pop_02():
+def test_scoretools_Container_pop_02():
     r'''Containers pop nested containers correctly.
     Popped containers detach from both parent and spanners.
     '''

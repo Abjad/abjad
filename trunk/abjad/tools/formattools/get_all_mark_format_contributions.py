@@ -13,7 +13,7 @@ def get_all_mark_format_contributions(component):
     Returns dict.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import contexttools
+    from abjad.tools import marktools
     from abjad.tools import formattools
     from abjad.tools import marktools
     from abjad.tools import markuptools
@@ -51,7 +51,7 @@ def get_all_mark_format_contributions(component):
 
         ### context marks to be dealt with later ###
 
-        elif isinstance(mark, contexttools.ContextMark):
+        elif isinstance(mark, marktools.ContextMark):
             if formattools.is_formattable_context_mark_for_component(
                 mark, component):
                 context_marks.append(mark)
@@ -102,7 +102,7 @@ def get_all_mark_format_contributions(component):
 
     for parent in component._get_parentage(include_self=False):
         for mark in parent._start_marks:
-            if isinstance(mark, contexttools.ContextMark):
+            if isinstance(mark, marktools.ContextMark):
                 if mark not in context_marks:
                     if formattools.is_formattable_context_mark_for_component(
                         mark, component):

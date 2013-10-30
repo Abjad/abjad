@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_NoteHead___cmp___01():
+def test_scoretools_NoteHead___cmp___01():
 
     note_head_1 = scoretools.NoteHead(12)
     note_head_2 = scoretools.NoteHead(12)
@@ -15,7 +15,7 @@ def test_notetools_NoteHead___cmp___01():
     assert      note_head_1 >= note_head_2
 
 
-def test_notetools_NoteHead___cmp___02():
+def test_scoretools_NoteHead___cmp___02():
 
     note_head_1 = scoretools.NoteHead(12)
     note_head_2 = scoretools.NoteHead(13)
@@ -28,7 +28,7 @@ def test_notetools_NoteHead___cmp___02():
     assert      note_head_2 >= note_head_1
 
 
-def test_notetools_NoteHead___cmp___03():
+def test_scoretools_NoteHead___cmp___03():
 
     note_head_1 = scoretools.NoteHead(12)
     note_head_2 = 12
@@ -41,7 +41,7 @@ def test_notetools_NoteHead___cmp___03():
     assert      note_head_1 >= note_head_2
 
 
-def test_notetools_NoteHead___cmp___04():
+def test_scoretools_NoteHead___cmp___04():
 
     note_head_1 = scoretools.NoteHead(12)
     note_head_2 = 13

@@ -49,7 +49,7 @@ We can use the inspector to see that this is the case:
 
 ::
 
-   >>> print inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
+   >>> print inspect(staff).get_effective_context_mark(marktools.TimeSignatureMark)
    None
 
 
@@ -59,7 +59,7 @@ And:
 
    >>> for leaf in staff.select_leaves():
    ...     print inspect(leaf).get_effective_context_mark(
-   ...         contexttools.TimeSignatureMark)
+   ...         marktools.TimeSignatureMark)
    ... 
    None
    None
@@ -75,7 +75,7 @@ this:
 
    >>> for component in iterationtools.iterate_components_in_expr(staff):
    ...     effective_time_signature = inspect(component).get_effective_context_mark(
-   ...         contexttools.TimeSignatureMark)
+   ...         marktools.TimeSignatureMark)
    ...     print component, effective_time_signature
    ... 
    Staff{5} None
@@ -151,7 +151,7 @@ First, we create a ``3/4`` time signature mark:
 
 ::
 
-   >>> time_signature_mark = contexttools.TimeSignatureMark((3, 4))
+   >>> time_signature_mark = marktools.TimeSignatureMark((3, 4))
 
 
 The interpreter representation of our time signature looks like this:
@@ -208,7 +208,7 @@ time signature to a state of having an effective time signature:
 
 ::
 
-   >>> inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
+   >>> inspect(staff).get_effective_context_mark(marktools.TimeSignatureMark)
    TimeSignatureMark((3, 4))(Staff{5})
 
 
@@ -221,7 +221,7 @@ Indeed they do:
 
    >>> for leaf in staff.select_leaves():
    ...     effective_time_signature = inspect(leaf).get_effective_context_mark(
-   ...         contexttools.TimeSignatureMark)
+   ...         marktools.TimeSignatureMark)
    ...     print leaf, effective_time_signature
    ... 
    c'4 3/4
@@ -297,7 +297,7 @@ And also like so:
 
 ::
 
-   >>> print inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
+   >>> print inspect(staff).get_effective_context_mark(marktools.TimeSignatureMark)
    None
 
 
@@ -311,7 +311,7 @@ We can simply create and attach a new time signature mark:
 
 ::
 
-   >>> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
+   >>> duple_time_signature_mark = marktools.TimeSignatureMark((2, 4))
    >>> duple_time_signature_mark.attach(staff)
    TimeSignatureMark((2, 4))(Staff{5})
 
@@ -353,7 +353,7 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 ::
 
-   >>> print inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
+   >>> print inspect(staff).get_effective_context_mark(marktools.TimeSignatureMark)
    None
 
 
@@ -388,7 +388,7 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 ::
 
-   >>> inspect(staff).get_effective_context_mark(contexttools.TimeSignatureMark)
+   >>> inspect(staff).get_effective_context_mark(marktools.TimeSignatureMark)
    TimeSignatureMark((2, 4))(Staff{5})
    >>> time_signature_mark.start_component
    Staff{5}
@@ -528,7 +528,7 @@ We create it in the usual way:
 
 ::
 
-   >>> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
+   >>> duple_time_signature_mark = marktools.TimeSignatureMark((2, 4))
    >>> duple_time_signature_mark
    TimeSignatureMark((2, 4))
 

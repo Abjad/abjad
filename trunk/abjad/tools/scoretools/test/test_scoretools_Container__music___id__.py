@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_containertools_Container__music___id___01():
+def test_scoretools_Container__music___id___01():
     '''
     Container music lists are unique per instance,
     rather than shared between different instances.

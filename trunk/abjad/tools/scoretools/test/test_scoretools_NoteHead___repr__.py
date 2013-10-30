@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools.scoretools import NoteHead
 
 
-def test_notetools_NoteHead___repr___01():
+def test_scoretools_NoteHead___repr___01():
     r'''Note head repr is evaluable.
     '''
 

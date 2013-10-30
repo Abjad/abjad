@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -42,6 +42,6 @@ class Violin(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(-5, 43)
         self._default_short_instrument_name = 'vn.'
-        self._default_starting_clefs = [contexttools.ClefMark('treble')]
+        self._default_starting_clefs = [marktools.ClefMark('treble')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._is_primary_instrument = True

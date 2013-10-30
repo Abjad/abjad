@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_notetools_NaturalHarmonic_01():
+def test_scoretools_NaturalHarmonic_01():
 
     naturalharmonic = scoretools.NaturalHarmonic(10, (1, 4))
 

@@ -3,7 +3,7 @@ import copy
 from abjad import *
 
 
-def test_notetools_Note___copy___01():
+def test_scoretools_Note___copy___01():
     r'''Copy note.
     '''
 
@@ -16,7 +16,7 @@ def test_notetools_Note___copy___01():
     assert note_1 is not note_2
 
 
-def test_notetools_Note___copy___02():
+def test_scoretools_Note___copy___02():
     r'''Copy note with LilyPond multiplier.
     '''
 
@@ -29,7 +29,7 @@ def test_notetools_Note___copy___02():
     assert note_1 is not note_2
 
 
-def test_notetools_Note___copy___03():
+def test_scoretools_Note___copy___03():
     r'''Copy note with LilyPond grob overrides and LilyPond context settings.
     '''
 
@@ -45,7 +45,7 @@ def test_notetools_Note___copy___03():
     assert note_1 is not note_2
 
 
-def test_notetools_Note___copy___04():
+def test_scoretools_Note___copy___04():
     r'''Copy note with grace container.
     '''
 
@@ -83,7 +83,7 @@ def test_notetools_Note___copy___04():
         )
 
 
-def test_notetools_Note___copy___05():
+def test_scoretools_Note___copy___05():
     r'''Deepcopy orphan note.
     '''
 
@@ -111,7 +111,7 @@ def test_notetools_Note___copy___05():
     assert new_note.lilypond_format == note.lilypond_format
 
 
-def test_notetools_Note___copy___06():
+def test_scoretools_Note___copy___06():
     r'''Deepcopy note in score.
     '''
 
@@ -150,7 +150,7 @@ def test_notetools_Note___copy___06():
         inspect(new_note).get_parentage().parent.lilypond_format
 
 
-def test_notetools_Note___copy___07():
+def test_scoretools_Note___copy___07():
     r'''Copying note does note copy hairpin.
     '''
 

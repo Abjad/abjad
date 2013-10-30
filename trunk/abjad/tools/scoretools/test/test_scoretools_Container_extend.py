@@ -3,7 +3,7 @@ import py.test
 from abjad import *
 
 
-def test_containertools_Container_extend_01():
+def test_scoretools_Container_extend_01():
     r'''Extend container with list of leaves.
     '''
 
@@ -43,7 +43,7 @@ def test_containertools_Container_extend_01():
         )
 
 
-def test_containertools_Container_extend_02():
+def test_scoretools_Container_extend_02():
     r'''Extend container with contents of other container.
     '''
 
@@ -86,7 +86,7 @@ def test_containertools_Container_extend_02():
         )
 
 
-def test_containertools_Container_extend_03():
+def test_scoretools_Container_extend_03():
     r'''Extending container with empty list leaves container unchanged.
     '''
 
@@ -114,7 +114,7 @@ def test_containertools_Container_extend_03():
         )
 
 
-def test_containertools_Container_extend_04():
+def test_scoretools_Container_extend_04():
     r'''Extending one container with empty second container leaves both containers unchanged.
     '''
 
@@ -142,7 +142,7 @@ def test_containertools_Container_extend_04():
         )
 
 
-def test_containertools_Container_extend_05():
+def test_scoretools_Container_extend_05():
     r'''Trying to extend container with noncomponent raises TypeError.
     '''
 
@@ -154,7 +154,7 @@ def test_containertools_Container_extend_05():
     assert py.test.raises(Exception, "voice.extend('foo')")
 
 
-def test_containertools_Container_extend_06():
+def test_scoretools_Container_extend_06():
     r'''Trying to extend container with noncontainer raises exception.
     '''
 
@@ -166,7 +166,7 @@ def test_containertools_Container_extend_06():
     assert py.test.raises(AssertionError, "voice.extend(Chord([2, 3, 5], (1, 4)))")
 
 
-def test_containertools_Container_extend_07():
+def test_scoretools_Container_extend_07():
     r'''Extend container with partial and spanned contents of other container.
     '''
 
@@ -241,7 +241,7 @@ def test_containertools_Container_extend_07():
         )
 
 
-def test_containertools_Container_extend_08():
+def test_scoretools_Container_extend_08():
     r'''Extend container with partial and spanned contents of other container.
     Covered span comes with components from donor container.
     '''
@@ -319,7 +319,7 @@ def test_containertools_Container_extend_08():
         )
 
 
-def test_containertools_Container_extend_09():
+def test_scoretools_Container_extend_09():
     r'''Extend container with LilyPond input string.
     '''
 

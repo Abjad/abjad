@@ -22,7 +22,7 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(
         >>> staff.append(Measure((2, 8), "e'8 f'8"))
         >>> staff.append(Measure((2, 8), "g'8 a'8"))
         >>> staff.append(Measure((2, 8), "b'8 c''8"))
-        >>> tempo_mark = contexttools.TempoMark(
+        >>> tempo_mark = marktools.TempoMark(
         ...     Duration(1, 8), 44, target_context=Staff)
         >>> tempo_mark = attach(tempo_mark, staff)
         >>> show(staff) # doctest: +SKIP

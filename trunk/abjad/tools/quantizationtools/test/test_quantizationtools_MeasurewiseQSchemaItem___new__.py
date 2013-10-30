@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import contexttools
+from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import quantizationtools
 import py.test
@@ -23,7 +23,7 @@ def test_quantizationtools_MeasurewiseQSchemaItem___new___02():
 
     assert item.beatspan is None
     assert item.search_tree is None
-    assert item.tempo == contexttools.TempoMark((1, 4), 60)
+    assert item.tempo == marktools.TempoMark((1, 4), 60)
     assert item.time_signature is None
 
 
@@ -36,7 +36,7 @@ def test_quantizationtools_MeasurewiseQSchemaItem___new___03():
     assert item.beatspan == durationtools.Duration(1, 8)
     assert item.search_tree is None
     assert item.tempo is None
-    assert item.time_signature == contexttools.TimeSignatureMark((6, 8))
+    assert item.time_signature == marktools.TimeSignatureMark((6, 8))
 
 
 def test_quantizationtools_MeasurewiseQSchemaItem___new___04():
@@ -48,11 +48,11 @@ def test_quantizationtools_MeasurewiseQSchemaItem___new___04():
 
     assert item.beatspan == durationtools.Duration(1, 8)
     assert item.search_tree is None
-    assert item.tempo == contexttools.TempoMark((1, 4), 57)
-    assert item.time_signature == contexttools.TimeSignatureMark((6, 8))
+    assert item.tempo == marktools.TempoMark((1, 4), 57)
+    assert item.time_signature == marktools.TimeSignatureMark((6, 8))
 
 
 def test_quantizationtools_MeasurewiseQSchemaItem___new___05():
 
-    tempo = contexttools.TempoMark('lento')
+    tempo = marktools.TempoMark('lento')
     py.test.raises('item = quantizationtools.MeasurewiseQSchemaItem(tempo=tempo)')
