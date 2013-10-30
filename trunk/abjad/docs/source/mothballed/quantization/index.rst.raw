@@ -34,7 +34,7 @@ staves = [original_staff]
 for search_tree in search_trees:
     q_schema = quantizationtools.MeasurewiseQSchema(search_tree=search_tree)
     result = quantizer(q_event_sequence, q_schema)
-    staves.append(stafftools.Staff([result]))
+    staves.append(scoretools.Staff([result]))
 </abjad>
 
 <abjad>
@@ -42,7 +42,7 @@ q_schema = quantizationtools.MeasurewiseQSchema(
     search_tree=quantizationtools.UnweightedSearchTree({11: None}),
     use_full_measure=True)
 result = quantizer(q_event_sequence, q_schema)
-staves.append(stafftools.Staff([result]))
+staves.append(scoretools.Staff([result]))
 </abjad>
 
 <abjad>

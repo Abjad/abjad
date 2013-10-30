@@ -129,8 +129,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    stafftools.iterate_staves_forward_in_expr()
-    stafftools.iterate_staves_backward_in_expr()
+    scoretools.iterate_staves_forward_in_expr()
+    scoretools.iterate_staves_backward_in_expr()
 
   ::
 

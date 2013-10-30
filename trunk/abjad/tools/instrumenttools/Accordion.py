@@ -437,7 +437,7 @@ class Accordion(Instrument):
                     allowable_clefs=contexttools.ClefMarkInventory([
                         contexttools.ClefMark(
                             'treble',
-                            target_context=stafftools.Staff
+                            target_context=scoretools.Staff
                             )
                         ]),
                     pitch_range=pitchtools.PitchRange(

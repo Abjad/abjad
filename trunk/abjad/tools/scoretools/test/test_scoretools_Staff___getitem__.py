@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_stafftools_Staff___getitem___01():
+def test_scoretools_Staff___getitem___01():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -22,7 +22,7 @@ def test_stafftools_Staff___getitem___01():
     assert isinstance(staff[-1], tuplettools.FixedDurationTuplet)
 
 
-def test_stafftools_Staff___getitem___02():
+def test_scoretools_Staff___getitem___02():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -35,7 +35,7 @@ def test_stafftools_Staff___getitem___02():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___getitem___03():
+def test_scoretools_Staff___getitem___03():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -51,7 +51,7 @@ def test_stafftools_Staff___getitem___03():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___getitem___04():
+def test_scoretools_Staff___getitem___04():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -67,7 +67,7 @@ def test_stafftools_Staff___getitem___04():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___getitem___05():
+def test_scoretools_Staff___getitem___05():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -85,7 +85,7 @@ def test_stafftools_Staff___getitem___05():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___getitem___06():
+def test_scoretools_Staff___getitem___06():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -103,7 +103,7 @@ def test_stafftools_Staff___getitem___06():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___getitem___07():
+def test_scoretools_Staff___getitem___07():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -121,7 +121,7 @@ def test_stafftools_Staff___getitem___07():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___getitem___08():
+def test_scoretools_Staff___getitem___08():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),

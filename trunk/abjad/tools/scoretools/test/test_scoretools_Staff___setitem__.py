@@ -3,7 +3,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_stafftools_Staff___setitem___01():
+def test_scoretools_Staff___setitem___01():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -58,7 +58,7 @@ def test_stafftools_Staff___setitem___01():
     assert isinstance(staff[4], Note)
 
 
-def test_stafftools_Staff___setitem___02():
+def test_scoretools_Staff___setitem___02():
     r'''Reassign the *entire* contents of staff.
     '''
     staff = Staff(Note("c'4") * 4)
@@ -67,21 +67,21 @@ def test_stafftools_Staff___setitem___02():
     assert staff._contents_duration == Duration(4, 8)
 
 
-def test_stafftools_Staff___setitem___03():
+def test_scoretools_Staff___setitem___03():
     r'''Item-assign an empty container to staff.
     '''
     staff = Staff(Note("c'4") * 4)
     staff[0] = Voice([])
 
 
-def test_stafftools_Staff___setitem___04():
+def test_scoretools_Staff___setitem___04():
     r'''Slice-assign empty containers to staff.
     '''
     staff = Staff(Note("c'4") * 4)
     staff[0:2] = [Voice([]), Voice([])]
 
 
-def test_stafftools_Staff___setitem___05():
+def test_scoretools_Staff___setitem___05():
     r'''Bark when user assigns a slice to an item.
     '''
 
@@ -90,7 +90,7 @@ def test_stafftools_Staff___setitem___05():
     assert raises(AssertionError, 'staff[0] = [Note(2, (1, 4)), Note(2, (1, 4))]')
 
 
-def test_stafftools_Staff___setitem___06():
+def test_scoretools_Staff___setitem___06():
     r'''Bark when user assigns an item to a slice.
     '''
 
@@ -99,7 +99,7 @@ def test_stafftools_Staff___setitem___06():
     assert raises(Exception, 'staff[0:2] = Note(2, (1, 4))')
 
 
-def test_stafftools_Staff___setitem___07():
+def test_scoretools_Staff___setitem___07():
     r'''Slice-assign notes.
     '''
     staff = Staff(Note(0, (1, 8)) * 8)
@@ -112,7 +112,7 @@ def test_stafftools_Staff___setitem___07():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___setitem___08():
+def test_scoretools_Staff___setitem___08():
     r'''Slice-assign chords.
     '''
     staff = Staff(Note(0, (1, 8)) * 8)
@@ -125,7 +125,7 @@ def test_stafftools_Staff___setitem___08():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___setitem___09():
+def test_scoretools_Staff___setitem___09():
     r'''Slice-assign tuplets.
     '''
     staff = Staff(Note(0, (1, 8)) * 8)
@@ -139,7 +139,7 @@ def test_stafftools_Staff___setitem___09():
     assert inspect(staff).is_well_formed()
 
 
-def test_stafftools_Staff___setitem___10():
+def test_scoretools_Staff___setitem___10():
     r'''Slice-assign measures.
     '''
     staff = Staff(Note(0, (1, 8)) * 8)

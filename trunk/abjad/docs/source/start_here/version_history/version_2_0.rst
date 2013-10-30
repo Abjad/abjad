@@ -16,7 +16,7 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
     contexttools/      leaftools/         notetools/         sievetools/        tuplettools/
     durtools/          lilyfiletools/     pitcharraytools/   scoretools/         verticalitytools/
     gracetools/        marktools/         pitchtools/        spannertools/      scoretools/
-    importtools/       markuptools/       quantizationtools/ stafftools/
+    importtools/       markuptools/       quantizationtools/ scoretools/
 
 * The name of almost every function in the public API has been changed to better indication what the function does. While this has the effect of making Abjad 2.0 largely non-backwards compatible with code written in Abjad 1.x, the longer and much more explicit function names in Abjad 2.0 make code used to structure complex scores dramatically easier to maintain and understand.
 

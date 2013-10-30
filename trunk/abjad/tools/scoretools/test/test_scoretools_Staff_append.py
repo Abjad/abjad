@@ -3,7 +3,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_stafftools_Staff_append_01():
+def test_scoretools_Staff_append_01():
     r'''Append one note.
     '''
     staff = Staff(Note("c'4") * 4)
@@ -13,7 +13,7 @@ def test_stafftools_Staff_append_01():
     assert staff._contents_duration == Duration(5, 4)
 
 
-def test_stafftools_Staff_append_02():
+def test_scoretools_Staff_append_02():
     r'''Append one chord.
     '''
     staff = Staff(Note("c'4") * 4)
@@ -23,7 +23,7 @@ def test_stafftools_Staff_append_02():
     assert staff._contents_duration == Duration(5, 4)
 
 
-def test_stafftools_Staff_append_03():
+def test_scoretools_Staff_append_03():
     r'''Append one tuplet.
     '''
     staff = Staff(Note("c'4") * 4)
@@ -33,7 +33,7 @@ def test_stafftools_Staff_append_03():
     assert staff._contents_duration == Duration(5, 4)
 
 
-def test_stafftools_Staff_append_04():
+def test_scoretools_Staff_append_04():
     r'''Empty containers are allowed but not well-formed.
     '''
     staff = Staff(Note("c'4") * 4)

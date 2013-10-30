@@ -53,7 +53,7 @@ The score template
    
            # make bell voice and staff
            bell_voice = scoretools.Voice(name='Bell Voice')
-           bell_staff = stafftools.Staff([bell_voice], name='Bell Staff')
+           bell_staff = scoretools.Staff([bell_voice], name='Bell Staff')
            contexttools.ClefMark('treble')(bell_staff)
            bells = instrumenttools.Instrument('Campana in La', 'Camp.')
            bells.attach(bell_staff)
@@ -62,7 +62,7 @@ The score template
    
            # make first violin voice and staff
            first_violin_voice = scoretools.Voice(name='First Violin Voice')
-           first_violin_staff = stafftools.Staff([first_violin_voice],
+           first_violin_staff = scoretools.Staff([first_violin_voice],
                name='First Violin Staff')
            contexttools.ClefMark('treble')(first_violin_staff)
            instrumenttools.Violin(
@@ -72,7 +72,7 @@ The score template
    
            # make second violin voice and staff
            second_violin_voice = scoretools.Voice(name='Second Violin Voice')
-           second_violin_staff = stafftools.Staff([second_violin_voice],
+           second_violin_staff = scoretools.Staff([second_violin_voice],
                name='Second Violin Staff')
            contexttools.ClefMark('treble')(second_violin_staff)
            instrumenttools.Violin(
@@ -82,13 +82,13 @@ The score template
    
            # make viola voice and staff
            viola_voice = scoretools.Voice(name='Viola Voice')
-           viola_staff = stafftools.Staff([viola_voice], name='Viola Staff')
+           viola_staff = scoretools.Staff([viola_voice], name='Viola Staff')
            contexttools.ClefMark('alto')(viola_staff)
            instrumenttools.Viola()(viola_staff)
    
            # make cello voice and staff
            cello_voice = scoretools.Voice(name='Cello Voice')
-           cello_staff = stafftools.Staff([cello_voice], name='Cello Staff')
+           cello_staff = scoretools.Staff([cello_voice], name='Cello Staff')
            contexttools.ClefMark('bass')(cello_staff)
            instrumenttools.Cello(
                short_instrument_name_markup='Vc.'
@@ -96,7 +96,7 @@ The score template
    
            # make bass voice and staff
            bass_voice = scoretools.Voice(name='Bass Voice')
-           bass_staff = stafftools.Staff([bass_voice], name='Bass Staff')
+           bass_staff = scoretools.Staff([bass_voice], name='Bass Staff')
            contexttools.ClefMark('bass')(bass_staff)
            instrumenttools.Contrabass(
                short_instrument_name_markup='Cb.'

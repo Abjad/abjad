@@ -18,7 +18,7 @@ def test_custom_score_template_class_01():
 
         def __call__(self):
             voice = scoretools.Voice(name='Blue Voice')
-            staff = stafftools.Staff(name='Red Staff')
+            staff = scoretools.Staff(name='Red Staff')
             score = scoretools.Score(name='Green Score')
             staff.append(voice)
             score.append(staff)
@@ -66,7 +66,7 @@ def test_custom_score_template_class_02():
 
         def __call__(self):
             custom_voice = scoretools.Voice(context_name='CustomVoice')
-            custom_staff = stafftools.Staff(context_name='CustomStaff')
+            custom_staff = scoretools.Staff(context_name='CustomStaff')
             score = scoretools.Score()
             custom_staff.append(custom_voice)
             score.append(custom_staff)

@@ -3,7 +3,7 @@ import collections
 from abjad.tools import contexttools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
-from abjad.tools import stafftools
+from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.scoretools import attach
@@ -183,7 +183,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 violin_voice = scoretools.Voice(
                     name='Violin {} Voice'.format(i),
                     )
-                violin_staff = stafftools.Staff(
+                violin_staff = scoretools.Staff(
                     [violin_voice], name='Violin {} Voice'.format(i))
                 clef = contexttools.ClefMark('treble')
                 attach(clef, violin_staff)
@@ -203,7 +203,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 viola_voice = scoretools.Voice(
                     name='Viola {} Voice'.format(i),
                     )
-                viola_staff = stafftools.Staff(
+                viola_staff = scoretools.Staff(
                     [viola_voice], name='Viola {} Voice'.format(i))
                 clef = contexttools.ClefMark('alto')
                 attach(clef, viola_staff)
@@ -223,7 +223,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 cello_voice = scoretools.Voice(
                     name='Cello {} Voice'.format(i),
                     )
-                cello_staff = stafftools.Staff(
+                cello_staff = scoretools.Staff(
                     [cello_voice], name='Cello {} Voice'.format(i))
                 clef = contexttools.ClefMark('bass')
                 attach(clef, cello_staff)
@@ -243,7 +243,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
                 contrabass_voice = scoretools.Voice(
                     name='Contrabass {} Voice'.format(i),
                     )
-                contrabass_staff = stafftools.Staff(
+                contrabass_staff = scoretools.Staff(
                     [contrabass_voice], name='Contrabass {} Voice'.format(i))
                 clef = contexttools.ClefMark('bass_8')
                 attach(clef, contrabass_staff)

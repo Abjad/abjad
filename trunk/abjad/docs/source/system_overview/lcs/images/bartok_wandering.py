@@ -93,7 +93,7 @@ tx.bound_details__left__text = markuptools.Markup('ritard.')
 
 # lower staff
 
-lower_staff.clef.forced = stafftools.Clef('bass')
+lower_staff.clef.forced = scoretools.Clef('bass')
 
 spannertools.TieSpanner([v1a[0], v1b[0]])
 

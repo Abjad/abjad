@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_stafftools_Staff_time_signature_01():
+def test_scoretools_Staff_time_signature_01():
     r'''Force time signature on nonempty staff.
     '''
 
@@ -28,7 +28,7 @@ def test_stafftools_Staff_time_signature_01():
         )
 
 
-def test_stafftools_Staff_time_signature_02():
+def test_scoretools_Staff_time_signature_02():
     r'''Force time signature on empty staff.
     '''
 
@@ -46,7 +46,7 @@ def test_stafftools_Staff_time_signature_02():
         )
 
 
-def test_stafftools_Staff_time_signature_03():
+def test_scoretools_Staff_time_signature_03():
     r'''Staff time signature carries over to staff-contained leaves.
     '''
 
@@ -58,7 +58,7 @@ def test_stafftools_Staff_time_signature_03():
             == contexttools.TimeSignatureMark((2, 4))
 
 
-def test_stafftools_Staff_time_signature_04():
+def test_scoretools_Staff_time_signature_04():
     r'''Staff time signature set and then clear.
     '''
 

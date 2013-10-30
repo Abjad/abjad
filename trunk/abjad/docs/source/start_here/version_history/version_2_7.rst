@@ -289,7 +289,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Updated literature examples to match API changes.
 
-- Removed ancient ``stafftools.make_invisible_staff()``.
+- Removed ancient ``scoretools.make_invisible_staff()``.
 
 - Added ``text_editor`` key to user config dictionary (in ``~/.abjad/config.py``).
 

@@ -6,7 +6,7 @@ from abjad.tools import leaftools
 from abjad.tools import marktools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
-from abjad.tools import stafftools
+from abjad.tools import scoretools
 from abjad.tools import tuplettools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.scoretools import attach
@@ -144,7 +144,7 @@ class GuileProxy(AbjadObject):
     def time(self, number_list, fraction):
         n, d = fraction.numerator, fraction.denominator
         return contexttools.TimeSignatureMark(
-            (n, d), target_context=stafftools.Staff)
+            (n, d), target_context=scoretools.Staff)
 
     def times(self, fraction, music):
         n, d  = fraction.numerator, fraction.denominator

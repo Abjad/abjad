@@ -26,7 +26,7 @@ class ReplaceInFilesScript(DirectoryScript):
 
     @property
     def alias(self):
-        return 'text'
+        return 'replace'
 
     @property
     def long_description(self):
@@ -34,7 +34,7 @@ class ReplaceInFilesScript(DirectoryScript):
 
     @property
     def scripting_group(self):
-        return 'replace'
+        return None
 
     @property
     def short_description(self):

@@ -3,7 +3,7 @@ from abjad.tools import contexttools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import stafftools
+from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 
@@ -115,7 +115,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9710) LilyPond format:        82,730 function calls
             2.12 (r9726) LilyPond format:        88,382 function calls
         '''
-        staff = stafftools.Staff(200 * notetools.Note("c'16"))
+        staff = scoretools.Staff(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             staff[:], 
             [20], 
@@ -138,7 +138,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9710) LilyPond format:        84,530 function calls
             2.12 (r9726) LilyPond format:        90,056 function calls
         '''
-        staff = stafftools.Staff(200 * notetools.Note("c'16"))
+        staff = scoretools.Staff(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             staff[:], 
             [4], 
@@ -161,7 +161,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9710) LilyPond format:        91,280 function calls
             2.12 (r9724) LilyPond format:        96,806 function calls
         '''
-        staff = stafftools.Staff(200 * notetools.Note("c'16"))
+        staff = scoretools.Staff(200 * notetools.Note("c'16"))
         for note in staff.select_leaves():
             dynamic = contexttools.DynamicMark('f')
             attach(dynamic, note)

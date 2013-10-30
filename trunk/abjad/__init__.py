@@ -43,7 +43,7 @@ from abjad.tools.resttools import Rest
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Score
 from abjad.tools.scoretools import Voice
-from abjad.tools.stafftools import Staff
+from abjad.tools.scoretools import Staff
 from abjad.tools.tuplettools import Tuplet
 from fractions import Fraction
 

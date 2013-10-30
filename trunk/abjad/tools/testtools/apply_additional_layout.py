@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import iterationtools
 from abjad.tools import layouttools
-from abjad.tools import stafftools
+from abjad.tools import scoretools
 
 
 def apply_additional_layout(lilypond_file):

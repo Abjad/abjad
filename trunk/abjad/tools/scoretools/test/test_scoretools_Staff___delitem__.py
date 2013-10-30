@@ -3,7 +3,7 @@ from abjad import *
 from py.test import raises
 
 
-def test_stafftools_Staff___delitem___01():
+def test_scoretools_Staff___delitem___01():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -37,7 +37,7 @@ def test_stafftools_Staff___delitem___01():
     assert len(staff) == 0
 
 
-def test_stafftools_Staff___delitem___02():
+def test_scoretools_Staff___delitem___02():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
@@ -71,7 +71,7 @@ def test_stafftools_Staff___delitem___02():
     assert len(staff) == 0
 
 
-def test_stafftools_Staff___delitem___03():
+def test_scoretools_Staff___delitem___03():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),

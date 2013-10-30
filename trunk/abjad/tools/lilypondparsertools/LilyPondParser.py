@@ -14,7 +14,7 @@ from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import stafftools
+from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
@@ -438,7 +438,7 @@ class LilyPondParser(abctools.Parser):
             'GrandStaff': scoretools.GrandStaff,
             'PianoStaff': scoretools.PianoStaff,
             'Score': scoretools.Score,
-            'Staff': stafftools.Staff,
+            'Staff': scoretools.Staff,
             'StaffGroup': scoretools.StaffGroup,
             'Voice': scoretools.Voice,
         }

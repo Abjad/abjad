@@ -74,7 +74,7 @@ class ClefMark(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, clef_name, target_context=None):
-        from abjad.tools.stafftools.Staff import Staff
+        from abjad.tools.scoretools.Staff import Staff
         target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
         if isinstance(clef_name, str):
@@ -317,7 +317,7 @@ class ClefMark(ContextMark):
             >>> print clef.storage_format
             contexttools.ClefMark(
                 'treble',
-                target_context=stafftools.Staff
+                target_context=scoretools.Staff
                 )
 
         Returns string.

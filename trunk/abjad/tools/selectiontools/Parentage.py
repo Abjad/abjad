@@ -189,7 +189,7 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools import stafftools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         keys = ('score', 'staff group', 'staff', 'voice')
         indicator = collections.OrderedDict.fromkeys(keys, '')
@@ -197,7 +197,7 @@ class Parentage(SimultaneousSelection):
             if isinstance(component, scoretools.Voice):
                 if not indicator['voice']:
                     indicator['voice'] = self._id_string(component)
-            elif isinstance(component, stafftools.Staff):
+            elif isinstance(component, scoretools.Staff):
                 if not indicator['staff']:
                     indicator['staff'] = self._id_string(component)
                     # explicit staff demands a nested voice:

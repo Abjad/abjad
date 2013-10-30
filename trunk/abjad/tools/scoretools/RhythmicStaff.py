@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.stafftools.Staff import Staff
+from abjad.tools.scoretools.Staff import Staff
 
 
 class RhythmicStaff(Staff):

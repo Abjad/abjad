@@ -57,7 +57,7 @@ class ContextSpeccedMusic(Music):
             'GrandStaff': scoretools.GrandStaff,
             'PianoStaff': scoretools.PianoStaff,
             'Score': scoretools.Score,
-            'Staff': stafftools.Staff,
+            'Staff': scoretools.Staff,
             'StaffGroup': scoretools.StaffGroup,
             'Voice': scoretools.Voice,
         }

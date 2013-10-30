@@ -3,7 +3,7 @@ from abjad import *
 import py.test
 
 
-def test_stafftools_Staff___setattr___01():
+def test_scoretools_Staff___setattr___01():
     r'''Slots constrain staff attributes.
     '''
 

@@ -8,9 +8,9 @@ MEMORY:
 Partition of a set of 4 objects. Total size = 588 bytes.
  Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
      0      1  25      348  59       348  59 types.FrameType
-     1      1  25      140  24       488  83 dict of abjad.tools.stafftools.Clef.Clef.Clef
+     1      1  25      140  24       488  83 dict of abjad.tools.scoretools.Clef.Clef.Clef
      2      1  25       68  12       556  95 list
-     3      1  25       32   5       588 100 abjad.tools.stafftools.Clef.Clef.Clef
+     3      1  25       32   5       588 100 abjad.tools.scoretools.Clef.Clef.Clef
 
 FUNCTION CALLS:
 
@@ -32,7 +32,7 @@ Partition of a set of 3 objects. Total size = 452 bytes.
  Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
      0      1  33      348  77       348  77 types.FrameType
      1      1  33       68  15       416  92 list
-     2      1  33       36   8       452 100 abjad.tools.stafftools.Clef.Clef.Clef
+     2      1  33       36   8       452 100 abjad.tools.scoretools.Clef.Clef.Clef
 
 FUNCTION CALLS:
 

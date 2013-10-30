@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_stafftools_Staff___init___01():
+def test_scoretools_Staff___init___01():
     r'''Initialize with context name.
     '''
 
@@ -10,7 +10,7 @@ def test_stafftools_Staff___init___01():
     assert staff.context_name == 'BlueStaff'
 
 
-def test_stafftools_Staff___init___02():
+def test_scoretools_Staff___init___02():
     r'''Initialize with name.
     '''
 
@@ -18,7 +18,7 @@ def test_stafftools_Staff___init___02():
     assert staff.name == 'FirstBlueStaff'
 
 
-def test_stafftools_Staff___init___03():
+def test_scoretools_Staff___init___03():
     r'''Initialize with both context name and name.
     '''
 

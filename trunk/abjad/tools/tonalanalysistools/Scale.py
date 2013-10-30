@@ -9,7 +9,7 @@ from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from abjad.tools import stafftools
+from abjad.tools import scoretools
 from abjad.tools.pitchtools.PitchClassSegment \
     import PitchClassSegment
 
@@ -287,7 +287,7 @@ class Scale(PitchClassSegment):
         descending_notes = selectiontools.Selection(descending_notes)
         notes = ascending_notes + descending_notes
         notes[-1].written_duration = durationtools.Duration(1, 4)
-        staff = stafftools.Staff(notes)
+        staff = scoretools.Staff(notes)
         key_signature = copy.copy(self.key_signature)
         attach(key_signature, staff)
         score = scoretools.Score([staff])

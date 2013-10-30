@@ -217,7 +217,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     sievetools.all_are_residue_class_expressions()
     scoretools.all_are_skips()
     spannertools.all_are_spanners()
-    stafftools.all_are_staves()
+    scoretools.all_are_staves()
     tuplettools.all_are_tuplets()
 
 * Extended ``NamedPitch`` to allow initialization from pitch-class / octave number strings::

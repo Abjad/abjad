@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import stafftools
+from abjad.tools import scoretools
 
 
 def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
@@ -53,7 +53,7 @@ def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
 
     return iterationtools.iterate_components_in_expr(
         expr,
-        component_class=stafftools.Staff,
+        component_class=scoretools.Staff,
         reverse=reverse,
         start=start,
         stop=stop,

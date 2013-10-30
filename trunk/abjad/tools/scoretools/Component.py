@@ -298,14 +298,14 @@ class Component(AbjadObject):
 
     def _get_effective_staff(self):
         from abjad.tools import contexttools
-        from abjad.tools import stafftools
+        from abjad.tools import scoretools
         staff_change_mark = self._get_effective_context_mark(
             contexttools.StaffChangeMark)
         if staff_change_mark is not None:
             effective_staff = staff_change_mark.staff
         else:
             parentage = self._get_parentage()
-            effective_staff = parentage.get_first(stafftools.Staff)
+            effective_staff = parentage.get_first(scoretools.Staff)
         return effective_staff
 
     def _get_format_contributions_for_slot(self, n, format_contributions=None):

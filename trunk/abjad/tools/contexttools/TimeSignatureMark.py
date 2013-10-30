@@ -51,10 +51,10 @@ class TimeSignatureMark(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        from abjad.tools import stafftools
-        target_context = kwargs.get('target_context', stafftools.Staff)
+        from abjad.tools import scoretools
+        target_context = kwargs.get('target_context', scoretools.Staff)
         ContextMark.__init__(self, target_context=target_context)
-        if self._target_context == stafftools.Staff:
+        if self._target_context == scoretools.Staff:
             self._has_default_target_context = True
         else:
             self._has_default_target_context = False
@@ -462,7 +462,7 @@ class TimeSignatureMark(ContextMark):
         ::
 
             >>> contexttools.TimeSignatureMark((3, 8)).target_context
-            <class 'abjad.tools.stafftools.Staff.Staff'>
+            <class 'abjad.tools.scoretools.Staff.Staff'>
 
         Time signature marks target the staff context by default.
 

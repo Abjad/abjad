@@ -7,7 +7,7 @@
     and ``componenttool`` packages at top level.
 
     The ``scoretools`` package should not import sibling
-    or cousing packages like ``stafftools`` at top level.
+    or cousing packages like ``scoretools`` at top level.
 
     The ``scoretools`` package should not import ``instrumenttools`` 
     at top level.

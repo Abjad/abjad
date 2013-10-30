@@ -223,7 +223,7 @@ Now we move up to the next level, the staff:
 ::
 
    def make_desordre_staff(pitches):
-       staff = stafftools.Staff()
+       staff = scoretools.Staff()
        for sequence in pitches:
            measure = make_desordre_measure(sequence)
            staff.append(measure)

@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_stafftools_Staff___copy___01():
+def test_scoretools_Staff___copy___01():
     r'''Staves (shallow) copy grob overrides and context settings but not musical content.
     '''
 

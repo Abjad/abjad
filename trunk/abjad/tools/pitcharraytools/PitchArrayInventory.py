@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import measuretools
 from abjad.tools import scoretools
-from abjad.tools import stafftools
+from abjad.tools import scoretools
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -105,7 +105,7 @@ class PitchArrayInventory(TypedList):
         staff_group = scoretools.StaffGroup([])
         score.append(staff_group)
         number_staves = self[0].depth
-        staves = stafftools.Staff([]) * number_staves
+        staves = scoretools.Staff([]) * number_staves
         staff_group.extend(staves)
         for pitch_array in self:
             measures = pitch_array.to_measures()

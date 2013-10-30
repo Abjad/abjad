@@ -48,7 +48,7 @@ class Instrument(ContextMark):
         short_instrument_name_markup=None,
         target_context=None,
         ):
-        from abjad.tools.stafftools.Staff import Staff
+        from abjad.tools.scoretools.Staff import Staff
         target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
 
