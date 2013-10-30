@@ -39,11 +39,11 @@ from abjad.tools.durationtools import Offset
 from abjad.tools.measuretools import Measure
 from abjad.tools.notetools import Note
 from abjad.tools.pitchtools import NamedPitch
-from abjad.tools.resttools import Rest
 from abjad.tools.scoretools import Chord
+from abjad.tools.scoretools import Rest
 from abjad.tools.scoretools import Score
-from abjad.tools.scoretools import Voice
 from abjad.tools.scoretools import Staff
+from abjad.tools.scoretools import Voice
 from abjad.tools.tuplettools import Tuplet
 from fractions import Fraction
 

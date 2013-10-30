@@ -26,7 +26,7 @@ def list_named_pitches_in_expr(expr):
     from abjad.tools import iterationtools
     from abjad.tools import leaftools
     from abjad.tools import pitchtools
-    from abjad.tools import resttools
+    from abjad.tools import scoretools
 
     # TODO: remove try-except
     try:
@@ -44,7 +44,7 @@ def list_named_pitches_in_expr(expr):
             result.extend(expr.pitches)
         elif isinstance(expr, spannertools.Spanner):
             for leaf in expr.leaves:
-                if hasattr(leaf, 'written_pitch') and not isinstance(leaf, resttools.Rest):
+                if hasattr(leaf, 'written_pitch') and not isinstance(leaf, scoretools.Rest):
                     result.append(leaf.written_pitch)
                 elif hasattr(leaf, 'written_pitches'):
                     result.extend(leaf.written_pitches)
@@ -55,7 +55,7 @@ def list_named_pitches_in_expr(expr):
                 result.extend(list_named_pitches_in_expr(x))
         else:
             for leaf in iterationtools.iterate_leaves_in_expr(expr):
-                if hasattr(leaf, 'written_pitch') and not isinstance(leaf, resttools.Rest):
+                if hasattr(leaf, 'written_pitch') and not isinstance(leaf, scoretools.Rest):
                     result.append(leaf.written_pitch)
                 elif hasattr(leaf, 'written_pitches'):
                     result.extend(leaf.written_pitches)

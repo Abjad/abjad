@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.resttools.Rest import Rest
+from abjad.tools.scoretools.Rest import Rest
 
 
 class MultimeasureRest(Rest):
@@ -7,7 +7,7 @@ class MultimeasureRest(Rest):
 
     ::
 
-        >>> resttools.MultimeasureRest((1, 4))
+        >>> scoretools.MultimeasureRest((1, 4))
         MultimeasureRest('R4')
 
     Multi-measure rests are immutable.

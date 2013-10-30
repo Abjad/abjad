@@ -10,7 +10,6 @@ from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
-from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import tuplettools
@@ -440,17 +439,17 @@ class ReducedLyParser(abctools.Parser):
     def p_rest_body__negative_leaf_duration(self, p):
         r'''rest_body : negative_leaf_duration
         '''
-        p[0] = resttools.Rest(p[1])
+        p[0] = scoretools.Rest(p[1])
 
     def p_rest_body__RESTNAME(self, p):
         r'''rest_body : RESTNAME
         '''
-        p[0] = resttools.Rest(self._default_duration)
+        p[0] = scoretools.Rest(self._default_duration)
 
     def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
         r'''rest_body : RESTNAME positive_leaf_duration
         '''
-        p[0] = resttools.Rest(p[2])
+        p[0] = scoretools.Rest(p[2])
 
     def p_slur__PAREN_L(self, p):
         r'''slur : PAREN_L

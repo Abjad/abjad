@@ -1094,7 +1094,7 @@ class Tuplet(Container):
         '''
         from abjad.tools import leaftools
         from abjad.tools import notetools
-        from abjad.tools import resttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import tuplettools
         # coerce duration and ratio
@@ -1118,7 +1118,7 @@ class Tuplet(Container):
         # make tuplet leaves
         try:
             notes = [
-                notetools.Note(0, x) if 0 < x else resttools.Rest(abs(x))
+                notetools.Note(0, x) if 0 < x else scoretools.Rest(abs(x))
                 for x in written_durations
                 ]
         except AssignabilityError:
@@ -1623,7 +1623,7 @@ class Tuplet(Container):
         '''
         from abjad.tools import containertools
         from abjad.tools import notetools
-        from abjad.tools import resttools
+        from abjad.tools import scoretools
         from abjad.tools import tuplettools
         ratio = mathtools.NonreducedRatio(ratio)
         if isinstance(fraction, tuple):
@@ -1641,10 +1641,10 @@ class Tuplet(Container):
                     return containertools.Container(notes)
             elif ratio[0] < 0:
                 try:
-                    rest = resttools.Rest(duration)
+                    rest = scoretools.Rest(duration)
                     return containertools.Container([rest])
                 except AssignabilityError:
-                    rests = resttools.make_rests(duration)
+                    rests = scoretools.make_rests(duration)
                     return containertools.Container(rests)
             else:
                 raise ValueError('no divide zero values.')
@@ -1664,7 +1664,7 @@ class Tuplet(Container):
                         notes = notetools.make_notes(0, (x, denominator))
                         music.extend(notes)
                 else:
-                    rests = resttools.Rest((-x, denominator))
+                    rests = scoretools.Rest((-x, denominator))
                     music.append(rests)
             return tuplettools.FixedDurationTuplet(duration, music)
 

@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_resttools_Rest___copy___01():
+def test_scoretools_Rest___copy___01():
     r'''Copy rest.
     '''
 
@@ -16,7 +16,7 @@ def test_resttools_Rest___copy___01():
     assert rest_1 is not rest_2
 
 
-def test_resttools_Rest___copy___02():
+def test_scoretools_Rest___copy___02():
     r'''Copy rest with LilyPond multiplier.
     '''
 
@@ -29,7 +29,7 @@ def test_resttools_Rest___copy___02():
     assert rest_1 is not rest_2
 
 
-def test_resttools_Rest___copy___03():
+def test_scoretools_Rest___copy___03():
     r'''Copy rest with LilyPond grob overrides and LilyPond context settings.
     '''
 

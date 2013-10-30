@@ -8,12 +8,12 @@ def make_multimeasure_rests(durations):
 
     ::
 
-        >>> resttools.make_multimeasure_rests([(4, 4), (7, 4)])
+        >>> scoretools.make_multimeasure_rests([(4, 4), (7, 4)])
         Selection(MultimeasureRest('R1'), MultimeasureRest('R1..'))
 
     Returns list.
     '''
-    from abjad.tools import resttools
+    from abjad.tools import scoretools
 
     multimeasure_rests = []
 
@@ -21,7 +21,7 @@ def make_multimeasure_rests(durations):
         written_duration = durationtools.Duration(duration)
         if not written_duration.is_assignable:
             raise AssignabilityError('multi-measure rest durations must be assignable.')
-        multimeasure_rest = resttools.MultimeasureRest(written_duration)
+        multimeasure_rest = scoretools.MultimeasureRest(written_duration)
         multimeasure_rests.append(multimeasure_rest)
 
     result = selectiontools.Selection(multimeasure_rests)

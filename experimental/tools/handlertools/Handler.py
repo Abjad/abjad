@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import abctools
-from abjad.tools import resttools
+from abjad.tools import scoretools
 
 
 class Handler(abctools.AbjadObject):
@@ -39,12 +39,12 @@ class Handler(abctools.AbjadObject):
     def _remove_outer_rests_from_sequence(sequence):
         first_keep_index = None
         for i, element in enumerate(sequence):
-            if not isinstance(element, resttools.Rest):
+            if not isinstance(element, scoretools.Rest):
                 first_keep_index = i
                 break
         last_keep_index = None
         for i, element in enumerate(reversed(sequence)):
-            if not isinstance(element, resttools.Rest):
+            if not isinstance(element, scoretools.Rest):
                 last_keep_index = len(sequence) - i
                 break
         return sequence[first_keep_index:last_keep_index]

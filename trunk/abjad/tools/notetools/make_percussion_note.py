@@ -77,7 +77,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     and tied notes undesirable.
     '''
     from abjad.tools import notetools
-    from abjad.tools import resttools
+    from abjad.tools import scoretools
     from abjad.tools import selectiontools
 
     # check input
@@ -88,7 +88,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     if max_note_duration < total_duration:
         rest_duration = total_duration - max_note_duration
         rests = leaftools.make_tied_leaf(
-            resttools.Rest,
+            scoretools.Rest,
             rest_duration,
             pitches=None,
             )
@@ -108,7 +108,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
             new_notes = []
             new_notes.append(notes[0])
             for i in range(1, len(notes)):
-                rest = resttools.Rest(notes[i])
+                rest = scoretools.Rest(notes[i])
                 new_notes.append(rest)
             notes = new_notes
         rests = []

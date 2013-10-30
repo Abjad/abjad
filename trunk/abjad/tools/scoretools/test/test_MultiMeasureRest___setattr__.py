@@ -3,10 +3,8 @@ from abjad import *
 import py.test
 
 
-def test_resttools_Rest___setattr___01():
-    r'''Slots constrain rest attributes.
-    '''
+def test_MultiMeasureRest___setattr___01():
 
-    rest = Rest((1, 4))
+    rest = scoretools.MultimeasureRest((1, 4))
 
     assert py.test.raises(AttributeError, "rest.foo = 'bar'")

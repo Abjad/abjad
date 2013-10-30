@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import notetools
-from abjad.tools import resttools
 
 
 def color_leaf(leaf, color):
@@ -87,7 +86,7 @@ def color_leaf(leaf, color):
         leaf.override.dots.color = color
         leaf.override.note_head.color = color
         leaf.override.stem.color = color
-    elif isinstance(leaf, resttools.Rest):
+    elif isinstance(leaf, scoretools.Rest):
         leaf.override.dots.color = color
         leaf.override.rest.color = color
 

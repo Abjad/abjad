@@ -59,7 +59,7 @@ You can create multimeasure rests too:
 
 ::
 
-   >>> multimeasure_rest = resttools.MultimeasureRest('R1')
+   >>> multimeasure_rest = scoretools.MultimeasureRest('R1')
    >>> show(multimeasure_rest)
 
 .. image:: images/index-5.png

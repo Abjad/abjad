@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import notetools
-from abjad.tools import resttools
+from abjad.tools import scoretools
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 
 
@@ -70,7 +70,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
         total_duration = pulse_duration * self.preprolated_duration
         if self.is_pitched:
             return notetools.make_notes(0, total_duration)
-        return resttools.make_rests(total_duration)
+        return scoretools.make_rests(total_duration)
 
     def __eq__(self, expr):
         if type(self) == type(expr):

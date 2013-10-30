@@ -340,7 +340,7 @@ Further new functionality:
   Hairpin tokens are triples of the form ``(x, y, z)`` with dynamic tokens ``x``, ``y``
   and hairpin shape string ``z``. For example ``('p', '<', 'f')``.
 
-- Added ``resttools.replace_leaves_in_expr_with_rests()``.
+- Added ``scoretools.replace_leaves_in_expr_with_rests()``.
 
 - Added ``leaftools.replace_leaves_in_expr_with_parallel_voices()``.
 

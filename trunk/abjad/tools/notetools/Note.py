@@ -126,7 +126,7 @@ class Note(Leaf):
     def _divide(self, pitch=None):
         from abjad.tools import markuptools
         from abjad.tools import pitchtools
-        from abjad.tools import resttools
+        from abjad.tools import scoretools
         pitch = pitch or pitchtools.NamedPitch('b', 3)
         pitch = pitchtools.NamedPitch(pitch)
         treble = copy.copy(self)
@@ -136,9 +136,9 @@ class Note(Leaf):
         for mark in bass._get_marks(mark_classes=markuptools.Markup):
             mark.detach()
         if treble.written_pitch < pitch:
-            treble = resttools.Rest(treble)
+            treble = scoretools.Rest(treble)
         if pitch <= bass.written_pitch:
-            bass = resttools.Rest(bass)
+            bass = scoretools.Rest(bass)
         up_markup = self._get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
         down_markup = self._get_markup(direction=Down)

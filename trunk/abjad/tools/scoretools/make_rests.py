@@ -15,7 +15,7 @@ def make_rests(
 
     ::
 
-        >>> resttools.make_rests(
+        >>> scoretools.make_rests(
         ...     [(5, 16), (9, 16)], 
         ...     decrease_durations_monotonically=True,
         ...     )
@@ -25,7 +25,7 @@ def make_rests(
 
     ::
 
-        >>> resttools.make_rests(
+        >>> scoretools.make_rests(
         ...     [(5, 16), (9, 16)], 
         ...     decrease_durations_monotonically=False,
         ...     )
@@ -35,7 +35,7 @@ def make_rests(
 
     ::
 
-        >>> voice = Voice(resttools.make_rests(
+        >>> voice = Voice(scoretools.make_rests(
         ...     [(5, 16), (9, 16)], 
         ...     tie_parts=True,
         ...     ))
@@ -57,7 +57,7 @@ def make_rests(
     Returns list of rests.
     '''
     from abjad.tools import leaftools
-    from abjad.tools import resttools
+    from abjad.tools import scoretools
 
     # check input
     if isinstance(durations, (numbers.Number, tuple)):
@@ -67,7 +67,7 @@ def make_rests(
     result = []
     for duration in durations:
         rests = leaftools.make_tied_leaf(
-            resttools.Rest,
+            scoretools.Rest,
             duration,
             pitches=None,
             decrease_durations_monotonically=decrease_durations_monotonically,

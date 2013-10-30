@@ -8,7 +8,6 @@ from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
-from abjad.tools import resttools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
@@ -1112,7 +1111,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_event_chord__MULTI_MEASURE_REST__optional_notemode_duration__post_events(self, p):
         'event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events'
-        rest = resttools.MultimeasureRest(p[2].duration)
+        rest = scoretools.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
             rest.lilypond_duration_multiplier = p[2].multiplier
         self.client._process_post_events(rest, p[3])
@@ -3047,7 +3046,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_simple_element__RESTNAME__optional_notemode_duration(self, p):
         'simple_element : RESTNAME optional_notemode_duration'
         if p[1] == 'r':
-            rest = resttools.Rest(p[2].duration)
+            rest = scoretools.Rest(p[2].duration)
         else:
             rest = scoretools.Skip(p[2].duration)
         if p[2].multiplier is not None:
@@ -3062,7 +3061,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             leaf.note_head.is_forced = bool(p[2])
             leaf.note_head.is_cautionary = bool(p[3])
         else:
-            leaf = resttools.Rest(p[5].duration)
+            leaf = scoretools.Rest(p[5].duration)
         if p[5].multiplier is not None:
             leaf.lilypond_duration_multiplier = p[5].multiplier
         # TODO: handle exclamations, questions, octave_check

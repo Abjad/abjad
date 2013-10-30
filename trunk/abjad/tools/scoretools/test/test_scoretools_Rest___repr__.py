@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_resttools_Rest___repr___01():
+def test_scoretools_Rest___repr___01():
     r'''Rest repr is evaluable.
     '''
 

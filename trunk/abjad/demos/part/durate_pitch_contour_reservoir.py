@@ -3,7 +3,7 @@ from abjad import Duration
 from abjad import Multiplier
 from abjad.tools import durationtools
 from abjad.tools import leaftools
-from abjad.tools import resttools
+from abjad.tools import scoretools
 
 
 def durate_pitch_contour_reservoir(pitch_contour_reservoir):
@@ -26,9 +26,9 @@ def durate_pitch_contour_reservoir(pitch_contour_reservoir):
         div = rest_duration // Duration(3, 2)
         mod = rest_duration % Duration(3, 2)
 
-        initial_rest = resttools.MultimeasureRest((3, 2)) * div
+        initial_rest = scoretools.MultimeasureRest((3, 2)) * div
         if mod:
-            initial_rest += resttools.make_rests(mod)
+            initial_rest += scoretools.make_rests(mod)
 
         durated_contours = [tuple(initial_rest)]
 

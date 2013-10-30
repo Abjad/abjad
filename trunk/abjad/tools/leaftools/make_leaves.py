@@ -325,7 +325,7 @@ def make_leaves(
     '''
     from abjad.tools import scoretools
     from abjad.tools import notetools
-    from abjad.tools import resttools
+    from abjad.tools import scoretools
     from abjad.tools import tuplettools
 
     if isinstance(pitches, str):
@@ -405,7 +405,7 @@ def _make_leaf_on_pitch(
     from abjad.tools import scoretools
     from abjad.tools import leaftools
     from abjad.tools import notetools
-    from abjad.tools import resttools
+    from abjad.tools import scoretools
     note_types = (numbers.Number, str, pitchtools.NamedPitch)
     chord_types = (tuple, list)
     rest_types = (type(None),)
@@ -427,7 +427,7 @@ def _make_leaf_on_pitch(
             )
     elif isinstance(pitch, rest_types):
         leaves = leaftools.make_tied_leaf(
-            resttools.Rest,
+            scoretools.Rest,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,

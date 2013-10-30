@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_resttools_Rest___str___01():
+def test_scoretools_Rest___str___01():
 
     rest = Rest((1, 4))
 

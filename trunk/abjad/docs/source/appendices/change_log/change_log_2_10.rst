@@ -102,8 +102,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    resttools.iterate_rests_forward_in_expr()
-    resttools.iterate_rests_backward_in_expr()
+    scoretools.iterate_rests_forward_in_expr()
+    scoretools.iterate_rests_backward_in_expr()
 
   ::
 

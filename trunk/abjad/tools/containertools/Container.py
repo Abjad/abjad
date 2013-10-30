@@ -711,7 +711,7 @@ class Container(Component):
         from abjad.tools import leaftools
         from abjad.tools import measuretools
         from abjad.tools import notetools
-        from abjad.tools import resttools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         # check input

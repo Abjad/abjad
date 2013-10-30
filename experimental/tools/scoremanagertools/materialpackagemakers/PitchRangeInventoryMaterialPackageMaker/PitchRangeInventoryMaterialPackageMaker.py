@@ -38,7 +38,7 @@ class PitchRangeInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
         score, treble_staff, bass_staff = \
             scoretools.make_piano_score_from_leaves(chords)
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
-        rests = resttools.iterate_rests_in_expr(score)
+        rests = scoretools.iterate_rests_in_expr(score)
         scoretools.replace_leaves_in_expr_with_skips(list(rests))
         score.override.time_signature.stencil = False
         score.override.bar_line.transparent = True

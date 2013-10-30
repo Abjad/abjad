@@ -4,7 +4,7 @@ from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import notetools
-from abjad.tools import resttools
+from abjad.tools import scoretools
 from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
@@ -57,7 +57,7 @@ class ConcatenatingGraceHandler(GraceHandler):
                         leaf = scoretools.Chord(
                             q_event.pitches, self.grace_duration)
                 else:
-                    leaf = resttools.Rest(self.grace_duration)
+                    leaf = scoretools.Rest(self.grace_duration)
                 grace_container.append(leaf)
         else:
             grace_container = None

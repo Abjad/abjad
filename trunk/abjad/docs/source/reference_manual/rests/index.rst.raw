@@ -46,7 +46,7 @@ Making multi-measure rests
 You can create multimeasure rests too:
 
 <abjad>
-multimeasure_rest = resttools.MultimeasureRest('R1')
+multimeasure_rest = scoretools.MultimeasureRest('R1')
 show(multimeasure_rest)
 </abjad>
 

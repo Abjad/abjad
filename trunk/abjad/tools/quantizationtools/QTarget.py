@@ -5,7 +5,6 @@ from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import marktools
 from abjad.tools import notetools
-from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
@@ -139,7 +138,7 @@ class QTarget(AbjadObject):
         elif isinstance(leaf_one, scoretools.Chord):
             new_leaf = scoretools.Chord(leaf_one.written_pitches, duration)
         else:
-            new_leaf = resttools.Rest(duration)
+            new_leaf = scoretools.Rest(duration)
         tempo_marks = leaf_two._get_marks(contexttools.TempoMark)
         if tempo_marks:
             tempo = tempo_marks[0]
@@ -176,7 +175,7 @@ class QTarget(AbjadObject):
         if leaf_annotations:
             pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:
-                new_leaf = resttools.Rest(leaf)
+                new_leaf = scoretools.Rest(leaf)
             elif 1 < len(pitches):
                 new_leaf = scoretools.Chord(leaf)
                 new_leaf.written_pitches = pitches

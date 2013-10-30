@@ -9,7 +9,7 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
 
 * The API has been cleaned up and completely reorganized. Features have been organized into a collection of 39 different libraries::
 
-    cfgtools/          instrumenttools/   mathtools/         resttools/         tempotools/
+    cfgtools/          instrumenttools/   mathtools/         scoretools/         tempotools/
     scoretools/        intervaltreetools/ measuretools/      schemetools/       threadtools/
     scoretools/    iotools/           metertools/        scoretools/        tietools/
     containertools/    layouttools/       musicxmltools/     seqtools/          tonalanalysistools/

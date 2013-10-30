@@ -158,7 +158,7 @@ The new name is ``DynamicMeasure.suppress_time_signature``.
 Removed ``durationtools.integer_to_implied_prolation()``.
 Use the ``Duration.implied_prolation`` property instead.
 
-Removed unused resttools.is_lilypond_rest_string()`` function.
+Removed unused scoretools.is_lilypond_rest_string()`` function.
 Just instantiate rests instead.
 
 Removed ``durationtools.is_lilypond_duration_string()``.
@@ -325,8 +325,8 @@ Renamed ``tied=True`` keyword in four functions::
 
     leaftools.make_leaves()
     leaftools.make_tied_leaf()
-    resttools.make_tied_rest()
-    resttools.make_rests()
+    scoretools.make_tied_rest()
+    scoretools.make_rests()
 
 Renamed the four ratio-related API functions::
 

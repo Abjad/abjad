@@ -7,7 +7,7 @@ def test_scoretools_make_repeated_skips_from_time_signatures_01():
     r'''Make repeated rests from list of integer pairs.
     '''
 
-    rests = resttools.make_repeated_rests_from_time_signatures([(2, 8), (3, 32)])
+    rests = scoretools.make_repeated_rests_from_time_signatures([(2, 8), (3, 32)])
     assert len(rests) == 2
 
     rests = sequencetools.flatten_sequence(rests)

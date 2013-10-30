@@ -146,9 +146,9 @@ class Chord(Leaf):
     @staticmethod
     def _cast_defective_chord(chord):
         from abjad.tools import notetools
-        from abjad.tools import resttools
+        from abjad.tools import scoretools
         if isinstance(chord, Chord) and not len(chord):
-            return resttools.Rest(chord)
+            return scoretools.Rest(chord)
         elif isinstance(chord, Chord) and len(chord) == 1:
             return notetools.Note(chord)
         else:
@@ -167,7 +167,7 @@ class Chord(Leaf):
         from abjad.tools import markuptools
         from abjad.tools import notetools
         from abjad.tools import pitchtools
-        from abjad.tools import resttools
+        from abjad.tools import scoretools
         pitch = pitch or pitchtools.NamedPitch('b', 3)
         pitch = pitchtools.NamedPitch(pitch)
         treble = copy.copy(self)
@@ -178,8 +178,8 @@ class Chord(Leaf):
             mark.detach()
         if isinstance(treble, notetools.Note):
             if treble.written_pitch < pitch:
-                treble = resttools.Rest(treble)
-        elif isinstance(treble, resttools.Rest):
+                treble = scoretools.Rest(treble)
+        elif isinstance(treble, scoretools.Rest):
             pass
         elif isinstance(treble, scoretools.Chord):
             for note_head in treble.note_heads:
@@ -189,8 +189,8 @@ class Chord(Leaf):
             raise TypeError
         if isinstance(bass, notetools.Note):
             if pitch <= bass.written_pitch:
-                bass = resttools.Rest(bass)
-        elif isinstance(bass, resttools.Rest):
+                bass = scoretools.Rest(bass)
+        elif isinstance(bass, scoretools.Rest):
             pass
         elif isinstance(bass, scoretools.Chord):
             for note_head in bass.note_heads:
