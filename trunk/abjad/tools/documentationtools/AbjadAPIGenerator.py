@@ -47,7 +47,12 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             print 'Now writing ReStructured Text files ...'
             print
 
-        ignored_directory_names = ['.svn', 'test', '__pycache__']
+        ignored_directory_names = (
+            '__pycache__',
+            '.git',
+            '.svn',
+            'test',
+            )
         ignored_directory_names.extend(self._undocumented_packages)
 
         document = documentationtools.ReSTDocument()
