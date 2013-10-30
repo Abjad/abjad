@@ -7,7 +7,7 @@ class RhythmicStaff(Staff):
 
     ::
 
-        >>> staff = stafftools.RhythmicStaff("c'8 d'8 e'8 f'8")
+        >>> staff = scoretools.RhythmicStaff("c'8 d'8 e'8 f'8")
 
     ..  doctest::
 

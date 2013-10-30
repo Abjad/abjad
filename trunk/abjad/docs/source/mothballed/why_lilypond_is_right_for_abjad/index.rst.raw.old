@@ -13,7 +13,7 @@ LilyPond uses a single construct to nest tuplets arbitrarily:
 
 ::
 
-    \new stafftools.RhythmicStaff {
+    \new scoretools.RhythmicStaff {
         \time 7/8
         \times 7/8 {
             c8.
@@ -23,7 +23,7 @@ LilyPond uses a single construct to nest tuplets arbitrarily:
     }
 
 <abjad>
-staff = stafftools.RhythmicStaff([Measure((7, 8), [])])
+staff = scoretools.RhythmicStaff([Measure((7, 8), [])])
 measure = staff[0]
 measure.append(Note('c8.'))
 measure.append(Tuplet(Fraction(7, 5), 5 * Note('c16')))
@@ -63,7 +63,7 @@ spannertools.BeamSpanner(t)
 spannertools.BeamSpanner(notes)
 spannertools.BeamSpanner(u)
 measure = Measure((4, 8), [t] + notes + [u])
-staff = stafftools.RhythmicStaff([measure])
+staff = scoretools.RhythmicStaff([measure])
 </abjad>
 
 <abjad>
@@ -91,7 +91,7 @@ v = Measure((3, 28), Note(0, (1, 16)) * 3)
 spannertools.BeamSpanner(t)
 spannertools.BeamSpanner(u)
 spannertools.BeamSpanner(v)
-staff = stafftools.RhythmicStaff([t, u, v])
+staff = scoretools.RhythmicStaff([t, u, v])
 </abjad>
 
 <abjad>

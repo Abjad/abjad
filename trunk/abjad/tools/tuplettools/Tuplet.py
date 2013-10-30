@@ -792,7 +792,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -822,7 +822,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -853,7 +853,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -885,7 +885,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -916,7 +916,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -949,7 +949,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -979,7 +979,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1010,7 +1010,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1042,7 +1042,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1071,7 +1071,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -1170,7 +1170,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1192,7 +1192,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1215,7 +1215,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1240,7 +1240,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1266,7 +1266,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1293,7 +1293,7 @@ class Tuplet(Container):
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1321,7 +1321,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1343,7 +1343,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1366,7 +1366,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1390,7 +1390,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1416,7 +1416,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1443,7 +1443,7 @@ class Tuplet(Container):
                 ...     is_diminution=True,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
-                >>> show(stafftools.RhythmicStaff([measure])) # doctest: +SKIP
+                >>> show(scoretools.RhythmicStaff([measure])) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1481,7 +1481,7 @@ class Tuplet(Container):
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1506,7 +1506,7 @@ class Tuplet(Container):
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1528,7 +1528,7 @@ class Tuplet(Container):
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1550,7 +1550,7 @@ class Tuplet(Container):
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1574,7 +1574,7 @@ class Tuplet(Container):
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1599,7 +1599,7 @@ class Tuplet(Container):
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
-                >>> staff = stafftools.RhythmicStaff([measure])
+                >>> staff = scoretools.RhythmicStaff([measure])
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::

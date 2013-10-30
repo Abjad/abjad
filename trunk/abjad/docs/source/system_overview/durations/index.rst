@@ -155,8 +155,8 @@ quarter notes:
    >>> half_note = Note("c'2")
    >>> half_note.lilypond_duration_multiplier = Multiplier(1, 2)
    >>> half_notes = 4 * half_note
-   >>> top_staff = stafftools.RhythmicStaff(quarter_notes)
-   >>> bottom_staff = stafftools.RhythmicStaff(half_notes)
+   >>> top_staff = scoretools.RhythmicStaff(quarter_notes)
+   >>> bottom_staff = scoretools.RhythmicStaff(half_notes)
    >>> staff_group = scoretools.StaffGroup([top_staff, bottom_staff])
 
 
@@ -188,7 +188,7 @@ Consider the measure below:
    >>> measure = Measure((5, 16), "c16 c c c c")
    >>> beam = spannertools.BeamSpanner()
    >>> beam.attach([measure])
-   >>> staff = stafftools.RhythmicStaff([measure])
+   >>> staff = scoretools.RhythmicStaff([measure])
 
 
 ::
@@ -215,7 +215,7 @@ But now consider this measure:
    >>> measure = Measure((4, 16), [tuplet])
    >>> beam = spannertools.BeamSpanner()
    >>> beam.attach([measure])
-   >>> staff = stafftools.RhythmicStaff([measure])
+   >>> staff = scoretools.RhythmicStaff([measure])
 
 
 ::

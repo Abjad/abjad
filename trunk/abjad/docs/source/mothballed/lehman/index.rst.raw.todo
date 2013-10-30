@@ -31,7 +31,7 @@ notes = notetools.make_notes(0, durations)
 And then put these notes inside a rhythmic sketch staff:
 
 <abjad>
-staff = stafftools.make_rhythmic_sketch_staff(notes)
+staff = scoretools.make_rhythmic_sketch_staff(notes)
 </abjad>
 
 <abjad>

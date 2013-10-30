@@ -462,7 +462,7 @@ object:
 
 ::
 
-   >>> staff = stafftools.RhythmicStaff([tuplet])
+   >>> staff = scoretools.RhythmicStaff([tuplet])
 
 
 ::

@@ -215,7 +215,7 @@ f(tuplet)
 </abjad>
 
 <abjad>
-staff = stafftools.RhythmicStaff([tuplet])
+staff = scoretools.RhythmicStaff([tuplet])
 </abjad>
 
 <abjad>

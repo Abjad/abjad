@@ -25,7 +25,7 @@ def apply_additional_layout(lilypond_file):
 
     # provide more space between staves with pitched notes
     for staff in iterationtools.iterate_staves_in_expr(lilypond_file.score_block[0]):
-        if not isinstance(staff, stafftools.RhythmicStaff):
+        if not isinstance(staff, scoretools.RhythmicStaff):
             for context_block in lilypond_file.layout_block.context_blocks:
                 if context_block.context_name == 'StaffGroup':
                     staff_group_context_block = context_block

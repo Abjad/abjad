@@ -12,8 +12,8 @@ def test_containertools_Container_is_simultaneous_01():
     assert not tuplettools.FixedDurationTuplet(Duration(2, 8), []).is_simultaneous
     assert not Tuplet(Multiplier(2, 3), []).is_simultaneous
     assert scoretools.GrandStaff([]).is_simultaneous
-    assert not stafftools.make_rhythmic_sketch_staff([]).is_simultaneous
-    assert not stafftools.RhythmicStaff([]).is_simultaneous
+    assert not scoretools.make_rhythmic_sketch_staff([]).is_simultaneous
+    assert not scoretools.RhythmicStaff([]).is_simultaneous
     assert not Measure((4, 8), []).is_simultaneous
     assert Score([]).is_simultaneous
     assert not Container([]).is_simultaneous

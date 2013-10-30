@@ -65,7 +65,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
     @staticmethod
     def illustration_builder(measures, **kwargs):
-        staff = stafftools.RhythmicStaff(measures)
+        staff = scoretools.RhythmicStaff(measures)
         score = scoretools.Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         illustration.file_initial_system_comments = []

@@ -34,7 +34,7 @@ class OctaveTranspositionMappingInventoryMaterialPackageMaker(
             octave_transposition_mapping_inventory:
             note = Note("c'4")
             notes.append(note)
-        staff = stafftools.RhythmicStaff(notes)
+        staff = scoretools.RhythmicStaff(notes)
         score = Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         illustration.paper_block.top_system_spacing = \

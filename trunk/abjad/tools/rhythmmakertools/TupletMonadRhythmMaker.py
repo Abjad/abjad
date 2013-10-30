@@ -20,7 +20,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
         >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
         >>> tuplet_lists = maker(divisions)
         >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
-        >>> staff = stafftools.RhythmicStaff(tuplets)
+        >>> staff = scoretools.RhythmicStaff(tuplets)
 
     ::
 
@@ -109,7 +109,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
             >>> tuplet_lists = new_maker(divisions)
             >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
-            >>> staff = stafftools.RhythmicStaff(tuplets)
+            >>> staff = scoretools.RhythmicStaff(tuplets)
 
         ::
 
@@ -139,7 +139,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> divisions = [(2, 5), (2, 5), (1, 4), (1, 5), (3, 4)]
             >>> tuplet_lists = reversed_maker(divisions)
             >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
-            >>> staff = stafftools.RhythmicStaff(tuplets)
+            >>> staff = scoretools.RhythmicStaff(tuplets)
 
         ::
 

@@ -24,7 +24,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> measures = \
             ...     measuretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
-            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = measuretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 
@@ -65,7 +65,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> measures = \
             ...     measuretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
-            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = measuretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 
@@ -154,7 +154,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> measures = \
             ...     measuretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
-            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = measuretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 
@@ -188,7 +188,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> measures = \
             ...     measuretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
-            >>> staff = stafftools.RhythmicStaff(measures)
+            >>> staff = scoretools.RhythmicStaff(measures)
             >>> measures = measuretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 

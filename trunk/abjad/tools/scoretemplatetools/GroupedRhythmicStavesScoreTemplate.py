@@ -117,7 +117,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
             for index in range(self.staff_count):
                 number = index + 1
                 voice = scoretools.Voice(name='Voice {}'.format(number))
-                staff = stafftools.RhythmicStaff(
+                staff = scoretools.RhythmicStaff(
                     [voice], name='Staff {}'.format(number))
                 staves.append(staff)
                 self.context_name_abbreviations['v{}'.format(number)] = \
@@ -125,7 +125,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
-                staff = stafftools.RhythmicStaff(
+                staff = scoretools.RhythmicStaff(
                     [], name='Staff {}'.format(staff_number))
                 assert 1 <= voice_count
                 for voice_index in range(voice_count):

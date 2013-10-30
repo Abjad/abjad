@@ -62,7 +62,7 @@ divide the final `tie chain` of the resulting tuplet into yet another ratio:
 ::
 
    >>> tuplet = make_nested_tuplet(Duration(1, 4), (1, 1), 5)
-   >>> staff = stafftools.RhythmicStaff([tuplet])
+   >>> staff = scoretools.RhythmicStaff([tuplet])
    >>> show(staff)
 
 .. image:: images/index-1.png
@@ -71,7 +71,7 @@ divide the final `tie chain` of the resulting tuplet into yet another ratio:
 ::
 
    >>> tuplet = make_nested_tuplet(Duration(1, 4), (2, 1), 5)
-   >>> staff = stafftools.RhythmicStaff([tuplet])
+   >>> staff = scoretools.RhythmicStaff([tuplet])
    >>> show(staff)
 
 .. image:: images/index-2.png
@@ -80,7 +80,7 @@ divide the final `tie chain` of the resulting tuplet into yet another ratio:
 ::
 
    >>> tuplet = make_nested_tuplet(Duration(1, 4), (3, 1), 5)
-   >>> staff = stafftools.RhythmicStaff([tuplet])
+   >>> staff = scoretools.RhythmicStaff([tuplet])
    >>> show(staff)
 
 .. image:: images/index-3.png
@@ -96,7 +96,7 @@ the second `tie chain` requires two notes to express the ``5/16`` duration:
 ::
 
    >>> normal_tuplet = Tuplet.from_duration_and_ratio(Duration(1, 4), (3, 5))
-   >>> staff = stafftools.RhythmicStaff([normal_tuplet])
+   >>> staff = scoretools.RhythmicStaff([normal_tuplet])
    >>> show(staff)
 
 .. image:: images/index-4.png
@@ -105,7 +105,7 @@ the second `tie chain` requires two notes to express the ``5/16`` duration:
 ::
 
    >>> subdivided_tuplet = make_nested_tuplet(Duration(1, 4), (3, 5), 3)
-   >>> staff = stafftools.RhythmicStaff([subdivided_tuplet])
+   >>> staff = scoretools.RhythmicStaff([subdivided_tuplet])
    >>> show(staff)
 
 .. image:: images/index-5.png
@@ -143,7 +143,7 @@ subdivided:
 ::
 
    >>> tuplets = make_row_of_nested_tuplets(duration, (2, 1), 6)
-   >>> staff = stafftools.RhythmicStaff(tuplets)
+   >>> staff = scoretools.RhythmicStaff(tuplets)
    >>> show(staff)
 
 .. image:: images/index-6.png
@@ -169,7 +169,7 @@ Let's try:
 
    >>> score = Score()
    >>> for tuplet_row in make_rows_of_nested_tuplets(duration, 4, 6):
-   ...     score.append(stafftools.RhythmicStaff(tuplet_row))
+   ...     score.append(scoretools.RhythmicStaff(tuplet_row))
    ... 
    >>> show(score)
 
@@ -192,7 +192,7 @@ function:
        rows_of_nested_tuplets = make_rows_of_nested_tuplets(
            tuplet_duration, row_count, column_count)
        for row_of_nested_tuplets in rows_of_nested_tuplets:
-           staff = stafftools.RhythmicStaff(row_of_nested_tuplets)
+           staff = scoretools.RhythmicStaff(row_of_nested_tuplets)
            time_signature = contexttools.TimeSignatureMark((1, 4))
            time_signature.attach(staff)
            score.append(staff)
