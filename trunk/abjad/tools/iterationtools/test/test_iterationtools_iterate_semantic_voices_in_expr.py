@@ -4,7 +4,7 @@ from abjad import *
 
 def test_iterationtools_iterate_semantic_voices_in_expr_01():
 
-    measures = measuretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
+    measures = scoretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
     time_signature_voice = Voice(measures)
     time_signature_voice.name = 'TimeSignatureVoice'
     time_signature_voice.is_nonsemantic = True
@@ -49,7 +49,7 @@ from abjad import *
 
 def test_iterationtools_iterate_semantic_voices_in_expr_02():
 
-    measures = measuretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
+    measures = scoretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
     time_signature_voice = Voice(measures)
     time_signature_voice.name = 'TimeSignatureVoice'
     time_signature_voice.is_nonsemantic = True

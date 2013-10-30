@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools import mutationtools
 from abjad.tools import notetools
 from abjad.tools import pitchtools

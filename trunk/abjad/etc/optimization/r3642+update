@@ -3,7 +3,7 @@ r3642
 As of r3642 (plus current changes) the follow snippet ...
 
    >>> staff = Staff([ ])
-   >>> measure = measuretools.DynamicMeasure("c'8 d'8")
+   >>> measure = scoretools.DynamicMeasure("c'8 d'8")
    >>> staff.append(measure)
    >>> f(staff)
 

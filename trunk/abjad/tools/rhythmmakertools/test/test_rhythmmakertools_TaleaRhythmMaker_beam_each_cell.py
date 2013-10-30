@@ -14,9 +14,9 @@ def test_rhythmmakertools_TaleaRhythmMaker_beam_each_cell_01():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+    measures = scoretools.make_measures_with_full_measure_spacer_skips(divisions)
     staff = Staff(measures)
-    measuretools.replace_contents_of_measures_in_expr(staff, music)
+    scoretools.replace_contents_of_measures_in_expr(staff, music)
     score = Score([staff])
     score.set.autoBeaming = False
 

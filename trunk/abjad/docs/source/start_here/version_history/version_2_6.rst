@@ -46,7 +46,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added ``scoretools.list_primary_performer_names()``.
 
-* Added ``measuretools.measure_to_one_line_input_string()``::
+* Added ``scoretools.measure_to_one_line_input_string()``::
 
     >>> measure = Measure((3, 4), "c4 d4 e4")
 
@@ -57,7 +57,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
   ::
 
-    >>> measuretools.measure_to_one_line_input_string(measure)
+    >>> scoretools.measure_to_one_line_input_string(measure)
     "Measure((3, 4), 'c4 d4 e4')"
 
 * Added new classes to ``instrumenttools``::
@@ -208,7 +208,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     gracetools.all_are_grace_containers()
     leaftools.all_are_leaves()
     markuptools.all_are_markup()
-    measuretools.all_are_measures()
+    scoretools.all_are_measures()
     notetools.all_are_notes()
     pitcharraytools.all_are_pitch_arrays()
     pitchtools.all_are_named_pitch_tokens()

@@ -17,8 +17,8 @@ def test_rhythmmakertools_OutputBurnishedTaleaRhythmMaker___call___01():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
-    measuretools.replace_contents_of_measures_in_expr(staff, music)
+    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    scoretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
     \new Staff {
@@ -97,8 +97,8 @@ def test_rhythmmakertools_OutputBurnishedTaleaRhythmMaker___call___02():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
-    measuretools.replace_contents_of_measures_in_expr(staff, music)
+    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    scoretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
     \new Staff {
@@ -162,8 +162,8 @@ def test_rhythmmakertools_OutputBurnishedTaleaRhythmMaker___call___03():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
-    measuretools.replace_contents_of_measures_in_expr(staff, music)
+    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    scoretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
     \new Staff {
@@ -239,8 +239,8 @@ def test_rhythmmakertools_OutputBurnishedTaleaRhythmMaker___call___04():
     music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
-    measuretools.replace_contents_of_measures_in_expr(staff, music)
+    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    scoretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
     \new Staff {

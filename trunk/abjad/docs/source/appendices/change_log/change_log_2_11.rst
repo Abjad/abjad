@@ -197,7 +197,7 @@ Use ``TimeSignatureMark.with_power_of_two_denominator()`` method instead.
 Remvoed ``timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator()`` function.
 Use ``TimeSignatureMark.with_power_of_two_denominator()`` method instead.
 
-Moved one function from ``scoretools`` to ``measuretools``.
+Moved one function from ``scoretools`` to ``scoretools``.
 The function is ``get_likely_multiplier_components()``.
 
 Moved one function from ``scoretools`` to ``formattools``.

@@ -76,7 +76,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     def _format_before_leaf(self, leaf):
         from abjad.tools import scoretools
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         result = []
         left, right = None, None
         #if leaf.beam.beamable:
@@ -84,9 +84,9 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             elif leaf._get_parentage(include_self=False).get_first(
-                measuretools.Measure) is not None:
+                scoretools.Measure) is not None:
                 measure = leaf._get_parentage(include_self=False).get_first(
-                    measuretools.Measure)
+                    scoretools.Measure)
                 # leaf at beginning of measure
                 if measure._is_one_of_my_first_leaves(leaf):
                     assert isinstance(self.span, int)

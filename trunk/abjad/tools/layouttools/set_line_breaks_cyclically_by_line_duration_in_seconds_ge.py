@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 
 
 # TODO: remove in favor of layouttools.set_line_breaks_by_line_duration()
@@ -91,7 +91,7 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(
     from abjad.tools import layouttools
 
     if line_break_class is None:
-        line_break_class = measuretools.Measure
+        line_break_class = scoretools.Measure
 
     layouttools.set_line_breaks_by_line_duration(
         expr,

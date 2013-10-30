@@ -603,7 +603,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_19():
     staff = Staff([
         Measure((9, 80), []),
         Measure((2, 16), [])])
-    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(
+    scoretools.fill_measures_in_expr_with_time_signature_denominator_notes(
         staff)
 
     assert testtools.compare(

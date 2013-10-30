@@ -169,7 +169,7 @@ def test_mutationtools_ScoreMutationAgent_copy_04():
     attach(trill, voice.select_leaves())
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
         voice,
@@ -196,7 +196,7 @@ def test_mutationtools_ScoreMutationAgent_copy_04():
 
     result = mutate(voice[1:2]).copy(n=3)
     new = Voice(result)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     assert testtools.compare(
         new,
@@ -231,7 +231,7 @@ def test_mutationtools_ScoreMutationAgent_copy_05():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
         voice,
@@ -268,7 +268,7 @@ def test_mutationtools_ScoreMutationAgent_copy_05():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
-    measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
         new_voice,
@@ -308,7 +308,7 @@ def test_mutationtools_ScoreMutationAgent_copy_06():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
         voice,
@@ -344,7 +344,7 @@ def test_mutationtools_ScoreMutationAgent_copy_06():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
-    measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
         new_voice,
@@ -380,7 +380,7 @@ def test_mutationtools_ScoreMutationAgent_copy_07():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
         voice,
@@ -416,7 +416,7 @@ def test_mutationtools_ScoreMutationAgent_copy_07():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
-    measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
         new_voice,
@@ -443,7 +443,7 @@ def test_mutationtools_ScoreMutationAgent_copy_08():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
         voice,
@@ -479,7 +479,7 @@ def test_mutationtools_ScoreMutationAgent_copy_08():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
-    measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
         new_voice,
@@ -511,7 +511,7 @@ def test_mutationtools_ScoreMutationAgent_copy_09():
     attach(beam, voice[:2] + voice[2][:] + voice[3][:])
     slur = spannertools.SlurSpanner()
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
-    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     assert testtools.compare(
         voice,
@@ -547,7 +547,7 @@ def test_mutationtools_ScoreMutationAgent_copy_09():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
-    measuretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
         new_voice,

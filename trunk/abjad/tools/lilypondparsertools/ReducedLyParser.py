@@ -7,7 +7,7 @@ from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools import mathtools
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
@@ -342,7 +342,7 @@ class ReducedLyParser(abctools.Parser):
     def p_measure__PIPE__FRACTION__component_list__PIPE(self, p):
         r'''measure : PIPE FRACTION component_list PIPE
         '''
-        p[0] = measuretools.Measure(p[2].pair)
+        p[0] = scoretools.Measure(p[2].pair)
         for x in p[3]:
             p[0].append(x)
 

@@ -137,19 +137,19 @@ The bell music
        def make_bell_phrase():
            phrase = []
            for _ in range(3):
-               phrase.append(measuretools.Measure((6, 4), r"r2. a'2. \laissezVibrer"))
-               phrase.append(measuretools.Measure((6, 4), 'R1.'))
+               phrase.append(scoretools.Measure((6, 4), r"r2. a'2. \laissezVibrer"))
+               phrase.append(scoretools.Measure((6, 4), 'R1.'))
            for _ in range(2):
-               phrase.append(measuretools.Measure((6, 4), 'R1.'))
+               phrase.append(scoretools.Measure((6, 4), 'R1.'))
            return phrase
    
        for _ in range(11):
            bell_voice.extend(make_bell_phrase())
    
        for _ in range(19):
-           bell_voice.append(measuretools.Measure((6, 4), 'R1.'))
+           bell_voice.append(scoretools.Measure((6, 4), 'R1.'))
    
-       bell_voice.append(measuretools.Measure((6,4), r"a'1. \laissezVibrer"))
+       bell_voice.append(scoretools.Measure((6,4), r"a'1. \laissezVibrer"))
 
 
 The string music
@@ -191,7 +191,7 @@ function:
        for voice in  iterationtools.iterate_voices_in_expr(strings_staff_group):
            shards = mutate(voice[:]).split([(6, 4)], cyclic=True)
            for shard in shards:
-               measuretools.Measure((6, 4), shard)
+               scoretools.Measure((6, 4), shard)
 
 
 The pitch material is the same for all of the strings: a descending a-minor

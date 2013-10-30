@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad import *
 from experimental import *
 
 
@@ -278,25 +279,25 @@ def test_SargassoMeasureMaterialPackageMaker_08():
             'user_input.py',
             ]
         measures = [
-            measuretools.Measure((4, 16), "c'16 c'16 c'8"),
-            measuretools.Measure((2, 10), "c'8 c'8"),
-            measuretools.Measure((3, 20), "c'8 c'16"),
-            measuretools.Measure((4, 16), "c'8. c'16"),
-            measuretools.Measure((4, 16), "c'8. c'16"),
-            measuretools.Measure((11, 30), "c'16 c'16 c'8 c'8. c'4"),
-            measuretools.Measure((15, 30), "c'8 c'16 c'8 c'8. c'4 c'16 c'16 c'16"),
-            measuretools.Measure((2, 8), "c'8 c'8"),
-            measuretools.Measure((10, 26), "c'8 c'8. c'4 c'16"),
-            measuretools.Measure((4, 30), "c'16 c'16 c'16 c'16"),
-            measuretools.Measure((15, 30), "c'16 c'4 c'16 c'16 c'8 c'8. c'16 c'8"),
-            measuretools.Measure((7, 26), "c'16 c'4 c'16 c'16"),
-            measuretools.Measure((3, 26), "c'16 c'16 c'16"),
-            measuretools.Measure((1, 4), "c'4"),
-            measuretools.Measure((10, 19), "c'8. c'4 c'16 c'16 c'16"),
-            measuretools.Measure((6, 26), "c'16 c'16 c'4"),
-            measuretools.Measure((6, 20), "c'4 c'16 c'16"),
-            measuretools.Measure((2, 20), "c'16 c'16"),
-            measuretools.Measure((9, 19), "c'16 c'4 c'16 c'16 c'8")]
+            scoretools.Measure((4, 16), "c'16 c'16 c'8"),
+            scoretools.Measure((2, 10), "c'8 c'8"),
+            scoretools.Measure((3, 20), "c'8 c'16"),
+            scoretools.Measure((4, 16), "c'8. c'16"),
+            scoretools.Measure((4, 16), "c'8. c'16"),
+            scoretools.Measure((11, 30), "c'16 c'16 c'8 c'8. c'4"),
+            scoretools.Measure((15, 30), "c'8 c'16 c'8 c'8. c'4 c'16 c'16 c'16"),
+            scoretools.Measure((2, 8), "c'8 c'8"),
+            scoretools.Measure((10, 26), "c'8 c'8. c'4 c'16"),
+            scoretools.Measure((4, 30), "c'16 c'16 c'16 c'16"),
+            scoretools.Measure((15, 30), "c'16 c'4 c'16 c'16 c'8 c'8. c'16 c'8"),
+            scoretools.Measure((7, 26), "c'16 c'4 c'16 c'16"),
+            scoretools.Measure((3, 26), "c'16 c'16 c'16"),
+            scoretools.Measure((1, 4), "c'4"),
+            scoretools.Measure((10, 19), "c'8. c'4 c'16 c'16 c'16"),
+            scoretools.Measure((6, 26), "c'16 c'16 c'4"),
+            scoretools.Measure((6, 20), "c'4 c'16 c'16"),
+            scoretools.Measure((2, 20), "c'16 c'16"),
+            scoretools.Measure((9, 19), "c'16 c'4 c'16 c'16 c'8")]
         assert Staff(mpp.output_material).lilypond_format == Staff(measures).lilypond_format
     finally:
         score_manager._run(pending_user_input='m testsargasso del remove default q')

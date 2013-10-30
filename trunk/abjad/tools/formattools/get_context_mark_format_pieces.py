@@ -8,7 +8,7 @@ def get_context_mark_format_pieces(mark):
     '''
 
     from abjad.tools import contexttools
-    from abjad.tools import measuretools
+    from abjad.tools import scoretools
 
     #print mark, mark.lilypond_format
     addenda = []
@@ -23,7 +23,7 @@ def get_context_mark_format_pieces(mark):
     if mark.effective_context is not None or \
         getattr(mark, '_is_cosmetic_mark', False) or \
         (isinstance(mark, contexttools.TimeSignatureMark) and
-        isinstance(mark.start_component, measuretools.Measure)):
+        isinstance(mark.start_component, scoretools.Measure)):
         return addenda
         #result.extend(addenda)
     else:

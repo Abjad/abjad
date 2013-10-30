@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools.datastructuretools.TypedList import TypedList

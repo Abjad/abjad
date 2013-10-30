@@ -2,7 +2,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools import rhythmtreetools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
@@ -207,11 +207,11 @@ class MetricalHierarchy(AbjadObject):
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
 
-        elif isinstance(arg, (tuple, measuretools.Measure)) or \
+        elif isinstance(arg, (tuple, scoretools.Measure)) or \
             (hasattr(arg, 'numerator') and hasattr(arg, 'denominator')):
             if isinstance(arg, tuple):
                 fraction = mathtools.NonreducedFraction(arg)
-            elif isinstance(arg, measuretools.Measure):
+            elif isinstance(arg, scoretools.Measure):
                 time_signature = arg._get_effective_context_mark(
                     contexttools.TimeSignatureMark)
                 fraction = mathtools.NonreducedFraction(

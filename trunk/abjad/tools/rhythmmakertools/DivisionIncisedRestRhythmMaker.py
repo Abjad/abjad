@@ -23,10 +23,10 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
         >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     scoretools.make_measures_with_full_measure_spacer_skips(
         ...     divisions)
         >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        >>> measures = scoretools.replace_contents_of_measures_in_expr(
         ...     staff, leaves)
 
     ::
@@ -120,10 +120,10 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
             >>> leaf_lists = new_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
             >>> measures = \
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
             >>> staff = Staff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 
         ::
@@ -181,10 +181,10 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
             >>> leaf_lists = reversed_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
             >>> measures = \
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
             >>> staff = Staff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 
         ::

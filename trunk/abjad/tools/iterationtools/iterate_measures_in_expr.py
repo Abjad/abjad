@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 
 
 def iterate_measures_in_expr(expr, reverse=False, start=0, stop=None):
@@ -95,7 +95,7 @@ def iterate_measures_in_expr(expr, reverse=False, start=0, stop=None):
 
     return iterationtools.iterate_components_in_expr(
         expr,
-        component_class=measuretools.Measure,
+        component_class=scoretools.Measure,
         reverse=reverse,
         start=start,
         stop=stop,

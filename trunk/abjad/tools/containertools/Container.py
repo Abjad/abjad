@@ -641,13 +641,13 @@ class Container(Component):
         from abjad.tools import spannertools
         from abjad.tools import containertools
         from abjad.tools import contexttools
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         from abjad.tools import tuplettools
         # partition my music
         left_music = self[:i]
         right_music = self[i:]
         # instantiate new left and right containers
-        if isinstance(self, measuretools.Measure):
+        if isinstance(self, scoretools.Measure):
             time_signature = self._get_effective_context_mark(
                 contexttools.TimeSignatureMark)
             denominator = time_signature.denominator
@@ -709,7 +709,7 @@ class Container(Component):
         from abjad.tools import containertools
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         from abjad.tools import notetools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
@@ -733,7 +733,7 @@ class Container(Component):
         # get any duration-crossing measure descendents
         measures = [
             x for x in duration_crossing_descendants 
-            if isinstance(x, measuretools.Measure)
+            if isinstance(x, scoretools.Measure)
             ]
         # if we must split a power-of-two measure at non-power-of-two 
         # split point then go ahead and transform the power-of-two measure 
@@ -756,7 +756,7 @@ class Container(Component):
                 non_power_of_two_product = 1
                 for non_power_of_two_factor in non_power_of_two_factors:
                     non_power_of_two_product *= non_power_of_two_factor
-                measuretools.scale_measure_denominator_and_adjust_measure_contents(
+                scoretools.scale_measure_denominator_and_adjust_measure_contents(
                     measure, non_power_of_two_product)
                 # rederive duration crosses with possibly new measure contents
                 cross_offset = self._get_timespan().start_offset + duration

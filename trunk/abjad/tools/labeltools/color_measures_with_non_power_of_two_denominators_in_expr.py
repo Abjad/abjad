@@ -9,7 +9,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
     ::
 
         >>> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
-        >>> measuretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
+        >>> scoretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
         Measure(3/12, [c'8., d'8.])
 
     ..  doctest::

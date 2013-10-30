@@ -190,7 +190,7 @@ We define a function to create a measure from a list of lists of numbers:
            time_signature = inspect(container).get_duration()
            time_signature = mathtools.NonreducedFraction(time_signature)
            time_signature = time_signature.with_denominator(8)
-           measure = measuretools.Measure(time_signature, [container])
+           measure = scoretools.Measure(time_signature, [container])
    
        return measure
 

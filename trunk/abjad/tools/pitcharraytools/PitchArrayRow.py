@@ -3,7 +3,7 @@ import copy
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitcharraytools.PitchArrayCell import PitchArrayCell
@@ -372,7 +372,7 @@ class PitchArrayRow(AbjadObject):
         '''
         time_signature = contexttools.TimeSignatureMark(
             (self.width, cell_duration_denominator))
-        measure = measuretools.Measure(time_signature, [])
+        measure = scoretools.Measure(time_signature, [])
         basic_cell_duration = \
             durationtools.Duration(1, cell_duration_denominator)
         measure_pitches, measure_durations = [], []

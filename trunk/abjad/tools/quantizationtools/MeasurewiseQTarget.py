@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
 from abjad.tools.quantizationtools.QTarget import QTarget
@@ -38,7 +38,7 @@ class MeasurewiseQTarget(QTarget):
 
         # generate the first
         q_target_measure = self.items[0]
-        measure = measuretools.Measure(q_target_measure.time_signature)
+        measure = scoretools.Measure(q_target_measure.time_signature)
         for beat in q_target_measure.beats:
             measure.extend(beat.q_grid(beat.beatspan))
         if attach_tempo_marks:
@@ -49,7 +49,7 @@ class MeasurewiseQTarget(QTarget):
         # generate the rest pairwise, comparing tempi
         for q_target_measure_one, q_target_measure_two in \
             sequencetools.iterate_sequence_pairwise_strict(self.items):
-            measure = measuretools.Measure(q_target_measure_two.time_signature)
+            measure = scoretools.Measure(q_target_measure_two.time_signature)
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
             if (q_target_measure_two.tempo != q_target_measure_one.tempo) \

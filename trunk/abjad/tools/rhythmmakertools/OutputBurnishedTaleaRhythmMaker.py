@@ -30,10 +30,10 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         >>> music = maker(divisions)
         >>> music = sequencetools.flatten_sequence(music)
         >>> measures = \
-        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     scoretools.make_measures_with_full_measure_spacer_skips(
         ...     divisions)
         >>> staff = scoretools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        >>> measures = scoretools.replace_contents_of_measures_in_expr(
         ...     staff, music)
 
     ::
@@ -182,10 +182,10 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = \
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
 
         ::
@@ -229,10 +229,10 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> music = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
             >>> measures = \
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
 
         ::

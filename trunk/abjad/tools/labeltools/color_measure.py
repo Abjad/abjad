@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 
 
 def color_measure(measure, color='red'):
@@ -56,7 +56,7 @@ def color_measure(measure, color='red'):
     '''
 
     # check measure type
-    if not isinstance(measure, measuretools.Measure):
+    if not isinstance(measure, scoretools.Measure):
         message = 'must be measure: {}'.format(measure)
         raise TypeError(message)
 

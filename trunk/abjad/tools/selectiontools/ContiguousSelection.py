@@ -131,14 +131,14 @@ class ContiguousSelection(Selection):
 
     def _fuse(self):
         from abjad.tools import leaftools
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         from abjad.tools import tuplettools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         if all(isinstance(x, leaftools.Leaf) for x in self):
             return self._fuse_leaves()
         elif all(isinstance(x, tuplettools.Tuplet) for x in self):
             return self._fuse_tuplets()
-        elif all(isinstance(x, measuretools.Measure) for x in self):
+        elif all(isinstance(x, scoretools.Measure) for x in self):
             return self._fuse_measures()
         else:
             raise Exception('can not fuse.')
@@ -161,12 +161,12 @@ class ContiguousSelection(Selection):
 
     def _fuse_measures(self):
         from abjad.tools import contexttools
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import timesignaturetools
         # check input
         assert self._all_are_contiguous_components_in_same_parent(
-            self, component_classes=(measuretools.Measure, ))
+            self, component_classes=(scoretools.Measure, ))
         # return none on empty measures
         if len(self) == 0:
             return None
@@ -195,7 +195,7 @@ class ContiguousSelection(Selection):
             measure_music = measure[:]
             measure_music._set_parents(None)
             music += measure_music
-        new_measure = measuretools.Measure(new_time_signature, music)
+        new_measure = scoretools.Measure(new_time_signature, music)
         if parent is not None:
             self._give_dominant_spanners([new_measure])
         self._set_parents(None)

@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools.scoretools import attach
 
 
@@ -24,7 +24,7 @@ def set_line_breaks_by_line_duration(
     '''
 
     if line_break_class is None:
-        line_break_class = measuretools.Measure
+        line_break_class = scoretools.Measure
 
     prev = None
     cum_duration = durationtools.Duration(0)

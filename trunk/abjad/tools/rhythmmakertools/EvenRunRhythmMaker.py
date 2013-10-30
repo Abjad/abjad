@@ -27,10 +27,10 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> lists = maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
             >>> measures = \
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
 
         ::
@@ -53,10 +53,10 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> lists = maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
             >>> measures = \
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
 
         ::
@@ -177,10 +177,10 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> lists = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
             >>> measures = \
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
 
         ::
@@ -213,10 +213,10 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
             >>> measures = \
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions)
             >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, music)
 
         ::

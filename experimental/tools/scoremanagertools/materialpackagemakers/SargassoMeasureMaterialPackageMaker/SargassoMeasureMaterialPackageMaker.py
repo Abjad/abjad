@@ -15,10 +15,10 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     generic_output_name = 'sargasso measures'
 
     output_material_checker = staticmethod(lambda output: all(
-        isinstance(x, measuretools.Measure) for x in output))
+        isinstance(x, scoretools.Measure) for x in output))
 
     output_material_module_import_statements = [
-        'from abjad.tools import measuretools']
+        'from abjad.tools import scoretools']
 
     user_input_demo_values = [
         ('measure_denominator', 4),
@@ -70,7 +70,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         illustration.file_initial_system_comments = []
         illustration.file_initial_system_includes = []
-        measures = score._get_components(measuretools.Measure)
+        measures = score._get_components(scoretools.Measure)
         for measure in measures:
             beam = spannertools.BeamSpanner()
             attach(beam, [measure])
@@ -82,10 +82,10 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         lines.append('{} = ['.format(self.material_package_name))
         for measure in output_material[:-1]:
             line = measure._one_line_input_string
-            line = 'measuretools.' + line
+            line = 'scoretools.' + line
             lines.append('\t{},'.format(line))
         line = output_material[-1]._one_line_input_string
-        lines.append('\tmeasuretools.{}]'.format(line))
+        lines.append('\tscoretools.{}]'.format(line))
         lines = [line + '\n' for line in lines]
         return lines
 
@@ -225,7 +225,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         for meter_token, division_token in zip(meter_tokens, division_tokens):
             leaves = leaftools.make_leaves_from_talea(
                 division_token, measure_division_denominator)
-            measure = measuretools.Measure(meter_token, leaves)
+            measure = scoretools.Measure(meter_token, leaves)
             measures.append(measure)
         #print measures
 

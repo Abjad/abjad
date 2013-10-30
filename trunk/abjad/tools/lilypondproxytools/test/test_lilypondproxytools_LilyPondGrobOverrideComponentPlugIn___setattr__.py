@@ -839,7 +839,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___36()
     beam.override.score.spacing_spanner.strict_grace_spacing = True
     beam.override.score.spacing_spanner.strict_note_spacing = True
     beam.override.score.spacing_spanner.uniform_stretching = True
-    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert testtools.compare(
         staff,

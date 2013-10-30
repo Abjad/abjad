@@ -6,12 +6,12 @@ def is_formattable_context_mark_for_component(mark, component):
     '''
     from abjad.tools import scoretools
     from abjad.tools import contexttools
-    from abjad.tools import measuretools
+    from abjad.tools import scoretools
 
     if mark.start_component is None:
         return False
 
-    if isinstance(mark.start_component, measuretools.Measure):
+    if isinstance(mark.start_component, scoretools.Measure):
         if mark.start_component is component:
             if not isinstance(mark, contexttools.TimeSignatureMark):
                 return True
@@ -19,7 +19,7 @@ def is_formattable_context_mark_for_component(mark, component):
                 return True
             else:
                 previous_measure = \
-                    measuretools.get_previous_measure_from_component(
+                    scoretools.get_previous_measure_from_component(
                     mark.start_component)
                 if previous_measure is not None:
                     previous_effective_time_signature = \

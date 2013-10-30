@@ -10,8 +10,8 @@ def test_rhythmmakertools_NoteRhythmMaker_new_01():
     leaf_lists = maker.new(decrease_durations_monotonically=False)(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
-    measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+    staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(divisions))
+    scoretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     r'''
     \new Staff {

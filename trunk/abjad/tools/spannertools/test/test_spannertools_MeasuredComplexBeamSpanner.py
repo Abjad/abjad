@@ -6,7 +6,7 @@ def test_spannertools_MeasuredComplexBeamSpanner_01():
 
     staff = Staff("abj: | 2/16 c'16 d'16 || 2/16 e'16 f'16 |"
         "| 2/16 g'16 a'16 |")
-    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
+    scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     assert testtools.compare(
         staff,

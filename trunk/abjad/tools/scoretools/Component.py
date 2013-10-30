@@ -267,10 +267,10 @@ class Component(AbjadObject):
     def _get_effective_context_mark(self, context_mark_classes=None):
         from abjad.tools import contexttools
         from abjad.tools import datastructuretools
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         # do special things for time signature marks
         if context_mark_classes == contexttools.TimeSignatureMark:
-            if isinstance(self, measuretools.Measure):
+            if isinstance(self, scoretools.Measure):
                 if self._has_mark(contexttools.TimeSignatureMark):
                     return self._get_mark(contexttools.TimeSignatureMark)
         # updating marks of entire score tree if necessary
@@ -286,7 +286,7 @@ class Component(AbjadObject):
                         candidate_marks.insert(mark)
                     elif isinstance(mark, contexttools.TimeSignatureMark):
                         if isinstance(
-                            mark.start_component, measuretools.Measure):
+                            mark.start_component, scoretools.Measure):
                             candidate_marks.insert(mark)
         # elect most recent candidate mark
         if candidate_marks:
@@ -508,7 +508,7 @@ class Component(AbjadObject):
     # TODO: eventually reimplement as a keyword option to remove()
     def _remove_and_shrink_durated_parent_containers(self):
         from abjad.tools import contexttools
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         from abjad.tools import tuplettools
         from abjad.tools.scoretools import attach
         prolated_leaf_duration = self._get_duration()
@@ -522,7 +522,7 @@ class Component(AbjadObject):
                 candidate_new_parent_dur = parent.target_duration - current_prolation * self.written_duration
                 if durationtools.Duration(0) < candidate_new_parent_dur:
                     parent.target_duration = candidate_new_parent_dur
-            elif isinstance(parent, measuretools.Measure):
+            elif isinstance(parent, scoretools.Measure):
                 parent_time_signature = parent._get_mark(
                     contexttools.TimeSignatureMark)
                 old_prolation = parent_time_signature.implied_prolation

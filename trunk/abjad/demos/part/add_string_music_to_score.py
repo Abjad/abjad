@@ -45,4 +45,4 @@ def add_string_music_to_score(score):
     for voice in  iterationtools.iterate_voices_in_expr(strings_staff_group):
         shards = mutate(voice[:]).split([(6, 4)], cyclic=True)
         for shard in shards:
-            measuretools.Measure((6, 4), shard)
+            scoretools.Measure((6, 4), shard)

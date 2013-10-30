@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.measuretools.Measure import Measure
+from abjad.tools.scoretools.Measure import Measure
 
 
 red_sargasso_measures = [

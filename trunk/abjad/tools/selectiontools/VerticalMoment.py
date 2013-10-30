@@ -227,10 +227,10 @@ class VerticalMoment(SimultaneousSelection):
         r'''Tuplet of zero or more measures
         at vertical moment.
         '''
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         result = []
         for component in self.components:
-            if isinstance(component, measuretools.Measure):
+            if isinstance(component, scoretools.Measure):
                 result.append(component)
         result = tuple(result)
         return result
@@ -299,9 +299,9 @@ class VerticalMoment(SimultaneousSelection):
         r'''Tuple of measures in vertical moment
         starting before vertical moment, ordered by score index.
         '''
-        from abjad.tools import measuretools
+        from abjad.tools import scoretools
         result = [x for x in self.overlap_components 
-            if isinstance(x, measuretools.Measure)]
+            if isinstance(x, scoretools.Measure)]
         result = tuple(result)
         return result
 

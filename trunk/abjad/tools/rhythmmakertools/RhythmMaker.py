@@ -171,9 +171,9 @@ class RhythmMaker(Maker):
         ::
 
             >>> staff = Staff(
-            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
             ...     divisions))
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
             ...     staff, leaves)
 
         ..  doctest::

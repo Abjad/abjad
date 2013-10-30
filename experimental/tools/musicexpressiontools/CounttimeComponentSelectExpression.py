@@ -5,7 +5,7 @@ from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
-from abjad.tools import measuretools
+from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
@@ -121,7 +121,7 @@ class CounttimeComponentSelectExpression(
         elif isinstance(expr, musicexpressiontools.ClassInventory):
             return True
         elif issubclass(expr, (
-            measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
+            scoretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
             return True
         elif expr == containertools.Container:
             return True

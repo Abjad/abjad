@@ -84,7 +84,7 @@ class ConcreteInterpreter(Interpreter):
                     single_context_time_signature_set_expressions.remove(
                         single_context_time_signature_set_expression)
         time_signatures = self.score_specification.time_signatures
-        measures = measuretools.make_measures_with_full_measure_spacer_skips(
+        measures = scoretools.make_measures_with_full_measure_spacer_skips(
             time_signatures)
         context = self.score['TimeSignatureContext']
         context.extend(measures)

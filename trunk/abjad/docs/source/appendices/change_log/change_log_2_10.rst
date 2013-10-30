@@ -84,8 +84,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    measuretools.iterate_measures_forward_in_expr()
-    measuretools.iterate_measures_backward_in_expr()
+    scoretools.iterate_measures_forward_in_expr()
+    scoretools.iterate_measures_backward_in_expr()
 
   ::
 
@@ -227,8 +227,8 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
-    measuretools.color_measure()
-    measuretools.color_measures_with_non_power_of_two_denominators_in_expr()
+    scoretools.color_measure()
+    scoretools.color_measures_with_non_power_of_two_denominators_in_expr()
 
   ::
 
@@ -339,13 +339,13 @@ Renamed all functions that contained ``as_string``::
 
     scoretools.report_component_format_contributions_as_string()
     containertools.report_container_modifications_as_string()
-    measuretools.report_meter_distribution_as_string()
+    scoretools.report_meter_distribution_as_string()
 
 ::
 
     formattools.report_component_format_contributions()
     containertools.report_container_modifications()
-    measuretools.report_time_signature_distribution()
+    scoretools.report_time_signature_distribution()
 
 Changes to the ``scoretools`` package:
 
@@ -566,34 +566,34 @@ Changes to the ``mathtools`` package.
 
 - Removed ``mathtools.partition_integer_into_thirds()``.
 
-Changes to the ``measuretools`` package:
+Changes to the ``scoretools`` package:
 
 - Renamed::
 
-    measuretools.fill_measures_in_expr_with_meter_denominator_notes()
-    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure()
-    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators()
-    measuretools.scale_measure_by_multiplier_and_adjust_meter()
+    scoretools.fill_measures_in_expr_with_meter_denominator_notes()
+    scoretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure()
+    scoretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators()
+    scoretools.scale_measure_by_multiplier_and_adjust_meter()
 
   ::
 
-    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes()
-    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature()
-    measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
-    measuretools.scale_measure_and_adjust_time_signature()
+    scoretools.fill_measures_in_expr_with_time_signature_denominator_notes()
+    scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature()
+    scoretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
+    scoretools.scale_measure_and_adjust_time_signature()
 
 - Renamed::
 
-    measuretools.fill_measures_in_expr_with_big_endian_notes()
-    measuretools.fill_measures_in_expr_with_litte_endian_notes()
+    scoretools.fill_measures_in_expr_with_big_endian_notes()
+    scoretools.fill_measures_in_expr_with_litte_endian_notes()
 
   ::
 
-    measuretools.measuretools.fill_measures_in_expr_with_minimal_number_of_notes(big_endian=[True, False])
+    scoretools.scoretools.fill_measures_in_expr_with_minimal_number_of_notes(big_endian=[True, False])
 
 - Renamed::
 
-    measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents()
+    scoretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents()
 
   ::
 
@@ -601,24 +601,24 @@ Changes to the ``measuretools`` package:
 
 - Renamed::
 
-    measuretools.get_previous_measure_from_component()
+    scoretools.get_previous_measure_from_component()
 
   ::
 
-    measuretools.get_previous_measure_from_component()
+    scoretools.get_previous_measure_from_component()
 
 - Renamed::
 
-    measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
+    scoretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
 
   ::
 
-    measuretools.multiply_and_scale_contents_of_measures_in_expr()
+    scoretools.multiply_and_scale_contents_of_measures_in_expr()
 
 - Renamed::
 
-    measuretools.pitch_array_row_to_measure()
-    measuretools.pitch_array_to_measures()
+    scoretools.pitch_array_row_to_measure()
+    scoretools.pitch_array_to_measures()
 
   ::
 
