@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
+from abjad.tools import instrumenttools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import wizards
 from experimental.tools.scoremanagertools.editors.ListEditor \
@@ -14,7 +14,7 @@ class InstrumentationEditor(ListEditor):
 
     ### CLASS VARIABLES ###
 
-    item_class = scoretools.Performer
+    item_class = instrumenttools.Performer
 
     item_creator_class = wizards.PerformerCreationWizard
 
@@ -24,7 +24,8 @@ class InstrumentationEditor(ListEditor):
 
     item_identifier = 'performer'
 
-    target_manifest = TargetManifest(scoretools.InstrumentationSpecifier,
+    target_manifest = TargetManifest(
+        instrumenttools.InstrumentationSpecifier,
         )
 
     ### PRIVATE PROPERTIES ###

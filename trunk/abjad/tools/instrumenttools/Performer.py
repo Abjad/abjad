@@ -9,14 +9,14 @@ class Performer(AbjadObject):
 
     ::
 
-        >>> performer = scoretools.Performer(name='flutist')
+        >>> performer = instrumenttools.Performer(name='flutist')
         >>> performer.instruments.append(instrumenttools.Flute())
         >>> performer.instruments.append(instrumenttools.Piccolo())
 
     ::
 
         >>> print performer.storage_format
-        scoretools.Performer(
+        instrumenttools.Performer(
             name='flutist',
             instruments=instrumenttools.InstrumentInventory([
                 instrumenttools.Flute(),
@@ -73,7 +73,7 @@ class Performer(AbjadObject):
 
         ::
 
-            >>> for name in scoretools.Performer.list_performer_names():
+            >>> for name in instrumenttools.Performer.list_performer_names():
             ...     name
             ...
             'accordionist'
@@ -120,7 +120,7 @@ class Performer(AbjadObject):
 
         ::
 
-            >>> for pair in scoretools.Performer.list_primary_performer_names():
+            >>> for pair in instrumenttools.Performer.list_primary_performer_names():
             ...     pair
             ...
             ('accordionist', 'acc.')

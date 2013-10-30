@@ -27,7 +27,7 @@ class PerformerEditor(ListEditor):
     item_identifier = 'instrument'
 
     target_manifest = TargetManifest(
-        scoretools.Performer,
+        instrumenttools.Performer,
         ('name', 'nm', getters.get_string),
         target_attribute_name='name',
         )

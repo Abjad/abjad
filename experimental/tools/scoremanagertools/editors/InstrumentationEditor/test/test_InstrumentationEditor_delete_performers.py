@@ -29,8 +29,8 @@ def test_InstrumentationEditor_delete_performers_02():
 
     editor = scoremanagertools.editors.InstrumentationEditor()
     editor._run(pending_user_input='add acc default add bass default add bassoon default rm 3 rm 2 q')
-    assert editor.target == scoretools.InstrumentationSpecifier(
-        [scoretools.Performer('accordionist', instruments=[instrumenttools.Accordion()])])
+    assert editor.target == instrumenttools.InstrumentationSpecifier(
+        [instrumenttools.Performer('accordionist', instruments=[instrumenttools.Accordion()])])
 
 
 def test_InstrumentationEditor_delete_performers_03():
@@ -39,5 +39,5 @@ def test_InstrumentationEditor_delete_performers_03():
 
     editor = scoremanagertools.editors.InstrumentationEditor()
     editor._run(pending_user_input='add 1-3 default default default rm 3-2 q')
-    assert editor.target == scoretools.InstrumentationSpecifier(
-        [scoretools.Performer('accordionist', instruments=[instrumenttools.Accordion()])])
+    assert editor.target == instrumenttools.InstrumentationSpecifier(
+        [instrumenttools.Performer('accordionist', instruments=[instrumenttools.Accordion()])])

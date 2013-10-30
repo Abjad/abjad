@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_scoretools_Performer_name_01():
+def test_instrumenttools_Performer_name_01():
 
-    performer = scoretools.Performer('Flutist')
+    performer = instrumenttools.Performer('Flutist')
     assert performer.name == 'Flutist'
 
     performer.name = 'Violinist'

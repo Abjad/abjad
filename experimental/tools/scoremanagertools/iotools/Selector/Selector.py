@@ -346,10 +346,10 @@ class Selector(ScoreManagerObject):
     def make_score_tools_performer_name_selector(
         session=None,
         ):
-        from abjad.tools import scoretools
+        from abjad.tools import instrumenttools
         selector = Selector(session=session)
         selector.return_value_attribute = 'display_string'
-        performer_pairs = scoretools.Performer.list_primary_performer_names()
+        performer_pairs = instrumenttools.Performer.list_primary_performer_names()
         performer_pairs.append(('percussionist', 'perc.'))
         performer_pairs.sort()
         menu_entries = []

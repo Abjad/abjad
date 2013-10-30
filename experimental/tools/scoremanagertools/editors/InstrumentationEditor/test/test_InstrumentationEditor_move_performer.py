@@ -30,7 +30,7 @@ def test_InstrumentationEditor_move_performer_02():
     editor = scoremanagertools.editors.InstrumentationEditor()
     editor._run(pending_user_input=
         'add accordionist default add bassist default add bassoonist bassoon move 1 2 move 2 3 q')
-    assert editor.target == scoretools.InstrumentationSpecifier([
-        scoretools.Performer(name='bassist', instruments=[instrumenttools.Contrabass()]),
-        scoretools.Performer(name='bassoonist', instruments=[instrumenttools.Bassoon()]),
-        scoretools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()])])
+    assert editor.target == instrumenttools.InstrumentationSpecifier([
+        instrumenttools.Performer(name='bassist', instruments=[instrumenttools.Contrabass()]),
+        instrumenttools.Performer(name='bassoonist', instruments=[instrumenttools.Bassoon()]),
+        instrumenttools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()])])

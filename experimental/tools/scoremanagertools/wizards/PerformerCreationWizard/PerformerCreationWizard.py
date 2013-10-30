@@ -53,7 +53,7 @@ class PerformerCreationWizard(Wizard):
             for performer_name in performer_names:
                 self.session.push_breadcrumb(self._breadcrumb)
                 with self.backtracking:
-                    performer = scoretools.Performer(performer_name)
+                    performer = instrumenttools.Performer(performer_name)
                     self.interactively_initialize_performer(performer)
                 self.session.pop_breadcrumb()
                 was_backtracking_locally = \

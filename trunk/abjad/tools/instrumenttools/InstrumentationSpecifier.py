@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.scoretools.PerformerInventory import PerformerInventory
 
 
 class InstrumentationSpecifier(AbjadObject):
@@ -9,33 +8,33 @@ class InstrumentationSpecifier(AbjadObject):
 
     ::
 
-        >>> flute = scoretools.Performer('Flute')
+        >>> flute = instrumenttools.Performer('Flute')
         >>> flute.instruments.append(instrumenttools.Flute())
         >>> flute.instruments.append(instrumenttools.AltoFlute())
 
     ::
 
-        >>> guitar = scoretools.Performer('Guitar')
+        >>> guitar = instrumenttools.Performer('Guitar')
         >>> guitar.instruments.append(instrumenttools.Guitar())
 
     ::
 
         >>> instrumentation_specifier = \
-        ...     scoretools.InstrumentationSpecifier([flute, guitar])
+        ...     instrumenttools.InstrumentationSpecifier([flute, guitar])
 
     ::
 
         >>> print instrumentation_specifier.storage_format
-        scoretools.InstrumentationSpecifier(
-            performers=scoretools.PerformerInventory([
-                scoretools.Performer(
+        instrumenttools.InstrumentationSpecifier(
+            performers=instrumenttools.PerformerInventory([
+                instrumenttools.Performer(
                     name='Flute',
                     instruments=instrumenttools.InstrumentInventory([
                         instrumenttools.Flute(),
                         instrumenttools.AltoFlute()
                         ])
                     ),
-                scoretools.Performer(
+                instrumenttools.Performer(
                     name='Guitar',
                     instruments=instrumenttools.InstrumentInventory([
                         instrumenttools.Guitar()
@@ -48,7 +47,8 @@ class InstrumentationSpecifier(AbjadObject):
     '''
 
     def __init__(self, performers=None):
-        self._performers = PerformerInventory()
+        from abjad.tools import instrumenttools
+        self._performers = instrumenttools.PerformerInventory()
         self.performers = performers
 
     ### SPECIAL METHODS ###
@@ -128,15 +128,15 @@ class InstrumentationSpecifier(AbjadObject):
             ::
 
                 >>> print instrumentation_specifier.performers.storage_format
-                scoretools.PerformerInventory([
-                    scoretools.Performer(
+                instrumenttools.PerformerInventory([
+                    instrumenttools.Performer(
                         name='Flute',
                         instruments=instrumenttools.InstrumentInventory([
                             instrumenttools.Flute(),
                             instrumenttools.AltoFlute()
                             ])
                         ),
-                    scoretools.Performer(
+                    instrumenttools.Performer(
                         name='Guitar',
                         instruments=instrumenttools.InstrumentInventory([
                             instrumenttools.Guitar()
@@ -148,13 +148,13 @@ class InstrumentationSpecifier(AbjadObject):
             '''
             return self._performers
         def fset(self, performers):
-            from abjad.tools import scoretools
+            from abjad.tools import instrumenttools
             assert isinstance(performers, 
                 (list, datastructuretools.TypedList, type(None)))
             if performers is None:
                 self._performers[:] = []
             else:
-                assert all(isinstance(x, scoretools.Performer) 
+                assert all(isinstance(x, instrumenttools.Performer) 
                     for x in performers)
                 self._performers[:] = list(performers[:])
         return property(**locals())

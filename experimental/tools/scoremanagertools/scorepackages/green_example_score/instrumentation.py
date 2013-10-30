@@ -2,15 +2,15 @@
 from abjad import *
 
 
-instrumentation=scoretools.InstrumentationSpecifier(
-	performers=scoretools.PerformerInventory([
-		scoretools.Performer(
+instrumentation=instrumenttools.InstrumentationSpecifier(
+	performers=instrumenttools.PerformerInventory([
+		instrumenttools.Performer(
 			name='flutist',
 			instruments=instrumenttools.InstrumentInventory([
 				instrumenttools.AltoFlute()
 				])
 			),
-		scoretools.Performer(
+		instrumenttools.Performer(
 			name='guitarist',
 			instruments=instrumenttools.InstrumentInventory([
 				instrumenttools.Guitar()

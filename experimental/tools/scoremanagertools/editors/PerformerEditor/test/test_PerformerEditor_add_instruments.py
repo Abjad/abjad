@@ -29,7 +29,7 @@ def test_PerformerEditor_add_instruments_02():
 
     editor = scoremanagertools.editors.PerformerEditor()
     editor._run(pending_user_input='add 1 add 2 q')
-    assert editor.target == scoretools.Performer(
+    assert editor.target == instrumenttools.Performer(
         instruments=[instrumenttools.Accordion(), instrumenttools.AltoFlute()])
 
 
@@ -39,5 +39,5 @@ def test_PerformerEditor_add_instruments_03():
 
     editor = scoremanagertools.editors.PerformerEditor()
     editor._run(pending_user_input='add 1-2 q')
-    assert editor.target == scoretools.Performer(
+    assert editor.target == instrumenttools.Performer(
         instruments=[instrumenttools.Accordion(), instrumenttools.AltoFlute()])
