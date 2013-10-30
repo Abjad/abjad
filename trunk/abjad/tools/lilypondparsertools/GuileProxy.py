@@ -131,7 +131,7 @@ class GuileProxy(AbjadObject):
         return music
 
     def skip(self, duration):
-        leaf = skiptools.Skip(duration.duration)
+        leaf = scoretools.Skip(duration.duration)
         if duration.multiplier is not None:
             leaf.lilypond_duration_multiplier = duration.multiplier
         return leaf

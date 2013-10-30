@@ -7,14 +7,14 @@ def test_stafftools_Staff___setitem___01():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
     assert isinstance(staff[0], Note)
     assert isinstance(staff[1], Rest)
     assert isinstance(staff[2], Chord)
-    assert isinstance(staff[3], skiptools.Skip)
+    assert isinstance(staff[3], scoretools.Skip)
     assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
     staff[1] = Chord([12, 13, 15], (1, 4))
     assert len(staff) == 5
@@ -22,7 +22,7 @@ def test_stafftools_Staff___setitem___01():
     assert isinstance(staff[0], Note)
     assert isinstance(staff[1], Chord)
     assert isinstance(staff[2], Chord)
-    assert isinstance(staff[3], skiptools.Skip)
+    assert isinstance(staff[3], scoretools.Skip)
     assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
     staff[0] = Rest((1, 4))
     assert len(staff) == 5
@@ -30,7 +30,7 @@ def test_stafftools_Staff___setitem___01():
     assert isinstance(staff[0], Rest)
     assert isinstance(staff[1], Chord)
     assert isinstance(staff[2], Chord)
-    assert isinstance(staff[3], skiptools.Skip)
+    assert isinstance(staff[3], scoretools.Skip)
     assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
     staff[-2] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
     assert len(staff) == 5
@@ -48,12 +48,12 @@ def test_stafftools_Staff___setitem___01():
     assert isinstance(staff[2], Chord)
     assert isinstance(staff[3], tuplettools.FixedDurationTuplet)
     assert isinstance(staff[4], Note)
-    staff[-3] = skiptools.Skip((1, 4))
+    staff[-3] = scoretools.Skip((1, 4))
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
     assert isinstance(staff[0], Rest)
     assert isinstance(staff[1], Chord)
-    assert isinstance(staff[2], skiptools.Skip)
+    assert isinstance(staff[2], scoretools.Skip)
     assert isinstance(staff[3], tuplettools.FixedDurationTuplet)
     assert isinstance(staff[4], Note)
 

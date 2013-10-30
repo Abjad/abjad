@@ -7,12 +7,12 @@ def make_repeated_skips_from_time_signatures(time_signatures):
 
     ::
 
-        skiptools.make_repeated_skips_from_time_signatures([(2, 8), (3, 32)])
+        scoretools.make_repeated_skips_from_time_signatures([(2, 8), (3, 32)])
         [Selection(Skip('s8'), Skip('s8')), Selection(Skip('s32'), Skip('s32'), Skip('s32'))]
 
     Returns two-dimensional list of newly constructed skip lists.
     '''
-    from abjad.tools import skiptools
+    from abjad.tools import scoretools
 
     # init result
     result = []
@@ -27,7 +27,7 @@ def make_repeated_skips_from_time_signatures(time_signatures):
 
 
 def _make_repeated_skips_from_time_signature(time_signature):
-    from abjad.tools import skiptools
+    from abjad.tools import scoretools
 
     # afford basic input polymorphism
     time_signature = contexttools.TimeSignatureMark(time_signature)
@@ -39,6 +39,6 @@ def _make_repeated_skips_from_time_signature(time_signature):
         raise NotImplementedError(message)
 
     # make and return repeated skips
-    skip = skiptools.Skip((1, time_signature.denominator))
+    skip = scoretools.Skip((1, time_signature.denominator))
     skips = time_signature.numerator * skip
     result = selectiontools.Selection(skips)

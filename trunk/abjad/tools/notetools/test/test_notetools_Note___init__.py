@@ -130,11 +130,11 @@ def test_notetools_Note___init___11():
 def test_notetools_Note___init___12():
     r'''Cast skip as note.
     '''
-    skip = skiptools.Skip((1, 8))
+    skip = scoretools.Skip((1, 8))
     d = skip.written_duration
     note = Note(skip)
     assert isinstance(note, Note)
-    assert dir(skip) == dir(skiptools.Skip((1, 4)))
+    assert dir(skip) == dir(scoretools.Skip((1, 4)))
     assert dir(note) == dir(Note("c'4"))
     assert note._parent is None
     assert note.written_duration == d
@@ -144,10 +144,10 @@ def test_notetools_Note___init___13():
     r'''Init note from tupletized skip.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), scoretools.Skip((1, 8)) * 3)
     d = tuplet[0].written_duration
     note = Note(tuplet[0])
-    assert isinstance(tuplet[0], skiptools.Skip)
+    assert isinstance(tuplet[0], scoretools.Skip)
     assert isinstance(note, Note)
     assert tuplet[0]._parent is tuplet
     assert tuplet[0].written_duration == d
@@ -158,11 +158,11 @@ def test_notetools_Note___init___14():
     r'''Init note from beamed skip.
     '''
 
-    staff = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
+    staff = Staff([Note(0, (1, 8)), scoretools.Skip((1, 8)), Note(0, (1, 8))])
     beam = spannertools.BeamSpanner()
     attach(beam, staff[:])
     note = Note(staff[1])
-    assert isinstance(staff[1], skiptools.Skip)
+    assert isinstance(staff[1], scoretools.Skip)
     assert isinstance(note, Note)
     assert staff[1]._parent is staff
     assert note._parent is None

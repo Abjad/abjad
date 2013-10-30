@@ -6,19 +6,19 @@ def test_stafftools_Staff___getitem___01():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
     assert isinstance(staff[0], Note)
     assert isinstance(staff[1], Rest)
     assert isinstance(staff[2], Chord)
-    assert isinstance(staff[3], skiptools.Skip)
+    assert isinstance(staff[3], scoretools.Skip)
     assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
     assert isinstance(staff[-5], Note)
     assert isinstance(staff[-4], Rest)
     assert isinstance(staff[-3], Chord)
-    assert isinstance(staff[-2], skiptools.Skip)
+    assert isinstance(staff[-2], scoretools.Skip)
     assert isinstance(staff[-1], tuplettools.FixedDurationTuplet)
 
 
@@ -26,7 +26,7 @@ def test_stafftools_Staff___getitem___02():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
@@ -39,7 +39,7 @@ def test_stafftools_Staff___getitem___03():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
@@ -55,7 +55,7 @@ def test_stafftools_Staff___getitem___04():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
@@ -71,7 +71,7 @@ def test_stafftools_Staff___getitem___05():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
@@ -79,7 +79,7 @@ def test_stafftools_Staff___getitem___05():
     assert len(slice) == 3
     assert isinstance(slice[0], Rest)
     assert isinstance(slice[1], Chord)
-    assert isinstance(slice[2], skiptools.Skip)
+    assert isinstance(slice[2], scoretools.Skip)
     for x in slice:
         assert x._parent == staff
     assert inspect(staff).is_well_formed()
@@ -89,14 +89,14 @@ def test_stafftools_Staff___getitem___06():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
     slice = staff[2:]
     assert len(slice) == 3
     assert isinstance(slice[0], Chord)
-    assert isinstance(slice[1], skiptools.Skip)
+    assert isinstance(slice[1], scoretools.Skip)
     assert isinstance(slice[2], tuplettools.FixedDurationTuplet)
     for x in slice:
         assert x._parent == staff
@@ -107,7 +107,7 @@ def test_stafftools_Staff___getitem___07():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
@@ -125,7 +125,7 @@ def test_stafftools_Staff___getitem___08():
     staff = Staff([Note("c'4"),
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
-            skiptools.Skip((1, 4)),
+            scoretools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
@@ -135,7 +135,7 @@ def test_stafftools_Staff___getitem___08():
     assert isinstance(slice[0], Note)
     assert isinstance(slice[1], Rest)
     assert isinstance(slice[2], Chord)
-    assert isinstance(slice[3], skiptools.Skip)
+    assert isinstance(slice[3], scoretools.Skip)
     assert isinstance(slice[4], tuplettools.FixedDurationTuplet)
     for x in slice:
         assert x._parent == staff

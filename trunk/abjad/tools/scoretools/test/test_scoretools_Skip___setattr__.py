@@ -3,10 +3,10 @@ from abjad import *
 import py.test
 
 
-def test_skiptools_Skip___setattr___01():
+def test_scoretools_Skip___setattr___01():
     r'''Slots constrain skip attributes.
     '''
 
-    skip = skiptools.Skip((1, 4))
+    skip = scoretools.Skip((1, 4))
 
     assert py.test.raises(AttributeError, "skip.foo = 'bar'")

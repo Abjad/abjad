@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import skiptools
 
 
 def append_spacer_skip_to_underfull_measure(measure):
@@ -43,13 +42,14 @@ def append_spacer_skip_to_underfull_measure(measure):
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools
+    from abjad.tools import scoretools
 
     assert isinstance(measure, measuretools.Measure)
 
     if measure.is_underfull:
         target_duration = measure.time_signature.duration
         duration = measure._get_duration()
-        skip = skiptools.Skip((1, 1))
+        skip = scoretools.Skip((1, 1))
         time_signature_multiplier = \
             measure.time_signature.implied_prolation
         new_multiplier = (target_duration - duration) / time_signature_multiplier

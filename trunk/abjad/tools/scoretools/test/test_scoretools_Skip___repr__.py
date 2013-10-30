@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.skiptools import Skip
+from abjad.tools.scoretools import Skip
 
 
-def test_skiptools_Skip___repr___01():
+def test_scoretools_Skip___repr___01():
     r'''Skip repr is evaluable.
     '''
 

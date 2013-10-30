@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import skiptools
+from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 import fractions
 
@@ -54,7 +54,7 @@ class SkipRhythmMaker(RhythmMaker):
         for division in divisions:
             written_duration = durationtools.Duration(1)
             multiplied_duration = division
-            skip = skiptools.make_skips_with_multiplied_durations(
+            skip = scoretools.make_skips_with_multiplied_durations(
                 written_duration, [multiplied_duration])
             result.append(skip)
         return result

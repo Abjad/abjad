@@ -8,7 +8,7 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
 
     ::
 
-        >>> skiptools.make_skips_with_multiplied_durations(
+        >>> scoretools.make_skips_with_multiplied_durations(
         ...     Duration(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)])
         Selection(Skip('s4 * 2'), Skip('s4 * 4/3'), Skip('s4 * 1'), Skip('s4 * 4/5'))
 
@@ -16,7 +16,7 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
 
     Returns list of skips.
     '''
-    from abjad.tools import skiptools
+    from abjad.tools import scoretools
 
     # initialize skips and written duration
     skips = []
@@ -25,7 +25,7 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
     # make skips
     for multiplied_duration in multiplied_durations:
         multiplied_duration = durationtools.Duration(multiplied_duration)
-        skip = skiptools.Skip(written_duration)
+        skip = scoretools.Skip(written_duration)
         multiplier = multiplied_duration / written_duration
         skip.lilypond_duration_multiplier = multiplier
         skips.append(skip)

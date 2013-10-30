@@ -67,7 +67,7 @@ def test_scoretools_Chord___init___08():
     r'''Initialize chord from skip.
     '''
 
-    skip = skiptools.Skip('s8')
+    skip = scoretools.Skip('s8')
     chord = Chord(skip)
 
     assert skip.lilypond_format == 's8'

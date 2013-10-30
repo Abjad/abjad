@@ -80,11 +80,11 @@ def test_resttools_Rest___init___07():
     r'''Init rest from skip.
     '''
 
-    skip = skiptools.Skip((1, 8))
+    skip = scoretools.Skip((1, 8))
     d = skip.written_duration
     rest = Rest(skip)
     assert isinstance(rest, Rest)
-    assert dir(skip) == dir(skiptools.Skip((1, 4)))
+    assert dir(skip) == dir(scoretools.Skip((1, 4)))
     assert dir(rest) == dir(Rest((1, 4)))
     assert rest._parent is None
     assert rest.written_duration == d
@@ -94,10 +94,10 @@ def test_resttools_Rest___init___08():
     r'''Init rest from tupletted skip.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), skiptools.Skip((1, 8)) * 3)
+    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), scoretools.Skip((1, 8)) * 3)
     d = tuplet[0].written_duration
     rest = Rest(tuplet[0])
-    assert isinstance(tuplet[0], skiptools.Skip)
+    assert isinstance(tuplet[0], scoretools.Skip)
     assert isinstance(rest, Rest)
     assert tuplet[0]._parent is tuplet
     assert tuplet[0].written_duration == d
@@ -108,11 +108,11 @@ def test_resttools_Rest___init___09():
     r'''Init rest from beamed skip.
     '''
 
-    staff = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
+    staff = Staff([Note(0, (1, 8)), scoretools.Skip((1, 8)), Note(0, (1, 8))])
     beam = spannertools.BeamSpanner()
     attach(beam, staff[:])
     rest = Rest(staff[1])
-    assert isinstance(staff[1], skiptools.Skip)
+    assert isinstance(staff[1], scoretools.Skip)
     assert staff[1] in staff
     assert isinstance(rest, Rest)
     assert rest not in staff

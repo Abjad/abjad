@@ -56,7 +56,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_05():
     r'''Fuse leaves with differing LilyPond multipliers.
     '''
 
-    staff = Staff([skiptools.Skip((1, 1)), skiptools.Skip((1, 1))])
+    staff = Staff([scoretools.Skip((1, 1)), scoretools.Skip((1, 1))])
     staff[0].lilypond_duration_multiplier = Duration(1, 16)
     staff[1].lilypond_duration_multiplier = Duration(5, 16)
 

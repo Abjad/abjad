@@ -140,7 +140,7 @@ def test_pitchtools_PitchRange___contains___12():
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
     assert Rest((1, 4)) in pr
-    assert skiptools.Skip((1, 4)) in pr
+    assert scoretools.Skip((1, 4)) in pr
 
 
 def test_pitchtools_PitchRange___contains___13():

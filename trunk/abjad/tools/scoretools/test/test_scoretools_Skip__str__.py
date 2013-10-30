@@ -2,8 +2,8 @@
 from abjad import *
 
 
-def test_skiptools_Skip__str___01():
+def test_scoretools_Skip__str___01():
 
-    skip = skiptools.Skip((1, 4))
+    skip = scoretools.Skip((1, 4))
 
     assert str(skip) == 's4'

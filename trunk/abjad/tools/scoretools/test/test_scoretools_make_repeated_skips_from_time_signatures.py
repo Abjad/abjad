@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import sequencetools
 
 
-def test_skiptools_make_repeated_skips_from_time_signatures_01():
+def test_scoretools_make_repeated_skips_from_time_signatures_01():
     r'''Make repeated rests from list of integer pairs.
     '''
 

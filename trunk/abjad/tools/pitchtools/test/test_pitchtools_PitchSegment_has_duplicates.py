@@ -23,7 +23,7 @@ def test_pitchtools_PitchSegment_has_duplicates_02():
     assert not pitchtools.PitchSegment.from_selection(
         Rest((1, 4))).has_duplicates
     assert not pitchtools.PitchSegment.from_selection(
-        skiptools.Skip((1, 4))).has_duplicates
+        scoretools.Skip((1, 4))).has_duplicates
 
 
 def test_pitchtools_PitchSegment_has_duplicates_03():

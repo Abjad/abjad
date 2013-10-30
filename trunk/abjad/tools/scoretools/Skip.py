@@ -12,7 +12,7 @@ class Skip(Leaf):
 
         ::
 
-            >>> skip = skiptools.Skip((3, 16))
+            >>> skip = scoretools.Skip((3, 16))
             >>> skip
             Skip('s8.')
 

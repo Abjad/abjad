@@ -1,17 +1,16 @@
 # -*- encoding: utf-8 -*-
 import fractions
 from ply import lex
-from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools import marktools
 from abjad.tools import markuptools
-from abjad.tools import pitchtools
 from abjad.tools import notetools
+from abjad.tools import pitchtools
 from abjad.tools import resttools
 from abjad.tools import schemetools
-from abjad.tools import skiptools
+from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.scoretools import attach
 
@@ -3050,7 +3049,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         if p[1] == 'r':
             rest = resttools.Rest(p[2].duration)
         else:
-            rest = skiptools.Skip(p[2].duration)
+            rest = scoretools.Skip(p[2].duration)
         if p[2].multiplier is not None:
             rest.lilypond_duration_multiplier = p[2].multiplier
         p[0] = rest

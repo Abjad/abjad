@@ -32,6 +32,6 @@ def test_pitchtools_PitchClassSegment_has_duplicates_02():
         item_class=pitchtools.NumberedPitchClass,
         ).has_duplicates
     assert not pitchtools.PitchClassSegment.from_selection(
-        skiptools.Skip((1, 4)),
+        scoretools.Skip((1, 4)),
         item_class=pitchtools.NumberedPitchClass,
         ).has_duplicates

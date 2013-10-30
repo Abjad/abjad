@@ -215,7 +215,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     resttools.all_are_rests()
     scoretools.all_are_scores()
     sievetools.all_are_residue_class_expressions()
-    skiptools.all_are_skips()
+    scoretools.all_are_skips()
     spannertools.all_are_spanners()
     stafftools.all_are_staves()
     tuplettools.all_are_tuplets()

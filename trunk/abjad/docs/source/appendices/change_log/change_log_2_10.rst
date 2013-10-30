@@ -120,8 +120,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    skiptools.iterate_skips_forward_in_expr()
-    skiptools.iterate_skips_backward_in_expr()
+    scoretools.iterate_skips_forward_in_expr()
+    scoretools.iterate_skips_backward_in_expr()
 
   ::
 

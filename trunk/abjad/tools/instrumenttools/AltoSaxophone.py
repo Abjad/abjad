@@ -68,7 +68,7 @@ class AltoSaxophone(Instrument):
                     >>> import copy
                     >>> skips = []
                     >>> for clef in alto_sax.allowable_clefs:
-                    ...     skip = skiptools.Skip((1, 8))
+                    ...     skip = scoretools.Skip((1, 8))
                     ...     clef = copy.copy(clef)
                     ...     clef = attach(clef, skip)
                     ...     skips.append(skip)
