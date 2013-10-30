@@ -138,7 +138,10 @@ class Parser(AbjadObject):
     def pickle_path(self):
         r'''The output path for the parser's pickled parsing tables.
         '''
-        return os.path.join(self.output_path, '_parsetab.pkl')
+        file_name = '_{}_parse_tables.pkl'.format(
+            self._class_name,
+            )
+        return os.path.join(self.output_path, file_name)
 
     ### PUBLIC METHODS ###
 
