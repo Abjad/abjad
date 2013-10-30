@@ -71,7 +71,7 @@ class Specification(AbjadObject):
         elif isinstance(context_token, (tuple, list)) and all(
             x in self.context_names for x in context_token):
             context_names = context_token
-        elif isinstance(context_token, contexttools.Context):
+        elif isinstance(context_token, scoretools.Context):
             context_names = [context_token.name]
         elif contexttools.all_are_contexts(context_token):
             context_names = [context.name for context in context_token]

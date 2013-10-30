@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
-from abjad.tools import contexttools
+from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
     import AttributeNameEnumeration
@@ -46,7 +46,7 @@ class Interpreter(AbjadObject):
 
     def instantiate_score(self):
         score = self.score_specification.score_template()
-        context = contexttools.Context(
+        context = scoretools.Context(
             name='TimeSignatureContext',
             context_name='TimeSignatureContext',
             )

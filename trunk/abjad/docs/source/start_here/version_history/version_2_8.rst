@@ -316,7 +316,7 @@ All score components are now public.
 - The following classes are now publically available for the first time::
 
     scoretools.Component
-    contexttools.Context
+    scoretools.Context
     scoretools.Leaf
 
 Further new functionality:
@@ -361,7 +361,7 @@ Changes to end-user functionality:
 
 - Changed ``intervaltreetools`` to ``timeintervaltools``.
 
-- Changed ``contexttools.Context.context`` to ``contexttools.Context.context_name``.
+- Changed ``scoretools.Context.context`` to ``scoretools.Context.context_name``.
 
 - Calling ``bool(Container())`` on empty containers now returns false.
   The previous behavior of the system was to return true.

@@ -9,11 +9,11 @@ def insert_expr_into_lilypond_file(expr, tagline=False):
 
     Returns LilyPond file.
     '''
-    from abjad.tools import contexttools
+    from abjad.tools import scoretools
 
     if isinstance(expr, lilypondfiletools.LilyPondFile):
         lilypond_file = expr
-    elif isinstance(expr, contexttools.Context):
+    elif isinstance(expr, scoretools.Context):
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(expr)
         lilypond_file._is_temporary = True
     else:

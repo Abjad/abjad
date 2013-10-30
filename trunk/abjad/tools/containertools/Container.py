@@ -533,7 +533,7 @@ class Container(Component):
             '''
             return self._simultaneous
         def fset(self, expr):
-            from abjad.tools.contexttools.Context import Context
+            from abjad.tools.scoretools.Context import Context
             from abjad.tools import scoretools
             assert isinstance(expr, bool), repr(expr)
             if expr == True:

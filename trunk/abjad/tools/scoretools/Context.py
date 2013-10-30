@@ -10,7 +10,7 @@ class Context(Container):
 
     ::
 
-        >>> context = contexttools.Context(
+        >>> context = scoretools.Context(
         ... name='MeterVoice', context_name='TimeSignatureContext')
 
     ::

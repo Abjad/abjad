@@ -148,7 +148,7 @@ class GuileProxy(AbjadObject):
 
     def times(self, fraction, music):
         n, d  = fraction.numerator, fraction.denominator
-        if not isinstance(music, contexttools.Context) and \
+        if not isinstance(music, scoretools.Context) and \
             not isinstance(music, scoretools.Leaf):
             return scoretools.Tuplet((n, d), music[:])
         return scoretools.Tuplet((n, d), [music])

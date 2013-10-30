@@ -280,7 +280,7 @@ class Spanner(AbjadObject):
         elif not components:
             components = []
         assert not any(
-            isinstance(x, contexttools.Context) 
+            isinstance(x, scoretools.Context) 
             for x in components), repr(components)
         if self._contiguity_constraint == 'logical voice':
             leaves = list(iterationtools.iterate_leaves_in_expr(components))

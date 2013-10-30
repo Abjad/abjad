@@ -549,7 +549,7 @@ class LilyPondParser(abctools.Parser):
 
         # without voice separators
         if 1 == len(groups):
-            assert all(isinstance(x, contexttools.Context) for x in groups[0])
+            assert all(isinstance(x, scoretools.Context) for x in groups[0])
             container.extend(groups[0])
         # with voice separators
         else:
