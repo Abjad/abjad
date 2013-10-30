@@ -3,9 +3,9 @@ from abjad import *
 from abjad.tools import instrumenttools
 
 
-def test_scoretools_Performer_instruments_01():
+def test_instrumenttools_Performer_instruments_01():
 
-    performer = scoretools.Performer('Flutist')
+    performer = instrumenttools.Performer('Flutist')
     assert performer.instruments == []
 
     performer.instruments.append(instrumenttools.Flute())

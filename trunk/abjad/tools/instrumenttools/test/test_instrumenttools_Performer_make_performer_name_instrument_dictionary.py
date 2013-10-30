@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_scoretools_Performer_make_performer_name_instrument_dictionary_01():
+def test_instrumenttools_Performer_make_performer_name_instrument_dictionary_01():
 
-    performer = scoretools.Performer()
+    performer = instrumenttools.Performer()
     dictionary = performer.make_performer_name_instrument_dictionary()
 
     assert 'pianist' in dictionary

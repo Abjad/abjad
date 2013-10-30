@@ -10,7 +10,7 @@ def test_Selector_make_performer_selector_01():
     selector = Selector.make_performer_selector(session=session)
     result = selector._run(pending_user_input='hornist')
 
-    performer = scoretools.Performer(
+    performer = instrumenttools.Performer(
         name='hornist', 
         instruments=[instrumenttools.FrenchHorn()]
         )

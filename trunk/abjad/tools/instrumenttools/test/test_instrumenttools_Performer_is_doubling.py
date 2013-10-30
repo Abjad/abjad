@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_scoretools_Performer_is_doubling_01():
+def test_instrumenttools_Performer_is_doubling_01():
 
-    performer = scoretools.Performer('Flutist')
+    performer = instrumenttools.Performer('Flutist')
     performer.instruments.append(instrumenttools.Flute())
     assert not performer.is_doubling
 

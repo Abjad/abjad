@@ -2,39 +2,39 @@
 from abjad import *
 
 
-instrumentation=scoretools.InstrumentationSpecifier(
-	performers=scoretools.PerformerInventory([
-		scoretools.Performer(
+instrumentation=instrumenttools.InstrumentationSpecifier(
+	performers=instrumenttools.PerformerInventory([
+		instrumenttools.Performer(
 			name='hornist',
 			instruments=instrumenttools.InstrumentInventory([
 				instrumenttools.FrenchHorn()
 				])
 			),
-		scoretools.Performer(
+		instrumenttools.Performer(
 			name='trombonist',
 			instruments=instrumenttools.InstrumentInventory([
 				instrumenttools.TenorTrombone()
 				])
 			),
-		scoretools.Performer(
+		instrumenttools.Performer(
 			name='violinist',
 			instruments=instrumenttools.InstrumentInventory([
 				instrumenttools.Violin()
 				])
 			),
-		scoretools.Performer(
+		instrumenttools.Performer(
 			name='cellist',
 			instruments=instrumenttools.InstrumentInventory([
 				instrumenttools.Cello()
 				])
 			),
-		scoretools.Performer(
+		instrumenttools.Performer(
 			name='pianist',
 			instruments=instrumenttools.InstrumentInventory([
 				instrumenttools.Piano()
 				])
 			),
-		scoretools.Performer(
+		instrumenttools.Performer(
 			name='percussionist',
 			instruments=instrumenttools.InstrumentInventory([])
 			)

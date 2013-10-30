@@ -32,4 +32,4 @@ def test_PerformerEditor_name_03():
 
     editor = scoremanagertools.editors.PerformerEditor()
     editor._run(pending_user_input='name foo name bar q')
-    assert editor.target == scoretools.Performer(name='bar')
+    assert editor.target == instrumenttools.Performer(name='bar')

@@ -29,10 +29,10 @@ def test_InstrumentationEditor_add_performers_02():
 
     editor = scoremanagertools.editors.InstrumentationEditor()
     editor._run(pending_user_input='add accordionist default add bassoonist default add cellist default q')
-    assert editor.target == scoretools.InstrumentationSpecifier([
-        scoretools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()]),
-        scoretools.Performer(name='bassoonist', instruments=[instrumenttools.Bassoon()]),
-        scoretools.Performer(name='cellist', instruments=[instrumenttools.Cello()])])
+    assert editor.target == instrumenttools.InstrumentationSpecifier([
+        instrumenttools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()]),
+        instrumenttools.Performer(name='bassoonist', instruments=[instrumenttools.Bassoon()]),
+        instrumenttools.Performer(name='cellist', instruments=[instrumenttools.Cello()])])
 
 
 def test_InstrumentationEditor_add_performers_03():
@@ -41,7 +41,7 @@ def test_InstrumentationEditor_add_performers_03():
 
     editor = scoremanagertools.editors.InstrumentationEditor()
     editor._run(pending_user_input='add 1-3 default default default q')
-    assert editor.target == scoretools.InstrumentationSpecifier([
-        scoretools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()]),
-        scoretools.Performer(name='baritone', instruments=[instrumenttools.BaritoneVoice()]),
-        scoretools.Performer(name='bass', instruments=[instrumenttools.BassVoice()])])
+    assert editor.target == instrumenttools.InstrumentationSpecifier([
+        instrumenttools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()]),
+        instrumenttools.Performer(name='baritone', instruments=[instrumenttools.BaritoneVoice()]),
+        instrumenttools.Performer(name='bass', instruments=[instrumenttools.BassVoice()])])
