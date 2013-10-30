@@ -39,7 +39,7 @@ def test_labeltools_label_leaves_in_expr_with_named_intervals_01():
 
 def test_labeltools_label_leaves_in_expr_with_named_intervals_02():
 
-    staff = Staff(notetools.make_notes([0, 13, 11, 8, 2, 3, 9, 10, 6, 5], [Duration(1, 8)]))
+    staff = Staff(scoretools.make_notes([0, 13, 11, 8, 2, 3, 9, 10, 6, 5], [Duration(1, 8)]))
     labeltools.label_leaves_in_expr_with_named_intervals(staff)
 
     r'''

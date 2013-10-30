@@ -11,7 +11,7 @@ def test_scoretools_Chord___contains___01():
     assert pitchtools.NamedPitch(17) in chord
     assert pitchtools.NamedPitch("f''") in chord
     assert chord[1] in chord
-    assert notetools.NoteHead("f''") in chord
+    assert scoretools.NoteHead("f''") in chord
 
 
 def test_scoretools_Chord___contains___02():
@@ -22,5 +22,5 @@ def test_scoretools_Chord___contains___02():
     assert not 18.0 in chord
     assert not pitchtools.NamedPitch(18) in chord
     assert not pitchtools.NamedPitch("fs''") in chord
-    assert not notetools.NoteHead(18) in chord
-    assert not notetools.NoteHead("fs''") in chord
+    assert not scoretools.NoteHead(18) in chord
+    assert not scoretools.NoteHead("fs''") in chord

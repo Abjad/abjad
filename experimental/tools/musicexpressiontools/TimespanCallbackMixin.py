@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import timespantools
 from experimental.tools.musicexpressiontools.CallbackMixin \
 	import CallbackMixin

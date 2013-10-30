@@ -164,11 +164,11 @@ class PitchSegment(Segment):
         '''
         from abjad.tools import durationtools
         from abjad.tools import iterationtools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import pitchtools
         n = n or len(self)
         written_duration = written_duration or durationtools.Duration(1, 8)
-        result = notetools.make_notes([0] * n, [written_duration])
+        result = scoretools.make_notes([0] * n, [written_duration])
         for i, tie_chain in enumerate(
             iterationtools.iterate_tie_chains_in_expr(result)):
             pitch = self[i % len(self)]

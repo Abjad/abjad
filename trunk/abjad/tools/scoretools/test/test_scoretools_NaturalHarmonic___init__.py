@@ -7,7 +7,7 @@ def test_notetools_NaturalHarmonic___init___01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    natural_harmonic = notetools.NaturalHarmonic(staff[1])
+    natural_harmonic = scoretools.NaturalHarmonic(staff[1])
     staff[1:2] = [natural_harmonic]
 
     assert testtools.compare(

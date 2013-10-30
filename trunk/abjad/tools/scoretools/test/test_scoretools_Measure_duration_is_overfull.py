@@ -4,7 +4,7 @@ from abjad import *
 
 def test_scoretools_Measure_duration_is_overfull_01():
 
-    measure = Measure((3, 8), notetools.make_repeated_notes(3))
+    measure = Measure((3, 8), scoretools.make_repeated_notes(3))
     assert not measure.is_overfull
 
     inspect(measure).get_mark(contexttools.TimeSignatureMark).detach()

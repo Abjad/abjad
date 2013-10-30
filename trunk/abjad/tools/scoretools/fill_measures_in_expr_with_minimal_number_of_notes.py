@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import notetools
 
 
 def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_monotonically=True, iterctrl=None):
@@ -51,6 +50,7 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools
+    from abjad.tools import scoretools
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
@@ -58,5 +58,5 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_
         if iterctrl(measure, i):
             time_signature = measure.time_signature
             written_duration = time_signature.duration / time_signature.implied_prolation
-            notes = notetools.make_notes(0, written_duration, decrease_durations_monotonically=decrease_durations_monotonically)
+            notes = scoretools.make_notes(0, written_duration, decrease_durations_monotonically=decrease_durations_monotonically)
             measure[:] = notes

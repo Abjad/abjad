@@ -4,7 +4,7 @@ from abjad import *
 
 def test_spannertools_OctavationSpanner_adjust_automatically_01():
 
-    container = Container(notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
+    container = Container(scoretools.make_notes([24, 26, 27, 29], [(1, 8)]))
 
     octavation_spanner = spannertools.OctavationSpanner()
     attach(octavation_spanner, container[:])

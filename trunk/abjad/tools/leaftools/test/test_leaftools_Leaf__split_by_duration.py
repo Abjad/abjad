@@ -350,7 +350,7 @@ def test_leaftools_Leaf__split_by_duration_13():
     r'''Spanners are unaffected by leaf split.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     beam = spannertools.BeamSpanner()
     attach(beam, staff.select_leaves())
 
@@ -392,7 +392,7 @@ def test_leaftools_Leaf__split_by_duration_15():
     is already tie-spanned.
     '''
 
-    container = Container(notetools.make_repeated_notes(4))
+    container = Container(scoretools.make_repeated_notes(4))
     tie = spannertools.TieSpanner()
     attach(tie, container)
     halves = container[0]._split_by_duration(Duration(5, 64))
@@ -410,7 +410,7 @@ def test_leaftools_Leaf__split_by_duration_16():
     is already tie-spanned.
     '''
 
-    staff = Staff(Container(notetools.make_repeated_notes(4)) * 2)
+    staff = Staff(Container(scoretools.make_repeated_notes(4)) * 2)
     tie = spannertools.TieSpanner()
     attach(tie, staff[:])
     halves = staff[0][0]._split_by_duration(Duration(5, 64))

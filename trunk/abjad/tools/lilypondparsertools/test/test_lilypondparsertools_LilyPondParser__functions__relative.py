@@ -5,7 +5,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__functions__relative_01():
     pitches = [2, 5, 9, 7, 12, 11, 5, 2]
-    target = Container(notetools.make_notes(pitches, (1, 4)))
+    target = Container(scoretools.make_notes(pitches, (1, 4)))
 
     r'''
     {
@@ -28,7 +28,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_01():
 
 def test_lilypondparsertools_LilyPondParser__functions__relative_02():
     pitches = [11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5]
-    target = Container(notetools.make_notes(pitches, (1, 4)))
+    target = Container(scoretools.make_notes(pitches, (1, 4)))
 
     r'''
     {
@@ -55,7 +55,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_02():
 
 def test_lilypondparsertools_LilyPondParser__functions__relative_03():
     pitches = [9, -3, 12, 5, 7, 31, 9, 17]
-    target = Container(notetools.make_notes(pitches, (1, 4)))
+    target = Container(scoretools.make_notes(pitches, (1, 4)))
 
     r"""{
         a'4
@@ -96,7 +96,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_04():
 
 def test_lilypondparsertools_LilyPondParser__functions__relative_05():
     pitches = ["c", "f", "b", "e'", "a'", "d''", "g''", "c'''"]
-    target = Container(notetools.make_notes(pitches, [(1, 4)]))
+    target = Container(scoretools.make_notes(pitches, [(1, 4)]))
 
     r"""{
         c4
@@ -199,7 +199,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_08():
 def test_lilypondparsertools_LilyPondParser__functions__relative_09():
     # http://lilypond.org/doc/v2.15/Documentation/c6/lily-8d84e2b9.ly
     pitches = ["c''", "fs''", "c''", "gf'", "b'", "ess''", "b'", "fff'"]
-    target = Container(notetools.make_notes(pitches, [(1, 2)]))
+    target = Container(scoretools.make_notes(pitches, [(1, 2)]))
 
     r'''
     {

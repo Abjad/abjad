@@ -68,5 +68,5 @@ def test_scoretools_Measure__get_likely_multiplier_of_components_07():
     r'''Returns none when more than one likely multiplier.
     '''
 
-    staff = Staff(notetools.make_notes([0], [(1, 8), (7, 32)]))
+    staff = Staff(scoretools.make_notes([0], [(1, 8), (7, 32)]))
     assert Measure._get_likely_multiplier_of_components(staff[:]) is None

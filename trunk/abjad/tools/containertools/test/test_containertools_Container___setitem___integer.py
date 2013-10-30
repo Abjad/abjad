@@ -64,7 +64,7 @@ def test_containertools_Container___setitem___integer_02():
         '''
         )
 
-    voice[1] = Container(notetools.make_repeated_notes(3, Duration(1, 16)))
+    voice[1] = Container(scoretools.make_repeated_notes(3, Duration(1, 16)))
 
     assert testtools.compare(
         voice,
@@ -271,7 +271,7 @@ def test_containertools_Container___setitem___integer_07():
     r'''Indirectly HALF-spanned containers hand over correctly to a
     single leaf. WOW!'''
 
-    voice = Voice(Container(notetools.make_repeated_notes(4)) * 2)
+    voice = Voice(Container(scoretools.make_repeated_notes(4)) * 2)
     voice = Voice("{ c'8 d'8 e'8 f'8 } { g'8 a'8 b'8 c''8 }")
     beam = spannertools.BeamSpanner()
     attach(beam, voice.select_leaves()[0:6])

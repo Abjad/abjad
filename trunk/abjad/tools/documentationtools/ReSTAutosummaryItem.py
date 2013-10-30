@@ -8,16 +8,16 @@ class ReSTAutosummaryItem(TreeNode):
     ::
 
         >>> item = documentationtools.ReSTAutosummaryItem(
-        ...     text='abjad.tools.notetools.Note')
+        ...     text='abjad.tools.scoretools.Note')
         >>> item
         ReSTAutosummaryItem(
-            text='abjad.tools.notetools.Note'
+            text='abjad.tools.scoretools.Note'
             )
 
     ::
 
         >>> print item.rest_format
-        abjad.tools.notetools.Note
+        abjad.tools.scoretools.Note
 
     Return `ReSTAutosummaryItem` instance.
     '''

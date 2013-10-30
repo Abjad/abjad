@@ -66,11 +66,11 @@ def insert_and_transpose_nested_subruns_in_pitch_class_number_list(notes, subrun
 
     Returns list of integers and / or floats.
     '''
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
     from abjad.tools import pitchtools
 
     assert isinstance(notes, list)
-    assert all(isinstance(x, notetools.Note) for x in notes)
+    assert all(isinstance(x, scoretools.Note) for x in notes)
     assert isinstance(subrun_indicators, list)
 
     len_notes = len(notes)
@@ -125,12 +125,12 @@ def _make_index_length_pairs(subrun_indicator):
 
 
 def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
     from abjad.tools import pitchtools
     new_notes = []
     for subrun_interval in subrun_intervals:
         new_pc = (abs(pitchtools.NumberedPitch(anchor_pitch)) +
             subrun_interval) % 12
-        new_note = notetools.Note(new_pc, anchor_written_duration)
+        new_note = scoretools.Note(new_pc, anchor_written_duration)
         new_notes.append(new_note)
     return new_notes

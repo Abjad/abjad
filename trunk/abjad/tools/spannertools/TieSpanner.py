@@ -8,7 +8,7 @@ class TieSpanner(DirectedSpanner):
 
     ::
 
-        >>> staff = Staff(notetools.make_repeated_notes(4))
+        >>> staff = Staff(scoretools.make_repeated_notes(4))
         >>> tie = spannertools.TieSpanner()
         >>> attach(tie, staff[:])
         >>> show(staff) # doctest: +SKIP

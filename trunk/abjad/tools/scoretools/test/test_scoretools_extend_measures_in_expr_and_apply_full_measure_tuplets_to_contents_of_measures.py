@@ -6,9 +6,9 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_co
     r'''Tupletize one measure, supplement one note.
     '''
 
-    measure = Measure((4, 8), notetools.make_repeated_notes(4))
+    measure = Measure((4, 8), scoretools.make_repeated_notes(4))
     scoretools.extend_measures_in_expr_and_apply_full_measure_tuplets(
-        measure, notetools.make_repeated_notes(1))
+        measure, scoretools.make_repeated_notes(1))
 
     r'''
     {
@@ -45,7 +45,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_co
     r'''Tupletize one measure, supplement one rest.
     '''
 
-    measure = Measure((4, 8), notetools.make_repeated_notes(4))
+    measure = Measure((4, 8), scoretools.make_repeated_notes(4))
     scoretools.extend_measures_in_expr_and_apply_full_measure_tuplets(
         measure, [Rest((1, 4))])
 

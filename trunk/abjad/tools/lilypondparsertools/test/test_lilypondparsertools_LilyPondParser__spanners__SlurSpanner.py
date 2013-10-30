@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_01():
     r'''Successful slurs, showing single leaf overlap.
     '''
 
-    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     slur = spannertools.SlurSpanner()
     attach(slur, target[2:])
     slur = spannertools.SlurSpanner()
@@ -35,7 +35,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_02():
     r'''Swapped start and stop.
     '''
 
-    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     slur = spannertools.SlurSpanner()
     attach(slur, target[2:])
     slur = spannertools.SlurSpanner()
@@ -96,7 +96,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_07():
     r'''With direction.
     '''
 
-    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     slur = spannertools.SlurSpanner(direction=Down)
     attach(slur, target[:3])
     slur = spannertools.SlurSpanner(direction=Up)

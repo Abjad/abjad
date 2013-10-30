@@ -27,7 +27,7 @@ def test_scoretools_Chord___setitem___03():
     '''
 
     chord = Chord("<c' cs'' f''>4")
-    note_head = notetools.NoteHead(3)
+    note_head = scoretools.NoteHead(3)
     note_head.tweak.color = 'red'
     chord[0] = note_head
 

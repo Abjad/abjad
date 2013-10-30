@@ -18,7 +18,7 @@ def edit_cello_voice(score, durated_reservoir):
     voice.extend(unison_descent)
     for chord in unison_descent:
         index = inspect(chord).get_parentage().parent.index(chord)
-        parent[index] = notetools.Note(
+        parent[index] = scoretools.Note(
             chord.written_pitches[1], chord.written_duration)
         articulation = marktools.Articulation('accent')
         attach(articulation, parent[index])

@@ -483,7 +483,7 @@ The edits
        voice.extend(copied_descent)
    
        final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
-       final_sustain_notes = notetools.make_notes(["c'"], final_sustain_rhythm)
+       final_sustain_notes = scoretools.make_notes(["c'"], final_sustain_rhythm)
        voice.extend(final_sustain_notes)
        spannertools.TieSpanner(final_sustain_notes)
        voice.extend('r4 r2.')
@@ -500,7 +500,7 @@ The edits
        copied_descent = mutate(last_descent).copy()
        copied_descent = list(copied_descent)
        copied_descent[-1].written_duration = durationtools.Duration(1, 1)
-       copied_descent.append(notetools.Note('a2'))
+       copied_descent.append(scoretools.Note('a2'))
        for leaf in copied_descent:
            marktools.Articulation('accent')(leaf)
            marktools.Articulation('tenuto')(leaf)
@@ -508,8 +508,8 @@ The edits
    
        final_sustain = []
        for _ in range(32):
-           final_sustain.append(notetools.Note('a1.'))
-       final_sustain.append(notetools.Note('a2'))
+           final_sustain.append(scoretools.Note('a1.'))
+       final_sustain.append(scoretools.Note('a2'))
        marktools.Articulation('accent')(final_sustain[0])
        marktools.Articulation('tenuto')(final_sustain[0])
    
@@ -537,13 +537,13 @@ The edits
                leaf.written_duration = durationtools.Duration(4, 4)
        voice.extend(copied_descent)
    
-       bridge = notetools.Note('e1')
+       bridge = scoretools.Note('e1')
        marktools.Articulation('tenuto')(bridge)
        marktools.Articulation('accent')(bridge)
        voice.append(bridge)
    
        final_sustain_rhythm = [(6, 4)] * 21 + [(1, 2)]
-       final_sustain_notes = notetools.make_notes(['e'], final_sustain_rhythm)
+       final_sustain_notes = scoretools.make_notes(['e'], final_sustain_rhythm)
        marktools.Articulation('accent')(final_sustain_notes[0])
        marktools.Articulation('tenuto')(final_sustain_notes[0])
        voice.extend(final_sustain_notes)
@@ -569,7 +569,7 @@ The edits
        voice.extend(unison_descent)
        for chord in unison_descent:
            index = inspect(chord).get_parentage().parent.index(chord)
-           parent[index] = notetools.Note(
+           parent[index] = scoretools.Note(
                chord.written_pitches[1], chord.written_duration)
            marktools.Articulation('accent')(parent[index])
            marktools.Articulation('tenuto')(parent[index])

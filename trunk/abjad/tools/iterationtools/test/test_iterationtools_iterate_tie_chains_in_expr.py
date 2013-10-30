@@ -6,7 +6,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_01():
     r'''Yield successive tie chains.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     tie = spannertools.TieSpanner()
     attach(tie, staff[:2])
     tie = spannertools.TieSpanner()
@@ -35,7 +35,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_02():
     r'''Yield successive tie chains.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
 
     chains = list(
         iterationtools.iterate_tie_chains_in_expr(staff, reverse=True))
@@ -50,7 +50,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_03():
     r'''Yield successive tie chains.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     tie = spannertools.TieSpanner()
     attach(tie, staff[:2])
     tie = spannertools.TieSpanner()
@@ -66,7 +66,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_04():
     r'''Yield successive tie chains.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
 
     r'''
     \new Staff {

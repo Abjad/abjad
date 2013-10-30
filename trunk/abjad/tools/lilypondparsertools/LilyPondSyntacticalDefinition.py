@@ -6,7 +6,7 @@ from abjad.tools import durationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools import marktools
 from abjad.tools import markuptools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
@@ -381,7 +381,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_chord_body_element__pitch__exclamations__questions__octave_check__post_events(self, p):
         'chord_body_element : pitch exclamations questions octave_check post_events'
         from abjad.tools import lilypondparsertools
-        note_head = notetools.NoteHead(
+        note_head = scoretools.NoteHead(
             written_pitch=p[1],
             is_cautionary=bool(p[3]),
             is_forced=bool(p[2])
@@ -3057,7 +3057,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(self, p):
         'simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest'
         if not p[6]:
-            leaf = notetools.Note(p[1], p[5].duration)
+            leaf = scoretools.Note(p[1], p[5].duration)
             leaf.note_head.is_forced = bool(p[2])
             leaf.note_head.is_cautionary = bool(p[3])
         else:

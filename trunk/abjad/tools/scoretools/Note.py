@@ -44,7 +44,7 @@ class Note(Leaf):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import lilypondparsertools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         if len(args) == 1 and isinstance(args[0], str):
             string = '{{ {} }}'.format(args[0])
             parsed = lilypondparsertools.LilyPondParser()(string)
@@ -78,7 +78,7 @@ class Note(Leaf):
             raise ValueError(message.format(args))
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         if pitch is not None:
-            self.note_head = notetools.NoteHead(
+            self.note_head = scoretools.NoteHead(
                 written_pitch=pitch,
                 is_cautionary=is_cautionary,
                 is_forced=is_forced
@@ -174,7 +174,7 @@ class Note(Leaf):
             '''
             return self._note_head
         def fset(self, arg):
-            from abjad.tools.notetools.NoteHead import NoteHead
+            from abjad.tools.scoretools.NoteHead import NoteHead
             if isinstance(arg, type(None)):
                 self._note_head = None
             elif isinstance(arg, NoteHead):
@@ -297,7 +297,7 @@ class Note(Leaf):
                 return None
         def fset(self, arg):
             from abjad.tools import pitchtools
-            from abjad.tools.notetools.NoteHead import NoteHead
+            from abjad.tools.scoretools.NoteHead import NoteHead
             if arg is None:
                 if self.note_head is not None:
                     self.note_head.written_pitch = None

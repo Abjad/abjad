@@ -1093,7 +1093,7 @@ class Tuplet(Container):
         Returns fixed-duration tuplet.
         '''
         from abjad.tools import leaftools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import scoretools
@@ -1118,7 +1118,7 @@ class Tuplet(Container):
         # make tuplet leaves
         try:
             notes = [
-                notetools.Note(0, x) if 0 < x else scoretools.Rest(abs(x))
+                scoretools.Note(0, x) if 0 < x else scoretools.Rest(abs(x))
                 for x in written_durations
                 ]
         except AssignabilityError:
@@ -1622,7 +1622,7 @@ class Tuplet(Container):
         Returns tuplet or container.
         '''
         from abjad.tools import containertools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import scoretools
         ratio = mathtools.NonreducedRatio(ratio)
@@ -1634,10 +1634,10 @@ class Tuplet(Container):
         if len(ratio) == 1:
             if 0 < ratio[0]:
                 try:
-                    note = notetools.Note(0, duration)
+                    note = scoretools.Note(0, duration)
                     return containertools.Container([note])
                 except AssignabilityError:
-                    notes = notetools.make_notes(0, duration)
+                    notes = scoretools.make_notes(0, duration)
                     return containertools.Container(notes)
             elif ratio[0] < 0:
                 try:
@@ -1658,10 +1658,10 @@ class Tuplet(Container):
                     raise ValueError('no divide zero values.')
                 if 0 < x:
                     try:
-                        note = notetools.Note(0, (x, denominator))
+                        note = scoretools.Note(0, (x, denominator))
                         music.append(note)
                     except AssignabilityError:
-                        notes = notetools.make_notes(0, (x, denominator))
+                        notes = scoretools.make_notes(0, (x, denominator))
                         music.extend(notes)
                 else:
                     rests = scoretools.Rest((-x, denominator))

@@ -5,7 +5,7 @@ from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import mutationtools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
@@ -449,7 +449,7 @@ class PitchArray(AbjadObject):
         array_width = len(time_intervals)
         array_depth = len(score)
         pitch_array = PitchArray(array_depth, array_width)
-        tokens = notetools.make_quarter_notes_with_lilypond_duration_multiplier(
+        tokens = scoretools.make_quarter_notes_with_lilypond_duration_multiplier(
             [0], time_intervals)
         for leaf_iterable, pitch_array_row in \
             zip(score, pitch_array.rows):

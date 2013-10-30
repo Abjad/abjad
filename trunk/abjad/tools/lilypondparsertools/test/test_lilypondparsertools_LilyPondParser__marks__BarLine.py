@@ -6,7 +6,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__marks__BarLine_01():
 
-    target = Staff(notetools.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
+    target = Staff(scoretools.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
     bar_line = marktools.BarLine('|.')
     attach(bar_line, target[-1])
 

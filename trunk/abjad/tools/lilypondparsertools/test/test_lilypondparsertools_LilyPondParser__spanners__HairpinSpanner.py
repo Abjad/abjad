@@ -6,7 +6,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_01():
 
-    target = Staff(notetools.make_notes([0] * 5, [(1, 4)]))
+    target = Staff(scoretools.make_notes([0] * 5, [(1, 4)]))
     hairpin = spannertools.HairpinSpanner(descriptor='<')
     attach(hairpin, target[:3])
     hairpin = spannertools.HairpinSpanner(descriptor='>')
@@ -34,7 +34,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_01():
 
 def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_02():
 
-    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     hairpin = spannertools.HairpinSpanner(descriptor='<')
     attach(hairpin, target[0:2])
     hairpin = spannertools.HairpinSpanner(descriptor='<')
@@ -64,7 +64,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_03():
     r'''Dynamic marks can terminate hairpins.
     '''
 
-    target = Staff(notetools.make_notes([0] * 3, [(1, 4)]))
+    target = Staff(scoretools.make_notes([0] * 3, [(1, 4)]))
     hairpin = spannertools.HairpinSpanner(descriptor='<')
     attach(hairpin, target[0:2])
     hairpin = spannertools.HairpinSpanner(descriptor='>')
@@ -119,7 +119,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_07():
     r'''With direction.
     '''
 
-    target = Staff(notetools.make_notes([0] * 5, [(1, 4)]))
+    target = Staff(scoretools.make_notes([0] * 5, [(1, 4)]))
     hairpin = spannertools.HairpinSpanner(descriptor='<', direction=Up)
     attach(hairpin, target[:3])
     hairpin = spannertools.HairpinSpanner(descriptor='>', direction=Down)

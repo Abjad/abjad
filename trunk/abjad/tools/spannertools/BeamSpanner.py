@@ -96,8 +96,8 @@ class BeamSpanner(DirectedSpanner):
         Returns boolean.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import notetools
-        if isinstance(expr, (notetools.Note, scoretools.Chord)):
+        from abjad.tools import scoretools
+        if isinstance(expr, (scoretools.Note, scoretools.Chord)):
             if 0 < expr.written_duration.flag_count:
                 return True
         return False

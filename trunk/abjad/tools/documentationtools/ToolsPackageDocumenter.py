@@ -27,9 +27,9 @@ class ToolsPackageDocumenter(Documenter):
 
         ::
 
-            >>> module = notetools
+            >>> module = scoretools
             >>> documenter = documentationtools.ToolsPackageDocumenter(
-            ...     notetools)
+            ...     scoretools)
             >>> restructured_text = documenter()
 
         Returns string.
@@ -133,7 +133,7 @@ class ToolsPackageDocumenter(Documenter):
 
         ::
 
-            >>> module = notetools
+            >>> module = scoretools
             >>> documenter = documentationtools.ToolsPackageDocumenter(module)
             >>> result = documenter.create_api_toc_section()
 

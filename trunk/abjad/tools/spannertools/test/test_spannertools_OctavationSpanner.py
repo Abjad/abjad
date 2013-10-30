@@ -7,7 +7,7 @@ def test_spannertools_OctavationSpanner_01():
     r'''Octavation has default start set to 1 and stop set to 0.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     spanner =  spannertools.OctavationSpanner()
     attach(spanner, staff[:])
 

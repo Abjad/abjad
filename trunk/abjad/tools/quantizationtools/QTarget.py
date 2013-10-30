@@ -4,7 +4,7 @@ import bisect
 from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import marktools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
@@ -133,8 +133,8 @@ class QTarget(AbjadObject):
     def _copy_leaf_type_and_pitches(self, leaf_one, leaf_two):
         index = leaf_two._get_parentage().parent.index(leaf_two)
         duration = leaf_two.written_duration
-        if isinstance(leaf_one, notetools.Note):
-            new_leaf = notetools.Note(leaf_one.written_pitch, duration)
+        if isinstance(leaf_one, scoretools.Note):
+            new_leaf = scoretools.Note(leaf_one.written_pitch, duration)
         elif isinstance(leaf_one, scoretools.Chord):
             new_leaf = scoretools.Chord(leaf_one.written_pitches, duration)
         else:
@@ -180,7 +180,7 @@ class QTarget(AbjadObject):
                 new_leaf = scoretools.Chord(leaf)
                 new_leaf.written_pitches = pitches
             else:
-                new_leaf = notetools.Note(leaf)
+                new_leaf = scoretools.Note(leaf)
                 new_leaf.written_pitch = pitches[0]
             if grace_container:
                 grace_container(new_leaf)

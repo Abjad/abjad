@@ -6,7 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
@@ -574,7 +574,7 @@ class QEventSequence(AbjadObject):
             # get pitch of first leaf in group
             if isinstance(group[0], (scoretools.Rest, scoretools.Skip)):
                 pitch = None
-            elif isinstance(group[0], notetools.Note):
+            elif isinstance(group[0], scoretools.Note):
                 pitch = group[0].written_pitch.pitch_number
             else: # chord
                 pitch = [x.written_pitch.pitch_number 

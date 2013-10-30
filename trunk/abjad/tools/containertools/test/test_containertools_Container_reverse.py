@@ -52,7 +52,7 @@ def test_containertools_Container_reverse_04():
     attached to itself and with a parent.
     '''
 
-    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
+    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + scoretools.make_repeated_notes(2))
     beam = spannertools.BeamSpanner()
     attach(beam, staff[0])
     leaves_rev = reversed(staff[0].select_leaves())
@@ -68,7 +68,7 @@ def test_containertools_Container_reverse_05():
     '''
 
     staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + 
-        notetools.make_repeated_notes(2))
+        scoretools.make_repeated_notes(2))
     beam = spannertools.BeamSpanner()
     attach(beam, staff[0].select_leaves())
     leaves_rev = reversed(staff[0].select_leaves())

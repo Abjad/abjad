@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 
 
 def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
@@ -83,7 +83,7 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
             color = color_map.get(pc, None)
             if color is not None:
                 note_head.tweak.color = color
-    elif isinstance(chord, notetools.Note):
+    elif isinstance(chord, scoretools.Note):
         note = chord
         note_head = note.note_head
         pc = note_head.written_pitch.numbered_pitch_class

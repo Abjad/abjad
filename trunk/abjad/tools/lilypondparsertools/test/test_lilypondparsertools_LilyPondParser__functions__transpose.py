@@ -6,7 +6,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
 
     pitches = ["e'", "gs'", "b'", "e''"]
-    target = Staff(notetools.make_notes(pitches, (1, 4)))
+    target = Staff(scoretools.make_notes(pitches, (1, 4)))
     key_signature = contexttools.KeySignatureMark('e', 'major')
     attach(key_signature, target[0])
 
@@ -32,7 +32,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
 def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
 
     pitches = ["ef'", "f'", "g'", "bf'"]
-    target = Staff(notetools.make_notes(pitches, (1, 4)))
+    target = Staff(scoretools.make_notes(pitches, (1, 4)))
     key_signature = contexttools.KeySignatureMark('ef', 'major')
     attach(key_signature, target[0])
 
@@ -58,8 +58,8 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
 def test_lilypondparsertools_LilyPondParser__functions__transpose_03():
 
     target = Staff([
-        Container(notetools.make_notes(["cs'", "ds'", "es'", "fs'"], (1, 4))),
-        Container(notetools.make_notes(["df'", "ef'", "f'", "gf'"], (1, 4)))
+        Container(scoretools.make_notes(["cs'", "ds'", "es'", "fs'"], (1, 4))),
+        Container(scoretools.make_notes(["df'", "ef'", "f'", "gf'"], (1, 4)))
     ])
 
     assert testtools.compare(

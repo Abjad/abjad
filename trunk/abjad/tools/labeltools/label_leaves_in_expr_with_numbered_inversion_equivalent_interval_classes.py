@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import markuptools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools.scoretools import attach
 
@@ -13,7 +13,7 @@ def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(exp
 
     ::
 
-        >>> notes = notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)])
+        >>> notes = scoretools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)])
         >>> staff = Staff(notes)
         >>> labeltools.label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(
         ...     staff)
@@ -48,7 +48,7 @@ def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(exp
         try:
             logical_voice_iterator.next()
             next_leaf = logical_voice_iterator.next()
-            if isinstance(next_leaf, notetools.Note):
+            if isinstance(next_leaf, scoretools.Note):
                 mdi = note.written_pitch - next_leaf.written_pitch
                 iecic = \
                     pitchtools.NumberedInversionEquivalentIntervalClass(mdi)

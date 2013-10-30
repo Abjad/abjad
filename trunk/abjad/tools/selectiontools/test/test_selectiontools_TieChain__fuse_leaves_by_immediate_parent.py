@@ -6,7 +6,7 @@ def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_01():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
-    staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+    staff = Staff(Measure((2, 8), scoretools.make_repeated_notes(2)) * 2)
     tie = spannertools.TieSpanner()
     attach(tie, staff.select_leaves())
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
@@ -54,7 +54,7 @@ def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_02():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     tie = spannertools.TieSpanner()
     attach(tie, staff.select_leaves())
 

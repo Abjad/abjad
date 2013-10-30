@@ -97,7 +97,7 @@ def test_mutationtools_ScoreMutationAgent_splice_04():
     r'''Splice after container with underspanners.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 2)
+    voice = Voice(Container(scoretools.make_repeated_notes(2)) * 2)
     beam = spannertools.BeamSpanner()
     attach(beam, voice.select_leaves())
     result = mutate(voice[0]).splice(

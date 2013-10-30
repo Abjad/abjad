@@ -5,7 +5,7 @@ from abjad import *
 def test_selectiontools_TieChain_all_leaves_are_in_same_parent_01():
 
 
-    staff = notetools.make_repeated_notes(4)
+    staff = scoretools.make_repeated_notes(4)
     tie = spannertools.TieSpanner()
     attach(tie, staff[:])
 

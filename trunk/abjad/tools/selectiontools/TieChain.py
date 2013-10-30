@@ -28,7 +28,7 @@ class TieChain(ContiguousSelection):
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
         from abjad.tools import scoretools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
         from abjad.tools.scoretools import attach
@@ -44,7 +44,7 @@ class TieChain(ContiguousSelection):
             for spanner in first._get_spanners(spannertools.TieSpanner):
                 spanner.detach()
         elif new_written_duration.has_power_of_two_denominator:
-            durations = notetools.make_notes(0, [new_written_duration])
+            durations = scoretools.make_notes(0, [new_written_duration])
             for leaf, token in zip(self, durations):
                 leaf.written_duration = token.written_duration
             if len(self) == len(durations):
@@ -72,7 +72,7 @@ class TieChain(ContiguousSelection):
                     attach(tie, list(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
-            durations = notetools.make_notes(0, new_written_duration)
+            durations = scoretools.make_notes(0, new_written_duration)
             assert isinstance(durations[0], scoretools.Tuplet)
             fmtuplet = durations[0]
             new_chain_written = \
@@ -123,8 +123,8 @@ class TieChain(ContiguousSelection):
         Returns boolean.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import notetools
-        return isinstance(self.head, (notetools.Note, scoretools.Chord))
+        from abjad.tools import scoretools
+        return isinstance(self.head, (scoretools.Note, scoretools.Chord))
 
     @property
     def is_trivial(self):
@@ -317,7 +317,7 @@ class TieChain(ContiguousSelection):
         from abjad.tools import scoretools
         from abjad.tools import mathtools
         from abjad.tools import mutationtools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
 
@@ -351,12 +351,12 @@ class TieChain(ContiguousSelection):
 
         # make tuplet notes
         try:
-            notes = [notetools.Note(0, x) for x in written_durations]
+            notes = [scoretools.Note(0, x) for x in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [durationtools.Duration(x, denominator) 
                 for x in proportions]
-            notes = notetools.make_notes(0, note_durations)
+            notes = scoretools.make_notes(0, note_durations)
 
         # make tuplet
         tuplet = scoretools.FixedDurationTuplet(target_duration, notes)

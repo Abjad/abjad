@@ -49,7 +49,7 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
     Returns named pitch.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
     from abjad.tools import pitchtools
 
     if isinstance(pitch_carrier, pitchtools.NamedPitch):
@@ -58,13 +58,13 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
         return pitchtools.NamedPitch(pitch_carrier)
     elif isinstance(pitch_carrier, numbers.Number):
         return pitchtools.NamedPitch(pitch_carrier)
-    elif isinstance(pitch_carrier, notetools.Note):
+    elif isinstance(pitch_carrier, scoretools.Note):
         pitch = pitch_carrier.written_pitch
         if pitch is not None:
             return get_named_pitch_from_pitch_carrier(pitch)
         else:
             raise MissingPitchError
-    elif isinstance(pitch_carrier, notetools.NoteHead):
+    elif isinstance(pitch_carrier, scoretools.NoteHead):
         pitch = pitch_carrier.written_pitch
         if pitch is not None:
             return get_named_pitch_from_pitch_carrier(pitch)

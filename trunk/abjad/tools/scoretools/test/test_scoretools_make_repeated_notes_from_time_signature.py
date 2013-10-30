@@ -6,7 +6,7 @@ def test_notetools_make_repeated_notes_from_time_signature_01():
     r'''Make repeated notes from integer pair.
     '''
 
-    notes = notetools.make_repeated_notes_from_time_signature((5, 32), pitch="d''")
+    notes = scoretools.make_repeated_notes_from_time_signature((5, 32), pitch="d''")
     staff = Staff(notes)
 
     assert inspect(staff).is_well_formed()
@@ -29,7 +29,7 @@ def test_notetools_make_repeated_notes_from_time_signature_02():
     '''
 
     time_signature = contexttools.TimeSignatureMark((5, 32))
-    notes = notetools.make_repeated_notes_from_time_signature(time_signature, pitch="d''")
+    notes = scoretools.make_repeated_notes_from_time_signature(time_signature, pitch="d''")
     staff = Staff(notes)
 
     assert inspect(staff).is_well_formed()

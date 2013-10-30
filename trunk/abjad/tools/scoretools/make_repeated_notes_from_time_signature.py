@@ -7,20 +7,20 @@ def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
 
     ::
 
-        >>> notetools.make_repeated_notes_from_time_signature((5, 32))
+        >>> scoretools.make_repeated_notes_from_time_signature((5, 32))
         Selection(Note("c'32"), Note("c'32"), Note("c'32"), Note("c'32"), Note("c'32"))
 
     Make repeated notes with `pitch` from `time_signature`:
 
     ::
 
-        >>> notetools.make_repeated_notes_from_time_signature((5, 32), pitch="d''")
+        >>> scoretools.make_repeated_notes_from_time_signature((5, 32), pitch="d''")
         Selection(Note("d''32"), Note("d''32"), Note("d''32"), Note("d''32"), Note("d''32"))
 
     Returns list of notes.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
 
     # afford basic input polymorphism
     time_signature = contexttools.TimeSignatureMark(time_signature)
@@ -32,7 +32,7 @@ def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
 
     # make and return repeated notes
     duration = (1, time_signature.denominator)
-    result = time_signature.numerator * notetools.Note(pitch, duration)
+    result = time_signature.numerator * scoretools.Note(pitch, duration)
 
     # return result
     result = selectiontools.Selection(result)

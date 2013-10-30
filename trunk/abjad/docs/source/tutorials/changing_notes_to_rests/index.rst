@@ -10,13 +10,13 @@ It is easy to make a repeating pattern of notes.
 Multiplying the list ``[0, 2, 4, 9, 7]`` by ``4`` creates a new list of twenty
 pitch numbers.
 
-The call to ``notetools.make_notes()`` creates our notes:
+The call to ``scoretools.make_notes()`` creates our notes:
 
 ::
 
    >>> pitch_numbers = 4 * [0, 2, 4, 9, 7]
    >>> duration = Duration(1, 8)
-   >>> notes = notetools.make_notes(pitch_numbers, duration)
+   >>> notes = scoretools.make_notes(pitch_numbers, duration)
    >>> staff = Staff(notes)
    >>> show(staff)
 
@@ -124,7 +124,7 @@ Let's make a new staff:
 
    >>> pitch_numbers = 4 * [0, 2, 4, 9, 7]
    >>> duration = Duration(1, 8)
-   >>> notes = notetools.make_notes(pitch_numbers, duration)
+   >>> notes = scoretools.make_notes(pitch_numbers, duration)
    >>> staff = Staff(notes)
    >>> show(staff)
 

@@ -30,7 +30,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
         '''
         )
 
-    recipient = Voice(notetools.make_repeated_notes(3, Duration(1, 16)))
+    recipient = Voice(scoretools.make_repeated_notes(3, Duration(1, 16)))
     beam = spannertools.BeamSpanner()
     attach(beam, recipient[:])
 

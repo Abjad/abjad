@@ -7,7 +7,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_01():
     r'''Works with list of leaves.
     '''
 
-    notes = notetools.make_repeated_notes(8, Duration(1, 4))
+    notes = scoretools.make_repeated_notes(8, Duration(1, 4))
     fused = mutate(notes).fuse()
 
     assert len(fused) == 1

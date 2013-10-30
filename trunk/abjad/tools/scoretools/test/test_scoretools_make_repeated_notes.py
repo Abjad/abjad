@@ -6,7 +6,7 @@ def test_notetools_make_repeated_notes_01():
     r'''Allow nonassignable durations.
     '''
 
-    voice = Voice(notetools.make_repeated_notes(2, (5, 16)))
+    voice = Voice(scoretools.make_repeated_notes(2, (5, 16)))
 
     r'''
     \new Voice {

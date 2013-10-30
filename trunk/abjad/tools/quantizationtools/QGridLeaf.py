@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools.rhythmtreetools import RhythmTreeNode
 
 
@@ -43,7 +43,7 @@ class QGridLeaf(RhythmTreeNode):
     def __call__(self, pulse_duration):
         pulse_duration = durationtools.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
-        return notetools.make_notes(0, total_duration)
+        return scoretools.make_notes(0, total_duration)
 
     def __deepcopy__(self, memo):
         return type(self)(*self.__getnewargs__())

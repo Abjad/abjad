@@ -104,7 +104,7 @@ Use ``NonreducedFraction.multiply_with_numerator_preservation()`` instead.
 Removed ``durationtools.duration_token_to_assignable_duration_pairs()``.
 Removed ``durationtools.duration_token_to_assignable_rationals()``.
 Functions are no longer supported. Use ``leaftools.make_leaves()`` 
-or ``notetools.make_notes()`` instead.
+or ``scoretools.make_notes()`` instead.
 
 Removed ``durationtools.duration_tokens_to_duration_pairs()``.
 Function is no longer supported. Just initialize durations intead.

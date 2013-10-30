@@ -17,11 +17,11 @@ into a list of Durations instances:
    >>> durations = [Duration(i, denominator) for i in integers]
 
 
-Now we notate them using a single pitch with the function `notetools.make_notes()`:
+Now we notate them using a single pitch with the function `scoretools.make_notes()`:
 
 ::
 
-   >>> notes = notetools.make_notes(["c'"], durations)
+   >>> notes = scoretools.make_notes(["c'"], durations)
    >>> staff = Staff(notes)
    >>> show(staff)
 

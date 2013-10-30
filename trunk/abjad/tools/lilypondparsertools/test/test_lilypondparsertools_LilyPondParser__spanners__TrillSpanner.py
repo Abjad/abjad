@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__TrillSpanner_01():
     r'''Successful trills, showing single leaf overlap.
     '''
 
-    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     trill = spannertools.TrillSpanner()
     attach(trill, target[2:])
     trill = spannertools.TrillSpanner()
@@ -35,7 +35,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__TrillSpanner_02():
     r'''Swapped start and stop.
     '''
 
-    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     trill = spannertools.TrillSpanner()
     attach(trill, target[2:])
     trill = spannertools.TrillSpanner()

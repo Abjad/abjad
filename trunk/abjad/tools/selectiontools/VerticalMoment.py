@@ -185,10 +185,10 @@ class VerticalMoment(SimultaneousSelection):
         starting at vertical moment.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         attack_carriers = []
         for leaf in self.start_leaves:
-            if isinstance(leaf, (notetools.Note, scoretools.Chord)):
+            if isinstance(leaf, (scoretools.Note, scoretools.Chord)):
                 attack_carriers.append(leaf)
         return len(attack_carriers)
 
@@ -256,10 +256,10 @@ class VerticalMoment(SimultaneousSelection):
         r'''Tuple of zero or more notes
         at vertical moment.
         '''
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         result = []
         for component in self.components:
-            if isinstance(component, notetools.Note):
+            if isinstance(component, scoretools.Note):
                 result.append(component)
         result = tuple(result)
         return result
@@ -310,9 +310,9 @@ class VerticalMoment(SimultaneousSelection):
         r'''Tuple of notes in vertical moment
         starting before vertical moment, ordered by score index.
         '''
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         result = [x for x in self.overlap_components 
-            if isinstance(x, notetools.Note)]
+            if isinstance(x, scoretools.Note)]
         result = tuple(result)
         return result
 
@@ -382,8 +382,8 @@ class VerticalMoment(SimultaneousSelection):
         r'''Tuple of notes in vertical moment
         starting with vertical moment, ordered by score index.
         '''
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         result = [x for x in self.start_components 
-            if isinstance(x, notetools.Note)]
+            if isinstance(x, scoretools.Note)]
         result = tuple(result)
         return result

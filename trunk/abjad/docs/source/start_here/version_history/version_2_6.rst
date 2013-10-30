@@ -209,7 +209,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     leaftools.all_are_leaves()
     markuptools.all_are_markup()
     scoretools.all_are_measures()
-    notetools.all_are_notes()
+    scoretools.all_are_notes()
     pitcharraytools.all_are_pitch_arrays()
     pitchtools.all_are_named_pitch_tokens()
     scoretools.all_are_rests()

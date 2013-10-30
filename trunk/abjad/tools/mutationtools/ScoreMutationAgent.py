@@ -371,7 +371,7 @@ class ScoreMutationAgent(object):
 
             ::
 
-                >>> notes = notetools.make_notes(
+                >>> notes = scoretools.make_notes(
                 ...     "c' d' e' f' c' d' e' f'",
                 ...     Duration(1, 16),
                 ...     )

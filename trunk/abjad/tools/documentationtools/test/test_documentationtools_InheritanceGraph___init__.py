@@ -26,7 +26,7 @@ def test_documentationtools_InheritanceGraph___init___03():
         addresses=(
             Container,
             scoretools,
-            notetools,
+            scoretools,
         )
         )
 
@@ -53,7 +53,7 @@ def test_documentationtools_InheritanceGraph___init___06():
         addresses=(
             ('abjad.tools.containertools.Container', 'Container'),
             'abjad.tools.scoretools',
-            'abjad.tools.notetools',
+            'abjad.tools.scoretools',
         ),
         root_addresses=(('abjad.tools.abctools.AbjadObject', 'AbjadObject'),)
         )

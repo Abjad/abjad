@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import notetools
 
 
 def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl=None):
@@ -8,6 +7,7 @@ def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl=N
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools
+    from abjad.tools import scoretools
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
@@ -17,6 +17,6 @@ def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl=N
             time_signature = measure.time_signature
             total_duration = time_signature.duration
             prolation = time_signature.implied_prolation
-            notes = notetools.make_repeated_notes_with_shorter_notes_at_end(
+            notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(
                 0, written_duration, total_duration, prolation)
             measure[:] = notes

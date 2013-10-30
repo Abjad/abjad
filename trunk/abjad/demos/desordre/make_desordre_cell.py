@@ -7,7 +7,7 @@ def make_desordre_cell(pitches):
     '''The function constructs and returns a *Désordre cell*.
     `pitches` is a list of numbers or, more generally, pitch tokens.
     '''
-    notes = [notetools.Note(pitch, (1, 8)) for pitch in pitches]
+    notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
     beam = spannertools.BeamSpanner()
     attach(beam, notes)
     slur = spannertools.SlurSpanner()

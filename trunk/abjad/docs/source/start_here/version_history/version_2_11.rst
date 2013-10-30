@@ -704,7 +704,7 @@ number of classes throughout the system have started to gain a
 
 Forced accidentals and cautionary accidentals are now available as properties::
 
-    >>> note = notetools.Note("c'4")
+    >>> note = scoretools.Note("c'4")
     >>> note.note_head.is_forced = True
     >>> f(note)
     c'!4

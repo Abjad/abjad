@@ -25,7 +25,7 @@ Notes
 Let us then create a list of notes from these durations:
 
 <abjad>
-notes = notetools.make_notes(0, durations)
+notes = scoretools.make_notes(0, durations)
 </abjad>
 
 And then put these notes inside a rhythmic sketch staff:

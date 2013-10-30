@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.notetools.Note import Note
-from abjad.tools.notetools.Harmonic import Harmonic
+from abjad.tools.scoretools.Note import Note
+from abjad.tools.scoretools.Harmonic import Harmonic
 
 
 class NaturalHarmonic(Note, Harmonic):
@@ -10,7 +10,7 @@ class NaturalHarmonic(Note, Harmonic):
 
     ::
 
-        >>> notetools.NaturalHarmonic("cs'8.")
+        >>> scoretools.NaturalHarmonic("cs'8.")
         NaturalHarmonic(cs', 8.)
 
     Initialize natural harmonic from note:
@@ -21,7 +21,7 @@ class NaturalHarmonic(Note, Harmonic):
 
     ::
 
-        >>> notetools.NaturalHarmonic(note)
+        >>> scoretools.NaturalHarmonic(note)
         NaturalHarmonic(cs', 8.)
 
     Natural harmonics are immutable.

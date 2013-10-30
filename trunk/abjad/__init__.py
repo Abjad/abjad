@@ -36,15 +36,15 @@ from abjad.tools.containertools import Container
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Multiplier
 from abjad.tools.durationtools import Offset
-from abjad.tools.notetools import Note
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Measure
+from abjad.tools.scoretools import Note
 from abjad.tools.scoretools import Rest
 from abjad.tools.scoretools import Score
 from abjad.tools.scoretools import Staff
-from abjad.tools.scoretools import Voice
 from abjad.tools.scoretools import Tuplet
+from abjad.tools.scoretools import Voice
 from fractions import Fraction
 
 # import some frequently used functions for direct user access

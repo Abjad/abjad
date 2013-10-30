@@ -5,21 +5,21 @@ from abjad import *
 
 def test_mutationtools_AttributeInspectionAgent_get_timespan_01():
 
-    voice = Voice(notetools.make_repeated_notes(16))
+    voice = Voice(scoretools.make_repeated_notes(16))
     for i, x in enumerate(voice):
         assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_mutationtools_AttributeInspectionAgent_get_timespan_02():
 
-    staff = Staff(notetools.make_repeated_notes(16))
+    staff = Staff(scoretools.make_repeated_notes(16))
     for i, x in enumerate(staff):
         assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
 
 
 def test_mutationtools_AttributeInspectionAgent_get_timespan_03():
 
-    staff = Staff(notetools.make_repeated_notes(16))
+    staff = Staff(scoretools.make_repeated_notes(16))
     staff[10] = Rest((1, 8))
     for i, x in enumerate(staff):
         assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
@@ -27,7 +27,7 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_03():
 
 def test_mutationtools_AttributeInspectionAgent_get_timespan_04():
 
-    staff = Staff(notetools.make_repeated_notes(16))
+    staff = Staff(scoretools.make_repeated_notes(16))
     staff[10:10] = [Rest((1, 8))]
     for i, x in enumerate(staff):
         assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
@@ -35,7 +35,7 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_04():
 
 def test_mutationtools_AttributeInspectionAgent_get_timespan_05():
 
-    staff = Staff(notetools.make_repeated_notes(16))
+    staff = Staff(scoretools.make_repeated_notes(16))
     staff[10:12] = [Rest((1, 8))]
     for i, x in enumerate(staff):
         assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
@@ -45,8 +45,8 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_06():
     r'''Offset works with voices.
     '''
 
-    voice_1 = Voice(notetools.make_repeated_notes(16))
-    voice_2 = Voice(notetools.make_repeated_notes(16))
+    voice_1 = Voice(scoretools.make_repeated_notes(16))
+    voice_2 = Voice(scoretools.make_repeated_notes(16))
     voice_1.name = voice_2.name = 'voice'
     container = Container([voice_1, voice_2])
     for i, x in enumerate(container.select_leaves()):
@@ -89,8 +89,8 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_10():
     r'''Offset works with simultaneous structures.
     '''
 
-    voice_1 = Voice(notetools.make_repeated_notes(16))
-    voice_2 = Voice(notetools.make_repeated_notes(16))
+    voice_1 = Voice(scoretools.make_repeated_notes(16))
+    voice_2 = Voice(scoretools.make_repeated_notes(16))
     staff = Staff([voice_1, voice_2])
     staff.is_simultaneous = True
     for i, x in enumerate(voice_1):
@@ -103,7 +103,7 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_11():
     r'''Offset on leaves works in nested contexts.
     '''
 
-    voice = Voice(notetools.make_repeated_notes(4))
+    voice = Voice(scoretools.make_repeated_notes(4))
     staff = Staff([Note(0, (1, 8)), voice, Note(0, (1, 8))])
     for i, x in enumerate(staff.select_leaves(allow_discontiguous_leaves=True)):
         assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
@@ -116,8 +116,8 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_12():
     r'''Offset on leaves works in sequential contexts.
     '''
 
-    voice_1 = Voice(notetools.make_repeated_notes(4))
-    voice_2 = Voice(notetools.make_repeated_notes(4))
+    voice_1 = Voice(scoretools.make_repeated_notes(4))
+    voice_2 = Voice(scoretools.make_repeated_notes(4))
     staff = Staff([voice_1, voice_2])
     for i, x in enumerate(voice_1.select_leaves()):
         assert inspect(x).get_timespan().start_offset == i * Duration(1, 8)
@@ -130,8 +130,8 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_13():
     r'''Offset on leaves works in nested simultaneous contexts.
     '''
 
-    voice_1 = Voice(notetools.make_repeated_notes(4))
-    voice_2 = Voice(notetools.make_repeated_notes(4))
+    voice_1 = Voice(scoretools.make_repeated_notes(4))
+    voice_2 = Voice(scoretools.make_repeated_notes(4))
     staff = Staff([voice_1, voice_2])
     staff.is_simultaneous = True
     for i, x in enumerate(voice_1.select_leaves()):
@@ -144,9 +144,9 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_14():
     r'''Offset on leaves works in nested simultaneous and sequential contexts.
     '''
 
-    voice_1 = Voice(notetools.make_repeated_notes(4))
-    voice_2 = Voice(notetools.make_repeated_notes(4))
-    v3 = Voice(notetools.make_repeated_notes(4))
+    voice_1 = Voice(scoretools.make_repeated_notes(4))
+    voice_2 = Voice(scoretools.make_repeated_notes(4))
+    v3 = Voice(scoretools.make_repeated_notes(4))
     staff = Staff([Container([voice_1, voice_2]), v3])
     staff[0].is_simultaneous = True
     for i, x in enumerate(v3.select_leaves()):
@@ -158,9 +158,9 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_15():
     r'''Offset on leaves works in nested simultaneous and sequential contexts.
     '''
 
-    voice_1 = Voice(notetools.make_repeated_notes(4))
-    voice_2 = Voice(notetools.make_repeated_notes(4))
-    v3 = Voice(notetools.make_repeated_notes(4))
+    voice_1 = Voice(scoretools.make_repeated_notes(4))
+    voice_2 = Voice(scoretools.make_repeated_notes(4))
+    v3 = Voice(scoretools.make_repeated_notes(4))
     staff = Staff([v3, Container([voice_1, voice_2])])
     staff[1].is_simultaneous = True
     for i, x in enumerate(voice_1.select_leaves()):
@@ -225,7 +225,7 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_21():
     r'''Offsets work on nested tuplets.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), scoretools.make_repeated_notes(3))
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tuplet_1, Note("c'4")])
     assert inspect(tuplet[0]).get_timespan().start_offset == 0 * Duration(1, 6)
     assert inspect(tuplet[1]).get_timespan().start_offset == 1 * Duration(1, 6)
@@ -236,7 +236,7 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_22():
     r'''Offsets work on nested contexts.
     '''
 
-    inner_voice = Voice(notetools.make_repeated_notes(4))
+    inner_voice = Voice(scoretools.make_repeated_notes(4))
     outer_voice = Voice([Note(0, (1, 8)), inner_voice])
     inner_voice.name = outer_voice.name = 'voice'
     staff = Staff([Note(1, (1, 8)), outer_voice])
@@ -248,8 +248,8 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_23():
     r'''Offsets work on nested simultaneous contexts.
      '''
 
-    voice_1 = Voice(notetools.make_repeated_notes(4))
-    voice_2 = Voice(notetools.make_repeated_notes(4))
+    voice_1 = Voice(scoretools.make_repeated_notes(4))
+    voice_2 = Voice(scoretools.make_repeated_notes(4))
     staff = Staff([voice_1, voice_2])
     staff.is_simultaneous = True
     assert inspect(staff[0]).get_timespan().start_offset == 0
@@ -260,10 +260,10 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_24():
     r'''Offsets works in nested simultaneous and sequential contexts.
     '''
 
-    voice_1 = Voice(notetools.make_repeated_notes(4))
-    voice_2 = Voice(notetools.make_repeated_notes(4))
-    voice_1b= Voice(notetools.make_repeated_notes(4))
-    voice_2b= Voice(notetools.make_repeated_notes(4))
+    voice_1 = Voice(scoretools.make_repeated_notes(4))
+    voice_2 = Voice(scoretools.make_repeated_notes(4))
+    voice_1b= Voice(scoretools.make_repeated_notes(4))
+    voice_2b= Voice(scoretools.make_repeated_notes(4))
     voice_1.name = voice_1b.name = 'voiceOne'
     s1 = Staff([voice_1, voice_1b])
     s2 = Staff([voice_2, voice_2b])

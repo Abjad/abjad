@@ -8,7 +8,7 @@ from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -359,17 +359,17 @@ class ReducedLyParser(abctools.Parser):
     def p_note_body__pitch(self, p):
         r'''note_body : pitch
         '''
-        p[0] = notetools.Note(p[1], self._default_duration)
+        p[0] = scoretools.Note(p[1], self._default_duration)
 
     def p_note_body__pitch__positive_leaf_duration(self, p):
         r'''note_body : pitch positive_leaf_duration
         '''
-        p[0] = notetools.Note(p[1], p[2])
+        p[0] = scoretools.Note(p[1], p[2])
 
     def p_note_body__positive_leaf_duration(self, p):
         r'''note_body : positive_leaf_duration
         '''
-        p[0] = notetools.Note(0, p[1])
+        p[0] = scoretools.Note(0, p[1])
 
     def p_pitch__PITCHNAME(self, p):
         r'''pitch : PITCHNAME

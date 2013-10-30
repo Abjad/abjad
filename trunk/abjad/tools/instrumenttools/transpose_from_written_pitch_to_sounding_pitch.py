@@ -2,7 +2,7 @@
 from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 
 
@@ -61,7 +61,7 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
             continue
         sounding_pitch = instrument.sounding_pitch_of_written_middle_c
         t_n = pitchtools.NamedPitch('C4') - sounding_pitch
-        if isinstance(note_or_chord, notetools.Note):
+        if isinstance(note_or_chord, scoretools.Note):
             note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_interval(
                 note_or_chord.written_pitch, t_n)
             note_or_chord.written_pitch_indication_is_at_sounding_pitch = True

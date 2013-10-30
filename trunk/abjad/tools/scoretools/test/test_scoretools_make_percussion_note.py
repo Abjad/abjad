@@ -6,7 +6,7 @@ def test_notetools_make_percussion_note_01():
     r'''tied total_duration < max_note_duration.
     '''
 
-    note = notetools.make_percussion_note(1, (5, 64), (1, 1))
+    note = scoretools.make_percussion_note(1, (5, 64), (1, 1))
 
     assert len(note) == 2
     assert note[0].written_pitch.numbered_pitch == 1
@@ -21,7 +21,7 @@ def test_notetools_make_percussion_note_02():
     r'''max_note_duration < tied total_duration.
     '''
 
-    note = notetools.make_percussion_note(1, (5, 64), (1, 64))
+    note = scoretools.make_percussion_note(1, (5, 64), (1, 64))
 
     assert len(note) == 2
     assert isinstance(note[0], Note)
@@ -35,7 +35,7 @@ def test_notetools_make_percussion_note_03():
     r'''non-tied total_duration < max_note_duration.
     '''
 
-    note = notetools.make_percussion_note(1, (3, 64), (1, 1))
+    note = scoretools.make_percussion_note(1, (3, 64), (1, 1))
 
     assert len(note) == 1
     assert isinstance(note[0], Note)
@@ -46,7 +46,7 @@ def test_notetools_make_percussion_note_04():
     r'''max_note_duration < non-tied total_duration.
     '''
 
-    t = notetools.make_percussion_note(1, (3, 64), (1, 64))
+    t = scoretools.make_percussion_note(1, (3, 64), (1, 64))
 
     assert len(t) == 2
     assert isinstance(t[0], Note)

@@ -61,7 +61,7 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
 
     Use for testing metrical hierarchy establishment.
     '''
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
 
     # check input
     assert mathtools.is_positive_integer(grid_length)
@@ -85,7 +85,7 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
     durations = [durationtools.Duration(len(part), denominator) for part in parts]
 
     # make notes
-    notes = notetools.make_notes([0], durations)
+    notes = scoretools.make_notes([0], durations)
 
     # return notes
     return notes

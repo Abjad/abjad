@@ -129,7 +129,7 @@ class PitchRange(AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools.scoretools.Chord import Chord
-        from abjad.tools.notetools.Note import Note
+        from abjad.tools.scoretools.Note import Note
         if getattr(arg, 'written_pitch_indication_is_nonsemantic', False):
             return True
         elif isinstance(arg, (int, long, float)):

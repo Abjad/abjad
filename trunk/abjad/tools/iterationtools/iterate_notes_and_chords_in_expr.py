@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 
 
 def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
@@ -47,7 +47,7 @@ def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
 
     return iterationtools.iterate_components_in_expr(
         expr,
-        component_class=(notetools.Note, scoretools.Chord), 
+        component_class=(scoretools.Note, scoretools.Chord), 
         reverse=reverse,
         start=start,
         stop=stop,

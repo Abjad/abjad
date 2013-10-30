@@ -6,7 +6,7 @@ def test_containertools_GraceContainer_parentage_01():
     r'''Lone grace container carrier is none.
     '''
 
-    gracecontainer = containertools.GraceContainer(notetools.make_repeated_notes(4))
+    gracecontainer = containertools.GraceContainer(scoretools.make_repeated_notes(4))
     assert gracecontainer._carrier is None
 
 

@@ -21,7 +21,7 @@ def edit_viola_voice(score, durated_reservoir):
             leaf.written_duration = durationtools.Duration(4, 4)
     voice.extend(copied_descent)
 
-    bridge = notetools.Note('e1')
+    bridge = scoretools.Note('e1')
     articulation = marktools.Articulation('tenuto')
     attach(articulation, bridge)
     articulation = marktools.Articulation('accent')
@@ -29,7 +29,7 @@ def edit_viola_voice(score, durated_reservoir):
     voice.append(bridge)
 
     final_sustain_rhythm = [(6, 4)] * 21 + [(1, 2)]
-    final_sustain_notes = notetools.make_notes(['e'], final_sustain_rhythm)
+    final_sustain_notes = scoretools.make_notes(['e'], final_sustain_rhythm)
     articulation = marktools.Articulation('accent')
     attach(articulation, final_sustain_notes[0])
     articulation = marktools.Articulation('tenuto')

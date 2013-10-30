@@ -19,7 +19,7 @@ def profile_expr(
 
     ::
 
-        >>> iotools.profile_expr('Staff(notetools.make_repeated_notes(8))') # doctest: +SKIP
+        >>> iotools.profile_expr('Staff(scoretools.make_repeated_notes(8))') # doctest: +SKIP
         Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
                 2852 function calls (2829 primitive calls) in 0.006 CPU seconds

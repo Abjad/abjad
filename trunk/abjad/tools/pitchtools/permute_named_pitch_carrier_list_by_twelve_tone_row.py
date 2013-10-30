@@ -6,7 +6,7 @@ def permute_named_pitch_carrier_list_by_twelve_tone_row(pitches, row):
 
     ::
 
-        >>> notes = notetools.make_notes([17, -10, -2, 11], [Duration(1, 4)])
+        >>> notes = scoretools.make_notes([17, -10, -2, 11], [Duration(1, 4)])
         >>> row = pitchtools.TwelveToneRow([10, 0, 2, 6, 8, 7, 5, 3, 1, 9, 4, 11])
         >>> pitchtools.permute_named_pitch_carrier_list_by_twelve_tone_row(notes, row)
         [Note('bf4'), Note('d4'), Note("f''4"), Note("b'4")]
@@ -16,7 +16,7 @@ def permute_named_pitch_carrier_list_by_twelve_tone_row(pitches, row):
     Returns list.
     '''
     from abjad.tools import pitchtools
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
 
     if not isinstance(row, pitchtools.TwelveToneRow):
         raise TypeError('must be twelve-tone row.')
@@ -29,7 +29,7 @@ def permute_named_pitch_carrier_list_by_twelve_tone_row(pitches, row):
             if isinstance(pitch, pitchtools.NamedPitch):
                 if pitch.numbered_pitch_class == pc:
                     matching_pitches.append(pitch)
-            elif isinstance(pitch, notetools.Note):
+            elif isinstance(pitch, scoretools.Note):
                 if pitchtools.NumberedPitchClass(pitch.written_pitch) == pc:
                     matching_pitches.append(pitch)
             else:

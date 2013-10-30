@@ -5,7 +5,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__misc__default_duration_01():
-    target = Container(notetools.make_notes([0],
+    target = Container(scoretools.make_notes([0],
         [(1, 4), (1, 2), (1, 2), (1, 8), (1, 8), (3, 16), (3, 16)]))
     target[-2].lilypond_duration_multiplier = Fraction(5, 17)
     target[-1].lilypond_duration_multiplier = Fraction(5, 17)

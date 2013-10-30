@@ -5,8 +5,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__contexts__PianoStaff_01():
     target = scoretools.PianoStaff([
-        Staff(notetools.make_notes([0, 2, 4, 5, 7], (1, 8))),
-        Staff(notetools.make_notes([0, 2, 4, 5, 7], (1, 8)))
+        Staff(scoretools.make_notes([0, 2, 4, 5, 7], (1, 8))),
+        Staff(scoretools.make_notes([0, 2, 4, 5, 7], (1, 8)))
     ])
 
     r'''

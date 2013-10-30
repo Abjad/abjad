@@ -78,7 +78,7 @@ class Chord(Leaf):
         r'''Returns true when `expr` equals one of the note heads in chord.
         Otherwise false.
         '''
-        from abjad.tools.notetools.NoteHead import NoteHead
+        from abjad.tools.scoretools.NoteHead import NoteHead
         note_head = NoteHead(written_pitch=expr)
         return note_head in self.note_heads
 
@@ -118,7 +118,7 @@ class Chord(Leaf):
 
         Returns none.
         '''
-        from abjad.tools.notetools.NoteHead import NoteHead
+        from abjad.tools.scoretools.NoteHead import NoteHead
         if isinstance(i, slice) and expr == []:
             note_head = []
         elif isinstance(expr, NoteHead):
@@ -145,12 +145,12 @@ class Chord(Leaf):
 
     @staticmethod
     def _cast_defective_chord(chord):
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         if isinstance(chord, Chord) and not len(chord):
             return scoretools.Rest(chord)
         elif isinstance(chord, Chord) and len(chord) == 1:
-            return notetools.Note(chord)
+            return scoretools.Note(chord)
         else:
             return chord
 
@@ -165,7 +165,7 @@ class Chord(Leaf):
     def _divide(self, pitch=None):
         from abjad.tools import scoretools
         from abjad.tools import markuptools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         pitch = pitch or pitchtools.NamedPitch('b', 3)
@@ -176,7 +176,7 @@ class Chord(Leaf):
             mark.detach()
         for mark in bass._get_marks(mark_classes=markuptools.Markup):
             mark.detach()
-        if isinstance(treble, notetools.Note):
+        if isinstance(treble, scoretools.Note):
             if treble.written_pitch < pitch:
                 treble = scoretools.Rest(treble)
         elif isinstance(treble, scoretools.Rest):
@@ -187,7 +187,7 @@ class Chord(Leaf):
                     treble.remove(note_head)
         else:
             raise TypeError
-        if isinstance(bass, notetools.Note):
+        if isinstance(bass, scoretools.Note):
             if pitch <= bass.written_pitch:
                 bass = scoretools.Rest(bass)
         elif isinstance(bass, scoretools.Rest):
@@ -538,7 +538,7 @@ class Chord(Leaf):
 
         Returns none.
         '''
-        from abjad.tools.notetools.NoteHead import NoteHead
+        from abjad.tools.scoretools.NoteHead import NoteHead
         if isinstance(note_head, NoteHead):
             note_head = note_head
         else:

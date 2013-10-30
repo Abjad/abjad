@@ -12,7 +12,7 @@ class NoteHead(AbjadObject):
 
     ::
 
-        >>> notetools.NoteHead(13)
+        >>> scoretools.NoteHead(13)
         NoteHead("cs''")
 
     Note heads are immutable.
@@ -101,7 +101,7 @@ class NoteHead(AbjadObject):
 
             ::
 
-                >>> note_head = notetools.NoteHead("cs''")
+                >>> note_head = scoretools.NoteHead("cs''")
                 >>> note_head.is_cautionary
                 False
 
@@ -109,7 +109,7 @@ class NoteHead(AbjadObject):
 
             ::
 
-                >>> note_head = notetools.NoteHead("cs''")
+                >>> note_head = scoretools.NoteHead("cs''")
                 >>> note_head.is_cautionary = True
 
             Returns boolean.
@@ -125,7 +125,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.is_forced
             False
 
@@ -133,7 +133,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.is_forced = True
 
         Returns boolean.
@@ -150,7 +150,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.lilypond_format
             "cs''"
 
@@ -187,7 +187,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.named_pitch
             NamedPitch("cs''")
 
@@ -201,7 +201,7 @@ class NoteHead(AbjadObject):
 
         ::
 
-            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.tweak
             LilyPondTweakReservoir()
 
@@ -218,7 +218,7 @@ class NoteHead(AbjadObject):
 
             ::
 
-                >>> note_head = notetools.NoteHead("cs''")
+                >>> note_head = scoretools.NoteHead("cs''")
                 >>> note_head.written_pitch
                 NamedPitch("cs''")
 
@@ -226,7 +226,7 @@ class NoteHead(AbjadObject):
 
             ::
 
-                >>> note_head = notetools.NoteHead("cs''")
+                >>> note_head = scoretools.NoteHead("cs''")
                 >>> note_head.written_pitch = "d''"
                 >>> note_head.written_pitch
                 NamedPitch("d''")

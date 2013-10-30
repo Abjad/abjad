@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools.scoretools import attach
 
@@ -88,7 +88,7 @@ def label_vertical_moments_in_expr_with_numbered_intervals(
     for vertical_moment in \
         iterationtools.iterate_vertical_moments_in_expr(expr):
         leaves = vertical_moment.leaves
-        notes = [leaf for leaf in leaves if isinstance(leaf, notetools.Note)]
+        notes = [leaf for leaf in leaves if isinstance(leaf, scoretools.Note)]
         if not notes:
             continue
         notes.sort(key=lambda x: x.written_pitch.numbered_pitch)

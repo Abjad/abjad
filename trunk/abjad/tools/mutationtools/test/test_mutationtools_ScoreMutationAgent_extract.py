@@ -135,7 +135,7 @@ def test_mutationtools_ScoreMutationAgent_extract_04():
     r'''Extract multiple containers.
     '''
 
-    voice = Voice(Container(notetools.make_repeated_notes(2)) * 3)
+    voice = Voice(Container(scoretools.make_repeated_notes(2)) * 3)
     voice = Voice()
     voice.append(Container("c'8 d'8"))
     voice.append(Container("e'8 f'8"))

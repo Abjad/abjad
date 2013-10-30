@@ -370,7 +370,7 @@ class Leaf(Component):
 
     def _set_duration(self, new_duration):
         from abjad.tools import leaftools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
         from abjad.tools.scoretools import attach
@@ -387,7 +387,7 @@ class Leaf(Component):
         except AssignabilityError:
             pass
         # make new notes or tuplets if new duration is nonassignable
-        components = notetools.make_notes(0, new_duration)
+        components = scoretools.make_notes(0, new_duration)
         if isinstance(components[0], leaftools.Leaf):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
@@ -565,7 +565,7 @@ class Leaf(Component):
         #    )
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         # check input
         proportions = mathtools.Ratio(proportions)
@@ -580,12 +580,12 @@ class Leaf(Component):
         written_durations = [x * basic_written_duration for x in proportions]
         # make tuplet notes
         try:
-            notes = [notetools.Note(0, x) for x in written_durations]
+            notes = [scoretools.Note(0, x) for x in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
             note_durations = [durationtools.Duration(x, denominator)
                 for x in proportions]
-            notes = notetools.make_notes(0, note_durations)
+            notes = scoretools.make_notes(0, note_durations)
         # make tuplet
         tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
         # fix tuplet contents if necessary

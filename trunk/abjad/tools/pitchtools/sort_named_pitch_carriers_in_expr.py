@@ -7,7 +7,7 @@ def sort_named_pitch_carriers_in_expr(pitch_carriers):
 
     ::
 
-        >>> notes = notetools.make_notes([9, 11, 12, 14, 16], (1, 4))
+        >>> notes = scoretools.make_notes([9, 11, 12, 14, 16], (1, 4))
 
     ::
 

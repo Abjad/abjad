@@ -13,7 +13,7 @@ def edit_first_violin_voice(score, durated_reservoir):
     voice.extend(copied_descent)
 
     final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
-    final_sustain_notes = notetools.make_notes(["c'"], final_sustain_rhythm)
+    final_sustain_notes = scoretools.make_notes(["c'"], final_sustain_rhythm)
     voice.extend(final_sustain_notes)
     tie = spannertools.TieSpanner()
     attach(tie, final_sustain_notes)

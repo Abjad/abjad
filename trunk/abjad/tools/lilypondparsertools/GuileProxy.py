@@ -4,7 +4,7 @@ from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import leaftools
 from abjad.tools import marktools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
@@ -112,7 +112,7 @@ class GuileProxy(AbjadObject):
         def recurse(component, pitch):
             if self._is_unrelativable(component):
                 return pitch
-            elif isinstance(component, (scoretools.Chord, notetools.Note)):
+            elif isinstance(component, (scoretools.Chord, scoretools.Note)):
                 pitch = self._make_relative_leaf(component, pitch)
                 if component in self.client._repeated_chords:
                     for repeated_chord in \
@@ -163,7 +163,7 @@ class GuileProxy(AbjadObject):
                     tonic = pitchtools.NamedPitch(x.tonic, 4)
                     x.tonic = lilypondparsertools.LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, tonic).named_pitch_class
-            if isinstance(music, notetools.Note):
+            if isinstance(music, scoretools.Note):
                 music.written_pitch = \
                     lilypondparsertools.LilyPondParser._transpose_enharmonically(
                     from_pitch, to_pitch, music.written_pitch)
@@ -205,7 +205,7 @@ class GuileProxy(AbjadObject):
     def _make_relative_leaf(self, leaf, pitch):
         if self._is_unrelativable(leaf):
             return pitch
-        elif isinstance(leaf, notetools.Note):
+        elif isinstance(leaf, scoretools.Note):
             pitch = self._to_relative_octave(leaf.written_pitch, pitch)
             leaf.written_pitch = pitch
         elif isinstance(leaf, scoretools.Chord):

@@ -5,7 +5,7 @@ from py.test import raises
 
 def test_spannertools_TextSpanner_position_01():
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
 
@@ -24,7 +24,7 @@ def test_spannertools_TextSpanner_position_01():
 
 def test_spannertools_TextSpanner_position_02():
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
     command = marktools.LilyPondCommandMark('textSpannerNeutral')
@@ -46,7 +46,7 @@ def test_spannertools_TextSpanner_position_02():
 
 def test_spannertools_TextSpanner_position_03():
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
     command = marktools.LilyPondCommandMark('textSpannerUp')
@@ -68,7 +68,7 @@ def test_spannertools_TextSpanner_position_03():
 
 def test_spannertools_TextSpanner_position_04():
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
     command = marktools.LilyPondCommandMark('textSpannerDown')
@@ -92,7 +92,7 @@ def test_spannertools_TextSpanner_position_05():
     r'''TextSpanner attaching to container formats correctly.
     '''
 
-    container = Container(notetools.make_repeated_notes(4))
+    container = Container(scoretools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, container)
 

@@ -7,7 +7,7 @@ def test_scoretools_Chord_append_01():
     '''
 
     chord = Chord("<c' d'>4")
-    note_head = notetools.NoteHead("b'")
+    note_head = scoretools.NoteHead("b'")
     note_head.tweak.style = 'harmonic'
     chord.append(note_head)
 

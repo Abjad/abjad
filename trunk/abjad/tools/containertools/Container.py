@@ -710,7 +710,7 @@ class Container(Component):
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools import scoretools
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
@@ -845,7 +845,7 @@ class Container(Component):
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
             if tie_split_notes and \
-                isinstance(leaf_left_of_split, notetools.Note):
+                isinstance(leaf_left_of_split, scoretools.Note):
                 if leaf_left_of_split._get_parentage().root is \
                     leaf_right_of_split._get_parentage().root:
                     leaves_around_split = \

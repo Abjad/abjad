@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import markuptools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools.scoretools import attach
 
@@ -13,7 +13,7 @@ def label_leaves_in_expr_with_numbered_intervals(expr, markup_direction=Up):
 
     ::
 
-        >>> notes = notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)])
+        >>> notes = scoretools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)])
         >>> staff = Staff(notes)
         >>> labeltools.label_leaves_in_expr_with_numbered_intervals(staff)
 
@@ -47,7 +47,7 @@ def label_leaves_in_expr_with_numbered_intervals(expr, markup_direction=Up):
         try:
             logical_voice_iterator.next()
             next_leaf = logical_voice_iterator.next()
-            if isinstance(next_leaf, notetools.Note):
+            if isinstance(next_leaf, scoretools.Note):
                 mci = pitchtools.NumberedInterval.from_pitch_carriers(
                     note, next_leaf)
                 markup = markuptools.Markup(mci, markup_direction)

@@ -3,7 +3,7 @@ import copy
 from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools.scoretools import attach
 from abjad.tools.selectiontools import select
 from experimental.tools.handlertools.ArticulationHandler \
@@ -53,14 +53,14 @@ class PatternedArticulationsHandler(ArticulationHandler):
                 if self.maximum_duration < note_or_chord.duration.prolated:
                     continue
             if self.minimum_written_pitch is not None:
-                if isinstance(note_or_chord, notetools.Note):
+                if isinstance(note_or_chord, scoretools.Note):
                     minimum_written_pitch = note_or_chord.pitch
                 else:
                     minimum_written_pitch = note_or_chord.pitches[0]
                 if minimum_written_pitch < self.minimum_written_pitch:
                     continue
             if self.maximum_written_pitch is not None:
-                if isinstance(note_or_chord, notetools.Note):
+                if isinstance(note_or_chord, scoretools.Note):
                     maximum_written_pitch = note_or_chord.pitch
                 else:
                     maximum_written_pitch = note_or_chord.pitches[-1]

@@ -5,7 +5,7 @@ from abjad import *
 
 def test_spannertools_PianoPedalSpanner_01():
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:])
 
@@ -31,7 +31,7 @@ def test_spannertools_PianoPedalSpanner_02():
     r'''Piano pedal spanner supports sostenuto pedal.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     piano_pedal_spanner.kind = 'sostenuto'
     attach(piano_pedal_spanner, staff[:])
@@ -56,7 +56,7 @@ def test_spannertools_PianoPedalSpanner_03():
     r'''Piano pedal spanner supports una corda pedal.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     piano_pedal_spanner.kind = 'corda'
     attach(piano_pedal_spanner, staff[:])
@@ -81,7 +81,7 @@ def test_spannertools_PianoPedalSpanner_04():
     r'''PianoPedal spanner supports text style.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:])
     assert piano_pedal_spanner.kind == 'sustain'
@@ -107,7 +107,7 @@ def test_spannertools_PianoPedalSpanner_05():
     r'''PianoPedal spanner supports bracket style.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:])
     assert piano_pedal_spanner.kind == 'sustain'
@@ -133,7 +133,7 @@ def test_spannertools_PianoPedalSpanner_06():
     r'''Consecutive dovetailing PianoPedal spanners format correctly.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(8))
+    staff = Staff(scoretools.make_repeated_notes(8))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:4])
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
@@ -164,7 +164,7 @@ def test_spannertools_PianoPedalSpanner_07():
     r'''The 'kind' and 'style' attributes raise ValueError as needed.
     '''
 
-    staff = Staff(notetools.make_repeated_notes(4))
+    staff = Staff(scoretools.make_repeated_notes(4))
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:])
 

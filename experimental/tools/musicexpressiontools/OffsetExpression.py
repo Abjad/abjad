@@ -38,7 +38,7 @@ class OffsetExpression(
             anchor=musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
-                    notetools.Note,
+                    scoretools.Note,
                     scoretools.Chord
                     ]),
                 voice_name='Voice 1'

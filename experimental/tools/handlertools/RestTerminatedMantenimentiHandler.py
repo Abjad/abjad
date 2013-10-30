@@ -27,7 +27,7 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
     def __call__(self, expr):
         assert self.dynamics_talea, repr(self.dynamics_talea)
         groups = []
-        classes = (notetools.Note, scoretools.Chord)
+        classes = (scoretools.Note, scoretools.Chord)
         for i, group in enumerate(
             iterationtools.iterate_runs_in_expr(
             expr, classes)):

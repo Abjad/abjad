@@ -4,7 +4,7 @@ from abjad import *
 
 def test_notetools_NoteHead_is_forced_01():
 
-    note_head = notetools.NoteHead(written_pitch="c'")
+    note_head = scoretools.NoteHead(written_pitch="c'")
     assert note_head.is_forced == False
     note_head.is_forced = True
     assert note_head.is_forced == True

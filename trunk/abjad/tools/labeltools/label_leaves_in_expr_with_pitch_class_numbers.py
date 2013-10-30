@@ -2,7 +2,7 @@
 from abjad.tools import scoretools
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools.scoretools import attach
 
 

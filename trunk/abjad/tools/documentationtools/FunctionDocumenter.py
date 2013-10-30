@@ -8,12 +8,12 @@ class FunctionDocumenter(Documenter):
 
     ::
 
-        >>> documenter = documentationtools.FunctionDocumenter(notetools.make_notes)
+        >>> documenter = documentationtools.FunctionDocumenter(scoretools.make_notes)
         >>> print documenter()
-        notetools.make_notes
-        ====================
+        scoretools.make_notes
+        =====================
         <BLANKLINE>
-        .. autofunction:: abjad.tools.notetools.make_notes.make_notes
+        .. autofunction:: abjad.tools.scoretools.make_notes.make_notes
         <BLANKLINE>
 
     Returns ``FunctionDocumenter``` instance.

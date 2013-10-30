@@ -4,7 +4,7 @@ from abjad import *
 
 def test_notetools_NaturalHarmonic_01():
 
-    naturalharmonic = notetools.NaturalHarmonic(10, (1, 4))
+    naturalharmonic = scoretools.NaturalHarmonic(10, (1, 4))
 
     r'''
     \once \override NoteHead #'style = #'harmonic

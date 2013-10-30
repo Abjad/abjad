@@ -57,7 +57,7 @@ lower Voice will hold the eighth note run. First the eighth notes:
 ::
 
    >>> pitches = [1,2,3]
-   >>> notes = notetools.make_notes(pitches, [(1, 8)])
+   >>> notes = scoretools.make_notes(pitches, [(1, 8)])
    >>> spannertools.BeamSpanner(notes)
    BeamSpanner(cs'8, d'8, ef'8)
    >>> spannertools.SlurSpanner(notes)
@@ -134,7 +134,7 @@ will take only a list of pitches:
        '''The function constructs and returns a *Désordre cell*.
        `pitches` is a list of numbers or, more generally, pitch tokens.
        '''
-       notes = [notetools.Note(pitch, (1, 8)) for pitch in pitches]
+       notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
        spannertools.BeamSpanner(notes)
        spannertools.SlurSpanner(notes)
        contexttools.DynamicMark('f')(notes[0])

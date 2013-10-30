@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import iterationtools
 from abjad.tools import leaftools
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
 
@@ -17,7 +17,7 @@ class MispitchedTieCheck(Check):
         total = 0
         spanner_classes = (spannertools.TieSpanner,)
         for leaf in iterationtools.iterate_components_in_expr(
-            expr, notetools.Note):
+            expr, scoretools.Note):
             total += 1
             spanners = leaf._get_spanners(spanner_classes)
             if spanners:

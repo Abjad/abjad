@@ -219,7 +219,7 @@ def test_containertools_Container_insert_07():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    staff = Staff(notetools.make_repeated_notes(8))
+    staff = Staff(scoretools.make_repeated_notes(8))
     note = voice[0]
     staff.insert(1, voice[0])
 
@@ -476,7 +476,7 @@ def test_containertools_Container_insert_15():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    staff = Staff(notetools.make_repeated_notes(8))
+    staff = Staff(scoretools.make_repeated_notes(8))
     note = voice[0]
     staff.insert(1, voice[0], fracture_spanners=True)
 

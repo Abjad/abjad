@@ -15,7 +15,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     ::
 
-        >>> notetools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
+        >>> scoretools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
         Selection(Note("c'16"), Note("c'8"), Note("c'8"))
 
     Cycle through `durations` when the length of `durations` is less than the
@@ -23,14 +23,14 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     ::
 
-        >>> notetools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
+        >>> scoretools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
         Selection(Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8"))
 
     Create ad hoc tuplets for nonassignable durations:
 
     ::
 
-        >>> notetools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
+        >>> scoretools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
         Selection(Note("c'16"), Tuplet(2/3, [c'8]), Note("c'8"))
 
     Set ``decrease_durations_monotonically=True`` to express tied values 
@@ -38,7 +38,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     ::
 
-        >>> notetools.make_notes(
+        >>> scoretools.make_notes(
         ...     [0], 
         ...     [(13, 16)], 
         ...     decrease_durations_monotonically=True,
@@ -50,7 +50,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     ::
 
-        >>> notetools.make_notes(
+        >>> scoretools.make_notes(
         ...     [0], 
         ...     [(13, 16)], 
         ...     decrease_durations_monotonically=False,
@@ -64,7 +64,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     Returns list of newly constructed notes.
     '''
     from abjad.tools import leaftools
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
     from abjad.tools import selectiontools
     from abjad.tools import scoretools
 
@@ -99,7 +99,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
         result = []
         for pitch, duration in zip(pitches, durations):
             result.extend(leaftools.make_tied_leaf(
-                notetools.Note,
+                scoretools.Note,
                 duration,
                 pitches=pitch,
                 decrease_durations_monotonically=decrease_durations_monotonically,

@@ -93,8 +93,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    notetools.iterate_notes_forward_in_expr()
-    notetools.iterate_notes_backward_in_expr()
+    scoretools.iterate_notes_forward_in_expr()
+    scoretools.iterate_notes_backward_in_expr()
 
   ::
 
@@ -237,8 +237,8 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
-    notetools.color_note_head_by_numbered_pitch_class_color_map()
-    notetools.label_notes_in_expr_with_note_indices()
+    scoretools.color_note_head_by_numbered_pitch_class_color_map()
+    scoretools.label_notes_in_expr_with_note_indices()
 
   ::
 

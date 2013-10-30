@@ -12,7 +12,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
     ::
 
         >>> args = [0, Duration(1, 16), Duration(1, 4)]
-        >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
+        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*args)
         >>> voice = Voice(notes)
 
     ..  doctest::
@@ -30,7 +30,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
     ::
 
         >>> args = [0, Duration(1, 16), Duration(9, 32)]
-        >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
+        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*args)
         >>> voice = Voice(notes)
 
     ..  doctest::
@@ -49,7 +49,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
     ::
 
         >>> args = [0, Duration(1, 16), Duration(4, 10)]
-        >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
+        >>> notes = scoretools.make_repeated_notes_with_shorter_notes_at_end(*args)
         >>> voice = Voice(notes)
 
     ..  doctest::
@@ -71,7 +71,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
 
     Returns list of components.
     '''
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
 
     written_duration = durationtools.Duration(written_duration)
     total_duration = durationtools.Duration(total_duration)
@@ -82,12 +82,12 @@ def make_repeated_notes_with_shorter_notes_at_end(
     current_duration = durationtools.Duration(0)
     result = []
     while current_duration + duration <= total_duration:
-        result.append(notetools.Note(pitch, written_duration))
+        result.append(scoretools.Note(pitch, written_duration))
         current_duration += duration
     remainder_duration = total_duration - current_duration
     if durationtools.Duration(0) < remainder_duration:
         multiplied_remainder = remainder_duration / prolation
-        result.extend(notetools.make_notes(pitch, [multiplied_remainder]))
+        result.extend(scoretools.make_notes(pitch, [multiplied_remainder]))
 
     result = selectiontools.Selection(result)
     return result

@@ -7,7 +7,7 @@ def class_to_tools_package_qualified_class_name(current_class):
     ::
 
         >>> introspectiontools.class_to_tools_package_qualified_class_name(Note)
-        'notetools.Note'
+        'scoretools.Note'
 
     Returns string.
     '''

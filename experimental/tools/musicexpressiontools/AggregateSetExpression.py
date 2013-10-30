@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import notetools
+from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
@@ -16,7 +16,7 @@ class AggregateSetExpression(LeafSetExpression):
         '''
         aggregate = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):
-            assert isinstance(leaf, notetools.Note), repr(leaf)
+            assert isinstance(leaf, scoretools.Note), repr(leaf)
             sounding_pitches = \
                 pitchtools.register_pitch_class_numbers_by_pitch_number_aggregate(
                 [leaf.sounding_pitch.pitch_number], aggregate)

@@ -56,6 +56,6 @@ def test_tonalanalysistools_TonalAnalysisAgent_are_scalar_notes_05():
     r'''Contour changes in note sequence qualifies as nonscalar.
     '''
 
-    notes = notetools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
+    notes = scoretools.make_notes([0, 2, 4, 5, 4, 2, 0], [(1, 4)])
     selection = tonalanalysistools.select(notes)
     assert not selection.are_scalar_notes()

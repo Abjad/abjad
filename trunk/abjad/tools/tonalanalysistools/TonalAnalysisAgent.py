@@ -217,14 +217,14 @@ class TonalAnalysisAgent(object):
 
     @staticmethod
     def _is_neighbor_note(note):
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
-        if not isinstance(note, notetools.Note):
+        if not isinstance(note, scoretools.Note):
             raise TypeError('must be note: {!r}.'.format(note))
         previous_note = note._get_in_my_logical_voice(
-            -1, component_class=notetools.Note)
+            -1, component_class=scoretools.Note)
         next_note = note._get_in_my_logical_voice(
-            1, component_class=notetools.Note)
+            1, component_class=scoretools.Note)
         if previous_note is None:
             return False
         if next_note is None:
@@ -244,14 +244,14 @@ class TonalAnalysisAgent(object):
 
     @staticmethod
     def _is_passing_tone(note):
-        from abjad.tools import notetools
+        from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
-        if not isinstance(note, notetools.Note):
+        if not isinstance(note, scoretools.Note):
             raise TypeError('must be note: {!r}'.format(note))
         previous_note = note._get_in_my_logical_voice(
-            -1, component_class=notetools.Note)
+            -1, component_class=scoretools.Note)
         next_note = note._get_in_my_logical_voice(
-            1, component_class=notetools.Note)
+            1, component_class=scoretools.Note)
         if previous_note is None or next_note is None:
             return False
         notes = [previous_note, note, next_note]

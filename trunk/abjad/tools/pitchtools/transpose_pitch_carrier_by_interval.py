@@ -43,7 +43,7 @@ def transpose_pitch_carrier_by_interval(
     '''
     from abjad.tools import scoretools
     from abjad.tools import scoretools
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
     from abjad.tools import pitchtools
 
     def _transpose_pitch_by_named_interval(pitch, mdi):
@@ -68,7 +68,7 @@ def transpose_pitch_carrier_by_interval(
             result = _transpose_pitch_carrier_by_numbered_interval(
                 pitch_carrier, mci)
             return result.pitch_number
-        elif isinstance(pitch_carrier, notetools.Note):
+        elif isinstance(pitch_carrier, scoretools.Note):
             new_note = copy.copy(pitch_carrier)
             number = abs(pitchtools.NumberedPitch(pitch_carrier.written_pitch))
             number += mci.number
@@ -93,7 +93,7 @@ def transpose_pitch_carrier_by_interval(
         if isinstance(pitch_carrier, pitchtools.Pitch):
             return _transpose_pitch_by_named_interval(
                 pitch_carrier, mdi)
-        elif isinstance(pitch_carrier, notetools.Note):
+        elif isinstance(pitch_carrier, scoretools.Note):
             new_note = copy.copy(pitch_carrier)
             new_pitch = _transpose_pitch_by_named_interval(
                 pitch_carrier.written_pitch, mdi)

@@ -6,7 +6,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_01():
 
-    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     bracket = spannertools.HorizontalBracketSpanner()
     attach(bracket, target[:])
     bracket = spannertools.HorizontalBracketSpanner()

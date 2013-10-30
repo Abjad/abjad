@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import datastructuretools
-from abjad.tools import notetools
-from abjad.tools import notetools
+from abjad.tools import scoretools
+from abjad.tools import scoretools
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -63,7 +63,7 @@ class PitchSetExpression(LeafSetExpression):
         '''
         statal_server_cursor = self.source_expression.payload
         leaves = list(self._iterate_selected_leaves_in_score(score))
-        assert all(isinstance(leaf, (notetools.Note, scoretools.Chord)) 
+        assert all(isinstance(leaf, (scoretools.Note, scoretools.Chord)) 
             for leaf in leaves)
         if self.level is None:
             level = -1

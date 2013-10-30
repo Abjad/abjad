@@ -9,7 +9,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
     ..  container:: example
 
-            >>> leaves = notetools.make_percussion_note(2, (1, 4), (1, 8))
+            >>> leaves = scoretools.make_percussion_note(2, (1, 4), (1, 8))
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -23,7 +23,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
     ..  container:: example
 
-            >>> leaves = notetools.make_percussion_note(2, (1, 64), (1, 8))
+            >>> leaves = scoretools.make_percussion_note(2, (1, 64), (1, 8))
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -36,7 +36,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
     ..  container:: example
 
-            >>> leaves = notetools.make_percussion_note(2, (5, 64), (1, 8))
+            >>> leaves = scoretools.make_percussion_note(2, (5, 64), (1, 8))
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -50,7 +50,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
     ..  container:: example
 
-            >>> leaves = notetools.make_percussion_note(2, (5, 4), (1, 8))
+            >>> leaves = scoretools.make_percussion_note(2, (5, 4), (1, 8))
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -76,7 +76,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     Useful for percussion music where attack duration is negligible 
     and tied notes undesirable.
     '''
-    from abjad.tools import notetools
+    from abjad.tools import scoretools
     from abjad.tools import scoretools
     from abjad.tools import selectiontools
 
@@ -93,13 +93,13 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
             pitches=None,
             )
         notes = leaftools.make_tied_leaf(
-            notetools.Note,
+            scoretools.Note,
             max_note_duration,
             pitches=pitch,
             )
     else:
         notes = leaftools.make_tied_leaf(
-            notetools.Note,
+            scoretools.Note,
             total_duration,
             pitches=pitch,
             tie_parts=False,
