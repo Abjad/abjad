@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import scoretools
 from abjad.tools import marktools
@@ -37,14 +37,14 @@ class GuileProxy(AbjadObject):
     ### FUNCTION EMULATORS ###
 
     def acciaccatura(self, music):
-        grace = containertools.GraceContainer(music[:])
+        grace = scoretools.GraceContainer(music[:])
         grace.kind = 'acciaccatura'
         return grace
 
     # afterGrace
 
     def appoggiatura(self, music):
-        grace = containertools.GraceContainer(music[:])
+        grace = scoretools.GraceContainer(music[:])
         grace.kind = 'appoggiatura'
         return grace
 
@@ -58,7 +58,7 @@ class GuileProxy(AbjadObject):
         return contexttools.ClefMark(string)
 
     def grace(self, music):
-        return containertools.GraceContainer(music[:])
+        return scoretools.GraceContainer(music[:])
 
     def key(self, notename_pitch, number_list):
         if number_list is None:
@@ -77,7 +77,7 @@ class GuileProxy(AbjadObject):
                 lookahead.value = self.client._pitch_names[lookahead.value]
 
     def makeClusters(self, music):
-        return containertools.Cluster(music[:])
+        return scoretools.Cluster(music[:])
 
     def mark(self, label):
         if label is None:
@@ -119,7 +119,7 @@ class GuileProxy(AbjadObject):
                         self.client._repeated_chords[component]:
                         repeated_chord.written_pitches = \
                             component.written_pitches
-            elif isinstance(component, containertools.Container):
+            elif isinstance(component, scoretools.Container):
                 for child in component:
                     pitch = recurse(child, pitch)
             return pitch
@@ -137,7 +137,7 @@ class GuileProxy(AbjadObject):
         return leaf
 
     def slashed_grace_container(self, music):
-        grace = containertools.GraceContainer(music[:])
+        grace = scoretools.GraceContainer(music[:])
         grace.kind = 'slashedGrace'
         return grace
 
@@ -172,7 +172,7 @@ class GuileProxy(AbjadObject):
                     note_head.written_pitch = \
                         lilypondparsertools.LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, note_head.written_pitch)
-            elif isinstance(music, containertools.Container):
+            elif isinstance(music, scoretools.Container):
                 for x in music:
                     recurse(x)
         recurse(music)

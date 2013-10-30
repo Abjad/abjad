@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.containertools.Container import Container
+from abjad.tools.scoretools.Container import Container
 
 
 class FixedDurationContainer(Container):
@@ -8,7 +8,7 @@ class FixedDurationContainer(Container):
 
     ::
 
-        >>> container = containertools.FixedDurationContainer(
+        >>> container = scoretools.FixedDurationContainer(
         ...     (3, 8), "c'8 d'8 e'8")
 
     ::

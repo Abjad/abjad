@@ -32,7 +32,7 @@ del AbjadConfiguration
 from abjad.tools import *
 
 # import some frequently used classes for direct user access
-from abjad.tools.containertools import Container
+from abjad.tools.scoretools import Container
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Multiplier
 from abjad.tools.durationtools import Offset

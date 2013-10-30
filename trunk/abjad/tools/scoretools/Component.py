@@ -234,10 +234,10 @@ class Component(AbjadObject):
             )
 
     def _get_descendants_starting_with(self):
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         result = []
         result.append(self)
-        if isinstance(self, containertools.Container):
+        if isinstance(self, scoretools.Container):
             if self.is_simultaneous:
                 for x in self:
                     result.extend(x._get_descendants_starting_with())
@@ -246,10 +246,10 @@ class Component(AbjadObject):
         return result
 
     def _get_descendants_stopping_with(self):
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         result = []
         result.append(self)
-        if isinstance(self, containertools.Container):
+        if isinstance(self, scoretools.Container):
             if self.is_simultaneous:
                 for x in self:
                     result.extend(x._get_descendants_stopping_with())

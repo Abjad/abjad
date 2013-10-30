@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import rhythmmakertools
@@ -91,7 +91,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         if not self.division_list:
             return
         leaf_lists = self.source_expression(self.division_list.pairs)
-        rhythm_containers = [containertools.Container(x) for x in leaf_lists]
+        rhythm_containers = [scoretools.Container(x) for x in leaf_lists]
         expression = \
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
             payload=rhythm_containers, start_offset=self.start_offset)

@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__functions__grace_01():
         Note("d'4"),
         Note("e'2")
     ])
-    grace = containertools.GraceContainer([
+    grace = scoretools.GraceContainer([
         Note("g''16"),
         Note("fs''16")
     ])

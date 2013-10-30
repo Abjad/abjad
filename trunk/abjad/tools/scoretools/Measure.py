@@ -4,7 +4,7 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
-from abjad.tools.containertools.FixedDurationContainer \
+from abjad.tools.scoretools.FixedDurationContainer \
     import FixedDurationContainer
 
 
@@ -268,7 +268,7 @@ class Measure(FixedDurationContainer):
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
     def _scale(self, multiplier=None):
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import contexttools
         from abjad.tools import iterationtools
         from abjad.tools import timesignaturetools
@@ -626,7 +626,7 @@ class Measure(FixedDurationContainer):
 
         Returns none.
         '''
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import contexttools
         from abjad.tools.scoretools import attach
         if multiplier == 0:

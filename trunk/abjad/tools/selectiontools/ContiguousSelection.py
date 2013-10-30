@@ -204,7 +204,7 @@ class ContiguousSelection(Selection):
         return new_measure
 
     def _fuse_tuplets(self):
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_parent(
             self, component_classes=(scoretools.Tuplet,))
@@ -231,7 +231,7 @@ class ContiguousSelection(Selection):
         wrapped = False
         if self[0]._get_parentage().root is not \
             self[-1]._get_parentage().root:
-            dummy_container = containertools.Container(self)
+            dummy_container = scoretools.Container(self)
             wrapped = True
         mutationtools.mutate(self).swap(new_tuplet)
         if wrapped:

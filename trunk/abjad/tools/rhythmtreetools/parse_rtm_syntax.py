@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import containertools
+from abjad.tools import scoretools
 
 
 def parse_rtm_syntax(rtm):
@@ -36,7 +36,7 @@ def parse_rtm_syntax(rtm):
 
     result = rhythmtreetools.RhythmTreeParser()(rtm)
 
-    con = containertools.Container()
+    con = scoretools.Container()
 
     for node in result:
         tuplet = node((1, 4))

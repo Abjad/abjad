@@ -99,14 +99,14 @@ class Parentage(SimultaneousSelection):
     ### PRIVATE METHODS ###
 
     def _get_governor(self):
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         for component in self:
-            if isinstance(component, containertools.Container) and \
+            if isinstance(component, scoretools.Container) and \
                 not component.is_simultaneous:
                 if component._parent is None:
                     return component
-                if isinstance(component._parent, containertools.Container) and \
+                if isinstance(component._parent, scoretools.Container) and \
                     component._parent.is_simultaneous:
                     return component
 

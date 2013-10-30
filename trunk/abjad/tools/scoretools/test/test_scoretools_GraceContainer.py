@@ -7,7 +7,7 @@ def test_containertools_GraceContainer_01():
     r'''Grace music is a container.
     '''
 
-    gracecontainer = containertools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    gracecontainer = scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
 
     assert isinstance(gracecontainer, Container)
     assert len(gracecontainer) == 3
@@ -36,7 +36,7 @@ def test_containertools_GraceContainer_02():
         GraceContainer.kind knows about "after", "grace",
         "acciaccatura", "appoggiatura"'''
 
-    gracecontainer = containertools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    gracecontainer = scoretools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
     gracecontainer.kind = 'acciaccatura'
     assert gracecontainer.kind == 'acciaccatura'
     gracecontainer.kind = 'grace'
@@ -52,7 +52,7 @@ def test_containertools_GraceContainer_03():
     r'''Grace formats correctly as grace.
     '''
 
-    gracecontainer = containertools.GraceContainer(scoretools.make_repeated_notes(3))
+    gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
     gracecontainer.kind = 'grace'
     assert testtools.compare(
         gracecontainer,
@@ -78,7 +78,7 @@ def test_containertools_GraceContainer_04():
     r'''Grace formats correctly as acciaccatura.
     '''
 
-    gracecontainer = containertools.GraceContainer(scoretools.make_repeated_notes(3))
+    gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
     gracecontainer.kind = 'acciaccatura'
     assert testtools.compare(
         gracecontainer,
@@ -104,7 +104,7 @@ def test_containertools_GraceContainer_05():
     r'''Grace formats correctly as appoggiatura.
     '''
 
-    gracecontainer = containertools.GraceContainer(scoretools.make_repeated_notes(3))
+    gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
     gracecontainer.kind = 'appoggiatura'
     assert testtools.compare(
         gracecontainer,
@@ -130,7 +130,7 @@ def test_containertools_GraceContainer_06():
     r'''Grace formats correctly as after grace.
     '''
 
-    gracecontainer = containertools.GraceContainer(scoretools.make_repeated_notes(3))
+    gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
     gracecontainer.kind = 'after'
     assert testtools.compare(
         gracecontainer,
@@ -156,7 +156,7 @@ def test_containertools_GraceContainer_07():
     r'''Grace containers can be appended.
     '''
 
-    gracecontainer = containertools.GraceContainer(scoretools.make_repeated_notes(2))
+    gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(2))
     note = Note(1, (1, 4))
     gracecontainer.append(note)
     assert len(gracecontainer) == 3
@@ -167,7 +167,7 @@ def test_containertools_GraceContainer_08():
     r'''Grace containers can be extended.
     '''
 
-    gracecontainer = containertools.GraceContainer(scoretools.make_repeated_notes(2))
+    gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(2))
     ns = Note(1, (1, 4)) * 2
     gracecontainer.extend(ns)
     assert len(gracecontainer) == 4

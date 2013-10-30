@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import scoretools
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import scoretools
@@ -123,7 +123,7 @@ class CounttimeComponentSelectExpression(
         elif issubclass(expr, (
             scoretools.Measure, scoretools.Tuplet, scoretools.Leaf)):
             return True
-        elif expr == containertools.Container:
+        elif expr == scoretools.Container:
             return True
         else:
             return False

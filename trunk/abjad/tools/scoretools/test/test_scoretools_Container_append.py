@@ -179,6 +179,6 @@ def test_containertools_Container_append_06():
     '''
 
     staff = Staff("c' d' e'")
-    grace_container = containertools.GraceContainer("f'16 g'")
+    grace_container = scoretools.GraceContainer("f'16 g'")
 
     assert py.test.raises(Exception, 'staff.append(grace_container)')

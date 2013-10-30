@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import iterationtools
 from abjad.tools.wellformednesstools.Check import Check
 
@@ -12,7 +12,7 @@ class EmptyContainerCheck(Check):
         violators = []
         bad, total = 0, 0
         for t in iterationtools.iterate_components_in_expr(
-            expr, containertools.Container):
+            expr, scoretools.Container):
             if len(t) == 0:
                 violators.append(t)
                 bad += 1

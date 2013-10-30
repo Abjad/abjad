@@ -4,7 +4,7 @@ import ply
 from abjad.tools import abctools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import scoretools
@@ -147,11 +147,11 @@ class LilyPondParser(abctools.Parser):
                 input_string,
                 lexer=self._lexer)
 
-        if isinstance(result, containertools.Container):
+        if isinstance(result, scoretools.Container):
             self._apply_spanners(result)
         elif isinstance(result, lilypondfiletools.LilyPondFile):
             for x in result:
-                if isinstance(x, containertools.Container):
+                if isinstance(x, scoretools.Container):
                     self._apply_spanners(x)
                 elif isinstance(x, lilypondfiletools.ScoreBlock):
                     for y in x:
@@ -473,7 +473,7 @@ class LilyPondParser(abctools.Parser):
         # with t[0] being 'forward' or 'backward' and t[1] being the mark, as
         # this better preserves attachment order.  Not clear if we need it.
 
-        container = containertools.Container()
+        container = scoretools.Container()
         previous_leaf = None
         apply_forward = []
         apply_backward = []
@@ -482,7 +482,7 @@ class LilyPondParser(abctools.Parser):
         # the proper leaf
         for x in music:
             if isinstance(x, scoretools.Component) \
-                and not isinstance(x, containertools.GraceContainer):
+                and not isinstance(x, scoretools.GraceContainer):
                 for mark in apply_forward:
                     if hasattr(mark, '_attach'):
                         attach(mark, x)
@@ -538,7 +538,7 @@ class LilyPondParser(abctools.Parser):
                     return True
             return False
 
-        container = containertools.Container()
+        container = scoretools.Container()
         container.is_simultaneous = True
 
         # check for voice separators

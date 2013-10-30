@@ -401,7 +401,7 @@ class ScoreMutationAgent(object):
 
         Returns none.
         '''
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
         if isinstance(self._client, selectiontools.SliceSelection):
@@ -1484,7 +1484,7 @@ class ScoreMutationAgent(object):
 
         Returns none.
         '''
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
         if isinstance(self._client, selectiontools.SliceSelection):
@@ -1492,7 +1492,7 @@ class ScoreMutationAgent(object):
         else:
             donors = selectiontools.SliceSelection(self._client)
         assert donors._all_are_contiguous_components_in_same_parent(donors)
-        assert isinstance(container, containertools.Container)
+        assert isinstance(container, scoretools.Container)
         assert not container, repr(container)
         donors._give_music_to_empty_container(container)
         donors._give_dominant_spanners([container])

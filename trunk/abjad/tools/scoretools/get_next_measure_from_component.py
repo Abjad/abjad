@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import containertools
 
 
 def get_next_measure_from_component(component):
@@ -61,7 +60,7 @@ def get_next_measure_from_component(component):
     elif isinstance(component, scoretools.Measure):
         return component._get_in_my_logical_voice(
             1, component_class=scoretools.Measure)
-    elif isinstance(component, containertools.Container):
+    elif isinstance(component, scoretools.Container):
         return scoretools.get_measure_that_starts_with_container(component)
     elif isinstance(component, (list, tuple)):
         measure_generator = iterationtools.iterate_measures_in_expr(component)

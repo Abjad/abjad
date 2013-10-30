@@ -58,7 +58,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
                     source_expression=musicexpressiontools.StartPositionedRhythmPayloadExpression(
-                        payload=containertools.Container(
+                        payload=scoretools.Container(
                             music=[{c'16, c'8}]
                             ),
                         start_offset=durationtools.Offset(0, 1)
@@ -71,7 +71,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                     ),
                 musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
                     source_expression=musicexpressiontools.StartPositionedRhythmPayloadExpression(
-                        payload=containertools.Container(
+                        payload=scoretools.Container(
                             music=[{c'16, c'8}]
                             ),
                         start_offset=durationtools.Offset(0, 1)

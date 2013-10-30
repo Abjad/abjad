@@ -2,7 +2,7 @@
 import copy
 import numbers
 from abjad.tools import scoretools
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import mutationtools
@@ -126,15 +126,15 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         Returns timespan inventory.
         '''
         assert self._can_fuse(expr)
-        if isinstance(self.payload, containertools.Container):
+        if isinstance(self.payload, scoretools.Container):
             selection = select(self.payload[0], contiguous=True)
             left = mutationtools.mutate(selection).copy()[0]
             selection = select(expr.payload[0], contiguous=True)
             right = mutationtools.mutate(selection).copy()[0]
-            payload = containertools.Container([left, right])
+            payload = scoretools.Container([left, right])
             for component in payload[:]:
                 component._extract()
-            payload = containertools.Container([payload])
+            payload = scoretools.Container([payload])
         else:
             payload = self.payload + expr.payload
         result = type(self)(

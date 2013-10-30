@@ -50,7 +50,7 @@ def test_notetools_Note___copy___04():
     '''
 
     note_1 = Note("c'4")
-    grace_container_1 = containertools.GraceContainer(
+    grace_container_1 = scoretools.GraceContainer(
         [Note("d'32")], kind='after')
     attach(grace_container_1, note_1)
 
@@ -90,7 +90,7 @@ def test_notetools_Note___copy___05():
     note = Note("c'4")
     articulation = marktools.Articulation('staccato')
     attach(articulation, note)
-    grace = containertools.GraceContainer("d'16")
+    grace = scoretools.GraceContainer("d'16")
     attach(grace, note)
     note.override.note_head.color = 'red'
 
@@ -119,7 +119,7 @@ def test_notetools_Note___copy___06():
     note = staff[0]
     articulation = marktools.Articulation('staccato')
     attach(articulation, note)
-    grace = containertools.GraceContainer("d'16")
+    grace = scoretools.GraceContainer("d'16")
     attach(grace, note)
     note.override.note_head.color = 'red'
 

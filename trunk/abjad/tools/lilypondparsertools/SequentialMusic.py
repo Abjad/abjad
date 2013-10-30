@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools.lilypondparsertools.Music import Music
 
 
@@ -12,7 +12,7 @@ class SequentialMusic(Music):
 
     def construct(self):
         from abjad.tools import lilypondparsertools
-        container = containertools.Container([])
+        container = scoretools.Container([])
         for x in self.music:
             if isinstance(x, scoretools.Component):
                 container.append(x)

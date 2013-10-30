@@ -241,12 +241,12 @@ Extended container input syntax.
 
     Score(r'''\new Staff { c' } \new Staff = { c, }''')
 
-- Added a new ``FixedDurationContainer`` class to the ``containertools`` package.
+- Added a new ``FixedDurationContainer`` class to the ``scoretools`` package.
 
   Fixed-duration containers extend container behavior with format-time
   checking against a user-specified target duration::
 
-    >>> container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
+    >>> container = scoretools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
 
   ::
 
@@ -756,7 +756,7 @@ Changes to end-user functionality:
 
   ::
 
-    containertools.GraceContainer
+    scoretools.GraceContainer
 
 - Changed::
 
@@ -843,4 +843,4 @@ Changes to end-user functionality:
 
   If you have been working with grace notes, for example, 
   you will need to change all occurrences of ``gracetools.Grace``
-  to ``containertools.GraceContainer``.
+  to ``scoretools.GraceContainer``.

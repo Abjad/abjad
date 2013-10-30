@@ -176,13 +176,13 @@ class AttributeInspectionAgent(object):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> grace_container = containertools.GraceContainer(
+                >>> grace_container = scoretools.GraceContainer(
                 ...     [Note("cs'16")],
                 ...     kind='grace',
                 ...     )
                 >>> attach(grace_container, staff[1])
                 Note("d'8")
-                >>> after_grace = containertools.GraceContainer(
+                >>> after_grace = scoretools.GraceContainer(
                 ...     [Note("ds'16")],
                 ...     kind='after'
                 ...     )
@@ -535,7 +535,7 @@ class AttributeInspectionAgent(object):
 
         Returns string.
         '''
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import formattools
         component = self._component
         format_contributions = formattools.get_all_format_contributions(

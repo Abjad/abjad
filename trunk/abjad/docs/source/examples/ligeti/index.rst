@@ -154,7 +154,7 @@ will take only a list of pitches:
        marktools.LilyPondCommandMark('voiceOne')(upper_voice)
    
        # combine them together
-       container = containertools.Container([lower_voice, upper_voice])
+       container = scoretools.Container([lower_voice, upper_voice])
        container.is_simultaneous = True
    
        # make all 1/8 beats breakable

@@ -5,7 +5,7 @@ import py
 
 def test_containertools_FixedDurationContainer_format_01():
 
-    container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
+    container = scoretools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
     assert testtools.compare(
         container,
         r'''
@@ -20,11 +20,11 @@ def test_containertools_FixedDurationContainer_format_01():
 
 def test_containertools_FixedDurationContainer_format_02():
 
-    container = containertools.FixedDurationContainer((3, 8), "c'8 d'8")
+    container = scoretools.FixedDurationContainer((3, 8), "c'8 d'8")
     assert py.test.raises(Exception, 'container.format')
 
 
 def test_containertools_FixedDurationContainer_format_03():
 
-    container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8 f'8")
+    container = scoretools.FixedDurationContainer((3, 8), "c'8 d'8 e'8 f'8")
     assert py.test.raises(Exception, 'container.format')

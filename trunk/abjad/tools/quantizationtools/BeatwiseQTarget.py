@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
 from abjad.tools.quantizationtools.QTarget import QTarget
@@ -39,7 +39,7 @@ class BeatwiseQTarget(QTarget):
         components = beat.q_grid(beat.beatspan)
         if attach_tempo_marks:
             attachment_target = components[0]
-            if isinstance(attachment_target, containertools.Container):
+            if isinstance(attachment_target, scoretools.Container):
                 attachment_target = attachment_target.select_leaves()[0]
             tempo = copy.copy(beat.tempo)
             attach(tempo, attachment_target)
@@ -51,7 +51,7 @@ class BeatwiseQTarget(QTarget):
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempo_marks:
                 attachment_target = components[0]
-                if isinstance(attachment_target, containertools.Container):
+                if isinstance(attachment_target, scoretools.Container):
                     attachment_target = attachment_target.select_leaves()[0]
                 tempo = copy.copy(beat_two.tempo)
                 attach(tempo, attachment_target)

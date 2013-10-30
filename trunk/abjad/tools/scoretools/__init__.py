@@ -3,7 +3,7 @@
 
     Dependencies:
 
-    The ``scoretools`` package may import the ``containertools``
+    The ``scoretools`` package may import the ``scoretools``
     and ``componenttool`` packages at top level.
 
     The ``scoretools`` package should not import sibling

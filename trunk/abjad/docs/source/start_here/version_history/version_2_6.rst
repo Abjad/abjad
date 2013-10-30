@@ -202,7 +202,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 * Added sequence type-checking predicates::
 
     scoretools.all_are_chords()
-    containertools.all_are_containers()
+    scoretools.all_are_containers()
     durationtools.all_are_duration_tokens()
     durationtools.all_are_durations()
     gracetools.all_are_grace_containers()

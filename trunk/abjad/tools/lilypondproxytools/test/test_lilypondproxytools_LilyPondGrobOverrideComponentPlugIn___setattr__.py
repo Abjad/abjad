@@ -184,7 +184,7 @@ def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___setattr___09()
     r'''Override LilyPond ClusterSpanner grob.
     '''
 
-    cluster = containertools.Cluster(Note(1, (1, 4)) * 4)
+    cluster = scoretools.Cluster(Note(1, (1, 4)) * 4)
     cluster.override.cluster_spanner.style = 'ramp'
     cluster.override.cluster_spanner.padding = 0.1
 

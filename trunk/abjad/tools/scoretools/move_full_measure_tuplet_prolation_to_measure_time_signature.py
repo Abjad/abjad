@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import mutationtools

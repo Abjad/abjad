@@ -44,8 +44,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    containertools.iterate_containers_forward_in_expr()
-    containertools.iterate_containers_backward_in_expr()
+    scoretools.iterate_containers_forward_in_expr()
+    scoretools.iterate_containers_backward_in_expr()
 
   ::
 
@@ -169,7 +169,7 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
-    containertools.color_contents_of_container()
+    scoretools.color_contents_of_container()
 
   ::
 
@@ -293,15 +293,15 @@ Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
     scoretools.copy_governed_component_subtree_from_prolated_offset_to()
     scoretools.get_improper_descendents_of_component_that_cross_prolated_offset()
-    containertools.delete_contents_of_container_starting_at_or_after_prolated_offset()
-    containertools.delete_contents_of_container_starting_before_or_at_prolated_offset()
-    containertools.delete_contents_of_container_starting_strictly_after_prolated_offset()
-    containertools.delete_contents_of_container_starting_strictly_before_prolated_offset()
-    containertools.get_element_starting_at_exactly_prolated_offset()
-    containertools.get_first_element_starting_at_or_after_prolated_offset()
-    containertools.get_first_element_starting_before_or_at_prolated_offset()
-    containertools.get_first_element_starting_strictly_after_prolated_offset()
-    containertools.get_first_element_starting_strictly_before_prolated_offset()
+    scoretools.delete_contents_of_container_starting_at_or_after_prolated_offset()
+    scoretools.delete_contents_of_container_starting_before_or_at_prolated_offset()
+    scoretools.delete_contents_of_container_starting_strictly_after_prolated_offset()
+    scoretools.delete_contents_of_container_starting_strictly_before_prolated_offset()
+    scoretools.get_element_starting_at_exactly_prolated_offset()
+    scoretools.get_first_element_starting_at_or_after_prolated_offset()
+    scoretools.get_first_element_starting_before_or_at_prolated_offset()
+    scoretools.get_first_element_starting_strictly_after_prolated_offset()
+    scoretools.get_first_element_starting_strictly_before_prolated_offset()
     prolated_updatetools.update_offset_values_of_component()
     verticalitytools.get_vertical_moment_at_prolated_offset_in_expr()
 
@@ -309,15 +309,15 @@ Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
     scoretools.copy_and_trim()
     scoretools.get_improper_descendants_of_component_that_cross_offset()
-    containertools.delete_contents_of_container_starting_at_or_after_offset()
-    containertools.delete_contents_of_container_starting_before_or_at_offset()
-    containertools.delete_contents_of_container_starting_strictly_after_offset()
-    containertools.delete_contents_of_container_starting_strictly_before_offset()
-    containertools.get_element_starting_at_exactly_offset()
-    containertools.get_first_element_starting_at_or_after_offset()
-    containertools.get_first_element_starting_before_or_at_offset()
-    containertools.get_first_element_starting_strictly_after_offset()
-    containertools.get_first_element_starting_strictly_before_offset()
+    scoretools.delete_contents_of_container_starting_at_or_after_offset()
+    scoretools.delete_contents_of_container_starting_before_or_at_offset()
+    scoretools.delete_contents_of_container_starting_strictly_after_offset()
+    scoretools.delete_contents_of_container_starting_strictly_before_offset()
+    scoretools.get_element_starting_at_exactly_offset()
+    scoretools.get_first_element_starting_at_or_after_offset()
+    scoretools.get_first_element_starting_before_or_at_offset()
+    scoretools.get_first_element_starting_strictly_after_offset()
+    scoretools.get_first_element_starting_strictly_before_offset()
     updatetools.update_offset_values_of_component()
     verticalitytools.get_vertical_moment_at_offset_in_expr()
 
@@ -338,13 +338,13 @@ Renamed ``prolated_duration`` to ``offset`` in some functions::
 Renamed all functions that contained ``as_string``::
 
     scoretools.report_component_format_contributions_as_string()
-    containertools.report_container_modifications_as_string()
+    scoretools.report_container_modifications_as_string()
     scoretools.report_meter_distribution_as_string()
 
 ::
 
     formattools.report_component_format_contributions()
-    containertools.report_container_modifications()
+    scoretools.report_container_modifications()
     scoretools.report_time_signature_distribution()
 
 Changes to the ``scoretools`` package:
@@ -439,49 +439,49 @@ Changeds to the ``continertools`` package:
 
 - Renamed::
 
-    containertools.remove_empty_containers_in_expr()
+    scoretools.remove_empty_containers_in_expr()
 
   ::
 
-    containertools.remove_leafless_containers_in_expr()
+    scoretools.remove_leafless_containers_in_expr()
 
 - Renamed::
 
-    containertools.replace_larger_left_half_of_elements_in_container_with_big_endian_rests()
-    containertools.replace_larger_left_half_of_elements_in_container_with_little_endian_rests()
-    containertools.replace_larger_right_half_of_elements_in_container_with_big_endian_rests()
-    containertools.replace_larger_right_half_of_elements_in_container_with_little_endian_rests()
-    containertools.replace_n_edge_elements_in_container_with_big_endian_rests()
-    containertools.replace_n_edge_elements_in_container_with_little_endian_rests()
-    containertools.replace_n_edge_elements_in_container_with_rests()
-    containertools.replace_smaller_left_half_of_elements_in_container_with_big_endian_rests()
-    containertools.replace_smaller_left_half_of_elements_in_container_with_little_endian_rests()
-    containertools.replace_smaller_right_half_of_elements_in_container_with_big_endian_rests()
-    containertools.replace_smaller_right_half_of_elements_in_container_with_little_endian_rests()
+    scoretools.replace_larger_left_half_of_elements_in_container_with_big_endian_rests()
+    scoretools.replace_larger_left_half_of_elements_in_container_with_little_endian_rests()
+    scoretools.replace_larger_right_half_of_elements_in_container_with_big_endian_rests()
+    scoretools.replace_larger_right_half_of_elements_in_container_with_little_endian_rests()
+    scoretools.replace_n_edge_elements_in_container_with_big_endian_rests()
+    scoretools.replace_n_edge_elements_in_container_with_little_endian_rests()
+    scoretools.replace_n_edge_elements_in_container_with_rests()
+    scoretools.replace_smaller_left_half_of_elements_in_container_with_big_endian_rests()
+    scoretools.replace_smaller_left_half_of_elements_in_container_with_little_endian_rests()
+    scoretools.replace_smaller_right_half_of_elements_in_container_with_big_endian_rests()
+    scoretools.replace_smaller_right_half_of_elements_in_container_with_little_endian_rests()
 
   ::
 
-    containertools.replace_container_slice_with_rests()
+    scoretools.replace_container_slice_with_rests()
 
 - Renamed::
 
-    containertools.split_container_at_index_and_do_not_fracture_crossing_spanners()
-    containertools.split_container_at_index_and_fracture_crossing_spanners()
+    scoretools.split_container_at_index_and_do_not_fracture_crossing_spanners()
+    scoretools.split_container_at_index_and_fracture_crossing_spanners()
 
   ::
 
-    containertools.split_container_at_index(fracture_spanners=[True, False])
+    scoretools.split_container_at_index(fracture_spanners=[True, False])
 
 - Renamed::
 
-    containertools.split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners()
-    containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners()
-    containertools.split_container_once_by_counts_and_do_not_fracture_crossing_spanners()
-    containertools.split_container_once_by_counts_and_fracture_crossing_spanners()
+    scoretools.split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners()
+    scoretools.split_container_cyclically_by_counts_and_fracture_crossing_spanners()
+    scoretools.split_container_once_by_counts_and_do_not_fracture_crossing_spanners()
+    scoretools.split_container_once_by_counts_and_fracture_crossing_spanners()
 
   ::
 
-    containertools.split_container_at_indices(fracture_spanners=[True, False], cyclic=[True, False])
+    scoretools.split_container_at_indices(fracture_spanners=[True, False], cyclic=[True, False])
 
 Changes to the ``durationtools`` package:
 

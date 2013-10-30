@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import mutationtools
 from abjad.tools import selectiontools
@@ -1090,7 +1090,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
             current_leaf_group_is_silent = True
             current_leaf_group.append(x)
             last_tie_spanner = None
-        elif isinstance(x, containertools.Container):
+        elif isinstance(x, scoretools.Container):
             if current_leaf_group is not None:
                 yield selectiontools.TieChain(current_leaf_group)
                 current_leaf_group = None

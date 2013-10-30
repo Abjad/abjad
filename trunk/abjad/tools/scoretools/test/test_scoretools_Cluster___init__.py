@@ -5,7 +5,7 @@ from abjad import *
 def test_containertools_Cluster___init___01():
     r'''Cluster can be empty.
     '''
-    cluster = containertools.Cluster([])
+    cluster = scoretools.Cluster([])
     assert not cluster.is_simultaneous
     assert len(cluster) == 0
     assert testtools.compare(
@@ -18,8 +18,8 @@ def test_containertools_Cluster___init___01():
 
 
 def test_containertools_Cluster___init___02():
-    cluster = containertools.Cluster(Note(1, (1, 4)) * 4)
-    assert isinstance(cluster, containertools.Cluster)
+    cluster = scoretools.Cluster(Note(1, (1, 4)) * 4)
+    assert isinstance(cluster, scoretools.Cluster)
     assert not cluster.is_simultaneous
     assert len(cluster) == 4
     assert testtools.compare(

@@ -3,7 +3,7 @@ import copy
 import fractions
 from abjad.tools import abctools
 from abjad.tools import scoretools
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools import mathtools
@@ -297,7 +297,7 @@ class ReducedLyParser(abctools.Parser):
     def p_container__BRACE_L__component_list__BRACE_R(self, p):
         r'''container : BRACE_L component_list BRACE_R
         '''
-        p[0] = containertools.Container()
+        p[0] = scoretools.Container()
         for component in p[2]:
             p[0].append(component)
 
@@ -314,7 +314,7 @@ class ReducedLyParser(abctools.Parser):
     def p_fixed_duration_container__BRACE_L__FRACTION__BRACE_R(self, p):
         r'''fixed_duration_container : BRACE_L FRACTION BRACE_R
         '''
-        p[0] = containertools.FixedDurationContainer(durationtools.Duration(p[2]))
+        p[0] = scoretools.FixedDurationContainer(durationtools.Duration(p[2]))
 
     def p_leaf__leaf_body__post_events(self, p):
         r'''leaf : leaf_body post_events
@@ -588,7 +588,7 @@ class ReducedLyParser(abctools.Parser):
                 raise Exception('Unterminated %s.' % current_class.__name__)
 
     def _cleanup(self, parsed):
-        container = containertools.Container()
+        container = scoretools.Container()
         for x in parsed:
             container.append(x)
         parsed = container

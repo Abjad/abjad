@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.containertools.Container import Container
+from abjad.tools.scoretools.Container import Container
 
 
 class GraceContainer(Container):
@@ -25,7 +25,7 @@ class GraceContainer(Container):
     ::
 
         >>> grace_notes = [Note("c'16"), Note("d'16")]
-        >>> containertools.GraceContainer(grace_notes, kind='grace')(voice[1])
+        >>> scoretools.GraceContainer(grace_notes, kind='grace')(voice[1])
         Note("d'8")
         >>> show(voice) # doctest: +SKIP
 
@@ -46,7 +46,7 @@ class GraceContainer(Container):
     ::
 
         >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-        >>> containertools.GraceContainer(
+        >>> scoretools.GraceContainer(
         ...     after_grace_notes, kind='after')(voice[1])
         Note("d'8")
         >>> show(voice) # doctest: +SKIP
@@ -140,7 +140,7 @@ class GraceContainer(Container):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> containertools.GraceContainer(
+                >>> scoretools.GraceContainer(
                 ...     [Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 >>> grace_container = staff[1].grace
@@ -154,7 +154,7 @@ class GraceContainer(Container):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> containertools.GraceContainer(
+                >>> scoretools.GraceContainer(
                 ...     [Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 >>> grace_container = staff[1].grace
@@ -198,7 +198,7 @@ class GraceContainer(Container):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> grace_container = containertools.GraceContainer(
+            >>> grace_container = scoretools.GraceContainer(
             ...     [Note("cs'16")], kind = 'grace')
             >>> grace_container(staff[1])
             Note("d'8")

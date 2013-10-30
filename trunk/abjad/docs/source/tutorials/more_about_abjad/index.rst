@@ -17,7 +17,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'Measure', 'Note', 'Rest', 'Score', 'Staff', 'Tuplet', 'Voice',
     '__builtins__', '__doc__', '__name__', '__package__',
     '__warningregistry__', 'abctools', 'abjadbooktools', 'beamtools',
-    'scoretools', 'scoretools', 'configurationtools', 'containertools',
+    'scoretools', 'scoretools', 'configurationtools', 'scoretools',
     'contexttools', 'datastructuretools', 'decoratortools',
     'developerscripttools', 'documentationtools', 'durationtools',
     'exceptiontools', 'f', 'formattools', 'gracetools', 'importtools',

@@ -124,7 +124,7 @@ class PitchRange(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, arg):
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import scoretools
@@ -143,7 +143,7 @@ class PitchRange(AbjadObject):
             return all(self._contains_pitch(x) for x in arg.sounding_pitches)
         elif isinstance(arg, (scoretools.Rest, scoretools.Skip)):
             return True
-        elif isinstance(arg, containertools.Container):
+        elif isinstance(arg, scoretools.Container):
             return all(x in self for x in arg.select_leaves())
         else:
             pitches = pitchtools.list_named_pitches_in_expr(arg)

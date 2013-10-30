@@ -56,9 +56,9 @@ class SliceSelection(ContiguousSelection):
     def _give_music_to_empty_container(self, container):
         r'''Not composer-safe.
         '''
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_parent(self)
-        assert isinstance(container, containertools.Container)
+        assert isinstance(container, scoretools.Container)
         assert not container
         music = []
         for component in self:
@@ -69,9 +69,9 @@ class SliceSelection(ContiguousSelection):
     def _give_position_in_parent_to_container(self, container):
         r'''Not composer-safe.
         '''
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_parent(self)
-        assert isinstance(container, containertools.Container)
+        assert isinstance(container, scoretools.Container)
         parent, start, stop = self._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._music.__setitem__(slice(start, start), [container])

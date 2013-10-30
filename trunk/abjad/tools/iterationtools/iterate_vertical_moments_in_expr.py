@@ -97,7 +97,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     Returns generator.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import containertools
+    from abjad.tools import scoretools
     from abjad.tools import durationtools
     from abjad.tools import iterationtools
     from abjad.tools import selectiontools
@@ -107,7 +107,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
             raise TypeError
         buffer.append(component)
         stop_offsets.append(component._get_timespan().stop_offset)
-        if isinstance(component, containertools.Container):
+        if isinstance(component, scoretools.Container):
             if component.is_simultaneous:
                 for x in component:
                     _buffer_components_starting_with(x, buffer, stop_offsets)

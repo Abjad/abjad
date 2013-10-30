@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.containertools.Container import Container
+from abjad.tools.scoretools.Container import Container
 
 
 class Cluster(Container):
@@ -7,7 +7,7 @@ class Cluster(Container):
 
     ::
 
-        >>> cluster = containertools.Cluster("c'8 <d' g'>8 b'8")
+        >>> cluster = scoretools.Cluster("c'8 <d' g'>8 b'8")
 
     ::
 

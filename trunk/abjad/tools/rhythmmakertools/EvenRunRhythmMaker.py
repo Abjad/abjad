@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
@@ -115,7 +115,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         unit_duration = durationtools.Duration(1, denominator)
         numerator *= denominator_multiplier
         notes = scoretools.make_notes(numerator * [0], [unit_duration])
-        container = containertools.Container(notes)
+        container = scoretools.Container(notes)
         if self.beam_each_cell:
             beam = spannertools.BeamSpanner()
             attach(beam, container)

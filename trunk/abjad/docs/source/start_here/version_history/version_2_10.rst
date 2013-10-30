@@ -10,7 +10,7 @@ The following packages now load by default when you start Abjad::
 
     Abjad 2.10
     >>> [x for x in dir() if x.endswith('tools')]
-    ['abjadbooktools', 'beamtools', 'scoretools', 'scoretools', 'containertools', 'contexttools', 
+    ['abjadbooktools', 'beamtools', 'scoretools', 'scoretools', 'scoretools', 'contexttools', 
     'developerscripttools', 'durationtools', 'formattools', 'gracetools', 'instrumenttools', 
     'introspectiontools', 'iotools', 'iterationtools', 'labeltools', 'layouttools', 'scoretools', 
     'lilypondfiletools', 'marktools', 'markuptools', 'mathtools', 'scoretools', 'scoretools', '

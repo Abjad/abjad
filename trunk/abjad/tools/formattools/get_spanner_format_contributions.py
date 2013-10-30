@@ -7,7 +7,7 @@ def get_spanner_format_contributions(component):
     Dictionary keys equal to format slot;
     dictionary values equal to format contributions.
     '''
-    from abjad.tools import containertools
+    from abjad.tools import scoretools
     from abjad.tools import spannertools
 
     result = {
@@ -18,7 +18,7 @@ def get_spanner_format_contributions(component):
         'right': [],
     }
 
-    if isinstance(component, containertools.Container):
+    if isinstance(component, scoretools.Container):
         before_contributions = result['before']
         after_contributions = result['after']
     else:

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import containertools
+from abjad.tools import scoretools
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -42,7 +42,7 @@ class IterablePayloadExpression(PayloadExpression):
         assert not isinstance(payload, datastructuretools.StatalServerCursor)
         assert isinstance(payload, (
             str, tuple, list, 
-            containertools.Container,
+            scoretools.Container,
             datastructuretools.TypedList,
             musicexpressiontools.DivisionList,
             selectiontools.SliceSelection,

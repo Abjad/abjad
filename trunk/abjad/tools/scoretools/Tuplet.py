@@ -6,7 +6,7 @@ from abjad.tools import formattools
 from abjad.tools import mathtools
 from abjad.tools import mutationtools
 from abjad.tools import sequencetools
-from abjad.tools.containertools.Container import Container
+from abjad.tools.scoretools.Container import Container
 
 
 class Tuplet(Container):
@@ -1621,7 +1621,7 @@ class Tuplet(Container):
 
         Returns tuplet or container.
         '''
-        from abjad.tools import containertools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import scoretools
@@ -1635,17 +1635,17 @@ class Tuplet(Container):
             if 0 < ratio[0]:
                 try:
                     note = scoretools.Note(0, duration)
-                    return containertools.Container([note])
+                    return scoretools.Container([note])
                 except AssignabilityError:
                     notes = scoretools.make_notes(0, duration)
-                    return containertools.Container(notes)
+                    return scoretools.Container(notes)
             elif ratio[0] < 0:
                 try:
                     rest = scoretools.Rest(duration)
-                    return containertools.Container([rest])
+                    return scoretools.Container([rest])
                 except AssignabilityError:
                     rests = scoretools.make_rests(duration)
-                    return containertools.Container(rests)
+                    return scoretools.Container(rests)
             else:
                 raise ValueError('no divide zero values.')
         if 1 < len(ratio):
