@@ -2,7 +2,7 @@
 from abjad import Duration
 from abjad import Multiplier
 from abjad.tools import durationtools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import scoretools
 
 
@@ -38,7 +38,7 @@ def durate_pitch_contour_reservoir(pitch_contour_reservoir):
         for pitch_contour in pitch_contours:
             contour = []
             for pitch in pitch_contour:
-                contour.extend(leaftools.make_leaves([pitch], [durations[counter]]))
+                contour.extend(scoretools.make_leaves([pitch], [durations[counter]]))
                 counter = (counter + 1) % 2
             durated_contours.append(tuple(contour))
 

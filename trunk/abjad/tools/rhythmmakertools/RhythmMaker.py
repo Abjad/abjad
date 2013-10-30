@@ -3,7 +3,7 @@ import abc
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
 from abjad.tools.abctools.Maker import Maker
@@ -83,7 +83,7 @@ class RhythmMaker(Maker):
 
     @staticmethod
     def _is_leaf_list(expr):
-        return all(isinstance(x, leaftools.Leaf) for x in expr)
+        return all(isinstance(x, scoretools.Leaf) for x in expr)
 
     def _make_secondary_duration_pairs(
         self, duration_pairs, secondary_divisions):

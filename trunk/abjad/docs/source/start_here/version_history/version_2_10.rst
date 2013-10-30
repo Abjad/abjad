@@ -12,7 +12,7 @@ The following packages now load by default when you start Abjad::
     >>> [x for x in dir() if x.endswith('tools')]
     ['abjadbooktools', 'beamtools', 'scoretools', 'scoretools', 'containertools', 'contexttools', 
     'developerscripttools', 'durationtools', 'formattools', 'gracetools', 'instrumenttools', 
-    'introspectiontools', 'iotools', 'iterationtools', 'labeltools', 'layouttools', 'leaftools', 
+    'introspectiontools', 'iotools', 'iterationtools', 'labeltools', 'layouttools', 'scoretools', 
     'lilypondfiletools', 'marktools', 'markuptools', 'mathtools', 'scoretools', 'scoretools', '
     'updatetools', 'pitcharraytools', 'pitchtools', 'scoretools', 'rhythmtreetools', 'schemetools', 
     'scoretemplatetools', 'scoretools', 'sequencetools', 'sievetools', 'scoretools', 'spannertools', 

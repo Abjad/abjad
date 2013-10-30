@@ -3,7 +3,7 @@ import abc
 import copy
 from abjad.tools import scoretools
 from abjad.tools import durationtools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import lilypondproxytools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
@@ -235,26 +235,26 @@ class Spanner(AbjadObject):
 
     def _get_my_first_leaf(self):
         from abjad.tools import iterationtools
-        from abjad.tools import leaftools
-        component_classes=(leaftools.Leaf,)
+        from abjad.tools import scoretools
+        component_classes=(scoretools.Leaf,)
         for leaf in iterationtools.iterate_components_in_expr(
             self, component_class=component_classes):
             return leaf
 
     def _get_my_last_leaf(self):
         from abjad.tools import iterationtools
-        from abjad.tools import leaftools
-        component_classes=(leaftools.Leaf,)
+        from abjad.tools import scoretools
+        component_classes=(scoretools.Leaf,)
         for leaf in iterationtools.iterate_components_in_expr(
             self, component_class=component_classes, reverse=True):
             return leaf
 
     def _get_my_nth_leaf(self, n):
         from abjad.tools import iterationtools
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         if not isinstance(n, (int, long)):
             raise TypeError
-        component_classes = (leaftools.Leaf,)
+        component_classes = (scoretools.Leaf,)
         if 0 <= n:
             leaves = iterationtools.iterate_components_in_expr(
                 self, component_class=component_classes)
@@ -455,7 +455,7 @@ class Spanner(AbjadObject):
             # EXPERIMENTAL: expand to allow staff-level spanner eventually
             for node in \
                 iterationtools.iterate_components_depth_first(component):
-                if isinstance(node, leaftools.Leaf):
+                if isinstance(node, scoretools.Leaf):
                     result.append(node)
         result = tuple(result)
         return result

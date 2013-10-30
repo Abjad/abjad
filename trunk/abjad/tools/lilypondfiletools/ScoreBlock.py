@@ -47,14 +47,14 @@ class ScoreBlock(NonattributedBlock):
 
     @property
     def _format_pieces(self):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         result = []
         if not len(self):
             if self._is_formatted_when_empty:
                 result.append(r'%s {}' % self._escaped_name)
         else:
             result.append(r'%s {' % self._escaped_name)
-            if len(self) == 1 and isinstance(self[0], leaftools.Leaf):
+            if len(self) == 1 and isinstance(self[0], scoretools.Leaf):
                 result.append('\t{')
                 result.extend(
                     ['\t\t' + piece for piece in self[0]._format_pieces])

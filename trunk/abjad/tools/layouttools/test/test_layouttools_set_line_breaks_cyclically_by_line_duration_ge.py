@@ -60,7 +60,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02():
     layouttools.set_line_breaks_cyclically_by_line_duration_ge(
         staff, 
         Duration(1, 8), 
-        line_break_class=leaftools.Leaf,
+        line_break_class=scoretools.Leaf,
         )
 
     assert testtools.compare(

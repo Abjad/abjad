@@ -107,7 +107,7 @@ def add_split_to_score_by_tuple(split, score, tuple):
         else:
             duration = sum([y.written_duration for y in split])
             duration = Duration(duration)
-            leaves = leaftools.make_tied_leaf(Rest, duration)
+            leaves = scoretools.make_tied_leaf(Rest, duration)
             score[x].extend(leaves)
 
 
@@ -120,7 +120,7 @@ def add_splits_to_score_by_tuples(score, splitTuplePairs):
 
 def fuse_rests_in_beat(beat):
     for group in scoretools.yield_groups_of_mixed_classes(beat, Rest):
-        leaftools.fuse_leaves(group[:])
+        scoretools.fuse_leaves(group[:])
 
 
 def fuse_rests_in_staff_by_beats(beats):
@@ -158,7 +158,7 @@ def fuse_consecutive_rests_of_duration_by_duration_threshold(
     toFuse = [x for x in run[:] if x.written_duration == duration]
     runDuration = run[:].duration
     if durationThreshold <= runDuration:
-        leaftools.fuse_leaves(toFuse)
+        scoretools.fuse_leaves(toFuse)
 
 
 def fuse_large_rests_of_duration_in_bar_by_duration_threshold(

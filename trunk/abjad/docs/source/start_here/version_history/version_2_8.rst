@@ -317,7 +317,7 @@ All score components are now public.
 
     scoretools.Component
     contexttools.Context
-    leaftools.Leaf
+    scoretools.Leaf
 
 Further new functionality:
 
@@ -342,9 +342,9 @@ Further new functionality:
 
 - Added ``scoretools.replace_leaves_in_expr_with_rests()``.
 
-- Added ``leaftools.replace_leaves_in_expr_with_parallel_voices()``.
+- Added ``scoretools.replace_leaves_in_expr_with_parallel_voices()``.
 
-- Added ``leaftools.replace_leaves_in_expr_with_named_parallel_voices()``.
+- Added ``scoretools.replace_leaves_in_expr_with_named_parallel_voices()``.
 
   Use the functions listed above to replace leaves in an expression with parallel
   voices containing copies of those leaves in both voices. This is useful for

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import containertools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
 
@@ -52,7 +52,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
     from abjad.tools import spannertools
 
     spanner_classes = (spannertools.TieSpanner,)
-    if isinstance(expr, leaftools.Leaf):
+    if isinstance(expr, scoretools.Leaf):
         tie_chain = expr._get_tie_chain()
         if len(tie_chain) == 1:
             yield tie_chain
@@ -62,7 +62,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
     elif isinstance(
         expr, (list, containertools.Container, selectiontools.SliceSelection)):
         for component in expr:
-            if isinstance(component, leaftools.Leaf):
+            if isinstance(component, scoretools.Leaf):
                 tie_spanners = component._get_spanners(spanner_classes)
                 if not tie_spanners or \
                     tuple(tie_spanners)[0]._is_my_last_leaf(component):

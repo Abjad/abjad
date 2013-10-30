@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 
 
 def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
@@ -115,7 +115,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     return iterationtools.iterate_components_in_expr(
         expr,
-        component_class=leaftools.Leaf,
+        component_class=scoretools.Leaf,
         reverse=reverse,
         start=start,
         stop=stop,

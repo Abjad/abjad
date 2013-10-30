@@ -284,8 +284,8 @@ class AttributeInspectionAgent(object):
 
         Returns leaf or none.
         '''
-        from abjad.tools import leaftools
-        if not isinstance(self._component, leaftools.Leaf):
+        from abjad.tools import scoretools
+        if not isinstance(self._component, scoretools.Leaf):
             return None
         return self._component._get_leaf(n=n)
 

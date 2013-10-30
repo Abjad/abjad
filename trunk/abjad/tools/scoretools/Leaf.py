@@ -268,7 +268,7 @@ class Leaf(Component):
         return result
 
     def _get_leaf(self, n=0):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
 
@@ -278,7 +278,7 @@ class Leaf(Component):
                 return
             candidates = new_component._get_descendants_starting_with()
             candidates = \
-                [x for x in candidates if isinstance(x, leaftools.Leaf)]
+                [x for x in candidates if isinstance(x, scoretools.Leaf)]
             for candidate in candidates:
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
@@ -290,7 +290,7 @@ class Leaf(Component):
                 return
             candidates = new_component._get_descendants_stopping_with()
             candidates = \
-                [x for x in candidates if isinstance(x, leaftools.Leaf)]
+                [x for x in candidates if isinstance(x, scoretools.Leaf)]
             for candidate in candidates:
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
@@ -369,7 +369,7 @@ class Leaf(Component):
         self._set_duration(new_duration)
 
     def _set_duration(self, new_duration):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
@@ -388,7 +388,7 @@ class Leaf(Component):
             pass
         # make new notes or tuplets if new duration is nonassignable
         components = scoretools.make_notes(0, new_duration)
-        if isinstance(components[0], leaftools.Leaf):
+        if isinstance(components[0], scoretools.Leaf):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
             all_leaves = [self] + tied_leaves

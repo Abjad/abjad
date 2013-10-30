@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import fractions
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -65,7 +65,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             fractions.Fraction(abs(numerator), power_of_two_denominator)
         power_of_two_division = (numerator, power_of_two_denominator)
         tuplet_multiplier = duration / power_of_two_duration
-        leaves = leaftools.make_leaves([0], [power_of_two_division])
+        leaves = scoretools.make_leaves([0], [power_of_two_division])
         tuplet = scoretools.Tuplet(tuplet_multiplier, leaves)
         return tuplet
 

@@ -56,7 +56,7 @@ def make_rests(
 
     Returns list of rests.
     '''
-    from abjad.tools import leaftools
+    from abjad.tools import scoretools
     from abjad.tools import scoretools
 
     # check input
@@ -66,7 +66,7 @@ def make_rests(
     # make rests
     result = []
     for duration in durations:
-        rests = leaftools.make_tied_leaf(
+        rests = scoretools.make_tied_leaf(
             scoretools.Rest,
             duration,
             pitches=None,

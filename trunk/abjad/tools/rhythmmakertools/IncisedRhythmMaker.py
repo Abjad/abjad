@@ -4,7 +4,7 @@ import copy
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
@@ -207,7 +207,7 @@ class IncisedRhythmMaker(RhythmMaker):
         self, numeric_map, lcd):
         leaf_lists = []
         for numeric_map_part in numeric_map:
-            leaf_list = leaftools.make_leaves_from_talea(
+            leaf_list = scoretools.make_leaves_from_talea(
                 numeric_map_part,
                 lcd,
                 forbidden_written_duration=self.forbidden_written_duration,

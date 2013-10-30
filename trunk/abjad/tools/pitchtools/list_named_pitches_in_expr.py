@@ -24,7 +24,7 @@ def list_named_pitches_in_expr(expr):
     '''
     from abjad.tools import spannertools
     from abjad.tools import iterationtools
-    from abjad.tools import leaftools
+    from abjad.tools import scoretools
     from abjad.tools import pitchtools
     from abjad.tools import scoretools
 

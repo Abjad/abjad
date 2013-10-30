@@ -343,7 +343,7 @@ score.  Additionally, all the strings start with some rests, and use a
            for pitch_contour in pitch_contours:
                contour = []
                for pitch in pitch_contour:
-                   contour.extend(leaftools.make_leaves([pitch], [durations[counter]]))
+                   contour.extend(scoretools.make_leaves([pitch], [durations[counter]]))
                    counter = (counter + 1) % 2
                durated_contours.append(tuple(contour))
    

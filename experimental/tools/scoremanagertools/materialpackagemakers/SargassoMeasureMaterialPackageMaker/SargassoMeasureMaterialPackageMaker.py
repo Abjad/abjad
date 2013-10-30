@@ -223,7 +223,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
         measures = []
         for meter_token, division_token in zip(meter_tokens, division_tokens):
-            leaves = leaftools.make_leaves_from_talea(
+            leaves = scoretools.make_leaves_from_talea(
                 division_token, measure_division_denominator)
             measure = scoretools.Measure(meter_token, leaves)
             measures.append(measure)

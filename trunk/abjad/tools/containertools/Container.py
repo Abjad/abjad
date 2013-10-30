@@ -708,7 +708,7 @@ class Container(Component):
         from abjad.tools import scoretools
         from abjad.tools import containertools
         from abjad.tools import iterationtools
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import scoretools
@@ -772,8 +772,8 @@ class Container(Component):
         bottom = duration_crossing_descendants[-1]
         did_split_leaf = False
         # if split point necessitates leaf split
-        if isinstance(bottom, leaftools.Leaf):
-            assert isinstance(bottom, leaftools.Leaf)
+        if isinstance(bottom, scoretools.Leaf):
+            assert isinstance(bottom, scoretools.Leaf)
             did_split_leaf = True
             split_point_in_bottom = \
                 global_split_point - bottom._get_timespan().start_offset
@@ -1102,7 +1102,7 @@ class Container(Component):
         '''
         from abjad.tools import scoretools
         from abjad.tools import containertools
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import spannertools
         assert isinstance(component, scoretools.Component)
         assert isinstance(i, int)
@@ -1285,10 +1285,10 @@ class Container(Component):
         '''
         from abjad.tools import scoretools
         from abjad.tools import iterationtools
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-        leaf_classes = leaf_classes or (leaftools.Leaf,)
+        leaf_classes = leaf_classes or (scoretools.Leaf,)
         expr = self
         if recurse:
             expr = iterationtools.iterate_leaves_in_expr(expr)

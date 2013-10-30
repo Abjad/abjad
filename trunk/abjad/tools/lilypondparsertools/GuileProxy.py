@@ -2,7 +2,7 @@
 from abjad.tools import scoretools
 from abjad.tools import containertools
 from abjad.tools import contexttools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
@@ -149,7 +149,7 @@ class GuileProxy(AbjadObject):
     def times(self, fraction, music):
         n, d  = fraction.numerator, fraction.denominator
         if not isinstance(music, contexttools.Context) and \
-            not isinstance(music, leaftools.Leaf):
+            not isinstance(music, scoretools.Leaf):
             return scoretools.Tuplet((n, d), music[:])
         return scoretools.Tuplet((n, d), [music])
 

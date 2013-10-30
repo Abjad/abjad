@@ -13,7 +13,7 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
     scoretools/        intervaltreetools/ scoretools/      schemetools/       threadtools/
     scoretools/    iotools/           metertools/        scoretools/        tietools/
     containertools/    layouttools/       musicxmltools/     seqtools/          tonalanalysistools/
-    contexttools/      leaftools/         scoretools/         sievetools/        scoretools/
+    contexttools/      scoretools/         scoretools/         sievetools/        scoretools/
     durtools/          lilyfiletools/     pitcharraytools/   scoretools/         verticalitytools/
     gracetools/        marktools/         pitchtools/        spannertools/      scoretools/
     importtools/       markuptools/       quantizationtools/ scoretools/

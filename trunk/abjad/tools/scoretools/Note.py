@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 import re
-from abjad.tools.leaftools.Leaf import Leaf
+from abjad.tools.scoretools.Leaf import Leaf
 
 
 class Note(Leaf):

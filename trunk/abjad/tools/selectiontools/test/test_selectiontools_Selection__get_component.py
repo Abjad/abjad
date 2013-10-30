@@ -46,12 +46,12 @@ def test_selectiontools_Selection__get_component_03():
     }
     '''
 
-    assert select(staff)._get_component(leaftools.Leaf, 0) is staff[0][0]
-    assert select(staff)._get_component(leaftools.Leaf, 1) is staff[0][1]
-    assert select(staff)._get_component(leaftools.Leaf, 2) is staff[1][0]
-    assert select(staff)._get_component(leaftools.Leaf, 3) is staff[1][1]
-    assert select(staff)._get_component(leaftools.Leaf, 4) is staff[2][0]
-    assert select(staff)._get_component(leaftools.Leaf, 5) is staff[2][1]
+    assert select(staff)._get_component(scoretools.Leaf, 0) is staff[0][0]
+    assert select(staff)._get_component(scoretools.Leaf, 1) is staff[0][1]
+    assert select(staff)._get_component(scoretools.Leaf, 2) is staff[1][0]
+    assert select(staff)._get_component(scoretools.Leaf, 3) is staff[1][1]
+    assert select(staff)._get_component(scoretools.Leaf, 4) is staff[2][0]
+    assert select(staff)._get_component(scoretools.Leaf, 5) is staff[2][1]
 
 
 def test_selectiontools_Selection__get_component_04():
@@ -80,12 +80,12 @@ def test_selectiontools_Selection__get_component_04():
     }
     '''
 
-    assert select(staff)._get_component(leaftools.Leaf, -1) is staff[2][1]
-    assert select(staff)._get_component(leaftools.Leaf, -2) is staff[2][0]
-    assert select(staff)._get_component(leaftools.Leaf, -3) is staff[1][1]
-    assert select(staff)._get_component(leaftools.Leaf, -4) is staff[1][0]
-    assert select(staff)._get_component(leaftools.Leaf, -5) is staff[0][1]
-    assert select(staff)._get_component(leaftools.Leaf, -6) is staff[0][0]
+    assert select(staff)._get_component(scoretools.Leaf, -1) is staff[2][1]
+    assert select(staff)._get_component(scoretools.Leaf, -2) is staff[2][0]
+    assert select(staff)._get_component(scoretools.Leaf, -3) is staff[1][1]
+    assert select(staff)._get_component(scoretools.Leaf, -4) is staff[1][0]
+    assert select(staff)._get_component(scoretools.Leaf, -5) is staff[0][1]
+    assert select(staff)._get_component(scoretools.Leaf, -6) is staff[0][0]
 
 
 def test_selectiontools_Selection__get_component_05():

@@ -7,7 +7,7 @@ def get_context_setting_format_contributions(component):
     Returns sorted list.
     '''
     result = []
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools.scoretools.Leaf import Leaf
     from abjad.tools.scoretools.Measure import Measure
     from abjad.tools.lilypondfiletools._format_lilypond_context_setting_inline import _format_lilypond_context_setting_inline
     from abjad.tools.lilypondfiletools._format_lilypond_context_setting_in_with_block import _format_lilypond_context_setting_in_with_block

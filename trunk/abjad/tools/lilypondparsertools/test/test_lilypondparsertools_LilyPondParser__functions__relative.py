@@ -77,7 +77,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_03():
 
 def test_lilypondparsertools_LilyPondParser__functions__relative_04():
     pitches = [["a'", "c''", "e''"], ["f'", "a'", "c''"], ["a'", "c''", "e''"], ["f''", "a''", "c'''"], ["b", "b'", "e''"]]
-    target = Container(leaftools.make_leaves(pitches, 1))
+    target = Container(scoretools.make_leaves(pitches, 1))
 
     r"""{
         <a' c'' e''>1

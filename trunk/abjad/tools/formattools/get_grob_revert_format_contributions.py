@@ -6,7 +6,7 @@ def get_grob_revert_format_contributions(component):
 
     Returns alphabetized list of LilyPond grob reverts.
     '''
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools.scoretools.Leaf import Leaf
 
     result = []
     if not isinstance(component, Leaf):

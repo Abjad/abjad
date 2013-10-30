@@ -20,7 +20,7 @@ def make_tied_leaf(
 
         ::
 
-            >>> leaves = leaftools.make_tied_leaf(
+            >>> leaves = scoretools.make_tied_leaf(
             ...     Note, 
             ...     Duration(1, 2), 
             ...     pitches='C#5',
@@ -45,7 +45,7 @@ def make_tied_leaf(
 
         ::
 
-            >>> leaves = leaftools.make_tied_leaf(
+            >>> leaves = scoretools.make_tied_leaf(
             ...     Note, 
             ...     Duration(1, 2), 
             ...     pitches='C#5',
@@ -73,7 +73,7 @@ def make_tied_leaf(
 
         ::
 
-            >>> leaves = leaftools.make_tied_leaf(
+            >>> leaves = scoretools.make_tied_leaf(
             ...     Note, 
             ...     Duration(9, 8), 
             ...     pitches='C#5',
@@ -105,7 +105,7 @@ def make_tied_leaf(
 
         ::
 
-            >>> leaves = leaftools.make_tied_leaf(
+            >>> leaves = scoretools.make_tied_leaf(
             ...     Note, 
             ...     Duration(9, 8), 
             ...     pitches='C#5',

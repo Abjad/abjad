@@ -25,7 +25,7 @@ and arguments, it will create as many worker-processes as you have cores.
    
    def proc(notes_to_make):
       con = Container([])
-      con.extend(leaftools.make_repeated_notes(notes_to_make))
+      con.extend(scoretools.make_repeated_notes(notes_to_make))
       return con
    
    def make(parallel=True):

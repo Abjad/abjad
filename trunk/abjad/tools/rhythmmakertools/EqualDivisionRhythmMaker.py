@@ -2,7 +2,7 @@
 import math
 from abjad.tools import scoretools
 from abjad.tools import durationtools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker

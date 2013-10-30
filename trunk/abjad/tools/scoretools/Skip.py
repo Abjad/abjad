@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.leaftools.Leaf import Leaf
+from abjad.tools.scoretools.Leaf import Leaf
 
 
 class Skip(Leaf):

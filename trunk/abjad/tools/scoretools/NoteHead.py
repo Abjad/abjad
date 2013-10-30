@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
 import functools
-from abjad.tools import leaftools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
@@ -30,9 +29,15 @@ class NoteHead(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, written_pitch=None, client=None,
-        is_cautionary=False, is_forced=False, tweak_pairs=()):
-        assert isinstance(client, (type(None), leaftools.Leaf))
+    def __init__(self,
+        written_pitch=None,
+        client=None,
+        is_cautionary=False,
+        is_forced=False,
+        tweak_pairs=(),
+        ):
+        from abjad.tools import scoretools
+        assert isinstance(client, (type(None), scoretools.Leaf))
         self._client = client
         self.written_pitch = written_pitch
         self.is_cautionary = is_cautionary

@@ -10,7 +10,7 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
 
     ::
 
-        >>> staff = Staff(leaftools.make_leaves([None, 12, [13, 14, 15], None], [(1, 4)]))
+        >>> staff = Staff(scoretools.make_leaves([None, 12, [13, 14, 15], None], [(1, 4)]))
         >>> labeltools.label_leaves_in_expr_with_pitch_numbers(staff)
         >>> f(staff)
         \new Staff {

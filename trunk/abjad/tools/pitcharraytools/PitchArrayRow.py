@@ -2,7 +2,7 @@
 import copy
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools.abctools import AbjadObject
@@ -386,7 +386,7 @@ class PitchArrayRow(AbjadObject):
                 measure_pitches.append(cell_pitches)
             measure_duration = cell.width * basic_cell_duration
             measure_durations.append(measure_duration)
-        leaves = leaftools.make_leaves(measure_pitches, measure_durations)
+        leaves = scoretools.make_leaves(measure_pitches, measure_durations)
         measure.extend(leaves)
         return measure
 

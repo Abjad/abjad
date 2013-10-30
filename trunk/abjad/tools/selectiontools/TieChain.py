@@ -84,7 +84,7 @@ class TieChain(ContiguousSelection):
         return self[0]._get_tie_chain()
 
     def _fuse_leaves_by_immediate_parent(self):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         result = []
         parts = self.leaves_grouped_by_immediate_parents
         for part in parts:

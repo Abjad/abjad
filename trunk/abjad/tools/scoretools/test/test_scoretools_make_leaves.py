@@ -6,7 +6,7 @@ def test_leaftools_make_leaves_01():
     r'''Leaves constructor can create chords, notes and rests simultaneously.
     '''
 
-    leaves = leaftools.make_leaves([1, (1,2,3), None], [(1, 4)])
+    leaves = scoretools.make_leaves([1, (1,2,3), None], [(1, 4)])
     assert isinstance(leaves[0], Note)
     assert isinstance(leaves[1], Chord)
     assert isinstance(leaves[2], Rest)
@@ -20,7 +20,7 @@ def test_leaftools_make_leaves_02():
     put together inside a tuplet.
     '''
 
-    leaves = leaftools.make_leaves([1, (1, 2, 3), None], [(2, 9), (1, 18), (1,5)])
+    leaves = scoretools.make_leaves([1, (1, 2, 3), None], [(2, 9), (1, 18), (1,5)])
     assert isinstance(leaves[0], Tuplet)
     assert isinstance(leaves[1], Tuplet)
     tuplet1 = leaves[0]
@@ -43,7 +43,7 @@ def test_leaftools_make_leaves_03():
     notes and rests simultaneously.
     '''
 
-    leaves = leaftools.make_leaves([1, (1,2,3), None], [(2, 9), (1,8), (1,5)])
+    leaves = scoretools.make_leaves([1, (1,2,3), None], [(2, 9), (1,8), (1,5)])
     assert isinstance(leaves[0], Tuplet)
     assert isinstance(leaves[1], Chord)
     assert isinstance(leaves[2], Tuplet)
@@ -61,7 +61,7 @@ def test_leaftools_make_leaves_04():
     r'''Leaves constructor can take an optional tie_rests=False keyword argument.
     '''
 
-    leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)], tie_rests=True)
+    leaves = scoretools.make_leaves([None], [(5, 32), (5, 32)], tie_rests=True)
     assert len(leaves) == 4
     for l in leaves:
       assert isinstance(l, Rest)
@@ -77,7 +77,7 @@ def test_leaftools_make_leaves_05():
     r'''Do not tie rests unless specified.
     '''
 
-    leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)])
+    leaves = scoretools.make_leaves([None], [(5, 32), (5, 32)])
     assert len(leaves) == 4
     assert all(len(inspect(x).get_tie_chain()) == 1 for x in leaves)
 
@@ -86,7 +86,7 @@ def test_leaftools_make_leaves_06():
     r'''Works with quarter-tone pitch numbers.
     '''
 
-    leaves = leaftools.make_leaves([12, 12.5, 13, 13.5], [(1, 4)])
+    leaves = scoretools.make_leaves([12, 12.5, 13, 13.5], [(1, 4)])
     assert [leaf.written_pitch.numbered_pitch._pitch_number for leaf in leaves] == \
         [12, 12.5, 13, 13.5]
 
@@ -95,7 +95,7 @@ def test_leaftools_make_leaves_07():
     r'''Works with pitch instances.
     '''
 
-    leaves = leaftools.make_leaves([pitchtools.NamedPitch(0)], [(1, 8), (1, 8), (1, 4)])
+    leaves = scoretools.make_leaves([pitchtools.NamedPitch(0)], [(1, 8), (1, 8), (1, 4)])
     assert [leaf.written_pitch.numbered_pitch._pitch_number for leaf in leaves] == [0, 0, 0]
 
 
@@ -103,7 +103,7 @@ def test_leaftools_make_leaves_08():
     r'''Chords work with pitch-class / octave strings.
     '''
 
-    leaves = leaftools.make_leaves([('C#5', 'Db5')], [Duration(1, 4), Duration(1, 8)])
+    leaves = scoretools.make_leaves([('C#5', 'Db5')], [Duration(1, 4), Duration(1, 8)])
     staff = Staff(leaves)
 
     r'''
@@ -128,7 +128,7 @@ def test_leaftools_make_leaves_09():
     r'''Notes work with pitch-class / octave strings.
     '''
 
-    leaves = leaftools.make_leaves(['C#5', 'Db5'], [Duration(1, 4)])
+    leaves = scoretools.make_leaves(['C#5', 'Db5'], [Duration(1, 4)])
     staff = Staff(leaves)
 
     r'''
@@ -153,7 +153,7 @@ def test_leaftools_make_leaves_10():
     r'''Works with space-delimited string of pitch names.
     '''
 
-    leaves = leaftools.make_leaves("C#5 Db5 c'' fs''", [Duration(1, 4)])
+    leaves = scoretools.make_leaves("C#5 Db5 c'' fs''", [Duration(1, 4)])
     staff = Staff(leaves)
 
     r'''

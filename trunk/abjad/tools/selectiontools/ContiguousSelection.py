@@ -56,13 +56,13 @@ class ContiguousSelection(Selection):
     ### PRIVATE METHODS ###
 
     def _attach_tie_spanner_to_leaf_pair(self):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools.scoretools import attach
         assert len(self) == 2
         left_leaf, right_leaf = self
-        assert isinstance(left_leaf, leaftools.Leaf), left_leaf
-        assert isinstance(right_leaf, leaftools.Leaf), right_leaf
+        assert isinstance(left_leaf, scoretools.Leaf), left_leaf
+        assert isinstance(right_leaf, scoretools.Leaf), right_leaf
         left_tie_chain = left_leaf._get_tie_chain()
         right_tie_chain = right_leaf._get_tie_chain()
         spanner_classes = (spannertools.TieSpanner,)
@@ -89,7 +89,7 @@ class ContiguousSelection(Selection):
     def _copy_and_include_enclosing_containers(self):
         from abjad.tools import scoretools
         from abjad.tools import iterationtools
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools.mutationtools import mutate
         # get governor
         parentage = self[0]._get_parentage(include_self=True)
@@ -130,11 +130,11 @@ class ContiguousSelection(Selection):
         return governor_copy
 
     def _fuse(self):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        if all(isinstance(x, leaftools.Leaf) for x in self):
+        if all(isinstance(x, scoretools.Leaf) for x in self):
             return self._fuse_leaves()
         elif all(isinstance(x, scoretools.Tuplet) for x in self):
             return self._fuse_tuplets()
@@ -144,10 +144,10 @@ class ContiguousSelection(Selection):
             raise Exception('can not fuse.')
 
     def _fuse_leaves(self):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        assert all(isinstance(x, leaftools.Leaf) for x in self)
+        assert all(isinstance(x, scoretools.Leaf) for x in self)
         leaves = self
         if len(leaves) <= 1:
             return leaves

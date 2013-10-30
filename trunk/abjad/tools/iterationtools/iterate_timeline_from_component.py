@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 
 
 def iterate_timeline_from_component(expr, component_class=None, reverse=False):
@@ -66,7 +66,7 @@ def iterate_timeline_from_component(expr, component_class=None, reverse=False):
     from abjad.tools import iterationtools
 
     if component_class is None:
-        component_class = leaftools.Leaf
+        component_class = scoretools.Leaf
 
     component_generator = iterationtools.iterate_timeline_in_expr(
         expr._get_parentage().root, 

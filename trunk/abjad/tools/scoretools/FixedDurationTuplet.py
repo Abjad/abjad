@@ -98,7 +98,7 @@ class FixedDurationTuplet(Tuplet):
     ### PRIVATE METHODS ###
 
     def _scale(self, multiplier):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         multiplier = durationtools.Multiplier(multiplier)
         # find new target duration
         old_target_duration = self.target_duration
@@ -109,7 +109,7 @@ class FixedDurationTuplet(Tuplet):
         # scale contents graphically
         if multiplier.is_assignable:
             for component in self[:]:
-                if isinstance(component, leaftools.Leaf):
+                if isinstance(component, scoretools.Leaf):
                     new_duration = multiplier * component.written_duration
                     component._set_duration(new_duration)
         self._fix()

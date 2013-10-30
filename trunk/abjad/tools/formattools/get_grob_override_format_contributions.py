@@ -6,7 +6,7 @@ def get_grob_override_format_contributions(component):
 
     Returns alphabetized list of LilyPond grob overrides.
     '''
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools.scoretools.Leaf import Leaf
 
     result = []
     if isinstance(component, Leaf):

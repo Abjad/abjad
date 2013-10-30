@@ -37,7 +37,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_04():
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools.scoretools.Leaf import Leaf
     signature = inspect(staff[-1][-1]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature, reverse=True)
     assert len(list(iter)) == 9
@@ -131,7 +131,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_11():
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools.scoretools.Leaf import Leaf
     signature = inspect(staff[0][0]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature)
     assert len(list(iter)) == 9

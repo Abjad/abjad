@@ -6,7 +6,7 @@ def test_labeltools_label_leaves_in_expr_with_pitch_numbers_01():
     r'''Works on notes, rests and chords.
     '''
 
-    leaves = leaftools.make_leaves([None, 12, (13, 14, 15), None], [(1, 4)])
+    leaves = scoretools.make_leaves([None, 12, (13, 14, 15), None], [(1, 4)])
     staff = Staff(leaves)
     labeltools.label_leaves_in_expr_with_pitch_numbers(staff)
 

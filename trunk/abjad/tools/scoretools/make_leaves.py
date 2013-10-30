@@ -27,7 +27,7 @@ def make_leaves(
 
             >>> pitches = [2, 4, 'F#5', 'G#5']
             >>> duration = Duration(1, 4)
-            >>> leaves = leaftools.make_leaves(pitches, duration)
+            >>> leaves = scoretools.make_leaves(pitches, duration)
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -49,7 +49,7 @@ def make_leaves(
 
             >>> pitches = [(0, 2, 4), ('F#5', 'G#5', 'A#5')]
             >>> duration = Duration(1, 2)
-            >>> leaves = leaftools.make_leaves(pitches, duration)
+            >>> leaves = scoretools.make_leaves(pitches, duration)
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -69,7 +69,7 @@ def make_leaves(
 
             >>> pitches = 4 * [None]
             >>> durations = [Duration(1, 4)]
-            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> leaves = scoretools.make_leaves(pitches, durations)
             >>> staff = scoretools.RhythmicStaff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -91,7 +91,7 @@ def make_leaves(
 
             >>> pitches = [(0, 2, 4), None, 'C#5', 'D#5']
             >>> durations = [Duration(1, 4)]
-            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> leaves = scoretools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -114,7 +114,7 @@ def make_leaves(
 
             >>> pitches = ['C5']
             >>> durations = 2 * [Duration(3, 8), Duration(1, 8)]
-            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> leaves = scoretools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -137,7 +137,7 @@ def make_leaves(
 
             >>> pitches = "c'' d'' e'' f''"
             >>> durations = [Duration(1, 4)]
-            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> leaves = scoretools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -160,7 +160,7 @@ def make_leaves(
 
             >>> pitches = ['D5']
             >>> durations = [Duration(1, 3), Duration(1, 3), Duration(1, 3)]
-            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> leaves = scoretools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
             >>> show(staff) # doctest: +SKIP
 
@@ -184,7 +184,7 @@ def make_leaves(
 
             >>> pitches = ['D#5']
             >>> durations = [Duration(13, 16)]
-            >>> leaves = leaftools.make_leaves(pitches, durations)
+            >>> leaves = scoretools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
             >>> time_signature = contexttools.TimeSignatureMark((13, 16))
             >>> time_signature = attach(time_signature, staff)
@@ -208,7 +208,7 @@ def make_leaves(
 
             >>> pitches = ['E5']
             >>> durations = [Duration(13, 16)]
-            >>> leaves = leaftools.make_leaves(
+            >>> leaves = scoretools.make_leaves(
             ...     pitches, 
             ...     durations,
             ...     decrease_durations_monotonically=False,
@@ -237,7 +237,7 @@ def make_leaves(
 
             >>> pitches = [None]
             >>> durations = [Duration(5, 8)]
-            >>> leaves = leaftools.make_leaves(
+            >>> leaves = scoretools.make_leaves(
             ...     pitches, 
             ...     durations, 
             ...     tie_rests=True,
@@ -265,7 +265,7 @@ def make_leaves(
 
             >>> pitches = "f' g'"
             >>> durations = [Duration(5, 8)]
-            >>> leaves = leaftools.make_leaves(
+            >>> leaves = scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     forbidden_written_duration=Duration(1, 2),
@@ -297,7 +297,7 @@ def make_leaves(
 
             >>> pitches = "f' g'"
             >>> durations = [Duration(5, 8)]
-            >>> leaves = leaftools.make_leaves(
+            >>> leaves = scoretools.make_leaves(
             ...     pitches,
             ...     durations,
             ...     forbidden_written_duration=Duration(1, 2),
@@ -403,14 +403,14 @@ def _make_leaf_on_pitch(
     tie_rests=False,
     ):
     from abjad.tools import scoretools
-    from abjad.tools import leaftools
+    from abjad.tools import scoretools
     from abjad.tools import scoretools
     from abjad.tools import scoretools
     note_types = (numbers.Number, str, pitchtools.NamedPitch)
     chord_types = (tuple, list)
     rest_types = (type(None),)
     if isinstance(pitch, note_types):
-        leaves = leaftools.make_tied_leaf(
+        leaves = scoretools.make_tied_leaf(
             scoretools.Note,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,
@@ -418,7 +418,7 @@ def _make_leaf_on_pitch(
             pitches=pitch,
             )
     elif isinstance(pitch, chord_types):
-        leaves = leaftools.make_tied_leaf(
+        leaves = scoretools.make_tied_leaf(
             scoretools.Chord,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,
@@ -426,7 +426,7 @@ def _make_leaf_on_pitch(
             pitches=pitch,
             )
     elif isinstance(pitch, rest_types):
-        leaves = leaftools.make_tied_leaf(
+        leaves = scoretools.make_tied_leaf(
             scoretools.Rest,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,

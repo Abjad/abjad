@@ -63,7 +63,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     Returns list of newly constructed notes.
     '''
-    from abjad.tools import leaftools
+    from abjad.tools import scoretools
     from abjad.tools import scoretools
     from abjad.tools import selectiontools
     from abjad.tools import scoretools
@@ -98,7 +98,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
         assert len(pitches) == len(durations)
         result = []
         for pitch, duration in zip(pitches, durations):
-            result.extend(leaftools.make_tied_leaf(
+            result.extend(scoretools.make_tied_leaf(
                 scoretools.Note,
                 duration,
                 pitches=pitch,

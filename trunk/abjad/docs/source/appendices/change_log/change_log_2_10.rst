@@ -70,11 +70,11 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    leaftools.iterate_leaf_pairs_forward_in_expr()
-    leaftools.iterate_leaves_forward_in_expr()
-    leaftools.iterate_leaves_backward_in_expr()
-    leaftools.iterate_notes_and_chords_forward_in_expr()
-    leaftools.iterate_notes_and_chords_backward_in_expr()
+    scoretools.iterate_leaf_pairs_forward_in_expr()
+    scoretools.iterate_leaves_forward_in_expr()
+    scoretools.iterate_leaves_backward_in_expr()
+    scoretools.iterate_notes_and_chords_forward_in_expr()
+    scoretools.iterate_notes_and_chords_backward_in_expr()
 
   ::
 
@@ -177,24 +177,24 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
-    leaftools.color_leaf()
-    leaftools.color_leaves_in_expr()
-    leaftools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
-    leaftools.label_leaves_in_expr_with_leaf_depth()
-    leaftools.label_leaves_in_expr_with_leaf_durations()
-    leaftools.label_leaves_in_expr_with_leaf_indices()
-    leaftools.label_leaves_in_expr_with_leaf_numbers()
-    leaftools.label_leaves_in_expr_with_melodic_chromatic_interval_classes()
-    leaftools.label_leaves_in_expr_with_melodic_chromatic_intervals()
-    leaftools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes()
-    leaftools.label_leaves_in_expr_with_melodic_counterpoint_intervals()
-    leaftools.label_leaves_in_expr_with_melodic_diatonic_interval_classes()
-    leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals()
-    leaftools.label_leaves_in_expr_with_pitch_class_numbers()
-    leaftools.label_leaves_in_expr_with_pitch_numbers()
-    leaftools.label_leaves_in_expr_with_leaf_duration()
-    leaftools.label_leaves_in_expr_with_tuplet_depth()
-    leaftools.label_leaves_in_expr_with_written_leaf_duration()
+    scoretools.color_leaf()
+    scoretools.color_leaves_in_expr()
+    scoretools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
+    scoretools.label_leaves_in_expr_with_leaf_depth()
+    scoretools.label_leaves_in_expr_with_leaf_durations()
+    scoretools.label_leaves_in_expr_with_leaf_indices()
+    scoretools.label_leaves_in_expr_with_leaf_numbers()
+    scoretools.label_leaves_in_expr_with_melodic_chromatic_interval_classes()
+    scoretools.label_leaves_in_expr_with_melodic_chromatic_intervals()
+    scoretools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes()
+    scoretools.label_leaves_in_expr_with_melodic_counterpoint_intervals()
+    scoretools.label_leaves_in_expr_with_melodic_diatonic_interval_classes()
+    scoretools.label_leaves_in_expr_with_melodic_diatonic_intervals()
+    scoretools.label_leaves_in_expr_with_pitch_class_numbers()
+    scoretools.label_leaves_in_expr_with_pitch_numbers()
+    scoretools.label_leaves_in_expr_with_leaf_duration()
+    scoretools.label_leaves_in_expr_with_tuplet_depth()
+    scoretools.label_leaves_in_expr_with_written_leaf_duration()
 
   ::
 
@@ -280,14 +280,14 @@ All labeling functions are now housed in the new ``labeltools`` package:
 Renamed all functions that contained ``big_endian``::
 
     durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs()
-    leaftools.fuse_leaves_big_endian()
-    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian()
+    scoretools.fuse_leaves_big_endian()
+    scoretools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian()
 
 ::
 
     durationtools.duration_token_to_assignable_duration_pairs()
-    leaftools.fuse_leaves()
-    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()
+    scoretools.fuse_leaves()
+    scoretools.fuse_leaves_in_tie_chain_by_immediate_parent()
 
 Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
@@ -325,15 +325,15 @@ Renamed ``prolated_duration`` to ``offset`` in some functions::
 
     scoretools.split_component_at_prolated_duration()
     scoretools.split_components_by_prolated_durations()
-    leaftools.split_leaf_at_prolated_duration()
-    leaftools.split_leaf_at_prolated_duration_and_rest_right_half()
+    scoretools.split_leaf_at_prolated_duration()
+    scoretools.split_leaf_at_prolated_duration_and_rest_right_half()
 
 ::
 
     scoretools.split_component_by_duration()
     scoretools.split_components_by_offsets()
-    leaftools.split_leaf_by_duration()
-    leaftools.split_leaf_by_duration_and_rest_right_half()
+    scoretools.split_leaf_by_duration()
+    scoretools.split_leaf_by_duration_and_rest_right_half()
 
 Renamed all functions that contained ``as_string``::
 
@@ -519,25 +519,25 @@ Changes to the ``instrumenttools`` package:
 
     instrumenttools.transpose_from_written_pitch_to_sounding_pitch()
 
-Chnages to the ``leaftools`` package:
+Chnages to the ``scoretools`` package:
 
 - Renamed::
 
-    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes()
-    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_rests()
-    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_notes()
-    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_rests()
+    scoretools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes()
+    scoretools.fuse_leaves_in_container_once_by_counts_into_big_endian_rests()
+    scoretools.fuse_leaves_in_container_once_by_counts_into_little_endian_notes()
+    scoretools.fuse_leaves_in_container_once_by_counts_into_little_endian_rests()
 
   ::
 
-    leaftools.fuse_leaves_in_container_once_by_counts(big_endian=[True, False], klass=None)
+    scoretools.fuse_leaves_in_container_once_by_counts(big_endian=[True, False], klass=None)
 
 - Renamed::
 
-    leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration()
-    leaftools.leaf_to_augmented_tuplet_with_proportions()
-    leaftools.leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration()
-    leaftools.leaf_to_diminished_tuplet_with_proportions()
+    scoretools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration()
+    scoretools.leaf_to_augmented_tuplet_with_proportions()
+    scoretools.leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration()
+    scoretools.leaf_to_diminished_tuplet_with_proportions()
 
   ::
 
@@ -546,21 +546,21 @@ Chnages to the ``leaftools`` package:
 
 - Renamed::
 
-    leaftools.split_leaf_by_duration_and_rest_right_half()
+    scoretools.split_leaf_by_duration_and_rest_right_half()
 
   ::
 
-    leaftools.rest_leaf_at_offset()
+    scoretools.rest_leaf_at_offset()
 
 - Renamed::
 
-    leaftools.repeat_leaf_and_extend_spanners()
-    leaftools.repeat_leaves_in_expr_and_extend_spanners()
+    scoretools.repeat_leaf_and_extend_spanners()
+    scoretools.repeat_leaves_in_expr_and_extend_spanners()
 
   ::
 
-    leaftools.repeat_leaf()
-    leaftools.repeat_leaves_in_expr()
+    scoretools.repeat_leaf()
+    scoretools.repeat_leaves_in_expr()
 
 Changes to the ``mathtools`` package.
 

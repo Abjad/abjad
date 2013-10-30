@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import containertools
-from abjad.tools import leaftools
 
 
 def get_previous_measure_from_component(component):
@@ -53,7 +52,7 @@ def get_previous_measure_from_component(component):
     from abjad.tools import iterationtools
     from abjad.tools import scoretools
 
-    if isinstance(component, leaftools.Leaf):
+    if isinstance(component, scoretools.Leaf):
         for parent in component._get_parentage(include_self=False):
             if isinstance(parent, scoretools.Measure):
                 return parent

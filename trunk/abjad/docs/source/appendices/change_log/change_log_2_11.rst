@@ -103,7 +103,7 @@ Use ``NonreducedFraction.multiply_with_numerator_preservation()`` instead.
 
 Removed ``durationtools.duration_token_to_assignable_duration_pairs()``.
 Removed ``durationtools.duration_token_to_assignable_rationals()``.
-Functions are no longer supported. Use ``leaftools.make_leaves()`` 
+Functions are no longer supported. Use ``scoretools.make_leaves()`` 
 or ``scoretools.make_notes()`` instead.
 
 Removed ``durationtools.duration_tokens_to_duration_pairs()``.
@@ -182,8 +182,8 @@ Removed unused ``scoretools.all_are_components_in_same_score()`` function.
 
 Removed unused ``scoretools.all_are_contiguous_components_in_same_score()`` function.
 
-Renamed ``leaftools.make_leaves_from_note_value_signal()``.
-The new name is ``leaftools.make_leaves_from_talea()``.
+Renamed ``scoretools.make_leaves_from_note_value_signal()``.
+The new name is ``scoretools.make_leaves_from_talea()``.
 
 Removed ``TimeSignatureMark.multiplier`` property.
 Use ``TimeSignatureMark.implied_prolation`` instead.
@@ -255,17 +255,17 @@ The new name is ``labeltools.label_leaves_in_expr_with_leaf_duration()``.
 Renamed ``labeltools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()``.
 The new name is ``labeltools.label_tie_chains_in_expr_with_tie_chain_duration()``.
 
-Renamed ``leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang()``.
-The new name is ``leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang()``.
+Renamed ``scoretools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang()``.
+The new name is ``scoretools.fuse_tied_leaves_in_components_once_by_durations_without_overhang()``.
 
-Renamed ``leaftools.get_leaf_in_expr_with_maximum_prolated_duration()``.
-The new name is ``leaftools.get_leaf_in_expr_with_maximum_duration()``.
+Renamed ``scoretools.get_leaf_in_expr_with_maximum_prolated_duration()``.
+The new name is ``scoretools.get_leaf_in_expr_with_maximum_duration()``.
 
-Renamed ``leaftools.get_leaf_in_expr_with_minimum_prolated_duration()``.
-The new name is ``leaftools.get_leaf_in_expr_with_minimum_duration()``.
+Renamed ``scoretools.get_leaf_in_expr_with_minimum_prolated_duration()``.
+The new name is ``scoretools.get_leaf_in_expr_with_minimum_duration()``.
 
-Rename ``leaftools.list_prolated_durations_of_leaves_in_expr()``.
-The new name is ``leaftools.list_durations_of_leaves_in_expr()``.
+Rename ``scoretools.list_prolated_durations_of_leaves_in_expr()``.
+The new name is ``scoretools.list_durations_of_leaves_in_expr()``.
 
 Renamed ``VerticalMoment.prolated_offset`` to ``VerticalMoment.offset``.
 
@@ -323,8 +323,8 @@ The functions are these::
 
 Renamed ``tied=True`` keyword in four functions::
 
-    leaftools.make_leaves()
-    leaftools.make_tied_leaf()
+    scoretools.make_leaves()
+    scoretools.make_tied_leaf()
     scoretools.make_tied_rest()
     scoretools.make_rests()
 

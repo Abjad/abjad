@@ -1296,7 +1296,7 @@ class ScoreMutationAgent(object):
         Returns list of selections.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         # check input
         components = self._client
@@ -1368,7 +1368,7 @@ class ScoreMutationAgent(object):
             elif next_split_point < candidate_shard_duration:
                 local_split_duration = \
                     next_split_point - current_shard_duration
-                if isinstance(current_component, leaftools.Leaf):
+                if isinstance(current_component, scoretools.Leaf):
                     leaf_split_durations = [local_split_duration]
                     current_duration = current_component._get_duration()
                     additional_required_duration = \

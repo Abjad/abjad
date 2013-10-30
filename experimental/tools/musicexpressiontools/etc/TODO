@@ -12,7 +12,7 @@
 
 3.  Integrate MetricalHierarhcy in BeatSelectExpression.
 
-4.  Add use_metrical_hierarcy=False flag to leaftools.make_leaves().
+4.  Add use_metrical_hierarcy=False flag to scoretools.make_leaves().
     Integrate into rhythmmakertools.NoteRhythmMaker.
 
 5.  Implement a -1 / +1 talea on TwoStageHairpinHandler to determine

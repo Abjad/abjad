@@ -4,7 +4,7 @@ from abjad import *
 
 def test_leaftools_make_leaves_from_talea_01():
 
-    leaves = leaftools.make_leaves_from_talea([3, -3, 5, -5], 8)
+    leaves = scoretools.make_leaves_from_talea([3, -3, 5, -5], 8)
     staff = Staff(leaves)
 
     r'''

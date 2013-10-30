@@ -94,8 +94,8 @@ class GraceContainer(Container):
     ### SPECIAL METHODS ###
 
     def __call__(self, arg):
-        from abjad.tools import leaftools
-        if not isinstance(arg, leaftools.Leaf):
+        from abjad.tools import scoretools
+        if not isinstance(arg, scoretools.Leaf):
             message = 'object to which grace container attaches'
             message += ' must be leaf: "%s".'
             message = message.format(arg)

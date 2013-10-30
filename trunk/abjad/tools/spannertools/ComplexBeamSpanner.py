@@ -91,7 +91,7 @@ class ComplexBeamSpanner(BeamSpanner):
     def _format_right_of_leaf(self, leaf):
         r'''Spanner format contribution to output right of leaf.
         '''
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         result = []
         #if leaf.beam.beamable:
         if self.is_beamable_component(leaf):
@@ -124,7 +124,7 @@ class ComplexBeamSpanner(BeamSpanner):
     def _get_left_right_for_exterior_leaf(self, leaf):
         r'''Get left and right flag counts for exterior leaf in spanner.
         '''
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         # lone
         if self._is_my_only_leaf(leaf):
             left, right = self._get_left_right_for_lone_leaf(leaf)
@@ -146,7 +146,7 @@ class ComplexBeamSpanner(BeamSpanner):
         Interior leaves may be surrounded by unbeamable leaves.
         Four cases total for beamability of surrounding leaves.
         '''
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         previous_leaf = leaf._get_leaf(-1)
         previous_written = previous_leaf.written_duration
         current_written = leaf.written_duration

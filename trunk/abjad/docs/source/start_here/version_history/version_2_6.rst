@@ -206,7 +206,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     durationtools.all_are_duration_tokens()
     durationtools.all_are_durations()
     gracetools.all_are_grace_containers()
-    leaftools.all_are_leaves()
+    scoretools.all_are_leaves()
     markuptools.all_are_markup()
     scoretools.all_are_measures()
     scoretools.all_are_notes()
@@ -235,7 +235,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     >>> pitchtools.PitchRange('A0', 'C8')
     PitchRange('[A0, C8]')
 
-* Extended ``leaftools.is_bar_line_crossing_leaf()`` to work when no explicit time signature mark is found.
+* Extended ``scoretools.is_bar_line_crossing_leaf()`` to work when no explicit time signature mark is found.
 * Extended ``Markup`` to be able to function as a top-level ``LilyPondFile`` element.
 * Extended instruments with ``is_primary`` and ``is_secondary`` attributes.
 * Extended instruments with ``instrument_name`` and ``instrument_name_markup`` attributes.

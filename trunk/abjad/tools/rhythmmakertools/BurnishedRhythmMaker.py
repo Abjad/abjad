@@ -5,7 +5,7 @@ import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
-from abjad.tools import leaftools
+from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import selectiontools
@@ -224,7 +224,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         leaf_lists = []
         for map_division in numeric_map:
-            leaf_list = leaftools.make_leaves_from_talea(
+            leaf_list = scoretools.make_leaves_from_talea(
                 map_division, talea_denominator,
                 decrease_durations_monotonically=self.decrease_durations_monotonically,
                 tie_rests=self.tie_rests)

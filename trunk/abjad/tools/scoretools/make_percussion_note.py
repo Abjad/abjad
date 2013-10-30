@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import leaftools
 
 
 def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
@@ -87,18 +86,18 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     # make note and rest
     if max_note_duration < total_duration:
         rest_duration = total_duration - max_note_duration
-        rests = leaftools.make_tied_leaf(
+        rests = scoretools.make_tied_leaf(
             scoretools.Rest,
             rest_duration,
             pitches=None,
             )
-        notes = leaftools.make_tied_leaf(
+        notes = scoretools.make_tied_leaf(
             scoretools.Note,
             max_note_duration,
             pitches=pitch,
             )
     else:
-        notes = leaftools.make_tied_leaf(
+        notes = scoretools.make_tied_leaf(
             scoretools.Note,
             total_duration,
             pitches=pitch,

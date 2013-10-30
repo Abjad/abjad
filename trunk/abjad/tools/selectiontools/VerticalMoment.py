@@ -214,10 +214,10 @@ class VerticalMoment(SimultaneousSelection):
         r'''Tuple of zero or more leaves
         at vertical moment.
         '''
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         result = []
         for component in self.components:
-            if isinstance(component, leaftools.Leaf):
+            if isinstance(component, scoretools.Leaf):
                 result.append(component)
         result = tuple(result)
         return result
@@ -240,14 +240,14 @@ class VerticalMoment(SimultaneousSelection):
         r'''Reference to next vertical moment forward in time.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
             if leaf._get_timespan().stop_offset < \
                 candidate_shortest_leaf._get_timespan().stop_offset:
                 candidate_shortest_leaf = leaf
         next_leaf = candidate_shortest_leaf._get_in_my_logical_voice(
-            1, component_class=leaftools.Leaf)
+            1, component_class=scoretools.Leaf)
         next_vertical_moment = next_leaf._get_vertical_moment()
         return next_vertical_moment
 
@@ -288,9 +288,9 @@ class VerticalMoment(SimultaneousSelection):
         r'''Tuple of leaves in vertical moment
         starting before vertical moment, ordered by score index.
         '''
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         result = [x for x in self.overlap_components 
-            if isinstance(x, leaftools.Leaf)]
+            if isinstance(x, scoretools.Leaf)]
         result = tuple(result)
         return result
 
@@ -321,7 +321,7 @@ class VerticalMoment(SimultaneousSelection):
         r'''Reference to prev vertical moment backward in time.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         if self.offset == 0:
             raise IndexError
         most_recent_start_offset = durationtools.Offset(0)
@@ -339,7 +339,7 @@ class VerticalMoment(SimultaneousSelection):
                 #print 'found leaf starting on this moment ...'
                 try:
                     previous_leaf = leaf._get_in_my_logical_voice(
-                        -1, component_class=leaftools.Leaf)
+                        -1, component_class=scoretools.Leaf)
                     start = previous_leaf._get_timespan().start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:
@@ -371,9 +371,9 @@ class VerticalMoment(SimultaneousSelection):
         r'''Tuple of leaves in vertical moment
         starting with vertical moment, ordered by score index.
         '''
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         result = [x for x in self.start_components 
-            if isinstance(x, leaftools.Leaf)]
+            if isinstance(x, scoretools.Leaf)]
         result = tuple(result)
         return result
 

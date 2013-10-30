@@ -74,7 +74,7 @@ meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
 meters = [Fraction(*x) for x in meters]
 tmp = scoretools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners
 tmp(staff.leaves, meters, tie_after=True)
-leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(staff.leaves, meters)
+scoretools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(staff.leaves, meters)
 </abjad>
 
 <abjad>

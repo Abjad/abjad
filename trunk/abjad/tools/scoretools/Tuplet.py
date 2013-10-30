@@ -198,7 +198,7 @@ class Tuplet(Container):
 
     # TODO: hoist to Tuplet and make work for all tuplet instances
     def _fix(self):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         if not isinstance(self, scoretools.FixedDurationTuplet):
             return
@@ -207,7 +207,7 @@ class Tuplet(Container):
         leaf_multiplier = durationtools.Multiplier(2) ** integer_exponent
         # scale leaves in tuplet by power of two
         for component in self:
-            if isinstance(component, leaftools.Leaf):
+            if isinstance(component, scoretools.Leaf):
                 old_written_duration = component.written_duration
                 new_written_duration = leaf_multiplier * old_written_duration
                 component._set_duration(new_written_duration)
@@ -301,10 +301,10 @@ class Tuplet(Container):
         return self._format_slot_contributions_with_indent(result)
 
     def _scale(self, multiplier):
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         multiplier = durationtools.Multiplier(multiplier)
         for component in self[:]:
-            if isinstance(component, leaftools.Leaf):
+            if isinstance(component, scoretools.Leaf):
                 new_duration = multiplier * component.written_duration
                 component._set_duration(new_duration)
         self._fix()
@@ -1092,7 +1092,7 @@ class Tuplet(Container):
 
         Returns fixed-duration tuplet.
         '''
-        from abjad.tools import leaftools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
@@ -1129,7 +1129,7 @@ class Tuplet(Container):
                 for note_duration in note_durations]
             leaf_durations = [abs(note_duration)
                 for note_duration in note_durations]
-            notes = leaftools.make_leaves(
+            notes = scoretools.make_leaves(
                 pitches,
                 leaf_durations,
                 decrease_durations_monotonically=decrease_durations_monotonically,
