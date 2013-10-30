@@ -92,7 +92,7 @@ class ImportManager(object):
                             name = f.__name__
                         namespace[name] = f
             elif os.path.isdir(os.path.join(path, element)):
-                if not element in ('.svn', 'test', '__pycache__'):
+                if not element in ('.svn', '.git', 'test', '__pycache__'):
                     initializer_file_path = os.path.join(
                         path, 
                         element, 

@@ -44,6 +44,7 @@ class ReplaceInFilesScript(DirectoryScript):
     def skipped_directories(self):
         return [
             '.svn',
+            '.git',
             'build'
         ]
 

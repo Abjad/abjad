@@ -1,6 +1,6 @@
 current_directory=`pwd`
 cd $ABJADROOT
 ctags --python-kinds=-iv \
-    --exclude=*.pyc --exclude=.svn --exclude=docs \
+    --exclude=*.pyc --exclude=.svn --exclude=docs --exclude=.git \
     --recurse=yes --totals=yes
 cd $current_directory

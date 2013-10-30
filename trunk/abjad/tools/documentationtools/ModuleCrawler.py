@@ -23,7 +23,12 @@ class ModuleCrawler(AbjadObject):
 
     def __init__(self, 
         code_root='.',
-        ignored_directory_names=('test', '.svn', '__pycache__'),
+        ignored_directory_names=(
+            '__pycache__',
+            '.git',
+            '.svn',
+            'test', 
+            ),
         root_package_name=None,
         visit_private_modules=False,
         ):
