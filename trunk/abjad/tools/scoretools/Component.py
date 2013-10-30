@@ -509,7 +509,7 @@ class Component(AbjadObject):
     def _remove_and_shrink_durated_parent_containers(self):
         from abjad.tools import contexttools
         from abjad.tools import scoretools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         from abjad.tools.scoretools import attach
         prolated_leaf_duration = self._get_duration()
         parentage = self._get_parentage(include_self=False)
@@ -518,7 +518,7 @@ class Component(AbjadObject):
         parent = self._parent
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
-            if isinstance(parent, tuplettools.FixedDurationTuplet):
+            if isinstance(parent, scoretools.FixedDurationTuplet):
                 candidate_new_parent_dur = parent.target_duration - current_prolation * self.written_duration
                 if durationtools.Duration(0) < candidate_new_parent_dur:
                     parent.target_duration = candidate_new_parent_dur
@@ -539,12 +539,12 @@ class Component(AbjadObject):
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation
                 for x in parent:
-                    if isinstance(x, tuplettools.FixedDurationTuplet):
+                    if isinstance(x, scoretools.FixedDurationTuplet):
                         x.target_duration *= adjusted_prolation
                     else:
                         if adjusted_prolation != 1:
                             new_target = x._preprolated_duration * adjusted_prolation
-                            tuplettools.FixedDurationTuplet(new_target, [x])
+                            scoretools.FixedDurationTuplet(new_target, [x])
             parent = parent._parent
             i += 1
         parentage = self._get_parentage(include_self=False)

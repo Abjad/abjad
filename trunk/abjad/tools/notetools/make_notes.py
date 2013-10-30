@@ -66,7 +66,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     from abjad.tools import leaftools
     from abjad.tools import notetools
     from abjad.tools import selectiontools
-    from abjad.tools import tuplettools
+    from abjad.tools import scoretools
 
     if isinstance(pitches, str):
         pitches = pitches.split()
@@ -126,7 +126,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
             duration = [ratio * durationtools.Duration(d) for d in duration]
             ns = _make_unprolated_notes(ps, duration,
                 decrease_durations_monotonically=decrease_durations_monotonically)
-            t = tuplettools.Tuplet(multiplier, ns)
+            t = scoretools.Tuplet(multiplier, ns)
             result.append(t)
 
     # return result

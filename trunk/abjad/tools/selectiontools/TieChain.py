@@ -30,7 +30,7 @@ class TieChain(ContiguousSelection):
         from abjad.tools import scoretools
         from abjad.tools import notetools
         from abjad.tools import spannertools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         from abjad.tools.scoretools import attach
         new_written_duration = durationtools.Duration(new_written_duration)
         if new_written_duration.is_assignable:
@@ -73,14 +73,14 @@ class TieChain(ContiguousSelection):
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
             durations = notetools.make_notes(0, new_written_duration)
-            assert isinstance(durations[0], tuplettools.Tuplet)
+            assert isinstance(durations[0], scoretools.Tuplet)
             fmtuplet = durations[0]
             new_chain_written = \
                 fmtuplet[0]._get_tie_chain()._preprolated_duration
             self._add_or_remove_notes_to_achieve_written_duration(
                 new_chain_written)
             multiplier = fmtuplet.multiplier
-            tuplettools.Tuplet(multiplier, self.leaves)
+            scoretools.Tuplet(multiplier, self.leaves)
         return self[0]._get_tie_chain()
 
     def _fuse_leaves_by_immediate_parent(self):
@@ -319,7 +319,7 @@ class TieChain(ContiguousSelection):
         from abjad.tools import mutationtools
         from abjad.tools import notetools
         from abjad.tools import spannertools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
 
         # coerce input
         proportions = mathtools.Ratio(proportions)
@@ -359,7 +359,7 @@ class TieChain(ContiguousSelection):
             notes = notetools.make_notes(0, note_durations)
 
         # make tuplet
-        tuplet = tuplettools.FixedDurationTuplet(target_duration, notes)
+        tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
 
         # replace tie chain with tuplet
         mutationtools.mutate(self).replace(tuplet)

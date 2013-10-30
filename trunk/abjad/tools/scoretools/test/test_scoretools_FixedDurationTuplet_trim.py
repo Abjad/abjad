@@ -3,9 +3,9 @@ import py.test
 from abjad import *
 
 
-def test_tuplettools_FixedDurationTuplet_trim_01():
+def test_scoretools_FixedDurationTuplet_trim_01():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(0)
 
     assert testtools.compare(
@@ -22,9 +22,9 @@ def test_tuplettools_FixedDurationTuplet_trim_01():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_FixedDurationTuplet_trim_02():
+def test_scoretools_FixedDurationTuplet_trim_02():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(1)
 
     assert testtools.compare(
@@ -41,15 +41,15 @@ def test_tuplettools_FixedDurationTuplet_trim_02():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_FixedDurationTuplet_trim_03():
+def test_scoretools_FixedDurationTuplet_trim_03():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     assert py.test.raises(Exception, 'tuplet.trim(99)')
 
 
-def test_tuplettools_FixedDurationTuplet_trim_04():
+def test_scoretools_FixedDurationTuplet_trim_04():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(0, 0)
 
     assert testtools.compare(
@@ -67,9 +67,9 @@ def test_tuplettools_FixedDurationTuplet_trim_04():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_FixedDurationTuplet_trim_05():
+def test_scoretools_FixedDurationTuplet_trim_05():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(0, 1)
 
     assert testtools.compare(
@@ -86,9 +86,9 @@ def test_tuplettools_FixedDurationTuplet_trim_05():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_FixedDurationTuplet_trim_06():
+def test_scoretools_FixedDurationTuplet_trim_06():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(1, 2)
 
     assert testtools.compare(
@@ -105,11 +105,11 @@ def test_tuplettools_FixedDurationTuplet_trim_06():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_FixedDurationTuplet_trim_07():
+def test_scoretools_FixedDurationTuplet_trim_07():
     r'''Trimming all leaves raises an exception.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(1, 2)
 
     py.test.raises(Exception, 'tuplet.trim(0, 99)')

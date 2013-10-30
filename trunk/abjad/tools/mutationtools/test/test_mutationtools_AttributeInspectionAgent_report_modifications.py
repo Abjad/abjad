@@ -51,7 +51,7 @@ def test_mutationtools_AttributeInspectionAgent_report_modifications_01():
 
 def test_mutationtools_AttributeInspectionAgent_report_modifications_02():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     comment = marktools.LilyPondComment('Example tuplet', 'before')
     attach(comment, tuplet)
     tuplet.override.note_head.color = 'red'

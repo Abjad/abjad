@@ -132,11 +132,11 @@ class ContiguousSelection(Selection):
     def _fuse(self):
         from abjad.tools import leaftools
         from abjad.tools import scoretools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         if all(isinstance(x, leaftools.Leaf) for x in self):
             return self._fuse_leaves()
-        elif all(isinstance(x, tuplettools.Tuplet) for x in self):
+        elif all(isinstance(x, scoretools.Tuplet) for x in self):
             return self._fuse_tuplets()
         elif all(isinstance(x, scoretools.Measure) for x in self):
             return self._fuse_measures()
@@ -205,9 +205,9 @@ class ContiguousSelection(Selection):
 
     def _fuse_tuplets(self):
         from abjad.tools import containertools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_parent(
-            self, component_classes=(tuplettools.Tuplet,))
+            self, component_classes=(scoretools.Tuplet,))
         if len(self) == 0:
             return None
         first = self[0]
@@ -218,14 +218,14 @@ class ContiguousSelection(Selection):
                 raise TupletFuseError('tuplets must carry same multiplier.')
             if type(tuplet) != first_type:
                 raise TupletFuseError('tuplets must be same type.')
-        if isinstance(first, tuplettools.FixedDurationTuplet):
+        if isinstance(first, scoretools.FixedDurationTuplet):
             total_contents_duration = sum(
                 [x._contents_duration for x in self])
             new_target_duration = first_multiplier * total_contents_duration
-            new_tuplet = tuplettools.FixedDurationTuplet(
+            new_tuplet = scoretools.FixedDurationTuplet(
                 new_target_duration, [])
-        elif isinstance(first, tuplettools.Tuplet):
-            new_tuplet = tuplettools.Tuplet(first_multiplier, [])
+        elif isinstance(first, scoretools.Tuplet):
+            new_tuplet = scoretools.Tuplet(first_multiplier, [])
         else:
             raise TypeError('unknown tuplet type.')
         wrapped = False

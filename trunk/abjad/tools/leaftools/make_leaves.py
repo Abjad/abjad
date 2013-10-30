@@ -326,7 +326,7 @@ def make_leaves(
     from abjad.tools import scoretools
     from abjad.tools import notetools
     from abjad.tools import scoretools
-    from abjad.tools import tuplettools
+    from abjad.tools import scoretools
 
     if isinstance(pitches, str):
         pitches = pitches.split()
@@ -388,7 +388,7 @@ def make_leaves(
                     decrease_durations_monotonically=decrease_durations_monotonically,
                     )
                 tuplet_leaves.extend(leaves)
-            tuplet = tuplettools.Tuplet(multiplier, tuplet_leaves)
+            tuplet = scoretools.Tuplet(multiplier, tuplet_leaves)
             result.append(tuplet)
 
     result = selectiontools.Selection(result)

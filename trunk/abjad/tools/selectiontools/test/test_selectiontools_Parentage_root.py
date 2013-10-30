@@ -4,7 +4,7 @@ from abjad import *
 
 def test_selectiontools_Parentage_root_01():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     staff = Staff([tuplet])
 
     assert inspect(staff).get_parentage().root is staff

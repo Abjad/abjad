@@ -7,7 +7,7 @@ from abjad.tools import marktools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
-from abjad.tools import tuplettools
+from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.scoretools import attach
 
@@ -150,8 +150,8 @@ class GuileProxy(AbjadObject):
         n, d  = fraction.numerator, fraction.denominator
         if not isinstance(music, contexttools.Context) and \
             not isinstance(music, leaftools.Leaf):
-            return tuplettools.Tuplet((n, d), music[:])
-        return tuplettools.Tuplet((n, d), [music])
+            return scoretools.Tuplet((n, d), music[:])
+        return scoretools.Tuplet((n, d), [music])
 
     def transpose(self, from_pitch, to_pitch, music):
         from abjad.tools import lilypondparsertools

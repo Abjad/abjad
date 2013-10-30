@@ -322,7 +322,7 @@ class Parentage(SimultaneousSelection):
 
         Returns nonnegative integer.
         '''
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         from abjad.tools import scoretools
         result = 0
         # should probably interate up to only first simultaneous container 
@@ -330,7 +330,7 @@ class Parentage(SimultaneousSelection):
         # note that we probably need a named idea for 'parentage 
         # up to first simultaneous container'.
         for parent in self[1:]:
-            if isinstance(parent, tuplettools.Tuplet):
+            if isinstance(parent, scoretools.Tuplet):
                 result += 1
         return result
 

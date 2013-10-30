@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_01():
+def test_scoretools_Tuplet_from_duration_and_ratio_01():
 
     duration = Duration(3, 16)
 
@@ -101,7 +101,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_01():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_02():
+def test_scoretools_Tuplet_from_duration_and_ratio_02():
 
     duration = Duration(3, 16)
 
@@ -200,7 +200,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_02():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_03():
+def test_scoretools_Tuplet_from_duration_and_ratio_03():
     r'''Interpret negative proportions as rests.
     '''
 
@@ -228,7 +228,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_03():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_04():
+def test_scoretools_Tuplet_from_duration_and_ratio_04():
     r'''Reduce proportions relative to each other.
     '''
 
@@ -267,7 +267,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_04():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_05():
+def test_scoretools_Tuplet_from_duration_and_ratio_05():
 
     duration = Duration(3, 16)
 
@@ -363,7 +363,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_05():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_06():
+def test_scoretools_Tuplet_from_duration_and_ratio_06():
 
     duration = Duration(3, 16)
 
@@ -461,7 +461,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_06():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_07():
+def test_scoretools_Tuplet_from_duration_and_ratio_07():
     r'''Reduce proportions relative to each other.
     '''
 
@@ -499,7 +499,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_07():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_08():
+def test_scoretools_Tuplet_from_duration_and_ratio_08():
 
     duration = Duration(3, 16)
 
@@ -598,7 +598,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_08():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_09():
+def test_scoretools_Tuplet_from_duration_and_ratio_09():
 
     duration = Duration(3, 16)
 
@@ -697,7 +697,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_09():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_10():
+def test_scoretools_Tuplet_from_duration_and_ratio_10():
     r'''Interpret negative proportions as rests.
     '''
 
@@ -725,7 +725,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_10():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_11():
+def test_scoretools_Tuplet_from_duration_and_ratio_11():
     r'''Reduce propotions relative to each other.
     '''
 
@@ -759,7 +759,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_11():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_12():
+def test_scoretools_Tuplet_from_duration_and_ratio_12():
 
     duration = Duration(3, 16)
 
@@ -854,7 +854,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_12():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_13():
+def test_scoretools_Tuplet_from_duration_and_ratio_13():
 
     duration = Duration(3, 16)
 
@@ -951,7 +951,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_13():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_14():
+def test_scoretools_Tuplet_from_duration_and_ratio_14():
     r'''Reduce proportions relative to each other.
     '''
 
@@ -990,7 +990,7 @@ def test_tuplettools_Tuplet_from_duration_and_ratio_14():
         )
 
 
-def test_tuplettools_Tuplet_from_duration_and_ratio_15():
+def test_scoretools_Tuplet_from_duration_and_ratio_15():
     r'''Coerce duration.
     '''
 

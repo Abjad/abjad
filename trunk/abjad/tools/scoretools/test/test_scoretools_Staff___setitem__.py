@@ -8,14 +8,14 @@ def test_scoretools_Staff___setitem___01():
             Rest((1, 4)),
             Chord([2, 3, 4], (1, 4)),
             scoretools.Skip((1, 4)),
-            tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
+            scoretools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
     assert isinstance(staff[0], Note)
     assert isinstance(staff[1], Rest)
     assert isinstance(staff[2], Chord)
     assert isinstance(staff[3], scoretools.Skip)
-    assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
+    assert isinstance(staff[4], scoretools.FixedDurationTuplet)
     staff[1] = Chord([12, 13, 15], (1, 4))
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
@@ -23,7 +23,7 @@ def test_scoretools_Staff___setitem___01():
     assert isinstance(staff[1], Chord)
     assert isinstance(staff[2], Chord)
     assert isinstance(staff[3], scoretools.Skip)
-    assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
+    assert isinstance(staff[4], scoretools.FixedDurationTuplet)
     staff[0] = Rest((1, 4))
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
@@ -31,22 +31,22 @@ def test_scoretools_Staff___setitem___01():
     assert isinstance(staff[1], Chord)
     assert isinstance(staff[2], Chord)
     assert isinstance(staff[3], scoretools.Skip)
-    assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
-    staff[-2] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+    assert isinstance(staff[4], scoretools.FixedDurationTuplet)
+    staff[-2] = scoretools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
     assert isinstance(staff[0], Rest)
     assert isinstance(staff[1], Chord)
     assert isinstance(staff[2], Chord)
-    assert isinstance(staff[3], tuplettools.FixedDurationTuplet)
-    assert isinstance(staff[4], tuplettools.FixedDurationTuplet)
+    assert isinstance(staff[3], scoretools.FixedDurationTuplet)
+    assert isinstance(staff[4], scoretools.FixedDurationTuplet)
     staff[-1] = Note(13, (1, 4))
     assert len(staff) == 5
     assert inspect(staff).is_well_formed()
     assert isinstance(staff[0], Rest)
     assert isinstance(staff[1], Chord)
     assert isinstance(staff[2], Chord)
-    assert isinstance(staff[3], tuplettools.FixedDurationTuplet)
+    assert isinstance(staff[3], scoretools.FixedDurationTuplet)
     assert isinstance(staff[4], Note)
     staff[-3] = scoretools.Skip((1, 4))
     assert len(staff) == 5
@@ -54,7 +54,7 @@ def test_scoretools_Staff___setitem___01():
     assert isinstance(staff[0], Rest)
     assert isinstance(staff[1], Chord)
     assert isinstance(staff[2], scoretools.Skip)
-    assert isinstance(staff[3], tuplettools.FixedDurationTuplet)
+    assert isinstance(staff[3], scoretools.FixedDurationTuplet)
     assert isinstance(staff[4], Note)
 
 
@@ -129,11 +129,11 @@ def test_scoretools_Staff___setitem___09():
     r'''Slice-assign tuplets.
     '''
     staff = Staff(Note(0, (1, 8)) * 8)
-    staff[0:4] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 2
+    staff[0:4] = scoretools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 2
     assert len(staff) == 6
     for i, x in enumerate(staff):
         if i in [0, 1]:
-            assert isinstance(x, tuplettools.FixedDurationTuplet)
+            assert isinstance(x, scoretools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
     assert inspect(staff).is_well_formed()

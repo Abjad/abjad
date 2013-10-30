@@ -5,7 +5,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_lilypondparsertools_LilyPondParser__containers__Tuplet_01():
     notes = notetools.make_notes([0, 2, 4, 5, 7], (1, 8))
-    target = tuplettools.Tuplet(Multiplier(2, 3), notes)
+    target = scoretools.Tuplet(Multiplier(2, 3), notes)
 
     r'''
     \times 2/3 {

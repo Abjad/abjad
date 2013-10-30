@@ -6,7 +6,7 @@ def test_labeltools_remove_markup_from_leaves_in_expr_01():
     r'''Clear multiple pieces of down-markup.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     labeltools.label_leaves_in_expr_with_leaf_durations(tuplet)
 
     r'''

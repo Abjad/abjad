@@ -12,7 +12,7 @@ from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import tuplettools
+from abjad.tools import scoretools
 from abjad.tools.scoretools import attach
 
 
@@ -487,7 +487,7 @@ class ReducedLyParser(abctools.Parser):
     def p_tuplet__FRACTION__container(self, p):
         r'''tuplet : FRACTION container
         '''
-        p[0] = tuplettools.Tuplet(p[1], p[2][:])
+        p[0] = scoretools.Tuplet(p[1], p[2][:])
 
     def p_error(self, p):
         if p:

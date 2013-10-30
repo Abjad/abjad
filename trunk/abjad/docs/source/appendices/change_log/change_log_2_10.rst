@@ -138,8 +138,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    tuplettools.iterate_tuplets_forward_in_expr()
-    tuplettools.iterate_tuplets_backward_in_expr()
+    scoretools.iterate_tuplets_forward_in_expr()
+    scoretools.iterate_tuplets_backward_in_expr()
 
   ::
 
@@ -541,8 +541,8 @@ Chnages to the ``leaftools`` package:
 
   ::
 
-    tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
-    tuplettools.leaf_to_tuplet_with_ratio()
+    scoretools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
+    scoretools.leaf_to_tuplet_with_ratio()
 
 - Renamed::
 
@@ -917,11 +917,11 @@ Changes to the ``tietools`` package:
     iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
     iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
 
-Changes to the ``tuplettools`` package:
+Changes to the ``scoretools`` package:
 
 - Renamed::
 
-    tuplettools.is_proper_tuplet_multiplier()
+    scoretools.is_proper_tuplet_multiplier()
 
   ::
 
@@ -929,14 +929,14 @@ Changes to the ``tuplettools`` package:
 
 - Renamed::
 
-    tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots()
-    tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots()
-    tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots()
-    tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots()
+    scoretools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots()
+    scoretools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots()
+    scoretools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots()
+    scoretools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots()
 
   ::
 
-    tuplettools.make_tuplet_from_durations_and_proportions(big_endian=[True, False])
+    scoretools.make_tuplet_from_durations_and_proportions(big_endian=[True, False])
 
 Removed three packages.
 

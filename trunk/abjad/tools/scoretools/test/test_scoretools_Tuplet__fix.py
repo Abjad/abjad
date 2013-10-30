@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_tuplettools_Tuplet__fix_01():
+def test_scoretools_Tuplet__fix_01():
     r'''Halve note durations.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'4 d'4 e'4")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'4 d'4 e'4")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     assert testtools.compare(
@@ -37,11 +37,11 @@ def test_tuplettools_Tuplet__fix_01():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_Tuplet__fix_02():
+def test_scoretools_Tuplet__fix_02():
     r'''Double note duration.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'32 d'32 e'32")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'32 d'32 e'32")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     assert testtools.compare(
@@ -74,11 +74,11 @@ def test_tuplettools_Tuplet__fix_02():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_Tuplet__fix_03():
+def test_scoretools_Tuplet__fix_03():
     r'''Halve note durations.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'4 d'4 e'4")
+    tuplet = scoretools.FixedDurationTuplet(Duration(5, 16), "c'4 d'4 e'4")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
     assert testtools.compare(

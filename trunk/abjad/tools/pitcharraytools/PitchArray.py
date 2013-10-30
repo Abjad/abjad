@@ -336,7 +336,7 @@ class PitchArray(AbjadObject):
                 >>> score.append(Staff("c'4 d'4"))
                 >>> score.append(
                 ...     Staff(
-                ...     tuplettools.FixedDurationTuplet(
+                ...     scoretools.FixedDurationTuplet(
                 ...     Duration(2, 8), "c'8 d'8 e'8") * 2))
 
             ..  doctest::
@@ -394,7 +394,7 @@ class PitchArray(AbjadObject):
                 >>> score.append(Staff("c'4 d'4"))
                 >>> score.append(
                 ...     Staff(
-                ...     tuplettools.FixedDurationTuplet(
+                ...     scoretools.FixedDurationTuplet(
                 ...     Duration(2, 8), "c'8 d'8 e'8") * 2))
 
             ..  doctest::

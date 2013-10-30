@@ -6,7 +6,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     r'''Move prolation of full-measure power-of-two tuplet to time signature.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     measure = Measure((2, 8), [tuplet])
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
@@ -33,7 +33,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     time signature.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(3, 16), [])
     tuplet.extend("c'16 d'16 e'16 f'16 g'16")
     measure = Measure((3, 16), [tuplet])
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
@@ -62,7 +62,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     r'''Subsume 7:6 tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(6, 8), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(6, 8), [])
     tuplet.extend("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
     measure = Measure((6, 8), [tuplet])
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
@@ -93,7 +93,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     r'''Subsume tuplet in nonassignable measure.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(5, 8), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(5, 8), [])
     tuplet.extend("c'8 d'8 e'8 f'8 g'8 a'8")
     measure = Measure((5, 8), [tuplet])
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
@@ -178,7 +178,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     r'''Submsume 6:5. Time signature should go from 5/16 to 15/48.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(5, 16), "c'8 d'8 e'8")
     measure = Measure((5, 16), [tuplet])
 
     r'''

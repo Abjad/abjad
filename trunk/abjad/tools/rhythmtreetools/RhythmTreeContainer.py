@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
-from abjad.tools import tuplettools
+from abjad.tools import scoretools
 from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 
@@ -204,7 +204,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             basic_prolated_duration = tuplet_duration / node._contents_duration
             basic_written_duration = \
                 basic_prolated_duration.equal_or_greater_power_of_two
-            tuplet = tuplettools.FixedDurationTuplet(tuplet_duration, [])
+            tuplet = scoretools.FixedDurationTuplet(tuplet_duration, [])
             for child in node.children:
                 if isinstance(child, type(self)):
                     tuplet.extend(recurse(
@@ -221,7 +221,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             return [tuplet]
         result = recurse(self, pulse_duration * self.preprolated_duration)
         for component in result[:]:
-            if isinstance(component, tuplettools.Tuplet):
+            if isinstance(component, scoretools.Tuplet):
                 if component.is_trivial:
                     component._extract()
         return result

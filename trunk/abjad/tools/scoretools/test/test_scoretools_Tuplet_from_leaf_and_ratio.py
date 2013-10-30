@@ -3,7 +3,7 @@ import py
 from abjad import *
 
 
-def test_tuplettools_Tuplet_from_leaf_and_ratio_01():
+def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
     note = Note(0, (3, 16))
 
@@ -91,7 +91,7 @@ def test_tuplettools_Tuplet_from_leaf_and_ratio_01():
         )
 
 
-def test_tuplettools_Tuplet_from_leaf_and_ratio_02():
+def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     note = Note("c'8.")
 
@@ -174,7 +174,7 @@ def test_tuplettools_Tuplet_from_leaf_and_ratio_02():
         )
 
 
-def test_tuplettools_Tuplet_from_leaf_and_ratio_03():
+def test_scoretools_Tuplet_from_leaf_and_ratio_03():
     r'''Divide note into 1, ..., 5 parts.
     '''
 
@@ -267,7 +267,7 @@ def test_tuplettools_Tuplet_from_leaf_and_ratio_03():
         )
 
 
-def test_tuplettools_Tuplet_from_leaf_and_ratio_04():
+def test_scoretools_Tuplet_from_leaf_and_ratio_04():
     r'''Divide note into 1, ..., 5 parts.
     '''
 

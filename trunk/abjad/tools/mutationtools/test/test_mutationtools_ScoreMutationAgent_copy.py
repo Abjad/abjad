@@ -839,7 +839,7 @@ def test_mutationtools_ScoreMutationAgent_copy_16():
     Include enclosing containers.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
     tuplet.extend("c'8 d'8 e'8 f'8 g'8")
     measure = Measure((4, 8), [tuplet])
 
@@ -888,7 +888,7 @@ def test_mutationtools_ScoreMutationAgent_copy_17():
     Include enclosing containers.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
     tuplet.extend("c'8 d'8 e'8 f'8 g'8")
     voice = Voice([Measure((4, 8), [tuplet])])
 
@@ -942,8 +942,8 @@ def test_mutationtools_ScoreMutationAgent_copy_18():
     Include enclosing containers.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
-    tuplet_2 = tuplettools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
+    tuplet_1 = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+    tuplet_2 = scoretools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
     measure = Measure((4, 8), [tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -1048,8 +1048,8 @@ def test_mutationtools_ScoreMutationAgent_copy_20():
     Include enclosing containers.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
-    tuplet_2 = tuplettools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
+    tuplet_1 = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
+    tuplet_2 = scoretools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
     staff = Staff([tuplet_1, tuplet_2])
 
     assert testtools.compare(

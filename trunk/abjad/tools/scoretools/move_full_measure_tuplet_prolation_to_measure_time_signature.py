@@ -12,7 +12,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
 
     ::
 
-        >>> t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
+        >>> t = Measure((2, 8), [scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
         >>> scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
     ..  doctest::
@@ -32,12 +32,12 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     from abjad.tools import scoretools
     from abjad.tools import contexttools
     from abjad.tools import iterationtools
-    from abjad.tools import tuplettools
+    from abjad.tools import scoretools
     from abjad.tools.scoretools import attach
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         if len(measure) == 1:
-            if isinstance(measure[0], tuplettools.Tuplet):
+            if isinstance(measure[0], scoretools.Tuplet):
                 tuplet = measure[0]
                 tuplet_multiplier = tuplet.multiplier
                 tuplet_denominator = tuplet_multiplier.denominator

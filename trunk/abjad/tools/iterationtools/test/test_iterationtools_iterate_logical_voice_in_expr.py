@@ -6,7 +6,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_01():
     r'''Yield nothing when class not present.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
+    staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, signature, reverse=True)
     assert len(list(iter)) == 0
@@ -16,7 +16,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_02():
     r'''Yield internal nodes only.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
+    staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, signature, reverse=True)
     assert len(list(iter)) == 3
@@ -26,7 +26,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_03():
     r'''Yield exact leaves.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
+    staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
     assert len(list(iter)) == 9
@@ -36,7 +36,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_04():
     r'''Yield leaves based on names higher in inheritence hierarchy.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
+    staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
     signature = inspect(staff[-1][-1]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature, reverse=True)
@@ -100,7 +100,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_08():
     r'''Yield nothing when class not present.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
+    staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, signature)
     assert len(list(iter)) == 0
@@ -110,7 +110,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_09():
     r'''Yield internal nodes only.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
+    staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, signature)
     assert len(list(iter)) == 3
@@ -120,7 +120,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_10():
     r'''Yield exact leaves.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
+    staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
     assert len(list(iter)) == 9
@@ -130,7 +130,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_11():
     r'''Yield leaves based on names higher in inheritence hierarchy.
     '''
 
-    staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
+    staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
     signature = inspect(staff[0][0]).get_parentage().logical_voice_indicator
     iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature)

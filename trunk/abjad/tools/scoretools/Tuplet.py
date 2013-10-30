@@ -199,8 +199,8 @@ class Tuplet(Container):
     # TODO: hoist to Tuplet and make work for all tuplet instances
     def _fix(self):
         from abjad.tools import leaftools
-        from abjad.tools import tuplettools
-        if not isinstance(self, tuplettools.FixedDurationTuplet):
+        from abjad.tools import scoretools
+        if not isinstance(self, scoretools.FixedDurationTuplet):
             return
         # find tuplet multiplier
         integer_exponent = int(math.log(self.multiplier, 2))
@@ -1096,7 +1096,7 @@ class Tuplet(Container):
         from abjad.tools import notetools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         # coerce duration and ratio
         duration = durationtools.Duration(duration)
         ratio = mathtools.Ratio(ratio)
@@ -1135,7 +1135,7 @@ class Tuplet(Container):
                 decrease_durations_monotonically=decrease_durations_monotonically,
                 )
         # make tuplet
-        tuplet = tuplettools.FixedDurationTuplet(duration, notes)
+        tuplet = scoretools.FixedDurationTuplet(duration, notes)
         # fix tuplet contents if necessary
         tuplet._fix()
         # change prolation if necessary
@@ -1624,7 +1624,7 @@ class Tuplet(Container):
         from abjad.tools import containertools
         from abjad.tools import notetools
         from abjad.tools import scoretools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         ratio = mathtools.NonreducedRatio(ratio)
         if isinstance(fraction, tuple):
             fraction = mathtools.NonreducedFraction(*fraction)
@@ -1666,7 +1666,7 @@ class Tuplet(Container):
                 else:
                     rests = scoretools.Rest((-x, denominator))
                     music.append(rests)
-            return tuplettools.FixedDurationTuplet(duration, music)
+            return scoretools.FixedDurationTuplet(duration, music)
 
     def set_minimum_denominator(self, denominator):
         r'''Sets preferred denominator of tuplet to at least `denominator`.
@@ -1711,7 +1711,7 @@ class Tuplet(Container):
 
         Returns none.
         '''
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         assert mathtools.is_nonnegative_integer_power_of_two(denominator)
         Duration = durationtools.Duration
         self.force_fraction = True
@@ -1753,9 +1753,9 @@ class Tuplet(Container):
 
         Returns new tuplet.
         '''
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         target_duration = self._preprolated_duration
-        new_tuplet = tuplettools.FixedDurationTuplet(target_duration, [])
+        new_tuplet = scoretools.FixedDurationTuplet(target_duration, [])
         mutationtools.mutate(self).swap(new_tuplet)
         return new_tuplet
 

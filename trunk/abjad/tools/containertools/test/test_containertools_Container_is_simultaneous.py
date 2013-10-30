@@ -9,7 +9,7 @@ def test_containertools_Container_is_simultaneous_01():
     '''
 
     assert not Container([]).is_simultaneous
-    assert not tuplettools.FixedDurationTuplet(Duration(2, 8), []).is_simultaneous
+    assert not scoretools.FixedDurationTuplet(Duration(2, 8), []).is_simultaneous
     assert not Tuplet(Multiplier(2, 3), []).is_simultaneous
     assert scoretools.GrandStaff([]).is_simultaneous
     assert not scoretools.make_rhythmic_sketch_staff([]).is_simultaneous

@@ -18,7 +18,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     from abjad.tools import iterationtools
     from abjad.tools import scoretools
     from abjad.tools import timesignaturetools
-    from abjad.tools import tuplettools
+    from abjad.tools import scoretools
     from abjad.tools.scoretools import attach
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
@@ -39,7 +39,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
             # find target duration and create tuplet
             target_duration = time_signature_multiplier * measure._contents_duration
-            tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
+            tuplet = scoretools.FixedDurationTuplet(target_duration, measure[:])
 
             # scale tuplet contents, if helpful
             if contents_multiplier is not None:

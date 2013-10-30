@@ -7,8 +7,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
     '''
 
     measure = Measure((4, 4), [])
-    measure.append(tuplettools.FixedDurationTuplet((2, 4), "c'4 d'4 e'4"))
-    measure.append(tuplettools.FixedDurationTuplet((2, 4), "f'4 g'4 a'4"))
+    measure.append(scoretools.FixedDurationTuplet((2, 4), "c'4 d'4 e'4"))
+    measure.append(scoretools.FixedDurationTuplet((2, 4), "f'4 g'4 a'4"))
 
     assert testtools.compare(
         measure,
@@ -59,8 +59,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
     '''
 
     measure = Measure((4, 4), [])
-    tuplet_1 = tuplettools.FixedDurationTuplet((2, 4), "c'8 d' e' f' g'")
-    tuplet_2 = tuplettools.FixedDurationTuplet((2, 4), "a'8 b' c'' d'' e''")
+    tuplet_1 = scoretools.FixedDurationTuplet((2, 4), "c'8 d' e' f' g'")
+    tuplet_2 = scoretools.FixedDurationTuplet((2, 4), "a'8 b' c'' d'' e''")
     measure.extend([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -120,9 +120,9 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
     '''
 
     measure = Measure((5, 6), [])
-    tuplet_1 = tuplettools.FixedDurationTuplet(
+    tuplet_1 = scoretools.FixedDurationTuplet(
         (3, 4), "c'4 d' e' f' g'")
-    tuplet_2 = tuplettools.FixedDurationTuplet(
+    tuplet_2 = scoretools.FixedDurationTuplet(
         (4, 8), "a'8 b' c'' d'' e'' f'' g''")
     measure.extend([tuplet_1, tuplet_2])
 
@@ -193,9 +193,9 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
     '''
 
     measure = Measure((5, 6), [])
-    tuplet_1 = tuplettools.FixedDurationTuplet(
+    tuplet_1 = scoretools.FixedDurationTuplet(
         (3, 4), "c'4 cs' d' ef' e'")
-    tuplet_2 = tuplettools.FixedDurationTuplet(
+    tuplet_2 = scoretools.FixedDurationTuplet(
         (4, 8), "f'8 fs' g' af' a' bf' b'")
     measure.extend([tuplet_1, tuplet_2])
 
@@ -265,7 +265,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
     '''
 
     measure = Measure((5, 6), [])
-    tuplet = tuplettools.FixedDurationTuplet((4, 8), [])
+    tuplet = scoretools.FixedDurationTuplet((4, 8), [])
     tuplet.extend("c'8 cs' d' ef' e' f' fs'")
     measure.append(tuplet)
     measure.extend("g'4 af'4 a'4")
@@ -335,7 +335,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_06():
     '''
 
     measure = Measure((5, 6), [])
-    tuplet = tuplettools.FixedDurationTuplet((4, 8), [])
+    tuplet = scoretools.FixedDurationTuplet((4, 8), [])
     tuplet.extend("c'8 cs' d' ef' e' f' fs'")
     measure.append(tuplet)
     measure.extend("g'4 af'4 a'4")
@@ -395,8 +395,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_07():
     '''
 
     measure = Measure((4, 4), [])
-    inner_tuplet = tuplettools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
-    outer_tuplet = tuplettools.FixedDurationTuplet((2, 2), [])
+    inner_tuplet = scoretools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
+    outer_tuplet = scoretools.FixedDurationTuplet((2, 2), [])
     outer_tuplet.extend([Note("c'2"), Note("cs'2"), inner_tuplet])
     measure.append(outer_tuplet)
 
@@ -519,8 +519,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_11():
     r'''Remove fixed-duration tuplet from container.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     container = Container([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -563,8 +563,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_12():
     r'''Remove fixed-duration tuplet from voice.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     voice = Voice([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -607,8 +607,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_13():
     r'''Remove fixed-duration tuplet from staff.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     staff = Staff([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -651,8 +651,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_14():
     r'''Remove leaf from fixed-duration tuplet in container.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     container = Container([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -699,8 +699,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_15():
     r'''Remove leaf form fixed-duration tuplet in voice.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     voice = Voice([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -747,8 +747,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_16():
     r'''Remove leaf from fixed-duration tuplet in staff.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     staff = Staff([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -795,8 +795,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_17():
     r'''Remove leaf from nested tuplet of length 1.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
-    inner_tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'4")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [])
+    inner_tuplet = scoretools.FixedDurationTuplet((1, 4), "c'4")
     tuplet.extend([Note("c'4"), Note("c'4"), inner_tuplet])
 
     assert testtools.compare(
@@ -832,9 +832,9 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_18():
     r'''Remove leaf from nested tuplet of length 1.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
-    middle_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
-    inner_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [])
+    middle_tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), [])
+    inner_tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), [])
     inner_tuplet.extend("e'4")
     middle_tuplet.append(inner_tuplet)
     tuplet.extend([Note("c'4"), Note("d'4"), middle_tuplet])
@@ -873,9 +873,9 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_19():
     r'''Remove leaf from nested fixed-duration tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [])
-    middle_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
-    inner_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [])
+    middle_tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), [])
+    inner_tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), [])
     inner_tuplet.extend("e'8 f'8")
     middle_tuplet.append(inner_tuplet)
     tuplet.extend([Note("c'4"), Note("d'4"), middle_tuplet])
@@ -920,7 +920,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_20():
     r'''Excise leaf from fixed-duration tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), [])
     tuplet.extend("c'8 d'8 e'8 f'8 g'8")
 
     assert testtools.compare(
@@ -993,8 +993,8 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
     r'''Remove leaf from nested fixed-duration tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 2), [])
-    inner_tuplet = tuplettools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 2), [])
+    inner_tuplet = scoretools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
     tuplet.extend([Note("c'2"), Note("cs'2"), inner_tuplet])
     
     assert testtools.compare(

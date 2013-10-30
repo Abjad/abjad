@@ -32,7 +32,7 @@ def test_mutationtools_ScoreMutationAgent_swap_01():
         '''
         )
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
     mutate(voice[:2]).swap(tuplet)
 
     assert testtools.compare(
@@ -145,7 +145,7 @@ def test_mutationtools_ScoreMutationAgent_swap_03():
         '''
         )
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(3, 16), [])
     mutate(voice[1:2]).swap(tuplet)
 
 
@@ -198,7 +198,7 @@ def test_mutationtools_ScoreMutationAgent_swap_05():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     assert py.test.raises(
         Exception, 
         'mutate(voice[1:2]).swap(tuplet)',
@@ -234,7 +234,7 @@ def test_mutationtools_ScoreMutationAgent_swap_06():
         '''
         )
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
     assert py.test.raises(
         Exception, 
         'mutate([voice[0], voice[2]]).swap(tuplet)',

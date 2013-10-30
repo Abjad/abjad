@@ -91,11 +91,11 @@ def test_mutationtools_ScoreMutationAgent_fuse_06():
     r'''Fuse two unincorporated fixed-duration tuplets with same multiplier.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(
+    tuplet_1 = scoretools.FixedDurationTuplet(
         Duration(2, 8), "c'8 d'8 e'8")
     beam = spannertools.BeamSpanner()
     attach(beam, tuplet_1[:])
-    tuplet_2 = tuplettools.FixedDurationTuplet(
+    tuplet_2 = scoretools.FixedDurationTuplet(
         Duration(2, 16), "c'16 d'16 e'16")
     slur = spannertools.SlurSpanner()
     attach(slur, tuplet_2[:])
@@ -149,11 +149,11 @@ def test_mutationtools_ScoreMutationAgent_fuse_07():
     r'''Fuse fixed-duration tuplets with same multiplier in score.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(
+    tuplet_1 = scoretools.FixedDurationTuplet(
         Duration(2, 8), "c'8 d'8 e'8")
     beam = spannertools.BeamSpanner()
     attach(beam, tuplet_1[:])
-    tuplet_2 = tuplettools.FixedDurationTuplet(
+    tuplet_2 = scoretools.FixedDurationTuplet(
         Duration(2, 16), "c'16 d'16 e'16")
     slur = spannertools.SlurSpanner()
     attach(slur, tuplet_2[:])
@@ -259,8 +259,8 @@ def test_mutationtools_ScoreMutationAgent_fuse_09():
     r'''Tuplets must carry same multiplier.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    tuplet_2 = tuplettools.FixedDurationTuplet(
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet_2 = scoretools.FixedDurationTuplet(
         Duration(2, 8), "c'8 d'8 e'8 f'8 g'8")
     tuplets = select([tuplet_1, tuplet_2], contiguous=True)
 
@@ -271,7 +271,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_10():
     r'''Tuplets must be same type.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
     tuplets = select([tuplet_1, tuplet_2], contiguous=True)
 
@@ -283,8 +283,8 @@ def test_mutationtools_ScoreMutationAgent_fuse_11():
     '''
 
     voice = Voice([
-        tuplettools.FixedDurationTuplet(Duration(1, 12), [Note(0, (1, 8))]),
-        tuplettools.FixedDurationTuplet(Duration(1, 6), [Note("c'4")]),
+        scoretools.FixedDurationTuplet(Duration(1, 12), [Note(0, (1, 8))]),
+        scoretools.FixedDurationTuplet(Duration(1, 6), [Note("c'4")]),
         Note("c'4")])
     slur = spannertools.SlurSpanner()
     attach(slur, voice.select_leaves())

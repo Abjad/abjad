@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tuplettools_Tuplet_toggle_prolation_01():
+def test_scoretools_Tuplet_toggle_prolation_01():
     '''Change augmentation to diminution.
     '''
 
@@ -35,7 +35,7 @@ def test_tuplettools_Tuplet_toggle_prolation_01():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_Tuplet_toggle_prolation_02():
+def test_scoretools_Tuplet_toggle_prolation_02():
     '''Change diminution to augmentation.
     '''
 

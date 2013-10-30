@@ -187,7 +187,7 @@ def test_containertools_Container___delitem___07():
     r'''Delete leaf from tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beam = spannertools.BeamSpanner()
     attach(beam, tuplet[:])
 

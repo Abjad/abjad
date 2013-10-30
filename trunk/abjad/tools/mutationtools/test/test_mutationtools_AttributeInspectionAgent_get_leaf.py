@@ -130,7 +130,7 @@ def test_mutationtools_AttributeInspectionAgent_get_leaf_05():
     r'''Fixed-duration tuplet.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 cs'8 d'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 cs'8 d'8")
 
     assert testtools.compare(
         tuplet,
@@ -195,8 +195,8 @@ def test_mutationtools_AttributeInspectionAgent_get_leaf_07():
     r'''Tuplets inside a voice.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 cs'8 d'8")
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(2, 8), "ef'8 e'8 f'8")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 cs'8 d'8")
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 8), "ef'8 e'8 f'8")
     voice = Voice([tuplet_1, tuplet_2])
 
     assert testtools.compare(
@@ -627,8 +627,8 @@ def test_mutationtools_AttributeInspectionAgent_get_leaf_17():
     r'''Does connect in sequence of alternating tuplets and notes.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(3)])
-    tuplet_2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(4,7)])
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(3)])
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(4,7)])
     voice = Voice([tuplet_1, Note(3, (1 ,8)), tuplet_2])
 
     assert testtools.compare(
@@ -661,8 +661,8 @@ def test_mutationtools_AttributeInspectionAgent_get_leaf_18():
     r'''Does connect through asymmetrically nested tuplets.
     '''
 
-    inner_tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), inner_tuplet, Note("c'4")])
+    inner_tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), inner_tuplet, Note("c'4")])
 
     assert testtools.compare(
         tuplet,

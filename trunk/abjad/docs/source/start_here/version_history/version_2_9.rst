@@ -689,10 +689,10 @@ Further new functionality:
 
   Use the function to neutralize pitch information in an arbitrary piece of score.
 
-- Added new ``tuplettools`` functions::
+- Added new ``scoretools`` functions::
 
-   tuplettools.change_fixed_duration_tuplets_in_expr_to_tuplets()
-   tuplettools.change_tuplets_in_expr_to_fixed_duration_tuplets()
+   scoretools.change_fixed_duration_tuplets_in_expr_to_tuplets()
+   scoretools.change_tuplets_in_expr_to_fixed_duration_tuplets()
 
 - Extended ``lilypondfiletools.ContextBlock`` with the following attributes::
 

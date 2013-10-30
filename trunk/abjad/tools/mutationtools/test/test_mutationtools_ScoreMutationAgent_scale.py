@@ -119,7 +119,7 @@ def test_mutationtools_ScoreMutationAgent_scale_05():
     '''
 
     voice = Voice("c'8.")
-    tuplet = tuplettools.FixedDurationTuplet((3, 8), "d'8 e'8 f'8 g'8")
+    tuplet = scoretools.FixedDurationTuplet((3, 8), "d'8 e'8 f'8 g'8")
     voice.append(tuplet)
 
     assert testtools.compare(

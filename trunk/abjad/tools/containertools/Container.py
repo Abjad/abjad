@@ -642,7 +642,7 @@ class Container(Component):
         from abjad.tools import containertools
         from abjad.tools import contexttools
         from abjad.tools import scoretools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         # partition my music
         left_music = self[:i]
         right_music = self[i:]
@@ -661,7 +661,7 @@ class Container(Component):
             right_pair = right_pair.with_multiple_of_denominator(denominator)
             right_time_signature = contexttools.TimeSignatureMark(right_pair)
             right = self.__class__(right_time_signature, right_music)
-        elif isinstance(self, tuplettools.FixedDurationTuplet):
+        elif isinstance(self, scoretools.FixedDurationTuplet):
             multiplier = self.multiplier
             left = self.__class__(1, left_music)
             right = self.__class__(1, right_music)
@@ -669,7 +669,7 @@ class Container(Component):
             left.target_duration = target_duration
             target_duration = multiplier * right._contents_duration
             right.target_duration = target_duration
-        elif isinstance(self, tuplettools.Tuplet):
+        elif isinstance(self, scoretools.Tuplet):
             multiplier = self.multiplier
             left = self.__class__(multiplier, left_music)
             right = self.__class__(multiplier, right_music)

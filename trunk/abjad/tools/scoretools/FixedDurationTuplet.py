@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mutationtools
-from abjad.tools.tuplettools.Tuplet import Tuplet
+from abjad.tools.scoretools.Tuplet import Tuplet
 
 
 class FixedDurationTuplet(Tuplet):
@@ -9,7 +9,7 @@ class FixedDurationTuplet(Tuplet):
 
     ..  container:: example
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), [])
+            >>> tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), [])
             >>> tuplet.extend("c'8 d'8 e'8")
             >>> show(tuplet) # doctest: +SKIP
 
@@ -122,7 +122,7 @@ class FixedDurationTuplet(Tuplet):
 
         ::
 
-            >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+            >>> tuplet = scoretools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
             >>> tuplet.multiplied_duration
             Duration(1, 4)
 
@@ -137,7 +137,7 @@ class FixedDurationTuplet(Tuplet):
 
             ::
 
-                >>> tuplet = tuplettools.FixedDurationTuplet(
+                >>> tuplet = scoretools.FixedDurationTuplet(
                 ...     (1, 4), "c'8 d'8 e'8")
                 >>> tuplet.multiplier
                 Multiplier(2, 3)
@@ -160,7 +160,7 @@ class FixedDurationTuplet(Tuplet):
 
             ::
 
-                >>> tuplet = tuplettools.FixedDurationTuplet(
+                >>> tuplet = scoretools.FixedDurationTuplet(
                 ...     (1, 4), "c'8 d'8 e'8")
                 >>> tuplet.target_duration
                 Duration(1, 4)
@@ -205,7 +205,7 @@ class FixedDurationTuplet(Tuplet):
 
             ::
 
-                >>> tuplet = tuplettools.FixedDurationTuplet((2, 8), [])
+                >>> tuplet = scoretools.FixedDurationTuplet((2, 8), [])
                 >>> tuplet.extend("c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
 
@@ -226,8 +226,8 @@ class FixedDurationTuplet(Tuplet):
 
         Returns new tuplet.
         '''
-        from abjad.tools import tuplettools
-        new_tuplet = tuplettools.Tuplet(self.multiplier, [])
+        from abjad.tools import scoretools
+        new_tuplet = scoretools.Tuplet(self.multiplier, [])
         mutationtools.mutate(self).swap(new_tuplet)
         return new_tuplet
 
@@ -246,7 +246,7 @@ class FixedDurationTuplet(Tuplet):
 
         ::
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(
+            >>> tuplet = scoretools.FixedDurationTuplet(
             ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> tuplet
             FixedDurationTuplet(1/4, [c'8, d'8, e'8])

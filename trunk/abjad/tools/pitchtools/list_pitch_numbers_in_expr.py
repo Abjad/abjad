@@ -6,7 +6,7 @@ def list_pitch_numbers_in_expr(expr):
 
     ::
 
-        >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+        >>> tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
         >>> pitchtools.list_pitch_numbers_in_expr(tuplet)
         (0, 2, 4)
 

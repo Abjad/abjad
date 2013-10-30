@@ -211,13 +211,13 @@ class ScoreMutationAgent(object):
 
             ::
 
-                >>> tuplet_1 = tuplettools.FixedDurationTuplet(
+                >>> tuplet_1 = scoretools.FixedDurationTuplet(
                 ...     Duration(2, 8), [])
                 >>> tuplet_1.extend("c'8 d'8 e'8")
                 >>> beam = spannertools.BeamSpanner()
                 >>> attach(beam, tuplet_1[:])
                 >>> duration = Duration(2, 16)
-                >>> tuplet_2 = tuplettools.FixedDurationTuplet(duration, [])
+                >>> tuplet_2 = scoretools.FixedDurationTuplet(duration, [])
                 >>> tuplet_2.extend("c'16 d'16 e'16")
                 >>> slur = spannertools.SlurSpanner()
                 >>> attach(slur, tuplet_2[:])
@@ -878,7 +878,7 @@ class ScoreMutationAgent(object):
                 >>> staff = Staff()
                 >>> time_signature = contexttools.TimeSignatureMark((4, 8))
                 >>> time_signature = attach(time_signature, staff)
-                >>> tuplet = tuplettools.Tuplet((4, 5), [])
+                >>> tuplet = scoretools.Tuplet((4, 5), [])
                 >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
                 >>> staff.append(tuplet)
                 >>> show(staff) # doctest: +SKIP
@@ -925,7 +925,7 @@ class ScoreMutationAgent(object):
                 >>> staff = Staff()
                 >>> time_signature = contexttools.TimeSignatureMark((4, 8))
                 >>> time_signature = attach(time_signature, staff)
-                >>> tuplet = tuplettools.FixedDurationTuplet((4, 8), [])
+                >>> tuplet = scoretools.FixedDurationTuplet((4, 8), [])
                 >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
                 >>> staff.append(tuplet)
                 >>> show(staff) # doctest: +SKIP

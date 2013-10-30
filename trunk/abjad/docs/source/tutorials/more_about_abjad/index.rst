@@ -29,7 +29,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'schemetools', 'scoretemplatetools', 'scoretools', 'sequencetools', 'show',
     'sievetools', 'scoretools', 'spannertools', 'scoretools', 'stringtools',
     'tempotools', 'tietools', 'timeintervaltools', 'timesignaturetools',
-    'rhythmmakertools', 'tonalanalysistools', 'tuplettools',
+    'rhythmmakertools', 'tonalanalysistools', 'scoretools',
     'verticalitytools', 'scoretools', 'wellformednesstools', 'z']
 
 Calling ``from abjad import *`` causes Python to load hundreds or thousands of

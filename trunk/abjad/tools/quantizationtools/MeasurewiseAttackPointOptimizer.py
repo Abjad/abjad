@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import contexttools
 from abjad.tools import scoretools
-from abjad.tools import tuplettools
+from abjad.tools import scoretools
 from abjad.tools.quantizationtools.AttackPointOptimizer \
 	import AttackPointOptimizer
 

@@ -19,7 +19,7 @@ def test_scoretools_Measure_special_prolation_02():
 
     measure = Measure((4, 4), [
         Note("c'4"),
-        tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
+        scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
         Note("c'4")])
     assert measure.select_leaves()[0].written_duration == Duration(1, 4)
     assert inspect(measure.select_leaves()[0]).get_duration() == Duration(1, 4)
@@ -34,8 +34,8 @@ def test_scoretools_Measure_special_prolation_03():
 
     measure = Measure((4, 4), [
         Note("c'4"),
-        tuplettools.FixedDurationTuplet(Duration(2, 4), [
-            tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
+        scoretools.FixedDurationTuplet(Duration(2, 4), [
+            scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
             Note("c'4")]),
         Note("c'4")])
     assert measure.select_leaves()[0].written_duration == Duration(1, 4)
@@ -61,7 +61,7 @@ def test_scoretools_Measure_special_prolation_05():
 
     measure = Measure((4, 5), [
         Note("c'4"),
-        tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
+        scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
         Note("c'4")])
     assert measure.select_leaves()[0].written_duration == Duration(1, 4)
     assert inspect(measure.select_leaves()[0]).get_duration() == Duration(1, 5)
@@ -76,8 +76,8 @@ def test_scoretools_Measure_special_prolation_06():
 
     measure = Measure((4, 5), [
         Note("c'4"),
-        tuplettools.FixedDurationTuplet(Duration(2, 4), [
-            tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
+        scoretools.FixedDurationTuplet(Duration(2, 4), [
+            scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
             Note("c'4")]),
         Note("c'4")])
     assert measure.select_leaves()[0].written_duration == Duration(1, 4)

@@ -55,14 +55,14 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_06():
 
 def test_mutationtools_AttributeInspectionAgent_get_timespan_07():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
     for i, x in enumerate(tuplet):
         assert inspect(x).get_timespan().start_offset == i * Duration(1, 12)
 
 
 def test_mutationtools_AttributeInspectionAgent_get_timespan_08():
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
     voice = Voice([Note(0, (1, 8)), tuplet_1, Note(0, (1, 8))])
     offset = 0
     durations = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
@@ -75,8 +75,8 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_09():
     r'''Offset works on nested tuplets.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
-    tuplet = tuplettools.FixedDurationTuplet(
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
+    tuplet = scoretools.FixedDurationTuplet(
         Duration(2, 4), [Note("c'4"), tuplet_1, Note("c'4")])
     offset = 0
     durations = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
@@ -214,7 +214,7 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_20():
     r'''Offsets work on tuplets between notes.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     voice = Voice([Note(0, (1, 8)), tuplet_1, Note(0, (1, 8))])
     assert inspect(voice[0]).get_timespan().start_offset == 0 * Duration(1, 8)
     assert inspect(voice[1]).get_timespan().start_offset == 1 * Duration(1, 8)
@@ -225,8 +225,8 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_21():
     r'''Offsets work on nested tuplets.
     '''
 
-    tuplet_1 = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tuplet_1, Note("c'4")])
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tuplet_1, Note("c'4")])
     assert inspect(tuplet[0]).get_timespan().start_offset == 0 * Duration(1, 6)
     assert inspect(tuplet[1]).get_timespan().start_offset == 1 * Duration(1, 6)
     assert inspect(tuplet[2]).get_timespan().start_offset == 2 * Duration(1, 6)

@@ -372,7 +372,7 @@ class Leaf(Component):
         from abjad.tools import leaftools
         from abjad.tools import notetools
         from abjad.tools import spannertools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         from abjad.tools.scoretools import attach
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
@@ -401,7 +401,7 @@ class Leaf(Component):
                 attach(tie, all_leaves)
             return all_leaves
         else:
-            assert isinstance(components[0], tuplettools.Tuplet)
+            assert isinstance(components[0], scoretools.Tuplet)
             tuplet = components[0]
             components = tuplet[:]
             tied_leaf_count = len(components) - 1
@@ -414,7 +414,7 @@ class Leaf(Component):
                 tie = spannertools.TieSpanner()
                 attach(tie, all_leaves)
             tuplet_multiplier = tuplet.multiplier
-            tuplettools.Tuplet(tuplet_multiplier, all_leaves)
+            scoretools.Tuplet(tuplet_multiplier, all_leaves)
             return [tuplet]
 
     def _split(
@@ -566,7 +566,7 @@ class Leaf(Component):
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         from abjad.tools import notetools
-        from abjad.tools import tuplettools
+        from abjad.tools import scoretools
         # check input
         proportions = mathtools.Ratio(proportions)
         # find target duration of fixed-duration tuplet
@@ -587,7 +587,7 @@ class Leaf(Component):
                 for x in proportions]
             notes = notetools.make_notes(0, note_durations)
         # make tuplet
-        tuplet = tuplettools.FixedDurationTuplet(target_duration, notes)
+        tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
         # fix tuplet contents if necessary
         tuplet._fix()
         # change prolation if necessary

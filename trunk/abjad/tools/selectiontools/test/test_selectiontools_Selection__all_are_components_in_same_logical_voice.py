@@ -40,7 +40,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_03()
     r'''Tuplet and leaves all logical voice.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
     r'''
     \times 2/3 {
@@ -1460,11 +1460,11 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_36()
     r'''Tuplets and leaves all appear in same logical voice.
     '''
 
-    a = tuplettools.FixedDurationTuplet(
+    a = scoretools.FixedDurationTuplet(
         Duration(3, 8), "e'8 f'8 fs'8 g'8")
-    b = tuplettools.FixedDurationTuplet(
+    b = scoretools.FixedDurationTuplet(
         Duration(3, 8), "d'8 ef'8 af'8 a'8")
-    t = tuplettools.FixedDurationTuplet(
+    t = scoretools.FixedDurationTuplet(
         Duration(3, 8), "c'8 cs'8 bf'8 b'8")
     b.insert(2, a)
     t.insert(2, b)

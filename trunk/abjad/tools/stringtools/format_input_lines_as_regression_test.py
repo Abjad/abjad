@@ -12,7 +12,7 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
         ... attach(beam, staff.select_leaves())
         ... f(staff)
         ...
-        ... tuplettools.FixedDurationTuplet(Duration(2, 8), staff[:3])
+        ... scoretools.FixedDurationTuplet(Duration(2, 8), staff[:3])
         ... f(staff)
         ... '''
 
@@ -33,7 +33,7 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
             }
             '''
 
-            tuplettools.FixedDurationTuplet(Duration(2, 8), staff[:3])
+            scoretools.FixedDurationTuplet(Duration(2, 8), staff[:3])
 
             r'''
             \new Staff {

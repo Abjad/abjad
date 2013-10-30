@@ -53,7 +53,7 @@ def test_scoretools_Rest___init___05():
     r'''Init rest from tupletized chord.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
     d = tuplet[0].written_duration
     rest = Rest(tuplet[0])
     assert isinstance(rest, Rest)
@@ -94,7 +94,7 @@ def test_scoretools_Rest___init___08():
     r'''Init rest from tupletted skip.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), scoretools.Skip((1, 8)) * 3)
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), scoretools.Skip((1, 8)) * 3)
     d = tuplet[0].written_duration
     rest = Rest(tuplet[0])
     assert isinstance(tuplet[0], scoretools.Skip)
@@ -138,7 +138,7 @@ def test_scoretools_Rest___init___11():
     r'''Init rest from tupletized note.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
     d = tuplet[0].written_duration
     rest = Rest(tuplet[0])
     assert isinstance(tuplet[0], Note)

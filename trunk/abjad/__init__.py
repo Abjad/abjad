@@ -44,7 +44,7 @@ from abjad.tools.scoretools import Rest
 from abjad.tools.scoretools import Score
 from abjad.tools.scoretools import Staff
 from abjad.tools.scoretools import Voice
-from abjad.tools.tuplettools import Tuplet
+from abjad.tools.scoretools import Tuplet
 from fractions import Fraction
 
 # import some frequently used functions for direct user access

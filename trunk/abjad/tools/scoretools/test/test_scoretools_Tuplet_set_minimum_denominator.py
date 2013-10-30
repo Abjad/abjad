@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_tuplettools_Tuplet_set_minimum_denominator_01():
+def test_scoretools_Tuplet_set_minimum_denominator_01():
 
     tuplet = Tuplet(Multiplier(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(8)
@@ -24,7 +24,7 @@ def test_tuplettools_Tuplet_set_minimum_denominator_01():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_Tuplet_set_minimum_denominator_02():
+def test_scoretools_Tuplet_set_minimum_denominator_02():
 
     tuplet = Tuplet(Multiplier(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(16) 
@@ -46,7 +46,7 @@ def test_tuplettools_Tuplet_set_minimum_denominator_02():
     assert inspect(tuplet).is_well_formed()
 
 
-def test_tuplettools_Tuplet_set_minimum_denominator_03():
+def test_scoretools_Tuplet_set_minimum_denominator_03():
 
     tuplet = Tuplet(Multiplier(3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(2)

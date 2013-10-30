@@ -260,7 +260,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 - Extended ``tonalanalysistools.Scale`` with ``create_named_pitch_set_in_pitch_range()`` method.
 
 
-- Changed ``tuplettools.FixedDurationTuplet.multiplier`` to return fraction instead of duration.
+- Changed ``scoretools.FixedDurationTuplet.multiplier`` to return fraction instead of duration.
 
 
 - Renamed attributes, methods and functions throughout ``intervaltreetools``:
@@ -280,7 +280,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Renamed ``markuptools.Markup.direction_string` => ``markuptools.Markup.direction``.
 
-- Renamed ``tuplettools.Tuplet.ratio`` to ``tuplettools.Tuplet.ratio_string``.
+- Renamed ``scoretools.Tuplet.ratio`` to ``scoretools.Tuplet.ratio_string``.
 
 - Renamed ``scr/devel/find-nonalphabetized-method-names`` to ``scr/devel/find-nonalphabetized-class-attributes``.
 

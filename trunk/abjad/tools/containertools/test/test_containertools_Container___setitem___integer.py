@@ -201,7 +201,7 @@ def test_containertools_Container___setitem___integer_05():
         '''
         )
 
-    voice[1] = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    voice[1] = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
     assert testtools.compare(
         voice,

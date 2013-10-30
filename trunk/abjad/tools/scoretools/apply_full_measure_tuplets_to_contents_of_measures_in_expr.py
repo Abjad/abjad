@@ -61,14 +61,14 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(
     '''
     from abjad.tools import iterationtools
     from abjad.tools import selectiontools
-    from abjad.tools import tuplettools
+    from abjad.tools import scoretools
 
     supplement = selectiontools.ContiguousSelection(supplement)
     assert isinstance(supplement, selectiontools.ContiguousSelection)
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         target_duration = measure._preprolated_duration
-        tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
+        tuplet = scoretools.FixedDurationTuplet(target_duration, measure[:])
         if supplement:
             new_supplement = mutationtools.mutate(supplement).copy()
             tuplet.extend(new_supplement)

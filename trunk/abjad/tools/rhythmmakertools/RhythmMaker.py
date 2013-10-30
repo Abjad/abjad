@@ -5,7 +5,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import sequencetools
-from abjad.tools import tuplettools
+from abjad.tools import scoretools
 from abjad.tools.abctools.Maker import Maker
 
 
@@ -74,7 +74,7 @@ class RhythmMaker(Maker):
 
     # TODO: make static
     def _all_are_tuplets_or_all_are_leaf_lists(self, expr):
-        if all(isinstance(x, tuplettools.Tuplet) for x in expr):
+        if all(isinstance(x, scoretools.Tuplet) for x in expr):
             return True
         elif all(self._is_leaf_list(x) for x in expr):
             return True
@@ -104,7 +104,7 @@ class RhythmMaker(Maker):
         assert len(duration_pairs) == len(leaf_lists)
         tuplets = []
         for duration_pair, leaf_list in zip(duration_pairs, leaf_lists):
-            tuplet = tuplettools.FixedDurationTuplet(duration_pair, leaf_list)
+            tuplet = scoretools.FixedDurationTuplet(duration_pair, leaf_list)
             tuplets.append(tuplet)
         return tuplets
 

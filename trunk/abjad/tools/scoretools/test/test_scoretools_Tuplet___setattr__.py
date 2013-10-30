@@ -3,7 +3,7 @@ import py.test
 from abjad import *
 
 
-def test_tuplettools_Tuplet___setattr___01():
+def test_scoretools_Tuplet___setattr___01():
     r'''Slots constrain tuplet attributes.
     '''
 

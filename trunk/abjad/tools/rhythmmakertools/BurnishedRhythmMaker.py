@@ -10,7 +10,7 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
-from abjad.tools import tuplettools
+from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.scoretools import attach
 
@@ -175,7 +175,7 @@ class BurnishedRhythmMaker(RhythmMaker):
             self._add_ties(result)
         assert isinstance(result, list), repr(result)
         assert all(isinstance(x, selectiontools.Selection) for x in result) or \
-            all(isinstance(x, tuplettools.Tuplet) for x in result)
+            all(isinstance(x, scoretools.Tuplet) for x in result)
         return result
 
     ### PRIVATE METHODS ###

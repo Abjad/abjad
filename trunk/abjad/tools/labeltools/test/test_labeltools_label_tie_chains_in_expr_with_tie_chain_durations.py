@@ -5,7 +5,7 @@ from abjad import *
 def test_labeltools_label_tie_chains_in_expr_with_tie_chain_durations_01():
 
     staff = Staff(notetools.make_repeated_notes(4))
-    tuplettools.FixedDurationTuplet(Duration(2, 8), staff[:3])
+    scoretools.FixedDurationTuplet(Duration(2, 8), staff[:3])
     tie = spannertools.TieSpanner()
     attach(tie, staff.select_leaves()[:2])
     tie = spannertools.TieSpanner()

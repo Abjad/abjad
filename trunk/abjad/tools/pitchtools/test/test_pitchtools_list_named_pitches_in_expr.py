@@ -7,7 +7,7 @@ def test_pitchtools_list_named_pitches_in_expr_01():
     r'''Works with containers.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     named_pitches = pitchtools.list_named_pitches_in_expr(tuplet)
 
     assert named_pitches == (

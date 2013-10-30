@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_tuplettools_FixedDurationTuplet_is_invisible_01():
+def test_scoretools_FixedDurationTuplet_is_invisible_01():
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
+    tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), "c'8 c'8 c'8")
 
     assert testtools.compare(
         tuplet,

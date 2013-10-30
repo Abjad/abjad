@@ -23,7 +23,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___02():
 
     assert isinstance(result, (list, selectiontools.SliceSelection))
     assert len(result) == 1
-    assert isinstance(result[0], tuplettools.FixedDurationTuplet)
+    assert isinstance(result[0], scoretools.FixedDurationTuplet)
     assert testtools.compare(
         result[0],
         r'''

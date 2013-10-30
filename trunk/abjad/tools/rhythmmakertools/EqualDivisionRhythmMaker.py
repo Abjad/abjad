@@ -4,7 +4,7 @@ from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools import tuplettools
+from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -77,7 +77,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         numerator, talea_denominator = division
         division_duration = durationtools.Duration(division)
         ratio = self.leaf_count * [1]
-        tuplet = tuplettools.Tuplet.from_duration_and_ratio(
+        tuplet = scoretools.Tuplet.from_duration_and_ratio(
             division_duration,
             ratio,
             avoid_dots=True,

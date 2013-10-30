@@ -5,7 +5,7 @@ from abjad import *
 def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_01():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(
+    score.append(Staff([scoretools.FixedDurationTuplet(
         Duration(4, 8), "d''8 c''8 b'8")]))
     piano_staff = scoretools.PianoStaff([])
     piano_staff.append(Staff("a'4 g'4"))
@@ -65,7 +65,7 @@ def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_01():
 def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_02():
 
     score = Score([])
-    score.append(Staff([tuplettools.FixedDurationTuplet(
+    score.append(Staff([scoretools.FixedDurationTuplet(
         Duration(4, 8), "d''8 c''8 b'8")]))
     piano_staff = scoretools.PianoStaff([])
     piano_staff.append(Staff("a'4 g'4"))

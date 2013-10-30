@@ -57,7 +57,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
     onto measure with tied note values.
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(5, 8), [])
+    tuplet = scoretools.FixedDurationTuplet(Duration(5, 8), [])
     tuplet.extend("c'8 d'8 e'8 f'8 g'8 a'8")
     measure = Measure((5, 8), [tuplet])
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(

@@ -63,11 +63,11 @@ def test_mutationtools_ScoreMutationAgent_splice_03():
     '''
 
     voice = Voice(
-        [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
+        [scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     result = mutate(voice[-1]).splice(
-        [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
+        [scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
         grow_spanners=True,
         )
 
@@ -251,12 +251,12 @@ def test_mutationtools_ScoreMutationAgent_splice_09():
     r'''Splice tuplet left of tuplet.
     '''
 
-    voice = Voice([tuplettools.FixedDurationTuplet(
+    voice = Voice([scoretools.FixedDurationTuplet(
         Duration(2, 8), "c'8 d'8 e'8")])
     beam = spannertools.BeamSpanner()
     attach(beam, voice[0])
     result = mutate(voice[0]).splice(
-        [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
+        [scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
         direction=Left,
         grow_spanners=True,
         )

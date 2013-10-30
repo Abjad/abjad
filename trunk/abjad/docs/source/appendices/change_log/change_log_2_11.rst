@@ -303,8 +303,8 @@ Changed ratio objects to reduce terms at initialization.
 
 Changed ``diminution`` keyword to ``is_diminution`` in three functions::
 
-    tuplettools.leaf_to_tuplet_with_proportions()
-    tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
+    scoretools.leaf_to_tuplet_with_proportions()
+    scoretools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
     tietools.tie_chain_to_tuplet_with_proportions()
 
 Moved three functions from ``scoretools`` to ``wellformednesstools``.
@@ -331,16 +331,16 @@ Renamed ``tied=True`` keyword in four functions::
 Renamed the four ratio-related API functions::
 
     tietools.tie_chain_to_tuplet_with_proportions()
-    tuplettools.leaf_to_tuplet_with_proportions()
-    tuplettools.make_tuplet_from_duration_and_proportions()
-    tuplettools.make_tuplet_from_proportions_and_pair()
+    scoretools.leaf_to_tuplet_with_proportions()
+    scoretools.make_tuplet_from_duration_and_proportions()
+    scoretools.make_tuplet_from_proportions_and_pair()
 
 ::
 
     tietools.tie_chain_to_tuplet_with_ratio()
-    tuplettools.leaf_to_tuplet_with_ratio()
+    scoretools.leaf_to_tuplet_with_ratio()
     Tuplet.from_duration_and_ratio()
-    tuplettools.from_ratio_and_nonreduced_fraction()
+    scoretools.from_ratio_and_nonreduced_fraction()
 
 Added four new public properties to ``Duration`` that replace functions::
 
