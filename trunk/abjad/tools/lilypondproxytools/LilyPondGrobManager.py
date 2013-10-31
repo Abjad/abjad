@@ -7,7 +7,7 @@ from abjad.tools.lilypondproxytools.LilyPondComponentPlugIn \
 	import LilyPondComponentPlugIn
 
 
-class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
+class LilyPondGrobManager(LilyPondComponentPlugIn):
     '''LilyPond grob override component plug-in.
     '''
 

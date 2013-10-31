@@ -6,7 +6,7 @@ def override(expr):
     from abjad.tools import lilypondproxytools
 
     if not hasattr(expr, '_override'):
-        plug_in = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+        plug_in = lilypondproxytools.LilyPondGrobManager()
         expr._override = plug_in
 
     return expr._override

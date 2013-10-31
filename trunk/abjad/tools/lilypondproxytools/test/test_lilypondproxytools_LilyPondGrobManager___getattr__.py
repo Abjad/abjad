@@ -3,7 +3,7 @@ import py.test
 from abjad import *
 
 
-def test_lilypondproxytools_LilyPondGrobOverrideComponentPlugIn___getattr___01():
+def test_lilypondproxytools_LilyPondGrobManager___getattr___01():
     r'''Getting unknown grob name raises exception.
     '''
 

@@ -109,7 +109,7 @@ class ContextBlock(AttributedBlock):
         '''
         if not hasattr(self, '_override'):
             self._override = \
-                lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+                lilypondproxytools.LilyPondGrobManager()
         return self._override
 
     @property

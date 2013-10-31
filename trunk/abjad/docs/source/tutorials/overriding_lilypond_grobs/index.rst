@@ -60,7 +60,7 @@ All Abjad containers have a grob-override plug-in:
 
    >>> staff.override.staff_symbol.color = 'blue'
    >>> staff.override
-   LilyPondGrobOverrideComponentPlugIn(staff_symbol__color='blue')
+   LilyPondGrobManager(staff_symbol__color='blue')
 
 
 ::
@@ -82,7 +82,7 @@ All Abjad leaves have a grob-override plug-in, too:
    >>> leaf.override.note_head.color = 'red'
    >>> leaf.override.stem.color = 'red'
    >>> leaf.override
-   LilyPondGrobOverrideComponentPlugIn(note_head__color='red', stem__color='red')
+   LilyPondGrobManager(note_head__color='red', stem__color='red')
 
 
 ::
@@ -99,7 +99,7 @@ And so do Abjad spanners:
    >>> slur = spannertools.SlurSpanner(staff[:])
    >>> slur.override.slur.color = 'red'
    >>> slur.override
-   LilyPondGrobOverrideComponentPlugIn(slur__color='red')
+   LilyPondGrobManager(slur__color='red')
 
 
 ::

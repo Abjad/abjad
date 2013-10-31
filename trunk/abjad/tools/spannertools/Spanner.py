@@ -467,7 +467,7 @@ class Spanner(AbjadObject):
         Returns LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            plugin = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+            plugin = lilypondproxytools.LilyPondGrobManager()
             self._override = plugin
         return self._override
 
