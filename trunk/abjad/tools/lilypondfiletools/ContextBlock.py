@@ -118,7 +118,7 @@ class ContextBlock(AttributedBlock):
         '''
         if not hasattr(self, '_set'):
             self._set = \
-                lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+                lilypondproxytools.LilyPondSettingManager()
         return self._set
 
     ### PUBLIC PROPERTIES ###

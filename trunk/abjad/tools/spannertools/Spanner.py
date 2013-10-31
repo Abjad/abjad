@@ -478,7 +478,7 @@ class Spanner(AbjadObject):
         Returns LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            plugin = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+            plugin = lilypondproxytools.LilyPondSettingManager()
             self._set = plugin
         return self._set
 

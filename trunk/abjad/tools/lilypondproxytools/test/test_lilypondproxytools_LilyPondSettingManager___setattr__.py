@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___01():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___01():
     r'''Define LilyPond autoBeaming context setting.
     '''
 
@@ -36,7 +36,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___01
         )
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___02():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___02():
     r'''Remove LilyPond autoBeaming context setting.
     '''
 
@@ -67,7 +67,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___02
         )
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___03():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___03():
     r'''Define LilyPond currentBarNumber context setting.
     '''
 
@@ -99,7 +99,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___03
         )
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___04():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___04():
     r'''Define LilyPond currentBarNumber context setting.
     '''
 
@@ -129,7 +129,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___04
     assert inspect(staff).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___05():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___05():
     r'''Define LilyPond fontSize context setting.
     '''
 
@@ -153,7 +153,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___05
     assert inspect(staff).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___06():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___06():
     r'''Define LilyPond instrumentName context setting.
     '''
 
@@ -177,7 +177,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___06
     assert inspect(staff).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___07():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___07():
     r'''Define LilyPond instrumentName context setting.
     '''
 
@@ -201,7 +201,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___07
     assert inspect(staff).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___08():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___08():
     r'''Define LilyPond proportionalNotationDuration context setting.
     '''
 
@@ -228,7 +228,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___08
     assert inspect(score).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___09():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___09():
     r'''Define LilyPond shortInstrumentName context setting.
     '''
 
@@ -252,7 +252,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___09
     assert inspect(staff).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___10():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___10():
     r'''Define LilyPond shortInstrumentName context setting.
     '''
 
@@ -276,7 +276,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___10
     assert inspect(staff).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___11():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___11():
     r'''Define LilyPond suggestAccidentals context setting.
     '''
 
@@ -300,7 +300,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___11
     assert inspect(staff).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___12():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___12():
     r'''Define LilyPond suggestAccidentals context setting.
     '''
 
@@ -323,7 +323,7 @@ def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___12
     assert inspect(staff).is_well_formed()
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___setattr___13():
+def test_lilypondproxytools_LilyPondSettingManager___setattr___13():
     r'''Define LilyPond tupletFullLength context setting.
     '''
 

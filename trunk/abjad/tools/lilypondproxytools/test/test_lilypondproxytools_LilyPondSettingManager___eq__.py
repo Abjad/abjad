@@ -3,7 +3,7 @@ from abjad import *
 import copy
 
 
-def test_lilypondproxytools_LilyPondContextSettingComponentPlugIn___eq___01():
+def test_lilypondproxytools_LilyPondSettingManager___eq___01():
 
     note_1 = Note("c'4")
     note_1.set.voice.auto_beaming = False

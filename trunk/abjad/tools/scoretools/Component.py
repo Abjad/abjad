@@ -751,7 +751,7 @@ class Component(AbjadObject):
         '''
         if not hasattr(self, '_set'):
             self._set = \
-                lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+                lilypondproxytools.LilyPondSettingManager()
         return self._set
 
     @property
