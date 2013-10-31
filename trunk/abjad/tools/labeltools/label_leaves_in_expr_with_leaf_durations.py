@@ -21,8 +21,8 @@ def label_leaves_in_expr_with_leaf_durations(
 
             >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
             >>> staff = scoretools.RhythmicStaff([tuplet])
-            >>> staff.override.text_script.staff_padding = 2.5
-            >>> staff.override.time_signature.stencil = False
+            >>> override(staff).text_script.staff_padding = 2.5
+            >>> override(staff).time_signature.stencil = False
             >>> labeltools.label_leaves_in_expr_with_leaf_durations(
             ...     tuplet, 
             ...     label_durations=False,
@@ -54,8 +54,8 @@ def label_leaves_in_expr_with_leaf_durations(
 
             >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
             >>> staff = scoretools.RhythmicStaff([tuplet])
-            >>> staff.override.text_script.staff_padding = 2.5
-            >>> staff.override.time_signature.stencil = False
+            >>> override(staff).text_script.staff_padding = 2.5
+            >>> override(staff).time_signature.stencil = False
             >>> labeltools.label_leaves_in_expr_with_leaf_durations(
             ...     tuplet, 
             ...     label_durations=True,
@@ -88,8 +88,8 @@ def label_leaves_in_expr_with_leaf_durations(
 
             >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
             >>> staff = scoretools.RhythmicStaff([tuplet])
-            >>> staff.override.text_script.staff_padding = 2.5
-            >>> staff.override.time_signature.stencil = False
+            >>> override(staff).text_script.staff_padding = 2.5
+            >>> override(staff).time_signature.stencil = False
             >>> labeltools.label_leaves_in_expr_with_leaf_durations(
             ...     tuplet, 
             ...     label_durations=True,

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import override
 from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 
@@ -70,12 +71,12 @@ class LayoutBlock(AttributedBlock):
         ::
 
             >>> context_block = lilypondfiletools.ContextBlock('Score')
-            >>> context_block.override.bar_number.transparent = True
+            >>> override(context_block).bar_number.transparent = True
 
         ::
 
             >>> scheme_expr = schemetools.Scheme('end-of-line-invisible')
-            >>> context_block.override.time_signature.break_visibility = \
+            >>> override(context_block).time_signature.break_visibility = \
             ...     scheme_expr
             >>> layout_block.context_blocks.append(context_block)
 

@@ -7,18 +7,7 @@ def test_scoretools_Container_grob_override_01():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    container.override.glissando.thickness = 3
-
-    r'''
-    {
-        \override Glissando #'thickness = #3
-        c'8
-        d'8
-        e'8
-        f'8
-        \revert Glissando #'thickness
-    }
-    '''
+    override(container).glissando.thickness = 3
 
     assert testtools.compare(
         container,

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import override
 
 
 def get_grob_revert_format_contributions(component):
@@ -10,5 +11,5 @@ def get_grob_revert_format_contributions(component):
 
     result = []
     if not isinstance(component, Leaf):
-        result.extend(component.override._list_format_contributions('revert'))
+        result.extend(override(component)._list_format_contributions('revert'))
     return ['grob reverts', result]

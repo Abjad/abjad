@@ -71,8 +71,8 @@ class AltoFlute(Instrument):
                     ...     clef = attach(clef, skip)
                     ...     skips.append(skip)
                     >>> staff = Staff(skips)
-                    >>> staff.override.clef.full_size_change = True
-                    >>> staff.override.time_signature.stencil = False
+                    >>> override(staff).clef.full_size_change = True
+                    >>> override(staff).time_signature.stencil = False
                     >>> show(staff) # doctest: +SKIP
 
             ..  container:: example
@@ -208,7 +208,7 @@ class AltoFlute(Instrument):
                     >>> chord[1].written_pitch = stop_pitch
                     >>> voice = Voice([chord])
                     >>> staff = Staff([voice])
-                    >>> staff.override.time_signature.stencil = False
+                    >>> override(staff).time_signature.stencil = False
                     >>> show(staff) # doctest: +SKIP
 
             ..  container:: example
@@ -341,7 +341,7 @@ class AltoFlute(Instrument):
                     >>> note = Note(pitch, Duration(1))
                     >>> voice = Voice([note])
                     >>> staff = Staff([voice])
-                    >>> staff.override.time_signature.stencil = False
+                    >>> override(staff).time_signature.stencil = False
                     >>> show(staff) # doctest: +SKIP
 
             ..  container:: example

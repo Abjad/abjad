@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 from abjad.tools import lilypondproxytools
+from abjad.tools.functiontools import override
+from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 
 class ContextBlock(AttributedBlock):
@@ -18,9 +19,9 @@ class ContextBlock(AttributedBlock):
     ::
 
         >>> context_block.context_name = 'Score'
-        >>> context_block.override.bar_number.transparent = True
+        >>> override(context_block).bar_number.transparent = True
         >>> scheme = schemetools.Scheme('end-of-line-invisible')
-        >>> context_block.override.time_signature.break_visibility = scheme
+        >>> override(context_block).time_signature.break_visibility = scheme
         >>> context_block.set.proportionalNotationDuration = \
         ...     schemetools.SchemeMoment((1, 45))
 
@@ -76,8 +77,8 @@ class ContextBlock(AttributedBlock):
             result.append('\t' + r'\consists %s' % string)
         for string in self.accepts:
             result.append('\t' + r'\accepts %s' % string)
-        for override in self.override._list_format_contributions('override'):
-            result.append('\t' + override)
+        for string in override(self)._list_format_contributions('override'):
+            result.append('\t' + string)
         setting_contributions = []
         for key, value in self.set._get_attribute_tuples():
             setting_contribution = \

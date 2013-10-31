@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import override
 from abjad.tools.scoretools.Context import Context
 
 
@@ -168,5 +169,5 @@ class Score(Context):
         markup = markup = markuptools.Markup(markup, Down)
         attach(markup, last_leaf)
         if extra_offset is not None:
-            last_leaf.override.text_script.extra_offset = extra_offset
+            override(last_leaf).text_script.extra_offset = extra_offset
         return markup

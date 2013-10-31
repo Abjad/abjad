@@ -46,7 +46,8 @@ def test_selectiontools_Parentage_logical_voice_indicator_04():
     first voice, staff and score in the parentage of component.
     '''
 
-    voice = Voice(r'''
+    voice = Voice(
+        r'''
         c'8
         d'8
         <<
@@ -61,8 +62,10 @@ def test_selectiontools_Parentage_logical_voice_indicator_04():
         >>
         b'8
         c''8
-        ''')
-    voice.override.note_head.color = 'red'
+        '''
+        )
+
+    override(voice).note_head.color = 'red'
 
     assert testtools.compare(
         voice,
@@ -105,7 +108,8 @@ def test_selectiontools_Parentage_logical_voice_indicator_05():
     first voice, staff and score in parentage of component.
     '''
 
-    voice = Voice(r'''
+    voice = Voice(
+        r'''
         c'8
         d'8
         <<
@@ -120,8 +124,10 @@ def test_selectiontools_Parentage_logical_voice_indicator_05():
         >>
         b'8
         c''8
-        ''')
-    voice.override.note_head.color = 'red'
+        '''
+        )
+
+    override(voice).note_head.color = 'red'
     voice.name = 'foo'
 
     assert testtools.compare(
@@ -224,7 +230,8 @@ def test_selectiontools_Parentage_logical_voice_indicator_07():
     first voice, staff and score in parentage of component.
     '''
 
-    container = Container(r'''
+    container = Container(
+        r'''
         c'8
         <<
             \context Voice = "alto" {
@@ -243,9 +250,11 @@ def test_selectiontools_Parentage_logical_voice_indicator_07():
             }
         }
         a'8
-        ''')
-    container[1][1].override.note_head.color = 'red'
-    container[2][1].override.note_head.color = 'red'
+        '''
+        )
+
+    override(container[1][1]).note_head.color = 'red'
+    override(container[2][1]).note_head.color = 'red'
 
     assert testtools.compare(
         container,

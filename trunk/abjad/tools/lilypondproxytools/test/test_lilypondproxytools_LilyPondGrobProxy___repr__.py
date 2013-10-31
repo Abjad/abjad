@@ -8,9 +8,9 @@ def test_lilypondproxytools_LilyPondGrobProxy___repr___01():
     '''
 
     note = Note("c'4")
-    note.override.note_head.color = 'red'
+    override(note).note_head.color = 'red'
 
-    grob_proxy_1 = note.override.note_head
+    grob_proxy_1 = override(note).note_head
     grob_proxy_2 = eval(repr(grob_proxy_1))
 
     assert isinstance(grob_proxy_1, LilyPondGrobProxy)

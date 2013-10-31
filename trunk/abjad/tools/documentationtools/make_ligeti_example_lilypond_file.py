@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import lilypondfiletools
+from abjad.tools import schemetools
+from abjad.tools.functiontools import override
 
 
 def make_ligeti_example_lilypond_file(music=None):
@@ -6,8 +9,6 @@ def make_ligeti_example_lilypond_file(music=None):
 
     Returns LilyPond file.
     '''
-    from abjad.tools import lilypondfiletools
-    from abjad.tools import schemetools
 
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(music=music)
 
@@ -25,40 +26,44 @@ def make_ligeti_example_lilypond_file(music=None):
     context_block.engraver_removals.append('Bar_number_engraver')
     context_block.engraver_removals.append('Default_bar_line_engraver')
     context_block.engraver_removals.append('Timing_translator')
-    context_block.override.beam.breakable = True
-    context_block.override.glissando.breakable = True
-    context_block.override.note_column.ignore_collision = True
-    #context_block.override.spacing_spanner.strict_grace_spacing = True
-    #context_block.override.spacing_spanner.strict_note_spacing = True
-    context_block.override.spacing_spanner.uniform_stretching = True
-    context_block.override.text_script.staff_padding = 4
-    context_block.override.text_spanner.breakable = True
-    context_block.override.tuplet_bracket.bracket_visibility = True
-    context_block.override.tuplet_bracket.minimum_length = 3
-    context_block.override.tuplet_bracket.padding = 2
-    context_block.override.tuplet_bracket.springs_and_rods = schemetools.Scheme(
-        'ly:spanner::set-spacing-rods')
-    context_block.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+    override(context_block).beam.breakable = True
+    override(context_block).glissando.breakable = True
+    override(context_block).note_column.ignore_collision = True
+    override(context_block).spacing_spanner.uniform_stretching = True
+    override(context_block).text_script.staff_padding = 4
+    override(context_block).text_spanner.breakable = True
+    override(context_block).tuplet_bracket.bracket_visibility = True
+    override(context_block).tuplet_bracket.minimum_length = 3
+    override(context_block).tuplet_bracket.padding = 2
+    override(context_block).tuplet_bracket.springs_and_rods = \
+        schemetools.Scheme('ly:spanner::set-spacing-rods')
+    override(context_block).tuplet_number.text = \
+        schemetools.Scheme('tuplet-number::calc-fraction-text')
     context_block.set.autoBeaming = False
-    context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 12))
+    context_block.set.proportionalNotationDuration = \
+        schemetools.SchemeMoment((1, 12))
     context_block.set.tupletFullLength = True
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'Staff'
-    # LilyPond CAUTION: Timing_translator must appear before Default_bar_line_engraver!
+    # LilyPond CAUTION: Timing_translator must appear 
+    #                   before Default_bar_line_engraver!
     context_block.engraver_consists.append('Timing_translator')
     context_block.engraver_consists.append('Default_bar_line_engraver')
-    context_block.override.time_signature.style = schemetools.Scheme("'numbered")
+    override(context_block).time_signature.style = \
+        schemetools.Scheme("'numbered")
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'RhythmicStaff'
-    # LilyPond CAUTION: Timing_translator must appear before Default_bar_line_engraver!
+    # LilyPond CAUTION: Timing_translator must appear 
+    #                   before Default_bar_line_engraver!
     context_block.engraver_consists.append('Timing_translator')
     context_block.engraver_consists.append('Default_bar_line_engraver')
-    context_block.override.time_signature.style = schemetools.Scheme("'numbered")
-    context_block.override.vertical_axis_group.minimum_Y_extent = (-2, 4)
+    override(context_block).time_signature.style = \
+        schemetools.Scheme("'numbered")
+    override(context_block).vertical_axis_group.minimum_Y_extent = (-2, 4)
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)

@@ -91,8 +91,8 @@ class Accordion(Instrument):
                     ...     clef = attach(clef, skip)
                     ...     skips.append(skip)
                     >>> staff = Staff(skips)
-                    >>> staff.override.clef.full_size_change = True
-                    >>> staff.override.time_signature.stencil = False
+                    >>> override(staff).clef.full_size_change = True
+                    >>> override(staff).time_signature.stencil = False
                     >>> show(staff) # doctest: +SKIP
 
             ..  container:: example
@@ -229,7 +229,7 @@ class Accordion(Instrument):
                     >>> note = Note("c'1")
                     >>> note.written_pitch = accordion.pitch_range.stop_pitch
                     >>> treble_staff.append(note)
-                    >>> score.override.time_signature.stencil = False
+                    >>> override(score).time_signature.stencil = False
                     >>> show(score) # doctest: +SKIP
 
             ..  container:: example
@@ -361,7 +361,7 @@ class Accordion(Instrument):
                     >>> pitch = accordion.sounding_pitch_of_written_middle_c
                     >>> note = Note(pitch, Duration(1))
                     >>> staff = Staff([note])
-                    >>> staff.override.time_signature.stencil = False
+                    >>> override(staff).time_signature.stencil = False
                     >>> show(staff) # doctest: +SKIP
 
             ..  container:: example

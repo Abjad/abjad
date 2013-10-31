@@ -25,7 +25,7 @@ def test_scoretools_Rest___init___03():
     '''
 
     rest_1 = Rest((1, 4), (1, 2))
-    rest_1.override.staff.note_head.color = 'red'
+    override(rest_1).staff.note_head.color = 'red'
     rest_2 = Rest(rest_1)
 
     assert isinstance(rest_1, Rest)

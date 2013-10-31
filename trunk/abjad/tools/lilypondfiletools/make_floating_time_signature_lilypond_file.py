@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import marktools
 from abjad.tools import schemetools
+from abjad.tools.functiontools import override
 
 
 def make_floating_time_signature_lilypond_file(music=None):
@@ -43,17 +44,16 @@ def make_floating_time_signature_lilypond_file(music=None):
     context_block.context_name = 'Score'
     context_block.accepts.append('TimeSignatureContext')
     context_block.engraver_removals.append('Bar_number_engraver')
-    context_block.override.beam.breakable = True
-    context_block.override.spacing_spanner.strict_grace_spacing = True
-    context_block.override.spacing_spanner.strict_note_spacing = True
-    context_block.override.spacing_spanner.uniform_stretching = True
-    context_block.override.tuplet_bracket.bracket_visibility = True
-    context_block.override.tuplet_bracket.padding = 2
-    context_block.override.tuplet_bracket.springs_and_rods = \
-        schemetools.Scheme(
-        'ly:spanner::set-spacing-rods')
-    context_block.override.tuplet_bracket.minimum_length = 3
-    context_block.override.tuplet_number.text = \
+    override(context_block).beam.breakable = True
+    override(context_block).spacing_spanner.strict_grace_spacing = True
+    override(context_block).spacing_spanner.strict_note_spacing = True
+    override(context_block).spacing_spanner.uniform_stretching = True
+    override(context_block).tuplet_bracket.bracket_visibility = True
+    override(context_block).tuplet_bracket.padding = 2
+    override(context_block).tuplet_bracket.springs_and_rods = \
+        schemetools.Scheme('ly:spanner::set-spacing-rods')
+    override(context_block).tuplet_bracket.minimum_length = 3
+    override(context_block).tuplet_number.text = \
         schemetools.Scheme('tuplet-number::calc-fraction-text')
     context_block.set.autoBeaming = False
     context_block.set.proportionalNotationDuration = \

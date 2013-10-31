@@ -1013,7 +1013,7 @@ class ScoreMutationAgent(object):
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
                 >>> attach(hairpin, leaves)
-                >>> staff.override.dynamic_line_spanner.staff_padding = 3
+                >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1069,7 +1069,7 @@ class ScoreMutationAgent(object):
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
                 >>> attach(hairpin, leaves)
-                >>> staff.override.dynamic_line_spanner.staff_padding = 3
+                >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1126,7 +1126,7 @@ class ScoreMutationAgent(object):
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
                 >>> attach(hairpin, leaves)
-                >>> staff.override.dynamic_line_spanner.staff_padding = 3
+                >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1185,7 +1185,7 @@ class ScoreMutationAgent(object):
                 >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.HairpinSpanner(descriptor='p < f')
                 >>> attach(hairpin, leaves)
-                >>> staff.override.dynamic_line_spanner.staff_padding = 3
+                >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::

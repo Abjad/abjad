@@ -1,12 +1,14 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
+from abjad.tools.functiontools import override
 
 
 def make_reference_manual_lilypond_file(music=None):
     r'''Make reference manual LilyPond file.
 
         >>> score = Score([Staff('c d e f')])
-        >>> lilypond_file = documentationtools.make_reference_manual_lilypond_file(score)
+        >>> lilypond_file = \
+        ...     documentationtools.make_reference_manual_lilypond_file(score)
 
     ..  doctest::
 
@@ -65,22 +67,25 @@ def make_reference_manual_lilypond_file(music=None):
     lilypond_file.layout_block.ragged_right = True
 
     # paper
-    lilypond_file.paper_block.left_margin = lilypondfiletools.LilyPondDimension(1, 'in')
+    lilypond_file.paper_block.left_margin = \
+        lilypondfiletools.LilyPondDimension(1, 'in')
 
     # score context
     context_block = lilypondfiletools.ContextBlock()
     context_block.context_name = 'Score'
     context_block.engraver_removals.append('Bar_number_engraver')
-    context_block.override.spacing_spanner.strict_grace_spacing = True
-    context_block.override.spacing_spanner.strict_note_spacing = True
-    context_block.override.spacing_spanner.uniform_stretching = True
-    context_block.override.tuplet_bracket.bracket_visibility = True
-    context_block.override.tuplet_bracket.padding = 2
-    context_block.override.tuplet_bracket.springs_and_rods = schemetools.Scheme(
-        'ly:spanner::set-spacing-rods')
-    context_block.override.tuplet_bracket.minimum_length = 3
-    context_block.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
-    context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 32))
+    override(context_block).spacing_spanner.strict_grace_spacing = True
+    override(context_block).spacing_spanner.strict_note_spacing = True
+    override(context_block).spacing_spanner.uniform_stretching = True
+    override(context_block).tuplet_bracket.bracket_visibility = True
+    override(context_block).tuplet_bracket.padding = 2
+    override(context_block).tuplet_bracket.springs_and_rods = \
+        schemetools.Scheme('ly:spanner::set-spacing-rods')
+    override(context_block).tuplet_bracket.minimum_length = 3
+    override(context_block).tuplet_number.text = \
+        schemetools.Scheme('tuplet-number::calc-fraction-text')
+    context_block.set.proportionalNotationDuration = \
+        schemetools.SchemeMoment((1, 32))
     context_block.set.tupletFullLength = True
     lilypond_file.layout_block.context_blocks.append(context_block)
 

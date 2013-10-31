@@ -190,8 +190,8 @@ def test_pitchtools_PitchRange___contains___15():
     attach(flute, staff)
     staff[2].written_pitch_indication_is_nonsemantic = True
     staff[3].written_pitch_indication_is_nonsemantic = True
-    staff[2].override.note_head.style = 'cross'
-    staff[3].override.note_head.style = 'cross'
+    override(staff[2]).note_head.style = 'cross'
+    override(staff[3]).note_head.style = 'cross'
 
     assert testtools.compare(
         staff,

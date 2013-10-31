@@ -79,8 +79,8 @@ class AltoTrombone(Instrument):
                     ...     clef = attach(clef, skip)
                     ...     skips.append(skip)
                     >>> staff = Staff(skips)
-                    >>> staff.override.clef.full_size_change = True
-                    >>> staff.override.time_signature.stencil = False
+                    >>> override(staff).clef.full_size_change = True
+                    >>> override(staff).time_signature.stencil = False
                     >>> show(staff) # doctest: +SKIP
 
             ..  container:: example
@@ -224,7 +224,7 @@ class AltoTrombone(Instrument):
                     >>> note.written_pitch = stop_pitch
                     >>> voice = Voice([note])
                     >>> tenor_staff.append(voice)
-                    >>> score.override.time_signature.stencil = False
+                    >>> override(score).time_signature.stencil = False
                     >>> show(score) # doctest: +SKIP
 
             ..  container:: example

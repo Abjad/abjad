@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import override
 
 
 def make_rhythmic_sketch_staff(music):
@@ -9,7 +10,7 @@ def make_rhythmic_sketch_staff(music):
 
     staff = scoretools.Staff(music)
     staff.context_name = 'RhythmicStaff'
-    staff.override.time_signature.transparent = True
-    staff.override.bar_line.transparent = True
+    override(staff).time_signature.transparent = True
+    override(staff).bar_line.transparent = True
 
     return staff

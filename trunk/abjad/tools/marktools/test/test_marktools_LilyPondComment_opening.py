@@ -36,7 +36,7 @@ def test_marktools_LilyPondComment_opening_02():
     '''
 
     note = Note(0, (1, 8))
-    note.override.beam.thickness = 3
+    override(note).beam.thickness = 3
     comment = marktools.LilyPondComment('Leaf opening comments here.', 'opening')
     attach(comment, note)
     comment = marktools.LilyPondComment('More leaf opening comments.', 'opening')

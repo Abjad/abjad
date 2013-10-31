@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import override
 
 
 def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
@@ -73,10 +74,10 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
     # make and configure score
     score, treble_staff, bass_staff = \
         scoretools.make_piano_score_from_leaves(leaves, lowest_treble_pitch)
-    score.override.time_signature.stencil = False
-    score.override.bar_number.transparent = True
-    score.override.bar_line.stencil = False
-    score.override.span_bar.stencil = False
+    override(score).time_signature.stencil = False
+    override(score).bar_number.transparent = True
+    override(score).bar_line.stencil = False
+    override(score).span_bar.stencil = False
 
     # make and configure lily file
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)

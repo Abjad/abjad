@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import copy
+from abjad import *
 
 
 def test_scoretools_Skip___copy___01():
@@ -34,8 +34,8 @@ def test_scoretools_Skip___copy___03():
     '''
 
     skip_1 = scoretools.Skip((1, 4))
-    skip_1.override.staff.note_head.color = 'red'
-    skip_1.override.accidental.color = 'red'
+    override(skip_1).staff.note_head.color = 'red'
+    override(skip_1).accidental.color = 'red'
     skip_1.set.tuplet_full_length = True
     skip_2 = copy.copy(skip_1)
 

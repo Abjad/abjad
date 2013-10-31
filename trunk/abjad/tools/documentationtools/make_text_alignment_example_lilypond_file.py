@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import override
 
 
 def make_text_alignment_example_lilypond_file(music=None):
@@ -72,13 +73,14 @@ def make_text_alignment_example_lilypond_file(music=None):
     context_block.engraver_removals.append('Bar_number_engraver')
     context_block.engraver_removals.append('Default_bar_line_engraver')
     context_block.context_name = 'Score'
-    context_block.override.clef.transparent = True
-    context_block.override.spacing_spanner.strict_grace_spacing = True
-    context_block.override.spacing_spanner.strict_note_spacing = True
-    context_block.override.spacing_spanner.uniform_stretching = True
-    context_block.override.text_script.staff_padding = 4
-    context_block.override.time_signature.transparent = True
-    context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 32))
+    override(context_block).clef.transparent = True
+    override(context_block).spacing_spanner.strict_grace_spacing = True
+    override(context_block).spacing_spanner.strict_note_spacing = True
+    override(context_block).spacing_spanner.uniform_stretching = True
+    override(context_block).text_script.staff_padding = 4
+    override(context_block).time_signature.transparent = True
+    context_block.set.proportionalNotationDuration = \
+        schemetools.SchemeMoment((1, 32))
 
     lilypond_file.paper_block.bottom_margin = 10
     lilypond_file.paper_block.left_margin = 10

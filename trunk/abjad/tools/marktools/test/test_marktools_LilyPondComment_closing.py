@@ -36,7 +36,7 @@ def test_marktools_LilyPondComment_closing_02():
     '''
 
     note = Note(0, (1, 8))
-    note.override.beam.thickness = 3
+    override(note).beam.thickness = 3
     comment = marktools.LilyPondComment('Leaf closing comments here.', 'closing')
     attach(comment, note)
     comment = marktools.LilyPondComment('More leaf closing comments.', 'closing')

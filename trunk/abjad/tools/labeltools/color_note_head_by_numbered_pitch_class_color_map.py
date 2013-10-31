@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
+from abjad.tools.functiontools import override
 
 
 def color_note_head_by_numbered_pitch_class_color_map(pitch_carrier):
@@ -57,7 +58,7 @@ def color_note_head_by_numbered_pitch_class_color_map(pitch_carrier):
     pitch = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier)
     color = _pc_number_to_color(abs(pitch.numbered_pitch_class))
     if color is not None:
-        pitch_carrier.override.note_head.color = color
+        override(pitch_carrier).note_head.color = color
     return pitch_carrier
 
 

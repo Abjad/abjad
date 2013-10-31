@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools import schemetools
+from abjad.tools.functiontools import override
 
 
 def make_solid_text_spanner_with_nib(
@@ -77,17 +78,17 @@ def make_solid_text_spanner_with_nib(
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, components)
     left_text = markuptools.Markup(left_text)
-    text_spanner.override.text_spanner.bound_details__left__text = left_text
+    override(text_spanner).text_spanner.bound_details__left__text = left_text
     if direction is Up:
         pair = schemetools.SchemePair(0, -1)
     else:
         pair = schemetools.SchemePair(0, 1)
     right_text = markuptools.Markup(
         markuptools.MarkupCommand('draw-line', pair))
-    text_spanner.override.text_spanner.bound_details__right__text = right_text
-    text_spanner.override.text_spanner.bound_details__right_broken__text = \
+    override(text_spanner).text_spanner.bound_details__right__text = right_text
+    override(text_spanner).text_spanner.bound_details__right_broken__text = \
         False
-    text_spanner.override.text_spanner.dash_fraction = 1
-    text_spanner.override.text_spanner.direction = direction
+    override(text_spanner).text_spanner.dash_fraction = 1
+    override(text_spanner).text_spanner.direction = direction
 
     return text_spanner

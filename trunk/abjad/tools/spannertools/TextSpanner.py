@@ -13,7 +13,7 @@ class TextSpanner(Spanner):
     ::
 
         >>> text_spanner = spannertools.TextSpanner()
-        >>> grob = text_spanner.override.text_spanner
+        >>> grob = override(text_spanner).text_spanner
         >>> markup_command = markuptools.MarkupCommand('italic', 'foo')
         >>> markup_command = markuptools.MarkupCommand('bold', markup_command)
         >>> left_markup = markuptools.Markup(markup_command)
@@ -22,7 +22,7 @@ class TextSpanner(Spanner):
         >>> markup_command = markuptools.MarkupCommand('draw-line', pair)
         >>> right_markup = markuptools.Markup(markup_command)
         >>> grob.bound_details__right__text = right_markup
-        >>> text_spanner.override.text_spanner.dash_fraction = 1
+        >>> override(text_spanner).text_spanner.dash_fraction = 1
         >>> attach(text_spanner, [staff])
         >>> show(staff) # doctest: +SKIP
 

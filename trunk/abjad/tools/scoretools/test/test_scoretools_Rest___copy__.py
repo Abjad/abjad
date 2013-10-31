@@ -34,8 +34,8 @@ def test_scoretools_Rest___copy___03():
     '''
 
     rest_1 = Rest((1, 4))
-    rest_1.override.staff.note_head.color = 'red'
-    rest_1.override.accidental.color = 'red'
+    override(rest_1).staff.note_head.color = 'red'
+    override(rest_1).accidental.color = 'red'
     rest_1.set.tuplet_full_length = True
     rest_2 = copy.copy(rest_1)
 

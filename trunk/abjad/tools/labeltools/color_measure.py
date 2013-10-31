@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
+from abjad.tools.functiontools import override
 
 
 def color_measure(measure, color='red'):
@@ -61,11 +62,11 @@ def color_measure(measure, color='red'):
         raise TypeError(message)
 
     # color measure
-    measure.override.beam.color = color
-    measure.override.dots.color = color
-    measure.override.staff.time_signature.color = color
-    measure.override.note_head.color = color
-    measure.override.stem.color = color
+    override(measure).beam.color = color
+    override(measure).dots.color = color
+    override(measure).staff.time_signature.color = color
+    override(measure).note_head.color = color
+    override(measure).stem.color = color
 
     # return measure
     return measure

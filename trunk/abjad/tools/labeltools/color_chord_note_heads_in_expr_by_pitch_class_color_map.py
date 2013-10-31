@@ -2,6 +2,7 @@
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
+from abjad.tools.functiontools import override
 
 
 def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
@@ -89,6 +90,6 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
         pc = note_head.written_pitch.numbered_pitch_class
         color = color_map.get(pc, None)
         if color is not None:
-            note.override.note_head.color = color
+            override(note).note_head.color = color
 
     return chord

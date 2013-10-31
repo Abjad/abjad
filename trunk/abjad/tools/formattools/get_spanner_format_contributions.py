@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import override
 
 
 def get_spanner_format_contributions(component):
@@ -32,7 +33,7 @@ def get_spanner_format_contributions(component):
         # override contributions (in before slot)
         if spanner._is_my_first_leaf(component):
             for contribution in \
-                spanner.override._list_format_contributions(
+                override(spanner)._list_format_contributions(
                 'override', is_once=False):
                 before_contributions.append((spanner, contribution, None))
 
@@ -48,7 +49,7 @@ def get_spanner_format_contributions(component):
         # revert contributions (in after slot)
         if spanner._is_my_last_leaf(component):
             for contribution in \
-                spanner.override._list_format_contributions('revert'):
+                override(spanner)._list_format_contributions('revert'):
                 triple = (spanner, contribution, None)
                 if triple not in after_contributions:
                     after_contributions.append(triple)

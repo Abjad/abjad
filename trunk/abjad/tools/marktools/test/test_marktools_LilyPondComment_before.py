@@ -9,7 +9,7 @@ def test_marktools_LilyPondComment_before_01():
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
-    beam.override.beam.thickness = 3
+    override(beam).beam.thickness = 3
     comment = marktools.LilyPondComment('Voice before comments here.', 'before')
     attach(comment, voice)
     comment = marktools.LilyPondComment('More voice before comments.', 'before')
@@ -39,7 +39,7 @@ def test_marktools_LilyPondComment_before_02():
     '''
 
     note = Note(0, (1, 8))
-    note.override.beam.thickness = 3
+    override(note).beam.thickness = 3
     comment = marktools.LilyPondComment('Leaf comments before here.', 'before')
     attach(comment, note)
     comment = marktools.LilyPondComment('More comments before.', 'before')

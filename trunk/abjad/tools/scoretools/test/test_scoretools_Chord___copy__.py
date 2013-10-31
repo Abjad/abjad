@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import copy
+from abjad import *
 
 
 def test_scoretools_Chord___copy___01():
@@ -32,8 +32,8 @@ def test_scoretools_Chord___copy___03():
     '''
 
     chord_1 = Chord("<ef' cs'' f''>4")
-    chord_1.override.staff.note_head.color = 'red'
-    chord_1.override.accidental.color = 'red'
+    override(chord_1).staff.note_head.color = 'red'
+    override(chord_1).accidental.color = 'red'
     chord_1.set.tuplet_full_length = True
     chord_2 = copy.copy(chord_1)
 

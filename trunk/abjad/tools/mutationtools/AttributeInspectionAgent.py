@@ -500,8 +500,8 @@ class AttributeInspectionAgent(object):
             ::
 
                 >>> container = Container("c'8 d'8 e'8 f'8")
-                >>> container.override.note_head.color = 'red'
-                >>> container.override.note_head.style = 'harmonic'
+                >>> override(container).note_head.color = 'red'
+                >>> override(container).note_head.style = 'harmonic'
                 >>> show(container) # doctest: +SKIP
 
             ..  doctest::

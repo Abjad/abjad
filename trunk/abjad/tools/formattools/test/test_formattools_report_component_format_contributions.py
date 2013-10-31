@@ -8,9 +8,9 @@ def test_formattools_report_component_format_contributions_01():
     '''
 
     t = Note("c'4")
-    t.override.note_head.style = 'cross'
-    t.override.note_head.color = 'red'
-    t.override.stem.color = 'red'
+    override(t).note_head.style = 'cross'
+    override(t).note_head.color = 'red'
+    override(t).stem.color = 'red'
     articulation = marktools.Articulation('staccato')
     attach(articulation, t)
     articulation = marktools.Articulation('tenuto')

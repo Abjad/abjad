@@ -2,6 +2,7 @@
 from abjad.tools import markuptools
 from abjad.tools import schemetools
 from abjad.tools.spannertools.TextSpanner import TextSpanner
+from abjad.tools.functiontools import override
 
 
 class BracketSpanner(TextSpanner):
@@ -63,14 +64,14 @@ class BracketSpanner(TextSpanner):
             markuptools.MarkupCommand(
                 'draw-line', 
                 schemetools.SchemePair(0, -1)))
-        self.override.text_spanner.bound_details__left__text = markup
-        self.override.text_spanner.bound_details__left_broken__text = False
+        override(self).text_spanner.bound_details__left__text = markup
+        override(self).text_spanner.bound_details__left_broken__text = False
         markup = markuptools.Markup(
             markuptools.MarkupCommand(
                 'draw-line', schemetools.SchemePair(0, -1)))
-        self.override.text_spanner.bound_details__right__text = markup
-        self.override.text_spanner.bound_details__right_broken__text = False
-        self.override.text_spanner.color = 'red'
-        self.override.text_spanner.dash_fraction = 1
-        self.override.text_spanner.staff_padding = 2
-        self.override.text_spanner.thickness = 1.5
+        override(self).text_spanner.bound_details__right__text = markup
+        override(self).text_spanner.bound_details__right_broken__text = False
+        override(self).text_spanner.color = 'red'
+        override(self).text_spanner.dash_fraction = 1
+        override(self).text_spanner.staff_padding = 2
+        override(self).text_spanner.thickness = 1.5

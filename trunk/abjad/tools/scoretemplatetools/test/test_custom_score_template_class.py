@@ -108,8 +108,8 @@ def test_custom_score_template_class_02():
     context_block.type = 'Engraver_group'
     context_block.name = 'CustomVoice'
     context_block.alias = 'Voice'
-    context_block.override.note_head.color = 'green'
-    context_block.override.stem.color = 'green'
+    override(context_block).note_head.color = 'green'
+    override(context_block).stem.color = 'green'
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
@@ -118,37 +118,12 @@ def test_custom_score_template_class_02():
     context_block.name = 'CustomStaff'
     context_block.alias = 'Staff'
     context_block.accepts.append('CustomVoice')
-    context_block.override.staff_symbol.color = 'red'
+    override(context_block).staff_symbol.color = 'red'
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
     context_block.context_name = 'Score'
     context_block.accepts.append('CustomStaff')
-
-    r'''
-    \layout {
-        \context {
-            \Voice
-            \name CustomVoice
-            \type Engraver_group
-            \alias Voice
-            \override NoteHead #'color = #green
-            \override Stem #'color = #green
-        }
-        \context {
-            \Staff
-            \name CustomStaff
-            \type Engraver_group
-            \alias Staff
-            \accepts CustomVoice
-            \override StaffSymbol #'color = #red
-        }
-        \context {
-            \Score
-            \accepts CustomStaff
-        }
-    }
-    '''
 
     assert testtools.compare(
         lilypond_file.layout_block,
@@ -177,21 +152,6 @@ def test_custom_score_template_class_02():
         }
         '''
         )
-
-    r'''
-    \score {
-        \new Score <<
-            \new CustomStaff {
-                \new CustomVoice {
-                    c'4 (
-                    d'4
-                    e'4
-                    f'4 )
-                }
-            }
-        >>
-    }
-    '''
 
     assert testtools.compare(
         lilypond_file.score_block,

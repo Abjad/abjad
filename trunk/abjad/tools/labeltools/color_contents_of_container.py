@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import override
 
 
 def color_contents_of_container(container, color):
@@ -45,13 +46,13 @@ def color_contents_of_container(container, color):
     Returns none.
     '''
 
-    container.override.accidental.color = color
-    container.override.beam.color = color
-    container.override.dots.color = color
-    container.override.note_head.color = color
-    container.override.rest.color = color
-    container.override.stem.color = color
-    container.override.tuplet_bracket.color = color
-    container.override.tuplet_number.color = color
+    override(container).accidental.color = color
+    override(container).beam.color = color
+    override(container).dots.color = color
+    override(container).note_head.color = color
+    override(container).rest.color = color
+    override(container).stem.color = color
+    override(container).tuplet_bracket.color = color
+    override(container).tuplet_number.color = color
 
     return container

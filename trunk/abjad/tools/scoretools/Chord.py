@@ -317,9 +317,9 @@ class Chord(Leaf):
 
             ::
 
-                >>> chord.override.accidental.color = 'red'
-                >>> chord.override.note_head.color = 'red'
-                >>> chord.override.stem.color = 'red'
+                >>> override(chord).accidental.color = 'red'
+                >>> override(chord).note_head.color = 'red'
+                >>> override(chord).stem.color = 'red'
                 >>> show(chord) # doctest: +SKIP
 
             ..  doctest::

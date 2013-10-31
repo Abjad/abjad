@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import py.test
+from abjad import *
 
 
 def test_scoretools_Voice_lilypond_voice_resolution_01():
@@ -8,12 +8,17 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
     in the middle of which there is a simultaneous,
     which in turn contains two anonymous voices.
     How does LilyPond resolve voices?
+    LilyPond identifies three separate voices.
+    LilyPond colors the outer four notes (c'8 d'8 b'8 c''8) red.
+    LilyPond colors the inner four notes black.
+    LilyPond issues clashing note column warnings for the inner notes.
+    How should Abjad resolve voices?
     '''
 
     voice = Voice("c'8 d'8 b'8 c''8")
     voice.insert(2, Container([Voice("e'8 f'8"), Voice("g'8 a'8")]))
     voice[2].is_simultaneous = True
-    voice.override.note_head.color = 'red'
+    override(voice).note_head.color = 'red'
 
     testtools.compare(
         voice,
@@ -39,13 +44,6 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
         '''
         )
 
-    r'''
-    LilyPond identifies three separate voices.
-    LilyPond colors the outer four notes (c'8 d'8 b'8 c''8) red.
-    LilyPond colors the inner four notes black.
-    LilyPond issues clashing note column warnings for the inner notes.
-    How should Abjad resolve voices?
-    '''
 
 
 def test_scoretools_Voice_lilypond_voice_resolution_02():
@@ -60,7 +58,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_02():
     voice.insert(2, Container([Voice("e'8 f'8"), Voice("g'8 a'8")]))
     voice[2].is_simultaneous = True
     voice[2][0].name = 'foo'
-    voice.override.note_head.color = 'red'
+    override(voice).note_head.color = 'red'
 
     testtools.compare(
         voice,
@@ -147,8 +145,8 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
         '''
         )
 
-    container[1][1].override.note_head.color = 'red'
-    container[2][1].override.note_head.color = 'red'
+    override(container[1][1]).note_head.color = 'red'
+    override(container[2][1]).note_head.color = 'red'
 
     testtools.compare(
         container,

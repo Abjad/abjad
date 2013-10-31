@@ -34,8 +34,8 @@ def test_scoretools_Note___copy___03():
     '''
 
     note_1 = Note(12, (1, 4))
-    note_1.override.staff.note_head.color = 'red'
-    note_1.override.accidental.color = 'red'
+    override(note_1).staff.note_head.color = 'red'
+    override(note_1).accidental.color = 'red'
     note_1.set.tuplet_full_length = True
     note_2 = copy.copy(note_1)
 
@@ -92,7 +92,7 @@ def test_scoretools_Note___copy___05():
     attach(articulation, note)
     grace = scoretools.GraceContainer("d'16")
     attach(grace, note)
-    note.override.note_head.color = 'red'
+    override(note).note_head.color = 'red'
 
     assert testtools.compare(
         note,
@@ -121,7 +121,7 @@ def test_scoretools_Note___copy___06():
     attach(articulation, note)
     grace = scoretools.GraceContainer("d'16")
     attach(grace, note)
-    note.override.note_head.color = 'red'
+    override(note).note_head.color = 'red'
 
     assert testtools.compare(
         staff,
