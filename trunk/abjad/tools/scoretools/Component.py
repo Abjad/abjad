@@ -61,29 +61,36 @@ class Component(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        '''Copies component with marks but without children of component
+        r'''Copies component with marks but without children of component
         or spanners attached to component.
 
         Returns new component.
         '''
         return self._copy_with_marks_but_without_children_or_spanners()
 
+    def __format__(self, format_spec=''):
+        r'''Get format.
+
+        Return string.
+        '''
+        if format_spec in ('', 'lilypond'):
+            return self.lilypond_format
+        return str(self)
+
     def __getnewargs__(self):
-        '''Gets new arguments.
+        r'''Gets new arguments.
 
         Returns tuple.
         '''
         return ()
 
     def __mul__(self, n):
-        '''Copies component `n` times and detaches spanners.
+        r'''Copies component `n` times and detaches spanners.
 
         Returns list of new components.
         '''
         from abjad.tools.mutationtools import mutate
         from abjad.tools import iterationtools
-        from abjad.tools import selectiontools
-        from abjad.tools import spannertools
         result = mutate(self).copy(n=n)
         for component in iterationtools.iterate_components_in_expr(result):
             for spanner in component._get_spanners():
@@ -96,7 +103,7 @@ class Component(AbjadObject):
         return result
 
     def __rmul__(self, n):
-        '''Copies component `n` times and detach spanners.
+        r'''Copies component `n` times and detach spanners.
 
         Returns list of new components.
         '''
@@ -125,7 +132,6 @@ class Component(AbjadObject):
         return self._copy_with_marks_but_without_children_or_spanners()
 
     def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools import marktools
         from abjad.tools.scoretools import attach
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
@@ -325,7 +331,7 @@ class Component(AbjadObject):
         if isinstance(n, str):
             n = n.replace(' ', '_')
         elif isinstance(n, int):
-            n = slots[n-1]
+            n = slots[n - 1]
         attr = getattr(self, '_format_{}_slot'.format(n))
         for source, contributions in attr(format_contributions):
             result.extend(contributions)
@@ -388,14 +394,15 @@ class Component(AbjadObject):
         return markup
 
     def _get_nth_component_in_time_order_from(self, n):
-        from abjad.tools import scoretools
         assert mathtools.is_integer_equivalent_expr(n)
+
         def next(component):
             if component is not None:
                 for parent in component._get_parentage(include_self=True):
                     next_sibling = parent._get_sibling(1)
                     if next_sibling is not None:
                         return next_sibling
+
         def previous(component):
             if component is not None:
                 for parent in component._get_parentage(include_self=True):
@@ -485,7 +492,6 @@ class Component(AbjadObject):
             self._set_keyword_value(key, value)
 
     def _is_immediate_temporal_successor_of(self, component):
-        from abjad.tools import scoretools
         temporal_successors = []
         current = self
         while current is not None:
@@ -509,7 +515,6 @@ class Component(AbjadObject):
     def _remove_and_shrink_durated_parent_containers(self):
         from abjad.tools import marktools
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools.scoretools import attach
         prolated_leaf_duration = self._get_duration()
         parentage = self._get_parentage(include_self=False)
@@ -519,23 +524,28 @@ class Component(AbjadObject):
         while parent is not None and not parent.is_simultaneous:
             current_prolation *= prolations[i]
             if isinstance(parent, scoretools.FixedDurationTuplet):
-                candidate_new_parent_dur = parent.target_duration - current_prolation * self.written_duration
+                candidate_new_parent_dur = (parent.target_duration -
+                    current_prolation * self.written_duration)
                 if durationtools.Duration(0) < candidate_new_parent_dur:
                     parent.target_duration = candidate_new_parent_dur
             elif isinstance(parent, scoretools.Measure):
                 parent_time_signature = parent._get_mark(
                     marktools.TimeSignatureMark)
                 old_prolation = parent_time_signature.implied_prolation
-                naive_time_signature = parent_time_signature.duration - prolated_leaf_duration
-                better_time_signature = mathtools.NonreducedFraction(naive_time_signature)
-                better_time_signature = better_time_signature.with_denominator(parent_time_signature.denominator)
-                better_time_signature = marktools.TimeSignatureMark(better_time_signature)
+                naive_time_signature = (
+                    parent_time_signature.duration - prolated_leaf_duration)
+                better_time_signature = mathtools.NonreducedFraction(
+                    naive_time_signature)
+                better_time_signature = better_time_signature.with_denominator(
+                    parent_time_signature.denominator)
+                better_time_signature = marktools.TimeSignatureMark(
+                    better_time_signature)
                 for mark in parent._get_marks(marktools.TimeSignatureMark):
                     mark.detach()
                 attach(better_time_signature, parent)
                 parent_time_signature = parent._get_mark(
                     marktools.TimeSignatureMark)
-                new_denominator = parent_time_signature.denominator
+                #new_denominator = parent_time_signature.denominator
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation
                 for x in parent:
@@ -543,7 +553,8 @@ class Component(AbjadObject):
                         x.target_duration *= adjusted_prolation
                     else:
                         if adjusted_prolation != 1:
-                            new_target = x._preprolated_duration * adjusted_prolation
+                            new_target = \
+                                x._preprolated_duration * adjusted_prolation
                             scoretools.FixedDurationTuplet(new_target, [x])
             parent = parent._parent
             i += 1
@@ -565,7 +576,6 @@ class Component(AbjadObject):
         self._parent = None
 
     def _remove_named_children_from_parentage(self, name_dictionary):
-        from abjad.tools import scoretools
         if self._parent is not None and name_dictionary:
             for parent in self._get_parentage(include_self=False):
                 named_children = parent._named_children
@@ -576,7 +586,6 @@ class Component(AbjadObject):
                         del named_children[name]
 
     def _restore_named_children_to_parentage(self, name_dictionary):
-        from abjad.tools import scoretools
         if self._parent is not None and name_dictionary:
             for parent in self._get_parentage(include_self=False):
                 named_children = parent._named_children
@@ -640,10 +649,9 @@ class Component(AbjadObject):
         ):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools import spannertools
         assert all(isinstance(x, scoretools.Component) for x in components)
         selection = selectiontools.ContiguousSelection(self)
-        if direction == Right:
+        if direction is Right:
             if grow_spanners:
                 insert_offset = self._get_timespan().stop_offset
                 receipt = selection._get_dominant_spanners()
@@ -662,7 +670,8 @@ class Component(AbjadObject):
                         spanner._insert(insert_index, component)
                         component._spanners.add(spanner)
             selection = self.select(sequential=True)
-            parent, start, stop = selection._get_parent_and_start_stop_indices()
+            parent, start, stop = \
+                selection._get_parent_and_start_stop_indices()
             if parent is not None:
                 if grow_spanners:
                     for component in reversed(components):
@@ -674,7 +683,7 @@ class Component(AbjadObject):
             return [self] + components
         else:
             if grow_spanners:
-                offset= self._get_timespan().start_offset
+                offset = self._get_timespan().start_offset
                 receipt = selection._get_dominant_spanners()
                 for spanner, x in receipt:
                     for component in spanner:
@@ -725,7 +734,7 @@ class Component(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Lilypond format of component.
+        r'''Lilypond format of component.
 
         Returns string.
         '''

@@ -1,13 +1,12 @@
 # -*- encoding: utf-8 -*-
-import os
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.lilypondfiletools.AbjadRevisionToken \
-	import AbjadRevisionToken
+    import AbjadRevisionToken
 from abjad.tools.lilypondfiletools.DateTimeToken import DateTimeToken
 from abjad.tools.lilypondfiletools.LilyPondLanguageToken \
-	import LilyPondLanguageToken
+    import LilyPondLanguageToken
 from abjad.tools.lilypondfiletools.LilyPondVersionToken \
-	import LilyPondVersionToken
+    import LilyPondVersionToken
 
 
 #class LilyPondFile(list):
@@ -41,14 +40,14 @@ class LilyPondFile(AbjadObject, list):
 
     ..  doctest::
 
-        >>> f(lilypond_file) # doctest: +SKIP
-        % Abjad revision 3719
-        % 2010-09-24 09:01
+        >>> f(lilypond_file)
+        % Abjad revision ...
+        % ...
 
         % File construct as an example.
         % Parts shown here for positioning.
 
-        \version "2.13.32"
+        \version "2..."
         \include "english.ly"
 
         \include "external-settings-file-1.ly"
@@ -81,7 +80,6 @@ class LilyPondFile(AbjadObject, list):
     '''
 
     def __init__(self):
-        from abjad import abjad_configuration
         list.__init__(self)
         self._file_initial_system_comments = []
         self._file_initial_system_comments.append(AbjadRevisionToken())
@@ -95,6 +93,15 @@ class LilyPondFile(AbjadObject, list):
         self.global_staff_size = None
 
     ### SPECIAL METHODS ###
+
+    def __format__(self, format_spec=''):
+        r'''Get format.
+
+        Return string.
+        '''
+        if format_spec in ('', 'lilypond'):
+            return self.lilypond_format
+        return str(self)
 
     def __repr__(self):
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
@@ -202,10 +209,12 @@ class LilyPondFile(AbjadObject, list):
             r'''LilyPond default paper size.
             '''
             return self._default_paper_size
+
         def fset(self, args):
             # #(set-default-paper-size "11x17" 'landscape)
             assert args is None or len(args) == 2
             self._default_paper_size = args
+
         return property(**locals())
 
     @apply
@@ -214,11 +223,13 @@ class LilyPondFile(AbjadObject, list):
             r'''List of file-initial system comments.
             '''
             return self._file_initial_system_comments
+
         def fset(self, arg):
             if isinstance(arg, list):
                 self._file_initial_system_comments = arg
             else:
                 raise TypeError
+
         return property(**locals())
 
     @apply
@@ -227,11 +238,13 @@ class LilyPondFile(AbjadObject, list):
             r'''List of file-initial system include commands.
             '''
             return self._file_initial_system_includes
+
         def fset(self, arg):
             if isinstance(arg, list):
                 self._file_initial_system_includes = arg
             else:
                 raise TypeError
+
         return property(**locals())
 
     @apply
@@ -240,11 +253,13 @@ class LilyPondFile(AbjadObject, list):
             r'''List of file-initial user comments.
             '''
             return self._file_initial_user_comments
+
         def fset(self, arg):
             if isinstance(arg, list):
                 self._file_initial_user_comments = arg
             else:
                 raise TypeError
+
         return property(**locals())
 
     @apply
@@ -253,11 +268,13 @@ class LilyPondFile(AbjadObject, list):
             r'''List of file-initial user include commands.
             '''
             return self._file_initial_user_includes
+
         def fset(self, arg):
             if isinstance(arg, list):
                 self._file_initial_user_includes = arg
             else:
                 raise TypeError
+
         return property(**locals())
 
     @apply
@@ -266,9 +283,11 @@ class LilyPondFile(AbjadObject, list):
             r'''LilyPond global staff size.
             '''
             return self._global_staff_size
+
         def fset(self, arg):
             assert isinstance(arg, (int, float, long, type(None)))
             self._global_staff_size = arg
+
         return property(**locals())
 
     @property

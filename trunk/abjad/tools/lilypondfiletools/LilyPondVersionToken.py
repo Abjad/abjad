@@ -28,6 +28,15 @@ class LilyPondVersionToken(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_spec=''):
+        r'''Get format.
+
+        Return string.
+        '''
+        if format_spec in ('', 'lilypond'):
+            return self.lilypond_format
+        return str(self)
+
     def __repr__(self):
         return '{}({})'.format(self._class_name, self.lilypond_format)
 

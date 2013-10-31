@@ -141,6 +141,15 @@ class Markup(DirectedMark):
                 return True
         return False
 
+    def __format__(self, format_spec=''):
+        r'''Get format.
+
+        Return string.
+        '''
+        if format_spec in ('', 'lilypond'):
+            return self.lilypond_format
+        return str(self)
+
     def __hash__(self):
         return hash((self._class_name, self.contents))
 
