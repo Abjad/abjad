@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import marktools
 from abjad.tools import datastructuretools
-from abjad.tools import iotools
+from abjad.tools import functiontools
+from abjad.tools import marktools
 from abjad.tools import marktools
 from abjad.tools import pitchtools
 from abjad.tools import spannertools
