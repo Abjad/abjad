@@ -205,20 +205,28 @@ class RenameModulesScript(DeveloperScript):
         print 'Renaming old test file(s) ...'
         old_tools_path = self._codebase_name_to_codebase_tools_path(
             old_codebase)
+        old_test_path = os.path.join(
+            old_tools_path, old_tools_package_name, 'test')
         new_tools_path = self._codebase_name_to_codebase_tools_path(
             new_codebase)
-        old_test_file = 'test_{}_{}.py'.format(
+        new_test_path = os.path.join(
+            new_tools_path, new_tools_package_name, 'test')
+        old_test_file_prefix = 'test_{}_{}'.format(
             old_tools_package_name, old_module_name)
-        old_path = os.path.join(
-            old_tools_path, old_tools_package_name, 'test')
-        old_path = os.path.join(old_path, old_test_file)
-        new_test_file = 'test_{}_{}.py'.format(
-            new_tools_package_name, new_module_name)
-        new_path = os.path.join(new_tools_path, new_tools_package_name, 'test')
-        new_path = os.path.join(new_path, new_test_file)
-        command = 'git mv -f {} {}'.format(
-            old_path, new_path)
-        iotools.spawn_subprocess(command)
+        old_test_file_names = [x for x in os.listdir(old_test_path)
+            if x.startswith(old_test_file_prefix) and x.endswith('.py')]
+        for old_test_file_name in old_test_file_names:
+            old_test_file_path = os.path.join(
+                old_test_path, old_test_file_name)
+            old_test_file_suffix = old_test_file_name[
+                len(old_test_file_prefix):]
+            new_test_file_name = 'test_{}_{}{}'.format(
+                new_tools_package_name, new_module_name, old_test_file_suffix)
+            new_test_file_path = os.path.join(
+                new_test_path, new_test_file_name)
+            command = 'git mv -f {} {}'.format(
+                old_test_file_path, new_test_file_path)
+            iotools.spawn_subprocess(command)
         print ''
 
     def _update_codebase(self,
