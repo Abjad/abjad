@@ -1,0 +1,22 @@
+[alias]
+    f = "!git ls-files | grep -i"
+    lg  = log --graph --abbrev-commit --pretty=oneline --decorate --color
+    lga = log --graph --abbrev-commit --pretty=oneline --decorate --color --all
+    slap = blame -w
+    st = status
+	unadd = reset HEAD
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    ui = true
+
+[core]
+	editor = ~/bin/vim
+
+[push]
+	default = simple
+
+[include]
+    path = ~/.mygitconfig
