@@ -60,7 +60,12 @@ class FilesystemAssetManager(ScoreManagerObject):
     @property
     def _repository_add_command(self):
         if self.filesystem_path:
-            return 'svn add {}'.format(self.filesystem_path)
+            if self._is_in_svn_parent_directory():
+                command = 'svn add {}'
+            else:
+                command = 'git add {}'
+            command = command.format(self.filesystem_path)
+            return command
 
     ### PRIVATE METHODS ###
 
@@ -68,6 +73,10 @@ class FilesystemAssetManager(ScoreManagerObject):
         getter = self.session.io_manager.make_getter()
         getter.append_snake_case_file_name('new name')
         return getter
+
+    def _is_in_svn_parent_directory(self):
+        directory_path = os.path.dirname(self.filesystem_path)
+        return '.svn' in os.listdir(directory_path)
 
     def _get_score_package_directory_name(self):
         line = self.filesystem_path
@@ -87,7 +96,14 @@ class FilesystemAssetManager(ScoreManagerObject):
             return False
         if not os.path.exists(self.filesystem_path):
             return False
-        command = 'svn st {}'.format(self.filesystem_path)
+        if self._is_in_svn_parent_directory():
+            command = 'svn st {}'
+        # if enclosing directory isn't svn then assume git.
+        # then just return true.
+        # because we don't know how to tell if git is managing a file or not
+        else:
+            return True
+        command = command.format(self.filesystem_path)
         process = subprocess.Popen(
             command,
             shell=True,
@@ -101,8 +117,12 @@ class FilesystemAssetManager(ScoreManagerObject):
             return True
 
     def _remove(self):
-        if self._is_versioned():
-            command = 'svn --force rm {}'.format(self.filesystem_path)
+        if self._is_in_svn_parent_directory():
+            if self._is_versioned():
+                command = 'svn --force rm {}'
+            else:
+                command = 'rm -rf {}'
+            command = command.format(self.filesystem_path)
             process = subprocess.Popen(
                 command,
                 shell=True,
@@ -111,36 +131,67 @@ class FilesystemAssetManager(ScoreManagerObject):
             process.stdout.readline()
             return True
         else:
-            command = 'rm -rf {}'.format(self.filesystem_path)
+            command = 'git rm --force {}'
+            command = command.format(self.filesystem_path)
             process = subprocess.Popen(
                 command,
                 shell=True,
+                stderr=subprocess.PIPE,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
                 )
             process.stdout.readline()
+            first_error_line = process.stderr.readline() or ''
+            if first_error_line.startswith('fatal:'):
+                command = 'rm -rf {}'
+                command = command.format(self.filesystem_path)
+                process = subprocess.Popen(
+                    command,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    )
+                process.stdout.readline()
             return True
 
     def _rename(self, new_path):
-        if self._is_versioned():
-            command = 'svn --force mv {} {}'.format(
-                self.filesystem_path, new_path)
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                )
-            process.stdout.readline()
-            self._filesystem_path = new_path
+        if self._is_in_svn_parent_directory():
+            if self._is_versioned():
+                command = 'svn --force mv {} {}'
+                command = command.format(self.filesystem_path, new_path)
+                process = subprocess.Popen(
+                    command,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    )
+                process.stdout.readline()
+            else:
+                command = 'mv {} {}'
+                command = command.format(self.filesystem_path, new_path)
+                process = subprocess.Popen(
+                    command,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    )
+                process.stdout.readline()
         else:
-            command = 'mv {} {}'.format(
-                self.filesystem_path, new_path)
+            command = 'git mv --force {} {}'
+            command = command.format(self.filesystem_path, new_path)
             process = subprocess.Popen(
                 command,
                 shell=True,
+                stderr=subprocess.PIPE,
                 stdout=subprocess.PIPE,
                 )
             process.stdout.readline()
+            first_error_line = process.stderr.readline() or ''
+            if first_error_line.startswith('fatal:'):
+                command = 'mv {} {}'
+                command = command.format(self.filesystem_path, new_path)
+                process = subprocess.Popen(
+                    command,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    )
+                process.stdout.readline()
             self._filesystem_path = new_path
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
