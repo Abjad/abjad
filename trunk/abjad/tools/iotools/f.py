@@ -22,4 +22,5 @@ def f(expr):
     Returns none.
     '''
 
-    print expr.lilypond_format
+    print format(expr, 'lilypond')
+    #print expr.lilypond_format

@@ -32,6 +32,17 @@ class LilyPondDimension(abctools.AbjadObject):
         self._value = float(value)
         self._unit = unit
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_spec=''):
+        r'''Get format.
+
+        Return string.
+        '''
+        if format_spec in ('', 'lilypond'):
+            return self.lilypond_format
+        return str(self)
+
     ### PRIVATE PROPERTIES ###
 
     @property
