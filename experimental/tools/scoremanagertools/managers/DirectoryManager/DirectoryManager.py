@@ -43,6 +43,8 @@ class DirectoryManager(FilesystemAssetManager):
 
     def _list_directory(self, public_entries_only=False):
         result = []
+        if not os.path.exists(self.filesystem_path):
+            return result
         if public_entries_only:
             for directory_entry in os.listdir(self.filesystem_path):
                 if directory_entry[0].isalpha() and \
