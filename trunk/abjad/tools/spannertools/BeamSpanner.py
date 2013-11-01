@@ -82,7 +82,7 @@ class BeamSpanner(DirectedSpanner):
             >>> for leaf in staff.select_leaves():
             ...     beam = spannertools.BeamSpanner
             ...     result = beam.is_beamable_component(leaf)
-            ...     print '{:<8}{}'.format(leaf, result)
+            ...     print '{:<8}\t{}'.format(leaf, result)
             ...
             r32     False
             a'32    True
