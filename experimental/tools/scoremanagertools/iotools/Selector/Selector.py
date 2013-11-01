@@ -153,6 +153,7 @@ class Selector(ScoreManagerObject):
         session=None, 
         storehouse_filesystem_paths=None,
         forbidden_directory_entries=None,
+        strip_file_extensions=False,
         ):
         from experimental.tools import scoremanagertools
         selector = Selector(session=session)
@@ -166,6 +167,8 @@ class Selector(ScoreManagerObject):
                 )
             entries = manager._list_directory(public_entries_only=True)
             for entry in entries:
+                if strip_file_extensions:
+                    entry = os.path.splitext(entry)[0]
                 if entry not in forbidden_directory_entries:
                     items.append(entry)
             items.extend(entries)
@@ -209,6 +212,7 @@ class Selector(ScoreManagerObject):
             session=session,
             storehouse_filesystem_paths=[handler_tools_directory_path],
             forbidden_directory_entries=forbidden_directory_entries,
+            strip_file_extensions=True,
             )
         return selector
 
@@ -315,6 +319,7 @@ class Selector(ScoreManagerObject):
         selector = Selector.make_directory_content_selector(
             session=session,
             storehouse_filesystem_paths=[rhythm_maker_tools_directory_path],
+            strip_file_extensions=True,
             )
         return selector
 
