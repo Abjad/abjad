@@ -77,9 +77,14 @@ class TestAndRebuildScript(DeveloperScript):
         failed_tests = 0
         passed_tests = 0
         passed_modules = 0
-        optionflags = doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS|doctest.REPORT_NDIFF|doctest.REPORT_ONLY_FIRST_FAILURE
+        optionflags = (
+            doctest.NORMALIZE_WHITESPACE |
+            doctest.ELLIPSIS |
+            doctest.REPORT_NDIFF |
+            doctest.REPORT_ONLY_FIRST_FAILURE
+            )
         for dir_path, dir_names, file_names in os.walk('.'):
-            for file_name in file_names:
+            for file_name in sorted(file_names):
                 if file_name.endswith('.py') and \
                     not file_name.startswith('test_') and \
                     not file_name == '__init__.py':
