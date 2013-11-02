@@ -24,7 +24,7 @@ def test_pitchtools_OctaveTranspositionMappingInventory_storage_format_01():
                         '[C4, C8)'
                         ),
                     pitchtools.NumberedPitch(27)
-                    )
+                    ),
                 ]),
             pitchtools.OctaveTranspositionMapping([
                 pitchtools.OctaveTranspositionMappingComponent(
@@ -32,8 +32,8 @@ def test_pitchtools_OctaveTranspositionMappingInventory_storage_format_01():
                         '[A0, C8]'
                         ),
                     pitchtools.NumberedPitch(-18)
-                    )
-                ])
+                    ),
+                ]),
             ])
         '''
         )
