@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_StatalServer___eq___01():
+def test_datastructuretools_StatalServer___eq___01():
 
     statal_server_1 = datastructuretools.StatalServer([0, 1, 2, 3, 4])
     statal_server_2 = datastructuretools.StatalServer([0, 1, 2, 3, 4])

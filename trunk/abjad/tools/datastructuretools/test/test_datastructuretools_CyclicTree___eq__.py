@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import sequencetools
 
 
-def test_sequencetools_CyclicTree___eq___01():
+def test_datastructuretools_CyclicTree___eq___01():
 
     cyclic_tree_1 = datastructuretools.CyclicPayloadTree([[1, 2], [3, 4]])
     cyclic_tree_2 = datastructuretools.CyclicPayloadTree([[1, 2], [3, 4]])

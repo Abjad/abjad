@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import sequencetools
 
 
-def test_sequencetools_CyclicTree___iter___01():
+def test_datastructuretools_CyclicTree___iter___01():
     r'''Empty cyclic tree iterates no elements.
     '''
 
@@ -13,7 +13,7 @@ def test_sequencetools_CyclicTree___iter___01():
         assert False
 
 
-def test_sequencetools_CyclicTree___iter___02():
+def test_datastructuretools_CyclicTree___iter___02():
     r'''Cyclic tree iterates top-level elements only once.
     '''
 

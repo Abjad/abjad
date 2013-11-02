@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_StatalServerCursor___eq___01():
+def test_datastructuretools_StatalServerCursor___eq___01():
 
     statal_server = datastructuretools.StatalServer([0, 1, 2, 3, 4])
     cursor_1 = statal_server()
@@ -14,7 +14,7 @@ def test_StatalServerCursor___eq___01():
     assert cursor_2 == cursor_2
 
 
-def test_StatalServerCursor___eq___02():
+def test_datastructuretools_StatalServerCursor___eq___02():
 
     statal_server = datastructuretools.StatalServer([0, 1, 2, 3, 4])
     cursor_1 = statal_server()

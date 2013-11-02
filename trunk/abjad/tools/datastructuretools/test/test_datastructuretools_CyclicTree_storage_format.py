@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_sequencetools_CyclicTree_storage_format_01():
+def test_datastructuretools_CyclicTree_storage_format_01():
 
     cyclic_tree = datastructuretools.CyclicPayloadTree([[1, 2, 3], [4, 5]])
 
