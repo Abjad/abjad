@@ -55,7 +55,9 @@ class RunDoctestsScript(DirectoryScript):
         if args.diff:
             optionflags = optionflags | doctest.REPORT_NDIFF
         iotools.clear_terminal()
+        total_failures = 0
         total_modules = 0
+        total_tests = 0
         failed_file_paths = []
         for dir_path, dir_names, file_names in os.walk('.'):
             for file_name in file_names:
@@ -74,9 +76,19 @@ class RunDoctestsScript(DirectoryScript):
                         )
                     if failure_count:
                         failed_file_paths.append(os.path.relpath(file_path))
-        print 'Total modules: {}'.format(total_modules)
+                    total_failures += failure_count
+                    total_tests += test_count
+        if failed_file_paths:
+            print
         for file_path in failed_file_paths:
             print 'FAILED: {}'.format(file_path)
+        total_successes = total_tests - total_failures
+        print
+        print '{} of {} tests passed in {} modules.'.format(
+            total_successes,
+            total_tests,
+            total_modules,
+            )
 
     def setup_argument_parser(self, parser):
         parser.add_argument('--diff',
