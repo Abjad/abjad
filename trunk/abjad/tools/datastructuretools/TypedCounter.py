@@ -18,8 +18,7 @@ class TypedCounter(TypedCollection):
         >>> print counter.storage_format
         datastructuretools.TypedCounter({
             NumberedPitch(0): 2,
-            NumberedPitch(True): 1,
-            NumberedPitch(1): 3,
+            NumberedPitch(1): 4,
             },
             item_class=pitchtools.NumberedPitch,
             )

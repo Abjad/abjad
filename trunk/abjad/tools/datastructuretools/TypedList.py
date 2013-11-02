@@ -29,6 +29,17 @@ class TypedList(TypedCollection):
 
     ::
 
+        >>> print object_collection.new(keep_sorted=True).storage_format
+        datastructuretools.TypedList([
+            23,
+            'foo',
+            False,
+            (1, 2, 3),
+            3.14159,
+            ])
+
+    ::
+
         >>> pitch_collection = datastructuretools.TypedList(
         ...     item_class=pitchtools.NamedPitch)
         >>> pitch_collection.append(0)
@@ -54,29 +65,42 @@ class TypedList(TypedCollection):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_collection',
-        '_item_class',
-        '_name',
+        '_keep_sorted',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None, name=None):
-        TypedCollection.__init__(self, 
-            item_class=item_class, 
+    def __init__(
+        self,
+        tokens=None,
+        item_class=None,
+        keep_sorted=None,
+        name=None,
+        ):
+        TypedCollection.__init__(self,
+            item_class=item_class,
             name=name,
             tokens=tokens,
             )
         self._collection = []
-        if isinstance(tokens, type(self)):
-            for token in tokens:
-                self.append(self._item_callable(token))
+        if keep_sorted:
+            self._keep_sorted = True
         else:
-            tokens = tokens or []
-            items = []
-            for token in tokens:
-                items.append(self._item_callable(token))
-            self.extend(items)
+            self._keep_sorted = None
+#        if isinstance(tokens, type(self)):
+#            for token in tokens:
+#                self.append(self._item_callable(token))
+#        else:
+#            tokens = tokens or []
+#            items = []
+#            for token in tokens:
+#                items.append(self._item_callable(token))
+#            self.extend(items)
+        tokens = tokens or []
+        items = []
+        for token in tokens:
+            items.append(self._item_callable(token))
+        self.extend(items)
 
     ### SPECIAL METHODS ###
 
@@ -131,6 +155,8 @@ class TypedList(TypedCollection):
         Returns collection.
         '''
         self.extend(expr)
+        if self.keep_sorted:
+            self.sort()
         return self
 
     def __reversed__(self):
@@ -178,6 +204,8 @@ class TypedList(TypedCollection):
         elif isinstance(i, slice):
             items = [self._item_callable(token) for token in expr]
             self._collection[i] = items
+        if self.keep_sorted:
+            self.sort()
 
     ### PUBLIC METHODS ###
 
@@ -203,6 +231,8 @@ class TypedList(TypedCollection):
         '''
         item = self._item_callable(token)
         self._collection.append(item)
+        if self.keep_sorted:
+            self.sort()
 
     def count(self, token):
         r'''Change `token` to item and return count.
@@ -240,6 +270,8 @@ class TypedList(TypedCollection):
         '''
         for token in tokens:
             self.append(token)
+        if self.keep_sorted:
+            self.sort()
 
     def index(self, token):
         r'''Change `token` to item and return index.
@@ -284,11 +316,35 @@ class TypedList(TypedCollection):
         '''
         item = self._item_callable(token)
         return self._collection.insert(i, item)
+        if self.keep_sorted:
+            self.sort()
+
+    def new(
+        self,
+        tokens=None,
+        item_class=None,
+        keep_sorted=None,
+        name=None,
+        ):
+        # Allow for empty iterables:
+        if tokens is None:
+            tokens = self._collection
+        item_class = item_class or self.item_class
+        if keep_sorted is None:
+            keep_sorted = self.keep_sorted
+        name = name or self.name
+        return type(self)(
+            tokens=tokens,
+            item_class=item_class,
+            name=name,
+            )
 
     def pop(self, i=-1):
         r'''Aliases list.pop().
         '''
         return self._collection.pop(i)
+        if self.keep_sorted:
+            self.sort()
 
     def remove(self, token):
         r'''Change `token` to item and remove.
@@ -311,6 +367,8 @@ class TypedList(TypedCollection):
         '''
         item = self._item_callable(token)
         self._collection.remove(item)
+        if self.keep_sorted:
+            self.sort()
 
     def reverse(self):
         r'''Aliases list.reverse().
@@ -321,6 +379,22 @@ class TypedList(TypedCollection):
         r'''Aliases list.sort().
         '''
         self._collection.sort(cmp=cmp, key=key, reverse=reverse)
+
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def keep_sorted():
+        def fget(self):
+            r'''Sort collection on mutation if true.
+            '''
+            return self._keep_sorted
+        def fset(self, expr):
+            if not expr:
+                expr = None
+            else:
+                expr = True
+            self._keep_sorted = expr
+        return property(**locals())
 
 
 collections.MutableSequence.register(TypedList)

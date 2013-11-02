@@ -10,8 +10,8 @@ class TypedCollection(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_item_class',
         '_collection',
+        '_item_class',
         '_name',
         )
 
