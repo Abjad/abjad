@@ -81,7 +81,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                         stop_offset=durationtools.Offset(20, 1)
                         ),
                     target_context_name='Voice 1'
-                    )
+                    ),
                 ])
 
         Returns timespan-scoped single-context set expression inventory.

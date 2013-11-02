@@ -80,7 +80,7 @@ class OffsetCallbackMixin(CallbackMixin):
                     ),
                 edge=Right,
                 callbacks=musicexpressiontools.CallbackInventory([
-                    'self._scale(offset, Multiplier(4, 5))'
+                    'self._scale(offset, Multiplier(4, 5))',
                     ])
                 )
 
@@ -107,7 +107,7 @@ class OffsetCallbackMixin(CallbackMixin):
                     ),
                 edge=Right,
                 callbacks=musicexpressiontools.CallbackInventory([
-                    'self._translate(offset, Duration(9, 2))'
+                    'self._translate(offset, Duration(9, 2))',
                     ])
                 )
 

@@ -47,7 +47,7 @@ class SegmentSelectExpression(SelectExpression):
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory([
-                'result = self._getitem__(payload_expression, slice(None, 2, None))'
+                'result = self._getitem__(payload_expression, slice(None, 2, None))',
                 ])
             )
 
@@ -64,7 +64,7 @@ class SegmentSelectExpression(SelectExpression):
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory([
-                "result = self._getitem__(payload_expression, slice(None, 'green', None))"
+                "result = self._getitem__(payload_expression, slice(None, 'green', None))",
                 ])
             )
 
@@ -81,7 +81,7 @@ class SegmentSelectExpression(SelectExpression):
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory([
-                "result = self._getitem__(payload_expression, slice(None, ('green', 1), None))"
+                "result = self._getitem__(payload_expression, slice(None, ('green', 1), None))",
                 ])
             )
 
@@ -99,7 +99,7 @@ class SegmentSelectExpression(SelectExpression):
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
             callbacks=musicexpressiontools.CallbackInventory([
-                "result = self._getitem__(payload_expression, slice('red', ('red', 1), None))"
+                "result = self._getitem__(payload_expression, slice('red', ('red', 1), None))",
                 ])
             )
 

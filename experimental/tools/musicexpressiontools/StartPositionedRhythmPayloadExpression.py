@@ -72,7 +72,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{c'8, d'8, e'8}]
                         ),
                     start_offset=durationtools.Offset(0, 1)
-                    )
+                    ),
                 ])
 
         Example 2. Intersection on the right:
@@ -95,7 +95,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{d'8, e'8, f'8}]
                         ),
                     start_offset=durationtools.Offset(1, 8)
-                    )
+                    ),
                 ])
 
         Example 3. Trisection:
@@ -115,7 +115,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{d'8, e'8}]
                         ),
                     start_offset=durationtools.Offset(1, 8)
-                    )
+                    ),
                 ])
 
         Example 4. No intersection:
@@ -219,7 +219,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{c'8, d'8, e'8, f'8, g'8, a'8, b'8, c''8}]
                         ),
                     start_offset=durationtools.Offset(0, 1)
-                    )
+                    ),
                 ])
 
         Leave start-positioned rhythm payload expression unchanged:
@@ -273,7 +273,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                             music=[{d'8, e'8, f'8}]
                             ),
                         start_offset=durationtools.Offset(1, 8)
-                        )
+                        ),
                     ])
 
         Example 2. Subtract from right:
@@ -295,7 +295,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{c'8, d'8, e'8}]
                         ),
                     start_offset=durationtools.Offset(0, 1)
-                    )
+                    ),
                 ])
 
         Example 3. Subtract from middle:
@@ -324,7 +324,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{f'8}]
                         ),
                     start_offset=durationtools.Offset(3, 8)
-                    )
+                    ),
                 ])
 
         Example 4. Subtract nothing:
@@ -346,7 +346,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{c'8, d'8, e'8, f'8}]
                         ),
                     start_offset=durationtools.Offset(0, 1)
-                    )
+                    ),
                 ])
 
         Operates in place and returns timespan inventory.
@@ -535,7 +535,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{f'8}]
                         ),
                     start_offset=durationtools.Offset(83, 8)
-                    )
+                    ),
                 ])
 
         Operates in place and returns newly constructed region expression inventory.
@@ -572,7 +572,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                         music=[{d'8, e'8, f'4}]
                         ),
                     start_offset=durationtools.Offset(21, 2)
-                    )
+                    ),
                 ])
 
         Operates in place and returns newly constructed region 

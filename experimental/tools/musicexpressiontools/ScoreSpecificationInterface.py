@@ -148,7 +148,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(),
                 callbacks=musicexpressiontools.CallbackInventory([
-                    'self._translate(offset, Duration(3, 8))'
+                    'self._translate(offset, Duration(3, 8))',
                     ])
                 )
 

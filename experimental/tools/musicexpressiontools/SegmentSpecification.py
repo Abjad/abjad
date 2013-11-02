@@ -119,11 +119,11 @@ class SegmentSpecification(Specification):
                             beam_cells_together=True,
                             tie_split_notes=False
                             )
-                ),
+                        ),
                     target_timespan='red',
                     fresh=True,
                     persist=True
-                    )
+                    ),
                 ])
 
         Returns timespan inventory.

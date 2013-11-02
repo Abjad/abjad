@@ -74,7 +74,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(0, 1)
                         ),
                     start_offset=durationtools.Offset(0, 1)
-                    )
+                    ),
                 ])
 
         Example 2. Intersection on the right:
@@ -96,7 +96,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(17, 8)
                         ),
                     start_offset=durationtools.Offset(17, 8)
-                    )
+                    ),
                 ])
 
         Example 3. Trisection:
@@ -120,7 +120,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(1, 8)
                         ),
                     start_offset=durationtools.Offset(1, 8)
-                    )
+                    ),
                 ])
 
         Example 4. No intersection:
@@ -215,7 +215,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(0, 1)
                         ),
                     start_offset=durationtools.Offset(0, 1)
-                    )
+                    ),
                 ])
 
         Returns timespan inventory.
@@ -247,7 +247,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(1, 8)
                         ),
                     start_offset=durationtools.Offset(1, 8)
-                    )
+                    ),
                 ])
 
         Example 2. Subtract from right:
@@ -271,7 +271,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(0, 1)
                         ),
                     start_offset=durationtools.Offset(0, 1)
-                    )
+                    ),
                 ])
 
         Example 3. Subtract from middle:
@@ -300,7 +300,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(17, 8)
                         ),
                     start_offset=durationtools.Offset(17, 8)
-                    )
+                    ),
                 ])
 
         Example 4. Subtract from nothing:
@@ -324,7 +324,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(0, 1)
                         ),
                     start_offset=durationtools.Offset(0, 1)
-                    )
+                    ),
                 ])
 
         Operates in place and returns timespan inventory.
@@ -501,7 +501,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(9, 4)
                         ),
                     start_offset=durationtools.Offset(9, 4)
-                    )
+                    ),
                 ])
 
         Operates in place and returns newly constructed inventory.
@@ -543,7 +543,7 @@ class StartPositionedDivisionPayloadExpression(
                         start_offset=durationtools.Offset(3, 1)
                         ),
                     start_offset=durationtools.Offset(3, 1)
-                    )
+                    ),
                 ])
 
         Operates in place and returns newly constructed inventory.

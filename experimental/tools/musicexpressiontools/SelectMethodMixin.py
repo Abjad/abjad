@@ -91,7 +91,7 @@ class SelectMethodMixin(AbjadObject):
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
-                    scoretools.Leaf
+                    scoretools.Leaf,
                     ]),
                 voice_name='Voice 1'
                 )
@@ -151,7 +151,7 @@ class SelectMethodMixin(AbjadObject):
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
                     scoretools.Note,
-                    scoretools.Chord
+                    scoretools.Chord,
                     ]),
                 voice_name='Voice 1'
                 )

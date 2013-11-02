@@ -66,7 +66,7 @@ class MeasureSelectExpression(SelectExpression):
                 anchor=musicexpressiontools.SegmentSelectExpression(
                     voice_name='Voice 1',
                     callbacks=musicexpressiontools.CallbackInventory([
-                        "result = self._getitem__(payload_expression, slice('red', ('red', 3), None))"
+                        "result = self._getitem__(payload_expression, slice('red', ('red', 3), None))",
                         ])
                     )
                 ),

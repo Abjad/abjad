@@ -2,7 +2,7 @@
 import re
 from abjad.tools import *
 from experimental.tools.musicexpressiontools.Specification \
-	import Specification
+    import Specification
 
 
 class ScoreSpecification(Specification):
@@ -199,7 +199,7 @@ class ScoreSpecification(Specification):
                         ),
                     target_timespan='red',
                     persist=True
-                    )
+                    ),
                 ])
 
         Returns context dictionary.
@@ -241,7 +241,7 @@ class ScoreSpecification(Specification):
                     start_offset=durationtools.Offset(0, 1),
                     total_duration=durationtools.Duration(9, 4),
                     voice_name='Voice 2'
-                    )
+                    ),
                 ])
             timespantools.TimespanInventory([
                 musicexpressiontools.RhythmMakerRhythmRegionExpression(
@@ -291,7 +291,7 @@ class ScoreSpecification(Specification):
                         ),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 2'
-                    )
+                    ),
                 ])
 
         Returns attribute dictionary.
@@ -434,7 +434,7 @@ class ScoreSpecification(Specification):
                     target_timespan='yellow',
                     fresh=True,
                     persist=True
-                    )
+                    ),
                 ])
 
         Returns timespan inventory.
@@ -537,7 +537,7 @@ class ScoreSpecification(Specification):
                         ),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 1'
-                    )
+                    ),
                 ])
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
@@ -546,7 +546,7 @@ class ScoreSpecification(Specification):
                         ),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 1'
-                    )
+                    ),
                 ])
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
@@ -563,7 +563,7 @@ class ScoreSpecification(Specification):
                         ),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 2'
-                    )
+                    ),
                 ])
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
@@ -572,7 +572,7 @@ class ScoreSpecification(Specification):
                         ),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 2'
-                    )
+                    ),
                 ])
 
         Returns voice dictionary.

@@ -68,7 +68,7 @@ class IterablePayloadExpression(PayloadExpression):
                 musicexpressiontools.IterablePayloadExpression(
                     payload=(Division('[3, 16]', start_offset=Offset(1, 16)),
                     Division('[1, 16]', start_offset=Offset(1, 4)))
-                    )
+                    ),
                 ])
 
         Returns newly constructed payload expression.

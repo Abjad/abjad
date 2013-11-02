@@ -21,20 +21,21 @@ def test_MusicContributionSpecifier_format_02():
     specifier.append(specifiers.ClefSpecifier(clef_name='treble'))
     specifier.append(specifiers.DirectiveSpecifier(directive_handler_name='foo directives'))
 
-    '''
-    specifiers.MusicContributionSpecifier([
-        specifiers.ArticulationSpecifier(
-            articulation_handler_name='foo articulations'
-            ),
-        specifiers.ClefSpecifier(
-            clef_name='treble'
-            ),
-        specifiers.DirectiveSpecifier(
-            directive_handler_name='foo directives'
-            )
-        ])
-    '''
+    testtools.compare(
+        specifier.storage_format,
+        '''
+        specifiers.MusicContributionSpecifier([
+            specifiers.ArticulationSpecifier(
+                articulation_handler_name='foo articulations'
+                ),
+            specifiers.ClefSpecifier(
+                clef_name='treble'
+                ),
+            specifiers.DirectiveSpecifier(
+                directive_handler_name='foo directives'
+                ),
+            ])
+        ''',
+        )
 
     assert repr(specifier) == "MusicContributionSpecifier([ArticulationSpecifier(articulation_handler_name='foo articulations'), ClefSpecifier(clef_name='treble'), DirectiveSpecifier(directive_handler_name='foo directives')])"
-
-    assert specifier._storage_format == "specifiers.MusicContributionSpecifier([\n\tspecifiers.ArticulationSpecifier(\n\t\tarticulation_handler_name='foo articulations'\n\t\t),\n\tspecifiers.ClefSpecifier(\n\t\tclef_name='treble'\n\t\t),\n\tspecifiers.DirectiveSpecifier(\n\t\tdirective_handler_name='foo directives'\n\t\t)\n\t])"

@@ -20,7 +20,14 @@ def test_MusicSpecifier_format_02():
     specifier = scoremanagertools.specifiers.MusicSpecifier([], name='foo')
 
     assert repr(specifier) == "MusicSpecifier([], name='foo')"
-    assert specifier._storage_format == "specifiers.MusicSpecifier([],\n\tname='foo'\n\t)"
+    assert testtools.compare(
+        specifier._storage_format,
+        r'''
+        specifiers.MusicSpecifier([],
+            name='foo',
+            )
+        ''',
+        )
 
 
 def test_MusicSpecifier_format_03():
@@ -35,22 +42,23 @@ def test_MusicSpecifier_format_03():
 
     ms = scoremanagertools.specifiers.MusicSpecifier([mcs_1, mcs_2])
 
-    '''
-    specifiers.MusicSpecifier([
-        specifiers.MusicContributionSpecifier([
-            specifiers.ArticulationSpecifier(
-                articulation_handler_name='foo articulations'
-                )
-            ]),
-        specifiers.MusicContributionSpecifier([
-            specifiers.ArticulationSpecifier(
-                articulation_handler_name='bar articulations'
-                )
+    assert testtools.compare(
+        ms.storage_format,
+        '''
+        specifiers.MusicSpecifier([
+            specifiers.MusicContributionSpecifier([
+                specifiers.ArticulationSpecifier(
+                    articulation_handler_name='foo articulations'
+                    ),
+                ]),
+            specifiers.MusicContributionSpecifier([
+                specifiers.ArticulationSpecifier(
+                    articulation_handler_name='bar articulations'
+                    ),
+                ]),
             ])
-        ])
-    '''
-
-    assert ms.storage_format == "specifiers.MusicSpecifier([\n\tspecifiers.MusicContributionSpecifier([\n\t\tspecifiers.ArticulationSpecifier(\n\t\t\tarticulation_handler_name='foo articulations'\n\t\t\t)\n\t\t]),\n\tspecifiers.MusicContributionSpecifier([\n\t\tspecifiers.ArticulationSpecifier(\n\t\t\tarticulation_handler_name='bar articulations'\n\t\t\t)\n\t\t])\n\t])"
+        ''',
+        )
 
 
 def test_MusicSpecifier_format_04():
@@ -65,23 +73,24 @@ def test_MusicSpecifier_format_04():
 
     ms = scoremanagertools.specifiers.MusicSpecifier([mcs_1, mcs_2], name='blue music')
 
-    '''
-    specifiers.MusicSpecifier([
-        specifiers.MusicContributionSpecifier([
-            specifiers.ArticulationSpecifier(
-                articulation_handler_name='foo articulations'
-                )
-            ]),
-        specifiers.MusicContributionSpecifier([
-            specifiers.ArticulationSpecifier(
-                articulation_handler_name='bar articulations'
-                )
-            ])
-        ],
-        name='blue music'
+    assert testtools.compare(
+        ms.storage_format,
+        '''
+        specifiers.MusicSpecifier([
+            specifiers.MusicContributionSpecifier([
+                specifiers.ArticulationSpecifier(
+                    articulation_handler_name='foo articulations'
+                    ),
+                ]),
+            specifiers.MusicContributionSpecifier([
+                specifiers.ArticulationSpecifier(
+                    articulation_handler_name='bar articulations'
+                    ),
+                ]),
+            ],
+            name='blue music',
+            )
+        ''',
         )
-    '''
 
     assert repr(ms) == "MusicSpecifier([MusicContributionSpecifier([ArticulationSpecifier(articulation_handler_name='foo articulations')]), MusicContributionSpecifier([ArticulationSpecifier(articulation_handler_name='bar articulations')])], name='blue music')"
-
-    assert ms._storage_format == "specifiers.MusicSpecifier([\n\tspecifiers.MusicContributionSpecifier([\n\t\tspecifiers.ArticulationSpecifier(\n\t\t\tarticulation_handler_name='foo articulations'\n\t\t\t)\n\t\t]),\n\tspecifiers.MusicContributionSpecifier([\n\t\tspecifiers.ArticulationSpecifier(\n\t\t\tarticulation_handler_name='bar articulations'\n\t\t\t)\n\t\t])\n\t],\n\tname='blue music'\n\t)"

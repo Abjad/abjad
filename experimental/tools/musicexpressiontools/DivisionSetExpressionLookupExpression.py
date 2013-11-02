@@ -38,7 +38,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
                     anchor='red',
                     voice_name='Voice 1',
                     callbacks=musicexpressiontools.CallbackInventory([
-                        'result = self._getitem__(payload_expression, slice(4, 5, None))'
+                        'result = self._getitem__(payload_expression, slice(4, 5, None))',
                         ])
                     )
                 ),
