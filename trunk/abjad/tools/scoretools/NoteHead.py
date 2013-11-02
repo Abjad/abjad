@@ -97,6 +97,17 @@ class NoteHead(AbjadObject):
                 result += '?'
         return result
 
+    @property
+    def _keyword_argument_names(self):
+        result = AbjadObject._keyword_argument_names.fget(self)
+        result = list(result)
+        if 'client' in result:
+            result.remove('client')
+        if 'tweak_pairs' in result:
+            result.remove('tweak_pairs')
+        result = tuple(result)
+        return result
+
     ### PUBLIC PROPERTIES ###
 
     @apply
