@@ -36,7 +36,10 @@ def test_datastructuretools_TypedList_subclassing_02():
     foo = SpecialObjectInventory([])
 
     assert repr(foo) == 'SpecialObjectInventory([])'
-    assert foo._tools_package_qualified_indented_repr == 'specialtools.SpecialObjectInventory([])'
+    assert testtools.compare(
+        foo._tools_package_qualified_indented_repr,
+        'specialtools.SpecialObjectInventory([])',
+        )
 
 
 def test_datastructuretools_TypedList_subclassing_03():
@@ -46,7 +49,15 @@ def test_datastructuretools_TypedList_subclassing_03():
     foo = SpecialObjectInventory(name='foo', color='red')
 
     assert repr(foo) == "SpecialObjectInventory([], color='red', name='foo')"
-    assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([],\n\tcolor='red',\n\tname='foo'\n\t)"
+    assert testtools.compare(
+        foo._tools_package_qualified_indented_repr,
+        r'''
+        specialtools.SpecialObjectInventory([],
+            color='red',
+            name='foo'
+            )
+        ''',
+        )
 
 
 def test_datastructuretools_TypedList_subclassing_04():
@@ -55,8 +66,21 @@ def test_datastructuretools_TypedList_subclassing_04():
 
     foo = SpecialObjectInventory(['foo', 99])
 
-    assert repr(foo) == "SpecialObjectInventory(['foo', 99])"
-    assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([\n\t'foo',\n\t99\n\t])"
+    assert testtools.compare(
+        repr(foo),
+        r'''
+        SpecialObjectInventory(['foo', 99])
+        ''',
+        )
+    assert testtools.compare(
+        foo._tools_package_qualified_indented_repr,
+        r'''
+        specialtools.SpecialObjectInventory([
+            'foo',
+            99
+            ])
+        ''',
+        )
 
 
 def test_datastructuretools_TypedList_subclassing_05():
@@ -65,5 +89,21 @@ def test_datastructuretools_TypedList_subclassing_05():
 
     foo = SpecialObjectInventory(['foo', 99], name='foo', color='red')
 
-    assert repr(foo) == "SpecialObjectInventory(['foo', 99], color='red', name='foo')"
-    assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([\n\t'foo',\n\t99\n\t],\n\tcolor='red',\n\tname='foo'\n\t)"
+    assert testtools.compare(
+        repr(foo),
+        r'''
+        SpecialObjectInventory(['foo', 99], color='red', name='foo')
+        ''',
+        )
+    assert testtools.compare(
+        foo._tools_package_qualified_indented_repr,
+        r'''
+        specialtools.SpecialObjectInventory([
+            'foo',
+            99
+            ],
+            color='red',
+            name='foo'
+            )
+        ''',
+        )

@@ -9,8 +9,14 @@ def test_datastructuretools_TypedList_storage_format_01():
 
     inventory = datastructuretools.TypedList()
 
-    assert repr(inventory) == 'TypedList([])'
-    assert inventory.storage_format == 'datastructuretools.TypedList([])'
+    assert testtools.compare(
+        repr(inventory),
+        'TypedList([])',
+        )
+    assert testtools.compare(
+        inventory.storage_format,
+        'datastructuretools.TypedList([])',
+        )
 
 
 def test_datastructuretools_TypedList_storage_format_02():
@@ -19,8 +25,21 @@ def test_datastructuretools_TypedList_storage_format_02():
 
     inventory = datastructuretools.TypedList(name='foo')
 
-    assert repr(inventory) == "TypedList([], name='foo')"
-    assert inventory.storage_format == "datastructuretools.TypedList([],\n\tname='foo'\n\t)"
+    assert testtools.compare(
+        repr(inventory),
+        r'''
+        TypedList([], name='foo')
+        ''',
+        )
+
+    assert testtools.compare(
+        inventory.storage_format,
+        r'''
+        datastructuretools.TypedList([],
+            name='foo'
+            )
+        ''',
+        )
 
 
 def test_datastructuretools_TypedList_storage_format_03():
@@ -34,21 +53,25 @@ def test_datastructuretools_TypedList_storage_format_03():
         pitchtools.PitchRange('[A0, C8]'),
         'blah'])
 
-    assert repr(inventory) == "TypedList(['foo', Flute(), 'bar', PitchRange('[A0, C8]'), 'blah'])"
+    assert testtools.compare(
+        repr(inventory),
+        "TypedList(['foo', Flute(), 'bar', PitchRange('[A0, C8]'), 'blah'])",
+        )
 
-    r'''
-    datastructuretools.TypedList([
-        'foo',
-        instrumenttools.Flute(),
-        'bar',
-        pitchtools.PitchRange(
-            '[A0, C8]'
-            ),
-        'blah'
-        ])
-    '''
-
-    assert inventory._storage_format == "datastructuretools.TypedList([\n\t'foo',\n\tinstrumenttools.Flute(),\n\t'bar',\n\tpitchtools.PitchRange(\n\t\t'[A0, C8]'\n\t\t),\n\t'blah'\n\t])"
+    assert testtools.compare(
+        inventory.storage_format,
+        r'''
+        datastructuretools.TypedList([
+            'foo',
+            instrumenttools.Flute(),
+            'bar',
+            pitchtools.PitchRange(
+                '[A0, C8]'
+                ),
+            'blah'
+            ])
+        ''',
+        )
 
 
 def test_datastructuretools_TypedList_storage_format_04():
@@ -63,18 +86,19 @@ def test_datastructuretools_TypedList_storage_format_04():
         'blah'],
         name='foo')
 
-    r'''
-    datastructuretools.TypedList([
-        'foo',
-        instrumenttools.Flute(),
-        'bar',
-        pitchtools.PitchRange(
-            '[A0, C8]'
-            ),
-        'blah'
-        ],
-        name='foo'
+    assert testtools.compare(
+        inventory.storage_format,
+        r'''
+        datastructuretools.TypedList([
+            'foo',
+            instrumenttools.Flute(),
+            'bar',
+            pitchtools.PitchRange(
+                '[A0, C8]'
+                ),
+            'blah'
+            ],
+            name='foo'
+            )
+        ''',
         )
-    '''
-
-    assert inventory._storage_format == "datastructuretools.TypedList([\n\t'foo',\n\tinstrumenttools.Flute(),\n\t'bar',\n\tpitchtools.PitchRange(\n\t\t'[A0, C8]'\n\t\t),\n\t'blah'\n\t],\n\tname='foo'\n\t)"
