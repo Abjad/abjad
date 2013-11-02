@@ -24,7 +24,7 @@ class TypedList(TypedCollection):
             'foo',
             False,
             (1, 2, 3),
-            3.14159
+            3.14159,
             ])
 
     ::
@@ -43,9 +43,9 @@ class TypedList(TypedCollection):
             pitchtools.NamedPitch("c'"),
             pitchtools.NamedPitch("d'"),
             pitchtools.NamedPitch("e'"),
-            pitchtools.NamedPitch("f'")
+            pitchtools.NamedPitch("f'"),
             ],
-            item_class=pitchtools.NamedPitch
+            item_class=pitchtools.NamedPitch,
             )
 
     Implements the list interface.
@@ -123,9 +123,9 @@ class TypedList(TypedCollection):
                 marktools.DynamicMark(
                     'fff',
                     target_context=scoretools.Staff
-                    )
+                    ),
                 ],
-                item_class=marktools.DynamicMark
+                item_class=marktools.DynamicMark,
                 )
 
         Returns collection.
@@ -149,9 +149,9 @@ class TypedList(TypedCollection):
                 pitchtools.NamedPitch("c'"),
                 pitchtools.NamedPitch("d'"),
                 pitchtools.NamedPitch("e'"),
-                pitchtools.NamedPitch('gqs,')
+                pitchtools.NamedPitch('gqs,'),
                 ],
-                item_class=pitchtools.NamedPitch
+                item_class=pitchtools.NamedPitch,
                 )
 
         ::
@@ -166,9 +166,9 @@ class TypedList(TypedCollection):
                 pitchtools.NamedPitch("g'"),
                 pitchtools.NamedPitch("a'"),
                 pitchtools.NamedPitch("b'"),
-                pitchtools.NamedPitch("c''")
+                pitchtools.NamedPitch("c''"),
                 ],
-                item_class=pitchtools.NamedPitch
+                item_class=pitchtools.NamedPitch,
                 )
 
         '''
@@ -178,70 +178,6 @@ class TypedList(TypedCollection):
         elif isinstance(i, slice):
             items = [self._item_callable(token) for token in expr]
             self._collection[i] = items
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _positional_argument_repr_string(self):
-        positional_argument_repr_string = [
-            repr(x) for x in self._positional_argument_values]
-        positional_argument_repr_string = ', '.join(
-            positional_argument_repr_string)
-        positional_argument_repr_string = '[{}]'.format(
-            positional_argument_repr_string)
-        return positional_argument_repr_string
-
-    @property
-    def _positional_argument_values(self):
-        return tuple(self)
-
-    ### PRIVATE METHODS ###
-
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        result = []
-        if is_indented:
-            prefix = '\t'
-        else:
-            prefix = ''
-        positionals = \
-            self._get_tools_package_qualified_positional_argument_repr_pieces(
-            is_indented=is_indented)
-        keywords = \
-            self._get_tools_package_qualified_keyword_argument_repr_pieces(
-            is_indented=is_indented)
-        positionals, keywords = list(positionals), list(keywords)
-        if not positionals and not keywords:
-            result.append('{}([])'.format(
-                self._tools_package_qualified_class_name))
-        elif not positionals and keywords:
-            result.append('{}([],'.format(
-                self._tools_package_qualified_class_name))
-            keywords[-1] = keywords[-1].rstrip(' ')
-            keywords[-1] = keywords[-1].rstrip(',')
-            result.extend(keywords)
-            result.append('{})'.format(prefix))
-        elif positionals and not keywords:
-            result.append('{}(['.format(
-                self._tools_package_qualified_class_name))
-            positionals[-1] = positionals[-1].rstrip(' ')
-            positionals[-1] = positionals[-1].rstrip(',')
-            result.extend(positionals)
-            result.append('{}])'.format(prefix))
-        elif positionals and keywords:
-            result.append('{}(['.format(
-                self._tools_package_qualified_class_name))
-            positionals[-1] = positionals[-1].rstrip(' ')
-            positionals[-1] = positionals[-1].rstrip(',')
-            result.extend(positionals)
-            result.append('{}],'.format(prefix))
-            keywords[-1] = keywords[-1].rstrip(' ')
-            keywords[-1] = keywords[-1].rstrip(',')
-            result.extend(keywords)
-            result.append('{})'.format(prefix))
-        else:
-            message = 'how did we get here?'
-            raise ValueError(message)
-        return result
 
     ### PUBLIC METHODS ###
 

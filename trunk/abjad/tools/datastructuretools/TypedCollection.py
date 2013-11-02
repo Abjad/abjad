@@ -4,8 +4,10 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TypedCollection(AbjadObject):
+    r'''Abstract base class for typed collections.
+    '''
 
-    ### CLASS VARIABLES ### 
+    ### CLASS VARIABLES ###
 
     __slots__ = (
         '_item_class',
@@ -51,6 +53,62 @@ class TypedCollection(AbjadObject):
     def __ne__(self, expr):
         return not self.__eq__(expr)
 
+    ### PRIVATE METHODS ###
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        result = []
+        if is_indented:
+            prefix = '\t'
+        else:
+            prefix = ''
+        positionals = \
+            self._get_tools_package_qualified_positional_argument_repr_pieces(
+                is_indented=is_indented)
+        keywords = \
+            self._get_tools_package_qualified_keyword_argument_repr_pieces(
+                is_indented=is_indented)
+        positionals, keywords = list(positionals), list(keywords)
+        if not positionals and not keywords:
+            result.append('{}({}{})'.format(
+                self._tools_package_qualified_class_name,
+                self._tokens_brace_characters[0],
+                self._tokens_brace_characters[-1],
+                ))
+        elif not positionals and keywords:
+            result.append('{}({}{},'.format(
+                self._tools_package_qualified_class_name,
+                self._tokens_brace_characters[0],
+                self._tokens_brace_characters[-1],
+                ))
+            result.extend(keywords)
+            result.append('{})'.format(prefix))
+        elif positionals and not keywords:
+            result.append('{}({}'.format(
+                self._tools_package_qualified_class_name,
+                self._tokens_brace_characters[0],
+                ))
+            result.extend(positionals)
+            result.append('{}{})'.format(
+                prefix,
+                self._tokens_brace_characters[-1],
+                ))
+        elif positionals and keywords:
+            result.append('{}({}'.format(
+                self._tools_package_qualified_class_name,
+                self._tokens_brace_characters[0],
+                ))
+            result.extend(positionals)
+            result.append('{}{},'.format(
+                prefix,
+                self._tokens_brace_characters[-1],
+                ))
+            result.extend(keywords)
+            result.append('{})'.format(prefix))
+        else:
+            message = 'how did we get here?'
+            raise ValueError(message)
+        return result
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -71,6 +129,24 @@ class TypedCollection(AbjadObject):
             result.remove('tokens')
         result = tuple(result)
         return result
+
+    @property
+    def _positional_argument_repr_string(self):
+        positional_argument_repr_string = [
+            repr(x) for x in self._positional_argument_values]
+        positional_argument_repr_string = ', '.join(
+            positional_argument_repr_string)
+        positional_argument_repr_string = '[{}]'.format(
+            positional_argument_repr_string)
+        return positional_argument_repr_string
+
+    @property
+    def _positional_argument_values(self):
+        return tuple(self)
+
+    @property
+    def _tokens_brace_characters(self):
+        return ('[', ']')
 
     ### PUBLIC METHODS ###
 

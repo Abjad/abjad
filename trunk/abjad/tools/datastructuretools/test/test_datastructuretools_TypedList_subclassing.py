@@ -54,7 +54,7 @@ def test_datastructuretools_TypedList_subclassing_03():
         r'''
         specialtools.SpecialObjectInventory([],
             color='red',
-            name='foo'
+            name='foo',
             )
         ''',
         )
@@ -77,7 +77,7 @@ def test_datastructuretools_TypedList_subclassing_04():
         r'''
         specialtools.SpecialObjectInventory([
             'foo',
-            99
+            99,
             ])
         ''',
         )
@@ -100,10 +100,10 @@ def test_datastructuretools_TypedList_subclassing_05():
         r'''
         specialtools.SpecialObjectInventory([
             'foo',
-            99
+            99,
             ],
             color='red',
-            name='foo'
+            name='foo',
             )
         ''',
         )

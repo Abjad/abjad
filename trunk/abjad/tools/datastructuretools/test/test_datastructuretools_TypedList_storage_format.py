@@ -36,7 +36,7 @@ def test_datastructuretools_TypedList_storage_format_02():
         inventory.storage_format,
         r'''
         datastructuretools.TypedList([],
-            name='foo'
+            name='foo',
             )
         ''',
         )
@@ -68,7 +68,7 @@ def test_datastructuretools_TypedList_storage_format_03():
             pitchtools.PitchRange(
                 '[A0, C8]'
                 ),
-            'blah'
+            'blah',
             ])
         ''',
         )
@@ -96,9 +96,9 @@ def test_datastructuretools_TypedList_storage_format_04():
             pitchtools.PitchRange(
                 '[A0, C8]'
                 ),
-            'blah'
+            'blah',
             ],
-            name='foo'
+            name='foo',
             )
         ''',
         )
