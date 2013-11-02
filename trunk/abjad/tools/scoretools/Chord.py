@@ -504,8 +504,8 @@ class Chord(Leaf):
             Returns tuple.
             '''
             return tuple([note_head.written_pitch for note_head in self])
-        def fset(self, pitchs):
-            self.note_heads = pitchs
+        def fset(self, pitches):
+            self.note_heads = pitches
         return property(**locals())
 
     ### PUBLIC METHODS ###
