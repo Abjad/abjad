@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import functools
+from abjad.tools import mathtools
 from abjad.tools.pitchtools.Pitch import Pitch
 
 
@@ -31,7 +32,8 @@ class NumberedPitch(Pitch):
             pitch_number = expr
         else:
             pitch_number = pitchtools.NamedPitch(expr).pitch_number
-        self._pitch_number = pitch_number
+        self._pitch_number = mathtools.integer_equivalent_number_to_integer(
+            pitch_number)
 
     ### SPECIAL METHODS ###
 

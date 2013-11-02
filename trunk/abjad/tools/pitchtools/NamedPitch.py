@@ -34,7 +34,8 @@ class NamedPitch(Pitch):
             args = args[0]
         if len(args) == 1:
             if isinstance(args[0], (int, long, float)):
-                arg = mathtools.integer_equivalent_number_to_integer(args[0])
+                arg = mathtools.integer_equivalent_number_to_integer(
+                    float(args[0]))
                 self._init_by_pitch_number(arg)
             elif isinstance(args[0], type(self)):
                 self._init_by_named_pitch(*args)
