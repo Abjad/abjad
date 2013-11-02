@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.pitchtools.OctaveTranspositionMappingComponent \
-	import OctaveTranspositionMappingComponent
+    import OctaveTranspositionMappingComponent
 
 
 class OctaveTranspositionMapping(TypedList):
@@ -18,10 +18,10 @@ class OctaveTranspositionMapping(TypedList):
         OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
 
     Octave transposition mappings model
-    ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping`` 
+    ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
     input.
 
-    Octave transposition mappings implement the list interface and 
+    Octave transposition mappings implement the list interface and
     are mutable.
     '''
 
@@ -61,7 +61,7 @@ class OctaveTranspositionMapping(TypedList):
             if pitch in component.source_pitch_range:
                 target_octave = range(
                     component.target_octave_start_pitch.pitch_number,
-                    component.target_octave_start_pitch.pitch_number 
+                    component.target_octave_start_pitch.pitch_number
                     + 12)
                 for candidate_pitch in target_octave:
                     if candidate_pitch % 12 == \
@@ -112,7 +112,7 @@ class OctaveTranspositionMapping(TypedList):
                         '[C4, C8)'
                         ),
                     pitchtools.NumberedPitch(27)
-                    )
+                    ),
                 ])
 
         Returns string.

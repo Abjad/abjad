@@ -15,7 +15,7 @@ def test_marktools_TempoMarkInventory_storage_format_01():
                 'Allegro',
                 durationtools.Duration(1, 4),
                 84
-                )
+                ),
             ])
         ''',
         )

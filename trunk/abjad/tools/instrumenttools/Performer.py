@@ -20,7 +20,7 @@ class Performer(AbjadObject):
             name='flutist',
             instruments=instrumenttools.InstrumentInventory([
                 instrumenttools.Flute(),
-                instrumenttools.Piccolo()
+                instrumenttools.Piccolo(),
                 ])
             )
 

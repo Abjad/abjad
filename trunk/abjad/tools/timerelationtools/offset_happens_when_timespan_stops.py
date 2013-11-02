@@ -11,9 +11,9 @@ def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
         >>> print relation.storage_format
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('offset == timespan.stop')
+                timerelationtools.SimpleInequality('offset == timespan.stop'),
                 ],
-                logical_operator='and'
+                logical_operator='and',
                 )
             )
 

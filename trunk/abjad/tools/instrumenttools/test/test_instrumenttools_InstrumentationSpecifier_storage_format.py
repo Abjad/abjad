@@ -20,15 +20,15 @@ def test_instrumenttools_InstrumentationSpecifier_storage_format_01():
                     name='Flute',
                     instruments=instrumenttools.InstrumentInventory([
                         instrumenttools.Flute(),
-                        instrumenttools.AltoFlute()
+                        instrumenttools.AltoFlute(),
                         ])
                     ),
                 instrumenttools.Performer(
                     name='Guitar',
                     instruments=instrumenttools.InstrumentInventory([
-                        instrumenttools.Guitar()
+                        instrumenttools.Guitar(),
                         ])
-                    )
+                    ),
                 ])
             )
         ''',

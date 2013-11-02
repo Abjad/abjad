@@ -8,11 +8,12 @@ def test_instrumenttools_InstrumentInventory_storage_format_01():
         instrumenttools.Flute(),
         instrumenttools.Violin()])
 
-    r'''
-    instrumenttools.InstrumentInventory([
-        instrumenttools.Flute(),
-        instrumenttools.Violin()
-        ])
-    '''
-
-    assert inventory.storage_format == 'instrumenttools.InstrumentInventory([\n\tinstrumenttools.Flute(),\n\tinstrumenttools.Violin()\n\t])'
+    assert testtools.compare(
+        inventory.storage_format,
+        r'''
+        instrumenttools.InstrumentInventory([
+            instrumenttools.Flute(),
+            instrumenttools.Violin(),
+            ])
+        ''',
+        )

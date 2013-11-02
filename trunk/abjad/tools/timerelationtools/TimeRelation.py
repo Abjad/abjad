@@ -24,9 +24,9 @@ class TimeRelation(AbjadObject):
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset')
+                timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
                 ],
-                logical_operator='and'
+                logical_operator='and',
                 ),
             timespan_1=timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
@@ -119,9 +119,9 @@ class TimeRelation(AbjadObject):
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
                     timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                    timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset')
+                    timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
                     ],
-                    logical_operator='and'
+                    logical_operator='and',
                     ),
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
@@ -154,9 +154,9 @@ class TimeRelation(AbjadObject):
             >>> print time_relation.storage_format
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset')
+                    timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset'),
                     ],
-                    logical_operator='and'
+                    logical_operator='and',
                     )
                 )
 
@@ -165,9 +165,9 @@ class TimeRelation(AbjadObject):
             >>> print new_time_relation.storage_format
             timerelationtools.TimespanTimespanTimeRelation(
                 timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset')
+                    timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset'),
                     ],
-                    logical_operator='and'
+                    logical_operator='and',
                     ),
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),

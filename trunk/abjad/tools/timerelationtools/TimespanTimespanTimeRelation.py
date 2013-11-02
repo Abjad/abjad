@@ -53,7 +53,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> timerelationtools.timespan_2_happens_during_timespan_1(
-            ... timespan_1=last_tuplet, timespan_2=long_note)
+            ...     timespan_1=last_tuplet,
+            ...     timespan_2=long_note,
+            ...     )
             False
 
     ..  container:: example
@@ -63,7 +65,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> timerelationtools.timespan_2_intersects_timespan_1(
-            ... timespan_1=last_tuplet, timespan_2=long_note)
+            ...     timespan_1=last_tuplet,
+            ...     timespan_2=long_note,
+            ...     )
             True
 
     ..  container:: example
@@ -73,7 +77,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> timerelationtools.timespan_2_is_congruent_to_timespan_1(
-            ... timespan_1=last_tuplet, timespan_2=long_note)
+            ...     timespan_1=last_tuplet,
+            ...     timespan_2=long_note,
+            ...     )
             False
 
     ..  container:: example
@@ -83,7 +89,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> timerelationtools.timespan_2_overlaps_all_of_timespan_1(
-            ... timespan_1=last_tuplet, timespan_2=long_note)
+            ...     timespan_1=last_tuplet,
+            ...     timespan_2=long_note,
+            ...     )
             False
 
     ..  container:: example
@@ -93,7 +101,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> timerelationtools.timespan_2_overlaps_start_of_timespan_1(
-            ... timespan_1=last_tuplet, timespan_2=long_note)
+            ...     timespan_1=last_tuplet,
+            ...     timespan_2=long_note,
+            ...     )
             True
 
     ..  container:: example
@@ -103,7 +113,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> timerelationtools.timespan_2_overlaps_stop_of_timespan_1(
-            ... timespan_1=last_tuplet, timespan_2=long_note)
+            ...     timespan_1=last_tuplet,
+            ...     timespan_2=long_note,
+            ...     )
             False
 
     ..  container:: example
@@ -113,7 +125,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> timerelationtools.timespan_2_starts_after_timespan_1_starts(
-            ... timespan_1=last_tuplet, timespan_2=long_note)
+            ...     timespan_1=last_tuplet,
+            ...     timespan_2=long_note,
+            ...     )
             False
 
     ..  container:: example
@@ -123,7 +137,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> timerelationtools.timespan_2_starts_after_timespan_1_stops(
-            ... timespan_1=last_tuplet, timespan_2=long_note)
+            ...     timespan_1=last_tuplet,
+            ...     timespan_2=long_note,
+            ...     )
             False
 
     Timespan / timespan time relations are immutable.
@@ -154,8 +170,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
             ::
 
                 >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
-                ...     timespan_1=timespan_1, 
-                ...     timespan_2=timespan_2, 
+                ...     timespan_1=timespan_1,
+                ...     timespan_2=timespan_2,
                 ...     hold=True,
                 ...     )
 
@@ -165,9 +181,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
                 timerelationtools.TimespanTimespanTimeRelation(
                     timerelationtools.CompoundInequality([
                         timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                        timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset')
+                        timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
                         ],
-                        logical_operator='and'
+                        logical_operator='and',
                         ),
                     timespan_1=timespantools.Timespan(
                         start_offset=durationtools.Offset(5, 1),
@@ -185,7 +201,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
                 True
 
         ..  container:: example
-        
+
             **Example 2.** Substitute `timespan_1` during evaluation:
 
             ::
@@ -222,13 +238,15 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 4.** Substitute both `timespan_1` and `timespan_2` 
+            **Example 4.** Substitute both `timespan_1` and `timespan_2`
             during evaluation:
 
             ::
 
                 >>> time_relation(
-                ...     timespan_1=new_timespan_1, timespan_2=new_timespan_2)
+                ...     timespan_1=new_timespan_1,
+                ...     timespan_2=new_timespan_2,
+                ...     )
                 True
 
         Raise value error if either `timespan_1` or `timespan_2` is none.
@@ -293,7 +311,10 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> timespan_2 = timespantools.Timespan(5, 15)
             >>> time_relation = \
             ...     timerelationtools.timespan_2_starts_during_timespan_1(
-            ...     timespan_1=timespan_1, timespan_2=timespan_2, hold=True)
+            ...     timespan_1=timespan_1,
+            ...     timespan_2=timespan_2,
+            ...     hold=True,
+            ...     )
 
         ::
 
@@ -415,7 +436,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 1.** Notes equal to ``staff[0:2]`` start 
+            **Example 1.** Notes equal to ``staff[0:2]`` start
             during timespan ``[0, 3/16)``:
 
             ::
@@ -429,7 +450,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ..  container:: example
 
-            **Example 2.** Notes equal to ``staff[2:8]`` start after timespan 
+            **Example 2.** Notes equal to ``staff[2:8]`` start after timespan
             ``[0, 3/16)`` stops:
 
             ::

@@ -11,9 +11,9 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan.start <= offset'),
-                timerelationtools.SimpleInequality('offset < timespan.stop')
+                timerelationtools.SimpleInequality('offset < timespan.stop'),
                 ],
-                logical_operator='and'
+                logical_operator='and',
                 )
             )
 

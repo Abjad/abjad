@@ -438,7 +438,7 @@ class Accordion(Instrument):
                         marktools.ClefMark(
                             'treble',
                             target_context=scoretools.Staff
-                            )
+                            ),
                         ]),
                     pitch_range=pitchtools.PitchRange(
                         '[C4, C6]'

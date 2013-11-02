@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.pitchtools.OctaveTranspositionMapping \
-	import OctaveTranspositionMapping
+    import OctaveTranspositionMapping
 
 
 class OctaveTranspositionMappingInventory(TypedList):
@@ -32,7 +32,7 @@ class OctaveTranspositionMappingInventory(TypedList):
                         '[C4, C8)'
                         ),
                     pitchtools.NumberedPitch(27)
-                    )
+                    ),
                 ]),
             pitchtools.OctaveTranspositionMapping([
                 pitchtools.OctaveTranspositionMappingComponent(
@@ -40,11 +40,11 @@ class OctaveTranspositionMappingInventory(TypedList):
                         '[A0, C8]'
                         ),
                     pitchtools.NumberedPitch(-18)
-                    )
-                ])
+                    ),
+                ]),
             ])
 
-    Octave transposition mapping inventories implement list interface 
+    Octave transposition mapping inventories implement list interface
     and are mutable.
     '''
 

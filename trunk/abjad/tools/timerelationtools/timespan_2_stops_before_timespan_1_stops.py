@@ -15,9 +15,9 @@ def timespan_2_stops_before_timespan_1_stops(
         >>> print time_relation.storage_format
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('timespan_2.stop_offset < timespan_1.stop_offset')
+                timerelationtools.SimpleInequality('timespan_2.stop_offset < timespan_1.stop_offset'),
                 ],
-                logical_operator='and'
+                logical_operator='and',
                 )
             )
 

@@ -27,7 +27,7 @@ def count_function_calls(
         ::
 
             >>> iotools.count_function_calls("Note(-12, (1, 4))", globals())
-            158
+            168
 
     Returns nonnegative integer.
     '''

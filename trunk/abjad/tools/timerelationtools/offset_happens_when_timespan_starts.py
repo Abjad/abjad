@@ -15,9 +15,9 @@ def offset_happens_when_timespan_starts(
         >>> print relation.storage_format
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('offset == timespan.start')
+                timerelationtools.SimpleInequality('offset == timespan.start'),
                 ],
-                logical_operator='and'
+                logical_operator='and',
                 )
             )
 
