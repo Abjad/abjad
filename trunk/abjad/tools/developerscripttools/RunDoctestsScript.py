@@ -48,27 +48,35 @@ class RunDoctestsScript(DirectoryScript):
                 importlib.import_module('experimental.demos').__dict__)
         except:
             pass
+        optionflags = (
+            doctest.NORMALIZE_WHITESPACE |
+            doctest.ELLIPSIS
+            )
         if args.diff:
-            optionflags = doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS|doctest.REPORT_NDIFF
-        else:
-            optionflags = doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS
+            optionflags = optionflags | doctest.REPORT_NDIFF
         iotools.clear_terminal()
         total_modules = 0
+        failed_file_paths = []
         for dir_path, dir_names, file_names in os.walk('.'):
             for file_name in file_names:
                 if file_name.endswith('.py') and \
                     not file_name.startswith('test_') and \
                     not file_name == '__init__.py':
                     total_modules += 1
-                    full_file_name = os.path.abspath(
+                    file_path = os.path.abspath(
                         os.path.join(dir_path, file_name))
-                    doctest.testfile(
-                        full_file_name, 
-                        module_relative=False, 
+                    print os.path.relpath(file_path)
+                    failure_count, test_count = doctest.testfile(
+                        file_path,
+                        module_relative=False,
                         globs=globs,
-                       optionflags=optionflags,
-                       )
-        print 'Total modules: %s' % total_modules
+                        optionflags=optionflags,
+                        )
+                    if failure_count:
+                        failed_file_paths.append(os.path.relpath(file_path))
+        print 'Total modules: {}'.format(total_modules)
+        for file_path in failed_file_paths:
+            print 'FAILED: {}'.format(file_path)
 
     def setup_argument_parser(self, parser):
         parser.add_argument('--diff',
