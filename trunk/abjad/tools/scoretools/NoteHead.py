@@ -20,10 +20,10 @@ class NoteHead(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_client', 
-        '_is_cautionary', 
-        '_is_forced', 
-        '_tweak', 
+        '_client',
+        '_is_cautionary',
+        '_is_forced',
+        '_tweak',
         '_written_pitch',
         )
 
@@ -39,6 +39,12 @@ class NoteHead(AbjadObject):
         from abjad.tools import scoretools
         assert isinstance(client, (type(None), scoretools.Leaf))
         self._client = client
+        if isinstance(written_pitch, type(self)):
+            expr = written_pitch
+            written_pitch = expr.written_pitch
+            is_cautionary = expr.is_cautionary
+            is_forced = expr.is_forced
+            tweak_pairs = expr.tweak._get_attribute_pairs()
         self.written_pitch = written_pitch
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
@@ -63,7 +69,7 @@ class NoteHead(AbjadObject):
             self.is_cautionary,
             self.is_forced,
             self.tweak._get_attribute_pairs(),
-        )
+            )
         return args
 
     def __lt__(self, expr):

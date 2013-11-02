@@ -26,7 +26,7 @@ class Chord(Leaf):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_note_heads', 
+        '_note_heads',
         '_written_pitches',
         )
 
@@ -34,6 +34,10 @@ class Chord(Leaf):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import lilypondparsertools
+        from abjad.tools import scoretools
+        self._note_heads = scoretools.NoteHeadInventory(
+            client=self,
+            )
         if len(args) == 1 and isinstance(args[0], str):
             input = '{{ {} }}'.format(args[0])
             parsed = lilypondparsertools.LilyPondParser()(input)
@@ -58,6 +62,8 @@ class Chord(Leaf):
             self._copy_override_and_set_from_leaf(leaf)
         elif len(args) == 2:
             written_pitches, written_duration = args
+            if isinstance(written_pitches, str):
+                written_pitches = [x for x in written_pitches.split() if x]
             lilypond_multiplier = None
         elif len(args) == 3:
             written_pitches, written_duration, lilypond_multiplier = args
@@ -65,11 +71,18 @@ class Chord(Leaf):
             message = 'can not initialize chord from {!r}.'.format(args)
             raise ValueError(message)
         Leaf.__init__(self, written_duration, lilypond_multiplier)
-        self.written_pitches = written_pitches
-        for note_head, cautionary, forced in zip(
-            self.note_heads, is_cautionary, is_forced):
-            note_head.is_cautionary = cautionary
-            note_head.is_forced = forced
+        if not is_cautionary:
+            is_cautionary = [False] * len(written_pitches)
+        if not is_forced:
+            is_forced = [False] * len(written_pitches)
+        for written_pitch, cautionary, forced in zip(
+            written_pitches, is_cautionary, is_forced):
+            note_head = scoretools.NoteHead(
+                written_pitch=written_pitch,
+                is_cautionary=cautionary,
+                is_forced=forced,
+                )
+            self._note_heads.append(note_head)
         self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
@@ -146,7 +159,6 @@ class Chord(Leaf):
     @staticmethod
     def _cast_defective_chord(chord):
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         if isinstance(chord, Chord) and not len(chord):
             return scoretools.Rest(chord)
         elif isinstance(chord, Chord) and len(chord) == 1:
@@ -165,9 +177,7 @@ class Chord(Leaf):
     def _divide(self, pitch=None):
         from abjad.tools import scoretools
         from abjad.tools import markuptools
-        from abjad.tools import scoretools
         from abjad.tools import pitchtools
-        from abjad.tools import scoretools
         pitch = pitch or pitchtools.NamedPitch('b', 3)
         pitch = pitchtools.NamedPitch(pitch)
         treble = copy.copy(self)
@@ -176,38 +186,45 @@ class Chord(Leaf):
             mark.detach()
         for mark in bass._get_marks(mark_classes=markuptools.Markup):
             mark.detach()
+
         if isinstance(treble, scoretools.Note):
             if treble.written_pitch < pitch:
                 treble = scoretools.Rest(treble)
         elif isinstance(treble, scoretools.Rest):
             pass
         elif isinstance(treble, scoretools.Chord):
-            for note_head in treble.note_heads:
+            for note_head in reversed(treble.note_heads):
                 if note_head.written_pitch < pitch:
                     treble.remove(note_head)
         else:
             raise TypeError
+
         if isinstance(bass, scoretools.Note):
             if pitch <= bass.written_pitch:
                 bass = scoretools.Rest(bass)
         elif isinstance(bass, scoretools.Rest):
             pass
         elif isinstance(bass, scoretools.Chord):
-            for note_head in bass.note_heads:
+            for note_head in reversed(bass.note_heads):
                 if pitch <= note_head.written_pitch:
                     bass.remove(note_head)
         else:
             raise TypeError
+
         treble = self._cast_defective_chord(treble)
         bass = self._cast_defective_chord(bass)
+
         up_markup = self._get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
+
         down_markup = self._get_markup(direction=Down)
         down_markup = [copy.copy(markup) for markup in down_markup]
+
         for markup in up_markup:
             markup(treble)
         for markup in down_markup:
             markup(bass)
+
         return treble, bass
 
     ### PUBLIC PROPERTIES ###
@@ -250,8 +267,26 @@ class Chord(Leaf):
 
                 ::
 
-                    >>> chord.note_heads
-                    (NoteHead("g'"), NoteHead("c''"), NoteHead("e''"))
+                    >>> print chord.note_heads.storage_format
+                    scoretools.NoteHeadInventory([
+                        scoretools.NoteHead(
+                            written_pitch=pitchtools.NamedPitch("g'"),
+                            is_cautionary=False,
+                            is_forced=False
+                            ),
+                        scoretools.NoteHead(
+                            written_pitch=pitchtools.NamedPitch("c''"),
+                            is_cautionary=False,
+                            is_forced=False
+                            ),
+                        scoretools.NoteHead(
+                            written_pitch=pitchtools.NamedPitch("e''"),
+                            is_cautionary=False,
+                            is_forced=False
+                            ),
+                        ],
+                        client=scoretools.Chord(),
+                        )
 
             ..  container:: example
 
@@ -293,9 +328,9 @@ class Chord(Leaf):
 
             Returns tuple.
             '''
-            return tuple(self._note_heads)
+            return self._note_heads
         def fset(self, note_heads):
-            self._note_heads = []
+            self._note_heads[:] = []
             if isinstance(note_heads, str):
                 note_heads = note_heads.split()
             self.extend(note_heads)

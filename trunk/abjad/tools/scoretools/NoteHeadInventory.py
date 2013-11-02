@@ -30,8 +30,8 @@ class NoteHeadInventory(TypedList):
 
     def __init__(
         self,
-        client=None,
         tokens=None,
+        client=None,
         ):
         from abjad.tools import scoretools
         self._client = client
@@ -48,10 +48,11 @@ class NoteHeadInventory(TypedList):
     def _item_callable(self):
         from abjad.tools import scoretools
         def coerce(token):
-            return scoretools.NoteHead(
+            note_head = scoretools.NoteHead(
                 written_pitch=token,
-                client=self.client,
                 )
+            note_head._client = self.client
+            return note_head
         return coerce
 
     ### PUBLIC PROPERTIES ###

@@ -10,10 +10,8 @@ def test_scoretools_Chord_note_heads_01():
     chord = Chord("<d' e' f'>4")
     note_heads = chord.note_heads
 
-    assert isinstance(note_heads, tuple)
+    assert isinstance(note_heads, scoretools.NoteHeadInventory)
     assert len(note_heads) == 3
-    assert py.test.raises(Exception, 'note_heads.pop()')
-    assert py.test.raises(Exception, 'note_heads.remove(note_heads[0])')
 
 
 def test_scoretools_Chord_note_heads_02():
@@ -42,8 +40,8 @@ def test_scoretools_Chord_note_heads_04():
 
     chord = Chord('<>4')
     chord.note_heads = [
-        pitchtools.NamedPitch(4), 
-        pitchtools.NamedPitch(3), 
+        pitchtools.NamedPitch(4),
+        pitchtools.NamedPitch(3),
         pitchtools.NamedPitch(2),
         ]
 
@@ -56,8 +54,8 @@ def test_scoretools_Chord_note_heads_05():
 
     chord = Chord('<>4')
     chord.note_heads = [
-        pitchtools.NamedPitch(4), 
-        3, 
+        pitchtools.NamedPitch(4),
+        3,
         pitchtools.NamedPitch(2),
         ]
 

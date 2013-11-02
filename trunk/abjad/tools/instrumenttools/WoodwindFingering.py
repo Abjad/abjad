@@ -74,11 +74,11 @@ class WoodwindFingering(AbjadObject):
 
         >>> f(chord)
         <ds' fs''>4
-	        _ \markup {
-		            \woodwind-diagram
-			                #'clarinet
-			                #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
-			        }
+            _ \markup {
+                \woodwind-diagram
+                    #'clarinet
+                    #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
+                }
 
     Initialize fingerings for eight different woodwind instruments:
 
@@ -104,7 +104,7 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> chord = Chord("e' as' gqf''", (1,1))
+        >>> chord = Chord("<e' as' gqf''>1")
         >>> fingering = instrumenttools.WoodwindFingering(
         ...     'clarinet',
         ...     center_column=['one', 'two', 'three', 'four'],
@@ -123,19 +123,19 @@ class WoodwindFingering(AbjadObject):
 
         >>> f(chord)
         <e' as' gqf''>1
-	            _ \markup {
-		                \override
-			                    #'(graphical . #f)
-		                \woodwind-diagram
-			                    #'clarinet
-			                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
-		                }
+            _ \markup {
+                \override
+                    #'(graphical . #f)
+                \woodwind-diagram
+                    #'clarinet
+                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
+                }
 
     The thickness and size of diagrams can also be changed with overrides:
 
     ::
 
-        >>> chord = Chord("e' as' gqf''", (1,1))
+        >>> chord = Chord("<e' as' gqf''>1")
         >>> fingering = instrumenttools.WoodwindFingering(
         ...     'clarinet',
         ...     center_column=('one', 'two', 'three', 'four'),
@@ -159,17 +159,17 @@ class WoodwindFingering(AbjadObject):
 
         >>> f(chord)
         <e' as' gqf''>1
-	            _ \markup {
-		                \override
-			                    #'(graphical . #f)
-		                \override
-			                    #'(size . 0.5)
-		                \override
-			                    #'(thickness . 0.4)
-		                \woodwind-diagram
-			                    #'clarinet
-			                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
-		                }
+            _ \markup {
+                \override
+                    #'(graphical . #f)
+                \override
+                    #'(size . 0.5)
+                \override
+                    #'(thickness . 0.4)
+                \woodwind-diagram
+                    #'clarinet
+                    #'((cc . (one two three four)) (lh . (R cis)) (rh . (fis)))
+                }
 
     Inspired by Mike Solomon's LilyPond woodwind diagrams.
     '''
