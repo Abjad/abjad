@@ -87,15 +87,6 @@ class TypedList(TypedCollection):
             self._keep_sorted = True
         else:
             self._keep_sorted = None
-#        if isinstance(tokens, type(self)):
-#            for token in tokens:
-#                self.append(self._item_callable(token))
-#        else:
-#            tokens = tokens or []
-#            items = []
-#            for token in tokens:
-#                items.append(self._item_callable(token))
-#            self.extend(items)
         tokens = tokens or []
         items = []
         for token in tokens:
