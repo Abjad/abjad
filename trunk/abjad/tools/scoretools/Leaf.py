@@ -373,7 +373,7 @@ class Leaf(Component):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
-        from abjad.tools.scoretools import attach
+        from abjad.tools.functiontools import attach
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self.lilypond_duration_multiplier is not None:

@@ -5,7 +5,7 @@ from abjad.tools import iterationtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 from experimental.tools.musicexpressiontools.RhythmRegionExpression import \
     RhythmRegionExpression
     

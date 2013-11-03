@@ -2,7 +2,7 @@
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 
 
 def label_vertical_moments_in_expr_with_numbered_pitch_classes(

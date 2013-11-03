@@ -11,7 +11,7 @@ from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 
 
 class LilyPondSyntacticalDefinition(AbjadObject):

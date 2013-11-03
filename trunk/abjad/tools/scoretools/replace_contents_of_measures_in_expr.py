@@ -65,7 +65,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     '''
     from abjad.tools import marktools
     from abjad.tools import scoretools
-    from abjad.tools.scoretools import attach
+    from abjad.tools.functiontools import attach
 
     # init return list
     result = []

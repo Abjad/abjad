@@ -44,7 +44,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
     Return `measure`.
     '''
     from abjad.tools import scoretools
-    from abjad.tools.scoretools import attach
+    from abjad.tools.functiontools import attach
 
     if isinstance(measure, scoretools.Measure):
         # to allow iteration inside zero-update loop

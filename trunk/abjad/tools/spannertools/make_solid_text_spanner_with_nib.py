@@ -72,7 +72,7 @@ def make_solid_text_spanner_with_nib(
     Returns spanner.
     '''
     from abjad.tools import spannertools
-    from abjad.tools.scoretools import attach
+    from abjad.tools.functiontools import attach
     assert direction in (Up, Down)
 
     text_spanner = spannertools.TextSpanner()

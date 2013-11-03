@@ -132,7 +132,7 @@ class Component(AbjadObject):
         return self._copy_with_marks_but_without_children_or_spanners()
 
     def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools.scoretools import attach
+        from abjad.tools.functiontools import attach
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
@@ -501,7 +501,7 @@ class Component(AbjadObject):
         return component in temporal_successors
 
     def _move_marks(self, recipient_component):
-        from abjad.tools.scoretools import attach
+        from abjad.tools.functiontools import attach
         result = []
         for mark in self._get_marks():
             result.append(attach(mark, recipient_component))
@@ -511,7 +511,7 @@ class Component(AbjadObject):
     def _remove_and_shrink_durated_parent_containers(self):
         from abjad.tools import marktools
         from abjad.tools import scoretools
-        from abjad.tools.scoretools import attach
+        from abjad.tools.functiontools import attach
         prolated_leaf_duration = self._get_duration()
         parentage = self._get_parentage(include_self=False)
         prolations = parentage._prolations

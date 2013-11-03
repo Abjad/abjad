@@ -47,7 +47,7 @@ def make_dynamic_spanner_below_with_nib_at_right(
     Returns spanner.
     '''
     from abjad.tools import spannertools
-    from abjad.tools.scoretools import attach
+    from abjad.tools.functiontools import attach
 
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, components)

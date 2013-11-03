@@ -27,7 +27,7 @@ def make_empty_piano_score():
     from abjad.tools import marktools
     from abjad.tools import scoretools
     from abjad.tools import scoretools
-    from abjad.tools.scoretools import attach
+    from abjad.tools.functiontools import attach
 
     # make treble staff
     treble_staff = scoretools.Staff([])

@@ -32,7 +32,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     from abjad.tools import marktools
     from abjad.tools import iterationtools
     from abjad.tools import scoretools
-    from abjad.tools.scoretools import attach
+    from abjad.tools.functiontools import attach
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         if len(measure) == 1:

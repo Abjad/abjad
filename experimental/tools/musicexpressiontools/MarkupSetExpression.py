@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 

@@ -279,7 +279,7 @@ class Scale(PitchClassSegment):
 
         Returns score.
         '''
-        from abjad.tools.scoretools import attach
+        from abjad.tools.functiontools import attach
         ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
         descending_notes = copy.deepcopy(ascending_notes[:-1])
         descending_notes = list(descending_notes)

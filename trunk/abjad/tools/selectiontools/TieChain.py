@@ -31,7 +31,7 @@ class TieChain(ContiguousSelection):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
-        from abjad.tools.scoretools import attach
+        from abjad.tools.functiontools import attach
         new_written_duration = durationtools.Duration(new_written_duration)
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration

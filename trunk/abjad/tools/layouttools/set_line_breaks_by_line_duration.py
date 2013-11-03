@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import scoretools
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 
 
 # TODO: make public and possibly improve function name

@@ -5,7 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 
 
 class EvenRunRhythmMaker(RhythmMaker):

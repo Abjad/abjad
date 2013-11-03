@@ -8,7 +8,7 @@ from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 
 
 class QTarget(AbjadObject):

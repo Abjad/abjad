@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import spannertools
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetExpression \
     import CounttimeComponentSelectExpressionSetExpression
 

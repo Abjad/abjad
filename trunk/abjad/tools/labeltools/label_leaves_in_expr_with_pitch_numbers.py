@@ -2,7 +2,7 @@
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 
 
 def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):

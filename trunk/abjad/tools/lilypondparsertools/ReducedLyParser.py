@@ -13,7 +13,7 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import scoretools
-from abjad.tools.scoretools import attach
+from abjad.tools.functiontools import attach
 
 
 class ReducedLyParser(abctools.Parser):
@@ -508,7 +508,7 @@ class ReducedLyParser(abctools.Parser):
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, leaves):
-        from abjad.tools.scoretools import attach
+        from abjad.tools.functiontools import attach
 
         spanner_references = {
             spannertools.BeamSpanner: None,

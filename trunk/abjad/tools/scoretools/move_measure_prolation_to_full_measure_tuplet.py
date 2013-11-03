@@ -18,7 +18,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     from abjad.tools import scoretools
     from abjad.tools import timesignaturetools
     from abjad.tools import scoretools
-    from abjad.tools.scoretools import attach
+    from abjad.tools.functiontools import attach
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         effective_time_signature = measure.time_signature
