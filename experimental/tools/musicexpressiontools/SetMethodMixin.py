@@ -31,10 +31,11 @@ class SetMethodMixin(AbjadObject):
 
     def _all_are_expressions(self, expr):
         from experimental.tools import musicexpressiontools
-        if isinstance(expr, (tuple, list)):
+        if isinstance(expr, (tuple, list, datastructuretools.TypedList)):
             if all(
                 isinstance(x, musicexpressiontools.Expression) 
-                for x in expr):
+                for x in expr
+                ):
                 return True
         return False
 

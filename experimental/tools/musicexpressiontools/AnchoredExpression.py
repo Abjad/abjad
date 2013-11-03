@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import timespantools
 from experimental.tools.musicexpressiontools.Expression import Expression
 
@@ -53,7 +54,8 @@ class AnchoredExpression(Expression):
         result = self.anchor.evaluate()
         if result is None:
             return
-        elif isinstance(result, list):
+        #elif isinstance(result, list):
+        elif isinstance(result, (list, datastructuretools.TypedList)):
             new_result = []
             for expression in result:
                 if hasattr(expression, 'get_timespan'):

@@ -46,8 +46,10 @@ class IterablePayloadExpression(PayloadExpression):
             datastructuretools.TypedList,
             musicexpressiontools.DivisionList,
             selectiontools.SliceSelection,
-            ))
+            )), repr(payload)
         if isinstance(payload, list):
+            payload = tuple(payload)
+        elif isinstance(payload, datastructuretools.TypedList):
             payload = tuple(payload)
         PayloadExpression.__init__(self, payload)
 
