@@ -95,9 +95,9 @@ class LilyPondFile(AbjadObject, list):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_spec=''):
-        r'''Get format.
+        r'''Gets format.
 
-        Return string.
+        Returns string.
         '''
         if format_spec in ('', 'lilypond'):
             return self.lilypond_format

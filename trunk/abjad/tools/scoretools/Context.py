@@ -30,10 +30,10 @@ class Context(Container):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_context_name', 
-        '_engraver_consists', 
+        '_context_name',
+        '_engraver_consists',
         '_engraver_removals',
-        '_is_nonsemantic', 
+        '_is_nonsemantic',
         '_name',
         )
 
@@ -66,10 +66,10 @@ class Context(Container):
             name = ''
         result = '%s%s%s%s%s'
         result %= (
-            self.context_name, 
-            name, 
-            open_bracket_string, 
-            summary, 
+            self.context_name,
+            name,
+            open_bracket_string,
+            summary,
             close_bracket_string,
             )
         return result
@@ -93,12 +93,12 @@ class Context(Container):
 
     def _format_closing_slot(context, format_contributions):
         result = []
-        result.append(['context marks', 
+        result.append(['context marks',
             format_contributions.get('closing', {}).get('context marks', [])])
         result.append(['lilypond command marks',
             format_contributions.get(
                 'closing', {}).get('lilypond command marks', [])])
-        result.append(['comments', 
+        result.append(['comments',
             format_contributions.get('closing', {}).get('comments', [])])
         return context._format_slot_contributions_with_indent(result)
 
@@ -153,23 +153,14 @@ class Context(Container):
 
     def _format_opening_slot(context, format_contributions):
         result = []
-        result.append(['comments', 
+        result.append(['comments',
             format_contributions.get('opening', {}).get('comments', [])])
-        result.append(['context marks', 
+        result.append(['context marks',
             format_contributions.get('opening', {}).get('context marks', [])])
         result.append(['lilypond command marks',
             format_contributions.get(
                 'opening', {}).get('lilypond command marks', [])])
         return context._format_slot_contributions_with_indent(result)
-
-    def _initialize_keyword_values(self, **kwargs):
-        if 'context_name' in kwargs:
-            self.context_name = kwargs['context_name']
-            del(kwargs['context_name'])
-        if 'name' in kwargs:
-            self.name = kwargs['name']
-            del(kwargs['name'])
-        Container._initialize_keyword_values(self, **kwargs)
 
     ### PUBLIC PROPERTIES ###
 
@@ -208,7 +199,7 @@ class Context(Container):
         r'''Unordered set of LilyPond engravers to remove from context.
 
         Manage with add, update, other standard set commands:
-        
+
         ::
 
             >>> staff = Staff([])
@@ -274,10 +265,10 @@ class Context(Container):
 
             Returns boolean.
 
-            The intent of this read / write attribute is to allow composers 
-            to tag invisible voices used to house time signatures indications, 
-            bar number directives or other pieces of score-global non-musical 
-            information. Such nonsemantic voices can then be omitted from 
+            The intent of this read / write attribute is to allow composers
+            to tag invisible voices used to house time signatures indications,
+            bar number directives or other pieces of score-global non-musical
+            information. Such nonsemantic voices can then be omitted from
             voice interation and other functions.
             '''
             return self._is_nonsemantic

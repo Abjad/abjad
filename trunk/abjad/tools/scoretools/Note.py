@@ -42,7 +42,7 @@ class Note(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
         if len(args) == 1 and isinstance(args[0], str):
@@ -85,7 +85,6 @@ class Note(Leaf):
                 )
         else:
             self.note_head = None
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 

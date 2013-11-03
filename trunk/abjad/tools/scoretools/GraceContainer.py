@@ -84,12 +84,11 @@ class GraceContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, kind='grace', **kwargs):
+    def __init__(self, music=None, kind='grace'):
         # self._carrier is a reference to the leaf carrying grace music
         self._carrier = None
         Container.__init__(self, music)
         self.kind = kind
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 

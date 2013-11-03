@@ -41,7 +41,7 @@ class Measure(FixedDurationContainer):
 
     ### INITIALIZER ###
 
-    def __init__(self, time_signature, music=None, **kwargs):
+    def __init__(self, time_signature, music=None):
         from abjad.tools.scoretools import attach
         # set time signature adjustment indicator before 
         # contents initialization
@@ -51,7 +51,6 @@ class Measure(FixedDurationContainer):
         self._measure_number = None
         time_signature = marktools.TimeSignatureMark(time_signature)
         attach(time_signature, self)
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 

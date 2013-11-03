@@ -51,12 +51,11 @@ class Container(Component):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, **kwargs):
+    def __init__(self, music=None):
         Component.__init__(self)
         self._named_children = {}
         self._simultaneous = False
         self._initialize_music(music)
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 

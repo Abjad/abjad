@@ -32,7 +32,7 @@ class Chord(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
         self._note_heads = scoretools.NoteHeadInventory(
@@ -83,7 +83,6 @@ class Chord(Leaf):
                 is_forced=forced,
                 )
             self._note_heads.append(note_head)
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 
