@@ -1,11 +1,7 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from experimental.tools import handlertools
 from experimental import *
-import py.test
 
 
-@py.test.skip('FIXME: Broken by class package flattening.')
 def test_DynamicHandlerCreationWizard_run_01():
 
     wizard = scoremanagertools.wizards.DynamicHandlerCreationWizard()
