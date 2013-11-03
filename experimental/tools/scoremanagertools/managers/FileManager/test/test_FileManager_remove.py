@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
 from experimental import *
-import py.test
 
 
 def test_FileManager_remove_01():
@@ -10,8 +9,11 @@ def test_FileManager_remove_01():
 
     score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
-    file_manager = scoremanagertools.managers.FileManager(filesystem_path=filesystem_path)
+        score_manager_configuration.score_manager_tools_directory_path, 
+        'temporary_file.txt',
+        )
+    file_manager = scoremanagertools.managers.FileManager(
+        filesystem_path=filesystem_path)
     assert not os.path.exists(filesystem_path)
 
     try:
@@ -25,15 +27,17 @@ def test_FileManager_remove_01():
         assert not os.path.exists(filesystem_path)
 
 
-@py.test.skip('FIXME: Broken by git migration.')
 def test_FileManager_remove_02():
     r'''Versioned file.
     '''
 
     score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
-        score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
-    file_manager = scoremanagertools.managers.FileManager(filesystem_path=filesystem_path)
+        score_manager_configuration.score_manager_tools_directory_path, 
+        'temporary_file.txt',
+        )
+    file_manager = scoremanagertools.managers.FileManager(
+        filesystem_path=filesystem_path)
     assert not os.path.exists(filesystem_path)
 
     try:
