@@ -79,7 +79,7 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
     '''
 
     if isinstance(chord, scoretools.Chord):
-        for note_head in chord:
+        for note_head in chord.note_heads:
             pc = note_head.written_pitch.numbered_pitch_class
             color = color_map.get(pc, None)
             if color is not None:

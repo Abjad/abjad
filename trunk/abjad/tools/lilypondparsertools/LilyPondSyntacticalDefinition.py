@@ -2423,7 +2423,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         post_events =[]
         for node in p[1]:
             pitches.append(node[0].written_pitch)
-            chord.append(node[0])
+            chord.note_heads.append(node[0])
             post_events.extend(node[1])
         post_events.extend(p[3])
         self.client._chord_pitch_orders[chord] = pitches

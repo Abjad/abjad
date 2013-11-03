@@ -15,8 +15,26 @@ class NoteHeadInventory(TypedList):
 
     ::
 
-        >>> inventory
-        NoteHeadInventory([NoteHead("a'"), NoteHead("bf'"), NoteHead("b'")], client=Chord("<c' cs' e'>4"))
+        >>> print inventory.storage_format
+        scoretools.NoteHeadInventory([
+            scoretools.NoteHead(
+                written_pitch=pitchtools.NamedPitch("a'"),
+                is_cautionary=False,
+                is_forced=False
+                ),
+            scoretools.NoteHead(
+                written_pitch=pitchtools.NamedPitch("bf'"),
+                is_cautionary=False,
+                is_forced=False
+                ),
+            scoretools.NoteHead(
+                written_pitch=pitchtools.NamedPitch("b'"),
+                is_cautionary=False,
+                is_forced=False
+                ),
+            ],
+            client=scoretools.Chord(),
+            )
 
     '''
 
@@ -42,17 +60,26 @@ class NoteHeadInventory(TypedList):
             tokens=tokens,
             )
 
+    ### PRIVATE METHODS ###
+
+    def _on_insertion(self, item):
+        item._client = self.client
+
+    def _on_removal(self, item):
+        item._client = None
+
     ### PRIVATE PROPERTIES ##
 
     @property
     def _item_callable(self):
         from abjad.tools import scoretools
         def coerce(token):
-            note_head = scoretools.NoteHead(
-                written_pitch=token,
-                )
-            note_head._client = self.client
-            return note_head
+            if not isinstance(token, scoretools.NoteHead):
+                token = scoretools.NoteHead(
+                    written_pitch=token,
+                    )
+                token._client = self.client
+            return token
         return coerce
 
     ### PUBLIC PROPERTIES ###

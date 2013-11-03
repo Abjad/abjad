@@ -77,9 +77,9 @@ def test_scoretools_Chord_note_heads_07():
     '''
 
     chord = Chord("<ef' cs'' f''>4")
-    chord[0].tweak.color = 'red'
-    chord[1].tweak.color = 'green'
-    chord[2].tweak.color = 'blue'
+    chord.note_heads[0].tweak.color = 'red'
+    chord.note_heads[1].tweak.color = 'green'
+    chord.note_heads[2].tweak.color = 'blue'
 
     assert testtools.compare(
         chord,

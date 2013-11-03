@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_scoretools_Chord_extend_01():
+def test_scoretools_NoteHeadInventory_extend_01():
     r'''Extend chord with tweaked note heads.
     '''
 
@@ -14,7 +14,7 @@ def test_scoretools_Chord_extend_01():
     note_head = scoretools.NoteHead("f''")
     note_head.tweak.color = 'green'
     note_heads.append(note_head)
-    chord.extend(note_heads)
+    chord.note_heads.extend(note_heads)
 
     assert testtools.compare(
         chord,

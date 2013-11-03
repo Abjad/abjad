@@ -9,9 +9,9 @@ def test_LilyPondTweaksReservoir___repr___01():
     '''
 
     chord = Chord([0, 2, 10], (1, 4))
-    chord[1].tweak.color = 'red'
+    chord.note_heads[1].tweak.color = 'red'
 
-    tweak_reservoir_1 = chord[1].tweak
+    tweak_reservoir_1 = chord.note_heads[1].tweak
     tweak_reservoir_2 = eval(repr(tweak_reservoir_1))
 
     assert isinstance(tweak_reservoir_1, LilyPondTweakReservoir)

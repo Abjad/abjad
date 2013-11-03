@@ -61,6 +61,5 @@ class DiatonicClusterHandler(PitchHandler):
             chord_pitches = [pitchtools.NamedPitch(x) 
                 for x in chromatic_numbers]
             chord = scoretools.Chord(note)
-            chord[:] = []
-            chord.extend(chord_pitches)
+            chord.note_heads[:] = chord_pitches
             mutationtools.mutate(note).replace(chord)

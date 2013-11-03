@@ -110,9 +110,13 @@ class TypedCollection(AbjadObject):
         return result
 
     def _on_insertion(self, item):
+        r'''Override to operate on item after insertion into collection.
+        '''
         pass
 
     def _on_removal(self, item):
+        r'''Override to operate on item after removal from collection.
+        '''
         pass
 
     ### PRIVATE PROPERTIES ###
