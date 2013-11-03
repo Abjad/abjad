@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py.test
 
 
-@py.test.skip('FIXME: Broken by class package flattening.')
 def test_MaterialPackageWrangler_interactively_get_available_package_path_01():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()

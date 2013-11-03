@@ -1,15 +1,13 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from experimental.tools import handlertools
 from experimental import *
-import py.test
 
 
-@py.test.skip('FIXME: Broken by class package flattening.')
-def test_ArticulationHandlerCreationWziard_run_01():
+def test_ArticulationHandlerCreationWizard_run_01():
 
     wizard = scoremanagertools.wizards.ArticulationHandlerCreationWizard()
-    wizard._run(pending_user_input="reit ['^', '.'] (1, 64) (1, 4) c c'''' done")
+    wizard._run(
+        pending_user_input="reit ['^', '.'] (1, 64) (1, 4) c c'''' done"
+        )
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['^', '.'],
