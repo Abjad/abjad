@@ -109,6 +109,12 @@ class TypedCollection(AbjadObject):
             raise ValueError(message)
         return result
 
+    def _on_insertion(self, item):
+        pass
+
+    def _on_removal(self, item):
+        pass
+
     ### PRIVATE PROPERTIES ###
 
     @property
