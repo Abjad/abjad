@@ -2,7 +2,7 @@
 import copy
 from abjad.tools import marktools
 from abjad.tools.functiontools import attach
-from abjad.tools.selectiontools import select
+from abjad.tools.functiontools import select
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 

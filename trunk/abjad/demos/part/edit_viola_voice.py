@@ -12,7 +12,7 @@ def edit_viola_voice(score, durated_reservoir):
         attach(articulation, leaf)
         articulation = marktools.Articulation('tenuto')
         attach(articulation, leaf)
-    last_descent = selectiontools.select(descents[-1], contiguous=True)
+    last_descent = select(descents[-1], contiguous=True)
     copied_descent = mutate(last_descent).copy()
     for leaf in copied_descent:
         if leaf.written_duration == durationtools.Duration(4, 4):

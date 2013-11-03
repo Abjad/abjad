@@ -10,7 +10,7 @@ from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from abjad.tools.selectiontools import select
+from abjad.tools.functiontools import select
 from experimental.tools.musicexpressiontools.IterablePayloadExpression \
     import IterablePayloadExpression
 

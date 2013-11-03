@@ -7,7 +7,6 @@ from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import scoretools

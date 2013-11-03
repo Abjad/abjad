@@ -5,7 +5,7 @@ from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools.functiontools import attach
-from abjad.tools.selectiontools import select
+from abjad.tools.functiontools import select
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
 

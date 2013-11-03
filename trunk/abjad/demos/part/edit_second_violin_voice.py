@@ -7,7 +7,7 @@ def edit_second_violin_voice(score, durated_reservoir):
     voice = score['Second Violin Voice']
     descents = durated_reservoir['Second Violin']
 
-    last_descent = selectiontools.select(descents[-1], contiguous=True)
+    last_descent = select(descents[-1], contiguous=True)
     copied_descent = mutate(last_descent).copy()
     copied_descent = list(copied_descent)
     copied_descent[-1].written_duration = durationtools.Duration(1, 1)

@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.Segment import Segment
+from abjad.tools.functiontools import select
 
 
 class PitchSegment(Segment):
@@ -71,7 +72,7 @@ class PitchSegment(Segment):
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         if not isinstance(selection, selectiontools.Selection):
-            selection = selectiontools.select(selection) 
+            selection = select(selection) 
         named_pitches = []
         for component in iterationtools.iterate_notes_and_chords_in_expr(
             selection):

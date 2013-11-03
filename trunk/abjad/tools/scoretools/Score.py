@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.functiontools import override
+from abjad.tools.functiontools import select
 from abjad.tools.scoretools.Context import Context
 
 
@@ -100,9 +101,8 @@ class Score(Context):
         '''
         from abjad.tools import scoretools
         from abjad.tools import marktools
-        from abjad.tools import selectiontools
         from abjad.tools.functiontools import attach
-        selection = selectiontools.select(self)
+        selection = select(self)
         last_leaf = selection._get_component(scoretools.Leaf, -1)
         double_bar = marktools.BarLine('|.')
         attach(double_bar, last_leaf)
@@ -165,9 +165,8 @@ class Score(Context):
         '''
         from abjad.tools import markuptools
         from abjad.tools import scoretools
-        from abjad.tools import selectiontools
         from abjad.tools.functiontools import attach
-        selection = selectiontools.select(self)
+        selection = select(self)
         last_leaf = selection._get_component(scoretools.Leaf, -1)
         # TODO: copy markup direction from markup input
         markup = markup = markuptools.Markup(markup, Down)

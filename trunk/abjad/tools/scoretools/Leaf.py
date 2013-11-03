@@ -428,6 +428,7 @@ class Leaf(Component):
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
+        from abjad.tools.functiontools import select
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
             durations = sequencetools.repeat_sequence_to_weight_exactly(
@@ -452,7 +453,7 @@ class Leaf(Component):
         spanner_classes = (spannertools.TieSpanner,)
         parentage = self._get_parentage()
         if parentage._get_spanners(spanner_classes=spanner_classes):
-            selection = selectiontools.select(flattened_result)
+            selection = select(flattened_result)
             for component in selection:
                 for mark in component._get_spanners(
                     spanner_classes=spanner_classes):

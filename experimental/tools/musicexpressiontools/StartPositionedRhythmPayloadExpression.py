@@ -8,7 +8,6 @@ from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import mathtools
 from abjad.tools import mutationtools
-from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
