@@ -2,7 +2,7 @@
 
 
 def select(expr=None, contiguous=False):
-    r'''Select `expr`.
+    r'''Selects `expr`.
 
     Returns selection.
     '''

@@ -2,7 +2,7 @@
 
 
 def mutate(expr):
-    r'''Mutate `expr`.
+    r'''Mutates `expr`.
 
     ..  container:: example
 
