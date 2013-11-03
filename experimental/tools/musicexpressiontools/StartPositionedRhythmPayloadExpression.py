@@ -7,10 +7,10 @@ from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import mathtools
-from abjad.tools import mutationtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
+from abjad.tools.functiontools import mutate
 from abjad.tools.mutationtools import inspect
 from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
     import StartPositionedPayloadExpression
@@ -374,7 +374,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         assert isinstance(self.payload, scoretools.Container)
         music = self.payload
         self._payload = scoretools.Container()
-        shards = mutationtools.mutate([music]).split(
+        shards = mutate([music]).split(
             offsets, 
             cyclic=False, 
             fracture_spanners=True,
@@ -891,7 +891,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         if split_offset == payload_duration:
             return self
         if fracture_spanners:
-            result = mutationtools.mutate([self.payload]).split(
+            result = mutate([self.payload]).split(
                 [split_offset],
                 cyclic=False,
                 fracture_spanners=True,
@@ -904,7 +904,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             assert inspect(payload).is_well_formed()
             self._payload = payload
         else:
-            result = mutationtools.mutate(self.payload[:]).split(
+            result = mutate(self.payload[:]).split(
                 [split_offset],
                 cyclic=False,
                 fracture_spanners=False,

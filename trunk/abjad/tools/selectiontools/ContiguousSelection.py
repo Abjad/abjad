@@ -6,6 +6,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mutationtools
 from abjad.tools import sequencetools
+from abjad.tools.functiontools import mutate
 from abjad.tools.selectiontools.Selection import Selection
 
 
@@ -90,7 +91,6 @@ class ContiguousSelection(Selection):
         from abjad.tools import scoretools
         from abjad.tools import iterationtools
         from abjad.tools import scoretools
-        from abjad.tools.mutationtools import mutate
         # get governor
         parentage = self[0]._get_parentage(include_self=True)
         governor = parentage._get_governor()
@@ -233,7 +233,7 @@ class ContiguousSelection(Selection):
             self[-1]._get_parentage().root:
             dummy_container = scoretools.Container(self)
             wrapped = True
-        mutationtools.mutate(self).swap(new_tuplet)
+        mutate(self).swap(new_tuplet)
         if wrapped:
             del(dummy_container[:])
         return new_tuplet

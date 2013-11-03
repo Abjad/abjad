@@ -89,7 +89,7 @@ class Component(AbjadObject):
 
         Returns list of new components.
         '''
-        from abjad.tools.mutationtools import mutate
+        from abjad.tools.functiontools import mutate
         from abjad.tools import iterationtools
         result = mutate(self).copy(n=n)
         for component in iterationtools.iterate_components_in_expr(result):

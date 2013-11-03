@@ -5,11 +5,11 @@ from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import mutationtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
+from abjad.tools.functiontools import mutate
 from abjad.tools.functiontools import select
 from experimental.tools.musicexpressiontools.IterablePayloadExpression \
     import IterablePayloadExpression
@@ -128,9 +128,9 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         assert self._can_fuse(expr)
         if isinstance(self.payload, scoretools.Container):
             selection = select(self.payload[0], contiguous=True)
-            left = mutationtools.mutate(selection).copy()[0]
+            left = mutate(selection).copy()[0]
             selection = select(expr.payload[0], contiguous=True)
-            right = mutationtools.mutate(selection).copy()[0]
+            right = mutate(selection).copy()[0]
             payload = scoretools.Container([left, right])
             for component in payload[:]:
                 component._extract()

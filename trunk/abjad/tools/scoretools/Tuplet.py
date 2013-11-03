@@ -4,8 +4,8 @@ import math
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
-from abjad.tools import mutationtools
 from abjad.tools import sequencetools
+from abjad.tools.functiontools import mutate
 from abjad.tools.scoretools.Container import Container
 
 
@@ -1755,7 +1755,7 @@ class Tuplet(Container):
         from abjad.tools import scoretools
         target_duration = self._preprolated_duration
         new_tuplet = scoretools.FixedDurationTuplet(target_duration, [])
-        mutationtools.mutate(self).swap(new_tuplet)
+        mutate(self).swap(new_tuplet)
         return new_tuplet
 
     def toggle_prolation(self):

@@ -4,11 +4,11 @@ from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools import mutationtools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.functiontools import mutate
 from abjad.tools.pitcharraytools.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitcharraytools.PitchArrayColumn import PitchArrayColumn
 from abjad.tools.pitcharraytools.PitchArrayRow import PitchArrayRow
@@ -456,7 +456,7 @@ class PitchArray(AbjadObject):
             durations = []
             for leaf in iterationtools.iterate_leaves_in_expr(leaf_iterable):
                 durations.append(leaf._get_duration())
-            parts = mutationtools.mutate(tokens).split(
+            parts = mutate(tokens).split(
                 durations,
                 cyclic=False,
                 fracture_spanners=False,

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import mutationtools
+from abjad.tools.functiontools import mutate
 
 
 def apply_full_measure_tuplets_to_contents_of_measures_in_expr(
@@ -70,5 +70,5 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(
         target_duration = measure._preprolated_duration
         tuplet = scoretools.FixedDurationTuplet(target_duration, measure[:])
         if supplement:
-            new_supplement = mutationtools.mutate(supplement).copy()
+            new_supplement = mutate(supplement).copy()
             tuplet.extend(new_supplement)

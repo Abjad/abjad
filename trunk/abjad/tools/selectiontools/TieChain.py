@@ -2,6 +2,7 @@
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
+from abjad.tools.functiontools import mutate
 from abjad.tools.selectiontools.ContiguousSelection \
     import ContiguousSelection
 
@@ -362,7 +363,7 @@ class TieChain(ContiguousSelection):
         tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
 
         # replace tie chain with tuplet
-        mutationtools.mutate(self).replace(tuplet)
+        mutate(self).replace(tuplet)
 
         # untie tuplet
         for spanner in tuplet._get_spanners(spannertools.TieSpanner):

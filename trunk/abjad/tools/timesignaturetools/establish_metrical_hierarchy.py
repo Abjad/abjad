@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import mathtools
-from abjad.tools import mutationtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools.functiontools import mutate
 Selection = selectiontools.Selection
 
 
@@ -869,8 +869,7 @@ def establish_metrical_hierarchy(
                 split_offset -= tie_chain_start_offset
                 #print '\tREL:', split_offset
                 #print ''
-                shards = \
-                    mutationtools.mutate(tie_chain[:]).split([split_offset])
+                shards = mutate(tie_chain[:]).split([split_offset])
                 tie_chains = \
                     [selectiontools.TieChain(shard) for shard in shards]
                 for tie_chain in tie_chains:
@@ -897,8 +896,7 @@ def establish_metrical_hierarchy(
             split_offset -= tie_chain_start_offset
             #print '\tREL:', split_offset
             #print ''
-            shards = \
-                mutationtools.mutate(tie_chain[:]).split([split_offset])
+            shards = mutate(tie_chain[:]).split([split_offset])
             tie_chains = \
                 [selectiontools.TieChain(shard) for shard in shards]
             for tie_chain in tie_chains:
