@@ -1,10 +1,12 @@
 # -*- encoding: utf-8 -*-
+import collections
 import copy
 
 
 # TODO: Reimplement to work on Abjad PitchSet, Note and Chord objects only.
 # TODO: Reimplement to work with diatonic transposition. #
-def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier, pitch_range):
+def list_octave_transpositions_of_pitch_carrier_within_pitch_range(
+    pitch_carrier, pitch_range):
     r"""List octave transpositions of `pitch_carrier` in `pitch_range`:
 
     ::
@@ -35,8 +37,10 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
     if not isinstance(pitch_range, pitchtools.PitchRange):
         raise TypeError('must be pitch range.')
 
-    if all(isinstance(x, (int, long, float)) for x in pitch_carrier):
-        return _pitch_number_list_octave_transpositions(pitch_carrier, pitch_range)
+    if isinstance(pitch_carrier, collections.Iterable):
+        if all(isinstance(x, (int, long, float)) for x in pitch_carrier):
+            return _pitch_number_list_octave_transpositions(
+                pitch_carrier, pitch_range)
 
     if not isinstance(pitch_carrier, (scoretools.Chord, pitchtools.PitchSet)):
         raise TypeError('must be chord or pitch set.')
@@ -46,7 +50,8 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
     interval = pitchtools.NumberedInterval(-12)
     while True:
         pitch_carrier_copy = copy.copy(pitch_carrier)
-        candidate = pitchtools.transpose_pitch_carrier_by_interval(pitch_carrier_copy, interval)
+        candidate = pitchtools.transpose_pitch_carrier_by_interval(
+            pitch_carrier_copy, interval)
         if candidate in pitch_range:
             result.append(candidate)
             interval -= pitchtools.NumberedInterval(12)
@@ -58,7 +63,8 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
     interval = pitchtools.NumberedInterval(0)
     while True:
         pitch_carrier_copy = copy.copy(pitch_carrier)
-        candidate = pitchtools.transpose_pitch_carrier_by_interval(pitch_carrier_copy, interval)
+        candidate = pitchtools.transpose_pitch_carrier_by_interval(
+            pitch_carrier_copy, interval)
         if candidate in pitch_range:
             result.append(candidate)
             interval += pitchtools.NumberedInterval(12)

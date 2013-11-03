@@ -29,7 +29,7 @@ def test_pitchtools_NamedPitchClass___init___03():
     '''
 
     chord = Chord([0, 2, 3], (1, 4))
-    note_head = chord[0]
+    note_head = chord.note_heads[0]
     npc = pitchtools.NamedPitchClass(note_head)
 
     assert npc == pitchtools.NamedPitchClass('c')

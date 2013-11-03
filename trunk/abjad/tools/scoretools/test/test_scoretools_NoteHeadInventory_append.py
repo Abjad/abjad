@@ -2,14 +2,14 @@
 from abjad import *
 
 
-def test_scoretools_Chord_append_01():
+def test_scoretools_NoteHeadInventory_append_01():
     r'''Append tweaked note head to chord.
     '''
 
     chord = Chord("<c' d'>4")
     note_head = scoretools.NoteHead("b'")
     note_head.tweak.style = 'harmonic'
-    chord.append(note_head)
+    chord.note_heads.append(note_head)
 
     assert testtools.compare(
         chord,

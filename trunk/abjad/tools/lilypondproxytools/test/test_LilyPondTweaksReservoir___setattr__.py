@@ -6,7 +6,7 @@ def test_LilyPondTweaksReservoir___setattr___01():
     '''
 
     chord = Chord("<d' ef' e'>4")
-    chord[0].tweak.transparent = True
+    chord.note_heads[0].tweak.transparent = True
 
     assert testtools.compare(
         chord,
@@ -26,7 +26,7 @@ def test_LilyPondTweaksReservoir___setattr___02():
     '''
 
     chord = Chord("<d' ef' e'>4")
-    chord[0].tweak.style = 'harmonic'
+    chord.note_heads[0].tweak.style = 'harmonic'
 
     assert testtools.compare(
         chord,

@@ -52,12 +52,11 @@ class FixedDurationTuplet(Tuplet):
 
     ### INITIALIZER ###
 
-    def __init__(self, duration, music=None, **kwargs):
+    def __init__(self, duration, music=None):
         dummy_multiplier = durationtools.Multiplier(1)
         Tuplet.__init__(self, dummy_multiplier, music)
         self._signifier = '@'
         self.target_duration = duration
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 

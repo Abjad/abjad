@@ -39,10 +39,9 @@ class Cluster(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, **kwargs):
+    def __init__(self, music=None):
         Container.__init__(self, music)
         self.is_simultaneous = False
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 

@@ -69,9 +69,9 @@ class Component(AbjadObject):
         return self._copy_with_marks_but_without_children_or_spanners()
 
     def __format__(self, format_spec=''):
-        r'''Get format.
+        r'''Gets format.
 
-        Return string.
+        Returns string.
         '''
         if format_spec in ('', 'lilypond'):
             return self.lilypond_format
@@ -487,10 +487,6 @@ class Component(AbjadObject):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
         return bool(spanners)
 
-    def _initialize_keyword_values(self, **kwargs):
-        for key, value in kwargs.iteritems():
-            self._set_keyword_value(key, value)
-
     def _is_immediate_temporal_successor_of(self, component):
         temporal_successors = []
         current = self
@@ -594,42 +590,6 @@ class Component(AbjadObject):
                         named_children[name].extend(name_dictionary[name])
                     else:
                         named_children[name] = copy.copy(name_dictionary[name])
-
-    def _set_keyword_value(self, key, value):
-        attribute_chain = key.split('__')
-        plug_in_name = attribute_chain[0]
-        names = attribute_chain[1:]
-        if plug_in_name == 'duration':
-            attribute_name = names[0]
-            command = 'self.%s.%s = %r' % (plug_in_name, attribute_name, value)
-            print command
-            if 'multiplier' not in command:
-                exec(command)
-        elif plug_in_name == 'override':
-            if len(names) == 2:
-                grob_name, attribute_name = names
-                exec('self.override.%s.%s = %r' % (
-                    grob_name, attribute_name, value))
-            elif len(names) == 3:
-                context_name, grob_name, attribute_name = names
-                exec('self.override.%s.%s.%s = %r' % (
-                    context_name, grob_name, attribute_name, value))
-            else:
-                raise ValueError
-        elif plug_in_name == 'set':
-            if len(names) == 1:
-                setting_name = names[0]
-                exec('self.set.%s = %r' % (setting_name, value))
-            elif len(names) == 2:
-                context_name, setting_name = names
-                exec('self.set.%s.%s = %r' % (
-                    context_name, setting_name, value))
-            else:
-                raise ValueError
-        else:
-            message = 'Unknown keyword argument plug-in name: {!r}.'
-            message = message.format(plug_in_name)
-            raise ValueError(message)
 
     def _set_parent(self, new_parent):
         r'''Not composer-safe.

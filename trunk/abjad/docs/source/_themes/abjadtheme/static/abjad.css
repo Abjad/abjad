@@ -363,9 +363,9 @@ div.versioninfo {
     }
 
 div.viewcode-block:target {
-    background-color: #f4debf;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    background-color: #000;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     }
 
 tt.attribute {

@@ -48,7 +48,7 @@ def test_scoretools_Chord___copy___04():
     '''
 
     chord_1 = Chord("<c' e' g'>4")
-    chord_1[0].tweak.color = 'red'
+    chord_1.note_heads[0].tweak.color = 'red'
     chord_2 = copy.copy(chord_1)
 
     assert testtools.compare(
@@ -75,20 +75,20 @@ def test_scoretools_Chord___copy___04():
         '''
         )
 
-    assert chord_2[0]._client is chord_2
-    assert chord_2[1]._client is chord_2
-    assert chord_2[2]._client is chord_2
+    assert chord_2.note_heads[0]._client is chord_2
+    assert chord_2.note_heads[1]._client is chord_2
+    assert chord_2.note_heads[2]._client is chord_2
 
     assert chord_1.lilypond_format == chord_2.lilypond_format
     assert chord_1 is not chord_2
 
-    assert chord_1[0] == chord_2[0]
-    assert chord_1[1] == chord_2[1]
-    assert chord_1[2] == chord_2[2]
+    assert chord_1.note_heads[0] == chord_2.note_heads[0]
+    assert chord_1.note_heads[1] == chord_2.note_heads[1]
+    assert chord_1.note_heads[2] == chord_2.note_heads[2]
 
-    assert chord_1[0] is not chord_2[0]
-    assert chord_1[1] is not chord_2[1]
-    assert chord_1[2] is not chord_2[2]
+    assert chord_1.note_heads[0] is not chord_2.note_heads[0]
+    assert chord_1.note_heads[1] is not chord_2.note_heads[1]
+    assert chord_1.note_heads[2] is not chord_2.note_heads[2]
 
 
 def test_scoretools_Chord___copy___05():

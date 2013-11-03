@@ -32,7 +32,7 @@ class Chord(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
         self._note_heads = scoretools.NoteHeadInventory(
@@ -83,31 +83,8 @@ class Chord(Leaf):
                 is_forced=forced,
                 )
             self._note_heads.append(note_head)
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
-
-    def __contains__(self, expr):
-        r'''Returns true when `expr` equals one of the note heads in chord.
-        Otherwise false.
-        '''
-        from abjad.tools.scoretools.NoteHead import NoteHead
-        note_head = NoteHead(written_pitch=expr)
-        return note_head in self.note_heads
-
-    def __delitem__(self, i):
-        '''Deletes note head `i` from chord.
-
-        Returns none.
-        '''
-        del(self._note_heads[i])
-
-    def __getitem__(self, i):
-        '''Gets note head `i` from chord.
-
-        Returns note head.
-        '''
-        return self._note_heads[i]
 
     def __getnewargs__(self):
         '''Gets new arguments.
@@ -118,31 +95,6 @@ class Chord(Leaf):
         result.append(self.written_pitches)
         result.extend(Leaf.__getnewargs__(self))
         return tuple(result)
-
-    def __len__(self):
-        '''Number of note heads in chord.
-
-        Returns nonnegative integer.
-        '''
-        return len(self.note_heads)
-
-    def __setitem__(self, i, expr):
-        '''Sets chord note head `i` to `expr`.
-
-        Returns none.
-        '''
-        from abjad.tools.scoretools.NoteHead import NoteHead
-        if isinstance(i, slice) and expr == []:
-            note_head = []
-        elif isinstance(expr, NoteHead):
-            note_head = expr
-            note_head._client = self
-        else:
-            note_head = NoteHead(expr)
-            note_head._client = self
-        #note_head._client = self
-        self._note_heads[i] = note_head
-        self._note_heads.sort()
 
     ### PRIVATE PROPERTIES ###
 
@@ -159,19 +111,20 @@ class Chord(Leaf):
     @staticmethod
     def _cast_defective_chord(chord):
         from abjad.tools import scoretools
-        if isinstance(chord, Chord) and not len(chord):
-            return scoretools.Rest(chord)
-        elif isinstance(chord, Chord) and len(chord) == 1:
-            return scoretools.Note(chord)
-        else:
-            return chord
+        if isinstance(chord, Chord):
+            note_head_count = len(chord.note_heads)
+            if not note_head_count:
+                return scoretools.Rest(chord)
+            elif note_head_count == 1:
+                return scoretools.Note(chord)
+        return chord
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Leaf._copy_with_marks_but_without_children_or_spanners(self)
-        new[:] = []
+        new.note_heads[:] = []
         for note_head in self.note_heads:
             new_note_head = copy.copy(note_head)
-            new.append(new_note_head)
+            new.note_heads.append(new_note_head)
         return new
 
     def _divide(self, pitch=None):
@@ -195,7 +148,7 @@ class Chord(Leaf):
         elif isinstance(treble, scoretools.Chord):
             for note_head in reversed(treble.note_heads):
                 if note_head.written_pitch < pitch:
-                    treble.remove(note_head)
+                    treble.note_heads.remove(note_head)
         else:
             raise TypeError
 
@@ -207,7 +160,7 @@ class Chord(Leaf):
         elif isinstance(bass, scoretools.Chord):
             for note_head in reversed(bass.note_heads):
                 if pitch <= note_head.written_pitch:
-                    bass.remove(note_head)
+                    bass.note_heads.remove(note_head)
         else:
             raise TypeError
 
@@ -333,7 +286,7 @@ class Chord(Leaf):
             self._note_heads[:] = []
             if isinstance(note_heads, str):
                 note_heads = note_heads.split()
-            self.extend(note_heads)
+            self.note_heads.extend(note_heads)
         return property(**locals())
 
     @property
@@ -538,99 +491,13 @@ class Chord(Leaf):
 
             Returns tuple.
             '''
-            return tuple([note_head.written_pitch for note_head in self])
+            return tuple(note_head.written_pitch
+                for note_head in self.note_heads)
         def fset(self, pitches):
             self.note_heads = pitches
         return property(**locals())
 
     ### PUBLIC METHODS ###
-
-    def append(self, note_head):
-        r'''Appends `note_head` to chord.
-
-        ..  container:: example
-
-            **Example.**
-
-            ::
-
-                >>> chord = Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.append("g''")
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                <e' cs'' f'' g''>4
-
-        Set `note_head` to a pitch, pitch name, pitch number or note head.
-
-        Sorts note heads automatically.
-
-        Returns none.
-        '''
-        from abjad.tools.scoretools.NoteHead import NoteHead
-        if isinstance(note_head, NoteHead):
-            note_head = note_head
-        else:
-            note_head = NoteHead(written_pitch=note_head)
-        note_head._client = self
-        self._note_heads.append(note_head)
-        self._note_heads.sort()
-
-    def extend(self, note_heads):
-        r'''Extends chord with `note_heads`.
-
-        ..  container:: example
-
-            **Example 1.** Extend chord with pitch names:
-
-            ::
-
-                >>> chord = Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.extend("d' c'' fs''")
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                <d' e' c'' cs'' f'' fs''>4
-
-        ..  container:: example
-
-            **Example 2.** Extend chord with pitch numbers:
-
-            ::
-
-                >>> chord = Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.extend([2, 12, 18])
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                <d' e' c'' cs'' f'' fs''>4
-
-        Sorts note heads automatically after execution.
-
-        Returns none.
-        '''
-        if isinstance(note_heads, str) and ' ' in note_heads:
-            note_heads = note_heads.split()
-        for note_head in note_heads:
-            self.append(note_head)
 
     def get_note_head(self, pitch):
         r'''Gets note head in chord by `pitch`.
@@ -708,54 +575,3 @@ class Chord(Leaf):
         else:
             raise ExtraNoteHeadError
 
-    def pop(self, i=-1):
-        r'''Pops note head `i` from chord.
-
-        ..  container:: example
-
-            **Example.**
-
-                >>> chord = Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.pop(0)
-                NoteHead("e'")
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                <cs'' f''>4
-
-        Returns note head.
-        '''
-        note_head = self._note_heads.pop(i)
-        note_head._client = None
-        return note_head
-
-    def remove(self, note_head):
-        r'''Removes `note_head` from chord.
-
-        ..  container:: example
-
-            **Example.**
-
-                >>> chord = Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.remove(chord[0])
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                <cs'' f''>4
-
-        Returns none.
-        '''
-        note_head._client = None
-        self._note_heads.remove(note_head)

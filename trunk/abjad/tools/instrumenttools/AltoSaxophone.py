@@ -205,9 +205,9 @@ class AltoSaxophone(Instrument):
 
                     >>> chord = Chord("<c' d'>1")
                     >>> start_pitch = alto_sax.pitch_range.start_pitch
-                    >>> chord[0].written_pitch = start_pitch
+                    >>> chord.note_heads[0].written_pitch = start_pitch
                     >>> stop_pitch = alto_sax.pitch_range.stop_pitch
-                    >>> chord[1].written_pitch = stop_pitch
+                    >>> chord.note_heads[1].written_pitch = stop_pitch
                     >>> voice = Voice([chord])
                     >>> staff = Staff([voice])
                     >>> override(staff).time_signature.stencil = False

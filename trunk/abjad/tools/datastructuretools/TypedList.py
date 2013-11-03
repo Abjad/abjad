@@ -98,6 +98,7 @@ class TypedList(TypedCollection):
     def __delitem__(self, i):
         '''Aliases list.__delitem__().
         '''
+        self._on_removal(self._collection[i])
         del(self._collection[i])
 
     def __getitem__(self, i):
@@ -146,8 +147,6 @@ class TypedList(TypedCollection):
         Returns collection.
         '''
         self.extend(expr)
-        if self.keep_sorted:
-            self.sort()
         return self
 
     def __reversed__(self):
@@ -190,11 +189,19 @@ class TypedList(TypedCollection):
 
         '''
         if isinstance(i, int):
-            item = self._item_callable(expr)
-            self._collection[i] = item
+            new_item = self._item_callable(expr)
+            old_item = self._collection[i]
+            self._on_removal(old_item)
+            self._on_insertion(new_item)
+            self._collection[i] = new_item
         elif isinstance(i, slice):
-            items = [self._item_callable(token) for token in expr]
-            self._collection[i] = items
+            new_items = [self._item_callable(token) for token in expr]
+            old_items = self._collection[i]
+            for old_item in old_items:
+                self._on_removal(old_item)
+            for new_item in new_items:
+                self._on_insertion(new_item)
+            self._collection[i] = new_items
         if self.keep_sorted:
             self.sort()
 
@@ -221,6 +228,7 @@ class TypedList(TypedCollection):
         Returns none.
         '''
         item = self._item_callable(token)
+        self._on_insertion(item)
         self._collection.append(item)
         if self.keep_sorted:
             self.sort()
@@ -306,9 +314,11 @@ class TypedList(TypedCollection):
         Returns none.
         '''
         item = self._item_callable(token)
-        return self._collection.insert(i, item)
+        self._on_insertion(item)
+        result = self._collection.insert(i, item)
         if self.keep_sorted:
             self.sort()
+        return result
 
     def new(
         self,
@@ -333,9 +343,11 @@ class TypedList(TypedCollection):
     def pop(self, i=-1):
         r'''Aliases list.pop().
         '''
-        return self._collection.pop(i)
+        result = self._collection.pop(i)
+        self._on_removal(result)
         if self.keep_sorted:
             self.sort()
+        return result
 
     def remove(self, token):
         r'''Change `token` to item and remove.
@@ -357,7 +369,10 @@ class TypedList(TypedCollection):
         Returns none.
         '''
         item = self._item_callable(token)
-        self._collection.remove(item)
+        index = self._collection.index(item)
+        item = self._collection[index]
+        self._on_removal(item)
+        del(self._collection[index])
         if self.keep_sorted:
             self.sort()
 

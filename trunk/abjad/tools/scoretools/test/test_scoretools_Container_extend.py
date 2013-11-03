@@ -162,8 +162,10 @@ def test_scoretools_Container_extend_06():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
 
-    assert py.test.raises(Exception, 'voice.extend(Note(4, (1, 4)))')
-    assert py.test.raises(AssertionError, "voice.extend(Chord([2, 3, 5], (1, 4)))")
+    assert py.test.raises(AttributeError,
+        'voice.extend(Note(4, (1, 4)))')
+    assert py.test.raises(AttributeError,
+        'voice.extend(Chord([2, 3, 5], (1, 4)))')
 
 
 def test_scoretools_Container_extend_07():

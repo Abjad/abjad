@@ -37,7 +37,7 @@ class Rest(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         from abjad.tools import lilypondparsertools
         if len(args) == 1 and isinstance(args[0], str):
             string = '{{ {} }}'.format(args[0])
@@ -58,7 +58,6 @@ class Rest(Leaf):
             message = 'can not initialize rest from {!r}.'
             raise ValueError(message.format(args))
         Leaf.__init__(self, written_duration, lilypond_multiplier)
-        self._initialize_keyword_values(**kwargs)
 
     ### PRIVATE PROPERTIES ###
 

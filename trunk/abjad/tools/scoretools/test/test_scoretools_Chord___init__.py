@@ -183,7 +183,7 @@ def test_scoretools_Chord___init___17():
     chord = Chord('<>8.')
 
     assert chord.lilypond_format == '<>8.'
-    assert not len(chord)
+    assert not len(chord.note_heads)
 
 
 def test_scoretools_Chord___init___18():

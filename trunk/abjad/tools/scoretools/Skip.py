@@ -34,7 +34,7 @@ class Skip(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         from abjad.tools import lilypondparsertools
         if len(args) == 1 and isinstance(args[0], str):
             input = '{{ {} }}'.format(args[0])
@@ -54,7 +54,6 @@ class Skip(Leaf):
         else:
             raise ValueError('can not initialize rest from "%s".' % str(args))
         Leaf.__init__(self, written_duration, lilypond_multiplier)
-        self._initialize_keyword_values(**kwargs)
 
     ### PRIVATE PROPERTIES ###
 

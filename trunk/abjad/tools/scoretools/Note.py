@@ -42,7 +42,7 @@ class Note(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
         if len(args) == 1 and isinstance(args[0], str):
@@ -85,7 +85,6 @@ class Note(Leaf):
                 )
         else:
             self.note_head = None
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 
@@ -368,19 +367,17 @@ class Note(Leaf):
         Returns chord.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import mutationtools
         from abjad.tools import pitchtools
         if named_interval is None:
             named_interval = \
                 pitchtools.NamedInterval('perfect', 4)
         chord = scoretools.Chord(self)
-        chord.append(
-            chord[0].written_pitch.numbered_pitch._pitch_number)
-        chord[1].written_pitch = \
+        chord.note_heads.append(
+            chord.note_heads[0].written_pitch.numbered_pitch._pitch_number)
+        chord.note_heads[1].written_pitch = \
             pitchtools.transpose_pitch_carrier_by_interval(
-            chord[1].written_pitch, named_interval)
-        chord[1].tweak.style = 'harmonic'
+                chord.note_heads[1].written_pitch, named_interval)
+        chord.note_heads[1].tweak.style = 'harmonic'
         parent = self._parent
         if self._parent:
             index = parent.index(self)

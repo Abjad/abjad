@@ -95,14 +95,13 @@ class Tuplet(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, multiplier, music=None, **kwargs):
+    def __init__(self, multiplier, music=None):
         Container.__init__(self, music)
         self.multiplier = multiplier
         self._force_fraction = None
         self._is_invisible = None
         self._preferred_denominator = None
         self._signifier = '*'
-        self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 

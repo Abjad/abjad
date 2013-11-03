@@ -133,7 +133,6 @@ class ClassDocumenter(Documenter):
     ### CLASS VARIABLES ###
 
     _ignored_special_methods = (
-        '__format__',
         '__getattribute__',
         '__getnewargs__',
         '__init__',
