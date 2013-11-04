@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import lilypondfiletools
 
 
 def play(expr):
@@ -12,7 +11,7 @@ def play(expr):
 
     ::
 
-        >>> iotools.play(note) # doctest: +SKIP
+        >>> functiontools.play(note) # doctest: +SKIP
 
     This input creates and opens a one-note MIDI file.
 
@@ -25,6 +24,7 @@ def play(expr):
     Returns none.
     '''
     from abjad import abjad_configuration
+    from abjad.tools import lilypondfiletools
     from abjad.tools import iotools
 
     ABJADOUTPUT = abjad_configuration['abjad_output']

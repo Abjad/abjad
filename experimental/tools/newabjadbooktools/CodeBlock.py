@@ -283,7 +283,7 @@ class CodeBlock(AbjadObject):
         from experimental.tools import newabjadbooktools
         return {
             'functiontools.graph': newabjadbooktools.GraphvizOutputProxy,
-            'iotools.play':  newabjadbooktools.MIDIOutputProxy,
+            'functiontools.play':  newabjadbooktools.MIDIOutputProxy,
             'iotools.plot': newabjadbooktools.GnuplotOutputProxy,
             'functiontools.show': newabjadbooktools.LilyPondOutputProxy,
             'play': newabjadbooktools.MIDIOutputProxy,
