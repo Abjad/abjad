@@ -53,9 +53,9 @@ from abjad.tools.functiontools import mutate
 from abjad.tools.functiontools import override
 from abjad.tools.functiontools import parse
 from abjad.tools.functiontools import select
+from abjad.tools.functiontools import show
 from abjad.tools.iotools import f
 from abjad.tools.iotools import play
-from abjad.tools.iotools import show
 from abjad.tools.iotools import z
 from abjad.tools.mutationtools.AttributeInspectionAgent import inspect
 

@@ -3,7 +3,7 @@ import os
 import time
 
 
-# TODO: Remove code duplication between this and iotools.ly and iotools.show.
+# TODO: Remove code duplication between this and iotools.ly and functiontools.show.
 # TODO: Encapsulate stuff below.
 def redo(target=-1, lily_time=10):
     r'''Rerenders the last ``.ly`` file created in Abjad and 

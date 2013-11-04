@@ -285,7 +285,7 @@ class CodeBlock(AbjadObject):
             'iotools.graph': newabjadbooktools.GraphvizOutputProxy,
             'iotools.play':  newabjadbooktools.MIDIOutputProxy,
             'iotools.plot': newabjadbooktools.GnuplotOutputProxy,
-            'iotools.show': newabjadbooktools.LilyPondOutputProxy,
+            'functiontools.show': newabjadbooktools.LilyPondOutputProxy,
             'play': newabjadbooktools.MIDIOutputProxy,
             'show': newabjadbooktools.LilyPondOutputProxy,
         }
