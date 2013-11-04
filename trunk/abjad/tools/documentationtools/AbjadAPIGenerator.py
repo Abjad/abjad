@@ -148,7 +148,13 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                     path_suffix,
                     directory_name,
                     )
+                should_delete = False
                 if not os.path.exists(code_directory_path):
+                    should_delete = True
+                elif not [x for x in os.listdir(code_directory_path)
+                    if x.endswith('.py')]:
+                    should_delete = True
+                if should_delete:
                     docs_directory_path = os.path.join(
                         directory_path,
                         directory_name,
