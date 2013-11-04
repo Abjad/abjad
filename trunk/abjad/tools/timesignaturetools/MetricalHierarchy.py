@@ -446,7 +446,7 @@ class MetricalHierarchy(AbjadObject):
 
         ::
 
-            >>> iotools.graph(metrical_hierarchy) # doctest: +SKIP
+            >>> functiontools.graph(metrical_hierarchy) # doctest: +SKIP
 
         Returns string.
         '''

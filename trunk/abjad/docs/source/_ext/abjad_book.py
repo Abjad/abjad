@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import docutils
 import hashlib
-import multiprocessing
 import os
 import pickle
 import posixpath
@@ -9,9 +8,9 @@ import shutil
 import sphinx
 import subprocess
 import tempfile
+import traceback
 from abjad import abjad_configuration
 from abjad.tools import documentationtools
-from abjad.tools import sequencetools
 
 
 class abjad_book_block(docutils.nodes.General, docutils.nodes.Element):
@@ -100,13 +99,13 @@ def on_builder_inited(app):
 def rewrite_literal_block_line(line):
     if line.strip().startswith(('f(', 'play(', 'print ', 'redo(', 'z(', 'iotools.log(')):
         return '', False
-    elif not line.startswith(('show(', 'iotools.graph')):
+    elif not line.startswith(('show(', 'functiontools.graph(')):
         return line, False
     if line.startswith('show('):
         object_name = line[5:]
         kind = 'lilypond'
-    elif line.startswith('iotools.graph('):
-        object_name = line[14:]
+    elif line.startswith('functiontools.graph('):
+        object_name = line[len('functiontools.graph('):]
         kind = 'graphviz'
     object_name = object_name.rpartition(')')[0]
     if ')' in object_name:
@@ -160,8 +159,8 @@ def process_literal_block_pairs(literal_block_pairs):
                     del(environment['__abjad_book__'])
                 try:
                     exec('\n'.join(lines_to_execute), environment)
-                except:
-                    pass
+                except Exception as e:
+                    traceback.print_exc()
                 kind, obj = environment['__abjad_book__']
                 new_abjad_book_block = abjad_book_block()
                 new_abjad_book_block['kind'] = kind

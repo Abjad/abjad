@@ -689,7 +689,7 @@ Music notation images now appear in the docstrings of many functions throughout
 the API.
 
 
-Added new ``iotools.graph()`` function to the ``iotools`` package.  A small
+Added new ``functiontools.graph()`` function to the ``iotools`` package.  A small
 number of classes throughout the system have started to gain a
 `graphviz_format` attribute, including ``datastructuretools.Digraph``,
 ``documentationtools.InheritanceGraph``, some of the
@@ -697,7 +697,7 @@ number of classes throughout the system have started to gain a
 ``timesignaturetools.MetricalHierarchy``::
 
     >>> hierarchy = timesignaturetools.MetricalHierarchy((7, 4))
-    >>> iotools.graph(hierarchy)
+    >>> functiontools.graph(hierarchy)
 
 .. image:: images/graph.png
 
