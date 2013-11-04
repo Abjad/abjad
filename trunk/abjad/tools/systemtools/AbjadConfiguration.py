@@ -2,7 +2,7 @@
 import os
 import subprocess
 import types
-from abjad.tools.configurationtools.Configuration import Configuration
+from abjad.tools.systemtools.Configuration import Configuration
 
 
 class AbjadConfiguration(Configuration):
