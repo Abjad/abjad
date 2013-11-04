@@ -302,7 +302,7 @@ Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
     scoretools.get_first_element_starting_before_or_at_prolated_offset()
     scoretools.get_first_element_starting_strictly_after_prolated_offset()
     scoretools.get_first_element_starting_strictly_before_prolated_offset()
-    prolated_updatetools.update_offset_values_of_component()
+    prolated_systemtools.update_offset_values_of_component()
     verticalitytools.get_vertical_moment_at_prolated_offset_in_expr()
 
 ::
@@ -318,7 +318,7 @@ Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
     scoretools.get_first_element_starting_before_or_at_offset()
     scoretools.get_first_element_starting_strictly_after_offset()
     scoretools.get_first_element_starting_strictly_before_offset()
-    updatetools.update_offset_values_of_component()
+    systemtools.update_offset_values_of_component()
     verticalitytools.get_vertical_moment_at_offset_in_expr()
 
 Renamed ``prolated_duration`` to ``offset`` in some functions::

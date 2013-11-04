@@ -24,7 +24,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'instrumenttools', 'introspectiontools', 'iotools', 'iterationtools',
     'labeltools', 'layouttools', 'scoretools', 'lilypondfiletools',
     'lilypondparsertools', 'lilypondproxytools', 'marktools', 'markuptools',
-    'mathtools', 'scoretools', 'scoretools', 'updatetools', 'p',
+    'mathtools', 'scoretools', 'scoretools', 'systemtools', 'p',
     'pitcharraytools', 'pitchtools', 'play', 'scoretools', 'rhythmtreetools',
     'schemetools', 'scoretemplatetools', 'scoretools', 'sequencetools', 'show',
     'sievetools', 'scoretools', 'spannertools', 'scoretools', 'stringtools',
