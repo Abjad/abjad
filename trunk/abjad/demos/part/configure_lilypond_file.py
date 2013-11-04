@@ -8,7 +8,7 @@ def configure_lilypond_file(lilypond_file):
 
     context_block = lilypondfiletools.ContextBlock()
     context_block.context_name = r'Staff \RemoveEmptyStaves'
-    context_block.override.vertical_axis_group.remove_first = True
+    override(context_block).vertical_axis_group.remove_first = True
     lilypond_file.layout_block.context_blocks.append(context_block)
 
     slash_separator = marktools.LilyPondCommandMark('slashSeparator')

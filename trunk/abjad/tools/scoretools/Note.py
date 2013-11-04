@@ -25,6 +25,7 @@ class Note(Leaf):
                 cs''8.
             }
 
+
     '''
 
     ### CLASS VARIABLES ###

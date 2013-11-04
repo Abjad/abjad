@@ -8,6 +8,7 @@ from abjad.tools import lilypondproxytools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.functiontools import override
 Selection = selectiontools.Selection
 
 
@@ -70,7 +71,7 @@ class Spanner(AbjadObject):
         '''
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(self.override)
+            new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(self.set)
         self._copy_keyword_args(new)
@@ -155,7 +156,7 @@ class Spanner(AbjadObject):
         exec('from abjad import *')
         for grob_attribute_string in overrides:
             grob_value_string = overrides[grob_attribute_string]
-            statement = 'self.override.{} = {}'
+            statement = 'override(self).{} = {}'
             grob_attribute_string = grob_attribute_string.replace('__', '.', 1)
             grob_value_string = grob_value_string.replace('\t', '')
             strings = (grob_attribute_string, grob_value_string)
@@ -361,7 +362,7 @@ class Spanner(AbjadObject):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
     def _make_storage_format_with_overrides(self):
-        override_dictionary = self.override._make_override_dictionary()
+        override_dictionary = override(self)._make_override_dictionary()
         lines = []
         line = '{}.{}('.format(
             self._tools_package_name, 
@@ -460,16 +461,16 @@ class Spanner(AbjadObject):
         result = tuple(result)
         return result
 
-    @property
-    def override(self):
-        r'''LilyPond grob override component plug-in.
-
-        Returns LilyPond grob override component plug-in.
-        '''
-        if not hasattr(self, '_override'):
-            plugin = lilypondproxytools.LilyPondGrobManager()
-            self._override = plugin
-        return self._override
+#    @property
+#    def override(self):
+#        r'''LilyPond grob override component plug-in.
+#
+#        Returns LilyPond grob override component plug-in.
+#        '''
+#        if not hasattr(self, '_override'):
+#            plugin = lilypondproxytools.LilyPondGrobManager()
+#            self._override = plugin
+#        return self._override
 
     @property
     def set(self):

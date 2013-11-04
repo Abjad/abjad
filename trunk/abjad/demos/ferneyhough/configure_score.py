@@ -5,11 +5,12 @@ from abjad import *
 def configure_score(score):
     score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
     score.set.tuplet_full_length = True
-    score.override.bar_line.stencil = False
-    score.override.bar_number.transparent = True
-    score.override.spacing_spanner.uniform_stretching = True
-    score.override.spacing_spanner.strict_note_spacing = True
-    score.override.time_signature.stencil = False
-    score.override.tuplet_bracket.padding = 2
-    score.override.tuplet_bracket.staff_padding = 4
-    score.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+    override(score).bar_line.stencil = False
+    override(score).bar_number.transparent = True
+    override(score).spacing_spanner.uniform_stretching = True
+    override(score).spacing_spanner.strict_note_spacing = True
+    override(score).time_signature.stencil = False
+    override(score).tuplet_bracket.padding = 2
+    override(score).tuplet_bracket.staff_padding = 4
+    override(score).tuplet_number.text = \
+        schemetools.Scheme('tuplet-number::calc-fraction-text')

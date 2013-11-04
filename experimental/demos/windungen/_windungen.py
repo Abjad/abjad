@@ -227,8 +227,8 @@ def make_empty_cello_score(numStaffs):
         score.append( Staff([]) )
         clef = marktools.ClefMark('bass')
         attach(clef, score[x])
-        score[x].override.stem.stemlet_length = 2
-        score[x].override.beam.damping = "+inf.0"
+        override(score[x]).stem.stemlet_length = 2
+        override(score[x]).beam.damping = "+inf.0"
     return score
 
 score = make_empty_cello_score(12)

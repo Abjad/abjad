@@ -35,9 +35,9 @@ def test_custom_contexts_01():
     context_block.type = 'Engraver_group'
     context_block.name = 'CustomVoice'
     context_block.alias = 'Voice'
-    context_block.override.beam.color = 'green'
-    context_block.override.note_head.color = 'green'
-    context_block.override.stem.color = 'green'
+    override(context_block).beam.color = 'green'
+    override(context_block).note_head.color = 'green'
+    override(context_block).stem.color = 'green'
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)
@@ -46,7 +46,7 @@ def test_custom_contexts_01():
     context_block.name = 'CustomStaff'
     context_block.alias = 'Staff'
     context_block.accepts.append('CustomVoice')
-    context_block.override.staff_symbol.color = 'red'
+    override(context_block).staff_symbol.color = 'red'
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)

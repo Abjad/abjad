@@ -45,14 +45,14 @@ class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
             layouttools.make_spacing_vector(0, 0, 6, 0)
         illustration.paper_block.markup_system_spacing = \
             layouttools.make_spacing_vector(0, 0, 12, 0)
-        score.override.note_head.transparent = True
-        score.override.bar_line.transparent = True
-        score.override.bar_number.transparent = True
-        score.override.clef.transparent = True
-        score.override.span_bar.transparent = True
-        score.override.staff_symbol.transparent = True
-        score.override.stem.transparent = True
-        score.override.time_signature.stencil = False
+        override(score).note_head.transparent = True
+        override(score).bar_line.transparent = True
+        override(score).bar_number.transparent = True
+        override(score).clef.transparent = True
+        override(score).span_bar.transparent = True
+        override(score).staff_symbol.transparent = True
+        override(score).stem.transparent = True
+        override(score).time_signature.stencil = False
         score.set.proportional_notation_duration = \
             schemetools.SchemeMoment(1, 8)
         if 'title' in kwargs:

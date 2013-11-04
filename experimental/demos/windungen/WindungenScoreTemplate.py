@@ -29,8 +29,8 @@ class WindungenScoreTemplate(AbjadObject):
                 short_instrument_name='Vc. {}'.format(number),
                 )
             attach(cello, staff)
-            staff.override.stem.stemlet_length = 2
-            staff.override.beam.damping = '+inf.0'
+            override(staff).stem.stemlet_length = 2
+            override(staff).beam.damping = '+inf.0'
             staves.append(staff)
 
         windungen_staff_group = scoretools.StaffGroup(

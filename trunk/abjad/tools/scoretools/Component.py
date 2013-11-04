@@ -7,6 +7,7 @@ from abjad.tools import lilypondproxytools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
+from abjad.tools.functiontools import override
 from abjad.tools.abctools import AbjadObject
 
 
@@ -140,7 +141,7 @@ class Component(AbjadObject):
         from abjad.tools.functiontools import attach
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(self.override)
+            new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(self.set)
         for mark in self._get_marks():
@@ -697,16 +698,16 @@ class Component(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def override(self):
-        r'''LilyPond grob override component plug-in.
-
-        Returns LilyPond grob override component plug-in.
-        '''
-        if not hasattr(self, '_override'):
-            self._override = \
-                lilypondproxytools.LilyPondGrobManager()
-        return self._override
+#    @property
+#    def override(self):
+#        r'''LilyPond grob override component plug-in.
+#
+#        Returns LilyPond grob override component plug-in.
+#        '''
+#        if not hasattr(self, '_override'):
+#            self._override = \
+#                lilypondproxytools.LilyPondGrobManager()
+#        return self._override
 
     @property
     def set(self):

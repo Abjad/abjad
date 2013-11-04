@@ -272,39 +272,6 @@ class Chord(Leaf):
         return property(**locals())
 
     @property
-    def override(self):
-        r'''LilyPond grob override component plug-in.
-
-        ..  container:: example
-
-            **Example.** Override LilyPond accidental, note head and stem
-            grobs:
-
-            ::
-
-                >>> chord = Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> override(chord).accidental.color = 'red'
-                >>> override(chord).note_head.color = 'red'
-                >>> override(chord).stem.color = 'red'
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                \once \override Accidental #'color = #red
-                \once \override NoteHead #'color = #red
-                \once \override Stem #'color = #red
-                <e' cs'' f''>4
-
-        Returns none.
-        '''
-        return super(Chord, self).override
-
-    @property
     def set(self):
         r'''LilyPond context setting component plug-in.
 

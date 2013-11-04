@@ -4,6 +4,7 @@ from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
+from abjad.tools.functiontools import override
 from abjad.tools.scoretools.FixedDurationContainer \
     import FixedDurationContainer
 
@@ -206,7 +207,7 @@ class Measure(FixedDurationContainer):
         for mark in new._get_marks(marktools.TimeSignatureMark):
             mark.detach()
         if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(self.override)
+            new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(self.set)
         for mark in self._get_marks():

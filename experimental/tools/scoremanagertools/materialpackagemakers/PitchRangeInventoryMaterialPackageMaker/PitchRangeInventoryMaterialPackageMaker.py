@@ -40,9 +40,9 @@ class PitchRangeInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         rests = scoretools.iterate_rests_in_expr(score)
         scoretools.replace_leaves_in_expr_with_skips(list(rests))
-        score.override.time_signature.stencil = False
-        score.override.bar_line.transparent = True
-        score.override.span_bar.transparent = True
+        override(score).time_signature.stencil = False
+        override(score).bar_line.transparent = True
+        override(score).span_bar.transparent = True
         score.set.proportional_notation_duration = \
             schemetools.SchemeMoment(1, 4)
         return illustration

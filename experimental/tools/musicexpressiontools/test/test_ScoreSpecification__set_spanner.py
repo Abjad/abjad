@@ -39,10 +39,10 @@ def test_ScoreSpecification__set_spanner_02():
     divisions = score_specification.select_divisions('Voice 1')[2:4]
     leaves = divisions.timespan.select_leaves('Voice 1')
     spanner = spannertools.SlurSpanner()
-    spanner.override.note_head.color = 'red'
-    spanner.override.stem.color = 'red'
-    spanner.override.beam.color = 'red'
-    spanner.override.accidental.color = 'red'
+    override(spanner).note_head.color = 'red'
+    override(spanner).stem.color = 'red'
+    override(spanner).beam.color = 'red'
+    override(spanner).accidental.color = 'red'
     leaves.set_spanner(spanner)
     score = score_specification.interpret()
 

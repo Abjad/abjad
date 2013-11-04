@@ -33,21 +33,21 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
             expr, classes)):
             spanner = spannertools.TextSpanner()
             attach(spanner, group)
-            spanner.override.text_spanner.dash_fraction = 1
+            override(spanner).text_spanner.dash_fraction = 1
             dynamic_string = self.dynamics_talea[i]
             dynamic_markup = markuptools.Markup([
                 markuptools.MarkupCommand('dynamic', dynamic_string),
                 markuptools.MarkupCommand('hspace', 0.75)])
-            spanner.override.text_spanner.bound_details__left__text = \
+            override(spanner).text_spanner.bound_details__left__text = \
                 dynamic_markup
             nib_markup = markuptools.Markup(
                 markuptools.MarkupCommand(
                 'draw-line', schemetools.SchemePair(0, 1)))
-            spanner.override.text_spanner.bound_details__right__text = \
+            override(spanner).text_spanner.bound_details__right__text = \
                 nib_markup
-            spanner.override.text_spanner.bound_details__right__padding = \
+            override(spanner).text_spanner.bound_details__right__padding = \
                 -0.2
-            spanner.override.text_spanner.bound_details__left__stencil_align_dir_y = 0
+            override(spanner).text_spanner.bound_details__left__stencil_align_dir_y = 0
         return groups
 
     ### PUBLIC PROPERTIES ###

@@ -40,13 +40,13 @@ class TempoMarkInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
         illustration.paper_block.top_system_spacing = \
             layouttools.make_spacing_vector(0, 0, 6, 0)
-        score.override.note_head.transparent = True
-        score.override.bar_line.transparent = True
-        score.override.clef.transparent = True
-        score.override.span_bar.transparent = True
-        score.override.staff_symbol.transparent = True
-        score.override.stem.transparent = True
-        score.override.time_signature.stencil = False
+        override(score).note_head.transparent = True
+        override(score).bar_line.transparent = True
+        override(score).clef.transparent = True
+        override(score).span_bar.transparent = True
+        override(score).staff_symbol.transparent = True
+        override(score).stem.transparent = True
+        override(score).time_signature.stencil = False
         score.set.proportional_notation_duration = \
             schemetools.SchemeMoment(1, 24)
         return illustration

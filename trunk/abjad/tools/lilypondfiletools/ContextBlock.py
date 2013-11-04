@@ -103,14 +103,14 @@ class ContextBlock(AttributedBlock):
     def engraver_removals(self):
         return self._engraver_removals
 
-    @property
-    def override(self):
-        r'''Reference to LilyPond grob override component plug-in.
-        '''
-        if not hasattr(self, '_override'):
-            self._override = \
-                lilypondproxytools.LilyPondGrobManager()
-        return self._override
+#    @property
+#    def override(self):
+#        r'''Reference to LilyPond grob override component plug-in.
+#        '''
+#        if not hasattr(self, '_override'):
+#            self._override = \
+#                lilypondproxytools.LilyPondGrobManager()
+#        return self._override
 
     @property
     def set(self):

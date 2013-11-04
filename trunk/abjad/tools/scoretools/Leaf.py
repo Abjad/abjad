@@ -5,6 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools.functiontools import override
 from abjad.tools.scoretools.Component import Component
 
 
@@ -119,7 +120,7 @@ class Leaf(Component):
 
     def _copy_override_and_set_from_leaf(self, leaf):
         if getattr(leaf, '_override', None) is not None:
-            self._override = copy.copy(leaf.override)
+            self._override = copy.copy(override(leaf))
         if getattr(leaf, '_set', None) is not None:
             self._set = copy.copy(leaf.set)
 

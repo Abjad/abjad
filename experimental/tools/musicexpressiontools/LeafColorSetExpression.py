@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import labeltools
+from abjad.tools.functiontools import override
 from experimental.tools.musicexpressiontools.LeafSetExpression \
     import LeafSetExpression
 
@@ -16,6 +17,6 @@ class LeafColorSetExpression(LeafSetExpression):
         color = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):
             labeltools.color_leaf(leaf, color)
-            leaf.override.beam.color = color
-            leaf.override.flag.color = color
-            leaf.override.stem.color = color
+            override(leaf).beam.color = color
+            override(leaf).flag.color = color
+            override(leaf).stem.color = color
