@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import configurationtools
 
 
 def test_systemtools_AbjadConfiguration_list_abjad_environment_variables_01():

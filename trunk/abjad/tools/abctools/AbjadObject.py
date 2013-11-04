@@ -74,9 +74,8 @@ class AbjadObject(object):
 
     @property
     def _keyword_argument_name_value_strings(self):
-        from abjad.tools import introspectiontools
         result = []
-        tmp = introspectiontools.class_to_tools_package_qualified_class_name
+        tmp = self._class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
@@ -178,6 +177,15 @@ class AbjadObject(object):
 
     ### PRIVATE METHODS ###
 
+    def _class_to_tools_package_qualified_class_name(self, class_):
+        module_parts = class_.__module__.split('.')
+        unique_parts = [module_parts[0]]
+        for part in module_parts[1:]:
+            if part != unique_parts[-1]:
+                unique_parts.append(part)
+        tools_package_qualified_class_name = '.'.join(unique_parts[-2:])
+        return tools_package_qualified_class_name
+
     def _debug(self, value, annotation=None, blank=False):
         if annotation is None:
             print 'debug: {!r}'.format(value)
@@ -215,13 +223,12 @@ class AbjadObject(object):
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(
         self, is_indented=True):
-        from abjad.tools import introspectiontools
         result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        tmp = introspectiontools.class_to_tools_package_qualified_class_name
+        tmp = self._class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             if self._has_default_attribute_values:
                 default_keyword_argument_name = '_default_{}'.format(name)
@@ -274,13 +281,12 @@ class AbjadObject(object):
 
     def _get_tools_package_qualified_positional_argument_repr_pieces(
         self, is_indented=True):
-        from abjad.tools import introspectiontools
         result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        tmp = introspectiontools.class_to_tools_package_qualified_class_name
+        tmp = self._class_to_tools_package_qualified_class_name
         for value in self._positional_argument_values:
             # if value is a (noninstantiated) class
             if type(value) is abc.ABCMeta:
