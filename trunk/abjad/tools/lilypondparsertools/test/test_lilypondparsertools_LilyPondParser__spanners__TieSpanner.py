@@ -10,8 +10,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_01():
     tie = spannertools.TieSpanner()
     attach(tie, target[:])
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_02():
@@ -34,8 +34,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_04():
     tie = spannertools.TieSpanner(direction=Up)
     attach(tie, target[:])
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_05():
@@ -46,5 +46,5 @@ def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_05():
     tie = spannertools.TieSpanner(direction=Down)
     attach(tie, target[:])
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result

@@ -7,8 +7,8 @@ def format_lilypond_value(value):
     Returns string.
     '''
 
-    if 'lilypond_format' in dir(value) and not isinstance(value, str):
-        return value.lilypond_format
+    if '_lilypond_format' in dir(value) and not isinstance(value, str):
+        return format(value)
     elif value is True:
         return '##t'
     elif value is False:

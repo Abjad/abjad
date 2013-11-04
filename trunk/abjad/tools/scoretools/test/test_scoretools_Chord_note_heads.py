@@ -31,7 +31,7 @@ def test_scoretools_Chord_note_heads_03():
     chord = Chord('<>4')
     chord.note_heads = [4, 3, 2]
 
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord_note_heads_04():
@@ -45,7 +45,7 @@ def test_scoretools_Chord_note_heads_04():
         pitchtools.NamedPitch(2),
         ]
 
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord_note_heads_05():
@@ -59,7 +59,7 @@ def test_scoretools_Chord_note_heads_05():
         pitchtools.NamedPitch(2),
         ]
 
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord_note_heads_06():
@@ -69,7 +69,7 @@ def test_scoretools_Chord_note_heads_06():
     chord = Chord("<c'>4")
     chord.note_heads = "c' d' e'"
 
-    assert chord.lilypond_format == "<c' d' e'>4"
+    assert format(chord) == "<c' d' e'>4"
 
 
 def test_scoretools_Chord_note_heads_07():

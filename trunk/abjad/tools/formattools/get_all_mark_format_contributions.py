@@ -40,7 +40,7 @@ def get_all_mark_format_contributions(component):
 
         ### non-printing marks are skipped (i.e. Annotation) ###
 
-        if not hasattr(mark, 'lilypond_format'):
+        if not hasattr(mark, '_lilypond_format'):
             continue
 
         ### a recognized mark class ###
@@ -92,7 +92,7 @@ def get_all_mark_format_contributions(component):
         contribution_list = contributions[format_slot][section]
         if len(contribution_list) and singleton:
             raise ExtraMarkError
-        result = mark.lilypond_format
+        result = mark._lilypond_format
         assert isinstance(result, str)
         contribution_list.append(result)
         if section == 'articulations':

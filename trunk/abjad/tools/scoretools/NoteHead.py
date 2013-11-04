@@ -62,6 +62,15 @@ class NoteHead(AbjadObject):
             return self.written_pitch == expr.written_pitch
         return self.written_pitch == expr
 
+    def __format__(self, format_spec=''):
+        r'''Gets format.
+
+        Returns string.
+        '''
+        if format_spec in ('', 'lilypond'):
+            return self._lilypond_format
+        return str(self)
+
     def __getnewargs__(self):
         args = (
             self.written_pitch,
@@ -112,6 +121,33 @@ class NoteHead(AbjadObject):
         if 'tweak_pairs' in result:
             result.remove('tweak_pairs')
         result = tuple(result)
+        return result
+
+    @property
+    def _lilypond_format(self):
+        from abjad.tools import formattools
+        from abjad.tools import scoretools
+        # make sure note head has pitch
+        assert self.written_pitch
+        result = []
+        # format chord note head with optional tweaks
+        if isinstance(self._client, scoretools.Chord):
+            for key, value in vars(self.tweak).iteritems():
+                if not key.startswith('_'):
+                    result.append(
+                        r'\tweak %s %s' % (
+                        formattools.format_lilypond_attribute(key),
+                        formattools.format_lilypond_value(value)),
+                        )
+        # format note head pitch
+        kernel = format(self.written_pitch)
+        if self.is_forced:
+            kernel += '!'
+        if self.is_cautionary:
+            kernel += '?'
+        result.append(kernel)
+        result = '\n'.join(result)
+        # return formatted note head
         return result
 
     ### PUBLIC PROPERTIES ###
@@ -165,43 +201,6 @@ class NoteHead(AbjadObject):
         def fset(self, arg):
             self._is_forced = bool(arg)
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond input format of note head:
-
-        ::
-
-            >>> note_head = scoretools.NoteHead("cs''")
-            >>> note_head.lilypond_format
-            "cs''"
-
-        Returns string.
-        '''
-        from abjad.tools import formattools
-        from abjad.tools import scoretools
-        # make sure note head has pitch
-        assert self.written_pitch
-        result = []
-        # format chord note head with optional tweaks
-        if isinstance(self._client, scoretools.Chord):
-            for key, value in vars(self.tweak).iteritems():
-                if not key.startswith('_'):
-                    result.append(
-                        r'\tweak %s %s' % (
-                        formattools.format_lilypond_attribute(key),
-                        formattools.format_lilypond_value(value)),
-                        )
-        # format note head pitch
-        kernel = self.written_pitch.lilypond_format
-        if self.is_forced:
-            kernel += '!'
-        if self.is_cautionary:
-            kernel += '?'
-        result.append(kernel)
-        result = '\n'.join(result)
-        # return formatted note head
-        return result
 
     @property
     def named_pitch(self):

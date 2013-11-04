@@ -60,6 +60,10 @@ class BendAfter(Mark):
     def _contents_repr_string(self):
         return '%s' % self.bend_amount
 
+    @property
+    def _lilypond_format(self):
+        return str(self)
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -88,17 +92,3 @@ class BendAfter(Mark):
             assert isinstance(bend_amount, (int, float))
             self._bend_amount = float(bend_amount)
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond format string:
-
-        ::
-
-            >>> bend = marktools.BendAfter(-4)
-            >>> bend.lilypond_format
-            "- \\bendAfter #'-4.0"
-
-        Returns string.
-        '''
-        return str(self)

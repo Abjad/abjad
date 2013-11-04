@@ -40,7 +40,7 @@ class LilyPondDimension(abctools.AbjadObject):
         Return string.
         '''
         if format_spec in ('', 'lilypond'):
-            return self.lilypond_format
+            return self._lilypond_format
         return str(self)
 
     ### PRIVATE PROPERTIES ###
@@ -52,7 +52,7 @@ class LilyPondDimension(abctools.AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def lilypond_format(self):
+    def _lilypond_format(self):
         return '\n'.join(self._format_pieces)
 
     @property

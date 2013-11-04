@@ -70,7 +70,7 @@ def test_scoretools_Skip___init___06():
     # check that attributes have not been removed or added.
     assert dir(note) == dir(Note("c'4"))
     assert dir(skip) == dir(scoretools.Skip((1, 4)))
-    assert skip.lilypond_format == 's8'
+    assert format(skip) == 's8'
     assert skip._parent is None
     assert skip.written_duration == d
 

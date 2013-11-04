@@ -17,7 +17,7 @@ def test_scoretools_Rest___init___02():
 
     rest = Rest(Duration(1, 4), Duration(1, 2))
 
-    assert rest.lilypond_format == 'r4 * 1/2'
+    assert format(rest) == 'r4 * 1/2'
 
 
 def test_scoretools_Rest___init___03():
@@ -30,7 +30,7 @@ def test_scoretools_Rest___init___03():
 
     assert isinstance(rest_1, Rest)
     assert isinstance(rest_2, Rest)
-    assert rest_1.lilypond_format == rest_2.lilypond_format
+    assert format(rest_1) == format(rest_2)
     assert rest_1 is not rest_2
 
 
@@ -129,7 +129,7 @@ def test_scoretools_Rest___init___10():
     # check that attributes have not been removed or added.
     assert dir(note) == dir(Note(0, (1, 8)))
     assert dir(rest) == dir(Rest((1, 4)))
-    assert rest.lilypond_format == 'r8'
+    assert format(rest) == 'r8'
     assert rest._parent is None
     assert rest.written_duration == d
 

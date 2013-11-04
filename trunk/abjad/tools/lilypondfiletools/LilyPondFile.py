@@ -100,7 +100,7 @@ class LilyPondFile(AbjadObject, list):
         Returns string.
         '''
         if format_spec in ('', 'lilypond'):
-            return self.lilypond_format
+            return self._lilypond_format
         return str(self)
 
     def __repr__(self):
@@ -126,8 +126,8 @@ class LilyPondFile(AbjadObject, list):
     def _formatted_blocks(self):
         result = []
         for x in self:
-            if 'lilypond_format' in dir(x) and not isinstance(x, str):
-                lilypond_format = x.lilypond_format
+            if '_lilypond_format' in dir(x) and not isinstance(x, str):
+                lilypond_format = format(x)
                 if lilypond_format:
                     result.append(lilypond_format)
             else:
@@ -153,10 +153,10 @@ class LilyPondFile(AbjadObject, list):
     def _formatted_file_initial_system_comments(self):
         result = []
         for x in self.file_initial_system_comments:
-            if 'lilypond_format' in dir(x) and not isinstance(x, str):
-                lilypond_format = x.lilypond_format
+            if '_lilypond_format' in dir(x) and not isinstance(x, str):
+                lilypond_format = format(x)
                 if lilypond_format:
-                    result.append('%% %s' % x.lilypond_format)
+                    result.append('%% %s' % format(x))
             else:
                 result.append('%% %s' % str(x))
         if result:
@@ -170,7 +170,7 @@ class LilyPondFile(AbjadObject, list):
             if isinstance(file_initial_include, str):
                 result.append(r'\include "%s"' % file_initial_include)
             else:
-                result.append(file_initial_include.lilypond_format)
+                result.append(format(file_initial_include))
         if result:
             result = ['\n'.join(result)]
         return result
@@ -179,10 +179,10 @@ class LilyPondFile(AbjadObject, list):
     def _formatted_file_initial_user_comments(self):
         result = []
         for x in self.file_initial_user_comments:
-            if 'lilypond_format' in dir(x) and not isinstance(x, str):
-                lilypond_format = x.lilypond_format
+            if '_lilypond_format' in dir(x) and not isinstance(x, str):
+                lilypond_format = format(x)
                 if lilypond_format:
-                    result.append('%% %s' % x.lilypond_format)
+                    result.append('%% %s' % format(x))
             else:
                 result.append('%% %s' % str(x))
         if result:
@@ -196,11 +196,15 @@ class LilyPondFile(AbjadObject, list):
             if isinstance(file_initial_include, str):
                 result.append(r'\include "%s"' % file_initial_include)
             else:
-                result.append(file_initial_include.lilypond_format)
+                result.append(format(file_initial_include))
         if result:
             result = ['\n'.join(result)]
         return result
 
+    @property
+    def _lilypond_format(self):
+        return '\n\n'.join(self._format_pieces)
+        
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -289,9 +293,3 @@ class LilyPondFile(AbjadObject, list):
             self._global_staff_size = arg
 
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        r'''Format-time contribution of LilyPond file.
-        '''
-        return '\n\n'.join(self._format_pieces)

@@ -20,22 +20,22 @@ class AbjadRevisionToken(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        return '%s(%s)' % (self._class_name, self.lilypond_format)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def lilypond_format(self):
-        r'''Format contribution of Abjad version token:
-
-        ::
-
-            >>> lilypondfiletools.AbjadRevisionToken().lilypond_format
-            'Abjad revision ...'
+    def __format__(self, format_spec=''):
+        r'''Gets format.
 
         Returns string.
         '''
+        if format_spec in ('', 'lilypond'):
+            return self._lilypond_format
+        return str(self)
+
+    def __repr__(self):
+        return '%s(%s)' % (self._class_name, self._lilypond_format)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
         from abjad import abjad_configuration
         abjad_revision_string = abjad_configuration.get_abjad_revision_string()
         return 'Abjad revision %s' % abjad_revision_string

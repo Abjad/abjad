@@ -4,6 +4,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 def test_lilypondparsertools_LilyPondParser__contexts__with_blocks_01():
+
     target = Staff([])
 
     r'''
@@ -11,10 +12,10 @@ def test_lilypondparsertools_LilyPondParser__contexts__with_blocks_01():
     }
     '''
 
-    input = r'''\new Staff \with { } {
+    string = r'''\new Staff \with { } {
     }
     '''
 
     parser = LilyPondParser()
-    result = parser(input)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    result = parser(string)
+    assert format(target) == format(result) and target is not result

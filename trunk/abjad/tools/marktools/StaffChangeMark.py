@@ -92,23 +92,11 @@ class StaffChangeMark(ContextMark):
     def _contents_repr_string(self):
         return repr(self.staff)
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def lilypond_format(self):
-        r'''LilyPond format of staff change mark:
-
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> staff.name = 'RHStaff'
-            >>> staff_change = marktools.StaffChangeMark(staff)
-            >>> staff_change.lilypond_format
-            '\\change Staff = RHStaff'
-
-        Returns string.
-        '''
+    def _lilypond_format(self):
         return r'\change Staff = %s' % self.staff.name
+
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def staff():

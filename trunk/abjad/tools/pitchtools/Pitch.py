@@ -89,6 +89,13 @@ class Pitch(AbjadObject):
     def __repr__(self):
         return '{}({})'.format(self._class_name, self._format_string)
 
+    ### PRIVATE PROPERTIES ###
+
+    @abc.abstractproperty
+    def _lilypond_format(self):
+        r'''LilyPond input format.'''
+        raise NotImplementedError
+
     ### PRIVATE METHODS ###
 
     # do not indent in storage
@@ -274,11 +281,6 @@ class Pitch(AbjadObject):
     @abc.abstractproperty
     def diatonic_pitch_number(self):
         r'''Diatonic pitch number.'''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def lilypond_format(self):
-        r'''LilyPond input format.'''
         raise NotImplementedError
 
     @abc.abstractproperty

@@ -1,7 +1,7 @@
 def compare(string_1, string_2):
 
     if not isinstance(string_1, str):
-        string_1 = string_1.lilypond_format
+        string_1 = format(string_1)
 
     split_lines = string_2.split('\n')
 

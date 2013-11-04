@@ -45,7 +45,7 @@ def test_scoretools_Container_pop_01():
     "Result is now d'8 [ ]"
 
     assert inspect(result).is_well_formed()
-    assert result.lilypond_format == "d'8 [ ]"
+    assert format(result) == "d'8 [ ]"
 
 
 def test_scoretools_Container_pop_02():

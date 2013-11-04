@@ -35,7 +35,7 @@ def test_multiple_segment_quartet_01():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_multiple_segment_quartet_02():
@@ -63,7 +63,7 @@ def test_multiple_segment_quartet_02():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_multiple_segment_quartet_03():
@@ -92,7 +92,7 @@ def test_multiple_segment_quartet_03():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_multiple_segment_quartet_04():
@@ -114,4 +114,4 @@ def test_multiple_segment_quartet_04():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)

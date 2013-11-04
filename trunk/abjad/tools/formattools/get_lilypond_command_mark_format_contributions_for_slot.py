@@ -12,5 +12,5 @@ def get_lilypond_command_mark_format_contributions_for_slot(component, slot):
     command_marks = component._get_marks(marktools.LilyPondCommandMark)
     for command_mark in command_marks:
         if command_mark._format_slot == slot:
-            result.append(command_mark.lilypond_format)
+            result.append(format(command_mark))
     return ['lilypond command marks', result]

@@ -10,8 +10,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__GlissandoSpanner_01():
     glissando = spannertools.GlissandoSpanner()
     attach(glissando, target[:])
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__GlissandoSpanner_02():

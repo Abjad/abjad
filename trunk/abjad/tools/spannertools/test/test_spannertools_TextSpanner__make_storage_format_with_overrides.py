@@ -33,4 +33,4 @@ def test_spannertools_TextSpanner__make_storage_format_with_overrides_01():
     attach(text_spanner_2, staff_2[:])
 
     assert override(text_spanner_1) == override(text_spanner_2)
-    assert staff_1.lilypond_format == staff_2.lilypond_format
+    assert format(staff_1) == format(staff_2)

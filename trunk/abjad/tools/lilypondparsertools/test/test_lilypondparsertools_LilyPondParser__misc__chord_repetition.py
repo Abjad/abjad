@@ -28,8 +28,7 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_01():
     string = r'''{ <c' e' g'> q q q }'''
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and \
-        target is not result
+    assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_02():
@@ -69,8 +68,7 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_02():
     string = r'''\new Staff { <c' e' g'>8\p q q4-| q8.^"text" q16 q4-| }'''
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and \
-        target is not result
+    assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_03():
@@ -101,5 +99,4 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_03():
     string = r'''{ <c' e' g'>8 c'' q c'' r4 q }'''
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and \
-        target is not result
+    assert format(target) == format(result) and target is not result

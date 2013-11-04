@@ -830,17 +830,17 @@ def test_scoretools_Container__split_by_duration_14():
     beam = spannertools.BeamSpanner()
     attach(beam, note)
 
-    assert note.lilypond_format == "c'8 [ ]"
+    assert format(note) == "c'8 [ ]"
 
     halves = note._split_by_duration(
         Duration(1, 32), 
         fracture_spanners=True,
         )
 
-    assert halves[0][0].lilypond_format == "c'32 [ ] ~"
+    assert format(halves[0][0]) == "c'32 [ ] ~"
     assert inspect(halves[0][0]).is_well_formed()
 
-    assert halves[1][0].lilypond_format == "c'16. [ ]"
+    assert format(halves[1][0]) == "c'16. [ ]"
     assert inspect(halves[1][0]).is_well_formed()
 
 
@@ -1189,7 +1189,7 @@ def test_scoretools_Container__split_by_duration_20():
     note = Note(0, (1, 8))
     note.lilypond_duration_multiplier = Multiplier(1, 2)
 
-    assert note.lilypond_format == "c'8 * 1/2"
+    assert format(note) == "c'8 * 1/2"
 
     halves = note._split_by_duration(
         Duration(1, 32), 
@@ -1197,8 +1197,8 @@ def test_scoretools_Container__split_by_duration_20():
         tie_split_notes=False,
         )
 
-    assert halves[0][0].lilypond_format == "c'8 * 1/4"
-    assert halves[1][0].lilypond_format == "c'8 * 1/4"
+    assert format(halves[0][0]) == "c'8 * 1/4"
+    assert format(halves[1][0]) == "c'8 * 1/4"
 
     assert inspect(halves[0][0]).is_well_formed()
     assert inspect(halves[1][0]).is_well_formed()
@@ -1214,7 +1214,7 @@ def test_scoretools_Container__split_by_duration_21():
     note = Note(0, (1, 8))
     note.lilypond_duration_multiplier = Multiplier(1, 2)
 
-    assert note.lilypond_format == "c'8 * 1/2"
+    assert format(note) == "c'8 * 1/2"
 
     halves = note._split_by_duration(
         Duration(1, 48), 
@@ -1222,8 +1222,8 @@ def test_scoretools_Container__split_by_duration_21():
         tie_split_notes=False,
         )
 
-    assert halves[0][0].lilypond_format == "c'8 * 1/6"
-    assert halves[1][0].lilypond_format == "c'8 * 1/3"
+    assert format(halves[0][0]) == "c'8 * 1/6"
+    assert format(halves[1][0]) == "c'8 * 1/3"
 
     assert inspect(halves[0][0]).is_well_formed()
     assert inspect(halves[1][0]).is_well_formed()

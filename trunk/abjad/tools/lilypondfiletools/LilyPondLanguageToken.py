@@ -25,19 +25,10 @@ class LilyPondLanguageToken(AbjadObject):
         return '{}({!r})'.format(
             self._class_name, abjad_configuration['lilypond_language'])
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
-    def lilypond_format(self):
-        r'''Format contribution of LilyPond language token:
-
-        ::
-
-            >>> lilypondfiletools.LilyPondLanguageToken().lilypond_format
-            '\\language "english"'
-
-        Returns string.
-        '''
+    def _lilypond_format(self):
         from abjad import abjad_configuration
         lilypond_language = abjad_configuration['lilypond_language']
         return r'\language "%s"' % lilypond_language.lower()

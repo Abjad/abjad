@@ -12,7 +12,7 @@ def test_scoretools_NoteHead_written_pitch_01():
 
     "NoteHead(d'')"
 
-    assert note.note_head.lilypond_format == "d''"
+    assert format(note.note_head) == "d''"
     assert note.note_head.written_pitch.numbered_pitch._pitch_number == 14
 
 
@@ -25,7 +25,7 @@ def test_scoretools_NoteHead_written_pitch_02():
 
     "NoteHead(d'')"
 
-    assert note.note_head.lilypond_format == "d''"
+    assert format(note.note_head) == "d''"
     assert note.note_head.written_pitch.numbered_pitch._pitch_number == 14
 
 

@@ -20,7 +20,7 @@ def combine_markup_commands(*commands):
     ::
 
         >>> markup = markuptools.combine_markup_commands(markup_a, markup_b, markup_c)
-        >>> result = markup.lilypond_format
+        >>> result = format(markup)
 
     ::
 

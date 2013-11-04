@@ -23,8 +23,7 @@ def test_lilypondparsertools_LilyPondParser__marks__BarLine_01():
         )
 
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and \
-        target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
     marks = inspect(result[2]).get_marks()
     assert 1 == len(marks) and isinstance(marks[0], marktools.BarLine)

@@ -19,10 +19,10 @@ def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_ran
     """
 
     assert len(transpositions) == 4
-    assert transpositions[0].lilypond_format == "<c' d' e'>4"
-    assert transpositions[1].lilypond_format ==  "<c'' d'' e''>4"
-    assert transpositions[2].lilypond_format == "<c''' d''' e'''>4"
-    assert transpositions[3].lilypond_format == "<c'''' d'''' e''''>4"
+    assert format(transpositions[0]) == "<c' d' e'>4"
+    assert format(transpositions[1]) ==  "<c'' d'' e''>4"
+    assert format(transpositions[2]) == "<c''' d''' e'''>4"
+    assert format(transpositions[3]) == "<c'''' d'''' e''''>4"
 
 
 def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_range_02():

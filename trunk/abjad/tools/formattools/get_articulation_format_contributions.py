@@ -11,6 +11,6 @@ def get_articulation_format_contributions(component):
     result = []
     articulations = component._get_marks(marktools.Articulation)
     for articulation in articulations:
-        result.append(articulation.lilypond_format)
+        result.append(format(articulation))
     result.sort()
     return ['articulations', result]

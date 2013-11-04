@@ -200,21 +200,11 @@ class Articulation(DirectedMark):
         else:
             return repr(self.name)
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def lilypond_format(self):
-        r'''LilyPond format string of articulation:
-
-        ::
-
-            >>> articulation = marktools.Articulation('marcato', Up)
-            >>> articulation.lilypond_format
-            '^\\marcato'
-
-        Returns string.
-        '''
+    def _lilypond_format(self):
         return str(self)
+
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def name():

@@ -38,5 +38,5 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
         result = []
         for item in self.target:
             label = item.markup_name or 'anonymous'
-            result.append('{}: {}'.format(label, item.lilypond_format))
+            result.append('{}: {}'.format(label, format(item)))
         return result

@@ -6,8 +6,9 @@ def test_lilypondfiletools_BookpartBlock_01():
 
     bookpart_block = lilypondfiletools.BookpartBlock()
 
-    r'''
-    \bookpart {}
-    '''
-
-    assert bookpart_block.lilypond_format == '\\bookpart {}'
+    assert testtools.compare(
+        bookpart_block,
+        r'''
+        \bookpart {}
+        '''
+        )

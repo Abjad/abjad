@@ -19,7 +19,7 @@ def test_TimespanExpression__callbacks_01():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_TimespanExpression__callbacks_02():
@@ -39,7 +39,7 @@ def test_TimespanExpression__callbacks_02():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_TimespanExpression__callbacks_03():
@@ -59,7 +59,7 @@ def test_TimespanExpression__callbacks_03():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_TimespanExpression__callbacks_04():
@@ -79,7 +79,7 @@ def test_TimespanExpression__callbacks_04():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_TimespanExpression__callbacks_05():
@@ -99,7 +99,7 @@ def test_TimespanExpression__callbacks_05():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_TimespanExpression__callbacks_06():
@@ -119,7 +119,7 @@ def test_TimespanExpression__callbacks_06():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_TimespanExpression__callbacks_07():
@@ -139,7 +139,7 @@ def test_TimespanExpression__callbacks_07():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_TimespanExpression__callbacks_08():
@@ -160,4 +160,4 @@ def test_TimespanExpression__callbacks_08():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)

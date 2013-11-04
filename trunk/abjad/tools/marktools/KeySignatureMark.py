@@ -68,25 +68,14 @@ class KeySignatureMark(ContextMark):
     ### PRIVATE PROPERTIES ###
 
     @property
-    #def _contents_name(self):
     def _contents_repr_string(self):
         return "%r, %r" % (self.tonic, self.mode)
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def lilypond_format(self):
-        r'''LilyPond format of key signature mark:
-
-        ::
-
-            >>> key_signature = marktools.KeySignatureMark('e', 'major')
-            >>> key_signature.lilypond_format
-            '\\key e \\major'
-
-        Returns string.
-        '''
+    def _lilypond_format(self):
         return r'\key %s \%s' % (self.tonic, self.mode)
+
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def mode():

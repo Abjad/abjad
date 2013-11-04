@@ -58,10 +58,10 @@ def test_scoretools_Chord_written_pitches_04():
 
     chord = Chord([], (1, 4))
     chord.written_pitches = [4, 3, 2]
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
     chord.written_pitches = (4, 3, 2)
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord_written_pitches_05():
@@ -75,7 +75,7 @@ def test_scoretools_Chord_written_pitches_05():
         pitchtools.NamedPitch(2),
         ]
 
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord_written_pitches_06():
@@ -89,4 +89,4 @@ def test_scoretools_Chord_written_pitches_06():
         pitchtools.NamedPitch(2),
         ]
 
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"

@@ -12,7 +12,7 @@ def test_scoretools_Note___copy___01():
 
     assert isinstance(note_1, Note)
     assert isinstance(note_2, Note)
-    assert note_1.lilypond_format == note_2.lilypond_format
+    assert format(note_1) == format(note_2)
     assert note_1 is not note_2
 
 
@@ -25,7 +25,7 @@ def test_scoretools_Note___copy___02():
 
     assert isinstance(note_1, Note)
     assert isinstance(note_2, Note)
-    assert note_1.lilypond_format == note_2.lilypond_format
+    assert format(note_1) == format(note_2)
     assert note_1 is not note_2
 
 
@@ -41,7 +41,7 @@ def test_scoretools_Note___copy___03():
 
     assert isinstance(note_1, Note)
     assert isinstance(note_2, Note)
-    assert note_1.lilypond_format == note_2.lilypond_format
+    assert format(note_1) == format(note_2)
     assert note_1 is not note_2
 
 
@@ -108,7 +108,7 @@ def test_scoretools_Note___copy___05():
     new_note = copy.deepcopy(note)
 
     assert not new_note is note
-    assert new_note.lilypond_format == note.lilypond_format
+    assert format(new_note) == format(note)
 
 
 def test_scoretools_Note___copy___06():
@@ -145,9 +145,9 @@ def test_scoretools_Note___copy___06():
     assert inspect(note).get_parentage().parent is staff
     assert inspect(new_note).get_parentage().parent is not staff
     assert isinstance(inspect(new_note).get_parentage().parent, Staff)
-    assert new_note.lilypond_format == note.lilypond_format
-    assert inspect(note).get_parentage().parent.lilypond_format == \
-        inspect(new_note).get_parentage().parent.lilypond_format
+    assert format(new_note) == format(note)
+    assert format(inspect(note).get_parentage().parent) == \
+        format(inspect(new_note).get_parentage().parent)
 
 
 def test_scoretools_Note___copy___07():

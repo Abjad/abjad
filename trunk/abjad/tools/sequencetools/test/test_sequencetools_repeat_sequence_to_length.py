@@ -66,5 +66,5 @@ def test_sequencetools_repeat_sequence_to_length_08():
 
     container = Container("c'8 d'8 e'8")
     new = sequencetools.repeat_sequence_to_length(container, 5)
-    assert new.lilypond_format == Container("c'8 d'8 e'8 c'8 d'8").lilypond_format
+    assert format(new) == format(Container("c'8 d'8 e'8 c'8 d'8"))
     assert new[0] is not container[0]

@@ -10,7 +10,7 @@ def test_scoretools_Chord___copy___01():
 
     assert isinstance(chord_1, Chord)
     assert isinstance(chord_2, Chord)
-    assert chord_1.lilypond_format == chord_2.lilypond_format
+    assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
 
@@ -23,7 +23,7 @@ def test_scoretools_Chord___copy___02():
 
     assert isinstance(chord_1, Chord)
     assert isinstance(chord_2, Chord)
-    assert chord_1.lilypond_format == chord_2.lilypond_format
+    assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
 
@@ -39,7 +39,7 @@ def test_scoretools_Chord___copy___03():
 
     assert isinstance(chord_1, Chord)
     assert isinstance(chord_2, Chord)
-    assert chord_1.lilypond_format == chord_2.lilypond_format
+    assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
 
@@ -79,7 +79,7 @@ def test_scoretools_Chord___copy___04():
     assert chord_2.note_heads[1]._client is chord_2
     assert chord_2.note_heads[2]._client is chord_2
 
-    assert chord_1.lilypond_format == chord_2.lilypond_format
+    assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
     assert chord_1.note_heads[0] == chord_2.note_heads[0]
@@ -103,7 +103,7 @@ def test_scoretools_Chord___copy___05():
 
     chord_2 = copy.copy(chord_1)
 
-    assert chord_1.lilypond_format == chord_2.lilypond_format
+    assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
     articulation_2 = inspect(chord_2).get_marks(marktools.Articulation)[0]

@@ -8,7 +8,7 @@ def test_scoretools_Note___init___01():
     '''
 
     note = Note(-37, (1, 4))
-    assert note.lilypond_format == 'b,,,4'
+    assert format(note) == 'b,,,4'
 
 
 def test_scoretools_Note___init___02():
@@ -23,7 +23,7 @@ def test_scoretools_Note___init___03():
     '''
 
     note = Note('c,,', (1, 4))
-    assert note.lilypond_format == 'c,,4'
+    assert format(note) == 'c,,4'
 
 
 def test_scoretools_Note___init___04():
@@ -31,7 +31,7 @@ def test_scoretools_Note___init___04():
     '''
 
     note = Note('cs8.')
-    assert note.lilypond_format == 'cs8.'
+    assert format(note) == 'cs8.'
 
 
 def test_scoretools_Note___init___05():
@@ -173,7 +173,7 @@ def test_scoretools_Note___init___15():
     '''
 
     note = Note("c'?4")
-    assert note.lilypond_format == "c'?4"
+    assert format(note) == "c'?4"
 
 
 def test_scoretools_Note___init___16():
@@ -181,7 +181,7 @@ def test_scoretools_Note___init___16():
     '''
 
     note = Note("c'!4")
-    assert note.lilypond_format == "c'!4"
+    assert format(note) == "c'!4"
 
 
 def test_scoretools_Note___init___17():
@@ -189,7 +189,7 @@ def test_scoretools_Note___init___17():
     '''
 
     note = Note("c'!?4")
-    assert note.lilypond_format == "c'!?4"
+    assert format(note) == "c'!?4"
 
 
 def test_scoretools_Note___init___18():
@@ -198,4 +198,4 @@ def test_scoretools_Note___init___18():
 
     c = Chord("<c'!? e' g'>4")
     note = Note(c)
-    assert note.lilypond_format == "c'!?4"
+    assert format(note) == "c'!?4"

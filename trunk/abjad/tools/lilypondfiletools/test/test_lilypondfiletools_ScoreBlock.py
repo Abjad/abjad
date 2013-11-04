@@ -17,21 +17,6 @@ def test_lilypondfiletools_ScoreBlock_01():
     score_block.append(layout_block)
     score_block.append(midi_block)
 
-    r'''
-    \score {
-        \new Score <<
-            \new Staff {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-        >>
-        \layout {}
-        \midi {}
-    }
-    '''
-
     assert testtools.compare(
         score_block,
         r'''
@@ -56,4 +41,4 @@ def test_lilypondfiletools_ScoreBlock_02():
     '''
 
     score_block = lilypondfiletools.ScoreBlock()
-    assert score_block.lilypond_format == ''
+    assert format(score_block) == ''

@@ -11,4 +11,4 @@ def test_scoretools_NoteHeadInventory_remove_01():
     chord.note_heads.remove(note_head)
 
     assert note_head._client is None
-    assert chord.lilypond_format == "<ef' f''>4"
+    assert format(chord) == "<ef' f''>4"

@@ -48,8 +48,6 @@ class SchemePair(Scheme):
             self._value[-1], force_quotes=True)
         return '({} . {})'.format(lhs, rhs)
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def lilypond_format(self):
+    def _lilypond_format(self):
         return "#'%s" % self._formatted_value

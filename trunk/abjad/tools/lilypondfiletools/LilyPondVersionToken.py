@@ -34,26 +34,19 @@ class LilyPondVersionToken(AbjadObject):
         Return string.
         '''
         if format_spec in ('', 'lilypond'):
-            return self.lilypond_format
+            return self._lilypond_format
         return str(self)
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, self.lilypond_format)
+        return '{}({})'.format(self._class_name, format(self))
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
-    def lilypond_format(self):
-        r'''Format contribution of LilyPond version token:
-
-        ::
-
-            >>> lilypondfiletools.LilyPondVersionToken().lilypond_format
-            '\\version "..."'
-
-        Returns string.
-        '''
+    def _lilypond_format(self):
         return r'\version "{}"'.format(self.version)
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def version(self):

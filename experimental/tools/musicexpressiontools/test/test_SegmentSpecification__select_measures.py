@@ -19,7 +19,7 @@ def test_SegmentSpecification__select_measures_01():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_02():
@@ -38,7 +38,7 @@ def test_SegmentSpecification__select_measures_02():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_03():
@@ -57,7 +57,7 @@ def test_SegmentSpecification__select_measures_03():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_04():
@@ -76,7 +76,7 @@ def test_SegmentSpecification__select_measures_04():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_05():
@@ -95,7 +95,7 @@ def test_SegmentSpecification__select_measures_05():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_06():
@@ -113,7 +113,7 @@ def test_SegmentSpecification__select_measures_06():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_07():
@@ -135,7 +135,7 @@ def test_SegmentSpecification__select_measures_07():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_08():
@@ -157,7 +157,7 @@ def test_SegmentSpecification__select_measures_08():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_09():
@@ -177,7 +177,7 @@ def test_SegmentSpecification__select_measures_09():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_10():
@@ -197,7 +197,7 @@ def test_SegmentSpecification__select_measures_10():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_11():
@@ -215,7 +215,7 @@ def test_SegmentSpecification__select_measures_11():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_12():
@@ -235,7 +235,7 @@ def test_SegmentSpecification__select_measures_12():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_13():
@@ -255,7 +255,7 @@ def test_SegmentSpecification__select_measures_13():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_14():
@@ -274,7 +274,7 @@ def test_SegmentSpecification__select_measures_14():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_15():
@@ -293,4 +293,4 @@ def test_SegmentSpecification__select_measures_15():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)

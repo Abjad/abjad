@@ -9,21 +9,21 @@ def test_scoretools_Leaf_written_duration_01():
 
     note = Note(1, 2)
 
-    assert note.lilypond_format == "cs'\\breve"
+    assert format(note) == "cs'\\breve"
     note.written_duration = Duration(3)
-    assert note.lilypond_format == "cs'\\breve."
+    assert format(note) == "cs'\\breve."
     note.written_duration = Duration(4)
-    assert note.lilypond_format == "cs'\\longa"
+    assert format(note) == "cs'\\longa"
     note.written_duration = Duration(6)
-    assert note.lilypond_format == "cs'\\longa."
+    assert format(note) == "cs'\\longa."
     note.written_duration = Duration(7)
-    assert note.lilypond_format == "cs'\\longa.."
+    assert format(note) == "cs'\\longa.."
     note.written_duration = Duration(8)
-    assert note.lilypond_format == "cs'\\maxima"
+    assert format(note) == "cs'\\maxima"
     note.written_duration = Duration(12)
-    assert note.lilypond_format == "cs'\\maxima."
+    assert format(note) == "cs'\\maxima."
     note.written_duration = Duration(14)
-    assert note.lilypond_format == "cs'\\maxima.."
+    assert format(note) == "cs'\\maxima.."
     note.written_duration = Duration(15)
-    assert note.lilypond_format == "cs'\\maxima..."
+    assert format(note) == "cs'\\maxima..."
     assert py.test.raises(AssignabilityError, 'Note(1, 16)')

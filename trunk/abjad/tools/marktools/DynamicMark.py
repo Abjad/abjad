@@ -60,45 +60,6 @@ class DynamicMark(ContextMark):
 
     _format_slot = 'right'
 
-    ### INITIALIZER ###
-
-    def __init__(self, dynamic_name, target_context=None):
-        from abjad.tools.scoretools.Staff import Staff
-        target_context = target_context or Staff
-        ContextMark.__init__(self, target_context=target_context)
-        if isinstance(dynamic_name, type(self)):
-            dynamic_name = dynamic_name.dynamic_name
-        self._dynamic_name = dynamic_name
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self, *args):
-        from abjad.tools import spannertools
-        if len(args) == 1:
-            spanner_classes = (
-                spannertools.DynamicTextSpanner, 
-                spannertools.HairpinSpanner,
-                )
-            parentage = args[0]._get_parentage()
-            dynamic_spanners = parentage._get_spanners(spanner_classes)
-            for dynamic_spanner in dynamic_spanners:
-                if not dynamic_spanner._is_exterior_leaf(args[0]):
-                    message = 'can not attach dynamic mark'
-                    message += ' to interior component of dynamic spanner.'
-                    raise WellFormednessError(message)
-        return ContextMark.__call__(self, *args)
-
-    def __copy__(self, *args):
-        return type(self)(
-            self._dynamic_name, target_context=self.target_context)
-
-    def __eq__(self, arg):
-        if isinstance(arg, type(self)):
-            return self._dynamic_name == arg._dynamic_name
-        return False
-
-    ### PRIVATE PROPERTIES ###
-
     _composite_dynamic_name_to_steady_state_dynamic_name = {
         'fp': 'p', 
         'sf': 'f', 
@@ -109,10 +70,6 @@ class DynamicMark(ContextMark):
         'sfp': 'p', 
         'rfz': 'f',
     }
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self._dynamic_name)
 
     _dynamic_name_to_dynamic_ordinal = {
         'ppppp': -6, 
@@ -167,6 +124,53 @@ class DynamicMark(ContextMark):
         6: 'fffff',
         }
 
+    ### INITIALIZER ###
+
+    def __init__(self, dynamic_name, target_context=None):
+        from abjad.tools.scoretools.Staff import Staff
+        target_context = target_context or Staff
+        ContextMark.__init__(self, target_context=target_context)
+        if isinstance(dynamic_name, type(self)):
+            dynamic_name = dynamic_name.dynamic_name
+        self._dynamic_name = dynamic_name
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self, *args):
+        from abjad.tools import spannertools
+        if len(args) == 1:
+            spanner_classes = (
+                spannertools.DynamicTextSpanner, 
+                spannertools.HairpinSpanner,
+                )
+            parentage = args[0]._get_parentage()
+            dynamic_spanners = parentage._get_spanners(spanner_classes)
+            for dynamic_spanner in dynamic_spanners:
+                if not dynamic_spanner._is_exterior_leaf(args[0]):
+                    message = 'can not attach dynamic mark'
+                    message += ' to interior component of dynamic spanner.'
+                    raise WellFormednessError(message)
+        return ContextMark.__call__(self, *args)
+
+    def __copy__(self, *args):
+        return type(self)(
+            self._dynamic_name, target_context=self.target_context)
+
+    def __eq__(self, arg):
+        if isinstance(arg, type(self)):
+            return self._dynamic_name == arg._dynamic_name
+        return False
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self._dynamic_name)
+
+    @property
+    def _lilypond_format(self):
+        return r'\%s' % self._dynamic_name
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -195,20 +199,6 @@ class DynamicMark(ContextMark):
             assert isinstance(dynamic_name, str)
             self._dynamic_name = dynamic_name
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond input format of dynamic mark:
-
-        ::
-
-            >>> dynamic_mark = marktools.DynamicMark('f')
-            >>> dynamic_mark.lilypond_format
-            '\\f'
-
-        Returns string.
-        '''
-        return r'\%s' % self._dynamic_name
 
     ### PUBLIC METHODS ###
 

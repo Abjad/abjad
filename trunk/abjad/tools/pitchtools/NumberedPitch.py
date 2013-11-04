@@ -93,6 +93,10 @@ class NumberedPitch(Pitch):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _lilypond_format(self):
+        return self.pitch_name
+
+    @property
     def _positional_argument_values(self):
         return (
             self.pitch_number,
@@ -234,19 +238,6 @@ class NumberedPitch(Pitch):
         from abjad.tools import pitchtools
         return ((self.octave_number - 4) * 7) + \
             self.diatonic_pitch_class_number
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond input format.
-
-        ::
-
-            >>> pitchtools.NumberedPitch(13).lilypond_format
-            "cs''"
-
-        Returns string.
-        '''
-        return self.pitch_name
 
     @property
     def named_pitch(self):

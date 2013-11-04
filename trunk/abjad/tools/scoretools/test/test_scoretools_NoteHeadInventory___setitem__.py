@@ -9,7 +9,7 @@ def test_scoretools_NoteHeadInventory___setitem___01():
     chord = Chord("<c' d'>4")
     chord.note_heads[1] = 4
 
-    assert chord.lilypond_format == "<c' e'>4"
+    assert format(chord) == "<c' e'>4"
 
 
 def test_scoretools_NoteHeadInventory___setitem___02():
@@ -19,7 +19,7 @@ def test_scoretools_NoteHeadInventory___setitem___02():
     chord = Chord("<c' d'>4")
     chord.note_heads[1] = pitchtools.NamedPitch("e'")
 
-    assert chord.lilypond_format == "<c' e'>4"
+    assert format(chord) == "<c' e'>4"
 
 
 def test_scoretools_NoteHeadInventory___setitem___03():

@@ -103,6 +103,10 @@ class Chord(Leaf):
         return '<%s>%s' % (self._summary, self._formatted_duration)
 
     @property
+    def _lilypond_format(self):
+        return super(Chord, self)._lilypond_format
+
+    @property
     def _summary(self):
         return ' '.join([str(x) for x in self.note_heads])
 
@@ -181,28 +185,6 @@ class Chord(Leaf):
         return treble, bass
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond format of chord.
-
-        ..  container:: example
-
-            **Example.**
-
-            ::
-
-                >>> chord = Chord("<e' cs'' f''>4")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> chord.lilypond_format
-                "<e' cs'' f''>4"
-
-        Returns string.
-        '''
-        return super(Chord, self).lilypond_format
 
     @apply
     def note_heads():

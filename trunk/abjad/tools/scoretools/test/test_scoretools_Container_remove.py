@@ -45,7 +45,7 @@ def test_scoretools_Container_remove_01():
 
     "Note is now d'8 [ ]"
 
-    assert note.lilypond_format == "d'8 [ ]"
+    assert format(note) == "d'8 [ ]"
 
     assert inspect(voice).is_well_formed()
     assert inspect(note).is_well_formed()

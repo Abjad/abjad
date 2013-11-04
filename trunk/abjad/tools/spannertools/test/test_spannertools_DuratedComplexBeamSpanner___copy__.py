@@ -21,7 +21,7 @@ def test_spannertools_DuratedComplexBeamSpanner___copy___01():
     new_staff = mutate(staff).copy()
     new_beam = inspect(new_staff[0]).get_spanner(spannertools.BeamSpanner)
 
-    assert staff.lilypond_format == new_staff.lilypond_format
+    assert format(staff) == format(new_staff)
     assert new_beam.durations == beam.durations
     assert new_beam.span == beam.span
     assert new_beam.lone == beam.lone

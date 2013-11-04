@@ -34,7 +34,7 @@ def write_test_output(output, full_file_name, test_function_name,
     if cache_ly:
         file_name = '{}.ly'.format(test_function_name)
         ly_path_name = os.path.join(parent_directory_name, file_name)
-        file(ly_path_name, 'w').write(score.lilypond_format)
+        file(ly_path_name, 'w').write(format(score))
 
 
 def test_function_name_to_title_lines(test_function_name):

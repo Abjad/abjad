@@ -208,12 +208,12 @@ def test_scoretools_Leaf__set_duration_06():
     note = Note(0, (1, 8))
     note.lilypond_duration_multiplier = Duration(1, 2)
 
-    assert note.lilypond_format == "c'8 * 1/2"
+    assert format(note) == "c'8 * 1/2"
 
     note._set_duration(Duration(1, 32))
 
     assert inspect(note).is_well_formed()
-    assert note.lilypond_format == "c'8 * 1/4"
+    assert format(note) == "c'8 * 1/4"
 
 
 def test_scoretools_Leaf__set_duration_07():
@@ -225,12 +225,12 @@ def test_scoretools_Leaf__set_duration_07():
     note = Note(0, (1, 8))
     note.lilypond_duration_multiplier = Duration(1, 2)
 
-    assert note.lilypond_format == "c'8 * 1/2"
+    assert format(note) == "c'8 * 1/2"
 
     note._set_duration(Duration(3, 32))
 
     assert inspect(note).is_well_formed()
-    assert note.lilypond_format == "c'8 * 3/4"
+    assert format(note) == "c'8 * 3/4"
 
 
 def test_scoretools_Leaf__set_duration_08():
@@ -242,12 +242,12 @@ def test_scoretools_Leaf__set_duration_08():
     note = Note(0, (1, 8))
     note.lilypond_duration_multiplier = Duration(1, 2)
 
-    assert note.lilypond_format == "c'8 * 1/2"
+    assert format(note) == "c'8 * 1/2"
 
     note._set_duration(Duration(5, 32))
 
     assert inspect(note).is_well_formed()
-    assert note.lilypond_format == "c'8 * 5/4"
+    assert format(note) == "c'8 * 5/4"
 
 
 def test_scoretools_Leaf__set_duration_09():
@@ -259,12 +259,12 @@ def test_scoretools_Leaf__set_duration_09():
     note = Note(0, (1, 8))
     note.lilypond_duration_multiplier = Duration(1, 2)
 
-    assert note.lilypond_format == "c'8 * 1/2"
+    assert format(note) == "c'8 * 1/2"
 
     note._set_duration(Duration(1, 24))
 
     assert inspect(note).is_well_formed()
-    assert note.lilypond_format == "c'8 * 1/3"
+    assert format(note) == "c'8 * 1/3"
 
 
 def test_scoretools_Leaf__set_duration_10():
@@ -276,9 +276,9 @@ def test_scoretools_Leaf__set_duration_10():
     note = Note(0, (1, 8))
     note.lilypond_duration_multiplier = Duration(1, 2)
 
-    assert note.lilypond_format == "c'8 * 1/2"
+    assert format(note) == "c'8 * 1/2"
 
     note._set_duration(Duration(5, 24))
 
     assert inspect(note).is_well_formed()
-    assert note.lilypond_format == "c'8 * 5/3"
+    assert format(note) == "c'8 * 5/3"

@@ -62,6 +62,11 @@ class FixedDurationContainer(Container):
         if self.target_duration < preprolated_duration:
             raise OverfullContainerError
 
+    @property
+    def _lilypond_format(self):
+        self._check_duration()
+        return self._format_component()
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -87,13 +92,6 @@ class FixedDurationContainer(Container):
         r'''True when preprolated duration is less than target duration.
         '''
         return self._preprolated_duration < self.target_duration
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond format of fixed-duration container.
-        '''
-        self._check_duration()
-        return self._format_component()
 
     @apply
     def target_duration():

@@ -137,7 +137,7 @@ class Markup(DirectedMark):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.lilypond_format == expr.lilypond_format:
+            if format(self) == format(expr):
                 return True
         return False
 
@@ -147,7 +147,7 @@ class Markup(DirectedMark):
         Return string.
         '''
         if format_spec in ('', 'lilypond'):
-            return self.lilypond_format
+            return self._lilypond_format
         return str(self)
 
     def __hash__(self):
@@ -157,13 +157,17 @@ class Markup(DirectedMark):
         return not self == expr
 
     def __str__(self):
-        return self.lilypond_format
+        return self._lilypond_format
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
         return self._get_format_pieces(is_indented=False)
+
+    @property
+    def _lilypond_format(self):
+        return ' '.join(self._get_format_pieces(is_indented=False))
 
     @property
     def _positional_argument_values(self):
@@ -206,21 +210,6 @@ class Markup(DirectedMark):
         Returns string.
         '''
         return '\n'.join(self._get_format_pieces(is_indented=True))
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond format of markup:
-
-        ::
-
-            >>> markup = \
-            ...     markuptools.Markup(r'\bold { "This is markup text." }')
-            >>> markup.lilypond_format
-            '\\markup { \\bold { "This is markup text." } }'
-
-        Returns string.
-        '''
-        return ' '.join(self._get_format_pieces(is_indented=False))
 
     @property
     def markup_name(self):

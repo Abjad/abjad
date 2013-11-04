@@ -253,6 +253,10 @@ class NamedPitch(Pitch):
         self._init_by_pitch_number_and_diatonic_pitch_class_name(
             pitch_number, diatonic_pitch_class_name)
 
+    @property
+    def _lilypond_format(self):
+        return str(self)
+
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
@@ -404,19 +408,6 @@ class NamedPitch(Pitch):
         '''
         return ((self._octave_number - 4) * 7) + \
             self._diatonic_pitch_class_number
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond input format.
-
-        ::
-
-            >>> pitchtools.NamedPitch("cs''").lilypond_format
-            "cs''"
-
-        Returns string.
-        '''
-        return str(self)
 
     @property
     def named_pitch(self):

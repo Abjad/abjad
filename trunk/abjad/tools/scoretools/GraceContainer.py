@@ -111,6 +111,13 @@ class GraceContainer(Container):
     def __repr__(self):
         return '{}({})'.format(self._class_name, self._summary)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        self._update_now(marks=True)
+        return self._format_component()
+
     ### PRIVATE METHODS ###
 
     def _copy_with_marks_but_without_children_or_spanners(self):
@@ -176,11 +183,6 @@ class GraceContainer(Container):
                 )
             self._kind = arg
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        self._update_now(marks=True)
-        return self._format_component()
 
     ### PUBLIC METHODS ###
 

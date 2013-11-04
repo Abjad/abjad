@@ -11,7 +11,7 @@ def test_scoretools_Chord___repr___01():
 
     assert isinstance(chord_1, Chord)
     assert isinstance(chord_2, Chord)
-    assert chord_1.lilypond_format == chord_2.lilypond_format
+    assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
 
@@ -20,4 +20,4 @@ def test_scoretools_Chord___repr___02():
     '''
 
     chord = Chord('<c! e? g!? b>4')
-    assert "Chord('{}')".format(chord.lilypond_format) == repr(chord)
+    assert "Chord('{}')".format(format(chord)) == repr(chord)

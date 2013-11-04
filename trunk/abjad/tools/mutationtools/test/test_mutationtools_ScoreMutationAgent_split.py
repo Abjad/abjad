@@ -2032,7 +2032,7 @@ def test_mutationtools_ScoreMutationAgent_split_33():
         '''
         )
 
-    assert tuplet.lilypond_format == '\\times 2/3 {\n}'
+    assert format(tuplet) == '\\times 2/3 {\n}'
 
     assert testtools.compare(
         voice,
@@ -2117,7 +2117,7 @@ def test_mutationtools_ScoreMutationAgent_split_34():
         '''
         )
 
-    assert py.test.raises(UnderfullContainerError, 'measure.lilypond_format')
+    assert py.test.raises(UnderfullContainerError, 'format(measure)')
 
     assert testtools.compare(
         voice,
@@ -2213,7 +2213,7 @@ def test_mutationtools_ScoreMutationAgent_split_35():
         '''
         )
 
-    assert py.test.raises(UnderfullContainerError, 'measure.lilypond_format')
+    assert py.test.raises(UnderfullContainerError, 'format(measure)')
 
     assert testtools.compare(
         voice,

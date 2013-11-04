@@ -27,8 +27,8 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlurSpanner_01():
         )
 
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlurSpanner_02():
@@ -57,7 +57,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlurSpanner_02():
 
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    assert format(target) == format(result) and target is not result
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlurSpanner_03():

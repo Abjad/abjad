@@ -10,4 +10,4 @@ def test_scoretools_NoteHeadInventory_pop_01():
     note_head = chord.note_heads.pop(1)
 
     assert note_head._client is None
-    assert chord.lilypond_format == "<ef' f''>4"
+    assert format(chord) == "<ef' f''>4"

@@ -166,8 +166,8 @@ def process_literal_block_pairs(literal_block_pairs):
                 new_abjad_book_block['kind'] = kind
                 if kind == 'lilypond':
                     lilypond_file = documentationtools.make_reference_manual_lilypond_file(obj)
-                    new_abjad_book_block['code'] = lilypond_file.lilypond_format
-                    new_abjad_book_block['raw_code'] = obj.lilypond_format
+                    new_abjad_book_block['code'] = format(lilypond_file)
+                    new_abjad_book_block['raw_code'] = format(obj)
                 elif kind == 'graphviz':
                     graphviz_graph = documentationtools.make_reference_manual_graphviz_graph(obj)
                     new_abjad_book_block['code'] = graphviz_graph.graphviz_format

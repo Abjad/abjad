@@ -153,6 +153,11 @@ class Tuplet(Container):
             return True
 
     @property
+    def _lilypond_format(self):
+        self._update_now(marks=True)
+        return self._format_component()
+
+    @property
     def _multiplier_fraction_string(self):
         if self.preferred_denominator is not None:
             inverse_multiplier = durationtools.Multiplier(
@@ -601,31 +606,6 @@ class Tuplet(Container):
         Returns boolean.
         '''
         return self.multiplier == 1
-
-    @property
-    def lilypond_format(self):
-        '''LilyPond format of tuplet.
-
-        ..  container:: example
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> print tuplet.lilypond_format
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-        Returns string.
-        '''
-        self._update_now(marks=True)
-        return self._format_component()
 
     @property
     def multiplied_duration(self):

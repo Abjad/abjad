@@ -22,7 +22,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_01():
 
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    assert format(target) == format(result) and target is not result
     assert 1 == len(inspect(result[0]).get_markup())
 
 
@@ -51,7 +51,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_02():
 
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    assert format(target) == format(result) and target is not result
     assert 1 == len(inspect(result[0]).get_markup())
 
 
@@ -80,7 +80,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_03():
 
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    assert format(target) == format(result) and target is not result
     assert 1 == len(inspect(result[0]).get_markup())
 
 
@@ -91,10 +91,10 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_04():
     markup = markuptools.Markup((command1, command2))
 
     parser = LilyPondParser()
-    result = parser(markup.lilypond_format)
+    result = parser(format(markup))
 
     assert isinstance(result, markuptools.Markup)
-    assert result.lilypond_format == markup.lilypond_format
+    assert format(result) == format(markup)
 
 
 def test_lilypondparsertools_LilyPondParser__marks__Markup_05():
@@ -102,4 +102,4 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_05():
     command = r'\markup { \char ##x03EE }'
     parser = LilyPondParser()
     result = parser(command)
-    assert result.lilypond_format == '\\markup { \\char #1006 }'
+    assert format(result) == '\\markup { \\char #1006 }'

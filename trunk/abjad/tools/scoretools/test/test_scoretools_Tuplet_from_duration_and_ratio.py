@@ -248,7 +248,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_04():
         is_diminution=False,
         )
 
-    assert tuplet_1.lilypond_format == tuplet_2.lilypond_format
+    assert format(tuplet_1) == format(tuplet_2)
 
     tuplet = Tuplet.from_duration_and_ratio(
         Duration(1, 8), 
@@ -481,7 +481,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_07():
         is_diminution=False,
         )
 
-    assert tuplet_1.lilypond_format == tuplet_2.lilypond_format
+    assert format(tuplet_1) == format(tuplet_2)
 
     tuplet = Tuplet.from_duration_and_ratio(
         Duration(1, 8), 
@@ -745,7 +745,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_11():
         is_diminution=True,
         )
 
-    assert tuplet_1.lilypond_format == tuplet_2.lilypond_format
+    assert format(tuplet_1) == format(tuplet_2)
 
     tuplet = Tuplet.from_duration_and_ratio(Duration(1, 8), [27])
 
@@ -971,7 +971,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_14():
         is_diminution=True,
         )
 
-    assert tuplet_1.lilypond_format == tuplet_2.lilypond_format
+    assert format(tuplet_1) == format(tuplet_2)
 
     tuplet = Tuplet.from_duration_and_ratio(
         Duration(1, 8), 

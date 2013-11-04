@@ -136,26 +136,10 @@ class Measure(FixedDurationContainer):
             len(self),
             )
 
-    # essentially the same as container version of method;
-    # the definition given here adds one line to remove
-    # time signature immediately after instantiation
-    # because the mark-copying code will then provide time signature.
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools import marktools
-        from abjad.tools.functiontools import attach
-        new = type(self)(*self.__getnewargs__())
-        # only the following line differs from Conatainer
-        for mark in new._get_marks(marktools.TimeSignatureMark):
-            mark.detach()
-        if getattr(self, '_override', None) is not None:
-            new._override = copy.copy(self.override)
-        if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(self.set)
-        for mark in self._get_marks():
-            new_mark = copy.copy(mark)
-            attach(new_mark, new)
-        new.is_simultaneous = self.is_simultaneous
-        return new
+    @property
+    def _lilypond_format(self):
+        self._check_duration()
+        return self._format_component()
 
     @property
     def _one_line_input_string(self):
@@ -209,6 +193,27 @@ class Measure(FixedDurationContainer):
             for mark in self._get_marks(marktools.TimeSignatureMark):
                 mark.detach()
             attach(better_time_signature, self)
+
+    # essentially the same as container version of method;
+    # the definition given here adds one line to remove
+    # time signature immediately after instantiation
+    # because the mark-copying code will then provide time signature.
+    def _copy_with_marks_but_without_children_or_spanners(self):
+        from abjad.tools import marktools
+        from abjad.tools.functiontools import attach
+        new = type(self)(*self.__getnewargs__())
+        # only the following line differs from Conatainer
+        for mark in new._get_marks(marktools.TimeSignatureMark):
+            mark.detach()
+        if getattr(self, '_override', None) is not None:
+            new._override = copy.copy(self.override)
+        if getattr(self, '_set', None) is not None:
+            new._set = copy.copy(self.set)
+        for mark in self._get_marks():
+            new_mark = copy.copy(mark)
+            attach(new_mark, new)
+        new.is_simultaneous = self.is_simultaneous
+        return new
 
     def _format_content_pieces(self):
         result = []
@@ -514,11 +519,6 @@ class Measure(FixedDurationContainer):
         Returns boolean.
         '''
         return FixedDurationContainer.is_underfull.fget(self)
-
-    @property
-    def lilypond_format(self):
-        self._check_duration()
-        return self._format_component()
 
     @property
     def measure_number(self):

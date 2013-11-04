@@ -74,7 +74,7 @@ class Component(AbjadObject):
         Returns string.
         '''
         if format_spec in ('', 'lilypond'):
-            return self.lilypond_format
+            return self._lilypond_format
         return str(self)
 
     def __getnewargs__(self):
@@ -114,6 +114,11 @@ class Component(AbjadObject):
     @property
     def _format_pieces(self):
         return self._format_component(pieces=True)
+
+    @property
+    def _lilypond_format(self):
+        self._update_now(marks=True)
+        return self._format_component()
 
     ### PRIVATE METHODS ###
 
@@ -691,15 +696,6 @@ class Component(AbjadObject):
             )
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def lilypond_format(self):
-        r'''Lilypond format of component.
-
-        Returns string.
-        '''
-        self._update_now(marks=True)
-        return self._format_component()
 
     @property
     def override(self):

@@ -33,7 +33,7 @@ def write_expr_to_ly(
         # the following line is necessary for Windows *not* to keep 
         # outfile open after writing;
         # why this should be the case is, however, a complete mystery.
-        output = lilypond_file.lilypond_format
+        output = format(lilypond_file)
         outfile.write(output)
         outfile.close()
     except IOError:

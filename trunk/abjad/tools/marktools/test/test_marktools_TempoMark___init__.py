@@ -7,7 +7,7 @@ def test_marktools_TempoMark___init___01():
     '''
 
     tempomark = marktools.TempoMark(Duration(3, 32), 52)
-    assert tempomark.lilypond_format == '\\tempo 16.=52'
+    assert format(tempomark) == '\\tempo 16.=52'
 
 
 def test_marktools_TempoMark___init___02():
@@ -15,7 +15,7 @@ def test_marktools_TempoMark___init___02():
     '''
 
     tempomark = marktools.TempoMark(Duration(3, 32), 52.5)
-    assert tempomark.lilypond_format == '\\tempo 16.=52.5'
+    assert format(tempomark) == '\\tempo 16.=52.5'
 
 
 def test_marktools_TempoMark___init___03():
@@ -37,7 +37,7 @@ def test_marktools_TempoMark___init___04():
     '''
 
     tempomark = marktools.TempoMark((3, 32), 52.5)
-    assert tempomark.lilypond_format == '\\tempo 16.=52.5'
+    assert format(tempomark) == '\\tempo 16.=52.5'
 
 
 def test_marktools_TempoMark___init___05():
@@ -45,7 +45,7 @@ def test_marktools_TempoMark___init___05():
     '''
 
     tempomark = marktools.TempoMark('Langsam')
-    assert tempomark.lilypond_format == '\\tempo Langsam'
+    assert format(tempomark) == '\\tempo Langsam'
 
 
 def test_marktools_TempoMark___init___06():
@@ -53,7 +53,7 @@ def test_marktools_TempoMark___init___06():
     '''
 
     tempomark = marktools.TempoMark((1, 8), (52, 57.5))
-    assert tempomark.lilypond_format == '\\tempo 8=52-57.5'
+    assert format(tempomark) == '\\tempo 8=52-57.5'
 
 
 def test_marktools_TempoMark___init___07():
@@ -61,7 +61,7 @@ def test_marktools_TempoMark___init___07():
     '''
 
     tempomark = marktools.TempoMark('Quick', Duration(1, 4), (120, 133))
-    assert tempomark.lilypond_format == '\\tempo Quick 4=120-133'
+    assert format(tempomark) == '\\tempo Quick 4=120-133'
 
 
 def test_marktools_TempoMark___init___08():
@@ -69,7 +69,7 @@ def test_marktools_TempoMark___init___08():
     '''
 
     tempomark = marktools.TempoMark((Duration(1, 4), (120, 133)))
-    assert tempomark.lilypond_format == '\\tempo 4=120-133'
+    assert format(tempomark) == '\\tempo 4=120-133'
 
 
 def test_marktools_TempoMark___init___09():
@@ -77,4 +77,4 @@ def test_marktools_TempoMark___init___09():
     '''
 
     tempomark = marktools.TempoMark(('Quick', Duration(1, 4), (120, 133)))
-    assert tempomark.lilypond_format == '\\tempo Quick 4=120-133'
+    assert format(tempomark) == '\\tempo Quick 4=120-133'

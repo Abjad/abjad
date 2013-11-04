@@ -82,9 +82,9 @@ def test_sequencetools_partition_sequence_by_counts_09():
     "[{c'8}, {d'8, e'8}]"
 
     assert len(parts) == 2
-    assert parts[0].lilypond_format == Container("c'8").lilypond_format
+    assert format(parts[0]) == format(Container("c'8"))
     assert parts[0][0] is not container[0]
-    assert parts[1].lilypond_format == Container("d'8 e'8").lilypond_format
+    assert format(parts[1]) == format(Container("d'8 e'8"))
     assert parts[1][0] is not container[1]
     assert parts[1][1] is not container[2]
 

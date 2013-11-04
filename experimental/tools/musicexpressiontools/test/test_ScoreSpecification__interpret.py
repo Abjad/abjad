@@ -25,7 +25,7 @@ def test_ScoreSpecification__interpret_01():
     >>
     '''
 
-    assert score.lilypond_format == '\\context Score = "Grouped Rhythmic Staves Score" <<\n\t\\context TimeSignatureContext = "TimeSignatureContext" {\n\t}\n\t\\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<\n\t\t\\context RhythmicStaff = "Staff 1" {\n\t\t\t\\context Voice = "Voice 1" {\n\t\t\t}\n\t\t}\n\t>>\n>>'
+    assert format(score) == '\\context Score = "Grouped Rhythmic Staves Score" <<\n\t\\context TimeSignatureContext = "TimeSignatureContext" {\n\t}\n\t\\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<\n\t\t\\context RhythmicStaff = "Staff 1" {\n\t\t\t\\context Voice = "Voice 1" {\n\t\t\t}\n\t\t}\n\t>>\n>>'
 
 
 def test_ScoreSpecification__interpret_02():
@@ -41,7 +41,7 @@ def test_ScoreSpecification__interpret_02():
     red_segment = score_specification_2.append_segment(name='red')
     score_2 = score_specification_2.interpret()
 
-    assert score_1.lilypond_format == score_2.lilypond_format
+    assert format(score_1) == format(score_2)
 
 
 def test_ScoreSpecification__interpret_03():
@@ -83,4 +83,4 @@ def test_ScoreSpecification__interpret_03():
     >>
     '''
 
-    assert score.lilypond_format == '\\context Score = "Grouped Rhythmic Staves Score" <<\n\t\\context TimeSignatureContext = "TimeSignatureContext" {\n\t\t{\n\t\t\t\\time 4/8\n\t\t\ts1 * 1/2\n\t\t}\n\t\t{\n\t\t\t\\time 3/8\n\t\t\ts1 * 3/8\n\t\t}\n\t}\n\t\\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<\n\t\t\\context RhythmicStaff = "Staff 1" {\n\t\t\t\\context Voice = "Voice 1" {\n\t\t\t\t{\n\t\t\t\t\ts1 * 1/2\n\t\t\t\t}\n\t\t\t\t{\n\t\t\t\t\ts1 * 3/8\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t>>\n>>'
+    assert format(score) == '\\context Score = "Grouped Rhythmic Staves Score" <<\n\t\\context TimeSignatureContext = "TimeSignatureContext" {\n\t\t{\n\t\t\t\\time 4/8\n\t\t\ts1 * 1/2\n\t\t}\n\t\t{\n\t\t\t\\time 3/8\n\t\t\ts1 * 3/8\n\t\t}\n\t}\n\t\\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<\n\t\t\\context RhythmicStaff = "Staff 1" {\n\t\t\t\\context Voice = "Voice 1" {\n\t\t\t\t{\n\t\t\t\t\ts1 * 1/2\n\t\t\t\t}\n\t\t\t\t{\n\t\t\t\t\ts1 * 3/8\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t>>\n>>'

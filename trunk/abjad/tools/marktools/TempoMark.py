@@ -202,8 +202,24 @@ class TempoMark(ContextMark):
         return '%s=%s' % (self._dotted, self.units_per_minute)
 
     @property
+    def _lilypond_format(self):
+        text, equation = None, None
+        if self.textual_indication is not None:
+            text = schemetools.Scheme.format_scheme_value(self.textual_indication)
+        if self.duration is not None and self.units_per_minute is not None:
+            equation = self._equation
+        if text and equation:
+            return r'\tempo %s %s' % (text, equation)
+        elif equation:
+            return r'\tempo %s' % equation
+        elif text:
+            return r'\tempo %s' % text
+        else:
+            return r'\tempo \default'
+
+    @property
     def _one_line_menuing_summary(self):
-        return self.lilypond_format.lstrip(r'\tempo ')
+        return self._lilypond_format.lstrip(r'\tempo ')
 
     @property
     def _positional_argument_values(self):
@@ -274,47 +290,6 @@ class TempoMark(ContextMark):
                 if not isinstance(self.units_per_minute, tuple):
                     return False
         return True
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond format of tempo mark:
-
-        ::
-
-            >>> tempo = marktools.TempoMark(Duration(1, 8), 52)
-            >>> tempo.lilypond_format
-            '\\tempo 8=52'
-
-        ::
-
-            >>> tempo.textual_indication = 'Gingerly'
-            >>> tempo.lilypond_format
-            '\\tempo Gingerly 8=52'
-
-        ::
-
-            >>> tempo.units_per_minute = (52, 56)
-            >>> tempo.lilypond_format
-            '\\tempo Gingerly 8=52-56'
-
-        Returns string.
-        '''
-        text, equation = None, None
-
-        if self.textual_indication is not None:
-            text = schemetools.Scheme.format_scheme_value(self.textual_indication)
-
-        if self.duration is not None and self.units_per_minute is not None:
-            equation = self._equation
-
-        if text and equation:
-            return r'\tempo %s %s' % (text, equation)
-        elif equation:
-            return r'\tempo %s' % equation
-        elif text:
-            return r'\tempo %s' % text
-        else:
-            return r'\tempo \default'
 
     @property
     def quarters_per_minute(self):

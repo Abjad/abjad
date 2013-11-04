@@ -23,8 +23,8 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_01():
         )
 
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and \
+    result = parser(format(target))
+    assert format(target) == format(result) and \
         target is not result
     leaf = result.select_leaves()[0]
     tempo_marks = inspect(leaf).get_marks(marktools.TempoMark)
@@ -50,9 +50,8 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_02():
         )
 
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and \
-        target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
     tempo_marks = inspect(leaf).get_marks(marktools.TempoMark)
     assert len(tempo_marks) == 1
@@ -77,9 +76,8 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_03():
         )
 
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and \
-        target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
     tempo_marks = inspect(leaf).get_marks(marktools.TempoMark)
     assert len(tempo_marks) == 1
@@ -109,9 +107,8 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_04():
         )
 
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and \
-        target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
     tempo_marks = inspect(leaf).get_marks(marktools.TempoMark)
     assert len(tempo_marks) == 1
@@ -140,9 +137,8 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_05():
         )
 
     parser = LilyPondParser()
-    result = parser(target.lilypond_format)
-    assert target.lilypond_format == result.lilypond_format and \
-        target is not result
+    result = parser(format(target))
+    assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
     tempo_marks = inspect(leaf).get_marks(marktools.TempoMark)
     assert len(tempo_marks) == 1

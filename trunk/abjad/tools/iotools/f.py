@@ -23,4 +23,3 @@ def f(expr):
     '''
 
     print format(expr, 'lilypond')
-    #print expr.lilypond_format

@@ -84,7 +84,7 @@ def test_marktools_LilyPondCommandMark_format_05():
     note = Note("c'4")
     command = marktools.LilyPondCommandMark('flageolet', 'right')
     attach(command, note)
-    assert note.lilypond_format == "c'4 \\flageolet"
+    assert format(note) == "c'4 \\flageolet"
 
 
 def test_marktools_LilyPondCommandMark_format_06():
@@ -95,7 +95,7 @@ def test_marktools_LilyPondCommandMark_format_06():
     command = marktools.LilyPondCommandMark('flageolet', 'right')
     attach(command, note)
     inspect(note).get_mark().detach()
-    assert note.lilypond_format == "c'4"
+    assert format(note) == "c'4"
 
 
 def test_marktools_LilyPondCommandMark_format_07():

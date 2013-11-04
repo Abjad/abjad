@@ -12,7 +12,7 @@ def test_scoretools_Measure_empty_02():
     measure = Measure((4, 4), [])
     assert repr(measure) == 'Measure(4/4)'
     assert str(measure) == '|4/4|'
-    assert py.test.raises(UnderfullContainerError, 'measure.lilypond_format')
+    assert py.test.raises(UnderfullContainerError, 'format(measure)')
     assert len(measure) == 0
     assert measure._preprolated_duration == 0
     assert inspect(measure).get_duration() == 0
@@ -23,7 +23,7 @@ def test_scoretools_Measure_empty_03():
     measure = Measure((4, 5), [])
     assert repr(measure) == 'Measure(4/5)'
     assert str(measure) == '|4/5|'
-    assert py.test.raises(UnderfullContainerError, 'measure.lilypond_format')
+    assert py.test.raises(UnderfullContainerError, 'format(measure)')
     assert len(measure) == 0
     assert measure._preprolated_duration == 0
     assert inspect(measure).get_duration() == 0

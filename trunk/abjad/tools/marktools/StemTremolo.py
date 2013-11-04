@@ -116,21 +116,11 @@ class StemTremolo(Mark):
     def _contents_repr_string(self):
         return '%s' % self.tremolo_flags
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def lilypond_format(self):
-        r'''LilyPond format string:
-
-        ::
-
-            >>> stem_tremolo = marktools.StemTremolo(16)
-            >>> stem_tremolo.lilypond_format
-            ':16'
-
-        Returns string.
-        '''
+    def _lilypond_format(self):
         return str(self)
+
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def tremolo_flags():

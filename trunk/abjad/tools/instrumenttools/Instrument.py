@@ -347,11 +347,7 @@ class Instrument(ContextMark):
         return property(**locals())
 
     @property
-    def lilypond_format(self):
-        r'''LilyPond format of instrument mark.
-
-        Returns string.
-        '''
+    def _lilypond_format(self):
         result = []
         line = r'\set {}.instrumentName = {}'
         line = line.format(

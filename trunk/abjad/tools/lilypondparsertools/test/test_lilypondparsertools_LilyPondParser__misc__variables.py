@@ -4,6 +4,7 @@ from abjad.tools.lilypondparsertools import *
 
 
 def test_lilypondparsertools_LilyPondParser__misc__variables_01():
+
     target = Staff([
         Container([
             Container([
@@ -21,28 +22,31 @@ def test_lilypondparsertools_LilyPondParser__misc__variables_01():
         Note(12, 1)
     ])
 
-    r'''
-    \new Staff {
-        {
+    assert testtools.compare(
+        target,
+        r'''
+        \new Staff {
             {
                 {
                     {
-                        c'8
+                        {
+                            c'8
+                        }
+                        d'8
+                        e'4
                     }
-                    d'8
-                    e'4
+                    f'4
+                    g'2
                 }
-                f'4
-                g'2
+                a'2
+                b'1
             }
-            a'2
-            b'1
+            c''1
         }
-        c''1
-    }
-    '''
+        '''
+        )
 
-    input = r'''
+    string = r'''
         foo = { c'8 }
         foo = { \foo d' e'4 }
         foo = { \foo f' g'2 }
@@ -51,5 +55,5 @@ def test_lilypondparsertools_LilyPondParser__misc__variables_01():
     '''
 
     parser = LilyPondParser()
-    result = parser(input)
-    assert target.lilypond_format == result.lilypond_format and target is not result
+    result = parser(string)
+    assert format(target) == format(result) and target is not result

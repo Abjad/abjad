@@ -150,4 +150,4 @@ def test_scoretools_Note_grace_06():
     }
     '''
 
-    assert note.lilypond_format =="\\afterGrace\nc'4\n{\n\tc'16\n\td'16\n\te'16\n}"
+    assert format(note) =="\\afterGrace\nc'4\n{\n\tc'16\n\td'16\n\te'16\n}"

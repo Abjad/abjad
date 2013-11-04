@@ -41,7 +41,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_01():
 
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and \
+    assert format(target) == format(result) and \
         target is not result
     for x in result:
         assert 1 == len(inspect(x).get_marks(marktools.Articulation))
@@ -76,7 +76,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_02():
 
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and \
+    assert format(target) == format(result) and \
         target is not result
     assert 7 == len(inspect(result[0]).get_marks(marktools.Articulation))
 
@@ -112,7 +112,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_03():
 
     parser = LilyPondParser()
     result = parser(string)
-    assert target.lilypond_format == result.lilypond_format and \
+    assert format(target) == format(result) and \
         target is not result
     for x in result:
         assert 1 == len(inspect(x).get_marks(marktools.Articulation))

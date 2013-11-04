@@ -34,7 +34,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
                 abjad_configuration.get_lilypond_minimum_version_string(),
                 )
             lilypond_file.file_initial_system_includes[0] = lilypond_version_token
-            lilypond_format = lilypond_file.lilypond_format
+            lilypond_format = format(lilypond_file)
             self._payload = lilypond_format
              
     ### PUBLIC METHODS ###

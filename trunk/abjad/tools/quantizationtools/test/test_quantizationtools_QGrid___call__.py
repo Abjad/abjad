@@ -18,7 +18,7 @@ def test_quantizationtools_QGrid___call___01():
     result = q_grid((1, 4))
 
     assert len(result) == 1
-    assert result[0].lilypond_format == "c'4"
+    assert format(result[0]) == "c'4"
 
     annotation = inspect(result[0]).get_mark(marktools.Annotation)
 

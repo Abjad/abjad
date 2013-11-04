@@ -9,4 +9,4 @@ def test_scoretools_NoteHeadInventory___delitem___01():
     chord = Chord("<ef' cs'' f''>4")
     del(chord.note_heads[1])
 
-    assert chord.lilypond_format == "<ef' f''>4"
+    assert format(chord) == "<ef' f''>4"

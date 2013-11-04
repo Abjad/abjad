@@ -553,7 +553,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___23():
         )
 
     del(override(note).note_head.style)
-    assert note.note_head.lilypond_format == "cs'"
+    assert format(note.note_head) == "cs'"
 
 
 def test_lilypondproxytools_LilyPondGrobManager___setattr___24():
@@ -573,7 +573,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___24():
         )
 
     del(override(note).note_head.style)
-    assert note.note_head.lilypond_format == "cs'"
+    assert format(note.note_head) == "cs'"
 
 
 def test_lilypondproxytools_LilyPondGrobManager___setattr___25():
@@ -613,7 +613,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___26():
         )
 
     del(override(note).note_head.style)
-    assert note.lilypond_format == "cs'4"
+    assert format(note) == "cs'4"
 
 
 def test_lilypondproxytools_LilyPondGrobManager___setattr___27():
@@ -633,7 +633,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___27():
         )
 
     del(override(note).note_head.style)
-    assert note.lilypond_format == "cs'4"
+    assert format(note) == "cs'4"
 
 
 def test_lilypondproxytools_LilyPondGrobManager___setattr___28():
@@ -653,7 +653,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___28():
         )
 
     del(override(note).note_head.transparent)
-    assert note.lilypond_format == "cs''4"
+    assert format(note) == "cs''4"
 
 
 def test_lilypondproxytools_LilyPondGrobManager___setattr___29():

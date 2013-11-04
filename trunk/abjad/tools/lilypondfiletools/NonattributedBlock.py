@@ -21,7 +21,7 @@ class NonattributedBlock(list, AbjadObject):
         Returns string.
         '''
         if format_spec in ('', 'lilypond'):
-            return self.lilypond_format
+            return self._lilypond_format
         return str(self)
 
     def __repr__(self):
@@ -48,6 +48,10 @@ class NonattributedBlock(list, AbjadObject):
             result.append('}')
         return result
 
+    @property
+    def _lilypond_format(self):
+        return '\n'.join(self._format_pieces)
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -60,7 +64,3 @@ class NonattributedBlock(list, AbjadObject):
             else:
                 raise TypeError
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        return '\n'.join(self._format_pieces)

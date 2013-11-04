@@ -11,5 +11,5 @@ def test_scoretools_Note___repr___01():
 
     assert isinstance(note_1, Note)
     assert isinstance(note_2, Note)
-    assert note_1.lilypond_format == note_2.lilypond_format
+    assert format(note_1) == format(note_2)
     assert note_1 is not note_2

@@ -73,6 +73,13 @@ class LilyPondComment(Mark):
     def _contents_repr_string(self):
         return repr(self._contents_string)
 
+    @property
+    def _lilypond_format(self):
+        from abjad.tools import stringtools
+        command = stringtools.snake_case_to_lower_camel_case(
+            self.contents_string)
+        return r'%% %s' % command
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -137,20 +144,3 @@ class LilyPondComment(Mark):
             else:
                 self._format_slot = format_slot
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond input format of comment:
-
-        ::
-
-            >>> comment = marktools.LilyPondComment('this is a comment.')
-            >>> comment.lilypond_format
-            '% this is a comment.'
-
-        Returns string.
-        '''
-        from abjad.tools import stringtools
-        command = stringtools.snake_case_to_lower_camel_case(
-            self.contents_string)
-        return r'%% %s' % command

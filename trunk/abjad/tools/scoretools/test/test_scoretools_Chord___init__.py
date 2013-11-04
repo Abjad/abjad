@@ -7,7 +7,7 @@ def test_scoretools_Chord___init___01():
     '''
 
     chord = Chord([], (1, 4))
-    assert chord.lilypond_format == "<>4"
+    assert format(chord) == "<>4"
 
 
 def test_scoretools_Chord___init___02():
@@ -15,7 +15,7 @@ def test_scoretools_Chord___init___02():
     '''
 
     chord = Chord([2, 4, 5], (1, 4))
-    assert chord.lilypond_format == "<d' e' f'>4"
+    assert format(chord) == "<d' e' f'>4"
 
 
 def test_scoretools_Chord___init___03():
@@ -23,7 +23,7 @@ def test_scoretools_Chord___init___03():
     '''
 
     chord = Chord([('ds', 4), ('ef', 4)], (1, 4))
-    assert chord.lilypond_format == "<ds' ef'>4"
+    assert format(chord) == "<ds' ef'>4"
 
 
 def test_scoretools_Chord___init___04():
@@ -34,7 +34,7 @@ def test_scoretools_Chord___init___04():
     pitches.append(pitchtools.NamedPitch('ds', 4))
     pitches.append(pitchtools.NamedPitch('ef', 4))
     chord = Chord(pitches, (1, 4))
-    assert chord.lilypond_format == "<ds' ef'>4"
+    assert format(chord) == "<ds' ef'>4"
 
 
 def test_scoretools_Chord___init___05():
@@ -43,7 +43,7 @@ def test_scoretools_Chord___init___05():
 
     pitches = [2, ('ef', 4), pitchtools.NamedPitch(4)]
     chord = Chord(pitches, (1, 4))
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord___init___06():
@@ -52,7 +52,7 @@ def test_scoretools_Chord___init___06():
 
     pitches = ["d'", "ef'", "e'"]
     chord = Chord(pitches, (1, 4))
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord___init___07():
@@ -60,7 +60,7 @@ def test_scoretools_Chord___init___07():
     '''
 
     chord = Chord("<d' ef' e'>4")
-    assert chord.lilypond_format == "<d' ef' e'>4"
+    assert format(chord) == "<d' ef' e'>4"
 
 
 def test_scoretools_Chord___init___08():
@@ -70,8 +70,8 @@ def test_scoretools_Chord___init___08():
     skip = scoretools.Skip('s8')
     chord = Chord(skip)
 
-    assert skip.lilypond_format == 's8'
-    assert chord.lilypond_format == '<>8'
+    assert format(skip) == 's8'
+    assert format(chord) == '<>8'
 
     assert inspect(skip).is_well_formed()
     assert inspect(chord).is_well_formed()
@@ -84,7 +84,7 @@ def test_scoretools_Chord___init___09():
     tuplet = Tuplet((2, 3), 's8 s8 s8')
     chord = Chord(tuplet[0])
 
-    assert chord.lilypond_format == '<>8'
+    assert format(chord) == '<>8'
     assert inspect(chord).get_parentage().parent is None
     assert inspect(chord).is_well_formed()
 
@@ -96,7 +96,7 @@ def test_scoretools_Chord___init___10():
     tuplet = Voice('s8 s8 s8')
     chord = Chord(tuplet[0])
 
-    assert chord.lilypond_format == '<>8'
+    assert format(chord) == '<>8'
     assert inspect(chord).get_parentage().parent is None
     assert inspect(chord).is_well_formed()
 
@@ -109,7 +109,7 @@ def test_scoretools_Chord___init___11():
     staff = Staff("c'8 [ s8 c'8 ]")
     chord = Chord(staff[1])
 
-    assert chord.lilypond_format == '<>8'
+    assert format(chord) == '<>8'
     assert inspect(chord).get_parentage().parent is None
     assert inspect(chord).is_well_formed()
 
@@ -121,8 +121,8 @@ def test_scoretools_Chord___init___12():
     rest = Rest('r8')
     chord = Chord(rest)
 
-    assert rest.lilypond_format == 'r8'
-    assert chord.lilypond_format == '<>8'
+    assert format(rest) == 'r8'
+    assert format(chord) == '<>8'
     assert inspect(rest).is_well_formed()
     assert inspect(chord).is_well_formed()
 
@@ -134,7 +134,7 @@ def test_scoretools_Chord___init___13():
     tuplet = Tuplet((2, 3), 'r8 r8 r8')
     chord = Chord(tuplet[1])
 
-    assert chord.lilypond_format == '<>8'
+    assert format(chord) == '<>8'
     assert inspect(chord).is_well_formed()
     assert inspect(chord).get_parentage().parent is None
 
@@ -146,8 +146,8 @@ def test_scoretools_Chord___init___14():
     note = Note("d'8")
     chord = Chord(note)
     
-    assert note.lilypond_format == "d'8"
-    assert chord.lilypond_format == "<d'>8"
+    assert format(note) == "d'8"
+    assert format(chord) == "<d'>8"
     assert inspect(note).is_well_formed()
     assert inspect(chord).is_well_formed()
 
@@ -159,7 +159,7 @@ def test_scoretools_Chord___init___15():
     tuplet = Tuplet((2, 3), "c'8 c'8 c'8")
     chord = Chord(tuplet[1])
 
-    assert chord.lilypond_format == "<c'>8"
+    assert format(chord) == "<c'>8"
     assert inspect(chord).is_well_formed()
     assert inspect(chord).get_parentage().parent is None
 
@@ -171,7 +171,7 @@ def test_scoretools_Chord___init___16():
     staff = Staff("c'8 ( d'8 e'8 f'8 )")
     chord = Chord(staff[1])
 
-    assert chord.lilypond_format == "<d'>8"
+    assert format(chord) == "<d'>8"
     assert inspect(chord).is_well_formed()
     assert inspect(chord).get_parentage().parent is None
 
@@ -182,7 +182,7 @@ def test_scoretools_Chord___init___17():
 
     chord = Chord('<>8.')
 
-    assert chord.lilypond_format == '<>8.'
+    assert format(chord) == '<>8.'
     assert not len(chord.note_heads)
 
 
@@ -193,7 +193,7 @@ def test_scoretools_Chord___init___18():
 
     chord = Chord('<c!? e? g! b>4')
 
-    assert chord.lilypond_format == '<c!? e? g! b>4'
+    assert format(chord) == '<c!? e? g! b>4'
 
 
 def test_scoretools_Chord___init___19():
@@ -203,4 +203,4 @@ def test_scoretools_Chord___init___19():
     note = Note("c'!?4")
     chord = Chord(note)
 
-    assert chord.lilypond_format == "<c'!?>4"
+    assert format(chord) == "<c'!?>4"

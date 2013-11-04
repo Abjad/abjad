@@ -185,6 +185,20 @@ class TimeSignatureMark(ContextMark):
             )
 
     @property
+    def _lilypond_format(self):
+        if self.suppress:
+            return []
+        elif self.partial is None:
+            return r'\time %s/%s' % (self.numerator, self.denominator)
+        else:
+            result = []
+            duration_string = self.partial.lilypond_duration_string
+            partial_directive = r'\partial %s' % duration_string
+            result.append(partial_directive)
+            result.append(r'\time %s/%s' % (self.numerator, self.denominator))
+            return result
+
+    @property
     def _positional_argument_values(self):
         return (self.pair, )
 
@@ -318,29 +332,6 @@ class TimeSignatureMark(ContextMark):
         '''
         dummy_duration = durationtools.Duration(1, self.denominator)
         return dummy_duration.implied_prolation
-
-    @property
-    def lilypond_format(self):
-        r'''Time signature mark LilyPond format:
-
-        ::
-
-            >>> marktools.TimeSignatureMark((3, 8)).lilypond_format
-            '\\time 3/8'
-
-        Returns string.
-        '''
-        if self.suppress:
-            return []
-        elif self.partial is None:
-            return r'\time %s/%s' % (self.numerator, self.denominator)
-        else:
-            result = []
-            duration_string = self.partial.lilypond_duration_string
-            partial_directive = r'\partial %s' % duration_string
-            result.append(partial_directive)
-            result.append(r'\time %s/%s' % (self.numerator, self.denominator))
-            return result
 
     @apply
     def numerator():

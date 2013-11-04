@@ -7,7 +7,7 @@ def test_schemetools_SchemePair_lilypond_format_01():
     '''
 
     scheme_pair = schemetools.SchemePair('font-name', 'Times')
-    assert scheme_pair.lilypond_format == '#\'(font-name . "Times")'
+    assert format(scheme_pair) == '#\'(font-name . "Times")'
 
 
 def test_schemetools_SchemePair_lilypond_format_02():
@@ -15,4 +15,4 @@ def test_schemetools_SchemePair_lilypond_format_02():
     '''
 
     scheme_pair = schemetools.SchemePair('spacing', 4)
-    assert scheme_pair.lilypond_format == "#'(spacing . 4)"
+    assert format(scheme_pair) == "#'(spacing . 4)"

@@ -288,6 +288,10 @@ class Accidental(AbjadObject):
             return False
         return bool(Accidental._symbolic_accidental_string_regex.match(expr))
 
+    @property
+    def _lilypond_format(self):
+        return self._alphabetic_accidental_abbreviation
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -318,20 +322,6 @@ class Accidental(AbjadObject):
         Returns boolean.
         '''
         return self._is_adjusted
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond input format of accidental:
-
-        ::
-
-            >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.lilypond_format
-            's'
-
-        Returns string.
-        '''
-        return self._alphabetic_accidental_abbreviation
 
     @property
     def name(self):

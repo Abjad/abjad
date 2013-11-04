@@ -24,26 +24,26 @@ def test_schemetools_Scheme_02():
 
 def test_schemetools_Scheme_03():
     r'''__str__ of Scheme returns the Scheme formatted value without the hash mark,
-    while Scheme.lilypond_format returns the formatted value with the hash mark,
+    while format(Scheme) returns the formatted value with the hash mark,
     allowing for nested Scheme expressions.'''
     scheme = Scheme(('fus', 'ro', 'dah'), quoting = "'")
     assert str(scheme) == "'(fus ro dah)"
-    assert scheme.lilypond_format == "#'(fus ro dah)"
+    assert format(scheme) == "#'(fus ro dah)"
 
 
 def test_schemetools_Scheme_04():
     r'''Scheme attempts to format Python values into Scheme equivalents.
     '''
-    assert Scheme(True).lilypond_format == '##t'
-    assert Scheme(False).lilypond_format == '##f'
-    assert Scheme(None).lilypond_format == '##f'
-    assert Scheme('hello world').lilypond_format == '#"hello world"'
-    assert Scheme([1, 2, 3]).lilypond_format == '#(1 2 3)'
-    assert Scheme((SchemePair('padding', 1), SchemePair('attach-dir', -1)), quoting="'").lilypond_format == \
+    assert format(Scheme(True)) == '##t'
+    assert format(Scheme(False)) == '##f'
+    assert format(Scheme(None)) == '##f'
+    assert format(Scheme('hello world')) == '#"hello world"'
+    assert format(Scheme([1, 2, 3])) == '#(1 2 3)'
+    assert format(Scheme((SchemePair('padding', 1), SchemePair('attach-dir', -1)), quoting="'")) == \
         "#'((padding . 1) (attach-dir . -1))"
 
 
 def test_schemetools_Scheme_05():
     r'''Scheme wraps variable-length arguments into a tuple.
     '''
-    assert Scheme(1, 2, 3).lilypond_format == Scheme((1, 2, 3)).lilypond_format
+    assert format(Scheme(1, 2, 3)) == format(Scheme((1, 2, 3)))

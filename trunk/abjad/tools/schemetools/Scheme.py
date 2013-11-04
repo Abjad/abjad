@@ -8,7 +8,7 @@ class Scheme(AbjadObject):
     ::
 
         >>> scheme = schemetools.Scheme(True)
-        >>> scheme.lilypond_format
+        >>> format(scheme)
         '##t'
 
     Scheme can represent nested structures:
@@ -17,7 +17,7 @@ class Scheme(AbjadObject):
 
         >>> scheme = schemetools.Scheme(
         ...     ('left', (1, 2, False)), ('right', (1, 2, 3.3)))
-        >>> scheme.lilypond_format
+        >>> format(scheme)
         '#((left (1 2 #f)) (right (1 2 3.3)))'
 
     Scheme wraps variable-length arguments into a tuple:
@@ -26,7 +26,7 @@ class Scheme(AbjadObject):
 
         >>> scheme_1 = schemetools.Scheme(1, 2, 3)
         >>> scheme_2 = schemetools.Scheme((1, 2, 3))
-        >>> scheme_1.lilypond_format == scheme_2.lilypond_format
+        >>> format(scheme_1) == format(scheme_2)
         True
 
     Scheme also takes an optional `quoting` keyword, 
@@ -36,7 +36,7 @@ class Scheme(AbjadObject):
     ::
 
         >>> scheme = schemetools.Scheme((1, 2, 3), quoting="'#")
-        >>> scheme.lilypond_format
+        >>> format(scheme)
         "#'#(1 2 3)"
 
     Scheme can also force quotes around strings which contain no whitespace:
@@ -93,7 +93,7 @@ class Scheme(AbjadObject):
         Return string.
         '''
         if format_spec in ('', 'lilypond'):
-            return self.lilypond_format
+            return self._lilypond_format
         return str(self)
 
     def __getnewargs__(self):
@@ -114,6 +114,12 @@ class Scheme(AbjadObject):
         from abjad.tools import schemetools
         return schemetools.Scheme.format_scheme_value(
             self._value, force_quotes=self.force_quotes)
+
+    @property
+    def _lilypond_format(self):
+        if self._quoting is not None:
+            return '#' + self._quoting + self._formatted_value
+        return '#%s' % self._formatted_value
 
     @property
     def _positional_argument_values(self):
@@ -191,22 +197,6 @@ class Scheme(AbjadObject):
     @property
     def force_quotes(self):
         return self._force_quotes
-
-    @property
-    def lilypond_format(self):
-        r'''Hash-mark-prepended format of Scheme:
-
-        ::
-
-            >>> scheme = schemetools.Scheme(True)
-            >>> scheme.lilypond_format
-            '##t'
-
-        Returns string.
-        '''
-        if self._quoting is not None:
-            return '#' + self._quoting + self._formatted_value
-        return '#%s' % self._formatted_value
 
     @property
     def storage_format(self):

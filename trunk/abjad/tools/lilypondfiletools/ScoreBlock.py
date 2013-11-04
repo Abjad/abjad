@@ -30,7 +30,7 @@ class ScoreBlock(NonattributedBlock):
     ::
 
         >>> score_block = lilypondfiletools.ScoreBlock()
-        >>> score_block.lilypond_format == ''
+        >>> format(score_block) == ''
         True
 
     Returns score block.

@@ -21,7 +21,7 @@ class AttributedBlock(list, AbjadObject):
         Returns string.
         '''
         if format_spec in ('', 'lilypond'):
-            return self.lilypond_format
+            return self._lilypond_format
         return str(self)
 
     def __repr__(self):
@@ -68,7 +68,7 @@ class AttributedBlock(list, AbjadObject):
         for value in self:
             if isinstance(value, 
                 (schemetools.Scheme, marktools.LilyPondCommandMark)):
-                result.append(value.lilypond_format)
+                result.append(format(value))
         for key, value in sorted(vars(self).items()):
             if not key.startswith('_'):
                 # format subkeys via double underscore
@@ -86,14 +86,17 @@ class AttributedBlock(list, AbjadObject):
                     lilypondfiletools.LilyPondDimension,
                     marktools.LilyPondCommandMark,
                     )):
-                    formatted_value = [value.lilypond_format]
+                    formatted_value = [format(value)]
                 else:
-                    formatted_value = [
-                        schemetools.Scheme(value).lilypond_format]
+                    formatted_value = [format(schemetools.Scheme(value))]
                 setting = '%s = %s' % (formatted_key, formatted_value[0])
                 result.append(setting)
                 result.extend(formatted_value[1:])
         return result
+
+    @property
+    def _lilypond_format(self):
+        return '\n'.join(self._format_pieces)
 
     @property
     def _user_attributes(self):
@@ -114,7 +117,3 @@ class AttributedBlock(list, AbjadObject):
             else:
                 raise TypeError
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        return '\n'.join(self._format_pieces)

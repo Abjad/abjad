@@ -11,18 +11,6 @@ def test_rhythmtreetools_RhythmTreeContainer___call___01():
     assert isinstance(result, (list, selectiontools.SliceSelection))
     assert len(result) == 1
 
-    r'''
-    \times 4/5 {
-        c'16
-        \times 2/3 {
-            c'16
-            c'16
-            c'16
-        }
-        c'8
-    }
-    '''
-
     assert testtools.compare(
         result[0],
         r'''
@@ -47,4 +35,4 @@ def test_rhythmtreetools_RhythmTreeContainer___call___02():
 
     assert isinstance(result, (list, selectiontools.SliceSelection))
     assert len(result) == 6
-    assert [x.lilypond_format for x in result] == ["c'16", "c'32", "c'32", "c'32", "c'32", "c'16"]
+    assert [format(x) for x in result] == ["c'16", "c'32", "c'32", "c'32", "c'32", "c'16"]

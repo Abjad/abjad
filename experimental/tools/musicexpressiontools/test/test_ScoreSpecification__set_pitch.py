@@ -19,7 +19,7 @@ def test_ScoreSpecification__set_pitch_01():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_02():
@@ -38,7 +38,7 @@ def test_ScoreSpecification__set_pitch_02():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_03():
@@ -58,7 +58,7 @@ def test_ScoreSpecification__set_pitch_03():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_04():
@@ -79,7 +79,7 @@ def test_ScoreSpecification__set_pitch_04():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_05():
@@ -101,7 +101,7 @@ def test_ScoreSpecification__set_pitch_05():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_06():
@@ -122,7 +122,7 @@ def test_ScoreSpecification__set_pitch_06():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_07():
@@ -143,7 +143,7 @@ def test_ScoreSpecification__set_pitch_07():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_08():
@@ -164,7 +164,7 @@ def test_ScoreSpecification__set_pitch_08():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_09():
@@ -185,7 +185,7 @@ def test_ScoreSpecification__set_pitch_09():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_10():
@@ -206,7 +206,7 @@ def test_ScoreSpecification__set_pitch_10():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_11():
@@ -227,7 +227,7 @@ def test_ScoreSpecification__set_pitch_11():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_12():
@@ -246,7 +246,7 @@ def test_ScoreSpecification__set_pitch_12():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_13():
@@ -265,7 +265,7 @@ def test_ScoreSpecification__set_pitch_13():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_14():
@@ -284,7 +284,7 @@ def test_ScoreSpecification__set_pitch_14():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_15():
@@ -303,7 +303,7 @@ def test_ScoreSpecification__set_pitch_15():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_pitch_16():
@@ -322,4 +322,4 @@ def test_ScoreSpecification__set_pitch_16():
 
     current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
+    assert format(score) == testtools.read_test_output(__file__, current_function_name)

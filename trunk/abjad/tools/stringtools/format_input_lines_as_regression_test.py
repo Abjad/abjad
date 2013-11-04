@@ -46,7 +46,7 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
             }
 
             assert select(staff).is_well_formed()
-            assert staff.lilypond_format == "\\new Staff {
+            assert format(staff) == "\\new Staff {
                 \n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\tf'8 ]\n}"
             '''
 
@@ -83,7 +83,7 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
     print tab + 'assert select(%s).is_well_formed()' % last_variable
     format_string = _replace_line_with_format(most, last_format_line)
     format_string = repr(format_string)
-    print tab + 'assert %s.lilypond_format == %s' % (last_variable, format_string)
+    print tab + 'assert format(%s) == %s' % (last_variable, format_string)
 
 
 def _replace_line_with_format(most_lines, last_line):

@@ -80,6 +80,11 @@ class Context(Container):
     def _format_pieces(self):
         return self._format_component(pieces=True)
 
+    @property
+    def _lilypond_format(self):
+        self._update_now(marks=True)
+        return self._format_component()
+
     ### PRIVATE METHODS ###
 
     def _copy_with_marks_but_without_children_or_spanners(self):
@@ -281,11 +286,6 @@ class Context(Container):
     @property
     def is_semantic(self):
         return not self.is_nonsemantic
-
-    @property
-    def lilypond_format(self):
-        self._update_now(marks=True)
-        return self._format_component()
 
     @apply
     def name():

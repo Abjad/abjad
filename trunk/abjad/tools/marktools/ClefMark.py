@@ -203,6 +203,10 @@ class ClefMark(ContextMark):
     def _contents_repr_string(self):
         return repr(self._clef_name)
 
+    @property
+    def _lilypond_format(self):
+        return r'\clef "%s"' % self._clef_name
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -256,20 +260,6 @@ class ClefMark(ContextMark):
             assert isinstance(clef_name, str)
             self._clef_name = clef_name
         return property(**locals())
-
-    @property
-    def lilypond_format(self):
-        r'''LilyPond format of clef.
-
-        ::
-
-            >>> clef = marktools.ClefMark('treble')
-            >>> clef.lilypond_format
-            '\\clef "treble"'
-
-        Returns string.
-        '''
-        return r'\clef "%s"' % self._clef_name
 
     @property
     def middle_c_position(self):

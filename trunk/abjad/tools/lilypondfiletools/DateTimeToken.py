@@ -21,21 +21,21 @@ class DateTimeToken(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        return '%s(%s)' % (self._class_name, self.lilypond_format)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def lilypond_format(self):
-        r'''Format contribution of date time token:
-
-        ::
-
-            >>> lilypondfiletools.DateTimeToken().lilypond_format
-            '...'
+    def __format__(self, format_spec=''):
+        r'''Gets format.
 
         Returns string.
         '''
+        if format_spec in ('', 'lilypond'):
+            return self._lilypond_format
+        return str(self)
+
+    def __repr__(self):
+        return '%s(%s)' % (self._class_name, self._lilypond_format)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
         current_time_string = time.strftime('%Y-%m-%d %H:%M')
         return current_time_string

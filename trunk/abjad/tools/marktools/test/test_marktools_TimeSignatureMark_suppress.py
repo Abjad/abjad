@@ -10,18 +10,6 @@ def test_marktools_TimeSignatureMark_suppress_01():
     measure = Measure((7, 8), "c'8 d'8 e'8 f'8 g'8 a'8 b'8")
     measure.time_signature.suppress = True
 
-    r'''
-    {
-        c'8
-        d'8
-        e'8
-        f'8
-        g'8
-        a'8
-        b'8
-    }
-    '''
-
     assert testtools.compare(
         measure,
         r'''
@@ -46,4 +34,4 @@ def test_marktools_TimeSignatureMark_suppress_02():
     measure = Measure((8, 9), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     measure.time_signature.suppress = True
 
-    assert py.test.raises(Exception, 'measure.lilypond_format')
+    assert py.test.raises(Exception, 'format(measure)')

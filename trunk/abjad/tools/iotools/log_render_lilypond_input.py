@@ -44,7 +44,7 @@ def log_render_lilypond_input(
         expr = documentationtools.make_reference_manual_lilypond_file(expr)
     lilypond_file = iotools.insert_expr_into_lilypond_file(
         expr, tagline=tagline)
-    formatted_lilypond_file = lilypond_file.lilypond_format
+    formatted_lilypond_file = format(lilypond_file)
     stop_format_time = time.time()
     actual_format_time = int(stop_format_time - start_format_time)
     if format_time <= actual_format_time:

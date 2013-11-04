@@ -61,4 +61,4 @@ def test_lilypondproxytools_LilyPondGrobManager___delattr___03():
     override(note).time_signature.transparent = True
     del(override(note).time_signature)
 
-    assert note.lilypond_format == "c'4"
+    assert format(note) == "c'4"

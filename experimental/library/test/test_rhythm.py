@@ -9,30 +9,31 @@ def test_rhythm_01():
     containers = [Container(x) for x in leaf_lists]
     staff = Staff(containers)
 
-    r'''
-    \new Staff {
-        {
-            c'16
-            c'16
-            c'16
-            c'16
-            c'16
-            c'16
-            c'16
-            c'16
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                c'16
+                c'16
+                c'16
+                c'16
+                c'16
+                c'16
+                c'16
+                c'16
+            }
+            {
+                c'16
+                c'16
+                c'16
+                c'16
+                c'16
+                c'16
+            }
         }
-        {
-            c'16
-            c'16
-            c'16
-            c'16
-            c'16
-            c'16
-        }
-    }
-    '''
-
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\t{\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
+        '''
+        )
 
 
 def test_rhythm_02():
@@ -43,23 +44,24 @@ def test_rhythm_02():
     containers = [Container(x) for x in leaf_lists]
     staff = Staff(containers)
 
-    r'''
-    \new Staff {
-        {
-            c'8
-            c'8
-            c'8
-            c'8
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                c'8
+                c'8
+                c'8
+                c'8
+            }
+            {
+                c'8
+                c'8
+                c'8
+            }
         }
-        {
-            c'8
-            c'8
-            c'8
-        }
-    }
-    '''
-
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
+        '''
+        )
 
 
 def test_rhythm_03():
@@ -70,20 +72,21 @@ def test_rhythm_03():
     containers = [Container(x) for x in leaf_lists]
     staff = Staff(containers)
 
-    r'''
-    \new Staff {
-        {
-            c'4
-            c'4
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                c'4
+                c'4
+            }
+            {
+                c'4
+                c'8
+            }
         }
-        {
-            c'4
-            c'8
-        }
-    }
-    '''
-
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'4\n\t\tc'4\n\t}\n\t{\n\t\tc'4\n\t\tc'8\n\t}\n}"
+        '''
+        )
 
 
 def test_rhythm_04():
@@ -94,41 +97,42 @@ def test_rhythm_04():
     containers = [Container(x) for x in leaf_lists]
     staff = Staff(containers)
 
-    r'''
-    \new Staff {
-        {
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
+    assert testtools.compare(
+        staff,
+        r'''
+        \new Staff {
+            {
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+            }
+            {
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+                c'32
+            }
         }
-        {
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-            c'32
-        }
-    }
-    '''
-
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t}\n\t{\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t\tc'32\n\t}\n}"
+        '''
+        )

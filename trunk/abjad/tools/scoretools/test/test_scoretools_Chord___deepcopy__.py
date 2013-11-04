@@ -39,7 +39,7 @@ def test_scoretools_Chord___deepcopy___01():
     assert chord_2.note_heads[1]._client is chord_2
     assert chord_2.note_heads[2]._client is chord_2
 
-    assert chord_1.lilypond_format == chord_2.lilypond_format
+    assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
     assert chord_1.note_heads[0] == chord_2.note_heads[0]

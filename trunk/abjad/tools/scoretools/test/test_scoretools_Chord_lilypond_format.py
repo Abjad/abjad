@@ -8,7 +8,7 @@ def test_scoretools_Chord_lilypond_format_01():
     chord = Chord("<cqs'>4")
 
     assert str(chord) == "<cqs'>4"
-    assert chord.lilypond_format == "<cqs'>4"
+    assert format(chord) == "<cqs'>4"
     assert len(chord.note_heads) == 1
     assert len(chord.written_pitches) == 1
 
@@ -21,7 +21,7 @@ def test_scoretools_Chord_lilypond_format_02():
     command = marktools.LilyPondCommandMark('glissando', 'right')
     attach(command, chord)
 
-    assert chord.lilypond_format == "<d' ef' e'>4 \\glissando"
+    assert format(chord) == "<d' ef' e'>4 \\glissando"
 
 
 def test_scoretools_Chord_lilypond_format_03():
