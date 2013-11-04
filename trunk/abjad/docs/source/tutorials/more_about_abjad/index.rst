@@ -20,7 +20,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'scoretools', 'scoretools', 'configurationtools', 'scoretools',
     'marktools', 'datastructuretools', 'decoratortools',
     'developerscripttools', 'documentationtools', 'durationtools',
-    'exceptiontools', 'f', 'formattools', 'gracetools', 'importtools',
+    'exceptiontools', 'f', 'formattools', 'gracetools', 'systemtools',
     'instrumenttools', 'introspectiontools', 'iotools', 'iterationtools',
     'labeltools', 'layouttools', 'scoretools', 'lilypondfiletools',
     'lilypondparsertools', 'lilypondproxytools', 'marktools', 'markuptools',
@@ -49,7 +49,7 @@ Use ``dir()`` to take a look at the contents of the ``iotools`` package:
     >>> dir(iotools)
     ['__builtins__', '__doc__', '__file__', '__name__', '__package__',
     '__path__', '_documentation_section', 'clear_terminal', 'f',
-    'get_last_output_file_name', 'get_next_output_file_name', 'importtools',
+    'get_last_output_file_name', 'get_next_output_file_name', 'systemtools',
     'log', 'ly', 'p', 'pdf', 'play', 'profile_expr', 'redo', 'save_last_ly_as',
     'save_last_pdf_as', 'show', 'spawn_subprocess', 'write_expr_to_ly',
     'write_expr_to_pdf', 'z']

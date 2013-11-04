@@ -7,9 +7,9 @@ The ``labeltools`` package is a high-level labeling package.
 The package may import essentially all of the core packages
 at top level.
 '''
-from abjad.tools import importtools
+from abjad.tools import systemtools
 
-importtools.ImportManager.import_structured_package(
+systemtools.ImportManager.import_structured_package(
 	__path__[0],
 	globals(),
 	package_root_name='abjad')

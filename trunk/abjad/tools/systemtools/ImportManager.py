@@ -60,7 +60,7 @@ class ImportManager(object):
     def import_public_names_from_filesystem_path_into_namespace(
         path, 
         namespace, 
-        delete_importtools=True,
+        delete_systemtools=True,
         package_root_name='abjad',
         ):
         r'''Inspect the top level of `path`.
@@ -106,9 +106,9 @@ class ImportManager(object):
                 raise ImportError(message)
         ImportManager._import_contents_of_public_packages_in_path_into_namespace(
             path, namespace, package_root_name)
-        if delete_importtools:
-            if 'importtools' in namespace:
-                del(namespace['importtools'])
+        if delete_systemtools:
+            if 'systemtools' in namespace:
+                del(namespace['systemtools'])
         if ImportManager.__name__ in namespace:
             del(namespace[ImportManager.__name__])
 
@@ -116,7 +116,7 @@ class ImportManager(object):
     def import_structured_package(
         path, 
         namespace, 
-        delete_importtools=True,
+        delete_systemtools=True,
         package_root_name='abjad',
         ):
         r'''Import public names from `path` into `namespace`.
@@ -133,11 +133,11 @@ class ImportManager(object):
         ImportManager.import_public_names_from_filesystem_path_into_namespace(
             path, 
             namespace, 
-            delete_importtools=delete_importtools,
+            delete_systemtools=delete_systemtools,
             package_root_name=package_root_name,
             )
-        if delete_importtools:
-            if 'importtools' in namespace:
-                del(namespace['importtools'])
+        if delete_systemtools:
+            if 'systemtools' in namespace:
+                del(namespace['systemtools'])
         if ImportManager.__name__ in namespace:
             del(namespace[ImportManager.__name__])

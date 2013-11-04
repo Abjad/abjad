@@ -40,9 +40,9 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def _get___init___text(self, package_root_name):
         return [
-            'from abjad.tools import importtools',
+            'from abjad.tools import systemtools',
             '',
-            "importtools.ImportManager.import_structured_package(__path__[0], globals(), package_root_name={!r})".format(package_root_name),
+            "systemtools.ImportManager.import_structured_package(__path__[0], globals(), package_root_name={!r})".format(package_root_name),
         ]
 
     def _get_class_names_in_tools_package(self, root, tools_package_name):

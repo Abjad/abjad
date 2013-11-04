@@ -377,11 +377,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             '__init__.py',
             )
         initializer = file(initializer_file_name, 'w')
-        line = 'from abjad.tools import importtools\n'
+        line = 'from abjad.tools import systemtools\n'
         initializer.write(line)
         initializer.write('\n')
         initializer.write(
-            "importtools.ImportManager.import_structured_package(__path__[0], globals())\n")
+            "systemtools.ImportManager.import_structured_package(__path__[0], globals())\n")
         initializer.close()
 
     # TODO: change to boilerplate

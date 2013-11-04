@@ -18,16 +18,16 @@ def _find_initializers():
     manual_initializer_count = 0
     for initializer_file_path in public_class_package_initializers:
         first_line = file(initializer_file_path, 'r').readlines()[0]
-        if 'importtools' not in first_line:
+        if 'systemtools' not in first_line:
             output = file(initializer_file_path, 'w')
-            output.write('from abjad.tools import importtools\n')
+            output.write('from abjad.tools import systemtools\n')
             output.write('\n')
             # TODO: make package_root_name detect correct argument automatically
             package_root_path = 'abjad'
             if 'experimental' in initializer_file_path:
                 package_root_path = 'experimental'
             output.write(
-                'importtools.ImportManager.import_structured_package(\n'
+                'systemtools.ImportManager.import_structured_package(\n'
                 '    __path__[0],\n'
                 '    globals(),\n'
                 '    package_root_name={!r})\n'.format(package_root_path)

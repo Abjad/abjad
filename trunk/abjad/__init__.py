@@ -24,7 +24,7 @@ except ImportError:
 
 # ensure that the ~/.abjad directory and friends are setup,
 # and instantiate Abjad's configuration singleton
-from abjad.tools.systemtools import AbjadConfiguration
+from abjad.tools.systemtools.AbjadConfiguration import AbjadConfiguration
 abjad_configuration = AbjadConfiguration()
 del AbjadConfiguration
 
@@ -61,7 +61,7 @@ from abjad.tools.mutationtools.AttributeInspectionAgent import inspect
 
 # import custom exceptions into the builtins module
 import os
-from abjad.tools.importtools.ImportManager import ImportManager
+from abjad.tools.systemtools.ImportManager import ImportManager
 ImportManager.import_public_names_from_filesystem_path_into_namespace(
     os.path.join(__path__[0], 'tools', 'exceptiontools'),
     __builtins__,

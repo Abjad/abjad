@@ -4,10 +4,10 @@ import configobj
 import os
 import time
 import validate
-from abjad.tools import abctools
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Configuration(abctools.AbjadObject):
+class Configuration(AbjadObject):
     r'''A configuration object.
     '''
 

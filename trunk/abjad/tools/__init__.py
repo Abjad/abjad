@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+from abjad.tools import systemtools
 from abjad.tools import datastructuretools
-from abjad.tools import importtools
 from abjad.tools import mathtools
 
 # load constants into __builtins__ namespace
@@ -13,9 +13,9 @@ __builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
 __builtins__['Infinity'] = mathtools.Infinity()
 __builtins__['NegativeInfinity'] = mathtools.NegativeInfinity()
 
-importtools.ImportManager.import_structured_package(
+systemtools.ImportManager.import_structured_package(
 	__path__[0],
 	globals(),
-    delete_importtools=False,
+    delete_systemtools=False,
 	package_root_name='abjad',
     )

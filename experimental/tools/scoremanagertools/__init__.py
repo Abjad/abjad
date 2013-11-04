@@ -70,9 +70,9 @@ Run 'avj api -X' to do this.
 Run 'ajv doctest' in abjad/experimental to do this.
 You're ready to use the score manager when everything passes.
 '''
-from abjad.tools import importtools
+from abjad.tools import systemtools
 
-importtools.ImportManager.import_structured_package(
+systemtools.ImportManager.import_structured_package(
 	__path__[0],
 	globals(),
 	package_root_name='experimental')

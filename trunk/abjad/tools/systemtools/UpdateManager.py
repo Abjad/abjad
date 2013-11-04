@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -103,6 +102,7 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _update_component_offsets(component):
+        from abjad.tools import durationtools
         from abjad.tools import scoretools
         previous = component._get_nth_component_in_time_order_from(-1)
         if previous is not None:
@@ -117,6 +117,7 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _update_component_offsets_in_seconds(component):
+        from abjad.tools import durationtools
         from abjad.tools import scoretools
         try:
             current_duration_in_seconds = \
