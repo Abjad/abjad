@@ -24,7 +24,7 @@ except ImportError:
 
 # ensure that the ~/.abjad directory and friends are setup,
 # and instantiate Abjad's configuration singleton
-from abjad.tools.configurationtools import AbjadConfiguration
+from abjad.tools.systemtools import AbjadConfiguration
 abjad_configuration = AbjadConfiguration()
 del AbjadConfiguration
 

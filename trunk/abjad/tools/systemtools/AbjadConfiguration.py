@@ -10,13 +10,13 @@ class AbjadConfiguration(Configuration):
 
     ::
 
-        >>> ABJCONFIG = configurationtools.AbjadConfiguration()
+        >>> ABJCONFIG = systemtools.AbjadConfiguration()
         >>> ABJCONFIG['accidental_spelling']
         'mixed'
 
     ::
 
-        >>> configuration = configurationtools.AbjadConfiguration()
+        >>> configuration = systemtools.AbjadConfiguration()
 
     `AbjadConfiguration` creates the `$HOME/.abjad/` directory
     on instantiation.

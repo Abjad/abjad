@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import configurationtools
 import os
+from abjad import *
 
 
-def test_configurationtools_AbjadConfiguration___init___01():
+def test_systemtools_AbjadConfiguration___init___01():
 
-    ABJADCONFIG = configurationtools.AbjadConfiguration()
+    ABJADCONFIG = systemtools.AbjadConfiguration()
 
     assert os.path.exists(ABJADCONFIG.abjad_configuration_directory_path)
     assert os.path.exists(ABJADCONFIG.abjad_configuration_file_path)

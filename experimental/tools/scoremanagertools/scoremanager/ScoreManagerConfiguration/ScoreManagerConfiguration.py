@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools.configurationtools.Configuration import Configuration
-from abjad.tools.configurationtools.AbjadConfiguration \
+from abjad.tools.systemtools.AbjadConfiguration \
     import AbjadConfiguration
 
 

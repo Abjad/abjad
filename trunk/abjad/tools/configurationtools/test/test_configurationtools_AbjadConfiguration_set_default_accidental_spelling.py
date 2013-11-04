@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_configurationtools_AbjadConfiguration_set_default_accidental_spelling_01():
+def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_01():
 
     staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
@@ -27,7 +27,7 @@ def test_configurationtools_AbjadConfiguration_set_default_accidental_spelling_0
         )
 
 
-def test_configurationtools_AbjadConfiguration_set_default_accidental_spelling_02():
+def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_02():
 
     abjad_configuration.set_default_accidental_spelling('sharps')
     staff = Staff([Note(n, (1, 8)) for n in range(12)])
@@ -55,7 +55,7 @@ def test_configurationtools_AbjadConfiguration_set_default_accidental_spelling_0
     abjad_configuration.set_default_accidental_spelling('mixed')
 
 
-def test_configurationtools_AbjadConfiguration_set_default_accidental_spelling_03():
+def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_03():
 
     abjad_configuration.set_default_accidental_spelling('flats')
     staff = Staff([Note(n, (1, 8)) for n in range(12)])
@@ -83,7 +83,7 @@ def test_configurationtools_AbjadConfiguration_set_default_accidental_spelling_0
     abjad_configuration.set_default_accidental_spelling('mixed')
 
 
-def test_configurationtools_AbjadConfiguration_set_default_accidental_spelling_04():
+def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_04():
     r'''Revert back to default mixed spelling.
     '''
 

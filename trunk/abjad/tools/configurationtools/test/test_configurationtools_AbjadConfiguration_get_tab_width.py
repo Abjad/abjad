@@ -3,5 +3,5 @@ from abjad import *
 from abjad.tools import configurationtools
 
 
-def test_configurationtools_AbjadConfiguration_get_tab_width_01():
-    assert configurationtools.AbjadConfiguration.get_tab_width() == 4
+def test_systemtools_AbjadConfiguration_get_tab_width_01():
+    assert systemtools.AbjadConfiguration.get_tab_width() == 4
