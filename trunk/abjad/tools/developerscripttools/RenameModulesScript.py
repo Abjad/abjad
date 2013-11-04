@@ -207,6 +207,8 @@ class RenameModulesScript(DeveloperScript):
             old_codebase)
         old_test_path = os.path.join(
             old_tools_path, old_tools_package_name, 'test')
+        if not os.path.exists(old_test_path):
+            return
         new_tools_path = self._codebase_name_to_codebase_tools_path(
             new_codebase)
         new_test_path = os.path.join(
