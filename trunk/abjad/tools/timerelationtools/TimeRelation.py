@@ -140,7 +140,7 @@ class TimeRelation(AbjadObject):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Inialize new time relation with keyword arguments optionally changed:
+        r'''Initialize new time relation with keyword arguments optionally changed:
 
         ::
 
