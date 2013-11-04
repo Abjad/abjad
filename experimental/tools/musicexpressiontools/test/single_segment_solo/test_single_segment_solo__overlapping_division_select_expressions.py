@@ -16,7 +16,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_01():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -37,7 +37,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_02():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -58,7 +58,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_03():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -80,7 +80,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_04():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -100,7 +100,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_05():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -121,7 +121,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_06():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -141,7 +141,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_07():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -162,7 +162,7 @@ def test_single_segment_solo__overlapping_division_select_expressions_08():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -183,6 +183,6 @@ def test_single_segment_solo__overlapping_division_select_expressions_09():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

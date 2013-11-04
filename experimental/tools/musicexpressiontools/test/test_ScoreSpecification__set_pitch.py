@@ -17,7 +17,7 @@ def test_ScoreSpecification__set_pitch_01():
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -36,7 +36,7 @@ def test_ScoreSpecification__set_pitch_02():
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -56,7 +56,7 @@ def test_ScoreSpecification__set_pitch_03():
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -77,7 +77,7 @@ def test_ScoreSpecification__set_pitch_04():
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -99,7 +99,7 @@ def test_ScoreSpecification__set_pitch_05():
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -120,7 +120,7 @@ def test_ScoreSpecification__set_pitch_06():
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -141,7 +141,7 @@ def test_ScoreSpecification__set_pitch_07():
     leaves.set_pitch(library.example_pitches_1())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -162,7 +162,7 @@ def test_ScoreSpecification__set_pitch_08():
     score_specification.select_leaves('Voice 2')[:9].set_pitch(cursor_2)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -183,7 +183,7 @@ def test_ScoreSpecification__set_pitch_09():
     score_specification.select_leaves('Voice 1')[12:15].set_pitch(cursor)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -204,7 +204,7 @@ def test_ScoreSpecification__set_pitch_10():
     score_specification.select_leaves('Voice 2')[-9:].set_pitch(cursor_2)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -225,7 +225,7 @@ def test_ScoreSpecification__set_pitch_11():
     score_specification.select_leaves('Voice 2')[-9:].set_pitch(cursor_2)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -244,7 +244,7 @@ def test_ScoreSpecification__set_pitch_12():
     leaves.set_pitch(library.example_pitches_1(reverse=True))
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -263,7 +263,7 @@ def test_ScoreSpecification__set_pitch_13():
     leaves.set_pitch(library.example_pitches_1(), node_count=4, level=-1)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -282,7 +282,7 @@ def test_ScoreSpecification__set_pitch_14():
     leaves.set_pitch(library.example_pitches_1(position=(2, 0)), node_count=4, level=-1)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -301,7 +301,7 @@ def test_ScoreSpecification__set_pitch_15():
     leaves.set_pitch(library.example_pitches_1(), node_count=2, level=-2)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -320,6 +320,6 @@ def test_ScoreSpecification__set_pitch_16():
     leaves.set_pitch(library.example_pitches_1(position=(2, )), node_count=2, level=-2)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

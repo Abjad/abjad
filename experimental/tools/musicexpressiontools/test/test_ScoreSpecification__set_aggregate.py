@@ -16,7 +16,7 @@ def test_ScoreSpecification__set_aggregate_01():
     score_specification.select_leaves('Voice 1').set_aggregate(library.example_aggregates[0])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -35,6 +35,6 @@ def test_ScoreSpecification__set_aggregate_02():
     score_specification.select_leaves('Voice 1').set_aggregate(library.example_aggregates[1])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

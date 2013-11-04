@@ -16,6 +16,6 @@ def test_MeasureSelectExpression__select_leaves_01():
     measures = red_segment.select_measures('Voice 1')[1:3].select_leaves('Voice 1').set_spanner(slur)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

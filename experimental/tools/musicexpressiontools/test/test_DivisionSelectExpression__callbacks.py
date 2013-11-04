@@ -17,7 +17,7 @@ def test_DivisionSelectExpression__callbacks_01():
     divisions.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -38,7 +38,7 @@ def test_DivisionSelectExpression__callbacks_02():
     right.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -59,7 +59,7 @@ def test_DivisionSelectExpression__callbacks_03():
     right.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -80,7 +80,7 @@ def test_DivisionSelectExpression__callbacks_04():
     blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -101,7 +101,7 @@ def test_DivisionSelectExpression__callbacks_05():
     blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -122,7 +122,7 @@ def test_DivisionSelectExpression__callbacks_06():
     blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -143,7 +143,7 @@ def test_DivisionSelectExpression__callbacks_07():
     blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -165,6 +165,6 @@ def test_DivisionSelectExpression__callbacks_08():
     blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

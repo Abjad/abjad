@@ -19,7 +19,7 @@ def test_ScoreSpecification__set_pitch_class_transform_01():
     right.set_pitch_class_transform('T1')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -41,7 +41,7 @@ def test_ScoreSpecification__set_pitch_class_transform_02():
     right.set_pitch_class_transform('T0')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -63,7 +63,7 @@ def test_ScoreSpecification__set_pitch_class_transform_03():
     right.set_pitch_class_transform('I')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -85,7 +85,7 @@ def test_ScoreSpecification__set_pitch_class_transform_04():
     right.set_pitch_class_transform('T1I')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -107,7 +107,7 @@ def test_ScoreSpecification__set_pitch_class_transform_05():
     right.set_pitch_class_transform('IT1')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -129,7 +129,7 @@ def test_ScoreSpecification__set_pitch_class_transform_06():
     right.set_pitch_class_transform('M7')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -151,7 +151,7 @@ def test_ScoreSpecification__set_pitch_class_transform_07():
     right.set_pitch_class_transform('II')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -173,6 +173,6 @@ def test_ScoreSpecification__set_pitch_class_transform_08():
     right.set_pitch_class_transform('T3T1')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

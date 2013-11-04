@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_beats_01():
     blue_segment.set_divisions(blue_beats)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -42,7 +42,7 @@ def test_SegmentSpecification__select_beats_02():
     blue_segment.set_divisions(red_beats)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -63,7 +63,7 @@ def test_SegmentSpecification__select_beats_03():
     blue_segment.set_divisions(blue_beats)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -87,7 +87,7 @@ def test_SegmentSpecification__select_beats_04():
     beat.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -111,7 +111,7 @@ def test_SegmentSpecification__select_beats_05():
     beat.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -133,7 +133,7 @@ def test_SegmentSpecification__select_beats_06():
     beats.select_leaves('Voice 1').set_leaf_color('red')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -156,6 +156,6 @@ def test_SegmentSpecification__select_beats_07():
     beats.select_leaves('Voice 1').set_leaf_color('red')
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

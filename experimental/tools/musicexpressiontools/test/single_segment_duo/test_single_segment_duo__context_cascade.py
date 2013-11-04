@@ -15,6 +15,6 @@ def test_single_segment_duo__context_cascade_01():
     red_segment.set_rhythm(library.note_tokens, contexts=['Voice 2'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

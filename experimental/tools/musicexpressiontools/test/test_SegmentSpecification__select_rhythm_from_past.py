@@ -20,7 +20,7 @@ def test_SegmentSpecification__select_rhythm_from_past_01():
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -46,7 +46,7 @@ def test_SegmentSpecification__select_rhythm_from_past_02():
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -70,7 +70,7 @@ def test_SegmentSpecification__select_rhythm_from_past_03():
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -94,7 +94,7 @@ def test_SegmentSpecification__select_rhythm_from_past_04():
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -119,7 +119,7 @@ def test_SegmentSpecification__select_rhythm_from_past_05():
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -143,7 +143,7 @@ def test_SegmentSpecification__select_rhythm_from_past_06():
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -166,7 +166,7 @@ def test_SegmentSpecification__select_rhythm_from_past_07():
     blue_segment.set_rhythm(red_voice_1_rhythm.rotate(8), contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -191,7 +191,7 @@ def test_SegmentSpecification__select_rhythm_from_past_08():
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -217,6 +217,6 @@ def test_SegmentSpecification__select_rhythm_from_past_09():
     blue_segment.set_rhythm(red_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

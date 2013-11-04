@@ -16,6 +16,6 @@ def test_SegmentSpecification__set_time_signatures_corner_cases_01():
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)

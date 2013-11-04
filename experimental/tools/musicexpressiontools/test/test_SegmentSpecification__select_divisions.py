@@ -19,7 +19,7 @@ def test_SegmentSpecification__select_divisions_01():
     divisions_that_start_during_blue.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -39,7 +39,7 @@ def test_SegmentSpecification__select_divisions_02():
     blue_segment.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -58,7 +58,7 @@ def test_SegmentSpecification__select_divisions_03():
     antepenultimate_division.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -76,7 +76,7 @@ def test_SegmentSpecification__select_divisions_04():
     red_segment.select_divisions('Voice 1')[2].timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -94,7 +94,7 @@ def test_SegmentSpecification__select_divisions_05():
     red_segment.select_divisions('Voice 1')[-2].timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -112,7 +112,7 @@ def test_SegmentSpecification__select_divisions_06():
     red_segment.select_divisions('Voice 1')[0].timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -130,7 +130,7 @@ def test_SegmentSpecification__select_divisions_07():
     red_segment.select_divisions('Voice 1')[:].timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -149,7 +149,7 @@ def test_SegmentSpecification__select_divisions_08():
     divisions.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
 
@@ -168,6 +168,6 @@ def test_SegmentSpecification__select_divisions_09():
     divisions.timespan.select_leaves('Voice 1').set_dynamic_handler(library.hairpins)
     score = score_specification.interpret()
 
-    current_function_name = introspectiontools.get_current_function_name()
+    current_function_name = testtools.get_current_function_name()
     testtools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == testtools.read_test_output(__file__, current_function_name)
