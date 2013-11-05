@@ -9,5 +9,5 @@ class_crawler = documentationtools.ClassCrawler(
 all_classes = class_crawler()
 
 @pytest.mark.parametrize('klass', all_classes)
-def test_eval(klass): 
+def test_repr_01(klass): 
     assert '__repr__' in dir(klass)
