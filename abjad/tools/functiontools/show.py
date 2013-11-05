@@ -8,7 +8,7 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
     ..  container:: example
 
         **Example 1.** Show a note:
-            
+
         ::
 
             >>> note = Note("c'4")
@@ -22,16 +22,16 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
         ::
 
             >>> staff = Staff(Note("c'4") * 200)
-            >>> show(note, return_timing=True) # doctest: +SKIP
-            (0, 3)
+            >>> show(staff, return_timing=True) # doctest: +SKIP
+            (0, 1)
 
     Wraps `expr` in a LilyPond file with settings and overrides suitable
     for the Abjad reference manual When `docs` is true.
 
-    Abjad writes LilyPond input files to the ``~/.abjad/output`` 
+    Abjad writes LilyPond input files to the ``~/.abjad/output``
     directory by default.
 
-    You may change this by setting the ``abjad_output`` variable in 
+    You may change this by setting the ``abjad_output`` variable in
     the ``config.py`` file.
 
     Returns none or timing tuple.
