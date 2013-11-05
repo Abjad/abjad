@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py
+import pytest
 
 
 def test_scoretools_replace_contents_of_measures_in_expr_01():
@@ -153,7 +153,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_03():
     note = Note("c'4")
     notes = [Note("c'8"), Note("d'8")]
 
-    assert py.test.raises(MissingMeasureError, 'scoretools.replace_contents_of_measures_in_expr(note, notes)')
+    assert pytest.raises(MissingMeasureError, 'scoretools.replace_contents_of_measures_in_expr(note, notes)')
 
 
 def test_scoretools_replace_contents_of_measures_in_expr_04():
@@ -163,7 +163,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_04():
     staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16"), Note("g'16"), Note("a'16")]
 
-    assert py.test.raises(StopIteration,
+    assert pytest.raises(StopIteration,
         'scoretools.replace_contents_of_measures_in_expr(staff, notes)')
 
 

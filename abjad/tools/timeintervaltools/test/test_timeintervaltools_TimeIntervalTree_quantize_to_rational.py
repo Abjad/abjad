@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.timeintervaltools import *
-import py.test
+import pytest
 
 
 def test_timeintervaltools_TimeIntervalTree_quantize_to_rational_01():
@@ -48,7 +48,7 @@ def test_timeintervaltools_TimeIntervalTree_quantize_to_rational_04():
         TimeInterval(Fraction(1, 4), Fraction(7, 8)),
         TimeInterval(Fraction(1, 3), Fraction(5, 3))
     ])
-    py.test.raises(AssertionError, "result = tree.quantize_to_rational(0)")
+    pytest.raises(AssertionError, "result = tree.quantize_to_rational(0)")
 
 
 def test_timeintervaltools_TimeIntervalTree_quantize_to_rational_05():

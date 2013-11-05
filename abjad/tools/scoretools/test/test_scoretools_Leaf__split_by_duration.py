@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py
+import pytest
 
 
 def test_scoretools_Leaf__split_by_duration_01():

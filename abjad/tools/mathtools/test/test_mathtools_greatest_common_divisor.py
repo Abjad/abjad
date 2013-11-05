@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import mathtools
-import py
+import pytest
 
 
 def test_mathtools_greatest_common_divisor_01():
@@ -20,4 +20,4 @@ def test_mathtools_greatest_common_divisor_02():
     r'''Raise exception on noninteger input.
     '''
 
-    assert py.test.raises(TypeError, "mathtools.greatest_common_divisor('foo')")
+    assert pytest.raises(TypeError, "mathtools.greatest_common_divisor('foo')")

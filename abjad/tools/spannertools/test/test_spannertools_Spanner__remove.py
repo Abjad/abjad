@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_spannertools_Spanner__remove_01():
@@ -118,4 +118,4 @@ def test_spannertools_Spanner__remove_03():
     spanner = MockSpanner()
     attach(spanner, Note("c'4"))
 
-    assert py.test.raises(Exception, 'spanner._remove(note)')
+    assert pytest.raises(Exception, 'spanner._remove(note)')

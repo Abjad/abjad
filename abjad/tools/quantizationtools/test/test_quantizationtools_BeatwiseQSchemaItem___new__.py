@@ -2,7 +2,7 @@
 from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import quantizationtools
-import py.test
+import pytest
 
 
 def test_quantizationtools_BeatwiseQSchemaItem___new___01():
@@ -51,4 +51,4 @@ def test_quantizationtools_BeatwiseQSchemaItem___new___04():
 def test_quantizationtools_BeatwiseQSchemaItem___new___05():
 
     tempo = marktools.TempoMark('lento')
-    py.test.raises('item = quantizationtools.BeatwiseQSchemaItem(tempo=tempo)')
+    pytest.raises('item = quantizationtools.BeatwiseQSchemaItem(tempo=tempo)')

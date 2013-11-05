@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Note_written_pitch_indication_is_nonsemantic_01():
@@ -23,4 +23,4 @@ def test_scoretools_Note_written_pitch_indication_is_nonsemantic_03():
 
     note = Note("c'4")
 
-    assert py.test.raises(TypeError, "note.written_pitch_indication_is_nonsemantic = 'foo'")
+    assert pytest.raises(TypeError, "note.written_pitch_indication_is_nonsemantic = 'foo'")

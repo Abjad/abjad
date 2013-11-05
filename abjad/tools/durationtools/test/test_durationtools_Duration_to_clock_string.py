@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad.tools import durationtools
 from abjad import *
 
@@ -26,7 +26,7 @@ def test_durationtools_Duration_to_clock_string_02():
 
 def test_durationtools_Duration_to_clock_string_03():
 
-    assert py.test.raises(ValueError, 'Duration(-1.5).to_clock_string()')
+    assert pytest.raises(ValueError, 'Duration(-1.5).to_clock_string()')
 
 
 def test_durationtools_Duration_to_clock_string_04():

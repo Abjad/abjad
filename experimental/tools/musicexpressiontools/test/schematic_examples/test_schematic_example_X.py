@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from experimental import *
 
 
@@ -129,7 +129,7 @@ def test_schematic_example_X_03():
     assert format(score) == testtools.read_test_output(__file__, current_function_name)
 
 
-@py.test.skip('FIX: Failing due to recent changes to tuplet formatting.')
+@pytest.skip('FIX: Failing due to recent changes to tuplet formatting.')
 def test_schematic_example_X_04():
     r'''Schematic example X4.
     Quartet in two segments.

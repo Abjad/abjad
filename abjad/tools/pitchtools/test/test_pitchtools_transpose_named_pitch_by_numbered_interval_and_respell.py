@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_transpose_named_pitch_by_numbered_interval_and_respell_01():
@@ -17,7 +17,7 @@ def test_pitchtools_transpose_named_pitch_by_numbered_interval_and_respell_01():
     assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 3.5) == pitchtools.NamedPitch('dtqs', 4)
     assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 4) == pitchtools.NamedPitch('dss', 4)
 
-    assert py.test.raises(
+    assert pytest.raises(
         KeyError, 'pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 4.5)')
 
 

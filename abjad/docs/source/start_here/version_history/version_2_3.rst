@@ -35,7 +35,7 @@ The same type of functions are likewise implemented for the following context ma
 
 * Added public ``parent`` attribute to all components. You can now say ``note.parent``. The attribute is read-only.
 * Added ``cfgtools.list_package_dependency_version()``.
-* Added ``py.test`` and ``Sphinx`` dependencies to the Abjad package.
+* Added ``pytest`` and ``Sphinx`` dependencies to the Abjad package.
 * Added LilyPond command mark chapter to reference manual
 
 * Renamed ``cfgtools`` to ``configurationtools``.

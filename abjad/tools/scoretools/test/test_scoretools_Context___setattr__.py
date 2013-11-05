@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.scoretools.Context import Context
-import py.test
+import pytest
 
 
 def test_scoretools_Context___setattr___01():
@@ -10,4 +10,4 @@ def test_scoretools_Context___setattr___01():
 
     context = Context([])
 
-    assert py.test.raises(AttributeError, "context.foo = 'bar'")
+    assert pytest.raises(AttributeError, "context.foo = 'bar'")

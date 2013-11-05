@@ -7,7 +7,7 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class PyTestScript(DirectoryScript):
-    r'''Run `py.test` on various Abjad paths:
+    r'''Run `pytest` on various Abjad paths:
 
     ..  shell::
 
@@ -32,7 +32,7 @@ class PyTestScript(DirectoryScript):
 
     @property
     def short_description(self):
-        return 'Run "py.test" on various Abjad paths.'
+        return 'Run "pytest" on various Abjad paths.'
 
     @property
     def version(self):
@@ -72,7 +72,7 @@ class PyTestScript(DirectoryScript):
         parser.add_argument('-p', '--parallel',
             action='store_true',
             dest='parallel',
-            help='run py.test with multiprocessing',
+            help='run pytest with multiprocessing',
             )
 
         parser.add_argument('-r', '--report',

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_01():

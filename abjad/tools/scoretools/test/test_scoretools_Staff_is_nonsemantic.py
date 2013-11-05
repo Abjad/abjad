@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Staff_is_nonsemantic_01():
@@ -21,4 +21,4 @@ def test_scoretools_Staff_is_nonsemantic_03():
 
     voice = Staff([])
 
-    assert py.test.raises(TypeError, "voice.is_nonsemantic = 'foo'")
+    assert pytest.raises(TypeError, "voice.is_nonsemantic = 'foo'")

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from py.test import raises
+from pytest import raises
 
 
 def test_scoretools_Staff___setitem___01():

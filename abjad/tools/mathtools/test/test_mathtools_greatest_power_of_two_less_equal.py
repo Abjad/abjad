@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import mathtools
-import py.test
+import pytest
 
 
 def test_mathtools_greatest_power_of_two_less_equal_01():
@@ -26,11 +26,11 @@ def test_mathtools_greatest_power_of_two_less_equal_02():
     r'''Raise TypeError on nonnumeric n.
         Raise ValueError on nonpositive n.'''
 
-    assert py.test.raises(
+    assert pytest.raises(
         TypeError, "mathtools.greatest_power_of_two_less_equal('foo')")
-    assert py.test.raises(
+    assert pytest.raises(
         ValueError, 'mathtools.greatest_power_of_two_less_equal(0)')
-    assert py.test.raises(
+    assert pytest.raises(
         ValueError, 'mathtools.greatest_power_of_two_less_equal(-1)')
 
 

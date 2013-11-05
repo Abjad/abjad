@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-import py.test
+import pytest
 
 
 def test_timeintervaltools_TimeInterval_scale_to_rational_01():
@@ -41,7 +41,7 @@ def test_timeintervaltools_TimeInterval_scale_to_rational_04():
     '''
 
     i1 = TimeInterval(3, 23)
-    py.test.raises(AssertionError,
+    pytest.raises(AssertionError,
         'i1.scale_to_rational(0)')
 
 
@@ -50,5 +50,5 @@ def test_timeintervaltools_TimeInterval_scale_to_rational_05():
     '''
 
     i1 = TimeInterval(3, 23)
-    py.test.raises(AssertionError,
+    pytest.raises(AssertionError,
         'i2 = i1.scale_to_rational(-1)')

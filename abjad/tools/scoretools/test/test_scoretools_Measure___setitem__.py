@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py
+import pytest
 
 
 def test_scoretools_Measure___setitem___01():
@@ -9,7 +9,7 @@ def test_scoretools_Measure___setitem___01():
     measure[:2] = 'r8'
 
     assert measure.is_underfull
-    assert py.test.raises(Exception, 'f(measure)')
+    assert pytest.raises(Exception, 'f(measure)')
 
 
 def test_scoretools_Measure___setitem___02():

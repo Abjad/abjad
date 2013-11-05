@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -44,7 +44,7 @@ def test_scoretools_FixedDurationTuplet_trim_02():
 def test_scoretools_FixedDurationTuplet_trim_03():
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
-    assert py.test.raises(Exception, 'tuplet.trim(99)')
+    assert pytest.raises(Exception, 'tuplet.trim(99)')
 
 
 def test_scoretools_FixedDurationTuplet_trim_04():
@@ -112,4 +112,4 @@ def test_scoretools_FixedDurationTuplet_trim_07():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(1, 2)
 
-    py.test.raises(Exception, 'tuplet.trim(0, 99)')
+    pytest.raises(Exception, 'tuplet.trim(0, 99)')

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.timeintervaltools import *
-import py.test
+import pytest
 
 
 def test_timeintervaltools_concatenate_trees_01():

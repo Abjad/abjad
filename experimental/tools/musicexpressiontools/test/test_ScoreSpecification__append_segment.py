@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import *
 from experimental import *
-import py
+import pytest
 
 
 def test_ScoreSpecification__append_segment_01():
@@ -27,4 +27,4 @@ def test_ScoreSpecification__append_segment_02():
 
     score_specification.append_segment(name='red')
 
-    py.test.raises(Exception, "score_specification.append_segment(name='red')")
+    pytest.raises(Exception, "score_specification.append_segment(name='red')")

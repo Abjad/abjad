@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
-import py
+import pytest
 from experimental import *
 
 
 def test_StylesheetFileWrangler_interactively_remove_assets_01():
-    py.test.skip('FIXME: user asset library stylesheets should show up here.')
+    pytest.skip('FIXME: user asset library stylesheets should show up here.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     configuration = score_manager.configuration

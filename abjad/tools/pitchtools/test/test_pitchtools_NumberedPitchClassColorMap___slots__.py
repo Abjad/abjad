@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_NumberedPitchClassColorMap___slots___01():
@@ -12,4 +12,4 @@ def test_pitchtools_NumberedPitchClassColorMap___slots___01():
     numbered_pitch_class_color_map = pitchtools.NumberedPitchClassColorMap(
         pitches, colors)
 
-    assert py.test.raises(AttributeError, "numbered_pitch_class_color_map.foo = 'bar'")
+    assert pytest.raises(AttributeError, "numbered_pitch_class_color_map.foo = 'bar'")

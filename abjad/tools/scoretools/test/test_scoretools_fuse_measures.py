@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
-@py.test.skip()
+@pytest.skip()
 def test_scoretools_fuse_measures_01():
     r'''Fuse unicorporated measures carrying
     time signatures with power-of-two denominators.
@@ -314,7 +314,7 @@ def test_scoretools_fuse_measures_08():
         '''
         )
 
-    assert py.test.raises(
+    assert pytest.raises(
         AssertionError, 
         'scoretools.fuse_measures([voice[0][1], voice[1][0]])',
         )

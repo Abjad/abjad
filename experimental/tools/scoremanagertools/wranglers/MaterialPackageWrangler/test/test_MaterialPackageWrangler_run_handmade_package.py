@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_MaterialPackageWrangler_run_handmade_package_01():
@@ -285,7 +285,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     r'''Make handmade package. Copy canned material definition module.
     Make output data. Make PDF. Remove package.
     '''
-    py.test.skip('skip this one during day-to-day development and before build only.')
+    pytest.skip('skip this one during day-to-day development and before build only.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')

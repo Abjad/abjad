@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 from abjad.tools.wellformednesstools import IntermarkedHairpinCheck
 from abjad.tools.wellformednesstools import ShortHairpinCheck

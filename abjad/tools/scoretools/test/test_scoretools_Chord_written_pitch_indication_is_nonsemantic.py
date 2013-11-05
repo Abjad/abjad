@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Chord_written_pitch_indication_is_nonsemantic_01():
@@ -24,4 +24,4 @@ def test_scoretools_Chord_written_pitch_indication_is_nonsemantic_03():
     chord = Chord("<c' e' g'>4")
 
     statement = "chord.written_pitch_indication_is_nonsemantic = 'foo'"
-    assert py.test.raises(TypeError, statement)
+    assert pytest.raises(TypeError, statement)

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import sievetools
 from abjad.tools.sievetools.ResidueClass import ResidueClass
-import py.test
+import pytest
 
 
 RC = ResidueClass
@@ -10,16 +10,16 @@ def test_sievetools_ResidueClass_01():
     r'''modulo must be positive.
     '''
 
-    py.test.raises(ValueError, 't = RC(0, 1)')
+    pytest.raises(ValueError, 't = RC(0, 1)')
 
 
 def test_sievetools_ResidueClass_02():
     r'''residue must be non-negative and < modulo.
     '''
 
-    py.test.raises(ValueError, 't = RC(2, 13)')
-    py.test.raises(ValueError, 't = RC(2, 2)')
-    py.test.raises(ValueError, 't = RC(2, -1)')
+    pytest.raises(ValueError, 't = RC(2, 13)')
+    pytest.raises(ValueError, 't = RC(2, 2)')
+    pytest.raises(ValueError, 't = RC(2, -1)')
 
 
 def test_sievetools_ResidueClass_03():
@@ -78,8 +78,8 @@ def test_sievetools_ResidueClass_08():
 
     rc = RC(1, 0)
 
-    py.test.raises(Exception, 'rc = rc. get_congruent_bases()')
-    py.test.raises(Exception, 'rc = rc. get_boolean_train()')
+    pytest.raises(Exception, 'rc = rc. get_congruent_bases()')
+    pytest.raises(Exception, 'rc = rc. get_boolean_train()')
 
     assert isinstance(rc.get_congruent_bases(12), list)
     assert isinstance(rc.get_boolean_train(12), list)

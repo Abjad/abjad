@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import os
 import shutil
-import py.test
+import pytest
 from abjad.tools import *
 
 
-@py.test.skip('Test runs slowly.')
+@pytest.skip('Test runs slowly.')
 def test_abjadbooktools_AbjadBookProcessor___call___01():
 
     if __name__ == '__main__':

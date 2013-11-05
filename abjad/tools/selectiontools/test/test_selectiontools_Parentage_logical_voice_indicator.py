@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_selectiontools_Parentage_logical_voice_indicator_01():
@@ -188,7 +188,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_06():
     container[1][0].name = 'voicefoo'
     beam = spannertools.BeamSpanner()
     statement = 'attach(beam, container.select_leaves())'
-    assert py.test.raises(AssertionError, statement)
+    assert pytest.raises(AssertionError, statement)
     leaves = container.select_leaves(allow_discontiguous_leaves=True)
     beam = spannertools.BeamSpanner()
     attach(beam, leaves[:2])

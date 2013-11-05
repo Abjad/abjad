@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_marktools_Annotation___setattr___01():
@@ -9,4 +9,4 @@ def test_marktools_Annotation___setattr___01():
 
     annotation = marktools.Annotation('foo')
 
-    assert py.test.raises(AttributeError, "annotation.foo = 'bar'")
+    assert pytest.raises(AttributeError, "annotation.foo = 'bar'")

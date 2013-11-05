@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_marktools_Mark___setattr___01():
@@ -9,4 +9,4 @@ def test_marktools_Mark___setattr___01():
 
     mark = marktools.Mark()
 
-    assert py.test.raises(AttributeError, "mark.foo = 'bar'")
+    assert pytest.raises(AttributeError, "mark.foo = 'bar'")

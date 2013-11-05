@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_NamedPitch___init___01():
@@ -103,4 +103,4 @@ def test_pitchtools_NamedPitch___init___09():
     r'''Empty pitches now allowed.
     '''
 
-    assert py.test.raises(Exception, 'NamedPitch()')
+    assert pytest.raises(Exception, 'NamedPitch()')

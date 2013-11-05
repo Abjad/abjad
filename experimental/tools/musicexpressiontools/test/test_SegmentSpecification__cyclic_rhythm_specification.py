@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_SegmentSpecification__cyclic_rhythm_specification_01():
@@ -14,4 +14,4 @@ def test_SegmentSpecification__cyclic_rhythm_specification_01():
     blue_rhythm = blue_segment.select_leaves('Voice 1')
     red_segment.set_rhythm(blue_rhythm)
 
-    assert py.test.raises(Exception, 'score_specification.interpret()')
+    assert pytest.raises(Exception, 'score_specification.interpret()')

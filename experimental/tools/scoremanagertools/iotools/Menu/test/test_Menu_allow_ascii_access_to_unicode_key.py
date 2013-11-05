@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_Menu_allow_ascii_access_to_unicode_key_01():
-    py.test.skip('fix eventually with new score name or something.')
+    pytest.skip('fix eventually with new score name or something.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='Étude q')

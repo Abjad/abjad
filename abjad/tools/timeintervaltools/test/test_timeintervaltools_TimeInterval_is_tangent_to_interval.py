@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.timeintervaltools import *
-import py.test
+import pytest
 
 
 def test_timeintervaltools_TimeInterval_is_tangent_to_interval_01():

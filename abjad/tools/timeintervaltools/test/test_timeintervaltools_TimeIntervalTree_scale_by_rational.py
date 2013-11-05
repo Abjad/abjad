@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_timeintervaltools_TimeIntervalTree_scale_by_rational_01():
@@ -60,7 +60,7 @@ def test_timeintervaltools_TimeIntervalTree_scale_by_rational_04():
     b = timeintervaltools.TimeInterval(2, durationtools.Multiplier(7, 3))
     tree = timeintervaltools.TimeIntervalTree([a, b])
     rational = -1
-    py.test.raises(AssertionError,
+    pytest.raises(AssertionError,
         "result = tree.scale_by_rational(rational)")
 
 
@@ -69,5 +69,5 @@ def test_timeintervaltools_TimeIntervalTree_scale_by_rational_05():
     b = timeintervaltools.TimeInterval(2, durationtools.Multiplier(7, 3))
     tree = timeintervaltools.TimeIntervalTree([a, b])
     rational = 0
-    py.test.raises(AssertionError,
+    pytest.raises(AssertionError,
         "result = tree.scale_by_rational(rational)")

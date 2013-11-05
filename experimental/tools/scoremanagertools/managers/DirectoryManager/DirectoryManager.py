@@ -159,7 +159,7 @@ class DirectoryManager(FilesystemAssetManager):
 
         Returns none.
         '''
-        command = 'py.test {}'.format(self.filesystem_path)
+        command = 'pytest {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
@@ -172,5 +172,5 @@ class DirectoryManager(FilesystemAssetManager):
     user_input_to_action = FilesystemAssetManager.user_input_to_action.copy()
     user_input_to_action.update({
         'ls': interactively_list_directory,
-        'py.test': interactively_run_tests,
+        'pytest': interactively_run_tests,
         })

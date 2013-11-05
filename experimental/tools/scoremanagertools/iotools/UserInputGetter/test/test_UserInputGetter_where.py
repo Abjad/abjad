@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
-py.test.skip('unskip after where automatically toggles where-tracking.')
+import pytest
+pytest.skip('unskip after where automatically toggles where-tracking.')
 
 
 def test_UserInputGetter_where_01():

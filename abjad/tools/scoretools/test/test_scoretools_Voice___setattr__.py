@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Voice___setattr___01():
@@ -9,4 +9,4 @@ def test_scoretools_Voice___setattr___01():
 
     voice = Voice([])
 
-    assert py.test.raises(AttributeError, "voice.foo = 'bar'")
+    assert pytest.raises(AttributeError, "voice.foo = 'bar'")

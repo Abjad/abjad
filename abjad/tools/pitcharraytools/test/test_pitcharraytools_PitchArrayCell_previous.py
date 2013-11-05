@@ -2,7 +2,7 @@
 from abjad import *
 from abjad.tools import pitcharraytools
 from abjad.tools.pitcharraytools import PitchArrayCell
-import py.test
+import pytest
 
 
 def test_pitcharraytools_PitchArrayCell_previous_01():
@@ -26,11 +26,11 @@ def test_pitcharraytools_PitchArrayCell_previous_02():
     [      ] [] []
     '''
 
-    assert py.test.raises(IndexError, 'array[0][0].prev')
+    assert pytest.raises(IndexError, 'array[0][0].prev')
 
 
 def test_pitcharraytools_PitchArrayCell_previous_03():
 
     cell = PitchArrayCell([pitchtools.NamedPitch(1)])
 
-    assert py.test.raises(IndexError, 'cell.prev')
+    assert pytest.raises(IndexError, 'cell.prev')

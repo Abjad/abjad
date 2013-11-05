@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
@@ -17,10 +17,10 @@ def test_lilypondparsertools_LilyPondParser__spanners__GlissandoSpanner_01():
 def test_lilypondparsertools_LilyPondParser__spanners__GlissandoSpanner_02():
 
     string = r'{ c \glissando }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__GlissandoSpanner_03():
 
     string = r'{ \glissando c }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')

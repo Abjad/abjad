@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
@@ -36,7 +36,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     '''
 
     string = r'''{ c \startGroup \stopGroup c c c }'''
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_03():
@@ -44,7 +44,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     '''
 
     string = r'''{ c \startGroup c \stopGroup \startGroup c c \stopGroup }'''
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_04():
@@ -52,7 +52,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     '''
 
     string = r'''{ c \startGroup c c c }'''
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_05():
@@ -60,4 +60,4 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     '''
 
     string = r'''{ c c c c \stopGroup }'''
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')

@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-import py.test
+import pytest
 
 
 def test_timeintervaltools_TimeInterval___init___01():
     r'''High offset must be greater than start_offset offset.
     '''
-    py.test.raises(AssertionError,
+    pytest.raises(AssertionError,
         "i = TimeInterval(0, -10, 'this should fail.')")
 
 def test_timeintervaltools_TimeInterval___init___02():
     r'''TimeIntervals cannot be instantiated from floats.
     '''
-    py.test.raises(AssertionError,
+    pytest.raises(AssertionError,
         "i = TimeInterval(0.5, 2.3, 'this should fail.')")
 
 def test_timeintervaltools_TimeInterval___init___03():
@@ -36,7 +36,7 @@ def test_timeintervaltools_TimeInterval___init___05():
 def test_timeintervaltools_TimeInterval___init___06():
     r'''TimeIntervals must take a dictionary as their data argument.
     '''
-    py.test.raises(AssertionError,
+    pytest.raises(AssertionError,
         'i = TimeInterval(0, 10, "nope")')
 
 def test_timeintervaltools_TimeInterval___init___07():

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from experimental import *
 
 
@@ -37,7 +37,7 @@ def test_MaterialPackageManager_run_02():
 def test_MaterialPackageManager_run_03():
     r'''Score materials: quit, back, home, score & junk all work.
     '''
-    py.test.skip('TODO: add Red Example Score time signatures.')
+    pytest.skip('TODO: add Red Example Score time signatures.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='all red_example_score m 2 q')
@@ -59,7 +59,7 @@ def test_MaterialPackageManager_run_03():
 def test_MaterialPackageManager_run_04():
     r'''Score materials: breadcrumbs work.
     '''
-    py.test.skip('TODO: add Red Example Score time signatures.')
+    pytest.skip('TODO: add Red Example Score time signatures.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='all red_example_score m time_signatures q')

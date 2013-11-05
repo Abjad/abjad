@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from abjad import *
 from abjad.tools.durationtools import Duration
 from abjad.tools.mathtools import NonreducedFraction
@@ -7,7 +7,7 @@ from abjad.tools.mathtools import NonreducedFraction
 
 def test_durationtools_Duration__group_nonreduced_fractions_by_implied_prolation_01():
     string = 'Duation._group_nonreduced_fractions_by_implied_prolation([])'
-    assert py.test.raises(Exception, string)
+    assert pytest.raises(Exception, string)
 
 
 def test_durationtools_Duration__group_nonreduced_fractions_by_implied_prolation_02():

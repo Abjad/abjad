@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Chord_written_pitches_01():
@@ -12,8 +12,8 @@ def test_scoretools_Chord_written_pitches_01():
 
     assert isinstance(pitches, tuple)
     assert len(pitches) == 3
-    assert py.test.raises(Exception, 'pitches.pop()')
-    assert py.test.raises(Exception, 'pitches.remove(pitches[0])')
+    assert pytest.raises(Exception, 'pitches.pop()')
+    assert pytest.raises(Exception, 'pitches.remove(pitches[0])')
 
 
 def test_scoretools_Chord_written_pitches_02():

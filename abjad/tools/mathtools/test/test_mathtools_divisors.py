@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import mathtools
-import py.test
+import pytest
 
 
 def test_mathtools_divisors_01():
@@ -24,11 +24,11 @@ def test_mathtools_divisors_02():
     r'''Raise not implemented error on zero.
     '''
 
-    assert py.test.raises(NotImplementedError, 'mathtools.divisors(0)')
+    assert pytest.raises(NotImplementedError, 'mathtools.divisors(0)')
 
 
 def test_mathtools_divisors_03():
     r'''Raise exception on noninteger n.
     '''
 
-    assert py.test.raises(TypeError, 'mathtools.divisors(7.5)')
+    assert pytest.raises(TypeError, 'mathtools.divisors(7.5)')

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
-@py.test.skip()
+@pytest.skip()
 def test_scoretools_Measure___add___01():
     r'''Add outside-of-score measures.
     '''

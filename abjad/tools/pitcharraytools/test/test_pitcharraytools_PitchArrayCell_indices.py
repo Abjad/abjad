@@ -2,7 +2,7 @@
 from abjad import *
 from abjad.tools import pitcharraytools
 from abjad.tools.pitcharraytools import PitchArrayCell
-import py.test
+import pytest
 
 
 def test_pitcharraytools_PitchArrayCell_indices_01():
@@ -27,4 +27,4 @@ def test_pitcharraytools_PitchArrayCell_indices_02():
 
     cell = PitchArrayCell([pitchtools.NamedPitch(1)])
 
-    assert py.test.raises(IndexError, 'cell.indices')
+    assert pytest.raises(IndexError, 'cell.indices')

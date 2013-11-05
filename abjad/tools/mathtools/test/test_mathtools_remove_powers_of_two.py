@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import mathtools
-import py.test
+import pytest
 
 
 def test_mathtools_remove_powers_of_two_01():
@@ -23,5 +23,5 @@ def test_mathtools_remove_powers_of_two_02():
     r'''Raise TypeError on noninteger n.
         Raise ValueError on nonpositive n.'''
 
-    assert py.test.raises(TypeError, "mathtools.remove_powers_of_two('foo')")
-    assert py.test.raises(ValueError, 'mathtools.remove_powers_of_two(-1)')
+    assert pytest.raises(TypeError, "mathtools.remove_powers_of_two('foo')")
+    assert pytest.raises(ValueError, 'mathtools.remove_powers_of_two(-1)')

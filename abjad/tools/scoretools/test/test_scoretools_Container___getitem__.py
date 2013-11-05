@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -48,7 +48,7 @@ def test_scoretools_Container___getitem___04():
 
     voice = Voice("c'8 d'8 e'8 f'8")
 
-    assert py.test.raises(IndexError, 'voice[99]')
+    assert pytest.raises(IndexError, 'voice[99]')
 
 
 def test_scoretools_Container___getitem___05():
@@ -69,7 +69,7 @@ def test_scoretools_Container___getitem___06():
     template = scoretemplatetools.StringQuartetScoreTemplate()
     score = template()
 
-    assert py.test.raises(Exception, "score['Foo']")
+    assert pytest.raises(Exception, "score['Foo']")
 
 
 def test_scoretools_Container___getitem___07():
@@ -83,7 +83,7 @@ def test_scoretools_Container___getitem___07():
 
     score['Cello Staff'].append(Voice(name='First Violin Voice'))
 
-    assert py.test.raises(Exception, "score['First Violin Voice']")
+    assert pytest.raises(Exception, "score['First Violin Voice']")
 
     extra_first_violin_voice = score['Cello Staff'].pop()
 

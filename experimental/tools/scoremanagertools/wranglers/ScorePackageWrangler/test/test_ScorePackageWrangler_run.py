@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_ScorePackageWrangler_run_01():
     r'''Create score package. Remove score package.
     '''
-    py.test.skip('unskip after deciding about cache.')
+    pytest.skip('unskip after deciding about cache.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists('testscore')

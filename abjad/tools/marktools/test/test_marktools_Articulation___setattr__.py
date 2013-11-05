@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_marktools_Articulation___setattr___01():
@@ -9,4 +9,4 @@ def test_marktools_Articulation___setattr___01():
 
     articulation = marktools.Articulation('staccato')
 
-    assert py.test.raises(AttributeError, "articulation.foo = 'bar'")
+    assert pytest.raises(AttributeError, "articulation.foo = 'bar'")

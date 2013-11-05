@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -107,7 +107,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_03():
     container[1][0].name = 'voicefoo'
     beam = spannertools.BeamSpanner()
     statement = 'attach(beam, container.select_leaves())'
-    py.test.raises(AssertionError, statement)
+    pytest.raises(AssertionError, statement)
 
 
 def test_scoretools_Voice_lilypond_voice_resolution_04():

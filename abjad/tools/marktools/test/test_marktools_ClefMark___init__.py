@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_marktools_ClefMark___init___01():
@@ -14,4 +14,4 @@ def test_marktools_ClefMark___init___01():
 
 def test_marktools_ClefMark___init___02():
 
-    assert py.test.raises(TypeError, 'marktools.ClefMark(1)')
+    assert pytest.raises(TypeError, 'marktools.ClefMark(1)')

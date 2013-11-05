@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
@@ -65,7 +65,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_03():
     '''
 
     string = '{ c () c c c }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_04():
@@ -73,7 +73,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_04():
     '''
 
     string = '{ c ( c c c }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_05():
@@ -81,7 +81,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_05():
     '''
 
     string = '{ c c c c ) }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_06():
@@ -89,7 +89,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_06():
     '''
 
     string = '{ c ( c ( c ) c ) }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_07():

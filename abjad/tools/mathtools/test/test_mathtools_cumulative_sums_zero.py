@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import mathtools
-import py.test
+import pytest
 
 
 def test_mathtools_cumulative_sums_zero_01():
@@ -21,5 +21,5 @@ def test_mathtools_cumulative_sums_zero_01():
 #   r'''Raise TypeError when l is neither tuple nor list.
 #      Raise ValueError when l is empty.'''
 #
-#   assert py.test.raises(TypeError, "mathtools.cumulative_sums('foo')")
-#   assert py.test.raises(ValueError, 'mathtools.cumulative_sums([])')
+#   assert pytest.raises(TypeError, "mathtools.cumulative_sums('foo')")
+#   assert pytest.raises(ValueError, 'mathtools.cumulative_sums([])')

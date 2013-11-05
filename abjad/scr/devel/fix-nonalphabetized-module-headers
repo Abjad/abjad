@@ -19,7 +19,7 @@ def _main():
                             just_found_end_of_header = True
                         elif line.startswith('from') or line.startswith('import'):
                             header_lines.append(line)
-                        elif line == '\n' or line.startswith('py.test'):
+                        elif line == '\n' or line.startswith('pytest'):
                             just_found_end_of_header = True
                         else:
                             raise Exception(full_file_name)

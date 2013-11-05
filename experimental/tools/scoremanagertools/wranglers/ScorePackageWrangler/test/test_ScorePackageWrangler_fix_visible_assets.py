@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
-py.test.skip('skipping temporarily.')
+import pytest
+pytest.skip('skipping temporarily.')
 
 
 def test_ScorePackageWrangler_fix_visible_assets_01():

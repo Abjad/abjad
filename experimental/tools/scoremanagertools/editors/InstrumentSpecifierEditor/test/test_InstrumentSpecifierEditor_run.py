@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from experimental import *
 
 

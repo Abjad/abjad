@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Chord_get_note_head_01():
@@ -60,5 +60,5 @@ def test_scoretools_Chord_get_note_head_04():
 
     chord = Chord("<c' d' d'>4")
 
-    assert py.test.raises(MissingNoteHeadError, 'chord.get_note_head(9)')
-    assert py.test.raises(ExtraNoteHeadError, 'chord.get_note_head(2)')
+    assert pytest.raises(MissingNoteHeadError, 'chord.get_note_head(9)')
+    assert pytest.raises(ExtraNoteHeadError, 'chord.get_note_head(2)')

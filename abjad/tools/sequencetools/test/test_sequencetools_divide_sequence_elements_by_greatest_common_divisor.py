@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import sequencetools
-import py.test
+import pytest
 
 
 def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_01():
@@ -22,7 +22,7 @@ def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_02():
     r'''Raise exception on noninteger input.
     '''
 
-    assert py.test.raises(TypeError,
+    assert pytest.raises(TypeError,
         'sequencetools.divide_sequence_elements_by_greatest_common_divisor([2, 2, 3.5])')
 
 
@@ -30,5 +30,5 @@ def test_sequencetools_divide_sequence_elements_by_greatest_common_divisor_03():
     r'''Raises exception when zero in input.
     '''
 
-    assert py.test.raises(NotImplementedError,
+    assert pytest.raises(NotImplementedError,
         'sequencetools.divide_sequence_elements_by_greatest_common_divisor([0, 2, 2])')

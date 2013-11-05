@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import sequencetools
-import py.test
+import pytest
 
 
 def test_sequencetools_reverse_sequence_01():
@@ -26,4 +26,4 @@ def test_sequencetools_reverse_sequence_03():
     r'''Raise exception on nonsequence.
     '''
 
-    assert py.test.raises(TypeError, 'sequencetools.reverse_sequence(17)')
+    assert pytest.raises(TypeError, 'sequencetools.reverse_sequence(17)')

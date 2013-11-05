@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_datastructuretools_TreeContainer___getitem___01():
@@ -15,10 +15,10 @@ def test_datastructuretools_TreeContainer___getitem___01():
     assert container[1] is leaf_b
     assert container[2] is leaf_c
 
-    py.test.raises(Exception, 'container[3]')
+    pytest.raises(Exception, 'container[3]')
 
     assert container[-1] is leaf_c
     assert container[-2] is leaf_b
     assert container[-3] is leaf_a
 
-    py.test.raises(Exception, 'container[-4]')
+    pytest.raises(Exception, 'container[-4]')

@@ -21,21 +21,21 @@ automated regression battery is one that can be run automatically by some sort
 of driver with minimal manual intervention.
 
 Several different test drivers are now in use in the Python community.  Abjad
-uses `py.test <http://codespeak.net/py/dist/test/test.html>`_.  The ``py.test``
+uses `pytest <http://codespeak.net/py/dist/test/test.html>`_.  The ``pytest``
 distribution is not included in the Python standard library, so one of the
 first thing new contributors to Abjad should do is download and install
-``py.test``, and then run the existing battery.
+``pytest``, and then run the existing battery.
 
 
 Running the battery
 -------------------
 
 Change to the directory where you have Abjad installed.
-Then run ``py.test``:
+Then run ``pytest``:
 
 ..  code-block:: bash
 
-    abjad$ py.test
+    abjad$ pytest
     ============================= test session starts ==============================
     platform darwin -- Python 2.7.3 -- pytest-2.3.4
     collected 4361 items / 3 skipped 
@@ -65,14 +65,14 @@ Then run ``py.test``:
 
     =================== 4359 passed, 5 skipped in 147.13 seconds ===================
 
-Abjad 2.13 includes 4359 ``py.test`` tests.
+Abjad 2.13 includes 4359 ``pytest`` tests.
 
 
 Reading test output
 -------------------
 
-``py.test`` crawls the entire directory structure from which you call it,
-running tests in alphabetical order.  ``py.test`` prints the total number of
+``pytest`` crawls the entire directory structure from which you call it,
+running tests in alphabetical order.  ``pytest`` prints the total number of
 tests per file in square brackets and prints test results as a single ``.`` dot
 for success or else an ``F`` for failure.
 
@@ -91,11 +91,11 @@ test file or else update an existing test already present in the test file.
 Test files start with ``test_``
 -------------------------------
 
-When ``py.test`` first starts up it crawls the entire directory structure from
-which you call it prior to running a single test. As ``py.test`` executes this
+When ``pytest`` first starts up it crawls the entire directory structure from
+which you call it prior to running a single test. As ``pytest`` executes this
 preflight work, it looks for any files beginning or ending with the string
 ``test`` and then collects and alphabetizes these.  Only after making such a
-catalog of tests does ``py.test`` begin execution.  This collect-and-cache
+catalog of tests does ``pytest`` begin execution.  This collect-and-cache
 behavior leads to the important point about naming, below.
 
 
@@ -103,20 +103,20 @@ Avoiding name conflicts
 -----------------------
 
 Note that the names of **test functions** must be absolutely unique across the
-entire directory structure on which you call ``py.test``.  You must never share
+entire directory structure on which you call ``pytest``.  You must never share
 names between test functions.  For example, you must not have two tests named
 ``test_grob_handling_01()`` **even if both tests live in different test
 files**. That is, a test named ``test_grob_handling_01()`` living in the file
 ``test_accidental_grob_handling.py`` and a second test named
 ``test_grob_handling_01()`` living in the file
 ``test_notehead_grob_handling.py`` will conflict with the each other when
-``py.test`` runs. And, unfortunately, **py.test is silent about such
+``pytest`` runs. And, unfortunately, **pytest is silent about such
 conflicts when it runs**.
 
-That is, should you run ``py.test`` with the duplicate naming situation
-described here, what will happen is that ``py.test`` will correctly run and
-report results for the first such test it finds.  However, when ``py.test``
-encounters the second like-named test, ``py.test`` will incorrectly report
+That is, should you run ``pytest`` with the duplicate naming situation
+described here, what will happen is that ``pytest`` will correctly run and
+report results for the first such test it finds.  However, when ``pytest``
+encounters the second like-named test, ``pytest`` will incorrectly report
 cached results for the first test rather than the second.
 
 The take-away is to include some sort of namespacing indicators in every test
@@ -126,10 +126,10 @@ example given here fixes easily when the two tests rename to
 ``test_notehead_grob_handling_01()``.
 
 
-Updating ``py.test``
+Updating ``pytest``
 --------------------
 
-It is important periodically to update ``py.test``.
+It is important periodically to update ``pytest``.
 
 The usual command to do this is:
 

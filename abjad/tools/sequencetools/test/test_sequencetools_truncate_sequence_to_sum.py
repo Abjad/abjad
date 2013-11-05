@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_sequencetools_truncate_sequence_to_sum_01():
@@ -25,7 +25,7 @@ def test_sequencetools_truncate_sequence_to_sum_03():
     r'''Raise TypeError when l is not a list.
     '''
 
-    assert py.test.raises(TypeError, "sequencetools.truncate_sequence_to_sum('foo')")
+    assert pytest.raises(TypeError, "sequencetools.truncate_sequence_to_sum('foo')")
 
 
 def test_sequencetools_truncate_sequence_to_sum_04():
@@ -54,5 +54,5 @@ def test_sequencetools_truncate_sequence_to_sum_05():
     r'''Raise ValueError on negative total.
     '''
 
-    assert py.test.raises(ValueError,
+    assert pytest.raises(ValueError,
         'sequence_2 = sequencetools.truncate_sequence_to_sum([2, 2, 2], -1)')

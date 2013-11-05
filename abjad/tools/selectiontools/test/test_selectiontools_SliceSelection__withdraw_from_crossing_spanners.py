@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_selectiontools_SliceSelection__withdraw_from_crossing_spanners_01():

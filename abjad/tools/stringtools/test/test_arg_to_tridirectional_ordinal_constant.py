@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad.tools import stringtools
 
 
@@ -16,5 +16,5 @@ def test_arg_to_tridirectional_ordinal_constant_01():
     assert stringtools.arg_to_tridirectional_ordinal_constant(0) is Center
     assert stringtools.arg_to_tridirectional_ordinal_constant(-1) is Down
     assert stringtools.arg_to_tridirectional_ordinal_constant(None) is None
-    assert py.test.raises(ValueError,
+    assert pytest.raises(ValueError,
         "stringtools.arg_to_tridirectional_ordinal_constant('foo')")

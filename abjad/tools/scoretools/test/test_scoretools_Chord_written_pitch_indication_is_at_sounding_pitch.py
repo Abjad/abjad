@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Chord_written_pitch_indication_is_at_sounding_pitch_01():
@@ -23,4 +23,4 @@ def test_scoretools_Chord_written_pitch_indication_is_at_sounding_pitch_03():
     chord = Chord("<c' e' g'>4")
 
     statement = "chord.written_pitch_indication_is_at_sounding_pitch = 'foo'"
-    assert py.test.raises(Exception, statement)
+    assert pytest.raises(Exception, statement)

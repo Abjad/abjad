@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
@@ -77,7 +77,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_03():
         '''
         )
 
-    assert py.test.raises(Exception, "LilyPondParser()(format(target))")
+    assert pytest.raises(Exception, "LilyPondParser()(format(target))")
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_04():
@@ -100,13 +100,13 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_04():
         '''
         )
 
-    assert py.test.raises(Exception, "LilyPondParser()(format(target))")
+    assert pytest.raises(Exception, "LilyPondParser()(format(target))")
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_05():
 
     string = "{ c'4 [ c'4 c'4 c'4 }"
-    assert py.test.raises(Exception, "LilyPondParser()(string)")
+    assert pytest.raises(Exception, "LilyPondParser()(string)")
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_06():

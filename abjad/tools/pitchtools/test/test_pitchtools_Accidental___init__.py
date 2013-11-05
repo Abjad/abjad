@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_Accidental___init___01():
@@ -33,7 +33,7 @@ def test_pitchtools_Accidental___init___04():
 
 
 def test_pitchtools_Accidental___init___05():
-    assert py.test.raises(ValueError, "pitchtools.Accidental('foo')")
+    assert pytest.raises(ValueError, "pitchtools.Accidental('foo')")
 
 
 def test_pitchtools_Accidental___init___06():
@@ -42,7 +42,7 @@ def test_pitchtools_Accidental___init___06():
     assert pitchtools.Accidental(0) == pitchtools.Accidental()
     assert pitchtools.Accidental(1) == pitchtools.Accidental('sharp')
     assert pitchtools.Accidental(-1) == pitchtools.Accidental('flat')
-    assert py.test.raises(ValueError, "pitchtools.Accidental(99)")
+    assert pytest.raises(ValueError, "pitchtools.Accidental(99)")
 
 
 def test_pitchtools_Accidental___init___07():

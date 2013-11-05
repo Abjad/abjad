@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_NumberedPitch___slots___01():
@@ -8,4 +8,4 @@ def test_pitchtools_NumberedPitch___slots___01():
     '''
 
     numbered_pitch = pitchtools.NumberedPitch(13)
-    assert py.test.raises(AttributeError, "numbered_pitch.foo = 'bar'")
+    assert pytest.raises(AttributeError, "numbered_pitch.foo = 'bar'")

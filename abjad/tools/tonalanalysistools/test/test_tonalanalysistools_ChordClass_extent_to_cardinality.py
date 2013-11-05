@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_tonalanalysistools_ChordClass_extent_to_cardinality_01():
@@ -15,4 +15,4 @@ def test_tonalanalysistools_ChordClass_extent_to_cardinality_01():
 def test_tonalanalysistools_ChordClass_extent_to_cardinality_02():
 
     string = 'tonalanalysistools.ChordClass.extent_to_cardinality(1)'
-    assert py.test.raises(Exception, string)
+    assert pytest.raises(Exception, string)

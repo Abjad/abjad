@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abjad
 from abjad import *
-import py
+import pytest
 
 
 def test_documentationtools_InheritanceGraph___init___01():

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import tonalanalysistools
-import py.test
+import pytest
 
 
 def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_01():
@@ -68,5 +68,5 @@ def test_tonalanalysistools_Scale_scale_degree_to_named_pitch_class_04():
 
     scale = tonalanalysistools.Scale('c', 'major')
 
-    assert py.test.raises(ValueError,
+    assert pytest.raises(ValueError,
         'scale.scale_degree_to_named_pitch_class(99)')

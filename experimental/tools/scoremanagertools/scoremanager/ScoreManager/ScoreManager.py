@@ -311,7 +311,7 @@ class ScoreManager(ScoreManagerObject):
         self.score_package_wrangler.profile_visible_assets()
 
     def interactively_run_tests_on_all_user_scores(self, prompt=True):
-        command = 'py.test {}'.format(
+        command = 'pytest {}'.format(
             self.configuration.user_score_packages_directory_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]

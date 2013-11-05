@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_multiple_segment_solo__incomplete_division_coverage_01():

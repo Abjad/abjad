@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_timeintervaltools_TimeIntervalTree_shift_by_rational_01():

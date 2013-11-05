@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py
+import pytest
 
 
 def test_scoretools_Measure_extend_01():
@@ -11,7 +11,7 @@ def test_scoretools_Measure_extend_01():
     measure.extend("f' g'")
 
     assert measure.is_overfull
-    assert py.test.raises(Exception, 'f(measure)')
+    assert pytest.raises(Exception, 'f(measure)')
 
 
 def test_scoretools_Measure_extend_02():

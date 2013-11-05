@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Container___setattr___01():
@@ -9,4 +9,4 @@ def test_scoretools_Container___setattr___01():
 
     container = Container([])
 
-    assert py.test.raises(AttributeError, "container.foo = 'bar'")
+    assert pytest.raises(AttributeError, "container.foo = 'bar'")

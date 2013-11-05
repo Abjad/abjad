@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_sequencetools_repeat_sequence_elements_n_times_each_01():
@@ -21,5 +21,5 @@ def test_sequencetools_repeat_sequence_elements_n_times_each_02():
 
 def test_sequencetools_repeat_sequence_elements_n_times_each_03():
 
-    assert py.test.raises(
+    assert pytest.raises(
         TypeError, "sequencetools.repeat_sequence_elements_n_times_each('foo')")

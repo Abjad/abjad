@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_TwelveToneRow___init___01():
@@ -33,4 +33,4 @@ def test_pitchtools_TwelveToneRow___init___04():
     r'''Rows do not initialize with defective pitch-class content.
     '''
 
-    assert py.test.raises(ValueError, 'pitchtools.TwelveToneRow([0, 1, 2, 3])')
+    assert pytest.raises(ValueError, 'pitchtools.TwelveToneRow([0, 1, 2, 3])')

@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_Menu_allow_mixed_case_key_01():
     r'''Allow mixed case 'home' key.
     '''
-    py.test.skip('remove custom score name.')
+    pytest.skip('remove custom score name.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input="L'arch home q")

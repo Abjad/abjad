@@ -1,8 +1,8 @@
 from experimental import *
-import py.test
+import pytest
 
 
-py.test.skip('FIXME')
+pytest.skip('FIXME')
 def test_SegmentSpecification__look_up_division_set_expression_from_past_between_voices_01():
     '''From-past division set expression lookup expression between voices.
     '''

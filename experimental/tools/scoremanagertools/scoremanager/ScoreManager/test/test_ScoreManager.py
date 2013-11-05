@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from experimental import *
 
 
@@ -122,7 +122,7 @@ def test_ScoreManager_10():
 def test_ScoreManager_11():
     r'''Backtracking sco* shortcut.
     '''
-    py.test.skip('TODO: make sco shortcut work again.')
+    pytest.skip('TODO: make sco shortcut work again.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='Mon score~setup score q')

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Container_remove_01():
@@ -116,4 +116,4 @@ def test_scoretools_Container_remove_03():
     note = Note("c'4")
     container = Container([Note("c'4")])
 
-    assert py.test.raises(Exception, 'container.remove(note)')
+    assert pytest.raises(Exception, 'container.remove(note)')

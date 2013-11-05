@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py
+import pytest
 
 
 def test_pitchtools_PitchRangeInventory_name_01():
@@ -15,4 +15,4 @@ def test_pitchtools_PitchRangeInventory_name_01():
 def test_pitchtools_PitchRangeInventory_name_02():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
-    assert py.test.raises(Exception, 'inventory.name = 99')
+    assert pytest.raises(Exception, 'inventory.name = 99')

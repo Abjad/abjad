@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from abjad import *
 
 
@@ -10,5 +10,5 @@ def test_marktools_TempoMark_attach_01():
     attach(tempo, score[0][0])
 
     tempo = marktools.TempoMark((1, 8), 52)
-    assert py.test.raises(ExtraMarkError, 'attach(tempo, score[0][0])')
-    assert py.test.raises(ExtraMarkError, 'attach(tempo, score[1][0])')
+    assert pytest.raises(ExtraMarkError, 'attach(tempo, score[0][0])')
+    assert pytest.raises(ExtraMarkError, 'attach(tempo, score[1][0])')

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_datastructuretools_TreeContainer_index_01():
@@ -16,5 +16,5 @@ def test_datastructuretools_TreeContainer_index_01():
     assert container.index(subcontainer) == 1
     assert container.index(leaf_d) == 2
 
-    py.test.raises(ValueError, 'container.index(leaf_b)')
-    py.test.raises(ValueError, 'container.index(leaf_c)')
+    pytest.raises(ValueError, 'container.index(leaf_b)')
+    pytest.raises(ValueError, 'container.index(leaf_c)')

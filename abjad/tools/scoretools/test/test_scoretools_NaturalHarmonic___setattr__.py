@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_NaturalHarmonic___setattr___01():
@@ -8,4 +8,4 @@ def test_scoretools_NaturalHarmonic___setattr___01():
     '''
 
     natural_harmonic = scoretools.NaturalHarmonic("cs'8.")
-    assert py.test.raises(AttributeError, "natural_harmonic.foo = 'bar'")
+    assert pytest.raises(AttributeError, "natural_harmonic.foo = 'bar'")

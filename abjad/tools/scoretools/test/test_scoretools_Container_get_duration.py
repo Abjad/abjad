@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Container_get_duration_01():
@@ -40,5 +40,5 @@ def test_scoretools_Container_get_duration_02():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    assert py.test.raises(MissingTempoError, 
+    assert pytest.raises(MissingTempoError, 
         'inspect(container).get_duration(in_seconds=True)')

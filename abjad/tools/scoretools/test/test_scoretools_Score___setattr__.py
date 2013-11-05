@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Score___setattr___01():
@@ -9,4 +9,4 @@ def test_scoretools_Score___setattr___01():
 
     score = Score([])
 
-    assert py.test.raises(AttributeError, "score.foo = 'bar'")
+    assert pytest.raises(AttributeError, "score.foo = 'bar'")

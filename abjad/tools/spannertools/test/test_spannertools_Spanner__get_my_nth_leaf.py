@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_spannertools_Spanner__get_my_nth_leaf_01():
@@ -40,5 +40,5 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
     assert beam._get_my_nth_leaf(-3) is leaves[-3]
     assert beam._get_my_nth_leaf(-4) is leaves[-4]
 
-    assert py.test.raises(IndexError, 'beam._get_my_nth_leaf(99)')
-    assert py.test.raises(IndexError, 'beam._get_my_nth_leaf(-99)')
+    assert pytest.raises(IndexError, 'beam._get_my_nth_leaf(99)')
+    assert pytest.raises(IndexError, 'beam._get_my_nth_leaf(-99)')

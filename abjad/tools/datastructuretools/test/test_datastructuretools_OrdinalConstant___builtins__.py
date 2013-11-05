@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py
+import pytest
 
 
 def test_datastructuretools_OrdinalConstant___builtins___01():
@@ -11,4 +11,4 @@ def test_datastructuretools_OrdinalConstant___builtins___01():
 
 def test_datastructuretools_OrdinalConstant___builtins___02():
 
-    assert py.test.raises(Exception, 'Down < Right')
+    assert pytest.raises(Exception, 'Down < Right')

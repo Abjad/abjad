@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from abjad import *
 
 
@@ -290,7 +290,7 @@ def test_mutationtools_AttributeInspectionAgent_get_timespan_25():
     '''
 
     statement = 'inspect(staff[0]).get_timespan(in_seconds=True).start_offset'
-    assert py.test.raises(MissingTempoError, statement)
+    assert pytest.raises(MissingTempoError, statement)
 
 
 def test_mutationtools_AttributeInspectionAgent_get_timespan_26():

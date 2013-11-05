@@ -229,7 +229,7 @@ class ScorePackageManager(PackageManager):
         hidden_section.append(('manage repository', 'rep'))
         hidden_section.append(('manage tags', 'tags'))
         hidden_section.append(('profile package structure', 'profile'))
-        hidden_section.append(('run py.test', 'py.test'))
+        hidden_section.append(('run pytest', 'pytest'))
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('view initializer', 'inv'))
         hidden_section.append(('view instrumentation', 'instrumentation'))

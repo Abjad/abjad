@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.sievetools import ResidueClass
-import py.test
+import pytest
 
 
 def test_sievetools_ResidueClass_operator_and_01():

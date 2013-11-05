@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import sequencetools
-import py.test
+import pytest
 
 
 def test_datastructuretools_CyclicList___getslice___01():

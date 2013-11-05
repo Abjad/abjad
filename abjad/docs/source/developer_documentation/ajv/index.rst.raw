@@ -34,11 +34,11 @@ self-documenting:
         doctest             Run doctests on all modules in current path.
         grep                grep PATTERN in PATH
         new                 "new"-related subcommands
-        re                  Run py.test -x, doctest -x and then rebuild the API
+        re                  Run pytest -x, doctest -x and then rebuild the API
         rename              Rename public modules.
         replace             "replace"-related subcommands
         svn                 "svn"-related subcommands
-        test                Run "py.test" on various Abjad paths.
+        test                Run "pytest" on various Abjad paths.
         up                  run `ajv svn up -R -C`
 
 You can explore the different ``ajv`` subcommands like this:

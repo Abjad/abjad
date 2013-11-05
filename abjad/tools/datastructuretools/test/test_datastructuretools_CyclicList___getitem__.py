@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import sequencetools
-import py.test
+import pytest
 
 
 def test_datastructuretools_CyclicList___getitem___01():
@@ -29,6 +29,6 @@ def test_datastructuretools_CyclicList___getitem___02():
 def test_datastructuretools_CyclicList___getitem___03():
 
     cyclic_list = datastructuretools.CyclicList([])
-    assert py.test.raises(IndexError, 'cyclic_list[0]')
-    assert py.test.raises(IndexError, 'cyclic_list[1]')
-    assert py.test.raises(IndexError, 'cyclic_list[-1]')
+    assert pytest.raises(IndexError, 'cyclic_list[0]')
+    assert pytest.raises(IndexError, 'cyclic_list[1]')
+    assert pytest.raises(IndexError, 'cyclic_list[-1]')

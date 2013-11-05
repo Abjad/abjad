@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_marktools_TimeSignatureMark_suppress_01():
@@ -34,4 +34,4 @@ def test_marktools_TimeSignatureMark_suppress_02():
     measure = Measure((8, 9), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     measure.time_signature.suppress = True
 
-    assert py.test.raises(Exception, 'format(measure)')
+    assert pytest.raises(Exception, 'format(measure)')

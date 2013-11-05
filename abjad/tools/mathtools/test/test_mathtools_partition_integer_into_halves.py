@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import mathtools
-import py.test
+import pytest
 
 
 def test_mathtools_partition_integer_into_halves_01():
@@ -28,7 +28,7 @@ def test_mathtools_partition_integer_into_halves_04():
     r'''Divide zero only into even halves.
     '''
 
-    assert py.test.raises(PartitionError,
+    assert pytest.raises(PartitionError,
         "mathtools.partition_integer_into_halves(0, even='disallowed')")
 
 
@@ -36,7 +36,7 @@ def test_mathtools_partition_integer_into_halves_05():
     r'''Raise TypeError on noninteger n.
         Raise ValueError on negative n.'''
 
-    assert py.test.raises(
+    assert pytest.raises(
         TypeError, "mathtools.partition_integer_into_halves('foo')")
-    assert py.test.raises(
+    assert pytest.raises(
         ValueError, 'mathtools.partition_integer_into_halves(-1)')

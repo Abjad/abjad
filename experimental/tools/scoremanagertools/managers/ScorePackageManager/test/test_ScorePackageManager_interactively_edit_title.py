@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
-py.test.skip('unskip me after making decision about cache.')
+import pytest
+pytest.skip('unskip me after making decision about cache.')
 
 
 def test_ScorePackageManager_interactively_edit_title_01():

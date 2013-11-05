@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import mathtools
-import py.test
+import pytest
 
 
 def test_mathtools_integer_to_binary_string_01():
@@ -30,4 +30,4 @@ def test_mathtools_integer_to_binary_string_03():
     r'''Raise TypeError for noninteger input.
     '''
 
-    assert py.test.raises(TypeError, 'mathtools.integer_to_binary_string(5.5)')
+    assert pytest.raises(TypeError, 'mathtools.integer_to_binary_string(5.5)')

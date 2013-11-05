@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_schemetools_SchemeVector___setattr___01():
@@ -8,4 +8,4 @@ def test_schemetools_SchemeVector___setattr___01():
     '''
 
     scheme_vector = schemetools.SchemeVector(True, True, False)
-    assert py.test.raises(AttributeError, "scheme_vector.foo = 'bar'")
+    assert pytest.raises(AttributeError, "scheme_vector.foo = 'bar'")

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Leaf_written_duration_01():
@@ -26,4 +26,4 @@ def test_scoretools_Leaf_written_duration_01():
     assert format(note) == "cs'\\maxima.."
     note.written_duration = Duration(15)
     assert format(note) == "cs'\\maxima..."
-    assert py.test.raises(AssignabilityError, 'Note(1, 16)')
+    assert pytest.raises(AssignabilityError, 'Note(1, 16)')

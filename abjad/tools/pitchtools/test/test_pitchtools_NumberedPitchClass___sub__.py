@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_NumberedPitchClass___sub___01():
@@ -22,4 +22,4 @@ def test_pitchtools_NumberedPitchClass___sub___02():
     ic = pitchtools.NumberedInversionEquivalentIntervalClass(2)
 
     assert pc - ic == pitchtools.NumberedPitchClass(10)
-    assert py.test.raises(TypeError, 'ic - pc')
+    assert pytest.raises(TypeError, 'ic - pc')

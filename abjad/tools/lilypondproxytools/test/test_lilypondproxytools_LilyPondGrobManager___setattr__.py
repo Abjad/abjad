@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -1459,4 +1459,4 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___61():
     '''
 
     note = Note("c'8")
-    assert py.test.raises(Exception, 'override(note).foo = True')
+    assert pytest.raises(Exception, 'override(note).foo = True')

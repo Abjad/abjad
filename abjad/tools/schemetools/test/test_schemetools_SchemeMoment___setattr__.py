@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_schemetools_SchemeMoment___setattr___01():
@@ -8,4 +8,4 @@ def test_schemetools_SchemeMoment___setattr___01():
     '''
 
     scheme_moment = schemetools.SchemeMoment((1, 64))
-    assert py.test.raises(AttributeError, "scheme_moment.foo = 'bar'")
+    assert pytest.raises(AttributeError, "scheme_moment.foo = 'bar'")

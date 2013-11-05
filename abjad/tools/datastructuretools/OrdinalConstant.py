@@ -47,11 +47,11 @@ class OrdinalConstant(AbjadObject):
 
     ::
 
-        >>> import py.test
+        >>> import pytest
 
     ::
 
-        >>> bool(py.test.raises(Exception, 'Left < Up'))
+        >>> bool(pytest.raises(Exception, 'Left < Up'))
         True
 
     The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants 

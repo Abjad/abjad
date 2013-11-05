@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_GraceContainer_01():
@@ -45,7 +45,7 @@ def test_scoretools_GraceContainer_02():
     assert gracecontainer.kind == 'after'
     gracecontainer.kind = 'appoggiatura'
     assert gracecontainer.kind == 'appoggiatura'
-    assert py.test.raises(AssertionError, 'gracecontainer.kind = "blah"')
+    assert pytest.raises(AssertionError, 'gracecontainer.kind = "blah"')
 
 
 def test_scoretools_GraceContainer_03():

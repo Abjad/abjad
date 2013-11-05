@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_NamedPitch___int___01():
@@ -17,4 +17,4 @@ def test_pitchtools_NamedPitch___int___02():
     '''
 
     named_pitch = pitchtools.NamedPitch(13.5)
-    assert py.test.raises(TypeError, 'int(named_pitch)')
+    assert pytest.raises(TypeError, 'int(named_pitch)')

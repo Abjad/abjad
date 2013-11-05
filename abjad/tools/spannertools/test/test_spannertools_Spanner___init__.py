@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_spannertools_Spanner___init___01():
@@ -40,4 +40,4 @@ def test_spannertools_Spanner___init___03():
     r'''Spanner is abstract.
     '''
 
-    assert py.test.raises(TypeError, 'beam = spannertools.Spanner()')
+    assert pytest.raises(TypeError, 'beam = spannertools.Spanner()')

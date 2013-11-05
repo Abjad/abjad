@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_timeintervaltools_TimeIntervalTree_scale_interval_durations_to_rational_01():

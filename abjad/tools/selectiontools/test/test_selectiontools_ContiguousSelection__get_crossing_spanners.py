@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_selectiontools_ContiguousSelection__get_crossing_spanners_01():

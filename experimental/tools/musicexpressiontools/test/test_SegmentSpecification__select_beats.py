@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_SegmentSpecification__select_beats_01():

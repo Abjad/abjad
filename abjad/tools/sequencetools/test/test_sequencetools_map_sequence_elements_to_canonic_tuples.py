@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_sequencetools_map_sequence_elements_to_canonic_tuples_01():
@@ -24,8 +24,8 @@ def test_sequencetools_map_sequence_elements_to_canonic_tuples_03():
     Raise ValueError on noninteger elements in sequence_1.
     '''
 
-    assert py.test.raises(
+    assert pytest.raises(
         TypeError, "sequencetools.map_sequence_elements_to_canonic_tuples('foo')")
-    assert py.test.raises(ValueError,
+    assert pytest.raises(ValueError,
         'sequencetools.map_sequence_elements_to_canonic_tuples('
         '[Fraction(1, 2), Fraction(1, 2)])')

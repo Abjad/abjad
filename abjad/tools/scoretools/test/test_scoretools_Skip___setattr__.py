@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Skip___setattr___01():
@@ -9,4 +9,4 @@ def test_scoretools_Skip___setattr___01():
 
     skip = scoretools.Skip((1, 4))
 
-    assert py.test.raises(AttributeError, "skip.foo = 'bar'")
+    assert pytest.raises(AttributeError, "skip.foo = 'bar'")

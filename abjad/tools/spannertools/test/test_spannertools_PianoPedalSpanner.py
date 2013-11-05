@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -168,5 +168,5 @@ def test_spannertools_PianoPedalSpanner_07():
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:])
 
-    assert py.test.raises(ValueError, 'piano_pedal_spanner.kind = "abc"')
-    assert py.test.raises(ValueError, 'piano_pedal_spanner.style = "abc"')
+    assert pytest.raises(ValueError, 'piano_pedal_spanner.kind = "abc"')
+    assert pytest.raises(ValueError, 'piano_pedal_spanner.style = "abc"')

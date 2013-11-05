@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -246,18 +246,18 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_25():
 
     statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
     statement += '([], (3, 16))'
-    py.test.raises(Exception, statement)
+    pytest.raises(Exception, statement)
 
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_26():
 
     statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
     statement += '([0], (3, 16))'
-    py.test.raises(Exception, statement)
+    pytest.raises(Exception, statement)
 
 
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_27():
 
     statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
     statement += '([1, 1, 0, 1], (3, 16))'
-    py.test.raises(Exception, statement)
+    pytest.raises(Exception, statement)

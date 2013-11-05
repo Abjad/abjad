@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_mutationtools_AttributeInspectionAgent_get_mark_01():
@@ -16,7 +16,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_02():
 
     note = Note("c'8")
 
-    assert py.test.raises(
+    assert pytest.raises(
         MissingMarkError,
         'inspect(note).get_mark(marktools.Annotation)',
         )
@@ -30,7 +30,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_03():
     annotation = marktools.Annotation('more special information')
     attach(annotation, note)
 
-    assert py.test.raises(
+    assert pytest.raises(
         ExtraMarkError, 
         'inspect(note).get_mark(marktools.Annotation)',
         )
@@ -49,7 +49,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_05():
 
     note = Note("c'8")
 
-    assert py.test.raises(
+    assert pytest.raises(
         MissingMarkError,
         'inspect(note).get_mark(marktools.Articulation)',
         )
@@ -63,7 +63,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_06():
     articulation = marktools.Articulation('marcato')
     attach(articulation, note)
 
-    assert py.test.raises(
+    assert pytest.raises(
         ExtraMarkError,
         'inspect(note).get_mark(marktools.Articulation)',
         )
@@ -82,7 +82,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_08():
 
     note = Note("c'8")
 
-    assert py.test.raises(
+    assert pytest.raises(
         MissingMarkError,
         'inspect(note).get_mark(marktools.LilyPondCommandMark)',
         )
@@ -96,7 +96,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_09():
     command = marktools.LilyPondCommandMark('slurUp')
     attach(command, note)
 
-    assert py.test.raises(
+    assert pytest.raises(
         ExtraMarkError,
         'inspect(note).get_mark(marktools.LilyPondCommandMark)',
         )
@@ -147,7 +147,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_12():
 
     note = Note("c'8")
 
-    assert py.test.raises(
+    assert pytest.raises(
         MissingMarkError,
         'inspect(note).get_mark(marktools.LilyPondComment)',
         )
@@ -161,7 +161,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_13():
     comment = marktools.LilyPondComment('another comment')
     attach(comment, note)
 
-    assert py.test.raises(
+    assert pytest.raises(
         ExtraMarkError,
         'inspect(note).get_mark(marktools.LilyPondComment)',
         )
@@ -180,7 +180,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_15():
 
     note = Note("c'8")
 
-    assert py.test.raises(MissingMarkError, 'inspect(note).get_mark()')
+    assert pytest.raises(MissingMarkError, 'inspect(note).get_mark()')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_mark_16():
@@ -191,7 +191,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_16():
     mark = marktools.Mark()
     attach(mark, note)
 
-    assert py.test.raises(ExtraMarkError, 'inspect(note).get_mark()')
+    assert pytest.raises(ExtraMarkError, 'inspect(note).get_mark()')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_mark_17():

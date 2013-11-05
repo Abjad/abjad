@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from abjad import *
 
 
@@ -2117,7 +2117,7 @@ def test_mutationtools_ScoreMutationAgent_split_34():
         '''
         )
 
-    assert py.test.raises(UnderfullContainerError, 'format(measure)')
+    assert pytest.raises(UnderfullContainerError, 'format(measure)')
 
     assert testtools.compare(
         voice,
@@ -2213,7 +2213,7 @@ def test_mutationtools_ScoreMutationAgent_split_35():
         '''
         )
 
-    assert py.test.raises(UnderfullContainerError, 'format(measure)')
+    assert pytest.raises(UnderfullContainerError, 'format(measure)')
 
     assert testtools.compare(
         voice,
@@ -2973,7 +2973,7 @@ def test_mutationtools_ScoreMutationAgent_split_49():
     signature denominator. Fractured spanners but do not tie 
     over split locus. Measure contents necessitate denominator change.
     '''
-    py.test.skip('TODO: make this work.')
+    pytest.skip('TODO: make this work.')
 
     staff = Staff([Measure((3, 12), "c'8. d'8.")])
     beam = spannertools.BeamSpanner()

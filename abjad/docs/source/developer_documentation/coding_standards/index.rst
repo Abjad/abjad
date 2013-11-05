@@ -39,9 +39,9 @@ Implement only one function per module.
 Tests
 -----
 
-Author one ``py.test`` test file for every module-level function.
+Author one ``pytest`` test file for every module-level function.
 
-Author one ``py.test`` test file for every bound method in the public interface
+Author one ``pytest`` test file for every bound method in the public interface
 of a class.
 
 Author one ``doctest`` for every public function, method or property.

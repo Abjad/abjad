@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.timeintervaltools import *
-import py.test
+import pytest
 
 
 def test_timeintervaltools_mask_intervals_with_intervals_01():

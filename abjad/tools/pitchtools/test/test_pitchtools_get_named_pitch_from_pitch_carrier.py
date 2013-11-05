@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_01():
@@ -38,21 +38,21 @@ def test_pitchtools_get_named_pitch_from_pitch_carrier_04():
 def test_pitchtools_get_named_pitch_from_pitch_carrier_05():
 
     note = Note(None, (1, 4))
-    assert py.test.raises(
+    assert pytest.raises(
         MissingPitchError, 't = pitchtools.get_named_pitch_from_pitch_carrier(note)')
 
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_06():
 
     chord = Chord([], (1, 4))
-    assert py.test.raises(
+    assert pytest.raises(
         MissingPitchError, 't = pitchtools.get_named_pitch_from_pitch_carrier(chord)')
 
 
 def test_pitchtools_get_named_pitch_from_pitch_carrier_07():
 
     chord = Chord([0, 2, 11], (1, 4))
-    assert py.test.raises(
+    assert pytest.raises(
         ExtraPitchError, 't = pitchtools.get_named_pitch_from_pitch_carrier(chord)')
 
 

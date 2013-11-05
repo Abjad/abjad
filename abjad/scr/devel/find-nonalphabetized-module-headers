@@ -18,7 +18,7 @@ def _main():
                         break
                     elif line.startswith('from') or line.startswith('import'):
                         header_lines.append(line)
-                    elif line == '\n' or line.startswith('py.test'):
+                    elif line == '\n' or line.startswith('pytest'):
                         break
                     else:
                         print ''

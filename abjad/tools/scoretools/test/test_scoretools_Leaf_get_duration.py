@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Leaf_get_duration_01():
@@ -40,4 +40,4 @@ def test_scoretools_Leaf_get_duration_02():
 
     note = Note("c'4")
     statement = 'inspect(note).get_duration(in_seconds=True)'
-    assert py.test.raises(MissingTempoError, statement)
+    assert pytest.raises(MissingTempoError, statement)

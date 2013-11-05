@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools import mathtools
-import py.test
+import pytest
 
 
 def test_mathtools_factors_01():
-    assert py.test.raises(TypeError, 'mathtools.factors(7.5)')
-    assert py.test.raises(TypeError, 'mathtools.factors(0)')
+    assert pytest.raises(TypeError, 'mathtools.factors(7.5)')
+    assert pytest.raises(TypeError, 'mathtools.factors(0)')
 
 
 def test_mathtools_factors_02():

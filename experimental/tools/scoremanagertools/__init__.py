@@ -21,7 +21,7 @@ Do the following to install the score manager on your system:
     3. create a user-specific scores directory to house scores you will 
        make with the score manager
     4. start and stop the score manager
-    5. run the score manager tools py.test battery
+    5. run the score manager tools pytest battery
     6. rebuild the Abjad experimental API
     7. run doctest on the experimental branch of the repository
 
@@ -60,7 +60,7 @@ the abjad/experimental/scr directory to your PATH.
 After score manager tools starts correctly enter 'q' to quit the 
 score manager.
 
-5. Run py.test against the scoremanagertools directory.
+5. Run pytest against the scoremanagertools directory.
 Fix or report tests that break.
 
 6. Rebuild the Abjad experimental API.

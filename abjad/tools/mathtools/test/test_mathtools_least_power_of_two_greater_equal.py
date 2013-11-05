@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools import mathtools
-import py.test
+import pytest
 
 
 def test_mathtools_least_power_of_two_greater_equal_01():
@@ -27,11 +27,11 @@ def test_mathtools_least_power_of_two_greater_equal_02():
     r'''Raise TypeError on nonnumeric n.
         Raise ValueError on nonpositive n.'''
 
-    assert py.test.raises(
+    assert pytest.raises(
         TypeError, "mathtools.least_power_of_two_greater_equal('foo')")
-    assert py.test.raises(
+    assert pytest.raises(
         ValueError, 'mathtools.least_power_of_two_greater_equal(0)')
-    assert py.test.raises(
+    assert pytest.raises(
         ValueError, 'mathtools.least_power_of_two_greater_equal(-1)')
 
 

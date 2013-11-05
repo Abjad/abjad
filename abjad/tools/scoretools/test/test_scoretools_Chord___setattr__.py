@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Chord___setattr___01():
@@ -9,4 +9,4 @@ def test_scoretools_Chord___setattr___01():
 
     chord = Chord("<ef' cs' f''>4")
 
-    assert py.test.raises(AttributeError, "chord.foo = 'bar'")
+    assert pytest.raises(AttributeError, "chord.foo = 'bar'")

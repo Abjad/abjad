@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -150,8 +150,8 @@ def test_scoretools_Container_extend_05():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
 
-    assert py.test.raises(Exception, 'voice.extend(7)')
-    assert py.test.raises(Exception, "voice.extend('foo')")
+    assert pytest.raises(Exception, 'voice.extend(7)')
+    assert pytest.raises(Exception, "voice.extend('foo')")
 
 
 def test_scoretools_Container_extend_06():
@@ -162,9 +162,9 @@ def test_scoretools_Container_extend_06():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
 
-    assert py.test.raises(AttributeError,
+    assert pytest.raises(AttributeError,
         'voice.extend(Note(4, (1, 4)))')
-    assert py.test.raises(AttributeError,
+    assert pytest.raises(AttributeError,
         'voice.extend(Chord([2, 3, 5], (1, 4)))')
 
 

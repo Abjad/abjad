@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_NumberedPitchClass___init___01():
@@ -74,7 +74,7 @@ def test_pitchtools_NumberedPitchClass___init___07():
     r'''PitchClass initialization raises ValueError.
     '''
 
-    assert py.test.raises(Exception, "pitchtools.NumberedPitchClass('foo')")
+    assert pytest.raises(Exception, "pitchtools.NumberedPitchClass('foo')")
 
 
 def test_pitchtools_NumberedPitchClass___init___08():
@@ -82,7 +82,7 @@ def test_pitchtools_NumberedPitchClass___init___08():
     '''
 
     rest = Rest((1, 4))
-    assert py.test.raises(Exception, 'pitchtools.NumberedPitchClass(rest)')
+    assert pytest.raises(Exception, 'pitchtools.NumberedPitchClass(rest)')
 
 
 def test_pitchtools_NumberedPitchClass___init___09():
@@ -90,7 +90,7 @@ def test_pitchtools_NumberedPitchClass___init___09():
     '''
 
     chord = Chord([], (1, 4))
-    assert py.test.raises(MissingPitchError, 'pitchtools.NumberedPitchClass(chord)')
+    assert pytest.raises(MissingPitchError, 'pitchtools.NumberedPitchClass(chord)')
 
 
 def test_pitchtools_NumberedPitchClass___init___10():

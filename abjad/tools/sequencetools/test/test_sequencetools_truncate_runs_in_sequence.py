@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_sequencetools_truncate_runs_in_sequence_01():
@@ -27,4 +27,4 @@ def test_sequencetools_truncate_runs_in_sequence_03():
     r'''Raise TypeError when l is not a list.
     '''
 
-    assert py.test.raises(TypeError, 'sequencetools.truncate_runs_in_sequence(1)')
+    assert pytest.raises(TypeError, 'sequencetools.truncate_runs_in_sequence(1)')

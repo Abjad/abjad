@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_datastructuretools_TreeNode_parent_01():
@@ -26,4 +26,4 @@ def test_datastructuretools_TreeNode_parent_01():
     assert subcontainer.parent is container
     assert container.parent is None
 
-    py.test.raises(AssertionError, 'subcontainer.append(container)')
+    pytest.raises(AssertionError, 'subcontainer.append(container)')

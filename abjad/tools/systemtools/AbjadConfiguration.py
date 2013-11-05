@@ -318,7 +318,7 @@ class AbjadConfiguration(Configuration):
         ::
 
             >>> abjad_configuration.list_package_dependency_versions() # doctest: +SKIP
-            {'sphinx': '1.1.2', 'py.test': '2.1.2'}
+            {'sphinx': '1.1.2', 'pytest': '2.1.2'}
 
         Returns dictionary.
         '''
@@ -335,10 +335,10 @@ class AbjadConfiguration(Configuration):
             dependencies['ply'] = lex.__version__
         except ImportError:
             pass
-        dependencies['py.test'] = None
+        dependencies['pytest'] = None
         try:
-            import py.test
-            dependencies['py.test'] = py.test.__version__
+            import pytest
+            dependencies['pytest'] = pytest.__version__
         except ImportError:
             pass
         dependencies['sphinx'] = None

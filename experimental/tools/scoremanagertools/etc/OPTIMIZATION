@@ -118,8 +118,8 @@ eliminates *all* the effort associated with starting the score manager. This
 shows that the effort involved in starting the score manager comes exclusively 
 from the call ...
     menu_section.menu_entries = self.score_package_wrangler._make_asset_menu_entries()
-... found in the score manager. The py.test battery runs in 160 seconds on the 
-iMac with caching turned off; the py.test battery runs in 94 seconds on the 
+... found in the score manager. The pytest battery runs in 160 seconds on the 
+iMac with caching turned off; the pytest battery runs in 94 seconds on the 
 iMac with caching turned on.
 
 PROSPECTUS: Should caching become a permament part of the system? There are 
@@ -164,12 +164,12 @@ Note that all of these results are with caching turned off:
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
     75800 function calls in 0.073 seconds
 
-Also, the py.test battery now runs in 46 seconds on the iMac.
+Also, the pytest battery now runs in 46 seconds on the iMac.
 
 CONCLUSION: these are extremely good results. The identified inefficiency was 
 the problem.
 
-It is possible that turning caching back on could increase py.test battery 
+It is possible that turning caching back on could increase pytest battery 
 performance. Such will results will be recorded in a future entry to this log.
 
 
@@ -177,7 +177,7 @@ performance. Such will results will be recorded in a future entry to this log.
 
 Revision r10,252 turns caching back on.
 
-RESULTS: py.test battery time decreases from 46 seconds to 37 seconds. 
+RESULTS: pytest battery time decreases from 46 seconds to 37 seconds. 
 Also these:
 
     >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
@@ -193,6 +193,6 @@ Also these:
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
     2415 function calls in 0.002 seconds
 
-CONCLUSION: quick-and-dirty caching saves about 20% of py.test run time for 
+CONCLUSION: quick-and-dirty caching saves about 20% of pytest run time for 
 scoremanagertools. So a reasonable path forward is to leave caching on *during
 development* and then turn it off before shipping public releases.

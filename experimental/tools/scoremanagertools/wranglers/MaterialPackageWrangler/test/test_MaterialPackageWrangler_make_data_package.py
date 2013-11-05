@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from experimental import *
 
 
@@ -30,7 +30,7 @@ def test_MaterialPackageWrangler_make_data_package_02():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
     assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.red_numbers')
-    assert py.test.raises(Exception, "wrangler.make_data_package('experimental.tools.scoremanagertools.materialpackages.red_numbers')")
+    assert pytest.raises(Exception, "wrangler.make_data_package('experimental.tools.scoremanagertools.materialpackages.red_numbers')")
 
 
 def test_MaterialPackageWrangler_make_data_package_03():

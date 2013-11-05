@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Container_is_simultaneous_01():
@@ -88,7 +88,7 @@ def test_scoretools_Container_is_simultaneous_05():
         '''
 
     container = Container(scoretools.make_repeated_notes(4))
-    py.test.raises(AssertionError, 'container.is_simultaneous = True')
+    pytest.raises(AssertionError, 'container.is_simultaneous = True')
 
 
 def test_scoretools_Container_is_simultaneous_06():
@@ -97,4 +97,4 @@ def test_scoretools_Container_is_simultaneous_06():
     '''
 
     container = Container(Container(scoretools.make_repeated_notes(4)) * 2)
-    py.test.raises(AssertionError, 'container.is_simultaneous = True')
+    pytest.raises(AssertionError, 'container.is_simultaneous = True')

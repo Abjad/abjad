@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -41,7 +41,7 @@ def test_datastructuretools_TreeContainer_name_01():
 
     assert foo['bar'] is bar
     assert foo['baz'] is baz
-    assert py.test.raises(ValueError, "foo['quux']")
+    assert pytest.raises(ValueError, "foo['quux']")
 
     quux2.name = 'wux'
 

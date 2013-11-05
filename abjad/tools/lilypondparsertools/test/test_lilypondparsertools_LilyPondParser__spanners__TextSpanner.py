@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
@@ -65,7 +65,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_03():
     '''
 
     string = r'{ c \startTextSpan \stopTextSpan c c c }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_04():
@@ -73,7 +73,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_04():
     '''
 
     string = r'{ c \startTextSpan c c c }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_05():
@@ -81,7 +81,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_05():
     '''
 
     string = r'{ c c c c \stopTextSpan }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_06():
@@ -89,4 +89,4 @@ def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_06():
     '''
 
     string = r'{ c \startTextSpan c \startTextSpan c \stopTextSpan c \stopTextSpan }'
-    assert py.test.raises(Exception, 'LilyPondParser()(string)')
+    assert pytest.raises(Exception, 'LilyPondParser()(string)')

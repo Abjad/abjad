@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -18,4 +18,4 @@ def test_mathtools_cumulative_sums_02():
     r'''Raise exception when sequence is neither tuple nor list.
     '''
 
-    assert py.test.raises(Exception, "mathtools.cumulative_sums('foo')")
+    assert pytest.raises(Exception, "mathtools.cumulative_sums('foo')")

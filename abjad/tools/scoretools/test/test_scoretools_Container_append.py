@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_Container_append_01():
@@ -61,10 +61,10 @@ def test_scoretools_Container_append_03():
     beam = spannertools.BeamSpanner()
     attach(beam, voice[:])
 
-    assert py.test.raises(Exception, "voice.append('foo')")
-    assert py.test.raises(Exception, "voice.append(99)")
-    assert py.test.raises(Exception, "voice.append([])")
-    assert py.test.raises(Exception, "voice.append([Note(0, (1, 8))])")
+    assert pytest.raises(Exception, "voice.append('foo')")
+    assert pytest.raises(Exception, "voice.append(99)")
+    assert pytest.raises(Exception, "voice.append([])")
+    assert pytest.raises(Exception, "voice.append([Note(0, (1, 8))])")
 
 
 def test_scoretools_Container_append_04():
@@ -181,4 +181,4 @@ def test_scoretools_Container_append_06():
     staff = Staff("c' d' e'")
     grace_container = scoretools.GraceContainer("f'16 g'")
 
-    assert py.test.raises(Exception, 'staff.append(grace_container)')
+    assert pytest.raises(Exception, 'staff.append(grace_container)')

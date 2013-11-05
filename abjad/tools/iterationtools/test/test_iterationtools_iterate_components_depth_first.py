@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 # NOTE: all tests operate on the following expression #
@@ -42,7 +42,7 @@ def test_iterationtools_iterate_components_depth_first_01():
     assert g.next() is t[2][1]
     assert g.next() is t[2][1][0]
     assert g.next() is t[2][1][1]
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -65,7 +65,7 @@ def test_iterationtools_iterate_components_depth_first_01():
     assert g.next() is t[2][0]
     assert g.next() is t[2][0][1]
     assert g.next() is t[2][0][0]
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -97,7 +97,7 @@ def test_iterationtools_iterate_components_depth_first_02():
     assert g.next() is t
     assert g.next() is t[3]
     assert g.next() is t[4]
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -126,7 +126,7 @@ def test_iterationtools_iterate_components_depth_first_02():
     assert g.next() is t
     assert g.next() is t[1]
     assert g.next() is t[0]
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -163,7 +163,7 @@ def test_iterationtools_iterate_components_depth_first_03():
     assert g.next() is t[2][1][1]
     assert g.next() is t[2][1]
     assert g.next() is t[2]
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -198,7 +198,7 @@ def test_iterationtools_iterate_components_depth_first_03():
     assert g.next() is t[2][0][0]
     assert g.next() is t[2][0]
     assert g.next() is t[2]
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -232,7 +232,7 @@ def test_iterationtools_iterate_components_depth_first_04():
     assert g.next() is t[2]
     assert g.next() is t[3]
     assert g.next() is t[4]
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Staff{5}
@@ -253,7 +253,7 @@ def test_iterationtools_iterate_components_depth_first_04():
     assert g.next() is t[2]
     assert g.next() is t[1]
     assert g.next() is t[0]
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Staff{5}
@@ -291,7 +291,7 @@ def test_iterationtools_iterate_components_depth_first_05():
     assert g.next() is t
     assert g.next() is t[4]
     assert g.next() is t
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -337,7 +337,7 @@ def test_iterationtools_iterate_components_depth_first_05():
     assert g.next() is t
     assert g.next() is t[0]
     assert g.next() is t
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -418,7 +418,7 @@ def test_iterationtools_iterate_components_depth_first_07():
     assert g.next() is t
     assert g.next() is t[4]
     assert g.next() is t
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Staff{5}
@@ -450,7 +450,7 @@ def test_iterationtools_iterate_components_depth_first_07():
     assert g.next() is t
     assert g.next() is t[0]
     assert g.next() is t
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Staff{5}
@@ -482,7 +482,7 @@ def test_iterationtools_iterate_components_depth_first_08():
     assert g.next() is t
     assert g.next() is t[4]
     assert g.next() is t
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
@@ -504,7 +504,7 @@ def test_iterationtools_iterate_components_depth_first_08():
     assert g.next() is t
     assert g.next() is t[0]
     assert g.next() is t
-    assert py.test.raises(StopIteration, 'g.next()')
+    assert pytest.raises(StopIteration, 'g.next()')
 
     r'''
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))

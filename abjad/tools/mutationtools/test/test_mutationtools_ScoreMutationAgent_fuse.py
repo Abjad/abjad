@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from abjad import *
 
 
@@ -264,7 +264,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_09():
         Duration(2, 8), "c'8 d'8 e'8 f'8 g'8")
     tuplets = select([tuplet_1, tuplet_2], contiguous=True)
 
-    assert py.test.raises(Exception, 'mutate(tuplets).fuse()')
+    assert pytest.raises(Exception, 'mutate(tuplets).fuse()')
 
 
 def test_mutationtools_ScoreMutationAgent_fuse_10():
@@ -275,7 +275,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_10():
     tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
     tuplets = select([tuplet_1, tuplet_2], contiguous=True)
 
-    assert py.test.raises(Exception, 'mutate(tuplets).fuse()')
+    assert pytest.raises(Exception, 'mutate(tuplets).fuse()')
 
 
 def test_mutationtools_ScoreMutationAgent_fuse_11():

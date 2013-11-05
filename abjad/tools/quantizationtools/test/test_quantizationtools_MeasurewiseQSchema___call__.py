@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import marktools
 from abjad.tools import quantizationtools
-import py
+import pytest
 
 
 def test_quantizationtools_MeasurewiseQSchema___call___01():

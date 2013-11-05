@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_MenuSection_default_index_01():
@@ -14,8 +14,8 @@ def test_MenuSection_default_index_01():
     menu_section.append('cherry')
 
     assert menu_section.default_index is None
-    assert py.test.raises(ValueError, 'menu_section.default_index = -1')
-    assert py.test.raises(ValueError, 'menu_section.default_index = 99')
+    assert pytest.raises(ValueError, 'menu_section.default_index = -1')
+    assert pytest.raises(ValueError, 'menu_section.default_index = 99')
 
     menu_section.default_index = 2
     assert menu_section.default_index == 2

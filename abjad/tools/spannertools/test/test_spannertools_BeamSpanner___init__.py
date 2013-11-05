@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py
+import pytest
 from abjad import *
 
 
@@ -453,10 +453,10 @@ def test_spannertools_BeamSpanner___init___15():
 
     beam = spannertools.BeamSpanner()
     statement = 'attach(beam, [staff[0], staff[1]])'
-    assert py.test.raises(Exception, statement)
+    assert pytest.raises(Exception, statement)
 
     statement = 'attach(beam, [staff[1], staff[2]])'
-    assert py.test.raises(Exception, statement)
+    assert pytest.raises(Exception, statement)
 
 
 def test_spannertools_BeamSpanner___init___16():
@@ -764,7 +764,7 @@ def test_spannertools_BeamSpanner___init___21():
     leaves = staff[:2] + staff[-2:]
     beam = spannertools.BeamSpanner()
     statement = 'beam.attacch(leaves)'
-    assert py.test.raises(Exception, statement)
+    assert pytest.raises(Exception, statement)
 
 
 def test_spannertools_BeamSpanner___init___22():
@@ -873,4 +873,4 @@ def test_spannertools_BeamSpanner___init___23():
     leaves = staff.select_leaves(allow_discontiguous_leaves=True)
     beam = spannertools.BeamSpanner()
     statement = 'attach(beam, leaves)'
-    assert py.test.raises(Exception, statement)
+    assert pytest.raises(Exception, statement)

@@ -6,7 +6,7 @@ def test_systemtools_AbjadConfiguration_list_package_dependency_versions_01():
 
     deps = systemtools.AbjadConfiguration.list_package_dependency_versions()
     assert isinstance(deps, dict)
-    assert 'py.test' in deps
-    assert isinstance(deps['py.test'], (type(None), str))
+    assert 'pytest' in deps
+    assert isinstance(deps['pytest'], (type(None), str))
     assert 'sphinx' in deps
     assert isinstance(deps['sphinx'], (type(None), str))

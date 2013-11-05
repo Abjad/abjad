@@ -23,7 +23,7 @@ class TestAndRebuildScript(DeveloperScript):
 
     @property
     def short_description(self):
-        return 'Run py.test -x, doctest -x and then rebuild the API.'
+        return 'Run pytest -x, doctest -x and then rebuild the API.'
 
     @property
     def version(self):

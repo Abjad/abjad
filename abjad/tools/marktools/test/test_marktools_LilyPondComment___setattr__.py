@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_marktools_LilyPondComment___setattr___01():
@@ -9,4 +9,4 @@ def test_marktools_LilyPondComment___setattr___01():
 
     comment = marktools.LilyPondComment('foo')
 
-    assert py.test.raises(AttributeError, "comment.foo = 'bar'")
+    assert pytest.raises(AttributeError, "comment.foo = 'bar'")

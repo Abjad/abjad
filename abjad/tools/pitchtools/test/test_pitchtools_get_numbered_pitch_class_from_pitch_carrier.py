@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_01():
@@ -24,7 +24,7 @@ def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_03():
     '''
 
     chord = Chord([], (1, 4))
-    assert py.test.raises(MissingPitchError,
+    assert pytest.raises(MissingPitchError,
         'pitchtools.get_numbered_pitch_class_from_pitch_carrier(chord)')
 
 
@@ -33,5 +33,5 @@ def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_04():
     '''
 
     chord = Chord([13, 14, 15], (1, 4))
-    assert py.test.raises(ExtraPitchError,
+    assert pytest.raises(ExtraPitchError,
         'pitchtools.get_numbered_pitch_class_from_pitch_carrier(chord)')

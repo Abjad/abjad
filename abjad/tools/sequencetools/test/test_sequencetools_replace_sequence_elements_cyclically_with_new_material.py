@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_01():
@@ -60,5 +60,5 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_05
     r'''Raise TypeError when sequence_1 is not a list.
     '''
 
-    assert py.test.raises(TypeError,
+    assert pytest.raises(TypeError,
         "sequencetools.replace_sequence_elements_cyclically_with_new_material('foo', ([0], 2), ([10, 12], 3))")

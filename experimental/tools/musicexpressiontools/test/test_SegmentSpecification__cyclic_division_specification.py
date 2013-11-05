@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py
+import pytest
 
 
 def test_SegmentSpecification__cyclic_division_specification_01():
@@ -15,4 +15,4 @@ def test_SegmentSpecification__cyclic_division_specification_01():
     red_segment.set_divisions(blue_divisions)
     blue_segment.set_divisions(red_divisions)
 
-    assert py.test.raises(Exception, 'score_specification.interpret()')
+    assert pytest.raises(Exception, 'score_specification.interpret()')

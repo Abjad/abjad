@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import quantizationtools
-import py.test
+import pytest
 
 
 def test_quantizationtools_QuantizationJob___call___01():

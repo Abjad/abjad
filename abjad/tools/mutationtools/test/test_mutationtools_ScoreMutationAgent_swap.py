@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -183,7 +183,7 @@ def test_mutationtools_ScoreMutationAgent_swap_04():
     attach(beam, voice[:])
 
     note = Note("c'4")
-    assert py.test.raises(
+    assert pytest.raises(
         Exception, 
         'mutate(voice[1:2]).swap(note)',
         )
@@ -199,7 +199,7 @@ def test_mutationtools_ScoreMutationAgent_swap_05():
     attach(beam, voice[:])
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    assert py.test.raises(
+    assert pytest.raises(
         Exception, 
         'mutate(voice[1:2]).swap(tuplet)',
         )
@@ -235,7 +235,7 @@ def test_mutationtools_ScoreMutationAgent_swap_06():
         )
 
     tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
-    assert py.test.raises(
+    assert pytest.raises(
         Exception, 
         'mutate([voice[0], voice[2]]).swap(tuplet)',
         )

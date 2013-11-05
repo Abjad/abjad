@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import *
-import py
+import pytest
 
 
 def test_mathtools_Ratio___init___01():
@@ -21,4 +21,4 @@ def test_mathtools_Ratio___init___02():
 
 def test_mathtools_Ratio___init___03():
 
-    assert py.test.raises(Exception, 'mathtools.Ratio(1, 2, 0)')
+    assert pytest.raises(Exception, 'mathtools.Ratio(1, 2, 0)')

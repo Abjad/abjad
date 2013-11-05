@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_timeintervaltools_TimeIntervalTree_clip_interval_durations_to_range_01():
@@ -43,5 +43,5 @@ def test_timeintervaltools_TimeIntervalTree_clip_interval_durations_to_range_05(
     start_offset = Fraction(1, 3)
     stop_offset = Fraction(1, 7)
     tree = timeintervaltools.TimeIntervalTree(timeintervaltools.make_test_intervals())
-    py.test.raises(AssertionError, 
+    pytest.raises(AssertionError, 
         "clipped = tree.clip_interval_durations_to_range(start_offset, stop_offset)")

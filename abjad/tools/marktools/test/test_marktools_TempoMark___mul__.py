@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import py.test
+import pytest
 from abjad import *
 
 
@@ -45,10 +45,10 @@ def test_marktools_TempoMark___mul___02():
 def test_marktools_TempoMark___mul___03():
 
     tempo_indication_1 = marktools.TempoMark('Langsam')
-    py.test.raises(ImpreciseTempoError, "tempo_indication_1 * Duration(1, 2)")
+    pytest.raises(ImpreciseTempoError, "tempo_indication_1 * Duration(1, 2)")
 
 
 def test_marktools_TempoMark___mul___04():
 
     tempo_indication_1 = marktools.TempoMark(Duration(1, 8), (90, 92))
-    py.test.raises(ImpreciseTempoError, "tempo_indication_1 * Duration(1, 2)")
+    pytest.raises(ImpreciseTempoError, "tempo_indication_1 * Duration(1, 2)")

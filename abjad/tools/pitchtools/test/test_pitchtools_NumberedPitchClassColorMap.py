@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_pitchtools_NumberedPitchClassColorMap_01():
@@ -38,7 +38,7 @@ def test_pitchtools_NumberedPitchClassColorMap_02():
     assert pcm[pitchtools.NumberedPitchClass(13)] == 'blue'
     assert pcm[pitchtools.NamedPitch(13)] == 'blue'
 
-    assert py.test.raises(Exception, "pcm['foo']")
+    assert pytest.raises(Exception, "pcm['foo']")
 
     assert pcm.get(1) == 'blue'
     assert pcm.get('foo') is None

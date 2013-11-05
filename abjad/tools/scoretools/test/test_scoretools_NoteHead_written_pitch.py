@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import py.test
+import pytest
 
 
 def test_scoretools_NoteHead_written_pitch_01():
@@ -35,7 +35,7 @@ def test_scoretools_NoteHead_written_pitch_03():
 
     note = Note(13, (1, 4))
 
-    assert py.test.raises(Exception, 'note.note_head.written_pitch = None')
+    assert pytest.raises(Exception, 'note.note_head.written_pitch = None')
 
 
 def test_scoretools_NoteHead_written_pitch_04():

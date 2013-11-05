@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
-import py.test
+import pytest
 
 
 def test_StartPositionedRhythmPayloadExpression_rotate_01():
@@ -91,7 +91,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_06():
 def test_StartPositionedRhythmPayloadExpression_rotate_07():
     r'''Do not fracture beam. Zero effective rotation.
     '''
-    py.test.skip('is this causing an infinite loop because of get_duration()?')
+    pytest.skip('is this causing an infinite loop because of get_duration()?')
 
     music = parse("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
