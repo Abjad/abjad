@@ -84,12 +84,12 @@ class LilyPondFormatManager(AbjadObject):
         result = LilyPondFormatManager.get_all_mark_format_contributions(
             component)
         for slot, contributions in \
-            formattools.get_spanner_format_contributions(
+            LilyPondFormatManager.get_spanner_format_contributions(
                 component).iteritems():
             if slot not in result:
                 result[slot] = {}
             result[slot]['spanners'] = contributions
-        settings = formattools.get_context_setting_format_contributions(
+        settings = LilyPondFormatManager.get_context_setting_format_contributions(
             component)[1]
         if settings:
             result['context settings'] = settings
@@ -140,7 +140,7 @@ class LilyPondFormatManager(AbjadObject):
                 section, singleton = class_to_section[mark.__class__]
             ### context marks to be dealt with later ###
             elif isinstance(mark, marktools.ContextMark):
-                if formattools.is_formattable_context_mark_for_component(
+                if LilyPondFormatManager.is_formattable_context_mark_for_component(
                     mark, component):
                     context_marks.append(mark)
                     continue
@@ -184,7 +184,7 @@ class LilyPondFormatManager(AbjadObject):
                     continue
                 if mark in context_marks:
                     continue
-                if formattools.is_formattable_context_mark_for_component(
+                if LilyPondFormatManager.is_formattable_context_mark_for_component(
                     mark, component):
                     context_marks.append(mark)
         #for candidate in context_mark_candidates:
@@ -257,6 +257,38 @@ class LilyPondFormatManager(AbjadObject):
         return addenda
 
     @staticmethod
+    def get_context_setting_format_contributions(component):
+        r'''Get context setting format contributions for `component`.
+
+        Returns sorted list.
+        '''
+        result = []
+        from abjad.tools.scoretools.Leaf import Leaf
+        from abjad.tools.scoretools.Measure import Measure
+        from abjad.tools.lilypondfiletools._format_lilypond_context_setting_inline import _format_lilypond_context_setting_inline
+        from abjad.tools.lilypondfiletools._format_lilypond_context_setting_in_with_block import _format_lilypond_context_setting_in_with_block
+        if isinstance(component, (Leaf, Measure)):
+            for name, value in vars(component.set).iteritems():
+                # if we've found a leaf LilyPondContextNamespace
+                if name.startswith('_'):
+                    for x, y in vars(value).iteritems():
+                        if not x.startswith('_'):
+                            result.append(
+                                _format_lilypond_context_setting_inline(
+                                    x, y, name))
+                # otherwise we've found a default leaf context setting
+                else:
+                    # parse default context setting
+                    result.append(_format_lilypond_context_setting_inline(
+                        name, value))
+        else:
+            for name, value in vars(component.set).iteritems():
+                result.append(_format_lilypond_context_setting_in_with_block(
+                    name, value))
+        result.sort()
+        return ['context settings', result]
+
+    @staticmethod
     def get_grob_override_format_contributions(component):
         r'''Get grob override format contributions for `component`.
 
@@ -288,6 +320,109 @@ class LilyPondFormatManager(AbjadObject):
             result.extend(override(component)._list_format_contributions(
                 'revert'))
         return ['grob reverts', result]
+
+    @staticmethod
+    def get_spanner_format_contributions(component):
+        r'''Gets spanner format contributions for `component`.
+
+        Dictionary keys equal to format slot;
+        dictionary values equal to format contributions.
+        '''
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        result = {
+            'after': [],
+            'before': [],
+            'closing': [],
+            'opening': [],
+            'right': [],
+        }
+        if isinstance(component, scoretools.Container):
+            before_contributions = result['before']
+            after_contributions = result['after']
+        else:
+            before_contributions = result['opening']
+            after_contributions = result['closing']
+        stop_contributions = []
+        other_contributions = []
+        for spanner in component._get_parentage()._get_spanners():
+
+            # override contributions (in before slot)
+            if spanner._is_my_first_leaf(component):
+                for contribution in \
+                    override(spanner)._list_format_contributions(
+                    'override', is_once=False):
+                    before_contributions.append((spanner, contribution, None))
+            # contributions for before slot
+            for contribution in spanner._format_before_leaf(component):
+                before_contributions.append((spanner, contribution, None))
+            # contributions for after slot
+            contributions = spanner._format_after_leaf(component)
+            for contribution in contributions:
+                after_contributions.append((spanner, contribution, None))
+            # revert contributions (in after slot)
+            if spanner._is_my_last_leaf(component):
+                for contribution in \
+                    override(spanner)._list_format_contributions('revert'):
+                    triple = (spanner, contribution, None)
+                    if triple not in after_contributions:
+                        after_contributions.append(triple)
+            # contributions for right slot
+            contributions = spanner._format_right_of_leaf(component)
+            if contributions:
+                if spanner._is_my_last_leaf(component):
+                    for contribution in contributions:
+                        stop_contributions.append((spanner, contribution, None))
+                else:
+                    for contribution in contributions:
+                        other_contributions.append((spanner, contribution, None))
+        result['right'] = stop_contributions + other_contributions
+        for key in result.keys():
+            if not result[key]:
+                del(result[key])
+            else:
+                result[key].sort(key=lambda x: x[0].__class__.__name__)
+                result[key] = [x[1] for x in result[key]]
+        return result
+
+    @staticmethod
+    def is_formattable_context_mark_for_component(mark, component):
+        r'''Returns True if ContextMark `mark` can format for `component`.
+        '''
+        from abjad.tools import scoretools
+        from abjad.tools import marktools
+        if mark.start_component is None:
+            return False
+        if isinstance(mark.start_component, scoretools.Measure):
+            if mark.start_component is component:
+                if not isinstance(mark, marktools.TimeSignatureMark):
+                    return True
+                elif component.always_format_time_signature:
+                    return True
+                else:
+                    previous_measure = \
+                        scoretools.get_previous_measure_from_component(
+                            mark.start_component)
+                    if previous_measure is not None:
+                        previous_effective_time_signature = \
+                            previous_measure.time_signature
+                    else:
+                        previous_effective_time_signature = None
+                    if not mark == previous_effective_time_signature:
+                        return True
+        elif mark._format_slot == 'right':
+            if mark.start_component is component:
+                return True
+        elif mark.start_component is component:
+            return True
+        else:
+            if mark.effective_context in \
+                component._get_parentage(include_self=True):
+                if mark.effective_context not in \
+                    component._get_parentage(include_self=False):
+                    if mark.start_component.start == component.start:
+                        return True
+        return False
 
     @staticmethod
     def make_lilypond_override_string(
