@@ -345,7 +345,9 @@ class Leaf(Component):
         return result
 
     def _report_format_contributors(self):
-        format_contributions = formattools.get_all_format_contributions(self)
+        format_contributions = \
+            formattools.LilyPondFormatManager.get_all_format_contributions(
+                self)
         report = ''
         report += 'slot 1:\n'
         report += self._process_contribution_packet(

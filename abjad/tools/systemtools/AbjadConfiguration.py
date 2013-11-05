@@ -435,7 +435,9 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         return os.path.abspath(os.path.join(
-            self.abjad_directory_path, '..', '..', 'experimental'))
+            self.abjad_root_directory_path,
+            'experimental',
+            ))
 
     @property
     def abjad_output_directory_path(self):
@@ -452,7 +454,9 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         return os.path.abspath(os.path.join(
-            self.abjad_directory_path, '..', '..'))
+            self.abjad_directory_path,
+            '..',
+            ))
 
     @property
     def configuration_directory_path(self):

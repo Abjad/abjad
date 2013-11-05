@@ -538,8 +538,9 @@ class AttributeInspectionAgent(object):
         from abjad.tools import scoretools
         from abjad.tools import formattools
         component = self._component
-        format_contributions = formattools.get_all_format_contributions(
-            component)
+        format_contributions = \
+            formattools.LilyPondFormatManager.get_all_format_contributions(
+                component)
         result = []
         result.extend(component._get_format_contributions_for_slot(
             'before', format_contributions))
