@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.functiontools import override
 
 
 class LilyPondFormatManager(AbjadObject):
@@ -64,14 +65,47 @@ class LilyPondFormatManager(AbjadObject):
             'white',
             'yellow',
             ):
-            return '#%s' % expr
+            return '#{}'.format(expr)
         elif isinstance(expr, str) and '::' in expr:
-            return '#%s' % expr
+            return '#{}'.format(expr)
         elif isinstance(expr, tuple):
-            return "#'(%s . %s)" % expr
+            return "#'({} . {})".format(expr[0], expr[1])
         elif isinstance(expr, str) and ' ' not in expr:
-            return "#'%s" % expr
+            return "#'{}".format(expr)
         elif isinstance(expr, str) and ' ' in expr:
-            return '"%s"' % expr
+            return '"{}"'.format(expr)
         else:
-            return "#'%s" % expr
+            return "#'{}".format(expr)
+
+    @staticmethod
+    def get_grob_override_format_contributions(component):
+        r'''Get grob override format contributions for `component`.
+
+        Returns alphabetized list of LilyPond grob overrides.
+        '''
+        from abjad.tools.scoretools.Leaf import Leaf
+        result = []
+        is_once = False
+        if isinstance(component, Leaf):
+            is_once = True
+        result.extend(override(component)._list_format_contributions(
+            'override', is_once=is_once))
+        for string in result[:]:
+            if 'NoteHead' in string and 'pitch' in string:
+                result.remove(string)
+        result = ['grob overrides', result]
+        return result
+
+    @staticmethod
+    def get_grob_revert_format_contributions(component):
+        '''Get grob revert format contributions.
+
+        Returns alphabetized list of LilyPond grob reverts.
+        '''
+        from abjad.tools.scoretools.Leaf import Leaf
+
+        result = []
+        if not isinstance(component, Leaf):
+            result.extend(override(component)._list_format_contributions(
+                'revert'))
+        return ['grob reverts', result]

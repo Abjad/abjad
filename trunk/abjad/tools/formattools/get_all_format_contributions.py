@@ -19,11 +19,11 @@ def get_all_format_contributions(component):
     if settings:
         result['context settings'] = settings
 
-    overrides = formattools.get_grob_override_format_contributions(component)[1]
+    overrides = formattools.LilyPondFormatManager.get_grob_override_format_contributions(component)[1]
     if overrides:
         result['grob overrides'] = overrides
 
-    reverts = formattools.get_grob_revert_format_contributions(component)[1]
+    reverts = formattools.LilyPondFormatManager.get_grob_revert_format_contributions(component)[1]
     if reverts:
         result['grob reverts'] = reverts
 
