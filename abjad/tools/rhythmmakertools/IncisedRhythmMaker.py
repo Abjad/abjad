@@ -136,7 +136,7 @@ class IncisedRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Call incised rhythm-maker on `divisions`.
+        r'''Calls incised rhythm-maker on `divisions`.
 
         Returns list of tuplets or return list of leaf lists.
         '''
@@ -251,7 +251,7 @@ class IncisedRhythmMaker(RhythmMaker):
     ### PUBLIC METHODS ###
 
     def reverse(self):
-        r'''Reverse incised rhythm-maker.
+        r'''Reverses incised rhythm-maker.
 
         Returns newly constructed rhythm-maker.
         '''

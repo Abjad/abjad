@@ -36,23 +36,14 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
-    ### PRIVATE METHODS ###
+    def __format__(self, format_specification=''):
+        r'''Formats output-incised note rhythm-maker.
 
-    def _make_middle_of_numeric_map_part(self, middle):
-        if 0 < middle:
-            return (middle, )
-        else:
-            return ()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Output-incised note rhythm-maker storage format:
+        Set `format_specification` to `''` or `'storage'`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
                 prefix_talea=[-8, -7],
                 prefix_lengths=[2],
@@ -69,12 +60,21 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         Returns string.
         '''
-        return super(OutputIncisedNoteRhythmMaker, self).storage_format
+        superclass = super(OutputIncisedNoteRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
+
+    ### PRIVATE METHODS ###
+
+    def _make_middle_of_numeric_map_part(self, middle):
+        if 0 < middle:
+            return (middle, )
+        else:
+            return ()
 
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new output-incised note rhythm-maker with `kwargs`:
+        r'''Creates new output-incised note rhythm-maker with `kwargs`.
 
         ::
 
@@ -82,7 +82,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
                 prefix_talea=[-7],
                 prefix_lengths=[2],
@@ -118,7 +118,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
         return OutputIncisedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse output-incised note rhythm-maker:
+        r'''Reverses output-incised note rhythm-maker:
 
         ::
 
@@ -126,7 +126,7 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.OutputIncisedNoteRhythmMaker(
                 prefix_talea=[-7, -8],
                 prefix_lengths=[2],

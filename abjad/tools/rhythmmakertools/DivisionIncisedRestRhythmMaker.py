@@ -36,23 +36,16 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
-    ### PRIVATE METHODS ###
+    ### SPECIAL METHODS ###
 
-    def _make_middle_of_numeric_map_part(self, middle):
-        if 0 < middle:
-            return (-abs(middle), )
-        else:
-            return ()
+    def __format__(self, format_specification=''):
+        r'''Formats division-incised rest rhythm-maker.
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Division-incised rest rhythm-maker storage format:
+        Set `format_specification` to `''` or `'storage'`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[1, 2, 3, 4],
@@ -69,16 +62,25 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         Returns string.
         '''
-        return DivisionIncisedRhythmMaker.storage_format.fget(self)
+        superclass = super(DivisionIncisedRestRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
+
+    ### PRIVATE METHODS ###
+
+    def _make_middle_of_numeric_map_part(self, middle):
+        if 0 < middle:
+            return (-abs(middle), )
+        else:
+            return ()
 
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new division-incised rest rhythm-maker with `kwargs`:
+        r'''Creates new division-incised rest rhythm-maker with `kwargs`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[1, 2, 3, 4],
@@ -99,7 +101,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[1, 2, 3, 4],
@@ -135,11 +137,11 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
         return DivisionIncisedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse division-incised rest rhythm-maker:
+        r'''Reverses division-incised rest rhythm-maker.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[1, 2, 3, 4],
@@ -160,7 +162,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.DivisionIncisedRestRhythmMaker(
                 prefix_talea=[1],
                 prefix_lengths=[4, 3, 2, 1],

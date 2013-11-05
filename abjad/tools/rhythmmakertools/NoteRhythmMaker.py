@@ -116,22 +116,14 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        r'''Note rhythm-maker interpreter representation.
+    def __format__(self, format_specification=''):
+        r'''Formats note rhythm-maker.
 
-        Returns string.
-        '''
-        return '%s()' % type(self).__name__
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Note rhythm-maker storage format:
+        Set `format_specification` to `''` or `'storage'`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=True,
                 forbidden_written_duration=durationtools.Duration(1, 2),
@@ -140,12 +132,20 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         Returns string.
         '''
-        return super(NoteRhythmMaker, self).storage_format
+        superclass = super(NoteRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
+
+    def __repr__(self):
+        r'''Interpreter representation of note rhythm-maker.
+
+        Returns string.
+        '''
+        return '{}()'.format(type(self).__name__)
 
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new note rhythm-maker:
+        r'''Creates new note rhythm-maker.
 
         ::
 
@@ -153,7 +153,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
                 forbidden_written_duration=durationtools.Duration(1, 2),
@@ -181,7 +181,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         return DivisionIncisedNoteRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse note rhythm-maker:
+        r'''Reverses note rhythm-maker.
 
         ::
 
@@ -189,7 +189,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
                 forbidden_written_duration=durationtools.Duration(1, 2),

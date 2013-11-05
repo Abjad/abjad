@@ -15,7 +15,7 @@ class Documenter(abctools.Maker):
         self._object = obj
         self._prefix = prefix
 
-    ### PRIVATE METHOD ###
+    ### PRIVATE METHODS ###
 
     def _shrink_module_name(self, module):
         if self.prefix and module.startswith(self.prefix):
@@ -32,6 +32,16 @@ class Documenter(abctools.Maker):
     @property
     def _positional_argument_names(self):
         return ('_object',)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        r'''Storage format of documenter.
+
+        Returns string.
+        '''
+        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

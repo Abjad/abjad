@@ -97,15 +97,16 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             tie_split_notes=tie_split_notes,
             )
 
-    ### PUBLIC PROPERTIES ###
+    ### SPECIAL METHODS ###
 
-    @property
-    def storage_format(self):
-        r'''Talea rhythm-maker storage format:
+    def __format__(self, format_specification=''):
+        r'''Formats talea rhythm-maker.
+
+        Set `format_specification` to `''` or `'storage'`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.TaleaRhythmMaker(
                 talea=[5],
                 talea_denominator=16,
@@ -118,12 +119,13 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
         Returns string.
         '''
-        return super(TaleaRhythmMaker, self).storage_format
+        superclass = super(TaleaRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new talea rhythm-maker with `kwargs`:
+        r'''Creates new talea rhythm-maker with `kwargs`.
 
         ::
 
@@ -131,7 +133,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.TaleaRhythmMaker(
                 talea=[5],
                 talea_denominator=16,
@@ -163,7 +165,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
         return DivisionBurnishedTaleaRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse talea rhythm-maker:
+        r'''Reverses talea rhythm-maker.
 
         ::
 
@@ -171,7 +173,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.TaleaRhythmMaker(
                 talea=[5],
                 talea_denominator=16,

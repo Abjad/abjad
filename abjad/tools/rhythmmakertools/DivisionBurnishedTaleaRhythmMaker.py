@@ -42,6 +42,38 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats division-burnished talea rhythm-maker.
+
+        Set `format_specification` to `''` or `'storage'`.
+
+        ::
+
+            >>> print format(maker)
+            rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
+                talea=[1, 1, 2, 4],
+                talea_denominator=16,
+                prolation_addenda=[0, 3],
+                lefts=[-1],
+                middles=[0],
+                rights=[-1],
+                left_lengths=[1],
+                right_lengths=[1],
+                secondary_divisions=[14],
+                beam_each_cell=False,
+                beam_cells_together=False,
+                decrease_durations_monotonically=True,
+                tie_split_notes=False,
+                tie_rests=False
+                )
+
+        Returns string.
+        '''
+        superclass = super(DivisionBurnishedTaleaRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PRIVATE METHODS ###
 
     def _burnish_division_parts(self, divisions, quintuplet):
@@ -81,44 +113,14 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         assert burnished_weights == unburnished_weights
         return burnished_divisions
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Division-burnished talea rhythm-maker storage format:
-
-        ::
-
-            >>> print maker.storage_format
-            rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
-                talea=[1, 1, 2, 4],
-                talea_denominator=16,
-                prolation_addenda=[0, 3],
-                lefts=[-1],
-                middles=[0],
-                rights=[-1],
-                left_lengths=[1],
-                right_lengths=[1],
-                secondary_divisions=[14],
-                beam_each_cell=False,
-                beam_cells_together=False,
-                decrease_durations_monotonically=True,
-                tie_split_notes=False,
-                tie_rests=False
-                )
-
-        Returns string.
-        '''
-        return super(DivisionBurnishedTaleaRhythmMaker, self).storage_format
-
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new rhythm-maker with `kwargs`:
+        r'''Creates new rhythm-maker with `kwargs`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[1, 1, 2, 4],
                 talea_denominator=16,
@@ -142,7 +144,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[1, 1, 2],
                 talea_denominator=16,
@@ -181,13 +183,13 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         return BurnishedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse division-burnished talea rhythm-maker.
+        r'''Reverses division-burnished talea rhythm-maker.
 
         Nonreversed output:
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[1, 1, 2, 4],
                 talea_denominator=16,
@@ -229,7 +231,7 @@ class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
                 talea=[4, 2, 1, 1],
                 talea_denominator=16,

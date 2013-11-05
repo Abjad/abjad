@@ -113,27 +113,29 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             tie_rests=False,
             )
 
-    ### PUBLIC PROPERTIES ###
+    ### SPECIAL METHODS ###
 
-    @property
-    def storage_format(self):
-        r'''Rest rhythm-maker storage format:
+    def __format__(self, format_specification=''):
+        r'''Formats rest rhythm-maker.
+
+        Set `format_specification` to `''` or `'storage'`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.RestRhythmMaker(
                 forbidden_written_duration=durationtools.Duration(1, 4)
                 )
 
         Returns string.
         '''
-        return DivisionIncisedRestRhythmMaker.storage_format.fget(self)
+        superclass = super(RestRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new rest rhythm-maker with `kwargs`:
+        r'''Creates new rest rhythm-maker with `kwargs`.
 
         ::
 
@@ -141,7 +143,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.RestRhythmMaker(
                 forbidden_written_duration=durationtools.Duration(1, 4)
                 )
@@ -167,7 +169,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         return DivisionIncisedRestRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse rest rhythm-maker:
+        r'''Reverses rest rhythm-maker.
 
         ::
 
@@ -175,7 +177,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.RestRhythmMaker(
                 forbidden_written_duration=durationtools.Duration(1, 4)
                 )

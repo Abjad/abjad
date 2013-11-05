@@ -143,7 +143,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Call burnished rhythm-maker on `divisions`.
+        r'''Calls burnished rhythm-maker on `divisions`.
 
         Returns either list of tuplets or else list of note-lists.
         '''
@@ -177,6 +177,16 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert all(isinstance(x, selectiontools.Selection) for x in result) or \
             all(isinstance(x, scoretools.Tuplet) for x in result)
         return result
+
+    def __format__(self, format_specification=''):
+        r'''Formats burnished rhythm-maker.
+
+        Set `format_specification` to `''` or `'storage'`.
+
+        Returns string.
+        '''
+        superclass = super(BurnishedRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PRIVATE METHODS ###
 
@@ -298,20 +308,10 @@ class BurnishedRhythmMaker(RhythmMaker):
             secondary_divisions,
             )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Burnished rhythm-maker storage format.
-
-        Returns string.
-        '''
-        return RhythmMaker.storage_format.fget(self)
-
     ### PUBLIC METHODS ###
 
     def reverse(self):
-        r'''Reverse burnished rhythm-maker.
+        r'''Reverses burnished rhythm-maker.
 
         Defined equal to a copy of rhythm-maker with all the following
         lists reversed:

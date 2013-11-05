@@ -123,28 +123,16 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
-    ### PRIVATE METHODS ###
+    ### SPECIAL METHODS ###
 
-    def _make_middle_of_numeric_map_part(self, middle):
-        if 0 < middle:
-            if self.body_ratio is not None:
-                shards = mathtools.divide_number_by_ratio(
-                    middle, self.body_ratio)
-                return tuple(shards)
-            else:
-                return (middle, )
-        else:
-            return ()
+    def __format__(self, format_specification=''):
+        r'''Formats division-incised note rhythm-maker.
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Division-incised note rhythm-maker storage format:
+        Set `format_specification` to `''` or `'storage'`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[0, 1],
@@ -162,16 +150,30 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         Returns string.
         '''
-        return super(DivisionIncisedNoteRhythmMaker, self).storage_format
+        superclass = super(DivisionIncisedNoteRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
+
+    ### PRIVATE METHODS ###
+
+    def _make_middle_of_numeric_map_part(self, middle):
+        if 0 < middle:
+            if self.body_ratio is not None:
+                shards = mathtools.divide_number_by_ratio(
+                    middle, self.body_ratio)
+                return tuple(shards)
+            else:
+                return (middle, )
+        else:
+            return ()
 
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new division-incised note rhythm-maker with `kwargs`:
+        r'''Creates new division-incised note rhythm-maker with `kwargs`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[0, 1],
@@ -193,7 +195,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[1],
@@ -230,11 +232,11 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         return DivisionIncisedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse division-incised note rhythm-maker.
+        r'''Reverses division-incised note rhythm-maker.
 
         Nonreversed output:
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[0, 1],
@@ -274,7 +276,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.DivisionIncisedNoteRhythmMaker(
                 prefix_talea=[-1],
                 prefix_lengths=[1, 0],

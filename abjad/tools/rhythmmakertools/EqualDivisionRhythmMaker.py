@@ -61,7 +61,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Call equal-division rhythm-maker on `divisions`.
+        r'''Calls equal-division rhythm-maker on `divisions`.
 
         Returns list of tuplet lists.
         '''
@@ -70,6 +70,28 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             tuplet = self._make_tuplet(division)
             result.append([tuplet])
         return result
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats equal division rhythm-maker.
+
+        Set `format_specification` to `''` or `'storage'`.
+
+        ::
+
+            >>> print format(maker)
+            rhythmmakertools.EqualDivisionRhythmMaker(
+                leaf_count=4,
+                is_diminution=True,
+                beam_each_cell=True,
+                beam_cells_together=False
+                )
+
+        Returns string.
+        '''
+        superclass = super(EqualDivisionRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PRIVATE METHODS ###
 
@@ -115,28 +137,10 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         '''
         return self._leaf_count
 
-    @property
-    def storage_format(self):
-        r'''Equal-division rhythm-maker storage format:
-
-        ::
-
-            >>> print maker.storage_format
-            rhythmmakertools.EqualDivisionRhythmMaker(
-                leaf_count=4,
-                is_diminution=True,
-                beam_each_cell=True,
-                beam_cells_together=False
-                )
-
-        Returns string.
-        '''
-        return RhythmMaker.storage_format.fget(self)
-
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new equal-division rhythm-maker with `kwargs`:
+        r'''Creates new equal-division rhythm-maker with `kwargs`.
 
         ::
 
@@ -144,7 +148,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.EqualDivisionRhythmMaker(
                 leaf_count=4,
                 is_diminution=False,
@@ -173,7 +177,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         return RhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse equal-division rhythm-maker:
+        r'''Reverses equal-division rhythm-maker.
 
         ::
 
@@ -181,7 +185,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.EqualDivisionRhythmMaker(
                 leaf_count=4,
                 is_diminution=True,

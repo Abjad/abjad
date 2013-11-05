@@ -94,7 +94,7 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Call even-run rhythm-maker on `divisions`.
+        r'''Calls even-run rhythm-maker on `divisions`.
 
         Returns list of container lists.
         '''
@@ -103,6 +103,25 @@ class EvenRunRhythmMaker(RhythmMaker):
             container = self._make_container(division)
             result.append([container])
         return result
+
+    def __format__(self, format_specification=''):
+        r'''Formats even run rhythm-maker.
+
+        Set `format_specification` to `''` or `'storage'`.
+
+        ::
+
+            >>> print format(maker)
+            rhythmmakertools.EvenRunRhythmMaker(
+                denominator_multiplier_exponent=1,
+                beam_each_cell=True,
+                beam_cells_together=False
+                )
+
+        Returns string.
+        '''
+        superclass = super(EvenRunRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PRIVATE METHODS ###
 
@@ -136,27 +155,10 @@ class EvenRunRhythmMaker(RhythmMaker):
         '''
         return self._denominator_multiplier_exponent
 
-    @property
-    def storage_format(self):
-        r'''Even-run rhythm-maker storage format:
-
-        ::
-
-            >>> print maker.storage_format
-            rhythmmakertools.EvenRunRhythmMaker(
-                denominator_multiplier_exponent=1,
-                beam_each_cell=True,
-                beam_cells_together=False
-                )
-
-        Returns string.
-        '''
-        return RhythmMaker.storage_format.fget(self)
-
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new even-run rhythm-maker with `kwargs`:
+        r'''Creates new even-run rhythm-maker with `kwargs`.
 
         ::
 
@@ -164,7 +166,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.EvenRunRhythmMaker(
                 denominator_multiplier_exponent=0,
                 beam_each_cell=True,
@@ -192,7 +194,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         return RhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse even-run rhythm-maker:
+        r'''Reverses even-run rhythm-maker:
 
         ::
 
@@ -200,7 +202,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.EvenRunRhythmMaker(
                 denominator_multiplier_exponent=1,
                 beam_each_cell=True,

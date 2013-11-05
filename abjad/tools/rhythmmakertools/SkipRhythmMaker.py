@@ -46,7 +46,7 @@ class SkipRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Call skip rhythm-maker on `divisions`.
+        r'''Calls skip rhythm-maker on `divisions`.
 
         Returns list of skips.
         '''
@@ -59,25 +59,25 @@ class SkipRhythmMaker(RhythmMaker):
             result.append(skip)
         return result
 
-    ### PUBLIC PROPERTIES ###
+    def __format__(self, format_specification=''):
+        r'''Formats skip rhythm-maker.
 
-    @property
-    def storage_format(self):
-        r'''Skip rhythm-maker storage format:
+        Set `format_specification` to `''` or `'storage'`.
 
         ::
 
-            >>> print maker.storage_format
+            >>> print format(maker)
             rhythmmakertools.SkipRhythmMaker()
 
         Returns string.
         '''
-        return super(SkipRhythmMaker, self).storage_format
+        superclass = super(SkipRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new skip rhythm-maker with `kwargs`:
+        r'''Creates new skip rhythm-maker with `kwargs`.
 
         ::
 
@@ -85,7 +85,7 @@ class SkipRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.SkipRhythmMaker()
 
         ::
@@ -109,7 +109,7 @@ class SkipRhythmMaker(RhythmMaker):
         return RhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse skip rhythm-maker:
+        r'''Reverses skip rhythm-maker.
 
         ::
 
@@ -117,7 +117,7 @@ class SkipRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.SkipRhythmMaker()
 
         ::

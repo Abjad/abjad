@@ -44,7 +44,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Call tuplet monad rhythm-maker on `divisions`.
+        r'''Calls tuplet monad rhythm-maker on `divisions`.
 
         Returns list of tuplets.
         '''
@@ -53,6 +53,24 @@ class TupletMonadRhythmMaker(RhythmMaker):
             monad = self._make_monad(division)
             result.append([monad])
         return result
+
+    def __format__(self, format_specification=''):
+        r'''Formats tuplet monad rhythm-maker.
+
+        Set `format_specification` to `''` or `'storage'`.
+
+        ::
+
+            >>> print format(maker)
+            rhythmmakertools.TupletMonadRhythmMaker(
+                beam_each_cell=False,
+                beam_cells_together=False
+                )
+
+        Returns string.
+        '''
+        superclass = super(TupletMonadRhythmMaker, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PRIVATE METHODS ###
 
@@ -69,28 +87,10 @@ class TupletMonadRhythmMaker(RhythmMaker):
         tuplet = scoretools.Tuplet(tuplet_multiplier, leaves)
         return tuplet
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Tuplet monad rhythm-maker storage format:
-
-        ::
-
-            >>> print maker.storage_format
-            rhythmmakertools.TupletMonadRhythmMaker(
-                beam_each_cell=False,
-                beam_cells_together=False
-                )
-
-        Returns string.
-        '''
-        return super(TupletMonadRhythmMaker, self).storage_format
-
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new tuplet monad rhythm-maker with `kwargs`:
+        r'''Creates new tuplet monad rhythm-maker with `kwargs`.
 
         ::
 
@@ -98,7 +98,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print new_maker.storage_format
+            >>> print format(new_maker)
             rhythmmakertools.TupletMonadRhythmMaker(
                 beam_each_cell=False,
                 beam_cells_together=False
@@ -120,7 +120,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
         return RhythmMaker.new(self, **kwargs)
 
     def reverse(self):
-        r'''Reverse tuplet monad rhythm-maker:
+        r'''Reverses tuplet monad rhythm-maker.
 
         ::
 
@@ -128,7 +128,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print reversed_maker.storage_format
+            >>> print format(reversed_maker)
             rhythmmakertools.TupletMonadRhythmMaker(
                 beam_each_cell=False,
                 beam_cells_together=False

@@ -13,16 +13,6 @@ class Maker(AbjadObject):
     def __call__(self):
         raise NotImplemented
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Storage format of maker.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
-
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod

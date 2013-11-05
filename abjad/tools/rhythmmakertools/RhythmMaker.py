@@ -29,10 +29,10 @@ class RhythmMaker(Maker):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions, seeds=None):
-        r'''Cast `divisions` into duration pairs.
-        Reduce numerator and denominator relative to each other.
+        r'''Casts `divisions` into duration pairs.
+        Reduces numerator and denominator relative to each other.
 
-        Change none `seeds` into empty list.
+        Changes none `seeds` into empty list.
 
         Returns duration pairs and seed list.
         '''
@@ -72,7 +72,7 @@ class RhythmMaker(Maker):
         Returns string.
         '''
         if format_specification in ('', 'storage'):
-            return self.storage_format
+            return self._storage_format
         return str(self)
 
     def __repr__(self):
@@ -83,6 +83,12 @@ class RhythmMaker(Maker):
         if getattr(self, 'name', None) is not None:
             return '{}({!r})'.format(type(self).__name__, self.name)
         return Maker.__repr__(self)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format(self):
+        return self._tools_package_qualified_indented_repr
 
     ### PRIVATE METHODS ###
 
@@ -169,7 +175,7 @@ class RhythmMaker(Maker):
     ### PUBLIC METHODS ###
 
     def new(self, **kwargs):
-        r'''Create new rhythm-maker with `kwargs`:
+        r'''Creates new rhythm-maker with `kwargs`.
 
         ::
 
@@ -216,7 +222,7 @@ class RhythmMaker(Maker):
         return new
 
     def reverse(self):
-        r'''Reverse rhythm-maker.
+        r'''Reverses rhythm-maker.
 
         .. note:: method is provisional.
 
