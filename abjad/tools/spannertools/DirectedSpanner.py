@@ -14,7 +14,7 @@ class DirectedSpanner(Spanner):
     @abc.abstractmethod
     def __init__(
         self,
-        components=[],
+        components=None,
         direction=None,
         overrides=None,
         ):

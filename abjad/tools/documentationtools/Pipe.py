@@ -27,7 +27,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
 
     ### INITIALIZER ###
 
-    def __init__(self, executable='python', arguments=['-i'], timeout=0):
+    def __init__(self, executable='python', arguments=('-i'), timeout=0):
         self._arguments = arguments
         self._executable = executable
         self._timeout = timeout
