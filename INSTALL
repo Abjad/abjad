@@ -81,7 +81,8 @@ Otherwise, follow these manual install instructions:
 
     ... at your comamnd prompt.
 
-These commands will cause Python to install Abjad in your site packages directory.
+These commands will cause Python to install Abjad in your site packages
+directory.
 
 
 Note for Linux users
@@ -93,5 +94,5 @@ Most Linux distributions now come with xdg-utils installed.
 If you do not have xdg-utils installed, you can download it from 
 http://www.portland.freedsektop.org and install it.
 
-Alternatively you can set the pdfviewer variable in the $HOME/.abjad/config file 
-to your favorite PDF viewer. 
+Alternatively you can set the pdfviewer variable in the $HOME/.abjad/abjad.cfg
+file to your favorite PDF viewer. 

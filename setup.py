@@ -1,17 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-try:
-    import setuptools
-except ImportError:
-    import ez_setup
-    ez_setup.use_setuptools()
-    import setuptools
-
+import setuptools
 import os
 version_file_path = os.path.join(
-    os.path.dirname(__file__), 
-    'abjad', 
+    os.path.dirname(__file__),
+    'abjad',
     '_version.py'
     )
 execfile(version_file_path, {}, locals())
@@ -32,9 +26,9 @@ long_description += ' notation package, you can use Abjad to control'
 long_description += ' the typographic details of all the symbols on the page.'
 
 author = [
-    'Trevor Baca',
-    'Josiah Wolf Oberholtzer', 
-    'Victor Adan',
+    'Trevor Bača',
+    'Josiah Wolf Oberholtzer',
+    'Víctor Adán',
     ]
 author = ', '.join(author)
 
@@ -47,36 +41,35 @@ author_email = ', '.join(author_email)
 
 keywords = [
     'music composition',
-    'music notation', 
-    'formalized score control', 
+    'music notation',
+    'formalized score control',
     'lilypond',
     ]
 keywords = ', '.join(keywords)
 
 setuptools.setup(
-    name='Abjad',
-    version=__version__,
-    description=description,
-    long_description=long_description,
     author=author,
     author_email=author_email,
-    url='http://www.projectabjad.org',
-    keywords=keywords,
-    license='GPL',
-    platforms='Any',
+    description=description,
+    entry_points={
+        'console_scripts': [
+            'abjad = abjad.tools.iotools.run_abjad:run_abjad',
+            'ajv = abjad.tools.developerscripttools.run_abjdev:run_abjdev',
+            ]
+        },
+    include_package_data=True,
     install_requires=[
         'pytest >= 2.1',
         'Sphinx >= 1.0.7',
         'ply >= 3.4',
         'configobj >= 4.7.2',
         ],
-    # include all packages found in '.'
-    packages=setuptools.find_packages(),
-    #scripts = ['ez_setup.py'],
-    # include all file types under abjad
-    include_package_data=True,
-    entry_points={'console_scripts':[
-        'abjad = abjad.tools.iotools.run_abjad:run_abjad',
-        'ajv = abjad.tools.developerscripttools.run_abjdev:run_abjdev',
-        ]},
+    keywords=keywords,
+    license='GPL',
+    long_description=long_description,
+    name='Abjad',
+    packages=setuptools.find_packages(exclude='experimental'),
+    platforms='Any',
+    url='http://www.projectabjad.org',
+    version=__version__,
     )
