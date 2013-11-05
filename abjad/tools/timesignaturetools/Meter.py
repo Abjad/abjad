@@ -21,7 +21,7 @@ class Meter(AbjadObject):
     ``2`` and ``3`` summing to that prime. 
     Hence ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2``.
 
-    The metrical hierarchy models many parts of the common practice 
+    The meter models many parts of the common practice 
     understanding of meter:
 
     ::
@@ -114,7 +114,7 @@ class Meter(AbjadObject):
                 1/8
                 1/8))))
 
-    Returns metrical hierarchy object.
+    Returns meter object.
     '''
 
     ### CLASS VARIABLES ###
@@ -252,7 +252,7 @@ class Meter(AbjadObject):
         return False
 
     def __iter__(self):
-        r'''Iterate metrical hierarchy:
+        r'''Iterate meter:
 
         ::
 
@@ -309,7 +309,7 @@ class Meter(AbjadObject):
 
     @property
     def decrease_durations_monotonically(self):
-        r'''True if the metrical hierarchy divides large primes into 
+        r'''True if the meter divides large primes into 
         collections of ``2`` and ``3`` that decrease monotonically.
         
         ..  container:: example
@@ -342,7 +342,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Metrical hierarchy with durations that 
+            **Example 2.** Meter with durations that 
             decrease monotonically:
 
             ::
@@ -596,7 +596,7 @@ class Meter(AbjadObject):
 
     def generate_offset_kernel_to_denominator(
         self, denominator, normalize=True):
-        r'''Generate a dictionary of all offsets in a metrical hierarchy up
+        r'''Generate a dictionary of all offsets in a meter up
         to `denominator`, where the keys are the offsets and the values
         are the normalized weights of those offsets:
 
@@ -620,7 +620,7 @@ class Meter(AbjadObject):
             1       3/16
 
         This is useful for testing how strongly a collection of offsets
-        responds to a given metrical hierarchy.
+        responds to a given meter.
 
         Returns dictionary.
         '''

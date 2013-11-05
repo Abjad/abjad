@@ -19,7 +19,7 @@ def rewrite_meter(
     ..  container:: example
 
         **Example 1.** Rewrite the contents of a measure in a staff using the 
-        default metrical hierarchy for that measure's time signature:
+        default meter for that measure's time signature:
 
         ::
 
@@ -99,7 +99,7 @@ def rewrite_meter(
     ..  container:: example
 
         **Example 2.** Rewrite the contents of a measure in a staff using a 
-        custom metrical hierarchy:
+        custom meter:
 
         ::
 
@@ -324,7 +324,7 @@ def rewrite_meter(
         `Meter`, if those tie chains cross any offsets at that 
         depth, but do not also both begin and end at any of those offsets.  
 
-        Consider the default metrical hierarchy for `9/8`:
+        Consider the default meter for `9/8`:
 
         ::
 
@@ -541,7 +541,7 @@ def rewrite_meter(
 
             >>> show(score) # doctest: +SKIP
 
-        Here we establish a metrical hierarchy without specifying and boundary 
+        Here we establish a meter without specifying and boundary 
         depth:
 
         ::
@@ -624,7 +624,7 @@ def rewrite_meter(
 
             >>> show(score) # doctest: +SKIP
 
-        Here we re-establish metrical hierarchy at a boundary depth of `1`:
+        Here we re-establish meter at a boundary depth of `1`:
 
         ::
 
@@ -716,7 +716,7 @@ def rewrite_meter(
 
     ..  container:: example
 
-        **Example 6.** Establishing metrical hierarchy recursively in measures 
+        **Example 6.** Establishing meter recursively in measures 
         with nested tuplets:
 
         ::
@@ -750,7 +750,7 @@ def rewrite_meter(
 
             >>> show(measure) # doctest: +SKIP
 
-        When establishing a metrical hierarchy on a selection of components 
+        When establishing a meter on a selection of components 
         which contain containers, like `Tuplets` or `Containers`,
         `timesignaturetools.rewrite_meter()` will recurse into
         those containers, treating them as measures whose time signature is 

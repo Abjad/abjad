@@ -13,7 +13,7 @@ def test_timesignaturetools_rewrite_meter_01():
 
 
 def test_timesignaturetools_rewrite_meter_02():
-    r'''Establishes metrical hierarchy when first component's score offset greater than zero.
+    r'''Establishes meter when first component's score offset greater than zero.
     '''
 
     source = parse('abj: | 2/4 4 4 ~ || 4/4 8 2. 8 ~ || 2/4 4 4 |')

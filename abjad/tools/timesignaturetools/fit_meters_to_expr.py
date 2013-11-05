@@ -10,7 +10,7 @@ def fit_meters_to_expr(
     starting_offset=None,
     denominator=32,
     ):
-    r'''Find the best-matching sequence of metrical hierarchies for the offsets
+    r'''Find the best-matching sequence of meters for the offsets
     contained in `expr`.
 
     ::

@@ -117,10 +117,10 @@ Rewriting rhythms according to a different metric hierarchy
 A new ``rewrite_meter()`` function is now available in the
 ``timesignaturetools`` package.
 
-The function rewrites the contents of tie chains to match a metrical hierarchy.
+The function rewrites the contents of tie chains to match a meter.
 
 Example 1. Rewrite the contents of a measure in a staff using the default
-metrical hierarchy for that measure's time signature:
+meter for that measure's time signature:
 
 ::
 
@@ -186,7 +186,7 @@ metrical hierarchy for that measure's time signature:
 .. image:: images/establish-2.png
 
 Example 2. Rewrite the contents of a measure in a staff using a custom
-metrical hierarchy:
+meter:
 
 ::
 
