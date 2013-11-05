@@ -26,24 +26,16 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
-
+        from abjad.tools import schemetools
         if '_lilypond_format' in dir(expr) and not isinstance(expr, str):
-            return format(expr)
-        elif expr is True:
-            return '##t'
-        elif expr is False:
-            return '##f'
-        elif expr is Up:
-            return '#up'
-        elif expr is Down:
-            return '#down'
-        elif expr is Left:
-            return '#left'
-        elif expr is Right:
-            return '#right'
-        elif expr is Center:
-            return '#center'
-        elif isinstance(expr, int) or isinstance(expr, float) or expr in (
+            pass
+        elif expr in (True, False):
+            expr = schemetools.Scheme(expr)
+        elif expr in (Up, Down, Left, Right, Center):
+            expr = schemetools.Scheme(repr(expr).lower())
+        elif isinstance(expr, int) or isinstance(expr, float):
+            expr = schemetools.Scheme(expr)
+        elif expr in (
             'black',
             'blue',
             'center',
@@ -65,17 +57,19 @@ class LilyPondFormatManager(AbjadObject):
             'white',
             'yellow',
             ):
-            return '#{}'.format(expr)
+            expr = schemetools.Scheme(expr)
         elif isinstance(expr, str) and '::' in expr:
-            return '#{}'.format(expr)
+            expr = schemetools.Scheme(expr)
         elif isinstance(expr, tuple):
-            return "#'({} . {})".format(expr[0], expr[1])
-        elif isinstance(expr, str) and ' ' not in expr:
-            return "#'{}".format(expr)
-        elif isinstance(expr, str) and ' ' in expr:
-            return '"{}"'.format(expr)
+            expr = schemetools.SchemePair(expr[0], expr[1])
+        elif isinstance(expr, str):
+            if ' ' not in expr:
+                expr = schemetools.Scheme(expr, quoting="'")
+            else:
+                expr = schemetools.Scheme(expr)
         else:
-            return "#'{}".format(expr)
+            expr = schemetools.Scheme(expr, quoting="'")
+        return format(expr)
 
     @staticmethod
     def get_grob_override_format_contributions(component):

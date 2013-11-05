@@ -20,6 +20,16 @@ class LilyPondLanguageToken(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_spec=''):
+        r'''Gets format.
+
+        Returns string.
+        '''
+        if format_spec in ('', 'lilypond'):
+            return self._lilypond_format
+        return str(self)
+
+
     def __repr__(self):
         from abjad import abjad_configuration
         return '{}({!r})'.format(

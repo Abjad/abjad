@@ -164,7 +164,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___06():
         staff,
         r'''
         \new Staff \with {
-            instrumentName = "Violini I"
+            instrumentName = #"Violini I"
         } {
             c'8
             d'8
@@ -239,7 +239,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___09():
         staff,
         r'''
         \new Staff \with {
-            shortInstrumentName = "Vni. I"
+            shortInstrumentName = #"Vni. I"
         } {
             c'8
             d'8
