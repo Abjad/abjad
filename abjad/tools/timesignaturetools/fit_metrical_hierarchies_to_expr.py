@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import datastructuretools
 
 
 def fit_metrical_hierarchies_to_expr(
@@ -9,14 +10,14 @@ def fit_metrical_hierarchies_to_expr(
     starting_offset=None,
     denominator=32,
     ):
-    r'''Find the best-matching sequence of metrical hierarchies for the 
-    offsets contained in `expr`.
+    r'''Find the best-matching sequence of metrical hierarchies for the offsets
+    contained in `expr`.
 
     ::
 
-        >>> metrical_hierarchies = \
-        ...     timesignaturetools.MetricalHierarchyInventory(
-        ...     [(3, 4), (4, 4), (5, 4)])
+        >>> metrical_hierarchies = [
+        ...     timesignaturetools.MetricalHierarchy(x)
+        ...     for x in [(3, 4), (4, 4), (5, 4)]]
 
     ..  container:: example
 
@@ -50,11 +51,11 @@ def fit_metrical_hierarchies_to_expr(
             5/4
             5/4
 
-    Offsets are coerced from `expr` via 
+    Offsets are coerced from `expr` via
     `MetricalKernel.count_offsets_in_expr()`.
 
-    MetricalHierarchies are coerced from `metrical_hierarchies` 
-    via `MetricalHierarchyInventory`.
+    MetricalHierarchies are coerced from `metrical_hierarchies` via
+    `MetricalHierarchyInventory`.
 
     Returns list.
     '''
@@ -71,10 +72,16 @@ def fit_metrical_hierarchies_to_expr(
     else:
         start_offset = durationtools.Offset(starting_offset)
 
-    metrical_hierarchy_inventory = timesignaturetools.MetricalHierarchyInventory(metrical_hierarchies)
-    longest_hierarchy = sorted(metrical_hierarchy_inventory, key=lambda x: x.preprolated_duration, reverse=True)[0]
-    longest_kernel_duration = max(x.preprolated_duration for x in metrical_hierarchy_inventory)
-    kernels = [x.generate_offset_kernel_to_denominator(denominator) for x in metrical_hierarchy_inventory]
+    metrical_hierarchy_inventory = datastructuretools.TypedTuple(
+        tokens=metrical_hierarchies,
+        item_class=timesignaturetools.MetricalHierarchy,
+        )
+    longest_hierarchy = sorted(metrical_hierarchy_inventory,
+        key=lambda x: x.preprolated_duration, reverse=True)[0]
+    longest_kernel_duration = max(
+        x.preprolated_duration for x in metrical_hierarchy_inventory)
+    kernels = [x.generate_offset_kernel_to_denominator(denominator)
+        for x in metrical_hierarchy_inventory]
 
     current_start_offset = start_offset
     selected_hierarchies = []
@@ -91,7 +98,8 @@ def fit_metrical_hierarchies_to_expr(
         current_offset_counter = {}
         for offset in reversed(ordered_offsets):
             if current_start_offset <= offset <= current_stop_offset:
-                current_offset_counter[offset - current_start_offset] = offset_counter[offset]
+                current_offset_counter[offset - current_start_offset] = \
+                    offset_counter[offset]
             else:
                 break
         if not current_offset_counter:
@@ -106,7 +114,8 @@ def fit_metrical_hierarchies_to_expr(
             winner = metrical_hierarchy_inventory[index]
         selected_hierarchies.append(winner)
         current_start_offset += winner.preprolated_duration
-        while len(ordered_offsets) and ordered_offsets[-1] < current_start_offset:
+        while len(ordered_offsets) \
+            and ordered_offsets[-1] < current_start_offset:
             ordered_offsets.pop()
 
     return selected_hierarchies
