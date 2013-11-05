@@ -223,7 +223,7 @@ def on_doctree_read(app, doctree):
     literal_block_pairs = result_a[0]
     abjad_literal_blocks = result_b[0]
     process_literal_block_pairs(literal_block_pairs)
-    process_abjad_literal_blocks(abjad_literal_blocks)
+    #process_abjad_literal_blocks(abjad_literal_blocks)
 
 
 def on_build_finished(app, exc):
@@ -353,8 +353,6 @@ def render_abjad_book_node(self, node, file_format='png', linked=False):
 
 def visit_abjad_book_html(self, node):
     result = render_abjad_book_node(self, node, file_format='png')
-#    print
-#    print result
     paths, alt = result
     alt = self.encode(alt).strip()
     self.body.append('<div class="abjad-book">\n')
