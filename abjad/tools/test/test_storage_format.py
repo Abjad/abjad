@@ -1,4 +1,7 @@
+# -*- encoding: utf-8 -*-
+
 import inspect
+import pickle
 import pytest
 from abjad.tools import documentationtools
 
@@ -7,6 +10,8 @@ pytest.skip()
 
 
 @pytest.mark.parametrize('klass', documentationtools.list_all_abjad_classes())
-def test___default_values___01(klass):
+def test_storage_format_01(klass):
     if '_storage_format' in dir(klass) and not inspect.isabstract(klass):
-        instance = klass()
+        instance_one = klass()
+        instance_two = eval(format(instance_one, 'storage'))
+        assert instance_one == instance_two
