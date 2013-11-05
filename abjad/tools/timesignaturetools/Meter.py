@@ -655,4 +655,4 @@ class Meter(AbjadObject):
             for offset, response in kernel.iteritems():
                 kernel[offset] = durationtools.Multiplier(response, total)
 
-        return timesignaturetools.MetricalKernel(kernel)
+        return timesignaturetools.MetricAccentKernel(kernel)

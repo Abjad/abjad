@@ -52,7 +52,7 @@ def fit_metrical_hierarchies_to_expr(
             5/4
 
     Offsets are coerced from `expr` via
-    `MetricalKernel.count_offsets_in_expr()`.
+    `MetricAccentKernel.count_offsets_in_expr()`.
 
     MetricalHierarchies are coerced from `metrical_hierarchies` via
     `MetricalHierarchyInventory`.
@@ -62,7 +62,7 @@ def fit_metrical_hierarchies_to_expr(
     from abjad.tools import timesignaturetools
 
     offset_counter = \
-        timesignaturetools.MetricalKernel.count_offsets_in_expr(expr)
+        timesignaturetools.MetricAccentKernel.count_offsets_in_expr(expr)
     ordered_offsets = sorted(offset_counter, reverse=True)
     if not ordered_offsets:
         return []

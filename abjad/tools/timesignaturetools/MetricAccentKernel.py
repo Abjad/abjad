@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
 
-class MetricalKernel(AbjadObject):
+class MetricAccentKernel(AbjadObject):
     r'''A metrical kernel, or offset-impulse-response-filter.
 
     ::
@@ -12,7 +12,7 @@ class MetricalKernel(AbjadObject):
         >>> hierarchy = timesignaturetools.Meter((5, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> kernel
-        MetricalKernel({
+        MetricAccentKernel({
             Offset(0, 1): Multiplier(3, 11),
             Offset(1, 8): Multiplier(1, 11),
             Offset(1, 4): Multiplier(1, 11),
@@ -30,7 +30,7 @@ class MetricalKernel(AbjadObject):
         >>> kernel(offsets)
         0.6363636363636364
 
-    Return `MetricalKernel` instance.
+    Return `MetricAccentKernel` instance.
     '''
     ### CLASS VARIABLES ###
 
@@ -126,10 +126,10 @@ class MetricalKernel(AbjadObject):
 
             ::
 
-                >>> MetricalKernel = timesignaturetools.MetricalKernel
+                >>> MetricAccentKernel = timesignaturetools.MetricAccentKernel
                 >>> leaves = score.select_leaves(
                 ...     allow_discontiguous_leaves=True)
-                >>> counter = MetricalKernel.count_offsets_in_expr(leaves)
+                >>> counter = MetricAccentKernel.count_offsets_in_expr(leaves)
                 >>> for offset, count in sorted(counter.items()):
                 ...     offset, count
                 ...
@@ -151,7 +151,7 @@ class MetricalKernel(AbjadObject):
 
             ::
 
-                >>> counter = MetricalKernel.count_offsets_in_expr((a, b, c))
+                >>> counter = MetricAccentKernel.count_offsets_in_expr((a, b, c))
                 >>> for offset, count in sorted(counter.items()):
                 ...     offset, count
                 ...
