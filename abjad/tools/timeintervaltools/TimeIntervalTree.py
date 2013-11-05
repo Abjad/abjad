@@ -137,9 +137,9 @@ class TimeIntervalTree(TimeIntervalAggregateMixin):
         if self:
             intervals = [repr(interval) for interval in self._inorder]
             return '%s([\n\t%s\n])' % (
-                self._class_name, ',\n\t'.join(intervals))
+                type(self).__name__, ',\n\t'.join(intervals))
         else:
-            return '%s([])' % self._class_name
+            return '%s([])' % type(self).__name__
 
     ### PRIVATE PROPERTIES ###
 

@@ -38,7 +38,7 @@ class FilesystemAssetManager(ScoreManagerObject):
 
         Returns string.
         '''
-        return '{}({!r})'.format(self.__class__.__name__, self.filesystem_path)
+        return '{}({!r})'.format(type(self).__name__, self.filesystem_path)
 
     ### PRIVATE PROPERTIES ###
 

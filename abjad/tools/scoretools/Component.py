@@ -70,12 +70,16 @@ class Component(AbjadObject):
         return self._copy_with_marks_but_without_children_or_spanners()
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats component.
+
+        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
         Returns string.
         '''
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
+        elif format_specification == 'storage':
+            return self.storage_format
         return str(self)
 
     def __getnewargs__(self):
@@ -700,17 +704,6 @@ class Component(AbjadObject):
             )
 
     ### PUBLIC PROPERTIES ###
-
-#    @property
-#    def override(self):
-#        r'''LilyPond grob override component plug-in.
-#
-#        Returns LilyPond grob override component plug-in.
-#        '''
-#        if not hasattr(self, '_override'):
-#            self._override = \
-#                lilypondproxytools.LilyPondGrobManager()
-#        return self._override
 
     @property
     def set(self):

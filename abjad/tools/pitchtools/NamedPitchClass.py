@@ -73,7 +73,7 @@ class NamedPitchClass(PitchClass):
             self._init_by_pitch_carrier(expr)
         else:
             raise TypeError('Cannot instantiate {} from '
-                '{!r}.'.format(self._class_name, expr))
+                '{!r}.'.format(type(self).__name__, expr))
 
     ### SPECIAL METHODS ###
 
@@ -106,7 +106,7 @@ class NamedPitchClass(PitchClass):
 
     def __repr__(self):
         return '{}({!r})'.format(
-            self._class_name,
+            type(self).__name__,
             self.pitch_class_name,
             )
 

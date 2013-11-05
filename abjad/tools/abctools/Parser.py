@@ -119,7 +119,7 @@ class Parser(AbjadObject):
     def output_path(self):
         r'''The output path for files associated with the parser.
         '''
-        class_path = inspect.getfile(self.__class__)
+        class_path = inspect.getfile(type(self))
         return class_path.rpartition(os.path.sep)[0]
 
     @property
@@ -139,7 +139,7 @@ class Parser(AbjadObject):
         r'''The output path for the parser's pickled parsing tables.
         '''
         file_name = '_{}_parse_tables.pkl'.format(
-            self._class_name,
+            type(self).__name__,
             )
         return os.path.join(self.output_path, file_name)
 

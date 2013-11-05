@@ -90,7 +90,7 @@ class NamedIntervalClass(IntervalClass):
         return not self == arg
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, str(self))
+        return '{}({!r})'.format(type(self).__name__, str(self))
 
     def __str__(self):
         return '{}{}{}'.format(

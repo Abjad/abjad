@@ -50,7 +50,7 @@ class FixedDurationContainer(Container):
 
     def __repr__(self):
         return '{}({!r}, {})'.format(
-            self._class_name, self.target_duration, list(self[:]))
+            type(self).__name__, self.target_duration, list(self[:]))
 
     ### PRIVATE METHODS ###
 

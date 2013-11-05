@@ -114,7 +114,7 @@ class Spanner(AbjadObject):
 
         Returns string.
         '''
-        return '{}({})'.format(self._class_name, self._compact_summary)
+        return '{}({})'.format(type(self).__name__, self._compact_summary)
 
     ### PRIVATE PROPERTIES ###
 
@@ -366,7 +366,7 @@ class Spanner(AbjadObject):
         lines = []
         line = '{}.{}('.format(
             self._tools_package_name, 
-            self.__class__.__name__,
+            type(self).__name__,
             )
         lines.append(line)
         lines.append('\toverrides = {')

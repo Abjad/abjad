@@ -222,7 +222,7 @@ class Accidental(AbjadObject):
 
     def __repr__(self):
         return "%s('%s')" % (
-            self._class_name, self.alphabetic_accidental_abbreviation)
+            type(self).__name__, self.alphabetic_accidental_abbreviation)
 
     def __str__(self):
         return self.alphabetic_accidental_abbreviation

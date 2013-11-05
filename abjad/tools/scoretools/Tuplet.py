@@ -118,7 +118,7 @@ class Tuplet(Container):
         Returns string.
         '''
         return '%s(%s, [%s])' % (
-            self._class_name,
+            type(self).__name__,
             self.multiplier,
             self._summary,
             )

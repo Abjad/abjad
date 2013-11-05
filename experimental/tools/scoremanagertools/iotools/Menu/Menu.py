@@ -51,7 +51,7 @@ class Menu(ScoreManagerObject):
 
         Returns string.
         '''
-        return '<{} ({})>'.format(self.__class__.__name__, len(self))
+        return '<{} ({})>'.format(type(self).__name__, len(self))
 
     ### PRIVATE PROPERTIES ###
 

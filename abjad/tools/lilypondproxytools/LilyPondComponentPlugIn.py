@@ -32,4 +32,4 @@ class LilyPondComponentPlugIn(AbjadObject):
         skeleton_strings = self._get_skeleton_strings()
         if skeleton_strings:
             body_string = ', '.join(skeleton_strings)
-        return '%s(%s)' % (self.__class__.__name__, body_string)
+        return '%s(%s)' % (type(self).__name__, body_string)

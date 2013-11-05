@@ -46,10 +46,10 @@ class OctaveTranspositionMapping(TypedList):
     def __repr__(self):
         if self.name:
             return '{}([{}], name={!r})'.format(
-                self._class_name, self._repr_contents_string, self.name)
+                type(self).__name__, self._repr_contents_string, self.name)
         else:
             return '{}([{}])'.format(
-                self._class_name, self._repr_contents_string)
+                type(self).__name__, self._repr_contents_string)
 
     ### PRIVATE METHODS ###
 

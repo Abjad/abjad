@@ -33,7 +33,7 @@ class LilyPondLanguageToken(AbjadObject):
     def __repr__(self):
         from abjad import abjad_configuration
         return '{}({!r})'.format(
-            self._class_name, abjad_configuration['lilypond_language'])
+            type(self).__name__, abjad_configuration['lilypond_language'])
 
     ### PRIVATE PROPERTIES ###
 

@@ -35,7 +35,7 @@ class QEvent(AbjadObject):
 
     def __getstate__(self):
         state = {}
-        for current_class in inspect.getmro(self.__class__):
+        for current_class in inspect.getmro(type(self)):
             if hasattr(current_class, '__slots__'):
                 for slot in current_class.__slots__:
                     if slot not in state:

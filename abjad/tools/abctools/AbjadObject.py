@@ -38,13 +38,14 @@ class AbjadObject(object):
 
         Returns string.
         '''
-        return '{}({})'.format(self._class_name, self._contents_repr_string)
+        result = '{}({})'
+        result = result.format(
+            type(self).__name__, 
+            self._contents_repr_string,
+            )
+        return result
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _class_name(self):
-        return type(self).__name__
 
     @property
     def _contents_repr_string(self):
@@ -153,12 +154,12 @@ class AbjadObject(object):
     @property
     def _tools_package_name(self):
         for part in reversed(self.__module__.split('.')):
-            if not part == self._class_name:
+            if not part == type(self).__name__:
                 return part
 
     @property
     def _tools_package_qualified_class_name(self):
-        return '{}.{}'.format(self._tools_package_name, self._class_name)
+        return '{}.{}'.format(self._tools_package_name, type(self).__name__)
 
     @property
     def _tools_package_qualified_indented_repr(self):

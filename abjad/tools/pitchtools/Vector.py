@@ -64,7 +64,7 @@ class Vector(TypedCounter):
         else:
             parts = ['{}: {}'.format(key, value) 
                 for key, value in self.iteritems()]
-        return '{}({{{}}})'.format(self._class_name, ', '.join(parts))
+        return '{}({{{}}})'.format(type(self).__name__, ', '.join(parts))
 
     def __str__(self):
         parts = ['{}: {}'.format(key, value) 

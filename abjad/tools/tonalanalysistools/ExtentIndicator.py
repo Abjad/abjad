@@ -44,7 +44,7 @@ class ExtentIndicator(AbjadObject):
 
     def __repr__(self):
         return '{}({})'.format(
-            self._class_name,
+            type(self).__name__,
             self.number,
             )
 

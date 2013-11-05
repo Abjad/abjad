@@ -62,7 +62,7 @@ class SearchTree(AbjadObject):
 
     def __getstate__(self):
         state = {}
-        for current_class in inspect.getmro(self.__class__):
+        for current_class in inspect.getmro(type(self)):
             if hasattr(current_class, '__slots__'):
                 for slot in current_class.__slots__:
                     if slot not in state:
@@ -70,7 +70,7 @@ class SearchTree(AbjadObject):
         return state
 
     def __repr__(self):
-        result = ['{}('.format(self._class_name)]
+        result = ['{}('.format(type(self).__name__)]
         definition = pprint.pformat(
             self.definition, indent=4, width=64).splitlines()
         result.append('\tdefinition={}'.format(definition[0]))

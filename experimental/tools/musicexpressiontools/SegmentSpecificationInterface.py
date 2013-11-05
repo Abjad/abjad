@@ -44,7 +44,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
         Returns string.
         '''
-        return '{}({!r})'.format(self.__class__.__name__, self.segment_name)
+        return '{}({!r})'.format(type(self).__name__, self.segment_name)
 
     ### PUBLIC PROPERTIES ###
 

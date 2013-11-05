@@ -15,7 +15,7 @@ class Check(AbjadObject):
 
     @property
     def _message(self):
-        name = self.__class__.__name__
+        name = type(self).__name__
         parts = re.findall("[A-Z][a-z]*", name)
         parts = parts[:-1]
         return ' '.join([p.lower() for p in parts])

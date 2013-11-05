@@ -57,7 +57,7 @@ class Set(TypedFrozenset):
             parts = [repr(str(x)) for x in items]
         else:
             parts = [str(x) for x in items]
-        return '{}([{}])'.format(self._class_name, ', '.join(parts))
+        return '{}([{}])'.format(type(self).__name__, ', '.join(parts))
 
     def __str__(self):
         parts = [str(x) for x in self]

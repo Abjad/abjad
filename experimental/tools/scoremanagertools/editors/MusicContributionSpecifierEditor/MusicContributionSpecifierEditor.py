@@ -23,7 +23,7 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
             wizard = \
                 scoremanagertools.wizards.ParameterSpecifierCreationWizard()
             target_editor = wizard.get_target_editor(
-                target._class_name, target=target)
+                target.__class__.__name__, target=target)
             return target_editor
 
     item_identifier = 'parameter specifier'

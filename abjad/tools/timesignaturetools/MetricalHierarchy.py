@@ -235,7 +235,7 @@ class MetricalHierarchy(AbjadObject):
 
         else:
             message = "Can't initialize {} from {!r}."
-            raise ValueError(message.format(self._class_name, arg))
+            raise ValueError(message.format(type(self).__name__, arg))
 
         self._root_node = root
         self._numerator = numerator
@@ -293,7 +293,7 @@ class MetricalHierarchy(AbjadObject):
             yield start_offset, stop_offset
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.rtm_format)
+        return '{}({!r})'.format(type(self).__name__, self.rtm_format)
 
     ### PRIVATE PROPERTIES ###
 

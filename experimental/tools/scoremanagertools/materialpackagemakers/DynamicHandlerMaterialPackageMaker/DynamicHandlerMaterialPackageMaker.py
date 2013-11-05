@@ -32,5 +32,5 @@ class DynamicHandlerMaterialPackageMaker(MaterialPackageMaker):
             wizard = scoremanagertools.wizards.DynamicHandlerCreationWizard()
             # TODO: generalize get_handler_editor to get_target_editor?
             dynamic_handler_editor = wizard.get_handler_editor(
-                target._class_name, target=target)
+                target.__class__.__name__, target=target)
             return dynamic_handler_editor

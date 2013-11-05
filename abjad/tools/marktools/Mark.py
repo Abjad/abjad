@@ -60,7 +60,7 @@ class Mark(AbjadObject):
         Returns string.
         '''
         return '{}({}){}'.format(
-            self._class_name,
+            type(self).__name__,
             self._contents_repr_string, 
             self._attachment_repr_string,
             )

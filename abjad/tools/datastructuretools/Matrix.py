@@ -89,7 +89,7 @@ class Matrix(AbjadObject):
         return self.rows[expr]
 
     def __repr__(self):
-        return '%s(%sx%s)' % (self._class_name, self._n_rows, self._n_columns)
+        return '%s(%sx%s)' % (type(self).__name__, self._n_rows, self._n_columns)
 
     ### PRIVATE METHODS ###
 

@@ -60,7 +60,7 @@ class Leaf(Component):
         Returns string.
         '''
         return '{}({!r})'.format(
-            self._class_name, self._compact_representation)
+            type(self).__name__, self._compact_representation)
 
     def __str__(self):
         '''String representation of leaf.

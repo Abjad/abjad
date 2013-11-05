@@ -100,7 +100,7 @@ class VerticalMoment(SimultaneousSelection):
 
     def __repr__(self):
         return '%s(%s, <<%s>>)' % (
-            self.__class__.__name__,
+            type(self).__name__,
             self.offset,
             len(self.leaves),
             )

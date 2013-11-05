@@ -48,7 +48,7 @@ class Performer(AbjadObject):
         return False
 
     def __hash__(self):
-        return hash((self._class_name, self.name, tuple(self.instruments)))
+        return hash((type(self).__name__, self.name, tuple(self.instruments)))
 
     ### PRIVATE PROPERTIES ###
 

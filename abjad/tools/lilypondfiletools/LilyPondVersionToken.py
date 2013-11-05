@@ -38,7 +38,7 @@ class LilyPondVersionToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, format(self))
+        return '{}({})'.format(type(self).__name__, format(self))
 
     ### PRIVATE PROPERTIES ###
 

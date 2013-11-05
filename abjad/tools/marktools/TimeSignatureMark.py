@@ -152,7 +152,7 @@ class TimeSignatureMark(ContextMark):
     def __repr__(self):
         if self._has_default_target_context:
             return '%s((%s, %s)%s)%s' % (
-                self._class_name, 
+                type(self).__name__, 
                 self.numerator,
                 self.denominator, 
                 self._partial_repr_string, 
@@ -160,7 +160,7 @@ class TimeSignatureMark(ContextMark):
                 )
         else:
             return '%s((%s, %s)%s, target_context=%s)%s' % (
-                self._class_name, 
+                type(self).__name__, 
                 self.numerator,
                 self.denominator, 
                 self._partial_repr_string, 

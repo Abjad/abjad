@@ -46,7 +46,7 @@ class Cluster(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._summary)
+        return '%s(%s)' % (type(self).__name__, self._summary)
 
     ### PRIVATE METHODS ###
 

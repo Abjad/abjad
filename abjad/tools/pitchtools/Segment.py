@@ -56,7 +56,7 @@ class Segment(TypedTuple):
             parts = [repr(str(x)) for x in self]
         else:
             parts = [str(x) for x in self]
-        return '{}([{}])'.format(self._class_name, ', '.join(parts))
+        return '{}([{}])'.format(type(self).__name__, ', '.join(parts))
 
     def __str__(self):
         parts = [str(x) for x in self]

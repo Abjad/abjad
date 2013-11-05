@@ -71,7 +71,7 @@ class NumberedPitchClass(PitchClass):
             self._init_by_pitch_carrier(expr)
         else:
             raise TypeError('Cannot instantiate {} from '
-                '{!r}.'.format(self._class_name, expr))
+                '{!r}.'.format(type(self).__name__, expr))
 
     ### SPECIAL METHODS ###
 
@@ -104,7 +104,7 @@ class NumberedPitchClass(PitchClass):
         return type(self)(-abs(self))
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, abs(self))
+        return '%s(%s)' % (type(self).__name__, abs(self))
 
     def __str__(self):
         return str(abs(self))

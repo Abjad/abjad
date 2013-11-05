@@ -23,7 +23,7 @@ class AssetOutputProxy(OutputProxy):
 
         Returns string.
         '''
-        return self.__class__.__name__.partition('OutputProxy')[0].lower()
+        return type(self).__name__.partition('OutputProxy')[0].lower()
 
     @property
     def file_name_without_extension(self):

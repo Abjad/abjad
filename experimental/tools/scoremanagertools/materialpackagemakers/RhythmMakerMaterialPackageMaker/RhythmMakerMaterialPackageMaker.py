@@ -31,7 +31,7 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
         if target:
             wizard = RhythmMakerCreationWizard()
             rhythm_maker_editor = wizard.get_handler_editor(
-                target._class_name, target=target)
+                target.__class__.__name__, target=target)
             return rhythm_maker_editor
 
     ### PUBLIC METHODS ###

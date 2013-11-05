@@ -210,14 +210,14 @@ class Duration(AbjadObject, fractions.Fraction):
         return type(self)(fractions.Fraction.__rdivmod__(self, *args))
 
     def __reduce__(self):
-        return self.__class__, (self.numerator, self.denominator)
+        return type(self), (self.numerator, self.denominator)
 
     def __reduce_ex__(self, protocol):
-        return self.__class__, (self.numerator, self.denominator)
+        return type(self), (self.numerator, self.denominator)
 
     def __repr__(self):
         return '%s(%s, %s)' % (
-            self.__class__.__name__, self.numerator, self.denominator)
+            type(self).__name__, self.numerator, self.denominator)
 
     def __rmod__(self, *args):
         return type(self)(fractions.Fraction.__rmod__(self, *args))

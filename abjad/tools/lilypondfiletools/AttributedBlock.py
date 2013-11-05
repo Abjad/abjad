@@ -16,7 +16,7 @@ class AttributedBlock(list, AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats attributed block.
 
         Returns string.
         '''
@@ -26,9 +26,9 @@ class AttributedBlock(list, AbjadObject):
 
     def __repr__(self):
         if not len(self._user_attributes):
-            return '%s()' % self._class_name
+            return '%s()' % type(self).__name__
         else:
-            return '%s(%s)' % (self._class_name, len(self._user_attributes))
+            return '%s(%s)' % (type(self).__name__, len(self._user_attributes))
 
     ### PRIVATE PROPERTIES ###
 

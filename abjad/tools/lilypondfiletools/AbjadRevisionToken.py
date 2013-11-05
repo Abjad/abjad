@@ -3,14 +3,13 @@ from abjad.tools.abctools import AbjadObject
 
 
 class AbjadRevisionToken(AbjadObject):
-    '''Abjad version token:
+    '''Abjad version token.
 
     ::
 
         >>> lilypondfiletools.AbjadRevisionToken()
         AbjadRevisionToken(Abjad revision ...)
 
-    Returns Abjad version token.
     '''
 
     ### INITIALIZER ###
@@ -21,7 +20,7 @@ class AbjadRevisionToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats Abjad revision token.
 
         Returns string.
         '''
@@ -30,7 +29,7 @@ class AbjadRevisionToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._lilypond_format)
+        return '{}({})'.format(type(self).__name__, self._lilypond_format)
 
     ### PRIVATE PROPERTIES ###
 
@@ -38,4 +37,5 @@ class AbjadRevisionToken(AbjadObject):
     def _lilypond_format(self):
         from abjad import abjad_configuration
         abjad_revision_string = abjad_configuration.get_abjad_revision_string()
-        return 'Abjad revision %s' % abjad_revision_string
+        result = 'Abjad revision {}'.format(abjad_revision_string)
+        return result

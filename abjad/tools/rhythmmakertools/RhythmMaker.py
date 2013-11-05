@@ -61,13 +61,27 @@ class RhythmMaker(Maker):
                 return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats rhythm-maker.
+
+        Set `format_specification` to `''` or `'storage'`.
+
+        Defaults `format_specification=None` to 
+        `format_specification='storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self.storage_format
+        return str(self)
+
     def __repr__(self):
-        r'''Rhythm-maker interpreter representation.
+        r'''Interpreter representation of rhythm-maker.
 
         Returns string.
         '''
         if getattr(self, 'name', None) is not None:
-            return '{}({!r})'.format(self._class_name, self.name)
+            return '{}({!r})'.format(type(self).__name__, self.name)
         return Maker.__repr__(self)
 
     ### PRIVATE METHODS ###

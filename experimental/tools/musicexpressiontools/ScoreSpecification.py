@@ -81,7 +81,7 @@ class ScoreSpecification(Specification):
         segment_specification_names = [
             repr(x.specification_name) for x in self.segment_specifications]
         return '{}({})'.format(
-            self.__class__.__name__, ', '.join(segment_specification_names))
+            type(self).__name__, ', '.join(segment_specification_names))
 
     ### PRIVATE METHODS ###
 

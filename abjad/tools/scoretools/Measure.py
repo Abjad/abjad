@@ -85,7 +85,7 @@ class Measure(FixedDurationContainer):
 
         Returns string.
         '''
-        class_name = self._class_name
+        class_name = type(self).__name__
         forced_time_signature = self._get_mark(marktools.TimeSignatureMark)
         summary = self._summary
         length = len(self)

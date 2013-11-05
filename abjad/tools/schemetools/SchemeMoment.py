@@ -77,7 +77,7 @@ class SchemeMoment(Scheme):
 
     def __repr__(self):
         return '{}(({}, {}))'.format(
-            self._class_name, 
+            type(self).__name__, 
             self._value.numerator, 
             self._value.denominator,
             )

@@ -67,7 +67,7 @@ class MetricalKernel(AbjadObject):
         return False
 
     def __repr__(self):
-        result = ['{}({{'.format(self._class_name)]
+        result = ['{}({{'.format(type(self).__name__)]
         offsets = sorted(self._kernel)
         for offset in offsets[:-1]:
             result.append('\t{!r}: {!r},'.format(

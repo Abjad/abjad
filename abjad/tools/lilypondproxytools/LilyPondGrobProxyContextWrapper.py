@@ -21,8 +21,8 @@ class LilyPondGrobProxyContextWrapper(object):
             else:
                 message = 'object can have only'
                 message += ' LilyPond grob attributes: "%s".'
-                message = message % self._class_name
+                message = message % type(self).__name__
                 raise AttributeError(message)
 
     def __repr__(self):
-        return '%s()' % self.__class__.__name__
+        return '%s()' % type(self).__name__

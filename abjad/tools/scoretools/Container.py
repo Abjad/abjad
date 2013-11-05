@@ -654,27 +654,27 @@ class Container(Component):
             left_pair = mathtools.NonreducedFraction(left_duration)
             left_pair = left_pair.with_multiple_of_denominator(denominator)
             left_time_signature = marktools.TimeSignatureMark(left_pair)
-            left = self.__class__(left_time_signature, left_music)
+            left = type(self)(left_time_signature, left_music)
             right_duration = sum([x._get_duration() for x in right_music])
             right_pair = mathtools.NonreducedFraction(right_duration)
             right_pair = right_pair.with_multiple_of_denominator(denominator)
             right_time_signature = marktools.TimeSignatureMark(right_pair)
-            right = self.__class__(right_time_signature, right_music)
+            right = type(self)(right_time_signature, right_music)
         elif isinstance(self, scoretools.FixedDurationTuplet):
             multiplier = self.multiplier
-            left = self.__class__(1, left_music)
-            right = self.__class__(1, right_music)
+            left = type(self)(1, left_music)
+            right = type(self)(1, right_music)
             target_duration = multiplier * left._contents_duration
             left.target_duration = target_duration
             target_duration = multiplier * right._contents_duration
             right.target_duration = target_duration
         elif isinstance(self, scoretools.Tuplet):
             multiplier = self.multiplier
-            left = self.__class__(multiplier, left_music)
-            right = self.__class__(multiplier, right_music)
+            left = type(self)(multiplier, left_music)
+            right = type(self)(multiplier, right_music)
         else:
-            left = self.__class__(left_music)
-            right = self.__class__(right_music)
+            left = type(self)(left_music)
+            right = type(self)(right_music)
         # save left and right containers together for iteration
         halves = (left, right)
         nonempty_halves = [half for half in halves if len(half)]

@@ -19,7 +19,7 @@ class LilyPondSettingManager(LilyPondComponentPlugIn):
                 return vars(self)[name]
             except KeyError:
                 message = '{!r} object has no attribute: {!r}.'
-                message = message.format(self.__class__.__name__, name)
+                message = message.format(type(self).__name__, name)
                 raise AttributeError(message)
         elif stringtools.snake_case_to_upper_camel_case(name) in ly.contexts:
             try:
@@ -33,7 +33,7 @@ class LilyPondSettingManager(LilyPondComponentPlugIn):
                 return vars(self)[name]
             except KeyError:
                 message = '{!r} object has no attribute: {!r}.'
-                message = message.format(self.__class__.__name__, name)
+                message = message.format(type(self).__name__, name)
                 raise AttributeError(message)
 
     def __repr__(self):
@@ -43,7 +43,7 @@ class LilyPondSettingManager(LilyPondComponentPlugIn):
             # remove 'set__'
             skeleton_strings = [x[5:] for x in skeleton_strings]
             body_string = ', '.join(skeleton_strings)
-        return '%s(%s)' % (self.__class__.__name__, body_string)
+        return '%s(%s)' % (type(self).__name__, body_string)
 
     ### PRIVATE METHODS ###
 

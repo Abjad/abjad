@@ -50,7 +50,7 @@ class NamedPitch(Pitch):
                 self._init_by_pitch_name(*args)
             else:
                 raise ValueError('Cannot instantiate {} from {!r}.'.format(
-                    self._class_name, args))
+                    type(self).__name__, args))
         elif len(args) == 2:
             if isinstance(args[0], str):
                 self._init_by_pitch_class_name_and_octave_number(*args)
@@ -66,10 +66,10 @@ class NamedPitch(Pitch):
                     raise TypeError
             else:
                 raise ValueError('Cannot instantiate {} from {!r}.'.format(
-                    self._class_name, args))
+                    type(self).__name__, args))
         else:
             raise ValueError('Cannot instantiate {} from {!r}.'.format(
-                self._class_name, args))
+                type(self).__name__, args))
 
     ### SPECIAL METHODS ###
 
@@ -156,7 +156,7 @@ class NamedPitch(Pitch):
 
     def __repr__(self):
         return '{}({!r})'.format(
-            self._class_name,
+            type(self).__name__,
             self.pitch_name,
             )
 

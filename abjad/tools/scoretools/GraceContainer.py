@@ -109,7 +109,7 @@ class GraceContainer(Container):
         return arg
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, self._summary)
+        return '{}({})'.format(type(self).__name__, self._summary)
 
     ### PRIVATE PROPERTIES ###
 

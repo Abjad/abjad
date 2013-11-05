@@ -64,7 +64,7 @@ class PitchArrayColumn(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._format_contents_string)
+        return '%s(%s)' % (type(self).__name__, self._format_contents_string)
 
     def __str__(self):
         result = [str(cell) for cell in self.cells]

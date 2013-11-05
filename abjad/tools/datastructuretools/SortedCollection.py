@@ -96,7 +96,7 @@ class SortedCollection(object):
         self.__init__([], self._key)
 
     def copy(self):
-        return self.__class__(self, self._key)
+        return type(self)(self, self._key)
 
     def __len__(self):
         return len(self._items)
@@ -112,13 +112,13 @@ class SortedCollection(object):
 
     def __repr__(self):
         return '%s(%r, key=%s)' % (
-            self.__class__.__name__,
+            type(self).__name__,
             self._items,
             getattr(self._given_key, '__name__', repr(self._given_key))
         )
 
     def __reduce__(self):
-        return self.__class__, (self._items, self._given_key)
+        return type(self), (self._items, self._given_key)
 
     def __contains__(self, item):
         k = self._key(item)

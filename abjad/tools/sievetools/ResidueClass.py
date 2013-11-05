@@ -105,7 +105,7 @@ class ResidueClass(BaseResidueClass):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%i, %i)' % (self._class_name, self.modulo, self.residue)
+        return '%s(%i, %i)' % (type(self).__name__, self.modulo, self.residue)
 
     ### PRIVATE METHODS ###
 

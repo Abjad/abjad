@@ -38,7 +38,7 @@ class TypedFrozenset(TypedCollection):
 
     def __hash__(self):
         return hash((
-            self.__class__, 
+            type(self), 
             self._collection,
             self.item_class,
             self.name,

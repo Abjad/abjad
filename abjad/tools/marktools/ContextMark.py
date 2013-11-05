@@ -104,7 +104,7 @@ class ContextMark(Mark):
         r'''This function is designed to be called by score components 
         during score update.
         '''
-        #print '\tupdating effective context of %s ...' % self._class_name
+        #print '\tupdating effective context of %s ...' % type(self).__name__
         current_effective_context = self._effective_context
         correct_effective_context = self._find_correct_effective_context()
         if current_effective_context is not correct_effective_context:

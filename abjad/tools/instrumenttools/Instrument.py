@@ -105,7 +105,7 @@ class Instrument(ContextMark):
         Returns integer.
         '''
         return hash((
-            self.__class__.__name__,
+            type(self).__name__,
             self.instrument_name, 
             self.short_instrument_name,
             ))
@@ -116,7 +116,7 @@ class Instrument(ContextMark):
         Returns string.
         '''
         return '{}(){}'.format(
-            self.__class__.__name__,
+            type(self).__name__,
             self._attachment_repr_string,
             )
 

@@ -60,4 +60,4 @@ class Infinity(AbjadObject):
         return self._value < expr
 
     def __repr__(self):
-        return self._class_name
+        return type(self).__name__

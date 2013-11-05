@@ -88,7 +88,7 @@ class MarkupCommand(AbjadObject):
     def __repr__(self):
         result = [repr(self.command)]
         result.extend([repr(x) for x in self.args])
-        return '%s(%s)' % (self._class_name, ', '.join(result))
+        return '%s(%s)' % (type(self).__name__, ', '.join(result))
 
     def __str__(self):
         return self._lilypond_format

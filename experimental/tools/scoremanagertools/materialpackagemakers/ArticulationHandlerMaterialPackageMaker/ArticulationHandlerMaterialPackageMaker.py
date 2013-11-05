@@ -23,7 +23,7 @@ class ArticulationHandlerMaterialPackageMaker(MaterialPackageMaker):
             wizard = \
                 scoremanagertools.wizards.ArticulationHandlerCreationWizard()
             articulation_handler_editor = wizard.get_handler_editor(
-                target._class_name, target=target)
+                target.__class__.__name__, target=target)
             return articulation_handler_editor
 
     output_material_maker = ArticulationHandlerCreationWizard

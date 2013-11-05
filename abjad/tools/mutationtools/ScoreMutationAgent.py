@@ -45,7 +45,7 @@ class ScoreMutationAgent(object):
         Returns string.
         '''
         return '{}({})'.format(
-            self.__class__.__name__, self._client)
+            type(self).__name__, self._client)
 
     ### PUBLIC METHODS ###
 

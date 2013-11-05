@@ -43,7 +43,7 @@ class NaturalHarmonic(Note, Harmonic):
 
     def __repr__(self):
         return '%s(%s, %s)' % (
-            self._class_name, 
+            type(self).__name__, 
             self.written_pitch, 
             self._formatted_duration,
             )

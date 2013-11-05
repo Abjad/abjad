@@ -89,7 +89,7 @@ class TypedCounter(TypedCollection):
         return result
 
     def __reduce__(self):
-        return self.__class__, (dict(self._collection),)
+        return type(self), (dict(self._collection),)
 
     def __setitem__(self, token, value):
         item = self._item_callable(token)
@@ -170,7 +170,7 @@ class TypedCounter(TypedCollection):
         self._collection.clear()
 
     def copy(self):
-        return self.__class__(self)
+        return type(self)(self)
 
     def elements(self):
             return self._collection.elements()

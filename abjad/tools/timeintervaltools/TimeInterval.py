@@ -69,7 +69,7 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
 
     def __repr__(self):
         return '%s(%r, %r, %r)' % (
-            self._class_name, self.start_offset, self.stop_offset, self._data)
+            type(self).__name__, self.start_offset, self.stop_offset, self._data)
 
     def __setitem__(self, item, value):
         self._data.__setitem__(item, value)

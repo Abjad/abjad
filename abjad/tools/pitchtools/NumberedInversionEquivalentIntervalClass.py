@@ -63,7 +63,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         return type(self)(self.number)
 
     def __repr__(self):
-        return '%s(%s)' % (self._class_name, self._format_string)
+        return '%s(%s)' % (type(self).__name__, self._format_string)
 
     def __str__(self):
         return '%s' % self.number

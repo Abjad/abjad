@@ -103,7 +103,7 @@ class Selection(object):
 
         Returns string.
         '''
-        return '{}{!r}'.format(self.__class__.__name__, self._music)
+        return '{}{!r}'.format(type(self).__name__, self._music)
 
     ### PRIVATE PROPERTIES ###
 
@@ -114,7 +114,7 @@ class Selection(object):
     @property
     def _tools_package_qualified_repr(self):
         return 'selectiontools.{}({!r})'.format(
-            self.__class__.__name__, list(self))
+            type(self).__name__, list(self))
 
     ### PRIVATE METHODS ###
 

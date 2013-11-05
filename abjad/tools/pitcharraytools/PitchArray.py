@@ -124,7 +124,7 @@ class PitchArray(AbjadObject):
         rows = self.rows
         rows = [repr(row) for row in rows]
         rows = ', '.join(rows)
-        return '%s(%s)' % (self._class_name, rows)
+        return '%s(%s)' % (type(self).__name__, rows)
 
     def __setitem__(self, i, arg):
         if isinstance(i, int):

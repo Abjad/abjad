@@ -20,7 +20,7 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
                 return vars(self)[name]
             except KeyError:
                 message = '{!r} object has no attribute: {!r}.'
-                message = message.format(self.__class__.__name__, name)
+                message = message.format(type(self).__name__, name)
                 raise AttributeError(message)
         else:
             camel_name = stringtools.snake_case_to_upper_camel_case(name)
@@ -48,7 +48,7 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
             skeleton_strings = [x[10:] for x in skeleton_strings]
             skeleton_strings.sort()
             body_string = ', '.join(skeleton_strings)
-        return '%s(%s)' % (self.__class__.__name__, body_string)
+        return '%s(%s)' % (type(self).__name__, body_string)
 
     def __setattr__(self, attr, value):
         # make sure attr is valid grob name before setting value

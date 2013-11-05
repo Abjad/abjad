@@ -38,7 +38,7 @@ class TreeNode(AbjadObject):
 
     def __getstate__(self):
         state = {}
-        class_dir = set(dir(self.__class__))
+        class_dir = set(dir(type(self)))
         self_dir = set(x for x in dir(self) if x.startswith('_') and 
             not x.startswith('__'))
         for name in self_dir.difference(class_dir):
@@ -99,9 +99,9 @@ class TreeNode(AbjadObject):
                 attr_pieces.append(attr_piece)
 
         if not attr_pieces:
-            return '{}()'.format(self._class_name)
+            return '{}()'.format(type(self).__name__)
 
-        result = ['{}('.format(self._class_name)]
+        result = ['{}('.format(type(self).__name__)]
         if 1 < len(attr_pieces):
             for attr_piece in attr_pieces[:-1]:
                 attr_piece[-1] += ','

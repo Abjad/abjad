@@ -73,7 +73,7 @@ class FixedDurationTuplet(Tuplet):
         Returns string.
         '''
         return '%s(%s, [%s])' % (
-            self._class_name, self.target_duration, self._summary)
+            type(self).__name__, self.target_duration, self._summary)
 
     def __str__(self):
         '''String representation of fixed-duration tuplet.

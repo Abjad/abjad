@@ -25,7 +25,7 @@ class InteractiveEditor(ScoreManagerObject):
             summary = ''
         else:
             summary = 'target={!r}'.format(self.target)
-        return '{}({})'.format(self.__class__.__name__, summary)
+        return '{}({})'.format(type(self).__name__, summary)
 
     ### PRIVATE PROPERTIES ###
 

@@ -51,7 +51,7 @@ class ScoreManagerObject(object):
 
         Returns string.
         '''
-        return '{}()'.format(self.__class__.__name__)
+        return '{}()'.format(type(self).__name__)
 
     ### PRIVATE PROPERTIES ###
 
@@ -69,12 +69,12 @@ class ScoreManagerObject(object):
     @property
     def _space_delimited_lowercase_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(
-            self.__class__.__name__)
+            type(self).__name__)
 
     @property
     def _spaced_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(
-            self.__class__.__name__)
+            type(self).__name__)
 
     @property
     def _where(self):

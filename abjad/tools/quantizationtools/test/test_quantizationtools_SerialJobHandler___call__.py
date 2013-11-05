@@ -17,7 +17,7 @@ class Job(AbjadObject):
         self.result = [x for x in mathtools.yield_all_compositions_of_integer(self.number)]
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, self.number)
+        return '{}({})'.format(type(self).__name__, self.number)
 
 
 def test_quantizationtools_SerialJobHandler___call___01():

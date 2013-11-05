@@ -112,7 +112,7 @@ class Parentage(SimultaneousSelection):
 
     @staticmethod
     def _id_string(component):
-        lhs = component._class_name
+        lhs = component.__class__.__name__
         rhs = getattr(component, 'name', None) or id(component)
         return '{}-{!r}'.format(lhs, rhs)
 

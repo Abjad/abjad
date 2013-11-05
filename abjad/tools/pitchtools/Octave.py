@@ -132,7 +132,7 @@ class Octave(AbjadObject):
         return self.octave_number
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, self.octave_number)
+        return '{}({})'.format(type(self).__name__, self.octave_number)
 
     def __str__(self):
         r'''LilyPond octave tick representation of octave.

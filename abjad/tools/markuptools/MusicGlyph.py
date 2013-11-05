@@ -32,4 +32,4 @@ class MusicGlyph(MarkupCommand):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.args[0]._value)
+        return '{}({!r})'.format(type(self).__name__, self.args[0]._value)

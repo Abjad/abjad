@@ -118,8 +118,8 @@ class TimeIntervalTreeDictionary(dict, TimeIntervalAggregateMixin):
 
     def __repr__(self):
         if not self:
-            return '%s({})' % self._class_name
-        pieces = ['%s({' % self._class_name]
+            return '%s({})' % type(self).__name__
+        pieces = ['%s({' % type(self).__name__]
         for key in sorted(self.keys()):
             tree = self[key]
             if not tree:

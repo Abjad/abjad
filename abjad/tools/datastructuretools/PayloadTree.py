@@ -250,7 +250,7 @@ class PayloadTree(AbjadObject):
 
         Returns string.
         '''
-        return '%s(%s)' % (self._class_name, self)
+        return '%s(%s)' % (type(self).__name__, self)
 
     def __str__(self):
         r'''String representation of tree:
@@ -293,7 +293,7 @@ class PayloadTree(AbjadObject):
             if not part == type(self).__name__:
                 tools_package = part
                 break
-        return '{}.{}({})'.format(tools_package, self._class_name, self)
+        return '{}.{}({})'.format(tools_package, type(self).__name__, self)
 
     ### PRIVATE METHODS ###
 

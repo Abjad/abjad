@@ -79,7 +79,7 @@ class Division(NonreducedFraction, BoundedObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return self.__class__(
+        return type(self)(
             self.pair,
             is_left_open=self.is_left_open, is_right_open=self.is_right_open,
             start_offset=self.start_offset)
@@ -90,9 +90,9 @@ class Division(NonreducedFraction, BoundedObject):
     def __repr__(self):
         if self.start_offset is not None:
             return '{}({!r}, start_offset={!r})'.format(
-                self.__class__.__name__, str(self), self.start_offset)
+                type(self).__name__, str(self), self.start_offset)
         else:
-            return '{}({!r})'.format(self.__class__.__name__, str(self))
+            return '{}({!r})'.format(type(self).__name__, str(self))
 
     def __str__(self):
         if self.is_left_open:

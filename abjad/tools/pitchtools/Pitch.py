@@ -87,7 +87,7 @@ class Pitch(AbjadObject):
             'TODO: all pitch-related classes must implement int.')
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, self._format_string)
+        return '{}({})'.format(type(self).__name__, self._format_string)
 
     ### PRIVATE PROPERTIES ###
 

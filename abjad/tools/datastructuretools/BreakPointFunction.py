@@ -146,7 +146,7 @@ class BreakPointFunction(AbjadObject):
         return self._operate(expr, operator.mul)
 
     def __repr__(self):
-        result = ['{}({{'.format(self._class_name)]
+        result = ['{}({{'.format(type(self).__name__)]
         if 1 < len(self.x_values):
             for x in self.x_values[:-1]:
                 result.append('\t{!r}: {!r},'.format(x, self._bpf[x]))
