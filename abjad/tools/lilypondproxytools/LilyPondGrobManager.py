@@ -92,7 +92,7 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
         return tuple(skeleton_strings)
 
     def _list_format_contributions(self, contribution_type, is_once=False):
-        from abjad.tools import formattools
+        from abjad.tools import systemtools
         assert contribution_type in ('override', 'revert')
         result = []
         for attribute_tuple in self._get_attribute_tuples():
@@ -109,7 +109,7 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
             else:
                 raise ValueError
             if contribution_type == 'override':
-                override_string = formattools.LilyPondFormatManager.make_lilypond_override_string(
+                override_string = systemtools.LilyPondFormatManager.make_lilypond_override_string(
                     grob_name,
                     attribute_name,
                     attribute_value,
@@ -118,7 +118,7 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
                     )
                 result.append(override_string)
             else:
-                revert_string = formattools.LilyPondFormatManager.make_lilypond_revert_string(
+                revert_string = systemtools.LilyPondFormatManager.make_lilypond_revert_string(
                     grob_name,
                     attribute_name,
                     context_name=context_name,

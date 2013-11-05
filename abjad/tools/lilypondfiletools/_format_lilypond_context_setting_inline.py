@@ -3,7 +3,7 @@
 
 # TODO: make public and move to bound method of some class
 def _format_lilypond_context_setting_inline(name, value, context=None):
-    from abjad.tools import formattools
+    from abjad.tools import systemtools
 
     name = name.split('_')
     first = name[0:1]
@@ -11,7 +11,7 @@ def _format_lilypond_context_setting_inline(name, value, context=None):
     rest = [x.title() for x in rest]
     name = first + rest
     name = ''.join(name)
-    value = formattools.LilyPondFormatManager.format_lilypond_value(value)
+    value = systemtools.LilyPondFormatManager.format_lilypond_value(value)
     if context is not None:
         context_string = context[1:]
         context_string = context_string.split('_')

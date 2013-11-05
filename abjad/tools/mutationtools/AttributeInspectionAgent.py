@@ -536,10 +536,10 @@ class AttributeInspectionAgent(object):
         Returns string.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import formattools
+        from abjad.tools import systemtools
         component = self._component
         format_contributions = \
-            formattools.LilyPondFormatManager.get_all_format_contributions(
+            systemtools.LilyPondFormatManager.get_all_format_contributions(
                 component)
         result = []
         result.extend(component._get_format_contributions_for_slot(

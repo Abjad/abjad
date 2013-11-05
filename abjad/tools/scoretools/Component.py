@@ -2,7 +2,7 @@
 import abc
 import copy
 from abjad.tools import durationtools
-from abjad.tools import formattools
+from abjad.tools import systemtools
 from abjad.tools import lilypondproxytools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
@@ -199,7 +199,7 @@ class Component(AbjadObject):
     def _format_component(self, pieces=False):
         result = []
         format_contributions = \
-            formattools.LilyPondFormatManager.get_all_format_contributions(
+            systemtools.LilyPondFormatManager.get_all_format_contributions(
                 self)
         result.extend(self._format_before_slot(format_contributions))
         result.extend(self._format_open_brackets_slot(format_contributions))
@@ -329,7 +329,7 @@ class Component(AbjadObject):
     def _get_format_contributions_for_slot(self, n, format_contributions=None):
         if format_contributions is None:
             format_contributions = \
-                formattools.LilyPondFormatManager.get_all_format_contributions(
+                systemtools.LilyPondFormatManager.get_all_format_contributions(
                     self)
         result = []
         slots = (

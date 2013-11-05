@@ -2,7 +2,7 @@
 import abc
 import copy
 from abjad.tools import durationtools
-from abjad.tools import formattools
+from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.functiontools import override
@@ -346,7 +346,7 @@ class Leaf(Component):
 
     def _report_format_contributors(self):
         format_contributions = \
-            formattools.LilyPondFormatManager.get_all_format_contributions(
+            systemtools.LilyPondFormatManager.get_all_format_contributions(
                 self)
         report = ''
         report += 'slot 1:\n'

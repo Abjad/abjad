@@ -2,6 +2,7 @@
 from AbjadConfiguration import AbjadConfiguration
 from Configuration import Configuration
 from ImportManager import ImportManager
+from LilyPondFormatManager import LilyPondFormatManager
 from UpdateManager import UpdateManager
 from requires import requires
 

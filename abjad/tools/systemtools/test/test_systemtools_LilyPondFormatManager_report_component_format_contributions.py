@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_formattools_LilyPondFormatManager_report_component_format_contributions_01():
+def test_systemtools_LilyPondFormatManager_report_component_format_contributions_01():
     r'''You can report_component_format_contributions on a heavily 
     tweaked leaf.
     '''
@@ -23,7 +23,7 @@ def test_formattools_LilyPondFormatManager_report_component_format_contributions
     attach(comment, t)
 
     assert testtools.compare(
-        formattools.LilyPondFormatManager.report_component_format_contributions(t),
+        systemtools.LilyPondFormatManager.report_component_format_contributions(t),
         r'''
         slot 1:
             comments:

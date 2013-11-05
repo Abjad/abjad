@@ -1,13 +1,8 @@
 # -*- encoding: utf-8 -*-
-
 import inspect
 
-from abjad.tools import stringtools
-from abjad.tools.abctools import AbjadObject
-from abjad.tools.functiontools import override
 
-
-class LilyPondFormatManager(AbjadObject):
+class LilyPondFormatManager(object):
 
     ### PUBLIC METHODS ###
 
@@ -80,7 +75,7 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns nested dictionary.
         '''
-        from abjad.tools import formattools
+        from abjad.tools import systemtools
         result = LilyPondFormatManager.get_all_mark_format_contributions(
             component)
         for slot, contributions in \
@@ -115,7 +110,7 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns dict.
         '''
-        from abjad.tools import formattools
+        from abjad.tools import systemtools
         from abjad.tools import marktools
         from abjad.tools import markuptools
         class_to_section = {
@@ -294,7 +289,8 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns alphabetized list of LilyPond grob overrides.
         '''
-        from abjad.tools.scoretools.Leaf import Leaf
+        from abjad.tools.scoretools import Leaf
+        from abjad.tools.functiontools.override import override
         result = []
         is_once = False
         if isinstance(component, Leaf):
@@ -313,8 +309,8 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns alphabetized list of LilyPond grob reverts.
         '''
-        from abjad.tools.scoretools.Leaf import Leaf
-
+        from abjad.tools.scoretools import Leaf
+        from abjad.tools.functiontools.override import override
         result = []
         if not isinstance(component, Leaf):
             result.extend(override(component)._list_format_contributions(
@@ -330,6 +326,7 @@ class LilyPondFormatManager(AbjadObject):
         '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
+        from abjad.tools.functiontools.override import override
         result = {
             'after': [],
             'before': [],
@@ -346,7 +343,6 @@ class LilyPondFormatManager(AbjadObject):
         stop_contributions = []
         other_contributions = []
         for spanner in component._get_parentage()._get_spanners():
-
             # override contributions (in before slot)
             if spanner._is_my_first_leaf(component):
                 for contribution in \
@@ -438,6 +434,7 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import stringtools
         # parse input strings
         grob_name = stringtools.snake_case_to_upper_camel_case(grob_name)
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
@@ -474,6 +471,7 @@ class LilyPondFormatManager(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import stringtools
         # parse input strings
         grob_name = stringtools.snake_case_to_upper_camel_case(grob_name)
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
@@ -500,7 +498,7 @@ class LilyPondFormatManager(AbjadObject):
 
         ::
 
-            >>> print formattools.LilyPondFormatManager.report_component_format_contributions(staff[0])
+            >>> print systemtools.LilyPondFormatManager.report_component_format_contributions(staff[0])
             slot 1:
                 grob overrides:
                     \once \override NoteHead #'color = #red
@@ -526,7 +524,7 @@ class LilyPondFormatManager(AbjadObject):
 
         ::
 
-            >>> print formattools.LilyPondFormatManager.report_spanner_format_contributions(spanner)
+            >>> print systemtools.LilyPondFormatManager.report_spanner_format_contributions(spanner)
             c8  before: []
                 after: []
                 right: ['[']

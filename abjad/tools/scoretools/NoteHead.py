@@ -125,7 +125,7 @@ class NoteHead(AbjadObject):
 
     @property
     def _lilypond_format(self):
-        from abjad.tools import formattools
+        from abjad.tools import systemtools
         from abjad.tools import scoretools
         # make sure note head has pitch
         assert self.written_pitch
@@ -136,8 +136,8 @@ class NoteHead(AbjadObject):
                 if not key.startswith('_'):
                     result.append(
                         r'\tweak %s %s' % (
-                        formattools.LilyPondFormatManager.format_lilypond_attribute(key),
-                        formattools.LilyPondFormatManager.format_lilypond_value(value)),
+                        systemtools.LilyPondFormatManager.format_lilypond_attribute(key),
+                        systemtools.LilyPondFormatManager.format_lilypond_value(value)),
                         )
         # format note head pitch
         kernel = format(self.written_pitch)
