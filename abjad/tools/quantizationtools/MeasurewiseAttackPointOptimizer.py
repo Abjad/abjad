@@ -21,6 +21,6 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
     def __call__(self, expr):
         from abjad.tools import quantizationtools
         assert isinstance(expr, scoretools.Measure)
-        metrical_hierarchy = timesignaturetools.Meter(expr)
-        timesignaturetools.establish_metrical_hierarchy(
-            expr[:], metrical_hierarchy)
+        meter = timesignaturetools.Meter(expr)
+        timesignaturetools.rewrite_meter(
+            expr[:], meter)

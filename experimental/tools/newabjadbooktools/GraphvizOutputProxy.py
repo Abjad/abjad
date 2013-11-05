@@ -8,8 +8,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.Meter((4, 4))
-        >>> print metrical_hierarchy.graphviz_format
+        >>> meter = timesignaturetools.Meter((4, 4))
+        >>> print meter.graphviz_format
         digraph G {
             node_0 [label="4/4",
                 shape=triangle];
@@ -26,12 +26,12 @@ class GraphvizOutputProxy(ImageOutputProxy):
             node_0 -> node_3;
             node_0 -> node_4;
         }
-        >>> functiontools.graph(metrical_hierarchy) # doctest: +SKIP
+        >>> functiontools.graph(meter) # doctest: +SKIP
 
     ::
 
         >>> output_proxy = \
-        ...     newabjadbooktools.GraphvizOutputProxy(metrical_hierarchy)
+        ...     newabjadbooktools.GraphvizOutputProxy(meter)
 
     Returns output proxy.
     '''

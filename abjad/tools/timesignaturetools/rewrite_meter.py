@@ -7,9 +7,9 @@ from abjad.tools.functiontools import mutate
 Selection = selectiontools.Selection
 
 
-def establish_metrical_hierarchy(
+def rewrite_meter(
     components,
-    metrical_hierarchy,
+    meter,
     boundary_depth=None,
     maximum_dot_count=None,
     ):
@@ -65,7 +65,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     staff[1][:],
             ...     hierarchy,
             ...     )
@@ -145,7 +145,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     staff[1][:],
             ...     hierarchy,
             ...     )
@@ -204,7 +204,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     measure[:],
             ...     measure,
             ...     )
@@ -231,7 +231,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> measure = parse(parseable)
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     measure[:],
             ...     measure,
             ...     maximum_dot_count=2,
@@ -260,7 +260,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> measure = parse(parseable)
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     measure[:],
             ...     measure,
             ...     maximum_dot_count=1,
@@ -290,7 +290,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> measure = parse(parseable)
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     measure[:],
             ...     measure,
             ...     maximum_dot_count=0,
@@ -367,7 +367,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     measure[:],
             ...     measure,
             ...     )
@@ -395,7 +395,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> measure = parse(parseable)
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     measure[:],
             ...     measure,
             ...     boundary_depth=1,
@@ -424,7 +424,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> measure = parse(parseable)
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     measure[:],
             ...     measure,
             ...     boundary_depth=2,
@@ -547,7 +547,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> for measure in iterationtools.iterate_measures_in_expr(score):
-            ...     timesignaturetools.establish_metrical_hierarchy(
+            ...     timesignaturetools.rewrite_meter(
             ...         measure[:],
             ...         measure,
             ...         )
@@ -629,7 +629,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> for measure in iterationtools.iterate_measures_in_expr(score):
-            ...     timesignaturetools.establish_metrical_hierarchy(
+            ...     timesignaturetools.rewrite_meter(
             ...         measure[:],
             ...         measure,
             ...         boundary_depth=1,
@@ -752,14 +752,14 @@ def establish_metrical_hierarchy(
 
         When establishing a metrical hierarchy on a selection of components 
         which contain containers, like `Tuplets` or `Containers`,
-        `timesignaturetools.establish_metrical_hierarchy()` will recurse into
+        `timesignaturetools.rewrite_meter()` will recurse into
         those containers, treating them as measures whose time signature is 
         derived from the preprolated preprolated_duration of the container's 
         contents:
 
         ::
 
-            >>> timesignaturetools.establish_metrical_hierarchy(
+            >>> timesignaturetools.rewrite_meter(
             ...     measure[:],
             ...     measure,
             ...     boundary_depth=1,
@@ -911,12 +911,12 @@ def establish_metrical_hierarchy(
     # Validate arguments.
     assert Selection._all_are_contiguous_components_in_same_logical_voice(
         components)
-    if not isinstance(metrical_hierarchy,
+    if not isinstance(meter,
         timesignaturetools.Meter):
-        metrical_hierarchy = \
-            timesignaturetools.Meter(metrical_hierarchy)
+        meter = \
+            timesignaturetools.Meter(meter)
     assert sum([x._preprolated_duration for x in components]) == \
-        metrical_hierarchy.preprolated_duration
+        meter.preprolated_duration
     if boundary_depth is not None:
         boundary_depth = int(boundary_depth)
     if maximum_dot_count is not None:
@@ -927,7 +927,7 @@ def establish_metrical_hierarchy(
     first_offset = components[0]._get_timespan().start_offset
     prolation = components[0]._get_parentage(include_self=False).prolation
     offset_inventory= []
-    for offsets in metrical_hierarchy.depthwise_offset_inventory:
+    for offsets in meter.depthwise_offset_inventory:
         offsets = [(x * prolation) + first_offset for x in offsets]
         offset_inventory.append(tuple(offsets))
 
@@ -953,7 +953,7 @@ def establish_metrical_hierarchy(
             sub_boundary_depth = 1
             if boundary_depth is None:
                 sub_boundary_depth = None
-            establish_metrical_hierarchy(
+            rewrite_meter(
                 item[:],
                 sub_metrical_hierarchy,
                 boundary_depth=sub_boundary_depth,
@@ -1013,7 +1013,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     ::
 
-        >>> from abjad.tools.timesignaturetools.establish_metrical_hierarchy \
+        >>> from abjad.tools.timesignaturetools.rewrite_meter \
         ...     import _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr
 
     ::

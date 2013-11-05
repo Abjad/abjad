@@ -26,16 +26,16 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.Meter((4, 4))
+        >>> meter = timesignaturetools.Meter((4, 4))
 
     ::
 
-        >>> metrical_hierarchy
+        >>> meter
         Meter('(4/4 (1/4 1/4 1/4 1/4))')
 
     ::
 
-        >>> print metrical_hierarchy.pretty_rtm_format
+        >>> print meter.pretty_rtm_format
         (4/4 (
             1/4
             1/4
@@ -44,8 +44,8 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.Meter((3, 4))
-        >>> print metrical_hierarchy.pretty_rtm_format
+        >>> meter = timesignaturetools.Meter((3, 4))
+        >>> print meter.pretty_rtm_format
         (3/4 (
             1/4
             1/4
@@ -53,8 +53,8 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.Meter((6, 8))
-        >>> print metrical_hierarchy.pretty_rtm_format
+        >>> meter = timesignaturetools.Meter((6, 8))
+        >>> print meter.pretty_rtm_format
         (6/8 (
             (3/8 (
                 1/8
@@ -67,8 +67,8 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.Meter((5, 4))
-        >>> print metrical_hierarchy.pretty_rtm_format
+        >>> meter = timesignaturetools.Meter((5, 4))
+        >>> print meter.pretty_rtm_format
         (5/4 (
             (3/4 (
                 1/4
@@ -80,9 +80,9 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.Meter(
+        >>> meter = timesignaturetools.Meter(
         ...     (5, 4), decrease_durations_monotonically=False)
-        >>> print metrical_hierarchy.pretty_rtm_format
+        >>> print meter.pretty_rtm_format
         (5/4 (
             (2/4 (
                 1/4
@@ -94,8 +94,8 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.Meter((12, 8))
-        >>> print metrical_hierarchy.pretty_rtm_format
+        >>> meter = timesignaturetools.Meter((12, 8))
+        >>> print meter.pretty_rtm_format
         (12/8 (
             (3/8 (
                 1/8
@@ -256,12 +256,12 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> metrical_hierarchy = \
+            >>> meter = \
             ...     timesignaturetools.Meter((5, 4))
 
         ::
 
-            >>> for x in metrical_hierarchy:
+            >>> for x in meter:
             ...    x
             ...
             (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
@@ -319,18 +319,18 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> metrical_hierarchy = \
+                >>> meter = \
                 ...     timesignaturetools.Meter((5, 4),
                 ...     decrease_durations_monotonically=False)
 
             ::
 
-                >>> metrical_hierarchy.decrease_durations_monotonically
+                >>> meter.decrease_durations_monotonically
                 False
 
             ::
 
-                >>> print metrical_hierarchy.pretty_rtm_format
+                >>> print meter.pretty_rtm_format
                 (5/4 (
                     (2/4 (
                         1/4
@@ -347,18 +347,18 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> metrical_hierarchy = \
+                >>> meter = \
                 ...     timesignaturetools.Meter((5, 4),
                 ...     decrease_durations_monotonically=True)
 
             ::
 
-                >>> metrical_hierarchy.decrease_durations_monotonically
+                >>> meter.decrease_durations_monotonically
                 True
 
             ::
 
-                >>> print metrical_hierarchy.pretty_rtm_format
+                >>> print meter.pretty_rtm_format
                 (5/4 (
                     (3/4 (
                         1/4
@@ -378,7 +378,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> metrical_hierarchy.denominator
+            >>> meter.denominator
             4
 
         Returns positive integer.
@@ -392,7 +392,7 @@ class Meter(AbjadObject):
         ::
 
             >>> for depth, offsets in enumerate(
-            ...     metrical_hierarchy.depthwise_offset_inventory):
+            ...     meter.depthwise_offset_inventory):
             ...     print depth, offsets
             0 (Offset(0, 1), Offset(5, 4))
             1 (Offset(0, 1), Offset(3, 4), Offset(5, 4))
@@ -417,7 +417,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> print metrical_hierarchy.graphviz_format
+            >>> print meter.graphviz_format
             digraph G {
                 node_0 [label="5/4",
                     shape=triangle];
@@ -446,7 +446,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> functiontools.graph(metrical_hierarchy) # doctest: +SKIP
+            >>> functiontools.graph(meter) # doctest: +SKIP
 
         Returns string.
         '''
@@ -472,7 +472,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> metrical_hierarchy.numerator
+            >>> meter.numerator
             5
 
         Returns positive integer.
@@ -485,7 +485,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> metrical_hierarchy.preprolated_duration
+            >>> meter.preprolated_duration
             Duration(5, 4)
 
         Returns preprolated_duration.
@@ -498,7 +498,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> print metrical_hierarchy.pretty_rtm_format
+            >>> print meter.pretty_rtm_format
             (5/4 (
                 (3/4 (
                     1/4
@@ -518,7 +518,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> metrical_hierarchy.root_node
+            >>> meter.root_node
             RhythmTreeContainer(
                 children=(
                     RhythmTreeContainer(
@@ -565,7 +565,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> metrical_hierarchy.rtm_format
+            >>> meter.rtm_format
             '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
 
         Returns string.
@@ -578,7 +578,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> print metrical_hierarchy.storage_format
+            >>> print meter.storage_format
             timesignaturetools.Meter(
                 '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
                 )
@@ -602,10 +602,10 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> metrical_hierarchy = \
+            >>> meter = \
             ...     timesignaturetools.Meter((4, 4))
             >>> kernel = \
-            ...     metrical_hierarchy.generate_offset_kernel_to_denominator(8)
+            ...     meter.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.iteritems()):
             ...     print '{}\t{}'.format(offset, weight)
             ...

@@ -28,16 +28,16 @@ Prime divisions greater than ``3`` are converted to sequences of ``2`` and
 The ``Meter`` class models a common-practice understanding of
 meter::
 
-    >>> metrical_hierarchy = timesignaturetools.Meter((4, 4))
+    >>> meter = timesignaturetools.Meter((4, 4))
 
 ::
 
-    >>> metrical_hierarchy
+    >>> meter
     Meter('(4/4 (1/4 1/4 1/4 1/4))')
 
 ::
 
-    >>> print metrical_hierarchy.pretty_rtm_format
+    >>> print meter.pretty_rtm_format
     (4/4 (
         1/4
         1/4
@@ -114,7 +114,7 @@ meter::
 Rewriting rhythms according to a different metric hierarchy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A new ``establish_metrical_hierarchy()`` function is now available in the
+A new ``rewrite_meter()`` function is now available in the
 ``timesignaturetools`` package.
 
 The function rewrites the contents of tie chains to match a metrical hierarchy.
@@ -162,7 +162,7 @@ metrical hierarchy for that measure's time signature:
 
 ::
 
-    >>> timesignaturetools.establish_metrical_hierarchy(staff[1][:], hierarchy)
+    >>> timesignaturetools.rewrite_meter(staff[1][:], hierarchy)
     >>> f(staff)
     \new Staff {
         {
@@ -227,7 +227,7 @@ metrical hierarchy:
 
 ::
 
-    >>> timesignaturetools.establish_metrical_hierarchy(staff[1][:], hierarchy)
+    >>> timesignaturetools.rewrite_meter(staff[1][:], hierarchy)
     >>> f(staff)
     \new Staff {
         {
@@ -271,7 +271,7 @@ Do not constrain the `maximum_dot_count`:
 
 ::
 
-    >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+    >>> timesignaturetools.rewrite_meter(measure[:], measure)
     >>> f(measure)
     {
         \time 3/4
@@ -290,7 +290,7 @@ Constrain the `maximum_dot_count` to `2`:
 ::
 
     >>> measure = p(parseable)
-    >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+    >>> timesignaturetools.rewrite_meter(measure[:], measure,
     ...     maximum_dot_count=2)
     >>> f(measure)
     {
@@ -311,7 +311,7 @@ Constrain the `maximum_dot_count` to `1`:
 ::
 
     >>> measure = p(parseable)
-    >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+    >>> timesignaturetools.rewrite_meter(measure[:], measure,
     ...     maximum_dot_count=1)
     >>> f(measure)
     {
@@ -333,7 +333,7 @@ Constrain the `maximum_dot_count` to `0`:
 ::
 
     >>> measure = p(parseable)
-    >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+    >>> timesignaturetools.rewrite_meter(measure[:], measure,
     ...     maximum_dot_count=0)
     >>> f(measure)
     {

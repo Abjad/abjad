@@ -3,9 +3,9 @@ from abjad.tools import durationtools
 from abjad.tools import datastructuretools
 
 
-def fit_metrical_hierarchies_to_expr(
+def fit_meters_to_expr(
     expr,
-    metrical_hierarchies,
+    meters,
     discard_final_orphan_downbeat=True,
     starting_offset=None,
     denominator=32,
@@ -15,7 +15,7 @@ def fit_metrical_hierarchies_to_expr(
 
     ::
 
-        >>> metrical_hierarchies = [
+        >>> meters = [
         ...     timesignaturetools.Meter(x)
         ...     for x in [(3, 4), (4, 4), (5, 4)]]
 
@@ -26,8 +26,8 @@ def fit_metrical_hierarchies_to_expr(
         ::
 
             >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-            >>> for x in timesignaturetools.fit_metrical_hierarchies_to_expr(
-            ...     expr, metrical_hierarchies):
+            >>> for x in timesignaturetools.fit_meters_to_expr(
+            ...     expr, meters):
             ...     print x.implied_time_signature
             ...
             4/4
@@ -42,8 +42,8 @@ def fit_metrical_hierarchies_to_expr(
         ::
 
             >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-            >>> for x in timesignaturetools.fit_metrical_hierarchies_to_expr(
-            ...     expr, metrical_hierarchies):
+            >>> for x in timesignaturetools.fit_meters_to_expr(
+            ...     expr, meters):
             ...     print x.implied_time_signature
             ...
             5/4
@@ -54,7 +54,7 @@ def fit_metrical_hierarchies_to_expr(
     Offsets are coerced from `expr` via
     `MetricAccentKernel.count_offsets_in_expr()`.
 
-    MetricalHierarchies are coerced from `metrical_hierarchies` via
+    MetricalHierarchies are coerced from `meters` via
     `MetricalHierarchyInventory`.
 
     Returns list.
@@ -73,7 +73,7 @@ def fit_metrical_hierarchies_to_expr(
         start_offset = durationtools.Offset(starting_offset)
 
     metrical_hierarchy_inventory = datastructuretools.TypedTuple(
-        tokens=metrical_hierarchies,
+        tokens=meters,
         item_class=timesignaturetools.Meter,
         )
     longest_hierarchy = sorted(metrical_hierarchy_inventory,
