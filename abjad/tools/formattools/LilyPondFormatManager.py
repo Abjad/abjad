@@ -193,7 +193,7 @@ class LilyPondFormatManager(AbjadObject):
         section = 'context marks'
         for mark in context_marks:
             format_slot = mark._format_slot
-            result = formattools.get_context_mark_format_pieces(mark)
+            result = LilyPondFormatManager.get_context_mark_format_pieces(mark)
             if format_slot not in contributions:
                 contributions[format_slot] = {}
             if section not in contributions[format_slot]:
@@ -230,6 +230,31 @@ class LilyPondFormatManager(AbjadObject):
             for kind, value in contributions[slot].iteritems():
                 contributions[slot][kind] = tuple(value)
         return contributions
+
+    @staticmethod
+    def get_context_mark_format_pieces(mark):
+        r'''Get context mark format pieces for `mark`.
+
+        Returns list.
+        '''
+        from abjad.tools import marktools
+        from abjad.tools import scoretools
+        addenda = []
+        mark_format = mark._lilypond_format
+        if isinstance(mark_format, (tuple, list)):
+            addenda.extend(mark_format)
+        else:
+            addenda.append(mark_format)
+        # cosmetic mark is a hack to allow marks to format even
+        # without effective context;
+        # currently used only in metric grid formatting
+        if mark.effective_context is not None or \
+            getattr(mark, '_is_cosmetic_mark', False) or \
+            (isinstance(mark, marktools.TimeSignatureMark) and
+            isinstance(mark.start_component, scoretools.Measure)):
+            return addenda
+        addenda = [r'%%% ' + addendum + r' %%%' for addendum in addenda]
+        return addenda
 
     @staticmethod
     def get_grob_override_format_contributions(component):
@@ -329,4 +354,69 @@ class LilyPondFormatManager(AbjadObject):
         result = r'\revert {}{} {}'
         result = result.format(context_prefix, grob_name, grob_attribute)
         # return revert string
+        return result
+
+    @staticmethod
+    def report_component_format_contributions(component, verbose=False):
+        r'''Report `component` format contributions:
+
+            >>> staff = Staff("c'4 [ ( d'4 e'4 f'4 ] )")
+            >>> override(staff[0]).note_head.color = 'red'
+
+        ::
+
+            >>> print formattools.LilyPondFormatManager.report_component_format_contributions(staff[0])
+            slot 1:
+                grob overrides:
+                    \once \override NoteHead #'color = #red
+            slot 3:
+            slot 4:
+                leaf body:
+                    c'4 [ (
+            slot 5:
+            slot 7:
+
+        Returns string.
+        '''
+        return component._report_format_contributors()
+
+    @staticmethod
+    def report_spanner_format_contributions(spanner):
+        r'''Report spanner format contributions for every leaf
+        to which spanner attaches:
+
+            >>> staff = Staff("c8 d e f")
+            >>> spanner = spannertools.BeamSpanner()
+            >>> attach(spanner, staff[:])
+
+        ::
+
+            >>> print formattools.LilyPondFormatManager.report_spanner_format_contributions(spanner)
+            c8  before: []
+                after: []
+                right: ['[']
+            <BLANKLINE>
+            d8  before: []
+                after: []
+                right: []
+            <BLANKLINE>
+            e8  before: []
+                after: []
+                right: []
+            <BLANKLINE>
+            f8  before: []
+                after: []
+                right: [']']
+
+        Returns none or return string.
+        '''
+        result = ''
+        for leaf in spanner.leaves:
+            result += str(leaf)
+            result += '\tbefore: %s\n' % spanner._format_before_leaf(leaf)
+            result += '\t after: %s\n' % spanner._format_after_leaf(leaf)
+            result += '\t right: %s\n' % spanner._format_right_of_leaf(leaf)
+            result += '\n'
+        if result[-1] == '\n':
+            result = result[:-1]
         return result

@@ -365,6 +365,8 @@ class Leaf(Component):
         report += 'slot 7:\n'
         report += self._process_contribution_packet(
             self._format_after_slot(format_contributions))
+        while report[-1] == '\n':
+            report = report[:-1]
         return report
 
     def _scale(self, multiplier):
