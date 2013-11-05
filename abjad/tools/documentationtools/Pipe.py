@@ -33,7 +33,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         self._timeout = timeout
         argv = [executable]
         if arguments != None:
-            argv = argv + arguments
+            argv = argv + list(arguments)
         subprocess.Popen.__init__(self, argv,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
