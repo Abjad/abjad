@@ -11,7 +11,7 @@ def _format_lilypond_context_setting_inline(name, value, context=None):
     rest = [x.title() for x in rest]
     name = first + rest
     name = ''.join(name)
-    value = formattools.format_lilypond_value(value)
+    value = formattools.LilyPondFormatManager.format_lilypond_value(value)
     if context is not None:
         context_string = context[1:]
         context_string = context_string.split('_')

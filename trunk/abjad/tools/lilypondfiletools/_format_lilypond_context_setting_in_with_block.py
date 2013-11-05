@@ -11,6 +11,6 @@ def _format_lilypond_context_setting_in_with_block(name, value):
     rest = [x.title() for x in rest]
     name = first + rest
     name = ''.join(name)
-    value = formattools.format_lilypond_value(value)
+    value = formattools.LilyPondFormatManager.format_lilypond_value(value)
     result = r'{} = {}'.format(name, value)
     return result

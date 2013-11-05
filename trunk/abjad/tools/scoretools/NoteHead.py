@@ -136,8 +136,8 @@ class NoteHead(AbjadObject):
                 if not key.startswith('_'):
                     result.append(
                         r'\tweak %s %s' % (
-                        formattools.format_lilypond_attribute(key),
-                        formattools.format_lilypond_value(value)),
+                        formattools.LilyPondFormatManager.format_lilypond_attribute(key),
+                        formattools.LilyPondFormatManager.format_lilypond_value(value)),
                         )
         # format note head pitch
         kernel = format(self.written_pitch)

@@ -11,12 +11,12 @@ def make_lilypond_revert_string(
 
     Returns string.
     '''
-    from format_lilypond_attribute import format_lilypond_attribute
-    from format_lilypond_value import format_lilypond_value
+    from abjad.tools import formattools
 
     # parse input strings
     grob_name = stringtools.snake_case_to_upper_camel_case(grob_name)
-    grob_attribute = format_lilypond_attribute(grob_attribute)
+    grob_attribute = formattools.LilyPondFormatManager.format_lilypond_attribute(
+        grob_attribute)
 
     # change #'bound-details #'left #'text to #'bound-details
     grob_attribute = grob_attribute.split(' ')[0]

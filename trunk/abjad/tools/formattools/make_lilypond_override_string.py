@@ -3,10 +3,10 @@ from abjad.tools import stringtools
 
 
 def make_lilypond_override_string(
-    grob_name, 
-    grob_attribute, 
-    grob_value, 
-    context_name=None, 
+    grob_name,
+    grob_attribute,
+    grob_value,
+    context_name=None,
     is_once=False,
     ):
     '''Makes Lilypond override string.
@@ -15,13 +15,13 @@ def make_lilypond_override_string(
 
     Returns string.
     '''
-    from format_lilypond_attribute import format_lilypond_attribute
-    from format_lilypond_value import format_lilypond_value
+    from abjad.tools import formattools
 
     # parse input strings
     grob_name = stringtools.snake_case_to_upper_camel_case(grob_name)
-    grob_attribute = format_lilypond_attribute(grob_attribute)
-    grob_value = format_lilypond_value(grob_value)
+    grob_attribute = formattools.LilyPondFormatManager.format_lilypond_attribute(
+        grob_attribute)
+    grob_value = formattools.LilyPondFormatManager.format_lilypond_value(grob_value)
     if context_name is not None:
         context_prefix = \
             stringtools.snake_case_to_upper_camel_case(context_name)
@@ -36,10 +36,10 @@ def make_lilypond_override_string(
     # return override string
     result = r'{}\override {}{} {} = {}'
     result = result.format(
-        once_prefix, 
-        context_prefix, 
-        grob_name, 
-        grob_attribute, 
+        once_prefix,
+        context_prefix,
+        grob_name,
+        grob_attribute,
         grob_value,
         )
 
