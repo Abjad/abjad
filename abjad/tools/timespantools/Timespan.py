@@ -115,6 +115,25 @@ class Timespan(BoundedObject):
             return self.offsets == timespan.offsets
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats timespan.
+
+        Set `format_specification` to `''` or `'storage'`.
+
+        ::
+
+            >>> print format(timespan_1)
+            timespantools.Timespan(
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(10, 1)
+                )
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     def __ge__(self, expr):
         r'''True when `expr` start offset is greater or equal
         to timespan start offset:
@@ -649,10 +668,10 @@ class Timespan(BoundedObject):
         if hasattr(timespan, 'start_offset') and \
             hasattr(timespan, 'stop_offset'):
             return True
-        if hasattr(expr, '_get_timespan'):
+        if hasattr(timespan, '_get_timespan'):
             return True
         # TODO: remove this branch in favor of the _get_timespan above
-        if hasattr(expr, 'get_timespan'):
+        if hasattr(timespan, 'get_timespan'):
             return True
         if hasattr(timespan, 'timespan'):
             return True
@@ -842,22 +861,6 @@ class Timespan(BoundedObject):
         Returns offset.
         '''
         return self._stop_offset
-
-    @property
-    def storage_format(self):
-        r'''Timespan storage format:
-
-        ::
-
-            >>> print timespan_1.storage_format
-            timespantools.Timespan(
-                start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(10, 1)
-                )
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 
