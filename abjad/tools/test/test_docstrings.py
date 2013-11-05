@@ -1,21 +1,8 @@
 import inspect
 import pytest
 
-from abjad import abjad_configuration
 from abjad.tools import documentationtools
 
-
-class_crawler = documentationtools.ClassCrawler(
-    abjad_configuration.abjad_directory_path,
-    root_package_name='abjad',
-    )
-all_classes = class_crawler()
-
-function_crawler = documentationtools.FunctionCrawler(
-    abjad_configuration.abjad_directory_path,
-    root_package_name='abjad',
-    )
-all_functions = function_crawler()
 
 ignored_names = (
     '__init__',
@@ -24,18 +11,19 @@ ignored_names = (
 
 pytest.skip()
 
-@pytest.mark.parametrize('klass', all_classes)
-def test_docstrings_01(klass):
-    assert klass.__doc__ is not None
-    for attr in inspect.classify_class_attrs(klass):
+
+@pytest.mark.parametrize('obj', documentationtools.list_all_abjad_classes())
+def test_docstrings_01(obj):
+    assert obj.__doc__ is not None
+    for attr in inspect.classify_class_attrs(obj):
         if attr.name in ignored_names:
             continue
-        elif attr.defining_class is not klass:
+        elif attr.defining_class is not obj:
             continue
         if attr.name[0].isalpha() or attr.name.startswith('__'):
-            assert getattr(klass, attr.name).__doc__ is not None
+            assert getattr(obj, attr.name).__doc__ is not None
 
 
-@pytest.mark.parametrize('obj', all_functions)
+@pytest.mark.parametrize('obj', documentationtools.list_all_abjad_functions())
 def test_docstrings_02(obj):
     assert obj.__doc__ is not None
