@@ -16,7 +16,7 @@ def fit_metrical_hierarchies_to_expr(
     ::
 
         >>> metrical_hierarchies = [
-        ...     timesignaturetools.MetricalHierarchy(x)
+        ...     timesignaturetools.Meter(x)
         ...     for x in [(3, 4), (4, 4), (5, 4)]]
 
     ..  container:: example
@@ -74,7 +74,7 @@ def fit_metrical_hierarchies_to_expr(
 
     metrical_hierarchy_inventory = datastructuretools.TypedTuple(
         tokens=metrical_hierarchies,
-        item_class=timesignaturetools.MetricalHierarchy,
+        item_class=timesignaturetools.Meter,
         )
     longest_hierarchy = sorted(metrical_hierarchy_inventory,
         key=lambda x: x.preprolated_duration, reverse=True)[0]

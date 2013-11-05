@@ -8,7 +8,7 @@ from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
-class MetricalHierarchy(AbjadObject):
+class Meter(AbjadObject):
     '''A rhythm tree-based model of nested time signature groupings.
 
     The structure of the tree corresponds to the monotonically increasing
@@ -26,12 +26,12 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+        >>> metrical_hierarchy = timesignaturetools.Meter((4, 4))
 
     ::
 
         >>> metrical_hierarchy
-        MetricalHierarchy('(4/4 (1/4 1/4 1/4 1/4))')
+        Meter('(4/4 (1/4 1/4 1/4 1/4))')
 
     ::
 
@@ -44,7 +44,7 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((3, 4))
+        >>> metrical_hierarchy = timesignaturetools.Meter((3, 4))
         >>> print metrical_hierarchy.pretty_rtm_format
         (3/4 (
             1/4
@@ -53,7 +53,7 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((6, 8))
+        >>> metrical_hierarchy = timesignaturetools.Meter((6, 8))
         >>> print metrical_hierarchy.pretty_rtm_format
         (6/8 (
             (3/8 (
@@ -67,7 +67,7 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4))
+        >>> metrical_hierarchy = timesignaturetools.Meter((5, 4))
         >>> print metrical_hierarchy.pretty_rtm_format
         (5/4 (
             (3/4 (
@@ -80,7 +80,7 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy(
+        >>> metrical_hierarchy = timesignaturetools.Meter(
         ...     (5, 4), decrease_durations_monotonically=False)
         >>> print metrical_hierarchy.pretty_rtm_format
         (5/4 (
@@ -94,7 +94,7 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((12, 8))
+        >>> metrical_hierarchy = timesignaturetools.Meter((12, 8))
         >>> print metrical_hierarchy.pretty_rtm_format
         (12/8 (
             (3/8 (
@@ -257,7 +257,7 @@ class MetricalHierarchy(AbjadObject):
         ::
 
             >>> metrical_hierarchy = \
-            ...     timesignaturetools.MetricalHierarchy((5, 4))
+            ...     timesignaturetools.Meter((5, 4))
 
         ::
 
@@ -320,7 +320,7 @@ class MetricalHierarchy(AbjadObject):
             ::
 
                 >>> metrical_hierarchy = \
-                ...     timesignaturetools.MetricalHierarchy((5, 4),
+                ...     timesignaturetools.Meter((5, 4),
                 ...     decrease_durations_monotonically=False)
 
             ::
@@ -348,7 +348,7 @@ class MetricalHierarchy(AbjadObject):
             ::
 
                 >>> metrical_hierarchy = \
-                ...     timesignaturetools.MetricalHierarchy((5, 4),
+                ...     timesignaturetools.Meter((5, 4),
                 ...     decrease_durations_monotonically=True)
 
             ::
@@ -458,7 +458,7 @@ class MetricalHierarchy(AbjadObject):
 
         ::
 
-            >>> timesignaturetools.MetricalHierarchy((4, 4)).implied_time_signature
+            >>> timesignaturetools.Meter((4, 4)).implied_time_signature
             TimeSignatureMark((4, 4))
 
         Returns TimeSignatureMark object.
@@ -579,7 +579,7 @@ class MetricalHierarchy(AbjadObject):
         ::
 
             >>> print metrical_hierarchy.storage_format
-            timesignaturetools.MetricalHierarchy(
+            timesignaturetools.Meter(
                 '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
                 )
 
@@ -603,7 +603,7 @@ class MetricalHierarchy(AbjadObject):
         ::
 
             >>> metrical_hierarchy = \
-            ...     timesignaturetools.MetricalHierarchy((4, 4))
+            ...     timesignaturetools.Meter((4, 4))
             >>> kernel = \
             ...     metrical_hierarchy.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.iteritems()):

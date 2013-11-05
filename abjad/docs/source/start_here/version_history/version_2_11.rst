@@ -6,10 +6,10 @@ Abjad 2.11
 Released 2013-02-05. Built from r9468.  Implements 515 public classes and 1016
 functions totaling 210,000 lines of code.
 
-The ``MetricalHierarchy`` class
+The ``Meter`` class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A new ``MetricalHierarchy`` class is now available in the
+A new ``Meter`` class is now available in the
 ``timesignaturetools`` package.
 
 The class implements a rhythm tree-based model of nested time signature
@@ -25,15 +25,15 @@ Prime divisions greater than ``3`` are converted to sequences of ``2`` and
 ``3`` summing to that prime.  Hence ``5`` becomes ``3+2`` and ``7`` becomes
 ``3+2+2``.
 
-The ``MetricalHierarchy`` class models a common-practice understanding of
+The ``Meter`` class models a common-practice understanding of
 meter::
 
-    >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+    >>> metrical_hierarchy = timesignaturetools.Meter((4, 4))
 
 ::
 
     >>> metrical_hierarchy
-    MetricalHierarchy('(4/4 (1/4 1/4 1/4 1/4))')
+    Meter('(4/4 (1/4 1/4 1/4 1/4))')
 
 ::
 
@@ -46,7 +46,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.MetricalHierarchy((3, 4)).pretty_rtm_format
+    >>> print timesignaturetools.Meter((3, 4)).pretty_rtm_format
     (3/4 (
         1/4
         1/4
@@ -54,7 +54,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.MetricalHierarchy((6, 8)).pretty_rtm_format
+    >>> print timesignaturetools.Meter((6, 8)).pretty_rtm_format
     (6/8 (
         (3/8 (
             1/8
@@ -67,7 +67,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.MetricalHierarchy((5, 4)).pretty_rtm_format
+    >>> print timesignaturetools.Meter((5, 4)).pretty_rtm_format
     (5/4 (
         (3/4 (
             1/4
@@ -79,7 +79,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.MetricalHierarchy((5, 4),
+    >>> print timesignaturetools.Meter((5, 4),
     ...     decrease_durations_monotonically=False).pretty_rtm_format
     (5/4 (
         (2/4 (
@@ -92,7 +92,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.MetricalHierarchy((12, 8)).pretty_rtm_format
+    >>> print timesignaturetools.Meter((12, 8)).pretty_rtm_format
     (12/8 (
         (3/8 (
             1/8
@@ -152,7 +152,7 @@ metrical hierarchy for that measure's time signature:
 
 ::
 
-    >>> hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+    >>> hierarchy = timesignaturetools.Meter((4, 4))
     >>> print hierarchy.pretty_rtm_format
     (4/4 (
         1/4
@@ -215,7 +215,7 @@ metrical hierarchy:
 ::
 
     >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-    >>> hierarchy = timesignaturetools.MetricalHierarchy(rtm)
+    >>> hierarchy = timesignaturetools.Meter(rtm)
     >>> print hierarchy.pretty_rtm_format
     (4/4 (
         (2/4 (
@@ -694,9 +694,9 @@ number of classes throughout the system have started to gain a
 `graphviz_format` attribute, including ``datastructuretools.Digraph``,
 ``documentationtools.InheritanceGraph``, some of the
 ``rhythmtreetools.RhythmTreeNode`` subclasses, and even
-``timesignaturetools.MetricalHierarchy``::
+``timesignaturetools.Meter``::
 
-    >>> hierarchy = timesignaturetools.MetricalHierarchy((7, 4))
+    >>> hierarchy = timesignaturetools.Meter((7, 4))
     >>> functiontools.graph(hierarchy)
 
 .. image:: images/graph.png

@@ -7,7 +7,7 @@ def test_timesignaturetools_establish_metrical_hierarchy_01():
 
     source = parse('abj: | 4/4 8 2. 8 |')
     target = parse('abj: | 4/4 8 8 ~ 2 ~ 8 8 |')
-    metrical_hierarchy = timesignaturetools.MetricalHierarchy(source)
+    metrical_hierarchy = timesignaturetools.Meter(source)
     timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy)
     assert format(source) == format(target)
 
@@ -18,7 +18,7 @@ def test_timesignaturetools_establish_metrical_hierarchy_02():
 
     source = parse('abj: | 2/4 4 4 ~ || 4/4 8 2. 8 ~ || 2/4 4 4 |')
     target = parse('abj: | 2/4 4 4 ~ || 4/4 8 8 ~ 2 ~ 8 8 ~ || 2/4 4 4 |')
-    metrical_hierarchy = timesignaturetools.MetricalHierarchy(source[1])
+    metrical_hierarchy = timesignaturetools.Meter(source[1])
     timesignaturetools.establish_metrical_hierarchy(source[1][:], metrical_hierarchy)
     assert format(source) == format(target)
 
@@ -29,7 +29,7 @@ def test_timesignaturetools_establish_metrical_hierarchy_03():
 
     source = parse('abj: | 2/4 2 ~ || 5/4 8 ~ 8 ~ 2/3 { 4 ~ 4 4 ~ } 4 ~ 4 ~ || 2/4 2 |')
     target = parse('abj: | 2/4 2 ~ || 5/4 4 ~ 2/3 { 2 4 ~ } 2 ~ || 2/4 2 |')
-    metrical_hierarchy = timesignaturetools.MetricalHierarchy(source[1])
+    metrical_hierarchy = timesignaturetools.Meter(source[1])
     timesignaturetools.establish_metrical_hierarchy(source[1][:], metrical_hierarchy)
     assert format(source) == format(target)
 
@@ -38,14 +38,14 @@ def test_timesignaturetools_establish_metrical_hierarchy_04():
 
     source = parse("abj: | 4/4 c'8. d'4.. e'4. |")
     target = parse("abj: | 4/4 c'8. d'16 ~ d'4. e'4. |")
-    metrical_hierarchy = timesignaturetools.MetricalHierarchy(source)
+    metrical_hierarchy = timesignaturetools.Meter(source)
     timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy)
     assert format(source) == format(target)
 
 
 def test_timesignaturetools_establish_metrical_hierarchy_05():
 
-    metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+    metrical_hierarchy = timesignaturetools.Meter((4, 4))
     for rhythm_number in range(8):
         # without boundary enforcement
         notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
@@ -61,7 +61,7 @@ def test_timesignaturetools_establish_metrical_hierarchy_06():
 
     source = parse('abj: | 4/4 8 4. 2 |')
     target = parse('abj: | 4/4 8 4. 2 |')
-    metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+    metrical_hierarchy = timesignaturetools.Meter((4, 4))
     timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy)
     assert format(source) == format(target)
 

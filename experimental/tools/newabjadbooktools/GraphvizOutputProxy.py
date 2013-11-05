@@ -8,7 +8,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ::
 
-        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+        >>> metrical_hierarchy = timesignaturetools.Meter((4, 4))
         >>> print metrical_hierarchy.graphviz_format
         digraph G {
             node_0 [label="4/4",

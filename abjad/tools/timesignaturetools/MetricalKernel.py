@@ -9,7 +9,7 @@ class MetricalKernel(AbjadObject):
 
     ::
 
-        >>> hierarchy = timesignaturetools.MetricalHierarchy((5, 8))
+        >>> hierarchy = timesignaturetools.Meter((5, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> kernel
         MetricalKernel({

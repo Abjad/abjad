@@ -55,7 +55,7 @@ def establish_metrical_hierarchy(
 
         ::
 
-            >>> hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+            >>> hierarchy = timesignaturetools.Meter((4, 4))
             >>> print hierarchy.pretty_rtm_format
             (4/4 (
                 1/4
@@ -133,7 +133,7 @@ def establish_metrical_hierarchy(
         ::
 
             >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-            >>> hierarchy = timesignaturetools.MetricalHierarchy(rtm)
+            >>> hierarchy = timesignaturetools.Meter(rtm)
             >>> print hierarchy.pretty_rtm_format # doctest: +SKIP
             (4/4 (
                 (2/4 (
@@ -321,14 +321,14 @@ def establish_metrical_hierarchy(
     ..  container:: example
 
         **Example 4.** Split tie chains at different depths of the 
-        `MetricalHierarchy`, if those tie chains cross any offsets at that 
+        `Meter`, if those tie chains cross any offsets at that 
         depth, but do not also both begin and end at any of those offsets.  
 
         Consider the default metrical hierarchy for `9/8`:
 
         ::
 
-            >>> hierarchy = timesignaturetools.MetricalHierarchy((9, 8))
+            >>> hierarchy = timesignaturetools.Meter((9, 8))
             >>> print hierarchy.pretty_rtm_format
             (9/8 (
                 (3/8 (
@@ -388,7 +388,7 @@ def establish_metrical_hierarchy(
             >>> show(measure) # doctest: +SKIP
 
         With a `boundary_depth` of `1`, tie chains which cross any offsets 
-        created by nodes with a depth of `1` in this MetricalHierarchy's rhythm 
+        created by nodes with a depth of `1` in this Meter's rhythm 
         tree - i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also begin 
         and end at any of those offsets, will be split:
 
@@ -912,9 +912,9 @@ def establish_metrical_hierarchy(
     assert Selection._all_are_contiguous_components_in_same_logical_voice(
         components)
     if not isinstance(metrical_hierarchy,
-        timesignaturetools.MetricalHierarchy):
+        timesignaturetools.Meter):
         metrical_hierarchy = \
-            timesignaturetools.MetricalHierarchy(metrical_hierarchy)
+            timesignaturetools.Meter(metrical_hierarchy)
     assert sum([x._preprolated_duration for x in components]) == \
         metrical_hierarchy.preprolated_duration
     if boundary_depth is not None:
@@ -949,7 +949,7 @@ def establish_metrical_hierarchy(
                     preprolated_duration)
                 preprolated_duration = preprolated_duration.with_denominator(
                     preprolated_duration.denominator * 4)
-            sub_metrical_hierarchy = timesignaturetools.MetricalHierarchy(preprolated_duration)
+            sub_metrical_hierarchy = timesignaturetools.Meter(preprolated_duration)
             sub_boundary_depth = 1
             if boundary_depth is None:
                 sub_boundary_depth = None
