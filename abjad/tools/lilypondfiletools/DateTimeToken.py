@@ -21,12 +21,12 @@ class DateTimeToken(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_spec=''):
+    def __format__(self, format_specification=''):
         r'''Gets format.
 
         Returns string.
         '''
-        if format_spec in ('', 'lilypond'):
+        if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         return str(self)
 
