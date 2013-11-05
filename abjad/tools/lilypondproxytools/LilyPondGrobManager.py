@@ -2,9 +2,9 @@
 from abjad.tools import stringtools
 from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
 from abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper \
-	import LilyPondGrobProxyContextWrapper
+    import LilyPondGrobProxyContextWrapper
 from abjad.tools.lilypondproxytools.LilyPondComponentPlugIn \
-	import LilyPondComponentPlugIn
+    import LilyPondComponentPlugIn
 
 
 class LilyPondGrobManager(LilyPondComponentPlugIn):
@@ -72,9 +72,9 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
                     for attribute_name, attribute_value in \
                         vars(grob_proxy).iteritems():
                         result.append((
-                            context_name, 
-                            grob_name, 
-                            attribute_name, 
+                            context_name,
+                            grob_name,
+                            attribute_name,
                             attribute_value,
                             ))
         return tuple(result)
@@ -109,18 +109,18 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
             else:
                 raise ValueError
             if contribution_type == 'override':
-                override_string = formattools.make_lilypond_override_string(
-                    grob_name, 
+                override_string = formattools.LilyPondFormatManager.make_lilypond_override_string(
+                    grob_name,
                     attribute_name,
-                    attribute_value, 
-                    context_name=context_name, 
+                    attribute_value,
+                    context_name=context_name,
                     is_once=is_once,
                     )
                 result.append(override_string)
             else:
-                revert_string = formattools.make_lilypond_revert_string(
-                    grob_name, 
-                    attribute_name, 
+                revert_string = formattools.LilyPondFormatManager.make_lilypond_revert_string(
+                    grob_name,
+                    attribute_name,
                     context_name=context_name,
                     )
                 result.append(revert_string)
@@ -135,5 +135,5 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
             value = grob_override_tuple[-1]
             attribute = '_tools_package_qualified_repr'
             value = getattr(value, attribute, repr(value))
-            result[most] = value 
+            result[most] = value
         return result
