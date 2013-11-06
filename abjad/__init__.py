@@ -49,6 +49,7 @@ from fractions import Fraction
 
 # import some frequently used functions for direct user access
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import mutate
 from abjad.tools.functiontools import override
 from abjad.tools.functiontools import parse
