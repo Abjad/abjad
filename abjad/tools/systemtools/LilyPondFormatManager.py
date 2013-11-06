@@ -3,6 +3,8 @@ import inspect
 
 
 class LilyPondFormatManager(object):
+    r'''Manages LilyPond formatting logic.
+    '''
 
     ### PUBLIC METHODS ###
 
