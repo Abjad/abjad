@@ -65,8 +65,10 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
 
     # find new time signature
     new_time_signature = \
-        timesignaturetools.duration_and_possible_denominators_to_time_signature(
-        old_time_signature_duration, factor=factor)
+        measure._duration_and_possible_denominators_to_time_signature(
+        old_time_signature_duration, 
+        factor=factor,
+        )
 
     # scale contents of measures in expr
     multiplier = new_time_signature.implied_prolation.reciprocal

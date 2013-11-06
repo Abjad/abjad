@@ -183,8 +183,10 @@ class ContiguousSelection(Selection):
             old_denominators.append(effective_time_signature.denominator)
             new_duration += effective_time_signature.duration
         new_time_signature = \
-            timesignaturetools.duration_and_possible_denominators_to_time_signature(
-            new_duration, old_denominators)
+            measure._duration_and_possible_denominators_to_time_signature(
+            new_duration, 
+            old_denominators,
+            )
         music = []
         for measure in self:
             # scale before reassignment to prevent tie chain scale drama

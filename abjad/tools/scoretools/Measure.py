@@ -216,6 +216,37 @@ class Measure(FixedDurationContainer):
         new.is_simultaneous = self.is_simultaneous
         return new
 
+    @staticmethod
+    def _duration_and_possible_denominators_to_time_signature(
+        duration,
+        denominators=None,
+        factor=None,
+        ):
+        # check input
+        duration = durationtools.Duration(duration)
+        if denominators is not None:
+            if factor is not None:
+                denominators = [
+                    d for d in denominators 
+                    if factor in mathtools.factors(d)
+                    ]
+            for desired_denominator in sorted(denominators):
+                nonreduced_fraction = mathtools.NonreducedFraction(duration)
+                candidate_pair = \
+                    nonreduced_fraction.with_denominator(desired_denominator)
+                if candidate_pair.denominator == desired_denominator:
+                    return marktools.TimeSignatureMark(candidate_pair)
+        if factor is not None:
+            if factor in mathtools.factors(duration.denominator):
+                return marktools.TimeSignatureMark(duration)
+            else:
+                time_signature_numerator = factor * duration.numerator
+                time_signature_denominator = factor * duration.denominator
+                return marktools.TimeSignatureMark(
+                    (time_signature_numerator, time_signature_denominator))
+        else:
+            return marktools.TimeSignatureMark(duration)
+
     def _format_content_pieces(self):
         result = []
         # the class name test here functions to exclude scaleDurations 
@@ -294,8 +325,11 @@ class Measure(FixedDurationContainer):
             old_duration = old_time_signature.duration
             new_duration = multiplier * old_duration
             new_time_signature = \
-                timesignaturetools.duration_and_possible_denominators_to_time_signature(
-                new_duration, [old_denominator], multiplier.denominator)
+                self._duration_and_possible_denominators_to_time_signature(
+                new_duration, 
+                [old_denominator], 
+                multiplier.denominator,
+                )
         for mark in self._get_marks(marktools.TimeSignatureMark):
             mark.detach()
         attach(new_time_signature, self)
