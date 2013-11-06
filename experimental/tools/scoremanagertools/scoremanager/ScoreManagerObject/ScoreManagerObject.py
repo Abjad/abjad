@@ -21,10 +21,12 @@ class ScoreManagerObject(object):
     cache_file_path = os.path.join(
         configuration.configuration_directory_path, 'cache.py')
     if os.path.exists(cache_file_path):
-        cache_file_pointer = file(cache_file_path, 'r')
-        cache_lines = cache_file_pointer.read()
-        cache_file_pointer.close()
-        exec(cache_lines)
+        with file(cache_file_path, 'r') as cache_file_pointer:
+            cache_lines = cache_file_pointer.read()
+        try:
+            exec(cache_lines)
+        except SyntaxError:
+            start_menu_entries = []
 
     ### CONTEXT MANAGER ###
 
