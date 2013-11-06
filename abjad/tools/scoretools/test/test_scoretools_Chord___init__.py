@@ -204,3 +204,13 @@ def test_scoretools_Chord___init___19():
     chord = Chord(note)
 
     assert format(chord) == "<c'!?>4"
+
+
+def test_scoretools_Chord___init___20():
+    r'''Initialize chord from other chord.
+    '''
+
+    chord_1 = Chord("<c' e' g' bf'>4")
+    chord_2 = Chord(chord_1, Duration(1, 8))
+
+    assert format(chord_2) == "<c' e' g' bf'>8"
