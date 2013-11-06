@@ -6,6 +6,12 @@ class AttributeInspectionAgent(object):
     r'''Inspect one component.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_component',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, component):
@@ -21,7 +27,7 @@ class AttributeInspectionAgent(object):
         Returns string.
         '''
         return '{}({})'.format(
-            type(self).__name__, 
+            type(self).__name__,
             self._component
             )
 

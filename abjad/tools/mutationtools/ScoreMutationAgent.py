@@ -20,6 +20,12 @@ class ScoreMutationAgent(object):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_client',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, client):
@@ -41,7 +47,7 @@ class ScoreMutationAgent(object):
         Returns string.
         '''
         return '{}({})'.format(
-            type(self).__name__, 
+            type(self).__name__,
             self._client,
             )
 
@@ -203,7 +209,7 @@ class ScoreMutationAgent(object):
                 }
 
         ..  container:: example
-        
+
             **Example 2.** Fuse parent-contiguous fixed-duration tuplets
             in selection:
 
@@ -339,7 +345,7 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 1.** Replace in-score tuplet (and children of tuplet) 
+            **Example 1.** Replace in-score tuplet (and children of tuplet)
             with notes. Functions exactly the same as container setitem:
 
                 >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
@@ -521,12 +527,12 @@ class ScoreMutationAgent(object):
         boundary_depth=None,
         maximum_dot_count=None,
         ):
-        r'''Rewrite the contents of tie chains in an expression to match 
+        r'''Rewrite the contents of tie chains in an expression to match
         a meter.
 
         ..  container:: example
 
-            **Example 1.** Rewrite the contents of a measure in a staff 
+            **Example 1.** Rewrite the contents of a measure in a staff
             using the default meter for that measure's time signature:
 
             ::
@@ -603,7 +609,7 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 2.** Rewrite the contents of a measure in a staff 
+            **Example 2.** Rewrite the contents of a measure in a staff
             using a custom meter:
 
             ::
@@ -679,7 +685,7 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 3.** Limit the maximum number of dots per leaf using 
+            **Example 3.** Limit the maximum number of dots per leaf using
             `maximum_dot_count`:
 
             ::
@@ -731,12 +737,12 @@ class ScoreMutationAgent(object):
 
                 >>> measure = parse(parseable)
                 >>> mutate(measure[:]).rewrite_meter(
-                ...     measure, 
+                ...     measure,
                 ...     maximum_dot_count=2,
                 ...     )
 
             ..  doctest::
-            
+
                 >>> f(measure)
                 {
                     \time 3/4
@@ -816,9 +822,9 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 4.** Split tie chains at different depths of the 
-            `Meter`, if those tie chains cross any offsets at that 
-            depth, but do not also both begin and end at any of those offsets.  
+            **Example 4.** Split tie chains at different depths of the
+            `Meter`, if those tie chains cross any offsets at that
+            depth, but do not also both begin and end at any of those offsets.
 
             Consider the default meter for `9/8`:
 
@@ -840,7 +846,7 @@ class ScoreMutationAgent(object):
                         1/8
                         1/8))))
 
-            We can establish that meter without specifying 
+            We can establish that meter without specifying
             a `boundary_depth`:
 
             ::
@@ -849,7 +855,7 @@ class ScoreMutationAgent(object):
                 >>> measure = parse(parseable)
 
             ..  doctest::
-            
+
                 >>> f(measure)
                 {
                     \time 9/8
@@ -881,9 +887,9 @@ class ScoreMutationAgent(object):
 
                 >>> show(measure) # doctest: +SKIP
 
-            With a `boundary_depth` of `1`, tie chains which cross any offsets 
-            created by nodes with a depth of `1` in this Meter's rhythm 
-            tree - i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also 
+            With a `boundary_depth` of `1`, tie chains which cross any offsets
+            created by nodes with a depth of `1` in this Meter's rhythm
+            tree - i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also
             begin and end at any of those offsets, will be split:
 
             ::
@@ -910,8 +916,8 @@ class ScoreMutationAgent(object):
 
                 >>> show(measure) # doctest: +SKIP
 
-            For this `9/8` meter, and this input notation, A `boundary_depth` 
-            of `2` causes no change, as all tie chains already align to 
+            For this `9/8` meter, and this input notation, A `boundary_depth`
+            of `2` causes no change, as all tie chains already align to
             multiples of `1/8`:
 
             ::
@@ -939,7 +945,7 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 5.** Comparison of `3/4` and `6/8`, at `boundary_depths` 
+            **Example 5.** Comparison of `3/4` and `6/8`, at `boundary_depths`
             of 0 and 1:
 
             ::
@@ -950,14 +956,14 @@ class ScoreMutationAgent(object):
                 >>> duples += "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
                 >>> score = Score([Staff(triple), Staff(duples)])
 
-            In order to see the different time signatures on each staff, 
-            we need to move some engravers from the Score context to the 
+            In order to see the different time signatures on each staff,
+            we need to move some engravers from the Score context to the
             Staff context:
 
             ::
 
                 >>> engravers = [
-                ...     'Timing_translator', 
+                ...     'Timing_translator',
                 ...     'Time_signature_engraver',
                 ...     'Default_bar_line_engraver',
                 ...     ]
@@ -1037,7 +1043,7 @@ class ScoreMutationAgent(object):
 
                 >>> show(score) # doctest: +SKIP
 
-            Here we establish a meter without specifying and boundary 
+            Here we establish a meter without specifying and boundary
             depth:
 
             ::
@@ -1204,12 +1210,12 @@ class ScoreMutationAgent(object):
 
                 >>> show(score) # doctest: +SKIP
 
-            Note that the two time signatures are much more clearly 
+            Note that the two time signatures are much more clearly
             disambiguated above.
 
         ..  container:: example
 
-            **Example 6.** Establishing meter recursively in measures 
+            **Example 6.** Establishing meter recursively in measures
             with nested tuplets:
 
             ::
@@ -1220,7 +1226,7 @@ class ScoreMutationAgent(object):
                 >>> measure = parse(parseable)
 
             ..  doctest::
-            
+
                 >>> f(measure)
                 {
                     \time 4/4
@@ -1243,11 +1249,11 @@ class ScoreMutationAgent(object):
 
                 >>> show(measure) # doctest: +SKIP
 
-            When establishing a meter on a selection of components 
+            When establishing a meter on a selection of components
             which contain containers, like `Tuplets` or `Containers`,
             `timesignaturetools.rewrite_meter()` will recurse into
-            those containers, treating them as measures whose time 
-            signature is derived from the preprolated preprolated_duration 
+            those containers, treating them as measures whose time
+            signature is derived from the preprolated preprolated_duration
             of the container's contents:
 
             ::
@@ -1326,7 +1332,7 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 1b.** Scale nontrivial tie chain 
+            **Example 1b.** Scale nontrivial tie chain
             by dot-generating `multiplier`:
 
             ::
@@ -1422,7 +1428,7 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 2b.** Scale nontrivial tie chain 
+            **Example 2b.** Scale nontrivial tie chain
             by tie-generating `multiplier`:
 
             ::
@@ -1524,7 +1530,7 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 3b.** Scale trivial tie chain 
+            **Example 3b.** Scale trivial tie chain
             by tuplet-generating multiplier:
 
             ::
@@ -1598,7 +1604,7 @@ class ScoreMutationAgent(object):
 
         ..  container:: example
 
-            **Example 4.** Scale note by tie- and tuplet-generating 
+            **Example 4.** Scale note by tie- and tuplet-generating
             multiplier:
 
             ::
@@ -1766,7 +1772,7 @@ class ScoreMutationAgent(object):
         '''
         return self._client._splice(
             components,
-            direction=direction, 
+            direction=direction,
             grow_spanners=grow_spanners,
             )
 
@@ -1775,14 +1781,14 @@ class ScoreMutationAgent(object):
     # TODO: add examples that show mark and context mark handling.
     # TODO: add example showing grace and after grace handling.
     def split(
-        self, 
+        self,
         durations,
-        fracture_spanners=False, 
-        cyclic=False, 
-        tie_split_notes=True, 
+        fracture_spanners=False,
+        cyclic=False,
+        tie_split_notes=True,
         ):
         r'''Splits component or selection by `durations`.
-        
+
         ..  container:: example
 
             **Example 1.** Split leaves:
@@ -1816,7 +1822,7 @@ class ScoreMutationAgent(object):
 
                 >>> durations = [Duration(3, 16), Duration(7, 32)]
                 >>> result = mutate(leaves).split(
-                ...     durations, 
+                ...     durations,
                 ...     tie_split_notes=False,
                 ...     )
                 >>> show(staff) # doctest: +SKIP
@@ -1828,10 +1834,10 @@ class ScoreMutationAgent(object):
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
                     c'8 \< \p
-                    e'16 
+                    e'16
                     e'16
                     d'8
-                    f'32 
+                    f'32
                     f'16.
                     c'8
                     e'8
@@ -1872,8 +1878,8 @@ class ScoreMutationAgent(object):
 
                 >>> durations = [Duration(3, 16), Duration(7, 32)]
                 >>> result = mutate(leaves).split(
-                ...     durations, 
-                ...     fracture_spanners=True, 
+                ...     durations,
+                ...     fracture_spanners=True,
                 ...     tie_split_notes=False,
                 ...     )
                 >>> show(staff) # doctest: +SKIP
@@ -1885,10 +1891,10 @@ class ScoreMutationAgent(object):
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
                     c'8 \< \p
-                    e'16 \f 
+                    e'16 \f
                     e'16 \< \p
                     d'8
-                    f'32 \f 
+                    f'32 \f
                     f'16. \< \p
                     c'8
                     e'8
@@ -1942,15 +1948,15 @@ class ScoreMutationAgent(object):
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
                     c'8 \< \p
-                    e'16 
+                    e'16
                     e'16
                     d'8
-                    f'32 
+                    f'32
                     f'16.
-                    c'16. 
+                    c'16.
                     c'32
                     e'8
-                    d'16 
+                    d'16
                     d'16
                     f'8 \f
                 }
@@ -1989,7 +1995,7 @@ class ScoreMutationAgent(object):
                 >>> durations = [Duration(3, 16), Duration(7, 32)]
                 >>> result = mutate(leaves).split(
                 ...     durations,
-                ...     cyclic=True, 
+                ...     cyclic=True,
                 ...     fracture_spanners=True,
                 ...     tie_split_notes=False,
                 ...     )
@@ -2002,22 +2008,22 @@ class ScoreMutationAgent(object):
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
                     c'8 \< \p
-                    e'16 \f 
+                    e'16 \f
                     e'16 \< \p
                     d'8
-                    f'32 \f 
+                    f'32 \f
                     f'16. \< \p
-                    c'16. \f 
+                    c'16. \f
                     c'32 \< \p
                     e'8
-                    d'16 \f 
+                    d'16 \f
                     d'16 \< \p
                     f'8 \f
                 }
 
         ..  container:: example
 
-            **Example 5.** Split tupletted leaves and fracture 
+            **Example 5.** Split tupletted leaves and fracture
                 crossing spanners:
 
             ::
@@ -2050,8 +2056,8 @@ class ScoreMutationAgent(object):
 
                 >>> durations = [Duration(1, 4)]
                 >>> result = mutate(leaves).split(
-                ...     durations, 
-                ...     fracture_spanners=True, 
+                ...     durations,
+                ...     fracture_spanners=True,
                 ...     tie_split_notes=False,
                 ...     )
                 >>> show(staff) # doctest: +SKIP
@@ -2062,7 +2068,7 @@ class ScoreMutationAgent(object):
                 \new Staff {
                     \times 2/3 {
                         c'4 (
-                        d'8 ) 
+                        d'8 )
                         d'8 (
                         e'4
                     }
@@ -2119,7 +2125,7 @@ class ScoreMutationAgent(object):
         current_shard_duration = durationtools.Duration(0)
         remaining_components = list(components[:])
         advance_to_next_offset = True
-        # loop and build shards by grabbing next component 
+        # loop and build shards by grabbing next component
         # and next duration each time through loop
         while True:
             # grab next split point
@@ -2154,9 +2160,9 @@ class ScoreMutationAgent(object):
                     additional_required_duration = \
                         current_duration - local_split_duration
                     split_durations = sequencetools.split_sequence_by_weights(
-                        durations, 
-                        [additional_required_duration], 
-                        cyclic=False, 
+                        durations,
+                        [additional_required_duration],
+                        cyclic=False,
                         overhang=True,
                         )
                     additional_durations = split_durations[0]
@@ -2164,7 +2170,7 @@ class ScoreMutationAgent(object):
                     durations = split_durations[-1]
                     leaf_shards = current_component._split(
                         leaf_split_durations,
-                        cyclic=False, 
+                        cyclic=False,
                         fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
                         )
@@ -2174,9 +2180,9 @@ class ScoreMutationAgent(object):
                 else:
                     left_list, right_list = \
                         current_component._split_by_duration(
-                        local_split_duration, 
+                        local_split_duration,
                         fracture_spanners=fracture_spanners,
-                        tie_split_notes=tie_split_notes, 
+                        tie_split_notes=tie_split_notes,
                         )
                     shard.extend(left_list)
                     result.append(shard)
