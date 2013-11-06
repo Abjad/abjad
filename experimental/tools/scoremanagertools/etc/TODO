@@ -114,3 +114,8 @@
     ... at the bottom of each segment definition file.
     There should be a way to call a prebuilt external script
     that does exactly the same thing.
+
+35. Bug exists when making handmade material packages.
+    Create the packge. Then [mde] to edit the material definition module.
+    The last line in file reads like this:
+        /Users/trevorbaca/Documents/scores/temporary/materials/foo = None
