@@ -11,7 +11,9 @@ class ImportManager(object):
 
     @staticmethod
     def _get_public_function_names_in_module(module_file):
-        r'''Collects and returns all public functions defined in module_file.'''
+        r'''Collects and returns all public functions defined in 
+        module_file.
+        '''
         result = []
         module_file = module_file.replace(os.sep, '.')
         mod = __import__(module_file, fromlist=['*'])
@@ -30,17 +32,19 @@ class ImportManager(object):
 
     @staticmethod
     def _import_contents_of_public_packages_in_path_into_namespace(
-        path, namespace, package_root_name = 'abjad'):
-        r'''Inspect the top level of path.
+        path, 
+        namespace, 
+        package_root_name='abjad',
+        ):
+        r'''Inspects the top level of path.
 
-        Find public class packages and import class package contents into namespace.
+        Finds public class packages and imports class package 
+        contents into namespace.
 
-        Do not inspect lower levels of path.
+        Does not inspect lower levels of path.
         '''
-
         parent_path = path[path.rindex(package_root_name):]
         parent_package = parent_path.replace(os.sep, '.')
-
         for name in os.listdir(path):
             fullname = os.path.join(path, name)
             if os.path.isdir(fullname):
@@ -49,7 +53,8 @@ class ImportManager(object):
                     os.path.exists(os.path.join(fullname, '%s.py' % name)):
                     class_package = '.'.join([parent_package, name])
                     class_module = '.'.join([class_package, name])
-                    public_names = ImportManager._get_public_function_names_in_module(
+                    public_names = \
+                        ImportManager._get_public_function_names_in_module(
                         class_module)
                     for public_name in public_names:
                         namespace[public_name.__name__] = public_name
@@ -63,16 +68,16 @@ class ImportManager(object):
         delete_systemtools=True,
         package_root_name='abjad',
         ):
-        r'''Inspect the top level of `path`.
+        r'''Inspects the top level of `path`.
 
-        Find .py modules in path and import public functions from .py modules 
-        into namespace.
+        Finds .py modules in path and imports public functions from 
+        .py modules into namespace.
 
-        Find packages in path and import package names into namespace.
+        Finds packages in path and imports package names into namespace.
 
-        Do not import package content into namespace.
+        Does not import package content into namespace.
 
-        Do not inspect lower levels of path.
+        Does not inspect lower levels of path.
         '''
         package_root_name += os.sep
         module = path[path.rindex(package_root_name):]
@@ -82,7 +87,8 @@ class ImportManager(object):
                 if not element.startswith('_') and element.endswith('.py'):
                     # import function inside module
                     submod = os.path.join(module, element[:-3])
-                    functions = ImportManager._get_public_function_names_in_module(
+                    functions = \
+                        ImportManager._get_public_function_names_in_module(
                         submod)
                     for f in functions:
                         # handle public function decorated with @require
@@ -119,7 +125,7 @@ class ImportManager(object):
         delete_systemtools=True,
         package_root_name='abjad',
         ):
-        r'''Import public names from `path` into `namespace`.
+        r'''Imports public names from `path` into `namespace`.
 
         This is the custom function that all Abjad packages use to import
         public classes and functions on startup.
@@ -127,8 +133,6 @@ class ImportManager(object):
         The function will work for any package laid out like Abjad packages.
 
         Set `package_root_name` to the root any Abjad-like package structure.
-
-        Returns none.
         '''
         ImportManager.import_public_names_from_filesystem_path_into_namespace(
             path, 
