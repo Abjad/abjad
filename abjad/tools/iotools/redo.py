@@ -6,7 +6,7 @@ import time
 # TODO: Remove code duplication between this and iotools.ly and functiontools.show.
 # TODO: Encapsulate stuff below.
 def redo(target=-1, lily_time=10):
-    r'''Rerenders the last ``.ly`` file created in Abjad and 
+    r'''Rerenders the last ``.ly`` file created in Abjad and
     then shows the resulting PDF.
 
     ..  container:: example
@@ -32,7 +32,7 @@ def redo(target=-1, lily_time=10):
 
     current_directory = os.path.abspath('.')
     abjad_output = abjad_configuration['abjad_output']
-    iotools.verify_output_directory(abjad_output)
+    iotools.IOManager.verify_output_directory(abjad_output)
     os.chdir(abjad_output)
 
     # TODO: Encapsulate as a single function called cfg._find_target()

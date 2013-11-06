@@ -41,7 +41,7 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    iotools.verify_output_directory(ABJADOUTPUT)
+    iotools.IOManager.verify_output_directory(ABJADOUTPUT)
     dot_path = os.path.join(
         ABJADOUTPUT,
         iotools.get_next_output_file_name(file_extension='dot'),

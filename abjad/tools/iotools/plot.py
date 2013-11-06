@@ -23,7 +23,7 @@ def plot(expr, image_format='png', width=640, height=320):
 
     current_directory = os.path.abspath('.')
     abjad_output = abjad_configuration['abjad_output']
-    iotools.verify_output_directory(abjad_output)
+    iotools.IOManager.verify_output_directory(abjad_output)
     txt_path = os.path.join(
         abjad_output, iotools.get_next_output_file_name(file_extension='txt'))
     img_path = os.path.join(abjad_output, txt_path.replace('txt', image_format))
