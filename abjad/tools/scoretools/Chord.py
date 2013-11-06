@@ -39,8 +39,8 @@ class Chord(Leaf):
             client=self,
             )
         if len(args) == 1 and isinstance(args[0], str):
-            input = '{{ {} }}'.format(args[0])
-            parsed = lilypondparsertools.LilyPondParser()(input)
+            string = '{{ {} }}'.format(args[0])
+            parsed = lilypondparsertools.LilyPondParser()(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             args = [parsed[0]]
         is_cautionary = []
@@ -64,6 +64,8 @@ class Chord(Leaf):
             written_pitches, written_duration = args
             if isinstance(written_pitches, str):
                 written_pitches = [x for x in written_pitches.split() if x]
+            elif isinstance(written_pitches, type(self)):
+                written_pitches = written_pitches.written_pitches
             lilypond_multiplier = None
         elif len(args) == 3:
             written_pitches, written_duration, lilypond_multiplier = args
