@@ -132,7 +132,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 output_pdf_file_paths.append(output_pdf_file_path)
         command = ' '.join(output_pdf_file_paths)
         command = 'open ' + command
-        iotools.spawn_subprocess(command)
+        iotools.IOManager.spawn_subprocess(command)
 
     def interactively_version_all_assets(
         self,

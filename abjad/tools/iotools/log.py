@@ -26,9 +26,8 @@ def log():
     '''
     from abjad import abjad_configuration
     from abjad.tools import iotools
-
     abjad_output = abjad_configuration['abjad_output']
     text_editor = abjad_configuration.get_text_editor()
     log_file_path = os.path.join(abjad_output, 'lily.log')
     command = '{} {}'.format(text_editor, log_file_path)
-    iotools.spawn_subprocess(command)
+    iotools.IOManager.spawn_subprocess(command)

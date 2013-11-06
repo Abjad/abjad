@@ -14,7 +14,7 @@ print
 print '    ' + command
 print
 
-iotools.spawn_subprocess(command)
+iotools.IOManager.spawn_subprocess(command)
 stop_time = time.time()
 total_time = stop_time - start_time
 

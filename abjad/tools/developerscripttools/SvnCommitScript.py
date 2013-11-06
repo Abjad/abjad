@@ -65,7 +65,7 @@ class SvnCommitScript(DirectoryScript):
             result = raw_input(
                 'Accept [Y], Reject [n], Abort [a]: ').strip().lower()
             if result in ('', 'y', 'yes'):
-                iotools.spawn_subprocess(commit_command)
+                iotools.IOManager.spawn_subprocess(commit_command)
                 return
             elif result in ('n', 'no'):
                 SvnMessageScript()()

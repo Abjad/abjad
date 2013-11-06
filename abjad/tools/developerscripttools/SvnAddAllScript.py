@@ -51,7 +51,7 @@ class SvnAddAllScript(DirectoryScript):
         for line in lines:
             if line.startswith('?'):
                 command = 'svn add {}'.format(line.split()[-1])
-                iotools.spawn_subprocess(command)
+                iotools.IOManager.spawn_subprocess(command)
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',

@@ -14,9 +14,8 @@ def clear_terminal():
     Returns none.
     '''
     from abjad.tools import iotools
-
     if os.name == 'posix':
         command = 'clear'
     else:
         command = 'cls'
-    iotools.spawn_subprocess(command)
+    iotools.IOManager.spawn_subprocess(command)

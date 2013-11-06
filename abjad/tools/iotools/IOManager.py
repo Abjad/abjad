@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import subprocess
 
 
 class IOManager(object):
@@ -81,7 +82,6 @@ class IOManager(object):
                     result.append(path_extension)
         return result
 
-
     @staticmethod
     def save_last_ly_as(file_path):
         r'''Saves last LilyPond file created in Abjad as `file_path`.
@@ -125,3 +125,22 @@ class IOManager(object):
         with open(file_path, 'w') as new:
             with open(last_pdf_full_name, 'r') as old:
                 new.write(''.join(old.readlines()))
+
+    @staticmethod
+    def spawn_subprocess(command):
+        r'''Spawns subprocess and runs `command`.
+
+        Redirects stderr to stdout.
+
+        ::
+
+            >>> command = 'echo "hellow world"'
+            >>> iotools.IOManager.spawn_subprocess(command) # doctest: +SKIP
+            hello world
+
+        The function is basically a reimplementation of the
+        deprecated ``os.system()`` using Python's ``subprocess`` module.
+
+        Returns integer result code.
+        '''
+        return subprocess.call(command, shell=True)

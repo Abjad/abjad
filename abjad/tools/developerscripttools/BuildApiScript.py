@@ -101,15 +101,15 @@ class BuildApiScript(DeveloperScript):
         # optionally, make clean before building
         if clean:
             print 'Cleaning build directory ...'
-            iotools.spawn_subprocess('make clean')
+            iotools.IOManager.spawn_subprocess('make clean')
 
         if format == 'coverage':
-            iotools.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
+            iotools.IOManager.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
                 'source',
                 os.path.join('build', 'coverage'),
                 ))
         else:
-            iotools.spawn_subprocess('make {}'.format(format))
+            iotools.IOManager.spawn_subprocess('make {}'.format(format))
 
     def _build_mainline_api(self, format='html', clean=False):
 
@@ -129,15 +129,15 @@ class BuildApiScript(DeveloperScript):
         # optionally, make clean before building
         if clean:
             print 'Cleaning build directory ...'
-            iotools.spawn_subprocess('make clean')
+            iotools.IOManager.spawn_subprocess('make clean')
 
         if format == 'coverage':
-            iotools.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
+            iotools.IOManager.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
                 'source',
                 os.path.join('build', 'coverage'),
                 ))
         else:
-            iotools.spawn_subprocess('make {}'.format(format))
+            iotools.IOManager.spawn_subprocess('make {}'.format(format))
 
     ### PUBLIC METHODS ###
 

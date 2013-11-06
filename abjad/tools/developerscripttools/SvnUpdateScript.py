@@ -57,7 +57,7 @@ class SvnUpdateScript(DirectoryScript):
             clean_script(clean_args)
 
         print 'Updating...'
-        iotools.spawn_subprocess('svn update {}'.format(args.path))
+        iotools.IOManager.spawn_subprocess('svn update {}'.format(args.path))
 
     def setup_argument_parser(self, parser):
 

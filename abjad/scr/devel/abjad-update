@@ -13,8 +13,8 @@ project_root = abjad_configuration.abjad_directory_path.rstrip('abjad')
 # svn update
 os.chdir(project_root)
 iotools.clear_terminal()
-iotools.spawn_subprocess('svn update')
+iotools.IOManager.spawn_subprocess('svn update')
 os.chdir(start_directory)
 
 # remove Abjad *.pyc files, __pycache__ directories and tmp* files
-iotools.spawn_subprocess('ajv clean {}'.format(project_root))
+iotools.IOManager.spawn_subprocess('ajv clean {}'.format(project_root))

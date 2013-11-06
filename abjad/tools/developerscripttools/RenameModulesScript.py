@@ -167,7 +167,7 @@ class RenameModulesScript(DeveloperScript):
             new_docs_path, new_tools_package_name, new_rst_file_name)
         command = 'mv {} {}'.format(
             old_api_path, new_api_path)
-        iotools.spawn_subprocess(command)
+        iotools.IOManager.spawn_subprocess(command)
         print ''
 
     def _rename_old_module(self,
@@ -191,7 +191,7 @@ class RenameModulesScript(DeveloperScript):
             new_tools_path, new_tools_package_name, new_module)
         command = 'git mv -f {} {}'.format(
             old_path, new_path)
-        iotools.spawn_subprocess(command)
+        iotools.IOManager.spawn_subprocess(command)
         print ''
 
     def _rename_old_test_files(self,
@@ -228,7 +228,7 @@ class RenameModulesScript(DeveloperScript):
                 new_test_path, new_test_file_name)
             command = 'git mv -f {} {}'.format(
                 old_test_file_path, new_test_file_path)
-            iotools.spawn_subprocess(command)
+            iotools.IOManager.spawn_subprocess(command)
         print ''
 
     def _update_codebase(self,

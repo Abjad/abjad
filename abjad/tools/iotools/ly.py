@@ -65,7 +65,7 @@ def ly(target=-1):
 
     if os.stat(target_ly):
         command = '{} {}'.format(text_editor, target_ly)
-        iotools.spawn_subprocess(command)
+        iotools.IOManager.spawn_subprocess(command)
     else:
         message = 'Target LilyPond input file {} does not exist.'
         message = message.format(target_ly)

@@ -51,7 +51,7 @@ If no PATH flag is specified, the current directory will be searched.
             whole_words_only = ''
         command = r'grep {} -Irn {!r} {} | grep -v svn-base | grep -v svn\/ | grep -v docs'.format(
             whole_words_only, args.pattern, os.path.relpath(args.path))
-        iotools.spawn_subprocess(command)
+        iotools.IOManager.spawn_subprocess(command)
 
     def setup_argument_parser(self, parser):
 

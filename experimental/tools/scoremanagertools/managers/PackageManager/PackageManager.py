@@ -205,7 +205,7 @@ class PackageManager(DirectoryManager):
             # rename package directory
             command = 'svn mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
-            iotools.spawn_subprocess(command)
+            iotools.IOManager.spawn_subprocess(command)
             # commit
             commit_message = 'renamed {} to {}.'
             commit_message = commit_message.format(
@@ -219,11 +219,11 @@ class PackageManager(DirectoryManager):
                 commit_message,
                 parent_directory_path,
                 )
-            iotools.spawn_subprocess(command)
+            iotools.IOManager.spawn_subprocess(command)
         else:
             command = 'mv {} {}'
             command = command.format(self.filesystem_path, new_directory_path)
-            iotools.spawn_subprocess(command)
+            iotools.IOManager.spawn_subprocess(command)
         # update path name to reflect change
         self._path = new_directory_path
         self.session.is_backtracking_locally = True

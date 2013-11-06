@@ -12,14 +12,12 @@ def open_file(file_path, application=None):
     Returns none.
     '''
     from abjad.tools import iotools
-
     if os.name == 'nt':
         os.startfile(file_path)
         return
-
     if sys.platform.lower() == 'linux2':
         viewer = application or 'xdg-open'
     else:
         viewer = application or 'open'
     command = '{} {} &'.format(viewer, file_path)
-    iotools.spawn_subprocess(command)
+    iotools.IOManager.spawn_subprocess(command)

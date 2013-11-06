@@ -389,7 +389,7 @@ class Menu(ScoreManagerObject):
             file_name = self.where[1]
             line_number = self.where[2]
             command = 'vim +{} {}'.format(line_number, file_name)
-            iotools.spawn_subprocess(command)
+            iotools.IOManager.spawn_subprocess(command)
         else:
             lines = []
             message = 'where-tracking not enabled.'
