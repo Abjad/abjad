@@ -57,3 +57,47 @@ class IOManager(object):
                     result.append(path_extension)
         return result
 
+
+    @staticmethod
+    def save_last_ly_as(file_path):
+        r'''Saves last LilyPond file created in Abjad as `file_path`.
+
+        ::
+
+            >>> file_path = '/project/output/example-1.ly'
+            >>> iotools.IOManager.save_last_ly_as(file_path) # doctest: +SKIP
+
+        Returns none.
+        '''
+        from abjad import abjad_configuration
+        from abjad.tools import iotools
+        ABJADOUTPUT = abjad_configuration['abjad_output']
+        last_output_file_path = iotools.get_last_output_file_name()
+        without_extension, extension = os.path.splitext(last_output_file_path)
+        last_ly = without_extension + '.ly'
+        last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
+        with open(file_path, 'w') as new:
+            with open(last_ly_full_name, 'r') as old:
+                new.write(''.join(old.readlines()))
+
+    @staticmethod
+    def save_last_pdf_as(file_path):
+        r'''Saves last PDF created in Abjad as `file_path`.
+
+        ::
+
+            >>> file_path = '/project/output/example-1.pdf'
+            >>> iotools.IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
+
+        Returns none.
+        '''
+        from abjad import abjad_configuration
+        from abjad.tools import iotools
+        ABJADOUTPUT = abjad_configuration['abjad_output']
+        last_output_file_name = iotools.get_last_output_file_name()
+        without_extension, extension = os.path.splitext(last_output_file_name)
+        last_pdf = without_extension + '.pdf'
+        last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)
+        with open(file_path, 'w') as new:
+            with open(last_pdf_full_name, 'r') as old:
+                new.write(''.join(old.readlines()))
