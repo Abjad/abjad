@@ -468,8 +468,8 @@ class ScorePackageManager(PackageManager):
             self.session.is_backtracking_locally = True
 
     def interactively_view_score(self, pending_user_input=None):
-        self.build_directory_manager.interactively_view_score(
-            pending_user_input=pending_user_input,
+        self.build_directory_manager._interactively_open_file_ending_with(
+            'score.pdf',
             )
 
     def interactively_view_instrumentation_module(self):
