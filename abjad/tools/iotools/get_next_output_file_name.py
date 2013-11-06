@@ -34,5 +34,5 @@ def get_next_output_file_name(file_extension='ly', output_directory_path=None):
             file_extension=file_extension,
             )
     if 9000 < next_number:
-        iotools.warn_almost_full(last_number)
+        iotools.IOManager._warn_when_output_directory_almost_full(last_number)
     return next_output_file_name
