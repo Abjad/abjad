@@ -32,7 +32,7 @@ def graph(expr, image_format='pdf', layout='dot'):
     assert layout in layouts
     message = 'Cannot find `{}` command-line tool.'.format(layout)
     message += ' Please download Graphviz from graphviz.org.'
-    assert iotools.which(layout), message
+    assert iotools.IOManager.find_executable(layout), message
 
     if isinstance(expr, str):
         graphviz_format = expr
@@ -41,7 +41,7 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    iotools.verify_output_directory(ABJADOUTPUT)
+    iotools.IOManager.ensure_directory_existence(ABJADOUTPUT)
     dot_path = os.path.join(
         ABJADOUTPUT,
         iotools.get_next_output_file_name(file_extension='dot'),

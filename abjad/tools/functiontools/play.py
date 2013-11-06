@@ -28,7 +28,7 @@ def play(expr):
     from abjad.tools import iotools
 
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    iotools.verify_output_directory(ABJADOUTPUT)
+    iotools.IOManager.ensure_directory_existence(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
     name = iotools.get_next_output_file_name()
     outfile = open(name, 'w')

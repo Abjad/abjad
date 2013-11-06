@@ -55,8 +55,7 @@ class ContextBlock(AttributedBlock):
 
     @property
     def _format_pieces(self):
-        from abjad.tools.lilypondfiletools._format_lilypond_context_setting_in_with_block \
-            import _format_lilypond_context_setting_in_with_block
+        from abjad.tools import systemtools
         result = []
         result.append('%s {' % self._escaped_name)
         # CAUTION: source context name must come before type to allow 
@@ -82,7 +81,7 @@ class ContextBlock(AttributedBlock):
         setting_contributions = []
         for key, value in self.set._get_attribute_tuples():
             setting_contribution = \
-                _format_lilypond_context_setting_in_with_block(key, value)
+                systemtools.LilyPondFormatManager.format_lilypond_context_setting_in_with_block(key, value)
             setting_contributions.append(setting_contribution)
         for setting_contribution in sorted(setting_contributions):
             result.append('\t' + setting_contribution)

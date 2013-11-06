@@ -3,6 +3,8 @@ import inspect
 
 
 class LilyPondFormatManager(object):
+    r'''Manages LilyPond formatting logic.
+    '''
 
     ### PUBLIC METHODS ###
 
@@ -16,6 +18,39 @@ class LilyPondFormatManager(object):
         attribute = attribute.replace('__', " #'")
         result = attribute.replace('_', '-')
         result = "#'%s" % result
+        return result
+
+    @staticmethod
+    def format_lilypond_context_setting_in_with_block(name, value):
+        name = name.split('_')
+        first = name[0:1]
+        rest = name[1:]
+        rest = [x.title() for x in rest]
+        name = first + rest
+        name = ''.join(name)
+        value = LilyPondFormatManager.format_lilypond_value(value)
+        result = r'{} = {}'.format(name, value)
+        return result
+
+    @staticmethod
+    def format_lilypond_context_setting_inline(name, value, context=None):
+        name = name.split('_')
+        first = name[0:1]
+        rest = name[1:]
+        rest = [x.title() for x in rest]
+        name = first + rest
+        name = ''.join(name)
+        value = LilyPondFormatManager.format_lilypond_value(value)
+        if context is not None:
+            context_string = context[1:]
+            context_string = context_string.split('_')
+            context_string = [x.title() for x in context_string]
+            context_string = ''.join(context_string)
+            context_string += '.'
+        else:
+            context_string = ''
+        result = r'\set {}{} = {}'
+        result = result.format(context_string, name, value)
         return result
 
     @staticmethod
@@ -75,7 +110,6 @@ class LilyPondFormatManager(object):
 
         Returns nested dictionary.
         '''
-        from abjad.tools import systemtools
         result = LilyPondFormatManager.get_all_mark_format_contributions(
             component)
         for slot, contributions in \
@@ -110,7 +144,6 @@ class LilyPondFormatManager(object):
 
         Returns dict.
         '''
-        from abjad.tools import systemtools
         from abjad.tools import marktools
         from abjad.tools import markuptools
         class_to_section = {
@@ -260,8 +293,6 @@ class LilyPondFormatManager(object):
         result = []
         from abjad.tools.scoretools.Leaf import Leaf
         from abjad.tools.scoretools.Measure import Measure
-        from abjad.tools.lilypondfiletools._format_lilypond_context_setting_inline import _format_lilypond_context_setting_inline
-        from abjad.tools.lilypondfiletools._format_lilypond_context_setting_in_with_block import _format_lilypond_context_setting_in_with_block
         if isinstance(component, (Leaf, Measure)):
             for name, value in vars(component.set).iteritems():
                 # if we've found a leaf LilyPondContextNamespace
@@ -269,16 +300,17 @@ class LilyPondFormatManager(object):
                     for x, y in vars(value).iteritems():
                         if not x.startswith('_'):
                             result.append(
-                                _format_lilypond_context_setting_inline(
+                                LilyPondFormatManager.format_lilypond_context_setting_inline(
                                     x, y, name))
                 # otherwise we've found a default leaf context setting
                 else:
                     # parse default context setting
-                    result.append(_format_lilypond_context_setting_inline(
-                        name, value))
+                    result.append(
+                        LilyPondFormatManager.format_lilypond_context_setting_inline(
+                            name, value))
         else:
             for name, value in vars(component.set).iteritems():
-                result.append(_format_lilypond_context_setting_in_with_block(
+                result.append(LilyPondFormatManager.format_lilypond_context_setting_in_with_block(
                     name, value))
         result.sort()
         return ['context settings', result]

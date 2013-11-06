@@ -17,13 +17,13 @@ def plot(expr, image_format='png', width=640, height=320):
     assert isinstance(width, int) and 0 < width
     assert isinstance(height, int) and 0 < height
     message = 'Cannot find `gnuplot` command-line tool.'
-    assert iotools.which('gnuplot'), message
+    assert iotools.IOManager.find_executable('gnuplot'), message
 
     gnuplot_format = expr.gnuplot_format
 
     current_directory = os.path.abspath('.')
     abjad_output = abjad_configuration['abjad_output']
-    iotools.verify_output_directory(abjad_output)
+    iotools.IOManager.ensure_directory_existence(abjad_output)
     txt_path = os.path.join(
         abjad_output, iotools.get_next_output_file_name(file_extension='txt'))
     img_path = os.path.join(abjad_output, txt_path.replace('txt', image_format))
