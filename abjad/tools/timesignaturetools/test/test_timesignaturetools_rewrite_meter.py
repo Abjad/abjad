@@ -48,11 +48,13 @@ def test_timesignaturetools_rewrite_meter_05():
     meter = timesignaturetools.Meter((4, 4))
     for rhythm_number in range(8):
         # without boundary enforcement
-        notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
+        notes = timesignaturetools.Meter._make_gridded_test_rhythm(
+            4, rhythm_number, denominator=4)
         measure = Measure((4, 4), notes)
         timesignaturetools.rewrite_meter(measure[:], meter)
         # with boundary enforcement
-        notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
+        notes = timesignaturetools.Meter._make_gridded_test_rhythm(
+            4, rhythm_number, denominator=4)
         measure = Measure((4, 4), notes)
         timesignaturetools.rewrite_meter(measure[:], meter, boundary_depth=-1)
 
