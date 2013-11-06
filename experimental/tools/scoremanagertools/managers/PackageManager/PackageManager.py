@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
+from abjad.tools import iotools
+from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.managers.DirectoryManager \
     import DirectoryManager
 
@@ -13,17 +15,17 @@ class PackageManager(DirectoryManager):
             os.path.sep not in packagesystem_path:
             filesystem_path = \
                 self.configuration.packagesystem_path_to_filesystem_path(
-                packagesystem_path)
+                    packagesystem_path)
         else:
             filesystem_path = packagesystem_path
         assert '.' not in filesystem_path, repr(filesystem_path)
-        DirectoryManager.__init__(self, 
-            filesystem_path=filesystem_path, 
+        DirectoryManager.__init__(self,
+            filesystem_path=filesystem_path,
             session=session,
             )
         packagesystem_path = \
             self.configuration.filesystem_path_to_packagesystem_path(
-            filesystem_path)
+                filesystem_path)
         assert os.path.sep not in packagesystem_path, repr(packagesystem_path)
         self._package_path = packagesystem_path
 
@@ -70,7 +72,7 @@ class PackageManager(DirectoryManager):
     def initializer_file_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.FileManager(
-            self.initializer_file_name, 
+            self.initializer_file_name,
             session=self.session,
             )
 
@@ -109,6 +111,7 @@ class PackageManager(DirectoryManager):
     ### PUBLIC METHODS ###
 
     def _add_metadata(self, tag_name, tag_value):
+        assert stringtools.is_snake_case_string(tag_name)
         tags = self._get_metadatas()
         tags[tag_name] = tag_value
         self.metadata_module_manager.write_metadata_to_disk(tags)
