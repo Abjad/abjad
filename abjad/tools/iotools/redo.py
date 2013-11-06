@@ -32,7 +32,7 @@ def redo(target=-1, lily_time=10):
 
     current_directory = os.path.abspath('.')
     abjad_output = abjad_configuration['abjad_output']
-    iotools.IOManager.verify_output_directory(abjad_output)
+    iotools.IOManager.ensure_directory_existence(abjad_output)
     os.chdir(abjad_output)
 
     # TODO: Encapsulate as a single function called cfg._find_target()

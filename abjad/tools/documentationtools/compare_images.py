@@ -20,7 +20,7 @@ def compare_images(image_one, image_two):
 
     result = False
 
-    if iotools.which('compare'):
+    if iotools.IOManager.find_executable('compare'):
 
         tempdir = tempfile.mkdtemp()
         comparison = os.path.join(tempdir, 'comparison.png')

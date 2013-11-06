@@ -31,7 +31,7 @@ def log_render_lilypond_input(
     current_directory = os.path.abspath('.')
     output_directory_path = \
         output_directory_path or abjad_configuration['abjad_output']
-    iotools.IOManager.verify_output_directory(output_directory_path)
+    iotools.IOManager.ensure_directory_existence(output_directory_path)
     os.chdir(output_directory_path)
     if output_file_name_root is None:
         name = iotools.get_next_output_file_name()
