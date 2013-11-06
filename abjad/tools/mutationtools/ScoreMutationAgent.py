@@ -515,6 +515,788 @@ class ScoreMutationAgent(object):
             elif hasattr(leaf, 'written_pitch'):
                 leaf.written_pitch = leaf.written_pitch.respell_with_sharps()
 
+    def rewrite_meter(
+        self,
+        meter,
+        boundary_depth=None,
+        maximum_dot_count=None,
+        ):
+        r'''Rewrite the contents of tie chains in an expression to match 
+        a meter.
+
+        ..  container:: example
+
+            **Example 1.** Rewrite the contents of a measure in a staff 
+            using the default meter for that measure's time signature:
+
+            ::
+
+                >>> parseable = "abj: | 2/4 c'2 ~ |"
+                >>> parseable += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
+                >>> parseable += "| 2/4 e'2 |"
+                >>> staff = Staff(parseable)
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/4
+                        c'2 ~
+                    }
+                    {
+                        \time 4/4
+                        c'32
+                        d'2.. ~
+                        d'16
+                        e'32 ~
+                    }
+                    {
+                        \time 2/4
+                        e'2
+                    }
+                }
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> meter = timesignaturetools.Meter((4, 4))
+                >>> print meter.pretty_rtm_format
+                (4/4 (
+                    1/4
+                    1/4
+                    1/4
+                    1/4))
+
+            ::
+
+                >>> mutate(staff[1][:]).rewrite_meter(meter)
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/4
+                        c'2 ~
+                    }
+                    {
+                        \time 4/4
+                        c'32
+                        d'8.. ~
+                        d'2 ~
+                        d'8..
+                        e'32 ~
+                    }
+                    {
+                        \time 2/4
+                        e'2
+                    }
+                }
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** Rewrite the contents of a measure in a staff 
+            using a custom meter:
+
+            ::
+
+                >>> staff = Staff(parseable)
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/4
+                        c'2 ~
+                    }
+                    {
+                        \time 4/4
+                        c'32
+                        d'2.. ~
+                        d'16
+                        e'32 ~
+                    }
+                    {
+                        \time 2/4
+                        e'2
+                    }
+                }
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
+                >>> meter = timesignaturetools.Meter(rtm)
+                >>> print meter.pretty_rtm_format # doctest: +SKIP
+                (4/4 (
+                    (2/4 (
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))))
+
+            ::
+
+                >>> mutate(staff[1][:]).rewrite_meter(meter)
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/4
+                        c'2 ~
+                    }
+                    {
+                        \time 4/4
+                        c'32
+                        d'4... ~
+                        d'4...
+                        e'32 ~
+                    }
+                    {
+                        \time 2/4
+                        e'2
+                    }
+                }
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 3.** Limit the maximum number of dots per leaf using 
+            `maximum_dot_count`:
+
+            ::
+
+                >>> parseable = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
+                >>> measure = parse(parseable)
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/4
+                    c'32
+                    d'8
+                    e'8
+                    fs'4...
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+            Without constraining the `maximum_dot_count`:
+
+            ::
+
+                >>> mutate(measure[:]).rewrite_meter(measure)
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/4
+                    c'32
+                    d'16. ~
+                    d'32
+                    e'16. ~
+                    e'32
+                    fs'4...
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+            Constraining the `maximum_dot_count` to `2`:
+
+            ::
+
+                >>> measure = parse(parseable)
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     measure, 
+                ...     maximum_dot_count=2,
+                ...     )
+
+            ..  doctest::
+            
+                >>> f(measure)
+                {
+                    \time 3/4
+                    c'32
+                    d'16. ~
+                    d'32
+                    e'16. ~
+                    e'32
+                    fs'8.. ~
+                    fs'4
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+            Constraining the `maximum_dot_count` to `1`:
+
+            ::
+
+                >>> measure = parse(parseable)
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     measure,
+                ...     maximum_dot_count=1,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/4
+                    c'32
+                    d'16. ~
+                    d'32
+                    e'16. ~
+                    e'32
+                    fs'16. ~
+                    fs'8 ~
+                    fs'4
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+            Constraining the `maximum_dot_count` to `0`:
+
+            ::
+
+                >>> measure = parse(parseable)
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     measure,
+                ...     maximum_dot_count=0,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 3/4
+                    c'32
+                    d'32 ~
+                    d'16 ~
+                    d'32
+                    e'32 ~
+                    e'16 ~
+                    e'32
+                    fs'32 ~
+                    fs'16 ~
+                    fs'8 ~
+                    fs'4
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 4.** Split tie chains at different depths of the 
+            `Meter`, if those tie chains cross any offsets at that 
+            depth, but do not also both begin and end at any of those offsets.  
+
+            Consider the default meter for `9/8`:
+
+            ::
+
+                >>> meter = timesignaturetools.Meter((9, 8))
+                >>> print meter.pretty_rtm_format
+                (9/8 (
+                    (3/8 (
+                        1/8
+                        1/8
+                        1/8))
+                    (3/8 (
+                        1/8
+                        1/8
+                        1/8))
+                    (3/8 (
+                        1/8
+                        1/8
+                        1/8))))
+
+            We can establish that meter without specifying 
+            a `boundary_depth`:
+
+            ::
+
+                >>> parseable = "abj: | 9/8 c'2 d'2 e'8 |"
+                >>> measure = parse(parseable)
+
+            ..  doctest::
+            
+                >>> f(measure)
+                {
+                    \time 9/8
+                    c'2
+                    d'2
+                    e'8
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+            ::
+
+                >>> mutate(measure[:]).rewrite_meter(measure)
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 9/8
+                    c'2
+                    d'4 ~
+                    d'4
+                    e'8
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+            With a `boundary_depth` of `1`, tie chains which cross any offsets 
+            created by nodes with a depth of `1` in this Meter's rhythm 
+            tree - i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also 
+            begin and end at any of those offsets, will be split:
+
+            ::
+
+                >>> measure = parse(parseable)
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     measure,
+                ...     boundary_depth=1,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 9/8
+                    c'4. ~
+                    c'8
+                    d'4 ~
+                    d'4
+                    e'8
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+            For this `9/8` meter, and this input notation, A `boundary_depth` 
+            of `2` causes no change, as all tie chains already align to 
+            multiples of `1/8`:
+
+            ::
+
+                >>> measure = parse(parseable)
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     measure,
+                ...     boundary_depth=2,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 9/8
+                    c'2
+                    d'4 ~
+                    d'4
+                    e'8
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 5.** Comparison of `3/4` and `6/8`, at `boundary_depths` 
+            of 0 and 1:
+
+            ::
+
+                >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. |"
+                >>> triple += "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
+                >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. |"
+                >>> duples += "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
+                >>> score = Score([Staff(triple), Staff(duples)])
+
+            In order to see the different time signatures on each staff, 
+            we need to move some engravers from the Score context to the 
+            Staff context:
+
+            ::
+
+                >>> engravers = [
+                ...     'Timing_translator', 
+                ...     'Time_signature_engraver',
+                ...     'Default_bar_line_engraver',
+                ...     ]
+                >>> score.engraver_removals.extend(engravers)
+                >>> score[0].engraver_consists.extend(engravers)
+                >>> score[1].engraver_consists.extend(engravers)
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score \with {
+                    \remove Timing_translator
+                    \remove Time_signature_engraver
+                    \remove Default_bar_line_engraver
+                } <<
+                    \new Staff \with {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    } {
+                        {
+                            \time 3/4
+                            c'2
+                            c'4
+                        }
+                        {
+                            c'4
+                            c'2
+                        }
+                        {
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            c'2 ~
+                            c'8
+                            c'8
+                        }
+                        {
+                            c'8
+                            c'8 ~
+                            c'2
+                        }
+                    }
+                    \new Staff \with {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    } {
+                        {
+                            \time 6/8
+                            c'2
+                            c'4
+                        }
+                        {
+                            c'4
+                            c'2
+                        }
+                        {
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            c'2 ~
+                            c'8
+                            c'8
+                        }
+                        {
+                            c'8
+                            c'8 ~
+                            c'2
+                        }
+                    }
+                >>
+
+            ::
+
+                >>> show(score) # doctest: +SKIP
+
+            Here we establish a meter without specifying and boundary 
+            depth:
+
+            ::
+
+                >>> for measure in iterationtools.iterate_measures_in_expr(score):
+                ...     mutate(measure[:]).rewrite_meter(measure)
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score \with {
+                    \remove Timing_translator
+                    \remove Time_signature_engraver
+                    \remove Default_bar_line_engraver
+                } <<
+                    \new Staff \with {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    } {
+                        {
+                            \time 3/4
+                            c'2
+                            c'4
+                        }
+                        {
+                            c'4
+                            c'2
+                        }
+                        {
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            c'2 ~
+                            c'8
+                            c'8
+                        }
+                        {
+                            c'8
+                            c'8 ~
+                            c'2
+                        }
+                    }
+                    \new Staff \with {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    } {
+                        {
+                            \time 6/8
+                            c'2
+                            c'4
+                        }
+                        {
+                            c'4
+                            c'2
+                        }
+                        {
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            c'4. ~
+                            c'4
+                            c'8
+                        }
+                        {
+                            c'8
+                            c'4 ~
+                            c'4.
+                        }
+                    }
+                >>
+
+            ::
+
+                >>> show(score) # doctest: +SKIP
+
+            Here we re-establish meter at a boundary depth of `1`:
+
+            ::
+
+                >>> for measure in iterationtools.iterate_measures_in_expr(score):
+                ...     mutate(measure[:]).rewrite_meter(
+                ...         measure,
+                ...         boundary_depth=1,
+                ...         )
+                ...
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score \with {
+                    \remove Timing_translator
+                    \remove Time_signature_engraver
+                    \remove Default_bar_line_engraver
+                } <<
+                    \new Staff \with {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    } {
+                        {
+                            \time 3/4
+                            c'2
+                            c'4
+                        }
+                        {
+                            c'4
+                            c'2
+                        }
+                        {
+                            c'4 ~
+                            c'8
+                            c'8 ~
+                            c'4
+                        }
+                        {
+                            c'2 ~
+                            c'8
+                            c'8
+                        }
+                        {
+                            c'8
+                            c'8 ~
+                            c'2
+                        }
+                    }
+                    \new Staff \with {
+                        \consists Timing_translator
+                        \consists Time_signature_engraver
+                        \consists Default_bar_line_engraver
+                    } {
+                        {
+                            \time 6/8
+                            c'4. ~
+                            c'8
+                            c'4
+                        }
+                        {
+                            c'4
+                            c'8 ~
+                            c'4.
+                        }
+                        {
+                            c'4.
+                            c'4.
+                        }
+                        {
+                            c'4. ~
+                            c'4
+                            c'8
+                        }
+                        {
+                            c'8
+                            c'4 ~
+                            c'4.
+                        }
+                    }
+                >>
+
+            ::
+
+                >>> show(score) # doctest: +SKIP
+
+            Note that the two time signatures are much more clearly 
+            disambiguated above.
+
+        ..  container:: example
+
+            **Example 6.** Establishing meter recursively in measures 
+            with nested tuplets:
+
+            ::
+
+                >>> parseable = "abj: | 4/4 c'16 ~ c'4 d'8. ~ "
+                >>> parseable += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
+                >>> parseable += "f'4 |"
+                >>> measure = parse(parseable)
+
+            ..  doctest::
+            
+                >>> f(measure)
+                {
+                    \time 4/4
+                    c'16 ~
+                    c'4
+                    d'8. ~
+                    \times 2/3 {
+                        d'8. ~
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            d'16
+                            e'8.
+                            f'16 ~
+                        }
+                    }
+                    f'4
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+            When establishing a meter on a selection of components 
+            which contain containers, like `Tuplets` or `Containers`,
+            `timesignaturetools.rewrite_meter()` will recurse into
+            those containers, treating them as measures whose time 
+            signature is derived from the preprolated preprolated_duration 
+            of the container's contents:
+
+            ::
+
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     measure,
+                ...     boundary_depth=1,
+                ...     )
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 4/4
+                    c'4 ~
+                    c'16
+                    d'8. ~
+                    \times 2/3 {
+                        d'8 ~
+                        d'16 ~
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            d'16
+                            e'8 ~
+                            e'16
+                            f'16 ~
+                        }
+                    }
+                    f'4
+                }
+
+            ::
+
+                >>> show(measure) # doctest: +SKIP
+
+        Operates in place and returns none.
+        '''
+        from abjad.tools import selectiontools
+        from abjad.tools.timesignaturetools._rewrite_meter \
+            import _rewrite_meter
+        assert isinstance(self._client, selectiontools.Selection)
+        result = _rewrite_meter(
+            self._client,
+            meter,
+            boundary_depth=boundary_depth,
+            maximum_dot_count=maximum_dot_count,
+            )
+        return result
+
     def scale(self, multiplier):
         r'''Scales mutation client by `multiplier`.
 
