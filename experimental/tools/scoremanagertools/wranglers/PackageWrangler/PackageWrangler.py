@@ -100,7 +100,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
             self._current_storehouse_filesystem_path, asset_name)
         os.mkdir(asset_filesystem_path)
         package_manager = self._initialize_asset_manager(asset_name)
-        package_manager.fix(is_interactive=False)
+        package_manager.interactively_fix(is_interactive=False)
 
     ### UI MANIFEST ###
 
