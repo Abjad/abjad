@@ -795,6 +795,9 @@ def rewrite_meter(
     '''
     from abjad.tools import timesignaturetools
 
+    assert isinstance(components, selectiontools.ContiguousSelection), \
+        repr(components)
+
     def get_offsets_at_depth(depth):
         if depth < len(offset_inventory):
             return offset_inventory[depth]
