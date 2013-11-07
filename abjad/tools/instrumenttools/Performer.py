@@ -15,7 +15,7 @@ class Performer(AbjadObject):
 
     ::
 
-        >>> print performer.storage_format
+        >>> print format(performer)
         instrumenttools.Performer(
             name='flutist',
             instruments=instrumenttools.InstrumentInventory([
@@ -46,6 +46,18 @@ class Performer(AbjadObject):
                 if self.instruments == expr.instruments:
                     return True
         return False
+
+    def __format__(self, format_specification=''):
+        r'''Formats performer.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
 
     def __hash__(self):
         return hash((type(self).__name__, self.name, tuple(self.instruments)))
@@ -162,15 +174,6 @@ class Performer(AbjadObject):
                     instrument._default_short_instrument_name
                 performer_names.add((performer_name, performer_abbreviation))
         return list(sorted(performer_names))
-
-    @property
-    def storage_format(self):
-        r'''Storage format of performer.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
-
     ### PUBLIC PROPERTIES ###
 
     @property

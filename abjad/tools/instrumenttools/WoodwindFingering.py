@@ -24,7 +24,7 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> print woodwind_fingering.storage_format
+        >>> print format(woodwind_fingering)
         instrumenttools.WoodwindFingering(
             'clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -38,7 +38,7 @@ class WoodwindFingering(AbjadObject):
 
         >>> woodwind_fingering_2 = instrumenttools.WoodwindFingering(
         ...     woodwind_fingering)
-        >>> print woodwind_fingering_2.storage_format
+        >>> print format(woodwind_fingering_2)
         instrumenttools.WoodwindFingering(
             'clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -210,6 +210,37 @@ class WoodwindFingering(AbjadObject):
             if right_hand is not None:
                 self._right_hand = tuple(right_hand)
 
+    ### SPECIAL METHODS ###
+
+    def __call__(self):
+        key_groups_as_scheme = []
+        cc_scheme_pair = schemetools.SchemePair('cc', self._center_column)
+        key_groups_as_scheme.append(cc_scheme_pair)
+        lh_scheme_pair = schemetools.SchemePair('lh', self._left_hand)
+        key_groups_as_scheme.append(lh_scheme_pair)
+        rh_scheme_pair = schemetools.SchemePair('rh', self._right_hand)
+        key_groups_as_scheme.append(rh_scheme_pair)
+        key_groups_as_scheme = schemetools.Scheme(
+            key_groups_as_scheme[:], quoting="'")
+        instrument_as_scheme = schemetools.Scheme(
+            self._instrument_name, quoting="'")
+        return markuptools.MarkupCommand(
+            'woodwind-diagram', 
+            instrument_as_scheme, 
+            key_groups_as_scheme,
+            )
+
+    def __format__(self, format_specification=''):
+        r'''Formats woodwind fingering.
+
+        Set `format_specification` to `''` or `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -285,33 +316,6 @@ class WoodwindFingering(AbjadObject):
     Returns tuple.
         '''
         return self._right_hand
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self):
-        key_groups_as_scheme = []
-        cc_scheme_pair = schemetools.SchemePair('cc', self._center_column)
-        key_groups_as_scheme.append(cc_scheme_pair)
-        lh_scheme_pair = schemetools.SchemePair('lh', self._left_hand)
-        key_groups_as_scheme.append(lh_scheme_pair)
-        rh_scheme_pair = schemetools.SchemePair('rh', self._right_hand)
-        key_groups_as_scheme.append(rh_scheme_pair)
-        key_groups_as_scheme = schemetools.Scheme(
-            key_groups_as_scheme[:], quoting="'")
-        instrument_as_scheme = schemetools.Scheme(
-            self._instrument_name, quoting="'")
-        return markuptools.MarkupCommand(
-            'woodwind-diagram', instrument_as_scheme, key_groups_as_scheme)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Storage format of woodwind fingering.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

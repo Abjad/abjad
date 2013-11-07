@@ -24,7 +24,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     ::
 
-        >>> print instrumentation_specifier.storage_format
+        >>> print format(instrumentation_specifier)
         instrumenttools.InstrumentationSpecifier(
             performers=instrumenttools.PerformerInventory([
                 instrumenttools.Performer(
@@ -58,6 +58,18 @@ class InstrumentationSpecifier(AbjadObject):
             if self.performers == expr.performers:
                 return True
         return False
+
+    def __format__(self, format_specification=''):
+        r'''Formats instrumentation specifier.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -158,11 +170,3 @@ class InstrumentationSpecifier(AbjadObject):
                     for x in performers)
                 self._performers[:] = list(performers[:])
         return property(**locals())
-
-    @property
-    def storage_format(self):
-        r'''Storage format of instrumentation specifier.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
