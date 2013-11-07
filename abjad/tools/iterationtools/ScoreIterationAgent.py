@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 
 
 class ScoreIterationAgent(object):
@@ -15,7 +16,7 @@ class ScoreIterationAgent(object):
     ### INITIALIZER ###
 
     def __init__(self, client):
-        self._client = client
+        self._client = selectiontools.Selection(client)
 
     ### SPECIAL METHODS ###
 
@@ -28,7 +29,7 @@ class ScoreIterationAgent(object):
 
                 >>> staff = Staff("c'4 e'4 d'4 f'4")
                 >>> iterate(staff[2:])
-                ScoreIterationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+                ScoreIterationAgent(Selection(Note("d'4"), Note("f'4")))
 
         Returns string.
         '''
@@ -236,3 +237,79 @@ class ScoreIterationAgent(object):
             start,
             stop,
             )
+
+    def by_runs(self, classes):
+        r'''Iterate runs in expression.
+
+        ..  container:: example
+
+            **Example 1.** Iterate runs of notes and chords at only the
+            top level of score:
+
+            ::
+
+                >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
+                >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
+                >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        r8
+                    }
+                    \times 2/3 {
+                        r8
+                        <e' g'>8
+                        <f' a'>8
+                    }
+                    g'8
+                    a'8
+                    r8
+                    r8
+                    <b' d''>8
+                    <c'' e''>8
+                }
+
+            ::
+
+                >>> for group in iterate(staff[:]).by_runs((Note, Chord)):
+                ...     group
+                ...
+                (Note("g'8"), Note("a'8"))
+                (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+
+        ..  container:: example
+
+            **Example 2.** Iterate runs of notes and chords at all levels of
+            score:
+
+            ::
+
+                >>> leaves = iterate(staff).by_class(scoretools.Leaf)
+
+            ::
+
+                >>> for group in iterate(leaves).by_runs((Note, Chord)):
+                ...     group
+                ...
+                (Note("c'8"), Note("d'8"))
+                (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))
+                (Chord("<b' d''>8"), Chord("<c'' e''>8"))
+
+        Returns generator.
+        '''
+        from abjad.tools import selectiontools
+        sequence = selectiontools.SliceSelection(self._client)
+        current_group = ()
+        for group in sequence.group_by(type):
+            if type(group[0]) in classes:
+                current_group = current_group + group
+            elif current_group:
+                yield current_group
+                current_group = ()
+        if current_group:
+            yield current_group

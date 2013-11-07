@@ -25,8 +25,8 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
 
     def __call__(self, expr, offset=0):
         leaves = list(iterate(expr).by_class(scoretools.Leaf))
-        groups = list(iterationtools.iterate_runs_in_expr(
-            leaves, (scoretools.Note, scoretools.Chord)))
+        groups = list(iterate(leaves).by_runs(
+            (scoretools.Note, scoretools.Chord)))
         hairpin_tokens = datastructuretools.CyclicList(self.hairpin_tokens)
         for i, group in enumerate(groups):
             if not isinstance(group, selectiontools.SliceSelection):

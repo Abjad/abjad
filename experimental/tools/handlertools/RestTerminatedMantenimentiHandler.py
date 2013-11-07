@@ -28,9 +28,7 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
         assert self.dynamics_talea, repr(self.dynamics_talea)
         groups = []
         classes = (scoretools.Note, scoretools.Chord)
-        for i, group in enumerate(
-            iterationtools.iterate_runs_in_expr(
-            expr, classes)):
+        for i, group in enumerate(iterate(expr).by_runs(classes)):
             spanner = spannertools.TextSpanner()
             attach(spanner, group)
             override(spanner).text_spanner.dash_fraction = 1
