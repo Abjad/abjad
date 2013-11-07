@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import importlib
 import os
+import StringIO
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
@@ -59,6 +60,7 @@ class RunDoctestsScript(DirectoryScript):
         total_modules = 0
         total_tests = 0
         failed_file_paths = []
+        error_messages = []
         for dir_path, dir_names, file_names in os.walk('.'):
             for file_name in sorted(file_names):
                 if file_name.endswith('.py') and \
@@ -67,19 +69,27 @@ class RunDoctestsScript(DirectoryScript):
                     total_modules += 1
                     file_path = os.path.abspath(
                         os.path.join(dir_path, file_name))
-                    print os.path.relpath(file_path)
-                    failure_count, test_count = doctest.testfile(
-                        file_path,
-                        module_relative=False,
-                        globs=globs,
-                        optionflags=optionflags,
-                        )
+                    print os.path.relpath(file_path),
+                    string_buffer = StringIO.StringIO()
+                    with iotools.RedirectedStreams(stdout=string_buffer):
+                        failure_count, test_count = doctest.testfile(
+                            file_path,
+                            module_relative=False,
+                            globs=globs,
+                            optionflags=optionflags,
+                            )
                     if failure_count:
                         failed_file_paths.append(os.path.relpath(file_path))
+                        error_messages.append(string_buffer.getvalue())
+                        print 'FAILED'
+                    else:
+                        print 'OK'
                     total_failures += failure_count
                     total_tests += test_count
         if failed_file_paths:
             print
+            for error_message in error_messages:
+                print error_message
         for file_path in failed_file_paths:
             print 'FAILED: {}'.format(file_path)
         total_successes = total_tests - total_failures
