@@ -11,7 +11,7 @@ def play(expr):
 
     ::
 
-        >>> functiontools.play(note) # doctest: +SKIP
+        >>> topleveltools.play(note) # doctest: +SKIP
 
     This input creates and opens a one-note MIDI file.
 

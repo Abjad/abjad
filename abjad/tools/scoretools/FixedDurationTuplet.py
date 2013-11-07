@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import mutate
 from abjad.tools.scoretools.Tuplet import Tuplet
 
 

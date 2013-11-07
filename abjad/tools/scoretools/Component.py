@@ -7,8 +7,8 @@ from abjad.tools import lilypondproxytools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
-from abjad.tools.functiontools import iterate
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import override
 from abjad.tools.abctools import AbjadObject
 
 
@@ -95,7 +95,7 @@ class Component(AbjadObject):
 
         Returns list of new components.
         '''
-        from abjad.tools.functiontools import mutate
+        from abjad.tools.topleveltools import mutate
         result = mutate(self).copy(n=n)
         for component in iterate(result).by_class():
             for spanner in component._get_spanners():
@@ -142,7 +142,7 @@ class Component(AbjadObject):
         return self._copy_with_marks_but_without_children_or_spanners()
 
     def _copy_with_marks_but_without_children_or_spanners(self):
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(override(self))
@@ -513,7 +513,7 @@ class Component(AbjadObject):
         return component in temporal_successors
 
     def _move_marks(self, recipient_component):
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         result = []
         for mark in self._get_marks():
             result.append(attach(mark, recipient_component))
@@ -523,7 +523,7 @@ class Component(AbjadObject):
     def _remove_and_shrink_durated_parent_containers(self):
         from abjad.tools import marktools
         from abjad.tools import scoretools
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         prolated_leaf_duration = self._get_duration()
         parentage = self._get_parentage(include_self=False)
         prolations = parentage._prolations

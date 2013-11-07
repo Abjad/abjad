@@ -478,7 +478,7 @@ The edits
        descents = durated_reservoir['First Violin']
        descents = selectiontools.ContiguousSelection(descents)
    
-       last_descent = functiontools.select(descents[-1], contiguous=True)
+       last_descent = topleveltools.select(descents[-1], contiguous=True)
        copied_descent = mutate(last_descent).copy()
        voice.extend(copied_descent)
    
@@ -496,7 +496,7 @@ The edits
        voice = score['Second Violin Voice']
        descents = durated_reservoir['Second Violin']
    
-       last_descent = functiontools.select(descents[-1], contiguous=True)
+       last_descent = topleveltools.select(descents[-1], contiguous=True)
        copied_descent = mutate(last_descent).copy()
        copied_descent = list(copied_descent)
        copied_descent[-1].written_duration = durationtools.Duration(1, 1)
@@ -528,7 +528,7 @@ The edits
        for leaf in descents[-1]:
            marktools.Articulation('accent')(leaf)
            marktools.Articulation('tenuto')(leaf)
-       last_descent = functiontools.select(descents[-1], contiguous=True)
+       last_descent = topleveltools.select(descents[-1], contiguous=True)
        copied_descent = mutate(last_descent).copy()
        for leaf in copied_descent:
            if leaf.written_duration == durationtools.Duration(4, 4):

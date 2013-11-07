@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import spannertools
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def iterate_tie_chains_in_expr(expr, reverse=False):

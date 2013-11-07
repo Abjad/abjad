@@ -70,7 +70,7 @@ def test_scoretools_make_piano_score_from_leaves_02():
     r'''Works with explicit lowest treble pitch.
     '''
 
-    container = functiontools.parse("{ g4 a4 b4 c'4 d'4 r4 a4 g4 }")
+    container = topleveltools.parse("{ g4 a4 b4 c'4 d'4 r4 a4 g4 }")
     container_contents = container[:]
     del(container[:])
     lowest_treble_pitch = pitchtools.NamedPitch('a')

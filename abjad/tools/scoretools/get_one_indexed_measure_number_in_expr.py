@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import select
+from abjad.tools.topleveltools import select
 
 
 def get_one_indexed_measure_number_in_expr(expr, measure_number):

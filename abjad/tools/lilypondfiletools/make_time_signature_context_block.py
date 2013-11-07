@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import schemetools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def make_time_signature_context_block(

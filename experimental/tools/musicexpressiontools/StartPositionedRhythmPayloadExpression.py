@@ -10,8 +10,8 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
-from abjad.tools.functiontools import iterate
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 from abjad.tools.agenttools import inspect
 from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
     import StartPositionedPayloadExpression

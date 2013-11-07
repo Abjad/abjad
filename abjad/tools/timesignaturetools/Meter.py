@@ -464,7 +464,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> functiontools.graph(meter) # doctest: +SKIP
+            >>> topleveltools.graph(meter) # doctest: +SKIP
 
         Returns string.
         '''

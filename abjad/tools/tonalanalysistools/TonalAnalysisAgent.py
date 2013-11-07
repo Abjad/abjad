@@ -3,7 +3,7 @@ from abjad.tools import iterationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 class TonalAnalysisAgent(object):

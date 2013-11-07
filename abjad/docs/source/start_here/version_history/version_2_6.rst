@@ -246,5 +246,5 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 * Renamed ``Accidental.symbolic_string`` to ``Accidental.symbolic_accidental_string``.
 * Renamed ``Accidental.alphabetic_string`` to ``Accidental.alphabetic_accidental_abbreviation``.
 
-* Fixed bug in ``functiontools.play()``.
+* Fixed bug in ``topleveltools.play()``.
 * Fixed bug in ``quantizationtools`` regarding quantizing a stream of ``QEvents`` directly.

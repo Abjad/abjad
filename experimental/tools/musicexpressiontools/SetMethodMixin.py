@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
-from abjad.tools import functiontools
+from abjad.tools import topleveltools
 from abjad.tools import marktools
 from abjad.tools import marktools
 from abjad.tools import pitchtools
@@ -67,7 +67,7 @@ class SetMethodMixin(AbjadObject):
             (tuple, list, datastructuretools.TypedList)):
             return musicexpressiontools.IterablePayloadExpression(expr)
         elif isinstance(expr, (str)):
-            component = functiontools.parse(expr)
+            component = topleveltools.parse(expr)
             return musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 [component], start_offset=0)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):

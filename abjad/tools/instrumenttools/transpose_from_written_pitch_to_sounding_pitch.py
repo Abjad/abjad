@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def transpose_from_written_pitch_to_sounding_pitch(expr):

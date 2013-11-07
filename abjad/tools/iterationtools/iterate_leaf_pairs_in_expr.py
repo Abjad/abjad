@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import sequencetools
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def iterate_leaf_pairs_in_expr(expr):

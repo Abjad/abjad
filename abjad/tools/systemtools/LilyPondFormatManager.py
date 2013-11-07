@@ -333,7 +333,7 @@ class LilyPondFormatManager(object):
         Returns alphabetized list of LilyPond grob overrides.
         '''
         from abjad.tools.scoretools import Leaf
-        from abjad.tools.functiontools.override import override
+        from abjad.tools.topleveltools.override import override
         result = []
         is_once = False
         if isinstance(component, Leaf):
@@ -353,7 +353,7 @@ class LilyPondFormatManager(object):
         Returns alphabetized list of LilyPond grob reverts.
         '''
         from abjad.tools.scoretools import Leaf
-        from abjad.tools.functiontools.override import override
+        from abjad.tools.topleveltools.override import override
         result = []
         if not isinstance(component, Leaf):
             result.extend(override(component)._list_format_contributions(
@@ -369,7 +369,7 @@ class LilyPondFormatManager(object):
         '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools.functiontools.override import override
+        from abjad.tools.topleveltools.override import override
         result = {
             'after': [],
             'before': [],

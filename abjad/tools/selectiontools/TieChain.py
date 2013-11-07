@@ -2,7 +2,7 @@
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import mutate
 from abjad.tools.selectiontools.ContiguousSelection \
     import ContiguousSelection
 
@@ -32,7 +32,7 @@ class TieChain(ContiguousSelection):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         new_written_duration = durationtools.Duration(new_written_duration)
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration

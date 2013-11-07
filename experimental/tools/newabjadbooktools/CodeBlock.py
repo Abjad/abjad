@@ -192,10 +192,10 @@ class CodeBlock(AbjadObject):
     def output_triggers(self):
         from experimental.tools import newabjadbooktools
         return {
-            'functiontools.graph': newabjadbooktools.GraphvizOutputProxy,
-            'functiontools.play':  newabjadbooktools.MIDIOutputProxy,
+            'topleveltools.graph': newabjadbooktools.GraphvizOutputProxy,
+            'topleveltools.play':  newabjadbooktools.MIDIOutputProxy,
             'iotools.plot': newabjadbooktools.GnuplotOutputProxy,
-            'functiontools.show': newabjadbooktools.LilyPondOutputProxy,
+            'topleveltools.show': newabjadbooktools.LilyPondOutputProxy,
             'play': newabjadbooktools.MIDIOutputProxy,
             'show': newabjadbooktools.LilyPondOutputProxy,
         }

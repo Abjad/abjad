@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import types
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 class Selection(object):

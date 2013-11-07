@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def make_rhythmic_sketch_staff(music):

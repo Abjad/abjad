@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 from abjad.tools.scoretools.Component import Component
 
 
@@ -154,7 +154,7 @@ class Container(Component):
     @property
     def _duration_in_seconds(self):
         from abjad.tools import scoretools
-        from abjad.tools.functiontools import iterate
+        from abjad.tools.topleveltools import iterate
         if self.is_simultaneous:
             return max([durationtools.Duration(0)] +
                 [x._get_duration(in_seconds=True) for x in self])
@@ -705,7 +705,7 @@ class Container(Component):
         ):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.functiontools import iterate
+        from abjad.tools.topleveltools import iterate
         # check input
         duration = durationtools.Duration(duration)
         assert 0 <= duration, repr(duration)
@@ -1277,7 +1277,7 @@ class Container(Component):
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.functiontools import iterate
+        from abjad.tools.topleveltools import iterate
         Selection = selectiontools.Selection
         leaf_classes = leaf_classes or (scoretools.Leaf,)
         expr = self
@@ -1310,6 +1310,6 @@ class Container(Component):
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.functiontools import iterate
+        from abjad.tools.topleveltools import iterate
         generator = iterate(self).by_class((scoretools.Note, scoretools.Chord))
         return selectiontools.Selection(generator)

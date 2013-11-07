@@ -2,7 +2,7 @@
 import copy
 import time
 from abjad.tools import *
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 from experimental.tools.musicexpressiontools.Interpreter import Interpreter
 
 

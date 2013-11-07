@@ -6,7 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.functiontools import attach
+from abjad.tools.topleveltools import attach
 
 
 class StringOrchestraScoreTemplate(AbjadObject):

@@ -404,7 +404,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         ::
 
-            >>> functiontools.graph(graph) # doctest: +SKIP
+            >>> topleveltools.graph(graph) # doctest: +SKIP
 
         Return `GraphvizGraph` instance.
         '''

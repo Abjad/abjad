@@ -5,8 +5,8 @@ from abjad.tools import scoretools
 from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
-from abjad.tools.functiontools import attach
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 
 
 def label_leaves_in_expr_with_numbered_intervals(expr, markup_direction=Up):

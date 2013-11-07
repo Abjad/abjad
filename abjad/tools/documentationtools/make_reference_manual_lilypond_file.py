@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def make_reference_manual_lilypond_file(music=None):

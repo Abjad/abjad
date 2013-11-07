@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 from abjad.tools.scoretools.Component import Component
 
 
@@ -379,7 +379,7 @@ class Leaf(Component):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self.lilypond_duration_multiplier is not None:
@@ -434,8 +434,8 @@ class Leaf(Component):
         from abjad.tools import selectiontools
         from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools.functiontools import iterate
-        from abjad.tools.functiontools import select
+        from abjad.tools.topleveltools import iterate
+        from abjad.tools.topleveltools import select
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
             durations = sequencetools.repeat_sequence_to_weight_exactly(

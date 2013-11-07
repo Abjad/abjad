@@ -4,8 +4,8 @@ from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.functiontools import iterate
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 from abjad.tools.pitcharraytools.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitcharraytools.PitchArrayColumn import PitchArrayColumn
 from abjad.tools.pitcharraytools.PitchArrayRow import PitchArrayRow

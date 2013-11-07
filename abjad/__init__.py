@@ -48,14 +48,14 @@ from abjad.tools.scoretools import Voice
 from fractions import Fraction
 
 # import some frequently used functions for direct user access
-from abjad.tools.functiontools import attach
-from abjad.tools.functiontools import iterate
-from abjad.tools.functiontools import mutate
-from abjad.tools.functiontools import override
-from abjad.tools.functiontools import parse
-from abjad.tools.functiontools import play
-from abjad.tools.functiontools import select
-from abjad.tools.functiontools import show
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import parse
+from abjad.tools.topleveltools import play
+from abjad.tools.topleveltools import select
+from abjad.tools.topleveltools import show
 from abjad.tools.iotools import f
 from abjad.tools.iotools import z
 from abjad.tools.agenttools.AttributeInspectionAgent import inspect

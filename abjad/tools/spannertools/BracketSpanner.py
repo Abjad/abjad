@@ -2,7 +2,7 @@
 from abjad.tools import markuptools
 from abjad.tools import schemetools
 from abjad.tools.spannertools.TextSpanner import TextSpanner
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 class BracketSpanner(TextSpanner):

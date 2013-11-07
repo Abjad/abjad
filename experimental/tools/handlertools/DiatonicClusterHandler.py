@@ -2,8 +2,8 @@
 from abjad.tools import scoretools
 from abjad.tools import datastructuretools
 from abjad.tools import pitchtools
-from abjad.tools.functiontools import iterate
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 from experimental.tools.handlertools.PitchHandler import PitchHandler
 
 

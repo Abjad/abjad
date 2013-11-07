@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import *
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
     import AttributeNameEnumeration

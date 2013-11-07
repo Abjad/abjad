@@ -3,8 +3,8 @@ import copy
 import itertools
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools.functiontools import iterate
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 from abjad.tools.selectiontools.Selection import Selection
 
 
@@ -56,7 +56,7 @@ class ContiguousSelection(Selection):
     def _attach_tie_spanner_to_leaf_pair(self):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         assert len(self) == 2
         left_leaf, right_leaf = self
         assert isinstance(left_leaf, scoretools.Leaf), left_leaf

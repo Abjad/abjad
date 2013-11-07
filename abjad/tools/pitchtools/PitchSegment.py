@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.pitchtools.Segment import Segment
-from abjad.tools.functiontools import select
+from abjad.tools.topleveltools import select
 
 
 class PitchSegment(Segment):
@@ -71,7 +71,7 @@ class PitchSegment(Segment):
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.functiontools import iterate
+        from abjad.tools.topleveltools import iterate
         if not isinstance(selection, selectiontools.Selection):
             selection = select(selection)
         named_pitches = []

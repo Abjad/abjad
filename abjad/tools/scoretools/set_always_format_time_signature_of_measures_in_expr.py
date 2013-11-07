@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def set_always_format_time_signature_of_measures_in_expr(expr, value=True):

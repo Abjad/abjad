@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 from abjad.tools.scoretools.Leaf import Leaf
 
 

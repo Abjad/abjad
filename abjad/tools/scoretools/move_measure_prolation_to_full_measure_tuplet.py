@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
@@ -15,7 +15,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     '''
     from abjad.tools import marktools
     from abjad.tools import scoretools
-    from abjad.tools.functiontools import attach
+    from abjad.tools.topleveltools import attach
 
     for measure in iterate(expr).by_class(scoretools.Measure):
         effective_time_signature = measure.time_signature

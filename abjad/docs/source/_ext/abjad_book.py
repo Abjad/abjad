@@ -99,13 +99,13 @@ def on_builder_inited(app):
 def rewrite_literal_block_line(line):
     if line.strip().startswith(('f(', 'play(', 'print ', 'redo(', 'z(', 'iotools.log(')):
         return '', False
-    elif not line.startswith(('show(', 'functiontools.graph(')):
+    elif not line.startswith(('show(', 'topleveltools.graph(')):
         return line, False
     if line.startswith('show('):
         object_name = line[5:]
         kind = 'lilypond'
-    elif line.startswith('functiontools.graph('):
-        object_name = line[len('functiontools.graph('):]
+    elif line.startswith('topleveltools.graph('):
+        object_name = line[len('topleveltools.graph('):]
         kind = 'graphviz'
     object_name = object_name.rpartition(')')[0]
     if ')' in object_name:

@@ -26,7 +26,7 @@ def write_test_output(output, full_file_name, test_function_name,
     lilypond_file.score.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 48))
     parent_directory_name = os.path.dirname(full_file_name)
     if render_pdf:
-        functiontools.show(lilypond_file)
+        topleveltools.show(lilypond_file)
     if cache_pdf:
         file_name = '{}.pdf'.format(test_function_name)
         pdf_path_name = os.path.join(parent_directory_name, file_name)

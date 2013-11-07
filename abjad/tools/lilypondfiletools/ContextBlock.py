@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import lilypondproxytools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 

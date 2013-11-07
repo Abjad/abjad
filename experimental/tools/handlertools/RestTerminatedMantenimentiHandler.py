@@ -7,7 +7,7 @@ from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import schemetools
 from abjad.tools import spannertools
-from abjad.tools.functiontools import attach
+from abjad.tools.topleveltools import attach
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 

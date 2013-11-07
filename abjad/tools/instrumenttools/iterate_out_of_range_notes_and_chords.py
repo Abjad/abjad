@@ -25,7 +25,7 @@ def iterate_out_of_range_notes_and_chords(expr):
     Returns generator.
     '''
     from abjad.tools import instrumenttools
-    from abjad.tools.functiontools import iterate
+    from abjad.tools.topleveltools import iterate
 
     for note_or_chord in iterate(expr).by_class(
         (scoretools.Note, scoretools.Chord)):

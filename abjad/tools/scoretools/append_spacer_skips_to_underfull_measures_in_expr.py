@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def append_spacer_skips_to_underfull_measures_in_expr(expr):

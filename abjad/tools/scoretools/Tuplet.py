@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import mutate
 from abjad.tools.scoretools.Container import Container
 
 

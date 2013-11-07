@@ -37,7 +37,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
     Returns none.
     '''
     from abjad.tools import scoretools
-    from abjad.tools.functiontools import iterate
+    from abjad.tools.topleveltools import iterate
 
     for leaf in iterate(expr).by_class(scoretools.Leaf):
         if isinstance(leaf, scoretools.Note):

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import functiontools
+from abjad.tools import topleveltools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -25,7 +25,7 @@ class MaterialManager(AbjadObject):
         if isinstance(material, (tuple, list)):
             return musicexpressiontools.IterablePayloadExpression(material)
         elif isinstance(material, (str)):
-            component = functiontools.parse(material)
+            component = topleveltools.parse(material)
             return musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 [component], start_offset=0)
         else:

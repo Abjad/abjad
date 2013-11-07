@@ -4,7 +4,7 @@ from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 from abjad.tools.scoretools.FixedDurationContainer \
     import FixedDurationContainer
 
@@ -43,7 +43,7 @@ class Measure(FixedDurationContainer):
     ### INITIALIZER ###
 
     def __init__(self, time_signature, music=None):
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         # set time signature adjustment indicator before 
         # contents initialization
         self._automatically_adjust_time_signature = False
@@ -182,7 +182,7 @@ class Measure(FixedDurationContainer):
             raise UnderfullContainerError
 
     def _conditionally_adjust_time_signature(self, old_denominator):
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         if self.automatically_adjust_time_signature:
             naive_time_signature = self._preprolated_duration
             better_time_signature = \
@@ -201,7 +201,7 @@ class Measure(FixedDurationContainer):
     # because the mark-copying code will then provide time signature.
     def _copy_with_marks_but_without_children_or_spanners(self):
         from abjad.tools import marktools
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         new = type(self)(*self.__getnewargs__())
         # only the following line differs from Conatainer
         for mark in new._get_marks(marktools.TimeSignatureMark):
@@ -308,7 +308,7 @@ class Measure(FixedDurationContainer):
         from abjad.tools import marktools
         from abjad.tools import iterationtools
         from abjad.tools import timesignaturetools
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         if multiplier is None:
             return
         multiplier = durationtools.Multiplier(multiplier)
@@ -662,7 +662,7 @@ class Measure(FixedDurationContainer):
         '''
         from abjad.tools import scoretools
         from abjad.tools import marktools
-        from abjad.tools.functiontools import attach
+        from abjad.tools.topleveltools import attach
         if multiplier == 0:
             raise ZeroDivisionError
         old_time_signature = self.time_signature

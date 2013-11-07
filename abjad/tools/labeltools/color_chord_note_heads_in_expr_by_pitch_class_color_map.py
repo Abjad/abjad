@@ -2,7 +2,7 @@
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):

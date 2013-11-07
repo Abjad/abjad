@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def color_leaf(leaf, color):

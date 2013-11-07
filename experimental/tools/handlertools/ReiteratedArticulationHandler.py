@@ -4,9 +4,9 @@ from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import scoretools
-from abjad.tools.functiontools import attach
-from abjad.tools.functiontools import iterate
-from abjad.tools.functiontools import select
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import select
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
 

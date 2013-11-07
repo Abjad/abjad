@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools import schemetools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def make_solid_text_spanner_with_nib(
@@ -72,7 +72,7 @@ def make_solid_text_spanner_with_nib(
     Returns spanner.
     '''
     from abjad.tools import spannertools
-    from abjad.tools.functiontools import attach
+    from abjad.tools.topleveltools import attach
     assert direction in (Up, Down)
 
     text_spanner = spannertools.TextSpanner()

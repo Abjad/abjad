@@ -26,7 +26,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             node_0 -> node_3;
             node_0 -> node_4;
         }
-        >>> functiontools.graph(meter) # doctest: +SKIP
+        >>> topleveltools.graph(meter) # doctest: +SKIP
 
     ::
 

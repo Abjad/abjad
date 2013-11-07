@@ -390,7 +390,7 @@ class PayloadTree(AbjadObject):
         ::
 
             >>> graph = tree.graphviz_graph
-            >>> functiontools.graph(graph) # doctest: +SKIP
+            >>> topleveltools.graph(graph) # doctest: +SKIP
 
         Returns graphviz graph.
         '''

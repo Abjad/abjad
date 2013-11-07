@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):

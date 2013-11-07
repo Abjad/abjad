@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import mutate
 Selection = selectiontools.Selection
 
 

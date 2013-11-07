@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def color_note_head_by_numbered_pitch_class_color_map(pitch_carrier):

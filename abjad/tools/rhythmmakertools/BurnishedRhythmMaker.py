@@ -11,8 +11,8 @@ from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.functiontools import attach
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 
 
 class BurnishedRhythmMaker(RhythmMaker):

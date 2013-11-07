@@ -18,7 +18,7 @@ from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
-from abjad.tools.functiontools import attach
+from abjad.tools.topleveltools import attach
 
 
 # apply monkey patch

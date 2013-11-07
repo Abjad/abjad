@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def color_leaves_in_expr(expr, color):

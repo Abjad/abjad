@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.functiontools import iterate
-from abjad.tools.functiontools import mutate
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 
 
 def apply_full_measure_tuplets_to_contents_of_measures_in_expr(

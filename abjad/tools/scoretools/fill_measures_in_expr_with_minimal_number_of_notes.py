@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def fill_measures_in_expr_with_minimal_number_of_notes(

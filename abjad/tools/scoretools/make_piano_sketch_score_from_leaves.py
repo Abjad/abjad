@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):

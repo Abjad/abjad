@@ -117,7 +117,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ::
 
-        >>> functiontools.graph(graph) # doctest: +SKIP
+        >>> topleveltools.graph(graph) # doctest: +SKIP
 
     Graphs can also be created without defining names.  Canonical names
     will be automatically determined for all members whose `name` is None:

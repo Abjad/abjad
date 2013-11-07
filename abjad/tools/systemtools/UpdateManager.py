@@ -48,7 +48,7 @@ class UpdateManager(AbjadObject):
         No separate state flags exist for leaf indices or measure numbers.
         '''
         from abjad.tools import scoretools
-        from abjad.tools.functiontools import iterate
+        from abjad.tools.topleveltools import iterate
         parentage = component._get_parentage()
         score_root = parentage.root
         if isinstance(score_root, scoretools.Context):

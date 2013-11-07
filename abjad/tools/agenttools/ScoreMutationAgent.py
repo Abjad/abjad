@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 class ScoreMutationAgent(object):

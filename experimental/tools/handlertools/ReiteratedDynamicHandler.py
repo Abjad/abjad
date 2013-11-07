@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import marktools
 from abjad.tools import scoretools
-from abjad.tools.functiontools import attach
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 

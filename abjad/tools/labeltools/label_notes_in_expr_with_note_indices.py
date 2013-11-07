@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools import scoretools
-from abjad.tools.functiontools import attach
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 
 
 def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):

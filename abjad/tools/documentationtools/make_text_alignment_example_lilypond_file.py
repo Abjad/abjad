@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import override
+from abjad.tools.topleveltools import override
 
 
 def make_text_alignment_example_lilypond_file(music=None):

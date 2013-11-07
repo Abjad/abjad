@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.functiontools import iterate
+from abjad.tools.topleveltools import iterate
 
 
 def get_previous_measure_from_component(component):
