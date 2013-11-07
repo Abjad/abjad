@@ -47,17 +47,17 @@ class Rest(Leaf):
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
-            lilypond_multiplier = leaf.lilypond_duration_multiplier
+            lilypond_duration_multiplier = leaf.lilypond_duration_multiplier
             self._copy_override_and_set_from_leaf(leaf)
         elif len(args) == 1 and not isinstance(args[0], str):
             written_duration = args[0]
-            lilypond_multiplier = None
+            lilypond_duration_multiplier = None
         elif len(args) == 2:
-            written_duration, lilypond_multiplier = args
+            written_duration, lilypond_duration_multiplier = args
         else:
             message = 'can not initialize rest from {!r}.'
             raise ValueError(message.format(args))
-        Leaf.__init__(self, written_duration, lilypond_multiplier)
+        Leaf.__init__(self, written_duration, lilypond_duration_multiplier)
 
     ### PRIVATE PROPERTIES ###
 

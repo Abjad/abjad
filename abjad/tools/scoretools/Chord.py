@@ -48,7 +48,7 @@ class Chord(Leaf):
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
-            lilypond_multiplier = leaf.lilypond_duration_multiplier
+            lilypond_duration_multiplier = leaf.lilypond_duration_multiplier
             if hasattr(leaf, 'written_pitch'):
                 written_pitches = [leaf.written_pitch]
                 is_cautionary = [leaf.note_head.is_cautionary]
@@ -66,13 +66,13 @@ class Chord(Leaf):
                 written_pitches = [x for x in written_pitches.split() if x]
             elif isinstance(written_pitches, type(self)):
                 written_pitches = written_pitches.written_pitches
-            lilypond_multiplier = None
+            lilypond_duration_multiplier = None
         elif len(args) == 3:
-            written_pitches, written_duration, lilypond_multiplier = args
+            written_pitches, written_duration, lilypond_duration_multiplier = args
         else:
             message = 'can not initialize chord from {!r}.'.format(args)
             raise ValueError(message)
-        Leaf.__init__(self, written_duration, lilypond_multiplier)
+        Leaf.__init__(self, written_duration, lilypond_duration_multiplier)
         if not is_cautionary:
             is_cautionary = [False] * len(written_pitches)
         if not is_forced:

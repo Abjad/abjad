@@ -11,6 +11,7 @@ from abjad.tools.scoretools.Component import Component
 
 class Leaf(Component):
     '''Abstract base class from which notes, rests, chords and skips inherit.
+
     '''
 
     ### CLASS VARIABLES ##

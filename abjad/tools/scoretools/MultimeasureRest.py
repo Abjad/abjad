@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.scoretools.Rest import Rest
+from abjad.tools.scoretools.Leaf import Leaf
 
 
-class MultimeasureRest(Rest):
-    '''Abjad model of a multi-measure rest:
+class MultimeasureRest(Leaf):
+    '''A multimeasure rest.
 
     ::
 
-        >>> scoretools.MultimeasureRest((1, 4))
-        MultimeasureRest('R4')
+        >>> rest = scoretools.MultimeasureRest((1, 4))
+        >>> show(rest) # doctest: +SKIP
 
-    Multi-measure rests are immutable.
+    Multimeasure rests are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -21,6 +21,17 @@ class MultimeasureRest(Rest):
     _default_positional_input_arguments = (
         (1, 4),
         )
+
+    ### INITIALIZER ###
+
+    def __init__(self, *args):
+        from abjad.tools import scoretools
+        rest = scoretools.Rest(*args)
+        Leaf.__init__(
+            self, 
+            rest.written_duration, 
+            rest.lilypond_duration_multiplier,
+            )
 
     ### PRIVATE PROPERTIES ###
 
