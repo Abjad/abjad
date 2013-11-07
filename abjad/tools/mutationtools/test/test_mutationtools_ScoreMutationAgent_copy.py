@@ -264,7 +264,7 @@ def test_mutationtools_ScoreMutationAgent_copy_05():
     selection = selectiontools.ContiguousSelection(music=voice)
     new_selection = mutate(selection).copy()
     new_voice = new_selection[0]
-    for component in iterationtools.iterate_components_in_expr(new_voice):
+    for component in iterate(new_voice).by_class():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
@@ -340,7 +340,7 @@ def test_mutationtools_ScoreMutationAgent_copy_06():
 
     result = mutate(voice[1:]).copy()
     new_voice = Voice(result)
-    for component in iterationtools.iterate_components_in_expr(new_voice):
+    for component in iterate(new_voice).by_class():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
@@ -412,7 +412,7 @@ def test_mutationtools_ScoreMutationAgent_copy_07():
 
     result = mutate(voice.select_leaves()[:6]).copy()
     new_voice = Voice(result)
-    for component in iterationtools.iterate_components_in_expr(new_voice):
+    for component in iterate(new_voice).by_class():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
@@ -475,7 +475,7 @@ def test_mutationtools_ScoreMutationAgent_copy_08():
 
     result = mutate(voice[-2:]).copy()
     new_voice = Voice(result)
-    for component in iterationtools.iterate_components_in_expr(new_voice):
+    for component in iterate(new_voice).by_class():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()
@@ -543,7 +543,7 @@ def test_mutationtools_ScoreMutationAgent_copy_09():
 
     result = mutate(voice[-2:]).copy(n=3)
     new_voice = Voice(result)
-    for component in iterationtools.iterate_components_in_expr(new_voice):
+    for component in iterate(new_voice).by_class():
         spanners = inspect(component).get_spanners()
         for spanner in spanners:
             spanner.detach()

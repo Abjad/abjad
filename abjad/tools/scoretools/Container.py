@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-import copy
 from abjad.tools import durationtools
-from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
+from abjad.tools.functiontools import iterate
 from abjad.tools.scoretools.Component import Component
 
 
@@ -373,7 +372,7 @@ class Container(Component):
         from abjad.tools import spannertools
         # cache context marks attached to expr
         expr_context_marks = []
-        for component in iterationtools.iterate_components_in_expr(expr):
+        for component in iterate(expr).by_class():
             context_marks = component._get_marks(marktools.ContextMark)
             expr_context_marks.extend(context_marks)
         # item assignment
@@ -389,7 +388,7 @@ class Container(Component):
             old = self[i]
             selection = selectiontools.ContiguousSelection(old)
             spanners_receipt = selection._get_dominant_spanners()
-            for child in iterationtools.iterate_components_in_expr([old]):
+            for child in iterate([old]).by_class():
                 for spanner in child._get_spanners():
                     spanner._remove(child)
             if i < 0:
@@ -426,8 +425,7 @@ class Container(Component):
             spanners_receipt = self._get_spanners_that_dominate_slice(
                 start, stop)
             for component in old:
-                for child in iterationtools.iterate_components_in_expr(
-                    [component]):
+                for child in iterate([component]).by_class():
                     for spanner in child._get_spanners():
                         spanner._remove(child)
             del(self[start:stop])

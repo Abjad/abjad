@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import iterate
 from abjad.tools.selectiontools.SimultaneousSelection \
     import SimultaneousSelection
 
@@ -75,7 +76,7 @@ class Descendants(SimultaneousSelection):
         if component is None:
             music = ()
         else:
-            music = list(iterationtools.iterate_components_in_expr(component))
+            music = list(iterate(component).by_class())
             if not include_self:
                 music.remove(component)
         result = []

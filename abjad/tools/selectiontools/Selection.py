@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-import copy
 import types
+from abjad.tools.functiontools import iterate
 
 
 class Selection(object):
@@ -302,14 +302,12 @@ class Selection(object):
 
     def _get_component(self, component_classes=None, n=0, recurse=True):
         from abjad.tools import scoretools
-        from abjad.tools import iterationtools
         component_classes = component_classes or (scoretools.Component,)
         if not isinstance(component_classes, tuple):
             component_classes = (component_classes,)
         if 0 <= n:
             if recurse:
-                components = iterationtools.iterate_components_in_expr(
-                    self, component_classes)
+                components = iterate(self).by_class(component_classes)
             else:
                 components = self._music
             for i, x in enumerate(components):
@@ -317,8 +315,8 @@ class Selection(object):
                     return x
         else:
             if recurse:
-                components = iterationtools.iterate_components_in_expr(
-                    self, component_classes, reverse=True)
+                components = iterate(self).by_class(
+                    component_classes, reverse=True)
             else:
                 components = reversed(self._music)
             for i, x in enumerate(components):
@@ -349,7 +347,7 @@ class Selection(object):
     def _iterate_components(self, recurse=True, reverse=False):
         from abjad.tools import iterationtools
         if recurse:
-            return iterationtools.iterate_components_in_expr(self)
+            return iterate(self).by_class()
         else:
             return self._iterate_top_level_components(reverse=reverse)
 

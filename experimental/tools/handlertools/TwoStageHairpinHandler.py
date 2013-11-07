@@ -29,7 +29,7 @@ class TwoStageHairpinHandler(DynamicHandler):
         #leaves = list(iterate(expr).by_class(scoretools.Leaf))
         #leaves = scoretools.remove_outer_rests_from_sequence(leaves)
         leaves = expr
-        for leaf in iterationtools.iterate_components_in_expr(leaves):
+        for leaf in iterate(leaves).by_class():
             spanners = leaf._get_spanners(spannertools.HairpinSpanner)
             for spanner in spanners:
                 spanner.detach()

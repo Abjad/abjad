@@ -245,7 +245,7 @@ class ContiguousSelection(Selection):
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         all_components = set(iterate(self).by_class())
         contained_spanners = set()
-        for component in iterationtools.iterate_components_in_expr(self):
+        for component in iterate(self).by_class():
             contained_spanners.update(component._get_spanners())
         crossing_spanners = set([])
         for spanner in contained_spanners:
@@ -311,12 +311,12 @@ class ContiguousSelection(Selection):
         from abjad.tools import iterationtools
         schema = {}
         spanners = set()
-        for component in iterationtools.iterate_components_in_expr(self):
+        for component in iterate(self).by_class():
             spanners.update(component._get_spanners())
         for spanner in spanners:
             schema[spanner] = []
         for i, component in \
-            enumerate(iterationtools.iterate_components_in_expr(self)):
+            enumerate(iterate(self).by_class()):
             attached_spanners = component._get_spanners()
             for attached_spanner in attached_spanners:
                 try:
@@ -513,7 +513,7 @@ class ContiguousSelection(Selection):
                     reversed_schema[component_index] = [new_covered_spanner]
         # iterate components and add new components to new spanners
         for component_index, new_component in enumerate(
-            iterationtools.iterate_components_in_expr(new_components)):
+            iterate(new_components).by_class()):
             try:
                 new_covered_spanners = reversed_schema[component_index]
                 for new_covered_spanner in new_covered_spanners:
