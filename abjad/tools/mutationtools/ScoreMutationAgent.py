@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
+from abjad.tools.functiontools import iterate
 
 
 class ScoreMutationAgent(object):
@@ -463,8 +464,7 @@ class ScoreMutationAgent(object):
         Returns none.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import iterationtools
-        for leaf in iterationtools.iterate_leaves_in_expr(self._client):
+        for leaf in iterate(self._client).by_class(scoretools.Leaf):
             if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = \
@@ -513,7 +513,7 @@ class ScoreMutationAgent(object):
         '''
         from abjad.tools import scoretools
         from abjad.tools import iterationtools
-        for leaf in iterationtools.iterate_leaves_in_expr(self._client):
+        for leaf in iterate(self._client).by_class(scoretools.Leaf):
             if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = \

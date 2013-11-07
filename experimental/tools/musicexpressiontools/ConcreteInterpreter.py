@@ -2,6 +2,7 @@
 import copy
 import time
 from abjad.tools import *
+from abjad.tools.functiontools import iterate
 from experimental.tools.musicexpressiontools.Interpreter import Interpreter
 
 
@@ -94,7 +95,7 @@ class ConcreteInterpreter(Interpreter):
             voice_proxy = \
                 self.score_specification.voice_data_structures_by_voice[
                     voice.name]
-            for leaf in iterationtools.iterate_leaves_in_expr(voice):
+            for leaf in iterate(voice).by_class(scoretools.Leaf):
                 voice_proxy.leaf_start_offsets.append(
                     leaf._get_timespan().start_offset)
                 voice_proxy.leaf_stop_offsets.append(

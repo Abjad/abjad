@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 import copy
 import itertools
-import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import mutationtools
-from abjad.tools import sequencetools
+from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import mutate
 from abjad.tools.selectiontools.Selection import Selection
 
@@ -27,7 +25,6 @@ class ContiguousSelection(Selection):
 
         Returns new slice selection.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         assert isinstance(expr, (Selection, list, tuple))
         if isinstance(expr, type(self)):
@@ -37,7 +34,7 @@ class ContiguousSelection(Selection):
         if self._all_are_contiguous_components_in_same_logical_voice(music):
             return type(self)(music)
         else:
-            return selectiontools.Selection(music) 
+            return selectiontools.Selection(music)
 
     def __radd__(self, expr):
         '''Add slice selection to `expr`.
@@ -48,7 +45,7 @@ class ContiguousSelection(Selection):
         if isinstance(expr, type(self)):
             music = expr._music + self._music
             return type(self)(music)
-        # eventually remove this permissive branch 
+        # eventually remove this permissive branch
         # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self._music
@@ -111,7 +108,7 @@ class ContiguousSelection(Selection):
         # trim governor copy forwards from first leaf
         found_start_leaf = False
         while not found_start_leaf:
-            leaf = iterationtools.iterate_leaves_in_expr(governor_copy).next()
+            leaf = iterate(governor_copy).by_class(scoretools.Leaf).next()
             if leaf is start_leaf:
                 found_start_leaf = True
             else:
@@ -119,8 +116,8 @@ class ContiguousSelection(Selection):
         # trim governor copy backwards from last leaf
         found_stop_leaf = False
         while not found_stop_leaf:
-            reverse_iterator = iterationtools.iterate_leaves_in_expr(
-                governor_copy, reverse=True)
+            reverse_iterator = iterate(governor_copy).by_class(
+                scoretools.Leaf, reverse=True)
             leaf = reverse_iterator.next()
             if leaf is stop_leaf:
                 found_stop_leaf = True
@@ -130,8 +127,6 @@ class ContiguousSelection(Selection):
         return governor_copy
 
     def _fuse(self):
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         if all(isinstance(x, scoretools.Leaf) for x in self):
@@ -145,7 +140,6 @@ class ContiguousSelection(Selection):
 
     def _fuse_leaves(self):
         from abjad.tools import scoretools
-        from abjad.tools import selectiontools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         assert all(isinstance(x, scoretools.Leaf) for x in self)
         leaves = self
@@ -160,10 +154,8 @@ class ContiguousSelection(Selection):
         return leaves[0]._set_duration(total_preprolated)
 
     def _fuse_measures(self):
-        from abjad.tools import marktools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools import timesignaturetools
         # check input
         assert self._all_are_contiguous_components_in_same_parent(
             self, component_classes=(scoretools.Measure, ))
@@ -184,7 +176,7 @@ class ContiguousSelection(Selection):
             new_duration += effective_time_signature.duration
         new_time_signature = \
             measure._duration_and_possible_denominators_to_time_signature(
-            new_duration, 
+            new_duration,
             old_denominators,
             )
         music = []
@@ -206,7 +198,6 @@ class ContiguousSelection(Selection):
         return new_measure
 
     def _fuse_tuplets(self):
-        from abjad.tools import scoretools
         from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_parent(
             self, component_classes=(scoretools.Tuplet,))
@@ -251,9 +242,8 @@ class ContiguousSelection(Selection):
         intersection -- between the components of P and C.
         '''
         from abjad.tools import iterationtools
-        from abjad.tools import selectiontools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
-        all_components = set(iterationtools.iterate_components_in_expr(self))
+        all_components = set(iterate(self).by_class())
         contained_spanners = set()
         for component in iterationtools.iterate_components_in_expr(self):
             contained_spanners.update(component._get_spanners())
@@ -292,7 +282,7 @@ class ContiguousSelection(Selection):
                     index = spanner.index(component)
                     receipt.add((spanner, index))
         return receipt
-            
+
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []
         for component in self:
@@ -307,8 +297,6 @@ class ContiguousSelection(Selection):
         Returns none.
         Not composer-safe.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         assert self._all_are_contiguous_components_in_same_logical_voice(
             recipients)
@@ -340,13 +328,9 @@ class ContiguousSelection(Selection):
     def _withdraw_from_crossing_spanners(self):
         r'''Not composer-safe.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import iterationtools
-        from abjad.tools import spannertools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         crossing_spanners = self._get_crossing_spanners()
-        components_including_children = \
-            list(iterationtools.iterate_components_in_expr(self))
+        components_including_children = list(iterate(self).by_class())
         for crossing_spanner in list(crossing_spanners):
             spanner_components = crossing_spanner._components[:]
             for component in components_including_children:
@@ -383,8 +367,8 @@ class ContiguousSelection(Selection):
                 >>> time_signature = attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest:: 
-            
+            ..  doctest::
+
                 >>> f(staff)
                 \new Staff {
                     \time 2/4
@@ -423,7 +407,7 @@ class ContiguousSelection(Selection):
             **Example 2.** Copy components multiple times:
 
             Copy `components` a total of `n` times:
-            
+
             ::
 
                 >>> selection = staff.select_leaves()[2:4]
@@ -505,7 +489,7 @@ class ContiguousSelection(Selection):
         if n < 1:
             return []
         new_components = [
-            component._copy_with_children_and_marks_but_without_spanners() 
+            component._copy_with_children_and_marks_but_without_spanners()
             for component in self
             ]
         if include_enclosing_containers:
@@ -578,17 +562,17 @@ class ContiguousSelection(Selection):
 
         When `fill` is ``'exact'`` then parts must equal `durations` exactly.
 
-        When `fill` is ``'less'`` then parts must be 
+        When `fill` is ``'less'`` then parts must be
         less than or equal to `durations`.
 
-        When `fill` is ``'greater'`` then parts must be 
+        When `fill` is ``'greater'`` then parts must be
         greater or equal to `durations`.
 
         Reads `durations` cyclically when `cyclic` is true.
 
         Reads component durations in seconds when `in_seconds` is true.
 
-        Returns remaining components at end in final part when `overhang` 
+        Returns remaining components at end in final part when `overhang`
         is true.
         '''
         # TODO: decide on correct assertion
@@ -632,7 +616,7 @@ class ContiguousSelection(Selection):
                     part = [component]
                     if in_seconds:
                         cumulative_duration = \
-                            sum([x._get_duration(in_seconds=True) 
+                            sum([x._get_duration(in_seconds=True)
                             for x in part])
                     else:
                         cumulative_duration = \

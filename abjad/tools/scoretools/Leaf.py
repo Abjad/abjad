@@ -429,10 +429,11 @@ class Leaf(Component):
         fracture_spanners=False,
         tie_split_notes=True,
         ):
-        from abjad.tools import iterationtools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
+        from abjad.tools import scoretools
         from abjad.tools import spannertools
+        from abjad.tools.functiontools import iterate
         from abjad.tools.functiontools import select
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
@@ -504,8 +505,8 @@ class Leaf(Component):
             mark.detach()
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
-            flattened_result_leaves = iterationtools.iterate_leaves_in_expr(
-                flattened_result)
+            flattened_result_leaves = iterate(flattened_result).by_class(
+                scoretools.Leaf)
             # TODO: implement SliceSelection._attach_tie_spanner_to_leaves()
             for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(
                 flattened_result_leaves):

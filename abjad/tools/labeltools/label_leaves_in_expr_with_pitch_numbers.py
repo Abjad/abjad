@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
+from abjad.tools import scoretools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
 def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
@@ -27,7 +28,7 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
     Returns none.
     '''
 
-    for leaf in iterationtools.iterate_leaves_in_expr(expr):
+    for leaf in iterate(expr).by_class(scoretools.Leaf):
         for pitch in reversed(pitchtools.PitchSegment.from_selection(leaf)):
             if pitch is not None:
                 label = markuptools.MarkupCommand('small', str(pitch.pitch_number))

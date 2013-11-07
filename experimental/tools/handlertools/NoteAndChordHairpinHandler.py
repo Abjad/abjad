@@ -1,13 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
 from abjad.tools import marktools
-from abjad.tools import iterationtools
 from abjad.tools import scoretools
-from abjad.tools import marktools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
@@ -24,7 +21,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0):
-        leaves = list(iterationtools.iterate_leaves_in_expr(expr))
+        leaves = list(iterate(expr).by_class(scoretools.Leaf))
         leaves = self._remove_outer_rests_from_sequence(leaves)
         #group = leaves
         group = selectiontools.SliceSelection(leaves)
@@ -42,7 +39,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         else:
             descriptor = ' '.join([x for x in self.hairpin_token if x])
             hairpin = spannertools.HairpinSpanner(
-                descriptor=descriptor, 
+                descriptor=descriptor,
                 include_rests=False,
                 )
             attach(hairpin, group)

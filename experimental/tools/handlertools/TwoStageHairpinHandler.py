@@ -26,7 +26,7 @@ class TwoStageHairpinHandler(DynamicHandler):
         assert len(self.swell_dynamics) == 5, repr(self.swell_dynamics)
         assert scoretools.all_are_leaves(expr), repr(expr)
         start_dynamic, left_hairpin, peak_dynamic, right_hairpin, stop_dynamic = self.swell_dynamics
-        #leaves = list(iterationtools.iterate_leaves_in_expr(expr))
+        #leaves = list(iterate(expr).by_class(scoretools.Leaf))
         #leaves = scoretools.remove_outer_rests_from_sequence(leaves)
         leaves = expr
         for leaf in iterationtools.iterate_components_in_expr(leaves):

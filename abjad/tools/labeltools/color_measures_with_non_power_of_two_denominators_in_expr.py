@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
-from abjad.tools import iterationtools
+from abjad.tools import scoretools
+from abjad.tools.functiontools import iterate
 
 
 def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red'):
@@ -81,7 +81,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
     measures_colored = []
 
     # color non-power-of-two measures in expr
-    for measure in iterationtools.iterate_measures_in_expr(expr):
+    for measure in iterate(expr).by_class(scoretools.Measure):
         if measure.time_signature.has_non_power_of_two_denominator:
             labeltools.color_measure(measure, color)
             measures_colored.append(measure)

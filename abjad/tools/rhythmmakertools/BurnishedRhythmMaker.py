@@ -4,7 +4,6 @@ import copy
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -13,6 +12,7 @@ from abjad.tools import spannertools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
 class BurnishedRhythmMaker(RhythmMaker):
@@ -192,7 +192,7 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     def _add_ties(self, result):
         from abjad.tools import selectiontools
-        leaves = list(iterationtools.iterate_leaves_in_expr(result))
+        leaves = list(iterate(result).by_class(scoretools.Leaf))
         written_durations = [leaf.written_duration for leaf in leaves]
         weights = [durationtools.Duration(numerator, self.talea_denominator) 
             for numerator in self.talea]

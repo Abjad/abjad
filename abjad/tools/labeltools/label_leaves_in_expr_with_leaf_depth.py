@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
 def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
@@ -38,7 +38,7 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
     Returns none.
     '''
 
-    for leaf in iterationtools.iterate_leaves_in_expr(expr):
+    for leaf in iterate(expr).by_class(scoretools.Leaf):
         label = markuptools.MarkupCommand(
             'small', str(leaf._get_parentage().depth))
         markup = markuptools.Markup(label, markup_direction)

@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
 from abjad.tools import iterationtools
-from abjad.tools import scoretools
 from abjad.tools import markuptools
-from abjad.tools import scoretools
 from abjad.tools import pitchtools
+from abjad.tools import scoretools
 from abjad.tools.functiontools import attach
 from abjad.tools.functiontools import iterate
 
@@ -44,7 +42,7 @@ def label_leaves_in_expr_with_named_interval_classes(expr, markup_direction=Up):
     for note in iterate(expr).by_class(scoretools.Note):
         logical_voice_iterator = \
             iterationtools.iterate_logical_voice_from_component(
-            note, scoretools.Leaf)
+                note, scoretools.Leaf)
         try:
             logical_voice_iterator.next()
             next_leaf = logical_voice_iterator.next()

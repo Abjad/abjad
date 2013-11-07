@@ -22,11 +22,10 @@ def list_named_pitches_in_expr(expr):
 
     Returns tuple.
     '''
-    from abjad.tools import spannertools
-    from abjad.tools import iterationtools
-    from abjad.tools import scoretools
     from abjad.tools import pitchtools
     from abjad.tools import scoretools
+    from abjad.tools import spannertools
+    from abjad.tools.functiontools import iterate
 
     # TODO: remove try-except
     try:
@@ -54,7 +53,7 @@ def list_named_pitches_in_expr(expr):
             for x in expr:
                 result.extend(list_named_pitches_in_expr(x))
         else:
-            for leaf in iterationtools.iterate_leaves_in_expr(expr):
+            for leaf in iterate(expr).by_class(scoretools.Leaf):
                 if hasattr(leaf, 'written_pitch') and not isinstance(leaf, scoretools.Rest):
                     result.append(leaf.written_pitch)
                 elif hasattr(leaf, 'written_pitches'):

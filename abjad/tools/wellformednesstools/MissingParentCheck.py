@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import iterationtools
-from abjad.tools import selectiontools
+from abjad.tools.functiontools import iterate
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -11,7 +10,7 @@ class MissingParentCheck(Check):
     def _run(self, expr):
         violators = []
         total = 0
-        components = iterationtools.iterate_components_in_expr(expr)
+        components = iterate(expr).by_class()
         for i, component in enumerate(components):
             #total += 1
             #if component is not expr:

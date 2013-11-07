@@ -1,13 +1,13 @@
 # -*-encoding: utf-8 -*-
 import abc
 import copy
-from abjad.tools import scoretools
 from abjad.tools import durationtools
-from abjad.tools import scoretools
 from abjad.tools import lilypondproxytools
+from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import override
 Selection = selectiontools.Selection
 
@@ -100,7 +100,7 @@ class Spanner(AbjadObject):
 
     def __lt__(self, expr):
         r'''True when spanner is less than `expr`.
-        
+
         Trivial comparison to allow doctests to work.
 
         Returns boolean.
@@ -162,7 +162,7 @@ class Spanner(AbjadObject):
             strings = (grob_attribute_string, grob_value_string)
             statement = statement.format(*strings)
             exec(statement)
-            
+
     def _block_all_components(self):
         r'''Not composer-safe.
         '''
@@ -176,7 +176,7 @@ class Spanner(AbjadObject):
 
     def _copy(self, components):
         r'''Returns copy of spanner with `components`.
-        `components` must be an iterable of components already 
+        `components` must be an iterable of components already
         contained in spanner.
         '''
         my_components = self._components[:]
@@ -235,36 +235,24 @@ class Spanner(AbjadObject):
         return [(self, spanner, result)]
 
     def _get_my_first_leaf(self):
-        from abjad.tools import iterationtools
-        from abjad.tools import scoretools
-        component_classes=(scoretools.Leaf,)
-        for leaf in iterationtools.iterate_components_in_expr(
-            self, component_class=component_classes):
+        for leaf in iterate(self).by_class(scoretools.Leaf):
             return leaf
 
     def _get_my_last_leaf(self):
-        from abjad.tools import iterationtools
-        from abjad.tools import scoretools
-        component_classes=(scoretools.Leaf,)
-        for leaf in iterationtools.iterate_components_in_expr(
-            self, component_class=component_classes, reverse=True):
+        for leaf in iterate(self).by_class(scoretools.Leaf, reverse=True):
             return leaf
 
     def _get_my_nth_leaf(self, n):
-        from abjad.tools import iterationtools
         from abjad.tools import scoretools
         if not isinstance(n, (int, long)):
             raise TypeError
-        component_classes = (scoretools.Leaf,)
         if 0 <= n:
-            leaves = iterationtools.iterate_components_in_expr(
-                self, component_class=component_classes)
+            leaves = iterate(self).by_class(scoretools.Leaf)
             for leaf_index, leaf in enumerate(leaves):
                 if leaf_index == n:
                     return leaf
         else:
-            leaves = iterationtools.iterate_components_in_expr(
-                self, component_class=component_classes, reverse=True)
+            leaves = iterate(self).by_class(scoretools.Leaf, reverse=True)
             for leaf_index, leaf in enumerate(leaves):
                 leaf_number = -leaf_index - 1
                 if leaf_number == n:
@@ -272,19 +260,19 @@ class Spanner(AbjadObject):
         raise IndexError
 
     def _initialize_components(self, components):
+        from abjad.tools import scoretools
+        from abjad.tools.functiontools import iterate
         if components:
             raise Exception('deprecated')
-        from abjad.tools import marktools
-        from abjad.tools import iterationtools
         if isinstance(components, scoretools.Component):
             components = [components]
         elif not components:
             components = []
         assert not any(
-            isinstance(x, scoretools.Context) 
+            isinstance(x, scoretools.Context)
             for x in components), repr(components)
         if self._contiguity_constraint == 'logical voice':
-            leaves = list(iterationtools.iterate_leaves_in_expr(components))
+            leaves = list(iterate(components).by_class(scoretools.Leaf))
             assert Selection._all_are_contiguous_components_in_same_logical_voice(leaves)
         self.extend(components)
 
@@ -309,18 +297,13 @@ class Spanner(AbjadObject):
             return False
 
     def _is_my_first(self, leaf, component_classes):
-        from abjad.tools import iterationtools
-        for component in iterationtools.iterate_components_in_expr(
-            self, 
-            component_class=component_classes,
-            ):
+        for component in iterate(self).by_class(component_classes):
             if component is leaf:
                 return True
             else:
                 return False
 
     def _is_my_first_leaf(self, leaf):
-        from abjad.tools import spannertools
         try:
             first_leaf = self._get_my_nth_leaf(0)
             return leaf is first_leaf
@@ -328,10 +311,8 @@ class Spanner(AbjadObject):
             return False
 
     def _is_my_last(self, leaf, component_classes):
-        from abjad.tools import iterationtools
-        for component in iterationtools.iterate_components_in_expr(
-            self, 
-            component_class=component_classes, 
+        for component in iterate(self).by_class(
+            component_classes,
             reverse=True,
             ):
             if component is leaf:
@@ -340,7 +321,6 @@ class Spanner(AbjadObject):
                 return False
 
     def _is_my_last_leaf(self, leaf):
-        from abjad.tools import spannertools
         try:
             last_leaf = self._get_my_nth_leaf(-1)
             return leaf is last_leaf
@@ -348,11 +328,8 @@ class Spanner(AbjadObject):
             return False
 
     def _is_my_only(self, leaf, component_classes):
-        from abjad.tools import iterationtools
-        i, components = None, iterationtools.iterate_components_in_expr(
-            self, 
-            component_class=component_class,
-            )
+        i = None
+        components = iterate(self).by_class(component_classes)
         for i, component in enumerate(components):
             if 0 < i:
                 return False
@@ -365,7 +342,7 @@ class Spanner(AbjadObject):
         override_dictionary = override(self)._make_override_dictionary()
         lines = []
         line = '{}.{}('.format(
-            self._tools_package_name, 
+            self._tools_package_name,
             type(self).__name__,
             )
         lines.append(line)
@@ -401,11 +378,11 @@ class Spanner(AbjadObject):
         Not composer-safe because reversing the order of spanner components
         could scramble components of some other spanner.
 
-        Call method only as part of a full component- and spanner-reversal 
+        Call method only as part of a full component- and spanner-reversal
         routine.
 
         Spanner subclasses with mapping variables (like the 'durations' list
-        attaching to durated complex beam spanners) should override this 
+        attaching to durated complex beam spanners) should override this
         method to reverse mapping elements.
         '''
         self._components.reverse()
@@ -615,7 +592,7 @@ class Spanner(AbjadObject):
             stop_offset = Duration(0)
         return timespantools.Timespan(
             start_offset=start_offset, stop_offset=stop_offset)
-        
+
     def index(self, component):
         r'''Returns index of `component` in spanner.
 

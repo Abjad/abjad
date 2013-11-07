@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
-from abjad.tools import iterationtools
+from abjad.tools import scoretools
+from abjad.tools.functiontools import iterate
 from abjad.tools.wellformednesstools.Check import Check
 
 
 class MisduratedMeasureCheck(Check):
-    r'''Does the (pre)prolated duration of the measure match its 
+    r'''Does the (pre)prolated duration of the measure match its
     time signature?
     '''
 
     def _run(self, expr):
         violators = []
         total, bad = 0, 0
-        for measure in iterationtools.iterate_measures_in_expr(expr):
+        for measure in iterate(expr).by_class(scoretools.Measure):
             time_signature = measure.time_signature
             if time_signature is not None:
                 if measure._preprolated_duration != time_signature.duration:

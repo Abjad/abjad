@@ -12,7 +12,7 @@ string = r"""
     df'4 c' ~ c'1
     """
 staff = Staff(string)
-leaves = iterationtools.iterate_leaves_in_expr(staff)
+leaves = iterate(staff).by_class(scoretools.Leaf)
 for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
     if 1 < len(group):
         slur = spannertools.SlurSpanner(group)
@@ -51,7 +51,7 @@ available in the ``scoretools`` package.
 We add slur spanners inside our loop:
 
 <abjad>
-leaves = iterationtools.iterate_leaves_in_expr(staff)
+leaves = iterate(staff).by_class(scoretools.Leaf)
 for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
     spannertools.SlurSpanner(group)
 
@@ -77,7 +77,7 @@ Let's rewrite our example to prevent that from happening:
 
 <abjad>
 staff = Staff(string)
-leaves = iterationtools.iterate_leaves_in_expr(staff)
+leaves = iterate(staff).by_class(scoretools.Leaf)
 classes = (Note, Chord)
 for group in iterationtools.iterate_runs_in_expr(leaves, classes):
     if 1 < len(group):

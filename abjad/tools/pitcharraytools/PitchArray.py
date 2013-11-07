@@ -1,13 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
-from abjad.tools import iterationtools
-from abjad.tools import scoretools
 from abjad.tools import mathtools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import pitchtools
+from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import mutate
 from abjad.tools.pitcharraytools.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitcharraytools.PitchArrayColumn import PitchArrayColumn
@@ -160,9 +157,8 @@ class PitchArray(AbjadObject):
 
     @staticmethod
     def _get_composite_offset_difference_series_from_leaves_in_expr(expr):
-        from abjad.tools import iterationtools
         offsets = []
-        for leaf in iterationtools.iterate_leaves_in_expr(expr):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             start_offset = leaf._get_timespan().start_offset
             if start_offset not in offsets:
                 offsets.append(start_offset)
@@ -454,7 +450,7 @@ class PitchArray(AbjadObject):
         for leaf_iterable, pitch_array_row in \
             zip(score, pitch_array.rows):
             durations = []
-            for leaf in iterationtools.iterate_leaves_in_expr(leaf_iterable):
+            for leaf in iterate(leaf_iterable).by_class(scoretools.Leaf):
                 durations.append(leaf._get_duration())
             parts = mutate(tokens).split(
                 durations,
@@ -471,7 +467,7 @@ class PitchArray(AbjadObject):
                 )
             for group in grouped_cells:
                 pitch_array_row.merge(group)
-            leaves = iterationtools.iterate_leaves_in_expr(leaf_iterable)
+            leaves = iterate(leaf_iterable).by_class(scoretools.Leaf)
             if populate:
                 for cell, leaf in zip(pitch_array_row.cells, leaves):
                     cell.pitches.extend(

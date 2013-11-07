@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import marktools
 from abjad.tools import spannertools
-from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
 
 

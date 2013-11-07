@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import iterationtools
+from abjad.tools import scoretools
 from abjad.tools import spannertools
+from abjad.tools.functiontools import iterate
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -12,7 +13,7 @@ class OverlappingGlissandoCheck(Check):
     def _run(self, expr):
         violators = []
         spanner_classes = (spannertools.GlissandoSpanner,)
-        for leaf in iterationtools.iterate_leaves_in_expr(expr):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             glissandi = leaf._get_spanners(spanner_classes)
             if 1 < len(glissandi):
                 if len(glissandi) == 2:

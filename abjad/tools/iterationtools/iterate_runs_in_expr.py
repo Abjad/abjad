@@ -52,7 +52,7 @@ def iterate_runs_in_expr(sequence, classes):
 
         ::
 
-            >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
+            >>> leaves = iterate(staff).by_class(scoretools.Leaf)
 
         ::
 

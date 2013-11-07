@@ -154,13 +154,14 @@ class Container(Component):
 
     @property
     def _duration_in_seconds(self):
-        from abjad.tools import iterationtools
+        from abjad.tools import scoretools
+        from abjad.tools.functiontools import iterate
         if self.is_simultaneous:
             return max([durationtools.Duration(0)] +
                 [x._get_duration(in_seconds=True) for x in self])
         else:
             duration = durationtools.Duration(0)
-            for leaf in iterationtools.iterate_leaves_in_expr(self):
+            for leaf in iterate(self).by_class(scoretools.Leaf):
                 duration += leaf._get_duration(in_seconds=True)
             return duration
 
@@ -705,14 +706,8 @@ class Container(Component):
         tie_split_notes=True,
         ):
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import iterationtools
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools import spannertools
+        from abjad.tools.functiontools import iterate
         # check input
         duration = durationtools.Duration(duration)
         assert 0 <= duration, repr(duration)
@@ -792,7 +787,7 @@ class Container(Component):
         # in order to start upward crawl through duration-crossing containers
         else:
             duration_crossing_containers = duration_crossing_descendants[:]
-            for leaf in iterationtools.iterate_leaves_in_expr(bottom):
+            for leaf in iterate(bottom).by_class(scoretools.Leaf):
                 if leaf._get_timespan().start_offset == global_split_point:
                     leaf_right_of_split = leaf
                     leaf_left_of_split = leaf_right_of_split._get_leaf(-1)
@@ -1283,18 +1278,17 @@ class Container(Component):
         Returns contiguous leaf selection or free leaf selection.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import iterationtools
-        from abjad.tools import scoretools
         from abjad.tools import selectiontools
+        from abjad.tools.functiontools import iterate
         Selection = selectiontools.Selection
         leaf_classes = leaf_classes or (scoretools.Leaf,)
         expr = self
         if recurse:
-            expr = iterationtools.iterate_leaves_in_expr(expr)
+            expr = iterate(expr).by_class(scoretools.Leaf)
         music = [
-                component for component in expr
-                if isinstance(component, leaf_classes)
-                ]
+            component for component in expr
+            if isinstance(component, leaf_classes)
+            ]
         music = music[start:stop]
         if allow_discontiguous_leaves:
             selection = selectiontools.Selection(music=music)

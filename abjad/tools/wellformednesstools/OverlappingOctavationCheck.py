@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import iterationtools
+from abjad.tools import scoretools
 from abjad.tools import spannertools
+from abjad.tools.functiontools import iterate
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -11,7 +12,7 @@ class OverlappingOctavationCheck(Check):
     def _run(self, expr):
         violators = []
         spanner_classes = (spannertools.OctavationSpanner, )
-        for leaf in iterationtools.iterate_leaves_in_expr(expr):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             spanners = leaf._get_descendants()._get_spanners(spanner_classes)
             if 1 < len(spanners):
                 for spanner in spanners:

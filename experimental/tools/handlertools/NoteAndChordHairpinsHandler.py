@@ -1,7 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
-from abjad.tools import marktools
-from abjad.tools import scoretools
 from abjad.tools import datastructuretools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
@@ -9,6 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 
@@ -26,7 +24,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, offset=0):
-        leaves = list(iterationtools.iterate_leaves_in_expr(expr))
+        leaves = list(iterate(expr).by_class(scoretools.Leaf))
         groups = list(iterationtools.iterate_runs_in_expr(
             leaves, (scoretools.Note, scoretools.Chord)))
         hairpin_tokens = datastructuretools.CyclicList(self.hairpin_tokens)
@@ -34,7 +32,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
             if not isinstance(group, selectiontools.SliceSelection):
                 group = selectiontools.SliceSelection(group)
             is_short_group = False
-            hairpin_token = hairpin_tokens[offset+i]
+            hairpin_token = hairpin_tokens[offset + i]
             if len(group) == 1:
                 is_short_group = True
             elif self.minimum_duration is not None:
@@ -48,7 +46,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
             else:
                 descriptor = ' '.join([x for x in hairpin_token if x])
                 hairpin = spannertools.HairpinSpanner(
-                    descriptor=descriptor, 
+                    descriptor=descriptor,
                     include_rests=False,
                     )
                 attach(hairpin, group)

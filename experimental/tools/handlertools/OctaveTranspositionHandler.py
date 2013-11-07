@@ -15,7 +15,7 @@ class OctaveTranspositionHandler(PitchHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        for leaf in iterationtools.iterate_leaves_in_expr(expr):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             if isinstance(leaf, Note):
                 n = leaf.pitch.pitch_number
                 n = pitchtools.transpose_pitch_number_by_octave_transposition_mapping(

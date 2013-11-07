@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import iterationtools
+from abjad.tools.functiontools import iterate
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -11,10 +11,9 @@ class EmptyContainerCheck(Check):
     def _run(self, expr):
         violators = []
         bad, total = 0, 0
-        for t in iterationtools.iterate_components_in_expr(
-            expr, scoretools.Container):
-            if len(t) == 0:
-                violators.append(t)
+        for component in iterate(expr).by_class(scoretools.Container):
+            if len(component) == 0:
+                violators.append(component)
                 bad += 1
             total += 1
         return violators, total

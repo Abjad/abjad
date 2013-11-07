@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import durationtools
-from abjad.tools import iterationtools
+from abjad.tools import scoretools
+from abjad.tools.functiontools import iterate
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -9,7 +9,7 @@ class MisrepresentedFlagCheck(Check):
     def _run(self, expr):
         violators = []
         total = 0
-        for leaf in iterationtools.iterate_leaves_in_expr(expr):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             total += 1
             flags = leaf.written_duration.flag_count
             left = getattr(leaf.set, 'stem_left_beam_count', None)
