@@ -7,7 +7,7 @@ from abjad.tools.functiontools import mutate
 Selection = selectiontools.Selection
 
 
-def _rewrite_meter(
+def __rewrite_meter(
     components,
     meter,
     boundary_depth=None,
@@ -176,7 +176,7 @@ def _rewrite_meter(
             sub_boundary_depth = 1
             if boundary_depth is None:
                 sub_boundary_depth = None
-            _rewrite_meter(
+            __rewrite_meter(
                 item[:],
                 sub_metrical_hierarchy,
                 boundary_depth=sub_boundary_depth,
@@ -236,7 +236,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     ::
 
-        >>> from abjad.tools.timesignaturetools.rewrite_meter \
+        >>> from abjad.tools.timesignaturetools._rewrite_meter \
         ...     import _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr
 
     ::
