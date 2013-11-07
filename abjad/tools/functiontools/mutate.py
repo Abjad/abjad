@@ -19,5 +19,5 @@ def mutate(expr):
 
     Returns score mutation agent.
     '''
-    from abjad.tools import mutationtools
-    return mutationtools.ScoreMutationAgent(expr)
+    from abjad.tools import agenttools
+    return agenttools.ScoreMutationAgent(expr)

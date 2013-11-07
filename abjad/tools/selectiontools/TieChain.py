@@ -317,7 +317,7 @@ class TieChain(ContiguousSelection):
         '''
         from abjad.tools import scoretools
         from abjad.tools import mathtools
-        from abjad.tools import mutationtools
+        from abjad.tools import agenttools
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools

@@ -10,7 +10,7 @@ from abjad.tools import scoretools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import scoretools
-from abjad.tools.mutationtools import inspect
+from abjad.tools.agenttools import inspect
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin \
     import CounttimeComponentSelectExpressionSetMethodMixin
 from experimental.tools.musicexpressiontools.SelectExpression \

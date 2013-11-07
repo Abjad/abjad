@@ -12,7 +12,7 @@ from abjad.tools import spannertools
 from abjad.tools import timespantools
 from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import mutate
-from abjad.tools.mutationtools import inspect
+from abjad.tools.agenttools import inspect
 from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
     import StartPositionedPayloadExpression
 
