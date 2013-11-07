@@ -55,6 +55,6 @@ def apply_expressive_marks(score):
     attach(markup, voice[99][1])
 
     strings_staff_group = score['Strings Staff Group']
-    for voice in iterationtools.iterate_voices_in_expr(strings_staff_group):
+    for voice in iterate(strings_staff_group).by_class(scoretools.Voice):
         markup = markuptools.Markup(r'\italic { (non dim.) }', Down)
         attach(markup, voice[102][0])

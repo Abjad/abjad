@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools import iterationtools
 from abjad.tools import scoretools
+from abjad.tools.functiontools import iterate
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -35,7 +35,7 @@ class VoiceDictionary(AbjadObject, collections.OrderedDict):
         from experimental.tools import musicexpressiontools
         voice_names = []
         if self.score is not None:
-            for voice in iterationtools.iterate_voices_in_expr(self.score):
+            for voice in iterate(self.score).by_class(scoretools.Voice):
                 assert voice.context_name is not None, voice.name_name
                 voice_names.append(voice.name)
         for voice_name in sorted(voice_names):
