@@ -88,12 +88,28 @@ class Scheme(AbjadObject):
         return False
 
     def __format__(self, format_specification=''):
-        r'''Get format.
+        r'''Formats scheme.
 
-        Return string.
+        Set `format_specification` to `''`', `'lilypond'` or ``'storage'``.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> scheme = schemetools.Scheme('foo')
+            >>> format(scheme)
+            '#foo'
+
+        ::
+
+            >>> format(scheme, 'storage')
+            "schemetools.Scheme('f', 'o', 'o')"
+
+        Returns string.
         '''
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
+        elif format_specification == 'storage':
+            return self._tools_package_qualified_indented_repr
         return str(self)
 
     def __getnewargs__(self):
@@ -197,11 +213,3 @@ class Scheme(AbjadObject):
     @property
     def force_quotes(self):
         return self._force_quotes
-
-    @property
-    def storage_format(self):
-        r'''Scheme storage format.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr

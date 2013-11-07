@@ -200,6 +200,24 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         '''
         return self.reduce() == expr
 
+    def __format__(self, format_specification=''):
+        r'''Formats nonreduced fraction.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> fraction = mathtools.NonreducedFraction(-6, 3)
+            >>> print format(fraction)
+            mathtools.NonreducedFraction(-6, 3)
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     def __ge__(self, expr):
         r'''True when nonreduced fraction is greater than or equal to `expr`.
 
@@ -488,19 +506,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         Returns nonreduced fraction.
         '''
         return self
-
-    @property
-    def storage_format(self):
-        r'''Storage format of nonreduced fraction.
-
-        ::
-
-            >>> print fraction.storage_format
-            mathtools.NonreducedFraction(-6, 3)
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 
