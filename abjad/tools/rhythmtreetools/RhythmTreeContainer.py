@@ -361,7 +361,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     @property
     def _pretty_rtm_format_pieces(self):
         result = []
-        result.append('({} ('.format(self.preprolated_duration))
+        result.append('({!s} ('.format(self.preprolated_duration))
         for child in self:
             result.extend(['\t' + x for x in child._pretty_rtm_format_pieces])
         result[-1] = result[-1] + '))'
@@ -440,6 +440,6 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         Returns string.
         '''
-        return '({} ({}))'.format(
+        return '({!s} ({}))'.format(
             self.preprolated_duration,
             ' '.join([x.rtm_format for x in self]))

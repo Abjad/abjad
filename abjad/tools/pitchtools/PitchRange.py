@@ -15,7 +15,7 @@ class PitchRange(AbjadObject):
 
         >>> pitch_range = pitchtools.PitchRange(-12, 36,
         ...     pitch_range_name='four-octave range')
-        >>> print pitch_range.storage_format
+        >>> print format(pitch_range)
         pitchtools.PitchRange(
             '[C3, C7]',
             pitch_range_name='four-octave range',
@@ -162,6 +162,18 @@ class PitchRange(AbjadObject):
                 if self._stop == arg._stop:
                     return True
         return False
+
+    def __format__(self, format_specification=''):
+        r'''Formats pitch range.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
 
     def __ge__(self, arg):
         from abjad.tools import pitchtools
@@ -464,11 +476,3 @@ class PitchRange(AbjadObject):
         if self._stop is None:
             return True
         return self._stop[1] == 'inclusive'
-
-    @property
-    def storage_format(self):
-        r'''Storage format of pitch range.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
