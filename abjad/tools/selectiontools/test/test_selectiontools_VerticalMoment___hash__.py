@@ -8,8 +8,8 @@ def test_selectiontools_VerticalMoment___hash___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     vms = []
-    vms.extend(list(iterationtools.iterate_vertical_moments_in_expr(staff)))
-    vms.extend(list(iterationtools.iterate_vertical_moments_in_expr(staff)))
+    vms.extend(list(iterate(staff).by_vertical_moment()))
+    vms.extend(list(iterate(staff).by_vertical_moment()))
 
     assert len(vms) == 8
     assert len(set(vms)) == 4

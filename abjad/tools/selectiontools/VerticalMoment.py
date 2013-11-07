@@ -40,7 +40,7 @@ class VerticalMoment(SimultaneousSelection):
 
     ::
 
-        >>> for x in iterationtools.iterate_vertical_moments_in_expr(score):
+        >>> for x in iterate(score).by_vertical_moment():
         ...     x
         ...
         VerticalMoment(0, <<2>>)

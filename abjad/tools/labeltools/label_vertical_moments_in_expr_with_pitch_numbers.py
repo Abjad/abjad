@@ -3,6 +3,7 @@ from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
 def label_vertical_moments_in_expr_with_pitch_numbers(
@@ -87,7 +88,7 @@ def label_vertical_moments_in_expr_with_pitch_numbers(
     Returns none.
     '''
 
-    for vertical_moment in iterationtools.iterate_vertical_moments_in_expr(expr):
+    for vertical_moment in iterate(expr).by_vertical_moment():
         leaves = vertical_moment.leaves
         pitches = pitchtools.PitchSegment.from_selection(leaves)
         if not pitches:

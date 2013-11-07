@@ -4,6 +4,7 @@ from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
 def label_vertical_moments_in_expr_with_numbered_interval_classes(
@@ -87,7 +88,7 @@ def label_vertical_moments_in_expr_with_numbered_interval_classes(
     '''
 
     for vertical_moment in \
-        iterationtools.iterate_vertical_moments_in_expr(expr):
+        iterate(expr).by_vertical_moment():
         leaves = vertical_moment.leaves
         notes = [leaf for leaf in leaves if isinstance(leaf, scoretools.Note)]
         if not notes:

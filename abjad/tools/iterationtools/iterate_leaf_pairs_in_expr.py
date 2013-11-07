@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import sequencetools
+from abjad.tools.functiontools import iterate
 
 
 def iterate_leaf_pairs_in_expr(expr):
@@ -62,7 +63,7 @@ def iterate_leaf_pairs_in_expr(expr):
     '''
     from abjad.tools import iterationtools
 
-    vertical_moments = iterationtools.iterate_vertical_moments_in_expr(expr)
+    vertical_moments = iterate(expr).by_vertical_moment()
     for moment_1, moment_2 in \
         sequencetools.iterate_sequence_pairwise_strict(vertical_moments):
         for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
