@@ -152,25 +152,64 @@ class Note(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @apply
+    def lilypond_duration_multiplier():
+        def fget(self):
+            r'''Gets and sets LilyPond duration multiplier of note.
+
+            ..  container:: example
+
+                Gets LilyPond duration multiplier:
+
+                ::
+
+                    >>> note = Note("c'4 * 1/2")
+                    >>> note.lilypond_duration_multiplier
+                    Multiplier(1, 2)
+
+            ..  container:: example
+
+                Sets LilyPond duration multiplier:
+
+                ::
+
+                    >>> note.lilypond_duration_multiplier = Multiplier(2, 3)
+                    >>> format(note)
+                    "c'4 * 2/3"
+
+            Returns multiplier.
+            '''
+            return Leaf.lilypond_duration_multiplier.fget(self)
+        def fset(self, expr):
+            return Leaf.lilypond_duration_multiplier.fset(self, expr)
+        return property(**locals())
+
+    @apply
     def note_head():
         def fget(self):
-            r'''Get note head of note:
+            r'''Gets and sets note head of note.
 
-            ::
+            .. container:: example
 
-                >>> note = Note(13, (3, 16))
-                >>> note.note_head
-                NoteHead("cs''")
+                Gets note head:
 
-            Set note head of note:
+                ::
 
-            ::
+                    >>> note = Note(13, (3, 16))
+                    >>> note.note_head
+                    NoteHead("cs''")
 
-                >>> note = Note(13, (3, 16))
-                >>> note.note_head = 14
-                >>> note
-                Note("d''8.")
+            ..  container:: example
 
+                Sets note head:
+
+                ::
+
+                    >>> note = Note(13, (3, 16))
+                    >>> note.note_head = 14
+                    >>> note
+                    Note("d''8.")
+
+            Returns note head.
             '''
             return self._note_head
         def fset(self, arg):
@@ -187,49 +226,56 @@ class Note(Leaf):
     @apply
     def sounding_pitch():
         def fget(self):
-            r'''Get sounding pitch of note:
+            r'''Gets and sets sounding pitch of note.
 
-            ::
+            ..  container:: example
 
-                >>> staff = Staff("d''8 e''8 f''8 g''8")
-                >>> piccolo = instrumenttools.Piccolo()
-                >>> attach(piccolo, staff)
-                Piccolo()(Staff{4})
+                Gets sounding pitch of note:
 
-            ::
+                ::
 
-                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-                ...     staff)
+                    >>> staff = Staff("d''8 e''8 f''8 g''8")
+                    >>> piccolo = instrumenttools.Piccolo()
+                    >>> attach(piccolo, staff)
+                    Piccolo()(Staff{4})
 
-            ..  doctest::
+                ::
 
-                >>> f(staff)
-                \new Staff {
-                    \set Staff.instrumentName = \markup { Piccolo }
-                    \set Staff.shortInstrumentName = \markup { Picc. }
-                    d'8
-                    e'8
-                    f'8
-                    g'8
-                }
-                >>> staff[0].sounding_pitch
-                NamedPitch("d''")
+                    >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                    ...     staff)
 
-            Set sounding pitch of note:
+                ..  doctest::
 
-            ::
+                    >>> f(staff)
+                    \new Staff {
+                        \set Staff.instrumentName = \markup { Piccolo }
+                        \set Staff.shortInstrumentName = \markup { Picc. }
+                        d'8
+                        e'8
+                        f'8
+                        g'8
+                    }
+                    >>> staff[0].sounding_pitch
+                    NamedPitch("d''")
 
-                >>> staff[0].sounding_pitch = "dqs''"
-                >>> f(staff)
-                \new Staff {
-                    \set Staff.instrumentName = \markup { Piccolo }
-                    \set Staff.shortInstrumentName = \markup { Picc. }
-                    dqs'8
-                    e'8
-                    f'8
-                    g'8
-                }
+            ..  container:: example
 
+                Sets sounding pitch of note:
+
+                ::
+
+                    >>> staff[0].sounding_pitch = "dqs''"
+                    >>> f(staff)
+                    \new Staff {
+                        \set Staff.instrumentName = \markup { Piccolo }
+                        \set Staff.shortInstrumentName = \markup { Picc. }
+                        dqs'8
+                        e'8
+                        f'8
+                        g'8
+                    }
+
+            Returns named pitch.
             '''
             from abjad.tools import instrumenttools
             from abjad.tools import pitchtools
@@ -270,31 +316,68 @@ class Note(Leaf):
         return property(**locals())
 
     @apply
+    def written_duration():
+        def fget(self):
+            r'''Gets and sets written duration of note.
+
+            ..  container:: example
+
+                Gets written duration of note.
+
+                ::
+
+                    >>> note = Note("c'4")
+                    >>> note.written_duration
+                    Duration(1, 4)
+
+            ..  container:: example
+
+                Sets written duration of note:
+
+                ::
+
+                    >>> note.written_duration = Duration(1, 16)
+                    >>> note.written_duration
+                    Duration(1, 16)
+
+            Returns duration
+            '''
+            return Leaf.written_duration.fget(self)
+        def fset(self, expr):
+            return Leaf.written_duration.fset(self, expr)
+        return property(**locals())
+
+    @apply
     def written_pitch():
         def fget(self):
-            r'''Get named pitch of note:
+            r'''Gets and sets written pitch of note.
 
-            ::
+            ..  container:: example
 
-                >>> note = Note(13, (3, 16))
-                >>> note.written_pitch
-                NamedPitch("cs''")
+                Gets written pitch of note.
 
-            Set named pitch of note:
+                ::
 
-            ::
+                    >>> note = Note(13, (3, 16))
+                    >>> note.written_pitch
+                    NamedPitch("cs''")
 
-                >>> note = Note(13, (3, 16))
-                >>> note.written_pitch = 14
-                >>> note
-                Note("d''8.")
+            ..  container:: example
 
+                Sets written pitch of note:
+
+                ::
+
+                    >>> note = Note(13, (3, 16))
+                    >>> note.written_pitch = 14
+                    >>> note
+                    Note("d''8.")
+
+            Returns named pitch.
             '''
-            if self.note_head is not None and \
-                hasattr(self.note_head, 'written_pitch'):
-                return self._note_head.written_pitch
-            else:
-                return None
+            if self.note_head is not None:
+                if hasattr(self.note_head, 'written_pitch'):
+                    return self._note_head.written_pitch
         def fset(self, arg):
             from abjad.tools import pitchtools
             from abjad.tools.scoretools.NoteHead import NoteHead
@@ -318,7 +401,7 @@ class Note(Leaf):
 
         ..  container:: example
 
-            **Example.** Add artificial harmonic to note 
+            **Example.** Adds artificial harmonic to note 
             at the perfect fourth above.
 
             ::
@@ -370,8 +453,7 @@ class Note(Leaf):
         from abjad.tools import scoretools
         from abjad.tools import pitchtools
         if named_interval is None:
-            named_interval = \
-                pitchtools.NamedInterval('perfect', 4)
+            named_interval = pitchtools.NamedInterval('perfect', 4)
         chord = scoretools.Chord(self)
         chord.note_heads.append(
             chord.note_heads[0].written_pitch.numbered_pitch._pitch_number)
