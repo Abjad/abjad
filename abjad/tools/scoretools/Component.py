@@ -79,7 +79,7 @@ class Component(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         elif format_specification == 'storage':
-            return self.storage_format
+            return self._tools_package_qualified_indented_repr
         return str(self)
 
     def __getnewargs__(self):
@@ -715,14 +715,6 @@ class Component(AbjadObject):
             self._set = \
                 lilypondproxytools.LilyPondSettingManager()
         return self._set
-
-    @property
-    def storage_format(self):
-        r'''Storage format of component.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 
