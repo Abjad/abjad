@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import *
+from abjad.tools.functiontools import iterate
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
     import AttributeNameEnumeration
@@ -88,7 +89,7 @@ class Specification(AbjadObject):
             self._context_name_abbreviations.append(context_name)
         score = self.score_template()
         self._score_name = score.name
-        for context in iterationtools.iterate_contexts_in_expr(score):
+        for context in iterate(score).by_class(scoretools.Context):
             if hasattr(context, 'name'):
                 self._context_names.append(context.name)
         self._context_names = tuple(self._context_names)

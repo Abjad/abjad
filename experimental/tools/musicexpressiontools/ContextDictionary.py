@@ -2,6 +2,7 @@
 import collections
 from abjad.tools import iterationtools
 from abjad.tools import scoretools
+from abjad.tools.functiontools import iterate
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -42,7 +43,7 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
         context_names = []
         if self.score is not None:
             for context in \
-                iterationtools.iterate_contexts_in_expr(self.score):
+                iterate(self.score).by_class(scoretools.Context):
                 assert context.context_name is not None, context.name_name
                 context_names.append(context.name)
         for context_name in sorted(context_names):
@@ -64,7 +65,7 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
 
         Returns string or none.
         '''
-        for context in iterationtools.iterate_contexts_in_expr(self.score):
+        for context in iterate(self.score).by_class(scoretools.Context):
             if isinstance(context, scoretools.Score):
                 return context.name
 

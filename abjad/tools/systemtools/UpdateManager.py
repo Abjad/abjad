@@ -47,26 +47,26 @@ class UpdateManager(AbjadObject):
         r'''Call only when updating offsets.
         No separate state flags exist for leaf indices or measure numbers.
         '''
-        from abjad.tools import iterationtools
         from abjad.tools import scoretools
+        from abjad.tools.functiontools import iterate
         parentage = component._get_parentage()
         score_root = parentage.root
         if isinstance(score_root, scoretools.Context):
-            contexts = iterationtools.iterate_contexts_in_expr(score_root)
+            contexts = iterate(score_root).by_class(scoretools.Context)
             for context in contexts:
                 for leaf_index, leaf in enumerate(
-                    iterationtools.iterate_leaves_in_expr(context)):
+                    iterate(context).by_class(scoretools.Leaf)):
                     leaf._leaf_index = leaf_index
                 for measure_index, measure in enumerate(
-                    iterationtools.iterate_measures_in_expr(context)):
+                    iterate(context).by_class(scoretools.Measure)):
                     measure_number = measure_index + 1
                     measure._measure_number = measure_number
         else:
             for leaf_index, leaf in enumerate(
-                iterationtools.iterate_leaves_in_expr(score_root)):
+                iterate(score_root).by_class(scoretools.Leaf)):
                 leaf._leaf_index = leaf_index
             for measure_index, measure in enumerate(
-                iterationtools.iterate_measures_in_expr(score_root)):
+                iterate(score_root).by_class(scoretools.Measure)):
                 measure_number = measure_index + 1
                 measure._measure_number = measure_number
 

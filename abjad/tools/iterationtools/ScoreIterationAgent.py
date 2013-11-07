@@ -91,15 +91,6 @@ class ScoreIterationAgent(object):
 
         ::
 
-            >>> for note in iterate(staff).by_class(Note):
-            ...     note
-            ...
-            Note("f'8")
-            Note("g'8")
-            Note("a'8")
-
-        ::
-
             >>> for note in iterate(staff).by_class(
             ...     Note, start=0, stop=3):
             ...     note
