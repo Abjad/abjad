@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import mathtools
+from abjad.tools.functiontools import iterate
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
@@ -14,13 +14,10 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     Returns None because processes potentially many measures.
     '''
     from abjad.tools import marktools
-    from abjad.tools import iterationtools
-    from abjad.tools import scoretools
-    from abjad.tools import timesignaturetools
     from abjad.tools import scoretools
     from abjad.tools.functiontools import attach
 
-    for measure in iterationtools.iterate_measures_in_expr(expr):
+    for measure in iterate(expr).by_class(scoretools.Measure):
         effective_time_signature = measure.time_signature
         if effective_time_signature.has_non_power_of_two_denominator:
 

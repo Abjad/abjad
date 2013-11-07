@@ -29,8 +29,8 @@ class Scheme(AbjadObject):
         >>> format(scheme_1) == format(scheme_2)
         True
 
-    Scheme also takes an optional `quoting` keyword, 
-    by which Scheme's various quote, unquote, unquote-splicing characters 
+    Scheme also takes an optional `quoting` keyword,
+    by which Scheme's various quote, unquote, unquote-splicing characters
     can be prepended to the formatted result:
 
     ::
@@ -47,7 +47,7 @@ class Scheme(AbjadObject):
         >>> f(scheme)
         #"nospaces"
 
-    The above is useful in certain \override situations, 
+    The above is useful in certain \override situations,
     as LilyPond's Scheme interpreter
     will treat unquoted strings as symbols rather than strings.
 
@@ -57,8 +57,8 @@ class Scheme(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_force_quotes', 
-        '_quoting', 
+        '_force_quotes',
+        '_quoting',
         '_value',
         )
 
@@ -102,7 +102,7 @@ class Scheme(AbjadObject):
         ::
 
             >>> format(scheme, 'storage')
-            "schemetools.Scheme('f', 'o', 'o')"
+            "schemetools.Scheme('foo')"
 
         Returns string.
         '''
@@ -139,6 +139,8 @@ class Scheme(AbjadObject):
 
     @property
     def _positional_argument_values(self):
+        if isinstance(self._value, basestring):
+            return (self._value,)
         return self._value
 
     ### PRIVATE METHODS ###
@@ -146,7 +148,7 @@ class Scheme(AbjadObject):
     # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         pieces = AbjadObject._get_tools_package_qualified_repr_pieces(
-            self, 
+            self,
             is_indented=False,
             )
         string = ''.join(pieces)
@@ -178,7 +180,7 @@ class Scheme(AbjadObject):
             >>> schemetools.Scheme.format_scheme_value([1.5, True, False])
             '(1.5 #t #f)'
 
-        Strings without whitespace can be forcibly quoted via the 
+        Strings without whitespace can be forcibly quoted via the
         `force_quotes` keyword:
 
         ::

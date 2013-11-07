@@ -1048,7 +1048,7 @@ class ScoreMutationAgent(object):
 
             ::
 
-                >>> for measure in iterationtools.iterate_measures_in_expr(score):
+                >>> for measure in iterate(score).by_class(scoretools.Measure):
                 ...     mutate(measure[:]).rewrite_meter(measure)
 
             ..  doctest::
@@ -1127,7 +1127,7 @@ class ScoreMutationAgent(object):
 
             ::
 
-                >>> for measure in iterationtools.iterate_measures_in_expr(score):
+                >>> for measure in iterate(score).by_class(scoretools.Measure):
                 ...     mutate(measure[:]).rewrite_meter(
                 ...         measure,
                 ...         boundary_depth=1,

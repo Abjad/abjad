@@ -54,10 +54,8 @@ class WoodwindFingering(AbjadObject):
         >>> print fingering_command.storage_format
         markuptools.MarkupCommand(
             'woodwind-diagram',
-            schemetools.Scheme('c', 'l', 'a', 'r', 'i', 'n', 'e', 't'),
-            schemetools.Scheme(schemetools.SchemePair('cc', ('one', 'two', 'three', 'five')), 
-                schemetools.SchemePair('lh', ('R', 'thumb')), 
-                schemetools.SchemePair('rh', ('e',)))
+            schemetools.Scheme('clarinet'),
+            schemetools.Scheme(schemetools.SchemePair('cc', ('one', 'two', 'three', 'five')), schemetools.SchemePair('lh', ('R', 'thumb')), schemetools.SchemePair('rh', ('e',)))
             )
 
     Attach the MarkupCommand to score components, such as a chord
