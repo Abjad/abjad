@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 from abjad.tools.topleveltools import iterate
 
 
-class ScoreMutationAgent(object):
+class MutationAgent(object):
     r'''A wrapper around the Abjad score mutators.
 
     ..  container:: example
@@ -17,7 +17,7 @@ class ScoreMutationAgent(object):
         ::
 
             >>> mutate(staff[2:])
-            ScoreMutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+            MutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
 
     '''
 
@@ -43,7 +43,7 @@ class ScoreMutationAgent(object):
 
                 >>> staff = Staff("c'4 e'4 d'4 f'4")
                 >>> mutate(staff[2:])
-                ScoreMutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+                MutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
 
         Returns string.
         '''

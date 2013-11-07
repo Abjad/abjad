@@ -96,8 +96,8 @@ Introducing  ``mutate()``
 
 A new ``mutate()`` function is now availble when you start Abjad.
 ``mutate()`` is a factory function that returns an instance of the
-new ``ScoreMutationAgent`` class when called on any score component. Use
-the ``ScoreMutationAgent`` to make structural changes to the component
+new ``MutationAgent`` class when called on any score component. Use
+the ``MutationAgent`` to make structural changes to the component
 or components on which it was called. Here's how to use ``mutate()``
 to split the notes in a staff:
 
@@ -114,13 +114,13 @@ show(staff)
 
 These are the methods available as part of the new mutation interface:
 
-- ``ScoreMutationAgent.copy()``
-- ``ScoreMutationAgent.extract()``
-- ``ScoreMutationAgent.fuse()``
-- ``ScoreMutationAgent.replace()``
-- ``ScoreMutationAgent.scale()``
-- ``ScoreMutationAgent.splice()``
-- ``ScoreMutationAgent.split()``
+- ``MutationAgent.copy()``
+- ``MutationAgent.extract()``
+- ``MutationAgent.fuse()``
+- ``MutationAgent.replace()``
+- ``MutationAgent.scale()``
+- ``MutationAgent.splice()``
+- ``MutationAgent.split()``
 
 ``mutate()`` cleans up previously complex parts of the system.
 There are now only a single copy function, a single split

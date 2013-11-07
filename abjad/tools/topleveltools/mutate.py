@@ -15,9 +15,9 @@ def mutate(expr):
 
             >>> notes = staff[-2:]
             >>> mutate(notes)
-            ScoreMutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+            MutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
 
     Returns score mutation agent.
     '''
     from abjad.tools import agenttools
-    return agenttools.ScoreMutationAgent(expr)
+    return agenttools.MutationAgent(expr)
