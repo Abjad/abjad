@@ -81,9 +81,17 @@ class RunDoctestsScript(DirectoryScript):
                     if failure_count:
                         failed_file_paths.append(os.path.relpath(file_path))
                         error_messages.append(string_buffer.getvalue())
-                        print 'FAILED'
+                        print ''.join((
+                            self.colors['RED'],
+                            'FAILED',
+                            self.colors['END'],
+                            ))
                     else:
-                        print 'OK'
+                        print ''.join((
+                            self.colors['BLUE'],
+                            'OK',
+                            self.colors['END'],
+                            ))
                     total_failures += failure_count
                     total_tests += test_count
         if failed_file_paths:

@@ -62,6 +62,15 @@ class DeveloperScript(abctools.AbjadObject):
         return self._argument_parser
 
     @property
+    def colors(self):
+        return {
+            'BLUE': '\033[94m',
+            'RED': '\033[91m',
+            'GREEN': '\033[92m',
+            'END': '\033[0m',
+            }
+
+    @property
     def formatted_help(self):
         return self._argument_parser.format_help()
 
