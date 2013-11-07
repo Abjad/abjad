@@ -19,5 +19,5 @@ def iterate(expr):
 
     Returns score iteration agent.
     '''
-    from abjad.tools import iterationtools
-    return iterationtools.ScoreIterationAgent(expr)
+    from abjad.tools import agenttools
+    return agenttools.ScoreIterationAgent(expr)

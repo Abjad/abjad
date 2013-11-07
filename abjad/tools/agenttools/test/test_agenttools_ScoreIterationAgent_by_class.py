@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_01():
+def test_agenttools_ScoreIterationAgent_by_class_01():
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     chords = iterate(staff).by_class(Chord)
     chords = list(chords)
@@ -10,7 +10,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_01():
     assert chords[1] is staff[3]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_02():
+def test_agenttools_ScoreIterationAgent_by_class_02():
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     chords = iterate(staff).by_class(Chord, reverse=True)
     chords = list(chords)
@@ -18,7 +18,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_02():
     assert chords[1] is staff[0]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_03():
+def test_agenttools_ScoreIterationAgent_by_class_03():
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beam = spannertools.BeamSpanner()
     attach(beam, staff[:])
@@ -49,7 +49,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_03():
     assert components[5] is leaves[-4]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_04():
+def test_agenttools_ScoreIterationAgent_by_class_04():
     staff = Staff("c'8 d'8 e'8 f'8")
     spanner = spannertools.BeamSpanner()
     attach(spanner, staff[2:])
@@ -58,7 +58,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_04():
     assert components == staff[2:]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_05():
+def test_agenttools_ScoreIterationAgent_by_class_05():
     staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
     tuplet = Tuplet(Multiplier(2, 3), staff[1][:])
     staff.is_simultaneous = True
@@ -70,7 +70,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_05():
     assert containers[3] is staff[0]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_06():
+def test_agenttools_ScoreIterationAgent_by_class_06():
     staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
     tuplet = Tuplet(Multiplier(2, 3), staff[1][:])
     staff.is_simultaneous = True
@@ -82,7 +82,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_06():
     assert containers[3] is tuplet
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_07():
+def test_agenttools_ScoreIterationAgent_by_class_07():
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     assert testtools.compare(
         staff,
@@ -114,7 +114,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_07():
     assert leaves[5] is staff[0][0]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_08():
+def test_agenttools_ScoreIterationAgent_by_class_08():
     r'''Optional start and stop keyword parameters.
     '''
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
@@ -139,7 +139,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_08():
     assert len(leaves) == 2
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_09():
+def test_agenttools_ScoreIterationAgent_by_class_09():
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     assert testtools.compare(
         staff,
@@ -171,7 +171,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_09():
     assert leaves[5] is staff[2][1]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_10():
+def test_agenttools_ScoreIterationAgent_by_class_10():
     r'''Optional start and stop keyword parameters.
     '''
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
@@ -194,7 +194,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_10():
     assert len(leaves) == 2
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_11():
+def test_agenttools_ScoreIterationAgent_by_class_11():
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     assert testtools.compare(
         staff,
@@ -223,7 +223,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_11():
     assert measures[2] is staff[0]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_12():
+def test_agenttools_ScoreIterationAgent_by_class_12():
     r'''Optional start and stop keyword paramters.
     '''
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
@@ -239,7 +239,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_12():
     assert len(measures) == 2
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_13():
+def test_agenttools_ScoreIterationAgent_by_class_13():
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
     assert testtools.compare(
         staff,
@@ -268,7 +268,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_13():
     assert measures[2] is staff[2]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_14():
+def test_agenttools_ScoreIterationAgent_by_class_14():
     r'''Optional start and stop keyword paramters.
     '''
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
@@ -284,7 +284,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_14():
     assert len(measures) == 2
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_15():
+def test_agenttools_ScoreIterationAgent_by_class_15():
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     notes_and_chords = iterate(staff).by_class((Note, Chord), reverse=True)
     notes_and_chords = list(notes_and_chords)
@@ -294,7 +294,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_15():
     assert notes_and_chords[2] is staff[0]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_16():
+def test_agenttools_ScoreIterationAgent_by_class_16():
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     notes_and_chords = iterate(staff).by_class((Note, Chord))
     notes_and_chords = list(notes_and_chords)
@@ -304,7 +304,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_16():
     assert notes_and_chords[2] is staff[3]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_17():
+def test_agenttools_ScoreIterationAgent_by_class_17():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
@@ -339,7 +339,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_17():
     assert notes[5] is staff[0][0]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_18():
+def test_agenttools_ScoreIterationAgent_by_class_18():
     r'''Optional start and stop keyword parameters.
     '''
     staff = Staff()
@@ -385,7 +385,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_18():
     assert len(notes) == 2
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_19():
+def test_agenttools_ScoreIterationAgent_by_class_19():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
@@ -420,7 +420,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_19():
     assert notes[5] is staff[2][1]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_20():
+def test_agenttools_ScoreIterationAgent_by_class_20():
     r'''Optional start and stop keyword parameters.
     '''
     staff = Staff()
@@ -466,7 +466,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_20():
     assert len(notes) == 2
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_21():
+def test_agenttools_ScoreIterationAgent_by_class_21():
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     rests = iterate(staff).by_class(Rest, reverse=True)
     rests = list(rests)
@@ -474,7 +474,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_21():
     assert rests[1] is staff[2]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_22():
+def test_agenttools_ScoreIterationAgent_by_class_22():
     staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
     rests = iterate(staff).by_class(Rest)
     rests = list(rests)
@@ -482,7 +482,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_22():
     assert rests[1] is staff[4]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_23():
+def test_agenttools_ScoreIterationAgent_by_class_23():
     score_1 = Score([Staff("c'8 d'8 e'8 f'8")])
     score_2 = Score([Staff("c'1"), Staff("g'1")])
     scores = [score_1, score_2]
@@ -492,7 +492,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_23():
     assert scores[1] is score_1
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_24():
+def test_agenttools_ScoreIterationAgent_by_class_24():
     score_1 = Score([Staff("c'8 d'8 e'8 f'8")])
     score_2 = Score([Staff("c'1"), Staff("g'1")])
     scores = [score_1, score_2]
@@ -502,7 +502,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_24():
     assert scores[1] is score_2
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_25():
+def test_agenttools_ScoreIterationAgent_by_class_25():
     staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
     skips = iterate(staff).by_class(scoretools.Skip)
     skips = list(skips)
@@ -510,7 +510,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_25():
     assert skips[1] is staff[4]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_26():
+def test_agenttools_ScoreIterationAgent_by_class_26():
     staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
     skips = iterate(staff).by_class(scoretools.Skip, reverse=True)
     skips = list(skips)
@@ -518,7 +518,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_26():
     assert skips[1] is staff[2]
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_27():
+def test_agenttools_ScoreIterationAgent_by_class_27():
     score = Score(4 * Staff([]))
     score[0].name = '1'
     score[1].name = '2'
@@ -529,7 +529,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_27():
         assert staff.name == str(4 - i)
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_28():
+def test_agenttools_ScoreIterationAgent_by_class_28():
     score = Score(4 * Staff([]))
     score[0].name = '1'
     score[1].name = '2'
@@ -540,7 +540,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_28():
         assert staff.name == str(i + 1)
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_29():
+def test_agenttools_ScoreIterationAgent_by_class_29():
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     tuplet_0 = Tuplet(Multiplier(2, 3), staff[:3])
     tuplet_1 = Tuplet(Multiplier(2, 3), staff[-3:])
@@ -550,7 +550,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_29():
     assert tuplets[1] is tuplet_0
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_30():
+def test_agenttools_ScoreIterationAgent_by_class_30():
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     tuplet_0 = Tuplet(Multiplier(2, 3), staff[:3])
     tuplet_1 = Tuplet(Multiplier(2, 3), staff[-3:])
@@ -560,7 +560,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_30():
     assert tuplets[1] is tuplet_1
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_31():
+def test_agenttools_ScoreIterationAgent_by_class_31():
     voice_1 = Voice("c'8 d'8 e'8 f'8")
     voice_2 = Voice("c'4 b4")
     staff = Staff([voice_1, voice_2])
@@ -571,7 +571,7 @@ def test_iterationtools_ScoreIterationAgent_by_class_31():
     assert voices[1] is voice_1
 
 
-def test_iterationtools_ScoreIterationAgent_by_class_32():
+def test_agenttools_ScoreIterationAgent_by_class_32():
     voice_1 = Voice("c'8 d'8 e'8 f'8")
     voice_2 = Voice("c'4 b4")
     staff = Staff([voice_1, voice_2])
