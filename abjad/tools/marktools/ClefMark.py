@@ -144,6 +144,26 @@ class ClefMark(ContextMark):
             return self._clef_name == arg._clef_name
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats clef.
+
+        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> clef = marktools.ClefMark('treble')
+            >>> print format(clef)
+            marktools.ClefMark(
+                'treble',
+                target_context=scoretools.Staff
+                )
+
+        Returns string.
+        '''
+        superclass = super(ClefMark, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __ne__(self, arg):
         r'''True when clef of `arg` does not equal clef name of clef.
         False otherwise.
@@ -297,20 +317,3 @@ class ClefMark(ContextMark):
         else:
             base_name = self._clef_name
         return self._clef_name_to_middle_c_position[base_name] + alteration
-
-    @property
-    def storage_format(self):
-        r'''Storage format of clef.
-
-        ::
-
-            >>> print clef.storage_format
-            marktools.ClefMark(
-                'treble',
-                target_context=scoretools.Staff
-                )
-
-        Returns string.
-        '''
-        superclass = super(ClefMark, self)
-        return superclass.storage_format

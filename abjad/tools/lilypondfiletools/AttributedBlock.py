@@ -66,9 +66,12 @@ class AttributedBlock(list, AbjadObject):
         from abjad.tools import schemetools
         result = []
         for value in self:
-            if isinstance(value, 
-                (schemetools.Scheme, marktools.LilyPondCommandMark)):
-                result.append(format(value))
+            acceptable_types = (
+                schemetools.Scheme, 
+                marktools.LilyPondCommandMark,
+                )
+            if isinstance(value, acceptable_types):
+                result.append(format(value, 'lilypond'))
         for key, value in sorted(vars(self).items()):
             if not key.startswith('_'):
                 # format subkeys via double underscore
@@ -79,17 +82,21 @@ class AttributedBlock(list, AbjadObject):
                         formatted_key[i] = "#'%s" % formatted_key[i]
                 formatted_key = ' '.join(formatted_key)
                 # format value
-                if isinstance(value, markuptools.Markup):
-                    formatted_value = value._get_format_pieces()
-                elif isinstance(value, (
+                accetable_types = (
                     schemetools.Scheme,
                     lilypondfiletools.LilyPondDimension,
                     marktools.LilyPondCommandMark,
-                    )):
-                    formatted_value = [format(value)]
+                    )
+                if isinstance(value, markuptools.Markup):
+                    formatted_value = value._get_format_pieces()
+                elif isinstance(value, accetable_types):
+                    formatted_value = [format(value, 'lilypond')]
                 else:
-                    formatted_value = [format(schemetools.Scheme(value))]
-                setting = '%s = %s' % (formatted_key, formatted_value[0])
+                    formatted_value = schemetools.Scheme(value)
+                    formatted_value = format(formatted_value, 'lilypond')
+                    formatted_value = [formatted_value]
+                setting = '{!s} = {!s}'
+                setting = setting.format(formatted_key, formatted_value[0])
                 result.append(setting)
                 result.extend(formatted_value[1:])
         return result

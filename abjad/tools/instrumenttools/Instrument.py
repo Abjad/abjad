@@ -361,13 +361,13 @@ class Instrument(ContextMark):
     @property
     def _lilypond_format(self):
         result = []
-        line = r'\set {}.instrumentName = {}'
+        line = r'\set {!s}.instrumentName = {!s}'
         line = line.format(
             self._target_context_name, 
             self.instrument_name_markup,
             )
         result.append(line)
-        line = r'\set {}.shortInstrumentName = {}'
+        line = r'\set {!s}.shortInstrumentName = {!s}'
         line = line.format(
             self._target_context_name, 
             self.short_instrument_name_markup,

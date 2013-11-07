@@ -85,6 +85,20 @@ class MarkupCommand(AbjadObject):
                     return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats markup command.
+
+        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        elif format_specification == 'lilypond':
+            return self._lilypond_format
+        return str(self)
+
     def __repr__(self):
         result = [repr(self.command)]
         result.extend([repr(x) for x in self.args])
@@ -116,14 +130,6 @@ class MarkupCommand(AbjadObject):
         r'''String of markup command command-name.
         '''
         return self._command
-
-    @property
-    def storage_format(self):
-        r'''Storage format of markup command.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PRIVATE METHODS ###
 

@@ -38,13 +38,15 @@ class ContextMark(Mark):
         return type(self)(target_context=self._target_context)
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats context mark.
+
+        Set `format_specification` to `''`, `'lilypond`' or `'storage'`.
+        Interprets `''` equal to `'storage'`.
 
         Returns string.
         '''
-        if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
-        return str(self)
+        superclass = super(ContextMark, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PRIVATE PROPERTIES ###
 

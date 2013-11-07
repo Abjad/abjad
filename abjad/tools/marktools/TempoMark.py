@@ -141,6 +141,27 @@ class TempoMark(ContextMark):
                         return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats tempo.
+
+        Set `format_specification` to `''`', `'lilypond'` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> tempo_mark = marktools.TempoMark('Allegro', (1, 4), 84)
+            >>> print format(tempo_mark)
+            marktools.TempoMark(
+                'Allegro',
+                durationtools.Duration(1, 4),
+                84
+            )
+
+        Returns string.
+        '''
+        superclass = super(TempoMark, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __mul__(self, multiplier):
         if isinstance(multiplier, (int, float, durationtools.Duration)):
             if self.is_imprecise:

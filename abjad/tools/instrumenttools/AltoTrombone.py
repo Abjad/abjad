@@ -67,7 +67,7 @@ class AltoTrombone(Instrument):
             ::
 
                 >>> alto_trombone = instrumenttools.AltoTrombone()
-                >>> print alto_trombone.storage_format
+                >>> print format(alto_trombone)
                 instrumenttools.AltoTrombone()
 
         ..  container:: example
@@ -88,7 +88,7 @@ class AltoTrombone(Instrument):
 
             ::
 
-                >>> print custom.storage_format
+                >>> print format(custom)
                 instrumenttools.AltoTrombone(
                     instrument_name='trombone contralto',
                     instrument_name_markup=markuptools.Markup((

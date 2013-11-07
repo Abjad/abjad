@@ -46,11 +46,16 @@ class Mark(AbjadObject):
         return False
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats mark.
+
+        Set `format_specification` to `''`, `'lilypond`' or `'storage'`.
+        Interprets `''` equal to `'storage'`.
 
         Returns string.
         '''
-        if format_specification in ('', 'lilypond'):
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        elif format_specification == 'lilypond':
             return self._lilypond_format
         return str(self)
 
@@ -106,14 +111,6 @@ class Mark(AbjadObject):
         Returns component or none.
         '''
         return self._start_component
-
-    @property
-    def storage_format(self):
-        r'''Storage format of mark.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

@@ -24,7 +24,7 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> print format(woodwind_fingering)
+        >>> print format(woodwind_fingering, 'storage')
         instrumenttools.WoodwindFingering(
             'clarinet',
             center_column=('one', 'two', 'three', 'five'),
@@ -51,7 +51,7 @@ class WoodwindFingering(AbjadObject):
     ::
 
         >>> fingering_command = woodwind_fingering()
-        >>> print fingering_command.storage_format
+        >>> print format(fingering_command)
         markuptools.MarkupCommand(
             'woodwind-diagram',
             schemetools.Scheme('c', 'l', 'a', 'r', 'i', 'n', 'e', 't'),

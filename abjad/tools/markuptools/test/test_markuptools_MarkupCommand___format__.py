@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_markuptools_MarkupCommand_format_01():
+def test_markuptools_MarkupCommand___format___01():
 
     a = markuptools.MarkupCommand('draw-circle', 1, 0.1, False)
     b = markuptools.MarkupCommand('line', ['one', 'two', 'three'])
@@ -12,4 +12,4 @@ def test_markuptools_MarkupCommand_format_01():
     f = markuptools.MarkupCommand('triangle', False)
     g = markuptools.MarkupCommand('concat', [e, f])
 
-    assert format(g) == '\\concat { \\rotate #45 \\combine \\draw-circle #1 #0.1 ##f \\rounded-box \\line { one two three } \\triangle ##f }'
+    assert format(g, 'lilypond') == '\\concat { \\rotate #45 \\combine \\draw-circle #1 #0.1 ##f \\rounded-box \\line { one two three } \\triangle ##f }'

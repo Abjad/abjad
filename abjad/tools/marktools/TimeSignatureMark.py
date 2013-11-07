@@ -119,6 +119,21 @@ class TimeSignatureMark(ContextMark):
         else:
             return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats time signature.
+
+        ::
+
+            >>> print format(marktools.TimeSignatureMark((3, 8)))
+            marktools.TimeSignatureMark(
+                (3, 8)
+                )
+
+        Returns string.
+        '''
+        superclass = super(TimeSignatureMark, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __ge__(self, arg):
         if isinstance(arg, type(self)):
             return self.duration >= arg.duration
@@ -430,21 +445,6 @@ class TimeSignatureMark(ContextMark):
         Returns component or none.
         '''
         return ContextMark.start_component.fget(self)
-
-    @property
-    def storage_format(self):
-        r'''Time signature mark storage format:
-
-        ::
-
-            >>> print marktools.TimeSignatureMark((3, 8)).storage_format
-            marktools.TimeSignatureMark(
-                (3, 8)
-                )
-
-        Returns string.
-        '''
-        return ContextMark.storage_format.fget(self)
 
     @property
     def target_context(self):

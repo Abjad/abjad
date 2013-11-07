@@ -9,7 +9,8 @@ def test_markuptools_combine_markup_commands_01():
     markup_a = MarkupCommand('draw-circle', 4, 0.4, False)
     markup_b = MarkupCommand('filled-box', SchemePair(-4, 4), SchemePair(-0.5, 0.5), 1)
     markup_c = "some text"
-    assert format(combine_markup_commands(markup_a, markup_b, markup_c)) == \
+    new_markup = combine_markup_commands(markup_a, markup_b, markup_c)
+    assert format(new_markup, 'lilypond') == \
         "\\combine \\combine \\draw-circle #4 #0.4 ##f \\filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 \"some text\""
 
 

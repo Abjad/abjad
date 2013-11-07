@@ -22,6 +22,11 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def format_lilypond_context_setting_in_with_block(name, value):
+        r'''Formats LilyPond context setting `name` with `value`
+        in with block.
+
+        Returns string.
+        '''
         name = name.split('_')
         first = name[0:1]
         rest = name[1:]
@@ -29,11 +34,16 @@ class LilyPondFormatManager(object):
         name = first + rest
         name = ''.join(name)
         value = LilyPondFormatManager.format_lilypond_value(value)
-        result = r'{} = {}'.format(name, value)
+        result = r'{!s} = {!s}'.format(name, value)
         return result
 
     @staticmethod
     def format_lilypond_context_setting_inline(name, value, context=None):
+        r'''Formats LilyPond context setting `name` with `value` in
+        `context`.
+
+        Returns string.
+        '''
         name = name.split('_')
         first = name[0:1]
         rest = name[1:]
@@ -102,11 +112,11 @@ class LilyPondFormatManager(object):
                 expr = schemetools.Scheme(expr)
         else:
             expr = schemetools.Scheme(expr, quoting="'")
-        return format(expr)
+        return format(expr, 'lilypond')
 
     @staticmethod
     def get_all_format_contributions(component):
-        r'''Get all format contributions for `component`.
+        r'''Gets all format contributions for `component`.
 
         Returns nested dictionary.
         '''
@@ -118,8 +128,9 @@ class LilyPondFormatManager(object):
             if slot not in result:
                 result[slot] = {}
             result[slot]['spanners'] = contributions
-        settings = LilyPondFormatManager.get_context_setting_format_contributions(
-            component)[1]
+        settings = \
+            LilyPondFormatManager.get_context_setting_format_contributions(
+                component)[1]
         if settings:
             result['context settings'] = settings
         overrides = \
@@ -135,14 +146,14 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def get_all_mark_format_contributions(component):
-        r'''Get all mark format contributions as nested dictionaries.
+        r'''Gets all mark format contributions as nested dictionaries.
 
         The first level of keys represent format slots.
 
         The second level of keys represent format contributor
         ('articulations', 'markup', etc.).
 
-        Returns dict.
+        Returns dictionary.
         '''
         from abjad.tools import marktools
         from abjad.tools import markuptools
@@ -261,7 +272,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def get_context_mark_format_pieces(mark):
-        r'''Get context mark format pieces for `mark`.
+        r'''Gets context mark format pieces for `mark`.
 
         Returns list.
         '''
@@ -286,7 +297,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def get_context_setting_format_contributions(component):
-        r'''Get context setting format contributions for `component`.
+        r'''Gets context setting format contributions for `component`.
 
         Returns sorted list.
         '''
@@ -317,7 +328,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def get_grob_override_format_contributions(component):
-        r'''Get grob override format contributions for `component`.
+        r'''Gets grob override format contributions for `component`.
 
         Returns alphabetized list of LilyPond grob overrides.
         '''
@@ -337,7 +348,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def get_grob_revert_format_contributions(component):
-        '''Get grob revert format contributions.
+        '''Gets grob revert format contributions.
 
         Returns alphabetized list of LilyPond grob reverts.
         '''
@@ -400,10 +411,12 @@ class LilyPondFormatManager(object):
             if contributions:
                 if spanner._is_my_last_leaf(component):
                     for contribution in contributions:
-                        stop_contributions.append((spanner, contribution, None))
+                        triple = (spanner, contribution, None)
+                        stop_contributions.append(triple)
                 else:
                     for contribution in contributions:
-                        other_contributions.append((spanner, contribution, None))
+                        triple = (spanner, contribution, None)
+                        other_contributions.append(triple)
         result['right'] = stop_contributions + other_contributions
         for key in result.keys():
             if not result[key]:
@@ -523,7 +536,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def report_component_format_contributions(component, verbose=False):
-        r'''Report `component` format contributions:
+        r'''Reports `component` format contributions.
 
             >>> staff = Staff("c'4 [ ( d'4 e'4 f'4 ] )")
             >>> override(staff[0]).note_head.color = 'red'
@@ -547,8 +560,8 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def report_spanner_format_contributions(spanner):
-        r'''Report spanner format contributions for every leaf
-        to which spanner attaches:
+        r'''Reports spanner format contributions for every leaf
+        to which spanner attaches.
 
             >>> staff = Staff("c8 d e f")
             >>> spanner = spannertools.BeamSpanner()
