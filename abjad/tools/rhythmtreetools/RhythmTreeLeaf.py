@@ -113,8 +113,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
         Returns string.
         '''
         if self.is_pitched:
-            return '{}'.format(self.preprolated_duration)
-        return '-{}'.format(self.preprolated_duration)
+            return '{!s}'.format(self.preprolated_duration)
+        return '-{!s}'.format(self.preprolated_duration)
 
     ### PUBLIC PROPERTIES ###
 

@@ -95,7 +95,7 @@ class Leaf(Component):
     def _formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
         if self.lilypond_duration_multiplier is not None:
-            return '{} * {}'.format(
+            return '{} * {!s}'.format(
                 duration_string, self.lilypond_duration_multiplier)
         else:
             return duration_string

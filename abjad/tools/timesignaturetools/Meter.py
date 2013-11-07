@@ -706,7 +706,7 @@ class Meter(AbjadObject):
             >>> kernel = \
             ...     meter.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.iteritems()):
-            ...     print '{}\t{}'.format(offset, weight)
+            ...     print '{!s}\t{!s}'.format(offset, weight)
             ...
             0       3/16
             1/8     1/16
