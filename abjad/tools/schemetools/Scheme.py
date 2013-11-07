@@ -91,7 +91,7 @@ class Scheme(AbjadObject):
         r'''Formats scheme.
 
         Set `format_specification` to `''`', `'lilypond'` or ``'storage'``.
-        Interprets `''` equal to `'storage'`.
+        Interprets `''` equal to `'lilypond'`.
 
         ::
 
