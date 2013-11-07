@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.functiontools import override
 from abjad.tools.scoretools.Note import Note
-from abjad.tools.scoretools.Harmonic import Harmonic
 
 
-class NaturalHarmonic(Note, Harmonic):
+class NaturalHarmonic(Note):
     r'''Abjad model of natural harmonic.
 
     Initialize natural harmonic by hand:
