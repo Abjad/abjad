@@ -8,8 +8,7 @@ def apply_bowing_marks(score):
     # apply alternating upbow and downbow for first two sounding bars
     # of the first violin
     for measure in score['First Violin Voice'][6:8]:
-        for i, chord in enumerate(
-            iterationtools.iterate_chords_in_expr(measure)):
+        for i, chord in enumerate(iterate(measure).by_class(Chord)):
             if i % 2 == 0:
                 articulation = marktools.Articulation('downbow')
                 attach(articulation, chord)
