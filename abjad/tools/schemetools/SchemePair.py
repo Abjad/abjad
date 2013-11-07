@@ -35,6 +35,33 @@ class SchemePair(Scheme):
             raise TypeError(message.format(args))
         Scheme.__init__(self, *args, **kwargs)
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats Scheme pair.
+
+        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+        Interprets `''` equal to `'lilypond'`.
+
+        ::
+
+            >>> scheme_pair = schemetools.SchemePair(-1, 1)
+
+        ::
+
+            >>> format(scheme_pair)
+            "#'(-1 . 1)"
+
+        :: 
+        
+            >>> format(scheme_pair, 'storage')
+            'schemetools.SchemePair(-1, 1)'
+
+        Returns string.
+        '''
+        superclass = super(SchemePair, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PRIVATE PROPERTIES ###
 
     @property

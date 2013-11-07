@@ -287,7 +287,7 @@ class ScorePackageManager(PackageManager):
         lines.append('from abjad import *\n')
         lines.append('\n\n')
         line = 'instrumentation={}'
-        line = line.format(instrumentation._storage_format)
+        line = line.format(format(instrumentation))
         lines.append(line)
         file_path = self._get_instrumentation_module_file_path()
         file_pointer = file(file_path, 'w')

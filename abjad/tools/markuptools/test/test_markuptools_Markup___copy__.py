@@ -12,4 +12,4 @@ def test_markuptools_Markup___copy___01():
 
     assert markup_1 == markup_2
     assert repr(markup_1) == repr(markup_2)
-    assert markup_1._storage_format == markup_2._storage_format
+    assert format(markup_1) == format(markup_2)

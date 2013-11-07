@@ -148,10 +148,6 @@ class AbjadObject(object):
         return [repr(self)]
 
     @property
-    def _storage_format(self):
-        return self._tools_package_qualified_indented_repr
-
-    @property
     def _tools_package_name(self):
         for part in reversed(self.__module__.split('.')):
             if not part == type(self).__name__:

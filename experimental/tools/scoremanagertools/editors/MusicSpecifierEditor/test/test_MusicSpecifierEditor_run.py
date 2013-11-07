@@ -8,4 +8,4 @@ def test_MusicSpecifierEditor_run_01():
     editor._run(pending_user_input='q')
 
     assert editor.target == scoremanagertools.specifiers.MusicSpecifier([])
-    assert editor.target.storage_format == 'specifiers.MusicSpecifier([])'
+    assert format(editor.target) == 'specifiers.MusicSpecifier([])'

@@ -3,17 +3,17 @@ from experimental.tools.scoremanagertools import specifiers
 from experimental import *
 
 
-def test_MusicSpecifier_format_01():
+def test_MusicSpecifier___format___01():
     r'''Empty. No keywords.
     '''
 
     specifier = scoremanagertools.specifiers.MusicSpecifier([])
 
     assert repr(specifier) == 'MusicSpecifier([])'
-    assert specifier._storage_format == 'specifiers.MusicSpecifier([])'
+    assert format(specifier) == 'specifiers.MusicSpecifier([])'
 
 
-def test_MusicSpecifier_format_02():
+def test_MusicSpecifier___format___02():
     r'''Empty. With keywords.
     '''
 
@@ -21,7 +21,7 @@ def test_MusicSpecifier_format_02():
 
     assert repr(specifier) == "MusicSpecifier([], name='foo')"
     assert testtools.compare(
-        specifier._storage_format,
+        format(specifier),
         r'''
         specifiers.MusicSpecifier([],
             name='foo',
@@ -30,7 +30,7 @@ def test_MusicSpecifier_format_02():
         )
 
 
-def test_MusicSpecifier_format_03():
+def test_MusicSpecifier___format___03():
     r'''Populated. Without keywords.
     '''
 
@@ -43,7 +43,7 @@ def test_MusicSpecifier_format_03():
     ms = scoremanagertools.specifiers.MusicSpecifier([mcs_1, mcs_2])
 
     assert testtools.compare(
-        ms.storage_format,
+        format(ms),
         '''
         specifiers.MusicSpecifier([
             specifiers.MusicContributionSpecifier([
@@ -61,7 +61,7 @@ def test_MusicSpecifier_format_03():
         )
 
 
-def test_MusicSpecifier_format_04():
+def test_MusicSpecifier___format___04():
     r'''Populated. With keywords.
     '''
 
@@ -74,7 +74,7 @@ def test_MusicSpecifier_format_04():
     ms = scoremanagertools.specifiers.MusicSpecifier([mcs_1, mcs_2], name='blue music')
 
     assert testtools.compare(
-        ms.storage_format,
+        format(ms),
         '''
         specifiers.MusicSpecifier([
             specifiers.MusicContributionSpecifier([

@@ -72,7 +72,7 @@ class RhythmMaker(Maker):
         Returns string.
         '''
         if format_specification in ('', 'storage'):
-            return self._storage_format
+            return self._tools_package_qualified_indented_repr
         return str(self)
 
     def __repr__(self):
@@ -83,12 +83,6 @@ class RhythmMaker(Maker):
         if getattr(self, 'name', None) is not None:
             return '{}({!r})'.format(type(self).__name__, self.name)
         return Maker.__repr__(self)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format(self):
-        return self._tools_package_qualified_indented_repr
 
     ### PRIVATE METHODS ###
 

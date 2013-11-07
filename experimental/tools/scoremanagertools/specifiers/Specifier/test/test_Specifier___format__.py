@@ -13,21 +13,21 @@ class ConcreteSpecifier(Specifier):
         return 'specialtools'
 
 
-def test_Specifier_format_01():
+def test_Specifier___format___01():
     r'''No keywords.
     '''
 
     specifier = ConcreteSpecifier()
 
     assert repr(specifier) == 'ConcreteSpecifier()'
-    assert specifier._storage_format == 'specialtools.ConcreteSpecifier()'
+    assert format(specifier) == 'specialtools.ConcreteSpecifier()'
 
 
-def test_Specifier_format_02():
+def test_Specifier___format___02():
     r'''With keywords.
     '''
 
     specifier = ConcreteSpecifier(name='foo')
 
     assert repr(specifier) == "ConcreteSpecifier(name='foo')"
-    assert specifier._storage_format == "specialtools.ConcreteSpecifier(\n\tname='foo'\n\t)"
+    assert format(specifier) == "specialtools.ConcreteSpecifier(\n\tname='foo'\n\t)"

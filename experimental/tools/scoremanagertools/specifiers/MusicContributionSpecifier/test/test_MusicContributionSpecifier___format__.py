@@ -3,16 +3,16 @@ from experimental.tools.scoremanagertools import specifiers
 from experimental import *
 
 
-def test_MusicContributionSpecifier_format_01():
+def test_MusicContributionSpecifier___format___01():
     r'''Empty.
     '''
 
     specifier = scoremanagertools.specifiers.MusicContributionSpecifier([])
     assert repr(specifier) == 'MusicContributionSpecifier([])'
-    assert specifier._storage_format == 'specifiers.MusicContributionSpecifier([])'
+    assert format(specifier) == 'specifiers.MusicContributionSpecifier([])'
 
 
-def test_MusicContributionSpecifier_format_02():
+def test_MusicContributionSpecifier___format___02():
     r'''Populated.
     '''
 
@@ -22,7 +22,7 @@ def test_MusicContributionSpecifier_format_02():
     specifier.append(specifiers.DirectiveSpecifier(directive_handler_name='foo directives'))
 
     testtools.compare(
-        specifier.storage_format,
+        format(specifier),
         '''
         specifiers.MusicContributionSpecifier([
             specifiers.ArticulationSpecifier(
