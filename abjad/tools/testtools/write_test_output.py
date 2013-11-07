@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import *
 import os
+from abjad.tools import *
 
 
 def write_test_output(output, full_file_name, test_function_name,
@@ -12,7 +12,9 @@ def write_test_output(output, full_file_name, test_function_name,
     if not any([cache_ly, cache_pdf, render_pdf]):
         return
     if isinstance(output, scoretools.Score):
-        lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(output)
+        lilypond_file = \
+            lilypondfiletools.make_floating_time_signature_lilypond_file(
+                output)
         testtools.apply_additional_layout(lilypond_file)
         score = output
     elif isinstance(output, lilypondfiletools.LilyPondFile):
@@ -23,7 +25,8 @@ def write_test_output(output, full_file_name, test_function_name,
     title_lines = test_function_name_to_title_lines(test_function_name)
     lilypond_file.header_block.title = markuptools.make_centered_title_markup(
         title_lines, font_size=6, vspace_before=2, vspace_after=4)
-    lilypond_file.score.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 48))
+    moment = schemetools.SchemeMoment((1, 48))
+    setting(lilypond_file.score).proportionalNotationDuration = moment
     parent_directory_name = os.path.dirname(full_file_name)
     if render_pdf:
         topleveltools.show(lilypond_file)
@@ -53,7 +56,10 @@ def test_function_name_to_title_lines(test_function_name):
         title_lines.append(parts.pop(0))
     lengths = [len(part) for part in parts]
     if 35 < sum(lengths):
-        halves = sequencetools.partition_sequence_by_ratio_of_weights(lengths, [1, 1])
+        halves = sequencetools.partition_sequence_by_ratio_of_weights(
+            lengths, 
+            [1, 1],
+            )
         left_count = len(halves[0])
         right_count = len(halves[-1])
         assert left_count + right_count == len(lengths)

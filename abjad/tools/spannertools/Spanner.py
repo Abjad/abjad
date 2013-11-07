@@ -9,6 +9,7 @@ from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import setting
 Selection = selectiontools.Selection
 
 
@@ -73,7 +74,7 @@ class Spanner(AbjadObject):
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(self.set)
+            new._set = copy.copy(setting(self))
         self._copy_keyword_args(new)
         return new
 
@@ -437,28 +438,6 @@ class Spanner(AbjadObject):
                     result.append(node)
         result = tuple(result)
         return result
-
-#    @property
-#    def override(self):
-#        r'''LilyPond grob override component plug-in.
-#
-#        Returns LilyPond grob override component plug-in.
-#        '''
-#        if not hasattr(self, '_override'):
-#            plugin = lilypondproxytools.LilyPondGrobManager()
-#            self._override = plugin
-#        return self._override
-
-    @property
-    def set(self):
-        r'''LilyPond context setting component plug-in.
-
-        Returns LilyPond context setting component plug-in.
-        '''
-        if not hasattr(self, '_set'):
-            plugin = lilypondproxytools.LilyPondSettingManager()
-            self._set = plugin
-        return self._set
 
     ### PUBLIC METHODS ###
 

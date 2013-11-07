@@ -3,8 +3,8 @@ from abjad import *
 
 
 def configure_score(score):
-    score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
-    score.set.tuplet_full_length = True
+    setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 56)
+    setting(score).tuplet_full_length = True
     override(score).bar_line.stencil = False
     override(score).bar_number.transparent = True
     override(score).spacing_spanner.uniform_stretching = True

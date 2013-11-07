@@ -9,6 +9,7 @@ from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import setting
 from abjad.tools.abctools import AbjadObject
 
 
@@ -147,7 +148,7 @@ class Component(AbjadObject):
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(self.set)
+            new._set = copy.copy(setting(self))
         for mark in self._get_marks():
             new_mark = copy.copy(mark)
             attach(new_mark, new)
@@ -701,19 +702,6 @@ class Component(AbjadObject):
             offsets_in_seconds=offsets_in_seconds,
             marks=marks,
             )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def set(self):
-        r'''LilyPond context setting component plug-in.
-
-        Returns LilyPond context setting component plug-in.
-        '''
-        if not hasattr(self, '_set'):
-            self._set = \
-                lilypondproxytools.LilyPondSettingManager()
-        return self._set
 
     ### PUBLIC METHODS ###
 

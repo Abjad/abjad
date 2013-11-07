@@ -6,6 +6,7 @@ from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import setting
 from abjad.tools.scoretools.Component import Component
 
 
@@ -123,7 +124,7 @@ class Leaf(Component):
         if getattr(leaf, '_override', None) is not None:
             self._override = copy.copy(override(leaf))
         if getattr(leaf, '_set', None) is not None:
-            self._set = copy.copy(leaf.set)
+            self._set = copy.copy(setting(leaf))
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Component._copy_with_marks_but_without_children_or_spanners(self)

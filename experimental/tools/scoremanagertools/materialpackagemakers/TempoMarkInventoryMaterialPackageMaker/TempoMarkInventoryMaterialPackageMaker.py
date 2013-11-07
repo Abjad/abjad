@@ -47,6 +47,6 @@ class TempoMarkInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
         override(score).staff_symbol.transparent = True
         override(score).stem.transparent = True
         override(score).time_signature.stencil = False
-        score.set.proportional_notation_duration = \
+        setting(score).proportional_notation_duration = \
             schemetools.SchemeMoment(1, 24)
         return illustration

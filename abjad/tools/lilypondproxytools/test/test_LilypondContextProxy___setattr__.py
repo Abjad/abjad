@@ -8,20 +8,7 @@ def test_LilypondContextProxy___setattr___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     score = Score([staff])
-    score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(24)
-
-    r'''
-    \new Score \with {
-        tempoWholesPerMinute = #(ly:make-moment 24 1)
-    } <<
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-    >>
-    '''
+    setting(score).tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 
     assert testtools.compare(
         score,
@@ -46,19 +33,8 @@ def test_LilypondContextProxy___setattr___02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     score = Score([staff])
-    score.select_leaves()[1].set.score.tempo_wholes_per_minute = schemetools.SchemeMoment(24)
-
-    r'''
-    \new Score <<
-        \new Staff {
-            c'8
-            \set Score.tempoWholesPerMinute = #(ly:make-moment 24 1)
-            d'8
-            e'8
-            f'8
-        }
-    >>
-    '''
+    moment = schemetools.SchemeMoment(24)
+    setting(score.select_leaves()[1]).score.tempo_wholes_per_minute = moment
 
     assert testtools.compare(
         score,

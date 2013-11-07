@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.lilypondproxytools \
-	import LilyPondSettingManager
+from abjad.tools.lilypondproxytools import LilyPondSettingManager
 
 
 def test_lilypondproxytools_LilyPondSettingManager___repr___01():
@@ -9,13 +8,16 @@ def test_lilypondproxytools_LilyPondSettingManager___repr___01():
     '''
 
     note = Note("c'4")
-    note.set.staff.tuplet_full_length = True
+    setting(note).staff.tuplet_full_length = True
 
-    context_setting_component_plug_in_1 = note.set
-    context_setting_component_plug_in_2 = eval(repr(context_setting_component_plug_in_1))
+    context_setting_component_plug_in_1 = setting(note)
+    context_setting_component_plug_in_2 = \
+        eval(repr(context_setting_component_plug_in_1))
 
-    assert isinstance(context_setting_component_plug_in_1, LilyPondSettingManager)
-    assert isinstance(context_setting_component_plug_in_2, LilyPondSettingManager)
+    assert isinstance(
+        context_setting_component_plug_in_1, LilyPondSettingManager)
+    assert isinstance(
+        context_setting_component_plug_in_2, LilyPondSettingManager)
 
 
 def test_lilypondproxytools_LilyPondSettingManager___repr___02():
@@ -23,7 +25,7 @@ def test_lilypondproxytools_LilyPondSettingManager___repr___02():
     '''
 
     note = Note("c'4")
-    note.set.staff.tuplet_full_length = True
+    setting(note).staff.tuplet_full_length = True
 
-    assert repr(note.set) == \
-        'LilyPondSettingManager(staff__tuplet_full_length=True)'
+    string = 'LilyPondSettingManager(staff__tuplet_full_length=True)'
+    assert repr(setting(note)) == string

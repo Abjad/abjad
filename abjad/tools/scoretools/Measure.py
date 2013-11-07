@@ -5,6 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import setting
 from abjad.tools.scoretools.FixedDurationContainer \
     import FixedDurationContainer
 
@@ -209,7 +210,7 @@ class Measure(FixedDurationContainer):
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(self.set)
+            new._set = copy.copy(setting(self))
         for mark in self._get_marks():
             new_mark = copy.copy(mark)
             attach(new_mark, new)

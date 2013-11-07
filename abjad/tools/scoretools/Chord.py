@@ -274,39 +274,6 @@ class Chord(Leaf):
         return property(**locals())
 
     @property
-    def set(self):
-        r'''LilyPond context setting component plug-in.
-
-        ..  container:: example
-
-            **Example.** Set LilyPond ``stemLeftBeamCount``
-            and ``stemRightBeamCount`` context settings:
-
-            ::
-
-                >>> chord = Chord("<e' cs'' f''>16")
-                >>> show(chord) # doctest: +SKIP
-
-            ::
-
-                >>> beam = spannertools.BeamSpanner()
-                >>> attach(beam, [chord])
-                >>> chord.set.stem_left_beam_count = 0
-                >>> chord.set.stem_right_beam_count = 2
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(chord)
-                \set stemLeftBeamCount = #0
-                \set stemRightBeamCount = #2
-                <e' cs'' f''>16 [ ]
-
-        Returns none.
-        '''
-        return super(Chord, self).set
-
-    @property
     def sounding_pitches(self):
         r"""Sounding pitches in chord.
 

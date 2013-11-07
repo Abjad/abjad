@@ -304,8 +304,9 @@ class LilyPondFormatManager(object):
         result = []
         from abjad.tools.scoretools.Leaf import Leaf
         from abjad.tools.scoretools.Measure import Measure
+        from abjad.tools.topleveltools import setting
         if isinstance(component, (Leaf, Measure)):
-            for name, value in vars(component.set).iteritems():
+            for name, value in vars(setting(component)).iteritems():
                 # if we've found a leaf LilyPondContextNamespace
                 if name.startswith('_'):
                     for x, y in vars(value).iteritems():
@@ -320,7 +321,7 @@ class LilyPondFormatManager(object):
                         LilyPondFormatManager.format_lilypond_context_setting_inline(
                             name, value))
         else:
-            for name, value in vars(component.set).iteritems():
+            for name, value in vars(setting(component)).iteritems():
                 result.append(LilyPondFormatManager.format_lilypond_context_setting_in_with_block(
                     name, value))
         result.sort()

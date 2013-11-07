@@ -7,20 +7,8 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.set.auto_beaming = True
+    setting(staff).auto_beaming = True
 
-    r'''
-    \new Staff \with {
-        autoBeaming = ##t
-    } {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -35,25 +23,17 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___01():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_lilypondproxytools_LilyPondSettingManager___setattr___02():
     r'''Remove LilyPond autoBeaming context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.set.auto_beaming = True
-    del(staff.set.auto_beaming)
+    setting(staff).auto_beaming = True
+    del(setting(staff).auto_beaming)
 
-    r'''
-    \new Staff {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -66,25 +46,16 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___02():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_lilypondproxytools_LilyPondSettingManager___setattr___03():
     r'''Define LilyPond currentBarNumber context setting.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff[0].set.score.current_bar_number = 12
+    setting(staff[0]).score.current_bar_number = 12
 
-    r'''
-    \new Staff {
-        \set Score.currentBarNumber = #12
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert testtools.compare(
         staff,
         r'''
@@ -98,6 +69,8 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___03():
         '''
         )
 
+    assert inspect(staff).is_well_formed()
+
 
 def test_lilypondproxytools_LilyPondSettingManager___setattr___04():
     r'''Define LilyPond currentBarNumber context setting.
@@ -106,7 +79,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___04():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    staff[0].set.score.current_bar_number = 12
+    setting(staff[0]).score.current_bar_number = 12
 
     assert testtools.compare(
         staff,
@@ -134,7 +107,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___05():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.set.font_size = -3
+    setting(staff).font_size = -3
 
     assert testtools.compare(
         staff,
@@ -158,7 +131,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___06():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.set.instrument_name = 'Violini I'
+    setting(staff).instrument_name = 'Violini I'
 
     assert testtools.compare(
         staff,
@@ -182,7 +155,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___07():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.set.instrument_name = markuptools.Markup(r'\circle { V }')
+    setting(staff).instrument_name = markuptools.Markup(r'\circle { V }')
 
     assert testtools.compare(
         staff,
@@ -206,8 +179,8 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___08():
     '''
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
-    score.set.proportional_notation_duration = \
-        schemetools.SchemeMoment(Fraction(1, 56))
+    moment = schemetools.SchemeMoment(Fraction(1, 56))
+    setting(score).proportional_notation_duration = moment
 
     assert testtools.compare(
         score,
@@ -233,7 +206,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___09():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.set.short_instrument_name = 'Vni. I'
+    setting(staff).short_instrument_name = 'Vni. I'
 
     assert testtools.compare(
         staff,
@@ -257,7 +230,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___10():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.set.short_instrument_name = markuptools.Markup(r'\circle { V }')
+    setting(staff).short_instrument_name = markuptools.Markup(r'\circle { V }')
 
     assert testtools.compare(
         staff,
@@ -281,7 +254,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___11():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff.set.suggest_accidentals = True
+    setting(staff).suggest_accidentals = True
 
     assert testtools.compare(
         staff,
@@ -305,7 +278,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___12():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff[1].set.suggest_accidentals = True
+    setting(staff[1]).suggest_accidentals = True
 
     assert testtools.compare(
         staff,
@@ -328,7 +301,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___13():
     '''
 
     staff = Staff([])
-    staff.set.tuplet_full_length = True
+    setting(staff).tuplet_full_length = True
 
     assert testtools.compare(
         staff,
@@ -342,7 +315,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___13():
 
     assert inspect(staff).is_well_formed()
 
-    staff.set.tuplet_full_length = False
+    setting(staff).tuplet_full_length = False
 
     assert testtools.compare(
         staff,
@@ -356,7 +329,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___13():
 
     assert inspect(staff).is_well_formed()
 
-    del(staff.set.tuplet_full_length)
+    del(setting(staff).tuplet_full_length)
 
     assert testtools.compare(
         staff,

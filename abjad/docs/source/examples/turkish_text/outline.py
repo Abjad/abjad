@@ -144,8 +144,8 @@ def make_lilypond_file(input_text, base_duration=Duration(1, 16)):
     staff_1.extend(upper_music)
     staff_2.extend(lower_music)
 
-    staff_1.override.staff_symbol.line_count = 4
-    staff_2.override.staff_symbol.line_count = 4
+    override(staff_1).staff_symbol.line_count = 4
+    override(staff_2).staff_symbol.line_count = 4
 
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
     format_score(score)
@@ -153,17 +153,17 @@ def make_lilypond_file(input_text, base_duration=Duration(1, 16)):
     return lilypond_file
 
 def format_score(score):
-    score.override.bar_line.transparent = True
-    score.override.beam.positions = (-6, -6)
-    score.override.spacing_spanner.strict_grace_spacing = True
-    score.override.spacing_spanner.strict_note_spacing = True
-    score.override.spacing_spanner.uniform_stretching = True
-    score.override.span_bar.transparent = True
-    score.override.stem.direction = 'down'
-    score.override.time_signature.transparent = True
-    score.set.autoBeaming = False
-    score.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 64))
-    score.set.tupletFullLength = True
+    override(score).bar_line.transparent = True
+    override(score).beam.positions = (-6, -6)
+    override(score).spacing_spanner.strict_grace_spacing = True
+    override(score).spacing_spanner.strict_note_spacing = True
+    override(score).spacing_spanner.uniform_stretching = True
+    override(score).span_bar.transparent = True
+    override(score).stem.direction = 'down'
+    override(score).time_signature.transparent = True
+    setting(score).autoBeaming = False
+    setting(score).proportionalNotationDuration = schemetools.SchemeMoment((1, 64))
+    setting(score).tupletFullLength = True
 
     vector = layouttools.make_spacing_vector(0, 0, 6, 0)
     score[0].override.staff_grouper.staff_staff_spacing = vector
