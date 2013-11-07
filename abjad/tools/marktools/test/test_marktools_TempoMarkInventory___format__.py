@@ -2,13 +2,13 @@
 from abjad import *
 
 
-def test_marktools_TempoMarkInventory_storage_format_01():
+def test_marktools_TempoMarkInventory___format___01():
 
     tempo_mark_inventory = marktools.TempoMarkInventory(
         [('Allegro', (1, 4), 84)])
 
     assert testtools.compare(
-        tempo_mark_inventory.storage_format,
+        format(tempo_mark_inventory),
         r'''
         marktools.TempoMarkInventory([
             marktools.TempoMark(

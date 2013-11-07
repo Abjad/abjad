@@ -22,7 +22,7 @@ class CompoundInequality(TypedList):
 
     ::
 
-        >>> print compound_inequality.storage_format
+        >>> print format(compound_inequality)
         timerelationtools.CompoundInequality([
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),

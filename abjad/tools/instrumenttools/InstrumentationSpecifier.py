@@ -139,7 +139,7 @@ class InstrumentationSpecifier(AbjadObject):
 
             ::
 
-                >>> print instrumentation_specifier.performers.storage_format
+                >>> print format(instrumentation_specifier.performers)
                 instrumenttools.PerformerInventory([
                     instrumenttools.Performer(
                         name='Flute',

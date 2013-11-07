@@ -41,6 +41,18 @@ class TypedCollection(AbjadObject):
             return self._collection == expr
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats typed collection.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     def __getnewargs__(self):
         return tuple((self._collection, self.item_class, self.name))
 
@@ -190,9 +202,3 @@ class TypedCollection(AbjadObject):
             assert isinstance(_name, (str, type(None)))
             self._name = _name
         return property(**locals())
-
-    @property
-    def storage_format(self):
-        r'''Storage format of typed tuple.
-        '''
-        return self._tools_package_qualified_indented_repr

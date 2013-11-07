@@ -132,7 +132,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print score_specification.fresh_single_context_set_expressions.storage_format
+            >>> print format(score_specification.fresh_single_context_set_expressions)
             timespantools.TimespanInventory([])
 
         Returns timespan inventory.
@@ -158,7 +158,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print score_specification.multiple_context_set_expressions.storage_format
+            >>> print format(score_specification.multiple_context_set_expressions)
             timespantools.TimespanInventory([
                 musicexpressiontools.MultipleContextSetExpression(
                     attribute='time_signatures',
@@ -228,7 +228,7 @@ class ScoreSpecification(Specification):
             >>> for timespan_inventory in \
             ...     score_specification.region_expressions_by_attribute.itervalues():
             ...     if timespan_inventory:
-            ...         print timespan_inventory.storage_format
+            ...         print format(timespan_inventory)
             timespantools.TimespanInventory([
                 musicexpressiontools.LiteralDivisionRegionExpression(
                     source_expression=((2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)),
@@ -409,7 +409,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print score_specification.single_context_time_signature_set_expressions.storage_format
+            >>> print format(score_specification.single_context_time_signature_set_expressions)
             timespantools.TimespanInventory([
                 musicexpressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=musicexpressiontools.IterablePayloadExpression(
@@ -521,7 +521,7 @@ class ScoreSpecification(Specification):
             ...     for timespan_inventory in \
             ...         voice_proxy.payload_expressions_by_attribute.itervalues():
             ...         if timespan_inventory:
-            ...             print timespan_inventory.storage_format
+            ...             print format(timespan_inventory)
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedDivisionPayloadExpression(
                     payload=musicexpressiontools.DivisionList(

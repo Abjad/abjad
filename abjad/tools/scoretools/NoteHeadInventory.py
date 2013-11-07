@@ -15,7 +15,7 @@ class NoteHeadInventory(TypedList):
 
     ::
 
-        >>> print inventory.storage_format
+        >>> print format(inventory)
         scoretools.NoteHeadInventory([
             scoretools.NoteHead(
                 written_pitch=pitchtools.NamedPitch("a'"),

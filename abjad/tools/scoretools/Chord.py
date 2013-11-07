@@ -204,7 +204,7 @@ class Chord(Leaf):
 
                 ::
 
-                    >>> print chord.note_heads.storage_format
+                    >>> print format(chord.note_heads)
                     scoretools.NoteHeadInventory([
                         scoretools.NoteHead(
                             written_pitch=pitchtools.NamedPitch("g'"),

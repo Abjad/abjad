@@ -18,7 +18,7 @@ class OctaveTranspositionMappingInventory(TypedList):
 
     ::
 
-        >>> print inventory.storage_format
+        >>> print format(inventory)
         pitchtools.OctaveTranspositionMappingInventory([
             pitchtools.OctaveTranspositionMapping([
                 pitchtools.OctaveTranspositionMappingComponent(

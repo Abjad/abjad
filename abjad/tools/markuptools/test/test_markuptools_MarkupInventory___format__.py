@@ -2,12 +2,12 @@
 from abjad import *
 
 
-def test_markuptools_MarkupInventory_storage_format_01():
+def test_markuptools_MarkupInventory___format___01():
 
     inventory = markuptools.MarkupInventory(['foo', 'bar'])
     
     assert testtools.compare(
-        inventory.storage_format,
+        format(inventory),
         r'''
         markuptools.MarkupInventory([
             markuptools.Markup((

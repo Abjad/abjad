@@ -65,7 +65,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([
                 musicexpressiontools.IterablePayloadExpression(
                     payload=(Division('[3, 16]', start_offset=Offset(1, 16)),

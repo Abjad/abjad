@@ -54,7 +54,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
                     source_expression=musicexpressiontools.StartPositionedRhythmPayloadExpression(

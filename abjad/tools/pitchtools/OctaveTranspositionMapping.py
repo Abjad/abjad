@@ -43,6 +43,35 @@ class OctaveTranspositionMapping(TypedList):
         transposed_pitches = [self._transpose_pitch(x) for x in pitches]
         return transposed_pitches
 
+    def __format__(self, format_specification=''):
+        r'''Formats octave transposition mapping.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(mapping)
+            pitchtools.OctaveTranspositionMapping([
+                pitchtools.OctaveTranspositionMappingComponent(
+                    pitchtools.PitchRange(
+                        '[A0, C4)'
+                        ),
+                    pitchtools.NumberedPitch(15)
+                    ),
+                pitchtools.OctaveTranspositionMappingComponent(
+                    pitchtools.PitchRange(
+                        '[C4, C8)'
+                        ),
+                    pitchtools.NumberedPitch(27)
+                    ),
+                ])
+
+        Returns string.
+        '''
+        superclass = super(OctaveTranspositionMapping, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __repr__(self):
         if self.name:
             return '{}([{}], name={!r})'.format(
@@ -90,31 +119,3 @@ class OctaveTranspositionMapping(TypedList):
         for mapping_component in self:
             result.append(mapping_component._input_argument_token)
         return ', '.join(result)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Octave transposition mapping storage format.
-
-        ::
-
-            >>> print mapping.storage_format
-            pitchtools.OctaveTranspositionMapping([
-                pitchtools.OctaveTranspositionMappingComponent(
-                    pitchtools.PitchRange(
-                        '[A0, C4)'
-                        ),
-                    pitchtools.NumberedPitch(15)
-                    ),
-                pitchtools.OctaveTranspositionMappingComponent(
-                    pitchtools.PitchRange(
-                        '[C4, C8)'
-                        ),
-                    pitchtools.NumberedPitch(27)
-                    ),
-                ])
-
-        Returns string.
-        '''
-        return TypedList.storage_format.fget(self)

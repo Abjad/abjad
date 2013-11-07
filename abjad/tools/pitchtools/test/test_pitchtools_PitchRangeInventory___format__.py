@@ -2,12 +2,12 @@
 from abjad import *
 
 
-def test_pitchtools_PitchRangeInventory_storage_format_01():
+def test_pitchtools_PitchRangeInventory___format___01():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]', '[C4, D5]'])
 
     assert testtools.compare(
-        inventory.storage_format,
+        format(inventory),
         r'''
         pitchtools.PitchRangeInventory([
             pitchtools.PitchRange(

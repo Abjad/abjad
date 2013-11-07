@@ -65,7 +65,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
@@ -88,7 +88,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
@@ -108,7 +108,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
@@ -128,7 +128,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([])
 
         Operates in place and returns timespan inventory.
@@ -212,7 +212,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
@@ -266,7 +266,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-                >>> print result.storage_format
+                >>> print format(result)
                 timespantools.TimespanInventory([
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
@@ -288,7 +288,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
@@ -311,7 +311,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
@@ -339,7 +339,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
@@ -516,7 +516,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
@@ -559,7 +559,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(

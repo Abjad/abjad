@@ -98,7 +98,7 @@ class SegmentSpecification(Specification):
 
         ::
 
-            >>> print red_segment.fresh_single_context_set_expressions.storage_format
+            >>> print format(red_segment.fresh_single_context_set_expressions)
             timespantools.TimespanInventory([
                 musicexpressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=musicexpressiontools.IterablePayloadExpression(

@@ -18,4 +18,15 @@ class InstrumentInventory(TypedList):
     Instrument inventories implement list interface and are mutable.
     '''
 
-    pass
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats instrument inventory.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        superclass = super(InstrumentInventory, self)
+        return superclass.__format__(format_specification=format_specification)

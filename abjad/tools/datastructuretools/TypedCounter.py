@@ -15,7 +15,7 @@ class TypedCounter(TypedCollection):
 
     ::
 
-        >>> print counter.storage_format
+        >>> print format(counter)
         datastructuretools.TypedCounter({
             NumberedPitch(0): 2,
             NumberedPitch(1): 4,

@@ -18,7 +18,7 @@ class TypedList(TypedCollection):
 
     ::
 
-        >>> print object_collection.storage_format
+        >>> print format(object_collection)
         datastructuretools.TypedList([
             23,
             'foo',
@@ -29,7 +29,7 @@ class TypedList(TypedCollection):
 
     ::
 
-        >>> print object_collection.new(keep_sorted=True).storage_format
+        >>> print format(object_collection.new(keep_sorted=True))
         datastructuretools.TypedList([
             23,
             'foo',
@@ -49,7 +49,7 @@ class TypedList(TypedCollection):
 
     ::
 
-        >>> print pitch_collection.storage_format
+        >>> print format(pitch_collection)
         datastructuretools.TypedList([
             pitchtools.NamedPitch("c'"),
             pitchtools.NamedPitch("d'"),
@@ -118,7 +118,7 @@ class TypedList(TypedCollection):
 
         ::
 
-            >>> print dynamic_collection.storage_format
+            >>> print format(dynamic_collection)
             datastructuretools.TypedList([
                 marktools.DynamicMark(
                     'ppp',
@@ -160,7 +160,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> pitch_collection[-1] = 'gqs,'
-            >>> print pitch_collection.storage_format
+            >>> print format(pitch_collection)
             datastructuretools.TypedList([
                 pitchtools.NamedPitch("c'"),
                 pitchtools.NamedPitch("d'"),
@@ -173,7 +173,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> pitch_collection[-1:] = ["f'", "g'", "a'", "b'", "c''"]
-            >>> print pitch_collection.storage_format
+            >>> print format(pitch_collection)
             datastructuretools.TypedList([
                 pitchtools.NamedPitch("c'"),
                 pitchtools.NamedPitch("d'"),

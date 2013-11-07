@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import datastructuretools
 
 
-def test_datastructuretools_TypedList_storage_format_01():
+def test_datastructuretools_TypedList___format___01():
     r'''Empty inventory. No keywords.
     '''
 
@@ -14,12 +13,12 @@ def test_datastructuretools_TypedList_storage_format_01():
         'TypedList([])',
         )
     assert testtools.compare(
-        inventory.storage_format,
+        format(inventory),
         'datastructuretools.TypedList([])',
         )
 
 
-def test_datastructuretools_TypedList_storage_format_02():
+def test_datastructuretools_TypedList___format___02():
     r'''Empty inventory. With keywords.
     '''
 
@@ -33,7 +32,7 @@ def test_datastructuretools_TypedList_storage_format_02():
         )
 
     assert testtools.compare(
-        inventory.storage_format,
+        format(inventory),
         r'''
         datastructuretools.TypedList([],
             name='foo',
@@ -42,7 +41,7 @@ def test_datastructuretools_TypedList_storage_format_02():
         )
 
 
-def test_datastructuretools_TypedList_storage_format_03():
+def test_datastructuretools_TypedList___format___03():
     r'''Populated inventory. Without keywords.
     '''
 
@@ -59,7 +58,7 @@ def test_datastructuretools_TypedList_storage_format_03():
         )
 
     assert testtools.compare(
-        inventory.storage_format,
+        format(inventory),
         r'''
         datastructuretools.TypedList([
             'foo',
@@ -74,7 +73,7 @@ def test_datastructuretools_TypedList_storage_format_03():
         )
 
 
-def test_datastructuretools_TypedList_storage_format_04():
+def test_datastructuretools_TypedList___format___04():
     r'''Populated inventory. With keywords.
     '''
 
@@ -87,7 +86,7 @@ def test_datastructuretools_TypedList_storage_format_04():
         name='foo')
 
     assert testtools.compare(
-        inventory.storage_format,
+        format(inventory),
         r'''
         datastructuretools.TypedList([
             'foo',
