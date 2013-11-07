@@ -10,6 +10,7 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
+from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import mutate
 from abjad.tools.mutationtools import inspect
 from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
@@ -607,7 +608,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         Operates in place and returns start-positioned rhythm 
         payload expression.
         '''
-        for container in iterationtools.iterate_containers_in_expr(self.payload):
+        for container in iterate(self.payload).by_class(scoretools.Container):
             container._music.reverse()
         for spanner in self.payload._get_descendants().get_spanners():
             spanner._reverse_components()
