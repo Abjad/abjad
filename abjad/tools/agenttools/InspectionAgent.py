@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 
 
-class AttributeInspectionAgent(object):
+class InspectionAgent(object):
     r'''Inspect one component.
     '''
 
@@ -626,4 +626,4 @@ def inspect(component):
 
     Returns inspector.
     '''
-    return AttributeInspectionAgent(component)
+    return InspectionAgent(component)

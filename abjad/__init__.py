@@ -58,7 +58,7 @@ from abjad.tools.topleveltools import select
 from abjad.tools.topleveltools import show
 from abjad.tools.iotools import f
 from abjad.tools.iotools import z
-from abjad.tools.agenttools.AttributeInspectionAgent import inspect
+from abjad.tools.agenttools.InspectionAgent import inspect
 
 # import custom exceptions into the builtins module
 import os

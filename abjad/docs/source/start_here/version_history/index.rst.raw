@@ -40,7 +40,7 @@ Introducing ``inspect()``
 
 A new ``inspect()`` function is now available when you start Abjad.
 ``inspect()`` is a factory function that returns an instance of the new
-``AttributeInspectionAgent`` ("the inspector") when called on any score
+``InspectionAgent`` ("the inspector") when called on any score
 component. Use the inspector to examine component attributes determined by
 score structure.  Here's how to use ``inspect()`` to get the duration of a
 tupletted note:
@@ -64,31 +64,31 @@ inspect(note).get_duration()
 
 These are the methods available as part of the new inspection interface:
 
-- ``AttributeInspectionAgent.get_annotation()``
-- ``AttributeInspectionAgent.get_badly_formed_components()``
-- ``AttributeInspectionAgent.get_components()``
-- ``AttributeInspectionAgent.get_contents()``
-- ``AttributeInspectionAgent.get_descendants()``
-- ``AttributeInspectionAgent.get_duration()``
-- ``AttributeInspectionAgent.get_effective_context_mark()``
-- ``AttributeInspectionAgent.get_effective_staff()``
-- ``AttributeInspectionAgent.get_grace_containers()``
-- ``AttributeInspectionAgent.get_leaf()``
-- ``AttributeInspectionAgent.get_lineage()``
-- ``AttributeInspectionAgent.get_mark()``
-- ``AttributeInspectionAgent.get_marks()``
-- ``AttributeInspectionAgent.get_markup()``
-- ``AttributeInspectionAgent.get_parentage()``
-- ``AttributeInspectionAgent.get_spanner()``
-- ``AttributeInspectionAgent.get_spanners()``
-- ``AttributeInspectionAgent.get_tie_chain()``
-- ``AttributeInspectionAgent.get_timespan()``
-- ``AttributeInspectionAgent.get_vertical_moment()``
-- ``AttributeInspectionAgent.get_vertical_moment_at()``
-- ``AttributeInspectionAgent.is_bar_line_crossing()``
-- ``AttributeInspectionAgent.is_well_formed()``
-- ``AttributeInspectionAgent.report_modifications()``
-- ``AttributeInspectionAgent.tabulate_well_formedness_violations()``
+- ``InspectionAgent.get_annotation()``
+- ``InspectionAgent.get_badly_formed_components()``
+- ``InspectionAgent.get_components()``
+- ``InspectionAgent.get_contents()``
+- ``InspectionAgent.get_descendants()``
+- ``InspectionAgent.get_duration()``
+- ``InspectionAgent.get_effective_context_mark()``
+- ``InspectionAgent.get_effective_staff()``
+- ``InspectionAgent.get_grace_containers()``
+- ``InspectionAgent.get_leaf()``
+- ``InspectionAgent.get_lineage()``
+- ``InspectionAgent.get_mark()``
+- ``InspectionAgent.get_marks()``
+- ``InspectionAgent.get_markup()``
+- ``InspectionAgent.get_parentage()``
+- ``InspectionAgent.get_spanner()``
+- ``InspectionAgent.get_spanners()``
+- ``InspectionAgent.get_tie_chain()``
+- ``InspectionAgent.get_timespan()``
+- ``InspectionAgent.get_vertical_moment()``
+- ``InspectionAgent.get_vertical_moment_at()``
+- ``InspectionAgent.is_bar_line_crossing()``
+- ``InspectionAgent.is_well_formed()``
+- ``InspectionAgent.report_modifications()``
+- ``InspectionAgent.tabulate_well_formedness_violations()``
 
 
 Introducing  ``mutate()``
