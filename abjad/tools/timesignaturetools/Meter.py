@@ -235,7 +235,8 @@ class Meter(AbjadObject):
 
         else:
             message = "Can't initialize {} from {!r}."
-            raise ValueError(message.format(type(self).__name__, arg))
+            message = message.format(type(self).__name__, arg)
+            raise ValueError(message)
 
         self._root_node = root
         self._numerator = numerator
@@ -251,13 +252,30 @@ class Meter(AbjadObject):
                 return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats meter.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+            >>> meter = timesignaturetools.Meter((5, 4))
+            >>> print format(meter)
+            timesignaturetools.Meter(
+                '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
+                )
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(meter)
+
     def __iter__(self):
         r'''Iterate meter:
 
         ::
 
-            >>> meter = \
-            ...     timesignaturetools.Meter((5, 4))
+            >>> meter = timesignaturetools.Meter((5, 4))
 
         ::
 
@@ -571,21 +589,6 @@ class Meter(AbjadObject):
         Returns string.
         '''
         return self._root_node.rtm_format
-
-    @property
-    def storage_format(self):
-        r'''Beat hierarchy storage format:
-
-        ::
-
-            >>> print meter.storage_format
-            timesignaturetools.Meter(
-                '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
-                )
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PRIVATE METHODS ###
 
