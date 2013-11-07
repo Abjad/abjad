@@ -54,7 +54,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> print red_segment.score_specification.storage_format
+            >>> print format(red_segment.score_specification)
             musicexpressiontools.ScoreSpecification(
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=4
@@ -104,13 +104,15 @@ class SegmentSpecificationInterface(SpecificationInterface):
         '''
         return self.segment_name
 
-    @property
-    def storage_format(self):
-        r'''Segment specification interface storage format.
+    def __format__(self, format_specification=''):
+        r'''Formats segment specification interface.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
 
         ::
 
-            >>> print red_segment.storage_format
+            >>> print format(red_segment)
             musicexpressiontools.SegmentSpecificationInterface(
                 musicexpressiontools.ScoreSpecification(
                     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
@@ -122,7 +124,8 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
         Returns string.
         '''
-        return SpecificationInterface.storage_format.fget(self)
+        superclass = super(SegmentSpecificationInterface, self)
+        return superclass.__format__(format_specification=format_specification)
 
     @property
     def timespan(self):

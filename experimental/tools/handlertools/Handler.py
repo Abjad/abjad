@@ -27,6 +27,18 @@ class Handler(abctools.AbjadObject):
                     return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats handler.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     ### PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
@@ -48,16 +60,6 @@ class Handler(abctools.AbjadObject):
                 last_keep_index = len(sequence) - i
                 break
         return sequence[first_keep_index:last_keep_index]
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Storage format of handler.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

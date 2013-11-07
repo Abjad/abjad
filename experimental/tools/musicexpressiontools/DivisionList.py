@@ -55,7 +55,7 @@ class DivisionList(BoundedObject):
 
     ::
 
-        >>> print division_list.storage_format
+        >>> print format(division_list)
         musicexpressiontools.DivisionList(
            [Division('[3, 16]', start_offset=Offset(0, 1)),
             Division('[3, 16]', start_offset=Offset(3, 16)),
@@ -121,6 +121,40 @@ class DivisionList(BoundedObject):
             return self._add_closed_division_lists(self, expr)
         else:
             raise ValueError
+
+    def __format__(self, format_specification=''):
+        r'''Formats division list.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(division_list)
+            musicexpressiontools.DivisionList(
+                [Division('[3, 16]', start_offset=Offset(0, 1)), 
+                Division('[3, 16]', start_offset=Offset(3, 16)), 
+                Division('[3, 16]', start_offset=Offset(3, 8)), 
+                Division('[3, 16]', start_offset=Offset(9, 16)), 
+                Division('[3, 16]', start_offset=Offset(3, 4)), 
+                Division('[3, 16]', start_offset=Offset(15, 16)), 
+                Division('[3, 16]', start_offset=Offset(9, 8)), 
+                Division('[3, 16]', start_offset=Offset(21, 16)), 
+                Division('[3, 16]', start_offset=Offset(3, 2)), 
+                Division('[3, 16]', start_offset=Offset(27, 16)), 
+                Division('[3, 16]', start_offset=Offset(15, 8)), 
+                Division('[3, 16]', start_offset=Offset(33, 16)), 
+                Division('[3, 16]', start_offset=Offset(9, 4)), 
+                Division('[3, 16]', start_offset=Offset(39, 16))],
+                start_offset=durationtools.Offset(0, 1),
+                voice_name='Voice 1'
+                )
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
 
     def __getitem__(self, expr):
         r'''Get division list item.
@@ -316,36 +350,6 @@ class DivisionList(BoundedObject):
             return self[0].start_offset
 
     @property
-    def storage_format(self):
-        r'''Storage format of division list.
-
-        ::
-
-            >>> print division_list.storage_format
-            musicexpressiontools.DivisionList(
-                [Division('[3, 16]', start_offset=Offset(0, 1)), 
-                Division('[3, 16]', start_offset=Offset(3, 16)), 
-                Division('[3, 16]', start_offset=Offset(3, 8)), 
-                Division('[3, 16]', start_offset=Offset(9, 16)), 
-                Division('[3, 16]', start_offset=Offset(3, 4)), 
-                Division('[3, 16]', start_offset=Offset(15, 16)), 
-                Division('[3, 16]', start_offset=Offset(9, 8)), 
-                Division('[3, 16]', start_offset=Offset(21, 16)), 
-                Division('[3, 16]', start_offset=Offset(3, 2)), 
-                Division('[3, 16]', start_offset=Offset(27, 16)), 
-                Division('[3, 16]', start_offset=Offset(15, 8)), 
-                Division('[3, 16]', start_offset=Offset(33, 16)), 
-                Division('[3, 16]', start_offset=Offset(9, 4)), 
-                Division('[3, 16]', start_offset=Offset(39, 16))],
-                start_offset=durationtools.Offset(0, 1),
-                voice_name='Voice 1'
-                )
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
-
-    @property
     def voice_name(self):
         r'''Division list voice name.
 
@@ -398,7 +402,7 @@ class DivisionList(BoundedObject):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.DivisionList(
                 [Division('[4, 16]', start_offset=Offset(5, 1)),
                 Division('[3, 16]', start_offset=Offset(21, 4)),
@@ -427,7 +431,7 @@ class DivisionList(BoundedObject):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.DivisionList(
                 [Division('[4, 16]', start_offset=Offset(5, 1)),
                 Division('[3, 16]', start_offset=Offset(21, 4)),

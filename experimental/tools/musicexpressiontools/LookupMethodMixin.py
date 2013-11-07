@@ -34,7 +34,7 @@ class LookupMethodMixin(AbjadObject):
 
         ::
 
-            >>> print lookup.storage_format
+            >>> print format(lookup)
             musicexpressiontools.DivisionSetExpressionLookupExpression(
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(
@@ -65,7 +65,7 @@ class LookupMethodMixin(AbjadObject):
 
         ::
 
-            >>> print lookup.storage_format
+            >>> print format(lookup)
             musicexpressiontools.RhythmSetExpressionLookupExpression(
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(
@@ -95,7 +95,7 @@ class LookupMethodMixin(AbjadObject):
 
         ::
 
-            >>> print lookup.storage_format
+            >>> print format(lookup)
             musicexpressiontools.TimeSignatureSetExpressionLookupExpression(
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(

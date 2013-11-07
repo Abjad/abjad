@@ -211,7 +211,7 @@ class TextualDocumentHandler(DocumentHandler):
         ::
 
             >>> for code_block in source_to_code_block_mapping.itervalues():
-            ...     print code_block.storage_format
+            ...     print format(code_block)
             ...
             newabjadbooktools.CodeBlock(
                 ('print "hello, world!"',),

@@ -12,7 +12,7 @@ class RotationIndicator(abctools.AbjadObject):
 
     ::
 
-        >>> print rotation_indicator.storage_format
+        >>> print format(rotation_indicator)
         musicexpressiontools.RotationIndicator(
             index=-1,
             level=2,
@@ -32,6 +32,29 @@ class RotationIndicator(abctools.AbjadObject):
         self._index = index
         self._level = level
         self._fracture_spanners = fracture_spanners
+
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats rotation indicator.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(rotation_indicator)
+            musicexpressiontools.RotationIndicator(
+                index=-1,
+                level=2,
+                fracture_spanners=False
+                )
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -74,20 +97,3 @@ class RotationIndicator(abctools.AbjadObject):
         Returns integer.
         '''
         return self._level
-
-    @property
-    def storage_format(self):
-        r'''Storage format of rotation indicator.
-
-        ::
-
-            >>> print rotation_indicator.storage_format
-            musicexpressiontools.RotationIndicator(
-                index=-1,
-                level=2,
-                fracture_spanners=False
-                )
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr

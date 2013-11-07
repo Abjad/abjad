@@ -19,7 +19,7 @@ class StartPositionedDivisionPayloadExpression(
 
     ::
 
-        >>> print expression.storage_format
+        >>> print format(expression)
         musicexpressiontools.StartPositionedDivisionPayloadExpression(
             payload=musicexpressiontools.DivisionList(
                 [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -141,6 +141,30 @@ class StartPositionedDivisionPayloadExpression(
         '''
         return StartPositionedPayloadExpression.__and__(self, timespan)
 
+    def __format__(self, format_specification=''):
+        r'''Formats start-positioned division payload expression.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(expression)
+            musicexpressiontools.StartPositionedDivisionPayloadExpression(
+                payload=musicexpressiontools.DivisionList(
+                    [Division('[6, 8]', start_offset=Offset(0, 1)),
+                    Division('[6, 8]', start_offset=Offset(3, 4)),
+                    Division('[3, 4]', start_offset=Offset(3, 2))],
+                    start_offset=durationtools.Offset(0, 1)
+                    ),
+                start_offset=durationtools.Offset(0, 1)
+                )
+
+        Returns string.
+        '''
+        superclass = super(StartPositionedPayloadExpression, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __getitem__(self, expr):
         r'''Get start-positioned division payload expression item.
 
@@ -150,7 +174,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -419,27 +443,6 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.stop_offset.fget(self)
 
     @property
-    def storage_format(self):
-        r'''Start-positioned division payload expression storage format.
-
-        ::
-
-            >>> print expression.storage_format
-            musicexpressiontools.StartPositionedDivisionPayloadExpression(
-                payload=musicexpressiontools.DivisionList(
-                    [Division('[6, 8]', start_offset=Offset(0, 1)),
-                    Division('[6, 8]', start_offset=Offset(3, 4)),
-                    Division('[3, 4]', start_offset=Offset(3, 2))],
-                    start_offset=durationtools.Offset(0, 1)
-                    ),
-                start_offset=durationtools.Offset(0, 1)
-                )
-
-        Returns string.
-        '''
-        return StartPositionedPayloadExpression.storage_format.fget(self)
-
-    @property
     def timespan(self):
         r'''Start-positioned division payload expression timespan.
 
@@ -565,7 +568,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print expression.storage_format
+            >>> print format(expression)
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[3, 4]', start_offset=Offset(0, 1)),
@@ -595,7 +598,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -629,7 +632,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -663,7 +666,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print expression.storage_format
+            >>> print format(expression)
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(0, 1)),
@@ -693,7 +696,7 @@ class StartPositionedDivisionPayloadExpression(
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.StartPositionedDivisionPayloadExpression(
                 payload=musicexpressiontools.DivisionList(
                     [Division('[6, 8]', start_offset=Offset(10, 1)),

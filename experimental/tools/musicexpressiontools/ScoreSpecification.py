@@ -68,6 +68,26 @@ class ScoreSpecification(Specification):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification=''):
+        r'''Formats score specification.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(score_specification)
+            musicexpressiontools.ScoreSpecification(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=2
+                    )
+                )
+
+        Returns string.
+        '''
+        superclass = super(ScoreSpecification, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __repr__(self):
         r'''Score specification interpreter representation.
 
@@ -212,7 +232,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> print score_specification.postrhythm_set_expressions.storage_format
+            >>> print format(score_specification.postrhythm_set_expressions)
             musicexpressiontools.ExpressionInventory([])
 
         Returns expression inventory.
@@ -453,23 +473,6 @@ class ScoreSpecification(Specification):
         Returns none.
         '''
         return
-
-    @property
-    def storage_format(self):
-        r'''Score specification storage format.
-
-        ::
-
-            >>> print score_specification.storage_format
-            musicexpressiontools.ScoreSpecification(
-                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=2
-                    )
-                )
-
-        Returns string.
-        '''
-        return Specification.storage_format.fget(self)
 
     @property
     def time_signatures(self):
@@ -751,7 +754,7 @@ class ScoreSpecification(Specification):
                         if not printed_context_proxy_name:
                             print context_proxy_name
                             printed_context_proxy_name = True
-                        print key, value.storage_format
+                        print key, format(value)
             print ''
         print '### SCORE ###'
         print self
@@ -764,7 +767,7 @@ class ScoreSpecification(Specification):
                     if not printed_context_proxy_name:
                         print context_proxy_name
                         printed_context_proxy_name = True
-                    print key, value.storage_format
+                    print key, format(value)
         print ''
         print '### SCORE-ROOTED ###'
         for context_proxy_name, context_proxy in \
@@ -776,4 +779,4 @@ class ScoreSpecification(Specification):
                     if not printed_context_proxy_name:
                         print context_proxy_name
                         printed_context_proxy_name = True
-                    print key, value.storage_format
+                    print key, format(value)

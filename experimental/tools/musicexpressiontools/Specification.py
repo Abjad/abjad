@@ -34,6 +34,20 @@ class Specification(AbjadObject):
             musicexpressiontools.ContextDictionary(score_template())
         self._initialize_context_name_abbreviations()
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats specification.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     ### PRIVATE PROPERTIES ###
 
     def _context_name_to_improper_parentage_names(self, context_name):
@@ -151,14 +165,6 @@ class Specification(AbjadObject):
         Returns context dictionary.
         '''
         return self._single_context_set_expressions_by_context
-
-    @property
-    def storage_format(self):
-        r'''Storage format of specification.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     @property
     def timespan(self):

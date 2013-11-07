@@ -58,6 +58,27 @@ class SegmentSpecification(Specification):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification=''):
+        r'''Formats segment specification.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(red_segment)
+            musicexpressiontools.SegmentSpecification(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=2
+                    ),
+                'red'
+                )
+
+        Returns string.
+        '''
+        superclass = super(SegmentSpecification, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __repr__(self):
         r'''Segment specification interpreter representation.
 
@@ -216,24 +237,6 @@ class SegmentSpecification(Specification):
         Returns string.
         '''
         return self.segment_name
-
-    @property
-    def storage_format(self):
-        r'''Segment specification storage format.
-
-        ::
-
-            >>> print red_segment.storage_format
-            musicexpressiontools.SegmentSpecification(
-                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=2
-                    ),
-                'red'
-                )
-
-        Returns string.
-        '''
-        return Specification.storage_format.fget(self)
 
     @property
     def time_signatures(self):

@@ -48,7 +48,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     ::
 
-        >>> print fresh_single_context_set_expression.storage_format
+        >>> print format(fresh_single_context_set_expression)
         musicexpressiontools.SingleContextTimeSignatureSetExpression(
             source_expression=musicexpressiontools.IterablePayloadExpression(
                 payload=((4, 8), (3, 8))

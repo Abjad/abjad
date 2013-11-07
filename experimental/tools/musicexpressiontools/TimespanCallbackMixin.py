@@ -141,7 +141,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print timespans[0].storage_format
+            >>> print format(timespans[0])
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -151,7 +151,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print timespans[1].storage_format
+            >>> print format(timespans[1])
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -167,7 +167,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print timespans[0].storage_format
+            >>> print format(timespans[0])
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -177,7 +177,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print timespans[1].storage_format
+            >>> print format(timespans[1])
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -187,7 +187,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print timespans[2].storage_format
+            >>> print format(timespans[2])
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -216,7 +216,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print timespan.storage_format
+            >>> print format(timespan)
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -241,7 +241,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -268,7 +268,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -297,7 +297,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -329,7 +329,7 @@ class TimespanCallbackMixin(CallbackMixin):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.TimespanExpression(
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([

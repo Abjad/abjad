@@ -26,7 +26,7 @@ class IterablePayloadExpression(PayloadExpression):
 
     ::
 
-        >>> print payload_expression.storage_format
+        >>> print format(payload_expression)
         musicexpressiontools.IterablePayloadExpression(
             payload=((4, 16), (2, 16))
             )
@@ -91,6 +91,24 @@ class IterablePayloadExpression(PayloadExpression):
             result[0] = expression
         return result
 
+    def __format__(self, format_specification=''):
+        r'''Formats iterable payload expression.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(payload_expression)
+            musicexpressiontools.IterablePayloadExpression(
+                payload=((4, 16), (2, 16))
+                )
+
+        Returns string.
+        '''
+        superclass = super(IterablePayloadExpression, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __getitem__(self, expr):
         r'''Payload expression get item.
 
@@ -100,7 +118,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
                 payload=((4, 16),)
                 )
@@ -189,21 +207,6 @@ class IterablePayloadExpression(PayloadExpression):
         '''
         return self._payload
 
-    @property
-    def storage_format(self):
-        r'''Payload expression storage format:
-
-        ::
-
-            >>> print payload_expression.storage_format
-            musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 16), (2, 16))
-                )
-
-        Returns string.
-        '''
-        return PayloadExpression.storage_format.fget(self)
-
     ### PUBLIC METHODS ###
 
     def evaluate(self):
@@ -226,7 +229,7 @@ class IterablePayloadExpression(PayloadExpression):
         ::
 
             >>> for element in result:
-            ...     print element.storage_format
+            ...     print format(element)
             musicexpressiontools.IterablePayloadExpression(
                 payload=((4, 16),)
                 )
@@ -255,7 +258,7 @@ class IterablePayloadExpression(PayloadExpression):
         ::
 
             >>> for element in result:
-            ...     print element.storage_format
+            ...     print format(element)
             musicexpressiontools.IterablePayloadExpression(
                 payload=((4, 16),)
                 )
@@ -289,7 +292,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
                 payload=((2, 16), (4, 16))
                 )
@@ -311,7 +314,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
                 payload=(NonreducedFraction(4, 16),
                 NonreducedFraction(2, 16),
@@ -340,7 +343,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
                 payload=((4, 16), (2, 16), (4, 16), (2, 16))
                 )
@@ -361,7 +364,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> print result.storage_format
+            >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
                 payload=((2, 16), (4, 16))
                 )

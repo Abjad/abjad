@@ -61,13 +61,17 @@ class Expression(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def storage_format(self):
-        r'''Storage format of expression.
+    def __format__(self, format_specification=''):
+        r'''Formats expression.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
 
         Returns string.
         '''
-        return self._tools_package_qualified_indented_repr
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
 
     ### PUBLIC METHODS ###
 

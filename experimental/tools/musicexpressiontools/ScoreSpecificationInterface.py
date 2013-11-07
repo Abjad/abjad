@@ -36,6 +36,28 @@ class ScoreSpecificationInterface(SpecificationInterface):
         score_specification._interface = self
         self._score_specification = score_specification
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats score specification interface.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(score_specification)
+            musicexpressiontools.ScoreSpecificationInterface(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=4
+                    )
+                )
+
+        Returns string.
+        '''
+        superclass = super(ScoreSpecificationInterface, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -91,23 +113,6 @@ class ScoreSpecificationInterface(SpecificationInterface):
         return SpecificationInterface.specification_name.fget(self)
 
     @property
-    def storage_format(self):
-        r'''Score specification interface storage format.
-
-        ::
-
-            >>> print score_specification.storage_format
-            musicexpressiontools.ScoreSpecificationInterface(
-                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=4
-                    )
-                )
-
-        Returns string.
-        '''
-        return SpecificationInterface.storage_format.fget(self)
-
-    @property
     def timespan(self):
         r'''Score specification interface timespan.
 
@@ -144,7 +149,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> print offset_expression.storage_format
+            >>> print format(offset_expression)
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(),
                 callbacks=musicexpressiontools.CallbackInventory([
@@ -184,7 +189,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> print select_expression.storage_format
+            >>> print format(select_expression)
             musicexpressiontools.SegmentSelectExpression(
                 voice_name='Voice 1'
                 )

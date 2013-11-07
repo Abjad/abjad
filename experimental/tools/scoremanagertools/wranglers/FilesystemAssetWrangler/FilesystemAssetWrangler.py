@@ -619,7 +619,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         line = 'from experimental.tools.scoremanagertools import iotools\n'
         lines.append(line)
         lines.append('\n\n')
-        line = 'view_inventory={}'.format(view_inventory.storage_format)
+        line = 'view_inventory={}'.format(format(view_inventory))
         lines.append(line)
         lines = ''.join(lines)
         view_file_path = self._get_current_view_file_path()

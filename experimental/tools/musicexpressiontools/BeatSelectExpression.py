@@ -31,7 +31,7 @@ class BeatSelectExpression(SelectExpression):
 
     ::
 
-        >>> print select_expression.storage_format
+        >>> print format(select_expression)
         musicexpressiontools.BeatSelectExpression(
             voice_name='Voice 1'
             )
@@ -44,7 +44,7 @@ class BeatSelectExpression(SelectExpression):
 
     ::
 
-        >>> print select_expression.storage_format
+        >>> print format(select_expression)
         musicexpressiontools.BeatSelectExpression(
             anchor='red',
             voice_name='Voice 1'

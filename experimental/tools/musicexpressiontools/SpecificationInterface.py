@@ -28,6 +28,18 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification=''):
+        r'''Formats specification interface.
+
+        Set `format_specification` to `''` or `'format'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     def __repr__(self):
         return '{}()'.format(type(self).__name__)
 
@@ -59,14 +71,6 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
     @property
     def specification_name(self):
         return
-
-    @property
-    def storage_format(self):
-        r'''Storage format of specification interface.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     @property
     def timespan(self):

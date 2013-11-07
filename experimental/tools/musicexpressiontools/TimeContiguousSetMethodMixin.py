@@ -76,7 +76,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
 
         ::
 
-            >>> print set_expression.storage_format
+            >>> print format(set_expression)
             musicexpressiontools.MultipleContextSetExpression(
                 attribute='divisions',
                 source_expression=musicexpressiontools.IterablePayloadExpression(
@@ -116,7 +116,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
 
         ::
 
-            >>> print set_expression.storage_format
+            >>> print format(set_expression)
             musicexpressiontools.MultipleContextSetExpression(
                 attribute='rhythm',
                 source_expression=musicexpressiontools.RhythmMakerExpression(
@@ -163,7 +163,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
 
         ::
 
-            >>> print set_expression.storage_format
+            >>> print format(set_expression)
             musicexpressiontools.MultipleContextSetExpression(
                 attribute='time_signatures',
                 source_expression=musicexpressiontools.IterablePayloadExpression(

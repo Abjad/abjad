@@ -34,7 +34,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print beats.storage_format
+            >>> print format(beats)
             musicexpressiontools.BeatSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
@@ -60,7 +60,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print divisions.storage_format
+            >>> print format(divisions)
             musicexpressiontools.DivisionSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
@@ -87,7 +87,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print leaves.storage_format
+            >>> print format(leaves)
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
@@ -118,7 +118,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print measures.storage_format
+            >>> print format(measures)
             musicexpressiontools.MeasureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'
@@ -146,7 +146,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print notes_and_chords.storage_format
+            >>> print format(notes_and_chords)
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
                 classes=musicexpressiontools.ClassInventory([
@@ -178,7 +178,7 @@ class SelectMethodMixin(AbjadObject):
 #
 #        ::
 #
-#            >>> print select_expression.storage_format
+#            >>> print format(select_expression)
 #            musicexpressiontools.SegmentSelectExpression(
 #                voice_name='Voice 1'
 #                )
@@ -200,7 +200,7 @@ class SelectMethodMixin(AbjadObject):
 
         ::
 
-            >>> print time_signatures.storage_format
+            >>> print format(time_signatures)
             musicexpressiontools.TimeSignatureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1'

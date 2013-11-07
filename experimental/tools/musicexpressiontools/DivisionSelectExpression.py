@@ -29,7 +29,7 @@ class DivisionSelectExpression(SelectExpression):
 
     ::
 
-        >>> print select_expression.storage_format
+        >>> print format(select_expression)
         musicexpressiontools.DivisionSelectExpression(
             voice_name='Voice 1'
             )
@@ -43,7 +43,7 @@ class DivisionSelectExpression(SelectExpression):
 
     ::
 
-        >>> print select_expression.storage_format
+        >>> print format(select_expression)
         musicexpressiontools.DivisionSelectExpression(
             anchor='red',
             voice_name='Voice 1'
