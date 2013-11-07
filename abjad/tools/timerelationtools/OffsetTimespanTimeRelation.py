@@ -19,7 +19,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     ::
 
-        >>> print time_relation.storage_format
+        >>> print format(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan.start <= offset'),
@@ -99,6 +99,34 @@ class OffsetTimespanTimeRelation(TimeRelation):
                         return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats time relation.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(time_relation)
+            timerelationtools.OffsetTimespanTimeRelation(
+                timerelationtools.CompoundInequality([
+                    timerelationtools.SimpleInequality('timespan.start <= offset'),
+                    timerelationtools.SimpleInequality('offset < timespan.stop'),
+                    ],
+                    logical_operator='and',
+                    ),
+                timespan=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    ),
+                offset=durationtools.Offset(5, 1)
+                )
+
+        Returns string.
+        '''
+        superclass = super(OffsetTimespanTimeRelation, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -141,31 +169,6 @@ class OffsetTimespanTimeRelation(TimeRelation):
         Returns offset or none.
         '''
         return self._offset
-
-    @property
-    def storage_format(self):
-        r'''Time relation storage format:
-
-        ::
-
-            >>> print time_relation.storage_format
-            timerelationtools.OffsetTimespanTimeRelation(
-                timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('timespan.start <= offset'),
-                    timerelationtools.SimpleInequality('offset < timespan.stop'),
-                    ],
-                    logical_operator='and',
-                    ),
-                timespan=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1)
-                    ),
-                offset=durationtools.Offset(5, 1)
-                )
-
-        Returns string.
-        '''
-        return TimeRelation.storage_format.fget(self)
 
     @property
     def timespan(self):

@@ -177,7 +177,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> print time_relation.storage_format
+                >>> print format(time_relation)
                 timerelationtools.TimespanTimespanTimeRelation(
                     timerelationtools.CompoundInequality([
                         timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),

@@ -68,6 +68,20 @@ class SimpleInequality(AbjadObject):
         assert template in self.templates, repr(template)
         self._template = template
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats simple inequality.
+
+            >>> print format(simple_inequality)
+            timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     ### PRIVATE METHODS ###
 
     def _find_index_ge(self, a, x):
@@ -117,17 +131,6 @@ class SimpleInequality(AbjadObject):
         raise ValueError
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Simple inequality storage format.
-
-            >>> print simple_inequality.storage_format
-            timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     @property
     def template(self):

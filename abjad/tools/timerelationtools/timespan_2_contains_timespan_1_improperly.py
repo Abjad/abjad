@@ -12,7 +12,7 @@ def timespan_2_contains_timespan_1_improperly(
     ::
 
         >>> relation = timerelationtools.timespan_2_contains_timespan_1_improperly()
-        >>> print relation.storage_format
+        >>> print format(relation)
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),

@@ -12,7 +12,7 @@ def timespan_2_stops_after_timespan_1_starts(
     ::
 
         >>> relation = timerelationtools.timespan_2_stops_after_timespan_1_starts()
-        >>> print relation.storage_format
+        >>> print format(relation)
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_1.start_offset < timespan_2.stop_offset'),

@@ -7,7 +7,7 @@ def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     ::
 
         >>> relation = timerelationtools.timespan_2_delays_timespan_1()
-        >>> print relation.storage_format
+        >>> print format(relation)
         timerelationtools.TimespanTimespanTimeRelation(
             timerelationtools.CompoundInequality([
                 timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
