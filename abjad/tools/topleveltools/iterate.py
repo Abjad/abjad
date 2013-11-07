@@ -15,9 +15,9 @@ def iterate(expr):
 
             >>> notes = staff[-2:]
             >>> iterate(notes)
-            ScoreIterationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+            IterationAgent(SliceSelection(Note("d'4"), Note("f'4")))
 
     Returns score iteration agent.
     '''
     from abjad.tools import agenttools
-    return agenttools.ScoreIterationAgent(expr)
+    return agenttools.IterationAgent(expr)

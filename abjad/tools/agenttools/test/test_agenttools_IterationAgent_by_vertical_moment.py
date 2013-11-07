@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_agenttools_ScoreIterationAgent_by_vertical_moment_01():
+def test_agenttools_IterationAgent_by_vertical_moment_01():
 
     score = Score([])
     staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
@@ -67,7 +67,7 @@ def test_agenttools_ScoreIterationAgent_by_vertical_moment_01():
     assert moments[5].leaves == (tuplet[0], treble[0], bass[0])
 
 
-def test_agenttools_ScoreIterationAgent_by_vertical_moment_02():
+def test_agenttools_IterationAgent_by_vertical_moment_02():
 
     score = Score([])
     staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
@@ -129,7 +129,7 @@ def test_agenttools_ScoreIterationAgent_by_vertical_moment_02():
     assert moments[3].leaves == (treble[0], bass[0])
 
 
-def test_agenttools_ScoreIterationAgent_by_vertical_moment_03():
+def test_agenttools_IterationAgent_by_vertical_moment_03():
 
     score = Score([])
     staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])
@@ -194,7 +194,7 @@ def test_agenttools_ScoreIterationAgent_by_vertical_moment_03():
     assert set(moments[5].leaves) == set((tuplet[2], treble[1], bass[3]))
 
 
-def test_agenttools_ScoreIterationAgent_by_vertical_moment_04():
+def test_agenttools_IterationAgent_by_vertical_moment_04():
 
     score = Score([])
     staff_1 = Staff([Tuplet((4, 3), "d''8 c''8 b'8")])

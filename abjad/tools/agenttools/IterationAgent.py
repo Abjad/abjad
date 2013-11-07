@@ -3,7 +3,7 @@ from abjad.tools import scoretools
 from abjad.tools import spannertools
 
 
-class ScoreIterationAgent(object):
+class IterationAgent(object):
     r'''A wrapper around the Abjad score iterators.
     '''
 
@@ -29,7 +29,7 @@ class ScoreIterationAgent(object):
 
                 >>> staff = Staff("c'4 e'4 d'4 f'4")
                 >>> iterate(staff[2:])
-                ScoreIterationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+                IterationAgent(SliceSelection(Note("d'4"), Note("f'4")))
 
         Returns string.
         '''

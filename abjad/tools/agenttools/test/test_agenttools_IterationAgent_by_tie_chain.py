@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_agenttools_ScoreIterationAgent_by_tie_chain_01():
+def test_agenttools_IterationAgent_by_tie_chain_01():
     r'''Yield successive tie chains.
     '''
 
@@ -30,7 +30,7 @@ def test_agenttools_ScoreIterationAgent_by_tie_chain_01():
     assert chains[1] == selectiontools.TieChain((staff[0], staff[1]))
 
 
-def test_agenttools_ScoreIterationAgent_by_tie_chain_02():
+def test_agenttools_IterationAgent_by_tie_chain_02():
     r'''Yield successive tie chains.
     '''
 
@@ -44,7 +44,7 @@ def test_agenttools_ScoreIterationAgent_by_tie_chain_02():
     assert chains[3] == selectiontools.TieChain(staff[0])
 
 
-def test_agenttools_ScoreIterationAgent_by_tie_chain_03():
+def test_agenttools_IterationAgent_by_tie_chain_03():
     r'''Yield successive tie chains.
     '''
 
@@ -60,7 +60,7 @@ def test_agenttools_ScoreIterationAgent_by_tie_chain_03():
     assert chains[1] == selectiontools.TieChain((staff[2], staff[3]))
 
 
-def test_agenttools_ScoreIterationAgent_by_tie_chain_04():
+def test_agenttools_IterationAgent_by_tie_chain_04():
     r'''Yield successive tie chains.
     '''
 
@@ -83,7 +83,7 @@ def test_agenttools_ScoreIterationAgent_by_tie_chain_04():
     assert chains[3] == selectiontools.TieChain(staff[3])
 
 
-def test_agenttools_ScoreIterationAgent_by_tie_chain_05():
+def test_agenttools_IterationAgent_by_tie_chain_05():
 
     staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
 
@@ -94,7 +94,7 @@ def test_agenttools_ScoreIterationAgent_by_tie_chain_05():
     assert tie_chains[1].leaves == staff.select_leaves()[:2]
 
 
-def test_agenttools_ScoreIterationAgent_by_tie_chain_06():
+def test_agenttools_IterationAgent_by_tie_chain_06():
 
     staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
 
@@ -104,7 +104,7 @@ def test_agenttools_ScoreIterationAgent_by_tie_chain_06():
     assert tie_chains[1].leaves == staff.select_leaves()[-2:]
 
 
-def test_agenttools_ScoreIterationAgent_by_tie_chain_07():
+def test_agenttools_IterationAgent_by_tie_chain_07():
 
     staff = Staff('c ~ c r d ~ d r')
 
@@ -115,7 +115,7 @@ def test_agenttools_ScoreIterationAgent_by_tie_chain_07():
     assert tie_chains[1] == selectiontools.TieChain(staff[:2])
 
 
-def test_agenttools_ScoreIterationAgent_by_tie_chain_08():
+def test_agenttools_IterationAgent_by_tie_chain_08():
 
     staff = Staff('c ~ c r d ~ d r')
 
