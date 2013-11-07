@@ -636,11 +636,10 @@ class Container(Component):
 
         Returns split parts.
         '''
-        from abjad.tools import spannertools
-        from abjad.tools import scoretools
         from abjad.tools import marktools
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
+        from abjad.tools import selectiontools
+        from abjad.tools import spannertools
         # partition my music
         left_music = self[:i]
         right_music = self[i:]
@@ -680,7 +679,7 @@ class Container(Component):
         # give my attached spanners to my children
         self._move_spanners_to_children()
         # incorporate left and right parents in score if possible
-        selection = self.select(sequential=True)
+        selection = selectiontools.SliceSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._music.__setitem__(slice(start, stop + 1), nonempty_halves)

@@ -536,9 +536,10 @@ class IterationAgent(object):
                 _update_buffer(current_offset, buffer, stop_offsets)
 
         def _next_in_parent(component):
+            from abjad.tools import selectiontools
             if not isinstance(component, scoretools.Component):
                 raise TypeError
-            selection = component.select(sequential=True)
+            selection = selectiontools.SliceSelection(component)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             assert start == stop

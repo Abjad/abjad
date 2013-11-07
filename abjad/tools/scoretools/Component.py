@@ -642,7 +642,7 @@ class Component(AbjadObject):
                     for component in reversed(components):
                         spanner._insert(insert_index, component)
                         component._spanners.add(spanner)
-            selection = self.select(sequential=True)
+            selection = selectiontools.SliceSelection(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             if parent is not None:
@@ -669,7 +669,7 @@ class Component(AbjadObject):
                     for component in reversed(components):
                         spanner._insert(index, component)
                         component._spanners.add(spanner)
-            selection = self.select(sequential=True)
+            selection = selectiontools.SliceSelection(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             if parent is not None:
@@ -702,17 +702,3 @@ class Component(AbjadObject):
             offsets_in_seconds=offsets_in_seconds,
             marks=marks,
             )
-
-    ### PUBLIC METHODS ###
-
-    def select(self, sequential=False):
-        r'''Selects component.
-
-        Returns component selection when `sequential` is false.
-
-        Returns sequential selection when `sequential` is true.
-        '''
-        if not sequential:
-            return selectiontools.Selection(music=self)
-        else:
-            return selectiontools.SliceSelection(music=self)
