@@ -51,6 +51,18 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
                 return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats time interval.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'format'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     def __getitem__(self, item):
         return self._data.__getitem__(item)
 
@@ -105,14 +117,6 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
         r'''stop_offset bound.
         '''
         return self._stop
-
-    @property
-    def storage_format(self):
-        r'''Storage format of time interval.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PRIVATE METHODS ###
 
