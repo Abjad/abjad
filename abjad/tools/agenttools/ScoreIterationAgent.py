@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import selectiontools
+from abjad.tools import spannertools
 
 
 class ScoreIterationAgent(object):
@@ -313,6 +313,95 @@ class ScoreIterationAgent(object):
                 current_group = ()
         if current_group:
             yield current_group
+
+    def by_tie_chain(self, nontrivial=False, pitched=False, reverse=False):
+        r'''Iterate tie chains forward in `expr`:
+
+        ::
+
+            >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4 ~
+                \times 2/3 {
+                    c'16
+                    d'8
+                }
+                e'8
+                f'4 ~
+                f'16
+            }
+
+        ::
+
+            >>> for x in iterate(staff).by_tie_chain():
+            ...     x
+            ...
+            TieChain(Note("c'4"), Note("c'16"))
+            TieChain(Note("d'8"),)
+            TieChain(Note("e'8"),)
+            TieChain(Note("f'4"), Note("f'16"))
+
+        Iterate tie chains backward in `expr`:
+
+        ::
+
+            >>> for x in iterate(staff).by_tie_chain(reverse=True):
+            ...     x
+            ...
+            TieChain(Note("f'4"), Note("f'16"))
+            TieChain(Note("e'8"),)
+            TieChain(Note("d'8"),)
+            TieChain(Note("c'4"), Note("c'16"))
+
+        Iterate pitched tie chains in `expr`:
+
+        ::
+
+            >>> for x in iterate(staff).by_tie_chain(pitched=True):
+            ...     x
+            ...
+            TieChain(Note("c'4"), Note("c'16"))
+            TieChain(Note("d'8"),)
+            TieChain(Note("e'8"),)
+            TieChain(Note("f'4"), Note("f'16"))
+
+        Iterate nontrivial tie chains in `expr`:
+
+        ::
+
+            >>> for x in iterate(staff).by_tie_chain(nontrivial=True):
+            ...     x
+            ...
+            TieChain(Note("c'4"), Note("c'16"))
+            TieChain(Note("f'4"), Note("f'16"))
+
+        Returns generator.
+        '''
+        spanner_classes = (spannertools.TieSpanner,)
+        nontrivial = bool(nontrivial)
+        component_classes = scoretools.Leaf
+        if pitched:
+            component_classes = (scoretools.Chord, scoretools.Note)
+        if not reverse:
+            for leaf in self.by_class(component_classes):
+                tie_spanners = leaf._get_spanners(spanner_classes)
+                if not tie_spanners or \
+                    tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
+                    tie_chain = leaf._get_tie_chain()
+                    if not nontrivial or not tie_chain.is_trivial:
+                        yield tie_chain
+        else:
+            for leaf in self.by_class(component_classes, reverse=True):
+                tie_spanners = leaf._get_spanners(spanner_classes)
+                if not(tie_spanners) or \
+                    tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
+                    tie_chain = leaf._get_tie_chain()
+                    if not nontrivial or not tie_chain.is_trivial:
+                        yield tie_chain
 
     def by_vertical_moment(self, reverse=False):
         r'''Iterate vertical moments forward in `expr`:
