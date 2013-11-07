@@ -4,6 +4,7 @@ from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
 def label_leaves_in_expr_with_pitch_class_numbers(
@@ -60,7 +61,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(
     '''
     from abjad.tools import labeltools
 
-    for note in iterationtools.iterate_notes_in_expr(expr):
+    for note in iterate(expr).by_class(scoretools.Note):
         if number:
             label = markuptools.MarkupCommand(
                 'small', str(abs(note.written_pitch.numbered_pitch_class)))

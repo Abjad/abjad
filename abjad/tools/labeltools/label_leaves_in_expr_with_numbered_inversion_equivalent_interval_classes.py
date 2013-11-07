@@ -6,14 +6,19 @@ from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
-def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(expr, markup_direction=Up):
+def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(
+    expr, markup_direction=Up):
     r"""Label leaves in `expr` with numbered inversion-equivalent interval classes:
 
     ::
 
-        >>> notes = scoretools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)])
+        >>> notes = scoretools.make_notes(
+        ...     [0, 25, 11, -4, -14, -13, 9, 10, 6, 5],
+        ...     [Duration(1, 8)],
+        ...     )
         >>> staff = Staff(notes)
         >>> labeltools.label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(
         ...     staff)
@@ -41,7 +46,7 @@ def label_leaves_in_expr_with_numbered_inversion_equivalent_interval_classes(exp
     Returns none.
     """
 
-    for note in iterationtools.iterate_notes_in_expr(expr):
+    for note in iterate(expr).by_class(scoretools.Note):
         logical_voice_iterator = \
             iterationtools.iterate_logical_voice_from_component(
             note, scoretools.Leaf)

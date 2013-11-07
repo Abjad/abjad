@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import datastructuretools
-from abjad.tools import iterationtools
 from abjad.tools import pitchtools
+from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import mutate
 from experimental.tools.handlertools.PitchHandler import PitchHandler
 
@@ -30,7 +29,7 @@ class DiatonicClusterHandler(PitchHandler):
 
     ::
 
-        >>> f(staff) 
+        >>> f(staff)
         \new Staff {
             <c' d' e' f'>4
             <d' e' f' g' a' b'>4
@@ -48,7 +47,7 @@ class DiatonicClusterHandler(PitchHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        for i, note in enumerate(iterationtools.iterate_notes_in_expr(expr)):
+        for i, note in enumerate(iterate(expr).by_class(scoretools.Note)):
             cluster_width = self.cluster_widths[i]
             start = note.written_pitch.diatonic_pitch_number
             diatonic_numbers = range(start, start + cluster_width)
@@ -56,9 +55,9 @@ class DiatonicClusterHandler(PitchHandler):
                 (12 * (x // 7)) +
                 pitchtools.PitchClass._diatonic_pitch_class_number_to_pitch_class_number[
                     x % 7]
-                for x in diatonic_numbers 
-                ] 
-            chord_pitches = [pitchtools.NamedPitch(x) 
+                for x in diatonic_numbers
+                ]
+            chord_pitches = [pitchtools.NamedPitch(x)
                 for x in chromatic_numbers]
             chord = scoretools.Chord(note)
             chord.note_heads[:] = chord_pitches
