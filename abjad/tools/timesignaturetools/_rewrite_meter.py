@@ -7,7 +7,7 @@ from abjad.tools.functiontools import mutate
 Selection = selectiontools.Selection
 
 
-def __rewrite_meter(
+def _rewrite_meter(
     components,
     meter,
     boundary_depth=None,
@@ -176,7 +176,7 @@ def __rewrite_meter(
             sub_boundary_depth = 1
             if boundary_depth is None:
                 sub_boundary_depth = None
-            __rewrite_meter(
+            _rewrite_meter(
                 item[:],
                 sub_metrical_hierarchy,
                 boundary_depth=sub_boundary_depth,
