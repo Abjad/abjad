@@ -71,6 +71,18 @@ class CyclicPayloadTree(PayloadTree):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification=''):
+        r'''Formats cyclic tree.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     def __iter__(self):
         return self._noncyclic_children.__iter__()
 
@@ -78,16 +90,6 @@ class CyclicPayloadTree(PayloadTree):
 
     def _initialize_children_list(self):
         return CyclicList([])
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def storage_format(self):
-        r'''Storage format of cyclic tree.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

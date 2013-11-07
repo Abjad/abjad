@@ -2,15 +2,15 @@
 from abjad.tools import *
 
 
-def test_datastructuretools_OrdinalConstant_storage_format_01():
-    r'''Storage format exists and is evaluable.
+def test_datastructuretools_OrdinalConstant___format___01():
+    r'''Ordinal constants are storable and the format is evaluable.
     '''
 
     vector_constant_1 = datastructuretools.OrdinalConstant('x', -1, 'Left')
-    storage_format = vector_constant_1.storage_format
+    string = format(vector_constant_1)
 
-    assert storage_format == 'Left'
-    vector_constant_2 = eval(storage_format)
+    assert string == 'Left'
+    vector_constant_2 = eval(string)
 
     assert isinstance(vector_constant_1, datastructuretools.OrdinalConstant)
     assert isinstance(vector_constant_2, datastructuretools.OrdinalConstant)

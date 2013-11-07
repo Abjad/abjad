@@ -194,6 +194,30 @@ class PayloadTree(AbjadObject):
                     return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats payload tree.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = datastructuretools.PayloadTree(sequence)
+
+        ::
+
+            >>> print format(tree)
+            datastructuretools.PayloadTree(
+                [[0, 1], [2, 3], [4, 5], [6, 7]]
+                )
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     def __getitem__(self, expr):
         r'''Get item from tree:
 
@@ -591,26 +615,6 @@ class PayloadTree(AbjadObject):
         Returns node.
         '''
         return self.improper_parentage[-1]
-
-    @property
-    def storage_format(self):
-        r'''PayloadTree storage format:
-
-        ::
-
-            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> tree = datastructuretools.PayloadTree(sequence)
-
-        ::
-
-            >>> print tree.storage_format
-            datastructuretools.PayloadTree(
-                [[0, 1], [2, 3], [4, 5], [6, 7]]
-                )
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     @property
     def width(self):
