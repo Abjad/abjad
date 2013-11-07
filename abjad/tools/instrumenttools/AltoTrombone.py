@@ -53,6 +53,62 @@ class AltoTrombone(Instrument):
             marktools.ClefMark('tenor'),
             ])
 
+    ### SPECIAL METHODS ###
+    def __format__(self, format_specification=''):
+        r'''Formats alto trombone.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ..  container:: example
+
+            Without customization:
+
+            ::
+
+                >>> alto_trombone = instrumenttools.AltoTrombone()
+                >>> print alto_trombone.storage_format
+                instrumenttools.AltoTrombone()
+
+        ..  container:: example
+
+            With customization:
+
+            ::
+
+                >>> custom = instrumenttools.AltoTrombone()
+                >>> custom.instrument_name = 'trombone contralto'
+                >>> markup = markuptools.Markup('Trombone contralto')
+                >>> custom.instrument_name_markup = markup
+                >>> custom.short_instrument_name = 'trb. contr.'
+                >>> markup = markuptools.Markup('Trb. contr.')
+                >>> custom.short_instrument_name_markup = markup
+                >>> custom.pitch_range = '[A2, C6]'
+                >>> custom.sounding_pitch_of_written_middle_c = 'ef'
+
+            ::
+
+                >>> print custom.storage_format
+                instrumenttools.AltoTrombone(
+                    instrument_name='trombone contralto',
+                    instrument_name_markup=markuptools.Markup((
+                        'Trombone contralto',
+                        )),
+                    short_instrument_name='trb. contr.',
+                    short_instrument_name_markup=markuptools.Markup((
+                        'Trb. contr.',
+                        )),
+                    pitch_range=pitchtools.PitchRange(
+                        '[A2, C6]'
+                        ),
+                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('ef')
+                    )
+
+        Returns string.
+        '''
+        superclass = super(AltoTrombone, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -377,56 +433,3 @@ class AltoTrombone(Instrument):
         def fset(self, pitch):
             Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())
-
-    @property
-    def storage_format(self):
-        r'''Storage format.
-
-        ..  container:: example
-
-            Without customization:
-
-            ::
-
-                >>> alto_trombone = instrumenttools.AltoTrombone()
-                >>> print alto_trombone.storage_format
-                instrumenttools.AltoTrombone()
-
-        ..  container:: example
-
-            With customization:
-
-            ::
-
-                >>> custom = instrumenttools.AltoTrombone()
-                >>> custom.instrument_name = 'trombone contralto'
-                >>> markup = markuptools.Markup('Trombone contralto')
-                >>> custom.instrument_name_markup = markup
-                >>> custom.short_instrument_name = 'trb. contr.'
-                >>> markup = markuptools.Markup('Trb. contr.')
-                >>> custom.short_instrument_name_markup = markup
-                >>> custom.pitch_range = '[A2, C6]'
-                >>> custom.sounding_pitch_of_written_middle_c = 'ef'
-
-            ::
-
-                >>> print custom.storage_format
-                instrumenttools.AltoTrombone(
-                    instrument_name='trombone contralto',
-                    instrument_name_markup=markuptools.Markup((
-                        'Trombone contralto',
-                        )),
-                    short_instrument_name='trb. contr.',
-                    short_instrument_name_markup=markuptools.Markup((
-                        'Trb. contr.',
-                        )),
-                    pitch_range=pitchtools.PitchRange(
-                        '[A2, C6]'
-                        ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('ef')
-                    )
-
-        Returns string.
-        '''
-        superclass = super(AltoTrombone, self)
-        return superclass.storage_format

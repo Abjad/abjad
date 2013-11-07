@@ -45,6 +45,60 @@ class AltoFlute(Instrument):
         self._default_short_instrument_name = 'alt. fl.'
         self._default_sounding_pitch_of_written_middle_c = pitch
 
+    ### SPECIAL METHODS ###
+    def __format__(self, format_specification=''):
+        r'''Formats alto flute.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ..  container:: example
+
+            Without customization:
+
+            ::
+
+                >>> alto_flute = instrumenttools.AltoFlute()
+                >>> print format(alto_flute)
+                instrumenttools.AltoFlute()
+
+        ..  container:: example
+
+            With customization:
+
+            ::
+
+                >>> custom = instrumenttools.AltoFlute()
+                >>> custom.instrument_name = 'flauto contralto'
+                >>> markup = markuptools.Markup('Flauto contralto')
+                >>> custom.instrument_name_markup = markup
+                >>> custom.short_instrument_name = 'fl. contr.'
+                >>> markup = markuptools.Markup('Fl. contr.')
+                >>> custom.short_instrument_name_markup = markup
+                >>> custom.pitch_range = '[G3, C7]'
+
+            ::
+
+                >>> print format(custom)
+                instrumenttools.AltoFlute(
+                    instrument_name='flauto contralto',
+                    instrument_name_markup=markuptools.Markup((
+                        'Flauto contralto',
+                        )),
+                    short_instrument_name='fl. contr.',
+                    short_instrument_name_markup=markuptools.Markup((
+                        'Fl. contr.',
+                        )),
+                    pitch_range=pitchtools.PitchRange(
+                        '[G3, C7]'
+                        )
+                    )
+
+        Returns string.
+        '''
+        superclass = super(AltoFlute, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -371,54 +425,3 @@ class AltoFlute(Instrument):
             return Instrument.sounding_pitch_of_written_middle_c.fset(
                 self, pitch)
         return property(**locals())
-
-    @property
-    def storage_format(self):
-        r'''Alto flute storage format.
-
-        ..  container:: example
-
-            Without customization:
-
-            ::
-
-                >>> alto_flute = instrumenttools.AltoFlute()
-                >>> print alto_flute.storage_format
-                instrumenttools.AltoFlute()
-
-        ..  container:: example
-
-            With customization:
-
-            ::
-
-                >>> custom = instrumenttools.AltoFlute()
-                >>> custom.instrument_name = 'flauto contralto'
-                >>> markup = markuptools.Markup('Flauto contralto')
-                >>> custom.instrument_name_markup = markup
-                >>> custom.short_instrument_name = 'fl. contr.'
-                >>> markup = markuptools.Markup('Fl. contr.')
-                >>> custom.short_instrument_name_markup = markup
-                >>> custom.pitch_range = '[G3, C7]'
-
-            ::
-
-                >>> print custom.storage_format
-                instrumenttools.AltoFlute(
-                    instrument_name='flauto contralto',
-                    instrument_name_markup=markuptools.Markup((
-                        'Flauto contralto',
-                        )),
-                    short_instrument_name='fl. contr.',
-                    short_instrument_name_markup=markuptools.Markup((
-                        'Fl. contr.',
-                        )),
-                    pitch_range=pitchtools.PitchRange(
-                        '[G3, C7]'
-                        )
-                    )
-
-        Returns string.
-        '''
-        superclass = super(AltoFlute, self)
-        return superclass.storage_format

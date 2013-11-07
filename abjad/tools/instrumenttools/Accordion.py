@@ -65,6 +65,70 @@ class Accordion(Instrument):
             ])
         self._is_primary_instrument = True
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats accordion.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ..  container:: example
+
+            Without customization:
+
+            ::
+
+                >>> accordion = instrumenttools.Accordion()
+                >>> print format(accordion)
+                instrumenttools.Accordion()
+
+        ..  container:: example
+
+            With customization:
+
+            ::
+
+                >>> custom = instrumenttools.Accordion()
+                >>> custom.instrument_name = 'fisarmonica'
+                >>> markup = markuptools.Markup('Fisarmonica')
+                >>> custom.instrument_name_markup = markup
+                >>> custom.short_instrument_name = 'fis.'
+                >>> markup = markuptools.Markup('Fis.')
+                >>> custom.short_instrument_name_markup = markup
+                >>> custom.allowable_clefs = ['treble']
+                >>> custom.pitch_range = '[C4, C6]'
+                >>> custom.sounding_pitch_of_written_middle_c = "c''"
+
+            ::
+
+                >>> print format(custom)
+                instrumenttools.Accordion(
+                    instrument_name='fisarmonica',
+                    instrument_name_markup=markuptools.Markup((
+                        'Fisarmonica',
+                        )),
+                    short_instrument_name='fis.',
+                    short_instrument_name_markup=markuptools.Markup((
+                        'Fis.',
+                        )),
+                    allowable_clefs=marktools.ClefMarkInventory([
+                        marktools.ClefMark(
+                            'treble',
+                            target_context=scoretools.Staff
+                            ),
+                        ]),
+                    pitch_range=pitchtools.PitchRange(
+                        '[C4, C6]'
+                        ),
+                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''")
+                    )
+
+        Returns string.
+        '''
+        superclass = super(Accordion, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -390,63 +454,3 @@ class Accordion(Instrument):
         def fset(self, pitch):
             Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())
-
-    @property
-    def storage_format(self):
-        r'''Accordion storage format.
-
-        ..  container:: example
-
-            Without customization:
-
-            ::
-
-                >>> accordion = instrumenttools.Accordion()
-                >>> print accordion.storage_format
-                instrumenttools.Accordion()
-
-        ..  container:: example
-
-            With customization:
-
-            ::
-
-                >>> custom = instrumenttools.Accordion()
-                >>> custom.instrument_name = 'fisarmonica'
-                >>> markup = markuptools.Markup('Fisarmonica')
-                >>> custom.instrument_name_markup = markup
-                >>> custom.short_instrument_name = 'fis.'
-                >>> markup = markuptools.Markup('Fis.')
-                >>> custom.short_instrument_name_markup = markup
-                >>> custom.allowable_clefs = ['treble']
-                >>> custom.pitch_range = '[C4, C6]'
-                >>> custom.sounding_pitch_of_written_middle_c = "c''"
-
-            ::
-
-                >>> print custom.storage_format
-                instrumenttools.Accordion(
-                    instrument_name='fisarmonica',
-                    instrument_name_markup=markuptools.Markup((
-                        'Fisarmonica',
-                        )),
-                    short_instrument_name='fis.',
-                    short_instrument_name_markup=markuptools.Markup((
-                        'Fis.',
-                        )),
-                    allowable_clefs=marktools.ClefMarkInventory([
-                        marktools.ClefMark(
-                            'treble',
-                            target_context=scoretools.Staff
-                            ),
-                        ]),
-                    pitch_range=pitchtools.PitchRange(
-                        '[C4, C6]'
-                        ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''")
-                    )
-
-        Returns string.
-        '''
-        superclass = super(Accordion, self)
-        return superclass.storage_format

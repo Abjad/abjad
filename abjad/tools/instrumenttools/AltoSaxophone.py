@@ -47,6 +47,61 @@ class AltoSaxophone(Instrument):
         self._default_sounding_pitch_of_written_middle_c = pitch
         self._is_primary_instrument = True
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats alto sax.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ..  container:: example
+
+            Without customization:
+
+            ::
+
+                >>> alto_sax = instrumenttools.AltoSaxophone()
+                >>> print format(alto_sax)
+                instrumenttools.AltoSaxophone()
+
+        ..  container:: example
+
+            With customization:
+
+            ::
+
+                >>> custom = instrumenttools.AltoSaxophone()
+                >>> custom.instrument_name = 'sassofono contralto'
+                >>> markup = markuptools.Markup('Sassofono contralto')
+                >>> custom.instrument_name_markup = markup
+                >>> custom.short_instrument_name = 'sass. contr.'
+                >>> markup = markuptools.Markup('Sass. contr.')
+                >>> custom.short_instrument_name_markup = markup
+                >>> custom.pitch_range = '[G3, C7]'
+
+            ::
+
+                >>> print format(custom)
+                instrumenttools.AltoSaxophone(
+                    instrument_name='sassofono contralto',
+                    instrument_name_markup=markuptools.Markup((
+                        'Sassofono contralto',
+                        )),
+                    short_instrument_name='sass. contr.',
+                    short_instrument_name_markup=markuptools.Markup((
+                        'Sass. contr.',
+                        )),
+                    pitch_range=pitchtools.PitchRange(
+                        '[G3, C7]'
+                        )
+                    )
+
+        Returns string.
+        '''
+        superclass = super(AltoSaxophone, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -363,54 +418,3 @@ class AltoSaxophone(Instrument):
         def fset(self, pitch):
             Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
         return property(**locals())
-
-    @property
-    def storage_format(self):
-        r'''Alto sax storage format.
-
-        ..  container:: example
-
-            Without customization:
-
-            ::
-
-                >>> alto_sax = instrumenttools.AltoSaxophone()
-                >>> print alto_sax.storage_format
-                instrumenttools.AltoSaxophone()
-
-        ..  container:: example
-
-            With customization:
-
-            ::
-
-                >>> custom = instrumenttools.AltoSaxophone()
-                >>> custom.instrument_name = 'sassofono contralto'
-                >>> markup = markuptools.Markup('Sassofono contralto')
-                >>> custom.instrument_name_markup = markup
-                >>> custom.short_instrument_name = 'sass. contr.'
-                >>> markup = markuptools.Markup('Sass. contr.')
-                >>> custom.short_instrument_name_markup = markup
-                >>> custom.pitch_range = '[G3, C7]'
-
-            ::
-
-                >>> print custom.storage_format
-                instrumenttools.AltoSaxophone(
-                    instrument_name='sassofono contralto',
-                    instrument_name_markup=markuptools.Markup((
-                        'Sassofono contralto',
-                        )),
-                    short_instrument_name='sass. contr.',
-                    short_instrument_name_markup=markuptools.Markup((
-                        'Sass. contr.',
-                        )),
-                    pitch_range=pitchtools.PitchRange(
-                        '[G3, C7]'
-                        )
-                    )
-
-        Returns string.
-        '''
-        superclass = super(AltoSaxophone, self)
-        return superclass.storage_format
