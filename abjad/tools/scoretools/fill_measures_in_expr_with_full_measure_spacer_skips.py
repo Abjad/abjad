@@ -4,14 +4,13 @@
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
     '''Fill measures in `expr` with full-measure spacer skips.
     '''
-    from abjad.tools import marktools
-    from abjad.tools import iterationtools
     from abjad.tools import scoretools
+    from abjad.tools.functiontools import iterate
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
 
-    for i, measure in enumerate(iterationtools.iterate_measures_in_expr(expr)):
+    for i, measure in enumerate(iterate(expr).by_class(scoretools.Measure)):
         if iterctrl(measure, i):
             skip = scoretools.Skip(1)
             # allow zero-update iteration
@@ -20,4 +19,4 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
                 time_signature.duration / time_signature.implied_prolation
             measure[:] = [skip]
             for spanner in measure._get_spanners():
-                spanner._remove(component)
+                spanner._remove(measure)

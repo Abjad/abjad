@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import iterate
 
 
 def get_previous_measure_from_component(component):
@@ -62,8 +63,8 @@ def get_previous_measure_from_component(component):
     elif isinstance(component, scoretools.Container):
         return scoretools.get_measure_that_stops_with_container(component)
     elif isinstance(component, (list, tuple)):
-        measure_generator = \
-            iterationtools.iterate_measures_in_expr(component, reverse=True)
+        measure_generator = iterate(component).by_class(
+            scoretools.Measure, reverse=True)
         try:
             measure = measure_generator.next()
             return measure

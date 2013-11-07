@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import iterate
 
 
 def get_next_measure_from_component(component):
@@ -49,7 +50,6 @@ def get_next_measure_from_component(component):
     of `component`, raise missing measure error.
     '''
     from abjad.tools import iterationtools
-    from abjad.tools import iterationtools
     from abjad.tools import scoretools
 
     if isinstance(component, scoretools.Leaf):
@@ -63,7 +63,7 @@ def get_next_measure_from_component(component):
     elif isinstance(component, scoretools.Container):
         return scoretools.get_measure_that_starts_with_container(component)
     elif isinstance(component, (list, tuple)):
-        measure_generator = iterationtools.iterate_measures_in_expr(component)
+        measure_generator = iterate(component).by_class(scoretools.Measure)
         try:
             measure = measure_generator.next()
             return measure

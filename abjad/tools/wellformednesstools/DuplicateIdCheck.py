@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import iterationtools
 from abjad.tools import sequencetools
+from abjad.tools.functiontools import iterate
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -8,7 +9,7 @@ class DuplicateIdCheck(Check):
 
     def _run(self, expr):
         violators = []
-        components = iterationtools.iterate_components_in_expr(expr)
+        components = iterate(expr).by_class()
         total_ids = [id(x) for x in components]
         unique_ids = sequencetools.truncate_runs_in_sequence(total_ids)
         if len(unique_ids) < len(total_ids):

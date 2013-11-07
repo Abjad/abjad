@@ -856,7 +856,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             else:
                 components_at_level = []
                 for component in \
-                    iterationtools.iterate_components_in_expr(self.payload):
+                    iterate(self.payload).by_class():
                     score_index = component._get_parentage().score_index
                     if len(score_index) == rotation_indicator.level:
                         components_at_level.append(component)

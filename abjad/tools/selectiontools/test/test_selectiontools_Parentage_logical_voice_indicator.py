@@ -11,7 +11,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_01():
     staff = Staff("c'8 d'8 e'8 f'8")
 
     containment = inspect(staff).get_parentage().logical_voice_indicator
-    for component in iterationtools.iterate_components_in_expr(staff):
+    for component in iterate(staff).by_class():
         assert inspect(component).get_parentage().logical_voice_indicator == containment
 
 
@@ -24,7 +24,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_02():
     staff.name = 'foo'
 
     containment = inspect(staff).get_parentage().logical_voice_indicator
-    for component in iterationtools.iterate_components_in_expr(staff):
+    for component in iterate(staff).by_class():
         assert inspect(component).get_parentage().logical_voice_indicator == containment
 
 def test_selectiontools_Parentage_logical_voice_indicator_03():

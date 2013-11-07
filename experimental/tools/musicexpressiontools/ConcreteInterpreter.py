@@ -46,7 +46,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_division_lists_to_score(self):
         from experimental.tools import musicexpressiontools
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
+        for voice in iterate(self.score).by_class(scoretools.Voice):
             voice_division_list = \
                 musicexpressiontools.DivisionList([], voice_name=voice.name)
             voice_proxy = \
@@ -65,7 +65,7 @@ class ConcreteInterpreter(Interpreter):
             voice_proxy._voice_division_list = voice_division_list
 
     def add_rhythms_to_score(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
+        for voice in iterate(self.score).by_class(scoretools.Voice):
             voice_proxy = \
                 self.score_specification.voice_data_structures_by_voice[
                     voice.name]
@@ -91,7 +91,7 @@ class ConcreteInterpreter(Interpreter):
         context.extend(measures)
 
     def build_leaf_offset_lists(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
+        for voice in iterate(self.score).by_class(scoretools.Voice):
             voice_proxy = \
                 self.score_specification.voice_data_structures_by_voice[
                     voice.name]
@@ -214,7 +214,7 @@ class ConcreteInterpreter(Interpreter):
         region_expressions = \
             self.score_specification.region_expressions_by_attribute[
                 attribute]
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
+        for voice in iterate(self.score).by_class(scoretools.Voice):
             if attribute == 'divisions':
                 voice_region_expressions = \
                     self.make_division_region_expressions_for_voice(voice.name)
@@ -318,7 +318,7 @@ class ConcreteInterpreter(Interpreter):
         return rhythm_region_expressions
 
     def make_timespan_scoped_single_context_set_expressions(self, attribute):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
+        for voice in iterate(self.score).by_class(scoretools.Voice):
             timespan_scoped_single_context_set_expressions = \
                 self.score_specification.make_timespan_scoped_single_context_set_expressions_for_voice(
                 attribute, voice.name)

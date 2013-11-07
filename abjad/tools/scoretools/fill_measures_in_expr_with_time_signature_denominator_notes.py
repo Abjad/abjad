@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
+from abjad.tools.functiontools import iterate
 
 
-def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=None):
+def fill_measures_in_expr_with_time_signature_denominator_notes(
+    expr, iterctrl=None):
     r'''Fill measures in `expr` with time signature denominator notes:
 
     ::
@@ -38,13 +40,11 @@ def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=N
 
     Returns none.
     '''
-    from abjad.tools import marktools
-    from abjad.tools import iterationtools
     from abjad.tools import scoretools
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
-    for i, measure in enumerate(iterationtools.iterate_measures_in_expr(expr)):
+    for i, measure in enumerate(iterate(expr).by_class(scoretools.Measure)):
         if iterctrl(measure, i):
             time_signature = measure.time_signature
             denominator = mathtools.greatest_power_of_two_less_equal(

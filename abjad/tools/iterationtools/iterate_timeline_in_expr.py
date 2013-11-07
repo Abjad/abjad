@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import scoretools
+from abjad.tools.functiontools import iterate
 
 
 def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
@@ -67,15 +67,10 @@ def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
 
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
-    from abjad.tools import scoretools
-    from abjad.tools import iterationtools
-    from abjad.tools import scoretools
-
     if component_class is None:
         component_class = scoretools.Leaf
 
-    component_generator = iterationtools.iterate_components_in_expr(
-        expr, component_class=component_class)
+    component_generator = iterate(expr).by_class(component_class)
     components = list(component_generator)
 
     def _backward_sort_helper(component_1, component_2):

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
 # TODO: make public and possibly improve function name
@@ -28,8 +28,7 @@ def set_line_breaks_by_line_duration(
 
     prev = None
     cum_duration = durationtools.Duration(0)
-    for cur in iterationtools.iterate_components_in_expr(
-        expr, line_break_class):
+    for cur in iterate(expr).by_class(line_break_class):
         # compress these 4 lines to only the 4th line after duration migration
         if kind == 'seconds':
             current_duration = cur._get_duration(in_seconds=True)

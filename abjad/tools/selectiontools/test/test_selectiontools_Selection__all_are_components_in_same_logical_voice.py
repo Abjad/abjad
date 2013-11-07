@@ -33,7 +33,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_02()
     '''
 
     assert Selection._all_are_components_in_same_logical_voice(
-        list(iterationtools.iterate_components_in_expr(container, Component)))
+        list(iterate(container).by_class()))
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_03():
@@ -51,7 +51,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_03()
     '''
 
     assert Selection._all_are_components_in_same_logical_voice(
-        list(iterationtools.iterate_components_in_expr(tuplet, Component)))
+        list(iterate(tuplet).by_class()))
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_04():
@@ -70,7 +70,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_04()
     '''
 
     assert Selection._all_are_components_in_same_logical_voice(
-        list(iterationtools.iterate_components_in_expr(voice, Component)))
+        list(iterate(voice).by_class()))
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_05():
@@ -89,7 +89,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_05()
     '''
 
     assert Selection._all_are_components_in_same_logical_voice(
-        list(iterationtools.iterate_components_in_expr(staff, Component)))
+        list(iterate(staff).by_class()))
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_06():
@@ -132,7 +132,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_06()
         )
 
     assert Selection._all_are_components_in_same_logical_voice(
-        list(iterationtools.iterate_components_in_expr(voice, Component)))
+        list(iterate(voice).by_class()))
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_07():
@@ -171,7 +171,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_07()
         )
 
     assert Selection._all_are_components_in_same_logical_voice(
-        list(iterationtools.iterate_components_in_expr(voice, Component)))
+        list(iterate(voice).by_class()))
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_08():
@@ -1453,7 +1453,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_35()
         )
 
     assert Selection._all_are_components_in_same_logical_voice(
-        list(iterationtools.iterate_components_in_expr(container, Component)))
+        list(iterate(container).by_class()))
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_36():
@@ -1499,7 +1499,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_36()
         )
 
     assert Selection._all_are_components_in_same_logical_voice(
-        list(iterationtools.iterate_components_in_expr(t, Component)))
+        list(iterate(t).by_class()))
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_37():

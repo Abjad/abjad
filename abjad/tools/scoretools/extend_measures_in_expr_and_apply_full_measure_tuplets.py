@@ -2,8 +2,8 @@
 
 
 def extend_measures_in_expr_and_apply_full_measure_tuplets(expr, supplement):
-    r'''Extend measures in `expr` with `supplement` and apply full-measure tuplets to contents
-    of measures:
+    r'''Extend measures in `expr` with `supplement` and apply full-measure
+    tuplets to contents of measures:
 
     ::
 
@@ -60,4 +60,5 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets(expr, supplement):
     '''
     from abjad.tools import scoretools
 
-    return scoretools.apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement)
+    return scoretools.apply_full_measure_tuplets_to_contents_of_measures_in_expr(
+        expr, supplement)

@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import iterate
+
+
 # TODO: optimize without multiple full-component traversal.
 def iterate_vertical_moments_in_expr(expr, reverse=False):
     r'''Iterate vertical moments forward in `expr`:
@@ -97,9 +100,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     Returns generator.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import scoretools
     from abjad.tools import durationtools
-    from abjad.tools import iterationtools
     from abjad.tools import selectiontools
 
     def _buffer_components_starting_with(component, buffer, stop_offsets):
@@ -169,7 +170,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
             yield x
     else:
         moments_in_governor = []
-        for component in iterationtools.iterate_components_in_expr(expr):
+        for component in iterate(expr).by_class():
             offset = component._get_timespan().start_offset
             if offset not in moments_in_governor:
                 moments_in_governor.append(offset)

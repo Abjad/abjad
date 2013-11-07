@@ -7,6 +7,7 @@ from abjad.tools import lilypondproxytools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
+from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import override
 from abjad.tools.abctools import AbjadObject
 
@@ -95,9 +96,8 @@ class Component(AbjadObject):
         Returns list of new components.
         '''
         from abjad.tools.functiontools import mutate
-        from abjad.tools import iterationtools
         result = mutate(self).copy(n=n)
-        for component in iterationtools.iterate_components_in_expr(result):
+        for component in iterate(result).by_class():
             for spanner in component._get_spanners():
                 spanner.detach()
         if isinstance(result, type(self)):
@@ -230,8 +230,7 @@ class Component(AbjadObject):
         expr = self
         if include_self:
             expr = [self]
-        components = iterationtools.iterate_components_in_expr(
-            expr, component_class=component_classes)
+        components = iterate(expr).by_class(component_classes)
         return selectiontools.Selection(components)
 
     def _get_contents(self, include_self=True):

@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import mutationtools
+from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 
 
 def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
@@ -30,11 +31,8 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     '''
     from abjad.tools import scoretools
     from abjad.tools import marktools
-    from abjad.tools import iterationtools
-    from abjad.tools import scoretools
-    from abjad.tools.functiontools import attach
 
-    for measure in iterationtools.iterate_measures_in_expr(expr):
+    for measure in iterate(expr).by_class(scoretools.Measure):
         if len(measure) == 1:
             if isinstance(measure[0], scoretools.Tuplet):
                 tuplet = measure[0]

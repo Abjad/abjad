@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.functiontools import iterate
 
 
 def append_spacer_skips_to_underfull_measures_in_expr(expr):
@@ -59,11 +60,10 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
 
     Returns measures treated.
     '''
-    from abjad.tools import iterationtools
     from abjad.tools import scoretools
 
     treated_measures = []
-    for measure in iterationtools.iterate_components_in_expr(expr, scoretools.Measure):
+    for measure in iterate(expr).by_class(scoretools.Measure):
         if measure.is_underfull:
             scoretools.append_spacer_skip_to_underfull_measure(measure)
             treated_measures.append(measure)
