@@ -48,8 +48,9 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
     Returns none.
     '''
     from abjad.tools import instrumenttools
-
-    for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
+    from abjad.tools.functiontools import iterate
+    for note_or_chord in iterate(expr).by_class(
+        (scoretools.Note, scoretools.Chord)):
         if not note_or_chord.written_pitch_indication_is_at_sounding_pitch:
             continue
         instrument = note_or_chord._get_effective_context_mark(

@@ -35,9 +35,9 @@ class Container(Component):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_formatter', 
-        '_music', 
-        '_named_children', 
+        '_formatter',
+        '_music',
+        '_named_children',
         '_simultaneous',
         )
 
@@ -144,7 +144,7 @@ class Container(Component):
     @property
     def _contents_duration(self):
         if self.is_simultaneous:
-            return max([durationtools.Duration(0)] + 
+            return max([durationtools.Duration(0)] +
                 [x._preprolated_duration for x in self])
         else:
             duration = durationtools.Duration(0)
@@ -156,7 +156,7 @@ class Container(Component):
     def _duration_in_seconds(self):
         from abjad.tools import iterationtools
         if self.is_simultaneous:
-            return max([durationtools.Duration(0)] + 
+            return max([durationtools.Duration(0)] +
                 [x._get_duration(in_seconds=True) for x in self])
         else:
             duration = durationtools.Duration(0)
@@ -216,13 +216,13 @@ class Container(Component):
             format_contributions.get(
                 'after', {}).get('lilypond command marks', [])))
         result.append((
-            'comments', 
+            'comments',
             format_contributions.get('after', {}).get('comments', [])))
         return tuple(result)
 
     def _format_before_slot(self, format_contributions):
         result = []
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('before', {}).get('comments', [])))
         result.append(('lilypond command marks',
             format_contributions.get('before', {}).get(
@@ -245,7 +245,7 @@ class Container(Component):
         result.append(('lilypond command marks',
             format_contributions.get(
                 'closing', {}).get('lilypond command marks', [])))
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('closing', {}).get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
 
@@ -273,14 +273,14 @@ class Container(Component):
 
     def _format_opening_slot(self, format_contributions):
         result = []
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('opening', {}).get('comments', [])))
         result.append(('lilypond command marks',
             format_contributions.get(
                 'opening', {}).get('lilypond command marks', [])))
-        result.append(('grob overrides', 
+        result.append(('grob overrides',
             format_contributions.get('grob overrides', [])))
-        result.append(('context settings', 
+        result.append(('context settings',
             format_contributions.get('context settings', [])))
         return self._format_slot_contributions_with_indent(result)
 
@@ -353,13 +353,13 @@ class Container(Component):
             expr._scale(multiplier)
 
     def _set_item(
-        self, 
-        i, 
-        expr, 
+        self,
+        i,
+        expr,
         withdraw_components_in_expr_from_crossing_spanners=True,
         ):
         r'''This method exists beacuse __setitem__ can not accept keywords.
-        Note that setting 
+        Note that setting
         withdraw_components_in_expr_from_crossing_spanners=False
         constitutes a composer-unsafe use of this method.
         Only private methods should set this keyword.
@@ -731,12 +731,12 @@ class Container(Component):
                 duration_crossing_descendants.append(descendant)
         # get any duration-crossing measure descendents
         measures = [
-            x for x in duration_crossing_descendants 
+            x for x in duration_crossing_descendants
             if isinstance(x, scoretools.Measure)
             ]
-        # if we must split a power-of-two measure at non-power-of-two 
-        # split point then go ahead and transform the power-of-two measure 
-        # to non-power-of-two equivalent now; 
+        # if we must split a power-of-two measure at non-power-of-two
+        # split point then go ahead and transform the power-of-two measure
+        # to non-power-of-two equivalent now;
         # code that crawls and splits later on will be happier
         if len(measures) == 1:
             measure = measures[0]
@@ -801,7 +801,7 @@ class Container(Component):
                 message = 'can not split empty container {!r}.'
                 message = message.format(bottom)
                 raise Exception(message)
-        # find component to right of split that is also immediate child of 
+        # find component to right of split that is also immediate child of
         # last duration-crossing container
         for component in \
             leaf_right_of_split._get_parentage(include_self=True):
@@ -811,7 +811,7 @@ class Container(Component):
         else:
             message = 'should we be able to get here?'
             raise ValueError(message)
-        # crawl back up through duration-crossing containers and 
+        # crawl back up through duration-crossing containers and
         # fracture spanners if requested
         if fracture_spanners:
             start_offset = leaf_right_of_split._get_timespan().start_offset
@@ -905,7 +905,7 @@ class Container(Component):
                 >>> container = Container("c'4 ( d'4 f'4 )")
                 >>> show(container) # doctest: +SKIP
 
-            ..  doctest:: 
+            ..  doctest::
 
                 >>> f(container)
                 {
@@ -935,7 +935,7 @@ class Container(Component):
         Returns none.
         '''
         self.__setitem__(
-            slice(len(self), len(self)), 
+            slice(len(self), len(self)),
             expr.__getitem__(slice(0, len(expr)))
             )
 
@@ -1211,7 +1211,7 @@ class Container(Component):
         r'''Reverses contents of container.
 
         ..  container:: example
-        
+
             ::
 
                 >>> staff = Staff("c'8 [ d'8 ] e'8 ( f'8 )")
@@ -1316,7 +1316,8 @@ class Container(Component):
 
         Returns leaf selection.
         '''
-        from abjad.tools import iterationtools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        generator = iterationtools.iterate_notes_and_chords_in_expr(self)
+        from abjad.tools.functiontools import iterate
+        generator = iterate(self).by_class((scoretools.Note, scoretools.Chord))
         return selectiontools.Selection(generator)

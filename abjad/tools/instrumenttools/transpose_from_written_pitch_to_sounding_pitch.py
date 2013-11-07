@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import marktools
-from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
+from abjad.tools.functiontools import iterate
 
 
 def transpose_from_written_pitch_to_sounding_pitch(expr):
@@ -52,7 +52,8 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
     '''
     from abjad.tools import instrumenttools
 
-    for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
+    for note_or_chord in iterate(expr).by_class(
+        (scoretools.Note, scoretools.Chord)):
         if note_or_chord.written_pitch_indication_is_at_sounding_pitch:
             continue
         instrument = note_or_chord._get_effective_context_mark(

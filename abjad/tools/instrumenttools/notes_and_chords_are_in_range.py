@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import marktools
-from abjad.tools import iterationtools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
+from abjad.tools.functiontools import iterate
 
 
 def notes_and_chords_are_in_range(expr):
@@ -39,7 +39,8 @@ def notes_and_chords_are_in_range(expr):
     '''
     from abjad.tools import instrumenttools
 
-    for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
+    for note_or_chord in iterate(expr).by_class(
+        (scoretools.Note, scoretools.Chord)):
         instrument = note_or_chord._get_effective_context_mark(
             instrumenttools.Instrument)
         if note_or_chord not in instrument._default_pitch_range:

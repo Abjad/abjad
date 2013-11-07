@@ -34,14 +34,14 @@ class PitchSegment(Segment):
         )
 
     __slots__ = ()
-    
+
     ### PRIVATE PROPERTIES ###
 
     @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedPitch
-    
+
     @property
     def _numbered_item_class(self):
         from abjad.tools import pitchtools
@@ -65,17 +65,18 @@ class PitchSegment(Segment):
             >>> selection = select((staff_1, staff_2))
             >>> pitchtools.PitchSegment.from_selection(selection)
             PitchSegment(["c'", "d'", "fs'", "a'", 'b', 'c', 'g'])
-        
+
         Returns pitch segment.
         '''
-        from abjad.tools import iterationtools
         from abjad.tools import pitchtools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
+        from abjad.tools.functiontools import iterate
         if not isinstance(selection, selectiontools.Selection):
-            selection = select(selection) 
+            selection = select(selection)
         named_pitches = []
-        for component in iterationtools.iterate_notes_and_chords_in_expr(
-            selection):
+        for component in iterate(selection).by_class(
+            (scoretools.Note, scoretools.Chord)):
             if hasattr(component, 'written_pitches'):
                 named_pitches.extend(component.written_pitches)
             elif hasattr(component, 'written_pitch'):
@@ -96,7 +97,7 @@ class PitchSegment(Segment):
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`, otherwise False.
-        
+
         Returns boolean.
         '''
         from abjad.tools import pitchtools
@@ -146,7 +147,7 @@ class PitchSegment(Segment):
             TimeSignatureMark((5, 4))(Staff{8})
             >>> show(staff) # doctest: +SKIP
 
-        ..  doctest:: 
+        ..  doctest::
 
             >>> f(staff)
             \new Staff {
@@ -199,7 +200,7 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> named_pitch_segment.rotate(-2) 
+            >>> named_pitch_segment.rotate(-2)
             PitchSegment(["fs'", "g'", 'bqf', "g'", 'bf,', 'aqs'])
 
         Emit new pitch segment.
@@ -214,7 +215,7 @@ class PitchSegment(Segment):
         Emit new pitch segment.
         '''
         tokens = (pitch.transpose(expr) for pitch in self)
-        return self.new(tokens=tokens) 
+        return self.new(tokens=tokens)
 
     ### PUBLIC PROPERTIES ###
 

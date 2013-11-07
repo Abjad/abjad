@@ -5,6 +5,7 @@ from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools.functiontools import attach
+from abjad.tools.functiontools import iterate
 from abjad.tools.functiontools import select
 from experimental.tools.handlertools.ArticulationHandler \
     import ArticulationHandler
@@ -36,7 +37,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
     def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
         articulation_lists = datastructuretools.CyclicList(self.articulation_lists)
         notes_and_chords = \
-            list(iterationtools.iterate_notes_and_chords_in_expr(expr))
+            list(iterate(expr).by_class((scoretools.Note, scoretools.Chord)))
         notes_and_chords = notes_and_chords[skip_first:]
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]
