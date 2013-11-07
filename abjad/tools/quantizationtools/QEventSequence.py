@@ -102,6 +102,43 @@ class QEventSequence(AbjadObject):
                 return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats q-event sequence.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+            >>> print format(sequence)
+            quantizationtools.QEventSequence(
+                (quantizationtools.PitchedQEvent(
+                durationtools.Offset(0, 1),
+                (NamedPitch("c'"),),
+                attachments=()
+                ), quantizationtools.SilentQEvent(
+                durationtools.Offset(1000, 1),
+                attachments=()
+                ), quantizationtools.PitchedQEvent(
+                durationtools.Offset(1500, 1),
+                (NamedPitch("c'"),),
+                attachments=()
+                ), quantizationtools.SilentQEvent(
+                durationtools.Offset(2750, 1),
+                attachments=()
+                ), quantizationtools.PitchedQEvent(
+                durationtools.Offset(3250, 1),
+                (NamedPitch("c'"),),
+                attachments=()
+                ), quantizationtools.TerminalQEvent(
+                durationtools.Offset(4000, 1)
+                ))
+                )
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
     def __getitem__(self, expr):
         return self._sequence[expr]
 
@@ -134,7 +171,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence.sequence:
-            ...     print q_event.storage_format
+            ...     print format(q_event)
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
@@ -166,39 +203,6 @@ class QEventSequence(AbjadObject):
         Returns tuple.
         '''
         return self._sequence
-
-    @property
-    def storage_format(self):
-        r'''Storage format of Q event sequence.
-
-            >>> print sequence.storage_format
-            quantizationtools.QEventSequence(
-                (quantizationtools.PitchedQEvent(
-                durationtools.Offset(0, 1),
-                (NamedPitch("c'"),),
-                attachments=()
-                ), quantizationtools.SilentQEvent(
-                durationtools.Offset(1000, 1),
-                attachments=()
-                ), quantizationtools.PitchedQEvent(
-                durationtools.Offset(1500, 1),
-                (NamedPitch("c'"),),
-                attachments=()
-                ), quantizationtools.SilentQEvent(
-                durationtools.Offset(2750, 1),
-                attachments=()
-                ), quantizationtools.PitchedQEvent(
-                durationtools.Offset(3250, 1),
-                (NamedPitch("c'"),),
-                attachments=()
-                ), quantizationtools.TerminalQEvent(
-                durationtools.Offset(4000, 1)
-                ))
-                )
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     ### PUBLIC METHODS ###
 

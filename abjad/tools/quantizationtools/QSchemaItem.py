@@ -39,8 +39,23 @@ class QSchemaItem(AbjadObject):
 
     @abc.abstractmethod
     def __getnewargs__(self):
-        'Returns self as a plain tuple.  Used by copy and pickle.'
+        r'''Returns self as a plain tuple. Used by copy and pickle.
+        '''
         raise NotImplementedError
+
+    def __format__(self, format_specification=''):
+        r'''Formats q schema item.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        return str(self)
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def search_tree(self):
@@ -49,14 +64,6 @@ class QSchemaItem(AbjadObject):
         Returns search tree or none.
         '''
         return self._search_tree
-
-    @property
-    def storage_format(self):
-        r'''Storage format of q-schema item.
-
-        Returns string.
-        '''
-        return self._tools_package_qualified_indented_repr
 
     @property
     def tempo(self):
