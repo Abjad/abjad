@@ -245,7 +245,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   ``spannertools.TieSpanner` with an optional ``direction`` keyword::
 
     >>> c = Container("c'4 d'4 e'4 f'4")
-    >>> spanner = spannertools.SlurSpanner(c[:], 'up')
+    >>> spanner = spannertools.Slur(c[:], 'up')
     >>> f(c)
     {
         c'4 ^ (

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_DynamicMark_is_dynamic_name_01():
+def test_marktools_Dynamic_is_dynamic_name_01():
 
     assert Dynamic.is_dynamic_name('ff')
     assert Dynamic.is_dynamic_name('f')
@@ -10,6 +10,6 @@ def test_DynamicMark_is_dynamic_name_01():
     assert Dynamic.is_dynamic_name('pp')
 
 
-def test_DynamicMark_is_dynamic_name_02():
+def test_marktools_Dynamic_is_dynamic_name_02():
 
     assert not Dynamic.is_dynamic_name('x')

@@ -2,12 +2,12 @@
 from abjad import *
 
 
-def test_HairpinSpanner_is_hairpin_shape_string_01():
+def test_spannertools_HairpinSpanner_is_hairpin_shape_string_01():
 
     assert HairpinSpanner.is_hairpin_shape_string('<')
     assert HairpinSpanner.is_hairpin_shape_string('>')
 
 
-def test_HairpinSpanner_is_hairpin_shape_string_02():
+def test_spannertools_HairpinSpanner_is_hairpin_shape_string_02():
 
     assert not HairpinSpanner.is_hairpin_shape_string('@')

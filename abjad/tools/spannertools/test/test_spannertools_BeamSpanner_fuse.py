@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_BeamSpanner_fuse_01():
+def test_spannertools_BeamSpanner_fuse_01():
     r'''Fuse beams.
     '''
 

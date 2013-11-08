@@ -54,7 +54,7 @@ from abjad.tools.spannertools import BeamSpanner
 from abjad.tools.spannertools import CrescendoSpanner
 from abjad.tools.spannertools import DecrescendoSpanner
 from abjad.tools.spannertools import HairpinSpanner
-from abjad.tools.spannertools import SlurSpanner
+from abjad.tools.spannertools import Slur
 from fractions import Fraction
 
 # import some frequently used functions for direct user access

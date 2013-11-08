@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TempoMark___init___01():
+def test_marktools_Tempo___init___01():
     r'''Init tempo mark with integer-valued mark.
     '''
 
@@ -10,7 +10,7 @@ def test_TempoMark___init___01():
     assert format(tempo_mark, 'lilypond') == '\\tempo 16.=52'
 
 
-def test_TempoMark___init___02():
+def test_marktools_Tempo___init___02():
     r'''Init tempo mark with float-valued mark.
     '''
 
@@ -18,7 +18,7 @@ def test_TempoMark___init___02():
     assert format(tempo_mark, 'lilypond') == '\\tempo 16.=52.5'
 
 
-def test_TempoMark___init___03():
+def test_marktools_Tempo___init___03():
     r'''Init tempo mark from tempo mark.
     '''
 
@@ -32,7 +32,7 @@ def test_TempoMark___init___03():
     assert tempo_mark.duration is not new.duration
 
 
-def test_TempoMark___init___04():
+def test_marktools_Tempo___init___04():
     r'''Init tempo mark from integer pair.
     '''
 
@@ -40,7 +40,7 @@ def test_TempoMark___init___04():
     assert format(tempo_mark, 'lilypond') == '\\tempo 16.=52.5'
 
 
-def test_TempoMark___init___05():
+def test_marktools_Tempo___init___05():
     r'''Init tempo mark from textual indication.
     '''
 
@@ -48,7 +48,7 @@ def test_TempoMark___init___05():
     assert format(tempo_mark, 'lilypond') == '\\tempo Langsam'
 
 
-def test_TempoMark___init___06():
+def test_marktools_Tempo___init___06():
     r'''Init tempo mark with tempo range.
     '''
 
@@ -56,7 +56,7 @@ def test_TempoMark___init___06():
     assert format(tempo_mark, 'lilypond') == '\\tempo 8=52-57.5'
 
 
-def test_TempoMark___init___07():
+def test_marktools_Tempo___init___07():
     r'''Init tempo mark from text, duration and range.
     '''
 
@@ -64,7 +64,7 @@ def test_TempoMark___init___07():
     assert format(tempo_mark, 'lilypond') == '\\tempo Quick 4=120-133'
 
 
-def test_TempoMark___init___08():
+def test_marktools_Tempo___init___08():
     r'''Init tempo mark from length-2 tuple.
     '''
 
@@ -72,7 +72,7 @@ def test_TempoMark___init___08():
     assert format(tempo_mark, 'lilypond') == '\\tempo 4=120-133'
 
 
-def test_TempoMark___init___09():
+def test_marktools_Tempo___init___09():
     r'''Init tempo mark from length-3 tuple.
     '''
 

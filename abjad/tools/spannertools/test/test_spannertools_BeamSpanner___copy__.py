@@ -3,7 +3,7 @@ import copy
 from abjad import *
 
 
-def test_BeamSpanner___copy___01():
+def test_spannertools_BeamSpanner___copy___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam_1 = BeamSpanner()

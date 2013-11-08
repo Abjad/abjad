@@ -146,7 +146,7 @@ def test_SegmentSpecification__select_divisions_08():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     divisions = red_segment.select_divisions('Voice 1').map_to_each()
-    divisions.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
+    divisions.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
     current_function_name = testtools.get_current_function_name()

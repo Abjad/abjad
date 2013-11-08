@@ -330,9 +330,9 @@ The symbols below are black with fixed thickness and predetermined spacing:
 ::
 
    >>> staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
-   >>> slur_1 = spannertools.SlurSpanner(staff[:2])
-   >>> slur_2 = spannertools.SlurSpanner(staff[2:4])
-   >>> slur_3 = spannertools.SlurSpanner(staff[4:6])
+   >>> slur_1 = spannertools.Slur(staff[:2])
+   >>> slur_2 = spannertools.Slur(staff[2:4])
+   >>> slur_3 = spannertools.Slur(staff[4:6])
 
 
 ::

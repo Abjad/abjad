@@ -26,7 +26,7 @@ contained in an explicit voice always belong to the same logical voice:
    >>> voice = Voice("c'8 d'8 e'8 f'8")
    >>> staff = Staff([voice])
    >>> notes = voice.select_leaves()
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(notes)
    >>> show(staff)
 
@@ -41,7 +41,7 @@ logical voice even though no explicit voice is present:
 
    >>> staff = Staff("g'4 fs'8 e'8")
    >>> notes = staff.select_leaves()
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(notes)
    >>> show(staff)
 
@@ -93,7 +93,7 @@ You can slur together the notes in the first voice:
 ::
 
    >>> notes = voice_1.select_leaves()
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(notes)
    >>> show(staff)
 
@@ -105,7 +105,7 @@ And you can slur together the notes in the second voice:
 ::
 
    >>> notes = voice_2.select_leaves()
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(notes)
    >>> show(staff)
 
@@ -147,7 +147,7 @@ that this is the case because it's now possible to slur all six notes together:
    >>> voice_1_notes = voice_1.select_leaves()
    >>> voice_2_notes = voice_2.select_leaves()
    >>> all_notes = voice_1_notes + voice_2_notes
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(all_notes)
    >>> show(staff)
 
@@ -202,10 +202,10 @@ together all of the notes at once:
 ::
 
    >>> voice_1_notes = voice_1.select_leaves()
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(voice_1_notes)
    >>> voice_2_notes = voice_2.select_leaves()
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(voice_2_notes)
    >>> show(staff)
 

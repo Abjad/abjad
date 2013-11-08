@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_DecrescendoSpanner___eq___01():
+def test_spannertools_DecrescendoSpanner___eq___01():
     r'''Spanner is strict comparator.
     '''
 

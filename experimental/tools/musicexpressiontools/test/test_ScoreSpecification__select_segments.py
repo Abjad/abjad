@@ -129,7 +129,7 @@ def test_ScoreSpecification__select_segments_06():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_rhythm(library.sixteenths)
     segment = score_specification.select_segments('Voice 1')[1]
-    segment.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
+    segment.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
     current_function_name = testtools.get_current_function_name()
@@ -149,7 +149,7 @@ def test_ScoreSpecification__select_segments_07():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8)])
     red_segment.set_rhythm(library.sixteenths)
     segment = score_specification.select_segments('Voice 1')[-2]
-    segment.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
+    segment.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
     current_function_name = testtools.get_current_function_name()

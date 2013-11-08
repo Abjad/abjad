@@ -224,7 +224,7 @@ class MutationAgent(object):
                 >>> duration = Duration(2, 16)
                 >>> tuplet_2 = scoretools.FixedDurationTuplet(duration, [])
                 >>> tuplet_2.extend("c'16 d'16 e'16")
-                >>> slur = spannertools.SlurSpanner()
+                >>> slur = spannertools.Slur()
                 >>> attach(slur, tuplet_2[:])
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> show(staff) # doctest: +SKIP
@@ -287,7 +287,7 @@ class MutationAgent(object):
                 >>> staff = Staff()
                 >>> staff.append(Measure((1, 4), "c'8 d'8"))
                 >>> staff.append(Measure((2, 8), "e'8 f'8"))
-                >>> slur = spannertools.SlurSpanner()
+                >>> slur = spannertools.Slur()
                 >>> slur = attach(slur, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -354,7 +354,7 @@ class MutationAgent(object):
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
                 >>> attach(hairpin, staff[:])
-                >>> slur = spannertools.SlurSpanner()
+                >>> slur = spannertools.Slur()
                 >>> attach(slur, staff.select_leaves())
                 >>> show(staff) # doctest: +SKIP
 
@@ -2032,7 +2032,7 @@ class MutationAgent(object):
                 >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
                 >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
                 >>> leaves = staff.select_leaves()
-                >>> slur = spannertools.SlurSpanner()
+                >>> slur = spannertools.Slur()
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
@@ -2225,7 +2225,7 @@ class MutationAgent(object):
                 >>> hairpin = spannertools.HairpinSpanner([], 'p < f')
                 >>> attach(hairpin, leaves)
                 >>> measures = staff[:]
-                >>> slur = spannertools.SlurSpanner()
+                >>> slur = spannertools.Slur()
                 >>> attach(slur, measures)
                 >>> show(staff) # doctest: +SKIP
 

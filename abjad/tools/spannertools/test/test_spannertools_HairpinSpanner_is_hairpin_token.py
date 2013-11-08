@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_HairpinSpanner_is_hairpin_token_01():
+def test_spannertools_HairpinSpanner_is_hairpin_token_01():
 
     assert HairpinSpanner.is_hairpin_token(('', '<', ''))
     assert HairpinSpanner.is_hairpin_token(('p', '<', ''))
@@ -10,7 +10,7 @@ def test_HairpinSpanner_is_hairpin_token_01():
     assert HairpinSpanner.is_hairpin_token(('p', '<', 'f'))
 
 
-def test_HairpinSpanner_is_hairpin_token_02():
+def test_spannertools_HairpinSpanner_is_hairpin_token_02():
 
     assert not HairpinSpanner.is_hairpin_token(())
     assert not HairpinSpanner.is_hairpin_token(('p', 'f'))
@@ -18,7 +18,7 @@ def test_HairpinSpanner_is_hairpin_token_02():
     assert not HairpinSpanner.is_hairpin_token(('x', '<', 'y'))
 
 
-def test_HairpinSpanner_is_hairpin_token_03():
+def test_spannertools_HairpinSpanner_is_hairpin_token_03():
 
     assert not HairpinSpanner.is_hairpin_token(('f', '<', 'p'))
     assert not HairpinSpanner.is_hairpin_token(('p', '>', 'f'))

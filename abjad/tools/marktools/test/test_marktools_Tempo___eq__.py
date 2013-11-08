@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TempoMark___eq___01():
+def test_marktools_Tempo___eq___01():
     r'''Tempo indications compare equal when duration and mark match.
     '''
 
@@ -11,7 +11,7 @@ def test_TempoMark___eq___01():
     assert t1 == t2
 
 
-def test_TempoMark___eq___02():
+def test_marktools_Tempo___eq___02():
     r'''Tempo indications do not compare equal
     when mathematically equal.
     '''
@@ -21,7 +21,7 @@ def test_TempoMark___eq___02():
     assert not t1 == t2
 
 
-def test_TempoMark___eq___03():
+def test_marktools_Tempo___eq___03():
     r'''Tempo indications also compare textual indications.
     '''
 

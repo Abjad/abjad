@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TempoMarkInventory___format___01():
+def test_marktools_TempoInventory___format___01():
 
     tempo_mark_inventory = marktools.TempoInventory(
         [('Allegro', (1, 4), 84)])

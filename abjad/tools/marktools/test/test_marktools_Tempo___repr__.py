@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TempoMark___repr___01():
+def test_marktools_Tempo___repr___01():
     r'''Tempo mark returns nonempty string repr.
     '''
 

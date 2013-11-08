@@ -11,7 +11,7 @@ def test_scoretools_Container__split_by_duration_01():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -67,7 +67,7 @@ def test_scoretools_Container__split_by_duration_02():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -129,7 +129,7 @@ def test_scoretools_Container__split_by_duration_03():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -201,7 +201,7 @@ def test_scoretools_Container__split_by_duration_04():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -260,7 +260,7 @@ def test_scoretools_Container__split_by_duration_05():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -324,7 +324,7 @@ def test_scoretools_Container__split_by_duration_06():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -395,7 +395,7 @@ def test_scoretools_Container__split_by_duration_07():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -462,7 +462,7 @@ def test_scoretools_Container__split_by_duration_08():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -520,7 +520,7 @@ def test_scoretools_Container__split_by_duration_09():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -582,7 +582,7 @@ def test_scoretools_Container__split_by_duration_10():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -652,7 +652,7 @@ def test_scoretools_Container__split_by_duration_11():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -712,7 +712,7 @@ def test_scoretools_Container__split_by_duration_12():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -774,7 +774,7 @@ def test_scoretools_Container__split_by_duration_13():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -856,7 +856,7 @@ def test_scoretools_Container__split_by_duration_15():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -915,7 +915,7 @@ def test_scoretools_Container__split_by_duration_16():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -979,7 +979,7 @@ def test_scoretools_Container__split_by_duration_17():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -1048,7 +1048,7 @@ def test_scoretools_Container__split_by_duration_18():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -1119,7 +1119,7 @@ def test_scoretools_Container__split_by_duration_19():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -1244,7 +1244,7 @@ def test_scoretools_Container__split_by_duration_22():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -1308,7 +1308,7 @@ def test_scoretools_Container__split_by_duration_23():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -1376,7 +1376,7 @@ def test_scoretools_Container__split_by_duration_24():
     attach(beam, staff[0])
     beam = BeamSpanner()
     attach(beam, staff[1])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(
@@ -1491,7 +1491,7 @@ def test_scoretools_Container__split_by_duration_26():
     staff = Staff([measure])
     beam = BeamSpanner()
     attach(beam, staff[0])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, staff.select_leaves())
 
     assert testtools.compare(

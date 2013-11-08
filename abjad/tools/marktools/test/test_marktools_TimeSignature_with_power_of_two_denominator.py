@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TimeSignatureMark_with_power_of_two_denominator_01():
+def test_marktools_TimeSignature_with_power_of_two_denominator_01():
     r'''Make n/12 time_signatures into n/8 time_signatures, where possible.
     '''
 
@@ -14,7 +14,7 @@ def test_TimeSignatureMark_with_power_of_two_denominator_01():
     assert TimeSignature((6, 12)).with_power_of_two_denominator() == (4, 8)
 
 
-def test_TimeSignatureMark_with_power_of_two_denominator_02():
+def test_marktools_TimeSignature_with_power_of_two_denominator_02():
     r'''Make n/14 time_signatures into n/8 time_signatures, where possible.
     '''
 
@@ -27,7 +27,7 @@ def test_TimeSignatureMark_with_power_of_two_denominator_02():
     assert TimeSignature((7, 14)).with_power_of_two_denominator() == (4, 8)
 
 
-def test_TimeSignatureMark_with_power_of_two_denominator_03():
+def test_marktools_TimeSignature_with_power_of_two_denominator_03():
     r'''Make n/24 time_signatures into n/16 time_signatures, where possible.
     '''
 
@@ -41,7 +41,7 @@ def test_TimeSignatureMark_with_power_of_two_denominator_03():
     assert TimeSignature((8, 24)).with_power_of_two_denominator() == (8, 24)
 
 
-def test_TimeSignatureMark_with_power_of_two_denominator_04():
+def test_marktools_TimeSignature_with_power_of_two_denominator_04():
     r'''Make n/24 time_signatures into n/8 time_signatures, where possible.
     '''
 

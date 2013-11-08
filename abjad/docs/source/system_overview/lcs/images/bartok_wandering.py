@@ -84,8 +84,8 @@ spannertools.BeamSpanner(upper_measures[2][0:3])
 spannertools.BeamSpanner(upper_measures[2][3:])
 
 spannertools.TieSpanner(upper_staff[-2:])
-spannertools.SlurSpanner(upper_staff.leaves[0:5])
-spannertools.SlurSpanner(upper_staff.leaves[5:])
+spannertools.Slur(upper_staff.leaves[0:5])
+spannertools.Slur(upper_staff.leaves[5:])
 CrescendoSpanner(upper_staff.leaves[-7:-2])
 DecrescendoSpanner(upper_staff.leaves[-2:])
 tx = Text(upper_staff.leaves[-7:])
@@ -101,8 +101,8 @@ spannertools.BeamSpanner(lower_staff.leaves[1:5])
 spannertools.BeamSpanner(lower_staff.leaves[6:10])
 spannertools.BeamSpanner(lower_staff.leaves[10:13])
 
-spannertools.SlurSpanner(lower_staff.leaves[1:6])
-slr = spannertools.SlurSpanner(lower_staff.leaves[6:13] + [v2a, v2b])
+spannertools.Slur(lower_staff.leaves[1:6])
+slr = spannertools.Slur(lower_staff.leaves[6:13] + [v2a, v2b])
 slr.position = Down
 
 lower_staff.barline.kind = '||'

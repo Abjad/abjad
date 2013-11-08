@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_DynamicMark___repr___01():
+def test_marktools_Dynamic___repr___01():
     r'''Dynamic mark returns nonempty string repr.
     '''
 

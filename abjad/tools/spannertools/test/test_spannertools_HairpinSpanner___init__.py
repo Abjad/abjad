@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_HairpinSpanner___init___01():
+def test_spannertools_HairpinSpanner___init___01():
     r'''Init empty hairpin spanner.
     '''
 

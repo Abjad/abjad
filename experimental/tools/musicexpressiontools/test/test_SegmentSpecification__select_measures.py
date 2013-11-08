@@ -269,7 +269,7 @@ def test_SegmentSpecification__select_measures_14():
     red_segment.set_divisions([(2, 16)])
     red_segment.set_rhythm(library.sixteenths)
     measure = red_segment.select_measures('Voice 1')[1]
-    measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
+    measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
     current_function_name = testtools.get_current_function_name()
@@ -288,7 +288,7 @@ def test_SegmentSpecification__select_measures_15():
     red_segment.set_divisions([(2, 16)])
     red_segment.set_rhythm(library.sixteenths)
     measure = red_segment.select_measures('Voice 1')[-2]
-    measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
+    measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
     current_function_name = testtools.get_current_function_name()

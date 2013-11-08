@@ -16,7 +16,7 @@ def test_ScoreSpecification__set_spanner_01():
     leaves.set_pitch(library.example_pitches_1())
     divisions = score_specification.select_divisions('Voice 1')[2:4]
     leaves = divisions.timespan.select_leaves('Voice 1')
-    leaves.set_spanner(spannertools.SlurSpanner())
+    leaves.set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
     current_function_name = testtools.get_current_function_name()
@@ -38,7 +38,7 @@ def test_ScoreSpecification__set_spanner_02():
     leaves.set_pitch(library.example_pitches_1())
     divisions = score_specification.select_divisions('Voice 1')[2:4]
     leaves = divisions.timespan.select_leaves('Voice 1')
-    spanner = spannertools.SlurSpanner()
+    spanner = spannertools.Slur()
     override(spanner).note_head.color = 'red'
     override(spanner).stem.color = 'red'
     override(spanner).beam.color = 'red'

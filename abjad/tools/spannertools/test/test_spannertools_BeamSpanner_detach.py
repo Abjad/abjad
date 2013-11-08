@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_BeamSpanner_detach_01():
+def test_spannertools_BeamSpanner_detach_01():
     r'''Detach length-one spanner.
     '''
 
@@ -47,7 +47,7 @@ def test_BeamSpanner_detach_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_BeamSpanner_detach_02():
+def test_spannertools_BeamSpanner_detach_02():
     r'''Detach length-four spanner.
     '''
 

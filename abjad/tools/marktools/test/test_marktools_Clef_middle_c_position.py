@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ClefMark_middle_c_position_01():
+def test_marktools_Clef_middle_c_position_01():
 
     assert Clef('treble').middle_c_position == -6
     assert Clef('alto').middle_c_position == 0

@@ -12,17 +12,17 @@ staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
 </abjad>
 
 <abjad>
-slur_1 = spannertools.SlurSpanner()
+slur_1 = spannertools.Slur()
 slur_1.attach(staff[:2])
 </abjad>
 
 <abjad>
-slur_2 = spannertools.SlurSpanner()
+slur_2 = spannertools.Slur()
 slur_2.attach(staff[2:4])
 </abjad>
 
 <abjad>
-slur_3 = spannertools.SlurSpanner()
+slur_3 = spannertools.Slur()
 slur_3.attach(staff[4:6])
 </abjad>
 

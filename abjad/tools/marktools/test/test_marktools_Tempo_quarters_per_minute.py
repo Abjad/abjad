@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TempoMark_quarters_per_minute_01():
+def test_marktools_Tempo_quarters_per_minute_01():
     r'''Maelzel metronome marking with integer-valued mark.
     '''
 
@@ -10,7 +10,7 @@ def test_TempoMark_quarters_per_minute_01():
     assert tempomark.quarters_per_minute == Duration(416, 3)
 
 
-def test_TempoMark_quarters_per_minute_02():
+def test_marktools_Tempo_quarters_per_minute_02():
     r'''Maelzel metronome marking with float-valued mark.
     '''
 

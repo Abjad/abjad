@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ClefMarkInventory___contains___01():
+def test_marktools_ClefInventory___contains___01():
 
     inventory = marktools.ClefInventory(['treble', 'bass'])
 

@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools.marktools import TimeSignature
 
 
-def test_TimeSignatureMark___repr___01():
+def test_marktools_TimeSignature___repr___01():
     r'''Time signature mark returns nonempty string repr.
     '''
 
@@ -11,7 +11,7 @@ def test_TimeSignatureMark___repr___01():
     assert isinstance(time_signature_repr, str) and 0 < len(time_signature_repr)
 
 
-def test_TimeSignatureMark___repr___02():
+def test_marktools_TimeSignature___repr___02():
     r'''Repr is evaluable.
     '''
 

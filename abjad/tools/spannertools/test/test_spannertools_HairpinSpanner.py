@@ -5,7 +5,7 @@ from abjad.tools.wellformednesstools import IntermarkedHairpinCheck
 from abjad.tools.wellformednesstools import ShortHairpinCheck
 
 
-def test_HairpinSpanner_01():
+def test_spannertools_HairpinSpanner_01():
     r'''Hairpins span adjacent leaves.
     '''
 
@@ -32,7 +32,7 @@ def test_HairpinSpanner_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_HairpinSpanner_02():
+def test_spannertools_HairpinSpanner_02():
     r'''Hairpins spanning a single leaf are allowed but not well-formed.
     '''
 
@@ -60,7 +60,7 @@ def test_HairpinSpanner_02():
     assert not checker.check(staff)
 
 
-def test_HairpinSpanner_03():
+def test_spannertools_HairpinSpanner_03():
     r'''Hairpins and dynamics apply separately.
     '''
 
@@ -91,7 +91,7 @@ def test_HairpinSpanner_03():
     assert inspect(staff).is_well_formed()
 
 
-def test_HairpinSpanner_04():
+def test_spannertools_HairpinSpanner_04():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = CrescendoSpanner()
@@ -102,7 +102,7 @@ def test_HairpinSpanner_04():
     assert not inspect(staff).is_well_formed()
 
 
-def test_HairpinSpanner_05():
+def test_spannertools_HairpinSpanner_05():
     r'''Apply back-to-back hairpins separately.
     '''
 
@@ -141,7 +141,7 @@ def test_HairpinSpanner_05():
     assert inspect(staff).is_well_formed()
 
 
-def test_HairpinSpanner_06():
+def test_spannertools_HairpinSpanner_06():
     r'''Hairpins format rests.
     '''
 
@@ -168,7 +168,7 @@ def test_HairpinSpanner_06():
     assert inspect(staff).is_well_formed()
 
 
-def test_HairpinSpanner_07():
+def test_spannertools_HairpinSpanner_07():
     r'''Trimmed hairpins with dynamic marks behave as expected.
     '''
 

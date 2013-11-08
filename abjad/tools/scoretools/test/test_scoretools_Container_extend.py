@@ -262,7 +262,7 @@ def test_scoretools_Container_extend_08():
     u = Voice("c'8 d'8 e'8 f'8")
     beam = BeamSpanner()
     attach(beam, u[:])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, u[-2:])
 
     r'''

@@ -3,13 +3,13 @@ from abjad.tools import stringtools
 from abjad.tools.spannertools.DirectedSpanner import DirectedSpanner
 
 
-class SlurSpanner(DirectedSpanner):
+class Slur(DirectedSpanner):
     r'''A slur spanner.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> slur = spannertools.SlurSpanner()
+        >>> slur = spannertools.Slur()
         >>> attach(slur, staff[:])
         >>> show(staff) # doctest: +SKIP
 

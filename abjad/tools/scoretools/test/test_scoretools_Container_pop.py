@@ -10,7 +10,7 @@ def test_scoretools_Container_pop_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, voice[:])
     beam = BeamSpanner()
     attach(beam, voice[1])

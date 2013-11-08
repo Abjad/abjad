@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TimeSignatureMark___init___01():
+def test_marktools_TimeSignature___init___01():
     r'''Initialize time signature mark from integer pair.
     '''
 
@@ -11,7 +11,7 @@ def test_TimeSignatureMark___init___01():
     assert format(time_signature, 'lilypond') == '\\time 9/32'
 
 
-def test_TimeSignatureMark___init___02():
+def test_marktools_TimeSignature___init___02():
     r'''Initialize time signature mark from other time signature instance.
     '''
 
@@ -25,7 +25,7 @@ def test_TimeSignatureMark___init___02():
     assert time_signature_1 is not time_signature_2
 
 
-def test_TimeSignatureMark___init___03():
+def test_marktools_TimeSignature___init___03():
     r'''Initialize time signature mark from other time signature 
     instance with partial.
     '''

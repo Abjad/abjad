@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_CrescendoSpanner___init___01():
+def test_spannertools_CrescendoSpanner___init___01():
     r'''Init empty crescendo spanner.
     '''
 
@@ -10,7 +10,7 @@ def test_CrescendoSpanner___init___01():
     assert isinstance(crescendo, CrescendoSpanner)
 
 
-def test_CrescendoSpanner___init___02():
+def test_spannertools_CrescendoSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
     crescendo = CrescendoSpanner()

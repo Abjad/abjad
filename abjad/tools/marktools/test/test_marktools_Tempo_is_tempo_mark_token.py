@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TempoMark_is_tempo_mark_token_01():
+def test_marktools_Tempo_is_tempo_mark_token_01():
 
     tempo_mark = Tempo(Duration(1, 4), 72)
 
@@ -12,7 +12,7 @@ def test_TempoMark_is_tempo_mark_token_01():
     assert tempo_mark.is_tempo_mark_token(('Vivce', (1, 8), 108))
 
 
-def test_TempoMark_is_tempo_mark_token_02():
+def test_marktools_Tempo_is_tempo_mark_token_02():
 
     tempo_mark = Tempo(Duration(1, 4), 72)
 

@@ -10,7 +10,7 @@ def test_selectiontools_ContiguousSelection__get_crossing_spanners_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, voice[1][:])
     trill = spannertools.TrillSpanner()
     attach(trill, voice.select_leaves())

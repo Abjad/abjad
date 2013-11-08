@@ -58,7 +58,7 @@ lower Voice will hold the eighth note run. First the eighth notes:
 pitches = [1,2,3]
 notes = scoretools.make_notes(pitches, [(1, 8)])
 spannertools.BeamSpanner(notes)
-spannertools.SlurSpanner(notes)
+spannertools.Slur(notes)
 marktools.Dynamic('f')(notes[0])
 marktools.Dynamic('p')(notes[1])
 </abjad>

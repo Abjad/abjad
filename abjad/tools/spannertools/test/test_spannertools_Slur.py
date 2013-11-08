@@ -2,12 +2,12 @@
 from abjad import *
 
 
-def test_SlurSpanner_01():
+def test_spannertools_Slur_01():
     r'''Slur spanner can attach to a container.
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, container)
 
     assert testtools.compare(
@@ -25,12 +25,12 @@ def test_SlurSpanner_01():
     assert inspect(container).get_spanners() == set([slur])
 
 
-def test_SlurSpanner_02():
+def test_spannertools_Slur_02():
     r'''Slur spanner can attach to leaves.
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, container[:])
 
     assert testtools.compare(

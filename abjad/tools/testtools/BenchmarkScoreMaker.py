@@ -330,7 +330,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4], 
             cyclic=True,
             ):
-            slur = spannertools.SlurSpanner()
+            slur = spannertools.Slur()
             attach(slur, part)
         return voice
 
@@ -350,7 +350,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20], 
             cyclic=True,
             ):
-            slur = spannertools.SlurSpanner()
+            slur = spannertools.Slur()
             attach(slur, part)
         return voice
 
@@ -370,7 +370,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [100], 
             cyclic=True,
             ):
-            slur = spannertools.SlurSpanner()
+            slur = spannertools.Slur()
             attach(slur, part)
         return voice
 

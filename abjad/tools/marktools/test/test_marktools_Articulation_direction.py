@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_Articulation_direction_01():
+def test_marktools_Articulation_direction_01():
 
     note = Note("c'4")
     articulation = Articulation('staccato')

@@ -96,7 +96,7 @@ And so do Abjad spanners:
 
 ::
 
-   >>> slur = spannertools.SlurSpanner(staff[:])
+   >>> slur = spannertools.Slur(staff[:])
    >>> slur.override.slur.color = 'red'
    >>> slur.override
    LilyPondGrobManager(slur__color='red')

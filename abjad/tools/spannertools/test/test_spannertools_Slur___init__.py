@@ -2,15 +2,15 @@
 from abjad import *
 
 
-def test_SlurSpanner___init___01():
+def test_spannertools_Slur___init___01():
     r'''Init empty slur spanner.
     '''
 
-    slur = SlurSpanner()
-    assert isinstance(slur, SlurSpanner)
+    slur = Slur()
+    assert isinstance(slur, Slur)
 
 
-def test_SlurSpanner___init___02():
+def test_spannertools_Slur___init___02():
     r'''You can span across staves if they and
     all their subcontexts are equally named.
     '''
@@ -49,7 +49,7 @@ def test_SlurSpanner___init___02():
         )
 
     leaves = container[0][0][:] + container[1][0][:]
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, leaves)
 
     assert testtools.compare(
@@ -91,7 +91,7 @@ def test_SlurSpanner___init___02():
     assert inspect(container).is_well_formed()
 
 
-def test_SlurSpanner___init___03():
+def test_spannertools_Slur___init___03():
     '''You can span over liked named staves
     so long as the voices nested in the staves are named the same.
     '''
@@ -117,7 +117,7 @@ def test_SlurSpanner___init___03():
         '''
         )
 
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, container)
 
     assert testtools.compare(

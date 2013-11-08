@@ -15,7 +15,7 @@ staff = Staff(string)
 leaves = iterate(staff).by_class(scoretools.Leaf)
 for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
     if 1 < len(group):
-        slur = spannertools.SlurSpanner(group)
+        slur = spannertools.Slur(group)
 
 show(staff)
 </abjad>
@@ -53,7 +53,7 @@ We add slur spanners inside our loop:
 <abjad>
 leaves = iterate(staff).by_class(scoretools.Leaf)
 for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
-    spannertools.SlurSpanner(group)
+    spannertools.Slur(group)
 
 </abjad>
 
@@ -81,7 +81,7 @@ leaves = iterate(staff).by_class(scoretools.Leaf)
 classes = (Note, Chord)
 for group in iterationtools.iterate_runs_in_expr(leaves, classes):
     if 1 < len(group):
-        spannertools.SlurSpanner(group)
+        spannertools.Slur(group)
 </abjad>
 
 And here's the corrected result:

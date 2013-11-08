@@ -44,12 +44,12 @@ We add slur spanners inside our loop:
 
    >>> leaves = iterate(staff).by_class(scoretools.Leaf)
    >>> for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
-   ...     spannertools.SlurSpanner(group)
+   ...     spannertools.Slur(group)
    ... 
-   SlurSpanner(c'4, d'4)
-   SlurSpanner(e'4, <fs' a' c''>8, <fs' a' c''>4)
-   SlurSpanner(g'16)
-   SlurSpanner(b'16, d''16, df'4, c'4, c'1)
+   Slur(c'4, d'4)
+   Slur(e'4, <fs' a' c''>8, <fs' a' c''>4)
+   Slur(g'16)
+   Slur(b'16, d''16, df'4, c'4, c'1)
 
 
 Here's the result:
@@ -80,11 +80,11 @@ Let's rewrite our example to prevent that from happening:
    >>> classes = (Note, Chord)
    >>> for group in iterationtools.iterate_runs_in_expr(leaves, classes):
    ...     if 1 < len(group):
-   ...         spannertools.SlurSpanner(group)
+   ...         spannertools.Slur(group)
    ... 
-   SlurSpanner(c'4, d'4)
-   SlurSpanner(e'4, <fs' a' c''>8, <fs' a' c''>4)
-   SlurSpanner(b'16, d''16, df'4, c'4, c'1)
+   Slur(c'4, d'4)
+   Slur(e'4, <fs' a' c''>8, <fs' a' c''>4)
+   Slur(b'16, d''16, df'4, c'4, c'1)
 
 
 And here's the corrected result:

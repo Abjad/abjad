@@ -87,7 +87,7 @@ def test_marktools_LilyPondCommand_format_05():
     assert format(note) == "c'4 \\flageolet"
 
 
-def test_marktools_LilyPondCommandMark_format_06():
+def test_marktools_LilyPondCommand_format_06():
     r'''Add then detach natural harmonic.
     '''
 

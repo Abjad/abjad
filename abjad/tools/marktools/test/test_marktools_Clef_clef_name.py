@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ClefMark_clef_name_01():
+def test_marktools_Clef_clef_name_01():
     r'''Clef name is read / write.
     '''
 

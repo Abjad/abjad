@@ -235,20 +235,20 @@ Now some slurs:
 
 ::
 
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(upper_leaves[:5])
 
 
 ::
 
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(upper_leaves[5:])
 
 
 
 ::
 
-   >>> slur = spannertools.SlurSpanner()
+   >>> slur = spannertools.Slur()
    >>> slur.attach(lower_leaves[1:6])
 
 

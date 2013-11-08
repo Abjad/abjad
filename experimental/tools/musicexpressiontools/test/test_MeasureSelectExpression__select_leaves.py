@@ -12,7 +12,7 @@ def test_MeasureSelectExpression__select_leaves_01():
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-    slur = spannertools.SlurSpanner()
+    slur = spannertools.Slur()
     measures = red_segment.select_measures('Voice 1')[1:3].select_leaves('Voice 1').set_spanner(slur)
     score = score_specification.interpret()
 

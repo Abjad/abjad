@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TempoMark_is_imprecise_01( ):
+def test_marktools_Tempo_is_imprecise_01( ):
     r'''Tempo mark is imprecise if either duration or units_per_minute is None,
     or if units_per_minute is a tuple representing a tempo range.
     '''

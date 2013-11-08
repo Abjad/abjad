@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ClefMark___copy___01():
+def test_marktools_Clef___copy___01():
     r'''Copies explicit clef marks copy.
     '''
 
@@ -58,7 +58,7 @@ def test_ClefMark___copy___01():
         Clef) == Clef('treble')
 
 
-def test_ClefMark___copy___02():
+def test_marktools_Clef___copy___02():
     r'''Does not copy implicit clefs.
     '''
 

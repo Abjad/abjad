@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-def test_BeamSpanner___init___01():
+def test_spannertools_BeamSpanner___init___01():
     r'''Initalize empty beam spanner.
     '''
 
@@ -11,7 +11,7 @@ def test_BeamSpanner___init___01():
     assert isinstance(beam, BeamSpanner)
 
 
-def test_BeamSpanner___init___02():
+def test_spannertools_BeamSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
     beam = BeamSpanner()
@@ -33,7 +33,7 @@ def test_BeamSpanner___init___02():
     assert inspect(staff).is_well_formed()
 
 
-def test_BeamSpanner___init___03():
+def test_spannertools_BeamSpanner___init___03():
     r'''Empty container.
     '''
 
@@ -54,7 +54,7 @@ def test_BeamSpanner___init___03():
     assert len(beam.leaves) == 0
 
 
-def test_BeamSpanner___init___04():
+def test_spannertools_BeamSpanner___init___04():
     r'''Nonempty container.
     '''
 
@@ -83,7 +83,7 @@ def test_BeamSpanner___init___04():
     assert len(beam.leaves) == 8
 
 
-def test_BeamSpanner___init___05():
+def test_spannertools_BeamSpanner___init___05():
     r'''Nested nonempty containers.
     '''
 
@@ -117,7 +117,7 @@ def test_BeamSpanner___init___05():
     assert len(beam.leaves) == 8
 
 
-def test_BeamSpanner___init___06():
+def test_spannertools_BeamSpanner___init___06():
     r'''Beamed container and top-level leaves housed in staff.
     '''
 
@@ -148,7 +148,7 @@ def test_BeamSpanner___init___06():
     assert len(beam.leaves) == 6
 
 
-def test_BeamSpanner___init___07():
+def test_spannertools_BeamSpanner___init___07():
     r'''Beamed leaves housed in staff and container.
     '''
 
@@ -177,7 +177,7 @@ def test_BeamSpanner___init___07():
     assert len(beam.leaves) == 6
 
 
-def test_BeamSpanner___init___08():
+def test_spannertools_BeamSpanner___init___08():
     r'''Staff with empty containers.
     '''
 
@@ -204,7 +204,7 @@ def test_BeamSpanner___init___08():
     assert len(beam.leaves) == 0
 
 
-def test_BeamSpanner___init___09():
+def test_spannertools_BeamSpanner___init___09():
     r'''Staff with empty containers at the edges.
     '''
 
@@ -237,7 +237,7 @@ def test_BeamSpanner___init___09():
     assert len(beam.leaves) == 4
 
 
-def test_BeamSpanner___init___10():
+def test_spannertools_BeamSpanner___init___10():
     r'''Deeply nested containers of equal depth.
     '''
 
@@ -297,7 +297,7 @@ def test_BeamSpanner___init___10():
     assert len(beam.leaves) == 8
 
 
-def test_BeamSpanner___init___11():
+def test_spannertools_BeamSpanner___init___11():
     r'''Deeply nested containers of unequal depth.
     '''
 
@@ -326,7 +326,7 @@ def test_BeamSpanner___init___11():
     detach(beam, voice[0][0][0])
 
 
-def test_BeamSpanner___init___12():
+def test_spannertools_BeamSpanner___init___12():
     r'''Voice with containers and top-level leaves.
     '''
 
@@ -355,7 +355,7 @@ def test_BeamSpanner___init___12():
     assert len(beam.leaves) == 5
     detach(beam, voice[0])
 
-def test_BeamSpanner___init___13():
+def test_spannertools_BeamSpanner___init___13():
     r'''Voice with tuplets and top-level leaves.
     '''
 
@@ -387,7 +387,7 @@ def test_BeamSpanner___init___13():
     detach(beam, voice[0])
 
 
-def test_BeamSpanner___init___14():
+def test_spannertools_BeamSpanner___init___14():
     r'''Nested tuplets.
     '''
 
@@ -420,7 +420,7 @@ def test_BeamSpanner___init___14():
     assert len(beam.leaves) == 5
 
 
-def test_BeamSpanner___init___15():
+def test_spannertools_BeamSpanner___init___15():
     r'''Beams cannot cross voice boundaries.
     '''
 
@@ -458,7 +458,7 @@ def test_BeamSpanner___init___15():
     assert pytest.raises(Exception, statement)
 
 
-def test_BeamSpanner___init___16():
+def test_spannertools_BeamSpanner___init___16():
     r'''You can span the counttime components of like-named voices.
     '''
 
@@ -492,7 +492,7 @@ def test_BeamSpanner___init___16():
     assert len(beam.leaves) == 8
 
 
-def test_BeamSpanner___init___17():
+def test_spannertools_BeamSpanner___init___17():
     '''Like-named containers need not be lexically contiguous.
     '''
 
@@ -570,7 +570,7 @@ def test_BeamSpanner___init___17():
     assert len(beam.leaves) == 8
 
 
-def test_BeamSpanner___init___18():
+def test_spannertools_BeamSpanner___init___18():
     '''Asymmetric structures are no problem.
     '''
 
@@ -637,7 +637,7 @@ def test_BeamSpanner___init___18():
     assert len(beam.leaves) == 8
 
 
-def test_BeamSpanner___init___19():
+def test_spannertools_BeamSpanner___init___19():
     r'''Spanners will not inspect the contents of simultaneous containers.
     '''
 
@@ -658,7 +658,7 @@ def test_BeamSpanner___init___19():
         )
 
 
-def test_BeamSpanner___init___20():
+def test_spannertools_BeamSpanner___init___20():
     r'''Notes in voice accept spanner even lodged within 
     simultaneous parent container.
     '''
@@ -707,7 +707,7 @@ def test_BeamSpanner___init___20():
     assert len(beam.components) == 4
 
 
-def test_BeamSpanner___init___21():
+def test_spannertools_BeamSpanner___init___21():
     r'''You can not yet span noncontiguous counttime components
     in the same logical voice. Lilypond is happy with this situation, though.
     '''
@@ -766,7 +766,7 @@ def test_BeamSpanner___init___21():
     assert pytest.raises(Exception, statement)
 
 
-def test_BeamSpanner___init___22():
+def test_spannertools_BeamSpanner___init___22():
     r'''You can span counttime components in three chunks.
     '''
 
@@ -841,7 +841,7 @@ def test_BeamSpanner___init___22():
     assert len(beam.leaves) == 12
 
 
-def test_BeamSpanner___init___23():
+def test_spannertools_BeamSpanner___init___23():
     r'''You can not span across differently named voices.
     '''
 

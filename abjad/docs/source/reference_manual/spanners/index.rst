@@ -14,19 +14,19 @@ The symbols below are black with fixed thickness and predetermined spacing:
 
 ::
 
-   >>> slur_1 = spannertools.SlurSpanner()
+   >>> slur_1 = spannertools.Slur()
    >>> slur_1.attach(staff[:2])
 
 
 ::
 
-   >>> slur_2 = spannertools.SlurSpanner()
+   >>> slur_2 = spannertools.Slur()
    >>> slur_2.attach(staff[2:4])
 
 
 ::
 
-   >>> slur_3 = spannertools.SlurSpanner()
+   >>> slur_3 = spannertools.Slur()
    >>> slur_3.attach(staff[4:6])
 
 

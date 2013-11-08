@@ -10,7 +10,7 @@ def make_desordre_cell(pitches):
     notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
     beam = spannertools.BeamSpanner()
     attach(beam, notes)
-    slur = spannertools.SlurSpanner()
+    slur = spannertools.Slur()
     attach(slur, notes)
     clef = marktools.Dynamic('f')
     attach(clef, notes[0])

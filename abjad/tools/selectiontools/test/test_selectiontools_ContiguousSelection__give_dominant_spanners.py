@@ -15,7 +15,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
     attach(crescendo, voice[:])
     beam = BeamSpanner()
     attach(beam, voice[:2])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, voice[1:3])
 
     assert testtools.compare(

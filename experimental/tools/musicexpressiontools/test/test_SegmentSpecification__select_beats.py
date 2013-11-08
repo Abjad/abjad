@@ -84,7 +84,7 @@ def test_SegmentSpecification__select_beats_04():
     blue_beats = blue_segment.select_beats('Voice 1')
     blue_segment.set_divisions(blue_beats)
     beat = blue_segment.select_beats('Voice 1')[2]
-    beat.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
+    beat.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
     current_function_name = testtools.get_current_function_name()
@@ -108,7 +108,7 @@ def test_SegmentSpecification__select_beats_05():
     blue_beats = blue_segment.select_beats('Voice 1')
     blue_segment.set_divisions(blue_beats)
     beat = blue_segment.select_beats('Voice 1')[-2]
-    beat.timespan.select_leaves('Voice 1').set_spanner(spannertools.SlurSpanner())
+    beat.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
     current_function_name = testtools.get_current_function_name()

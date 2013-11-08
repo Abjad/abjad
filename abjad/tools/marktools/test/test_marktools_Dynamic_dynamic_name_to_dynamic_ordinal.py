@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_DynamicMark_dynamic_name_to_dynamic_ordinal_01():
+def test_marktools_Dynamic_dynamic_name_to_dynamic_ordinal_01():
 
     assert Dynamic.dynamic_name_to_dynamic_ordinal('pp') == -3
     assert Dynamic.dynamic_name_to_dynamic_ordinal('p') == -2
@@ -12,7 +12,7 @@ def test_DynamicMark_dynamic_name_to_dynamic_ordinal_01():
     assert Dynamic.dynamic_name_to_dynamic_ordinal('ff') == 3
 
 
-def test_DynamicMark_dynamic_name_to_dynamic_ordinal_02():
+def test_marktools_Dynamic_dynamic_name_to_dynamic_ordinal_02():
 
     assert Dynamic.dynamic_name_to_dynamic_ordinal('fp') == -2
     assert Dynamic.dynamic_name_to_dynamic_ordinal('sf') == 2

@@ -3,7 +3,7 @@ from abjad import *
 import pytest
 
 
-def test_ClefMark___init___01():
+def test_marktools_Clef___init___01():
 
     clef_1 = Clef('treble')
     clef_2 = Clef(clef_1)
@@ -12,6 +12,6 @@ def test_ClefMark___init___01():
     assert not clef_1 is clef_2
 
 
-def test_ClefMark___init___02():
+def test_marktools_Clef___init___02():
 
     assert pytest.raises(TypeError, 'Clef(1)')

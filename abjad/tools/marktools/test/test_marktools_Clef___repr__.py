@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ClefMark___repr___01():
+def test_marktools_Clef___repr___01():
     r'''Clef returns a nonempty repr string.
     '''
 

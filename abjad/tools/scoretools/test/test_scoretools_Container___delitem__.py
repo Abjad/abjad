@@ -13,9 +13,9 @@ def test_scoretools_Container___delitem___01():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
     beam = BeamSpanner()
     attach(beam, voice[:])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, voice[0][:])
-    slur = SlurSpanner()
+    slur = Slur()
     attach(slur, voice[1][:])
 
     assert testtools.compare(

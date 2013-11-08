@@ -67,7 +67,7 @@ show(staff)
 And so do Abjad spanners:
 
 <abjad>
-slur = spannertools.SlurSpanner(staff[:])
+slur = spannertools.Slur(staff[:])
 slur.override.slur.color = 'red'
 slur.override
 </abjad>

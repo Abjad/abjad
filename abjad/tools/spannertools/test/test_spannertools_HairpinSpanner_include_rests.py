@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_HairpinSpanner_include_rests_01():
+def test_spannertools_HairpinSpanner_include_rests_01():
     r'''Hairpin spanner avoids rests.
     '''
 
@@ -29,7 +29,7 @@ def test_HairpinSpanner_include_rests_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_HairpinSpanner_include_rests_02():
+def test_spannertools_HairpinSpanner_include_rests_02():
     r'''Hairpin spanner avoids rests.
     '''
 

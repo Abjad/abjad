@@ -455,12 +455,12 @@ class ReducedLyParser(abctools.Parser):
     def p_slur__PAREN_L(self, p):
         r'''slur : PAREN_L
         '''
-        p[0] = (spannertools.SlurSpanner, Left)
+        p[0] = (spannertools.Slur, Left)
 
     def p_slur__PAREN_R(self, p):
         r'''slur : PAREN_R
         '''
-        p[0] = (spannertools.SlurSpanner, Right)
+        p[0] = (spannertools.Slur, Right)
 
     def p_start__EMPTY(self, p):
         r'''start : 
@@ -513,7 +513,7 @@ class ReducedLyParser(abctools.Parser):
 
         spanner_references = {
             spannertools.BeamSpanner: None,
-            spannertools.SlurSpanner: None,
+            spannertools.Slur: None,
         }
 
         first_leaf = leaves[0]
@@ -560,7 +560,7 @@ class ReducedLyParser(abctools.Parser):
                             spanner_references[current_class].append(leaf)
                             spanner_references[current_class] = None
 
-                elif current_class is spannertools.SlurSpanner:
+                elif current_class is spannertools.Slur:
                     # Slurs process stop events before start events,
                     # they must contain more than one leaf,
                     # but they can stop on a leaf and start on the same leaf.

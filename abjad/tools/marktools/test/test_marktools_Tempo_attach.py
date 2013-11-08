@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-def test_TempoMark_attach_01():
+def test_marktools_Tempo_attach_01():
 
     score = Score(r"\new Staff { c'' d'' e'' f'' } \new Staff { c' d' e' f' }")
     tempo = Tempo((1, 8), 52)

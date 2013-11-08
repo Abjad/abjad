@@ -3,7 +3,7 @@ from abjad import *
 import pytest
 
 
-def test_Articulation___setattr___01():
+def test_marktools_Articulation___setattr___01():
     r'''Slots constrain articulation attributes.
     '''
 

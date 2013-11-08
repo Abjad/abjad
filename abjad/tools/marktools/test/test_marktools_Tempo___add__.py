@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-def test_TempoMark___add___01():
+def test_marktools_Tempo___add___01():
 
     tempo_indication_1 = Tempo(Duration(1, 4), 60)
     tempo_indication_2 = Tempo(Duration(1, 4), 90)
@@ -15,7 +15,7 @@ def test_TempoMark___add___01():
     assert result == Tempo(Duration(1, 4), 150)
 
 
-def test_TempoMark___add___02():
+def test_marktools_Tempo___add___02():
 
     tempo_indication_1 = Tempo(Duration(1, 8), 42)
     tempo_indication_2 = Tempo(Duration(1, 4), 90)
@@ -27,7 +27,7 @@ def test_TempoMark___add___02():
     assert result == Tempo(Duration(1, 4), 174)
 
 
-def test_TempoMark___add___03():
+def test_marktools_Tempo___add___03():
 
     tempo_indication_1 = Tempo('Langsam')
     tempo_indication_2 = Tempo(Duration(1, 4), 90)
@@ -35,7 +35,7 @@ def test_TempoMark___add___03():
     pytest.raises(ImpreciseTempoError, "tempo_indication_1 + tempo_indication_2")
 
 
-def test_TempoMark___add___04():
+def test_marktools_Tempo___add___04():
 
     tempo_indication_1 = Tempo(Duration(1, 8), (90, 92))
     tempo_indication_2 = Tempo(Duration(1, 4), 90)

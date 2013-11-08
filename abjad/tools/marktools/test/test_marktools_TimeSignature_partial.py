@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_TimeSignatureMark_partial_01():
+def test_marktools_TimeSignature_partial_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     time_signature = TimeSignature((2, 8), partial=Duration(1, 8))
@@ -25,7 +25,7 @@ def test_TimeSignatureMark_partial_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_TimeSignatureMark_partial_02():
+def test_marktools_TimeSignature_partial_02():
     r'''Time signature partial is read / write.
     '''
 
@@ -36,7 +36,7 @@ def test_TimeSignatureMark_partial_02():
     assert time_signature.partial == Duration(2, 8)
 
 
-def test_TimeSignatureMark_partial_03():
+def test_marktools_TimeSignature_partial_03():
     r'''Time signature partial can be cleared with none.
     '''
 
