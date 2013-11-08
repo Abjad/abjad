@@ -34,7 +34,7 @@ def test_quantizationtools_MeasurewiseQSchemaItem___new___03():
     assert item.beatspan == durationtools.Duration(1, 8)
     assert item.search_tree is None
     assert item.tempo is None
-    assert item.time_signature == TimeSignatureMark((6, 8))
+    assert item.time_signature == TimeSignature((6, 8))
 
 
 def test_quantizationtools_MeasurewiseQSchemaItem___new___04():
@@ -47,7 +47,7 @@ def test_quantizationtools_MeasurewiseQSchemaItem___new___04():
     assert item.beatspan == durationtools.Duration(1, 8)
     assert item.search_tree is None
     assert item.tempo == Tempo((1, 4), 57)
-    assert item.time_signature == TimeSignatureMark((6, 8))
+    assert item.time_signature == TimeSignature((6, 8))
 
 
 def test_quantizationtools_MeasurewiseQSchemaItem___new___05():

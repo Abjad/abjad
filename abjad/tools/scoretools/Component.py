@@ -288,10 +288,10 @@ class Component(AbjadObject):
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
         # do special things for time signature marks
-        if context_mark_classes == marktools.TimeSignatureMark:
+        if context_mark_classes == marktools.TimeSignature:
             if isinstance(self, scoretools.Measure):
-                if self._has_mark(marktools.TimeSignatureMark):
-                    return self._get_mark(marktools.TimeSignatureMark)
+                if self._has_mark(marktools.TimeSignature):
+                    return self._get_mark(marktools.TimeSignature)
         # updating marks of entire score tree if necessary
         self._update_now(marks=True)
         # gathering candidate marks
@@ -303,7 +303,7 @@ class Component(AbjadObject):
                 if isinstance(mark, context_mark_classes):
                     if mark.effective_context is not None:
                         candidate_marks.insert(mark)
-                    elif isinstance(mark, marktools.TimeSignatureMark):
+                    elif isinstance(mark, marktools.TimeSignature):
                         if isinstance(
                             mark.start_component, scoretools.Measure):
                             candidate_marks.insert(mark)
@@ -556,7 +556,7 @@ class Component(AbjadObject):
                     parent.target_duration = candidate_new_parent_dur
             elif isinstance(parent, scoretools.Measure):
                 parent_time_signature = parent._get_mark(
-                    marktools.TimeSignatureMark)
+                    marktools.TimeSignature)
                 old_prolation = parent_time_signature.implied_prolation
                 naive_time_signature = (
                     parent_time_signature.duration - prolated_leaf_duration)
@@ -564,13 +564,13 @@ class Component(AbjadObject):
                     naive_time_signature)
                 better_time_signature = better_time_signature.with_denominator(
                     parent_time_signature.denominator)
-                better_time_signature = marktools.TimeSignatureMark(
+                better_time_signature = marktools.TimeSignature(
                     better_time_signature)
-                for mark in parent._get_marks(marktools.TimeSignatureMark):
+                for mark in parent._get_marks(marktools.TimeSignature):
                     mark.detach()
                 attach(better_time_signature, parent)
                 parent_time_signature = parent._get_mark(
-                    marktools.TimeSignatureMark)
+                    marktools.TimeSignature)
                 #new_denominator = parent_time_signature.denominator
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation

@@ -6,7 +6,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__TimeSignatureMark_01():
 
     target = Score([Staff([Note(0, 1)])])
-    time_signature = TimeSignatureMark((8, 8))
+    time_signature = TimeSignature((8, 8))
     attach(time_signature, target.select_leaves()[0])
 
     assert testtools.compare(
@@ -26,5 +26,5 @@ def test_lilypondparsertools_LilyPondParser__marks__TimeSignatureMark_01():
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
     time_signature_marks = \
-        inspect(leaf).get_marks(TimeSignatureMark)
+        inspect(leaf).get_marks(TimeSignature)
     assert len(time_signature_marks) == 1

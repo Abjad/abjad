@@ -44,8 +44,8 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                     time_signature.numerator, time_signature.denominator)
                 numerator = time_signature_rational.numerator * reduced_denominator
                 denominator = time_signature_rational.denominator * reduced_denominator
-                time_signature = marktools.TimeSignatureMark((numerator, denominator))
-                for mark in measure._get_marks(marktools.TimeSignatureMark):
+                time_signature = marktools.TimeSignature((numerator, denominator))
+                for mark in measure._get_marks(marktools.TimeSignature):
                     mark.detach()
                 attach(time_signature, measure)
                 time_signature_multiplier = \

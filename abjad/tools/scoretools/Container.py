@@ -646,17 +646,17 @@ class Container(Component):
         # instantiate new left and right containers
         if isinstance(self, scoretools.Measure):
             time_signature = self._get_effective_context_mark(
-                marktools.TimeSignatureMark)
+                marktools.TimeSignature)
             denominator = time_signature.denominator
             left_duration = sum([x._get_duration() for x in left_music])
             left_pair = mathtools.NonreducedFraction(left_duration)
             left_pair = left_pair.with_multiple_of_denominator(denominator)
-            left_time_signature = marktools.TimeSignatureMark(left_pair)
+            left_time_signature = marktools.TimeSignature(left_pair)
             left = type(self)(left_time_signature, left_music)
             right_duration = sum([x._get_duration() for x in right_music])
             right_pair = mathtools.NonreducedFraction(right_duration)
             right_pair = right_pair.with_multiple_of_denominator(denominator)
-            right_time_signature = marktools.TimeSignatureMark(right_pair)
+            right_time_signature = marktools.TimeSignature(right_pair)
             right = type(self)(right_time_signature, right_music)
         elif isinstance(self, scoretools.FixedDurationTuplet):
             multiplier = self.multiplier

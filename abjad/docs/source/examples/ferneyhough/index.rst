@@ -193,7 +193,7 @@ function:
            tuplet_duration, row_count, column_count)
        for row_of_nested_tuplets in rows_of_nested_tuplets:
            staff = scoretools.RhythmicStaff(row_of_nested_tuplets)
-           time_signature = marktools.TimeSignatureMark((1, 4))
+           time_signature = marktools.TimeSignature((1, 4))
            time_signature.attach(staff)
            score.append(staff)
        return score

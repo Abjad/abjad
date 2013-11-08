@@ -186,7 +186,7 @@ def make_leaves(
             >>> durations = [Duration(13, 16)]
             >>> leaves = scoretools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((13, 16))
+            >>> time_signature = marktools.TimeSignature((13, 16))
             >>> time_signature = attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -214,7 +214,7 @@ def make_leaves(
             ...     decrease_durations_monotonically=False,
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((13, 16))
+            >>> time_signature = marktools.TimeSignature((13, 16))
             >>> time_signature = attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -243,7 +243,7 @@ def make_leaves(
             ...     tie_rests=True,
             ...     )
             >>> staff = scoretools.RhythmicStaff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((5, 8))
+            >>> time_signature = marktools.TimeSignature((5, 8))
             >>> time_signature = attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -271,7 +271,7 @@ def make_leaves(
             ...     forbidden_written_duration=Duration(1, 2),
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((5, 4))
+            >>> time_signature = marktools.TimeSignature((5, 4))
             >>> time_signature = attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -304,7 +304,7 @@ def make_leaves(
             ...     decrease_durations_monotonically=False,
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((5, 4))
+            >>> time_signature = marktools.TimeSignature((5, 4))
             >>> time_siganture = attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 

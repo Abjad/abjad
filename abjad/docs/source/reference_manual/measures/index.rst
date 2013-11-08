@@ -47,12 +47,12 @@ signatures:
 
 ::
 
-   >>> time_signature_1 = marktools.TimeSignatureMark((3, 8))
-   >>> time_signature_2 = marktools.TimeSignatureMark((2, 4))
+   >>> time_signature_1 = marktools.TimeSignature((3, 8))
+   >>> time_signature_2 = marktools.TimeSignature((2, 4))
    >>> time_signature_1.attach(staff)
-   TimeSignatureMark((3, 8))(Staff{11})
+   TimeSignature((3, 8))(Staff{11})
    >>> time_signature_2.attach(staff[6])
-   TimeSignatureMark((2, 4))(g'4)
+   TimeSignature((2, 4))(g'4)
 
 
 ::

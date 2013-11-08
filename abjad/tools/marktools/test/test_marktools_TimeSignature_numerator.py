@@ -6,7 +6,7 @@ def test_TimeSignatureMark_numerator_01():
     r'''Time signature numerator is read / write.
     '''
 
-    time_signature = TimeSignatureMark((3, 8))
+    time_signature = TimeSignature((3, 8))
     assert time_signature.numerator == 3
 
     time_signature.numerator = 4
@@ -19,7 +19,7 @@ def test_TimeSignatureMark_numerator_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = TimeSignatureMark((4, 8))
+    time_signature = TimeSignature((4, 8))
     attach(time_signature, staff)
     time_signature.numerator = 2
 

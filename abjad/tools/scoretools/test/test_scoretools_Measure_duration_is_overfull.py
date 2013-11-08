@@ -7,12 +7,12 @@ def test_scoretools_Measure_duration_is_overfull_01():
     measure = Measure((3, 8), scoretools.make_repeated_notes(3))
     assert not measure.is_overfull
 
-    inspect(measure).get_mark(TimeSignatureMark).detach()
-    time_signature = TimeSignatureMark((2, 8))
+    inspect(measure).get_mark(TimeSignature).detach()
+    time_signature = TimeSignature((2, 8))
     attach(time_signature, measure)
     assert measure.is_overfull
 
-    inspect(measure).get_mark(TimeSignatureMark).detach()
-    time_signature = TimeSignatureMark((3, 8))
+    inspect(measure).get_mark(TimeSignature).detach()
+    time_signature = TimeSignature((3, 8))
     attach(time_signature, measure)
     assert not measure.is_overfull

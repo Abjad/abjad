@@ -29,7 +29,7 @@ The same type of functions are likewise implemented for the following context ma
     marktools.KeySignature
     marktools.StaffChange
     marktools.Tempo
-    marktools.TimeSignatureMark
+    marktools.TimeSignature
 
 * Extended ``Container.extend()`` to allow for LilyPond input strings. You can now say ``container.extend("c'4 d'4 e'4 f'4")``.
 
@@ -45,4 +45,4 @@ The same type of functions are likewise implemented for the following context ma
 * Renamed ``Mark.attach_mark()`` to ``Mark.attach()``.
 * Renamed ``Mark.detach_mark()`` to ``Mark.detach()``.
 * Renamed ``marktools.Comment`` to ``marktools.LilyPondComment``. This matches ``marktools.LilyPondCommand``.
-* Removed ``marktools.TimeSignatureMark(3, 8)`` initialization. You must now say ``marktools.TimeSignatureMark((3, 8))`` instead. This parallels the initialization syntax for rests, skips and measures.
+* Removed ``marktools.TimeSignature(3, 8)`` initialization. You must now say ``marktools.TimeSignature((3, 8))`` instead. This parallels the initialization syntax for rests, skips and measures.

@@ -594,7 +594,7 @@ Now let's take a look at the code that puts our score together:
            score['LH Voice'].append(bass)
    
        # add marks
-       marktools.TimeSignatureMark((3, 8))(score['RH Staff'])
+       marktools.TimeSignature((3, 8))(score['RH Staff'])
        marktools.BarLine('|.')(score['RH Voice'][-1])
        marktools.BarLine('|.')(score['LH Voice'][-1])
    

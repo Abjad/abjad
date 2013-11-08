@@ -370,7 +370,7 @@ class PitchArrayRow(AbjadObject):
 
         Returns measure.
         '''
-        time_signature = marktools.TimeSignatureMark(
+        time_signature = marktools.TimeSignature(
             (self.width, cell_duration_denominator))
         measure = scoretools.Measure(time_signature, [])
         basic_cell_duration = \

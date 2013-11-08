@@ -9,19 +9,19 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
 
         >>> staff = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
         >>> time_signature = inspect(staff[1]).get_mark(
-        ...     marktools.TimeSignatureMark)
+        ...     marktools.TimeSignature)
         >>> time_signature.detach()
-        TimeSignatureMark((3, 8))
-        >>> new_time_signature = marktools.TimeSignatureMark((4, 8))
+        TimeSignature((3, 8))
+        >>> new_time_signature = marktools.TimeSignature((4, 8))
         >>> attach(new_time_signature, staff[1])
-        TimeSignatureMark((4, 8))(|4/8 c'8 d'8 e'8|)
+        TimeSignature((4, 8))(|4/8 c'8 d'8 e'8|)
         >>> time_signature = inspect(
-        ...     staff[2]).get_mark(marktools.TimeSignatureMark)
+        ...     staff[2]).get_mark(marktools.TimeSignature)
         >>> time_signature.detach()
-        TimeSignatureMark((3, 8))
-        >>> new_time_signature = marktools.TimeSignatureMark((5, 8))
+        TimeSignature((3, 8))
+        >>> new_time_signature = marktools.TimeSignature((5, 8))
         >>> attach(new_time_signature, staff[2])
-        TimeSignatureMark((5, 8))(|5/8 c'8 d'8 e'8|)
+        TimeSignature((5, 8))(|5/8 c'8 d'8 e'8|)
         >>> staff[1].is_underfull
         True
         >>> staff[2].is_underfull

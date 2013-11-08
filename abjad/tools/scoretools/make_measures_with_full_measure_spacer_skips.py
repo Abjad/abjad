@@ -40,7 +40,7 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
 
     # check input
     time_signatures = [
-        marktools.TimeSignatureMark(x) for x in time_signatures]
+        marktools.TimeSignature(x) for x in time_signatures]
 
     # make measures
     measures = [scoretools.Measure(x, []) for x in time_signatures]

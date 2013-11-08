@@ -185,17 +185,17 @@ Removed unused ``scoretools.all_are_contiguous_components_in_same_score()`` func
 Renamed ``scoretools.make_leaves_from_note_value_signal()``.
 The new name is ``scoretools.make_leaves_from_talea()``.
 
-Removed ``TimeSignatureMark.multiplier`` property.
-Use ``TimeSignatureMark.implied_prolation`` instead.
+Removed ``TimeSignature.multiplier`` property.
+Use ``TimeSignature.implied_prolation`` instead.
 
 Removed ``Measure.multiplier`` property.
 Use ``Measure.implied_prolation`` instead.
 
 Deprecated ``timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator()`` function.
-Use ``TimeSignatureMark.with_power_of_two_denominator()`` method instead.
+Use ``TimeSignature.with_power_of_two_denominator()`` method instead.
 
 Remvoed ``timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator()`` function.
-Use ``TimeSignatureMark.with_power_of_two_denominator()`` method instead.
+Use ``TimeSignature.with_power_of_two_denominator()`` method instead.
 
 Moved one function from ``scoretools`` to ``scoretools``.
 The function is ``get_likely_multiplier_components()``.

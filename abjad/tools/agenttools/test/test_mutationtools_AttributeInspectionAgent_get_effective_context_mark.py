@@ -360,7 +360,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_17():
 
     for leaf in staff:
         time_signature = inspect(leaf).get_effective_context_mark(
-            TimeSignatureMark)
+            TimeSignature)
         assert time_signature is None
 
 
@@ -369,7 +369,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_18():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = TimeSignatureMark((2, 8))
+    time_signature = TimeSignature((2, 8))
     attach(time_signature, staff[0])
 
     assert testtools.compare(
@@ -387,8 +387,8 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_18():
 
     for leaf in staff:
         time_signature = inspect(leaf).get_effective_context_mark(
-            TimeSignatureMark)
-        assert time_signature == TimeSignatureMark((2, 8))
+            TimeSignature)
+        assert time_signature == TimeSignature((2, 8))
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_19():
@@ -396,7 +396,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_19():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = TimeSignatureMark((2, 8))
+    time_signature = TimeSignature((2, 8))
     attach(time_signature, staff[0])
     time_signature.detach()
 
@@ -414,5 +414,5 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_19():
 
     for leaf in staff:
         time_signature = inspect(leaf).get_effective_context_mark(
-            TimeSignatureMark)
+            TimeSignature)
         assert time_signature is None

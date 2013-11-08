@@ -20,7 +20,7 @@ def test_quantizationtools_MeasurewiseQSchema___init___01():
     assert len(schema.items) == 4
     assert schema.search_tree == quantizationtools.UnweightedSearchTree({3: None})
     assert schema.tempo == Tempo((1, 8), 58)
-    assert schema.time_signature == TimeSignatureMark((5, 8))
+    assert schema.time_signature == TimeSignature((5, 8))
     assert schema.use_full_measure == False
 
 
@@ -31,5 +31,5 @@ def test_quantizationtools_MeasurewiseQSchema___init___02():
     assert len(schema.items) == 0
     assert schema.search_tree == quantizationtools.UnweightedSearchTree()
     assert schema.tempo == Tempo((1, 4), 60)
-    assert schema.time_signature == TimeSignatureMark((4, 4))
+    assert schema.time_signature == TimeSignature((4, 4))
     assert schema.use_full_measure == False

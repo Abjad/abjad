@@ -58,7 +58,7 @@ The score template
            bells = instrumenttools.Instrument('Campana in La', 'Camp.')
            bells.attach(bell_staff)
            marktools.Tempo((1, 4), (112, 120))(bell_staff)
-           marktools.TimeSignatureMark((6, 4))(bell_staff)
+           marktools.TimeSignature((6, 4))(bell_staff)
    
            # make first violin voice and staff
            first_violin_voice = scoretools.Voice(name='First Violin Voice')
@@ -391,7 +391,7 @@ give them a 6/4 time signature, just so they line up properly.
 ::
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
-   >>> time_signature = marktools.TimeSignatureMark((6, 4))(staff)
+   >>> time_signature = marktools.TimeSignature((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-1.png
@@ -423,7 +423,7 @@ Let's look at the second violins too:
 ::
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
-   >>> time_signature = marktools.TimeSignatureMark((6, 4))(staff)
+   >>> time_signature = marktools.TimeSignature((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-2.png
@@ -458,7 +458,7 @@ the bar lines accidentally:
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
    >>> shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
-   >>> time_signature = marktools.TimeSignatureMark((6, 4))(staff)
+   >>> time_signature = marktools.TimeSignature((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-3.png

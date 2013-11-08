@@ -441,9 +441,9 @@ class InspectionAgent(object):
             ::
 
                 >>> staff = Staff("c'4 d'4 e'4")
-                >>> time_signature = marktools.TimeSignatureMark((3, 8))
+                >>> time_signature = marktools.TimeSignature((3, 8))
                 >>> attach(time_signature, staff)
-                TimeSignatureMark((3, 8))(Staff{3})
+                TimeSignature((3, 8))(Staff{3})
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -470,7 +470,7 @@ class InspectionAgent(object):
         '''
         from abjad.tools import marktools
         time_signature = self._component._get_effective_context_mark(
-            marktools.TimeSignatureMark)
+            marktools.TimeSignature)
         if time_signature is None:
             time_signature_duration = durationtools.Duration(4, 4)
         else:

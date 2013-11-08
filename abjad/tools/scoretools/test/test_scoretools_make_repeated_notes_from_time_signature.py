@@ -28,7 +28,7 @@ def test_scoretools_make_repeated_notes_from_time_signature_02():
     r'''Make repeated notes from time signature.
     '''
 
-    time_signature = TimeSignatureMark((5, 32))
+    time_signature = TimeSignature((5, 32))
     notes = scoretools.make_repeated_notes_from_time_signature(time_signature, pitch="d''")
     staff = Staff(notes)
 

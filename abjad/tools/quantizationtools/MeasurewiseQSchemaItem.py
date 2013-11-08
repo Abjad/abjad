@@ -38,7 +38,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print format(q_schema_item)
         quantizationtools.MeasurewiseQSchemaItem(
-            time_signature=marktools.TimeSignatureMark(
+            time_signature=marktools.TimeSignature(
                 (6, 8)
                 )
             )
@@ -75,7 +75,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
             tempo=tempo,
             )
         if time_signature is not None:
-            time_signature = marktools.TimeSignatureMark(time_signature)
+            time_signature = marktools.TimeSignature(time_signature)
         self._time_signature = time_signature
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)
@@ -109,7 +109,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     @property
     def time_signature(self):
-        r'''The optionally defined TimeSignatureMark.
+        r'''The optionally defined TimeSignature.
 
         Returns time signature mark or none
         '''
