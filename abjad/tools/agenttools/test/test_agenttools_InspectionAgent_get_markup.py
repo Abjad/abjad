@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_mutationtools_AttributeInspectionAgent_get_markup_01():
+def test_agenttools_InspectionAgent_get_markup_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
@@ -37,7 +37,7 @@ def test_mutationtools_AttributeInspectionAgent_get_markup_01():
     assert markup_2 in markup
 
 
-def test_mutationtools_AttributeInspectionAgent_get_markup_02():
+def test_agenttools_InspectionAgent_get_markup_02():
 
     chord = Chord([-11, 2, 5], (1, 4))
     up_markup = markuptools.Markup('UP', Up)
@@ -48,7 +48,7 @@ def test_mutationtools_AttributeInspectionAgent_get_markup_02():
     assert found_markup == (down_markup,) 
 
 
-def test_mutationtools_AttributeInspectionAgent_get_markup_03():
+def test_agenttools_InspectionAgent_get_markup_03():
 
     chord = Chord([-11, 2, 5], (1, 4))
     up_markup = markuptools.Markup('UP', Up)

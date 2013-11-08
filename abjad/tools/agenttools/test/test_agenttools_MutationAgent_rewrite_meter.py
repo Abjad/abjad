@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-def test_mutationtools_ScoreMutationAgent_rewrite_meter_01():
+def test_agenttools_MutationAgent_rewrite_meter_01():
 
     source = parse('abj: | 4/4 8 2. 8 |')
     target = parse('abj: | 4/4 8 8 ~ 2 ~ 8 8 |')
@@ -12,7 +12,7 @@ def test_mutationtools_ScoreMutationAgent_rewrite_meter_01():
     assert format(source) == format(target)
 
 
-def test_mutationtools_ScoreMutationAgent_rewrite_meter_02():
+def test_agenttools_MutationAgent_rewrite_meter_02():
     r'''Establishes meter when first component's score offset greater 
     than zero.
     '''
@@ -24,7 +24,7 @@ def test_mutationtools_ScoreMutationAgent_rewrite_meter_02():
     assert format(source) == format(target)
 
 
-def test_mutationtools_ScoreMutationAgent_rewrite_meter_03():
+def test_agenttools_MutationAgent_rewrite_meter_03():
     r'''Descends into tuplets.
     '''
 
@@ -35,7 +35,7 @@ def test_mutationtools_ScoreMutationAgent_rewrite_meter_03():
     assert format(source) == format(target)
 
 
-def test_mutationtools_ScoreMutationAgent_rewrite_meter_04():
+def test_agenttools_MutationAgent_rewrite_meter_04():
 
     source = parse("abj: | 4/4 c'8. d'4.. e'4. |")
     target = parse("abj: | 4/4 c'8. d'16 ~ d'4. e'4. |")
@@ -44,7 +44,7 @@ def test_mutationtools_ScoreMutationAgent_rewrite_meter_04():
     assert format(source) == format(target)
 
 
-def test_mutationtools_ScoreMutationAgent_rewrite_meter_05():
+def test_agenttools_MutationAgent_rewrite_meter_05():
 
     meter = timesignaturetools.Meter((4, 4))
     for rhythm_number in range(8):
@@ -60,7 +60,7 @@ def test_mutationtools_ScoreMutationAgent_rewrite_meter_05():
         mutate(measure[:]).rewrite_meter(meter, boundary_depth=-1)
 
 
-def test_mutationtools_ScoreMutationAgent_rewrite_meter_06():
+def test_agenttools_MutationAgent_rewrite_meter_06():
 
     source = parse('abj: | 4/4 8 4. 2 |')
     target = parse('abj: | 4/4 8 4. 2 |')
@@ -69,7 +69,7 @@ def test_mutationtools_ScoreMutationAgent_rewrite_meter_06():
     assert format(source) == format(target)
 
 
-def test_mutationtools_ScoreMutationAgent_rewrite_meter_07():
+def test_agenttools_MutationAgent_rewrite_meter_07():
     r'''Can limit dot count.
     '''
 

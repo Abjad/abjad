@@ -3,7 +3,7 @@ from abjad import *
 import pytest
 
 
-def test_mutationtools_AttributeInspectionAgent_get_spanner_01():
+def test_agenttools_InspectionAgent_get_spanner_01():
 
     container = Container("c'8 d'8 e'8 f'8")
     beam = Beam()

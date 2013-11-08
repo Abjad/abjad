@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_mutationtools_ScoreMutationAgent_scale_01():
+def test_agenttools_MutationAgent_scale_01():
     r'''Scale leaves by dot-generating multiplier.
     '''
 
@@ -24,7 +24,7 @@ def test_mutationtools_ScoreMutationAgent_scale_01():
     assert inspect(voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_scale_02():
+def test_agenttools_MutationAgent_scale_02():
     r'''Scale leaves by tie-generating multiplier.
     '''
 
@@ -50,7 +50,7 @@ def test_mutationtools_ScoreMutationAgent_scale_02():
     assert inspect(voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_scale_03():
+def test_agenttools_MutationAgent_scale_03():
     r'''Scale leaves by tuplet-generating multiplier.
     '''
 
@@ -80,7 +80,7 @@ def test_mutationtools_ScoreMutationAgent_scale_03():
     assert inspect(voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_scale_04():
+def test_agenttools_MutationAgent_scale_04():
     r'''Scale leaves by tie- and tuplet-generating multiplier.
     '''
 
@@ -114,7 +114,7 @@ def test_mutationtools_ScoreMutationAgent_scale_04():
     assert inspect(voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_scale_05():
+def test_agenttools_MutationAgent_scale_05():
     r'''Scale mixed notes and tuplets.
     '''
 
@@ -158,7 +158,7 @@ def test_mutationtools_ScoreMutationAgent_scale_05():
     assert inspect(voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_scale_06():
+def test_agenttools_MutationAgent_scale_06():
     r'''Undo scale of 5/4 with scale of 4/5.
     '''
 
@@ -198,7 +198,7 @@ def test_mutationtools_ScoreMutationAgent_scale_06():
     assert inspect(voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_scale_07():
+def test_agenttools_MutationAgent_scale_07():
     r'''Double measures.
     '''
 
@@ -245,7 +245,7 @@ def test_mutationtools_ScoreMutationAgent_scale_07():
     assert inspect(voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_scale_08():
+def test_agenttools_MutationAgent_scale_08():
     r'''Scale measures by 5/4.
     '''
 

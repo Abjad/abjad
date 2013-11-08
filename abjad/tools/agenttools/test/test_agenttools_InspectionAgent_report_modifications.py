@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-def test_mutationtools_AttributeInspectionAgent_report_modifications_01():
+def test_agenttools_InspectionAgent_report_modifications_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     comment = marktools.LilyPondComment('Example voice', 'before')
@@ -49,7 +49,7 @@ def test_mutationtools_AttributeInspectionAgent_report_modifications_01():
         )
 
 
-def test_mutationtools_AttributeInspectionAgent_report_modifications_02():
+def test_agenttools_InspectionAgent_report_modifications_02():
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     comment = marktools.LilyPondComment('Example tuplet', 'before')

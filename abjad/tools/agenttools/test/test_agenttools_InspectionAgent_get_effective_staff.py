@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_mutationtools_AttributeInspectionAgent_get_effective_staff_01():
+def test_agenttools_InspectionAgent_get_effective_staff_01():
     r'''Staff changes work on the first note of a staff.
     '''
 
@@ -45,7 +45,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_staff_01():
     assert inspect(piano[1][3]).get_effective_staff() is piano[1]
 
 
-def test_mutationtools_AttributeInspectionAgent_get_effective_staff_02():
+def test_agenttools_InspectionAgent_get_effective_staff_02():
     r'''Staff changes work on middle notes of a staff.
     '''
 
@@ -91,7 +91,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_staff_02():
     assert inspect(piano[1][3]).get_effective_staff() is piano[1]
 
 
-def test_mutationtools_AttributeInspectionAgent_get_effective_staff_03():
+def test_agenttools_InspectionAgent_get_effective_staff_03():
     r'''Staff changes work on the last note of a staff.
     '''
 
@@ -126,7 +126,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_staff_03():
     assert inspect(piano).is_well_formed()
 
 
-def test_mutationtools_AttributeInspectionAgent_get_effective_staff_04():
+def test_agenttools_InspectionAgent_get_effective_staff_04():
     r'''Redudant staff changes are allowed.
     '''
 

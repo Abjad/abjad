@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_mutationtools_ScoreMutationAgent_replace_01():
+def test_agenttools_MutationAgent_replace_01():
     r'''Move parentage and spanners from two old notes to five new notes.
     Equivalent to staff[1:3] = new_notes.
     '''
@@ -49,7 +49,7 @@ def test_mutationtools_ScoreMutationAgent_replace_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_replace_02():
+def test_agenttools_MutationAgent_replace_02():
     r'''Move parentage and spanners from one old note to five new notes.
     Equivalent to staff[:1] = new_notes.
     '''
@@ -97,7 +97,7 @@ def test_mutationtools_ScoreMutationAgent_replace_02():
     assert inspect(staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_replace_03():
+def test_agenttools_MutationAgent_replace_03():
     r'''Move parentage and spanners from two old notes to five new notes.
     Equivalent to staff[:2] = new_notes.
     '''
@@ -144,7 +144,7 @@ def test_mutationtools_ScoreMutationAgent_replace_03():
     assert inspect(staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_replace_04():
+def test_agenttools_MutationAgent_replace_04():
     r'''Move parentage and spanners from three old notes to five new notes.
     "Equivalent to staff[:3] = new_notes."
     '''
@@ -190,7 +190,7 @@ def test_mutationtools_ScoreMutationAgent_replace_04():
     assert inspect(staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_replace_05():
+def test_agenttools_MutationAgent_replace_05():
     r'''Move parentage and spanners from four old notes to five new notes.
     Equivalent to staff[:] = new_notes.
     '''
@@ -235,7 +235,7 @@ def test_mutationtools_ScoreMutationAgent_replace_05():
     assert inspect(staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_replace_06():
+def test_agenttools_MutationAgent_replace_06():
     r'''Move parentage and spanners from container to children of container.
     Equivalent to staff[:1] = staff[0][:].
     '''

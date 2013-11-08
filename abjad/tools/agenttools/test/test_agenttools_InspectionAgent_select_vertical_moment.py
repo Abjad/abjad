@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_01():
+def test_agenttools_InspectionAgent_select_vertical_moment_01():
 
     score = Score([])
     score.append(Staff([scoretools.FixedDurationTuplet(
@@ -13,7 +13,7 @@ def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_01():
     clef = Clef('bass')
     attach(clef, piano_staff[1])
     score.append(piano_staff)
-
+        
     assert testtools.compare(
         score,
         r'''
@@ -43,26 +43,23 @@ def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_01():
         '''
         )
 
-    def piano_staff_moment(offset):
-        return inspect(piano_staff).get_vertical_moment_at(offset)
+    def piano_staff_moment(expr):
+        return inspect(expr).get_vertical_moment(governor=piano_staff)
 
-    moment = piano_staff_moment(Offset(0, 8))
+    moment = piano_staff_moment(piano_staff[1][0])
     assert moment.leaves == (piano_staff[0][0], piano_staff[1][0])
 
-    moment = piano_staff_moment(Offset(1, 8))
+    moment = piano_staff_moment(piano_staff[1][1])
     assert moment.leaves == (piano_staff[0][0], piano_staff[1][1])
 
-    moment = piano_staff_moment(Offset(2, 8))
+    moment = piano_staff_moment(piano_staff[1][2])
     assert moment.leaves == (piano_staff[0][1], piano_staff[1][2])
 
-    moment = piano_staff_moment(Offset(3, 8))
+    moment = piano_staff_moment(piano_staff[1][3])
     assert moment.leaves == (piano_staff[0][1], piano_staff[1][3])
 
-    moment = piano_staff_moment(Offset(99, 8))
-    assert moment.leaves == ()
 
-
-def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_02():
+def test_agenttools_InspectionAgent_select_vertical_moment_02():
 
     score = Score([])
     score.append(Staff([scoretools.FixedDurationTuplet(
@@ -103,36 +100,30 @@ def test_mutationtools_AttributeInspectionAgent__select_vertical_moment_at_02():
         '''
         )
 
-    def scorewide_vertical_moment(offset):
-        return inspect(score).get_vertical_moment_at(offset)
-
-    moment = scorewide_vertical_moment(Offset(0, 8))
+    moment = inspect(piano_staff[1][0]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][0], 
         piano_staff[0][0], 
         piano_staff[1][0],
         )
 
-    moment = scorewide_vertical_moment(Offset(1, 8))
+    moment = inspect(piano_staff[1][1]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][0], 
         piano_staff[0][0], 
         piano_staff[1][1],
         )
 
-    moment = scorewide_vertical_moment(Offset(2, 8))
+    moment = inspect(piano_staff[1][2]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][1], 
         piano_staff[0][1], 
         piano_staff[1][2],
         )
 
-    moment = scorewide_vertical_moment(Offset(3, 8))
+    moment = inspect(piano_staff[1][3]).get_vertical_moment()
     assert moment.leaves == (
         score[0][0][2], 
         piano_staff[0][1], 
         piano_staff[1][3],
         )
-
-    moment = scorewide_vertical_moment(Offset(99, 8))
-    assert moment.leaves == ()

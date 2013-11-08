@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_mutationtools_AttributeInspectionAgent_get_marks_01():
+def test_agenttools_InspectionAgent_get_marks_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
@@ -32,7 +32,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_01():
     assert len(marks) == 2
 
 
-def test_mutationtools_AttributeInspectionAgent_get_marks_02():
+def test_agenttools_InspectionAgent_get_marks_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
@@ -62,7 +62,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_02():
     assert len(marks) == 2
 
 
-def test_mutationtools_AttributeInspectionAgent_get_marks_03():
+def test_agenttools_InspectionAgent_get_marks_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     clef = Clef('treble')
@@ -88,7 +88,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_03():
     assert len(context_marks) == 1
 
 
-def test_mutationtools_AttributeInspectionAgent_get_marks_04():
+def test_agenttools_InspectionAgent_get_marks_04():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     clef = Clef('treble')
@@ -114,7 +114,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_04():
     assert len(dynamics) == 1
 
 
-def test_mutationtools_AttributeInspectionAgent_get_marks_05():
+def test_agenttools_InspectionAgent_get_marks_05():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     annotation_1 = marktools.Annotation('annotation 1')
@@ -138,7 +138,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_05():
     assert annotations == (annotation_1, annotation_2)
 
 
-def test_mutationtools_AttributeInspectionAgent_get_marks_06():
+def test_agenttools_InspectionAgent_get_marks_06():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     comment_1 = marktools.LilyPondComment('comment 1')
@@ -166,7 +166,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_06():
     assert len(marks) == 2
 
 
-def test_mutationtools_AttributeInspectionAgent_get_marks_07():
+def test_agenttools_InspectionAgent_get_marks_07():
 
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_mutationtools_ScoreMutationAgent_copy_01():
+def test_agenttools_MutationAgent_copy_01():
     r'''Deep copy components in 'components'.
     Deep copy spanners that attach to any component in 'components'.
     Fracture spanners that attach to components not in 'components'.
@@ -55,7 +55,7 @@ def test_mutationtools_ScoreMutationAgent_copy_01():
     assert inspect(new).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_02():
+def test_agenttools_MutationAgent_copy_02():
     r'''Copy one measure and fracture spanners.
     '''
 
@@ -107,7 +107,7 @@ def test_mutationtools_ScoreMutationAgent_copy_02():
     assert inspect(new).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_03():
+def test_agenttools_MutationAgent_copy_03():
     r'''Three notes crossing measure boundaries.
     '''
 
@@ -158,7 +158,7 @@ def test_mutationtools_ScoreMutationAgent_copy_03():
     assert inspect(new).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_04():
+def test_agenttools_MutationAgent_copy_04():
     r'''Optional 'n' argument for multiple copies.
     '''
 
@@ -223,7 +223,7 @@ def test_mutationtools_ScoreMutationAgent_copy_04():
     assert inspect(voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_05():
+def test_agenttools_MutationAgent_copy_05():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -298,7 +298,7 @@ def test_mutationtools_ScoreMutationAgent_copy_05():
     assert inspect(new_voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_06():
+def test_agenttools_MutationAgent_copy_06():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -368,7 +368,7 @@ def test_mutationtools_ScoreMutationAgent_copy_06():
     assert inspect(new_voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_07():
+def test_agenttools_MutationAgent_copy_07():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -429,7 +429,7 @@ def test_mutationtools_ScoreMutationAgent_copy_07():
     assert inspect(new_voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_08():
+def test_agenttools_MutationAgent_copy_08():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -495,7 +495,7 @@ def test_mutationtools_ScoreMutationAgent_copy_08():
     assert inspect(new_voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_09():
+def test_agenttools_MutationAgent_copy_09():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -579,7 +579,7 @@ def test_mutationtools_ScoreMutationAgent_copy_09():
     assert inspect(new_voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_10():
+def test_agenttools_MutationAgent_copy_10():
     r'''Copies hairpin.
     '''
 
@@ -628,7 +628,7 @@ def test_mutationtools_ScoreMutationAgent_copy_10():
     assert inspect(staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_11():
+def test_agenttools_MutationAgent_copy_11():
     r'''Copy consecutive notes across tuplet boundary in staff.
     Include enclosing containers.
     '''
@@ -676,7 +676,7 @@ def test_mutationtools_ScoreMutationAgent_copy_11():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_12():
+def test_agenttools_MutationAgent_copy_12():
     r'''Copy consecutive notes across tuplet boundary in voice and staff.
     Include enclosing containers.
     '''
@@ -729,7 +729,7 @@ def test_mutationtools_ScoreMutationAgent_copy_12():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_13():
+def test_agenttools_MutationAgent_copy_13():
     r'''Works fine on voices nested inside simultaneous context.
     Include enclosing containers.
     '''
@@ -776,7 +776,7 @@ def test_mutationtools_ScoreMutationAgent_copy_13():
     assert inspect(new_voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_14():
+def test_agenttools_MutationAgent_copy_14():
     r'''Copy consecutive notes in measure with power-of-two denominator.
     Include enclosing containers.
     '''
@@ -799,7 +799,7 @@ def test_mutationtools_ScoreMutationAgent_copy_14():
     assert inspect(new_measure).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_15():
+def test_agenttools_MutationAgent_copy_15():
     r'''Copy consecutive notes in staff and score.
     Include enclosing containers.
     '''
@@ -823,7 +823,7 @@ def test_mutationtools_ScoreMutationAgent_copy_15():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_16():
+def test_agenttools_MutationAgent_copy_16():
     r'''Copy consecutive leaves from tuplet in measure with power-of-two 
     denominator. Measure without power-of-two denominator results.
     Include enclosing containers.
@@ -872,7 +872,7 @@ def test_mutationtools_ScoreMutationAgent_copy_16():
     assert inspect(new_measure).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_17():
+def test_agenttools_MutationAgent_copy_17():
     r'''Copy consecutive leaves from tuplet in measure and voice.
     Measure without power-of-two time signature denominator results.
     Include enclosing containers.
@@ -925,7 +925,7 @@ def test_mutationtools_ScoreMutationAgent_copy_17():
     assert inspect(new_voice).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_18():
+def test_agenttools_MutationAgent_copy_18():
     r'''Measures shrink when copying a partial tuplet.
 
     Note that test only works with fixed-duration tuplets.
@@ -982,7 +982,7 @@ def test_mutationtools_ScoreMutationAgent_copy_18():
     assert inspect(new_measure).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_19():
+def test_agenttools_MutationAgent_copy_19():
     r'''Copy consecutive leaves across measure boundary.
     Include enclosing containers.
     '''
@@ -1032,7 +1032,7 @@ def test_mutationtools_ScoreMutationAgent_copy_19():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_20():
+def test_agenttools_MutationAgent_copy_20():
     r'''Copy consecutive leaves from tuplet in staff;
     pass start and stop indices local to tuplet.
     Include enclosing containers.
@@ -1079,7 +1079,7 @@ def test_mutationtools_ScoreMutationAgent_copy_20():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_21():
+def test_agenttools_MutationAgent_copy_21():
     r'''Copy consecutive leaves from measure in staff;
     pass start and stop indices local to measure.
     Include enclosing containers.
@@ -1128,7 +1128,7 @@ def test_mutationtools_ScoreMutationAgent_copy_21():
     assert inspect(new_staff).is_well_formed()
 
 
-def test_mutationtools_ScoreMutationAgent_copy_22():
+def test_agenttools_MutationAgent_copy_22():
     r'''Copy consecutive leaves from in-staff measure without 
     power-of-two denominator. Pass start and stop indices local to measure.
     Include enclosing containers.
