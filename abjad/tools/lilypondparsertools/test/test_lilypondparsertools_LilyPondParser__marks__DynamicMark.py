@@ -7,17 +7,17 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__DynamicMark_01():
 
     target = Staff(Note(-12, (1, 2)) * 6)
-    dynamic = marktools.DynamicMark('ppp')
+    dynamic = DynamicMark('ppp')
     attach(dynamic, target[0])
-    dynamic = marktools.DynamicMark('mp')
+    dynamic = DynamicMark('mp')
     attach(dynamic, target[1])
-    dynamic = marktools.DynamicMark('rfz')
+    dynamic = DynamicMark('rfz')
     attach(dynamic, target[2])
-    dynamic = marktools.DynamicMark('mf')
+    dynamic = DynamicMark('mf')
     attach(dynamic, target[3])
-    dynamic = marktools.DynamicMark('spp')
+    dynamic = DynamicMark('spp')
     attach(dynamic, target[4])
-    dynamic = marktools.DynamicMark('ff')
+    dynamic = DynamicMark('ff')
     attach(dynamic, target[5])
 
     string = r'''\new Staff { c2\ppp c\mp c2\rfz c\mf c2\spp c\ff }'''
@@ -26,5 +26,5 @@ def test_lilypondparsertools_LilyPondParser__marks__DynamicMark_01():
     result = parser(string)
     assert format(target) == format(result) and target is not result
     for x in result:
-        dynamic_marks = inspect(x).get_marks(marktools.DynamicMark)
+        dynamic_marks = inspect(x).get_marks(DynamicMark)
         assert len(dynamic_marks) == 1

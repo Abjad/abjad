@@ -9,7 +9,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     for note in staff:
-        clef = inspect(note).get_effective_context_mark(marktools.ClefMark)
+        clef = inspect(note).get_effective_context_mark(ClefMark)
         assert clef is None
 
 
@@ -18,11 +18,11 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = marktools.ClefMark('treble')
+    clef = ClefMark('treble')
     attach(clef, staff)
     for note in staff:
-        clef = inspect(note).get_effective_context_mark(marktools.ClefMark)
-        assert clef == marktools.ClefMark('treble')
+        clef = inspect(note).get_effective_context_mark(ClefMark)
+        assert clef == ClefMark('treble')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_03():
@@ -31,17 +31,17 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = marktools.ClefMark('bass')
+    clef = ClefMark('bass')
     attach(clef, staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
             clef = inspect(note).get_effective_context_mark(
-                marktools.ClefMark)
+                ClefMark)
             assert clef is None
         else:
             clef = inspect(note).get_effective_context_mark(
-                marktools.ClefMark)
-            assert clef == marktools.ClefMark('bass')
+                ClefMark)
+            assert clef == ClefMark('bass')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_04():
@@ -49,19 +49,19 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_04():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = marktools.ClefMark('treble')
+    clef = ClefMark('treble')
     attach(clef, staff[0])
-    clef = marktools.ClefMark('bass')
+    clef = ClefMark('bass')
     attach(clef, staff[4])
     result = [
-        inspect(note).get_effective_context_mark(marktools.ClefMark)
+        inspect(note).get_effective_context_mark(ClefMark)
         for note in staff
         ]
     clef_names = [
         'treble', 'treble', 'treble', 'treble',
         'bass', 'bass', 'bass', 'bass',
         ]
-    clefs = [marktools.ClefMark(name) for name in clef_names]
+    clefs = [ClefMark(name) for name in clef_names]
     assert result == clefs
 
 
@@ -70,16 +70,16 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_05():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = marktools.ClefMark('treble')
+    clef = ClefMark('treble')
     attach(clef, staff[0])
-    clef = marktools.ClefMark('bass')
+    clef = ClefMark('bass')
     attach(clef, staff[4])
-    clef = inspect(staff[4]).get_effective_context_mark(marktools.ClefMark)
+    clef = inspect(staff[4]).get_effective_context_mark(ClefMark)
     clef.detach()
 
     for note in staff:
-        clef = inspect(note).get_effective_context_mark(marktools.ClefMark)
-        assert clef == marktools.ClefMark('treble')
+        clef = inspect(note).get_effective_context_mark(ClefMark)
+        assert clef == ClefMark('treble')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_06():
@@ -87,9 +87,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_06():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    clef = marktools.ClefMark('treble')
+    clef = ClefMark('treble')
     attach(clef, staff[0])
-    clef = marktools.ClefMark('treble')
+    clef = ClefMark('treble')
     attach(clef, staff[4])
 
     assert testtools.compare(
@@ -118,9 +118,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_07():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    clef = marktools.ClefMark('treble_8')
+    clef = ClefMark('treble_8')
     attach(clef, staff[0])
-    clef = marktools.ClefMark('treble')
+    clef = ClefMark('treble')
     attach(clef, staff[4])
 
     assert testtools.compare(
@@ -149,20 +149,20 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_08():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = marktools.ClefMark('alto')
+    clef = ClefMark('alto')
     attach(clef, staff[0])
-    clef = inspect(staff[0]).get_effective_context_mark(marktools.ClefMark)
+    clef = inspect(staff[0]).get_effective_context_mark(ClefMark)
     clef.detach()
 
     for leaf in staff:
-        clef = inspect(leaf).get_effective_context_mark(marktools.ClefMark)
+        clef = inspect(leaf).get_effective_context_mark(ClefMark)
         assert clef is None
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_09():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    dynamic = marktools.DynamicMark('f')
+    dynamic = DynamicMark('f')
     attach(dynamic, staff[2])
 
     assert testtools.compare(
@@ -178,15 +178,15 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_09():
         )
 
     assert inspect(staff).get_effective_context_mark(
-        marktools.DynamicMark) is None
+        DynamicMark) is None
     assert inspect(staff[0]).get_effective_context_mark(
-        marktools.DynamicMark) is None
+        DynamicMark) is None
     assert inspect(staff[1]).get_effective_context_mark(
-        marktools.DynamicMark) is None
+        DynamicMark) is None
     assert inspect(staff[2]).get_effective_context_mark(
-        marktools.DynamicMark) == marktools.DynamicMark('f')
+        DynamicMark) == DynamicMark('f')
     assert inspect(staff[3]).get_effective_context_mark(
-        marktools.DynamicMark) == marktools.DynamicMark('f')
+        DynamicMark) == DynamicMark('f')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_10():
@@ -265,9 +265,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_13():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = marktools.TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff)
-    tempo = marktools.TempoMark(Duration(1, 8), 42, target_context=Staff)
+    tempo = TempoMark(Duration(1, 8), 42, target_context=Staff)
     attach(tempo, staff[2])
 
     assert testtools.compare(
@@ -286,13 +286,13 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_13():
 
     assert inspect(staff).is_well_formed()
     assert inspect(staff[0]).get_effective_context_mark(
-        marktools.TempoMark) == marktools.TempoMark(Duration(1, 8), 38)
+        TempoMark) == TempoMark(Duration(1, 8), 38)
     assert inspect(staff[1]).get_effective_context_mark(
-        marktools.TempoMark) == marktools.TempoMark(Duration(1, 8), 38)
+        TempoMark) == TempoMark(Duration(1, 8), 38)
     assert inspect(staff[2]).get_effective_context_mark(
-        marktools.TempoMark) == marktools.TempoMark(Duration(1, 8), 42)
+        TempoMark) == TempoMark(Duration(1, 8), 42)
     assert inspect(staff[3]).get_effective_context_mark(
-        marktools.TempoMark) == marktools.TempoMark(Duration(1, 8), 42)
+        TempoMark) == TempoMark(Duration(1, 8), 42)
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_14():
@@ -300,7 +300,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_14():
     '''
 
     staff = Staff([Chord([2, 3, 4], (1, 4))])
-    tempo = marktools.TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff[0])
 
     assert testtools.compare(
@@ -319,7 +319,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_15():
     '''
 
     staff = Staff([Note("c'4")])
-    tempo = marktools.TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff[0])
 
     assert testtools.compare(
@@ -338,7 +338,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_16():
     '''
 
     staff = Staff([Note("c'4")])
-    tempo = marktools.TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff[0])
     tempo.detach()
 
@@ -360,7 +360,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_17():
 
     for leaf in staff:
         time_signature = inspect(leaf).get_effective_context_mark(
-            marktools.TimeSignatureMark)
+            TimeSignatureMark)
         assert time_signature is None
 
 
@@ -369,7 +369,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_18():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = marktools.TimeSignatureMark((2, 8))
+    time_signature = TimeSignatureMark((2, 8))
     attach(time_signature, staff[0])
 
     assert testtools.compare(
@@ -387,8 +387,8 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_18():
 
     for leaf in staff:
         time_signature = inspect(leaf).get_effective_context_mark(
-            marktools.TimeSignatureMark)
-        assert time_signature == marktools.TimeSignatureMark((2, 8))
+            TimeSignatureMark)
+        assert time_signature == TimeSignatureMark((2, 8))
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_19():
@@ -396,7 +396,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_19():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = marktools.TimeSignatureMark((2, 8))
+    time_signature = TimeSignatureMark((2, 8))
     attach(time_signature, staff[0])
     time_signature.detach()
 
@@ -414,5 +414,5 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_19():
 
     for leaf in staff:
         time_signature = inspect(leaf).get_effective_context_mark(
-            marktools.TimeSignatureMark)
+            TimeSignatureMark)
         assert time_signature is None

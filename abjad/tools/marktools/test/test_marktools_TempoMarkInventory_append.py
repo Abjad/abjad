@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_marktools_TempoMarkInventory_append_01():
+def test_TempoMarkInventory_append_01():
 
     tempo_mark_inventory_1 = marktools.TempoMarkInventory([((1, 8), 72)])
     tempo_mark_inventory_1.append(((1, 8), 84))

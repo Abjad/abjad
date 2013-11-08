@@ -11,9 +11,9 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
     override(t).note_head.style = 'cross'
     override(t).note_head.color = 'red'
     override(t).stem.color = 'red'
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, t)
-    articulation = marktools.Articulation('tenuto')
+    articulation = Articulation('tenuto')
     attach(articulation, t)
     markup = markuptools.Markup('some markup', Down)
     attach(markup, t)

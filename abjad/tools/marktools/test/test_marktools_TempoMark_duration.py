@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_marktools_TempoMark_duration_01():
+def test_TempoMark_duration_01():
     r'''Duration of tempo mark is read / write.
     '''
 
-    tempo = marktools.TempoMark(Duration(1, 8), 52)
+    tempo = TempoMark(Duration(1, 8), 52)
     assert tempo.duration == Duration(1, 8)
 
     tempo.duration = Duration(1, 4)

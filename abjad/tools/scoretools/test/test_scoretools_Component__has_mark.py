@@ -16,11 +16,11 @@ def test_scoretools_Component__has_mark_01():
 def test_scoretools_Component__has_mark_02():
 
     staff = Staff("c'2 d'2")
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, staff[0])
 
-    staff[0]._has_mark(marktools.Articulation)
-    assert not staff[1]._has_mark(marktools.Articulation)
+    staff[0]._has_mark(Articulation)
+    assert not staff[1]._has_mark(Articulation)
 
 
 def test_scoretools_Component__has_mark_03():
@@ -69,7 +69,7 @@ def test_scoretools_Component__has_mark_06():
 def test_scoretools_Component__has_mark_07():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = marktools.TimeSignatureMark((4, 8))
+    time_signature = TimeSignatureMark((4, 8))
     attach(time_signature, staff[0])
 
     assert staff[0]._has_mark(marktools.ContextMark)

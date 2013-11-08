@@ -1,9 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
-from abjad.tools import durationtools
-from abjad.tools import mathtools
-from abjad.tools import pitchtools
-from abjad.tools import quantizationtools
+from abjad import *
 
 
 def test_quantizationtools_QEventSequence_from_tempo_scaled_durations_01():
@@ -12,7 +8,7 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_durations_01():
 
     durations = [durationtools.Duration(x) for x in 
         [(1, 4), (1, 3), (1, 7), (2, 5), (3, 4)]]
-    tempo = marktools.TempoMark((1, 4), 55)
+    tempo = TempoMark((1, 4), 55)
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_durations(
         durations, tempo)
 
@@ -49,7 +45,7 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_durations_02():
 
     durations = [durationtools.Duration(x) for x in
         [(1, 4), (-1, 4), (1, 4), (1, 4), (-1, 4), (-1, 4), (1, 4)]]
-    tempo = marktools.TempoMark((1, 4), 77)
+    tempo = TempoMark((1, 4), 77)
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_durations(
         durations, tempo)
 

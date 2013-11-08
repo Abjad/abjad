@@ -6,4 +6,4 @@ def test_instrumenttools_Violin_all_clefs_01():
 
     violin = instrumenttools.Violin()
 
-    assert violin.allowable_clefs == [marktools.ClefMark('treble')]
+    assert violin.allowable_clefs == [ClefMark('treble')]

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
-from abjad.tools import durationtools
-from abjad.tools import quantizationtools
 import pytest
+from abjad import *
 
 
 def test_quantizationtools_BeatwiseQSchemaItem___new___01():
@@ -22,7 +20,7 @@ def test_quantizationtools_BeatwiseQSchemaItem___new___02():
 
     assert item.beatspan is None
     assert item.search_tree is None
-    assert item.tempo == marktools.TempoMark((1, 4), 60)
+    assert item.tempo == TempoMark((1, 4), 60)
 
 
 def test_quantizationtools_BeatwiseQSchemaItem___new___03():
@@ -45,10 +43,10 @@ def test_quantizationtools_BeatwiseQSchemaItem___new___04():
 
     assert item.beatspan == durationtools.Duration(1, 8)
     assert item.search_tree is None
-    assert item.tempo == marktools.TempoMark((1, 4), 57)
+    assert item.tempo == TempoMark((1, 4), 57)
 
 
 def test_quantizationtools_BeatwiseQSchemaItem___new___05():
 
-    tempo = marktools.TempoMark('lento')
+    tempo = TempoMark('lento')
     pytest.raises('item = quantizationtools.BeatwiseQSchemaItem(tempo=tempo)')

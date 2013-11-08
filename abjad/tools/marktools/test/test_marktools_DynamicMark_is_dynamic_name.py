@@ -2,14 +2,14 @@
 from abjad import *
 
 
-def test_marktools_DynamicMark_is_dynamic_name_01():
+def test_DynamicMark_is_dynamic_name_01():
 
-    assert marktools.DynamicMark.is_dynamic_name('ff')
-    assert marktools.DynamicMark.is_dynamic_name('f')
-    assert marktools.DynamicMark.is_dynamic_name('p')
-    assert marktools.DynamicMark.is_dynamic_name('pp')
+    assert DynamicMark.is_dynamic_name('ff')
+    assert DynamicMark.is_dynamic_name('f')
+    assert DynamicMark.is_dynamic_name('p')
+    assert DynamicMark.is_dynamic_name('pp')
 
 
-def test_marktools_DynamicMark_is_dynamic_name_02():
+def test_DynamicMark_is_dynamic_name_02():
 
-    assert not marktools.DynamicMark.is_dynamic_name('x')
+    assert not DynamicMark.is_dynamic_name('x')

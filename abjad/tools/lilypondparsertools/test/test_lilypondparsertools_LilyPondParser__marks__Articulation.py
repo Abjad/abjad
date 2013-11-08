@@ -7,19 +7,19 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__Articulation_01():
 
     target = Staff(scoretools.make_notes(["c''"], [(1, 4)] * 6 + [(1, 2)]))
-    articulation = marktools.Articulation('marcato', Up)
+    articulation = Articulation('marcato', Up)
     attach(articulation, target[0])
-    articulation = marktools.Articulation('stopped', Down)
+    articulation = Articulation('stopped', Down)
     attach(articulation, target[1])
-    articulation = marktools.Articulation('tenuto')
+    articulation = Articulation('tenuto')
     attach(articulation, target[2])
-    articulation = marktools.Articulation('staccatissimo')
+    articulation = Articulation('staccatissimo')
     attach(articulation, target[3])
-    articulation = marktools.Articulation('accent')
+    articulation = Articulation('accent')
     attach(articulation, target[4])
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, target[5])
-    articulation = marktools.Articulation('portato')
+    articulation = Articulation('portato')
     attach(articulation, target[6])
 
     assert testtools.compare(
@@ -44,25 +44,25 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_01():
     assert format(target) == format(result) and \
         target is not result
     for x in result:
-        assert 1 == len(inspect(x).get_marks(marktools.Articulation))
+        assert 1 == len(inspect(x).get_marks(Articulation))
 
 
 def test_lilypondparsertools_LilyPondParser__marks__Articulation_02():
 
     target = Staff([Note("c'", (1, 4))])
-    articulation = marktools.Articulation('marcato', Up)
+    articulation = Articulation('marcato', Up)
     attach(articulation, target[0])
-    articulation = marktools.Articulation('stopped', Down)
+    articulation = Articulation('stopped', Down)
     attach(articulation, target[0])
-    articulation = marktools.Articulation('tenuto')
+    articulation = Articulation('tenuto')
     attach(articulation, target[0])
-    articulation = marktools.Articulation('staccatissimo')
+    articulation = Articulation('staccatissimo')
     attach(articulation, target[0])
-    articulation = marktools.Articulation('accent')
+    articulation = Articulation('accent')
     attach(articulation, target[0])
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, target[0])
-    articulation = marktools.Articulation('portato')
+    articulation = Articulation('portato')
     attach(articulation, target[0])
 
     r'''
@@ -78,7 +78,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_02():
     result = parser(string)
     assert format(target) == format(result) and \
         target is not result
-    assert 7 == len(inspect(result[0]).get_marks(marktools.Articulation))
+    assert 7 == len(inspect(result[0]).get_marks(Articulation))
 
 
 def test_lilypondparsertools_LilyPondParser__marks__Articulation_03():
@@ -87,13 +87,13 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_03():
         ["c''", "c''", "b'", "c''"],
         [(1, 4), (1, 4), (1, 2), (1, 1)]))
 
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, target[0])
-    articulation = marktools.Articulation('mordent')
+    articulation = Articulation('mordent')
     attach(articulation, target[1])
-    articulation = marktools.Articulation('turn')
+    articulation = Articulation('turn')
     attach(articulation, target[2])
-    articulation = marktools.Articulation('fermata')
+    articulation = Articulation('fermata')
     attach(articulation, target[3])
 
     assert testtools.compare(
@@ -115,4 +115,4 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_03():
     assert format(target) == format(result) and \
         target is not result
     for x in result:
-        assert 1 == len(inspect(x).get_marks(marktools.Articulation))
+        assert 1 == len(inspect(x).get_marks(Articulation))

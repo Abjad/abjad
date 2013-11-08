@@ -88,7 +88,7 @@ def test_scoretools_Note___copy___05():
     '''
 
     note = Note("c'4")
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, note)
     grace = scoretools.GraceContainer("d'16")
     attach(grace, note)
@@ -117,7 +117,7 @@ def test_scoretools_Note___copy___06():
 
     staff = Staff("c'8 [ c'8 e'8 f'8 ]")
     note = staff[0]
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, note)
     grace = scoretools.GraceContainer("d'16")
     attach(grace, note)

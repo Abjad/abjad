@@ -3,7 +3,7 @@ from abjad import *
 import pytest
 
 
-def test_marktools_TimeSignatureMark_suppress_01():
+def test_TimeSignatureMark_suppress_01():
     r'''Suppress time signature with power-of-two denominator at format-time.
     '''
 
@@ -26,7 +26,7 @@ def test_marktools_TimeSignatureMark_suppress_01():
         )
 
 
-def test_marktools_TimeSignatureMark_suppress_02():
+def test_TimeSignatureMark_suppress_02():
     r'''Suppressing time signature without power-of-two denominator 
     raises exception.
     '''

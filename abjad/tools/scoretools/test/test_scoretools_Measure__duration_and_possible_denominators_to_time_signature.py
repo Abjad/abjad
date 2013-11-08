@@ -12,7 +12,7 @@ def test_scoretools_Measure__duration_and_possible_denominators_to_time_signatur
         [5, 6, 7, 8, 9],
         )
 
-    assert time_signature == marktools.TimeSignatureMark((9, 6))
+    assert time_signature == TimeSignatureMark((9, 6))
 
 
 def test_scoretools_Measure__duration_and_possible_denominators_to_time_signature_02():
@@ -25,7 +25,7 @@ def test_scoretools_Measure__duration_and_possible_denominators_to_time_signatur
         [4, 8, 16, 32],
         )
 
-    assert time_signature == marktools.TimeSignatureMark((6, 4))
+    assert time_signature == TimeSignatureMark((6, 4))
 
 
 def test_scoretools_Measure__duration_and_possible_denominators_to_time_signature_03():
@@ -37,7 +37,7 @@ def test_scoretools_Measure__duration_and_possible_denominators_to_time_signatur
         Duration(3, 2),
         )
 
-    assert time_signature == marktools.TimeSignatureMark((3, 2))
+    assert time_signature == TimeSignatureMark((3, 2))
 
 
 def test_scoretools_Measure__duration_and_possible_denominators_to_time_signature_04():
@@ -51,4 +51,4 @@ def test_scoretools_Measure__duration_and_possible_denominators_to_time_signatur
         [7, 11, 13, 19],
         )
 
-    assert time_signature == marktools.TimeSignatureMark((3, 2))
+    assert time_signature == TimeSignatureMark((3, 2))

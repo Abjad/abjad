@@ -65,7 +65,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_03():
     target = Staff([Note(0, (1, 4)), Note(2, (1, 4))])
     markup = markuptools.Markup('hello', Up)
     attach(markup, target[0])
-    articulation = marktools.Articulation('.')
+    articulation = Articulation('.')
     attach(articulation, target[0])
 
     assert testtools.compare(

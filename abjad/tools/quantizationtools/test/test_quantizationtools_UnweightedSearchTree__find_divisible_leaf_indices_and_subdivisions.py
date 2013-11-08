@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import quantizationtools
+from abjad import *
 
 
 def test_quantizationtools_UnweightedSearchTree__find_divisible_leaf_indices_and_subdivisions_01():

@@ -3,35 +3,35 @@ import pytest
 from abjad import *
 
 
-def test_marktools_TempoMark___div___01():
+def test_TempoMark___div___01():
 
-    tempo_indication_1 = marktools.TempoMark(Duration(1, 4), 60)
-    tempo_indication_2 = marktools.TempoMark(Duration(1, 4), 90)
+    tempo_indication_1 = TempoMark(Duration(1, 4), 60)
+    tempo_indication_2 = TempoMark(Duration(1, 4), 90)
 
     assert tempo_indication_2 / tempo_indication_1 == Duration(3, 2)
     assert tempo_indication_1 / tempo_indication_2 == Duration(2, 3)
 
 
-def test_marktools_TempoMark___div___02():
+def test_TempoMark___div___02():
 
-    tempo_indication_1 = marktools.TempoMark(Duration(1, 8), 42)
-    tempo_indication_2 = marktools.TempoMark(Duration(1, 4), 90)
+    tempo_indication_1 = TempoMark(Duration(1, 8), 42)
+    tempo_indication_2 = TempoMark(Duration(1, 4), 90)
 
     assert tempo_indication_2 / tempo_indication_1 == Duration(15, 14)
     assert tempo_indication_1 / tempo_indication_2 == Duration(14, 15)
 
 
-def test_marktools_TempoMark___div___03():
+def test_TempoMark___div___03():
 
-    tempo_indication_1 = marktools.TempoMark('Langsam')
-    tempo_indication_2 = marktools.TempoMark(Duration(1, 4), 90)
+    tempo_indication_1 = TempoMark('Langsam')
+    tempo_indication_2 = TempoMark(Duration(1, 4), 90)
 
     pytest.raises(ImpreciseTempoError, "tempo_indication_1 / tempo_indication_2")
 
 
-def test_marktools_TempoMark___div___04():
+def test_TempoMark___div___04():
 
-    tempo_indication_1 = marktools.TempoMark(Duration(1, 8), (90, 92))
-    tempo_indication_2 = marktools.TempoMark(Duration(1, 4), 90)
+    tempo_indication_1 = TempoMark(Duration(1, 8), (90, 92))
+    tempo_indication_2 = TempoMark(Duration(1, 4), 90)
 
     pytest.raises(ImpreciseTempoError, "tempo_indication_1 / tempo_indication_2")

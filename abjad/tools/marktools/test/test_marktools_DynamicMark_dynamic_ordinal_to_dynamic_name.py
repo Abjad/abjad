@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_marktools_DynamicMark_dynamic_ordinal_to_dynamic_name_01():
+def test_DynamicMark_dynamic_ordinal_to_dynamic_name_01():
 
-    assert marktools.DynamicMark.dynamic_ordinal_to_dynamic_name(-3) == 'pp'
-    assert marktools.DynamicMark.dynamic_ordinal_to_dynamic_name(-2) == 'p'
-    assert marktools.DynamicMark.dynamic_ordinal_to_dynamic_name(-1) == 'mp'
-    assert marktools.DynamicMark.dynamic_ordinal_to_dynamic_name(1) == 'mf'
-    assert marktools.DynamicMark.dynamic_ordinal_to_dynamic_name(2) == 'f'
-    assert marktools.DynamicMark.dynamic_ordinal_to_dynamic_name(3) == 'ff'
+    assert DynamicMark.dynamic_ordinal_to_dynamic_name(-3) == 'pp'
+    assert DynamicMark.dynamic_ordinal_to_dynamic_name(-2) == 'p'
+    assert DynamicMark.dynamic_ordinal_to_dynamic_name(-1) == 'mp'
+    assert DynamicMark.dynamic_ordinal_to_dynamic_name(1) == 'mf'
+    assert DynamicMark.dynamic_ordinal_to_dynamic_name(2) == 'f'
+    assert DynamicMark.dynamic_ordinal_to_dynamic_name(3) == 'ff'

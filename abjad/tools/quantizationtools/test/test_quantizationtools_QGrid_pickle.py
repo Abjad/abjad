@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import quantizationtools
 import pickle
+from abjad import *
+
 
 
 def test_quantizationtools_QGrid_pickle_01():

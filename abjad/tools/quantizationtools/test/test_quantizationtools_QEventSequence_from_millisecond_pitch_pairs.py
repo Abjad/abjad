@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import durationtools
-from abjad.tools import pitchtools
-from abjad.tools import quantizationtools
+from abjad import *
 
 
 def test_quantizationtools_QEventSequence_from_millisecond_pitch_pairs_01():

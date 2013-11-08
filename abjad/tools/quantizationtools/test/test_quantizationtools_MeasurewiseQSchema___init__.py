@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
-from abjad.tools import quantizationtools
+from abjad import *
 
 
 def test_quantizationtools_MeasurewiseQSchema___init___01():
@@ -20,8 +19,8 @@ def test_quantizationtools_MeasurewiseQSchema___init___01():
 
     assert len(schema.items) == 4
     assert schema.search_tree == quantizationtools.UnweightedSearchTree({3: None})
-    assert schema.tempo == marktools.TempoMark((1, 8), 58)
-    assert schema.time_signature == marktools.TimeSignatureMark((5, 8))
+    assert schema.tempo == TempoMark((1, 8), 58)
+    assert schema.time_signature == TimeSignatureMark((5, 8))
     assert schema.use_full_measure == False
 
 
@@ -31,6 +30,6 @@ def test_quantizationtools_MeasurewiseQSchema___init___02():
 
     assert len(schema.items) == 0
     assert schema.search_tree == quantizationtools.UnweightedSearchTree()
-    assert schema.tempo == marktools.TempoMark((1, 4), 60)
-    assert schema.time_signature == marktools.TimeSignatureMark((4, 4))
+    assert schema.tempo == TempoMark((1, 4), 60)
+    assert schema.time_signature == TimeSignatureMark((4, 4))
     assert schema.use_full_measure == False

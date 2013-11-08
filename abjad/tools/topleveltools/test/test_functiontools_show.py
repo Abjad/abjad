@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
-from abjad import *
+# -*- encoding: utf-8 -*- from abjad import *
 from abjad.tools import iotools
 
 

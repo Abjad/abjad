@@ -96,7 +96,7 @@ def test_scoretools_Chord___copy___05():
     '''
 
     chord_1 = Chord("<ef' cs'' f''>4")
-    articulation_1 = marktools.Articulation('staccato')
+    articulation_1 = Articulation('staccato')
     attach(articulation_1, chord_1)
     markup_1 = markuptools.Markup('foo', Up)
     attach(markup_1, chord_1)
@@ -106,7 +106,7 @@ def test_scoretools_Chord___copy___05():
     assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
-    articulation_2 = inspect(chord_2).get_marks(marktools.Articulation)[0]
+    articulation_2 = inspect(chord_2).get_marks(Articulation)[0]
     assert articulation_1 == articulation_2
     assert articulation_1 is not articulation_2
 

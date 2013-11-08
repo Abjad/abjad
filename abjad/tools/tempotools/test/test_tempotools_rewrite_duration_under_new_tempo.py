@@ -5,8 +5,8 @@ from abjad.tools import durationtools
 
 def test_tempotools_rewrite_duration_under_new_tempo_01():
 
-    tempo_indication_1 = marktools.TempoMark(Fraction(1, 4), 60)
-    tempo_indication_2 = marktools.TempoMark(Fraction(1, 4), 90)
+    tempo_indication_1 = TempoMark(Fraction(1, 4), 60)
+    tempo_indication_2 = TempoMark(Fraction(1, 4), 90)
 
     result = tempotools.rewrite_duration_under_new_tempo(
         Fraction(1, 8), tempo_indication_1, tempo_indication_2)

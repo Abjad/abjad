@@ -4,7 +4,7 @@ from abjad import *
 
 def test_timesignaturetools_Meter___iter___01():
 
-    bh = timesignaturetools.Meter(marktools.TimeSignatureMark((3, 8)))
+    bh = timesignaturetools.Meter(TimeSignatureMark((3, 8)))
 
     result = [x for x in bh]
 

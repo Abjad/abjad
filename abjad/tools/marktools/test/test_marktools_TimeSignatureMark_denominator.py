@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_marktools_TimeSignatureMark_denominator_01():
+def test_TimeSignatureMark_denominator_01():
     r'''Time signature mark denominator is read / write.
     '''
 
-    time_signature = marktools.TimeSignatureMark((3, 8))
+    time_signature = TimeSignatureMark((3, 8))
     assert time_signature.denominator == 8
 
     time_signature.denominator = 16

@@ -8,9 +8,9 @@ def test_scoretools_Leaf_get_duration_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = marktools.TempoMark(Duration(1, 4), 38)
+    tempo = TempoMark(Duration(1, 4), 38)
     attach(tempo, staff)
-    tempo = marktools.TempoMark(Duration(1, 4), 42)
+    tempo = TempoMark(Duration(1, 4), 42)
     attach(tempo, staff[2])
     Score([staff])
 

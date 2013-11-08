@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
 from abjad.tools.quantizationtools import *
-import pytest
 
 
 def test_quantizationtools_QGrid___call___01():

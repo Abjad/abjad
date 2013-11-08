@@ -39,10 +39,10 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_03():
 def test_mutationtools_AttributeInspectionAgent_get_mark_04():
 
     note = Note("c'8")
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, note)
 
-    assert inspect(note).get_mark(marktools.Articulation) is articulation
+    assert inspect(note).get_mark(Articulation) is articulation
 
 
 def test_mutationtools_AttributeInspectionAgent_get_mark_05():
@@ -51,21 +51,21 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_05():
 
     assert pytest.raises(
         MissingMarkError,
-        'inspect(note).get_mark(marktools.Articulation)',
+        'inspect(note).get_mark(Articulation)',
         )
 
 
 def test_mutationtools_AttributeInspectionAgent_get_mark_06():
 
     note = Note("c'8")
-    articulation = marktools.Articulation('staccato')
+    articulation = Articulation('staccato')
     attach(articulation, note)
-    articulation = marktools.Articulation('marcato')
+    articulation = Articulation('marcato')
     attach(articulation, note)
 
     assert pytest.raises(
         ExtraMarkError,
-        'inspect(note).get_mark(marktools.Articulation)',
+        'inspect(note).get_mark(Articulation)',
         )
 
 
@@ -218,6 +218,6 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_18():
 def test_mutationtools_AttributeInspectionAgent_get_mark_19():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    time_signature = inspect(measure).get_mark(marktools.TimeSignatureMark)
+    time_signature = inspect(measure).get_mark(TimeSignatureMark)
 
-    assert time_signature == marktools.TimeSignatureMark((4, 8))
+    assert time_signature == TimeSignatureMark((4, 8))
