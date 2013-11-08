@@ -227,12 +227,12 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_11():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    key_signature = marktools.KeySignatureMark('c', 'major')
+    key_signature = marktools.KeySignature('c', 'major')
     attach(key_signature, staff)
 
     key_signature = inspect(staff).get_effective_context_mark(
-        marktools.KeySignatureMark)
-    assert key_signature == marktools.KeySignatureMark('c', 'major')
+        marktools.KeySignature)
+    assert key_signature == marktools.KeySignature('c', 'major')
 
     assert testtools.compare(
         staff,
@@ -256,7 +256,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_12():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     key_signature = inspect(staff).get_effective_context_mark(
-        marktools.KeySignatureMark)
+        marktools.KeySignature)
     assert key_signature is None
 
 

@@ -151,7 +151,7 @@ instead of a list of components:
 ::
 
    >>> staff = Staff()
-   >>> key_signature = marktools.KeySignatureMark('g', 'major')
+   >>> key_signature = marktools.KeySignature('g', 'major')
    >>> key_signature = key_signature.attach(staff)
    >>> time_signature = marktools.TimeSignatureMark((2, 4), partial=Duration(1, 8))
    >>> time_signature = time_signature.attach(staff)

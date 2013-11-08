@@ -15,9 +15,9 @@ def build_chorale():
     treble_staff.is_simultaneous = True
     bass_staff.is_simultaneous = True
 
-    key_signature = marktools.KeySignatureMark(*es_ist_genug['key'])
+    key_signature = marktools.KeySignature(*es_ist_genug['key'])
     attach(key_signature, treble_staff)
-    key_signature = marktools.KeySignatureMark(*es_ist_genug['key'])
+    key_signature = marktools.KeySignature(*es_ist_genug['key'])
     attach(key_signature, bass_staff)
     clef = marktools.Clef('bass')
     attach(clef, bass_staff)

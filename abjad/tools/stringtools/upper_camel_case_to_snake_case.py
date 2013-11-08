@@ -6,12 +6,12 @@ def upper_camel_case_to_snake_case(string):
 
     ::
 
-        >>> string = 'KeySignatureMark'
+        >>> string = 'KeySignature'
 
     ::
 
         >>> stringtools.upper_camel_case_to_snake_case(string)
-        'key_signature_mark'
+        'key_signature'
 
     Returns string.
     '''

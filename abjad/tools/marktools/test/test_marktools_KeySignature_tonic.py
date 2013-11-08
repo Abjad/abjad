@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_marktools_KeySignatureMark_tonic_01():
+def test_marktools_KeySignature_tonic_01():
     r'''Key signature tonic is read / write.
     '''
 
-    key_signature = marktools.KeySignatureMark('e', 'major')
+    key_signature = marktools.KeySignature('e', 'major')
     key_signature.tonic = pitchtools.NamedPitchClass('e')
 
     key_signature.tonic = 'd'

@@ -266,7 +266,7 @@ Finally a function that will generate the whole opening section of the piece
    
        # set clef and key signature to left hand staff...
        marktools.Clef('bass')(piano_staff[1])
-       marktools.KeySignatureMark('b', 'major')(piano_staff[1])
+       marktools.KeySignature('b', 'major')(piano_staff[1])
    
        # wrap the piano staff in a score, and return
        score = scoretools.Score([piano_staff])

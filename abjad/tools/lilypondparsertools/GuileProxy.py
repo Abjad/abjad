@@ -63,7 +63,7 @@ class GuileProxy(AbjadObject):
     def key(self, notename_pitch, number_list):
         if number_list is None:
             number_list = 'major'
-        return marktools.KeySignatureMark(notename_pitch, number_list)
+        return marktools.KeySignature(notename_pitch, number_list)
 
     def language(self, string):
         if string in self.client._language_pitch_names:
@@ -157,7 +157,7 @@ class GuileProxy(AbjadObject):
         from abjad.tools import lilypondparsertools
         self._make_unrelativable(music)
         def recurse(music):
-            key_signatures = music._get_marks(marktools.KeySignatureMark)
+            key_signatures = music._get_marks(marktools.KeySignature)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedPitch(x.tonic, 4)

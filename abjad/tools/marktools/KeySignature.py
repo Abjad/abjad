@@ -2,15 +2,15 @@
 from abjad.tools.marktools.ContextMark import ContextMark
 
 
-class KeySignatureMark(ContextMark):
+class KeySignature(ContextMark):
     r'''A key signature setting or key signature change.
 
     ::
 
         >>> staff = Staff("e'8 fs'8 gs'8 a'8")
-        >>> key_signature = marktools.KeySignatureMark('e', 'major')
+        >>> key_signature = marktools.KeySignature('e', 'major')
         >>> attach(key_signature, staff)
-        KeySignatureMark(NamedPitchClass('e'), Mode('major'))(Staff{4})
+        KeySignature(NamedPitchClass('e'), Mode('major'))(Staff{4})
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -84,7 +84,7 @@ class KeySignatureMark(ContextMark):
 
             ::
 
-                >>> key_signature = marktools.KeySignatureMark('e', 'major')
+                >>> key_signature = marktools.KeySignature('e', 'major')
                 >>> key_signature.mode
                 Mode('major')
 
@@ -111,7 +111,7 @@ class KeySignatureMark(ContextMark):
 
         ::
 
-            >>> key_signature = marktools.KeySignatureMark('e', 'major')
+            >>> key_signature = marktools.KeySignature('e', 'major')
             >>> key_signature.name
             'E major'
 
@@ -130,7 +130,7 @@ class KeySignatureMark(ContextMark):
 
             ::
 
-                >>> key_signature = marktools.KeySignatureMark('e', 'major')
+                >>> key_signature = marktools.KeySignature('e', 'major')
                 >>> key_signature.tonic
                 NamedPitchClass('e')
 
