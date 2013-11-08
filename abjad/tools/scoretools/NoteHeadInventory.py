@@ -89,3 +89,81 @@ class NoteHeadInventory(TypedList):
         r'''The note head inventory's chord client.
         '''
         return self._client
+
+    ### PUBLIC METHODS ###
+
+    def get(self, pitch):
+        r'''Gets note head in note head inventory by `pitch`.
+
+        ..  container:: example
+
+            **Example 1.** Gets note head by pitch name:
+
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> note_head = chord.note_heads.get("e'")
+                >>> note_head.tweak.color = 'red'
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                <
+                    \tweak #'color #red
+                    e'
+                    cs''
+                    f''
+                >4
+
+        ..  container:: example
+
+            **Example 2.** Gets note head by pitch number:
+
+            ::
+
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
+
+            ::
+
+                >>> note_head = chord.note_heads.get(4)
+                >>> note_head.tweak.color = 'red'
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(chord)
+                <
+                    \tweak #'color #red
+                    e'
+                    cs''
+                    f''
+                >4
+
+        Raises missing note head error when chord contains no
+        note head with `pitch`.
+
+        Raises extra note head error when chord contains more than
+        one note head with `pitch`.
+
+        Returns note head.
+        '''
+        from abjad.tools import pitchtools
+        result = []
+        pitch = pitchtools.NamedPitch(pitch)
+        for note_head in self:
+            if note_head.written_pitch == pitch:
+                result.append(note_head)
+        count = len(result)
+        if count == 0:
+            raise MissingNoteHeadError
+        elif count == 1:
+            note_head = result[0]
+            return note_head
+        else:
+            raise ExtraNoteHeadError

@@ -107,7 +107,7 @@ class TypedList(TypedCollection):
         return self._collection[i]
 
     def __iadd__(self, expr):
-        '''Change tokens in `expr` to items and extend:
+        '''Changes tokens in `expr` to items and extends.
 
         ::
 
@@ -155,7 +155,7 @@ class TypedList(TypedCollection):
         return self._collection.__reversed__()
 
     def __setitem__(self, i, expr):
-        '''Change tokens in `expr` to items and set:
+        '''Changes tokens in `expr` to items and sets.
 
         ::
 
@@ -208,7 +208,7 @@ class TypedList(TypedCollection):
     ### PUBLIC METHODS ###
 
     def append(self, token):
-        r'''Change `token` to item and append:
+        r'''Changes `token` to item and appends.
 
         ::
 
@@ -234,7 +234,7 @@ class TypedList(TypedCollection):
             self.sort()
 
     def count(self, token):
-        r'''Change `token` to item and return count.
+        r'''Changes `token` to item and returns count.
 
         ::
 
@@ -255,7 +255,7 @@ class TypedList(TypedCollection):
         return self._collection.count(item)
 
     def extend(self, tokens):
-        r'''Change `tokens` to items and extend.
+        r'''Changes `tokens` to items and extends.
 
         ::
 
@@ -273,7 +273,7 @@ class TypedList(TypedCollection):
             self.sort()
 
     def index(self, token):
-        r'''Change `token` to item and return index.
+        r'''Changes `token` to item and returns index.
 
         ::
 
@@ -289,7 +289,7 @@ class TypedList(TypedCollection):
         return self._collection.index(item)
 
     def insert(self, i, token):
-        r'''Change `token` to item and insert.
+        r'''Changes `token` to item and inserts.
 
         ::
 
@@ -327,6 +327,10 @@ class TypedList(TypedCollection):
         keep_sorted=None,
         name=None,
         ):
+        r'''Makes new typed list.
+
+        Returns new typed list.
+        '''
         # Allow for empty iterables:
         if tokens is None:
             tokens = self._collection
@@ -350,7 +354,7 @@ class TypedList(TypedCollection):
         return result
 
     def remove(self, token):
-        r'''Change `token` to item and remove.
+        r'''Changes `token` to item and removes.
 
         ::
 
@@ -391,7 +395,7 @@ class TypedList(TypedCollection):
     @apply
     def keep_sorted():
         def fget(self):
-            r'''Sort collection on mutation if true.
+            r'''Sorts collection on mutation if true.
             '''
             return self._keep_sorted
         def fset(self, expr):
