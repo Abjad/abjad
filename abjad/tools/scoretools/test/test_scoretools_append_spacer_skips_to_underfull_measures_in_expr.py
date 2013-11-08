@@ -5,11 +5,11 @@ from abjad import *
 def test_scoretools_append_spacer_skips_to_underfull_measures_in_expr_01():
 
     staff = Staff(Measure((3, 8), "c'8 d'8 e'8") * 3)
-    detach(TimeSignatureMark, staff[1])
-    time_signature = TimeSignatureMark((4, 8))
+    detach(TimeSignature, staff[1])
+    time_signature = TimeSignature((4, 8))
     attach(time_signature, staff[1])
-    detach(TimeSignatureMark, staff[2])
-    time_signature = TimeSignatureMark((5, 8))
+    detach(TimeSignature, staff[2])
+    time_signature = TimeSignature((5, 8))
     attach(time_signature, staff[2])
 
     assert not staff[0].is_underfull

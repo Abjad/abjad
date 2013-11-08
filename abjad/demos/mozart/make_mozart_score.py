@@ -63,7 +63,7 @@ def make_mozart_score():
         score['LH Voice'].append(bass)
 
     # add marks
-    time_signature = marktools.TimeSignatureMark((3, 8))
+    time_signature = marktools.TimeSignature((3, 8))
     attach(time_signature, score['RH Staff'])
     bar_line = marktools.BarLine('|.')
     attach(bar_line, score['RH Voice'][-1])

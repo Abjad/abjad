@@ -86,7 +86,7 @@ class MutationAgent(object):
             ::
 
                 >>> staff = Staff()
-                >>> time_signature = marktools.TimeSignatureMark((3, 4))
+                >>> time_signature = marktools.TimeSignature((3, 4))
                 >>> time_signature = attach(time_signature, staff)
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
@@ -135,7 +135,7 @@ class MutationAgent(object):
             ::
 
                 >>> staff = Staff()
-                >>> time_signature = marktools.TimeSignatureMark((3, 4))
+                >>> time_signature = marktools.TimeSignature((3, 4))
                 >>> time_signature = attach(time_signature, staff)
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
@@ -1338,7 +1338,7 @@ class MutationAgent(object):
             ::
 
                 >>> staff = Staff(r"c'8 \accent ~ c'8 d'8")
-                >>> time_signature = marktools.TimeSignatureMark((3, 8))
+                >>> time_signature = marktools.TimeSignature((3, 8))
                 >>> time_signature = attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
@@ -1434,7 +1434,7 @@ class MutationAgent(object):
             ::
 
                 >>> staff = Staff(r"c'8 \accent ~ c'8 d'16")
-                >>> time_signature = marktools.TimeSignatureMark((5, 16))
+                >>> time_signature = marktools.TimeSignature((5, 16))
                 >>> time_signature = attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
@@ -1662,7 +1662,7 @@ class MutationAgent(object):
             ::
 
                 >>> staff = Staff()
-                >>> time_signature = marktools.TimeSignatureMark((4, 8))
+                >>> time_signature = marktools.TimeSignature((4, 8))
                 >>> time_signature = attach(time_signature, staff)
                 >>> tuplet = scoretools.Tuplet((4, 5), [])
                 >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")
@@ -1709,7 +1709,7 @@ class MutationAgent(object):
             ::
 
                 >>> staff = Staff()
-                >>> time_signature = marktools.TimeSignatureMark((4, 8))
+                >>> time_signature = marktools.TimeSignature((4, 8))
                 >>> time_signature = attach(time_signature, staff)
                 >>> tuplet = scoretools.FixedDurationTuplet((4, 8), [])
                 >>> tuplet.extend("c'8 d'8 e'8 f'8 g'8")

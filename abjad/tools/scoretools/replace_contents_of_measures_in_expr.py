@@ -98,8 +98,8 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         # otherwise restore current measure and advance to next measure
         else:
             current_time_signature = \
-                marktools.TimeSignatureMark(current_time_signature)
-            detach(marktools.TimeSignatureMark, current_measure)
+                marktools.TimeSignature(current_time_signature)
+            detach(marktools.TimeSignature, current_measure)
             attach(current_time_signature, current_measure)
             scoretools.append_spacer_skips_to_underfull_measures_in_expr(
                 [current_measure])
@@ -115,8 +115,8 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
     # restore last iterated measure
     current_time_signature = \
-        marktools.TimeSignatureMark(current_time_signature)
-    detach(marktools.TimeSignatureMark, current_measure)
+        marktools.TimeSignature(current_time_signature)
+    detach(marktools.TimeSignature, current_measure)
     attach(current_time_signature, current_measure)
     scoretools.append_spacer_skips_to_underfull_measures_in_expr(
         current_measure)

@@ -289,7 +289,7 @@ class LilyPondFormatManager(object):
         # currently used only in metric grid formatting
         if mark.effective_context is not None or \
             getattr(mark, '_is_cosmetic_mark', False) or \
-            (isinstance(mark, marktools.TimeSignatureMark) and
+            (isinstance(mark, marktools.TimeSignature) and
             isinstance(mark.start_component, scoretools.Measure)):
             return addenda
         addenda = [r'%%% ' + addendum + r' %%%' for addendum in addenda]
@@ -437,7 +437,7 @@ class LilyPondFormatManager(object):
             return False
         if isinstance(mark.start_component, scoretools.Measure):
             if mark.start_component is component:
-                if not isinstance(mark, marktools.TimeSignatureMark):
+                if not isinstance(mark, marktools.TimeSignature):
                     return True
                 elif component.always_format_time_signature:
                     return True

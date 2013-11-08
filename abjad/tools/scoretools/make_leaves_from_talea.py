@@ -26,9 +26,9 @@ def make_leaves_from_talea(
 
             >>> leaves = scoretools.make_leaves_from_talea([3, -3, 5, -5], 16)
             >>> staff = scoretools.RhythmicStaff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((4, 4))
+            >>> time_signature = marktools.TimeSignature((4, 4))
             >>> attach(time_signature, staff)
-            TimeSignatureMark((4, 4))(RhythmicStaff{6})
+            TimeSignature((4, 4))(RhythmicStaff{6})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -54,9 +54,9 @@ def make_leaves_from_talea(
             ...     [3, -3, 5, -5], 16,
             ...     decrease_durations_monotonically=False)
             >>> staff = scoretools.RhythmicStaff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((4, 4))
+            >>> time_signature = marktools.TimeSignature((4, 4))
             >>> attach(time_signature, staff)
-            TimeSignatureMark((4, 4))(RhythmicStaff{6})
+            TimeSignature((4, 4))(RhythmicStaff{6})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -83,9 +83,9 @@ def make_leaves_from_talea(
             ...     [3, -3, 5, -5], 16,
             ...     forbidden_written_duration=Duration(1, 4))
             >>> staff = scoretools.RhythmicStaff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((4, 4))
+            >>> time_signature = marktools.TimeSignature((4, 4))
             >>> attach(time_signature, staff)
-            TimeSignatureMark((4, 4))(RhythmicStaff{8})
+            TimeSignature((4, 4))(RhythmicStaff{8})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::

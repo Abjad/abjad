@@ -8,11 +8,11 @@ def test_layouttools_SpacingIndication___eq___01():
     normalized spacing durations compare equal.
     '''
 
-    tempo_indication = TempoMark(Duration(1, 8), 38)
+    tempo_indication = Tempo(Duration(1, 8), 38)
     spacing_indication_1 = layouttools.SpacingIndication(
         tempo_indication, Duration(1, 68))
 
-    tempo_indication = TempoMark(Duration(1, 4), 76)
+    tempo_indication = Tempo(Duration(1, 4), 76)
     spacing_indication_2 = layouttools.SpacingIndication(
         tempo_indication, Duration(1, 68))
 
@@ -24,11 +24,11 @@ def test_layouttools_SpacingIndication___eq___02():
     normalized spacing durations compare not equal.
     '''
 
-    tempo_indication = TempoMark(Duration(1, 8), 38)
+    tempo_indication = Tempo(Duration(1, 8), 38)
     spacing_indication_1 = layouttools.SpacingIndication(
         tempo_indication, Duration(1, 68))
 
-    tempo_indication = TempoMark(Duration(1, 8), 38)
+    tempo_indication = Tempo(Duration(1, 8), 38)
     spacing_indication_2 = layouttools.SpacingIndication(
         tempo_indication, Duration(1, 78))
 

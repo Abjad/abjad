@@ -6,5 +6,5 @@ def test_TempoMark___repr___01():
     r'''Tempo mark returns nonempty string repr.
     '''
 
-    repr = TempoMark((1, 8), 48).__repr__()
+    repr = Tempo((1, 8), 48).__repr__()
     assert isinstance(repr, str) and 0 < len(repr)

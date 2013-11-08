@@ -15,7 +15,7 @@ class TempoMarkInventoryEditor(ObjectInventoryEditor):
 
     ### CLASS VARIABLES ###
 
-    item_class = marktools.TempoMark
+    item_class = marktools.Tempo
 
     item_editor_class = TempoMarkEditor
 
@@ -24,7 +24,7 @@ class TempoMarkInventoryEditor(ObjectInventoryEditor):
     item_identifier = 'tempo mark'
 
     target_manifest = TargetManifest(
-        marktools.TempoMarkInventory,
+        marktools.TempoInventory,
         ('name', 'name', 'nm', getters.get_string),
         target_name_attribute='inventory name',
         )

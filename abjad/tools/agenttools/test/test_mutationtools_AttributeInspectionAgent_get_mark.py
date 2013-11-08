@@ -218,6 +218,6 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_18():
 def test_mutationtools_AttributeInspectionAgent_get_mark_19():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    time_signature = inspect(measure).get_mark(TimeSignatureMark)
+    time_signature = inspect(measure).get_mark(TimeSignature)
 
-    assert time_signature == TimeSignatureMark((4, 8))
+    assert time_signature == TimeSignature((4, 8))

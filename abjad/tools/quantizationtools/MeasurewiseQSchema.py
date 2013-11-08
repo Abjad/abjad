@@ -26,11 +26,11 @@ class MeasurewiseQSchema(QSchema):
                     11: None,
                     13: None}
                 ),
-            tempo=marktools.TempoMark(
+            tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
                 60
                 ),
-            time_signature=marktools.TimeSignatureMark(
+            time_signature=marktools.TimeSignature(
                 (4, 4)
                 ),
             use_full_measure=False,
@@ -49,8 +49,8 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
-        >>> time_signature = marktools.TimeSignatureMark((3, 4))
-        >>> tempo = marktools.TempoMark((1, 4), 54)
+        >>> time_signature = marktools.TimeSignature((3, 4))
+        >>> tempo = marktools.Tempo((1, 4), 54)
         >>> use_full_measure = True
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
         ...     search_tree=search_tree,
@@ -84,7 +84,7 @@ class MeasurewiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: TempoMark(Duration(1, 4), 54)
+        tempo: Tempo(Duration(1, 4), 54)
         time_signature: 3/4
         use_full_measure: True
 
@@ -96,7 +96,7 @@ class MeasurewiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: TempoMark(Duration(1, 4), 54)
+        tempo: Tempo(Duration(1, 4), 54)
         time_signature: 3/4
         use_full_measure: True
 
@@ -152,9 +152,9 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> a = {'time_signature': marktools.TimeSignatureMark((7, 32))}
-        >>> b = {'time_signature': marktools.TimeSignatureMark((3, 4))}
-        >>> c = {'time_signature': marktools.TimeSignatureMark((5, 8))}
+        >>> a = {'time_signature': marktools.TimeSignature((7, 32))}
+        >>> b = {'time_signature': marktools.TimeSignature((3, 4))}
+        >>> c = {'time_signature': marktools.TimeSignature((5, 8))}
 
     ::
 
@@ -171,51 +171,51 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> q_schema[0]['time_signature']
-        TimeSignatureMark((4, 4))
+        TimeSignature((4, 4))
 
     ::
 
         >>> q_schema[1]['time_signature']
-        TimeSignatureMark((4, 4))
+        TimeSignature((4, 4))
 
     ::
 
         >>> q_schema[2]['time_signature']
-        TimeSignatureMark((7, 32))
+        TimeSignature((7, 32))
 
     ::
 
         >>> q_schema[3]['time_signature']
-        TimeSignatureMark((7, 32))
+        TimeSignature((7, 32))
 
     ::
 
         >>> q_schema[4]['time_signature']
-        TimeSignatureMark((3, 4))
+        TimeSignature((3, 4))
 
     ::
 
         >>> q_schema[5]['time_signature']
-        TimeSignatureMark((3, 4))
+        TimeSignature((3, 4))
 
     ::
 
         >>> q_schema[6]['time_signature']
-        TimeSignatureMark((5, 8))
+        TimeSignature((5, 8))
 
     ::
 
         >>> q_schema[1000]['time_signature']
-        TimeSignatureMark((5, 8))
+        TimeSignature((5, 8))
 
     The following is equivalent to the above schema definition:
 
     ::
 
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
-        ...     (2, {'time_signature': marktools.TimeSignatureMark((7, 32))}),
-        ...     (4, {'time_signature': marktools.TimeSignatureMark((3, 4))}),
-        ...     (6, {'time_signature': marktools.TimeSignatureMark((5, 8))}),
+        ...     (2, {'time_signature': marktools.TimeSignature((7, 32))}),
+        ...     (4, {'time_signature': marktools.TimeSignature((3, 4))}),
+        ...     (6, {'time_signature': marktools.TimeSignature((5, 8))}),
         ...     )
 
     Return ``MeasurewiseQSchema`` instance.
@@ -242,11 +242,11 @@ class MeasurewiseQSchema(QSchema):
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 
-        self._tempo = marktools.TempoMark(
+        self._tempo = marktools.Tempo(
             kwargs.get('tempo',
                 ((1, 4), 60)))
 
-        self._time_signature = marktools.TimeSignatureMark(
+        self._time_signature = marktools.TimeSignature(
             kwargs.get('time_signature',
                 (4, 4)))
 

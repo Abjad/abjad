@@ -31,7 +31,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
             # update non-power-of-two time signature to power-of-two
             power_of_two_time_signature = effective_time_signature.with_power_of_two_denominator(
                 contents_multiplier)
-            detach(marktools.TimeSignatureMark, measure)
+            detach(marktools.TimeSignature, measure)
             attach(power_of_two_time_signature, measure)
 
             # find target duration and create tuplet

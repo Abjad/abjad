@@ -13,7 +13,7 @@ class TempoMarkEditor(InteractiveEditor):
     ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(
-        marktools.TempoMark,
+        marktools.Tempo,
         ('duration', 'd', getters.get_duration),
         ('units_per_minute', 'm', getters.get_integer),
         )

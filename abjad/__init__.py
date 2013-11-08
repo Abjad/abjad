@@ -38,8 +38,8 @@ from abjad.tools.durationtools import Offset
 from abjad.tools.marktools import Articulation
 from abjad.tools.marktools import Clef
 from abjad.tools.marktools import Dynamic
-from abjad.tools.marktools import TimeSignatureMark
-from abjad.tools.marktools import TempoMark
+from abjad.tools.marktools import TimeSignature
+from abjad.tools.marktools import Tempo
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Container

@@ -99,7 +99,7 @@ for i, descent in enumerate(descents[1:], 1):
 
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
-time_signature = marktools.TimeSignatureMark((6, 4))(staff)
+time_signature = marktools.TimeSignature((6, 4))(staff)
 show(staff)
 </abjad>
 
@@ -117,7 +117,7 @@ for i, descent in enumerate(descents[1:], 1):
 
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
-time_signature = marktools.TimeSignatureMark((6, 4))(staff)
+time_signature = marktools.TimeSignature((6, 4))(staff)
 show(staff)
 </abjad>
 
@@ -138,7 +138,7 @@ for i, descent in enumerate(descents[1:], 1):
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
 shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
-time_signature = marktools.TimeSignatureMark((6, 4))(staff)
+time_signature = marktools.TimeSignature((6, 4))(staff)
 show(staff)
 </abjad>
 

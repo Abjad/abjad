@@ -212,9 +212,9 @@ class TieChain(ContiguousSelection):
                 >>> crescendo = spannertools.HairpinSpanner(descriptor='p < f')
                 >>> attach(crescendo, staff[:])
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
-                >>> time_signature = marktools.TimeSignatureMark((7, 16))
+                >>> time_signature = marktools.TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
-                TimeSignatureMark((7, 16))(Staff{3})
+                TimeSignature((7, 16))(Staff{3})
                 
             ..  doctest::
 
@@ -269,9 +269,9 @@ class TieChain(ContiguousSelection):
                 >>> crescendo = spannertools.HairpinSpanner(descriptor='p < f')
                 >>> attach(crescendo, staff[:])
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
-                >>> time_signature = marktools.TimeSignatureMark((7, 16))
+                >>> time_signature = marktools.TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
-                TimeSignatureMark((7, 16))(Staff{3})
+                TimeSignature((7, 16))(Staff{3})
                 
             ..  doctest::
 

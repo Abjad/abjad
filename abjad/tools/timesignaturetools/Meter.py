@@ -213,7 +213,7 @@ class Meter(AbjadObject):
                 fraction = mathtools.NonreducedFraction(arg)
             elif isinstance(arg, scoretools.Measure):
                 time_signature = arg._get_effective_context_mark(
-                    marktools.TimeSignatureMark)
+                    marktools.TimeSignature)
                 fraction = mathtools.NonreducedFraction(
                     time_signature.numerator, time_signature.denominator)
             else:
@@ -477,11 +477,11 @@ class Meter(AbjadObject):
         ::
 
             >>> timesignaturetools.Meter((4, 4)).implied_time_signature
-            TimeSignatureMark((4, 4))
+            TimeSignature((4, 4))
 
-        Returns TimeSignatureMark object.
+        Returns TimeSignature object.
         '''
-        return marktools.TimeSignatureMark(
+        return marktools.TimeSignature(
             self.root_node.preprolated_duration)
 
     @property

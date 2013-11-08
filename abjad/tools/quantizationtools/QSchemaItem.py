@@ -31,7 +31,7 @@ class QSchemaItem(AbjadObject):
             assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
         if tempo is not None:
-            tempo = marktools.TempoMark(tempo)
+            tempo = marktools.Tempo(tempo)
             assert not tempo.is_imprecise
         self._tempo = tempo
 

@@ -15,27 +15,27 @@ class SpacingIndication(AbjadObject):
 
     ::
 
-        >>> tempo = marktools.TempoMark(Duration(1, 8), 44)
+        >>> tempo = marktools.Tempo(Duration(1, 8), 44)
         >>> indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
 
     ::
 
         >>> indication
-        SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
+        SpacingIndication(Tempo(Duration(1, 8), 44), Duration(1, 68))
 
     Initialize from constants:
 
     ::
 
         >>> layouttools.SpacingIndication(((1, 8), 44), (1, 68))
-        SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
+        SpacingIndication(Tempo(Duration(1, 8), 44), Duration(1, 68))
 
     Initialize from other spacing indication:
 
     ::
 
         >>> layouttools.SpacingIndication(indication)
-        SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
+        SpacingIndication(Tempo(Duration(1, 8), 44), Duration(1, 68))
 
     Spacing indications are immutable.
     '''
@@ -56,7 +56,7 @@ class SpacingIndication(AbjadObject):
             self._proportional_notation_duration = \
                 args[0].proportional_notation_duration
         elif len(args) == 2:
-            tempo_indication = marktools.TempoMark(args[0])
+            tempo_indication = marktools.Tempo(args[0])
             proportional_notation_duration = durationtools.Duration(args[1])
             self._tempo_indication = tempo_indication
             self._proportional_notation_duration = \

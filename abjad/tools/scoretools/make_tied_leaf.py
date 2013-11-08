@@ -26,9 +26,9 @@ def make_tied_leaf(
             ...     pitches='C#5',
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((2, 4))
+            >>> time_signature = marktools.TimeSignature((2, 4))
             >>> attach(time_signature, staff)
-            TimeSignatureMark((2, 4))(Staff{1})
+            TimeSignature((2, 4))(Staff{1})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -52,9 +52,9 @@ def make_tied_leaf(
             ...     forbidden_written_duration=Duration(1, 2),
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((2, 4))
+            >>> time_signature = marktools.TimeSignature((2, 4))
             >>> attach(time_signature, staff)
-            TimeSignatureMark((2, 4))(Staff{2})
+            TimeSignature((2, 4))(Staff{2})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -81,9 +81,9 @@ def make_tied_leaf(
             ...     decrease_durations_monotonically=True,
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((9, 8))
+            >>> time_signature = marktools.TimeSignature((9, 8))
             >>> attach(time_signature, staff)
-            TimeSignatureMark((9, 8))(Staff{5})
+            TimeSignature((9, 8))(Staff{5})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -113,9 +113,9 @@ def make_tied_leaf(
             ...     decrease_durations_monotonically=False,
             ...     )
             >>> staff = Staff(leaves)
-            >>> time_signature = marktools.TimeSignatureMark((9, 8))
+            >>> time_signature = marktools.TimeSignature((9, 8))
             >>> attach(time_signature, staff)
-            TimeSignatureMark((9, 8))(Staff{5})
+            TimeSignature((9, 8))(Staff{5})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::

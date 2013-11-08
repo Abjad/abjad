@@ -3,20 +3,20 @@ from abjad.tools import marktools
 from abjad.tools import durationtools
 
 
-tempo_inventory = marktools.TempoMarkInventory([
-	marktools.TempoMark(
+tempo_inventory = marktools.TempoInventory([
+	marktools.Tempo(
 		durationtools.Duration(1, 8),
 		72
 		),
-	marktools.TempoMark(
+	marktools.Tempo(
 		durationtools.Duration(1, 8),
 		108
 		),
-	marktools.TempoMark(
+	marktools.Tempo(
 		durationtools.Duration(1, 8),
 		90
 		),
-	marktools.TempoMark(
+	marktools.Tempo(
 		durationtools.Duration(1, 8),
 		135
 		)

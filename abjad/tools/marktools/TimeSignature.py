@@ -7,15 +7,15 @@ from abjad.tools.marktools.ContextMark import ContextMark
 # TODO: add more initializer examples.
 # TODO: add example of `suppress` keyword.
 # TODO: turn `suppress` into managed attribute.
-class TimeSignatureMark(ContextMark):
+class TimeSignature(ContextMark):
     r'''A time signature.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> time_signature = marktools.TimeSignatureMark((4, 8))
+        >>> time_signature = marktools.TimeSignature((4, 8))
         >>> attach(time_signature, staff[0])
-        TimeSignatureMark((4, 8))(c'8)
+        TimeSignature((4, 8))(c'8)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -35,8 +35,8 @@ class TimeSignatureMark(ContextMark):
 
     ::
 
-        >>> marktools.TimeSignatureMark((4, 8), target_context=Score)
-        TimeSignatureMark((4, 8), target_context=Score)
+        >>> marktools.TimeSignature((4, 8), target_context=Score)
+        TimeSignature((4, 8), target_context=Score)
 
     '''
 
@@ -124,14 +124,14 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> print format(marktools.TimeSignatureMark((3, 8)))
-            marktools.TimeSignatureMark(
+            >>> print format(marktools.TimeSignature((3, 8)))
+            marktools.TimeSignature(
                 (3, 8)
                 )
 
         Returns string.
         '''
-        superclass = super(TimeSignatureMark, self)
+        superclass = super(TimeSignature, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __ge__(self, arg):
@@ -226,7 +226,7 @@ class TimeSignatureMark(ContextMark):
 
             ::
 
-                >>> time_signature = marktools.TimeSignatureMark((3, 8))
+                >>> time_signature = marktools.TimeSignature((3, 8))
 
             ::
 
@@ -258,7 +258,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> marktools.TimeSignatureMark((3, 8)).duration
+            >>> marktools.TimeSignature((3, 8)).duration
             Duration(3, 8)
 
         Returns duration.
@@ -273,7 +273,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> time_signature = marktools.TimeSignatureMark((3, 8))
+            >>> time_signature = marktools.TimeSignature((3, 8))
 
         ::
 
@@ -286,7 +286,7 @@ class TimeSignatureMark(ContextMark):
 
             >>> staff = Staff()
             >>> attach(time_signature, staff)
-            TimeSignatureMark((3, 8))(Staff{})
+            TimeSignature((3, 8))(Staff{})
 
         ::
 
@@ -303,7 +303,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> time_signature = marktools.TimeSignatureMark((7, 12))
+            >>> time_signature = marktools.TimeSignature((7, 12))
             >>> time_signature.has_non_power_of_two_denominator
             True
 
@@ -311,7 +311,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> time_signature = marktools.TimeSignatureMark((3, 8))
+            >>> time_signature = marktools.TimeSignature((3, 8))
             >>> time_signature.has_non_power_of_two_denominator
             False
 
@@ -330,7 +330,7 @@ class TimeSignatureMark(ContextMark):
 
             ::
 
-                >>> marktools.TimeSignatureMark((3, 8)).implied_prolation
+                >>> marktools.TimeSignature((3, 8)).implied_prolation
                 Multiplier(1, 1)
 
         ..  container:: example
@@ -340,7 +340,7 @@ class TimeSignatureMark(ContextMark):
 
             ::
 
-                >>> marktools.TimeSignatureMark((7, 12)).implied_prolation
+                >>> marktools.TimeSignature((7, 12)).implied_prolation
                 Multiplier(2, 3)
 
         Returns multiplier.
@@ -355,7 +355,7 @@ class TimeSignatureMark(ContextMark):
 
             ::
 
-                >>> time_signature = marktools.TimeSignatureMark((3, 8))
+                >>> time_signature = marktools.TimeSignature((3, 8))
                 >>> time_signature.numerator
                 3
 
@@ -381,7 +381,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> marktools.TimeSignatureMark((3, 8)).pair
+            >>> marktools.TimeSignature((3, 8)).pair
             (3, 8)
 
         Returns pair.
@@ -395,7 +395,7 @@ class TimeSignatureMark(ContextMark):
 
             ::
 
-                >>> time_signature = marktools.TimeSignatureMark(
+                >>> time_signature = marktools.TimeSignature(
                 ...     (3, 8), partial=Duration(1, 8))
                 >>> time_signature.partial
                 Duration(1, 8)
@@ -425,7 +425,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> time_signature = marktools.TimeSignatureMark((3, 8))
+            >>> time_signature = marktools.TimeSignature((3, 8))
             >>> time_signature.start_component is None
             True
 
@@ -435,7 +435,7 @@ class TimeSignatureMark(ContextMark):
 
             >>> staff = Staff()
             >>> attach(time_signature, staff)
-            TimeSignatureMark((3, 8))(Staff{})
+            TimeSignature((3, 8))(Staff{})
 
         ::
 
@@ -452,7 +452,7 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> marktools.TimeSignatureMark((3, 8)).target_context
+            >>> marktools.TimeSignature((3, 8)).target_context
             <class 'abjad.tools.scoretools.Staff.Staff'>
 
         Time signature marks target the staff context by default.
@@ -470,13 +470,13 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> time_signature = marktools.TimeSignatureMark((3, 8))
+            >>> time_signature = marktools.TimeSignature((3, 8))
             >>> staff = Staff()
 
         ::
 
             >>> attach(time_signature, staff)
-            TimeSignatureMark((3, 8))(Staff{})
+            TimeSignature((3, 8))(Staff{})
 
         Returns time signature mark.
         '''
@@ -493,12 +493,12 @@ class TimeSignatureMark(ContextMark):
         r'''Create new time signature equivalent to current
         time signature with power-of-two denominator.
 
-            >>> time_signature = marktools.TimeSignatureMark((3, 12))
+            >>> time_signature = marktools.TimeSignature((3, 12))
 
         ::
 
             >>> time_signature.with_power_of_two_denominator()
-            TimeSignatureMark((2, 8))
+            TimeSignature((2, 8))
 
         Returns new time signature mark.
         '''

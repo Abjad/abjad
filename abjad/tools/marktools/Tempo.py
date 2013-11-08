@@ -7,7 +7,7 @@ from abjad.tools import schemetools
 from abjad.tools.marktools.ContextMark import ContextMark
 
 
-class TempoMark(ContextMark):
+class Tempo(ContextMark):
     r'''A tempo indication.
 
     ::
@@ -15,9 +15,9 @@ class TempoMark(ContextMark):
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> tempo = marktools.TempoMark(Duration(1, 8), 52)
+        >>> tempo = marktools.Tempo(Duration(1, 8), 52)
         >>> attach(tempo, staff[0])
-        TempoMark(Duration(1, 8), 52)(c'8)
+        Tempo(Duration(1, 8), 52)(c'8)
         >>> show(score) # doctest: +SKIP
 
     ..  doctest::
@@ -149,9 +149,9 @@ class TempoMark(ContextMark):
 
         ::
 
-            >>> tempo_mark = marktools.TempoMark('Allegro', (1, 4), 84)
+            >>> tempo_mark = marktools.Tempo('Allegro', (1, 4), 84)
             >>> print format(tempo_mark)
-            marktools.TempoMark(
+            marktools.Tempo(
                 'Allegro',
                 durationtools.Duration(1, 4),
                 84
@@ -159,7 +159,7 @@ class TempoMark(ContextMark):
 
         Returns string.
         '''
-        superclass = super(TempoMark, self)
+        superclass = super(Tempo, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __mul__(self, multiplier):
@@ -262,7 +262,7 @@ class TempoMark(ContextMark):
 
             ::
 
-                >>> tempo = marktools.TempoMark(Duration(1, 8), 52)
+                >>> tempo = marktools.Tempo(Duration(1, 8), 52)
                 >>> tempo.duration
                 Duration(1, 8)
 
@@ -293,15 +293,15 @@ class TempoMark(ContextMark):
 
         ::
 
-            >>> marktools.TempoMark(Duration(1, 4), 60).is_imprecise
+            >>> marktools.Tempo(Duration(1, 4), 60).is_imprecise
             False
-            >>> marktools.TempoMark('Langsam', 4, 60).is_imprecise
+            >>> marktools.Tempo('Langsam', 4, 60).is_imprecise
             False
-            >>> marktools.TempoMark('Langsam').is_imprecise
+            >>> marktools.Tempo('Langsam').is_imprecise
             True
-            >>> marktools.TempoMark('Langsam', 4, (35, 50)).is_imprecise
+            >>> marktools.Tempo('Langsam', 4, (35, 50)).is_imprecise
             True
-            >>> marktools.TempoMark(Duration(1, 4), (35, 50)).is_imprecise
+            >>> marktools.Tempo(Duration(1, 4), (35, 50)).is_imprecise
             True
 
         Returns boolean.
@@ -318,7 +318,7 @@ class TempoMark(ContextMark):
 
         ::
 
-            >>> tempo = marktools.TempoMark(Duration(1, 8), 52)
+            >>> tempo = marktools.Tempo(Duration(1, 8), 52)
             >>> tempo.quarters_per_minute
             Fraction(104, 1)
 
@@ -347,7 +347,7 @@ class TempoMark(ContextMark):
 
             ::
 
-                >>> tempo = marktools.TempoMark(
+                >>> tempo = marktools.Tempo(
                 ...     'Langsam', Duration(1, 8), 52)
                 >>> tempo.textual_indication
                 'Langsam'
@@ -367,7 +367,7 @@ class TempoMark(ContextMark):
 
             ::
 
-                >>> tempo = marktools.TempoMark(Duration(1, 8), 52)
+                >>> tempo = marktools.Tempo(Duration(1, 8), 52)
                 >>> tempo.units_per_minute
                 52
 
@@ -401,7 +401,7 @@ class TempoMark(ContextMark):
         ::
 
             >>> duration = (1, 4)
-            >>> tempo = marktools.TempoMark((1, 4), 60)
+            >>> tempo = marktools.Tempo((1, 4), 60)
             >>> tempo.duration_to_milliseconds(duration)
             Duration(1000, 1)
 
@@ -424,7 +424,7 @@ class TempoMark(ContextMark):
 
         ::
 
-            >>> tempo_mark = marktools.TempoMark(Duration(1, 4), 72)
+            >>> tempo_mark = marktools.Tempo(Duration(1, 4), 72)
             >>> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
             True
 

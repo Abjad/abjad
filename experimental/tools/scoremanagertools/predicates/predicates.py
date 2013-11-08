@@ -113,9 +113,9 @@ def is_string_or_none(expr):
 def is_tempo_token(expr):
     try:
         exec('from abjad import *')
-        command = 'tempo_mark = marktools.TempoMark({})'.format(expr)
+        command = 'tempo_mark = marktools.Tempo({})'.format(expr)
         exec(command)
-        return isinstance(tempo_mark, marktools.TempoMark)
+        return isinstance(tempo_mark, marktools.Tempo)
     except:
         return False
 

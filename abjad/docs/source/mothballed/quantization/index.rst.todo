@@ -21,7 +21,7 @@ and even rhythmic complexity in the process.
 ::
 
    >>> original_staff = Staff("abj: | 4/4 c'16 d' e' f' g' a' b' c'' ~ c'' b' a' g' f' e' d' c' |")
-   >>> tempo = marktools.TempoMark((1, 4), 60)(original_staff[0])
+   >>> tempo = marktools.Tempo((1, 4), 60)(original_staff[0])
    >>> q_event_sequence = quantizationtools.QEventSequence.from_tempo_scaled_leaves(original_staff.leaves, tempo)
 
 

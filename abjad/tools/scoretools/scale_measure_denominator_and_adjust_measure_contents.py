@@ -76,7 +76,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     measure._scale(multiplier)
 
     # assign new time signature
-    detach(marktools.TimeSignatureMark, measure)
+    detach(marktools.TimeSignature, measure)
     attach(new_time_signature, measure)
 
     # return measure

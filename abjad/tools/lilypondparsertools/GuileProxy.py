@@ -143,7 +143,7 @@ class GuileProxy(AbjadObject):
 
     def time(self, number_list, fraction):
         n, d = fraction.numerator, fraction.denominator
-        return marktools.TimeSignatureMark(
+        return marktools.TimeSignature(
             (n, d), target_context=scoretools.Staff)
 
     def times(self, fraction, music):

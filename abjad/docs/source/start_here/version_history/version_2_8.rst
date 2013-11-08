@@ -124,7 +124,7 @@ Added object inventories for several classes.
 - This release contains inventories for the following classes::
 
     marktools.ClefInventory
-    marktools.TempoMarkInventory
+    marktools.TempoInventory
     instrumenttools.InstrumentInventory
     markuptools.MarkupInventory
     pitchtools.OctaveTranspositionMappingInventory
@@ -329,9 +329,9 @@ Further new functionality:
     >>> f(n)
     c'1 - \bendAfter #'8.0
 
-- Added public ``pair`` property to ``marktools.TimeSignatureMark``::
+- Added public ``pair`` property to ``marktools.TimeSignature``::
 
-    >>> time_signature = marktools.TimeSignatureMark((3, 16))
+    >>> time_signature = marktools.TimeSignature((3, 16))
     >>> time_signature.pair
     (3, 16)
 

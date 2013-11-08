@@ -7,7 +7,7 @@ def test_scoretools_Staff_time_signature_01():
     '''
 
     staff = Staff(Note("c'4") * 8)
-    time_signature = TimeSignatureMark((2, 4))
+    time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
 
     assert testtools.compare(
@@ -33,7 +33,7 @@ def test_scoretools_Staff_time_signature_02():
     '''
 
     staff = Staff([])
-    time_signature = TimeSignatureMark((2, 4))
+    time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
 
     assert testtools.compare(
@@ -51,11 +51,11 @@ def test_scoretools_Staff_time_signature_03():
     '''
 
     staff = Staff(Note("c'4") * 8)
-    time_signature = TimeSignatureMark((2, 4))
+    time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
     for x in staff:
-        assert inspect(x).get_effective_context_mark(TimeSignatureMark) \
-            == TimeSignatureMark((2, 4))
+        assert inspect(x).get_effective_context_mark(TimeSignature) \
+            == TimeSignature((2, 4))
 
 
 def test_scoretools_Staff_time_signature_04():
@@ -63,9 +63,9 @@ def test_scoretools_Staff_time_signature_04():
     '''
 
     staff = Staff(Note("c'4") * 8)
-    time_signature = TimeSignatureMark((2, 4))
+    time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
     detach(time_signature, staff)
     for leaf in staff:
         assert inspect(leaf).get_effective_context_mark(
-            TimeSignatureMark) is None
+            TimeSignature) is None

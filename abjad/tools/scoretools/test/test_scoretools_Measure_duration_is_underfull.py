@@ -7,12 +7,12 @@ def test_scoretools_Measure_duration_is_underfull_01():
     measure = Measure((3, 8), scoretools.make_repeated_notes(3))
     assert not measure.is_underfull
 
-    detach(TimeSignatureMark, measure)
-    time_signature = TimeSignatureMark((4, 8))
+    detach(TimeSignature, measure)
+    time_signature = TimeSignature((4, 8))
     attach(time_signature, measure)
     assert measure.is_underfull
 
-    detach(TimeSignatureMark, measure)
-    time_signature = TimeSignatureMark((3, 8))
+    detach(TimeSignature, measure)
+    time_signature = TimeSignature((3, 8))
     attach(time_signature, measure)
     assert not measure.is_underfull

@@ -69,7 +69,7 @@ def test_scoretools_Component__has_mark_06():
 def test_scoretools_Component__has_mark_07():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    time_signature = TimeSignatureMark((4, 8))
+    time_signature = TimeSignature((4, 8))
     attach(time_signature, staff[0])
 
     assert staff[0]._has_mark(marktools.ContextMark)
