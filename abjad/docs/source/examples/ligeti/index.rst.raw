@@ -65,7 +65,7 @@ marktools.Dynamic('p')(notes[1])
 <abjad>
 voice_lower = Voice(notes)
 voice_lower.name = 'rh_lower'
-marktools.LilyPondCommandMark('voiceTwo')(voice_lower)
+marktools.LilyPondCommand('voiceTwo')(voice_lower)
 </abjad>
 
 The notes belonging to the eighth note run are first beamed and slurred. Then
@@ -84,7 +84,7 @@ marktools.Articulation('>')(chord)
 <abjad>
 voice_higher = Voice([chord])
 voice_higher.name = 'rh_higher'
-marktools.LilyPondCommandMark('voiceOne')(voice_higher)
+marktools.LilyPondCommand('voiceOne')(voice_higher)
 </abjad>
 
 The duration of the chord is half the duration of the running eighth notes if

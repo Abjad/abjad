@@ -89,10 +89,10 @@ to true for each of the last two measures:
 
 <abjad>
 upper_voice = Voice("b2", name='upper voice')
-command = marktools.LilyPondCommandMark('voiceOne')
+command = marktools.LilyPondCommand('voiceOne')
 command.attach(upper_voice)
 lower_voice = Voice("b4 a4", name='lower voice')
-command = marktools.LilyPondCommandMark('voiceTwo')
+command = marktools.LilyPondCommand('voiceTwo')
 command.attach(lower_voice)
 lower_measures[3].extend([upper_voice, lower_voice])
 lower_measures[3].is_simultaneous = True
@@ -100,10 +100,10 @@ lower_measures[3].is_simultaneous = True
 
 <abjad>
 upper_voice = Voice("b2", name='upper voice')
-command = marktools.LilyPondCommandMark('voiceOne')
+command = marktools.LilyPondCommand('voiceOne')
 command.attach(upper_voice)
 lower_voice = Voice("g2", name='lower voice')
-command = marktools.LilyPondCommandMark('voiceTwo')
+command = marktools.LilyPondCommand('voiceTwo')
 command.attach(lower_voice)
 lower_measures[4].extend([upper_voice, lower_voice])
 lower_measures[4].is_simultaneous = True

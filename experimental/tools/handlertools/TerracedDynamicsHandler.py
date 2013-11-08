@@ -26,7 +26,7 @@ class TerracedDynamicsHandler(DynamicHandler):
             dynamic_name = dynamics[offset + i]
             if self.minimum_duration <= note_or_chord._get_duration():
                 #marktools.Dynamic(dynamic_name)(note_or_chord)
-                command = marktools.LilyPondCommandMark(dynamic_name, 'right')
+                command = marktools.LilyPondCommand(dynamic_name, 'right')
                 attach(command, note_or_chord)
         return expr
 

@@ -34,7 +34,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         if is_short_group:
             start_dynamic = self.hairpin_token[0]
             #marktools.Dynamic(start_dynamic)(group[0])
-            command = marktools.LilyPondCommandMark(start_dynamic, 'right')
+            command = marktools.LilyPondCommand(start_dynamic, 'right')
             attach(command, group[0])
         else:
             descriptor = ' '.join([x for x in self.hairpin_token if x])

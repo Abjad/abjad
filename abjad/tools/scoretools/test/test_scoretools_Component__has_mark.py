@@ -26,13 +26,13 @@ def test_scoretools_Component__has_mark_02():
 def test_scoretools_Component__has_mark_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    command = marktools.LilyPondCommandMark('break', 'closing')
+    command = marktools.LilyPondCommand('break', 'closing')
     attach(command, staff[-1])
 
-    assert not staff[0]._has_mark(marktools.LilyPondCommandMark)
-    assert not staff[1]._has_mark(marktools.LilyPondCommandMark)
-    assert not staff[2]._has_mark(marktools.LilyPondCommandMark)
-    assert     staff[3]._has_mark(marktools.LilyPondCommandMark)
+    assert not staff[0]._has_mark(marktools.LilyPondCommand)
+    assert not staff[1]._has_mark(marktools.LilyPondCommand)
+    assert not staff[2]._has_mark(marktools.LilyPondCommand)
+    assert     staff[3]._has_mark(marktools.LilyPondCommand)
 
 
 

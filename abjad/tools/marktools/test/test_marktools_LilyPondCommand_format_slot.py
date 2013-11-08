@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_marktools_LilyPondCommandMark_format_slot_01():
+def test_marktools_LilyPondCommand_format_slot_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    command = marktools.LilyPondCommandMark('break', 'closing')
+    command = marktools.LilyPondCommand('break', 'closing')
     attach(command, staff[0])
 
     assert testtools.compare(

@@ -11,7 +11,7 @@ Creating LilyPond command marks
 Use ``marktools`` to create LilyPond command marks:
 
 <abjad>
-command = marktools.LilyPondCommandMark('bar "||"', 'after')
+command = marktools.LilyPondCommand('bar "||"', 'after')
 </abjad>
 
 <abjad>
@@ -54,7 +54,7 @@ Inspecting the LilyPond command marks attached to an Abjad component
 Use the inspector to get the LilyPond command marks attached to a leaf:
 
 <abjad>
-inspect(staff[-2]).get_marks(marktools.LilyPondCommandMark)
+inspect(staff[-2]).get_marks(marktools.LilyPondCommand)
 </abjad>
 
 
@@ -83,7 +83,7 @@ Use ``start_component`` to inspect the component to which a LilyPond command
 mark is attached:
 
 <abjad>
-command = marktools.LilyPondCommandMark('bar "||"', 'closing')
+command = marktools.LilyPondCommand('bar "||"', 'closing')
 command.attach(staff[-2])
 </abjad>
 

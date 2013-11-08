@@ -9,7 +9,7 @@ def test_mutationtools_AttributeInspectionAgent_report_modifications_01():
     comment = marktools.LilyPondComment('Example voice', 'before')
     attach(comment, voice)
     override(voice).note_head.color = 'red'
-    command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
+    command = marktools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, voice)
     beam = BeamSpanner()
     attach(beam, voice[:])
@@ -55,7 +55,7 @@ def test_mutationtools_AttributeInspectionAgent_report_modifications_02():
     comment = marktools.LilyPondComment('Example tuplet', 'before')
     attach(comment, tuplet)
     override(tuplet).note_head.color = 'red'
-    command = marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")
+    command = marktools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, tuplet)
     beam = BeamSpanner()
     attach(beam, tuplet[:])

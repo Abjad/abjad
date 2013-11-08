@@ -32,7 +32,7 @@ class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
             note = Note("c'1")
             markup_copy = markuptools.Markup(markup)
             markup_copy(note)
-            marktools.LilyPondCommandMark('break')(note)
+            marktools.LilyPondCommand('break')(note)
             notes.append(note)
         staff = scoretools.RhythmicStaff(notes)
         score = Score([staff])

@@ -72,10 +72,10 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_06():
 def test_mutationtools_AttributeInspectionAgent_get_mark_07():
 
     note = Note("c'8")
-    command = marktools.LilyPondCommandMark('stemUp')
+    command = marktools.LilyPondCommand('stemUp')
     attach(command, note)
 
-    assert inspect(note).get_mark(marktools.LilyPondCommandMark) is command
+    assert inspect(note).get_mark(marktools.LilyPondCommand) is command
 
 
 def test_mutationtools_AttributeInspectionAgent_get_mark_08():
@@ -84,21 +84,21 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_08():
 
     assert pytest.raises(
         MissingMarkError,
-        'inspect(note).get_mark(marktools.LilyPondCommandMark)',
+        'inspect(note).get_mark(marktools.LilyPondCommand)',
         )
 
 
 def test_mutationtools_AttributeInspectionAgent_get_mark_09():
 
     note = Note("c'8")
-    command = marktools.LilyPondCommandMark('stemUp')
+    command = marktools.LilyPondCommand('stemUp')
     attach(command, note)
-    command = marktools.LilyPondCommandMark('slurUp')
+    command = marktools.LilyPondCommand('slurUp')
     attach(command, note)
 
     assert pytest.raises(
         ExtraMarkError,
-        'inspect(note).get_mark(marktools.LilyPondCommandMark)',
+        'inspect(note).get_mark(marktools.LilyPondCommand)',
         )
 
 
@@ -107,9 +107,9 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_10():
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = SlurSpanner()
     attach(slur, staff.select_leaves())
-    command_1 = marktools.LilyPondCommandMark('slurDotted')
+    command_1 = marktools.LilyPondCommand('slurDotted')
     attach(command_1, staff[0])
-    command_2 = marktools.LilyPondCommandMark('slurUp')
+    command_2 = marktools.LilyPondCommand('slurUp')
     attach(command_2, staff[0])
 
     assert testtools.compare(
@@ -126,7 +126,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_10():
         '''
         )
 
-    marks = inspect(staff[0]).get_marks(marktools.LilyPondCommandMark)
+    marks = inspect(staff[0]).get_marks(marktools.LilyPondCommand)
 
     assert command_1 in marks
     assert command_2 in marks

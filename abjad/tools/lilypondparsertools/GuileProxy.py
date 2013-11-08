@@ -52,7 +52,7 @@ class GuileProxy(AbjadObject):
         return marktools.BarLine(string)
 
     def breathe(self):
-        return marktools.LilyPondCommandMark('breathe', 'after')
+        return marktools.LilyPondCommand('breathe', 'after')
 
     def clef(self, string):
         return marktools.Clef(string)
@@ -82,10 +82,10 @@ class GuileProxy(AbjadObject):
     def mark(self, label):
         if label is None:
             label = '\default'
-        return marktools.LilyPondCommandMark('mark %s' % label)
+        return marktools.LilyPondCommand('mark %s' % label)
 
     def one_voice(self):
-        return marktools.LilyPondCommandMark('oneVoice')
+        return marktools.LilyPondCommand('oneVoice')
 
     # pitchedTrill
 
@@ -183,16 +183,16 @@ class GuileProxy(AbjadObject):
     # tweak
 
     def voiceFour(self):
-        return marktools.LilyPondCommandMark('voiceTwo')
+        return marktools.LilyPondCommand('voiceTwo')
 
     def voiceOne(self):
-        return marktools.LilyPondCommandMark('voiceOne')
+        return marktools.LilyPondCommand('voiceOne')
 
     def voiceThree(self):
-        return marktools.LilyPondCommandMark('voiceThree')
+        return marktools.LilyPondCommand('voiceThree')
 
     def voiceTwo(self):
-        return marktools.LilyPondCommandMark('voiceFour')
+        return marktools.LilyPondCommand('voiceFour')
 
     ### HELPER FUNCTIONS ###
 

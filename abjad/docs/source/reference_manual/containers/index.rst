@@ -309,10 +309,10 @@ Set ``is_simultaneous`` by hand as necessary:
    >>> voice_2 = Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 \fermata")
    >>> staff = Staff([voice_1, voice_2])
    >>> staff.is_simultaneous = True
-   >>> marktools.LilyPondCommandMark('voiceOne')(voice_1)
-   LilyPondCommandMark('voiceOne')(Voice{8})
-   >>> marktools.LilyPondCommandMark('voiceTwo')(voice_2)
-   LilyPondCommandMark('voiceTwo')(Voice{9})
+   >>> marktools.LilyPondCommand('voiceOne')(voice_1)
+   LilyPondCommand('voiceOne')(Voice{8})
+   >>> marktools.LilyPondCommand('voiceTwo')(voice_2)
+   LilyPondCommand('voiceTwo')(Voice{9})
    >>> show(staff)
 
 .. image:: images/index-11.png

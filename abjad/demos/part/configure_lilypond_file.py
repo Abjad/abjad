@@ -11,7 +11,7 @@ def configure_lilypond_file(lilypond_file):
     override(context_block).vertical_axis_group.remove_first = True
     lilypond_file.layout_block.context_blocks.append(context_block)
 
-    slash_separator = marktools.LilyPondCommandMark('slashSeparator')
+    slash_separator = marktools.LilyPondCommand('slashSeparator')
     lilypond_file.paper_block.system_separator_markup = slash_separator
 
     bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')

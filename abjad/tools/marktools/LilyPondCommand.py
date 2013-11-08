@@ -4,7 +4,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 # TODO: extend LilyPond command marks to attach to spanners.
-class LilyPondCommandMark(Mark):
+class LilyPondCommand(Mark):
     r'''A LilyPond command mark.
 
     ::
@@ -15,9 +15,9 @@ class LilyPondCommandMark(Mark):
 
     ::
 
-        >>> command = marktools.LilyPondCommandMark('slurDotted')
+        >>> command = marktools.LilyPondCommand('slurDotted')
         >>> attach(command, staff[0])
-        LilyPondCommandMark('slurDotted')(c'8)
+        LilyPondCommand('slurDotted')(c'8)
 
     ..  doctest::
 
@@ -104,7 +104,7 @@ class LilyPondCommandMark(Mark):
 
             ::
 
-                >>> command = marktools.LilyPondCommandMark('slurDotted')
+                >>> command = marktools.LilyPondCommand('slurDotted')
                 >>> command.command_name
                 'slurDotted'
 
@@ -132,7 +132,7 @@ class LilyPondCommandMark(Mark):
             ::
 
                 >>> note = Note("c'4")
-                >>> command = marktools.LilyPondCommandMark('break', 'after')
+                >>> command = marktools.LilyPondCommand('break', 'after')
                 >>> command.format_slot
                 'after'
 
@@ -141,7 +141,7 @@ class LilyPondCommandMark(Mark):
             ::
 
                 >>> note = Note("c'4")
-                >>> command = marktools.LilyPondCommandMark('break', 'after')
+                >>> command = marktools.LilyPondCommand('break', 'after')
                 >>> command.format_slot = 'before'
                 >>> command.format_slot
                 'before'

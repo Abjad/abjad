@@ -502,7 +502,7 @@ class LilyPondParser(abctools.Parser):
             else:
                 if isinstance(x, marktools.BarLine):
                     apply_backward.append(x)
-                elif isinstance(x, marktools.LilyPondCommandMark) and \
+                elif isinstance(x, marktools.LilyPondCommand) and \
                     x.command_name in ['breathe']:
                         apply_backward.append(x)
                 else:
@@ -684,7 +684,7 @@ class LilyPondParser(abctools.Parser):
         elif name == 'AbsoluteDynamicEvent':
             return marktools.Dynamic(lookup['text'])
         elif name == 'LaissezVibrerEvent':
-            return marktools.LilyPondCommandMark('laissezVibrer', 'after')
+            return marktools.LilyPondCommand('laissezVibrer', 'after')
         event = lilypondparsertools.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:

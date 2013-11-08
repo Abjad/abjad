@@ -21,11 +21,11 @@ def make_mozart_score():
         bass_volta.append(bass)
 
     # add marks to the volta containers
-    command = marktools.LilyPondCommandMark(
+    command = marktools.LilyPondCommand(
         'repeat volta 2', 'before'
         )
     attach(command, treble_volta)
-    command = marktools.LilyPondCommandMark(
+    command = marktools.LilyPondCommand(
         'repeat volta 2', 'before'
         )
     attach(command, bass_volta)
@@ -43,11 +43,11 @@ def make_mozart_score():
         bass_alternative.append(bass)
 
     # add marks to the alternative containers
-    command = marktools.LilyPondCommandMark(
+    command = marktools.LilyPondCommand(
         'alternative', 'before'
         )
     attach(command, treble_alternative)
-    command = marktools.LilyPondCommandMark(
+    command = marktools.LilyPondCommand(
         'alternative', 'before'
         )
     attach(command, bass_alternative)

@@ -200,7 +200,7 @@ def fuse_large_rests_of_duration_in_score_by_duration_threshold(
 def set_vertical_positioning_pitch_on_rest_in_staff(staff, pitch):
     for rest in iterate(staff).by_class(Rest):
         note = Note(rest)
-        command = marktools.LilyPondCommandMark('rest')
+        command = marktools.LilyPondCommand('rest')
         attach(command, note)
 
 

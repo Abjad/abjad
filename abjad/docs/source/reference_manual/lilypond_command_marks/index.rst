@@ -12,13 +12,13 @@ Use ``marktools`` to create LilyPond command marks:
 
 ::
 
-   >>> command = marktools.LilyPondCommandMark('bar "||"', 'after')
+   >>> command = marktools.LilyPondCommand('bar "||"', 'after')
 
 
 ::
 
    >>> command
-   LilyPondCommandMark('bar "||"')
+   LilyPondCommand('bar "||"')
 
 
 
@@ -47,7 +47,7 @@ Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
 ::
 
    >>> command.attach(staff[-2])
-   LilyPondCommandMark('bar "||"')(b'8)
+   LilyPondCommand('bar "||"')(b'8)
 
 
 ::
@@ -65,8 +65,8 @@ Use the inspector to get the LilyPond command marks attached to a leaf:
 
 ::
 
-   >>> inspect(staff[-2]).get_marks(marktools.LilyPondCommandMark)
-   (LilyPondCommandMark('bar "||"')(b'8),)
+   >>> inspect(staff[-2]).get_marks(marktools.LilyPondCommand)
+   (LilyPondCommand('bar "||"')(b'8),)
 
 
 
@@ -78,13 +78,13 @@ Use ``detach()`` to detach LilyPond command marks from a component:
 ::
 
    >>> command.detach()
-   LilyPondCommandMark('bar "||"')
+   LilyPondCommand('bar "||"')
 
 
 ::
 
    >>> command
-   LilyPondCommandMark('bar "||"')
+   LilyPondCommand('bar "||"')
 
 
 ::
@@ -103,9 +103,9 @@ mark is attached:
 
 ::
 
-   >>> command = marktools.LilyPondCommandMark('bar "||"', 'closing')
+   >>> command = marktools.LilyPondCommand('bar "||"', 'closing')
    >>> command.attach(staff[-2])
-   LilyPondCommandMark('bar "||"')(b'8)
+   LilyPondCommand('bar "||"')(b'8)
 
 
 ::
@@ -159,13 +159,13 @@ Use ``copy.copy()`` to copy a LilyPond command mark:
 ::
 
    >>> command_copy_1
-   LilyPondCommandMark('bar "|."')
+   LilyPondCommand('bar "|."')
 
 
 ::
 
    >>> command_copy_1.attach(staff[-1])
-   LilyPondCommandMark('bar "|."')(c''2)
+   LilyPondCommand('bar "|."')(c''2)
 
 
 ::

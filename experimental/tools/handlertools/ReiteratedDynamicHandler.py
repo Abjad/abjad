@@ -20,7 +20,7 @@ class ReiteratedDynamicHandler(DynamicHandler):
         for note_or_chord in \
             iterate(expr).by_class((scoretools.Note, scoretools.Chord)):
             #marktools.Dynamic(self.dynamic_name)(note_or_chord)
-            command = marktools.LilyPondCommandMark(self.dynamic_name, 'right')
+            command = marktools.LilyPondCommand(self.dynamic_name, 'right')
             attach(command, note_or_chord)
         return expr
 

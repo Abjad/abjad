@@ -7,9 +7,9 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_01():
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = SlurSpanner()
     attach(slur, staff.select_leaves())
-    command_1 = marktools.LilyPondCommandMark('slurDotted')
+    command_1 = marktools.LilyPondCommand('slurDotted')
     attach(command_1, staff[0])
-    command_2 = marktools.LilyPondCommandMark('slurUp')
+    command_2 = marktools.LilyPondCommand('slurUp')
     attach(command_2, staff[0])
 
     assert testtools.compare(
@@ -26,7 +26,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_01():
         '''
         )
 
-    marks = inspect(staff[0]).get_marks(marktools.LilyPondCommandMark)
+    marks = inspect(staff[0]).get_marks(marktools.LilyPondCommand)
     assert command_1 in marks
     assert command_2 in marks
     assert len(marks) == 2
@@ -39,7 +39,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_02():
     attach(slur, staff.select_leaves())
     comment = marktools.LilyPondComment('beginning of note content')
     attach(comment, staff[0])
-    command = marktools.LilyPondCommandMark('slurDotted')
+    command = marktools.LilyPondCommand('slurDotted')
     attach(command, staff[0])
 
     assert testtools.compare(

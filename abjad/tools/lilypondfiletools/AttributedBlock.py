@@ -68,7 +68,7 @@ class AttributedBlock(list, AbjadObject):
         for value in self:
             acceptable_types = (
                 schemetools.Scheme, 
-                marktools.LilyPondCommandMark,
+                marktools.LilyPondCommand,
                 )
             if isinstance(value, acceptable_types):
                 result.append(format(value, 'lilypond'))
@@ -85,7 +85,7 @@ class AttributedBlock(list, AbjadObject):
                 accetable_types = (
                     schemetools.Scheme,
                     lilypondfiletools.LilyPondDimension,
-                    marktools.LilyPondCommandMark,
+                    marktools.LilyPondCommand,
                     )
                 if isinstance(value, markuptools.Markup):
                     formatted_value = value._get_format_pieces()

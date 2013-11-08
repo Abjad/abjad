@@ -756,7 +756,7 @@ break in the exact same places as the original:
            79, 86, 93, 100]
    
        for measure_index in measure_indices:
-           marktools.LilyPondCommandMark(
+           marktools.LilyPondCommand(
                'break',
                'after'
                )(bell_voice[measure_index])
@@ -774,7 +774,7 @@ We'll make the rehearsal marks the exact same way we made our line breaks:
            90, 96, 102]
    
        for measure_index in measure_indices:
-           marktools.LilyPondCommandMark(
+           marktools.LilyPondCommand(
                r'mark \default',
                'before'
                )(bell_voice[measure_index])
@@ -837,7 +837,7 @@ additionally to hide empty staves if they appear in the first system:
        context_block.override.vertical_axis_group.remove_first = True
        lilypond_file.layout_block.context_blocks.append(context_block)
    
-       slash_separator = marktools.LilyPondCommandMark('slashSeparator')
+       slash_separator = marktools.LilyPondCommand('slashSeparator')
        lilypond_file.paper_block.system_separator_markup = slash_separator
    
        bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')

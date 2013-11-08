@@ -27,7 +27,7 @@ def test_spannertools_TextSpanner_position_02():
     staff = Staff(scoretools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
-    command = marktools.LilyPondCommandMark('textSpannerNeutral')
+    command = marktools.LilyPondCommand('textSpannerNeutral')
     attach(command, text_spanner[0])
 
     assert testtools.compare(
@@ -49,7 +49,7 @@ def test_spannertools_TextSpanner_position_03():
     staff = Staff(scoretools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
-    command = marktools.LilyPondCommandMark('textSpannerUp')
+    command = marktools.LilyPondCommand('textSpannerUp')
     attach(command, text_spanner[0])
 
     assert testtools.compare(
@@ -71,7 +71,7 @@ def test_spannertools_TextSpanner_position_04():
     staff = Staff(scoretools.make_repeated_notes(4))
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
-    command = marktools.LilyPondCommandMark('textSpannerDown')
+    command = marktools.LilyPondCommand('textSpannerDown')
     attach(command, text_spanner[0])
 
     assert testtools.compare(

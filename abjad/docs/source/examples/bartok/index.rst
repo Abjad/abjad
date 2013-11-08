@@ -97,13 +97,13 @@ to true for each of the last two measures:
 ::
 
    >>> upper_voice = Voice("b2", name='upper voice')
-   >>> command = marktools.LilyPondCommandMark('voiceOne')
+   >>> command = marktools.LilyPondCommand('voiceOne')
    >>> command.attach(upper_voice)
-   LilyPondCommandMark('voiceOne')(Voice-"upper voice"{1})
+   LilyPondCommand('voiceOne')(Voice-"upper voice"{1})
    >>> lower_voice = Voice("b4 a4", name='lower voice')
-   >>> command = marktools.LilyPondCommandMark('voiceTwo')
+   >>> command = marktools.LilyPondCommand('voiceTwo')
    >>> command.attach(lower_voice)
-   LilyPondCommandMark('voiceTwo')(Voice-"lower voice"{2})
+   LilyPondCommand('voiceTwo')(Voice-"lower voice"{2})
    >>> lower_measures[3].extend([upper_voice, lower_voice])
    >>> lower_measures[3].is_simultaneous = True
 
@@ -111,13 +111,13 @@ to true for each of the last two measures:
 ::
 
    >>> upper_voice = Voice("b2", name='upper voice')
-   >>> command = marktools.LilyPondCommandMark('voiceOne')
+   >>> command = marktools.LilyPondCommand('voiceOne')
    >>> command.attach(upper_voice)
-   LilyPondCommandMark('voiceOne')(Voice-"upper voice"{1})
+   LilyPondCommand('voiceOne')(Voice-"upper voice"{1})
    >>> lower_voice = Voice("g2", name='lower voice')
-   >>> command = marktools.LilyPondCommandMark('voiceTwo')
+   >>> command = marktools.LilyPondCommand('voiceTwo')
    >>> command.attach(lower_voice)
-   LilyPondCommandMark('voiceTwo')(Voice-"lower voice"{1})
+   LilyPondCommand('voiceTwo')(Voice-"lower voice"{1})
    >>> lower_measures[4].extend([upper_voice, lower_voice])
    >>> lower_measures[4].is_simultaneous = True
 
