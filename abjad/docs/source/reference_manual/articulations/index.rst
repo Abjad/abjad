@@ -30,9 +30,9 @@ Use ``attach()`` to attach articulations to a leaf:
 ::
 
    >>> staff = Staff()
-   >>> key_signature = marktools.KeySignatureMark('g', 'major')
+   >>> key_signature = marktools.KeySignature('g', 'major')
    >>> key_signature.attach(staff)
-   KeySignatureMark(NamedPitchClass('g'), Mode('major'))(Staff{})
+   KeySignature(NamedPitchClass('g'), Mode('major'))(Staff{})
    >>> time_signature = marktools.TimeSignatureMark((2, 4), partial=Duration(1, 8))
    >>> time_signature.attach(staff)
    TimeSignatureMark((2, 4), partial=Duration(1, 8))(Staff{})

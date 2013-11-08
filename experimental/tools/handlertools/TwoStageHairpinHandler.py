@@ -37,14 +37,14 @@ class TwoStageHairpinHandler(DynamicHandler):
         for leaf in leaves:
             marktools.detach_lilypond_command_marks_attached_to_component(leaf)
         if 3 <= len(leaves):
-            #marktools.DynamicMark(start_dynamic)(leaves[0])
-            #marktools.DynamicMark(stop_dynamic)(leaves[-1])
-            marktools.LilyPondCommandMark(start_dynamic, 'right')(leaves[0])
-            marktools.LilyPondCommandMark(stop_dynamic, 'right')(leaves[-1])
+            #marktools.Dynamic(start_dynamic)(leaves[0])
+            #marktools.Dynamic(stop_dynamic)(leaves[-1])
+            marktools.LilyPondCommand(start_dynamic, 'right')(leaves[0])
+            marktools.LilyPondCommand(stop_dynamic, 'right')(leaves[-1])
             middle_index = int(len(leaves) / 2.0)
             middle_leaf = leaves[middle_index]
-            #marktools.DynamicMark(peak_dynamic)(middle_leaf)
-            marktools.LilyPondCommandMark(peak_dynamic, 'right')(middle_leaf)
+            #marktools.Dynamic(peak_dynamic)(middle_leaf)
+            marktools.LilyPondCommand(peak_dynamic, 'right')(middle_leaf)
             half_count = middle_index + 1
             left_leaves = leaves[:half_count]
             if len(leaves) % 2 == 0:
@@ -65,9 +65,9 @@ class TwoStageHairpinHandler(DynamicHandler):
                 attach(decrescendo, right_leaves)
             return leaves
         elif len(leaves) == 2:
-            command = marktools.LilyPondCommandMark(start_dynamic, 'right')
+            command = marktools.LilyPondCommand(start_dynamic, 'right')
             attach(command, leaves[0])
-            command = marktools.LilyPondCommandMark(peak_dynamic, 'right')
+            command = marktools.LilyPondCommand(peak_dynamic, 'right')
             attach(command, leaves[-1])
             if left_hairpin == '<':
                 crescendo = spannertools.CrescendoSpanner()
@@ -76,7 +76,7 @@ class TwoStageHairpinHandler(DynamicHandler):
                 decrescendo = spannertools.DecrescendoSpanner()
                 attach(decrescendo, leaves)
         elif len(leaves) == 1:
-            command = marktools.LilyPondCommandMark(peak_dynamic, 'right')
+            command = marktools.LilyPondCommand(peak_dynamic, 'right')
             attach(command, leaves[0])
         else:
             raise ValueError(len(leaves))

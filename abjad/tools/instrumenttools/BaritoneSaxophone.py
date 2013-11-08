@@ -45,8 +45,8 @@ class BaritoneSaxophone(Instrument):
             ])
         self._default_short_instrument_name = 'bar. sax.'
         self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_starting_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('treble'),
+        self._default_starting_clefs = marktools.ClefInventory([
+            marktools.Clef('treble'),
             ])
         self._default_pitch_range = pitchtools.PitchRange(-24, 8)
         self._is_primary_instrument = False

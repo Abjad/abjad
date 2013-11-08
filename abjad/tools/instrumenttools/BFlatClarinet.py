@@ -47,7 +47,7 @@ class BFlatClarinet(Instrument):
         self._default_short_instrument_name = 'cl. in B-flat'
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch('bf')
-        self._starting_clefs = [marktools.ClefMark('treble')]
+        self._starting_clefs = [marktools.Clef('treble')]
         self._default_pitch_range = pitchtools.PitchRange(-10, 34)
         self._is_primary_instrument = True
         self._copy_default_starting_clefs_to_default_allowable_clefs()

@@ -11,7 +11,7 @@ class AltoTrombone(Instrument):
     ::
 
         >>> staff = Staff("c4 d4 e4 f4")
-        >>> clef = marktools.ClefMark('bass')
+        >>> clef = marktools.Clef('bass')
         >>> clef = attach(clef, staff)
         >>> alto_trombone = instrumenttools.AltoTrombone()
         >>> alto_trombone = attach(alto_trombone, staff)
@@ -37,9 +37,9 @@ class AltoTrombone(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
-        self._default_allowable_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('bass'), 
-            marktools.ClefMark('tenor'),
+        self._default_allowable_clefs = marktools.ClefInventory([
+            marktools.Clef('bass'), 
+            marktools.Clef('tenor'),
             ])
         self._default_instrument_name = 'alto trombone'
         self._default_performer_names.extend([
@@ -48,9 +48,9 @@ class AltoTrombone(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange('[A2, Bb5]')
         self._default_short_instrument_name = 'alt. trb.'
-        self._default_starting_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('bass'), 
-            marktools.ClefMark('tenor'),
+        self._default_starting_clefs = marktools.ClefInventory([
+            marktools.Clef('bass'), 
+            marktools.Clef('tenor'),
             ])
 
     ### SPECIAL METHODS ###
@@ -123,7 +123,7 @@ class AltoTrombone(Instrument):
                 ::
 
                     >>> alto_trombone.allowable_clefs
-                    ClefMarkInventory([ClefMark('bass'), ClefMark('tenor')])
+                    ClefInventory([Clef('bass'), Clef('tenor')])
 
                 :: 
 
@@ -147,7 +147,7 @@ class AltoTrombone(Instrument):
 
                     >>> alto_trombone.allowable_clefs = ['treble']
                     >>> alto_trombone.allowable_clefs
-                    ClefMarkInventory([ClefMark('treble')])
+                    ClefInventory([Clef('treble')])
 
             ..  container:: example
 
@@ -157,7 +157,7 @@ class AltoTrombone(Instrument):
 
                     >>> alto_trombone.allowable_clefs = None
                     >>> alto_trombone.allowable_clefs
-                    ClefMarkInventory([ClefMark('bass'), ClefMark('tenor')])
+                    ClefInventory([Clef('bass'), Clef('tenor')])
 
             Returns clef inventory.
             '''
@@ -268,7 +268,7 @@ class AltoTrombone(Instrument):
                     >>> result = scoretools.make_empty_piano_score()
                     >>> score, tenor_staff, bass_staff = result
                     >>> clef = inspect(tenor_staff).get_effective_context_mark(
-                    ...     marktools.ClefMark)
+                    ...     marktools.Clef)
                     >>> clef.clef_name = 'tenor'
                     >>> note = Note("c'1")
                     >>> start_pitch = alto_trombone.pitch_range.start_pitch

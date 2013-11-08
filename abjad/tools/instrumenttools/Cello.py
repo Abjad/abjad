@@ -11,7 +11,7 @@ class Cello(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.ClefMark('bass')
+        >>> clef = marktools.Clef('bass')
         >>> clef = attach(clef, staff)
         >>> cello = instrumenttools.Cello()
         >>> cello = attach(cello, staff)
@@ -37,10 +37,10 @@ class Cello(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
-        self._default_allowable_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('bass'),
-            marktools.ClefMark('tenor'),
-            marktools.ClefMark('treble'),
+        self._default_allowable_clefs = marktools.ClefInventory([
+            marktools.Clef('bass'),
+            marktools.Clef('tenor'),
+            marktools.Clef('treble'),
             ])
         self._default_instrument_name = 'cello'
         self._default_performer_names.extend([
@@ -49,5 +49,5 @@ class Cello(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(-24, 19)
         self._default_short_instrument_name = 'vc.'
-        self._default_starting_clefs = [marktools.ClefMark('bass')]
+        self._default_starting_clefs = [marktools.Clef('bass')]
         self._is_primary_instrument = True

@@ -6,12 +6,12 @@ def upper_camel_case_to_space_delimited_lowercase(string):
 
     ::
 
-        >>> string = 'KeySignatureMark'
+        >>> string = 'KeySignature'
 
     ::
 
         >>> stringtools.upper_camel_case_to_space_delimited_lowercase(string)
-        'key signature mark'
+        'key signature'
 
     Returns string.
     '''

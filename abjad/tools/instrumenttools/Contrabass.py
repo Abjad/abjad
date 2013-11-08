@@ -11,9 +11,9 @@ class Contrabass(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.ClefMark('bass')
+        >>> clef = marktools.Clef('bass')
         >>> attach(clef, staff)
-        ClefMark('bass')(Staff{4})
+        Clef('bass')(Staff{4})
         >>> contrabass = instrumenttools.Contrabass()
         >>> attach(contrabass, staff)
         Contrabass()(Staff{4})
@@ -49,7 +49,7 @@ class Contrabass(Instrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch('c')
-        self._starting_clefs = [marktools.ClefMark('bass')]
+        self._starting_clefs = [marktools.Clef('bass')]
         self.allowable_clefs = [
-            marktools.ClefMark('bass'), marktools.ClefMark('treble')]
+            marktools.Clef('bass'), marktools.Clef('treble')]
         self._default_pitch_range = pitchtools.PitchRange(-32, 2)

@@ -38,12 +38,12 @@ class Scale(PitchClassSegment):
 
     def __init__(self, *args):
         if len(args) == 1 and isinstance(
-            args[0], marktools.KeySignatureMark):
+            args[0], marktools.KeySignature):
             key_signature = args[0]
         elif len(args) == 1 and isinstance(args[0], Scale):
             key_signature = args[0].key_signature
         elif len(args) == 2:
-            key_signature = marktools.KeySignatureMark(*args)
+            key_signature = marktools.KeySignature(*args)
         else:
             raise TypeError
         npcs = [key_signature.tonic]

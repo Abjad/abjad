@@ -67,7 +67,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
             [rh_voice], 
             name='RH Staff',
             )
-        clef = marktools.ClefMark('treble')
+        clef = marktools.Clef('treble')
         attach(clef, rh_staff)
 
         # make LH voice and staff
@@ -76,7 +76,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
             [lh_voice], 
             name='LH Staff',
             )
-        clef = marktools.ClefMark('bass')
+        clef = marktools.Clef('bass')
         attach(clef, lh_staff)
 
         # make piano staff

@@ -62,18 +62,18 @@ lower Voice will hold the eighth note run. First the eighth notes:
    BeamSpanner(cs'8, d'8, ef'8)
    >>> spannertools.SlurSpanner(notes)
    SlurSpanner(cs'8, d'8, ef'8)
-   >>> marktools.DynamicMark('f')(notes[0])
-   DynamicMark('f')(cs'8)
-   >>> marktools.DynamicMark('p')(notes[1])
-   DynamicMark('p')(d'8)
+   >>> marktools.Dynamic('f')(notes[0])
+   Dynamic('f')(cs'8)
+   >>> marktools.Dynamic('p')(notes[1])
+   Dynamic('p')(d'8)
 
 
 ::
 
    >>> voice_lower = Voice(notes)
    >>> voice_lower.name = 'rh_lower'
-   >>> marktools.LilyPondCommandMark('voiceTwo')(voice_lower)
-   LilyPondCommandMark('voiceTwo')(Voice-"rh_lower"{3})
+   >>> marktools.LilyPondCommand('voiceTwo')(voice_lower)
+   LilyPondCommand('voiceTwo')(Voice-"rh_lower"{3})
 
 
 The notes belonging to the eighth note run are first beamed and slurred. Then
@@ -96,8 +96,8 @@ Now we construct the octave:
 
    >>> voice_higher = Voice([chord])
    >>> voice_higher.name = 'rh_higher'
-   >>> marktools.LilyPondCommandMark('voiceOne')(voice_higher)
-   LilyPondCommandMark('voiceOne')(Voice-"rh_higher"{1})
+   >>> marktools.LilyPondCommand('voiceOne')(voice_higher)
+   LilyPondCommand('voiceOne')(Voice-"rh_higher"{1})
 
 
 The duration of the chord is half the duration of the running eighth notes if
@@ -137,13 +137,13 @@ will take only a list of pitches:
        notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
        spannertools.BeamSpanner(notes)
        spannertools.SlurSpanner(notes)
-       marktools.DynamicMark('f')(notes[0])
-       marktools.DynamicMark('p')(notes[1])
+       marktools.Dynamic('f')(notes[0])
+       marktools.Dynamic('p')(notes[1])
    
        # make the lower voice
        lower_voice = scoretools.Voice(notes)
        lower_voice.name = 'RH Lower Voice'
-       marktools.LilyPondCommandMark('voiceTwo')(lower_voice)
+       marktools.LilyPondCommand('voiceTwo')(lower_voice)
        n = int(math.ceil(len(pitches) / 2.))
        chord = scoretools.Chord([pitches[0], pitches[0] + 12], (n, 8))
        marktools.Articulation('>')(chord)
@@ -151,7 +151,7 @@ will take only a list of pitches:
        # make the upper voice
        upper_voice = scoretools.Voice([chord])
        upper_voice.name = 'RH Upper Voice'
-       marktools.LilyPondCommandMark('voiceOne')(upper_voice)
+       marktools.LilyPondCommand('voiceOne')(upper_voice)
    
        # combine them together
        container = scoretools.Container([lower_voice, upper_voice])
@@ -265,8 +265,8 @@ Finally a function that will generate the whole opening section of the piece
            piano_staff.append(staff)
    
        # set clef and key signature to left hand staff...
-       marktools.ClefMark('bass')(piano_staff[1])
-       marktools.KeySignatureMark('b', 'major')(piano_staff[1])
+       marktools.Clef('bass')(piano_staff[1])
+       marktools.KeySignature('b', 'major')(piano_staff[1])
    
        # wrap the piano staff in a score, and return
        score = scoretools.Score([piano_staff])

@@ -42,6 +42,6 @@ class Violin(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(-5, 43)
         self._default_short_instrument_name = 'vn.'
-        self._default_starting_clefs = [marktools.ClefMark('treble')]
+        self._default_starting_clefs = [marktools.Clef('treble')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._is_primary_instrument = True

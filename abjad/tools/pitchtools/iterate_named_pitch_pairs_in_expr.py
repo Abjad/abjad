@@ -12,9 +12,9 @@ def iterate_named_pitch_pairs_in_expr(expr):
         >>> score.append(Staff(notes))
         >>> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
         >>> score.append(Staff(notes))
-        >>> clef = marktools.ClefMark('bass')
+        >>> clef = marktools.Clef('bass')
         >>> attach(clef, score[1])
-        ClefMark('bass')(Staff{3})
+        Clef('bass')(Staff{3})
         >>> show(score) # doctest: +SKIP
 
     ..  doctest::

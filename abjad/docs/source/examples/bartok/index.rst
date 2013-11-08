@@ -97,13 +97,13 @@ to true for each of the last two measures:
 ::
 
    >>> upper_voice = Voice("b2", name='upper voice')
-   >>> command = marktools.LilyPondCommandMark('voiceOne')
+   >>> command = marktools.LilyPondCommand('voiceOne')
    >>> command.attach(upper_voice)
-   LilyPondCommandMark('voiceOne')(Voice-"upper voice"{1})
+   LilyPondCommand('voiceOne')(Voice-"upper voice"{1})
    >>> lower_voice = Voice("b4 a4", name='lower voice')
-   >>> command = marktools.LilyPondCommandMark('voiceTwo')
+   >>> command = marktools.LilyPondCommand('voiceTwo')
    >>> command.attach(lower_voice)
-   LilyPondCommandMark('voiceTwo')(Voice-"lower voice"{2})
+   LilyPondCommand('voiceTwo')(Voice-"lower voice"{2})
    >>> lower_measures[3].extend([upper_voice, lower_voice])
    >>> lower_measures[3].is_simultaneous = True
 
@@ -111,13 +111,13 @@ to true for each of the last two measures:
 ::
 
    >>> upper_voice = Voice("b2", name='upper voice')
-   >>> command = marktools.LilyPondCommandMark('voiceOne')
+   >>> command = marktools.LilyPondCommand('voiceOne')
    >>> command.attach(upper_voice)
-   LilyPondCommandMark('voiceOne')(Voice-"upper voice"{1})
+   LilyPondCommand('voiceOne')(Voice-"upper voice"{1})
    >>> lower_voice = Voice("g2", name='lower voice')
-   >>> command = marktools.LilyPondCommandMark('voiceTwo')
+   >>> command = marktools.LilyPondCommand('voiceTwo')
    >>> command.attach(lower_voice)
-   LilyPondCommandMark('voiceTwo')(Voice-"lower voice"{1})
+   LilyPondCommand('voiceTwo')(Voice-"lower voice"{1})
    >>> lower_measures[4].extend([upper_voice, lower_voice])
    >>> lower_measures[4].is_simultaneous = True
 
@@ -140,9 +140,9 @@ clef just like the top staff. Let's change that:
 
 ::
 
-   >>> clef = marktools.ClefMark('bass')
+   >>> clef = marktools.Clef('bass')
    >>> clef.attach(lower_staff)
-   ClefMark('bass')(Staff{5})
+   Clef('bass')(Staff{5})
 
 
 Now let's add dynamic marks. For the top staff, we'll add them to the first
@@ -152,30 +152,30 @@ measure and the fourth note of the second measure:
 
 ::
 
-   >>> dynamic = marktools.DynamicMark('pp')
+   >>> dynamic = marktools.Dynamic('pp')
    >>> dynamic.attach(upper_measures[0][0])
-   DynamicMark('pp')(a'8)
+   Dynamic('pp')(a'8)
 
 
 ::
 
-   >>> dynamic = marktools.DynamicMark('mp')
+   >>> dynamic = marktools.Dynamic('mp')
    >>> dynamic.attach(upper_measures[1][1])
-   DynamicMark('mp')(g'8)
+   Dynamic('mp')(g'8)
 
 
 ::
 
-   >>> dynamic = marktools.DynamicMark('pp')
+   >>> dynamic = marktools.Dynamic('pp')
    >>> dynamic.attach(lower_measures[0][1])
-   DynamicMark('pp')(d'8)
+   Dynamic('pp')(d'8)
 
 
 ::
 
-   >>> dynamic = marktools.DynamicMark('mp')
+   >>> dynamic = marktools.Dynamic('mp')
    >>> dynamic.attach(lower_measures[1][3])
-   DynamicMark('mp')(c'8)
+   Dynamic('mp')(c'8)
 
 
 Let's add a double bar to the end of the piece:

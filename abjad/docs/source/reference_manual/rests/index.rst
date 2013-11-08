@@ -76,9 +76,9 @@ You can create multimeasure rests too:
 
 ::
 
-   >>> command = marktools.LilyPondCommandMark('compressFullBarRests')
+   >>> command = marktools.LilyPondCommand('compressFullBarRests')
    >>> command.attach(staff)
-   LilyPondCommandMark('compressFullBarRests')(Staff{1})
+   LilyPondCommand('compressFullBarRests')(Staff{1})
    >>> show(staff)
 
 .. image:: images/index-7.png

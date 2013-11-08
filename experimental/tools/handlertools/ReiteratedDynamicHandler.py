@@ -19,8 +19,8 @@ class ReiteratedDynamicHandler(DynamicHandler):
     def __call__(self, expr):
         for note_or_chord in \
             iterate(expr).by_class((scoretools.Note, scoretools.Chord)):
-            #marktools.DynamicMark(self.dynamic_name)(note_or_chord)
-            command = marktools.LilyPondCommandMark(self.dynamic_name, 'right')
+            #marktools.Dynamic(self.dynamic_name)(note_or_chord)
+            command = marktools.LilyPondCommand(self.dynamic_name, 'right')
             attach(command, note_or_chord)
         return expr
 
@@ -33,7 +33,7 @@ class ReiteratedDynamicHandler(DynamicHandler):
         def fset(self, dynamic_name):
             if dynamic_name is None:
                 self._dynamic_name = dynamic_name
-            elif marktools.DynamicMark.is_dynamic_name(dynamic_name):
+            elif marktools.Dynamic.is_dynamic_name(dynamic_name):
                 self._dynamic_name = dynamic_name
             else:
                 raise TypeError(dynamic_name)

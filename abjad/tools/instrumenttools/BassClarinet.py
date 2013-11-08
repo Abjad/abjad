@@ -36,9 +36,9 @@ class BassClarinet(Instrument):
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
         pitch = pitchtools.NamedPitch('bf,')
-        self._default_allowable_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('treble'), 
-            marktools.ClefMark('bass'),
+        self._default_allowable_clefs = marktools.ClefInventory([
+            marktools.Clef('treble'), 
+            marktools.Clef('bass'),
             ])
         self._default_instrument_name = 'bass clarinet'
         self._default_pitch_range = pitchtools.PitchRange(-26, 19)
@@ -51,8 +51,8 @@ class BassClarinet(Instrument):
             ])
         self._default_short_instrument_name = 'bass cl.'
         self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_starting_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('treble'),
+        self._default_starting_clefs = marktools.ClefInventory([
+            marktools.Clef('treble'),
             ])
         self._is_primary_instrument = False
 

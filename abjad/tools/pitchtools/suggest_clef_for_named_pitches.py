@@ -7,7 +7,7 @@ def suggest_clef_for_named_pitches(pitches):
 
         >>> staff = Staff(scoretools.make_notes(range(-12, -6), [(1, 4)]))
         >>> pitchtools.suggest_clef_for_named_pitches(staff)
-        ClefMark('bass')
+        Clef('bass')
 
     Suggest clef based on minimal number of ledger lines.
 
@@ -34,6 +34,6 @@ def suggest_clef_for_named_pitches(pitches):
     candidate_steps_above_bass = max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
 
     if candidate_steps_above_bass < candidate_steps_below_treble:
-        return marktools.ClefMark('bass')
+        return marktools.Clef('bass')
     else:
-        return marktools.ClefMark('treble')
+        return marktools.Clef('treble')

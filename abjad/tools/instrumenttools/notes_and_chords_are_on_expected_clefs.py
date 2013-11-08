@@ -13,9 +13,9 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.ClefMark('treble')
+        >>> clef = marktools.Clef('treble')
         >>> attach(clef, staff)
-        ClefMark('treble')(Staff{4})
+        Clef('treble')(Staff{4})
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
         Violin()(Staff{4})
@@ -30,9 +30,9 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.ClefMark('alto')
+        >>> clef = marktools.Clef('alto')
         >>> attach(clef, staff)
-        ClefMark('alto')(Staff{4})
+        Clef('alto')(Staff{4})
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
         Violin()(Staff{4})
@@ -47,9 +47,9 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.ClefMark('percussion')
+        >>> clef = marktools.Clef('percussion')
         >>> attach(clef, staff)
-        ClefMark('percussion')(Staff{4})
+        Clef('percussion')(Staff{4})
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
         Violin()(Staff{4})
@@ -90,10 +90,10 @@ def notes_and_chords_are_on_expected_clefs(
             instrumenttools.Instrument)
         if not instrument:
             return False
-        clef = note_or_chord._get_effective_context_mark(marktools.ClefMark)
+        clef = note_or_chord._get_effective_context_mark(marktools.Clef)
         if not clef:
             return False
-        if clef == marktools.ClefMark('percussion'):
+        if clef == marktools.Clef('percussion'):
             if percussion_clef_is_allowed:
                 return True
             else:

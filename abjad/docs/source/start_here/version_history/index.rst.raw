@@ -137,7 +137,7 @@ instead of a list of components:
 
 <abjad>
 staff = Staff()
-key_signature = marktools.KeySignatureMark('g', 'major')
+key_signature = marktools.KeySignature('g', 'major')
 key_signature = key_signature.attach(staff)
 time_signature = marktools.TimeSignatureMark((2, 4), partial=Duration(1, 8))
 time_signature = time_signature.attach(staff)
@@ -213,7 +213,7 @@ the docs.
 Other features
 ^^^^^^^^^^^^^^
 
-ClefMark now understands octavation suffixes such as _8, _15, ^8 and ^15.
+Clef now understands octavation suffixes such as _8, _15, ^8 and ^15.
 It takes these suffixes into account when determining its middle-C position.
 
 A new ``StringOrchestraScoreTemplate`` is now available in the

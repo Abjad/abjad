@@ -6,7 +6,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__KeySignatureMark_01():
 
     target = Staff([Note("fs'", 1)])
-    key_signature = marktools.KeySignatureMark('g', 'major')
+    key_signature = marktools.KeySignature('g', 'major')
     attach(key_signature, target[0])
 
     assert testtools.compare(
@@ -23,5 +23,5 @@ def test_lilypondparsertools_LilyPondParser__marks__KeySignatureMark_01():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     key_signature_marks = \
-        inspect(result[0]).get_marks(marktools.KeySignatureMark)
+        inspect(result[0]).get_marks(marktools.KeySignature)
     assert len(key_signature_marks) == 1

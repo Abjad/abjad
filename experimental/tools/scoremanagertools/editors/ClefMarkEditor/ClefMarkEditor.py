@@ -12,6 +12,6 @@ class ClefMarkEditor(InteractiveEditor):
     ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(
-        marktools.ClefMark,
+        marktools.Clef,
         ('clef_name', 'nm', getters.get_string),
         )

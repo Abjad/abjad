@@ -63,6 +63,6 @@ class Harp(Instrument):
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
         self._starting_clefs = [
-            marktools.ClefMark('treble'), marktools.ClefMark('bass')]
+            marktools.Clef('treble'), marktools.Clef('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-37, 44)

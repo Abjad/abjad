@@ -11,9 +11,9 @@ class Viola(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.ClefMark('alto')
+        >>> clef = marktools.Clef('alto')
         >>> attach(clef, staff)
-        ClefMark('alto')(Staff{4})
+        Clef('alto')(Staff{4})
         >>> viola = instrumenttools.Viola()
         >>> attach(viola, staff)
         Viola()(Staff{4})
@@ -48,8 +48,8 @@ class Viola(Instrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self._starting_clefs = [marktools.ClefMark('alto')]
+        self._starting_clefs = [marktools.Clef('alto')]
         self.allowable_clefs = [
-            marktools.ClefMark('alto'),
-            marktools.ClefMark('treble')]
+            marktools.Clef('alto'),
+            marktools.Clef('treble')]
         self._default_pitch_range = pitchtools.PitchRange(-12, 28)

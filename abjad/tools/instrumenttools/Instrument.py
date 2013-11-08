@@ -63,7 +63,7 @@ class Instrument(ContextMark):
         self.short_instrument_name_markup = short_instrument_name_markup
 
         pitch = pitchtools.NamedPitch("c'")
-        clefs = marktools.ClefMarkInventory(['treble'])
+        clefs = marktools.ClefInventory(['treble'])
         self._default_allowable_clefs = copy.deepcopy(clefs)
         self._default_performer_names = ['instrumentalist']
         self._default_sounding_pitch_of_written_middle_c = pitch
@@ -174,7 +174,7 @@ class Instrument(ContextMark):
 
     def _copy_default_starting_clefs_to_default_allowable_clefs(self):
         clefs = self._default_starting_clefs
-        clefs = marktools.ClefMarkInventory(clefs)
+        clefs = marktools.ClefInventory(clefs)
         self._default_allowable_clefs = clefs
 
     def _get_default_performer_name(self):
@@ -309,12 +309,12 @@ class Instrument(ContextMark):
             '''
             if self._allowable_clefs is None:
                 clefs = self._default_allowable_clefs
-                clefs = marktools.ClefMarkInventory(clefs)
+                clefs = marktools.ClefInventory(clefs)
                 self._allowable_clefs = clefs
             return self._allowable_clefs
         def fset(self, clefs):
             if clefs is not None:
-                clefs = marktools.ClefMarkInventory(clefs)
+                clefs = marktools.ClefInventory(clefs)
             self._allowable_clefs = clefs
         return property(**locals())
 

@@ -12,5 +12,5 @@ def apply_page_breaks(score):
         ]
 
     for measure_index in measure_indices:
-        command = marktools.LilyPondCommandMark('break', 'after')
+        command = marktools.LilyPondCommand('break', 'after')
         attach(command, bell_voice[measure_index])

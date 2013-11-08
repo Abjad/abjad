@@ -160,7 +160,7 @@ class LilyPondFormatManager(object):
         class_to_section = {
             marktools.Articulation: ('articulations', False),
             marktools.BendAfter: ('articulations', False),
-            marktools.LilyPondCommandMark: ('lilypond command marks', False),
+            marktools.LilyPondCommand: ('lilypond command marks', False),
             marktools.LilyPondComment: ('comments', False),
             marktools.StemTremolo: ('stem tremolos', True),
             }

@@ -16,7 +16,7 @@ class IntermarkedHairpinCheck(Check):
         for hairpin in hairpins:
             if 2 < len(hairpin.leaves):
                 for leaf in hairpin.leaves[1:-1]:
-                    if leaf._get_marks(marktools.DynamicMark):
+                    if leaf._get_marks(marktools.Dynamic):
                         violators.append(hairpin)
                         bad += 1
                         break

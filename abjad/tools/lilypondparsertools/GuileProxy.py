@@ -52,10 +52,10 @@ class GuileProxy(AbjadObject):
         return marktools.BarLine(string)
 
     def breathe(self):
-        return marktools.LilyPondCommandMark('breathe', 'after')
+        return marktools.LilyPondCommand('breathe', 'after')
 
     def clef(self, string):
-        return marktools.ClefMark(string)
+        return marktools.Clef(string)
 
     def grace(self, music):
         return scoretools.GraceContainer(music[:])
@@ -63,7 +63,7 @@ class GuileProxy(AbjadObject):
     def key(self, notename_pitch, number_list):
         if number_list is None:
             number_list = 'major'
-        return marktools.KeySignatureMark(notename_pitch, number_list)
+        return marktools.KeySignature(notename_pitch, number_list)
 
     def language(self, string):
         if string in self.client._language_pitch_names:
@@ -82,10 +82,10 @@ class GuileProxy(AbjadObject):
     def mark(self, label):
         if label is None:
             label = '\default'
-        return marktools.LilyPondCommandMark('mark %s' % label)
+        return marktools.LilyPondCommand('mark %s' % label)
 
     def one_voice(self):
-        return marktools.LilyPondCommandMark('oneVoice')
+        return marktools.LilyPondCommand('oneVoice')
 
     # pitchedTrill
 
@@ -157,7 +157,7 @@ class GuileProxy(AbjadObject):
         from abjad.tools import lilypondparsertools
         self._make_unrelativable(music)
         def recurse(music):
-            key_signatures = music._get_marks(marktools.KeySignatureMark)
+            key_signatures = music._get_marks(marktools.KeySignature)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedPitch(x.tonic, 4)
@@ -183,16 +183,16 @@ class GuileProxy(AbjadObject):
     # tweak
 
     def voiceFour(self):
-        return marktools.LilyPondCommandMark('voiceTwo')
+        return marktools.LilyPondCommand('voiceTwo')
 
     def voiceOne(self):
-        return marktools.LilyPondCommandMark('voiceOne')
+        return marktools.LilyPondCommand('voiceOne')
 
     def voiceThree(self):
-        return marktools.LilyPondCommandMark('voiceThree')
+        return marktools.LilyPondCommand('voiceThree')
 
     def voiceTwo(self):
-        return marktools.LilyPondCommandMark('voiceFour')
+        return marktools.LilyPondCommand('voiceFour')
 
     ### HELPER FUNCTIONS ###
 

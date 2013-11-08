@@ -17,17 +17,17 @@ These five type of functions are now implemented for the following marks::
 
     marktools.Annotation
     marktools.Articulation
-    marktools.LilyPondCommandMark
+    marktools.LilyPondCommand
     marktools.LilyPondComment
     marktools.StemTremolo
 
 The same type of functions are likewise implemented for the following context marks::
 
-    marktools.ClefMark
-    marktools.DynamicMark
+    marktools.Clef
+    marktools.Dynamic
     marktools.InstrumentMark
-    marktools.KeySignatureMark
-    marktools.StaffChangeMark
+    marktools.KeySignature
+    marktools.StaffChange
     marktools.TempoMark
     marktools.TimeSignatureMark
 
@@ -44,5 +44,5 @@ The same type of functions are likewise implemented for the following context ma
 * Renamed ``seqtools`` to ``sequencetools``.
 * Renamed ``Mark.attach_mark()`` to ``Mark.attach()``.
 * Renamed ``Mark.detach_mark()`` to ``Mark.detach()``.
-* Renamed ``marktools.Comment`` to ``marktools.LilyPondComment``. This matches ``marktools.LilyPondCommandMark``.
+* Renamed ``marktools.Comment`` to ``marktools.LilyPondComment``. This matches ``marktools.LilyPondCommand``.
 * Removed ``marktools.TimeSignatureMark(3, 8)`` initialization. You must now say ``marktools.TimeSignatureMark((3, 8))`` instead. This parallels the initialization syntax for rests, skips and measures.

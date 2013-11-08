@@ -12,5 +12,5 @@ def apply_rehearsal_marks(score):
         ]
 
     for measure_index in measure_indices:
-        command = marktools.LilyPondCommandMark(r'mark \default', 'before')
+        command = marktools.LilyPondCommand(r'mark \default', 'before')
         attach(command, bell_voice[measure_index])

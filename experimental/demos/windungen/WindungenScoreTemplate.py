@@ -22,7 +22,7 @@ class WindungenScoreTemplate(AbjadObject):
             number = index + 1
             voice = scoretools.Voice(name='Voice {}'.format(number))
             staff = scoretools.Staff([voice], name='Staff {}'.format(number))
-            clef = marktools.ClefMark('bass')
+            clef = marktools.Clef('bass')
             attach(clef, staff)
             cello = instrumenttools.Cello(
                 instrument_name='Cello {}'.format(number),

@@ -9,7 +9,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     for note in staff:
-        clef = inspect(note).get_effective_context_mark(ClefMark)
+        clef = inspect(note).get_effective_context_mark(Clef)
         assert clef is None
 
 
@@ -18,11 +18,11 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff)
     for note in staff:
-        clef = inspect(note).get_effective_context_mark(ClefMark)
-        assert clef == ClefMark('treble')
+        clef = inspect(note).get_effective_context_mark(Clef)
+        assert clef == Clef('treble')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_03():
@@ -31,17 +31,17 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = ClefMark('bass')
+    clef = Clef('bass')
     attach(clef, staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
             clef = inspect(note).get_effective_context_mark(
-                ClefMark)
+                Clef)
             assert clef is None
         else:
             clef = inspect(note).get_effective_context_mark(
-                ClefMark)
-            assert clef == ClefMark('bass')
+                Clef)
+            assert clef == Clef('bass')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_04():
@@ -49,19 +49,19 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_04():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff[0])
-    clef = ClefMark('bass')
+    clef = Clef('bass')
     attach(clef, staff[4])
     result = [
-        inspect(note).get_effective_context_mark(ClefMark)
+        inspect(note).get_effective_context_mark(Clef)
         for note in staff
         ]
     clef_names = [
         'treble', 'treble', 'treble', 'treble',
         'bass', 'bass', 'bass', 'bass',
         ]
-    clefs = [ClefMark(name) for name in clef_names]
+    clefs = [Clef(name) for name in clef_names]
     assert result == clefs
 
 
@@ -70,16 +70,16 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_05():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff[0])
-    clef = ClefMark('bass')
+    clef = Clef('bass')
     attach(clef, staff[4])
-    clef = inspect(staff[4]).get_effective_context_mark(ClefMark)
+    clef = inspect(staff[4]).get_effective_context_mark(Clef)
     detach(clef, staff[4])
 
     for note in staff:
-        clef = inspect(note).get_effective_context_mark(ClefMark)
-        assert clef == ClefMark('treble')
+        clef = inspect(note).get_effective_context_mark(Clef)
+        assert clef == Clef('treble')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_06():
@@ -87,9 +87,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_06():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff[0])
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff[4])
 
     assert testtools.compare(
@@ -118,9 +118,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_07():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    clef = ClefMark('treble_8')
+    clef = Clef('treble_8')
     attach(clef, staff[0])
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff[4])
 
     assert testtools.compare(
@@ -149,20 +149,20 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_08():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = ClefMark('alto')
+    clef = Clef('alto')
     attach(clef, staff[0])
-    clef = inspect(staff[0]).get_effective_context_mark(ClefMark)
+    clef = inspect(staff[0]).get_effective_context_mark(Clef)
     detach(clef, staff[0])
 
     for leaf in staff:
-        clef = inspect(leaf).get_effective_context_mark(ClefMark)
+        clef = inspect(leaf).get_effective_context_mark(Clef)
         assert clef is None
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_09():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    dynamic = DynamicMark('f')
+    dynamic = Dynamic('f')
     attach(dynamic, staff[2])
 
     assert testtools.compare(
@@ -178,15 +178,15 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_09():
         )
 
     assert inspect(staff).get_effective_context_mark(
-        DynamicMark) is None
+        Dynamic) is None
     assert inspect(staff[0]).get_effective_context_mark(
-        DynamicMark) is None
+        Dynamic) is None
     assert inspect(staff[1]).get_effective_context_mark(
-        DynamicMark) is None
+        Dynamic) is None
     assert inspect(staff[2]).get_effective_context_mark(
-        DynamicMark) == DynamicMark('f')
+        Dynamic) == Dynamic('f')
     assert inspect(staff[3]).get_effective_context_mark(
-        DynamicMark) == DynamicMark('f')
+        Dynamic) == Dynamic('f')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_10():
@@ -227,12 +227,12 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_11():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    key_signature = marktools.KeySignatureMark('c', 'major')
+    key_signature = marktools.KeySignature('c', 'major')
     attach(key_signature, staff)
 
     key_signature = inspect(staff).get_effective_context_mark(
-        marktools.KeySignatureMark)
-    assert key_signature == marktools.KeySignatureMark('c', 'major')
+        marktools.KeySignature)
+    assert key_signature == marktools.KeySignature('c', 'major')
 
     assert testtools.compare(
         staff,
@@ -256,7 +256,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_12():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     key_signature = inspect(staff).get_effective_context_mark(
-        marktools.KeySignatureMark)
+        marktools.KeySignature)
     assert key_signature is None
 
 

@@ -42,10 +42,10 @@ def set_line_breaks_by_line_duration(
         if candidate_duration < line_duration:
             cum_duration += current_duration
         elif candidate_duration == line_duration:
-            command = marktools.LilyPondCommandMark('break', 'closing')
+            command = marktools.LilyPondCommand('break', 'closing')
             attach(command, cur)
             if adjust_eol:
-                marktools.LilyPondCommandMark(
+                marktools.LilyPondCommand(
                     'adjustEOLTimeSignatureBarlineExtraOffset',
                     'closing')(cur)
             if add_empty_bars:
@@ -54,10 +54,10 @@ def set_line_breaks_by_line_duration(
             cum_duration = durationtools.Duration(0)
         else:
             if prev is not None:
-                command = marktools.LilyPondCommandMark('break', 'closing')
+                command = marktools.LilyPondCommand('break', 'closing')
                 attach(command, prev)
                 if adjust_eol:
-                    marktools.LilyPondCommandMark(
+                    marktools.LilyPondCommand(
                         'adjustEOLTimeSignatureBarlineExtraOffset',
                         'closing')(prev)
                 if add_empty_bars:

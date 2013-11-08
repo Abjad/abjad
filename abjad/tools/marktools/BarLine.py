@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.marktools.LilyPondCommandMark import LilyPondCommandMark
+from abjad.tools.marktools.LilyPondCommand import LilyPondCommand
 
 
-class BarLine(LilyPondCommandMark):
+class BarLine(LilyPondCommand):
     r'''A bar line.
 
     ::
@@ -36,7 +36,7 @@ class BarLine(LilyPondCommandMark):
     def __init__(self, bar_line_string='|', format_slot='after'):
         self.bar_line_string = bar_line_string
         command_name = 'bar "%s"' % bar_line_string
-        LilyPondCommandMark.__init__(self, command_name, format_slot)
+        LilyPondCommand.__init__(self, command_name, format_slot)
 
     ### SPECIAL METHODS ###
 

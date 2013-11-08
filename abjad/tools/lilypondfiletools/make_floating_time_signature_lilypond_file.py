@@ -31,7 +31,7 @@ def make_floating_time_signature_lilypond_file(music=None):
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
     lilypond_file.layout_block.append(
-        marktools.LilyPondCommandMark('accidentalStyle forget'))
+        marktools.LilyPondCommand('accidentalStyle forget'))
 
     time_signature_context_block = \
         lilypondfiletools.make_time_signature_context_block(

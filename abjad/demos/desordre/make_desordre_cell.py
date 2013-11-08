@@ -12,15 +12,15 @@ def make_desordre_cell(pitches):
     attach(beam, notes)
     slur = spannertools.SlurSpanner()
     attach(slur, notes)
-    clef = marktools.DynamicMark('f')
+    clef = marktools.Dynamic('f')
     attach(clef, notes[0])
-    dynamic = marktools.DynamicMark('p')
+    dynamic = marktools.Dynamic('p')
     attach(dynamic, notes[1])
 
     # make the lower voice
     lower_voice = scoretools.Voice(notes)
     lower_voice.name = 'RH Lower Voice'
-    command = marktools.LilyPondCommandMark('voiceTwo')
+    command = marktools.LilyPondCommand('voiceTwo')
     attach(command, lower_voice)
     n = int(math.ceil(len(pitches) / 2.))
     chord = scoretools.Chord([pitches[0], pitches[0] + 12], (n, 8))
@@ -30,7 +30,7 @@ def make_desordre_cell(pitches):
     # make the upper voice
     upper_voice = scoretools.Voice([chord])
     upper_voice.name = 'RH Upper Voice'
-    command = marktools.LilyPondCommandMark('voiceOne')
+    command = marktools.LilyPondCommand('voiceOne')
     attach(command, upper_voice)
 
     # combine them together

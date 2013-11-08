@@ -295,7 +295,7 @@ class LilyPondParser(abctools.Parser):
                     raise Exception('Unterminated %s at %s.' % (spanner_class.__name__, leaf))
 
             # check for DynamicMarks, and terminate any hairpin
-            dynamics = leaf._get_marks(marktools.DynamicMark)
+            dynamics = leaf._get_marks(marktools.Dynamic)
             if dynamics and spannertools.HairpinSpanner in all_spanners and \
                 all_spanners[spannertools.HairpinSpanner]:
                 all_spanners[spannertools.HairpinSpanner][0].append(leaf)
@@ -503,7 +503,7 @@ class LilyPondParser(abctools.Parser):
             else:
                 if isinstance(x, marktools.BarLine):
                     apply_backward.append(x)
-                elif isinstance(x, marktools.LilyPondCommandMark) and \
+                elif isinstance(x, marktools.LilyPondCommand) and \
                     x.command_name in ['breathe']:
                         apply_backward.append(x)
                 else:
@@ -682,9 +682,9 @@ class LilyPondParser(abctools.Parser):
         if name == 'ArticulationEvent':
             return marktools.Articulation(lookup['articulation-type'])
         elif name == 'AbsoluteDynamicEvent':
-            return marktools.DynamicMark(lookup['text'])
+            return marktools.Dynamic(lookup['text'])
         elif name == 'LaissezVibrerEvent':
-            return marktools.LilyPondCommandMark('laissezVibrer', 'after')
+            return marktools.LilyPondCommand('laissezVibrer', 'after')
         event = lilypondparsertools.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:

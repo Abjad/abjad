@@ -45,6 +45,6 @@ class Piccolo(Instrument):
         self._default_pitch_range = pitchtools.PitchRange(14, 48)
         self._default_short_instrument_name = 'picc.'
         self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_starting_clefs = [marktools.ClefMark('treble')]
+        self._default_starting_clefs = [marktools.Clef('treble')]
         self._is_primary_instrument = False
         self._copy_default_starting_clefs_to_default_allowable_clefs()
