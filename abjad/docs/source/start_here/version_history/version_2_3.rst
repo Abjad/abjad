@@ -24,7 +24,7 @@ These five type of functions are now implemented for the following marks::
 The same type of functions are likewise implemented for the following context marks::
 
     marktools.Clef
-    marktools.DynamicMark
+    marktools.Dynamic
     marktools.InstrumentMark
     marktools.KeySignatureMark
     marktools.StaffChangeMark

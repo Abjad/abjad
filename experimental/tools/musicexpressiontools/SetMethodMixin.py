@@ -136,7 +136,7 @@ class SetMethodMixin(AbjadObject):
         Returns dynamic set expression.
         '''
         from experimental.tools import musicexpressiontools
-        dynamic_mark = marktools.DynamicMark(source_expression)
+        dynamic_mark = marktools.Dynamic(source_expression)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=dynamic_mark)
         attribute = 'dynamic'

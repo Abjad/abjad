@@ -47,8 +47,8 @@ def is_duration_token(expr):
 
 def is_dynamic_token(expr):
     try:
-        result = marktools.DynamicMark(expr)
-        return isinstance(result, marktools.DynamicMark)
+        result = marktools.Dynamic(expr)
+        return isinstance(result, marktools.Dynamic)
     except:
         return False
 

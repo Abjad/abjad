@@ -40,7 +40,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
                     is_short_group = True
             if is_short_group:
                 start_dynamic = hairpin_token[0]
-                #marktools.DynamicMark(start_dynamic)(group[0])
+                #marktools.Dynamic(start_dynamic)(group[0])
                 command = marktools.LilyPondCommandMark(start_dynamic, 'right')
                 attach(command, group[0])
             else:

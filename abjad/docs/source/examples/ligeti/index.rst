@@ -62,10 +62,10 @@ lower Voice will hold the eighth note run. First the eighth notes:
    BeamSpanner(cs'8, d'8, ef'8)
    >>> spannertools.SlurSpanner(notes)
    SlurSpanner(cs'8, d'8, ef'8)
-   >>> marktools.DynamicMark('f')(notes[0])
-   DynamicMark('f')(cs'8)
-   >>> marktools.DynamicMark('p')(notes[1])
-   DynamicMark('p')(d'8)
+   >>> marktools.Dynamic('f')(notes[0])
+   Dynamic('f')(cs'8)
+   >>> marktools.Dynamic('p')(notes[1])
+   Dynamic('p')(d'8)
 
 
 ::
@@ -137,8 +137,8 @@ will take only a list of pitches:
        notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
        spannertools.BeamSpanner(notes)
        spannertools.SlurSpanner(notes)
-       marktools.DynamicMark('f')(notes[0])
-       marktools.DynamicMark('p')(notes[1])
+       marktools.Dynamic('f')(notes[0])
+       marktools.Dynamic('p')(notes[1])
    
        # make the lower voice
        lower_voice = scoretools.Voice(notes)

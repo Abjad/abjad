@@ -2,7 +2,7 @@
 from abjad.tools.marktools.ContextMark import ContextMark
 
 
-class DynamicMark(ContextMark):
+class Dynamic(ContextMark):
     r'''A dynamic mark.
 
     ..  container:: example
@@ -12,9 +12,9 @@ class DynamicMark(ContextMark):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> dynamic = marktools.DynamicMark('f')
+            >>> dynamic = marktools.Dynamic('f')
             >>> attach(dynamic, staff[0])
-            DynamicMark('f')(c'8)
+            Dynamic('f')(c'8)
 
         ..  doctest::
 
@@ -36,18 +36,18 @@ class DynamicMark(ContextMark):
 
         ::
 
-            >>> dynamic_mark_1 = marktools.DynamicMark('f')
-            >>> dynamic_mark_2 = marktools.DynamicMark(dynamic_mark_1)
+            >>> dynamic_mark_1 = marktools.Dynamic('f')
+            >>> dynamic_mark_2 = marktools.Dynamic(dynamic_mark_1)
 
         ::
 
             >>> dynamic_mark_1
-            DynamicMark('f')
+            Dynamic('f')
 
         ::
 
             >>> dynamic_mark_2
-            DynamicMark('f')
+            Dynamic('f')
 
     Dynamic marks target the staff context by default.
     '''
@@ -180,7 +180,7 @@ class DynamicMark(ContextMark):
 
             ::
 
-                >>> dynamic = marktools.DynamicMark('f')
+                >>> dynamic = marktools.Dynamic('f')
                 >>> dynamic.dynamic_name
                 'f'
 
@@ -208,12 +208,12 @@ class DynamicMark(ContextMark):
 
         ::
 
-            >>> marktools.DynamicMark.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
+            >>> marktools.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
             'p'
 
         Returns string.
         '''
-        return DynamicMark._composite_dynamic_name_to_steady_state_dynamic_name[dynamic_name]
+        return Dynamic._composite_dynamic_name_to_steady_state_dynamic_name[dynamic_name]
 
     @staticmethod
     def dynamic_name_to_dynamic_ordinal(dynamic_name):
@@ -221,17 +221,17 @@ class DynamicMark(ContextMark):
 
         ::
 
-            >>> marktools.DynamicMark.dynamic_name_to_dynamic_ordinal('fff')
+            >>> marktools.Dynamic.dynamic_name_to_dynamic_ordinal('fff')
             4
 
         Returns integer.
         '''
         try:
-            return DynamicMark._dynamic_name_to_dynamic_ordinal[dynamic_name]
+            return Dynamic._dynamic_name_to_dynamic_ordinal[dynamic_name]
         except KeyError:
-            dynamic_name = DynamicMark.composite_dynamic_name_to_steady_state_dynamic_name(
+            dynamic_name = Dynamic.composite_dynamic_name_to_steady_state_dynamic_name(
                 dynamic_name)
-            return DynamicMark._dynamic_name_to_dynamic_ordinal[dynamic_name]
+            return Dynamic._dynamic_name_to_dynamic_ordinal[dynamic_name]
 
     @staticmethod
     def dynamic_ordinal_to_dynamic_name(dynamic_ordinal):
@@ -239,12 +239,12 @@ class DynamicMark(ContextMark):
 
         ::
 
-            >>> marktools.DynamicMark.dynamic_ordinal_to_dynamic_name(-5)
+            >>> marktools.Dynamic.dynamic_ordinal_to_dynamic_name(-5)
             'pppp'
 
         Returns string.
         '''
-        return DynamicMark._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
+        return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
 
     @staticmethod
     def is_dynamic_name(arg):
@@ -252,9 +252,9 @@ class DynamicMark(ContextMark):
 
         ::
 
-            >>> marktools.DynamicMark.is_dynamic_name('f')
+            >>> marktools.Dynamic.is_dynamic_name('f')
             True
 
         Returns boolean.
         '''
-        return arg in DynamicMark._dynamic_names
+        return arg in Dynamic._dynamic_names

@@ -59,8 +59,8 @@ pitches = [1,2,3]
 notes = scoretools.make_notes(pitches, [(1, 8)])
 spannertools.BeamSpanner(notes)
 spannertools.SlurSpanner(notes)
-marktools.DynamicMark('f')(notes[0])
-marktools.DynamicMark('p')(notes[1])
+marktools.Dynamic('f')(notes[0])
+marktools.Dynamic('p')(notes[1])
 </abjad>
 <abjad>
 voice_lower = Voice(notes)

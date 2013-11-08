@@ -133,22 +133,22 @@ bottom staff, we'll add dynamic markings to the second note of the first
 measure and the fourth note of the second measure:
 
 <abjad>
-dynamic = marktools.DynamicMark('pp')
+dynamic = marktools.Dynamic('pp')
 dynamic.attach(upper_measures[0][0])
 </abjad>
 
 <abjad>
-dynamic = marktools.DynamicMark('mp')
+dynamic = marktools.Dynamic('mp')
 dynamic.attach(upper_measures[1][1])
 </abjad>
 
 <abjad>
-dynamic = marktools.DynamicMark('pp')
+dynamic = marktools.Dynamic('pp')
 dynamic.attach(lower_measures[0][1])
 </abjad>
 
 <abjad>
-dynamic = marktools.DynamicMark('mp')
+dynamic = marktools.Dynamic('mp')
 dynamic.attach(lower_measures[1][3])
 </abjad>
 

@@ -152,30 +152,30 @@ measure and the fourth note of the second measure:
 
 ::
 
-   >>> dynamic = marktools.DynamicMark('pp')
+   >>> dynamic = marktools.Dynamic('pp')
    >>> dynamic.attach(upper_measures[0][0])
-   DynamicMark('pp')(a'8)
+   Dynamic('pp')(a'8)
 
 
 ::
 
-   >>> dynamic = marktools.DynamicMark('mp')
+   >>> dynamic = marktools.Dynamic('mp')
    >>> dynamic.attach(upper_measures[1][1])
-   DynamicMark('mp')(g'8)
+   Dynamic('mp')(g'8)
 
 
 ::
 
-   >>> dynamic = marktools.DynamicMark('pp')
+   >>> dynamic = marktools.Dynamic('pp')
    >>> dynamic.attach(lower_measures[0][1])
-   DynamicMark('pp')(d'8)
+   Dynamic('pp')(d'8)
 
 
 ::
 
-   >>> dynamic = marktools.DynamicMark('mp')
+   >>> dynamic = marktools.Dynamic('mp')
    >>> dynamic.attach(lower_measures[1][3])
-   DynamicMark('mp')(c'8)
+   Dynamic('mp')(c'8)
 
 
 Let's add a double bar to the end of the piece:

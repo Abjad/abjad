@@ -25,7 +25,7 @@ class TerracedDynamicsHandler(DynamicHandler):
             iterate(expr).by_class((scoretools.Note, scoretools.Chord))):
             dynamic_name = dynamics[offset + i]
             if self.minimum_duration <= note_or_chord._get_duration():
-                #marktools.DynamicMark(dynamic_name)(note_or_chord)
+                #marktools.Dynamic(dynamic_name)(note_or_chord)
                 command = marktools.LilyPondCommandMark(dynamic_name, 'right')
                 attach(command, note_or_chord)
         return expr
@@ -40,7 +40,7 @@ class TerracedDynamicsHandler(DynamicHandler):
             if dynamics is None:
                 self._dynamics = dynamics
             elif all(
-                marktools.DynamicMark.is_dynamic_name(x) for x in dynamics):
+                marktools.Dynamic.is_dynamic_name(x) for x in dynamics):
                 self._dynamics = dynamics
             else:
                 raise TypeError(dynamics)

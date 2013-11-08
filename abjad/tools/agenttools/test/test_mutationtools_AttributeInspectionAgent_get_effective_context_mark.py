@@ -162,7 +162,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_08():
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_09():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    dynamic = DynamicMark('f')
+    dynamic = Dynamic('f')
     attach(dynamic, staff[2])
 
     assert testtools.compare(
@@ -178,15 +178,15 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_09():
         )
 
     assert inspect(staff).get_effective_context_mark(
-        DynamicMark) is None
+        Dynamic) is None
     assert inspect(staff[0]).get_effective_context_mark(
-        DynamicMark) is None
+        Dynamic) is None
     assert inspect(staff[1]).get_effective_context_mark(
-        DynamicMark) is None
+        Dynamic) is None
     assert inspect(staff[2]).get_effective_context_mark(
-        DynamicMark) == DynamicMark('f')
+        Dynamic) == Dynamic('f')
     assert inspect(staff[3]).get_effective_context_mark(
-        DynamicMark) == DynamicMark('f')
+        Dynamic) == Dynamic('f')
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_10():

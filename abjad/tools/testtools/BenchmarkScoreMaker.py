@@ -48,9 +48,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
-            dynamic = marktools.DynamicMark('p')
+            dynamic = marktools.Dynamic('p')
             attach(dynamic, part[0])
-            dynamic = marktools.DynamicMark('r')
+            dynamic = marktools.Dynamic('r')
             attach(dynamic, part[-1])
         return voice
 
@@ -72,9 +72,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
-            dynamic = marktools.DynamicMark('p')
+            dynamic = marktools.Dynamic('p')
             attach(dynamic, part[0])
-            dynamic = marktools.DynamicMark('r')
+            dynamic = marktools.Dynamic('r')
             attach(dynamic, part[-1])
         return voice
 
@@ -96,9 +96,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.CrescendoSpanner()
             attach(crescendo, part)
-            dynamic = marktools.DynamicMark('p')
+            dynamic = marktools.Dynamic('p')
             attach(dynamic, part[0])
-            dynamic = marktools.DynamicMark('r')
+            dynamic = marktools.Dynamic('r')
             attach(dynamic, part[-1])
         return voice
 
@@ -121,7 +121,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20], 
             cyclic=True,
             ):
-            dynamic = marktools.DynamicMark('f')
+            dynamic = marktools.Dynamic('f')
             attach(dynamic, part[0])
         return staff
 
@@ -144,7 +144,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4], 
             cyclic=True,
             ):
-            dynamic = marktools.DynamicMark('f')
+            dynamic = marktools.Dynamic('f')
             attach(dynamic, part[0])
         return staff
 
@@ -163,7 +163,7 @@ class BenchmarkScoreMaker(AbjadObject):
         '''
         staff = scoretools.Staff(200 * scoretools.Note("c'16"))
         for note in staff.select_leaves():
-            dynamic = marktools.DynamicMark('f')
+            dynamic = marktools.Dynamic('f')
             attach(dynamic, note)
         return staff
 

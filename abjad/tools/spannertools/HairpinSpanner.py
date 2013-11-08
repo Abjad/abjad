@@ -122,7 +122,7 @@ class HairpinSpanner(DirectedSpanner):
                         direction_string, self.stop_dynamic_string))
                 else:
                     effective_dynamic = leaf._get_effective_context_mark(
-                        marktools.DynamicMark)
+                        marktools.Dynamic)
                     if effective_dynamic is None or \
                         effective_dynamic not in \
                         leaf._start_marks:
@@ -139,7 +139,7 @@ class HairpinSpanner(DirectedSpanner):
                         direction_string, self.stop_dynamic_string))
                 else:
                     effective_dynamic = leaf._get_effective_context_mark(
-                        marktools.DynamicMark)
+                        marktools.Dynamic)
                     if effective_dynamic is None:
                         result.append('\\!')
         return result
@@ -341,17 +341,17 @@ class HairpinSpanner(DirectedSpanner):
 
         Returns boolean.
         '''
-        DynamicMark = marktools.DynamicMark
+        Dynamic = marktools.Dynamic
         if isinstance(arg, tuple) and \
             len(arg) == 3 and \
-            (not arg[0] or marktools.DynamicMark.is_dynamic_name(arg[0])) and \
+            (not arg[0] or marktools.Dynamic.is_dynamic_name(arg[0])) and \
             HairpinSpanner.is_hairpin_shape_string(arg[1]) and \
-            (not arg[2] or marktools.DynamicMark.is_dynamic_name(arg[2])):
+            (not arg[2] or marktools.Dynamic.is_dynamic_name(arg[2])):
             if arg[0] and arg[2]:
                 start_ordinal = \
-                    DynamicMark.dynamic_name_to_dynamic_ordinal(arg[0])
+                    Dynamic.dynamic_name_to_dynamic_ordinal(arg[0])
                 stop_ordinal = \
-                    DynamicMark.dynamic_name_to_dynamic_ordinal(arg[2])
+                    Dynamic.dynamic_name_to_dynamic_ordinal(arg[2])
                 if arg[1] == '<':
                     return start_ordinal < stop_ordinal
                 else:

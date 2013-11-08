@@ -16,7 +16,7 @@ class DynamicSetExpression(LeafSetExpression):
         '''
         dynamic_mark = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):
-            for mark in leaf._get_marks(marktools.DynamicMark):
+            for mark in leaf._get_marks(marktools.Dynamic):
                 mark.detach()
-            dynamic = marktools.DynamicMark(dynamic_mark)
+            dynamic = marktools.Dynamic(dynamic_mark)
             attach(dynamic, leaf)
