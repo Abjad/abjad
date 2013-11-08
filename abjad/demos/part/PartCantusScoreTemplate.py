@@ -15,7 +15,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         attach(clef, bell_staff)
         bells = instrumenttools.Instrument('Campana in La', 'Camp.')
         attach(bells, bell_staff)
-        tempo = marktools.TempoMark((1, 4), (112, 120))
+        tempo = marktools.Tempo((1, 4), (112, 120))
         attach(tempo, bell_staff)
         time_signature = marktools.TimeSignatureMark((6, 4))
         attach(time_signature, bell_staff)

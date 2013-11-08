@@ -57,7 +57,7 @@ The score template
            marktools.Clef('treble')(bell_staff)
            bells = instrumenttools.Instrument('Campana in La', 'Camp.')
            bells.attach(bell_staff)
-           marktools.TempoMark((1, 4), (112, 120))(bell_staff)
+           marktools.Tempo((1, 4), (112, 120))(bell_staff)
            marktools.TimeSignatureMark((6, 4))(bell_staff)
    
            # make first violin voice and staff

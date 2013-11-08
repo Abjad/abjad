@@ -128,10 +128,10 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     \concat { #"one word" \rotate #60 \bold { two words } \triangle ##f }
 
 
-- Added ``marktools.TempoMarkInventory``, which models an ordered list of tempo marks::
+- Added ``marktools.TempoInventory``, which models an ordered list of tempo marks::
 
-    >>> marktools.TempoMarkInventory([('Andante', Duration(1, 8), 72), ('Allegro', Duration(1, 8), 84)])
-    TempoMarkInventory([TempoMark('Andante', Duration(1, 8), 72), TempoMark('Allegro', Duration(1, 8), 84)])
+    >>> marktools.TempoInventory([('Andante', Duration(1, 8), 72), ('Allegro', Duration(1, 8), 84)])
+    TempoInventory([Tempo('Andante', Duration(1, 8), 72), Tempo('Allegro', Duration(1, 8), 84)])
 
   Inherits from list. Allows initialization, append and extent on tempo mark tokens.
 
@@ -198,15 +198,15 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   Now, if two instances compare equally (via ==), their hashes also compare equally,
   allowing for more intuitive use of these classes as dictionary keys.
 
-- Extended ``marktools.TempoMark`` with textual indications and tempo ranges
+- Extended ``marktools.Tempo`` with textual indications and tempo ranges
   You may instantiate as normal, or in some new combinations::
 
-    >>> from abjad.tools.marktools import TempoMark
-    >>> t = TempoMark('Langsam', Duration(1, 4), (52, 57))
-    >>> t = TempoMark('Langsam')
-    >>> t = TempoMark((1, 4), (52, 57))
+    >>> from abjad.tools.marktools import Tempo
+    >>> t = Tempo('Langsam', Duration(1, 4), (52, 57))
+    >>> t = Tempo('Langsam')
+    >>> t = Tempo((1, 4), (52, 57))
 
-  In addition to its new read/write "textual_indication" attribute, TempoMark
+  In addition to its new read/write "textual_indication" attribute, Tempo
   now also exposes a read-only "is_imprecise" property, which returns True if
   the mark cannot be expressed simply as duration=units_per_minute.  Arithmetic
   operations on TempoMarks will now raise ImpreciseTempoErrors if any mark
@@ -217,7 +217,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Extended tempo mark with ``is_tempo_mark_token()`` method::
 
-    >>> tempo_mark = marktools.TempoMark(Duration(1, 4), 72)
+    >>> tempo_mark = marktools.Tempo(Duration(1, 4), 72)
     >>> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
     True
 
@@ -295,7 +295,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Improved ``__repr__`` strings of ``tonalanalysistools.Mode`` and ``tonalanalysistools.Scale``.
 
-- ``marktools.TempoMark`` ``__repr__`` now shows ``__repr__`` version of duration
+- ``marktools.Tempo`` ``__repr__`` now shows ``__repr__`` version of duration
   instead of string version of duration.
 
 - ``scr/devel/abj-grp`` no longer excludes lines of code that include the string ``'svn'``.

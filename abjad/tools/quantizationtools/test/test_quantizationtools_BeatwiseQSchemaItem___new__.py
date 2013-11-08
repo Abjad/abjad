@@ -20,7 +20,7 @@ def test_quantizationtools_BeatwiseQSchemaItem___new___02():
 
     assert item.beatspan is None
     assert item.search_tree is None
-    assert item.tempo == TempoMark((1, 4), 60)
+    assert item.tempo == Tempo((1, 4), 60)
 
 
 def test_quantizationtools_BeatwiseQSchemaItem___new___03():
@@ -43,10 +43,10 @@ def test_quantizationtools_BeatwiseQSchemaItem___new___04():
 
     assert item.beatspan == durationtools.Duration(1, 8)
     assert item.search_tree is None
-    assert item.tempo == TempoMark((1, 4), 57)
+    assert item.tempo == Tempo((1, 4), 57)
 
 
 def test_quantizationtools_BeatwiseQSchemaItem___new___05():
 
-    tempo = TempoMark('lento')
+    tempo = Tempo('lento')
     pytest.raises('item = quantizationtools.BeatwiseQSchemaItem(tempo=tempo)')

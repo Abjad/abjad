@@ -423,7 +423,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___18():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     score = Score([staff])
-    tempo = TempoMark(Duration(1, 4), 58)
+    tempo = Tempo(Duration(1, 4), 58)
     attach(tempo, staff[0])
     override(score).metronome_mark.color = 'red'
 

@@ -265,9 +265,9 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_13():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo = Tempo(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff)
-    tempo = TempoMark(Duration(1, 8), 42, target_context=Staff)
+    tempo = Tempo(Duration(1, 8), 42, target_context=Staff)
     attach(tempo, staff[2])
 
     assert testtools.compare(
@@ -286,13 +286,13 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_13():
 
     assert inspect(staff).is_well_formed()
     assert inspect(staff[0]).get_effective_context_mark(
-        TempoMark) == TempoMark(Duration(1, 8), 38)
+        Tempo) == Tempo(Duration(1, 8), 38)
     assert inspect(staff[1]).get_effective_context_mark(
-        TempoMark) == TempoMark(Duration(1, 8), 38)
+        Tempo) == Tempo(Duration(1, 8), 38)
     assert inspect(staff[2]).get_effective_context_mark(
-        TempoMark) == TempoMark(Duration(1, 8), 42)
+        Tempo) == Tempo(Duration(1, 8), 42)
     assert inspect(staff[3]).get_effective_context_mark(
-        TempoMark) == TempoMark(Duration(1, 8), 42)
+        Tempo) == Tempo(Duration(1, 8), 42)
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_14():
@@ -300,7 +300,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_14():
     '''
 
     staff = Staff([Chord([2, 3, 4], (1, 4))])
-    tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo = Tempo(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff[0])
 
     assert testtools.compare(
@@ -319,7 +319,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_15():
     '''
 
     staff = Staff([Note("c'4")])
-    tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo = Tempo(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff[0])
 
     assert testtools.compare(
@@ -338,7 +338,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_16():
     '''
 
     staff = Staff([Note("c'4")])
-    tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
+    tempo = Tempo(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff[0])
     tempo.detach()
 

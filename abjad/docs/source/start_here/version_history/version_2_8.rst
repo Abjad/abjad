@@ -124,7 +124,7 @@ Added object inventories for several classes.
 - This release contains inventories for the following classes::
 
     marktools.ClefInventory
-    marktools.TempoMarkInventory
+    marktools.TempoInventory
     instrumenttools.InstrumentInventory
     markuptools.MarkupInventory
     pitchtools.OctaveTranspositionMappingInventory

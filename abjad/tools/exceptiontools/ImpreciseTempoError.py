@@ -2,6 +2,6 @@
 
 
 class ImpreciseTempoError(Exception):
-    r'''TempoMark is imprecise.
+    r'''Tempo is imprecise.
     '''
     pass

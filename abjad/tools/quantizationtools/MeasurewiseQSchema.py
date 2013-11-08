@@ -26,7 +26,7 @@ class MeasurewiseQSchema(QSchema):
                     11: None,
                     13: None}
                 ),
-            tempo=marktools.TempoMark(
+            tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
                 60
                 ),
@@ -50,7 +50,7 @@ class MeasurewiseQSchema(QSchema):
 
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
         >>> time_signature = marktools.TimeSignatureMark((3, 4))
-        >>> tempo = marktools.TempoMark((1, 4), 54)
+        >>> tempo = marktools.Tempo((1, 4), 54)
         >>> use_full_measure = True
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
         ...     search_tree=search_tree,
@@ -84,7 +84,7 @@ class MeasurewiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: TempoMark(Duration(1, 4), 54)
+        tempo: Tempo(Duration(1, 4), 54)
         time_signature: 3/4
         use_full_measure: True
 
@@ -96,7 +96,7 @@ class MeasurewiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: TempoMark(Duration(1, 4), 54)
+        tempo: Tempo(Duration(1, 4), 54)
         time_signature: 3/4
         use_full_measure: True
 
@@ -242,7 +242,7 @@ class MeasurewiseQSchema(QSchema):
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 
-        self._tempo = marktools.TempoMark(
+        self._tempo = marktools.Tempo(
             kwargs.get('tempo',
                 ((1, 4), 60)))
 

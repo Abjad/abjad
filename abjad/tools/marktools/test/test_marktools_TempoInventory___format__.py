@@ -4,14 +4,14 @@ from abjad import *
 
 def test_TempoMarkInventory___format___01():
 
-    tempo_mark_inventory = marktools.TempoMarkInventory(
+    tempo_mark_inventory = marktools.TempoInventory(
         [('Allegro', (1, 4), 84)])
 
     assert testtools.compare(
         format(tempo_mark_inventory),
         r'''
-        marktools.TempoMarkInventory([
-            marktools.TempoMark(
+        marktools.TempoInventory([
+            marktools.Tempo(
                 'Allegro',
                 durationtools.Duration(1, 4),
                 84

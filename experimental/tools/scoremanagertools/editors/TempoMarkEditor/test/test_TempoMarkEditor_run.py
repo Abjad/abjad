@@ -14,11 +14,11 @@ def test_TempoMarkEditor_run_02():
 
     editor = scoremanagertools.editors.TempoMarkEditor()
     editor._run(pending_user_input='duration (1, 8) units 98 q')
-    assert editor.target == marktools.TempoMark(Duration(1, 8), 98)
+    assert editor.target == marktools.Tempo(Duration(1, 8), 98)
 
 
 def test_TempoMarkEditor_run_03():
 
     editor = scoremanagertools.editors.TempoMarkEditor()
     editor._run(pending_user_input='duration Duration(1, 8) units 98 q')
-    assert editor.target == marktools.TempoMark(Duration(1, 8), 98)
+    assert editor.target == marktools.Tempo(Duration(1, 8), 98)

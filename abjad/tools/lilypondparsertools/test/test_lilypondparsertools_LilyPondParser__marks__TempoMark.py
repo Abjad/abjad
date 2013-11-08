@@ -7,7 +7,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__TempoMark_01():
 
     target = Score([Staff([Note(0, 1)])])
-    tempo = TempoMark("As fast as possible", target_context=Staff)
+    tempo = Tempo("As fast as possible", target_context=Staff)
     attach(tempo, target.select_leaves()[0])
 
     assert testtools.compare(
@@ -27,14 +27,14 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_01():
     assert format(target) == format(result) and \
         target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = inspect(leaf).get_marks(TempoMark)
+    tempo_marks = inspect(leaf).get_marks(Tempo)
     assert len(tempo_marks) == 1
 
 
 def test_lilypondparsertools_LilyPondParser__marks__TempoMark_02():
 
     target = Score([Staff([Note(0, 1)])])
-    tempo = TempoMark((1, 4), 60, target_context=Staff)
+    tempo = Tempo((1, 4), 60, target_context=Staff)
     attach(tempo, target.select_leaves()[0])
 
     assert testtools.compare(
@@ -53,14 +53,14 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_02():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = inspect(leaf).get_marks(TempoMark)
+    tempo_marks = inspect(leaf).get_marks(Tempo)
     assert len(tempo_marks) == 1
 
 
 def test_lilypondparsertools_LilyPondParser__marks__TempoMark_03():
 
     target = Score([Staff([Note(0, 1)])])
-    tempo = TempoMark((1, 4), (59, 63), target_context=Staff)
+    tempo = Tempo((1, 4), (59, 63), target_context=Staff)
     attach(tempo, target.select_leaves()[0])
 
     assert testtools.compare(
@@ -79,14 +79,14 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_03():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = inspect(leaf).get_marks(TempoMark)
+    tempo_marks = inspect(leaf).get_marks(Tempo)
     assert len(tempo_marks) == 1
 
 
 def test_lilypondparsertools_LilyPondParser__marks__TempoMark_04():
 
     target = Score([Staff([Note(0, 1)])])
-    tempo = TempoMark(
+    tempo = Tempo(
         "Like a majestic swan, alive with youth and vigour!",
         (1, 4), 
         60, 
@@ -110,14 +110,14 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_04():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = inspect(leaf).get_marks(TempoMark)
+    tempo_marks = inspect(leaf).get_marks(Tempo)
     assert len(tempo_marks) == 1
 
 
 def test_lilypondparsertools_LilyPondParser__marks__TempoMark_05():
 
     target = Score([Staff([Note(0, 1)])])
-    tempo = TempoMark(
+    tempo = Tempo(
         "Faster than a thousand suns",
         (1, 16), (34, 55), 
         target_context=Staff,
@@ -140,5 +140,5 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_05():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
-    tempo_marks = inspect(leaf).get_marks(TempoMark)
+    tempo_marks = inspect(leaf).get_marks(Tempo)
     assert len(tempo_marks) == 1

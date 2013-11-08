@@ -28,7 +28,7 @@ The same type of functions are likewise implemented for the following context ma
     marktools.InstrumentMark
     marktools.KeySignature
     marktools.StaffChange
-    marktools.TempoMark
+    marktools.Tempo
     marktools.TimeSignatureMark
 
 * Extended ``Container.extend()`` to allow for LilyPond input strings. You can now say ``container.extend("c'4 d'4 e'4 f'4")``.

@@ -21,7 +21,7 @@ def test_quantizationtools_MeasurewiseQSchemaItem___new___02():
 
     assert item.beatspan is None
     assert item.search_tree is None
-    assert item.tempo == TempoMark((1, 4), 60)
+    assert item.tempo == Tempo((1, 4), 60)
     assert item.time_signature is None
 
 
@@ -46,11 +46,11 @@ def test_quantizationtools_MeasurewiseQSchemaItem___new___04():
 
     assert item.beatspan == durationtools.Duration(1, 8)
     assert item.search_tree is None
-    assert item.tempo == TempoMark((1, 4), 57)
+    assert item.tempo == Tempo((1, 4), 57)
     assert item.time_signature == TimeSignatureMark((6, 8))
 
 
 def test_quantizationtools_MeasurewiseQSchemaItem___new___05():
 
-    tempo = TempoMark('lento')
+    tempo = Tempo('lento')
     pytest.raises('item = quantizationtools.MeasurewiseQSchemaItem(tempo=tempo)')

@@ -23,7 +23,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print format(q_schema_item)
         quantizationtools.MeasurewiseQSchemaItem(
-            tempo=marktools.TempoMark(
+            tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
                 60
                 )

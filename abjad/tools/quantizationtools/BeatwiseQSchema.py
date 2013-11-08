@@ -27,7 +27,7 @@ class BeatwiseQSchema(QSchema):
                     11: None,
                     13: None}
                 ),
-            tempo=marktools.TempoMark(
+            tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
                 60
                 ),
@@ -46,7 +46,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> beatspan = Duration(5, 16)
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
-        >>> tempo = marktools.TempoMark((1, 4), 54)
+        >>> tempo = marktools.Tempo((1, 4), 54)
         >>> q_schema = quantizationtools.BeatwiseQSchema(
         ...     beatspan=beatspan,
         ...     search_tree=search_tree,
@@ -65,7 +65,7 @@ class BeatwiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: TempoMark(Duration(1, 4), 54)
+        tempo: Tempo(Duration(1, 4), 54)
 
     ::
 
@@ -76,7 +76,7 @@ class BeatwiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: TempoMark(Duration(1, 4), 54)
+        tempo: Tempo(Duration(1, 4), 54)
 
     Per-time-step settings can be applied in a variety of ways.
 
@@ -223,7 +223,7 @@ class BeatwiseQSchema(QSchema):
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 
-        self._tempo = marktools.TempoMark(
+        self._tempo = marktools.Tempo(
             kwargs.get('tempo',
                 ((1, 4), 60)))
 
