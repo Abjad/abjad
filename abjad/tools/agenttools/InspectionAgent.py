@@ -46,7 +46,7 @@ class InspectionAgent(object):
             if issubclass(expr, marktools.Mark):
                 marks = self.get_marks(expr)
             if issubclass(expr, spannertools.Spanner):
-                spaners = self.get_spanners(expr)
+                spanners = self.get_spanners(expr)
         #if isinstance(expr, types.InstanceType):
         else:
             if isinstance(expr, marktools.Mark):
