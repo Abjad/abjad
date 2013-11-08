@@ -37,7 +37,7 @@ class Bassoon(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
-        self._default_allowable_clefs = marktools.ClefMarkInventory([
+        self._default_allowable_clefs = marktools.ClefInventory([
             marktools.Clef('bass'), 
             marktools.Clef('tenor'),
             ])
@@ -50,7 +50,7 @@ class Bassoon(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(-26, 15)
         self._default_short_instrument_name = 'bsn.'
-        self._default_starting_clefs = marktools.ClefMarkInventory([
+        self._default_starting_clefs = marktools.ClefInventory([
             marktools.Clef('bass'),
             ])
         self._is_primary_instrument = True

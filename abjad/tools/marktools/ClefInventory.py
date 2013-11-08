@@ -3,17 +3,17 @@ from abjad.tools.marktools.Clef import Clef
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
-class ClefMarkInventory(TypedList):
+class ClefInventory(TypedList):
     '''An ordered list of clefs.
 
     ::
 
-        >>> inventory = marktools.ClefMarkInventory(['treble', 'bass'])
+        >>> inventory = marktools.ClefInventory(['treble', 'bass'])
 
     ::
 
         >>> inventory
-        ClefMarkInventory([Clef('treble'), Clef('bass')])
+        ClefInventory([Clef('treble'), Clef('bass')])
 
     ::
 

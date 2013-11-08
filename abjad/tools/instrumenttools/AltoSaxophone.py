@@ -116,7 +116,7 @@ class AltoSaxophone(Instrument):
                 ::
 
                     >>> alto_sax.allowable_clefs
-                    ClefMarkInventory([Clef('treble')])
+                    ClefInventory([Clef('treble')])
 
                 :: 
 
@@ -140,7 +140,7 @@ class AltoSaxophone(Instrument):
 
                     >>> alto_sax.allowable_clefs = ['treble', 'treble^8']
                     >>> alto_sax.allowable_clefs
-                    ClefMarkInventory([Clef('treble'), Clef('treble^8')])
+                    ClefInventory([Clef('treble'), Clef('treble^8')])
 
             ..  container:: example
 
@@ -150,7 +150,7 @@ class AltoSaxophone(Instrument):
 
                     >>> alto_sax.allowable_clefs = None
                     >>> alto_sax.allowable_clefs
-                    ClefMarkInventory([Clef('treble')])
+                    ClefInventory([Clef('treble')])
 
             Returns clef inventory.
             '''

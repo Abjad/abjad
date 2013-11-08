@@ -24,6 +24,6 @@ class ClefMarkInventoryEditor(ObjectInventoryEditor):
     item_identifier = 'clef mark'
 
     target_manifest = TargetManifest(
-        marktools.ClefMarkInventory,
+        marktools.ClefInventory,
         target_name_attribute='name',
         )

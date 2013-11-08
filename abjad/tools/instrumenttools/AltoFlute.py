@@ -113,7 +113,7 @@ class AltoFlute(Instrument):
                 ::
 
                     >>> alto_flute.allowable_clefs
-                    ClefMarkInventory([Clef('treble')])
+                    ClefInventory([Clef('treble')])
 
                 ::
 
@@ -137,7 +137,7 @@ class AltoFlute(Instrument):
 
                     >>> alto_flute.allowable_clefs = ['treble', 'treble^8']
                     >>> alto_flute.allowable_clefs
-                    ClefMarkInventory([Clef('treble'), Clef('treble^8')])
+                    ClefInventory([Clef('treble'), Clef('treble^8')])
 
             ..  container:: example
 
@@ -147,7 +147,7 @@ class AltoFlute(Instrument):
 
                     >>> alto_flute.allowable_clefs = None
                     >>> alto_flute.allowable_clefs
-                    ClefMarkInventory([Clef('treble')])
+                    ClefInventory([Clef('treble')])
 
             Returns clef inventory.
             '''

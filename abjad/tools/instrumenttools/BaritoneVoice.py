@@ -47,7 +47,7 @@ class BaritoneVoice(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(('A2', 'A4'))
         self._default_short_instrument_name = 'baritone'
-        self._default_starting_clefs = marktools.ClefMarkInventory([
+        self._default_starting_clefs = marktools.ClefInventory([
             marktools.Clef('bass'),
             ])
         self._is_primary_instrument = True

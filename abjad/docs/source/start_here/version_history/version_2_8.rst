@@ -123,7 +123,7 @@ Added object inventories for several classes.
 
 - This release contains inventories for the following classes::
 
-    marktools.ClefMarkInventory
+    marktools.ClefInventory
     marktools.TempoMarkInventory
     instrumenttools.InstrumentInventory
     markuptools.MarkupInventory

@@ -37,7 +37,7 @@ class Cello(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
-        self._default_allowable_clefs = marktools.ClefMarkInventory([
+        self._default_allowable_clefs = marktools.ClefInventory([
             marktools.Clef('bass'),
             marktools.Clef('tenor'),
             marktools.Clef('treble'),

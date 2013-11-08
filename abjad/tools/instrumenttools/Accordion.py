@@ -48,7 +48,7 @@ class Accordion(Instrument):
             target_context=target_context, 
             **kwargs
             )
-        self._default_allowable_clefs = marktools.ClefMarkInventory([
+        self._default_allowable_clefs = marktools.ClefInventory([
             marktools.Clef('treble'), 
             marktools.Clef('bass'),
             ])
@@ -59,7 +59,7 @@ class Accordion(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(-32, 48)
         self._default_short_instrument_name = 'acc.'
-        self._default_starting_clefs = marktools.ClefMarkInventory([
+        self._default_starting_clefs = marktools.ClefInventory([
             marktools.Clef('treble'), 
             marktools.Clef('bass'),
             ])
@@ -112,7 +112,7 @@ class Accordion(Instrument):
                     short_instrument_name_markup=markuptools.Markup((
                         'Fis.',
                         )),
-                    allowable_clefs=marktools.ClefMarkInventory([
+                    allowable_clefs=marktools.ClefInventory([
                         marktools.Clef(
                             'treble',
                             target_context=scoretools.Staff
@@ -143,7 +143,7 @@ class Accordion(Instrument):
                 ::
 
                     >>> accordion.allowable_clefs
-                    ClefMarkInventory([Clef('treble'), Clef('bass')])
+                    ClefInventory([Clef('treble'), Clef('bass')])
 
                 ::
 
@@ -167,7 +167,7 @@ class Accordion(Instrument):
 
                     >>> accordion.allowable_clefs = ['treble']
                     >>> accordion.allowable_clefs
-                    ClefMarkInventory([Clef('treble')])
+                    ClefInventory([Clef('treble')])
 
             ..  container:: example
 
@@ -177,7 +177,7 @@ class Accordion(Instrument):
 
                     >>> accordion.allowable_clefs = None
                     >>> accordion.allowable_clefs
-                    ClefMarkInventory([Clef('treble'), Clef('bass')])
+                    ClefInventory([Clef('treble'), Clef('bass')])
 
             Returns clef inventory.
             '''
