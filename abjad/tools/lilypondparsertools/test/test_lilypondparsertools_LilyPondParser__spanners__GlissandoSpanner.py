@@ -7,7 +7,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__spanners__GlissandoSpanner_01():
 
     target = Container([Note(0, 1), Note(0, 1)])
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, target[:])
     parser = LilyPondParser()
     result = parser(format(target))

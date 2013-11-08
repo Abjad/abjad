@@ -183,7 +183,7 @@ def test_scoretools_Container_reverse_09():
     attach(beam_1, container[0])
     beam_2 = Beam()
     attach(beam_2, container[1])
-    gliss = spannertools.GlissandoSpanner()
+    gliss = spannertools.Glissando()
     attach(gliss, container.select_leaves())
 
     assert testtools.compare(

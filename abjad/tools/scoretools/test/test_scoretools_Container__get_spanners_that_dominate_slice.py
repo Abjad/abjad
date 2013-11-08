@@ -9,7 +9,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_01():
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, voice[:2])
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
     assert testtools.compare(
@@ -37,7 +37,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_02():
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, voice[:2])
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
     assert testtools.compare(
@@ -66,7 +66,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_03():
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, voice[:2])
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
     assert testtools.compare(

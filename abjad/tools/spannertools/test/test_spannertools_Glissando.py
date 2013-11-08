@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_spannertools_GlissandoSpanner_01():
+def test_spannertools_Glissando_01():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, staff.select_leaves()[:4])
 
     assert testtools.compare(

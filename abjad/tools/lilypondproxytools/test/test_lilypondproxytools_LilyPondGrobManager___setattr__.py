@@ -348,7 +348,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___15():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, voice[:])
     override(glissando).glissando.thickness = 3
 

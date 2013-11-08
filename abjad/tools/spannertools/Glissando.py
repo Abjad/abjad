@@ -4,13 +4,13 @@ from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
-class GlissandoSpanner(Spanner):
+class Glissando(Spanner):
     r'''A glissando spanner.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> glissando = spannertools.GlissandoSpanner()
+        >>> glissando = spannertools.Glissando()
         >>> attach(glissando, staff[:])
         >>> show(staff) # doctest: +SKIP
 

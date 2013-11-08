@@ -704,7 +704,7 @@ class LilyPondParser(abctools.Parser):
             'BeamEvent': spannertools.Beam,
             'CrescendoEvent': spannertools.Hairpin,
             'DecrescendoEvent': spannertools.Hairpin,
-            'GlissandoEvent': spannertools.GlissandoSpanner,
+            'GlissandoEvent': spannertools.Glissando,
             'NoteGroupingEvent': spannertools.HorizontalBracketSpanner,
             'PhrasingSlurEvent': spannertools.PhrasingSlurSpanner,
             'SlurEvent': spannertools.Slur,

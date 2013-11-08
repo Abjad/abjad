@@ -12,7 +12,7 @@ class OverlappingGlissandoCheck(Check):
 
     def _run(self, expr):
         violators = []
-        spanner_classes = (spannertools.GlissandoSpanner,)
+        spanner_classes = (spannertools.Glissando,)
         for leaf in iterate(expr).by_class(scoretools.Leaf):
             glissandi = leaf._get_spanners(spanner_classes)
             if 1 < len(glissandi):

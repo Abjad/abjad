@@ -63,7 +63,7 @@ def test_mutationtools_ScoreMutationAgent_swap_02():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     voice.name = 'foo'
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, voice[:])
     beam = Beam()
     attach(beam, voice.select_leaves())
@@ -120,7 +120,7 @@ def test_mutationtools_ScoreMutationAgent_swap_03():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, voice[:])
     beam = Beam()
     attach(beam, voice.select_leaves())

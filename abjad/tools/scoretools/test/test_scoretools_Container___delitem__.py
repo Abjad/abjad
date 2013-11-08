@@ -213,7 +213,7 @@ def test_scoretools_Container___delitem___08():
     voice = Voice("c'8 { d'8 e'8 } f'8")
     beam = Beam()
     attach(beam, voice.select_leaves())
-    glissando = spannertools.GlissandoSpanner()
+    glissando = spannertools.Glissando()
     attach(glissando, voice.select_leaves())
 
     assert testtools.compare(
