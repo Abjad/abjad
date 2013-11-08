@@ -7,9 +7,9 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_01():
 
     target = Staff(scoretools.make_notes([0] * 5, [(1, 4)]))
-    hairpin = spannertools.HairpinSpanner(descriptor='<')
+    hairpin = HairpinSpanner(descriptor='<')
     attach(hairpin, target[:3])
-    hairpin = spannertools.HairpinSpanner(descriptor='>')
+    hairpin = HairpinSpanner(descriptor='>')
     attach(hairpin, target[2:])
     dynamic = marktools.DynamicMark('ppp')
     attach(dynamic, target[-1])
@@ -35,11 +35,11 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_01():
 def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_02():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    hairpin = spannertools.HairpinSpanner(descriptor='<')
+    hairpin = HairpinSpanner(descriptor='<')
     attach(hairpin, target[0:2])
-    hairpin = spannertools.HairpinSpanner(descriptor='<')
+    hairpin = HairpinSpanner(descriptor='<')
     attach(hairpin, target[1:3])
-    hairpin = spannertools.HairpinSpanner(descriptor='<')
+    hairpin = HairpinSpanner(descriptor='<')
     attach(hairpin, target[2:])
 
     assert testtools.compare(
@@ -65,9 +65,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_03():
     '''
 
     target = Staff(scoretools.make_notes([0] * 3, [(1, 4)]))
-    hairpin = spannertools.HairpinSpanner(descriptor='<')
+    hairpin = HairpinSpanner(descriptor='<')
     attach(hairpin, target[0:2])
-    hairpin = spannertools.HairpinSpanner(descriptor='>')
+    hairpin = HairpinSpanner(descriptor='>')
     attach(hairpin, target[1:])
     dynamic = marktools.DynamicMark('p')
     attach(dynamic, target[1])
@@ -120,9 +120,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_07():
     '''
 
     target = Staff(scoretools.make_notes([0] * 5, [(1, 4)]))
-    hairpin = spannertools.HairpinSpanner(descriptor='<', direction=Up)
+    hairpin = HairpinSpanner(descriptor='<', direction=Up)
     attach(hairpin, target[:3])
-    hairpin = spannertools.HairpinSpanner(descriptor='>', direction=Down)
+    hairpin = HairpinSpanner(descriptor='>', direction=Down)
     attach(hairpin, target[2:])
     dynamic = marktools.DynamicMark('ppp')
     attach(dynamic, target[-1])

@@ -105,7 +105,7 @@ def test_mutationtools_AttributeInspectionAgent_get_mark_09():
 def test_mutationtools_AttributeInspectionAgent_get_mark_10():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    slur = spannertools.SlurSpanner()
+    slur = SlurSpanner()
     attach(slur, staff.select_leaves())
     command_1 = marktools.LilyPondCommandMark('slurDotted')
     attach(command_1, staff[0])

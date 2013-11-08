@@ -185,7 +185,7 @@ def test_scoretools_Leaf__split_by_duration_06():
     '''
 
     voice = Voice(r"c'8 \times 2/3 { d'8 e'8 f'8 }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice.select_leaves())
 
     assert testtools.compare(
@@ -351,7 +351,7 @@ def test_scoretools_Leaf__split_by_duration_13():
     '''
 
     staff = Staff(scoretools.make_repeated_notes(4))
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff.select_leaves())
 
     halves = staff[0]._split_by_duration(
@@ -362,7 +362,7 @@ def test_scoretools_Leaf__split_by_duration_13():
     assert len(staff) == 5
     for l in staff.select_leaves():
         assert inspect(l).get_spanners() == set([beam])
-        assert l._get_spanner(spannertools.BeamSpanner) is beam
+        assert l._get_spanner(BeamSpanner) is beam
 
     assert inspect(staff).is_well_formed()
 

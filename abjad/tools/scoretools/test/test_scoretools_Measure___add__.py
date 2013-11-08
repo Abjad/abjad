@@ -9,10 +9,10 @@ def test_scoretools_Measure___add___01():
     '''
 
     measure_1 = Measure((1, 8), "c'16 d'16")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
-    slur = spannertools.SlurSpanner()
+    slur = SlurSpanner()
     attach(slur, measure_2[:])
     new = measure_1 + measure_2
 
@@ -40,10 +40,10 @@ def test_scoretools_Measure___add___02():
     '''
 
     measure_1 = Measure((1, 8), "c'16 d'16")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
-    slur = spannertools.SlurSpanner()
+    slur = SlurSpanner()
     attach(slur, measure_2[:])
     staff = Staff([measure_1, measure_2])
 

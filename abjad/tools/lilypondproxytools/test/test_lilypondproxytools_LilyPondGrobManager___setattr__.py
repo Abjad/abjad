@@ -107,7 +107,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___05():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
     override(beam).beam.positions = (4, 4)
 
@@ -224,7 +224,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___10():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    hairpin = spannertools.HairpinSpanner(descriptor='p < f')
+    hairpin = HairpinSpanner(descriptor='p < f')
     attach(hairpin, voice[:])
     override(hairpin).dynamic_line_spanner.staff_padding = 4
 
@@ -272,7 +272,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___12():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
     dynamic_text_spanner = spannertools.DynamicTextSpanner(mark='f')
     attach(dynamic_text_spanner, voice[:])
@@ -799,7 +799,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___35():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
     override(beam).score.spacing_spanner.strict_grace_spacing = True
     override(beam).score.spacing_spanner.strict_note_spacing = True
@@ -834,7 +834,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___36():
     '''
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
     override(beam).score.spacing_spanner.strict_grace_spacing = True
     override(beam).score.spacing_spanner.strict_note_spacing = True
@@ -1260,7 +1260,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___53():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
     override(voice).tuplet_bracket.direction = Down
 
@@ -1286,7 +1286,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___54():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
     override(voice[1]).tuplet_bracket.direction = Down
 
@@ -1334,7 +1334,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___56():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
     override(voice).tuplet_number.fraction = True
 
@@ -1360,7 +1360,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___57():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
     override(voice[1]).tuplet_number.fraction = True
 
@@ -1385,7 +1385,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___58():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
     override(voice).tuplet_number.text = markuptools.Markup('6:4')
 

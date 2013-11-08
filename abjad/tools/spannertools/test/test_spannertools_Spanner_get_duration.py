@@ -14,11 +14,11 @@ def test_spannertools_Spanner_get_duration_01():
         )
     tempo = marktools.TempoMark(Duration(1, 8), 42, target_context=Voice)
     attach(tempo, voice)
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice.select_leaves())
-    crescendo = spannertools.CrescendoSpanner()
+    crescendo = CrescendoSpanner()
     attach(crescendo, voice[0][:])
-    decrescendo = spannertools.DecrescendoSpanner()
+    decrescendo = DecrescendoSpanner()
     attach(decrescendo, voice[1][:])
 
     assert testtools.compare(
@@ -53,11 +53,11 @@ def test_spannertools_Spanner_get_duration_02():
         [Measure((2, 12), "c'8 d'8"),
         Measure((2, 8), "c'8 d'8")]
         )
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice.select_leaves())
-    crescendo = spannertools.CrescendoSpanner()
+    crescendo = CrescendoSpanner()
     attach(crescendo, voice[0][:])
-    decrescendo = spannertools.DecrescendoSpanner()
+    decrescendo = DecrescendoSpanner()
     attach(decrescendo, voice[1][:])
 
     assert testtools.compare(

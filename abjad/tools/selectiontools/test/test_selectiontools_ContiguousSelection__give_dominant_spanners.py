@@ -11,11 +11,11 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    crescendo = spannertools.CrescendoSpanner()
+    crescendo = CrescendoSpanner()
     attach(crescendo, voice[:])
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:2])
-    slur = spannertools.SlurSpanner()
+    slur = SlurSpanner()
     attach(slur, voice[1:3])
 
     assert testtools.compare(
@@ -31,7 +31,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
         )
 
     recipient = Voice(scoretools.make_repeated_notes(3, Duration(1, 16)))
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, recipient[:])
 
     assert testtools.compare(
@@ -85,7 +85,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
 
     assert testtools.compare(

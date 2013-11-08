@@ -186,13 +186,13 @@ def test_selectiontools_Parentage_logical_voice_indicator_06():
     container[1].name = 'staff2'
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     statement = 'attach(beam, container.select_leaves())'
     assert pytest.raises(AssertionError, statement)
     leaves = container.select_leaves(allow_discontiguous_leaves=True)
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, leaves[:2])
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, leaves[2:])
 
     assert testtools.compare(

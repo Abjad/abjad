@@ -8,7 +8,7 @@ def test_marktools_LilyPondComment_right_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
     override(beam).beam.thickness = 3
     comment = marktools.LilyPondComment('Voice right comments here.', 'right')

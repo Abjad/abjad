@@ -2,12 +2,12 @@
 from abjad import *
 
 
-def test_spannertools_HairpinSpanner_include_rests_01():
+def test_HairpinSpanner_include_rests_01():
     r'''Hairpin spanner avoids rests.
     '''
 
     staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-    crescendo = spannertools.CrescendoSpanner(include_rests=False)
+    crescendo = CrescendoSpanner(include_rests=False)
     attach(crescendo, staff[:])
 
     assert testtools.compare(
@@ -29,12 +29,12 @@ def test_spannertools_HairpinSpanner_include_rests_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_spannertools_HairpinSpanner_include_rests_02():
+def test_HairpinSpanner_include_rests_02():
     r'''Hairpin spanner avoids rests.
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-    crescendo = spannertools.CrescendoSpanner(include_rests=False)
+    crescendo = CrescendoSpanner(include_rests=False)
     attach(crescendo, staff[:])
 
 

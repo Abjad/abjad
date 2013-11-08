@@ -10,9 +10,9 @@ def test_scoretools_Container_pop_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    slur = spannertools.SlurSpanner()
+    slur = SlurSpanner()
     attach(slur, voice[:])
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[1])
 
     assert testtools.compare(
@@ -54,7 +54,7 @@ def test_scoretools_Container_pop_02():
     '''
 
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
 
     assert testtools.compare(

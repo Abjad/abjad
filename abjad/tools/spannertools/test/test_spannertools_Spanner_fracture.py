@@ -29,7 +29,7 @@ def test_spannertools_Spanner_fracture_01():
         '''
         )
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
     original, left, right = beam.fracture(1, direction=Right)
 

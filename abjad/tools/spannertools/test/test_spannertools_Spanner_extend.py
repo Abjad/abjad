@@ -7,7 +7,7 @@ def test_spannertools_Spanner_extend_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[1])
 
     beam.extend(voice[2][:])
@@ -40,7 +40,7 @@ def test_spannertools_Spanner_extend_02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[1])
     beam.extend(voice[2:])
 

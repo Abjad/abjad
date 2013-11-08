@@ -9,7 +9,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_01():
     '''
 
     measure = Measure((2, 8), "c'8 d'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, measure[:])
 
     assert testtools.compare(
@@ -49,7 +49,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_02():
     '''
 
     measure = Measure((2, 8), "c'8 d'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, measure[:])
 
     assert testtools.compare(
@@ -91,7 +91,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_03():
     '''
 
     measure = Measure((2, 8), "c'8 d'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, measure[:])
 
     assert testtools.compare(
@@ -131,7 +131,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_04():
     '''
 
     measure = Measure((2, 8), "c'8 d'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, measure[:])
 
     assert testtools.compare(

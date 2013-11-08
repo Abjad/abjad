@@ -53,7 +53,7 @@ def test_scoretools_Skip___init___05():
     '''
 
     staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
     skip = scoretools.Skip(staff[0])
     assert isinstance(staff[0], Chord)
@@ -90,7 +90,7 @@ def test_scoretools_Skip___init___08():
     '''
 
     staff = Staff(Note(0, (1, 8)) * 3)
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
     skip = scoretools.Skip(staff[0])
     assert isinstance(staff[0], Note)
@@ -132,7 +132,7 @@ def test_scoretools_Skip___init___11():
     '''
 
     staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
     skip = scoretools.Skip(staff[1])
     assert isinstance(skip, scoretools.Skip)

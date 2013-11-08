@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_spannertools_HairpinSpanner_direction_01():
+def test_HairpinSpanner_direction_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    hairpin = spannertools.HairpinSpanner(descriptor='p < f', direction=Down)
+    hairpin = HairpinSpanner(descriptor='p < f', direction=Down)
     attach(hairpin, staff[:])
 
     assert testtools.compare(

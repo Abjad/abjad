@@ -3,18 +3,18 @@ import pytest
 from abjad import *
 
 
-def test_spannertools_BeamSpanner___init___01():
+def test_BeamSpanner___init___01():
     r'''Initalize empty beam spanner.
     '''
 
-    beam = spannertools.BeamSpanner()
-    assert isinstance(beam, spannertools.BeamSpanner)
+    beam = BeamSpanner()
+    assert isinstance(beam, BeamSpanner)
 
 
-def test_spannertools_BeamSpanner___init___02():
+def test_BeamSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:4])
 
     assert testtools.compare(
@@ -33,12 +33,12 @@ def test_spannertools_BeamSpanner___init___02():
     assert inspect(staff).is_well_formed()
 
 
-def test_spannertools_BeamSpanner___init___03():
+def test_BeamSpanner___init___03():
     r'''Empty container.
     '''
 
     container = Container([])
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, container)
 
     assert testtools.compare(
@@ -54,12 +54,12 @@ def test_spannertools_BeamSpanner___init___03():
     assert len(beam.leaves) == 0
 
 
-def test_spannertools_BeamSpanner___init___04():
+def test_BeamSpanner___init___04():
     r'''Nonempty container.
     '''
 
     container = Container("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, container)
 
     assert testtools.compare(
@@ -83,12 +83,12 @@ def test_spannertools_BeamSpanner___init___04():
     assert len(beam.leaves) == 8
 
 
-def test_spannertools_BeamSpanner___init___05():
+def test_BeamSpanner___init___05():
     r'''Nested nonempty containers.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
 
     assert testtools.compare(
@@ -117,12 +117,12 @@ def test_spannertools_BeamSpanner___init___05():
     assert len(beam.leaves) == 8
 
 
-def test_spannertools_BeamSpanner___init___06():
+def test_BeamSpanner___init___06():
     r'''Beamed container and top-level leaves housed in staff.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
 
     assert testtools.compare(
@@ -148,12 +148,12 @@ def test_spannertools_BeamSpanner___init___06():
     assert len(beam.leaves) == 6
 
 
-def test_spannertools_BeamSpanner___init___07():
+def test_BeamSpanner___init___07():
     r'''Beamed leaves housed in staff and container.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff.select_leaves())
 
     assert testtools.compare(
@@ -177,12 +177,12 @@ def test_spannertools_BeamSpanner___init___07():
     assert len(beam.leaves) == 6
 
 
-def test_spannertools_BeamSpanner___init___08():
+def test_BeamSpanner___init___08():
     r'''Staff with empty containers.
     '''
 
     staff = Staff("{} {} {}")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
 
     assert testtools.compare(
@@ -204,13 +204,13 @@ def test_spannertools_BeamSpanner___init___08():
     assert len(beam.leaves) == 0
 
 
-def test_spannertools_BeamSpanner___init___09():
+def test_BeamSpanner___init___09():
     r'''Staff with empty containers at the edges.
     '''
 
     staff = Staff(Container([]) * 2)
     staff.insert(1, Container(Note(0, (1, 8)) * 4))
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
 
     assert testtools.compare(
@@ -237,12 +237,12 @@ def test_spannertools_BeamSpanner___init___09():
     assert len(beam.leaves) == 4
 
 
-def test_spannertools_BeamSpanner___init___10():
+def test_BeamSpanner___init___10():
     r'''Deeply nested containers of equal depth.
     '''
 
     voice = Voice("{ { c'8 cs'8 d'8 ef'8 } } { { e'8 f'8 fs'8 g'8 } }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
 
     assert testtools.compare(
@@ -273,65 +273,65 @@ def test_spannertools_BeamSpanner___init___10():
     assert len(beam.leaves) == 8
 
     beam.detach()
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, [voice[0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
     beam.detach()
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, [voice[0][0], voice[1][0]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
     beam.detach()
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, [voice[0], voice[1][0]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
     beam.detach()
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, [voice[0][0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
 
-def test_spannertools_BeamSpanner___init___11():
+def test_BeamSpanner___init___11():
     r'''Deeply nested containers of unequal depth.
     '''
 
     voice = Voice("{ { { c'8 cs'8 d'8 ef'8 } } } { e'8 f'8 fs'8 g'8 }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
 
     # note that calling testtools.compare() here breaks Python's assertions
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, [voice[0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
     beam.detach()
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, [voice[0][0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
     beam.detach()
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, [voice[0][0][0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
     beam.detach()
 
 
-def test_spannertools_BeamSpanner___init___12():
+def test_BeamSpanner___init___12():
     r'''Voice with containers and top-level leaves.
     '''
 
     voice = Voice("{ c'8 cs'8 } d'8 { ef'8 e'8 }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
 
     assert testtools.compare(
@@ -356,12 +356,12 @@ def test_spannertools_BeamSpanner___init___12():
     beam.detach()
 
 
-def test_spannertools_BeamSpanner___init___13():
+def test_BeamSpanner___init___13():
     r'''Voice with tuplets and top-level leaves.
     '''
 
     voice = Voice(r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, voice[:])
 
     assert testtools.compare(
@@ -388,7 +388,7 @@ def test_spannertools_BeamSpanner___init___13():
     beam.detach()
 
 
-def test_spannertools_BeamSpanner___init___14():
+def test_BeamSpanner___init___14():
     r'''Nested tuplets.
     '''
 
@@ -409,19 +409,19 @@ def test_spannertools_BeamSpanner___init___14():
         '''
         )
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, tuplet)
     assert len(beam.components) == 1
     assert len(beam.leaves) == 5
     beam.detach()
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, tuplet[:])
     assert len(beam.components) == 3
     assert len(beam.leaves) == 5
 
 
-def test_spannertools_BeamSpanner___init___15():
+def test_BeamSpanner___init___15():
     r'''Beams cannot cross voice boundaries.
     '''
 
@@ -451,7 +451,7 @@ def test_spannertools_BeamSpanner___init___15():
         '''
         )
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     statement = 'attach(beam, [staff[0], staff[1]])'
     assert pytest.raises(Exception, statement)
 
@@ -459,14 +459,14 @@ def test_spannertools_BeamSpanner___init___15():
     assert pytest.raises(Exception, statement)
 
 
-def test_spannertools_BeamSpanner___init___16():
+def test_BeamSpanner___init___16():
     r'''You can span the counttime components of like-named voices.
     '''
 
     staff = Staff([Voice("c'8 cs'8 d'8 ef'8"), Voice("e'8 f'8 fs'8 g'8")])
     staff[0].name = 'foo'
     staff[1].name = 'foo'
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[0][:] + staff[1][:])
 
     assert testtools.compare(
@@ -493,7 +493,7 @@ def test_spannertools_BeamSpanner___init___16():
     assert len(beam.leaves) == 8
 
 
-def test_spannertools_BeamSpanner___init___17():
+def test_BeamSpanner___init___17():
     '''Like-named containers need not be lexically contiguous.
     '''
 
@@ -528,7 +528,7 @@ def test_spannertools_BeamSpanner___init___17():
         >>
         ''')
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, container[0][0][:] + container[1][1][:])
 
     assert testtools.compare(
@@ -571,7 +571,7 @@ def test_spannertools_BeamSpanner___init___17():
     assert len(beam.leaves) == 8
 
 
-def test_spannertools_BeamSpanner___init___18():
+def test_BeamSpanner___init___18():
     '''Asymmetric structures are no problem.
     '''
 
@@ -601,7 +601,7 @@ def test_spannertools_BeamSpanner___init___18():
         >>
         ''')
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, container[0][0][:] + container[1][0][:])
 
     assert testtools.compare(
@@ -638,13 +638,13 @@ def test_spannertools_BeamSpanner___init___18():
     assert len(beam.leaves) == 8
 
 
-def test_spannertools_BeamSpanner___init___19():
+def test_BeamSpanner___init___19():
     r'''Spanners will not inspect the contents of simultaneous containers.
     '''
 
     container = Container([])
     container.is_simultaneous = True
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, container)
 
     assert len(beam.components) == 1
@@ -659,7 +659,7 @@ def test_spannertools_BeamSpanner___init___19():
         )
 
 
-def test_spannertools_BeamSpanner___init___20():
+def test_BeamSpanner___init___20():
     r'''Notes in voice accept spanner even lodged within 
     simultaneous parent container.
     '''
@@ -682,7 +682,7 @@ def test_spannertools_BeamSpanner___init___20():
         >>
         ''')
 
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, container[0][:])
 
     assert testtools.compare(
@@ -708,7 +708,7 @@ def test_spannertools_BeamSpanner___init___20():
     assert len(beam.components) == 4
 
 
-def test_spannertools_BeamSpanner___init___21():
+def test_BeamSpanner___init___21():
     r'''You can not yet span noncontiguous counttime components
     in the same logical voice. Lilypond is happy with this situation, though.
     '''
@@ -762,12 +762,12 @@ def test_spannertools_BeamSpanner___init___21():
         )
 
     leaves = staff[:2] + staff[-2:]
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     statement = 'beam.attacch(leaves)'
     assert pytest.raises(Exception, statement)
 
 
-def test_spannertools_BeamSpanner___init___22():
+def test_BeamSpanner___init___22():
     r'''You can span counttime components in three chunks.
     '''
 
@@ -801,7 +801,7 @@ def test_spannertools_BeamSpanner___init___22():
         ''')
 
     leaves = staff[0][:] + staff[1][0][:] + staff[2][:]
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, leaves)
 
     assert testtools.compare(
@@ -842,7 +842,7 @@ def test_spannertools_BeamSpanner___init___22():
     assert len(beam.leaves) == 12
 
 
-def test_spannertools_BeamSpanner___init___23():
+def test_BeamSpanner___init___23():
     r'''You can not span across differently named voices.
     '''
 
@@ -871,6 +871,6 @@ def test_spannertools_BeamSpanner___init___23():
         )
 
     leaves = staff.select_leaves(allow_discontiguous_leaves=True)
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     statement = 'attach(beam, leaves)'
     assert pytest.raises(Exception, statement)

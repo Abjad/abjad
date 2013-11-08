@@ -155,7 +155,7 @@ def test_scoretools_Note___copy___07():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    crescendo = spannertools.CrescendoSpanner()
+    crescendo = CrescendoSpanner()
     attach(crescendo, staff[:4])
 
     assert testtools.compare(

@@ -20,7 +20,7 @@ def test_agenttools_IterationAgent_by_class_02():
 
 def test_agenttools_IterationAgent_by_class_03():
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    beam = spannertools.BeamSpanner()
+    beam = BeamSpanner()
     attach(beam, staff[:])
     assert testtools.compare(
         staff,
@@ -51,7 +51,7 @@ def test_agenttools_IterationAgent_by_class_03():
 
 def test_agenttools_IterationAgent_by_class_04():
     staff = Staff("c'8 d'8 e'8 f'8")
-    spanner = spannertools.BeamSpanner()
+    spanner = BeamSpanner()
     attach(spanner, staff[2:])
     components = iterate(spanner).by_class()
     components = list(components)
