@@ -2,7 +2,7 @@
 from abjad.tools.marktools.ContextMark import ContextMark
 
 
-class StaffChangeMark(ContextMark):
+class StaffChange(ContextMark):
     r'''A staff change.
 
     ::
@@ -35,9 +35,9 @@ class StaffChangeMark(ContextMark):
 
     ::
 
-        >>> staff_change = marktools.StaffChangeMark(lh_staff)
+        >>> staff_change = marktools.StaffChange(lh_staff)
         >>> attach(staff_change, rh_staff[2])
-        StaffChangeMark(Staff-"LHStaff"{1})(e'8)
+        StaffChange(Staff-"LHStaff"{1})(e'8)
         >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
@@ -107,7 +107,7 @@ class StaffChangeMark(ContextMark):
 
                 >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
                 >>> rh_staff.name = 'RHStaff'
-                >>> staff_change = marktools.StaffChangeMark(rh_staff)
+                >>> staff_change = marktools.StaffChange(rh_staff)
                 >>> staff_change.staff
                 Staff-"RHStaff"{4}
 

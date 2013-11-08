@@ -27,7 +27,7 @@ The same type of functions are likewise implemented for the following context ma
     marktools.Dynamic
     marktools.InstrumentMark
     marktools.KeySignature
-    marktools.StaffChangeMark
+    marktools.StaffChange
     marktools.TempoMark
     marktools.TimeSignatureMark
 

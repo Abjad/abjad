@@ -319,7 +319,7 @@ class Component(AbjadObject):
         from abjad.tools import marktools
         from abjad.tools import scoretools
         staff_change_mark = self._get_effective_context_mark(
-            marktools.StaffChangeMark)
+            marktools.StaffChange)
         if staff_change_mark is not None:
             effective_staff = staff_change_mark.staff
         else:
