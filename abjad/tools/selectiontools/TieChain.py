@@ -2,6 +2,8 @@
 import itertools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import mutate
 from abjad.tools.selectiontools.ContiguousSelection \
     import ContiguousSelection
@@ -32,7 +34,6 @@ class TieChain(ContiguousSelection):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools import scoretools
-        from abjad.tools.topleveltools import attach
         new_written_duration = durationtools.Duration(new_written_duration)
         if new_written_duration.is_assignable:
             self[0].written_duration = new_written_duration
@@ -44,6 +45,7 @@ class TieChain(ContiguousSelection):
             first = self[0]
             for spanner in first._get_spanners(spannertools.TieSpanner):
                 spanner.detach()
+            #detach(spannertools.TieSpanner, first)
         elif new_written_duration.has_power_of_two_denominator:
             durations = scoretools.make_notes(0, [new_written_duration])
             for leaf, token in zip(self, durations):
@@ -59,6 +61,7 @@ class TieChain(ContiguousSelection):
             elif len(self) < len(durations):
                 for spanner in self[0]._get_spanners(spannertools.TieSpanner):
                     spanner.detach()
+                #detach(spannertools.TieSpanner, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
@@ -368,6 +371,7 @@ class TieChain(ContiguousSelection):
         # untie tuplet
         for spanner in tuplet._get_spanners(spannertools.TieSpanner):
             spanner.detach()
+        #detach(spannertools.TieSpanner, tuplet)
 
         # return tuplet
         return tuplet

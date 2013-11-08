@@ -8,7 +8,9 @@ from abjad.tools import lilypondproxytools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import setting
 from abjad.tools.abctools import AbjadObject
@@ -97,11 +99,10 @@ class Component(AbjadObject):
 
         Returns list of new components.
         '''
-        from abjad.tools.topleveltools import mutate
+        from abjad.tools import spannertools
         result = mutate(self).copy(n=n)
         for component in iterate(result).by_class():
-            for spanner in component._get_spanners():
-                spanner.detach()
+            detach(spannertools.Spanner, component)
         if isinstance(result, type(self)):
             result = [result]
         else:
@@ -476,16 +477,41 @@ class Component(AbjadObject):
         else:
             raise ExtraSpannerError
 
+#    def _get_spanners(self, spanner_classes=None):
+#        from abjad.tools import spannertools
+#        spanner_classes = spanner_classes or (spannertools.Spanner,)
+#        if not isinstance(spanner_classes, tuple):
+#            spanner_classes = (spanner_classes, )
+#        spanners = set()
+#        for spanner in set(self._spanners):
+#            if isinstance(spanner, spanner_classes):
+#                spanners.add(spanner)
+#        return spanners
+
     def _get_spanners(self, spanner_classes=None):
         from abjad.tools import spannertools
         spanner_classes = spanner_classes or (spannertools.Spanner,)
         if not isinstance(spanner_classes, tuple):
             spanner_classes = (spanner_classes, )
-        spanners = set()
+        spanner_items = spanner_classes[:]
+        spanner_classes, spanner_objects = [], []
+        for spanner_item in spanner_items:
+            if isinstance(spanner_item, types.TypeType):
+                spanner_classes.append(spanner_item)
+            elif isinstance(spanner_item, spannertools.Spanner):
+                spanner_objects.append(spanner_item)
+            else:
+                message = 'must be spanner class or spanner object: {!r}'
+                message = message.format(spanner_item)
+        spanner_classes = tuple(spanner_classes)
+        spanner_objects = tuple(spanner_objects)
+        matching_spanners = set()
         for spanner in set(self._spanners):
             if isinstance(spanner, spanner_classes):
-                spanners.add(spanner)
-        return spanners
+                matching_spanners.add(spanner)
+            elif any(spanner == x for x in spanner_objects):
+                matching_spanners.add(spanner)
+        return matching_spanners
 
     def _get_timespan(self, in_seconds=False):
         if in_seconds:
@@ -566,8 +592,7 @@ class Component(AbjadObject):
                     parent_time_signature.denominator)
                 better_time_signature = marktools.TimeSignatureMark(
                     better_time_signature)
-                for mark in parent._get_marks(marktools.TimeSignatureMark):
-                    mark.detach()
+                detach(marktools.TimeSignatureMark, parent)
                 attach(better_time_signature, parent)
                 parent_time_signature = parent._get_mark(
                     marktools.TimeSignatureMark)

@@ -97,7 +97,6 @@ def test_spannertools_Spanner___getitem___03():
 
 def test_spannertools_Spanner___getitem___04():
     r'''Get all spanner components.
-    Equivalent to beam.detach().
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")

@@ -2,6 +2,8 @@
 from abjad.tools import marktools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 
 
 # TODO: implement scoretools.set_measure_denominator_and_adjust_contents().
@@ -44,17 +46,16 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
     Return `measure`.
     '''
     from abjad.tools import scoretools
-    from abjad.tools.topleveltools import attach
 
     if isinstance(measure, scoretools.Measure):
         # to allow iteration inside zero-update loop
         old_time_signature = measure.time_signature
-        old_time_signature_pair = (old_time_signature.numerator, old_time_signature.denominator)
+        old_time_signature_pair = (
+            old_time_signature.numerator, old_time_signature.denominator)
         new_time_signature = mathtools.NonreducedFraction(old_time_signature_pair)
         new_time_signature = new_time_signature.with_denominator(denominator)
         new_time_signature = marktools.TimeSignatureMark(new_time_signature)
-        for mark in measure._get_marks(marktools.TimeSignatureMark):
-            mark.detach()
+        detach(marktools.TimeSignatureMark, measure)
         attach(new_time_signature, measure)
 
     return measure

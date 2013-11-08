@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.topleveltools import detach
 
 
 # TODO: fix bug in function that causes tied notes to become untied
@@ -98,9 +99,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         else:
             current_time_signature = \
                 marktools.TimeSignatureMark(current_time_signature)
-            for mark in current_measure._get_marks(
-                marktools.TimeSignatureMark):
-                mark.detach()
+            detach(marktools.TimeSignatureMark, current_measure)
             attach(current_time_signature, current_measure)
             scoretools.append_spacer_skips_to_underfull_measures_in_expr(
                 [current_measure])
@@ -117,8 +116,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     # restore last iterated measure
     current_time_signature = \
         marktools.TimeSignatureMark(current_time_signature)
-    for mark in current_measure._get_marks(marktools.TimeSignatureMark):
-        mark.detach()
+    detach(marktools.TimeSignatureMark, current_measure)
     attach(current_time_signature, current_measure)
     scoretools.append_spacer_skips_to_underfull_measures_in_expr(
         current_measure)

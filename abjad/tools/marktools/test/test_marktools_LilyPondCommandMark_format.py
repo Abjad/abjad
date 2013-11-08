@@ -88,13 +88,13 @@ def test_marktools_LilyPondCommandMark_format_05():
 
 
 def test_marktools_LilyPondCommandMark_format_06():
-    r'''Add and then remove natural harmonic.
+    r'''Add then detach natural harmonic.
     '''
 
     note = Note("c'4")
     command = marktools.LilyPondCommandMark('flageolet', 'right')
     attach(command, note)
-    inspect(note).get_mark().detach()
+    detach(command, note)
     assert format(note) == "c'4"
 
 
@@ -175,7 +175,7 @@ def test_marktools_LilyPondCommandMark_format_10():
         '''
         )
 
-    inspect(voice[0]).get_mark().detach()
+    detach(command, voice[0])
     command = marktools.LilyPondCommandMark('voiceTwo')
     attach(command, voice[0])
     assert testtools.compare(
@@ -191,7 +191,7 @@ def test_marktools_LilyPondCommandMark_format_10():
         '''
         )
 
-    inspect(voice[0]).get_mark().detach()
+    detach(command, voice[0])
     command = marktools.LilyPondCommandMark('voiceThree')
     attach(command, voice[0])
     assert testtools.compare(
@@ -207,7 +207,7 @@ def test_marktools_LilyPondCommandMark_format_10():
         '''
         )
 
-    inspect(voice[0]).get_mark().detach()
+    detach(command, voice[0])
     command = marktools.LilyPondCommandMark('voiceFour')
     attach(command, voice[0])
     assert testtools.compare(
@@ -223,7 +223,7 @@ def test_marktools_LilyPondCommandMark_format_10():
         '''
         )
 
-    inspect(voice[0]).get_mark().detach()
+    detach(command, voice[0])
     assert testtools.compare(
         voice,
         r'''

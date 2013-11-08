@@ -265,9 +265,7 @@ def test_mutationtools_ScoreMutationAgent_copy_05():
     new_selection = mutate(selection).copy()
     new_voice = new_selection[0]
     for component in iterate(new_voice).by_class():
-        spanners = inspect(component).get_spanners()
-        for spanner in spanners:
-            spanner.detach()
+        detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
@@ -341,9 +339,7 @@ def test_mutationtools_ScoreMutationAgent_copy_06():
     result = mutate(voice[1:]).copy()
     new_voice = Voice(result)
     for component in iterate(new_voice).by_class():
-        spanners = inspect(component).get_spanners()
-        for spanner in spanners:
-            spanner.detach()
+        detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
@@ -413,9 +409,7 @@ def test_mutationtools_ScoreMutationAgent_copy_07():
     result = mutate(voice.select_leaves()[:6]).copy()
     new_voice = Voice(result)
     for component in iterate(new_voice).by_class():
-        spanners = inspect(component).get_spanners()
-        for spanner in spanners:
-            spanner.detach()
+        detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
@@ -476,9 +470,7 @@ def test_mutationtools_ScoreMutationAgent_copy_08():
     result = mutate(voice[-2:]).copy()
     new_voice = Voice(result)
     for component in iterate(new_voice).by_class():
-        spanners = inspect(component).get_spanners()
-        for spanner in spanners:
-            spanner.detach()
+        detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(
@@ -544,9 +536,7 @@ def test_mutationtools_ScoreMutationAgent_copy_09():
     result = mutate(voice[-2:]).copy(n=3)
     new_voice = Voice(result)
     for component in iterate(new_voice).by_class():
-        spanners = inspect(component).get_spanners()
-        for spanner in spanners:
-            spanner.detach()
+        detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
     assert testtools.compare(

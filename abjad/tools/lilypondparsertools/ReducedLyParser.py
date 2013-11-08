@@ -14,6 +14,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 
 
 class ReducedLyParser(abctools.Parser):
@@ -596,16 +597,14 @@ class ReducedLyParser(abctools.Parser):
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:
-            for annotation in leaf._get_marks(marktools.Annotation):
-                annotation.detach()
+            detach(marktools.Annotation, leaf)
         if 1 < self._toplevel_component_count:
             return parsed
         return parsed[0]
 
     def _get_span_events(self, leaf):
         annotations = leaf._get_marks(marktools.Annotation)
-        for annotation in annotations:
-            annotation.detach()
+        detach(marktools.Annotation, leaf)
         annotations = [x for x in annotations if x.name == 'post events']
         if annotations:
             return annotations[0].value

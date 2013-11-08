@@ -26,7 +26,7 @@ def test_BeamSpanner_detach_01():
         '''
         )
 
-    beam.detach()
+    detach(beam, staff[0])
 
     assert testtools.compare(
         staff,
@@ -71,7 +71,7 @@ def test_BeamSpanner_detach_02():
         '''
         )
 
-    beam.detach()
+    detach(beam, staff[0])
 
     assert testtools.compare(
         staff,

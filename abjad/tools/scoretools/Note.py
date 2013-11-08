@@ -2,6 +2,7 @@
 import copy
 import re
 from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.topleveltools import detach
 
 
 class Note(Leaf):
@@ -131,10 +132,8 @@ class Note(Leaf):
         pitch = pitchtools.NamedPitch(pitch)
         treble = copy.copy(self)
         bass = copy.copy(self)
-        for mark in treble._get_marks(mark_classes=markuptools.Markup):
-            mark.detach()
-        for mark in bass._get_marks(mark_classes=markuptools.Markup):
-            mark.detach()
+        detach(markuptools.Markup, treble)
+        detach(markuptools.Markup, bass)
         if treble.written_pitch < pitch:
             treble = scoretools.Rest(treble)
         if pitch <= bass.written_pitch:

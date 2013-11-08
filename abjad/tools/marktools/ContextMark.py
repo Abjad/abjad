@@ -73,7 +73,7 @@ class ContextMark(Mark):
         self._update_effective_context()
 
     def _detach(self):
-        Mark.detach(self)
+        Mark._detach(self)
         self._unbind_effective_context()
         return self
 

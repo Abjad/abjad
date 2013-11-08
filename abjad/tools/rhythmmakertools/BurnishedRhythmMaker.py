@@ -12,6 +12,7 @@ from abjad.tools import spannertools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 
 
@@ -207,9 +208,11 @@ class BurnishedRhythmMaker(RhythmMaker):
             # this is voodoo to temporarily neuter the contiguity constraint
             tie_spanner._contiguity_constraint = None
             for component in part:
+                # TODO: make top-level detach() work here
                 for spanner in component._get_spanners(
                     spanner_classes=spanner_classes):
                     spanner.detach()
+                #detach(spanner_classes, component)
             tie_spanner.extend(part)
 
     def _burnish_division_part(self, division_part, indicator):

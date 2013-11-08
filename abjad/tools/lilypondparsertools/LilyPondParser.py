@@ -19,6 +19,7 @@ from abjad.tools import scoretools
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 
 
 # apply monkey patch
@@ -595,8 +596,7 @@ class LilyPondParser(abctools.Parser):
 
     def _get_span_events(self, leaf):
         annotations = leaf._get_marks(marktools.Annotation)
-        for annotation in annotations:
-            annotation.detach()
+        detach(marktools.Annotation, leaf)
         if annotations:
             spanners_annotations = [
                 x for x in annotations if x.name == 'spanners']

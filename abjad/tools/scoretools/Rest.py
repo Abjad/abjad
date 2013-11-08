@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.topleveltools import detach
 
 
 class Rest(Leaf):
@@ -76,10 +77,8 @@ class Rest(Leaf):
         from abjad.tools import pitchtools
         treble = copy.copy(self)
         bass = copy.copy(self)
-        for mark in treble._get_marks(mark_classes=markuptools.Markup):
-            mark.detach()
-        for mark in bass._get_marks(mark_classes=markuptools.Markup):
-            mark.detach()
+        detach(markuptools.Markup, treble)
+        detach(markuptools.Markup, bass)
         up_markup = self._get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
         down_markup = self._get_markup(direction=Down)

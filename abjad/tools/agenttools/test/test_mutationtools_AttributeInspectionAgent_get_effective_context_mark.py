@@ -75,7 +75,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_05():
     clef = ClefMark('bass')
     attach(clef, staff[4])
     clef = inspect(staff[4]).get_effective_context_mark(ClefMark)
-    clef.detach()
+    detach(clef, staff[4])
 
     for note in staff:
         clef = inspect(note).get_effective_context_mark(ClefMark)
@@ -152,7 +152,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_08():
     clef = ClefMark('alto')
     attach(clef, staff[0])
     clef = inspect(staff[0]).get_effective_context_mark(ClefMark)
-    clef.detach()
+    detach(clef, staff[0])
 
     for leaf in staff:
         clef = inspect(leaf).get_effective_context_mark(ClefMark)
@@ -340,7 +340,7 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_16():
     staff = Staff([Note("c'4")])
     tempo = TempoMark(Duration(1, 8), 38, target_context=Staff)
     attach(tempo, staff[0])
-    tempo.detach()
+    detach(tempo, staff[0])
 
     assert testtools.compare(
         staff,
@@ -392,13 +392,13 @@ def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_18():
 
 
 def test_mutationtools_AttributeInspectionAgent_get_effective_context_mark_19():
-    r'''InputSetExpression and then clearing works as expected.
+    r'''Attach then detach.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     time_signature = TimeSignatureMark((2, 8))
     attach(time_signature, staff[0])
-    time_signature.detach()
+    detach(time_signature, staff[0])
 
     assert testtools.compare(
         staff,

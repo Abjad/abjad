@@ -10,7 +10,7 @@ def test_marktools_BendAfter_format_01():
     bend = marktools.BendAfter(8)
     attach(bend, note)
     assert format(note) == "cs'4 - \\bendAfter #'8.0"
-    inspect(note).get_mark(marktools.BendAfter).detach()
+    detach(marktools.BendAfter, note)
     assert format(note) == "cs'4"
 
 
@@ -22,7 +22,7 @@ def test_marktools_BendAfter_format_02():
     bend = marktools.BendAfter(8)
     attach(bend, chord)
     assert format(chord) == "<cs' d' ef'>4 - \\bendAfter #'8.0"
-    inspect(chord).get_mark(marktools.BendAfter).detach()
+    detach(marktools.BendAfter, chord)
     assert format(chord) == "<cs' d' ef'>4"
 
 
@@ -34,5 +34,5 @@ def test_marktools_BendAfter_format_03():
     bend = marktools.BendAfter(8)
     attach(bend, rest)
     assert format(rest) == "r4 - \\bendAfter #'8.0"
-    inspect(rest).get_mark(marktools.BendAfter).detach()
+    detach(marktools.BendAfter, rest)
     assert format(rest) == "r4"

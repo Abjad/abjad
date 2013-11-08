@@ -2,6 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 
 
@@ -45,8 +46,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 numerator = time_signature_rational.numerator * reduced_denominator
                 denominator = time_signature_rational.denominator * reduced_denominator
                 time_signature = marktools.TimeSignatureMark((numerator, denominator))
-                for mark in measure._get_marks(marktools.TimeSignatureMark):
-                    mark.detach()
+                detach(marktools.TimeSignatureMark, measure)
                 attach(time_signature, measure)
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation

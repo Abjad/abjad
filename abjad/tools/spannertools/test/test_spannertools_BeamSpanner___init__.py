@@ -311,19 +311,19 @@ def test_BeamSpanner___init___11():
     attach(beam, [voice[0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
-    beam.detach()
+    detach(beam, voice[0])
 
     beam = BeamSpanner()
     attach(beam, [voice[0][0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
-    beam.detach()
+    detach(beam, voice[0][0])
 
     beam = BeamSpanner()
     attach(beam, [voice[0][0][0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
-    beam.detach()
+    detach(beam, voice[0][0][0])
 
 
 def test_BeamSpanner___init___12():
@@ -353,8 +353,7 @@ def test_BeamSpanner___init___12():
 
     assert len(beam.components) == 3
     assert len(beam.leaves) == 5
-    beam.detach()
-
+    detach(beam, voice[0])
 
 def test_BeamSpanner___init___13():
     r'''Voice with tuplets and top-level leaves.
@@ -385,7 +384,7 @@ def test_BeamSpanner___init___13():
 
     assert len(beam.components) == 3
     assert len(beam.leaves) == 7
-    beam.detach()
+    detach(beam, voice[0])
 
 
 def test_BeamSpanner___init___14():
@@ -413,7 +412,7 @@ def test_BeamSpanner___init___14():
     attach(beam, tuplet)
     assert len(beam.components) == 1
     assert len(beam.leaves) == 5
-    beam.detach()
+    detach(beam, tuplet)
 
     beam = BeamSpanner()
     attach(beam, tuplet[:])

@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 
 
@@ -39,7 +40,7 @@ def remove_markup_from_leaves_in_expr(expr):
 
     Returns none.
     '''
+    from abjad.tools import markuptools
 
     for leaf in iterate(expr).by_class(scoretools.Leaf):
-        for markup in leaf._get_markup():
-            markup.detach()
+        detach(markuptools.Markup, leaf)

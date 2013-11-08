@@ -5,7 +5,10 @@ from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import select
 from abjad.tools.topleveltools import setting
 from abjad.tools.scoretools.Component import Component
 
@@ -431,12 +434,11 @@ class Leaf(Component):
         fracture_spanners=False,
         tie_split_notes=True,
         ):
+        from abjad.tools import marktools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools.topleveltools import iterate
-        from abjad.tools.topleveltools import select
         durations = [durationtools.Duration(x) for x in durations]
         if cyclic:
             durations = sequencetools.repeat_sequence_to_weight_exactly(
@@ -463,9 +465,11 @@ class Leaf(Component):
         if parentage._get_spanners(spanner_classes=spanner_classes):
             selection = select(flattened_result)
             for component in selection:
+                # TODO: make top-level detach() work here
                 for mark in component._get_spanners(
                     spanner_classes=spanner_classes):
                     mark.detach()
+                #detach(spanner_classes, component)
         # replace leaf with flattened result
         selection = selectiontools.SliceSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
@@ -498,13 +502,11 @@ class Leaf(Component):
         for middle_leaf in flattened_result[1:-1]:
             middle_leaf._detach_grace_containers(kind='grace')
             self._detach_grace_containers(kind='after')
-            for mark in middle_leaf._get_marks():
-                mark.detach()
+            detach(marktools.Mark, middle_leaf)
         # adjust last leaf
         last_leaf = flattened_result[-1]
         last_leaf._detach_grace_containers(kind='grace')
-        for mark in last_leaf._get_marks():
-            mark.detach()
+        detach(marktools.Mark, last_leaf)
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterate(flattened_result).by_class(
@@ -526,6 +528,7 @@ class Leaf(Component):
         fracture_spanners=False,
         tie_split_notes=True,
         ):
+        from abjad.tools import marktools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         # check input
@@ -546,8 +549,7 @@ class Leaf(Component):
         self._detach_grace_containers(kind='after')
         # adjust new leaf
         new_leaf._detach_grace_containers(kind='grace')
-        for mark in new_leaf._get_marks():
-            mark.detach()
+        detach(marktools.Mark, new_leaf)
         left_leaf_list = self._set_duration(preprolated_duration)
         right_preprolated_duration = \
             leaf_multiplied_duration - preprolated_duration
