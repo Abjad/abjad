@@ -35,11 +35,11 @@ class PersistenceAgent(object):
 
                 >>> staff = Staff("c'4 e'4 d'4 f'4")
                 >>> persist(staff)
-                PersistenceAgent(Staff("c'4 e'4 d'4 f'4"))
+                PersistenceAgent(Staff{4})
 
         Returns string.
         '''
-        return '{}({})'.format(
+        return '{}({!s})'.format(
             type(self).__name__,
             self._client,
             )
