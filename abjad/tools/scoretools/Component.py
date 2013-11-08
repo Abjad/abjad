@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
+import types
 from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools import lilypondproxytools
@@ -377,6 +378,7 @@ class Component(AbjadObject):
     def _get_lineage(self):
         return selectiontools.Lineage(self)
 
+    # TODO: rename mark_classes=None to mark_items=None
     def _get_mark(self, mark_classes=None):
         marks = self._get_marks(mark_classes=mark_classes)
         if not marks:
@@ -386,16 +388,31 @@ class Component(AbjadObject):
         else:
             return marks[0]
 
+    # TODO: rename mark_classes=None to mark_items=None
     def _get_marks(self, mark_classes=None):
         from abjad.tools import marktools
         mark_classes = mark_classes or (marktools.Mark,)
         if not isinstance(mark_classes, tuple):
             mark_classes = (mark_classes,)
-        marks = []
+        mark_items = mark_classes[:]
+        mark_classes, mark_objects = [], []
+        for mark_item in mark_items:
+            if isinstance(mark_item, types.TypeType):
+                mark_classes.append(mark_item)
+            elif isinstance(mark_item, marktools.Mark):
+                mark_objects.append(mark_item)
+            else:
+                message = 'must be mark class or mark object: {!r}'
+                message = message.format(mark_item)
+        mark_classes = tuple(mark_classes)
+        mark_objects = tuple(mark_objects)
+        matching_marks = []
         for mark in self._start_marks:
             if isinstance(mark, mark_classes):
-                marks.append(mark)
-        return tuple(marks)
+                matching_marks.append(mark)
+            elif any(mark == x for x in mark_objects):
+                matching_marks.append(mark)
+        return tuple(matching_marks)
 
     def _get_markup(self, direction=None):
         from abjad.tools import markuptools

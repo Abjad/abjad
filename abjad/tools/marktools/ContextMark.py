@@ -72,6 +72,11 @@ class ContextMark(Mark):
         Mark._bind_start_component(self, start_component)
         self._update_effective_context()
 
+    def _detach(self):
+        Mark.detach(self)
+        self._unbind_effective_context()
+        return self
+
     def _find_correct_effective_context(self):
         from abjad.tools import scoretools
         target_context = self.target_context

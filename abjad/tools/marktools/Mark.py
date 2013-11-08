@@ -93,6 +93,10 @@ class Mark(AbjadObject):
         start_component._start_marks.append(self)
         self._start_component = start_component
 
+    def _detach(self):
+        self._unbind_start_component()
+        return self
+
     def _unbind_start_component(self):
         start_component = self._start_component
         if start_component is not None:

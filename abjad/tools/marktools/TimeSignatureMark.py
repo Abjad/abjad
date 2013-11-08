@@ -488,28 +488,6 @@ class TimeSignatureMark(ContextMark):
             raise ExtraMarkError(message)
         return marktools.Mark._attach(self, start_component)
 
-    def detach(self):
-        r'''Detaches time signature mark.
-
-        ::
-
-            >>> time_signature = marktools.TimeSignatureMark((3, 8))
-            >>> staff = Staff()
-
-        ::
-
-            >>> attach(time_signature, staff)
-            TimeSignatureMark((3, 8))(Staff{})
-
-        ::
-
-            >>> time_signature.detach()
-            TimeSignatureMark((3, 8))
-
-        Returns time signature mark.
-        '''
-        return ContextMark.detach(self)
-
     def with_power_of_two_denominator(self, 
         contents_multiplier=durationtools.Multiplier(1)):
         r'''Create new time signature equivalent to current

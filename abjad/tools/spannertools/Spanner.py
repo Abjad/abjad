@@ -164,6 +164,17 @@ class Spanner(AbjadObject):
             statement = statement.format(*strings)
             exec(statement)
 
+    def _attach(self, components):
+        from abjad.tools import scoretools
+        from abjad.tools import selectiontools
+        assert not self, repr(self)
+        if isinstance(components, scoretools.Component):
+            self.append(components)
+        elif isinstance(components, (list, tuple, selectiontools.Selection)):
+            self.extend(components)
+        else:
+            raise TypeError(components)
+
     def _block_all_components(self):
         r'''Not composer-safe.
         '''
@@ -194,6 +205,9 @@ class Spanner(AbjadObject):
     @abc.abstractmethod
     def _copy_keyword_args(self, new):
         raise NotImplemented
+
+    def _detach(self):
+        self._sever_all_components()
 
     def _duration_offset_in_me(self, leaf):
         leaf_start_offset = leaf._get_timespan().start_offset
@@ -463,23 +477,6 @@ class Spanner(AbjadObject):
             components)
         component._spanners.add(self)
         self._components.insert(0, component)
-
-    def _attach(self, components):
-        r'''Attaches spanner to `components`.
-
-        Spanner must be empty.
-
-        Returns none.
-        '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        assert not self, repr(self)
-        if isinstance(components, scoretools.Component):
-            self.append(components)
-        elif isinstance(components, (list, tuple, selectiontools.Selection)):
-            self.extend(components)
-        else:
-            raise TypeError(components)
 
     def detach(self):
         r'''Detaches spanner.

@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import types
 from abjad.tools import durationtools
 
 
@@ -32,6 +33,33 @@ class InspectionAgent(object):
             )
 
     ### PUBLIC METHODS ###
+
+    def detach(self, expr=None):
+        r'''Detaches all marks and all spanners equal to `expr`.
+
+        Returns tuple of marks and spanners detached.
+        '''
+        from abjad.tools import marktools
+        from abjad.tools import spannertools
+        marks, spanners = [], []
+        if isinstance(expr, types.TypeType):
+            if issubclass(expr, marktools.Mark):
+                marks = self.get_marks(expr)
+            if issubclass(expr, spannertools.Spanner):
+                spaners = self.get_spanners(expr)
+        #if isinstance(expr, types.InstanceType):
+        else:
+            if isinstance(expr, marktools.Mark):
+                marks = self.get_marks(expr)
+            elif isinstance(expr, spannertools.Spanner):
+                spanners = self.get_spanners(expr)
+        attachables = []
+        attachables.extend(marks)
+        attachables.extend(spanners)
+        for attachable in attachables:
+            attachable._detach()
+        attachables = tuple(attachables)
+        return attachables
 
     def get_annotation(
         self,
@@ -302,6 +330,7 @@ class InspectionAgent(object):
         '''
         return self._component._get_lineage()
 
+    # TODO: rename mark_classes=None to mark_items=None
     def get_mark(
         self,
         mark_classes=None,
@@ -311,17 +340,22 @@ class InspectionAgent(object):
         Raises exception when no mark of `mark_classes` is attached
         to component.
 
+        .. note:: may now pass in both classes and objects.
+
         Returns mark.
         '''
         return self._component._get_mark(
             mark_classes=mark_classes,
             )
 
+    # TODO: rename mark_classes=None to mark_items=None
     def get_marks(
         self,
         mark_classes=None,
         ):
         r'''Get all marks of `mark_classes` attached to component.
+
+        .. note:: may now pass in both classes and objects.
 
         Returns tuple.
         '''

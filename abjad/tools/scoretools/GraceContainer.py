@@ -120,10 +120,26 @@ class GraceContainer(Container):
 
     ### PRIVATE METHODS ###
 
+    def _attach(self, leaf):
+        return self(leaf)
+
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Container._copy_with_marks_but_without_children_or_spanners(self)
         new.kind = self.kind
         return new
+
+    def _detach(self):
+        if self._carrier is not None:
+            carrier = self._carrier
+            if self.kind == 'after':
+                delattr(carrier, '_after_grace')
+                delattr(carrier, 'after_grace')
+            else:
+                delattr(carrier, '_grace')
+                delattr(carrier, 'grace')
+            self._carrier = None
+            self[:] = []
+        return self
 
     def _format_open_brackets_slot(self, format_contributions):
         result = []
@@ -185,13 +201,6 @@ class GraceContainer(Container):
         return property(**locals())
 
     ### PUBLIC METHODS ###
-
-    def _attach(self, leaf):
-        r'''Attaches grace container to `leaf`.
-
-        Returns grace container.
-        '''
-        return self(leaf)
 
     def detach(self):
         r'''Detaches grace container from leaf.
