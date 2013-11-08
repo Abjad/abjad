@@ -6,7 +6,7 @@ def test_ClefMark_clef_name_01():
     r'''Clef name is read / write.
     '''
 
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     assert clef.clef_name == 'treble'
 
     clef.clef_name = 'alto'

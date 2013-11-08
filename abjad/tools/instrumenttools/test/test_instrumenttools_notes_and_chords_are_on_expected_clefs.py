@@ -5,7 +5,7 @@ from abjad import *
 def test_instrumenttools_notes_and_chords_are_on_expected_clefs_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff)
     violin = instrumenttools.Violin()
     attach(violin, staff)
@@ -13,7 +13,7 @@ def test_instrumenttools_notes_and_chords_are_on_expected_clefs_01():
     assert instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = ClefMark('alto')
+    clef = Clef('alto')
     attach(clef, staff)
     violin = instrumenttools.Violin()
     attach(violin, staff)
@@ -24,7 +24,7 @@ def test_instrumenttools_notes_and_chords_are_on_expected_clefs_01():
 def test_instrumenttools_notes_and_chords_are_on_expected_clefs_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff)
     bassoon = instrumenttools.Bassoon()
     attach(bassoon, staff)
@@ -32,7 +32,7 @@ def test_instrumenttools_notes_and_chords_are_on_expected_clefs_02():
     assert not instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = ClefMark('alto')
+    clef = Clef('alto')
     attach(clef, staff)
     bassoon = instrumenttools.Bassoon()
     attach(bassoon, staff)
@@ -43,7 +43,7 @@ def test_instrumenttools_notes_and_chords_are_on_expected_clefs_02():
 def test_instrumenttools_notes_and_chords_are_on_expected_clefs_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = ClefMark('percussion')
+    clef = Clef('percussion')
     attach(clef, staff)
     violin = instrumenttools.Violin()
     attach(violin, staff)

@@ -47,7 +47,7 @@ class BassSaxophone(Instrument):
         self._default_pitch_range = pitchtools.PitchRange(-28, 4)
         self._default_sounding_pitch_of_written_middle_c = pitch
         self._default_starting_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('treble'),
+            marktools.Clef('treble'),
             ])
         self._is_primary_instrument = False
         self._copy_default_starting_clefs_to_default_allowable_clefs()

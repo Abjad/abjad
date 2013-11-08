@@ -23,7 +23,7 @@ These five type of functions are now implemented for the following marks::
 
 The same type of functions are likewise implemented for the following context marks::
 
-    marktools.ClefMark
+    marktools.Clef
     marktools.DynamicMark
     marktools.InstrumentMark
     marktools.KeySignatureMark

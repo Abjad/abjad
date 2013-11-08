@@ -55,7 +55,7 @@ class GuileProxy(AbjadObject):
         return marktools.LilyPondCommandMark('breathe', 'after')
 
     def clef(self, string):
-        return marktools.ClefMark(string)
+        return marktools.Clef(string)
 
     def grace(self, music):
         return scoretools.GraceContainer(music[:])

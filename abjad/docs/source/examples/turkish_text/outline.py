@@ -139,8 +139,8 @@ def make_lilypond_file(input_text, base_duration=Duration(1, 16)):
     score = score_template()
     staff_1 = scoretools.get_first_component_in_expr_with_name(score, 'Staff 1')
     staff_2 = scoretools.get_first_component_in_expr_with_name(score, 'Staff 2')
-    marktools.ClefMark('percussion')(staff_1)
-    marktools.ClefMark('percussion')(staff_2)
+    marktools.Clef('percussion')(staff_1)
+    marktools.Clef('percussion')(staff_2)
     staff_1.extend(upper_music)
     staff_2.extend(lower_music)
 

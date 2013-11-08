@@ -22,7 +22,7 @@ for pitch in pitches:
     note = Note(pitch, duration)
     rest = Rest(duration)
     clef = pitchtools.suggest_clef_for_named_pitches([note.written_pitch])
-    if clef == marktools.ClefMark('treble'):
+    if clef == marktools.Clef('treble'):
         treble_staff.append(note)
         bass_staff.append(rest)
     else:
@@ -79,7 +79,7 @@ for pitch in pitches:
     note = Note(pitch, duration)
     rest = Rest(duration)
     clef = pitchtools.suggest_clef_for_named_pitches([note.written_pitch])
-    if clef == marktools.ClefMark('treble'):
+    if clef == marktools.Clef('treble'):
         treble_staff.append(note)
         bass_staff.append(rest)
     else:

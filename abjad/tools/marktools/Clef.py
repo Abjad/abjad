@@ -2,7 +2,7 @@
 from abjad.tools.marktools.ContextMark import ContextMark
 
 
-class ClefMark(ContextMark):
+class Clef(ContextMark):
     r'''A clef.
 
     ::
@@ -12,30 +12,30 @@ class ClefMark(ContextMark):
 
     ::
 
-        >>> clef = marktools.ClefMark('treble')
+        >>> clef = marktools.Clef('treble')
         >>> attach(clef, staff)
-        ClefMark('treble')(Staff{8})
-        >>> clef = marktools.ClefMark('alto')
+        Clef('treble')(Staff{8})
+        >>> clef = marktools.Clef('alto')
         >>> attach(clef, staff[1])
-        ClefMark('alto')(d'8)
-        >>> clef = marktools.ClefMark('bass')
+        Clef('alto')(d'8)
+        >>> clef = marktools.Clef('bass')
         >>> attach(clef, staff[2])
-        ClefMark('bass')(e'8)
-        >>> clef = marktools.ClefMark('treble^8')
+        Clef('bass')(e'8)
+        >>> clef = marktools.Clef('treble^8')
         >>> attach(clef, staff[3])
-        ClefMark('treble^8')(f'8)
-        >>> clef = marktools.ClefMark('bass_8')
+        Clef('treble^8')(f'8)
+        >>> clef = marktools.Clef('bass_8')
         >>> attach(clef, staff[4])
-        ClefMark('bass_8')(g'8)
-        >>> clef = marktools.ClefMark('tenor')
+        Clef('bass_8')(g'8)
+        >>> clef = marktools.Clef('tenor')
         >>> attach(clef, staff[5])
-        ClefMark('tenor')(a'8)
-        >>> clef = marktools.ClefMark('bass^15')
+        Clef('tenor')(a'8)
+        >>> clef = marktools.Clef('bass^15')
         >>> attach(clef, staff[6])
-        ClefMark('bass^15')(b'8)
-        >>> clef = marktools.ClefMark('percussion')
+        Clef('bass^15')(b'8)
+        >>> clef = marktools.Clef('percussion')
         >>> attach(clef, staff[7])
-        ClefMark('percussion')(c''8)
+        Clef('percussion')(c''8)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -93,13 +93,13 @@ class ClefMark(ContextMark):
         ::
 
             >>> import copy
-            >>> clef_1 = marktools.ClefMark('alto')
+            >>> clef_1 = marktools.Clef('alto')
             >>> clef_2 = copy.copy(clef_1)
 
         ::
 
             >>> clef_1, clef_2
-            (ClefMark('alto'), ClefMark('alto'))
+            (Clef('alto'), Clef('alto'))
 
         ::
 
@@ -124,8 +124,8 @@ class ClefMark(ContextMark):
 
         ::
 
-            >>> clef_1 = marktools.ClefMark('treble')
-            >>> clef_2 = marktools.ClefMark('alto')
+            >>> clef_1 = marktools.Clef('treble')
+            >>> clef_2 = marktools.Clef('alto')
 
         ::
 
@@ -152,16 +152,16 @@ class ClefMark(ContextMark):
 
         ::
 
-            >>> clef = marktools.ClefMark('treble')
+            >>> clef = marktools.Clef('treble')
             >>> print format(clef)
-            marktools.ClefMark(
+            marktools.Clef(
                 'treble',
                 target_context=scoretools.Staff
                 )
 
         Returns string.
         '''
-        superclass = super(ClefMark, self)
+        superclass = super(Clef, self)
         return superclass.__format__(format_specification=format_specification)
 
     def __ne__(self, arg):
@@ -170,8 +170,8 @@ class ClefMark(ContextMark):
 
         ::
 
-            >>> clef_1 = marktools.ClefMark('treble')
-            >>> clef_2 = marktools.ClefMark('alto')
+            >>> clef_1 = marktools.Clef('treble')
+            >>> clef_2 = marktools.Clef('alto')
 
         ::
 
@@ -186,7 +186,7 @@ class ClefMark(ContextMark):
 
         Returns boolean.
         '''
-        superclass = super(ClefMark, self)
+        superclass = super(Clef, self)
         return superclass.__ne__(arg)
 
     def __repr__(self):
@@ -194,13 +194,13 @@ class ClefMark(ContextMark):
 
         ::
 
-            >>> clef = marktools.ClefMark('treble')
+            >>> clef = marktools.Clef('treble')
             >>> clef
-            ClefMark('treble')
+            Clef('treble')
 
         Returns string.
         '''
-        superclass = super(ClefMark, self)
+        superclass = super(Clef, self)
         return superclass.__repr__()
 
     ### PRIVATE PROPERTIES ###
@@ -235,7 +235,7 @@ class ClefMark(ContextMark):
 
         ::
 
-            >>> for name in marktools.ClefMark.list_clef_names():
+            >>> for name in marktools.Clef.list_clef_names():
             ...     name
             ...
             'alto'
@@ -263,7 +263,7 @@ class ClefMark(ContextMark):
 
             ::
 
-                >>> clef = marktools.ClefMark('treble')
+                >>> clef = marktools.Clef('treble')
                 >>> clef.clef_name
                 'treble'
 
@@ -287,7 +287,7 @@ class ClefMark(ContextMark):
 
         ::
 
-            >>> clef = marktools.ClefMark('treble')
+            >>> clef = marktools.Clef('treble')
             >>> clef.middle_c_position
             -6
 

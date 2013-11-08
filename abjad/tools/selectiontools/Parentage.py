@@ -19,7 +19,7 @@ class Parentage(SimultaneousSelection):
             >>> score.append(treble_staff)
             >>> string = r"""\new Voice = "Bass Voice" { c4 }"""
             >>> bass_staff = Staff(string, name='Bass Staff')
-            >>> clef = marktools.ClefMark('bass')
+            >>> clef = marktools.Clef('bass')
             >>> clef = attach(clef, bass_staff)
             >>> score.append(bass_staff)
             >>> show(score) # doctest: +SKIP

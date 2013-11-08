@@ -11,9 +11,9 @@ class Tuba(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.ClefMark('bass')
+        >>> clef = marktools.Clef('bass')
         >>> attach(clef, staff)
-        ClefMark('bass')(Staff{4})
+        Clef('bass')(Staff{4})
         >>> tuba = instrumenttools.Tuba()
         >>> attach(tuba, staff)
         Tuba()(Staff{4})
@@ -48,7 +48,7 @@ class Tuba(Instrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self._starting_clefs = [marktools.ClefMark('bass')]
+        self._starting_clefs = [marktools.Clef('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-34, 5)
         #self._make_default_name_markups()

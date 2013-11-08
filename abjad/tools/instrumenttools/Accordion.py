@@ -49,8 +49,8 @@ class Accordion(Instrument):
             **kwargs
             )
         self._default_allowable_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('treble'), 
-            marktools.ClefMark('bass'),
+            marktools.Clef('treble'), 
+            marktools.Clef('bass'),
             ])
         self._default_instrument_name = 'accordion'
         self._default_performer_names.extend([
@@ -60,8 +60,8 @@ class Accordion(Instrument):
         self._default_pitch_range = pitchtools.PitchRange(-32, 48)
         self._default_short_instrument_name = 'acc.'
         self._default_starting_clefs = marktools.ClefMarkInventory([
-            marktools.ClefMark('treble'), 
-            marktools.ClefMark('bass'),
+            marktools.Clef('treble'), 
+            marktools.Clef('bass'),
             ])
         self._is_primary_instrument = True
 
@@ -113,7 +113,7 @@ class Accordion(Instrument):
                         'Fis.',
                         )),
                     allowable_clefs=marktools.ClefMarkInventory([
-                        marktools.ClefMark(
+                        marktools.Clef(
                             'treble',
                             target_context=scoretools.Staff
                             ),
@@ -143,7 +143,7 @@ class Accordion(Instrument):
                 ::
 
                     >>> accordion.allowable_clefs
-                    ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
+                    ClefMarkInventory([Clef('treble'), Clef('bass')])
 
                 ::
 
@@ -167,7 +167,7 @@ class Accordion(Instrument):
 
                     >>> accordion.allowable_clefs = ['treble']
                     >>> accordion.allowable_clefs
-                    ClefMarkInventory([ClefMark('treble')])
+                    ClefMarkInventory([Clef('treble')])
 
             ..  container:: example
 
@@ -177,7 +177,7 @@ class Accordion(Instrument):
 
                     >>> accordion.allowable_clefs = None
                     >>> accordion.allowable_clefs
-                    ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
+                    ClefMarkInventory([Clef('treble'), Clef('bass')])
 
             Returns clef inventory.
             '''

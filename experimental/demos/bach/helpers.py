@@ -19,7 +19,7 @@ def build_chorale():
     attach(key_signature, treble_staff)
     key_signature = marktools.KeySignatureMark(*es_ist_genug['key'])
     attach(key_signature, bass_staff)
-    clef = marktools.ClefMark('bass')
+    clef = marktools.Clef('bass')
     attach(clef, bass_staff)
 
     bar_line = marktools.BarLine('|.')

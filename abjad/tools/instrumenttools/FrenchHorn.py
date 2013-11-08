@@ -35,8 +35,8 @@ class FrenchHorn(Instrument):
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
         pitch = pitchtools.NamedPitch('f')
-        clefs = [marktools.ClefMark('treble'), 
-            marktools.ClefMark('bass'),
+        clefs = [marktools.Clef('treble'), 
+            marktools.Clef('bass'),
             ]
         self._default_instrument_name = 'horn'
         self._default_performer_names.extend([

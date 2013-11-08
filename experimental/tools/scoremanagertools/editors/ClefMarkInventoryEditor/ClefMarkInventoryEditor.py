@@ -15,7 +15,7 @@ class ClefMarkInventoryEditor(ObjectInventoryEditor):
 
     ### CLASS VARIABLES ###
 
-    item_class = marktools.ClefMark
+    item_class = marktools.Clef
 
     item_editor_class = ClefMarkEditor
 

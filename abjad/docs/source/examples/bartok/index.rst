@@ -140,9 +140,9 @@ clef just like the top staff. Let's change that:
 
 ::
 
-   >>> clef = marktools.ClefMark('bass')
+   >>> clef = marktools.Clef('bass')
    >>> clef.attach(lower_staff)
-   ClefMark('bass')(Staff{5})
+   Clef('bass')(Staff{5})
 
 
 Now let's add dynamic marks. For the top staff, we'll add them to the first

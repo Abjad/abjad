@@ -30,8 +30,8 @@ def is_class_name_or_none(expr):
 
 def is_clef_token(expr):
     try:
-        result = marktools.ClefMark(expr)
-        return isinstance(result, marktools.ClefMark)
+        result = marktools.Clef(expr)
+        return isinstance(result, marktools.Clef)
     except:
         return False
 

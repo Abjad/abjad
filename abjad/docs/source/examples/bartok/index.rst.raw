@@ -123,7 +123,7 @@ Ok, let's add the details. First, notice that the bottom staff has a treble
 clef just like the top staff. Let's change that:
 
 <abjad>
-clef = marktools.ClefMark('bass')
+clef = marktools.Clef('bass')
 clef.attach(lower_staff)
 </abjad>
 

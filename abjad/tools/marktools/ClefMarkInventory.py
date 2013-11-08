@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.marktools.ClefMark import ClefMark
+from abjad.tools.marktools.Clef import Clef
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -13,7 +13,7 @@ class ClefMarkInventory(TypedList):
     ::
 
         >>> inventory
-        ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
+        ClefMarkInventory([Clef('treble'), Clef('bass')])
 
     ::
 
@@ -22,7 +22,7 @@ class ClefMarkInventory(TypedList):
 
     ::
 
-        >>> marktools.ClefMark('treble') in inventory
+        >>> marktools.Clef('treble') in inventory
         True
 
     ::
@@ -37,7 +37,7 @@ class ClefMarkInventory(TypedList):
 
     @property
     def _item_callable(self):
-        return ClefMark
+        return Clef
 
     @property
     def _one_line_menuing_summary(self):

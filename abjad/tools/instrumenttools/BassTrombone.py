@@ -11,9 +11,9 @@ class BassTrombone(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.ClefMark('bass')
+        >>> clef = marktools.Clef('bass')
         >>> attach(clef, staff)
-        ClefMark('bass')(Staff{4})
+        Clef('bass')(Staff{4})
         >>> trombone = instrumenttools.BassTrombone()
         >>> attach(trombone, staff)
         BassTrombone()(Staff{4})
@@ -51,6 +51,6 @@ class BassTrombone(Instrument):
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self._starting_clefs = [marktools.ClefMark('bass')]
+        self._starting_clefs = [marktools.Clef('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange('[C2, F4]')

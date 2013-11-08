@@ -65,7 +65,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_02():
 def test_mutationtools_AttributeInspectionAgent_get_marks_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff)
     dynamic = DynamicMark('p')
     attach(dynamic, staff[0])
@@ -91,7 +91,7 @@ def test_mutationtools_AttributeInspectionAgent_get_marks_03():
 def test_mutationtools_AttributeInspectionAgent_get_marks_04():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    clef = ClefMark('treble')
+    clef = Clef('treble')
     attach(clef, staff)
     dynamic = DynamicMark('p')
     attach(dynamic, staff[0])
