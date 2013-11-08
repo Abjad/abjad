@@ -584,7 +584,7 @@ def test_mutationtools_ScoreMutationAgent_copy_10():
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
     assert testtools.compare(

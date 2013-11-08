@@ -224,7 +224,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___10():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    hairpin = HairpinSpanner(descriptor='p < f')
+    hairpin = Hairpin(descriptor='p < f')
     attach(hairpin, voice[:])
     override(hairpin).dynamic_line_spanner.staff_padding = 4
 

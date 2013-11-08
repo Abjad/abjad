@@ -30,7 +30,7 @@ class TwoStageHairpinHandler(DynamicHandler):
         #leaves = scoretools.remove_outer_rests_from_sequence(leaves)
         leaves = expr
         for leaf in iterate(leaves).by_class():
-            spanners = leaf._get_spanners(spannertools.HairpinSpanner)
+            spanners = leaf._get_spanners(spannertools.Hairpin)
             for spanner in spanners:
                 spanner.detach()
         # TODO: this should eventually be changed to remove dynamic marks only
@@ -52,16 +52,16 @@ class TwoStageHairpinHandler(DynamicHandler):
             else:
                 right_leaves = leaves[-(middle_index+1):]
             if left_hairpin == '<':
-                crescendo = spannertools.CrescendoSpanner()
+                crescendo = spannertools.Crescendo()
                 attach(crescendo, left_leaves)
             else:
-                decrescendo = spannertools.DecrescendoSpanner()
+                decrescendo = spannertools.Decrescendo()
                 attach(decrescendo, left_leaves)
             if right_hairpin == '<':
-                crescendo = spannertools.CrescendoSpanner()
+                crescendo = spannertools.Crescendo()
                 attach(crescendo, right_leaves)
             else:
-                decrescendo = spannertools.DecrescendoSpanner()
+                decrescendo = spannertools.Decrescendo()
                 attach(decrescendo, right_leaves)
             return leaves
         elif len(leaves) == 2:
@@ -70,10 +70,10 @@ class TwoStageHairpinHandler(DynamicHandler):
             command = marktools.LilyPondCommand(peak_dynamic, 'right')
             attach(command, leaves[-1])
             if left_hairpin == '<':
-                crescendo = spannertools.CrescendoSpanner()
+                crescendo = spannertools.Crescendo()
                 attach(crescendo, leaves)
             else:
-                decrescendo = spannertools.DecrescendoSpanner()
+                decrescendo = spannertools.Decrescendo()
                 attach(decrescendo, leaves)
         elif len(leaves) == 1:
             command = marktools.LilyPondCommand(peak_dynamic, 'right')

@@ -10,7 +10,7 @@ class ShortHairpinCheck(Check):
     def _run(self, expr):
         violators = []
         total, bad = 0, 0
-        spanner_classes = (spannertools.HairpinSpanner,)
+        spanner_classes = (spannertools.Hairpin,)
         hairpins = expr._get_descendants()._get_spanners(spanner_classes)
         for hairpin in hairpins:
             if len(hairpin.leaves) <= 1:

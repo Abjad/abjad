@@ -46,7 +46,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4], 
             cyclic=True,
             ):
-            crescendo = spannertools.CrescendoSpanner()
+            crescendo = spannertools.Crescendo()
             attach(crescendo, part)
             dynamic = marktools.Dynamic('p')
             attach(dynamic, part[0])
@@ -70,7 +70,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20], 
             cyclic=True,
             ):
-            crescendo = spannertools.CrescendoSpanner()
+            crescendo = spannertools.Crescendo()
             attach(crescendo, part)
             dynamic = marktools.Dynamic('p')
             attach(dynamic, part[0])
@@ -94,7 +94,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [100], 
             cyclic=True,
             ):
-            crescendo = spannertools.CrescendoSpanner()
+            crescendo = spannertools.Crescendo()
             attach(crescendo, part)
             dynamic = marktools.Dynamic('p')
             attach(dynamic, part[0])
@@ -184,7 +184,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4], 
             cyclic=True,
             ):
-            crescendo = spannertools.CrescendoSpanner()
+            crescendo = spannertools.Crescendo()
             attach(crescendo, part)
         return voice
 
@@ -205,7 +205,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20], 
             cyclic=True,
             ):
-            crescendo = spannertools.CrescendoSpanner()
+            crescendo = spannertools.Crescendo()
             attach(crescendo, part)
         return voice
 
@@ -226,7 +226,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [100], 
             cyclic=True,
             ):
-            crescendo = spannertools.CrescendoSpanner()
+            crescendo = spannertools.Crescendo()
             attach(crescendo, part)
         return voice
 

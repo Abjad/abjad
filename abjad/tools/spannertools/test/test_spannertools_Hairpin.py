@@ -5,12 +5,12 @@ from abjad.tools.wellformednesstools import IntermarkedHairpinCheck
 from abjad.tools.wellformednesstools import ShortHairpinCheck
 
 
-def test_spannertools_HairpinSpanner_01():
+def test_spannertools_Hairpin_01():
     r'''Hairpins span adjacent leaves.
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
     assert testtools.compare(
@@ -32,12 +32,12 @@ def test_spannertools_HairpinSpanner_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_spannertools_HairpinSpanner_02():
+def test_spannertools_Hairpin_02():
     r'''Hairpins spanning a single leaf are allowed but not well-formed.
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[0:1])
     checker = ShortHairpinCheck()
 
@@ -60,12 +60,12 @@ def test_spannertools_HairpinSpanner_02():
     assert not checker.check(staff)
 
 
-def test_spannertools_HairpinSpanner_03():
+def test_spannertools_Hairpin_03():
     r'''Hairpins and dynamics apply separately.
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:4])
     dynamic = Dynamic('p')
     attach(dynamic, staff[0])
@@ -91,10 +91,10 @@ def test_spannertools_HairpinSpanner_03():
     assert inspect(staff).is_well_formed()
 
 
-def test_spannertools_HairpinSpanner_04():
+def test_spannertools_Hairpin_04():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:4])
     dynamic = Dynamic('p')
     attach(dynamic, staff[2])
@@ -102,22 +102,22 @@ def test_spannertools_HairpinSpanner_04():
     assert not inspect(staff).is_well_formed()
 
 
-def test_spannertools_HairpinSpanner_05():
+def test_spannertools_Hairpin_05():
     r'''Apply back-to-back hairpins separately.
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     dynamic = Dynamic('p')
     attach(dynamic, staff[0])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[0:3])
     dynamic = Dynamic('f')
     attach(dynamic, staff[2])
-    decrescendo = DecrescendoSpanner()
+    decrescendo = Decrescendo()
     attach(decrescendo, staff[2:5])
     dynamic = Dynamic('p')
     attach(dynamic, staff[4])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[4:7])
     dynamic = Dynamic('f')
     attach(dynamic, staff[6])
@@ -141,12 +141,12 @@ def test_spannertools_HairpinSpanner_05():
     assert inspect(staff).is_well_formed()
 
 
-def test_spannertools_HairpinSpanner_06():
+def test_spannertools_Hairpin_06():
     r'''Hairpins format rests.
     '''
 
     staff = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:])
 
     assert testtools.compare(
@@ -168,7 +168,7 @@ def test_spannertools_HairpinSpanner_06():
     assert inspect(staff).is_well_formed()
 
 
-def test_spannertools_HairpinSpanner_07():
+def test_spannertools_Hairpin_07():
     r'''Trimmed hairpins with dynamic marks behave as expected.
     '''
 
@@ -177,13 +177,13 @@ def test_spannertools_HairpinSpanner_07():
     staff[0] = rest
     rest = Rest(staff[-1])
     staff[-1] = rest
-    hairpin = HairpinSpanner(
+    hairpin = Hairpin(
         descriptor='p < f', 
         include_rests=False,
         )
     attach(hairpin, staff.select_leaves())
 
-    spanner_classes = HairpinSpanner
+    spanner_classes = Hairpin
     spanner = inspect(staff[0]).get_spanner(spanner_classes=spanner_classes)
     assert len(spanner.components) == len(staff)
 

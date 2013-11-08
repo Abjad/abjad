@@ -51,9 +51,9 @@ from abjad.tools.scoretools import Staff
 from abjad.tools.scoretools import Tuplet
 from abjad.tools.scoretools import Voice
 from abjad.tools.spannertools import Beam
-from abjad.tools.spannertools import CrescendoSpanner
-from abjad.tools.spannertools import DecrescendoSpanner
-from abjad.tools.spannertools import HairpinSpanner
+from abjad.tools.spannertools import Crescendo
+from abjad.tools.spannertools import Decrescendo
+from abjad.tools.spannertools import Hairpin
 from abjad.tools.spannertools import Slur
 from fractions import Fraction
 

@@ -11,7 +11,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, voice[:])
     beam = Beam()
     attach(beam, voice[:2])

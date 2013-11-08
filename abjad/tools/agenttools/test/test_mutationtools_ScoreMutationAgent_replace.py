@@ -12,7 +12,7 @@ def test_mutationtools_ScoreMutationAgent_replace_01():
     attach(beam_1, staff[:2])
     beam_2 = Beam()
     attach(beam_2, staff[2:])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:])
 
     assert testtools.compare(
@@ -59,7 +59,7 @@ def test_mutationtools_ScoreMutationAgent_replace_02():
     attach(beam_1, staff[:2])
     beam_2 = Beam()
     attach(beam_2, staff[2:])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:])
 
     assert testtools.compare(
@@ -107,7 +107,7 @@ def test_mutationtools_ScoreMutationAgent_replace_03():
     attach(beam_1, staff[:2])
     beam_2 = Beam()
     attach(beam_2, staff[2:])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:])
 
     assert testtools.compare(
@@ -154,7 +154,7 @@ def test_mutationtools_ScoreMutationAgent_replace_04():
     attach(beam_1, staff[:2])
     beam_2 = Beam()
     attach(beam_2, staff[2:])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:])
 
     assert testtools.compare(
@@ -200,7 +200,7 @@ def test_mutationtools_ScoreMutationAgent_replace_05():
     attach(beam_1, staff[:2])
     beam_2 = Beam()
     attach(beam_2, staff[2:])
-    crescendo = CrescendoSpanner()
+    crescendo = Crescendo()
     attach(crescendo, staff[:])
 
     assert testtools.compare(

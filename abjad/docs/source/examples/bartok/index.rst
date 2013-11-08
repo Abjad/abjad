@@ -256,13 +256,13 @@ Hairpins:
 
 ::
 
-   >>> crescendo = spannertools.CrescendoSpanner()
+   >>> crescendo = spannertools.Crescendo()
    >>> crescendo.attach(upper_leaves[-7:-2])
 
 
 ::
 
-   >>> decrescendo = spannertools.DecrescendoSpanner()
+   >>> decrescendo = spannertools.Decrescendo()
    >>> decrescendo.attach(upper_leaves[-2:])
 
 

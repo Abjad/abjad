@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.spannertools.HairpinSpanner import HairpinSpanner
+from abjad.tools.spannertools.Hairpin import Hairpin
 
 
-class DecrescendoSpanner(HairpinSpanner):
+class Decrescendo(Hairpin):
     r'''A decrescendo spanner that includes rests.
 
     ::
@@ -24,7 +24,7 @@ class DecrescendoSpanner(HairpinSpanner):
 
     ::
 
-        >>> decrescendo = spannertools.DecrescendoSpanner(include_rests=True)
+        >>> decrescendo = spannertools.Decrescendo(include_rests=True)
         >>> attach(decrescendo, staff[:])
         >>> show(staff) # doctest: +SKIP
 
@@ -61,7 +61,7 @@ class DecrescendoSpanner(HairpinSpanner):
 
     ::
 
-        >>> decrescendo = spannertools.DecrescendoSpanner(include_rests=False)
+        >>> decrescendo = spannertools.Decrescendo(include_rests=False)
         >>> attach(decrescendo, staff[:])
         >>> show(staff) # doctest: +SKIP
 
@@ -88,7 +88,7 @@ class DecrescendoSpanner(HairpinSpanner):
         direction=None,
         overrides=None,
         ):
-        HairpinSpanner.__init__(
+        Hairpin.__init__(
             self, 
             components=components, 
             descriptor='>', 

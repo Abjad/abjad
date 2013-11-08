@@ -2,54 +2,45 @@
 from abjad import *
 
 
-def test_spannertools_HairpinSpanner_start_dynamic_string_01():
+def test_spannertools_Hairpin_shape_string_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    hairpin = HairpinSpanner(descriptor='p < f')
+    hairpin = Hairpin(descriptor='<')
     attach(hairpin, staff[:])
 
-    r'''
-    \new Staff {
-        c'8 \< \p
-        d'8
-        e'8
-        f'8 \f
-    }
-    '''
-
-    assert hairpin.start_dynamic_string == 'p'
+    assert hairpin.shape_string == '<'
     assert testtools.compare(
         staff,
         r'''
         \new Staff {
-            c'8 \< \p
+            c'8 \<
             d'8
             e'8
-            f'8 \f
+            f'8 \!
         }
         '''
         )
 
-    hairpin.start_dynamic_string = 'mf'
+    hairpin.shape_string = '>'
 
     r'''
     \new Staff {
-        c'8 \< \mf
+        c'8 \>
         d'8
         e'8
-        f'8 \f
+        f'8 \!
     }
     '''
 
-    assert hairpin.start_dynamic_string == 'mf'
+    assert hairpin.shape_string == '>'
     assert testtools.compare(
         staff,
         r'''
         \new Staff {
-            c'8 \< \mf
+            c'8 \>
             d'8
             e'8
-            f'8 \f
+            f'8 \!
         }
         '''
         )

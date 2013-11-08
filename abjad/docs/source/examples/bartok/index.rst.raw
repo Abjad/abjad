@@ -214,12 +214,12 @@ slur.attach(lower_leaves[1:6])
 Hairpins:
 
 <abjad>
-crescendo = spannertools.CrescendoSpanner()
+crescendo = spannertools.Crescendo()
 crescendo.attach(upper_leaves[-7:-2])
 </abjad>
 
 <abjad>
-decrescendo = spannertools.DecrescendoSpanner()
+decrescendo = spannertools.Decrescendo()
 decrescendo.attach(upper_leaves[-2:])
 </abjad>
 

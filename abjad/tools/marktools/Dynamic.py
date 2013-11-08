@@ -141,7 +141,7 @@ class Dynamic(ContextMark):
         if len(args) == 1:
             spanner_classes = (
                 spannertools.DynamicTextSpanner, 
-                spannertools.HairpinSpanner,
+                spannertools.Hairpin,
                 )
             parentage = args[0]._get_parentage()
             dynamic_spanners = parentage._get_spanners(spanner_classes)

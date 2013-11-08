@@ -56,7 +56,7 @@ def is_existing_package_name(expr):
     return configuration.packagesystem_path_exists(expr)
 
 def is_hairpin_token(expr):
-    return spannertools.HairpinSpanner.is_hairpin_token(expr)
+    return spannertools.Hairpin.is_hairpin_token(expr)
 
 def is_integer(expr):
     return isinstance(expr, int)

@@ -38,7 +38,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             attach(command, group[0])
         else:
             descriptor = ' '.join([x for x in self.hairpin_token if x])
-            hairpin = spannertools.HairpinSpanner(
+            hairpin = spannertools.Hairpin(
                 descriptor=descriptor,
                 include_rests=False,
                 )
@@ -54,7 +54,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         def fset(self, hairpin_token):
             if hairpin_token is None:
                 self._hairpin_token = hairpin_token
-            elif spannertools.HairpinSpanner.is_hairpin_token(hairpin_token):
+            elif spannertools.Hairpin.is_hairpin_token(hairpin_token):
                 self._hairpin_token = hairpin_token
             else:
                 raise TypeError(hairpin_token)

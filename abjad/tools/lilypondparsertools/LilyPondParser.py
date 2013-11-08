@@ -296,10 +296,10 @@ class LilyPondParser(abctools.Parser):
 
             # check for DynamicMarks, and terminate any hairpin
             dynamics = leaf._get_marks(marktools.Dynamic)
-            if dynamics and spannertools.HairpinSpanner in all_spanners and \
-                all_spanners[spannertools.HairpinSpanner]:
-                all_spanners[spannertools.HairpinSpanner][0].append(leaf)
-                all_spanners[spannertools.HairpinSpanner].pop()
+            if dynamics and spannertools.Hairpin in all_spanners and \
+                all_spanners[spannertools.Hairpin]:
+                all_spanners[spannertools.Hairpin][0].append(leaf)
+                all_spanners[spannertools.Hairpin].pop()
 
             # loop through directed events, handling each as necessary
             for spanner_class, events in directed_events.iteritems():
@@ -327,7 +327,7 @@ class LilyPondParser(abctools.Parser):
                             all_spanners[spanner_class][0].append(leaf)
                             all_spanners[spanner_class].pop()
 
-                elif spanner_class is spannertools.HairpinSpanner:
+                elif spanner_class is spannertools.Hairpin:
                     # Dynamic events can be ended many times,
                     # but only one may start on a given leaf,
                     # and the event must start and end on separate leaves.
@@ -702,8 +702,8 @@ class LilyPondParser(abctools.Parser):
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
             'BeamEvent': spannertools.Beam,
-            'CrescendoEvent': spannertools.HairpinSpanner,
-            'DecrescendoEvent': spannertools.HairpinSpanner,
+            'CrescendoEvent': spannertools.Hairpin,
+            'DecrescendoEvent': spannertools.Hairpin,
             'GlissandoEvent': spannertools.GlissandoSpanner,
             'NoteGroupingEvent': spannertools.HorizontalBracketSpanner,
             'PhrasingSlurEvent': spannertools.PhrasingSlurSpanner,
