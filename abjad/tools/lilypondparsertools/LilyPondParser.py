@@ -352,7 +352,7 @@ class LilyPondParser(abctools.Parser):
                     elif 1 < len(starting_events):
                         raise Exception('Simultaneous dynamic-span events.')
 
-                elif spanner_class in [spannertools.Slur, spannertools.PhrasingSlurSpanner,
+                elif spanner_class in [spannertools.Slur, spannertools.PhrasingSlur,
                     spannertools.TextSpanner, spannertools.TrillSpanner]:
                     # These engravers process stop events before start events,
                     # they must contain more than one leaf,
@@ -706,7 +706,7 @@ class LilyPondParser(abctools.Parser):
             'DecrescendoEvent': spannertools.Hairpin,
             'GlissandoEvent': spannertools.Glissando,
             'NoteGroupingEvent': spannertools.HorizontalBracketSpanner,
-            'PhrasingSlurEvent': spannertools.PhrasingSlurSpanner,
+            'PhrasingSlurEvent': spannertools.PhrasingSlur,
             'SlurEvent': spannertools.Slur,
             'TextSpanEvent': spannertools.TextSpanner,
             'TieEvent': spannertools.TieSpanner,
