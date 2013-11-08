@@ -65,6 +65,7 @@ from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import parse
 from abjad.tools.topleveltools import play
+from abjad.tools.topleveltools import persist
 from abjad.tools.topleveltools import select
 from abjad.tools.topleveltools import setting
 from abjad.tools.topleveltools import show
