@@ -54,6 +54,7 @@ from fractions import Fraction
 
 # import some frequently used functions for direct user access
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override

@@ -272,29 +272,25 @@ def test_BeamSpanner___init___10():
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
-    #beam.detach()
-    inspect(voice).detach(beam)
+    detach(beam, voice)
     beam = BeamSpanner()
     attach(beam, [voice[0], voice[1]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
-    #beam.detach()
-    inspect(voice).detach(beam)
+    detach(beam, voice)
     beam = BeamSpanner()
     attach(beam, [voice[0][0], voice[1][0]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
-    #beam.detach()
-    inspect(voice).detach(beam)
+    detach(beam, voice)
     beam = BeamSpanner()
     attach(beam, [voice[0], voice[1][0]])
     assert len(beam.components) == 2
     assert len(beam.leaves) == 8
 
-    #beam.detach()
-    inspect(voice).detach(beam)
+    detach(beam, voice)
     beam = BeamSpanner()
     attach(beam, [voice[0][0], voice[1]])
     assert len(beam.components) == 2
