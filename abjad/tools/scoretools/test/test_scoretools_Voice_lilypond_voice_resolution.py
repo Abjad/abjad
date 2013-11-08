@@ -105,7 +105,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_03():
     container[1].name = 'staff2'
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
-    beam = BeamSpanner()
+    beam = Beam()
     statement = 'attach(beam, container.select_leaves())'
     pytest.raises(AssertionError, statement)
 

@@ -311,7 +311,7 @@ class LilyPondParser(abctools.Parser):
                     else:
                         stopping_events.append(x)
 
-                if spanner_class is spannertools.BeamSpanner:
+                if spanner_class is spannertools.Beam:
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones
@@ -701,7 +701,7 @@ class LilyPondParser(abctools.Parser):
 
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
-            'BeamEvent': spannertools.BeamSpanner,
+            'BeamEvent': spannertools.Beam,
             'CrescendoEvent': spannertools.HairpinSpanner,
             'DecrescendoEvent': spannertools.HairpinSpanner,
             'GlissandoEvent': spannertools.GlissandoSpanner,

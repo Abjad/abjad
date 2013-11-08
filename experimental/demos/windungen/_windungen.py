@@ -130,7 +130,7 @@ def fuse_rests_in_staff_by_beats(beats):
 
 def apply_beam_spanner_to_non_rest_beat(beat):
     if not all([isinstance(x, Rest) for x in beat]):
-        spannertools.BeamSpanner(beat[:], 'up')
+        spannertools.Beam(beat[:], 'up')
 
 
 def apply_beam_spanner_to_non_rest_beats(beats):

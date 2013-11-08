@@ -61,7 +61,7 @@ EXAMPLES
 
         <abjad>
         voice = Voice("c'4 d'4 e'4 f'4")
-        beam = spannertools.BeamSpanner()
+        beam = spannertools.Beam()
         attach(beam, voice)
         show(voice)
         </abjad>

@@ -8,7 +8,7 @@ def test_scoretools_Container_append_01():
     '''
 
     voice = Voice("c'8 d'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[:])
     voice.append(Container("e'8 f'8"))
 
@@ -34,7 +34,7 @@ def test_scoretools_Container_append_02():
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, tuplet[:])
     tuplet.append(Note(5, (1, 16)))
 
@@ -58,7 +58,7 @@ def test_scoretools_Container_append_03():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[:])
 
     assert pytest.raises(Exception, "voice.append('foo')")
@@ -72,7 +72,7 @@ def test_scoretools_Container_append_04():
     '''
 
     voice = Voice("c'8 d'8 e'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[:])
 
     assert testtools.compare(
@@ -87,7 +87,7 @@ def test_scoretools_Container_append_04():
         )
 
     u = Voice("c'8 d'8 e'8 f'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, u[:])
 
     assert testtools.compare(
@@ -142,7 +142,7 @@ def test_scoretools_Container_append_05():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[:])
 
     assert testtools.compare(

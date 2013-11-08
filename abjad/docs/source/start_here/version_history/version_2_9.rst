@@ -419,7 +419,7 @@ Added a new ``beamtools`` package.
 
 - This release of the ``beamtools`` package contains the following classes and functions::
 
-    spannertools.BeamSpanner
+    spannertools.Beam
     spannertools.ComplexBeamSpanner
     spannertools.DuratedComplexBeamSpanner
     spannertools.MultipartBeamSpanner
@@ -535,7 +535,7 @@ New spanners and spanner handlers are now available.
 - Added a ``ComplexGlissandoSpanner`` to the ``spannertools`` package.
 
   This spanner generates a glissando which skips over rests.  It can be used
-  in combination with spannertools.BeamSpanner and an override of the Stem grob
+  in combination with spannertools.Beam and an override of the Stem grob
   to generate the appearance of durated glissandi::
 
     >>> staff = Staff("c'16 [ d' r e' r r r g' ]")
@@ -594,7 +594,7 @@ New spanners and spanner handlers are now available.
 
   ::
 
-    >>> beam = spannertools.BeamSpanner()
+    >>> beam = spannertools.Beam()
     >>> beam(staff[:])
     Staff{4}
 

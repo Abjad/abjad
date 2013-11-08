@@ -11,7 +11,7 @@ class OverlappingBeamCheck(Check):
 
     def _run(self, expr):
         violators = []
-        spanner_classes = (spannertools.BeamSpanner,)
+        spanner_classes = (spannertools.Beam,)
         all_beams = set()
         for leaf in iterate(expr).by_class(scoretools.Leaf):
             beams = leaf._get_spanners(spanner_classes)

@@ -19,7 +19,7 @@ def test_spannertools_DuratedComplexBeamSpanner___copy___01():
     attach(beam, staff[:])
 
     new_staff = mutate(staff).copy()
-    new_beam = inspect(new_staff[0]).get_spanner(BeamSpanner)
+    new_beam = inspect(new_staff[0]).get_spanner(Beam)
 
     assert format(staff) == format(new_staff)
     assert new_beam.durations == beam.durations

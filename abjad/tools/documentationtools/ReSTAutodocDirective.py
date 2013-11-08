@@ -9,13 +9,13 @@ class ReSTAutodocDirective(ReSTDirective):
     ::
 
         >>> autodoc = documentationtools.ReSTAutodocDirective(
-        ...     argument='abjad.tools.spannertools.BeamSpanner.BeamSpanner',
+        ...     argument='abjad.tools.spannertools.Beam.Beam',
         ...     directive='autoclass',
         ...     )
         >>> autodoc.options['noindex'] = True
         >>> autodoc
         ReSTAutodocDirective(
-            argument='abjad.tools.spannertools.BeamSpanner.BeamSpanner',
+            argument='abjad.tools.spannertools.Beam.Beam',
             directive='autoclass',
             options={
                 'noindex': True
@@ -25,7 +25,7 @@ class ReSTAutodocDirective(ReSTDirective):
     ::
 
         >>> print autodoc.rest_format
-        .. autoclass:: abjad.tools.spannertools.BeamSpanner.BeamSpanner
+        .. autoclass:: abjad.tools.spannertools.Beam.Beam
            :noindex:
 
     Return `ReSTAutodocDirective` instance.

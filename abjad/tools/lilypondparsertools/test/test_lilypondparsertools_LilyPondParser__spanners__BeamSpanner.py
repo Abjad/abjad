@@ -7,9 +7,9 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_01():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, target[0:3])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, target[3:])
 
     assert testtools.compare(
@@ -34,9 +34,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_02():
     '''
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, target[0:3])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, target[3:])
 
     assert testtools.compare(
@@ -60,9 +60,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_02():
 def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_03():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, target[:])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, target[1:3])
 
     assert testtools.compare(
@@ -83,9 +83,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_03():
 def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_04():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, target[:3])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, target[2:])
 
     assert testtools.compare(
@@ -121,9 +121,9 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_07():
     '''
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
-    beam = BeamSpanner(direction=Up)
+    beam = Beam(direction=Up)
     attach(beam, target[0:3])
-    beam = BeamSpanner(direction=Down)
+    beam = Beam(direction=Down)
     attach(beam, target[3:])
 
     assert testtools.compare(

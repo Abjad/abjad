@@ -75,7 +75,7 @@ def test_scoretools_Note___init___08():
     '''
 
     staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[:])
     note = Note(staff[0])
     assert isinstance(staff[0], Chord)
@@ -118,7 +118,7 @@ def test_scoretools_Note___init___11():
     '''
 
     staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[:])
     note = Note(staff[1])
     assert isinstance(staff[1], Rest)
@@ -159,7 +159,7 @@ def test_scoretools_Note___init___14():
     '''
 
     staff = Staff([Note(0, (1, 8)), scoretools.Skip((1, 8)), Note(0, (1, 8))])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[:])
     note = Note(staff[1])
     assert isinstance(staff[1], scoretools.Skip)

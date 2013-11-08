@@ -2,7 +2,7 @@
 from abjad.tools.spannertools.DirectedSpanner import DirectedSpanner
 
 
-class BeamSpanner(DirectedSpanner):
+class Beam(DirectedSpanner):
     r'''A beam spanner.
 
     ::
@@ -23,7 +23,7 @@ class BeamSpanner(DirectedSpanner):
 
     ::
 
-        >>> beam = spannertools.BeamSpanner()
+        >>> beam = spannertools.Beam()
         >>> attach(beam, staff[:4])
         >>> show(staff) # doctest: +SKIP
 
@@ -80,7 +80,7 @@ class BeamSpanner(DirectedSpanner):
         ::
 
             >>> for leaf in staff.select_leaves():
-            ...     beam = spannertools.BeamSpanner
+            ...     beam = spannertools.Beam
             ...     result = beam.is_beamable_component(leaf)
             ...     print '{:<8}\t{}'.format(leaf, result)
             ...

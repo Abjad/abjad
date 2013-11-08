@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.spannertools.BeamSpanner import BeamSpanner
+from abjad.tools.spannertools.Beam import Beam
 
 
-class MultipartBeamSpanner(BeamSpanner):
+class MultipartBeamSpanner(Beam):
     r'''A multipart beam spanner.
 
     ::
@@ -41,7 +41,7 @@ class MultipartBeamSpanner(BeamSpanner):
         direction=None,
         overrides=None,
         ):
-        BeamSpanner.__init__(
+        Beam.__init__(
             self, 
             components, 
             direction=direction,

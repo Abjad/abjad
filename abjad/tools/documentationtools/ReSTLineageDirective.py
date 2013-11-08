@@ -8,15 +8,15 @@ class ReSTLineageDirective(ReSTDirective):
 
     ::
 
-        >>> documentationtools.ReSTLineageDirective(argument=spannertools.BeamSpanner)
+        >>> documentationtools.ReSTLineageDirective(argument=spannertools.Beam)
         ReSTLineageDirective(
-            argument='abjad.tools.spannertools.BeamSpanner.BeamSpanner'
+            argument='abjad.tools.spannertools.Beam.Beam'
             )
 
     ::
 
         >>> print _.rest_format
-        .. abjad-lineage:: abjad.tools.spannertools.BeamSpanner.BeamSpanner
+        .. abjad-lineage:: abjad.tools.spannertools.Beam.Beam
 
     Return `ReSTLineageDirective` instance.
     '''

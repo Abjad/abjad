@@ -93,7 +93,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_06():
 
     tuplet_1 = scoretools.FixedDurationTuplet(
         Duration(2, 8), "c'8 d'8 e'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, tuplet_1[:])
     tuplet_2 = scoretools.FixedDurationTuplet(
         Duration(2, 16), "c'16 d'16 e'16")
@@ -151,7 +151,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_07():
 
     tuplet_1 = scoretools.FixedDurationTuplet(
         Duration(2, 8), "c'8 d'8 e'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, tuplet_1[:])
     tuplet_2 = scoretools.FixedDurationTuplet(
         Duration(2, 16), "c'16 d'16 e'16")
@@ -204,7 +204,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_08():
     '''
 
     tuplet_1 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, tuplet_1[:])
     tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8 f'8 g'8")
     slur = Slur()
@@ -329,7 +329,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_12():
     '''
     
     measure_1 = Measure((1, 8), "c'16 d'16")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, measure_1[:])
     measure_2 = Measure((2, 16), "c'16 d'16")
     slur = Slur()
@@ -383,7 +383,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_13():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice.select_leaves())
 
     assert testtools.compare(
@@ -431,7 +431,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_14():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[0])
 
     assert testtools.compare(
@@ -482,7 +482,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_15():
     measure_1 = Measure((1, 8), "c'8")
     measure_2 = Measure((1, 12), "d'8")
     voice = Voice([measure_1, measure_2])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice.select_leaves())
 
     assert testtools.compare(
@@ -548,7 +548,7 @@ def test_mutationtools_ScoreMutationAgent_fuse_18():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice.select_leaves())
 
     assert testtools.compare(

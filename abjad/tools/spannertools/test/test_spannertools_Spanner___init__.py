@@ -7,7 +7,7 @@ def test_spannertools_Spanner___init___01():
     r'''Init empty spanner.
     '''
 
-    beam = BeamSpanner()
+    beam = Beam()
     assert len(beam) == 0
     assert beam[:] == []
 
@@ -17,7 +17,7 @@ def test_spannertools_Spanner___init___02():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, container[:])
 
     assert testtools.compare(

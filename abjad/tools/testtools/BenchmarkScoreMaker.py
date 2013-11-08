@@ -390,7 +390,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4], 
             cyclic=True,
             ):
-            beam = spannertools.BeamSpanner()
+            beam = spannertools.Beam()
             attach(beam, part)
         return voice
 
@@ -410,7 +410,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20], 
             cyclic=True,
             ):
-            beam = spannertools.BeamSpanner()
+            beam = spannertools.Beam()
             attach(beam, part)
         return voice
 
@@ -430,6 +430,6 @@ class BenchmarkScoreMaker(AbjadObject):
             [100], 
             cyclic=True,
             ):
-            beam = spannertools.BeamSpanner()
+            beam = spannertools.Beam()
             attach(beam, part)
         return voice

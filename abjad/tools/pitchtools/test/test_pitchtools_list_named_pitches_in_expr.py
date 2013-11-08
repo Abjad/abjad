@@ -22,7 +22,7 @@ def test_pitchtools_list_named_pitches_in_expr_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[:])
     named_pitches = pitchtools.list_named_pitches_in_expr(beam)
 

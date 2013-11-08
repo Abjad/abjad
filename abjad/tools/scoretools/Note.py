@@ -406,7 +406,7 @@ class Note(Leaf):
             ::
 
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> beam = spannertools.BeamSpanner()
+                >>> beam = spannertools.Beam()
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 

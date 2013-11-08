@@ -565,7 +565,7 @@ class LilyPondFormatManager(object):
         to which spanner attaches.
 
             >>> staff = Staff("c8 d e f")
-            >>> spanner = spannertools.BeamSpanner()
+            >>> spanner = spannertools.Beam()
             >>> attach(spanner, staff[:])
 
         ::

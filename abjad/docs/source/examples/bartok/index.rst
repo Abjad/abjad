@@ -208,19 +208,19 @@ Let's set the beams as Bartók did with some crossing the bar lines:
 
 ::
 
-   >>> beam = spannertools.BeamSpanner()
+   >>> beam = spannertools.Beam()
    >>> beam.attach(upper_leaves[:4])
 
 
 ::
 
-   >>> beam = spannertools.BeamSpanner()
+   >>> beam = spannertools.Beam()
    >>> beam.attach(lower_leaves[1:5])
 
 
 ::
 
-   >>> beam = spannertools.BeamSpanner()
+   >>> beam = spannertools.Beam()
    >>> beam.attach(lower_leaves[6:10])
 
 

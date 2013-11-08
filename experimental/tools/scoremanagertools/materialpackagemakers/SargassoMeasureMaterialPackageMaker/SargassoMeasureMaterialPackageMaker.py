@@ -72,7 +72,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         illustration.file_initial_system_includes = []
         measures = score._get_components(scoretools.Measure)
         for measure in measures:
-            beam = spannertools.BeamSpanner()
+            beam = spannertools.Beam()
             attach(beam, [measure])
         score.add_double_bar()
         return illustration

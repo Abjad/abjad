@@ -186,7 +186,7 @@ Consider the measure below:
 ::
 
    >>> measure = Measure((5, 16), "c16 c c c c")
-   >>> beam = spannertools.BeamSpanner()
+   >>> beam = spannertools.Beam()
    >>> beam.attach([measure])
    >>> staff = scoretools.RhythmicStaff([measure])
 
@@ -213,7 +213,7 @@ But now consider this measure:
 
    >>> tuplet = Tuplet((4, 5), "c16 c c c c")
    >>> measure = Measure((4, 16), [tuplet])
-   >>> beam = spannertools.BeamSpanner()
+   >>> beam = spannertools.Beam()
    >>> beam.attach([measure])
    >>> staff = scoretools.RhythmicStaff([measure])
 

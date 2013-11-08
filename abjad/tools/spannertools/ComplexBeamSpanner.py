@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.spannertools.BeamSpanner import BeamSpanner
+from abjad.tools.spannertools.Beam import Beam
 
 
-class ComplexBeamSpanner(BeamSpanner):
+class ComplexBeamSpanner(Beam):
     r'''A complex beam spanner.
 
     ::
@@ -56,7 +56,7 @@ class ComplexBeamSpanner(BeamSpanner):
         direction=None,
         overrides=None,
         ):
-        BeamSpanner.__init__(
+        Beam.__init__(
             self, 
             components=components, 
             direction=direction,
@@ -67,14 +67,14 @@ class ComplexBeamSpanner(BeamSpanner):
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        BeamSpanner._copy_keyword_args(self, new)
+        Beam._copy_keyword_args(self, new)
         new.lone = self.lone
 
     def _format_before_leaf(self, leaf):
         r'''Spanner format contribution to output before leaf.
         '''
         result = []
-        result.extend(BeamSpanner._format_before_leaf(self, leaf))
+        result.extend(Beam._format_before_leaf(self, leaf))
         if self.is_beamable_component(leaf):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)

@@ -175,17 +175,17 @@ lower_leaves = lower_staff.select_leaves(allow_discontiguous_leaves=True)
 </abjad>
 
 <abjad>
-beam = spannertools.BeamSpanner()
+beam = spannertools.Beam()
 beam.attach(upper_leaves[:4])
 </abjad>
 
 <abjad>
-beam = spannertools.BeamSpanner()
+beam = spannertools.Beam()
 beam.attach(lower_leaves[1:5])
 </abjad>
 
 <abjad>
-beam = spannertools.BeamSpanner()
+beam = spannertools.Beam()
 beam.attach(lower_leaves[6:10])
 </abjad>
 

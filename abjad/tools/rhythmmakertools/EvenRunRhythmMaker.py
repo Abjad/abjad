@@ -136,7 +136,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         notes = scoretools.make_notes(numerator * [0], [unit_duration])
         container = scoretools.Container(notes)
         if self.beam_each_cell:
-            beam = spannertools.BeamSpanner()
+            beam = spannertools.Beam()
             attach(beam, container)
         return container
 

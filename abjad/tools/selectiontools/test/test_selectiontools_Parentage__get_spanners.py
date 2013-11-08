@@ -7,7 +7,7 @@ def test_selectiontools_Parentage__get_spanners_01():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, container.select_leaves())
     slur = Slur()
     attach(slur, container.select_leaves())
@@ -37,7 +37,7 @@ def test_selectiontools_Parentage__get_spanners_02():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, container.select_leaves())
     slur = Slur()
     attach(slur, container.select_leaves())

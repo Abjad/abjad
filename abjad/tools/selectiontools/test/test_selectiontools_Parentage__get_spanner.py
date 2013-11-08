@@ -8,7 +8,7 @@ def test_selectiontools_Parentage__get_spanner_01():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, container.select_leaves()[:-1])
     slur = Slur()
     attach(slur, container.select_leaves()[:-1])

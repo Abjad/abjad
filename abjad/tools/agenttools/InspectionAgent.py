@@ -71,7 +71,7 @@ class InspectionAgent(object):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> staff[1].written_duration = Duration(1, 4)
-                >>> beam = spannertools.BeamSpanner()
+                >>> beam = spannertools.Beam()
                 >>> attach(beam, staff[:])
 
             ..  doctest::
@@ -580,7 +580,7 @@ class InspectionAgent(object):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> staff[1].written_duration = Duration(1, 4)
-                >>> beam = spannertools.BeamSpanner()
+                >>> beam = spannertools.Beam()
                 >>> attach(beam, staff[:])
 
             ..  doctest::

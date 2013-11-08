@@ -21,7 +21,7 @@ def test_scoretools_Container_reverse_02():
     '''
 
     container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, container)
     leaves_rev = reversed(container.select_leaves())
     container.reverse()
@@ -37,7 +37,7 @@ def test_scoretools_Container_reverse_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff.select_leaves())
     leaves_rev = reversed(staff.select_leaves())
     staff.reverse()
@@ -53,7 +53,7 @@ def test_scoretools_Container_reverse_04():
     '''
 
     staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + scoretools.make_repeated_notes(2))
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[0])
     leaves_rev = reversed(staff[0].select_leaves())
     staff[0].reverse()
@@ -69,7 +69,7 @@ def test_scoretools_Container_reverse_05():
 
     staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + 
         scoretools.make_repeated_notes(2))
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[0].select_leaves())
     leaves_rev = reversed(staff[0].select_leaves())
     staff[0].reverse()
@@ -86,7 +86,7 @@ def test_scoretools_Container_reverse_06():
     notes = [Note("c'8"), Note("d'8")]
     container = Container(
         [Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, container)
     leaves_rev = reversed(container[0].select_leaves())
     container[0].reverse()
@@ -103,7 +103,7 @@ def test_scoretools_Container_reverse_07():
     notes = [Note("c'8"), Note("d'8")]
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = Staff([measure] + notes)
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[:])
     leaves_rev = reversed(staff[0].select_leaves())
     staff[0].reverse()
@@ -117,7 +117,7 @@ def test_scoretools_Container_reverse_08():
     notes = [Note("c'8"), Note("d'8")]
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = Staff([measure] + notes)
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[:])
 
     assert testtools.compare(
@@ -179,9 +179,9 @@ def test_scoretools_Container_reverse_09():
     attach(pedal, container)
     trill = spannertools.TrillSpanner()
     attach(trill, container[:])
-    beam_1 = BeamSpanner()
+    beam_1 = Beam()
     attach(beam_1, container[0])
-    beam_2 = BeamSpanner()
+    beam_2 = Beam()
     attach(beam_2, container[1])
     gliss = spannertools.GlissandoSpanner()
     attach(gliss, container.select_leaves())

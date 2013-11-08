@@ -50,7 +50,7 @@ if __name__ == '__main__':
     iotools.clear_terminal()
 #    print 'Source test file path example:'
 #    print ''
-#    print '    tools/spannertools/BeamSpanner/test/test_BeamSpanner___eq__.py'
+#    print '    tools/spannertools/Beam/test/test_BeamSpanner___eq__.py'
 #    print ''
 #    source_path = raw_input('Enter source test file path: ')
 #    content = file(source_path, 'r').readlines()

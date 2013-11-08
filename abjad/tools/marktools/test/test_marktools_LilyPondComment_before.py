@@ -7,7 +7,7 @@ def test_marktools_LilyPondComment_before_01():
     '''
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[:])
     override(beam).beam.thickness = 3
     comment = marktools.LilyPondComment('Voice before comments here.', 'before')

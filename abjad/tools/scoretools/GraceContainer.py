@@ -8,7 +8,7 @@ class GraceContainer(Container):
     ::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner()
+        >>> beam = spannertools.Beam()
         >>> attach(beam, voice[:])
         >>> show(voice) # doctest: +SKIP
 

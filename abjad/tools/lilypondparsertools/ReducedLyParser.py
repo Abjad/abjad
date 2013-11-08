@@ -233,12 +233,12 @@ class ReducedLyParser(abctools.Parser):
     def p_beam__BRACKET_L(self, p):
         r'''beam : BRACKET_L
         '''
-        p[0] = (spannertools.BeamSpanner, Left)
+        p[0] = (spannertools.Beam, Left)
 
     def p_beam__BRACKET_R(self, p):
         r'''beam : BRACKET_R
         '''
-        p[0] = (spannertools.BeamSpanner, Right)
+        p[0] = (spannertools.Beam, Right)
 
     def p_chord_body__chord_pitches(self, p):
         r'''chord_body : chord_pitches
@@ -512,7 +512,7 @@ class ReducedLyParser(abctools.Parser):
         from abjad.tools.topleveltools import attach
 
         spanner_references = {
-            spannertools.BeamSpanner: None,
+            spannertools.Beam: None,
             spannertools.Slur: None,
         }
 
@@ -546,7 +546,7 @@ class ReducedLyParser(abctools.Parser):
                         tie = spannertools.TieSpanner()
                         attach(tie, (leaf, next_leaf))
 
-                elif current_class is spannertools.BeamSpanner:
+                elif current_class is spannertools.Beam:
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones

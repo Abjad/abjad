@@ -9,7 +9,7 @@ def test_mutationtools_ScoreMutationAgent_swap_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice.select_leaves())
 
     assert testtools.compare(
@@ -65,7 +65,7 @@ def test_mutationtools_ScoreMutationAgent_swap_02():
     voice.name = 'foo'
     glissando = spannertools.GlissandoSpanner()
     attach(glissando, voice[:])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice.select_leaves())
 
     assert testtools.compare(
@@ -122,7 +122,7 @@ def test_mutationtools_ScoreMutationAgent_swap_03():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     glissando = spannertools.GlissandoSpanner()
     attach(glissando, voice[:])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice.select_leaves())
 
     assert testtools.compare(
@@ -179,7 +179,7 @@ def test_mutationtools_ScoreMutationAgent_swap_04():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[:])
 
     note = Note("c'4")
@@ -195,7 +195,7 @@ def test_mutationtools_ScoreMutationAgent_swap_05():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[:])
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -211,7 +211,7 @@ def test_mutationtools_ScoreMutationAgent_swap_06():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice.select_leaves())
 
     assert testtools.compare(

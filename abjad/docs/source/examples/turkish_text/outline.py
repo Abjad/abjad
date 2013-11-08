@@ -197,7 +197,7 @@ def make_tuplets(durations, proportions, pitch_lists):
     for duration, proportion, pitch_list in zip(
         durations, proportions, pitch_lists):
         tuplet = Tuplet.from_duration_and_ratio(duration, proportion)
-        spannertools.BeamSpanner(tuplet)
+        spannertools.Beam(tuplet)
         for leaf, pitch in zip(tuplet.leaves, pitch_list):
             leaf.written_pitch = pitch
         tuplets.append(tuplet)

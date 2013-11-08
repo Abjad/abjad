@@ -75,13 +75,13 @@ lower_measures[4].append(p)
 # upper staff
 
 upper_measures[0][0].dynamics.mark = 'pp'
-spannertools.BeamSpanner(upper_measures[0])
+spannertools.Beam(upper_measures[0])
 
 upper_measures[1][1].dynamics.mark = 'mp'
-spannertools.BeamSpanner(upper_measures[1][1:])
+spannertools.Beam(upper_measures[1][1:])
 
-spannertools.BeamSpanner(upper_measures[2][0:3])
-spannertools.BeamSpanner(upper_measures[2][3:])
+spannertools.Beam(upper_measures[2][0:3])
+spannertools.Beam(upper_measures[2][3:])
 
 spannertools.TieSpanner(upper_staff[-2:])
 spannertools.Slur(upper_staff.leaves[0:5])
@@ -97,9 +97,9 @@ lower_staff.clef.forced = scoretools.Clef('bass')
 
 spannertools.TieSpanner([v1a[0], v1b[0]])
 
-spannertools.BeamSpanner(lower_staff.leaves[1:5])
-spannertools.BeamSpanner(lower_staff.leaves[6:10])
-spannertools.BeamSpanner(lower_staff.leaves[10:13])
+spannertools.Beam(lower_staff.leaves[1:5])
+spannertools.Beam(lower_staff.leaves[6:10])
+spannertools.Beam(lower_staff.leaves[10:13])
 
 spannertools.Slur(lower_staff.leaves[1:6])
 slr = spannertools.Slur(lower_staff.leaves[6:13] + [v2a, v2b])

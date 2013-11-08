@@ -219,7 +219,7 @@ class MutationAgent(object):
                 >>> tuplet_1 = scoretools.FixedDurationTuplet(
                 ...     Duration(2, 8), [])
                 >>> tuplet_1.extend("c'8 d'8 e'8")
-                >>> beam = spannertools.BeamSpanner()
+                >>> beam = spannertools.Beam()
                 >>> attach(beam, tuplet_1[:])
                 >>> duration = Duration(2, 16)
                 >>> tuplet_2 = scoretools.FixedDurationTuplet(duration, [])

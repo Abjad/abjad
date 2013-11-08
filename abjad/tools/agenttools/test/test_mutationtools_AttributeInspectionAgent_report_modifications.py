@@ -11,7 +11,7 @@ def test_mutationtools_AttributeInspectionAgent_report_modifications_01():
     override(voice).note_head.color = 'red'
     command = marktools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, voice)
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, voice[:])
     override(beam).beam.thickness = 3
 
@@ -57,7 +57,7 @@ def test_mutationtools_AttributeInspectionAgent_report_modifications_02():
     override(tuplet).note_head.color = 'red'
     command = marktools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, tuplet)
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, tuplet[:])
     override(beam).beam.thickness = 3
 

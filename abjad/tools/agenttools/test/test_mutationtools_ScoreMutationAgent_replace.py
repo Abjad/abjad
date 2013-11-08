@@ -8,9 +8,9 @@ def test_mutationtools_ScoreMutationAgent_replace_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = BeamSpanner()
+    beam_1 = Beam()
     attach(beam_1, staff[:2])
-    beam_2 = BeamSpanner()
+    beam_2 = Beam()
     attach(beam_2, staff[2:])
     crescendo = CrescendoSpanner()
     attach(crescendo, staff[:])
@@ -55,9 +55,9 @@ def test_mutationtools_ScoreMutationAgent_replace_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = BeamSpanner()
+    beam_1 = Beam()
     attach(beam_1, staff[:2])
-    beam_2 = BeamSpanner()
+    beam_2 = Beam()
     attach(beam_2, staff[2:])
     crescendo = CrescendoSpanner()
     attach(crescendo, staff[:])
@@ -103,9 +103,9 @@ def test_mutationtools_ScoreMutationAgent_replace_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = BeamSpanner()
+    beam_1 = Beam()
     attach(beam_1, staff[:2])
-    beam_2 = BeamSpanner()
+    beam_2 = Beam()
     attach(beam_2, staff[2:])
     crescendo = CrescendoSpanner()
     attach(crescendo, staff[:])
@@ -150,9 +150,9 @@ def test_mutationtools_ScoreMutationAgent_replace_04():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = BeamSpanner()
+    beam_1 = Beam()
     attach(beam_1, staff[:2])
-    beam_2 = BeamSpanner()
+    beam_2 = Beam()
     attach(beam_2, staff[2:])
     crescendo = CrescendoSpanner()
     attach(crescendo, staff[:])
@@ -196,9 +196,9 @@ def test_mutationtools_ScoreMutationAgent_replace_05():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam_1 = BeamSpanner()
+    beam_1 = Beam()
     attach(beam_1, staff[:2])
-    beam_2 = BeamSpanner()
+    beam_2 = Beam()
     attach(beam_2, staff[2:])
     crescendo = CrescendoSpanner()
     attach(crescendo, staff[:])
@@ -241,7 +241,7 @@ def test_mutationtools_ScoreMutationAgent_replace_06():
     '''
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8")])
-    beam = BeamSpanner()
+    beam = Beam()
     attach(beam, staff[0][:])
 
     assert testtools.compare(
