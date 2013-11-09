@@ -85,6 +85,10 @@ class Mark(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _attach(self, start_component):
+        self._bind_start_component(start_component)
+        return self
+
     def _bind_start_component(self, start_component):
         from abjad.tools import scoretools
         #print 'binding MARK to start component ...'
@@ -115,21 +119,3 @@ class Mark(AbjadObject):
         Returns component or none.
         '''
         return self._start_component
-
-    ### PUBLIC METHODS ###
-
-    def _attach(self, start_component):
-        r'''Attaches mark to `start_component`.
-
-        Returns mark.
-        '''
-        self._bind_start_component(start_component)
-        return self
-
-    def detach(self):
-        r'''Detaches mark from start component.
-
-        Returns mark.
-        '''
-        self._unbind_start_component()
-        return self
