@@ -49,7 +49,7 @@ class PersistenceAgent(object):
     ### PUBLIC METHODS ###
 
     def as_ly(self, filename):
-        r'''Persist client as LilyPond file.
+        r'''Persists client as LilyPond file.
 
         ::
 
@@ -61,7 +61,7 @@ class PersistenceAgent(object):
         iotools.write_expr_to_ly(self._client, filename)
 
     def as_module(self, filename, object_name):
-        r'''Persist client as Python module.
+        r'''Persists client as Python module.
 
         ::
 
@@ -96,7 +96,7 @@ class PersistenceAgent(object):
             f.write(result)
 
     def as_pdf(self, filename):
-        r'''Persist client as PDF.
+        r'''Persists client as PDF.
 
         ::
 
