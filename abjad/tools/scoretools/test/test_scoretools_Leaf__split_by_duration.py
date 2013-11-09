@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_scoretools_Leaf__split_by_duration_01():
@@ -430,7 +430,8 @@ def test_scoretools_Leaf__split_by_duration_17():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(0, (1, 32))], kind = 'after')(note)
+    grace = scoretools.GraceContainer([Note(0, (1, 32))], kind='after')
+    attach(grace, note)
     halves = note._split_by_duration(Duration(1, 8))
 
     assert not hasattr(halves[0][0], 'after_grace')
@@ -442,7 +443,8 @@ def test_scoretools_Leaf__split_by_duration_18():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(0, (1, 32))], kind = 'after')(note)
+    grace = scoretools.GraceContainer([Note(0, (1, 32))], kind='after')
+    attach(grace, note)
     halves = note._split_by_duration(Duration(5, 32))
 
     assert len(halves) == 2
@@ -457,7 +459,8 @@ def test_scoretools_Leaf__split_by_duration_19():
     '''
 
     note = Note("c'4")
-    scoretools.GraceContainer([Note(0, (1, 32))])(note)
+    grace = scoretools.GraceContainer([Note(0, (1, 32))])
+    attach(grace, note)
     halves = note._split_by_duration(Duration(1, 16))
 
     assert len(halves[0]) == 1

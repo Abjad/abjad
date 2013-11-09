@@ -157,9 +157,11 @@ class Component(AbjadObject):
         return new
 
     def _detach_grace_containers(self, kind=None):
+        from abjad.tools import scoretools
         grace_containers = self._get_grace_containers(kind=kind)
         for grace_container in grace_containers:
-            grace_container.detach()
+            #grace_container._detach()
+            detach(grace_container, self)
         return grace_containers
 
     def _detach_marks(
@@ -353,11 +355,22 @@ class Component(AbjadObject):
         return result
 
     def _get_grace_containers(self, kind=None):
+        from abjad.tools import scoretools
         result = []
         if kind in (None, 'grace') and hasattr(self, '_grace'):
             result.append(self._grace)
         if kind in (None, 'after') and hasattr(self, '_after_grace'):
             result.append(self._after_grace)
+        elif kind == scoretools.GraceContainer:
+            if hasattr(self, '_grace'):
+                result.append(self._grace)
+            if hasattr(self, '_after_grace'):
+                result.append(self._after_grace)
+        elif isinstance(kind, scoretools.GraceContainer):
+            if hasattr(self, '_grace'):
+                result.append(self._grace)
+            if hasattr(self, '_after_grace'):
+                result.append(self._after_grace)
         return tuple(result)
 
     def _get_in_my_logical_voice(self, n, component_class=None):
