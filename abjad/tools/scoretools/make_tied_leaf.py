@@ -194,7 +194,7 @@ def make_tied_leaf(
 
     # apply tie spanner if required
     if tie_parts and 1 < len(result):
-        tie = spannertools.TieSpanner()
+        tie = spannertools.Tie()
         attach(tie, result)
 
     # return result

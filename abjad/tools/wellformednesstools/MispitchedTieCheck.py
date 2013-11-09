@@ -14,7 +14,7 @@ class MispitchedTieCheck(Check):
         '''
         violators = []
         total = 0
-        spanner_classes = (spannertools.TieSpanner,)
+        spanner_classes = (spannertools.Tie,)
         for leaf in iterate(expr).by_class(scoretools.Note):
             total += 1
             spanners = leaf._get_spanners(spanner_classes)

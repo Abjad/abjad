@@ -43,9 +43,9 @@ class TieChain(ContiguousSelection):
                     index = parent.index(leaf)
                     del(parent[index])
             first = self[0]
-            for spanner in first._get_spanners(spannertools.TieSpanner):
+            for spanner in first._get_spanners(spannertools.Tie):
                 spanner.detach()
-            #detach(spannertools.TieSpanner, first)
+            #detach(spannertools.Tie, first)
         elif new_written_duration.has_power_of_two_denominator:
             durations = scoretools.make_notes(0, [new_written_duration])
             for leaf, token in zip(self, durations):
@@ -59,9 +59,9 @@ class TieChain(ContiguousSelection):
                         index = parent.index(leaf)
                         del(parent[index])
             elif len(self) < len(durations):
-                for spanner in self[0]._get_spanners(spannertools.TieSpanner):
+                for spanner in self[0]._get_spanners(spannertools.Tie):
                     spanner.detach()
-                #detach(spannertools.TieSpanner, self[0])
+                #detach(spannertools.Tie, self[0])
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
@@ -70,9 +70,9 @@ class TieChain(ContiguousSelection):
                 extra_tokens = durations[len(self):]
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
-                ties = self[-1]._get_spanners(spannertools.TieSpanner)
+                ties = self[-1]._get_spanners(spannertools.Tie)
                 if not ties:
-                    tie = spannertools.TieSpanner()
+                    tie = spannertools.Tie()
                     attach(tie, list(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
@@ -145,7 +145,7 @@ class TieChain(ContiguousSelection):
         Returns tuple.
         '''
         from abjad.tools import spannertools
-        spanner_classes = (spannertools.TieSpanner,)
+        spanner_classes = (spannertools.Tie,)
         try:
             tie_spanner = self[0]._get_spanner(spanner_classes=spanner_classes)
             return tie_spanner.leaves
@@ -175,7 +175,7 @@ class TieChain(ContiguousSelection):
         '''
         from abjad.tools import spannertools
         if 1 < len(self):
-            spanner_classes = (spannertools.TieSpanner,)
+            spanner_classes = (spannertools.Tie,)
             for component in self[0].parentage:
                 try:
                     tie_spanner = component._get_spanner(spanner_classes)
@@ -369,9 +369,9 @@ class TieChain(ContiguousSelection):
         mutate(self).replace(tuplet)
 
         # untie tuplet
-        for spanner in tuplet._get_spanners(spannertools.TieSpanner):
+        for spanner in tuplet._get_spanners(spannertools.Tie):
             spanner.detach()
-        #detach(spannertools.TieSpanner, tuplet)
+        #detach(spannertools.Tie, tuplet)
 
         # return tuplet
         return tuplet

@@ -7,7 +7,7 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_01(
     '''
 
     voice = Voice(scoretools.make_repeated_notes(4))
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, voice[:2])
 
     assert testtools.compare(
@@ -44,9 +44,9 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_02(
     '''
 
     voice = Voice(scoretools.make_repeated_notes(4))
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, voice[:2])
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, voice[2:])
 
     assert testtools.compare(

@@ -48,7 +48,7 @@ def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
     Returns generator.
     '''
     from abjad.tools import scoretools
-    spanner_classes = (spannertools.TieSpanner, )
+    spanner_classes = (spannertools.Tie, )
     if not reverse:
         for leaf in iterate(expr).by_class(scoretools.Leaf):
             tie_spanners = leaf._get_spanners(spanner_classes)

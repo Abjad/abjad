@@ -324,7 +324,7 @@ class Leaf(Component):
     def _get_tie_chain(self):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
-        spanner_classes = (spannertools.TieSpanner,)
+        spanner_classes = (spannertools.Tie,)
         for component in self._get_parentage():
             tie_spanners = component._get_spanners(spanner_classes)
             if len(tie_spanners) == 1:
@@ -406,8 +406,8 @@ class Leaf(Component):
                 x.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
-            if not parentage._get_spanners(spannertools.TieSpanner):
-                tie = spannertools.TieSpanner()
+            if not parentage._get_spanners(spannertools.Tie):
+                tie = spannertools.Tie()
                 attach(tie, all_leaves)
             return all_leaves
         else:
@@ -420,8 +420,8 @@ class Leaf(Component):
             for x, component in zip(all_leaves, components):
                 x.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
-            if not self._get_spanners(spannertools.TieSpanner):
-                tie = spannertools.TieSpanner()
+            if not self._get_spanners(spannertools.Tie):
+                tie = spannertools.Tie()
                 attach(tie, all_leaves)
             tuplet_multiplier = tuplet.multiplier
             scoretools.Tuplet(tuplet_multiplier, all_leaves)
@@ -460,7 +460,7 @@ class Leaf(Component):
             result.append(shard)
         flattened_result = sequencetools.flatten_sequence(result)
         flattened_result = selectiontools.SliceSelection(flattened_result)
-        spanner_classes = (spannertools.TieSpanner,)
+        spanner_classes = (spannertools.Tie,)
         parentage = self._get_parentage()
         if parentage._get_spanners(spanner_classes=spanner_classes):
             selection = select(flattened_result)

@@ -83,7 +83,7 @@ spannertools.Beam(upper_measures[1][1:])
 spannertools.Beam(upper_measures[2][0:3])
 spannertools.Beam(upper_measures[2][3:])
 
-spannertools.TieSpanner(upper_staff[-2:])
+spannertools.Tie(upper_staff[-2:])
 spannertools.Slur(upper_staff.leaves[0:5])
 spannertools.Slur(upper_staff.leaves[5:])
 Crescendo(upper_staff.leaves[-7:-2])
@@ -95,7 +95,7 @@ tx.bound_details__left__text = markuptools.Markup('ritard.')
 
 lower_staff.clef.forced = scoretools.Clef('bass')
 
-spannertools.TieSpanner([v1a[0], v1b[0]])
+spannertools.Tie([v1a[0], v1b[0]])
 
 spannertools.Beam(lower_staff.leaves[1:5])
 spannertools.Beam(lower_staff.leaves[6:10])

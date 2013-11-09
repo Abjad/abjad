@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+import os
+import re
 
 
 class PersistenceAgent(object):
@@ -57,6 +59,41 @@ class PersistenceAgent(object):
         '''
         from abjad.tools import iotools
         iotools.write_expr_to_ly(self._client, filename)
+
+    def as_module(self, filename, object_name):
+        r'''Persist client as Python module.
+
+        ::
+
+            >>> inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 1),
+            ...     timespantools.Timespan(2, 4),
+            ...     timespantools.Timespan(6, 8),
+            ...     ])
+            >>> persist(inventory).as_module( # doctest: +SKIP
+            ...     '~/example.py', 'inventory')
+
+        '''
+        result = ['# -*- encoding: utf-8 -*-']
+        storage_pieces = format(self._client, 'storage').splitlines()
+        pattern = re.compile(r'\b[a-z]+tools\b')
+        tools_package_names = set()
+        for line in storage_pieces:
+            match = pattern.search(line)
+            while match is not None:
+                group = match.group()
+                tools_package_names.add(group)
+                end = match.end()
+                match = pattern.search(line, pos=end)
+        for name in sorted(tools_package_names):
+            result.append('from abjad.tools import {}'.format(name))
+        result.append('')
+        result.append('')
+        result.append('{} = {}'.format(object_name, storage_pieces[0]))
+        result.extend(storage_pieces[1:])
+        result = '\n'.join(result)
+        with open(os.path.expanduser(filename), 'w') as f:
+            f.write(result)
 
     def as_pdf(self, filename):
         r'''Persist client as PDF.

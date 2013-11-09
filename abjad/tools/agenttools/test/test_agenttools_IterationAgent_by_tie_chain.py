@@ -7,9 +7,9 @@ def test_agenttools_IterationAgent_by_tie_chain_01():
     '''
 
     staff = Staff(scoretools.make_repeated_notes(4))
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff[:2])
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff[2:])
 
     assert testtools.compare(
@@ -49,9 +49,9 @@ def test_agenttools_IterationAgent_by_tie_chain_03():
     '''
 
     staff = Staff(scoretools.make_repeated_notes(4))
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff[:2])
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff[2:])
 
     chains = list(iterate(staff).by_tie_chain())

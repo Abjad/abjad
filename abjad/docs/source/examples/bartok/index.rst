@@ -280,7 +280,7 @@ And ties connecting the last two notes in each staff:
 
 ::
 
-   >>> tie = spannertools.TieSpanner()
+   >>> tie = spannertools.Tie()
    >>> tie.attach(upper_leaves[-2:])
 
 
@@ -289,7 +289,7 @@ And ties connecting the last two notes in each staff:
    >>> note_1 = lower_staff[-2]['upper voice'][0]
    >>> note_2 = lower_staff[-1]['upper voice'][0]
    >>> notes = [note_1, note_2]
-   >>> tie = spannertools.TieSpanner()
+   >>> tie = spannertools.Tie()
    >>> tie.attach(notes)
 
 

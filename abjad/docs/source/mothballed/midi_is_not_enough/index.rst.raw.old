@@ -77,9 +77,9 @@ an infinity of equivalent representations in terms of magnitude: d = 1/4 = 1/8
 <abjad>
 m1 = Measure((1, 4), [Note("c'4")])
 m2 = Measure((1, 4), 2 * Note(0, (1, 8)))
-spannertools.TieSpanner(m2)
+spannertools.Tie(m2)
 m3 = Measure((1, 4), [Note(0, (1, 8))] + 2 * Note(0, (1, 16)))
-spannertools.TieSpanner(m3)
+spannertools.Tie(m3)
 r = scoretools.RhythmicStaff([m1, m2, m3])
 </abjad>
 

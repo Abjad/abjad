@@ -3,13 +3,13 @@ from abjad.tools import stringtools
 from abjad.tools.spannertools.DirectedSpanner import DirectedSpanner
 
 
-class TieSpanner(DirectedSpanner):
+class Tie(DirectedSpanner):
     r'''A tie spanner.
 
     ::
 
         >>> staff = Staff(scoretools.make_repeated_notes(4))
-        >>> tie = spannertools.TieSpanner()
+        >>> tie = spannertools.Tie()
         >>> attach(tie, staff[:])
         >>> show(staff) # doctest: +SKIP
 

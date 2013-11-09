@@ -63,7 +63,7 @@ class ContiguousSelection(Selection):
         assert isinstance(right_leaf, scoretools.Leaf), right_leaf
         left_tie_chain = left_leaf._get_tie_chain()
         right_tie_chain = right_leaf._get_tie_chain()
-        spanner_classes = (spannertools.TieSpanner,)
+        spanner_classes = (spannertools.Tie,)
         if left_tie_chain == right_tie_chain:
             return
         try:
@@ -81,7 +81,7 @@ class ContiguousSelection(Selection):
         elif left_tie_spanner is None and right_tie_spanner is not None:
             right_tie_spanner.append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
-            tie = spannertools.TieSpanner()
+            tie = spannertools.Tie()
             attach(tie, [left_leaf, right_leaf])
 
     def _copy_and_include_enclosing_containers(self):

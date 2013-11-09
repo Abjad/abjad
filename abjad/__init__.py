@@ -38,8 +38,8 @@ from abjad.tools.durationtools import Offset
 from abjad.tools.marktools import Articulation
 from abjad.tools.marktools import Clef
 from abjad.tools.marktools import Dynamic
-from abjad.tools.marktools import TimeSignature
 from abjad.tools.marktools import Tempo
+from abjad.tools.marktools import TimeSignature
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Container
@@ -53,6 +53,7 @@ from abjad.tools.scoretools import Voice
 from abjad.tools.spannertools import Beam
 from abjad.tools.spannertools import Crescendo
 from abjad.tools.spannertools import Decrescendo
+from abjad.tools.spannertools import Glissando
 from abjad.tools.spannertools import Hairpin
 from abjad.tools.spannertools import Slur
 from fractions import Fraction

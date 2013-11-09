@@ -235,7 +235,7 @@ text_spanner.attach(upper_leaves[-7:])
 And ties connecting the last two notes in each staff:
 
 <abjad>
-tie = spannertools.TieSpanner()
+tie = spannertools.Tie()
 tie.attach(upper_leaves[-2:])
 </abjad>
 
@@ -243,7 +243,7 @@ tie.attach(upper_leaves[-2:])
 note_1 = lower_staff[-2]['upper voice'][0]
 note_2 = lower_staff[-1]['upper voice'][0]
 notes = [note_1, note_2]
-tie = spannertools.TieSpanner()
+tie = spannertools.Tie()
 tie.attach(notes)
 </abjad>
 

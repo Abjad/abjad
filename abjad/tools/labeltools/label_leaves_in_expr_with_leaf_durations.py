@@ -117,7 +117,7 @@ def label_leaves_in_expr_with_leaf_durations(
     Returns none.
     '''
 
-    spanner_classes = (spannertools.TieSpanner,)
+    spanner_classes = (spannertools.Tie,)
     for leaf in iterate(expr).by_class(scoretools.Leaf):
         tie_spanners = leaf._get_spanners(spanner_classes)
         if not tie_spanners:

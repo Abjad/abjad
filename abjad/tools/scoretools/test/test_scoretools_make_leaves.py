@@ -65,11 +65,11 @@ def test_scoretools_make_leaves_04():
     assert len(leaves) == 4
     for l in leaves:
       assert isinstance(l, Rest)
-    tie_1 = inspect(leaves[0]).get_spanner(spannertools.TieSpanner)
-    tie_2 = inspect(leaves[1]).get_spanner(spannertools.TieSpanner)
+    tie_1 = inspect(leaves[0]).get_spanner(spannertools.Tie)
+    tie_2 = inspect(leaves[1]).get_spanner(spannertools.Tie)
     assert tie_1 is tie_2
-    tie_3 = inspect(leaves[2]).get_spanner(spannertools.TieSpanner)
-    tie_4 = inspect(leaves[3]).get_spanner(spannertools.TieSpanner)
+    tie_3 = inspect(leaves[2]).get_spanner(spannertools.Tie)
+    tie_4 = inspect(leaves[3]).get_spanner(spannertools.Tie)
     assert tie_3 is tie_4
 
 

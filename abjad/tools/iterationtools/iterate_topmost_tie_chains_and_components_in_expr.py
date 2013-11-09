@@ -51,7 +51,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
     '''
     from abjad.tools import spannertools
 
-    spanner_classes = (spannertools.TieSpanner,)
+    spanner_classes = (spannertools.Tie,)
     if isinstance(expr, scoretools.Leaf):
         tie_chain = expr._get_tie_chain()
         if len(tie_chain) == 1:

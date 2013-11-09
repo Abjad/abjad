@@ -6,7 +6,7 @@ def test_selectiontools_TieChain_all_leaves_are_in_same_parent_01():
 
 
     staff = scoretools.make_repeated_notes(4)
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff[:])
 
     assert inspect(staff[0]).get_tie_chain().all_leaves_are_in_same_parent
@@ -15,7 +15,7 @@ def test_selectiontools_TieChain_all_leaves_are_in_same_parent_01():
 def test_selectiontools_TieChain_all_leaves_are_in_same_parent_02():
 
     staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff.select_leaves()[1:3])
 
     assert testtools.compare(

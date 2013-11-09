@@ -201,10 +201,10 @@ class BurnishedRhythmMaker(RhythmMaker):
             written_durations, weights=weights, cyclic=True, overhang=True)
         counts = [len(part) for part in parts]
         parts = sequencetools.partition_sequence_by_counts(leaves, counts)
-        spanner_classes = (spannertools.TieSpanner,)
+        spanner_classes = (spannertools.Tie,)
         for part in parts:
             part = selectiontools.SliceSelection(part)
-            tie_spanner = spannertools.TieSpanner()
+            tie_spanner = spannertools.Tie()
             # this is voodoo to temporarily neuter the contiguity constraint
             tie_spanner._contiguity_constraint = None
             for component in part:

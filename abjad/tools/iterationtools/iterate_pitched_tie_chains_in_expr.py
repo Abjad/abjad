@@ -58,7 +58,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     from abjad.tools import scoretools
     from abjad.tools.topleveltools import iterate
 
-    spanner_classes = (spannertools.TieSpanner,)
+    spanner_classes = (spannertools.Tie,)
     if not reverse:
         for leaf in iterate(expr).by_class(
             (scoretools.Note, scoretools.Chord)):

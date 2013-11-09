@@ -381,7 +381,7 @@ class IterationAgent(object):
 
         Returns generator.
         '''
-        spanner_classes = (spannertools.TieSpanner,)
+        spanner_classes = (spannertools.Tie,)
         nontrivial = bool(nontrivial)
         component_classes = scoretools.Leaf
         if pitched:

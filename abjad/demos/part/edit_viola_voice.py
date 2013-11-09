@@ -35,6 +35,6 @@ def edit_viola_voice(score, durated_reservoir):
     articulation = marktools.Articulation('tenuto')
     attach(articulation, final_sustain_notes[0])
     voice.extend(final_sustain_notes)
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, final_sustain_notes)
     voice.extend('r4 r2.')

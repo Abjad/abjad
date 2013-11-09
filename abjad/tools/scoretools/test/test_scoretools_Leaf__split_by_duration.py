@@ -333,14 +333,14 @@ def test_scoretools_Leaf__split_by_duration_12():
     '''
 
     staff = Staff([Note("c'4")])
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff.select_leaves())
     halves = staff[0]._split_by_duration(Duration(1, 8))
 
     assert len(staff) == 2
     for leaf in staff.select_leaves():
         assert inspect(leaf).get_spanners() == set([tie])
-        spanner_classes = (spannertools.TieSpanner,)
+        spanner_classes = (spannertools.Tie,)
         assert inspect(leaf).get_spanner(spanner_classes) is tie
 
     assert inspect(staff).is_well_formed()
@@ -373,7 +373,7 @@ def test_scoretools_Leaf__split_by_duration_14():
     '''
 
     staff = Staff([Note("c'4")])
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff.select_leaves())
     halves = staff[0]._split_by_duration(Duration(5, 32))
 
@@ -382,7 +382,7 @@ def test_scoretools_Leaf__split_by_duration_14():
     assert len(halves[1]) == 1
     for l in staff.select_leaves():
         assert inspect(l).get_spanners() == set([tie])
-        assert inspect(l).get_spanner(spannertools.TieSpanner) is tie
+        assert inspect(l).get_spanner(spannertools.Tie) is tie
 
     assert inspect(staff).is_well_formed()
 
@@ -393,11 +393,11 @@ def test_scoretools_Leaf__split_by_duration_15():
     '''
 
     container = Container(scoretools.make_repeated_notes(4))
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, container)
     halves = container[0]._split_by_duration(Duration(5, 64))
 
-    assert inspect(container).get_spanner(spannertools.TieSpanner) is tie
+    assert inspect(container).get_spanner(spannertools.Tie) is tie
     assert tie.components == (container, )
     for l in container.select_leaves():
         assert not inspect(l).get_spanners()
@@ -411,7 +411,7 @@ def test_scoretools_Leaf__split_by_duration_16():
     '''
 
     staff = Staff(Container(scoretools.make_repeated_notes(4)) * 2)
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, staff[:])
     halves = staff[0][0]._split_by_duration(Duration(5, 64))
 

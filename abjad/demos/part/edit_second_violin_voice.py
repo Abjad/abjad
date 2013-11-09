@@ -29,6 +29,6 @@ def edit_second_violin_voice(score, durated_reservoir):
     attach(articulation, final_sustain[0])
 
     voice.extend(final_sustain)
-    tie = spannertools.TieSpanner()
+    tie = spannertools.Tie()
     attach(tie, final_sustain)
     voice.extend('r4 r2.')

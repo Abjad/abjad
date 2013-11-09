@@ -43,8 +43,8 @@ def test_agenttools_MutationAgent_fuse_04():
     assert len(fused) == 2
     assert fused[0].written_duration == Duration(1, 4)
     assert fused[1].written_duration == Duration(1, 16)
-    tie_1 = inspect(fused[0]).get_spanner(spannertools.TieSpanner)
-    tie_2 = inspect(fused[1]).get_spanner(spannertools.TieSpanner)
+    tie_1 = inspect(fused[0]).get_spanner(spannertools.Tie)
+    tie_2 = inspect(fused[1]).get_spanner(spannertools.Tie)
     assert tie_1 is tie_2
     assert voice[0] is fused[0]
     assert voice[1] is fused[1]
