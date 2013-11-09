@@ -35,11 +35,13 @@ from abjad.tools import *
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Multiplier
 from abjad.tools.durationtools import Offset
+from abjad.tools.instrumenttools import Instrument
 from abjad.tools.marktools import Articulation
 from abjad.tools.marktools import Clef
 from abjad.tools.marktools import Dynamic
 from abjad.tools.marktools import Tempo
 from abjad.tools.marktools import TimeSignature
+from abjad.tools.markuptools import Markup
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Container
@@ -48,6 +50,7 @@ from abjad.tools.scoretools import Note
 from abjad.tools.scoretools import Rest
 from abjad.tools.scoretools import Score
 from abjad.tools.scoretools import Staff
+from abjad.tools.scoretools import StaffGroup
 from abjad.tools.scoretools import Tuplet
 from abjad.tools.scoretools import Voice
 from abjad.tools.spannertools import Beam
