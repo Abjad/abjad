@@ -32,7 +32,7 @@ class Configuration(AbjadObject):
                 if not valid:
                     default = config.default_values[key]
                     message = 'Warning: config key {!r} failed validation,'
-                    message += ' setting to default: {!r}.'
+                    message += ' contextualize to default: {!r}.'
                     message = message.format(key, default)
                     print message
                     config[key] = default
@@ -83,7 +83,7 @@ class Configuration(AbjadObject):
         return len(self._settings)
 
     def __setitem__(self, i, arg):
-        r'''Sets setting `i` to `arg`.
+        r'''Sets contextualize `i` to `arg`.
 
         Returns none.
         '''

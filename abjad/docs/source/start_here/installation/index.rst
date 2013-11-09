@@ -38,7 +38,7 @@ environment variable.
 
 If you are new to working with the commandline 
 you should use Google to get a basic introduction to 
-editing your profile and setting environment variables.
+editing your profile and contextualize environment variables.
 
 
 Installing the current packaged version of Abjad with ``pip``

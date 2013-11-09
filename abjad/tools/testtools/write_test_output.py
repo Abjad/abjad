@@ -26,7 +26,7 @@ def write_test_output(output, full_file_name, test_function_name,
     lilypond_file.header_block.title = markuptools.make_centered_title_markup(
         title_lines, font_size=6, vspace_before=2, vspace_after=4)
     moment = schemetools.SchemeMoment((1, 48))
-    setting(lilypond_file.score).proportionalNotationDuration = moment
+    contextualize(lilypond_file.score).proportionalNotationDuration = moment
     parent_directory_name = os.path.dirname(full_file_name)
     if render_pdf:
         topleveltools.show(lilypond_file)

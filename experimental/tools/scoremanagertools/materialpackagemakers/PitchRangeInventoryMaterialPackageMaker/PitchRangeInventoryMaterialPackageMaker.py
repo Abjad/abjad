@@ -43,6 +43,6 @@ class PitchRangeInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
         override(score).time_signature.stencil = False
         override(score).bar_line.transparent = True
         override(score).span_bar.transparent = True
-        setting(score).proportional_notation_duration = \
+        contextualize(score).proportional_notation_duration = \
             schemetools.SchemeMoment(1, 4)
         return illustration

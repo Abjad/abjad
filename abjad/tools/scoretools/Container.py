@@ -359,7 +359,7 @@ class Container(Component):
         withdraw_components_in_expr_from_crossing_spanners=True,
         ):
         r'''This method exists beacuse __setitem__ can not accept keywords.
-        Note that setting
+        Note that contextualize
         withdraw_components_in_expr_from_crossing_spanners=False
         constitutes a composer-unsafe use of this method.
         Only private methods should set this keyword.
@@ -429,7 +429,7 @@ class Container(Component):
                     for spanner in child._get_spanners():
                         spanner._remove(child)
             del(self[start:stop])
-            # must withdraw before setting in self!
+            # must withdraw before contextualize in self!
             # otherwise circular withdraw ensues!
             if withdraw_components_in_expr_from_crossing_spanners:
                 selection = selectiontools.SliceSelection(expr)

@@ -9,7 +9,7 @@ from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import setting
+from abjad.tools.topleveltools import contextualize
 Selection = selectiontools.Selection
 
 
@@ -74,7 +74,7 @@ class Spanner(AbjadObject):
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
-            new._set = copy.copy(setting(self))
+            new._set = copy.copy(contextualize(self))
         self._copy_keyword_args(new)
         return new
 

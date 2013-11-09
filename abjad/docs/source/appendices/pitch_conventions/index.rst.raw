@@ -40,7 +40,7 @@ score.override.flag.transparent = True
 score.override.rest.transparent = True
 score.override.stem.stencil = False
 score.override.text_script.staff_padding = 6
-setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 56)
+contextualize(score).proportional_notation_duration = schemetools.SchemeMoment(1, 56)
 </abjad>
 
 <abjad>
@@ -97,7 +97,7 @@ score.override.flag.transparent = True
 score.override.rest.transparent = True
 score.override.stem.stencil = False
 score.override.text_script.staff_padding = 6
-setting(score).proportional_notation_duration = schemetools.SchemeMoment(1, 52)
+contextualize(score).proportional_notation_duration = schemetools.SchemeMoment(1, 52)
 </abjad>
 
 <abjad>

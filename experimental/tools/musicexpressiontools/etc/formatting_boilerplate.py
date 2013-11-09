@@ -4,7 +4,7 @@
 lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(score)
 testtools.apply_additional_layout(lilypond_file)
 lilypond_file.header_block.title = markuptools.make_centered_title_markup('Étude', font_size=6)
-setting(lilypond_file.score).proportionalNotationDuration = schemetools.SchemeMoment((1, 48))
+contextualize(lilypond_file.score).proportionalNotationDuration = schemetools.SchemeMoment((1, 48))
 show(lilypond_file)
 
 

@@ -2,7 +2,7 @@
 from abjad.tools import marktools
 from abjad.tools import schemetools
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import setting
+from abjad.tools.topleveltools import contextualize
 
 
 def make_floating_time_signature_lilypond_file(music=None):
@@ -56,10 +56,10 @@ def make_floating_time_signature_lilypond_file(music=None):
     override(context_block).tuplet_bracket.minimum_length = 3
     override(context_block).tuplet_number.text = \
         schemetools.Scheme('tuplet-number::calc-fraction-text')
-    setting(context_block).autoBeaming = False
-    setting(context_block).proportionalNotationDuration = \
+    contextualize(context_block).autoBeaming = False
+    contextualize(context_block).proportionalNotationDuration = \
         schemetools.SchemeMoment((1, 32))
-    setting(context_block).tupletFullLength = True
+    contextualize(context_block).tupletFullLength = True
 
     # provided as a stub position for user customization
     context_block = lilypondfiletools.ContextBlock()

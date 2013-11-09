@@ -95,9 +95,9 @@ class AttributedBlock(list, AbjadObject):
                     formatted_value = schemetools.Scheme(value)
                     formatted_value = format(formatted_value, 'lilypond')
                     formatted_value = [formatted_value]
-                setting = '{!s} = {!s}'
-                setting = setting.format(formatted_key, formatted_value[0])
-                result.append(setting)
+                contextualize = '{!s} = {!s}'
+                contextualize = contextualize.format(formatted_key, formatted_value[0])
+                result.append(contextualize)
                 result.extend(formatted_value[1:])
         return result
 

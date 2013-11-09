@@ -6,19 +6,19 @@ from abjad import *
 def test_LilypondContextProxy___eq___01():
 
     note_1 = Note("c'4")
-    setting(note_1).voice.auto_beaming = False
-    setting(note_1).voice.tuplet_full_length = True
+    contextualize(note_1).voice.auto_beaming = False
+    contextualize(note_1).voice.tuplet_full_length = True
 
     note_2 = Note("c'4")
-    setting(note_2).voice.auto_beaming = False
-    setting(note_2).voice.tuplet_full_length = True
+    contextualize(note_2).voice.auto_beaming = False
+    contextualize(note_2).voice.tuplet_full_length = True
 
     note_3 = Note("c'4")
-    setting(note_3).voice.auto_beaming = True
+    contextualize(note_3).voice.auto_beaming = True
 
-    context_proxy_1 = setting(note_1).voice
-    context_proxy_2 = setting(note_2).voice
-    context_proxy_3 = setting(note_3).voice
+    context_proxy_1 = contextualize(note_1).voice
+    context_proxy_2 = contextualize(note_2).voice
+    context_proxy_3 = contextualize(note_3).voice
 
     assert      context_proxy_1 == context_proxy_1
     assert      context_proxy_1 == context_proxy_2

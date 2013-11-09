@@ -14,7 +14,7 @@ def test_scoretools_Voice___copy___01():
     voice_1.engraver_removals.append('Forbid_line_break_engraver')
     voice_1.engraver_consists.append('Time_signature_engraver')
     override(voice_1).note_head.color = 'red'
-    setting(voice_1).tuplet_full_length = True
+    contextualize(voice_1).tuplet_full_length = True
     voice_2 = copy.copy(voice_1)
 
     assert testtools.compare(

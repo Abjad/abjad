@@ -182,7 +182,7 @@ class Hairpin(DirectedSpanner):
     @apply
     def include_rests():
         def fget(self):
-            r'''Get boolean hairpin rests setting:
+            r'''Get boolean hairpin rests contextualize:
 
             ::
 
@@ -195,7 +195,7 @@ class Hairpin(DirectedSpanner):
                 >>> hairpin.include_rests
                 True
 
-            Set boolean hairpin rests setting:
+            Set boolean hairpin rests contextualize:
 
             ::
 

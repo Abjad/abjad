@@ -98,7 +98,7 @@ class SpacingIndication(AbjadObject):
 
     @property
     def proportional_notation_duration(self):
-        r'''LilyPond proportional notation duration context setting.
+        r'''LilyPond proportional notation duration context contextualize.
         '''
         return self._proportional_notation_duration
 

@@ -161,9 +161,9 @@ def format_score(score):
     override(score).span_bar.transparent = True
     override(score).stem.direction = 'down'
     override(score).time_signature.transparent = True
-    setting(score).autoBeaming = False
-    setting(score).proportionalNotationDuration = schemetools.SchemeMoment((1, 64))
-    setting(score).tupletFullLength = True
+    contextualize(score).autoBeaming = False
+    contextualize(score).proportionalNotationDuration = schemetools.SchemeMoment((1, 64))
+    contextualize(score).tupletFullLength = True
 
     vector = layouttools.make_spacing_vector(0, 0, 6, 0)
     score[0].override.staff_grouper.staff_staff_spacing = vector

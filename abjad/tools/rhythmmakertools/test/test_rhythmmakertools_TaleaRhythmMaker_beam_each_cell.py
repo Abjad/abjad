@@ -23,7 +23,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_beam_each_cell_01():
     staff = Staff(measures)
     scoretools.replace_contents_of_measures_in_expr(staff, music)
     score = Score([staff])
-    setting(score).autoBeaming = False
+    contextualize(score).autoBeaming = False
 
     assert testtools.compare(
         score,

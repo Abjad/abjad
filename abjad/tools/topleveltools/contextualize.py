@@ -1,7 +1,7 @@
-def setting(expr):
-    r'''Applies LilyPond context setting to `expr`.
+def contextualize(expr):
+    r'''Applies LilyPond context contextualize to `expr`.
 
-    Returns LilyPond context setting manager.
+    Returns LilyPond context contextualize manager.
     '''
     from abjad.tools import lilypondproxytools
 

@@ -53,7 +53,7 @@ class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
         override(score).staff_symbol.transparent = True
         override(score).stem.transparent = True
         override(score).time_signature.stencil = False
-        setting(score).proportional_notation_duration = \
+        contextualize(score).proportional_notation_duration = \
             schemetools.SchemeMoment(1, 8)
         if 'title' in kwargs:
             illustration.header_block.title = \

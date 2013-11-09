@@ -6,19 +6,19 @@ from abjad import *
 def test_lilypondproxytools_LilyPondSettingManager___eq___01():
 
     note_1 = Note("c'4")
-    setting(note_1).voice.auto_beaming = False
-    setting(note_1).staff.tuplet_full_length = True
+    contextualize(note_1).voice.auto_beaming = False
+    contextualize(note_1).staff.tuplet_full_length = True
 
     note_2 = Note("c'4")
-    setting(note_2).voice.auto_beaming = False
-    setting(note_2).staff.tuplet_full_length = True
+    contextualize(note_2).voice.auto_beaming = False
+    contextualize(note_2).staff.tuplet_full_length = True
 
     note_3 = Note("c'4")
-    setting(note_3).voice.auto_beaming = True
+    contextualize(note_3).voice.auto_beaming = True
 
-    context_setting_component_plug_in_1 = setting(note_1)
-    context_setting_component_plug_in_2 = setting(note_2)
-    context_setting_component_plug_in_3 = setting(note_3)
+    context_setting_component_plug_in_1 = contextualize(note_1)
+    context_setting_component_plug_in_2 = contextualize(note_2)
+    context_setting_component_plug_in_3 = contextualize(note_3)
 
     assert      context_setting_component_plug_in_1 == context_setting_component_plug_in_1
     assert      context_setting_component_plug_in_1 == context_setting_component_plug_in_2

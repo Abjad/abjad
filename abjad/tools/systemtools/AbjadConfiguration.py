@@ -302,7 +302,7 @@ class AbjadConfiguration(Configuration):
         Abjad environment variables are defined in
         ``abjad/tools/abjad_configuration/AbjadConfiguration.py``.
 
-        Returns tuple of zero or more environment variable / setting pairs.
+        Returns tuple of zero or more environment variable / contextualize pairs.
         '''
         from abjad import abjad_configuration
         result = []

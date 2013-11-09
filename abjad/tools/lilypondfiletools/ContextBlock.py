@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import lilypondproxytools
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import setting
+from abjad.tools.topleveltools import contextualize
 from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 
@@ -24,7 +24,7 @@ class ContextBlock(AttributedBlock):
         >>> scheme = schemetools.Scheme('end-of-line-invisible')
         >>> override(context_block).time_signature.break_visibility = scheme
         >>> moment = schemetools.SchemeMoment((1, 45))
-        >>> setting(context_block).proportionalNotationDuration = moment
+        >>> contextualize(context_block).proportionalNotationDuration = moment
 
     ..  doctest::
 
@@ -80,7 +80,7 @@ class ContextBlock(AttributedBlock):
         for string in override(self)._list_format_contributions('override'):
             result.append('\t' + string)
         setting_contributions = []
-        for key, value in setting(self)._get_attribute_tuples():
+        for key, value in contextualize(self)._get_attribute_tuples():
             setting_contribution = \
                 systemtools.LilyPondFormatManager.format_lilypond_context_setting_in_with_block(key, value)
             setting_contributions.append(setting_contribution)

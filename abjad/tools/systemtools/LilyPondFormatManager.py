@@ -22,7 +22,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def format_lilypond_context_setting_in_with_block(name, value):
-        r'''Formats LilyPond context setting `name` with `value`
+        r'''Formats LilyPond context contextualize `name` with `value`
         in with block.
 
         Returns string.
@@ -39,7 +39,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def format_lilypond_context_setting_inline(name, value, context=None):
-        r'''Formats LilyPond context setting `name` with `value` in
+        r'''Formats LilyPond context contextualize `name` with `value` in
         `context`.
 
         Returns string.
@@ -297,16 +297,16 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def get_context_setting_format_contributions(component):
-        r'''Gets context setting format contributions for `component`.
+        r'''Gets context contextualize format contributions for `component`.
 
         Returns sorted list.
         '''
         result = []
         from abjad.tools.scoretools.Leaf import Leaf
         from abjad.tools.scoretools.Measure import Measure
-        from abjad.tools.topleveltools import setting
+        from abjad.tools.topleveltools import contextualize
         if isinstance(component, (Leaf, Measure)):
-            for name, value in vars(setting(component)).iteritems():
+            for name, value in vars(contextualize(component)).iteritems():
                 # if we've found a leaf LilyPondContextNamespace
                 if name.startswith('_'):
                     for x, y in vars(value).iteritems():
@@ -314,14 +314,14 @@ class LilyPondFormatManager(object):
                             result.append(
                                 LilyPondFormatManager.format_lilypond_context_setting_inline(
                                     x, y, name))
-                # otherwise we've found a default leaf context setting
+                # otherwise we've found a default leaf context contextualize
                 else:
-                    # parse default context setting
+                    # parse default context contextualize
                     result.append(
                         LilyPondFormatManager.format_lilypond_context_setting_inline(
                             name, value))
         else:
-            for name, value in vars(setting(component)).iteritems():
+            for name, value in vars(contextualize(component)).iteritems():
                 result.append(LilyPondFormatManager.format_lilypond_context_setting_in_with_block(
                     name, value))
         result.sort()
