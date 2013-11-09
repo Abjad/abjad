@@ -299,7 +299,7 @@ class Component(AbjadObject):
         self._update_now(marks=True)
         # gathering candidate marks
         candidate_marks = datastructuretools.SortedCollection(
-            key=lambda x: x.start_component._get_timespan().start_offset)
+            key=lambda x: x._start_component._get_timespan().start_offset)
         for parent in self._get_parentage(include_self=True):
             parent_marks = parent._dependent_context_marks
             for mark in parent_marks:
@@ -308,7 +308,7 @@ class Component(AbjadObject):
                         candidate_marks.insert(mark)
                     elif isinstance(mark, marktools.TimeSignature):
                         if isinstance(
-                            mark.start_component, scoretools.Measure):
+                            mark._start_component, scoretools.Measure):
                             candidate_marks.insert(mark)
         # elect most recent candidate mark
         if candidate_marks:

@@ -418,35 +418,6 @@ class TimeSignature(ContextMark):
         return property(**locals())
 
     @property
-    def start_component(self):
-        r'''Time signature mark start component.
-
-        Returns none when time signature mark is not yet attached:
-
-        ::
-
-            >>> time_signature = marktools.TimeSignature((3, 8))
-            >>> time_signature.start_component is None
-            True
-
-        Returns component when time signature mark is attached:
-
-        ::
-
-            >>> staff = Staff()
-            >>> attach(time_signature, staff)
-            TimeSignature((3, 8))(Staff{})
-
-        ::
-
-            >>> time_signature.start_component
-            Staff{}
-
-        Returns component or none.
-        '''
-        return ContextMark.start_component.fget(self)
-
-    @property
     def target_context(self):
         r'''Time signature mark target context:
 

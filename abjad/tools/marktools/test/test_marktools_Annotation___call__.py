@@ -19,5 +19,3 @@ def test_marktools_Annotation___call___01():
         }
         '''
         )
-
-    assert annotation.start_component is staff[0]

@@ -74,10 +74,10 @@ class Mark(AbjadObject):
 
     @property
     def _attachment_repr_string(self):
-        if self.start_component is None:
+        if self._start_component is None:
             return ''
         else:
-            return '(%s)' % str(self.start_component)
+            return '({!s})'.format(self._start_component)
 
     @property
     def _one_line_menuing_summary(self):
@@ -109,13 +109,3 @@ class Mark(AbjadObject):
             except ValueError:
                 pass
         self._start_component = None
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def start_component(self):
-        r'''Start component of mark.
-
-        Returns component or none.
-        '''
-        return self._start_component

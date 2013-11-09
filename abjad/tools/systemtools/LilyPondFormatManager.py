@@ -290,7 +290,7 @@ class LilyPondFormatManager(object):
         if mark.effective_context is not None or \
             getattr(mark, '_is_cosmetic_mark', False) or \
             (isinstance(mark, marktools.TimeSignature) and
-            isinstance(mark.start_component, scoretools.Measure)):
+            isinstance(mark._start_component, scoretools.Measure)):
             return addenda
         addenda = [r'%%% ' + addendum + r' %%%' for addendum in addenda]
         return addenda
@@ -429,14 +429,14 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def is_formattable_context_mark_for_component(mark, component):
-        r'''Returns True if ContextMark `mark` can format for `component`.
+        r'''Returns true if ContextMark `mark` can format for `component`.
         '''
         from abjad.tools import scoretools
         from abjad.tools import marktools
-        if mark.start_component is None:
+        if mark._start_component is None:
             return False
-        if isinstance(mark.start_component, scoretools.Measure):
-            if mark.start_component is component:
+        if isinstance(mark._start_component, scoretools.Measure):
+            if mark._start_component is component:
                 if not isinstance(mark, marktools.TimeSignature):
                     return True
                 elif component.always_format_time_signature:
@@ -444,7 +444,7 @@ class LilyPondFormatManager(object):
                 else:
                     previous_measure = \
                         scoretools.get_previous_measure_from_component(
-                            mark.start_component)
+                            mark._start_component)
                     if previous_measure is not None:
                         previous_effective_time_signature = \
                             previous_measure.time_signature
@@ -453,16 +453,16 @@ class LilyPondFormatManager(object):
                     if not mark == previous_effective_time_signature:
                         return True
         elif mark._format_slot == 'right':
-            if mark.start_component is component:
+            if mark._start_component is component:
                 return True
-        elif mark.start_component is component:
+        elif mark._start_component is component:
             return True
         else:
             if mark.effective_context in \
                 component._get_parentage(include_self=True):
                 if mark.effective_context not in \
                     component._get_parentage(include_self=False):
-                    if mark.start_component.start == component.start:
+                    if mark._start_component.start == component.start:
                         return True
         return False
 
