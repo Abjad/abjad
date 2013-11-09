@@ -11,6 +11,7 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import contextualize
+from abjad.tools.topleveltools import iterate
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 
 
@@ -85,7 +86,7 @@ class Scale(PitchClassSegment):
         octave_number = 4
         pitch = pitchtools.NamedPitch(self[0], octave_number)
 
-        for i, tie_chain in enumerate(iterationtools.iterate_tie_chains_in_expr(expr)):
+        for i, tie_chain in enumerate(iterate(expr).by_tie_chain()):
             if isinstance(tie_chain[0], scoretools.Note):
                 for note in tie_chain:
                     note.written_pitch = pitch

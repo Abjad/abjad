@@ -3,6 +3,7 @@ from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools import iterationtools
 from abjad.tools import selectiontools
+from abjad.tools.topleveltools import iterate
 from abjad.tools.quantizationtools.AttackPointOptimizer \
 	import AttackPointOptimizer
 
@@ -21,8 +22,7 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        for tie_chain in iterationtools.iterate_tie_chains_in_expr(
-            expr, reverse=True):
+        for tie_chain in iterate(expr).by_tie_chain(reverse=True):
             sub_chains = []
             current_sub_chain = []
             for leaf in tie_chain:
