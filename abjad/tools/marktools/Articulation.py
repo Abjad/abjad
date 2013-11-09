@@ -4,56 +4,57 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class Articulation(Mark):
-    r'''A musical articulation.
+    r'''An articulation.
 
-    Initialize from articulation name:
+    ..  container:: example
 
-    ::
+        Initializes from name:
 
-        >>> marktools.Articulation('staccato')
-        Articulation('staccato')
+        ::
 
-    Initialize from articulation abbreviation:
+            >>> marktools.Articulation('staccato')
+            Articulation('staccato')
 
-    ::
+    ..  container:: example
 
-        >>> marktools.Articulation('.')
-        Articulation('.')
+        Initializes from abbreviation:
 
-    Initialize from other articulation:
+        ::
 
-    ::
+            >>> marktools.Articulation('.')
+            Articulation('.')
 
-        >>> articulation = marktools.Articulation('staccato')
-        >>> marktools.Articulation(articulation)
-        Articulation('staccato')
+    ..  container:: example
 
-    Initialize with direction:
+        Initializes from other articulation:
 
-    ::
+        ::
 
-        >>> marktools.Articulation('staccato', Up)
-        Articulation('staccato', Up)
+            >>> articulation = marktools.Articulation('staccato')
+            >>> marktools.Articulation(articulation)
+            Articulation('staccato')
 
-    Attach to note, rest or chord after initialization:
+    ..  container:: example
 
-    ::
+        Initializes with direction:
 
-        >>> note = Note("c'4")
+        ::
 
-    ::
+            >>> marktools.Articulation('staccato', Up)
+            Articulation('staccato', Up)
 
-        >>> articulation = marktools.Articulation('staccato')
-        >>> attach(articulation, note)
-        Articulation('staccato')(c'4)
-        >>> show(note) # doctest: +SKIP
+    .. container:: example
 
-    ::
+        Use `attach()` to attach articulations to notes, rests or chords:
 
-        >>> f(note)
-        c'4 -\staccato
+        ::
 
-    Articulations implement ``__slots__``.
+            >>> note = Note("c'4")
+            >>> articulation = marktools.Articulation('staccato')
+            >>> attach(articulation, note)
+            Articulation('staccato')(c'4)
+            >>> show(note) # doctest: +SKIP
+
     '''
 
     ### CLASS VARIABLES ###
@@ -105,9 +106,18 @@ class Articulation(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies articulation.
+
+        Returns new articulation.
+        '''
         return type(self)(self.name, self.direction)
 
     def __eq__(self, expr):
+        r'''True when `expr` equals name and direction of articulation.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if expr.name == self.name:
                 if self.direction == expr.direction:
@@ -115,6 +125,10 @@ class Articulation(Mark):
         return False
 
     def __str__(self):
+        r'''String representation of articulation.
+
+        Returns string.
+        '''
         if self.name:
             string = self._shortcut_to_word.get(self.name)
             if not string:
@@ -197,7 +211,7 @@ class Articulation(Mark):
     @property
     def _contents_repr_string(self):
         if self.direction is not None:
-            return '%r, %r' % (self.name, self.direction)
+            return '{!r}, {!r}'.format(self.name, self.direction)
         else:
             return repr(self.name)
 
@@ -210,32 +224,72 @@ class Articulation(Mark):
     @apply
     def direction():
         def fget(self):
+            r'''Gets and sets direction of articulation.
+
+            ..  container:: example
+
+                Example score:
+
+                ::
+
+                    >>> note = Note("c'4")
+                    >>> articulation = Articulation('staccato', Down)
+                    >>> attach(articulation, note)
+                    Articulation('staccato', Down)(c'4)
+                    >>> show(note) # doctest: +SKIP
+
+            ..  container:: example
+
+                Gets property:
+
+                ::
+
+                    >>> articulation.direction
+                    Down
+
+            ..  container:: example
+
+                Sets property:
+
+                ::
+
+                    >>> articulation.direction = Up
+                    >>> show(note) # doctest: +SKIP
+
+            Returns string.
+            '''
             return self._direction
         def fset(self, arg):
-            self._direction = \
-                stringtools.arg_to_tridirectional_ordinal_constant(arg)
+            arg = stringtools.arg_to_tridirectional_ordinal_constant(arg)
+            self._direction = arg
         return property(**locals())
 
     @apply
     def name():
         def fget(self):
-            r'''Get name of articulation:
+            r'''Gets and sets name of articulation.
 
-            ::
+            ..  container:: example
 
-                >>> articulation = marktools.Articulation('staccato', Up)
-                >>> articulation.name
-                'staccato'
+                Gets property:
 
-            Set name of articulation:
+                ::
 
-            ::
+                    >>> articulation = Articulation('staccato')
+                    >>> articulation.name
+                    'staccato'
 
-                >>> articulation.name = 'marcato'
-                >>> articulation.name
-                'marcato'
+            ..  container:: example
 
-            Set string.
+                Sets property:
+
+                ::
+
+                    >>> articulation.name = 'marcato'
+                    >>> articulation.name
+                    'marcato'
+
+            Returns string.
             '''
             return self._string
         def fset(self, name):
