@@ -6,7 +6,6 @@ class ContextMark(Mark):
     '''Abstract class from which concrete context marks inherit.
 
     Context marks are immutable.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -59,6 +58,29 @@ class ContextMark(Mark):
 
     ### PRIVATE METHODS ###
 
+    def _attach(self, start_component):
+        r'''Attaches context mark to `start_component`.
+        
+        Makes sure no context mark of same type is already attached 
+        to score component that starts with start component.
+
+        Returns context mark.
+        '''
+        from abjad.tools import marktools
+        classes = (type(self), )
+        effective_context_mark = \
+            start_component._get_effective_context_mark(classes)
+        if effective_context_mark is not None:
+            timespan = effective_context_mark.start_component._get_timespan()
+            mark_start_offset = timespan.start_offset
+            timespan = start_component._get_timespan()
+            start_component_start_offset = timespan.start_offset
+            if mark_start_offset == start_component_start_offset:
+                message = 'effective context mark already attached'
+                message += ' to component starting at same time.'
+                raise ExtraMarkError(message)
+        return Mark._attach(self, start_component)
+
     def _bind_correct_effective_context(self, correct_effective_context):
         self._unbind_effective_context()
         if correct_effective_context is not None:
@@ -68,7 +90,6 @@ class ContextMark(Mark):
         self._update_effective_context()
 
     def _bind_start_component(self, start_component):
-        #print 'binding CONTEXT MARK to start component ...'
         Mark._bind_start_component(self, start_component)
         self._update_effective_context()
 
@@ -111,7 +132,6 @@ class ContextMark(Mark):
         r'''This function is designed to be called by score components 
         during score update.
         '''
-        #print '\tupdating effective context of %s ...' % type(self).__name__
         current_effective_context = self._effective_context
         correct_effective_context = self._find_correct_effective_context()
         if current_effective_context is not correct_effective_context:
@@ -136,28 +156,3 @@ class ContextMark(Mark):
         Returns context or none.
         '''
         return self._target_context
-
-    ### PUBLIC METHODS ###
-
-    def _attach(self, start_component):
-        r'''Attaches context mark to `start_component`.
-        
-        Makes sure no context mark of same type is already attached 
-        to score component that starts with start component.
-
-        Returns context mark.
-        '''
-        from abjad.tools import marktools
-        classes = (type(self), )
-        effective_context_mark = \
-            start_component._get_effective_context_mark(classes)
-        if effective_context_mark is not None:
-            timespan = effective_context_mark.start_component._get_timespan()
-            mark_start_offset = timespan.start_offset
-            timespan = start_component._get_timespan()
-            start_component_start_offset = timespan.start_offset
-            if mark_start_offset == start_component_start_offset:
-                message = 'effective context mark already attached'
-                message += ' to component starting at same time.'
-                raise ExtraMarkError(message)
-        return Mark._attach(self, start_component)

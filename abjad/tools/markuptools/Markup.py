@@ -2,10 +2,10 @@
 from abjad.tools import abctools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
-from abjad.tools.marktools.DirectedMark import DirectedMark
+from abjad.tools.marktools.Mark import Mark
 
 
-class Markup(DirectedMark):
+class Markup(Mark):
     r'''Abjad model of LilyPond markup.
 
     Initialize from string:
@@ -121,10 +121,11 @@ class Markup(DirectedMark):
             contents = tuple(contents)
         else:
             contents = (str(argument),)
-        DirectedMark.__init__(self, direction=direction)
+        Mark.__init__(self)
         self._contents = contents
         self._format_slot = 'right'
         self._markup_name = markup_name
+        self.direction = direction
 
     ### SPECIAL METHODS ###
 
@@ -193,6 +194,15 @@ class Markup(DirectedMark):
         Returns string
         '''
         return self._contents
+
+    @apply
+    def direction():
+        def fget(self):
+            return self._direction
+        def fset(self, arg):
+            self._direction = \
+                stringtools.arg_to_tridirectional_ordinal_constant(arg)
+        return property(**locals())
 
     @property
     def indented_lilypond_format(self):

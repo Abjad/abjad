@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.marktools.DirectedMark import DirectedMark
+from abjad.tools.marktools.Mark import Mark
 
 
-class Articulation(DirectedMark):
+class Articulation(Mark):
     r'''A musical articulation.
 
     Initialize from articulation name:
@@ -97,8 +97,9 @@ class Articulation(DirectedMark):
                 string, direction = None, None
         else:
             string, direction = None, None
-        DirectedMark.__init__(self, direction=direction)
+        Mark.__init__(self)
         self._string = string
+        self.direction = direction
         self._format_slot = 'right'
 
     ### SPECIAL METHODS ###
@@ -205,6 +206,15 @@ class Articulation(DirectedMark):
         return str(self)
 
     ### PUBLIC PROPERTIES ###
+
+    @apply
+    def direction():
+        def fget(self):
+            return self._direction
+        def fset(self, arg):
+            self._direction = \
+                stringtools.arg_to_tridirectional_ordinal_constant(arg)
+        return property(**locals())
 
     @apply
     def name():
