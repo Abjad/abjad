@@ -37,12 +37,11 @@ class KeySignature(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, tonic, mode, _target_context=None):
+    def __init__(self, tonic, mode):
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
-        _target_context = _target_context or scoretools.Staff
-        ContextMark.__init__(self, _target_context=_target_context)
+        ContextMark.__init__(self, _target_context=scoretools.Staff)
         tonic = pitchtools.NamedPitchClass(tonic)
         mode = tonalanalysistools.Mode(mode)
         self._tonic = tonic
@@ -54,7 +53,6 @@ class KeySignature(ContextMark):
         return type(self)(
             self._tonic, 
             self._mode,
-            _target_context=self._target_context,
             )
 
     def __eq__(self, arg):
@@ -65,17 +63,17 @@ class KeySignature(ContextMark):
         return False
 
     def __str__(self):
-        return '%s-%s' % (self.tonic, self.mode)
+        return '{!s}-{!s}'.format(self.tonic, self.mode)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return "%r, %r" % (self.tonic, self.mode)
+        return '{!r}, {!r}'.format(self.tonic, self.mode)
 
     @property
     def _lilypond_format(self):
-        return r'\key %s \%s' % (self.tonic, self.mode)
+        return r'\key {!s} \{!s}'.format(self.tonic, self.mode)
 
     ### PUBLIC PROPERTIES ###
 
@@ -123,7 +121,7 @@ class KeySignature(ContextMark):
             tonic = str(self.tonic).upper()
         else:
             tonic = str(self.tonic)
-        return '%s %s' % (tonic, self.mode.mode_name)
+        return '{!s} {!s}'.format(tonic, self.mode.mode_name)
 
     @apply
     def tonic():

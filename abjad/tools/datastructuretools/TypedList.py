@@ -121,24 +121,19 @@ class TypedList(TypedCollection):
             >>> print format(dynamic_collection)
             datastructuretools.TypedList([
                 marktools.Dynamic(
-                    'ppp',
-                    _target_context=scoretools.Staff
+                    'ppp'
                     ),
                 marktools.Dynamic(
-                    'p',
-                    _target_context=scoretools.Staff
+                    'p'
                     ),
                 marktools.Dynamic(
-                    'mp',
-                    _target_context=scoretools.Staff
+                    'mp'
                     ),
                 marktools.Dynamic(
-                    'mf',
-                    _target_context=scoretools.Staff
+                    'mf'
                     ),
                 marktools.Dynamic(
-                    'fff',
-                    _target_context=scoretools.Staff
+                    'fff'
                     ),
                 ],
                 item_class=marktools.Dynamic,
