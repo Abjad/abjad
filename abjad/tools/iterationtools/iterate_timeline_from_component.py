@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import scoretools
+from abjad.tools.topleveltools import iterate
 
 
 def iterate_timeline_from_component(expr, component_class=None, reverse=False):
@@ -64,16 +64,12 @@ def iterate_timeline_from_component(expr, component_class=None, reverse=False):
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
     from abjad.tools import iterationtools
-
     if component_class is None:
         component_class = scoretools.Leaf
-
-    component_generator = iterationtools.iterate_timeline_in_expr(
-        expr._get_parentage().root, 
+    component_generator = iterate(expr._get_parentage().root).by_timeline(
         component_class=component_class,
         reverse=reverse,
         )
-
     yielded_expr = False
     for component in component_generator:
         if yielded_expr:

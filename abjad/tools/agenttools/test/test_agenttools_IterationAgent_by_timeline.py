@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_timeline_in_expr_01():
+def test_agenttools_IterationAgent_by_timeline_01():
     r'''Yield component class instances in expr sorted backward
     by score offset stop time.
     '''
@@ -32,10 +32,7 @@ def test_iterationtools_iterate_timeline_in_expr_01():
         '''
         )
 
-    leaf_generator = iterationtools.iterate_timeline_in_expr(
-        score, 
-        reverse=True,
-        )
+    leaf_generator = iterate(score).by_timeline(reverse=True)
     leaves = list(leaf_generator)
 
     assert leaves[0] is staff_1[3] # f'4
@@ -48,7 +45,7 @@ def test_iterationtools_iterate_timeline_in_expr_01():
     assert leaves[7] is staff_2[0] # g'8
 
 
-def test_iterationtools_iterate_timeline_in_expr_02():
+def test_agenttools_IterationAgent_by_timeline_02():
     r'''Yield component class instances in expr sorted by score offset
     and score index.
     '''
@@ -78,10 +75,7 @@ def test_iterationtools_iterate_timeline_in_expr_02():
         '''
         )
 
-    leaf_generator = iterationtools.iterate_timeline_in_expr(
-        score, 
-        reverse=True,
-        )
+    leaf_generator = iterate(score).by_timeline(reverse=True)
     leaves = list(leaf_generator)
 
     assert leaves[0] is staff_2[3] # c''4
@@ -94,7 +88,7 @@ def test_iterationtools_iterate_timeline_in_expr_02():
     assert leaves[7] is staff_1[0] # c'8
 
 
-def test_iterationtools_iterate_timeline_in_expr_03():
+def test_agenttools_IterationAgent_by_timeline_03():
     r'''Yield component class instances in expr sorted by score offset
     and score index.
     '''
@@ -124,7 +118,7 @@ def test_iterationtools_iterate_timeline_in_expr_03():
         '''
         )
 
-    leaf_generator = iterationtools.iterate_timeline_in_expr(score)
+    leaf_generator = iterate(score).by_timeline()
     leaves = list(leaf_generator)
 
     assert leaves[0] is staff_1[0] # c'4
@@ -137,7 +131,7 @@ def test_iterationtools_iterate_timeline_in_expr_03():
     assert leaves[7] is staff_1[3] # f'4
 
 
-def test_iterationtools_iterate_timeline_in_expr_04():
+def test_agenttools_IterationAgent_by_timeline_04():
     r'''Yield component class instances in expr sorted by score offset
     and score index.
     '''
@@ -167,7 +161,7 @@ def test_iterationtools_iterate_timeline_in_expr_04():
         '''
         )
 
-    leaf_generator = iterationtools.iterate_timeline_in_expr(score)
+    leaf_generator = iterate(score).by_timeline()
     leaves = list(leaf_generator)
 
     assert leaves[0] is staff_1[0] # c'8
