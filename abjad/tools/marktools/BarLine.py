@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.marktools.LilyPondCommand import LilyPondCommand
+#from abjad.tools.marktools.LilyPondCommand import LilyPondCommand
+from abjad.tools.marktools.Mark import Mark
 
 
-class BarLine(LilyPondCommand):
+class BarLine(Mark):
     r'''A bar line.
 
     ::
@@ -30,17 +31,39 @@ class BarLine(LilyPondCommand):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_bar_line_string',
+        '_format_slot',
+        )
+
+    _format_slot = 'after'
+
     ### INITIALIZER ##
 
-    def __init__(self, bar_line_string='|', format_slot='after'):
+    def __init__(self, bar_line_string='|'):
+        Mark.__init__(self)
         self.bar_line_string = bar_line_string
-        command_name = 'bar "%s"' % bar_line_string
-        LilyPondCommand.__init__(self, command_name, format_slot)
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self.bar_line_string, format_slot=self.format_slot)
+        r'''Copies bar line.
+
+        Returns new bar line.
+        '''
+        return type(self)(self.bar_line_string)
+
+    def __eq__(self, arg):
+        r'''True when `arg` is a bar line with equal bar line string.
+        Otherwise false.
+
+        Returns boolean.
+        '''
+        if isinstance(arg, type(self)):
+            return self.bar_line_string == arg.bar_line_string
+        return False
 
     ### PRIVATE PROPERTIES ###
 
@@ -48,12 +71,16 @@ class BarLine(LilyPondCommand):
     def _contents_repr_string(self):
         return repr(self.bar_line_string)
 
+    @property
+    def _lilypond_format(self):
+        return r'\bar "{}"'.format(self.bar_line_string)
+
     ## PUBLIC PROPERTIES ##
 
     @apply
     def bar_line_string():
         def fget(self):
-            r'''Get bar line string of bar line:
+            r'''Gets and sets bar line string.
 
             ::
 
@@ -63,7 +90,7 @@ class BarLine(LilyPondCommand):
                 >>> bar_line.bar_line_string
                 '|'
 
-            Set bar line string of bar line:
+            Sets bar line string:
 
             ::
 
@@ -82,12 +109,10 @@ class BarLine(LilyPondCommand):
                     \bar "|."
                 }
 
-            Set string.
+            Returns string.
             '''
             return self._bar_line_string
         def fset(self, bar_line_string):
             assert isinstance(bar_line_string, str)
             self._bar_line_string = bar_line_string
-            command_name = 'bar "%s"' % bar_line_string
-            self.command_name = command_name
         return property(**locals())

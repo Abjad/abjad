@@ -43,7 +43,7 @@ class StemTremolo(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        r'''Copy stem tremolo:
+        r'''Copies stem tremolo.
 
         ::
 
@@ -68,7 +68,7 @@ class StemTremolo(Mark):
         return new
 
     def __eq__(self, expr):
-        r'''True when `expr` is a stem tremolo with equal tremolo flags:
+        r'''True when `expr` is a stem tremolo with equal tremolo flags.
         Otherwise false:
 
         ::
@@ -106,13 +106,17 @@ class StemTremolo(Mark):
         return False
 
     def __str__(self):
-        return ':%s' % str(self.tremolo_flags)
+        r'''String representation of stem tremolo.
+
+        Returns string.
+        '''
+        return ':{!s}'.format(self.tremolo_flags)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return '%s' % self.tremolo_flags
+        return str(self.tremolo_flags)
 
     @property
     def _lilypond_format(self):
@@ -123,7 +127,7 @@ class StemTremolo(Mark):
     @apply
     def tremolo_flags():
         def fget(self):
-            r'''Get tremolo flags:
+            r'''Gets and sets tremolo flags.
 
             ::
 
@@ -131,7 +135,7 @@ class StemTremolo(Mark):
                 >>> stem_tremolo.tremolo_flags
                 16
 
-            Set tremolo flags:
+            Sets tremolo flags:
 
             ::
 
@@ -139,7 +143,7 @@ class StemTremolo(Mark):
                 >>> stem_tremolo.tremolo_flags
                 32
 
-            Set integer.
+            Returns integer.
             '''
             return self._tremolo_flags
         def fset(self, tremolo_flags):

@@ -150,8 +150,8 @@ class LilyPondFormatManager(object):
 
         The first level of keys represent format slots.
 
-        The second level of keys represent format contributor
-        ('articulations', 'markup', etc.).
+        The second level of keys represent format contributors
+        (like 'articulations' and 'markup').
 
         Returns dictionary.
         '''
@@ -168,22 +168,22 @@ class LilyPondFormatManager(object):
         marks = component._get_marks()
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
-        ### organize marks attached directly to component ###
+        # organize marks attached directly to component
         for mark in marks:
-            ### non-printing marks are skipped (i.e. Annotation) ###
+            # nonprinting marks are skipped (eg, Annotation)
             if not hasattr(mark, '_lilypond_format'):
                 continue
-            ### a recognized mark class ###
+            # a recognized mark class
             section, singleton = None, False
             if mark.__class__ in class_to_section:
                 section, singleton = class_to_section[mark.__class__]
-            ### context marks to be dealt with later ###
+            # context marks to be dealt with later
             elif isinstance(mark, marktools.ContextMark):
                 if LilyPondFormatManager.is_formattable_context_mark_for_component(
                     mark, component):
                     context_marks.append(mark)
                     continue
-            ### markup to be dealt with later ###
+            # markup to be dealt with later
             elif isinstance(mark, markuptools.Markup):
                 if mark.direction is Up:
                     up_markup.append(mark)
@@ -192,7 +192,7 @@ class LilyPondFormatManager(object):
                 elif mark.direction in (Center, None):
                     neutral_markup.append(mark)
                 continue
-            ### otherwise, test if mark is a subclass of a recognized mark ###
+            # otherwise, test if mark is a subclass of a recognized mark
             else:
                 mro = list(inspect.getmro(mark.__class__))
                 while mro:
@@ -201,13 +201,13 @@ class LilyPondFormatManager(object):
                     mro.pop()
                 if not section:
                     section, singleton = 'other marks', False
-            ### prepare the contributions dictionary ###
+            # prepare the contributions dictionary
             format_slot = mark._format_slot
             if format_slot not in contributions:
                 contributions[format_slot] = {}
             if section not in contributions[format_slot]:
                 contributions[format_slot][section] = []
-            ### add the mark contribution ###
+            # add the mark contribution
             contribution_list = contributions[format_slot][section]
             if len(contribution_list) and singleton:
                 raise ExtraMarkError
@@ -216,7 +216,7 @@ class LilyPondFormatManager(object):
             contribution_list.append(result)
             if section == 'articulations':
                 contribution_list.sort()
-        ### handle context marks ###
+        # handle context marks
         for parent in component._get_parentage(include_self=False):
             for mark in parent._start_marks:
                 if not isinstance(mark, marktools.ContextMark):
@@ -238,7 +238,7 @@ class LilyPondFormatManager(object):
             if section not in contributions[format_slot]:
                 contributions[format_slot][section] = []
             contributions[format_slot][section].extend(result)
-        ### handle markup ###
+        # handle markup
         result = []
         for markup_list in (up_markup, down_markup, neutral_markup):
             if not markup_list:
