@@ -204,7 +204,7 @@ class SegmentPackageManager(PackageManager):
                 is_interactive=is_interactive,
                 )
             return
-        next_output_file_name = iotools.get_next_output_file_name(
+        next_output_file_name = iotools.IOManager.get_next_output_file_name(
             output_directory_path=self._get_versions_directory_path(),
             )
         result = os.path.splitext(next_output_file_name)

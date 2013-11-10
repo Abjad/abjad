@@ -30,7 +30,7 @@ def play(expr):
     ABJADOUTPUT = abjad_configuration['abjad_output']
     iotools.IOManager.ensure_directory_existence(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
-    name = iotools.get_next_output_file_name()
+    name = iotools.IOManager.get_next_output_file_name()
     outfile = open(name, 'w')
     lilypond_file = iotools.insert_expr_into_lilypond_file(expr)
     lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())

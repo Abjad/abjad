@@ -19,7 +19,7 @@ def pdf(target=-1):
 
     ABJADOUTPUT = abjad_configuration['abjad_output']
     if isinstance(target, int) and target < 0:
-        last_lilypond_file_name = iotools.get_last_output_file_name()
+        last_lilypond_file_name = iotools.IOManager.get_last_output_file_name()
         if last_lilypond_file_name:
             result = os.path.splitext(last_lilypond_file_name)
             file_name_root, extension = result

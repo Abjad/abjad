@@ -44,7 +44,7 @@ def graph(expr, image_format='pdf', layout='dot'):
     iotools.IOManager.ensure_directory_existence(ABJADOUTPUT)
     dot_path = os.path.join(
         ABJADOUTPUT,
-        iotools.get_next_output_file_name(file_extension='dot'),
+        iotools.IOManager.get_next_output_file_name(file_extension='dot'),
         )
     img_path = os.path.join(ABJADOUTPUT, dot_path.replace('dot', 'pdf'))
 

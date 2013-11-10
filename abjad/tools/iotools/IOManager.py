@@ -3,6 +3,7 @@ import StringIO
 import datetime
 import os
 import platform
+import re
 import subprocess
 import sys
 
@@ -72,7 +73,8 @@ class IOManager(object):
 
             ::
 
-                >>> IOManager.count_function_calls("Note('c4')", globals())
+                >>> iotools.IOManager.count_function_calls(
+                ...     "Note('c4')", globals())
                 10276
 
         ..  container:: example
@@ -82,7 +84,7 @@ class IOManager(object):
 
             ::
 
-                >>> IOManager.count_function_calls(
+                >>> iotools.IOManager.count_function_calls(
                 ...     "Note(-12, (1, 4))", globals())
                 172
 
@@ -166,6 +168,74 @@ class IOManager(object):
                 if os.access(path_extension, flags):
                     result.append(path_extension)
         return result
+
+    @staticmethod
+    def get_last_output_file_name(output_directory_path=None):
+        r'''Gets last output file name in output directory.
+        
+        ::
+            
+            >>> iotools.IOManager.get_last_output_file_name() # doctest: +SKIP
+            '6222.ly'
+
+        Gets last output file name in Abjad output directory when
+        `output_directory_path` is none.
+
+        Returns none when output directory contains no output files.
+
+        Returns string or none.
+        '''
+        from abjad import abjad_configuration
+        pattern = re.compile('\d{4,4}.[a-z]{2,3}')
+        output_directory_path = \
+            output_directory_path or abjad_configuration['abjad_output']
+        all_file_names = os.listdir(output_directory_path)
+        all_output = [x for x in all_file_names if pattern.match(x)]
+        if all_output == []:
+            last_output_file_name = None
+        else:
+            last_output_file_name = sorted(all_output)[-1]
+        return last_output_file_name
+
+    @staticmethod
+    def get_next_output_file_name(
+        file_extension='ly',
+        output_directory_path=None,
+        ):
+        r'''Gets next output file name in output directory.
+        
+        ::
+
+            >>> iotools.IOManager.get_next_output_file_name() # doctest: +SKIP
+            '6223.ly'
+
+        Gets next output file name in Abjad output directory
+        when `output_directory_path` is none.
+
+        Returns string.
+        '''
+        from abjad.tools import iotools
+
+        assert file_extension.isalpha() and \
+            0 < len(file_extension) < 4, repr(file_extension)
+
+        last_output = IOManager.get_last_output_file_name(
+            output_directory_path=output_directory_path,
+            )
+        if last_output is None:
+            next_number = 0
+            next_output_file_name = '0000.{}'.format(file_extension)
+        else:
+            last_number = int(last_output.split('.')[0])
+            next_number = last_number + 1
+            next_output_file_name = '{next_number:04d}.{file_extension}'
+            next_output_file_name = next_output_file_name.format(
+                next_number=next_number, 
+                file_extension=file_extension,
+                )
+        if 9000 < next_number:
+            IOManager._warn_when_output_directory_almost_full(last_number)
+        return next_output_file_name
 
     @staticmethod
     def open_file(file_path, application=None):
@@ -299,7 +369,7 @@ class IOManager(object):
         from abjad import abjad_configuration
         from abjad.tools import iotools
         ABJADOUTPUT = abjad_configuration['abjad_output']
-        last_output_file_path = iotools.get_last_output_file_name()
+        last_output_file_path = IOManager.get_last_output_file_name()
         without_extension, extension = os.path.splitext(last_output_file_path)
         last_ly = without_extension + '.ly'
         last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
@@ -321,7 +391,7 @@ class IOManager(object):
         from abjad import abjad_configuration
         from abjad.tools import iotools
         ABJADOUTPUT = abjad_configuration['abjad_output']
-        last_output_file_name = iotools.get_last_output_file_name()
+        last_output_file_name = IOManager.get_last_output_file_name()
         without_extension, extension = os.path.splitext(last_output_file_name)
         last_pdf = without_extension + '.pdf'
         last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)

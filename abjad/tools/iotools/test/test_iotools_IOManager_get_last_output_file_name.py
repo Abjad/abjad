@@ -5,7 +5,7 @@ from abjad.tools import iotools
 
 def test_iotools_get_last_output_file_name_01():
 
-    last_output_file_name = iotools.get_last_output_file_name()
+    last_output_file_name = iotools.IOManager.get_last_output_file_name()
 
     assert isinstance(last_output_file_name, (str, type(None)))
     if isinstance(last_output_file_name, str):

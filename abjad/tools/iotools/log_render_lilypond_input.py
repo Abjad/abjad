@@ -34,7 +34,7 @@ def log_render_lilypond_input(
     iotools.IOManager.ensure_directory_existence(output_directory_path)
     os.chdir(output_directory_path)
     if output_file_name_root is None:
-        name = iotools.get_next_output_file_name()
+        name = iotools.IOManager.get_next_output_file_name()
     else:
         name = output_file_name_root + '.ly'
     outfile = open(name, 'w')

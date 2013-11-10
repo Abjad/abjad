@@ -41,7 +41,7 @@ def ly(target=-1):
     ABJADOUTPUT = abjad_configuration['abjad_output']
     text_editor = abjad_configuration.get_text_editor()
     if isinstance(target, int) and target < 0:
-        last_lilypond = iotools.get_last_output_file_name()
+        last_lilypond = iotools.IOManager.get_last_output_file_name()
         if last_lilypond:
             last_number = last_lilypond
             last_number = last_number.replace('.ly', '')

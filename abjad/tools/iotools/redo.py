@@ -38,7 +38,7 @@ def redo(target=-1, lily_time=10):
     # TODO: Encapsulate as a single function called cfg._find_target()
     # find target
     if isinstance(target, int) and target < 0:
-        last_lilypond = iotools.get_last_output_file_name()
+        last_lilypond = iotools.IOManager.get_last_output_file_name()
         if last_lilypond:
             last_number = last_lilypond.replace('.ly', '')
             last_number = last_lilypond.replace('.pdf', '')
