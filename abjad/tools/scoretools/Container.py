@@ -347,9 +347,7 @@ class Container(Component):
 
     def _scale_contents(self, multiplier):
         from abjad.tools import iterationtools
-        for expr in \
-            iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
-            self[:]):
+        for expr in iterate(self[:]).by_topmost_tie_chains_and_components():
             expr._scale(multiplier)
 
     def _set_item(

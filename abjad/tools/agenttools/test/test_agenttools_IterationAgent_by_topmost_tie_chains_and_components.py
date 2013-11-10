@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_topmost_tie_chains_and_components_in_expr_01():
+def test_agenttools_IterationAgent_by_topmost_tie_chains_and_components_01():
     r'''Iterate toplevel contents with tie chains in place of leaves.
     '''
 
@@ -31,8 +31,7 @@ def test_iterationtools_iterate_topmost_tie_chains_and_components_in_expr_01():
         '''
         )
 
-    chained_contents = \
-        iterationtools.iterate_topmost_tie_chains_and_components_in_expr(staff)
+    chained_contents = iterate(staff).by_topmost_tie_chains_and_components()
     chained_contents = list(chained_contents)
 
     assert chained_contents[0] == inspect(staff[0]).get_tie_chain()
