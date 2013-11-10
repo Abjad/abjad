@@ -408,12 +408,12 @@ class IterationAgent(object):
                 yield pair
 
     def by_logical_voice(
-        self, 
-        component_class, 
-        logical_voice_indicator, 
+        self,
+        component_class,
+        logical_voice_indicator,
         reverse=False,
         ):
-        r'''Yield left-to-right instances of `component_class` in `expr` 
+        r'''Yield left-to-right instances of `component_class` in `expr`
         with `logical_voice_indicator`:
 
         ::
@@ -890,7 +890,11 @@ class IterationAgent(object):
                     if not nontrivial or not tie_chain.is_trivial:
                         yield tie_chain
 
-    def by_timeline(self, component_class=None, reverse=False):
+    def by_timeline(
+        self,
+        component_class=None,
+        reverse=False,
+        ):
         r'''Iterate timeline forward in `expr`:
 
         ::
@@ -983,6 +987,85 @@ class IterationAgent(object):
             components.sort(_backward_sort_helper)
         for component in components:
             yield component
+
+    def by_timeline_from_component(
+        self,
+        component_class=None,
+        reverse=False,
+        ):
+        r'''Iterate timeline forward from `component`:
+
+        ::
+
+            >>> score = Score([])
+            >>> score.append(Staff("c'4 d'4 e'4 f'4"))
+            >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+
+        ..  doctest::
+
+            >>> f(score)
+            \new Score <<
+                \new Staff {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+                \new Staff {
+                    g'8
+                    a'8
+                    b'8
+                    c''8
+                }
+            >>
+
+        ::
+
+            >>> for leaf in iterate(score[1][2]).by_timeline_from_component():
+            ...     leaf
+            ...
+            Note("b'8")
+            Note("c''8")
+            Note("e'4")
+            Note("f'4")
+
+        Iterate timeline backward from `component`:
+
+        ::
+
+        ::
+
+            >>> for leaf in iterate(score[1][2]).by_timeline_from_component(
+            ...     reverse=True):
+            ...     leaf
+            ...
+            Note("b'8")
+            Note("c'4")
+            Note("a'8")
+            Note("g'8")
+
+        Yield components sorted backward by score offset stop time
+        when `reverse` is True.
+
+        Iterate leaves when `component_class` is none.
+
+        .. todo:: optimize to avoid behind-the-scenes full-score traversal.
+        '''
+        assert isinstance(self._client, scoretools.Component)
+        if component_class is None:
+            component_class = scoretools.Leaf
+        root = self._client._get_parentage().root
+        component_generator = iterate(root).by_timeline(
+            component_class=component_class,
+            reverse=reverse,
+            )
+        yielded_expr = False
+        for component in component_generator:
+            if yielded_expr:
+                yield component
+            elif component is self._client:
+                yield component
+                yielded_expr = True
 
     def by_topmost_tie_chains_and_components(self):
         r'''Iterate topmost tie chains and components forward in `expr`:
