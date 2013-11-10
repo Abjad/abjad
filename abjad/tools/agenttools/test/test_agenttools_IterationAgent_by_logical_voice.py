@@ -2,48 +2,64 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_01():
+def test_agenttools_IterationAgent_by_logical_voice_01():
     r'''Yield nothing when class not present.
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, signature, reverse=True)
+    iter = iterate(staff).by_logical_voice(
+        Rest,
+        signature,
+        reverse=True,
+        )
     assert len(list(iter)) == 0
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_02():
+def test_agenttools_IterationAgent_by_logical_voice_02():
     r'''Yield internal nodes only.
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, signature, reverse=True)
+    iter = iterate(staff).by_logical_voice(
+        Tuplet,
+        signature,
+        reverse=True,
+        )
     assert len(list(iter)) == 3
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_03():
+def test_agenttools_IterationAgent_by_logical_voice_03():
     r'''Yield exact leaves.
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
+    iter = iterate(staff).by_logical_voice(
+        Note,
+        signature,
+        reverse=True,
+        )
     assert len(list(iter)) == 9
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_04():
+def test_agenttools_IterationAgent_by_logical_voice_04():
     r'''Yield leaves based on names higher in inheritence hierarchy.
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.scoretools.Leaf import Leaf
     signature = inspect(staff[-1][-1]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature, reverse=True)
+    iter = iterate(staff).by_logical_voice(
+        Leaf,
+        signature,
+        reverse=True,
+        )
     assert len(list(iter)) == 9
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_05():
+def test_agenttools_IterationAgent_by_logical_voice_05():
     r'''Yield Notes in two contiguous Voices with the same name.
     '''
 
@@ -52,7 +68,11 @@ def test_iterationtools_iterate_logical_voice_in_expr_05():
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
+    iter = iterate(staff).by_logical_voice(
+        Note,
+        signature,
+        reverse=True,
+        )
     iter = list(iter)
 
     assert len(iter) == 4
@@ -60,7 +80,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_05():
         assert isinstance(e, Note)
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_06():
+def test_agenttools_IterationAgent_by_logical_voice_06():
     r'''Yield only Notes matching the given logical voice signature.
     '''
 
@@ -68,7 +88,11 @@ def test_iterationtools_iterate_logical_voice_in_expr_06():
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
+    iter = iterate(staff).by_logical_voice(
+        Note,
+        signature,
+        reverse=True,
+        )
     iter = list(iter)
 
     assert len(iter) == 2
@@ -77,7 +101,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_06():
         assert e.written_pitch.numbered_pitch == 2
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_07():
+def test_agenttools_IterationAgent_by_logical_voice_07():
     r'''Yield only Notes matching the given logical voice signature.
     '''
 
@@ -87,7 +111,11 @@ def test_iterationtools_iterate_logical_voice_in_expr_07():
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
     signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature, reverse=True)
+    iter = iterate(staff).by_logical_voice(
+        Note,
+        signature,
+        reverse=True,
+        )
     iter = list(iter)
 
     assert len(iter) == 2
@@ -96,48 +124,60 @@ def test_iterationtools_iterate_logical_voice_in_expr_07():
         assert e.written_pitch.numbered_pitch == 2
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_08():
+def test_agenttools_IterationAgent_by_logical_voice_08():
     r'''Yield nothing when class not present.
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Rest, signature)
+    iter = iterate(staff).by_logical_voice(
+        Rest,
+        signature,
+        )
     assert len(list(iter)) == 0
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_09():
+def test_agenttools_IterationAgent_by_logical_voice_09():
     r'''Yield internal nodes only.
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Tuplet, signature)
+    iter = iterate(staff).by_logical_voice(
+        Tuplet,
+        signature,
+        )
     assert len(list(iter)) == 3
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_10():
+def test_agenttools_IterationAgent_by_logical_voice_10():
     r'''Yield exact leaves.
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
+    iter = iterate(staff).by_logical_voice(
+        Note,
+        signature,
+        )
     assert len(list(iter)) == 9
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_11():
+def test_agenttools_IterationAgent_by_logical_voice_11():
     r'''Yield leaves based on names higher in inheritence hierarchy.
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.scoretools.Leaf import Leaf
     signature = inspect(staff[0][0]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Leaf, signature)
+    iter = iterate(staff).by_logical_voice(
+        Leaf,
+        signature,
+        )
     assert len(list(iter)) == 9
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_12():
+def test_agenttools_IterationAgent_by_logical_voice_12():
     r'''Yield Notes in two contiguous Voices with the same name.
     '''
 
@@ -146,7 +186,10 @@ def test_iterationtools_iterate_logical_voice_in_expr_12():
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
+    iter = iterate(staff).by_logical_voice(
+        Note,
+        signature,
+        )
     iter = list(iter)
 
     assert len(iter) == 4
@@ -154,7 +197,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_12():
         assert isinstance(e, Note)
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_13():
+def test_agenttools_IterationAgent_by_logical_voice_13():
     r'''Yield only Notes matching the given logical voice signature.
     '''
 
@@ -162,7 +205,10 @@ def test_iterationtools_iterate_logical_voice_in_expr_13():
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
+    iter = iterate(staff).by_logical_voice(
+        Note,
+        signature,
+        )
     iter = list(iter)
 
     assert len(iter) == 2
@@ -171,7 +217,7 @@ def test_iterationtools_iterate_logical_voice_in_expr_13():
         assert e.written_pitch.numbered_pitch == 0
 
 
-def test_iterationtools_iterate_logical_voice_in_expr_14():
+def test_agenttools_IterationAgent_by_logical_voice_14():
     r'''Yield only Notes matching the given logical voice signature.
     '''
 
@@ -181,7 +227,10 @@ def test_iterationtools_iterate_logical_voice_in_expr_14():
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
     signature = inspect(staff[0]).get_parentage().logical_voice_indicator
-    iter = iterationtools.iterate_logical_voice_in_expr(staff, Note, signature)
+    iter = iterate(staff).by_logical_voice(
+        Note,
+        signature,
+        )
     iter = list(iter)
 
     assert len(iter) == 2
