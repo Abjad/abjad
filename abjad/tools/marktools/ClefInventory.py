@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.marktools.Clef import Clef
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -22,7 +21,7 @@ class ClefInventory(TypedList):
 
     ::
 
-        >>> marktools.Clef('treble') in inventory
+        >>> Clef('treble') in inventory
         True
 
     ::
@@ -30,14 +29,15 @@ class ClefInventory(TypedList):
         >>> 'alto' in inventory
         False
 
-    Clef mark inventories implement list interface and are mutable.
+    Clef inventories implement list interface and are mutable.
     '''
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):
-        return Clef
+        from abjad.tools import marktools
+        return marktools.Clef
 
     @property
     def _one_line_menuing_summary(self):

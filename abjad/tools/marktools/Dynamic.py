@@ -3,16 +3,16 @@ from abjad.tools.marktools.ContextMark import ContextMark
 
 
 class Dynamic(ContextMark):
-    r'''A dynamic mark.
+    r'''A dynamic.
 
     ..  container:: example
     
-        **Example 1.** Initialize from dynamic name:
+        **Example 1.** Initializes from dynamic name:
 
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> dynamic = marktools.Dynamic('f')
+            >>> dynamic = Dynamic('f')
             >>> attach(dynamic, staff[0])
 
         ..  doctest::
@@ -31,24 +31,23 @@ class Dynamic(ContextMark):
 
     ..  container:: example
 
-        **Example 2.** Initialize from other dynamic mark:
+        **Example 2.** Initializes from other dynamic:
 
         ::
 
-            >>> dynamic_mark_1 = marktools.Dynamic('f')
-            >>> dynamic_mark_2 = marktools.Dynamic(dynamic_mark_1)
+            >>> dynamic_1 = Dynamic('f')
+            >>> dynamic_2 = Dynamic(dynamic_1)
 
         ::
 
-            >>> dynamic_mark_1
+            >>> dynamic_1
             Dynamic('f')
 
         ::
 
-            >>> dynamic_mark_2
+            >>> dynamic_2
             Dynamic('f')
 
-    Dynamic marks target the staff context by default.
     '''
 
     ### CLASS VARIABLES ###
@@ -145,7 +144,7 @@ class Dynamic(ContextMark):
             dynamic_spanners = parentage._get_spanners(spanner_classes)
             for dynamic_spanner in dynamic_spanners:
                 if not dynamic_spanner._is_exterior_leaf(args[0]):
-                    message = 'can not attach dynamic mark'
+                    message = 'can not attach dynamic'
                     message += ' to interior component of dynamic spanner.'
                     raise WellFormednessError(message)
         return ContextMark.__call__(self, *args)
@@ -177,7 +176,7 @@ class Dynamic(ContextMark):
 
             ::
 
-                >>> dynamic = marktools.Dynamic('f')
+                >>> dynamic = Dynamic('f')
                 >>> dynamic.dynamic_name
                 'f'
 
@@ -205,7 +204,7 @@ class Dynamic(ContextMark):
 
         ::
 
-            >>> marktools.Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
+            >>> Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
             'p'
 
         Returns string.
@@ -218,7 +217,7 @@ class Dynamic(ContextMark):
 
         ::
 
-            >>> marktools.Dynamic.dynamic_name_to_dynamic_ordinal('fff')
+            >>> Dynamic.dynamic_name_to_dynamic_ordinal('fff')
             4
 
         Returns integer.
@@ -236,7 +235,7 @@ class Dynamic(ContextMark):
 
         ::
 
-            >>> marktools.Dynamic.dynamic_ordinal_to_dynamic_name(-5)
+            >>> Dynamic.dynamic_ordinal_to_dynamic_name(-5)
             'pppp'
 
         Returns string.
@@ -249,7 +248,7 @@ class Dynamic(ContextMark):
 
         ::
 
-            >>> marktools.Dynamic.is_dynamic_name('f')
+            >>> Dynamic.is_dynamic_name('f')
             True
 
         Returns boolean.

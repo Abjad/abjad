@@ -12,7 +12,7 @@ class Articulation(Mark):
 
         ::
 
-            >>> marktools.Articulation('staccato')
+            >>> Articulation('staccato')
             Articulation('staccato')
 
     ..  container:: example
@@ -21,7 +21,7 @@ class Articulation(Mark):
 
         ::
 
-            >>> marktools.Articulation('.')
+            >>> Articulation('.')
             Articulation('.')
 
     ..  container:: example
@@ -30,8 +30,8 @@ class Articulation(Mark):
 
         ::
 
-            >>> articulation = marktools.Articulation('staccato')
-            >>> marktools.Articulation(articulation)
+            >>> articulation = Articulation('staccato')
+            >>> Articulation(articulation)
             Articulation('staccato')
 
     ..  container:: example
@@ -40,7 +40,7 @@ class Articulation(Mark):
 
         ::
 
-            >>> marktools.Articulation('staccato', Up)
+            >>> Articulation('staccato', Up)
             Articulation('staccato', Up)
 
     .. container:: example
@@ -50,7 +50,7 @@ class Articulation(Mark):
         ::
 
             >>> note = Note("c'4")
-            >>> articulation = marktools.Articulation('staccato')
+            >>> articulation = Articulation('staccato')
             >>> attach(articulation, note)
             >>> show(note) # doctest: +SKIP
 

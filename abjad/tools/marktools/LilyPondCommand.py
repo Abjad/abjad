@@ -5,7 +5,7 @@ from abjad.tools.marktools.Mark import Mark
 
 # TODO: extend LilyPond command marks to attach to spanners.
 class LilyPondCommand(Mark):
-    r'''A LilyPond command mark.
+    r'''A LilyPond command.
 
     ::
 
@@ -33,11 +33,9 @@ class LilyPondCommand(Mark):
 
         >>> show(staff) # doctest: +SKIP
 
-    Initialize LilyPond command marks from command name; or from command name
+    Initialize LilyPond commands from command name; or from command name
     with format slot; or from another LilyPond command mark;
     or from another LilyPond command mark with format slot.
-
-    LilyPond command marks implement ``__slots__``.
     '''
 
     ### CLASS VARIABLES ###
@@ -64,7 +62,7 @@ class LilyPondCommand(Mark):
             self.command_name = args[0]
             self.format_slot = args[1]
         else:
-            message = 'can not initialize LilyPond command mark.'
+            message = 'can not initialize LilyPond command.'
             raise ValueError(message)
 
     ### SPECIAL METHODS ###
@@ -99,7 +97,7 @@ class LilyPondCommand(Mark):
     @apply
     def command_name():
         def fget(self):
-            r'''Get command name of LilyPond command mark:
+            r'''Gets and sets command name of LilyPond command.
 
             ::
 
@@ -107,7 +105,7 @@ class LilyPondCommand(Mark):
                 >>> command.command_name
                 'slurDotted'
 
-            Set command name of LilyPond command mark:
+            Sets command name of LilyPond command:
 
             ::
 
@@ -115,7 +113,7 @@ class LilyPondCommand(Mark):
                 >>> command.command_name
                 'slurDashed'
 
-            Set string.
+            Returns string.
             '''
             return self._command_name
         def fset(self, command_name):
@@ -126,7 +124,7 @@ class LilyPondCommand(Mark):
     @apply
     def format_slot():
         def fget(self):
-            '''Get format slot of LilyPond command mark:
+            '''Gets and sets format slot of LilyPond command:
 
             ::
 
@@ -135,7 +133,7 @@ class LilyPondCommand(Mark):
                 >>> command.format_slot
                 'after'
 
-            Set format slot of LiyPond command mark:
+            Sets format slot of LiyPond command:
 
             ::
 

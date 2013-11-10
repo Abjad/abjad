@@ -4,7 +4,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class LilyPondComment(Mark):
-    r'''A user-defined LilyPond comment.
+    r'''A LilyPond comment.
 
     ::
 
@@ -23,8 +23,6 @@ class LilyPondComment(Mark):
     or contents string and format slot;
     or from other LilyPond comment;
     or from other LilyPond comment and format slot.
-
-    LilyPond comments implement ``__slots__``.
     '''
 
     ### CLASS VARIABLES ###
@@ -88,8 +86,8 @@ class LilyPondComment(Mark):
 
             ::
 
-                >>> comment = \
-                ...     marktools.LilyPondComment('comment contents string')
+                >>> string = 'comment contents string'
+                >>> comment = marktools.LilyPondComment(string)
                 >>> comment.contents_string
                 'comment contents string'
 
