@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_logical_voice_from_component_01():
+def test_agenttools_IterationAgent_by_logical_voice_from_component_01():
     r'''Iterate only notes.
     '''
 
@@ -46,10 +46,9 @@ def test_iterationtools_iterate_logical_voice_from_component_01():
         '''
         )
 
-    notes = iterationtools.iterate_logical_voice_from_component(
-        staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
-        Note, 
-        reverse=True)
+    component = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
+    notes = iterate(component).by_logical_voice_from_component(
+        Note, reverse=True)
     notes = list(notes)
 
     voice_2_first_half = staff[0][1]
@@ -61,7 +60,7 @@ def test_iterationtools_iterate_logical_voice_from_component_01():
     assert notes[3] is voice_2_first_half[0]
 
 
-def test_iterationtools_iterate_logical_voice_from_component_02():
+def test_agenttools_IterationAgent_by_logical_voice_from_component_02():
     r'''Iterate all components.
     '''
 
@@ -106,10 +105,7 @@ def test_iterationtools_iterate_logical_voice_from_component_02():
         )
 
     leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
-    components = iterationtools.iterate_logical_voice_from_component(
-        leaf, 
-        reverse=True,
-        )
+    components = iterate(leaf).by_logical_voice_from_component(reverse=True)
     components = list(components)
 
     r'''
@@ -130,7 +126,7 @@ def test_iterationtools_iterate_logical_voice_from_component_02():
     assert components[5] is staff[0][1][0]
 
 
-def test_iterationtools_iterate_logical_voice_from_component_03():
+def test_agenttools_IterationAgent_by_logical_voice_from_component_03():
 
     container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
     container_1.is_simultaneous = True
@@ -172,11 +168,8 @@ def test_iterationtools_iterate_logical_voice_from_component_03():
         '''
         )
 
-    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
-    notes = iterationtools.iterate_logical_voice_from_component(
-        leaves[0], 
-        Note,
-        )
+    leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+    notes = iterate(leaf).by_logical_voice_from_component(Note)
     notes = list(notes)
 
     voice_1_first_half = staff[0][0]
@@ -188,7 +181,7 @@ def test_iterationtools_iterate_logical_voice_from_component_03():
     assert notes[3] is voice_1_second_half[1]
 
 
-def test_iterationtools_iterate_logical_voice_from_component_04():
+def test_agenttools_IterationAgent_by_logical_voice_from_component_04():
 
     container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
     container_1.is_simultaneous = True
@@ -232,7 +225,7 @@ def test_iterationtools_iterate_logical_voice_from_component_04():
 
     leaves = staff.select_leaves(allow_discontiguous_leaves=True)
     leaf = leaves[0]
-    components = iterationtools.iterate_logical_voice_from_component(leaf)
+    components = iterate(leaf).by_logical_voice_from_component()
     components = list(components)
 
     r'''

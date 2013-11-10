@@ -47,9 +47,9 @@ def label_leaves_in_expr_with_numbered_interval_classes(
     """
 
     for note in iterate(expr).by_class(scoretools.Note):
-        logical_voice_iterator = \
-            iterationtools.iterate_logical_voice_from_component(
-            note, scoretools.Leaf)
+        logical_voice_iterator = iterate(note).by_logical_voice_from_component(
+            scoretools.Leaf,
+            )
         try:
             logical_voice_iterator.next()
             next_leaf = logical_voice_iterator.next()

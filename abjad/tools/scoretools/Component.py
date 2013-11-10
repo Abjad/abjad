@@ -376,15 +376,19 @@ class Component(AbjadObject):
     def _get_in_my_logical_voice(self, n, component_class=None):
         from abjad.tools import iterationtools
         if 0 <= n:
-            generator = iterationtools.iterate_logical_voice_from_component(
-                self, component_class=component_class, reverse=False)
+            generator = iterate(self).by_logical_voice_from_component(
+                component_class=component_class,
+                reverse=False,
+                )
             for i, component in enumerate(generator):
                 if i == n:
                     return component
         else:
             n = abs(n)
-            generator = iterationtools.iterate_logical_voice_from_component(
-                self, component_class=component_class, reverse=True)
+            generator = iterate(self).by_logical_voice_from_component(
+                component_class=component_class,
+                reverse=True,
+                )
             for i, component in enumerate(generator):
                 if i == n:
                     return component
