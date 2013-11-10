@@ -18,7 +18,7 @@ def test_optimization_targets_01():
     score_specification.set_rhythm(rhythm)
 
     string = 'score_specification.interpret()'
-    count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
+    count = iotools.IOManager.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
     assert count < locale.atoi('1,500,000')
 
@@ -39,7 +39,7 @@ def test_optimization_targets_02():
     score_specification.select_leaves('Voice 1').set_leaf_color('red')
 
     string = 'score_specification.interpret()'
-    count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
+    count = iotools.IOManager.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
     assert count < locale.atoi('1,500,000')
 
@@ -61,7 +61,7 @@ def test_optimization_targets_03():
     divisions.select_leaves('Voice 1').set_leaf_color('red')
 
     string = 'score_specification.interpret()'
-    count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
+    count = iotools.IOManager.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
     assert count < locale.atoi('1,500,000')
 
@@ -90,7 +90,7 @@ def test_optimization_targets_04():
             part.set_leaf_color('blue')
 
     string = 'score_specification.interpret()'
-    count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
+    count = iotools.IOManager.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
     assert count < locale.atoi('2,750,000')
 
@@ -119,6 +119,6 @@ def test_optimization_targets_05():
             part.select_leaves('Voice 1').set_leaf_color('blue')
 
     string = 'score_specification.interpret()'
-    count = iotools.count_function_calls(string, globals(), locals(), fixed_point=False)
+    count = iotools.IOManager.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
     assert count < locale.atoi('2,000,000')

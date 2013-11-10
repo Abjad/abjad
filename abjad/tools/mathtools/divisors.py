@@ -37,7 +37,7 @@ def divisors(n):
 
     ::
 
-        >>> iotools.count_function_calls(
+        >>> iotools.IOManager.count_function_calls(
         ...     'mathtools.divisors(100000000)', 
         ...     globals(),
         ...     )

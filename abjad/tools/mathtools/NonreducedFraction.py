@@ -60,13 +60,13 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
     ::
 
         >>> import fractions
-        >>> iotools.count_function_calls(
+        >>> iotools.IOManager.count_function_calls(
         ...     'fractions.Fraction(3, 6)', globals())
         13
 
     ::
 
-        >>> iotools.count_function_calls(
+        >>> iotools.IOManager.count_function_calls(
         ...     'mathtools.NonreducedFraction(3, 6)', globals())
         30
 
@@ -139,14 +139,14 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
             >>> a = mathtools.NonreducedFraction(3, 6)
             >>> b = mathtools.NonreducedFraction(3, 12)
-            >>> iotools.count_function_calls('a + b', globals())
+            >>> iotools.IOManager.count_function_calls('a + b', globals())
             67
 
         Adding an integer is even faster:
 
         ::
 
-            >>> iotools.count_function_calls('a + 10', globals())
+            >>> iotools.IOManager.count_function_calls('a + 10', globals())
             35
 
         Returns nonreduced fraction.
