@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def run_abjdev():
+def run_ajv():
     r'''Entry point for setuptools.
 
     One-line wrapper around AbjDevScript.

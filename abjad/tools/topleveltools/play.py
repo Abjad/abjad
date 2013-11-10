@@ -35,7 +35,7 @@ def play(expr):
     lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
     outfile.write(format(lilypond_file))
     outfile.close()
-    iotools.run_lilypond(name, abjad_configuration['lilypond_path'])
+    iotools.IOManager.run_lilypond(name, abjad_configuration['lilypond_path'])
     if os.name == 'nt':
         extension = 'mid'
     else:

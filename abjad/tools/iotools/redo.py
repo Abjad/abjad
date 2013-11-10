@@ -60,7 +60,7 @@ def redo(target=-1, lily_time=10):
 
     # render
     start_time = time.time()
-    iotools.run_lilypond(target_ly, abjad_configuration['lilypond_path'])
+    iotools.IOManager.run_lilypond(target_ly, abjad_configuration['lilypond_path'])
     stop_time = time.time()
     actual_lily_time = int(stop_time - start_time)
 

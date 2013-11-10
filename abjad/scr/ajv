@@ -4,4 +4,4 @@
 if __name__ == '__main__':
     from abjad.tools import developerscripttools
 
-    developerscripttools.run_abjdev()
+    developerscripttools.run_ajv()

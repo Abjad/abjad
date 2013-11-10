@@ -40,7 +40,7 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
     from abjad.tools import iotools
 
     name, actual_format_time, actual_lily_time = \
-        iotools.log_render_lilypond_input(expr, docs=docs)
+        iotools.IOManager.log_render_lilypond_input(expr, docs=docs)
 
     # do not open PDF if we're running pytest regression battery
     if not suppress_pdf:

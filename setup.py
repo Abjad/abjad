@@ -53,8 +53,8 @@ setuptools.setup(
     description=description,
     entry_points={
         'console_scripts': [
-            'abjad = abjad.tools.iotools.run_abjad:run_abjad',
-            'ajv = abjad.tools.developerscripttools.run_abjdev:run_abjdev',
+            'abjad = abjad.tools.systemtools.run_abjad:run_abjad',
+            'ajv = abjad.tools.developerscripttools.run_ajv:run_ajv',
             ]
         },
     include_package_data=True,
