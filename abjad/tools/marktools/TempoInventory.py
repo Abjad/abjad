@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.marktools.Tempo import Tempo
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TempoInventory(TypedList):
-    r'''An ordered list of tempo marks.
+    r'''An ordered list of tempo indications.
 
     ::
 
         >>> inventory = marktools.TempoInventory([
         ...     ('Andante', Duration(1, 8), 72),
-        ...     ('Allegro', Duration(1, 8), 84)])
+        ...     ('Allegro', Duration(1, 8), 84),
+        ...     ])
 
     ::
 
@@ -27,4 +27,5 @@ class TempoInventory(TypedList):
 
     @property
     def _item_callable(self):
-        return Tempo
+        from abjad.tools import marktools
+        return marktools.Tempo

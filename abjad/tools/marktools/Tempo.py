@@ -15,7 +15,7 @@ class Tempo(ContextMark):
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> tempo = marktools.Tempo(Duration(1, 8), 52)
+        >>> tempo = Tempo(Duration(1, 8), 52)
         >>> attach(tempo, staff[0])
         >>> show(score) # doctest: +SKIP
 
@@ -32,9 +32,7 @@ class Tempo(ContextMark):
             }
         >>
 
-    Tempo marks attach to the **score context** by default.
-
-    Initialization allows many different types of input argument structure.
+    Tempo indications attach to the **score context** by default.
     '''
 
     ### CLASS VARIABLES ###
@@ -149,8 +147,8 @@ class Tempo(ContextMark):
 
         ::
 
-            >>> tempo_mark = marktools.Tempo('Allegro', (1, 4), 84)
-            >>> print format(tempo_mark)
+            >>> tempo = Tempo('Allegro', (1, 4), 84)
+            >>> print format(tempo)
             marktools.Tempo(
                 'Allegro',
                 durationtools.Duration(1, 4),
@@ -258,7 +256,7 @@ class Tempo(ContextMark):
     @apply
     def duration():
         def fget(self):
-            r'''Get duration of tempo mark:
+            r'''Gets and sets tempo duration.
 
             ::
 
@@ -266,7 +264,7 @@ class Tempo(ContextMark):
                 >>> tempo.duration
                 Duration(1, 8)
 
-            Set duration of tempo mark:
+            Sets tempo duration:
 
             ::
 
@@ -274,7 +272,9 @@ class Tempo(ContextMark):
                 >>> tempo.duration
                 Duration(1, 4)
 
-            Returns duration, or None if tempo mark is imprecise.
+            Returns none when tempo is imprecise.
+
+            Returns duration otherwise.
             '''
             return self._duration
         def fset(self, duration):
@@ -288,20 +288,20 @@ class Tempo(ContextMark):
 
     @property
     def is_imprecise(self):
-        r'''True if tempo mark is entirely textual, or if tempo mark's
-        units_per_minute is a range:
+        r'''True if tempo is entirely textual, or if tempo mark's
+        units_per_minute is a range.
 
         ::
 
-            >>> marktools.Tempo(Duration(1, 4), 60).is_imprecise
+            >>> Tempo(Duration(1, 4), 60).is_imprecise
             False
-            >>> marktools.Tempo('Langsam', 4, 60).is_imprecise
+            >>> Tempo('Langsam', 4, 60).is_imprecise
             False
-            >>> marktools.Tempo('Langsam').is_imprecise
+            >>> Tempo('Langsam').is_imprecise
             True
-            >>> marktools.Tempo('Langsam', 4, (35, 50)).is_imprecise
+            >>> Tempo('Langsam', 4, (35, 50)).is_imprecise
             True
-            >>> marktools.Tempo(Duration(1, 4), (35, 50)).is_imprecise
+            >>> Tempo(Duration(1, 4), (35, 50)).is_imprecise
             True
 
         Returns boolean.
@@ -314,19 +314,19 @@ class Tempo(ContextMark):
 
     @property
     def quarters_per_minute(self):
-        r'''Quarters per minute of tempo mark:
+        r'''Quaryters per minute of tempo.
 
         ::
 
-            >>> tempo = marktools.Tempo(Duration(1, 8), 52)
+            >>> tempo = Tempo(Duration(1, 8), 52)
             >>> tempo.quarters_per_minute
             Fraction(104, 1)
 
-        Returns fraction.
+        Returns tuple when tempo `units_per_minute` is a range.
 
-        Or tuple if tempo mark `units_per_minute` is a range.
+        Returns none when tempo is imprecise.
 
-        Or none if tempo mark is imprecise.
+        Returns fraction otherwise.
         '''
         if self.is_imprecise:
             return None
@@ -343,16 +343,15 @@ class Tempo(ContextMark):
     @apply
     def textual_indication():
         def fget(self):
-            r'''Get textual indication of tempo mark:
+            r'''Gets and sets textual indication of tempo.
 
             ::
 
-                >>> tempo = marktools.Tempo(
-                ...     'Langsam', Duration(1, 8), 52)
+                >>> tempo = Tempo('Langsam', Duration(1, 8), 52)
                 >>> tempo.textual_indication
                 'Langsam'
 
-            Returns string or None.
+            Returns string or none.
             '''
             return self._textual_indication
         def fset(self, textual_indication):
@@ -363,15 +362,15 @@ class Tempo(ContextMark):
     @apply
     def units_per_minute():
         def fget(self):
-            r'''Get units per minute of tempo mark:
+            r'''Get units per minute of tempo.
 
             ::
 
-                >>> tempo = marktools.Tempo(Duration(1, 8), 52)
+                >>> tempo = Tempo(Duration(1, 8), 52)
                 >>> tempo.units_per_minute
                 52
 
-            Set units per minute of tempo mark:
+            Sets units per minute of tempo:
 
             ::
 
@@ -401,7 +400,7 @@ class Tempo(ContextMark):
         ::
 
             >>> duration = (1, 4)
-            >>> tempo = marktools.Tempo((1, 4), 60)
+            >>> tempo = Tempo((1, 4), 60)
             >>> tempo.duration_to_milliseconds(duration)
             Duration(1000, 1)
 
@@ -419,26 +418,26 @@ class Tempo(ContextMark):
                 )
         return durationtools.Duration(duration * whole_note_duration)
 
-    def is_tempo_mark_token(self, expr):
-        r'''True when `expr` has the form of a tempo mark initializer:
+    def is_tempo_token(self, expr):
+        r'''True when `expr` can initialize tempo.
 
         ::
 
-            >>> tempo_mark = marktools.Tempo(Duration(1, 4), 72)
-            >>> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
+            >>> tempo = Tempo(Duration(1, 4), 72)
+            >>> tempo.is_tempo_token((Duration(1, 4), 84))
             True
 
         Otherwise false:
 
         ::
 
-            >>> tempo_mark.is_tempo_mark_token(84)
+            >>> tempo.is_tempo_token(84)
             False
 
         Returns boolean.
         '''
         try:
-            tempo_mark = type(self)(expr)
-            return isinstance(tempo_mark, type(self))
+            tempo = type(self)(expr)
+            return isinstance(tempo, type(self))
         except:
             return False

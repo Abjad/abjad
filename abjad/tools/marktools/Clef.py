@@ -12,21 +12,21 @@ class Clef(ContextMark):
 
     ::
 
-        >>> clef = marktools.Clef('treble')
+        >>> clef = Clef('treble')
         >>> attach(clef, staff)
-        >>> clef = marktools.Clef('alto')
+        >>> clef = Clef('alto')
         >>> attach(clef, staff[1])
-        >>> clef = marktools.Clef('bass')
+        >>> clef = Clef('bass')
         >>> attach(clef, staff[2])
-        >>> clef = marktools.Clef('treble^8')
+        >>> clef = Clef('treble^8')
         >>> attach(clef, staff[3])
-        >>> clef = marktools.Clef('bass_8')
+        >>> clef = Clef('bass_8')
         >>> attach(clef, staff[4])
-        >>> clef = marktools.Clef('tenor')
+        >>> clef = Clef('tenor')
         >>> attach(clef, staff[5])
-        >>> clef = marktools.Clef('bass^15')
+        >>> clef = Clef('bass^15')
         >>> attach(clef, staff[6])
-        >>> clef = marktools.Clef('percussion')
+        >>> clef = Clef('percussion')
         >>> attach(clef, staff[7])
         >>> show(staff) # doctest: +SKIP
 
@@ -52,7 +52,6 @@ class Clef(ContextMark):
             c''8
         }
 
-    Clef marks target the staff context by default.
     '''
 
     ### CLASS VARIABLES ###

@@ -18,7 +18,6 @@ class StemTremolo(Mark):
         >>> f(note)
         c'4 :16
 
-    Stem tremolos implement ``__slots__``.
     '''
 
     ### CLASS VARIABLES ###

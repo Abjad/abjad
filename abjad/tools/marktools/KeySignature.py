@@ -3,7 +3,7 @@ from abjad.tools.marktools.ContextMark import ContextMark
 
 
 class KeySignature(ContextMark):
-    r'''A key signature setting or key signature change.
+    r'''A key signature.
 
     ::
 
@@ -23,7 +23,6 @@ class KeySignature(ContextMark):
             a'8
         }
 
-    Key signature marks target staff context by default.
     '''
 
     ### CLASS VARIABLES ###

@@ -55,7 +55,6 @@ class StaffChange(ContextMark):
             }
         >>
 
-    Staff change marks target staff context by default.
     '''
 
     ### CLASS VARIABLES ###

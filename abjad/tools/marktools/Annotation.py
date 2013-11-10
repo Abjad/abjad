@@ -4,7 +4,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class Annotation(Mark):
-    r'''A user-defined annotation.
+    r'''An annotation.
 
     ::
 
@@ -25,8 +25,6 @@ class Annotation(Mark):
         }
 
     Annotations contribute no formatting.
-
-    Annotations implement ``__slots__``.
     '''
 
     ### CLASS VARIABLES ###

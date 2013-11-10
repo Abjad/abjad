@@ -3,7 +3,7 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class BendAfter(Mark):
-    r'''A *fall* or *doit*.
+    r'''A fall or doit.
 
     ::
 
@@ -17,7 +17,6 @@ class BendAfter(Mark):
         >>> f(note)
         c'4 - \bendAfter #'-4.0
 
-    BendAfter implements ``__slots__``.
     '''
 
     ### CLASS VARIABLES ###
