@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_spannertools_Spanner_get_duration_01():
@@ -12,7 +12,7 @@ def test_spannertools_Spanner_get_duration_01():
         Measure((2, 12), "c'8 d'8"),
         Measure((2, 8), "c'8 d'8")]
         )
-    tempo = Tempo(Duration(1, 8), 42, target_context=Voice)
+    tempo = Tempo(Duration(1, 8), 42, _target_context=Voice)
     attach(tempo, voice)
     beam = Beam()
     attach(beam, voice.select_leaves())

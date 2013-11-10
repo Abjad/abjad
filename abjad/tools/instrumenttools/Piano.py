@@ -46,12 +46,12 @@ class Piano(Instrument):
 
     ### INITIALIZER ###
 
-    def __init__(self, target_context=None, **kwargs):
-        if target_context is None:
-            target_context = scoretools.PianoStaff
+    def __init__(self, _target_context=None, **kwargs):
+        if _target_context is None:
+            _target_context = scoretools.PianoStaff
         Instrument.__init__(
             self, 
-            target_context=target_context, 
+            _target_context=_target_context, 
             **kwargs
             )
         self._default_instrument_name = 'piano'

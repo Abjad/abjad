@@ -17,15 +17,15 @@ class ContextMark(Mark):
 
     ### INITIALIZER ###
 
-    def __init__(self, target_context=None):
+    def __init__(self, _target_context=None):
         Mark.__init__(self)
         self._effective_context = None
-        if target_context is not None:
-            if not isinstance(target_context, type):
+        if _target_context is not None:
+            if not isinstance(_target_context, type):
                 message = 'target context {!r} must be context class.'
-                message = message.format(target_context)
+                message = message.format(_target_context)
                 raise TypeError(message)
-        self._target_context = target_context
+        self._target_context = _target_context
 
     ### SPECIAL METHODS ###
 
@@ -34,7 +34,7 @@ class ContextMark(Mark):
 
         Returns new context mark.
         '''
-        return type(self)(target_context=self._target_context)
+        return type(self)(_target_context=self._target_context)
 
     def __format__(self, format_specification=''):
         r'''Formats context mark.
@@ -100,7 +100,7 @@ class ContextMark(Mark):
 
     def _find_correct_effective_context(self):
         from abjad.tools import scoretools
-        target_context = self.target_context
+        target_context = self._target_context
         if target_context is None:
             return None
         elif isinstance(target_context, type):
@@ -148,11 +148,3 @@ class ContextMark(Mark):
         if self._start_component is not None:
             self._start_component._update_now(marks=True)
         return self._effective_context
-
-    @property
-    def target_context(self):
-        r'''Target context of context mark.
-
-        Returns context or none.
-        '''
-        return self._target_context

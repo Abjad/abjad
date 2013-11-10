@@ -35,8 +35,8 @@ class TimeSignature(ContextMark):
 
     ::
 
-        >>> marktools.TimeSignature((4, 8), target_context=Score)
-        TimeSignature((4, 8), target_context=Score)
+        >>> marktools.TimeSignature((4, 8), _target_context=Score)
+        TimeSignature((4, 8), _target_context=Score)
 
     '''
 
@@ -52,8 +52,8 @@ class TimeSignature(ContextMark):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
-        target_context = kwargs.get('target_context', scoretools.Staff)
-        ContextMark.__init__(self, target_context=target_context)
+        _target_context = kwargs.get('_target_context', scoretools.Staff)
+        ContextMark.__init__(self, _target_context=_target_context)
         if self._target_context == scoretools.Staff:
             self._has_default_target_context = True
         else:
@@ -107,8 +107,11 @@ class TimeSignature(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)((self.numerator, self.denominator),
-            partial = self.partial, target_context = self.target_context)
+        return type(self)(
+            (self.numerator, self.denominator),
+            partial=self.partial, 
+            _target_context=self._target_context,
+            )
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -174,7 +177,7 @@ class TimeSignature(ContextMark):
                 self._attachment_repr_string,
                 )
         else:
-            return '%s((%s, %s)%s, target_context=%s)%s' % (
+            return '%s((%s, %s)%s, _target_context=%s)%s' % (
                 type(self).__name__, 
                 self.numerator,
                 self.denominator, 
@@ -416,23 +419,6 @@ class TimeSignature(ContextMark):
                 partial = durationtools.Duration(partial)
             self._partial = partial
         return property(**locals())
-
-    @property
-    def target_context(self):
-        r'''Time signature mark target context:
-
-        ::
-
-            >>> marktools.TimeSignature((3, 8)).target_context
-            <class 'abjad.tools.scoretools.Staff.Staff'>
-
-        Time signature marks target the staff context by default.
-
-        This can be changed at initialization.
-
-        Returns class.
-        '''
-        return ContextMark.target_context.fget(self)
 
     ### PUBLIC METHODS ###
 

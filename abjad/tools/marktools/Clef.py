@@ -73,10 +73,10 @@ class Clef(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, clef_name, target_context=None):
+    def __init__(self, clef_name, _target_context=None):
         from abjad.tools.scoretools.Staff import Staff
-        target_context = target_context or Staff
-        ContextMark.__init__(self, target_context=target_context)
+        _target_context = _target_context or Staff
+        ContextMark.__init__(self, _target_context=_target_context)
         if isinstance(clef_name, str):
             self._clef_name = clef_name
         elif isinstance(clef_name, type(self)):
@@ -115,7 +115,7 @@ class Clef(ContextMark):
         '''
         return type(self)(
             self.clef_name, 
-            target_context=self.target_context,
+            _target_context=self._target_context,
             )
 
     def __eq__(self, arg):
@@ -156,7 +156,7 @@ class Clef(ContextMark):
             >>> print format(clef)
             marktools.Clef(
                 'treble',
-                target_context=scoretools.Staff
+                _target_context=scoretools.Staff
                 )
 
         Returns string.

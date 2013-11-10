@@ -77,7 +77,6 @@ def make_mozart_score():
     klavier = instrumenttools.Piano(
         instrument_name='Katzenklavier', 
         short_instrument_name='kk.',
-        target_context = scoretools.PianoStaff,
         )
     attach(klavier, score['Piano Staff'])
 

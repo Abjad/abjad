@@ -126,10 +126,10 @@ class Dynamic(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, dynamic_name, target_context=None):
+    def __init__(self, dynamic_name, _target_context=None):
         from abjad.tools.scoretools.Staff import Staff
-        target_context = target_context or Staff
-        ContextMark.__init__(self, target_context=target_context)
+        _target_context = _target_context or Staff
+        ContextMark.__init__(self, _target_context=_target_context)
         if isinstance(dynamic_name, type(self)):
             dynamic_name = dynamic_name.dynamic_name
         self._dynamic_name = dynamic_name
@@ -154,7 +154,9 @@ class Dynamic(ContextMark):
 
     def __copy__(self, *args):
         return type(self)(
-            self._dynamic_name, target_context=self.target_context)
+            self._dynamic_name, 
+            _target_context=self._target_context,
+            )
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

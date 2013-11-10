@@ -46,11 +46,11 @@ class Instrument(ContextMark):
         short_instrument_name=None,
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        target_context=None,
+        _target_context=None,
         ):
         from abjad.tools.scoretools.Staff import Staff
-        target_context = target_context or Staff
-        ContextMark.__init__(self, target_context=target_context)
+        _target_context = _target_context or Staff
+        ContextMark.__init__(self, _target_context=_target_context)
 
         self._default_instrument_name = instrument_name
         self._default_instrument_name_markup = instrument_name_markup
@@ -84,7 +84,7 @@ class Instrument(ContextMark):
         return type(self)(
             instrument_name_markup=self.instrument_name_markup, 
             short_instrument_name_markup=self.short_instrument_name_markup,
-            target_context=self.target_context,
+            _target_context=self._target_context,
             )
 
     def __eq__(self, arg):
@@ -165,10 +165,9 @@ class Instrument(ContextMark):
     def _one_line_menuing_summary(self):
         return self.instrument_name
 
-    # will probably need to change definition at some point
     @property
     def _target_context_name(self):
-        return self.target_context.__name__
+        return self._target_context.__name__
 
     ### PRIVATE METHODS ###
 

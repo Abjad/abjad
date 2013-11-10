@@ -122,23 +122,23 @@ class TypedList(TypedCollection):
             datastructuretools.TypedList([
                 marktools.Dynamic(
                     'ppp',
-                    target_context=scoretools.Staff
+                    _target_context=scoretools.Staff
                     ),
                 marktools.Dynamic(
                     'p',
-                    target_context=scoretools.Staff
+                    _target_context=scoretools.Staff
                     ),
                 marktools.Dynamic(
                     'mp',
-                    target_context=scoretools.Staff
+                    _target_context=scoretools.Staff
                     ),
                 marktools.Dynamic(
                     'mf',
-                    target_context=scoretools.Staff
+                    _target_context=scoretools.Staff
                     ),
                 marktools.Dynamic(
                     'fff',
-                    target_context=scoretools.Staff
+                    _target_context=scoretools.Staff
                     ),
                 ],
                 item_class=marktools.Dynamic,

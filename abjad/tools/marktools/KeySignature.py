@@ -38,12 +38,12 @@ class KeySignature(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, tonic, mode, target_context=None):
+    def __init__(self, tonic, mode, _target_context=None):
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
-        target_context = target_context or scoretools.Staff
-        ContextMark.__init__(self, target_context=target_context)
+        _target_context = _target_context or scoretools.Staff
+        ContextMark.__init__(self, _target_context=_target_context)
         tonic = pitchtools.NamedPitchClass(tonic)
         mode = tonalanalysistools.Mode(mode)
         self._tonic = tonic
@@ -52,8 +52,11 @@ class KeySignature(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self._tonic, self._mode,
-            target_context = self._target_context)
+        return type(self)(
+            self._tonic, 
+            self._mode,
+            _target_context=self._target_context,
+            )
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

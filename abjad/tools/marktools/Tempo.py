@@ -51,8 +51,8 @@ class Tempo(ContextMark):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
-        target_context = kwargs.get('target_context', scoretools.Score)
-        ContextMark.__init__(self, target_context=target_context)
+        _target_context = kwargs.get('_target_context', scoretools.Score)
+        ContextMark.__init__(self, _target_context=_target_context)
         if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
             duration = durationtools.Duration(tempo_indication.duration)
@@ -121,8 +121,11 @@ class Tempo(ContextMark):
 
     def __copy__(self, *args):
         return type(self)(
-            self.textual_indication, self.duration, self.units_per_minute,
-            target_context=self.target_context)
+            self.textual_indication, 
+            self.duration, 
+            self.units_per_minute,
+            _target_context=self._target_context,
+            )
 
     def __div__(self, expr):
         if isinstance(expr, type(self)):
