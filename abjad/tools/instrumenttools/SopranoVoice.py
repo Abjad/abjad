@@ -13,7 +13,6 @@ class SopranoVoice(Instrument):
         >>> staff = Staff("c''8 d''8 e''8 f''8")
         >>> soprano = instrumenttools.SopranoVoice()
         >>> attach(soprano, staff)
-        SopranoVoice()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

@@ -11,7 +11,6 @@ class LilyPondComment(Mark):
         >>> note = Note("c'4")
         >>> comment = marktools.LilyPondComment('this is a comment')
         >>> attach(comment, note)
-        LilyPondComment('this is a comment')(c'4)
         >>> show(note) # doctest: +SKIP
 
     ..  doctest::

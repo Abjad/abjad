@@ -348,7 +348,6 @@ class IterationAgent(object):
             >>> score.append(Staff(notes))
             >>> clef = Clef('bass')
             >>> attach(clef, score[1])
-            Clef('bass')(Staff{3})
             >>> show(score) # doctest: +SKIP
 
         ..  doctest::

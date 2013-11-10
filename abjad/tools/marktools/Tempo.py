@@ -17,7 +17,6 @@ class Tempo(ContextMark):
         >>> score.append(staff)
         >>> tempo = marktools.Tempo(Duration(1, 8), 52)
         >>> attach(tempo, staff[0])
-        Tempo(Duration(1, 8), 52)(c'8)
         >>> show(score) # doctest: +SKIP
 
     ..  doctest::

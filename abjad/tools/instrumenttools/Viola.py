@@ -13,10 +13,8 @@ class Viola(Instrument):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> clef = marktools.Clef('alto')
         >>> attach(clef, staff)
-        Clef('alto')(Staff{4})
         >>> viola = instrumenttools.Viola()
         >>> attach(viola, staff)
-        Viola()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

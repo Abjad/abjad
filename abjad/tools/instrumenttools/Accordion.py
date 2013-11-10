@@ -14,7 +14,7 @@ class Accordion(Instrument):
         >>> piano_staff.append(Staff("c'8 d'8 e'8 f'8"))
         >>> piano_staff.append(Staff("c'4 b4"))
         >>> accordion = instrumenttools.Accordion()
-        >>> accordion = attach(accordion, piano_staff)
+        >>> attach(accordion, piano_staff)
         >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
@@ -152,7 +152,7 @@ class Accordion(Instrument):
                     >>> for clef in accordion.allowable_clefs:
                     ...     skip = scoretools.Skip((1, 8))
                     ...     clef = copy.copy(clef)
-                    ...     clef = attach(clef, skip)
+                    ...     attach(clef, skip)
                     ...     skips.append(skip)
                     >>> staff = Staff(skips)
                     >>> override(staff).clef.full_size_change = True

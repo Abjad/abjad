@@ -12,7 +12,6 @@ class ContrabassFlute(Instrument):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contrabass_flute = instrumenttools.ContrabassFlute()
         >>> attach(contrabass_flute, staff)
-        ContrabassFlute()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

@@ -52,7 +52,6 @@ class Articulation(Mark):
             >>> note = Note("c'4")
             >>> articulation = marktools.Articulation('staccato')
             >>> attach(articulation, note)
-            Articulation('staccato')(c'4)
             >>> show(note) # doctest: +SKIP
 
     '''
@@ -235,7 +234,6 @@ class Articulation(Mark):
                     >>> note = Note("c'4")
                     >>> articulation = Articulation('staccato', Down)
                     >>> attach(articulation, note)
-                    Articulation('staccato', Down)(c'4)
                     >>> show(note) # doctest: +SKIP
 
             ..  container:: example

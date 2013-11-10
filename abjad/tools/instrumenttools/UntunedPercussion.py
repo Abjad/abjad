@@ -13,7 +13,6 @@ class UntunedPercussion(Instrument):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> percussion = instrumenttools.UntunedPercussion()
         >>> attach(percussion, staff)
-        UntunedPercussion()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

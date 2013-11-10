@@ -14,7 +14,7 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
 
         >>> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
         >>> clarinet = instrumenttools.BFlatClarinet()
-        >>> clarinet = attach(clarinet, staff)
+        >>> attach(clarinet, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

@@ -28,7 +28,6 @@ def make_tied_leaf(
             >>> staff = Staff(leaves)
             >>> time_signature = marktools.TimeSignature((2, 4))
             >>> attach(time_signature, staff)
-            TimeSignature((2, 4))(Staff{1})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -54,7 +53,6 @@ def make_tied_leaf(
             >>> staff = Staff(leaves)
             >>> time_signature = marktools.TimeSignature((2, 4))
             >>> attach(time_signature, staff)
-            TimeSignature((2, 4))(Staff{2})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -83,7 +81,6 @@ def make_tied_leaf(
             >>> staff = Staff(leaves)
             >>> time_signature = marktools.TimeSignature((9, 8))
             >>> attach(time_signature, staff)
-            TimeSignature((9, 8))(Staff{5})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -115,7 +112,6 @@ def make_tied_leaf(
             >>> staff = Staff(leaves)
             >>> time_signature = marktools.TimeSignature((9, 8))
             >>> attach(time_signature, staff)
-            TimeSignature((9, 8))(Staff{5})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::

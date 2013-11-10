@@ -847,7 +847,6 @@ class Duration(AbjadObject, fractions.Fraction):
 
                 >>> markup = markuptools.Markup('"%s"' % clock_string, Up)
                 >>> attach(markup, note)
-                Markup(('1\'57\\"',), direction=Up)(c'4)
 
             ..  doctest::
 

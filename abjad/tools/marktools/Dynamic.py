@@ -14,7 +14,6 @@ class Dynamic(ContextMark):
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> dynamic = marktools.Dynamic('f')
             >>> attach(dynamic, staff[0])
-            Dynamic('f')(c'8)
 
         ..  doctest::
 

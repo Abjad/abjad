@@ -214,7 +214,6 @@ class TieChain(ContiguousSelection):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = marktools.TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
-                TimeSignature((7, 16))(Staff{3})
                 
             ..  doctest::
 
@@ -271,7 +270,6 @@ class TieChain(ContiguousSelection):
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> time_signature = marktools.TimeSignature((7, 16))
                 >>> attach(time_signature, staff)
-                TimeSignature((7, 16))(Staff{3})
                 
             ..  doctest::
 

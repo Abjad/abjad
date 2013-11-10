@@ -12,7 +12,6 @@ class Annotation(Mark):
         >>> pitch = pitchtools.NamedPitch('ds')
         >>> annotation = marktools.Annotation('special pitch', pitch)
         >>> attach(annotation, staff[0])
-        Annotation('special pitch', NamedPitch('ds'))(c'8)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

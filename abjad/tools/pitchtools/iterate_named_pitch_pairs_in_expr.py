@@ -15,7 +15,6 @@ def iterate_named_pitch_pairs_in_expr(expr):
         >>> score.append(Staff(notes))
         >>> clef = marktools.Clef('bass')
         >>> attach(clef, score[1])
-        Clef('bass')(Staff{3})
         >>> show(score) # doctest: +SKIP
 
     ..  doctest::

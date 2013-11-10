@@ -13,7 +13,6 @@ class EFlatClarinet(Instrument):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> clarinet = instrumenttools.EFlatClarinet()
         >>> attach(clarinet, staff)
-        EFlatClarinet()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

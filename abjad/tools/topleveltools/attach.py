@@ -1,9 +1,12 @@
-def attach(attachable, component_expression):
+def attach(attachable, component_expression, target_context=None):
     r'''Attaches `attachable` to `component_expression`.
 
-    Returns attachable when attachable is a mark.
+    Creates attachment expression effective at `target_context`.
 
-    Returns none when attachable is a spanner.
+    Derives `target_context` from the default target context of `attachable`
+    when `target_context` is none.
+
+    Returns none.
     '''
 
-    return attachable._attach(component_expression)
+    attachable._attach(component_expression)

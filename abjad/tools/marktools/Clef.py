@@ -14,28 +14,20 @@ class Clef(ContextMark):
 
         >>> clef = marktools.Clef('treble')
         >>> attach(clef, staff)
-        Clef('treble')(Staff{8})
         >>> clef = marktools.Clef('alto')
         >>> attach(clef, staff[1])
-        Clef('alto')(d'8)
         >>> clef = marktools.Clef('bass')
         >>> attach(clef, staff[2])
-        Clef('bass')(e'8)
         >>> clef = marktools.Clef('treble^8')
         >>> attach(clef, staff[3])
-        Clef('treble^8')(f'8)
         >>> clef = marktools.Clef('bass_8')
         >>> attach(clef, staff[4])
-        Clef('bass_8')(g'8)
         >>> clef = marktools.Clef('tenor')
         >>> attach(clef, staff[5])
-        Clef('tenor')(a'8)
         >>> clef = marktools.Clef('bass^15')
         >>> attach(clef, staff[6])
-        Clef('bass^15')(b'8)
         >>> clef = marktools.Clef('percussion')
         >>> attach(clef, staff[7])
-        Clef('percussion')(c''8)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

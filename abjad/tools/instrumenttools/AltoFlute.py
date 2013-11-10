@@ -12,7 +12,7 @@ class AltoFlute(Instrument):
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> alto_flute = instrumenttools.AltoFlute()
-        >>> alto_flute = attach(alto_flute, staff)
+        >>> attach(alto_flute, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -122,7 +122,7 @@ class AltoFlute(Instrument):
                     >>> for clef in alto_flute.allowable_clefs:
                     ...     skip = scoretools.Skip((1, 8))
                     ...     clef = copy.copy(clef)
-                    ...     clef = attach(clef, skip)
+                    ...     attach(clef, skip)
                     ...     skips.append(skip)
                     >>> staff = Staff(skips)
                     >>> override(staff).clef.full_size_change = True
