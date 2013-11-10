@@ -3,7 +3,7 @@ from abjad import *
 import pytest
 
 
-def test_MultiMeasureRest___setattr___01():
+def test_scoretools_MultimeasureRest___setattr___01():
 
     rest = scoretools.MultimeasureRest((1, 4))
 
