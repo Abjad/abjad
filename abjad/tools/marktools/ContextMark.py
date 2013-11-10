@@ -119,6 +119,11 @@ class ContextMark(Mark):
             message = message.format(target_context)
             raise TypeError(message)
 
+    def _get_effective_context(self):
+        if self._start_component is not None:
+            self._start_component._update_now(marks=True)
+        return self._effective_context
+
     def _unbind_effective_context(self):
         effective_context = self._effective_context
         if effective_context is not None:
@@ -136,15 +141,3 @@ class ContextMark(Mark):
         correct_effective_context = self._find_correct_effective_context()
         if current_effective_context is not correct_effective_context:
             self._bind_correct_effective_context(correct_effective_context)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def effective_context(self):
-        r'''Effective context of context mark.
-
-        Returns context mark or none.
-        '''
-        if self._start_component is not None:
-            self._start_component._update_now(marks=True)
-        return self._effective_context

@@ -287,7 +287,7 @@ class LilyPondFormatManager(object):
         # cosmetic mark is a hack to allow marks to format even
         # without effective context;
         # currently used only in metric grid formatting
-        if mark.effective_context is not None or \
+        if mark._get_effective_context() is not None or \
             getattr(mark, '_is_cosmetic_mark', False) or \
             (isinstance(mark, marktools.TimeSignature) and
             isinstance(mark._start_component, scoretools.Measure)):
@@ -458,9 +458,9 @@ class LilyPondFormatManager(object):
         elif mark._start_component is component:
             return True
         else:
-            if mark.effective_context in \
+            if mark._get_effective_context() in \
                 component._get_parentage(include_self=True):
-                if mark.effective_context not in \
+                if mark._get_effective_context() not in \
                     component._get_parentage(include_self=False):
                     if mark._start_component.start == component.start:
                         return True

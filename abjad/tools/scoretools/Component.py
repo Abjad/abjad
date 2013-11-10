@@ -304,7 +304,7 @@ class Component(AbjadObject):
             parent_marks = parent._dependent_context_marks
             for mark in parent_marks:
                 if isinstance(mark, context_mark_classes):
-                    if mark.effective_context is not None:
+                    if mark._get_effective_context() is not None:
                         candidate_marks.insert(mark)
                     elif isinstance(mark, marktools.TimeSignature):
                         if isinstance(

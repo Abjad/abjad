@@ -269,38 +269,6 @@ class TimeSignature(ContextMark):
         return durationtools.Duration(self.numerator, self.denominator)
 
     @property
-    def effective_context(self):
-        r'''Time signature mark effective context.
-
-        Returns none when time signature mark is not yet attached:
-
-        ::
-
-            >>> time_signature = marktools.TimeSignature((3, 8))
-
-        ::
-
-            >>> time_signature.effective_context is None
-            True
-
-        Returns context when time signature mark is attached:
-
-        ::
-
-            >>> staff = Staff()
-            >>> attach(time_signature, staff)
-            TimeSignature((3, 8))(Staff{})
-
-        ::
-
-            >>> time_signature.effective_context
-            Staff{}
-
-        Returns context or none.
-        '''
-        return ContextMark.effective_context.fget(self)
-
-    @property
     def has_non_power_of_two_denominator(self):
         r'''True when time signature mark has non-power-of-two denominator:
 
