@@ -74,7 +74,9 @@ class IOManager(object):
             ::
 
                 >>> iotools.IOManager.count_function_calls(
-                ...     "Note('c4')", globals())
+                ...     "Note('c4')", 
+                ...     globals(),
+                ...     )
                 10276
 
         ..  container:: example
@@ -85,7 +87,9 @@ class IOManager(object):
             ::
 
                 >>> iotools.IOManager.count_function_calls(
-                ...     "Note(-12, (1, 4))", globals())
+                ...     "Note(-12, (1, 4))",
+                ...     globals(),
+                ...     )
                 172
 
         Returns nonnegative integer.

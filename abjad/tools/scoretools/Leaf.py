@@ -139,15 +139,21 @@ class Leaf(Component):
 
     def _format_after_slot(leaf, format_contributions):
         result = []
-        result.append(('spanners',
-            format_contributions.get('after', {}).get('spanners', [])))
-        result.append(('context marks',
-            format_contributions.get('after', {}).get('context marks', [])))
-        result.append(('lilypond command marks',
-            format_contributions.get(
-                'after', {}).get('lilypond command marks', [])))
-        result.append(('comments',
-            format_contributions.get('after', {}).get('comments', [])))
+        slot_dictionary = format_contributions.get('after', {})
+        contributions = slot_dictionary.get('spanners', [])
+        result.append(('spanners', contributions))
+        slot_dictionary = format_contributions.get('after', {})
+        contributions = slot_dictionary.get('context marks', [])
+        result.append(('context marks', contributions))
+        slot_dictionary = format_contributions.get('after', {})
+        contributions = slot_dictionary.get('lilypond command marks', [])
+        result.append(('lilypond command marks', contributions))
+        slot_dictionary = format_contributions.get('after', {})
+        contributions = slot_dictionary.get('other marks', [])
+        result.append(('other marks', contributions))
+        slot_dictionary = format_contributions.get('after', {})
+        contributions = slot_dictionary.get('comments', [])
+        result.append(('comments', contributions))
         return result
 
     def _format_agrace_body(leaf):
@@ -350,26 +356,25 @@ class Leaf(Component):
         return result
 
     def _report_format_contributors(self):
-        format_contributions = \
-            systemtools.LilyPondFormatManager.get_all_format_contributions(
-                self)
+        manager = systemtools.LilyPondFormatManager
+        format_contributions = manager.get_all_format_contributions(self)
         report = ''
         report += 'slot 1:\n'
-        report += self._process_contribution_packet(
-            self._format_before_slot(format_contributions))
+        packet = self._format_before_slot(format_contributions)
+        report += self._process_contribution_packet(packet)
         report += 'slot 3:\n'
-        report += self._process_contribution_packet(
-            self._format_opening_slot(format_contributions))
+        packet = self._format_opening_slot(format_contributions)
+        report += self._process_contribution_packet(packet)
         report += 'slot 4:\n'
         report += '\tleaf body:\n'
-        report += '\t\t' + self._format_contents_slot(
-            format_contributions)[0][1][0] + '\n'
+        string = self._format_contents_slot(format_contributions)[0][1][0]
+        report += '\t\t' + string + '\n'
         report += 'slot 5:\n'
-        report += self._process_contribution_packet(
-            self._format_closing_slot(format_contributions))
+        packet = self._format_closing_slot(format_contributions)
+        report += self._process_contribution_packet(packet)
         report += 'slot 7:\n'
-        report += self._process_contribution_packet(
-            self._format_after_slot(format_contributions))
+        packet = self._format_after_slot(format_contributions)
+        report += self._process_contribution_packet(packet)
         while report[-1] == '\n':
             report = report[:-1]
         return report

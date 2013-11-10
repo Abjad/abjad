@@ -125,8 +125,7 @@ class Dynamic(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, dynamic_name):
-        from abjad.tools import scoretools
-        ContextMark.__init__(self, _target_context=scoretools.Staff)
+        ContextMark.__init__(self)
         if isinstance(dynamic_name, type(self)):
             dynamic_name = dynamic_name.dynamic_name
         self._dynamic_name = dynamic_name

@@ -203,9 +203,8 @@ class Component(AbjadObject):
 
     def _format_component(self, pieces=False):
         result = []
-        format_contributions = \
-            systemtools.LilyPondFormatManager.get_all_format_contributions(
-                self)
+        manager = systemtools.LilyPondFormatManager
+        format_contributions = manager.get_all_format_contributions(self)
         result.extend(self._format_before_slot(format_contributions))
         result.extend(self._format_open_brackets_slot(format_contributions))
         result.extend(self._format_opening_slot(format_contributions))
@@ -330,13 +329,16 @@ class Component(AbjadObject):
             effective_staff = parentage.get_first(scoretools.Staff)
         return effective_staff
 
-    def _get_format_contributions_for_slot(self, n, format_contributions=None):
-        if format_contributions is None:
-            format_contributions = \
-                systemtools.LilyPondFormatManager.get_all_format_contributions(
-                    self)
+    def _get_format_contributions_for_slot(
+        self, 
+        slot_identifier, 
+        format_contributions=None
+        ):
         result = []
-        slots = (
+        if format_contributions is None:
+            manager = systemtools.LilyPondFormatManager
+            format_contributions = manager.get_all_format_contributions(self)
+        slot_names = (
             'before',
             'open_brackets',
             'opening',
@@ -345,12 +347,16 @@ class Component(AbjadObject):
             'close_brackets',
             'after',
             )
-        if isinstance(n, str):
-            n = n.replace(' ', '_')
-        elif isinstance(n, int):
-            n = slots[n - 1]
-        attr = getattr(self, '_format_{}_slot'.format(n))
-        for source, contributions in attr(format_contributions):
+        if isinstance(slot_identifier, int):
+            assert slot_identifier in range(1, 7+1)
+            slot_index = slot_number - 1
+            slot_name = slot_names[slot_index]
+        elif isinstance(slot_identifier, str):
+            slot_name = slot_identifier.replace(' ', '_')
+            assert slot_name in slot_names
+        method_name = '_format_{}_slot'.format(slot_name)
+        method = getattr(self, method_name)
+        for source, contributions in method(format_contributions):
             result.extend(contributions)
         return result
 

@@ -5,6 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools.marktools.ContextMark import ContextMark
+from abjad.tools.scoretools.Score import Score
 
 
 class Tempo(ContextMark):
@@ -37,18 +38,19 @@ class Tempo(ContextMark):
 
     ### CLASS VARIABLES ###
 
-    _format_slot = 'opening'
-
     _default_positional_input_arguments = (
         (1, 8),
         68,
         )
 
+    _format_slot = 'opening'
+
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
-        ContextMark.__init__(self, _target_context=scoretools.Score)
+        ContextMark.__init__(self)
+        self._target_context = scoretools.Score
         if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
             duration = durationtools.Duration(tempo_indication.duration)

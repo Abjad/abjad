@@ -46,12 +46,8 @@ class Instrument(ContextMark):
         short_instrument_name=None,
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        _target_context=None,
         ):
-        from abjad.tools.scoretools.Staff import Staff
-        _target_context = _target_context or Staff
-        ContextMark.__init__(self, _target_context=_target_context)
-
+        ContextMark.__init__(self)
         self._default_instrument_name = instrument_name
         self._default_instrument_name_markup = instrument_name_markup
         self._default_short_instrument_name = short_instrument_name
@@ -61,7 +57,6 @@ class Instrument(ContextMark):
         self.instrument_name_markup = instrument_name_markup
         self.short_instrument_name = short_instrument_name
         self.short_instrument_name_markup = short_instrument_name_markup
-
         pitch = pitchtools.NamedPitch("c'")
         clefs = marktools.ClefInventory(['treble'])
         self._default_allowable_clefs = copy.deepcopy(clefs)
@@ -84,7 +79,6 @@ class Instrument(ContextMark):
         return type(self)(
             instrument_name_markup=self.instrument_name_markup, 
             short_instrument_name_markup=self.short_instrument_name_markup,
-            _target_context=self._target_context,
             )
 
     def __eq__(self, arg):

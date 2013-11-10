@@ -44,14 +44,9 @@ class Harp(Instrument):
 
     ### INITIALIZER ###
 
-    def __init__(self, _target_context=None, **kwargs):
-        if _target_context is None:
-            _target_context = scoretools.PianoStaff
-        Instrument.__init__(
-            self, 
-            _target_context=_target_context, 
-            **kwargs
-            )
+    def __init__(self, **kwargs):
+        Instrument.__init__(self, **kwargs)
+        self._target_context = scoretools.PianoStaff
         self._default_instrument_name = 'harp'
         self._default_performer_names.extend([
             'string player',
