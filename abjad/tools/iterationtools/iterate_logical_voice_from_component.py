@@ -1,13 +1,14 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
+from abjad.tools.topleveltools import iterate
 
 
 def iterate_logical_voice_from_component(
-    component, 
-    component_class=None, 
+    component,
+    component_class=None,
     reverse=False,
     ):
-    r'''Iterate logical voice forward from `component` and yield instances 
+    r'''Iterate logical voice forward from `component` and yield instances
     of `component_class`.
 
     ::
@@ -89,14 +90,14 @@ def iterate_logical_voice_from_component(
         Note("g'8")
         Note("a'8")
 
-    Iterate logical voice backward from `component` and yield instances 
+    Iterate logical voice backward from `component` and yield instances
     of `component_class`, starting from the last leaf in score:
 
     ::
 
         >>> for x in iterationtools.iterate_logical_voice_from_component(
-        ...     staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
-        ...     Note, 
+        ...     staff.select_leaves(allow_discontiguous_leaves=True)[-1],
+        ...     Note,
         ...     reverse=True,
         ...     ):
         ...     x
@@ -110,7 +111,7 @@ def iterate_logical_voice_from_component(
     ::
 
         >>> for x in iterationtools.iterate_logical_voice_from_component(
-        ...     staff.select_leaves(allow_discontiguous_leaves=True)[-1], 
+        ...     staff.select_leaves(allow_discontiguous_leaves=True)[-1],
         ...     reverse=True,
         ...     ):
         ...     x
@@ -134,14 +135,12 @@ def iterate_logical_voice_from_component(
 
     # iterate component depth-first allowing to crawl UP into score
     if not reverse:
-        for x in iterationtools.iterate_components_depth_first(
-            component, capped=False):
+        for x in iterate(component).depth_first(capped=False):
             if isinstance(x, component_class):
                 if x._get_parentage().logical_voice_indicator == signature:
                     yield x
     else:
-        for x in iterationtools.iterate_components_depth_first(
-            component, capped=False, direction=Right):
+        for x in iterate(component).depth_first(capped=False, direction=Right):
             if isinstance(x, component_class):
                 if x._get_parentage().logical_voice_indicator == signature:
                     yield x

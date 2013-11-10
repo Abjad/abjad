@@ -2,7 +2,6 @@
 import abc
 import copy
 from abjad.tools import durationtools
-from abjad.tools import lilypondproxytools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
@@ -237,8 +236,8 @@ class Spanner(AbjadObject):
         return self, left, right
 
     def _fracture_right(self, i):
-        left = self._copy(self[:i+1])
-        right = self._copy(self[i+1:])
+        left = self._copy(self[:i + 1])
+        right = self._copy(self[i + 1:])
         self._block_all_components()
         return self, left, right
 
@@ -442,12 +441,10 @@ class Spanner(AbjadObject):
 
         Returns tuple.
         '''
-        from abjad.tools import iterationtools
         result = []
         for component in self._components:
             # EXPERIMENTAL: expand to allow staff-level spanner eventually
-            for node in \
-                iterationtools.iterate_components_depth_first(component):
+            for node in iterate(component).depth_first():
                 if isinstance(node, scoretools.Leaf):
                     result.append(node)
         result = tuple(result)

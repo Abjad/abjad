@@ -31,13 +31,12 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _iterate_entire_score(component):
-        from abjad.tools import iterationtools
+        from abjad.tools.topleveltools import iterate
         parentage = component._get_parentage(include_self=True)
-        components = iterationtools.iterate_components_depth_first(
-            parentage.root, 
-            capped=True, 
-            unique=True, 
-            forbid=None, 
+        components = iterate(parentage.root).depth_first(
+            capped=True,
+            unique=True,
+            forbid=None,
             direction='left',
             )
         return components
@@ -139,9 +138,9 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _update_now(
-        component, 
-        offsets=False, 
-        offsets_in_seconds=False, 
+        component,
+        offsets=False,
+        offsets_in_seconds=False,
         marks=False,
         ):
         if component._is_forbidden_to_update:

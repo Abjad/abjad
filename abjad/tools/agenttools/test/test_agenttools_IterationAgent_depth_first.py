@@ -23,7 +23,7 @@ t = Staff(r'''
     ''')
 
 
-def test_iterationtools_iterate_components_depth_first_01():
+def test_agenttools_IterationAgent_depth_first_01():
     '''
     Default depth-first search:
         * capped iteration returns no elements above self._client
@@ -33,7 +33,7 @@ def test_iterationtools_iterate_components_depth_first_01():
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(t[2])
+    g = iterate(t[2]).depth_first()
 
     assert g.next() is t[2]
     assert g.next() is t[2][0]
@@ -56,7 +56,9 @@ def test_iterationtools_iterate_components_depth_first_01():
 
     # RIGHT-TO-LEFT #
 
-    g = iterationtools.iterate_components_depth_first(t[2], direction=Right)
+    g = iterate(t[2]).depth_first(
+        direction=Right,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t[2][1]
@@ -78,14 +80,16 @@ def test_iterationtools_iterate_components_depth_first_01():
     '''
 
 
-def test_iterationtools_iterate_components_depth_first_02():
+def test_agenttools_IterationAgent_depth_first_02():
     r'''Uncapped depth-first search: uncapped iteration returns
     all elements above self._client
     '''
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(t[2], capped=False)
+    g = iterate(t[2]).depth_first(
+        capped=False,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t[2][0]
@@ -114,7 +118,10 @@ def test_iterationtools_iterate_components_depth_first_02():
 
     # RIGHT-TO-LEFT #
 
-    g = iterationtools.iterate_components_depth_first(t[2], capped=False, direction=Right)
+    g = iterate(t[2]).depth_first(
+        capped=False,
+        direction=Right,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t[2][1]
@@ -142,13 +149,15 @@ def test_iterationtools_iterate_components_depth_first_02():
     '''
 
 
-def test_iterationtools_iterate_components_depth_first_03():
-    r'''Duplicates-allowed depth-first search: nodes yield every time they are traversed.
-    '''
+def test_agenttools_IterationAgent_depth_first_03():
+    r'''Duplicates-allowed depth-first search: nodes yield every time they are
+    traversed.  '''
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(t[2], unique=False)
+    g = iterate(t[2]).depth_first(
+        unique=False,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t[2][0]
@@ -183,7 +192,10 @@ def test_iterationtools_iterate_components_depth_first_03():
 
     # RIGHT-TO-LEFT #
 
-    g = iterationtools.iterate_components_depth_first(t[2], unique=False, direction=Right)
+    g = iterate(t[2]).depth_first(
+        direction=Right,
+        unique=False,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t[2][1]
@@ -217,14 +229,16 @@ def test_iterationtools_iterate_components_depth_first_03():
     '''
 
 
-def test_iterationtools_iterate_components_depth_first_04():
+def test_agenttools_IterationAgent_depth_first_04():
     r'''Restricted depth-first search: iteration will yield -- but will not
     enter -- forbidden classes.
     '''
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(t, forbid='simultaneous')
+    g = iterate(t).depth_first(
+        forbid='simultaneous',
+        )
 
     assert g.next() is t
     assert g.next() is t[0]
@@ -245,7 +259,10 @@ def test_iterationtools_iterate_components_depth_first_04():
 
     # RIGHT-TO-LEFT #
 
-    g = iterationtools.iterate_components_depth_first(t, forbid='simultaneous', direction=Right)
+    g = iterate(t).depth_first(
+        direction=Right,
+        forbid='simultaneous',
+        )
 
     assert g.next() is t
     assert g.next() is t[4]
@@ -265,13 +282,16 @@ def test_iterationtools_iterate_components_depth_first_04():
     '''
 
 
-def test_iterationtools_iterate_components_depth_first_05():
+def test_agenttools_IterationAgent_depth_first_05():
     r'''Uncapped depth-first search with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(t[2], capped=False, unique=False)
+    g = iterate(t[2]).depth_first(
+        capped=False,
+        unique=False,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t[2][0]
@@ -315,9 +335,12 @@ def test_iterationtools_iterate_components_depth_first_05():
     '''
 
     # RIGHT-TO-LEFT #
-
-    g = iterationtools.iterate_components_depth_first(
-        t[2], capped=False, unique=False, direction=Right)
+ 
+    g = iterate(t[2]).depth_first(
+        capped=False,
+        direction=Right,
+        unique=False,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t[2][1]
@@ -361,13 +384,16 @@ def test_iterationtools_iterate_components_depth_first_05():
     '''
 
 
-def test_iterationtools_iterate_components_depth_first_06():
+def test_agenttools_IterationAgent_depth_first_06():
     r'''Uncapped and restricted depth-first search.
     '''
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(t[2], capped=False, forbid='simultaneous')
+    g = iterate(t[2]).depth_first(
+        capped=False,
+        forbid='simultaneous',
+        )
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -383,8 +409,11 @@ def test_iterationtools_iterate_components_depth_first_06():
 
     # RIGHT-TO-LEFT #
 
-    g = iterationtools.iterate_components_depth_first(
-        t[2], capped=False, forbid='simultaneous', direction=Right)
+    g = iterate(t[2]).depth_first(
+        capped=False,
+        direction=Right,
+        forbid='simultaneous',
+        )
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -399,13 +428,16 @@ def test_iterationtools_iterate_components_depth_first_06():
     '''
 
 
-def test_iterationtools_iterate_components_depth_first_07():
+def test_agenttools_IterationAgent_depth_first_07():
     r'''Restricted depth-first search with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT
 
-    g = iterationtools.iterate_components_depth_first(t, forbid='simultaneous', unique=False)
+    g = iterate(t).depth_first(
+        forbid='simultaneous',
+        unique=False,
+        )
 
     assert g.next() is t
     assert g.next() is t[0]
@@ -436,8 +468,11 @@ def test_iterationtools_iterate_components_depth_first_07():
 
     # RIGHT-TO-LEFT #
 
-    g = iterationtools.iterate_components_depth_first(
-        t, forbid='simultaneous', unique=False, direction=Right)
+    g = iterate(t).depth_first(
+        direction=Right,
+        forbid='simultaneous',
+        unique=False,
+        )
 
     assert g.next() is t
     assert g.next() is t[4]
@@ -467,14 +502,17 @@ def test_iterationtools_iterate_components_depth_first_07():
     '''
 
 
-def test_iterationtools_iterate_components_depth_first_08():
+def test_agenttools_IterationAgent_depth_first_08():
     r'''Uncapped but restricted depth-first serach with duplicates allowed.
     '''
 
     # LEFT-TO-RIGHT #
 
-    g = iterationtools.iterate_components_depth_first(
-        t[2], capped=False, forbid='simultaneous', unique=False)
+    g = iterate(t[2]).depth_first(
+        capped=False,
+        forbid='simultaneous',
+        unique=False,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -495,8 +533,12 @@ def test_iterationtools_iterate_components_depth_first_08():
 
     # RIGHT-TO-LEFT #
 
-    g = iterationtools.iterate_components_depth_first(
-        t[2], capped=False, forbid='simultaneous', unique=False, direction=Right)
+    g = iterate(t[2]).depth_first(
+        capped=False,
+        direction=Right,
+        forbid='simultaneous',
+        unique=False,
+        )
 
     assert g.next() is t[2]
     assert g.next() is t
