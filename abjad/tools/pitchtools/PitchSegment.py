@@ -145,7 +145,6 @@ class PitchSegment(Segment):
             >>> staff = Staff(notes)
             >>> time_signature = marktools.TimeSignature((5, 4))
             >>> attach(time_signature, staff)
-            TimeSignature((5, 4))(Staff{8})
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::

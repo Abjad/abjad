@@ -14,7 +14,6 @@ def notes_and_chords_are_in_range(expr):
         >>> staff = Staff("c'8 r8 <d' fs'>8 r8")
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
-        Violin()(Staff{4})
 
     ::
 
@@ -28,7 +27,6 @@ def notes_and_chords_are_in_range(expr):
         >>> staff = Staff("c'8 r8 <d fs>8 r8")
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
-        Violin()(Staff{4})
 
     ::
 

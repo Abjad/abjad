@@ -1,9 +1,7 @@
 def attach(attachable, component_expression):
     r'''Attaches `attachable` to `component_expression`.
 
-    Returns attachable when attachable is a mark.
-
-    Returns none when attachable is a spanner.
+    Returns none.
     '''
 
-    return attachable._attach(component_expression)
+    attachable._attach(component_expression)

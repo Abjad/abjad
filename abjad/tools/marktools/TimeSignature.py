@@ -15,7 +15,6 @@ class TimeSignature(ContextMark):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> time_signature = marktools.TimeSignature((4, 8))
         >>> attach(time_signature, staff[0])
-        TimeSignature((4, 8))(c'8)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -401,7 +400,6 @@ class TimeSignature(ContextMark):
         ::
 
             >>> attach(time_signature, staff)
-            TimeSignature((3, 8))(Staff{})
 
         Returns time signature mark.
         '''

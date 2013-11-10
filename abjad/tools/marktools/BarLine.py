@@ -10,7 +10,6 @@ class BarLine(LilyPondCommand):
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> bar_line = marktools.BarLine('|.')
         >>> attach(bar_line, staff[-1])
-        BarLine('|.')(f'4)
         >>> show(staff) # doctest: +SKIP
 
     ::
@@ -61,7 +60,6 @@ class BarLine(LilyPondCommand):
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> bar_line = marktools.BarLine()
                 >>> attach(bar_line, staff[-1])
-                BarLine('|')(f'4)
                 >>> bar_line.bar_line_string
                 '|'
 

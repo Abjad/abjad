@@ -364,7 +364,7 @@ class ContiguousSelection(Selection):
                 >>> staff = Staff(r"c'8 ( d'8 e'8 f'8 )")
                 >>> staff.append(r"g'8 a'8 b'8 c''8")
                 >>> time_signature = marktools.TimeSignature((2, 4))
-                >>> time_signature = attach(time_signature, staff)
+                >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::

@@ -37,7 +37,6 @@ class StaffChange(ContextMark):
 
         >>> staff_change = marktools.StaffChange(lh_staff)
         >>> attach(staff_change, rh_staff[2])
-        StaffChange(Staff-"LHStaff"{1})(e'8)
         >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::

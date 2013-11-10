@@ -12,7 +12,7 @@ class Flute(Instrument):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> flute = instrumenttools.Flute()
-        >>> flute = attach(flute, staff)
+        >>> attach(flute, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

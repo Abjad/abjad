@@ -14,7 +14,6 @@ class TextScriptSpanner(Spanner):
         >>> override(spanner).text_script.color = 'red'
         >>> markup = markuptools.Markup(r'\italic { espressivo }', Up)
         >>> attach(markup, staff[1])
-        Markup((MarkupCommand('italic', ['espressivo']),), direction=Up)(d'8)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

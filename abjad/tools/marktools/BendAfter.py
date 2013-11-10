@@ -10,7 +10,6 @@ class BendAfter(Mark):
         >>> note = Note("c'4")
         >>> bend = marktools.BendAfter(-4)
         >>> attach(bend, note)
-        BendAfter(-4.0)(c'4)
         >>> show(note) # doctest: +SKIP
 
     ..  doctest::

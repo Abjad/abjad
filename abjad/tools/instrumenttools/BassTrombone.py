@@ -13,10 +13,8 @@ class BassTrombone(Instrument):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> clef = marktools.Clef('bass')
         >>> attach(clef, staff)
-        Clef('bass')(Staff{4})
         >>> trombone = instrumenttools.BassTrombone()
         >>> attach(trombone, staff)
-        BassTrombone()(Staff{4})
 
     ..  doctest::
 

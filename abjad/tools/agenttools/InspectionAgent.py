@@ -188,13 +188,11 @@ class InspectionAgent(object):
                 ...     kind='grace',
                 ...     )
                 >>> attach(grace_container, staff[1])
-                Note("d'8")
                 >>> after_grace = scoretools.GraceContainer(
                 ...     [Note("ds'16")],
                 ...     kind='after'
                 ...     )
                 >>> attach(after_grace, staff[1])
-                Note("d'8")
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -443,7 +441,6 @@ class InspectionAgent(object):
                 >>> staff = Staff("c'4 d'4 e'4")
                 >>> time_signature = marktools.TimeSignature((3, 8))
                 >>> attach(time_signature, staff)
-                TimeSignature((3, 8))(Staff{3})
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::

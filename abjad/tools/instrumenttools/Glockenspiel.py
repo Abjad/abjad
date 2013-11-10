@@ -13,7 +13,6 @@ class Glockenspiel(Instrument):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> glockenspiel = instrumenttools.Glockenspiel()
         >>> attach(glockenspiel, staff)
-        Glockenspiel()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::

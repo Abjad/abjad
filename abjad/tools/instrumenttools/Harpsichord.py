@@ -19,7 +19,6 @@ class Harpsichord(Instrument):
 
         >>> harpsichord = instrumenttools.Harpsichord()
         >>> attach(harpsichord, piano_staff)
-        Harpsichord()(PianoStaff<<2>>)
         >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::

@@ -187,7 +187,7 @@ def make_leaves(
             >>> leaves = scoretools.make_leaves(pitches, durations)
             >>> staff = Staff(leaves)
             >>> time_signature = marktools.TimeSignature((13, 16))
-            >>> time_signature = attach(time_signature, staff)
+            >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -215,7 +215,7 @@ def make_leaves(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = marktools.TimeSignature((13, 16))
-            >>> time_signature = attach(time_signature, staff)
+            >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -244,7 +244,7 @@ def make_leaves(
             ...     )
             >>> staff = scoretools.RhythmicStaff(leaves)
             >>> time_signature = marktools.TimeSignature((5, 8))
-            >>> time_signature = attach(time_signature, staff)
+            >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -272,7 +272,7 @@ def make_leaves(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = marktools.TimeSignature((5, 4))
-            >>> time_signature = attach(time_signature, staff)
+            >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -305,7 +305,7 @@ def make_leaves(
             ...     )
             >>> staff = Staff(leaves)
             >>> time_signature = marktools.TimeSignature((5, 4))
-            >>> time_siganture = attach(time_signature, staff)
+            >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::

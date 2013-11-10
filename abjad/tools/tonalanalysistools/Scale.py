@@ -211,7 +211,6 @@ class Scale(PitchClassSegment):
             >>> staff = Staff(notes)
             >>> time_signature = marktools.TimeSignature((5, 4))
             >>> attach(time_signature, staff)
-            TimeSignature((5, 4))(Staff{8})
 
         ..  doctest::
 

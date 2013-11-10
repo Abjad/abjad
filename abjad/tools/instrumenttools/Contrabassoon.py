@@ -13,10 +13,8 @@ class Contrabassoon(Instrument):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> clef = marktools.Clef('bass')
         >>> attach(clef, staff)
-        Clef('bass')(Staff{4})
         >>> contrabassoon = instrumenttools.Contrabassoon()
         >>> attach(contrabassoon, staff)
-        Contrabassoon()(Staff{4})
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
