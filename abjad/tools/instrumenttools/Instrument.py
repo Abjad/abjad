@@ -48,8 +48,8 @@ class Instrument(ContextMark):
         short_instrument_name_markup=None,
         _target_context=None,
         ):
-        from abjad.tools.scoretools.Staff import Staff
-        _target_context = _target_context or Staff
+        from abjad.tools import scoretools
+        _target_context = _target_context or scoretools.Staff
         ContextMark.__init__(self, _target_context=_target_context)
 
         self._default_instrument_name = instrument_name
@@ -84,7 +84,6 @@ class Instrument(ContextMark):
         return type(self)(
             instrument_name_markup=self.instrument_name_markup, 
             short_instrument_name_markup=self.short_instrument_name_markup,
-            _target_context=self._target_context,
             )
 
     def __eq__(self, arg):
