@@ -38,13 +38,6 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     ### PRIVATE METHODS ###
 
-    def _get___init___text(self, package_root_name):
-        return [
-            'from abjad.tools import systemtools',
-            '',
-            "systemtools.ImportManager.import_structured_package(__path__[0], globals(), package_root_name={!r})".format(package_root_name),
-        ]
-
     def _get_class_names_in_tools_package(self, root, tools_package_name):
         path = os.path.join(root, tools_package_name)
         crawler = documentationtools.ClassCrawler(
@@ -72,33 +65,27 @@ class MakeNewClassTemplateScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-
         from abjad import abjad_configuration
-
         if args.name.count('.') != 1:
             message = 'Error: {!r} not in tools_package.class_name format.'
             print message.format(args.name)
-            return
-
-        root = args.path
+            raise SystemExit
+        root_directory_path = args.path
         tools_package_name, class_name = args.name.split('.')
-
-        if tools_package_name not in self._get_tools_package_names(root):
+        if tools_package_name not in self._get_tools_package_names(
+            root_directory_path):
             print 'Error: {!r} is not a valid tools package.'.format(
                 tools_package_name)
-            return
-
+            raise SystemExit
         if class_name in self._get_class_names_in_tools_package(
-            root, tools_package_name):
+            root_directory_path, tools_package_name):
             print 'Error: {!r} already exists in {!r}'.format(
                 class_name, tools_package_name)
-            return
-
-        package_path = os.path.join(root, tools_package_name, class_name)
-
-        os.mkdir(package_path)
-        os.mkdir(os.path.join(package_path, 'test'))
-
+            raise SystemExit
+        tools_package_directory_path = os.path.join(
+            root_directory_path,
+            tools_package_name,
+            )
         if args.path == os.path.join(
             abjad_configuration.abjad_experimental_directory_path, 'tools'):
             package_root_name = 'experimental'
@@ -106,20 +93,14 @@ class MakeNewClassTemplateScript(DeveloperScript):
             abjad_configuration.abjad_directory_path, 'tools'):
             package_root_name = 'abjad'
         else:
-            raise Exception
-
-        module_path = os.path.join(package_path, '{}.py'.format(class_name))
+            raise SystemExit
+        module_file_path = os.path.join(
+            tools_package_directory_path,
+            '{}.py'.format(class_name),
+            )
         module_text = '\n'.join(self._get_class_text(class_name)) + '\n'
-
-        init_path = os.path.join(package_path, '__init__.py')
-        init_text = '\n'.join(self._get___init___text(package_root_name))
-        init_text += '\n'
-
-        with open(module_path, 'w') as f:
+        with open(module_file_path, 'w') as f:
             f.write(module_text)
-
-        with open(init_path, 'w') as f:
-            f.write(init_text)
 
     def setup_argument_parser(self, parser):
 
