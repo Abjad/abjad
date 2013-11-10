@@ -41,7 +41,7 @@ def _find_initializers():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     print 'This script needs to be ported forward.'
 #    print 'Finding and fixing manual class package initializers ...'
 #    print ''

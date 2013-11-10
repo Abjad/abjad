@@ -27,6 +27,6 @@ def _find_initializers():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     print 'Finding manual class loads in initializers ...'
     _find_initializers()

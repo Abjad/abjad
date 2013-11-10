@@ -47,7 +47,7 @@ class TestAndRebuildScript(DeveloperScript):
         return terminal_width
 
     def process_args(self, args):
-        iotools.clear_terminal()
+        iotools.IOManager.clear_terminal()
         if not self.run_doctest(args):
             print
             if not self.run_pytest(args):

@@ -41,6 +41,6 @@ def _find_missing_test_modules():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     print 'Finding missing test modules ...'
     _find_missing_test_modules()

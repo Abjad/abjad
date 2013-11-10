@@ -55,7 +55,7 @@ class RunDoctestsScript(DirectoryScript):
             )
         if args.diff:
             optionflags = optionflags | doctest.REPORT_NDIFF
-        iotools.clear_terminal()
+        iotools.IOManager.clear_terminal()
         total_failures = 0
         total_modules = 0
         total_tests = 0

@@ -34,6 +34,25 @@ class IOManager(object):
     ### PUBLIC METHODS ###
 
     @staticmethod
+    def clear_terminal():
+        '''Runs ``clear`` if OS is POSIX-compliant (UNIX / Linux / MacOS).
+
+        Runs ``cls`` if OS is not POSIX-compliant (Windows).
+
+        ::
+
+            >>> iotools.IOManager.clear_terminal() # doctest: +SKIP
+
+        Returns none.
+        '''
+        from abjad.tools import iotools
+        if os.name == 'posix':
+            command = 'clear'
+        else:
+            command = 'cls'
+        iotools.IOManager.spawn_subprocess(command)
+
+    @staticmethod
     def ensure_directory_existence(directory):
         r'''Ensures existence of `directory`.
 

@@ -47,7 +47,7 @@ def _rename_test_file(short_file_name, full_file_name, old, new):
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
 #    print 'Source test file path example:'
 #    print ''
 #    print '    tools/spannertools/Beam/test/test_BeamSpanner___eq__.py'

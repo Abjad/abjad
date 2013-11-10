@@ -32,7 +32,7 @@ def _remove_source_file_terminal_blank_lines():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     print 'Removing source file-terminal blank lines ...'
     print ''
     _remove_source_file_terminal_blank_lines()

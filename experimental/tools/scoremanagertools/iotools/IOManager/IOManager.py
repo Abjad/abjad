@@ -35,7 +35,7 @@ class IOManager(AbjadObject):
     def clear_terminal(self):
         if not self.session.hide_next_redraw:
             if self.session.is_displayable:
-                iotools.clear_terminal()
+                iotools.IOManager.clear_terminal()
 
     def confirm(
         self, 
@@ -74,7 +74,7 @@ class IOManager(AbjadObject):
                     self.session.io_transcript.append_lines(lines)
             if self.session.is_displayable:
                 if clear_terminal:
-                    iotools.clear_terminal()
+                    iotools.IOManager.clear_terminal()
                 for line in lines:
                     print line
 
@@ -305,4 +305,4 @@ class IOManager(AbjadObject):
             include_chevron=False,
             )
         if self.session.is_displayable:
-            iotools.clear_terminal()
+            iotools.IOManager.clear_terminal()

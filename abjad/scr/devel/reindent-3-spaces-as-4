@@ -103,6 +103,6 @@ def _print_results(reindented, indented, skipped):
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     _reindent_3_spaces_as_4()
     print ''

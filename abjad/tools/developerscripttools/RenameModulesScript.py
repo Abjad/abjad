@@ -282,7 +282,7 @@ class RenameModulesScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-        iotools.clear_terminal()
+        iotools.IOManager.clear_terminal()
         # Handle source path:
         old_codebase, old_tools_package_name, old_module_name = \
             self._parse_tools_package_path(args.source)

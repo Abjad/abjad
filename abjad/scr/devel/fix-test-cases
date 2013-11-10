@@ -151,7 +151,7 @@ def _process_test_module_number_fixes(test_module, path):
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     _fix_test_case_names()
     print ''
     _fix_test_case_numbers()

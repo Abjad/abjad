@@ -35,7 +35,7 @@ def _find_multiline_import_statements():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     #print 'Finding multiline import statements ...'
     #print ''
     #_find_multiline_import_statements()

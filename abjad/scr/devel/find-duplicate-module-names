@@ -46,5 +46,5 @@ def _find_all_duplicate_module_names():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     _find_all_duplicate_module_names()

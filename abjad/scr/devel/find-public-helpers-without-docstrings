@@ -63,6 +63,6 @@ def _find_undocumented_helpers_in_file(path, f):
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     print "Needs to be rewritten entirely to inspect docstrings on live code objects."
     #_find_public_helpers_without_docstrings()

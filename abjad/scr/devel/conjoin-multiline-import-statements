@@ -37,7 +37,7 @@ def _conjoin_multiline_import_statements():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     #print 'Conjoining multiline import statements ...'
     #print ''
     #_conjoin_multiline_import_statements()

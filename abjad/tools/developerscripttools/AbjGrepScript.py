@@ -44,7 +44,7 @@ If no PATH flag is specified, the current directory will be searched.
 
     def process_args(self, args):
 
-        iotools.clear_terminal()
+        iotools.IOManager.clear_terminal()
         if args.whole_words_only:
             whole_words_only = '-w'
         else:

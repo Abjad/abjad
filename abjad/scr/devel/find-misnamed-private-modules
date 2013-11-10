@@ -29,6 +29,6 @@ def _find_misnamed_private_modules():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     print 'Finding misnamed private modules ...'
     _find_misnamed_private_modules()

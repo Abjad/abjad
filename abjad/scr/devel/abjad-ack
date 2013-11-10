@@ -5,7 +5,7 @@ import time
 from abjad.tools import iotools
 
 
-iotools.clear_terminal()
+iotools.IOManager.clear_terminal()
 start_time = time.time()
 command = r'ack --ignore-dir=docs --ignore-dir=build {!r}'
 command = command.format(sys.argv[1])

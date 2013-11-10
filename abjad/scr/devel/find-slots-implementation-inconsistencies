@@ -39,5 +39,5 @@ def _find_inconsistencies():
 
 
 if __name__ == '__main__':
-    iotools.clear_terminal()
+    iotools.IOManager.clear_terminal()
     graph = _find_inconsistencies()
