@@ -256,7 +256,6 @@ class IterationAgent(object):
             ...     kind='grace',
             ...     )
             >>> attach(grace, voice[1])
-            Note("d'8")
 
         ::
 
@@ -265,7 +264,6 @@ class IterationAgent(object):
             ...     after_grace_notes,
             ...     kind='after')
             >>> attach(after_grace, voice[1])
-            Note("d'8")
 
         ..  doctest::
 
