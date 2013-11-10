@@ -2,9 +2,9 @@
 import copy
 from abjad.tools import marktools
 from abjad.tools import durationtools
-from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import contextualize
 from abjad.tools.scoretools.FixedDurationContainer \
@@ -35,7 +35,7 @@ class Measure(FixedDurationContainer):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_always_format_time_signature', 
+        '_always_format_time_signature',
         '_automatically_adjust_time_signature',
         '_measure_number',
         )
@@ -46,7 +46,7 @@ class Measure(FixedDurationContainer):
 
     def __init__(self, time_signature, music=None):
         from abjad.tools.topleveltools import attach
-        # set time signature adjustment indicator before 
+        # set time signature adjustment indicator before
         # contents initialization
         self._automatically_adjust_time_signature = False
         FixedDurationContainer.__init__(self, time_signature, music)
@@ -154,7 +154,6 @@ class Measure(FixedDurationContainer):
 
     @property
     def _preprolated_duration(self):
-        from abjad.tools import marktools
         time_signature = self.time_signature
         return time_signature.implied_prolation * self._contents_duration
 
@@ -171,7 +170,6 @@ class Measure(FixedDurationContainer):
         return True
 
     def _check_duration(self):
-        from abjad.tools import marktools
         effective_time_signature = self.time_signature
         if effective_time_signature.has_non_power_of_two_denominator and \
             effective_time_signature.suppress:
@@ -227,7 +225,7 @@ class Measure(FixedDurationContainer):
         if denominators is not None:
             if factor is not None:
                 denominators = [
-                    d for d in denominators 
+                    d for d in denominators
                     if factor in mathtools.factors(d)
                     ]
             for desired_denominator in sorted(denominators):
@@ -249,14 +247,14 @@ class Measure(FixedDurationContainer):
 
     def _format_content_pieces(self):
         result = []
-        # the class name test here functions to exclude scaleDurations 
+        # the class name test here functions to exclude scaleDurations
         # from anonymous and dynamic measures
         # TODO: subclass this prooperly on anonymous and dynamic measures
         if self.has_non_power_of_two_denominator and type(self) is Measure:
             result.append("\t\\scaleDurations #'(%s . %s) {" % (
                 self.implied_prolation.numerator,
                 self.implied_prolation.denominator))
-            result.extend( ['\t' + x 
+            result.extend(['\t' + x
                 for x in FixedDurationContainer._format_content_pieces(self)])
             result.append('\t}')
         else:
@@ -268,13 +266,13 @@ class Measure(FixedDurationContainer):
         This is also the slot where LilyPond \time commands live.
         '''
         result = []
-        result.append(('comments', 
+        result.append(('comments',
             format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('grob overrides', 
+        result.append(('grob overrides',
             format_contributions.get('grob overrides', [])))
-        result.append(('context settings', 
+        result.append(('context settings',
             format_contributions.get('context settings', [])))
-        result.append(('context marks', 
+        result.append(('context marks',
             format_contributions.get('opening', {}).get('context marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
@@ -282,15 +280,11 @@ class Measure(FixedDurationContainer):
     def _get_likely_multiplier_of_components(components):
         pass
         from abjad.tools import scoretools
-        from abjad.tools import iterationtools
-        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import sequencetools
         assert all(isinstance(x, scoretools.Component) for x in components)
         chain_duration_numerators = []
-        for expr in \
-            iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
-            components):
+        for expr in iterate(components).by_topmost_tie_chains_and_components():
             if isinstance(expr, selectiontools.TieChain):
                 chain_duration = expr._preprolated_duration
                 chain_duration_numerators.append(chain_duration.numerator)
@@ -298,16 +292,14 @@ class Measure(FixedDurationContainer):
             chain_duration_numerators)) == 1:
             numerator = chain_duration_numerators[0]
             denominator = mathtools.greatest_power_of_two_less_equal(numerator)
-            likely_multiplier = durationtools.Multiplier(numerator, denominator)
+            likely_multiplier = durationtools.Multiplier(
+                numerator, denominator)
             return likely_multiplier
 
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
     def _scale(self, multiplier=None):
-        from abjad.tools import scoretools
         from abjad.tools import marktools
-        from abjad.tools import iterationtools
-        from abjad.tools import timesignaturetools
         from abjad.tools.topleveltools import attach
         if multiplier is None:
             return
@@ -326,10 +318,10 @@ class Measure(FixedDurationContainer):
             new_duration = multiplier * old_duration
             new_time_signature = \
                 self._duration_and_possible_denominators_to_time_signature(
-                new_duration, 
-                [old_denominator], 
-                multiplier.denominator,
-                )
+                    new_duration,
+                    [old_denominator],
+                    multiplier.denominator,
+                    )
         detach(marktools.TimeSignature, self)
         attach(new_time_signature, self)
         contents_multiplier_denominator = \
@@ -362,7 +354,7 @@ class Measure(FixedDurationContainer):
     def automatically_adjust_time_signature():
         def fget(self):
             '''Read / write flag to indicate whether time signature
-            should update automatically following contents-changing 
+            should update automatically following contents-changing
             operations:
 
             ::
@@ -396,7 +388,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def has_non_power_of_two_denominator(self):
-        r'''True when measure time signature denominator 
+        r'''True when measure time signature denominator
         is not an integer power of 2:
 
         ::
@@ -420,7 +412,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def has_power_of_two_denominator(self):
-        r'''True when measure time signature denominator 
+        r'''True when measure time signature denominator
         is an integer power of 2:
 
         ::
@@ -598,7 +590,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def target_duration(self):
-        r'''Target duration of measure always equal to duration 
+        r'''Target duration of measure always equal to duration
         of effective time signature.
 
         Returns duration.

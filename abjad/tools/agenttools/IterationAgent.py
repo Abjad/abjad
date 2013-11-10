@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -188,10 +189,7 @@ class IterationAgent(object):
 
         Returns generator.
         '''
-        from abjad.tools import spannertools
-
         component_classes = component_classes or scoretools.Component
-
         def component_iterator(expr, component_class, reverse=False):
             if isinstance(expr, component_class):
                 yield expr
@@ -556,6 +554,76 @@ class IterationAgent(object):
                     if not nontrivial or not tie_chain.is_trivial:
                         yield tie_chain
 
+    def by_topmost_tie_chains_and_components(self):
+        r'''Iterate topmost tie chains and components forward in `expr`:
+
+        ::
+
+            >>> string = r"c'8 ~ c'32 d'8 ~ d'32 \times 2/3 { e'8 f'8 g'8 } "
+            >>> string += "a'8 ~ a'32 b'8 ~ b'32"
+            >>> staff = Staff(string)
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'8 ~
+                c'32
+                d'8 ~
+                d'32
+                \times 2/3 {
+                    e'8
+                    f'8
+                    g'8
+                }
+                a'8 ~
+                a'32
+                b'8 ~
+                b'32
+            }
+
+        ::
+
+            >>> for x in iterate(staff).by_topmost_tie_chains_and_components():
+            ...     x
+            ...
+            TieChain(Note("c'8"), Note("c'32"))
+            TieChain(Note("d'8"), Note("d'32"))
+            Tuplet(2/3, [e'8, f'8, g'8])
+            TieChain(Note("a'8"), Note("a'32"))
+            TieChain(Note("b'8"), Note("b'32"))
+
+        Raise tie chain error on overlapping tie chains.
+
+        Returns generator.
+        '''
+        from abjad.tools import selectiontools
+        spanner_classes = (spannertools.Tie,)
+        if isinstance(self._client, scoretools.Leaf):
+            tie_chain = self._client._get_tie_chain()
+            if len(tie_chain) == 1:
+                yield tie_chain
+            else:
+                message = 'can not have only one leaf in tie chain.'
+                raise TieChainError(message)
+        elif isinstance(
+            self._client, (
+                collections.Sequence,
+                scoretools.Container,
+                selectiontools.SliceSelection,
+                )):
+            for component in self._client:
+                if isinstance(component, scoretools.Leaf):
+                    tie_spanners = component._get_spanners(spanner_classes)
+                    if not tie_spanners or \
+                        tuple(tie_spanners)[0]._is_my_last_leaf(component):
+                        yield component._get_tie_chain()
+                elif isinstance(component, scoretools.Container):
+                    yield component
+        else:
+            message = 'input must be iterable: {!r}.'.format(self._client)
+            raise ValueError(message)
+
     def by_vertical_moment(
         self,
         reverse=False,
@@ -653,8 +721,6 @@ class IterationAgent(object):
 
         Returns generator.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import durationtools
         from abjad.tools import selectiontools
 
         def _buffer_components_starting_with(component, buffer, stop_offsets):
