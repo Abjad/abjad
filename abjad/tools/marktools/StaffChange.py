@@ -65,7 +65,7 @@ class StaffChange(ContextMark):
 
     def __init__(self, staff=None):
         from abjad.tools import scoretools
-        ContextMark.__init__(self, _target_context=scoretools.Staff)
+        ContextMark.__init__(self)
         if not isinstance(staff, (scoretools.Staff, type(None))):
             message = 'staff change mark input value {!r}'
             message += ' must be staff instance.'

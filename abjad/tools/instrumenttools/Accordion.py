@@ -41,11 +41,8 @@ class Accordion(Instrument):
     ### INITIALIZER ###
 
     def __init__(self, **kwargs):
-        Instrument.__init__(
-            self, 
-            _target_context=scoretools.PianoStaff,
-            **kwargs
-            )
+        Instrument.__init__(self, **kwargs)
+        self._target_context = scoretools.PianoStaff
         self._default_allowable_clefs = marktools.ClefInventory([
             marktools.Clef('treble'), 
             marktools.Clef('bass'),

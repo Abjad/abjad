@@ -52,8 +52,7 @@ class TimeSignature(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        from abjad.tools import scoretools
-        ContextMark.__init__(self, _target_context=scoretools.Staff)
+        ContextMark.__init__(self)
         partial, suppress = None, None
         # initialize numerator and denominator from *args
         if len(args) == 1 and isinstance(args[0], type(self)):

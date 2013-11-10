@@ -15,15 +15,11 @@ class ContextMark(Mark):
 
     ### INITIALIZER ###
 
-    def __init__(self, _target_context=None):
+    def __init__(self):
+        from abjad.tools import scoretools
         Mark.__init__(self)
         self._effective_context = None
-        if _target_context is not None:
-            if not isinstance(_target_context, type):
-                message = 'target context {!r} must be context class.'
-                message = message.format(_target_context)
-                raise TypeError(message)
-        self._target_context = _target_context
+        self._target_context = scoretools.Staff
 
     ### SPECIAL METHODS ###
 
@@ -32,7 +28,7 @@ class ContextMark(Mark):
 
         Returns new context mark.
         '''
-        return type(self)(_target_context=self._target_context)
+        return type(self)()
 
     def __format__(self, format_specification=''):
         r'''Formats context mark.

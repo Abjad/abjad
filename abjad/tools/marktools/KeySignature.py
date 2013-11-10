@@ -38,9 +38,8 @@ class KeySignature(ContextMark):
 
     def __init__(self, tonic, mode):
         from abjad.tools import pitchtools
-        from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
-        ContextMark.__init__(self, _target_context=scoretools.Staff)
+        ContextMark.__init__(self)
         tonic = pitchtools.NamedPitchClass(tonic)
         mode = tonalanalysistools.Mode(mode)
         self._tonic = tonic
