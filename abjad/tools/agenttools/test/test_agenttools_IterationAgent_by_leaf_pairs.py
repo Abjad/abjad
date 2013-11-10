@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_leaf_pairs_in_expr_01():
+def test_agenttools_IterationAgent_by_leaf_pairs_01():
 
     score = Score([])
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
@@ -36,7 +36,7 @@ def test_iterationtools_iterate_leaf_pairs_in_expr_01():
     # make sure to show score if trying to verify test results     #
     # as the integer indices below are difficult to keep in mind. #
 
-    pairs = iterationtools.iterate_leaf_pairs_in_expr(score)
+    pairs = iterate(score).by_leaf_pairs()
     pairs = list(pairs)
 
     assert len(pairs) == 15

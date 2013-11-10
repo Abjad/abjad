@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import iterate
 
 
 def iterate_named_pitch_pairs_in_expr(expr):
@@ -88,10 +89,9 @@ def iterate_named_pitch_pairs_in_expr(expr):
 
     Returns generator.
     '''
-    from abjad.tools import iterationtools
     from abjad.tools import pitchtools
 
-    for leaf_pair in iterationtools.iterate_leaf_pairs_in_expr(expr):
+    for leaf_pair in iterate(expr).by_leaf_pairs():
         leaf_pair_list = list(leaf_pair)
         # iterate chord pitches if first leaf is chord
         for pair in pitchtools.list_unordered_named_pitch_pairs_in_expr(leaf_pair_list[0]):
