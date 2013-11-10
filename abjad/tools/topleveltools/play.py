@@ -26,13 +26,12 @@ def play(expr):
     from abjad import abjad_configuration
     from abjad.tools import lilypondfiletools
     from abjad.tools import iotools
-
     ABJADOUTPUT = abjad_configuration['abjad_output']
     iotools.IOManager.ensure_directory_existence(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
     name = iotools.IOManager.get_next_output_file_name()
     outfile = open(name, 'w')
-    lilypond_file = iotools.insert_expr_into_lilypond_file(expr)
+    lilypond_file = iotools.IOManager.insert_expr_into_lilypond_file(expr)
     lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
     outfile.write(format(lilypond_file))
     outfile.close()

@@ -240,7 +240,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 * Extended instruments with ``is_primary`` and ``is_secondary`` attributes.
 * Extended instruments with ``instrument_name`` and ``instrument_name_markup`` attributes.
 * Extended instruments with ``short_instrument_name`` and ``short_instrument_name_markup`` attributes.
-* Extended ``iotools.write_expr_to_ly()`` and ``iotools.write_expr_to_pdf()`` with ``'tagline'`` keyword.
+* Extended ``iotools.IOManager.write_expr_to_ly()`` and ``iotools.IOManager.write_expr_to_pdf()`` with ``'tagline'`` keyword.
 * Extended ``replace-in-files`` script to skip ``.text``, ``.ly`` and ``.txt`` files.
 
 * Renamed ``Accidental.symbolic_string`` to ``Accidental.symbolic_accidental_string``.

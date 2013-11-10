@@ -58,7 +58,7 @@ class PersistenceAgent(object):
 
         '''
         from abjad.tools import iotools
-        iotools.write_expr_to_ly(self._client, filename)
+        iotools.IOManager.write_expr_to_ly(self._client, filename)
 
     def as_module(self, filename, object_name):
         r'''Persists client as Python module.
@@ -105,4 +105,4 @@ class PersistenceAgent(object):
 
         '''
         from abjad.tools import iotools
-        iotools.write_expr_to_pdf(self._client, filename)
+        iotools.IOManager.write_expr_to_pdf(self._client, filename)

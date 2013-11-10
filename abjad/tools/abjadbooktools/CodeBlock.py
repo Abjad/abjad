@@ -96,11 +96,11 @@ class CodeBlock(AbjadObject):
 
                 if directory:
                     command = \
-                        "iotools.write_expr_to_ly({}, {!r}, docs={})".format(
+                        "iotools.IOManager.write_expr_to_ly({}, {!r}, docs={})".format(
                         object_name, os.path.join(directory, file_name), docs)
                 else:
                     command = \
-                        "iotools.write_expr_to_ly({}, {!r}, docs={})".format(
+                        "iotools.IOManager.write_expr_to_ly({}, {!r}, docs={})".format(
                         object_name, file_name, docs)
 
                 pipe.write(command)

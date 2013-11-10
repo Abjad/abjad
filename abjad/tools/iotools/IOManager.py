@@ -4,8 +4,11 @@ import datetime
 import os
 import platform
 import re
+import shutil
 import subprocess
 import sys
+import time
+from abjad.tools import documentationtools
 
 
 class IOManager(object):
@@ -50,7 +53,6 @@ class IOManager(object):
 
         Returns none.
         '''
-        from abjad.tools import iotools
         if os.name == 'posix':
             command = 'clear'
         else:
@@ -74,7 +76,7 @@ class IOManager(object):
             ::
 
                 >>> iotools.IOManager.count_function_calls(
-                ...     "Note('c4')", 
+                ...     "Note('c4')",
                 ...     globals(),
                 ...     )
                 10276
@@ -94,11 +96,8 @@ class IOManager(object):
 
         Returns nonnegative integer.
         '''
-        from abjad.tools import iotools
-
         def extract_count(profile_output):
             return int(profile_output.splitlines()[2].split()[0])
-
         if fixed_point:
             # profile at least twice to ensure consist results from profiler;
             # not sure why but profiler eventually levels off to consistent
@@ -114,7 +113,6 @@ class IOManager(object):
                     )
                 current_result = extract_count(current_result)
             return current_result
-
         result = IOManager.profile_expr(
             expr,
             print_to_terminal=False,
@@ -176,9 +174,9 @@ class IOManager(object):
     @staticmethod
     def get_last_output_file_name(output_directory_path=None):
         r'''Gets last output file name in output directory.
-        
+
         ::
-            
+
             >>> iotools.IOManager.get_last_output_file_name() # doctest: +SKIP
             '6222.ly'
 
@@ -207,7 +205,7 @@ class IOManager(object):
         output_directory_path=None,
         ):
         r'''Gets next output file name in output directory.
-        
+
         ::
 
             >>> iotools.IOManager.get_next_output_file_name() # doctest: +SKIP
@@ -218,11 +216,8 @@ class IOManager(object):
 
         Returns string.
         '''
-        from abjad.tools import iotools
-
         assert file_extension.isalpha() and \
             0 < len(file_extension) < 4, repr(file_extension)
-
         last_output = IOManager.get_last_output_file_name(
             output_directory_path=output_directory_path,
             )
@@ -234,12 +229,113 @@ class IOManager(object):
             next_number = last_number + 1
             next_output_file_name = '{next_number:04d}.{file_extension}'
             next_output_file_name = next_output_file_name.format(
-                next_number=next_number, 
+                next_number=next_number,
                 file_extension=file_extension,
                 )
         if 9000 < next_number:
             IOManager._warn_when_output_directory_almost_full(last_number)
         return next_output_file_name
+
+    @staticmethod
+    def insert_expr_into_lilypond_file(expr, tagline=False):
+        r'''Inserts `expr` into LilyPond file.
+
+        Returns LilyPond file.
+        '''
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import scoretools
+        if isinstance(expr, lilypondfiletools.LilyPondFile):
+            lilypond_file = expr
+        elif isinstance(expr, scoretools.Context):
+            lilypond_file = lilypondfiletools.make_basic_lilypond_file(expr)
+            lilypond_file._is_temporary = True
+        else:
+            lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+            score_block = lilypondfiletools.ScoreBlock()
+            score_block.append(expr)
+            # NOTE: don't quite understand the logic here.
+            # why append a score_block and then set the score_block attribute
+            # to the same thing?
+            lilypond_file.append(score_block)
+            #lilypond_file.score = score_block
+            lilypond_file.score_block = score_block
+            lilypond_file._is_temporary = True
+        if not tagline:
+            try:
+                lilypond_file.header_block.tagline = markuptools.Markup('""')
+            except:
+                pass
+        return lilypond_file
+
+    @staticmethod
+    def log_render_lilypond_input(
+        expr, 
+        output_directory_path=None, 
+        output_file_name_root=None,
+        tagline=False, 
+        docs=False,
+        ):
+        r'''Writes both .ly and .pdf files to `output_directory`.
+
+        Writes to Abjad output directory when `output_directory` is none.
+
+        Writes to next 4-digit numeric file name 
+        when `output_file_name_root` is none.
+
+        Returns file name, Abjad format time (in seconds) and LilyPond
+        format time (in seconds).
+        '''
+        from abjad import abjad_configuration
+        from abjad.tools import iotools
+        # set timing thresholds
+        lily_time = 2
+        format_time = 2
+        # change to output directory
+        current_directory = os.path.abspath('.')
+        output_directory_path = \
+            output_directory_path or abjad_configuration['abjad_output']
+        IOManager.ensure_directory_existence(output_directory_path)
+        os.chdir(output_directory_path)
+        if output_file_name_root is None:
+            name = IOManager.get_next_output_file_name()
+        else:
+            name = output_file_name_root + '.ly'
+        outfile = open(name, 'w')
+        # catch Abjad tight loops that result in excessive format time
+        start_format_time = time.time()
+        if docs:
+            expr = documentationtools.make_reference_manual_lilypond_file(expr)
+        lilypond_file = IOManager.insert_expr_into_lilypond_file(
+            expr, tagline=tagline)
+        formatted_lilypond_file = format(lilypond_file)
+        stop_format_time = time.time()
+        actual_format_time = int(stop_format_time - start_format_time)
+        if format_time <= actual_format_time:
+            message = 'Abjad format time equal to {} seconds ...'
+            message = message.format(actual_format_time)
+            print message
+        outfile.write(formatted_lilypond_file)
+        outfile.close()
+        if getattr(lilypond_file, '_is_temporary', False):
+            # TODO: eliminate this exception handler?
+            try:
+                music = lilypond_file.score_block.pop()
+                delattr(music, '_lilypond_file')
+            except (IndexError, AttributeError):
+                pass
+            del(lilypond_file)
+        # render
+        start_time = time.time()
+        iotools.run_lilypond(name, abjad_configuration['lilypond_path'])
+        stop_time = time.time()
+        actual_lily_time = int(stop_time - start_time)
+        os.chdir(current_directory)
+        # catch LilyPond taking a long time to render
+        if lily_time <= actual_lily_time:
+            message = 'LilyPond processing time equal to {} seconds ...'
+            message = message.format(actual_lily_time)
+            print message
+        return name, actual_format_time, actual_lily_time
 
     @staticmethod
     def open_file(file_path, application=None):
@@ -250,7 +346,6 @@ class IOManager(object):
 
         Returns none.
         '''
-        from abjad.tools import iotools
         if os.name == 'nt':
             os.startfile(file_path)
             return
@@ -319,8 +414,6 @@ class IOManager(object):
 
         import cProfile
         import pstats
-        from abjad.tools import iotools
-
         now_string = datetime.datetime.today().strftime('%a %b %d %H:%M:%S %Y')
 
         profile = cProfile.Profile()
@@ -371,7 +464,6 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        from abjad.tools import iotools
         ABJADOUTPUT = abjad_configuration['abjad_output']
         last_output_file_path = IOManager.get_last_output_file_name()
         without_extension, extension = os.path.splitext(last_output_file_path)
@@ -393,7 +485,6 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        from abjad.tools import iotools
         ABJADOUTPUT = abjad_configuration['abjad_output']
         last_output_file_name = IOManager.get_last_output_file_name()
         without_extension, extension = os.path.splitext(last_output_file_name)
@@ -421,3 +512,75 @@ class IOManager(object):
         Returns integer result code.
         '''
         return subprocess.call(command, shell=True)
+
+    @staticmethod
+    def write_expr_to_ly(
+        expr,
+        file_name,
+        print_status=False,
+        tagline=False,
+        docs=False,
+        ):
+        r'''Writes `expr` to `file_name`.
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> iotools.IOManager.write_expr_to_ly( # doctest: +SKIP
+            ...     note, '/home/user/foo.ly')
+
+        Returns none.
+        '''
+        file_name = os.path.expanduser(file_name)
+        if not file_name.endswith('.ly'):
+            file_name += '.ly'
+        try:
+            outfile = open(file_name, 'w')
+            if docs:
+                expr = documentationtools.make_reference_manual_lilypond_file(
+                    expr)
+            lilypond_file = IOManager.insert_expr_into_lilypond_file(
+                expr, tagline=tagline)
+            # the following line is necessary for Windows *not* to keep
+            # outfile open after writing;
+            # why this should be the case is, however, a complete mystery.
+            output = format(lilypond_file)
+            outfile.write(output)
+            outfile.close()
+        except IOError:
+            print 'ERROR: cound not open file %s' % file_name
+            dirname = os.path.dirname(file_name)
+            if dirname:
+                print 'Make sure "%s" exists in your system.' % dirname
+
+        if print_status:
+            print 'LilyPond file written to %r ...' % os.path.basename(
+                file_name)
+
+    @staticmethod
+    def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
+        r'''Writes `expr` to PDF `file_name`.
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> iotools.IOManager.write_expr_to_pdf( # doctest: +SKIP
+            ...     note, 'one_note.pdf')
+
+        Returns none.
+        '''
+        from abjad import abjad_configuration
+        # massage file_name
+        file_name = os.path.expanduser(file_name)
+        if not file_name.endswith('.pdf'):
+            file_name += '.pdf'
+        name, actual_format_time, actual_lilypond_file = \
+            IOManager.log_render_lilypond_input(expr, tagline=tagline)
+        # copy PDF file to file_name
+        pdf_name = name[:-3] + '.pdf'
+        ABJADOUTPUT = abjad_configuration['abjad_output']
+        full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
+        shutil.move(full_path_pdf_name, file_name)
+        if print_status:
+            print 'PDF written to %r ...' % os.path.basename(file_name)
+

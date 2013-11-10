@@ -28,7 +28,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             self._payload = payload
         else:
             payload = copy.deepcopy(payload)
-            lilypond_file = iotools.insert_expr_into_lilypond_file(payload)
+            lilypond_file = iotools.IOManager.insert_expr_into_lilypond_file(payload)
             lilypond_file.file_initial_system_comments[:] = []
             lilypond_version_token = lilypondfiletools.LilyPondVersionToken(
                 abjad_configuration.get_lilypond_minimum_version_string(),
