@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_agenttools_IterationAgent_by_semantic_voices_01():
+def test_agenttools_IterationAgent_by_semantic_voice_01():
 
     measures = scoretools.make_measures_with_full_measure_spacer_skips(
         [(3, 8), (5, 16), (5, 16)])
@@ -40,14 +40,14 @@ def test_agenttools_IterationAgent_by_semantic_voices_01():
     >>
     '''
 
-    voices = iterate(staff).by_semantic_voices(reverse=True)
+    voices = iterate(staff).by_semantic_voice(reverse=True)
     voices = list(voices)
 
     assert len(voices) == 1
     assert voices[0] is staff[1]
 
 
-def test_agenttools_IterationAgent_by_semantic_voices_02():
+def test_agenttools_IterationAgent_by_semantic_voice_02():
 
     measures = scoretools.make_measures_with_full_measure_spacer_skips(
         [(3, 8), (5, 16), (5, 16)])
@@ -85,7 +85,7 @@ def test_agenttools_IterationAgent_by_semantic_voices_02():
     >>
     '''
 
-    voices = iterate(staff).by_semantic_voices()
+    voices = iterate(staff).by_semantic_voice()
     voices = list(voices)
 
     assert len(voices) == 1

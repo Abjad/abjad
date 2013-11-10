@@ -333,7 +333,7 @@ class IterationAgent(object):
                     ):
                     yield x
 
-    def by_leaf_pairs(self):
+    def by_leaf_pair(self):
         r'''Iterate leaf pairs forward in `expr`:
 
         ::
@@ -369,7 +369,7 @@ class IterationAgent(object):
 
         ::
 
-            >>> for pair in iterate(score).by_leaf_pairs():
+            >>> for pair in iterate(score).by_leaf_pair():
             ...        pair
             (Note("c'8"), Note('c4'))
             (Note("c'8"), Note("d'8"))
@@ -649,7 +649,7 @@ class IterationAgent(object):
                     if x._get_parentage().logical_voice_indicator == signature:
                         yield x
 
-    def by_runs(self, classes):
+    def by_run(self, classes):
         r'''Iterate runs in expression.
 
         ..  container:: example
@@ -687,7 +687,7 @@ class IterationAgent(object):
 
             ::
 
-                >>> for group in iterate(staff[:]).by_runs((Note, Chord)):
+                >>> for group in iterate(staff[:]).by_run((Note, Chord)):
                 ...     group
                 ...
                 (Note("g'8"), Note("a'8"))
@@ -704,7 +704,7 @@ class IterationAgent(object):
 
             ::
 
-                >>> for group in iterate(leaves).by_runs((Note, Chord)):
+                >>> for group in iterate(leaves).by_run((Note, Chord)):
                 ...     group
                 ...
                 (Note("c'8"), Note("d'8"))
@@ -725,7 +725,7 @@ class IterationAgent(object):
         if current_group:
             yield current_group
 
-    def by_semantic_voices(
+    def by_semantic_voice(
         self,
         reverse=False,
         start=0,
@@ -771,7 +771,7 @@ class IterationAgent(object):
                 }
             >>
 
-            >>> for voice in iterate(staff).by_semantic_voices():
+            >>> for voice in iterate(staff).by_semantic_voice():
             ...   voice
             ...
             Voice-"MusicVoice"{5}
@@ -780,7 +780,7 @@ class IterationAgent(object):
 
         ::
 
-            >>> for voice in iterate(staff).by_semantic_voices(reverse=True):
+            >>> for voice in iterate(staff).by_semantic_voice(reverse=True):
             ...   voice
             ...
             Voice-"MusicVoice"{5}

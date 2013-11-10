@@ -90,7 +90,7 @@ def iterate_named_pitch_pairs_in_expr(expr):
     '''
     from abjad.tools import pitchtools
 
-    for leaf_pair in iterate(expr).by_leaf_pairs():
+    for leaf_pair in iterate(expr).by_leaf_pair():
         leaf_pair_list = list(leaf_pair)
         # iterate chord pitches if first leaf is chord
         for pair in pitchtools.list_unordered_named_pitch_pairs_in_expr(leaf_pair_list[0]):
