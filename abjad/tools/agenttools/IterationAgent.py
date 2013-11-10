@@ -4,6 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
+from abjad.tools.topleveltools import iterate
 
 
 class IterationAgent(object):
@@ -237,6 +238,102 @@ class IterationAgent(object):
             start,
             stop,
             )
+
+    def by_components_and_grace_containers(self, component_classes=None):
+        r'''Iterate components of `component_class` forward in `expr`:
+
+        ::
+
+            >>> voice = Voice("c'8 d'8 e'8 f'8")
+            >>> beam = spannertools.Beam()
+            >>> attach(beam, voice[:])
+
+        ::
+
+            >>> grace_notes = [Note("c'16"), Note("d'16")]
+            >>> grace = scoretools.GraceContainer(
+            ...     grace_notes,
+            ...     kind='grace',
+            ...     )
+            >>> attach(grace, voice[1])
+            Note("d'8")
+
+        ::
+
+            >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+            >>> after_grace = scoretools.GraceContainer(
+            ...     after_grace_notes,
+            ...     kind='after')
+            >>> attach(after_grace, voice[1])
+            Note("d'8")
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'8 [
+                \grace {
+                    c'16
+                    d'16
+                }
+                \afterGrace
+                d'8
+                {
+                    e'16
+                    f'16
+                }
+                e'8
+                f'8 ]
+            }
+
+        ::
+
+            >>> x = iterate(voice).by_components_and_grace_containers(Note)
+            >>> for note in x:
+            ...     note
+            ...
+            Note("c'8")
+            Note("c'16")
+            Note("d'16")
+            Note("d'8")
+            Note("e'16")
+            Note("f'16")
+            Note("e'8")
+            Note("f'8")
+
+        Include grace leaves before main leaves.
+
+        Include grace leaves after main leaves.
+        '''
+        component_classes = component_classes or scoretools.Leaf
+        if hasattr(self._client, '_grace'):
+            for m in self._client.grace:
+                for x in iterate(m).by_components_and_grace_containers(
+                    component_classes,
+                    ):
+                    yield x
+            if isinstance(self._client, component_classes):
+                yield self._client
+        if hasattr(self._client, '_after_grace'):
+            for m in self._client.after_grace:
+                for x in iterate(m).by_components_and_grace_containers(
+                    component_classes,
+                    ):
+                    yield x
+        elif isinstance(self._client, component_classes):
+            yield self._client
+        if isinstance(self._client, (list, tuple)):
+            for m in self._client:
+                for x in iterate(m).by_components_and_grace_containers(
+                    component_classes,
+                    ):
+                    yield x
+        if hasattr(self._client, '_music'):
+            for m in self._client._music:
+                for x in iterate(m).by_components_and_grace_containers(
+                    component_classes,
+                    ):
+                    yield x
 
     def by_leaf_pairs(self):
         r'''Iterate leaf pairs forward in `expr`:
