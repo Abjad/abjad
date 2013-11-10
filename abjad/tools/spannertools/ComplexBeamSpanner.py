@@ -297,7 +297,7 @@ class ComplexBeamSpanner(Beam):
             Set to ``'left'``, ``'right'``, ``'both'``, true or false 
             as shown above.
 
-            Ignore this contextualize when spanner contains more than one leaf.
+            Ignore this setting when spanner contains more than one leaf.
             '''
             return self._lone
         def fset(self, arg):

@@ -429,7 +429,7 @@ class Container(Component):
                     for spanner in child._get_spanners():
                         spanner._remove(child)
             del(self[start:stop])
-            # must withdraw before contextualize in self!
+            # must withdraw before setting in self!
             # otherwise circular withdraw ensues!
             if withdraw_components_in_expr_from_crossing_spanners:
                 selection = selectiontools.SliceSelection(expr)

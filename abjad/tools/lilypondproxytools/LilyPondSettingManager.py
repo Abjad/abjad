@@ -7,7 +7,7 @@ from abjad.tools.lilypondproxytools.LilyPondComponentPlugIn \
 
 
 class LilyPondSettingManager(LilyPondComponentPlugIn):
-    '''LilyPond context contextualize namespace.
+    '''LilyPond context setting namespace.
     '''
 
     ### SPECIAL METHODS ###

@@ -31,7 +31,7 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
     Abjad writes LilyPond input files to the ``~/.abjad/output``
     directory by default.
 
-    You may change this by contextualize the ``abjad_output`` variable in
+    You may change this by setting the ``abjad_output`` variable in
     the ``config.py`` file.
 
     Returns none or timing tuple.

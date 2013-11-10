@@ -22,7 +22,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def format_lilypond_context_setting_in_with_block(name, value):
-        r'''Formats LilyPond context contextualize `name` with `value`
+        r'''Formats LilyPond context setting `name` with `value`
         in with block.
 
         Returns string.
@@ -39,7 +39,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def format_lilypond_context_setting_inline(name, value, context=None):
-        r'''Formats LilyPond context contextualize `name` with `value` in
+        r'''Formats LilyPond context setting `name` with `value` in
         `context`.
 
         Returns string.
@@ -297,7 +297,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def get_context_setting_format_contributions(component):
-        r'''Gets context contextualize format contributions for `component`.
+        r'''Gets context setting format contributions for `component`.
 
         Returns sorted list.
         '''

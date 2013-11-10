@@ -11,7 +11,7 @@ def pdf(target=-1):
 
     Abjad writes PDFs to the ``~/.abjad/output`` directory by default.
 
-    You may change this by contextualize the ``abjad_output`` variable in 
+    You may change this by setting the ``abjad_output`` variable in 
     the ``config.py`` file.
     '''
     from abjad import abjad_configuration

@@ -51,7 +51,7 @@ class LilyPondGrobManager(LilyPondComponentPlugIn):
         return '%s(%s)' % (type(self).__name__, body_string)
 
     def __setattr__(self, attr, value):
-        # make sure attr is valid grob name before contextualize value
+        # make sure attr is valid grob name before setting value
         attr_value = getattr(self, attr)
         object.__setattr__(self, attr, value)
 
