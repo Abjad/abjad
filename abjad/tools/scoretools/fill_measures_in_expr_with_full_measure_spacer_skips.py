@@ -2,7 +2,7 @@
 
 
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
-    '''Fill measures in `expr` with full-measure spacer skips.
+    r'''Fill measures in `expr` with full-measure spacer skips.
     '''
     from abjad.tools import scoretools
     from abjad.tools.topleveltools import iterate

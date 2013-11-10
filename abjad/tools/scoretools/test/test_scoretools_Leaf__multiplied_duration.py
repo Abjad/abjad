@@ -7,7 +7,7 @@ def test_scoretools_Leaf__multiplied_duration_01():
     '''
 
     note = Note("c'4")
-    note.lilypond_duration_multiplier = Duration(1, 2)
+    note.lilypond_duration_multiplier = Multiplier(1, 2)
     assert note._multiplied_duration == Duration(1, 8)
 
 
@@ -29,7 +29,7 @@ def test_scoretools_Leaf__multiplied_duration_03():
     note.lilypond_duration_multiplier = Multiplier(2, 3)
 
     assert note.written_duration == Duration(3, 8)
-    assert note.lilypond_duration_multiplier == Duration(2, 3)
+    assert note.lilypond_duration_multiplier == Multiplier(2, 3)
     assert note._multiplied_duration == Duration(1, 4)
 
     note.written_duration = Duration(1, 4)
