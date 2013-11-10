@@ -45,7 +45,7 @@ class IOManager(object):
 
         ::
 
-            >>> iotools.IOManager.clear_terminal() # doctest: +SKIP
+            >>> IOManager.clear_terminal() # doctest: +SKIP
 
         Returns none.
         '''
@@ -54,7 +54,7 @@ class IOManager(object):
             command = 'clear'
         else:
             command = 'cls'
-        iotools.IOManager.spawn_subprocess(command)
+        IOManager.spawn_subprocess(command)
 
     @staticmethod
     def count_function_calls(
@@ -63,7 +63,7 @@ class IOManager(object):
         local_context=None,
         fixed_point=True,
         ):
-        '''Counts function calls returned by ``iotools.IOManager.profile_expr(expr)``.
+        '''Counts function calls returned by ``IOManager.profile_expr(expr)``.
 
         ..  container:: example
 
@@ -72,7 +72,7 @@ class IOManager(object):
 
             ::
 
-                >>> iotools.IOManager.count_function_calls("Note('c4')", globals())
+                >>> IOManager.count_function_calls("Note('c4')", globals())
                 10276
 
         ..  container:: example
@@ -82,7 +82,7 @@ class IOManager(object):
 
             ::
 
-                >>> iotools.IOManager.count_function_calls(
+                >>> IOManager.count_function_calls(
                 ...     "Note(-12, (1, 4))", globals())
                 172
 
@@ -100,7 +100,7 @@ class IOManager(object):
             last_result, current_result = 'foo', 'bar'
             while current_result != last_result:
                 last_result = current_result
-                current_result = iotools.IOManager.profile_expr(
+                current_result = IOManager.profile_expr(
                     expr,
                     print_to_terminal=False,
                     global_context=global_context,
@@ -109,7 +109,7 @@ class IOManager(object):
                 current_result = extract_count(current_result)
             return current_result
 
-        result = iotools.IOManager.profile_expr(
+        result = IOManager.profile_expr(
             expr,
             print_to_terminal=False,
             global_context=global_context,
@@ -143,7 +143,7 @@ class IOManager(object):
 
         ::
 
-            >>> iotools.IOManager.find_executable('python2.7') # doctest: +SKIP
+            >>> IOManager.find_executable('python2.7') # doctest: +SKIP
             ['/usr/bin/python2.7']
 
         Returns list of zero or more full paths to `name`.
@@ -168,6 +168,26 @@ class IOManager(object):
         return result
 
     @staticmethod
+    def open_file(file_path, application=None):
+        r'''Opens `file_path` with operating system-specific file-opener
+        with `application` is none.
+
+        Opens `file_path` with `application` when `application` is not none.
+
+        Returns none.
+        '''
+        from abjad.tools import iotools
+        if os.name == 'nt':
+            os.startfile(file_path)
+            return
+        if sys.platform.lower() == 'linux2':
+            viewer = application or 'xdg-open'
+        else:
+            viewer = application or 'open'
+        command = '{} {} &'.format(viewer, file_path)
+        IOManager.spawn_subprocess(command)
+
+    @staticmethod
     def profile_expr(
         expr,
         sort_by='cum',
@@ -183,7 +203,7 @@ class IOManager(object):
         ::
 
             >>> expr = 'Staff(scoretools.make_repeated_notes(8))'
-            >>> iotools.IOManager.profile_expr(expr) # doctest: +SKIP
+            >>> IOManager.profile_expr(expr) # doctest: +SKIP
             Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
                     2852 function calls (2829 primitive calls) in 0.006 CPU seconds
@@ -272,7 +292,7 @@ class IOManager(object):
         ::
 
             >>> file_path = '/project/output/example-1.ly'
-            >>> iotools.IOManager.save_last_ly_as(file_path) # doctest: +SKIP
+            >>> IOManager.save_last_ly_as(file_path) # doctest: +SKIP
 
         Returns none.
         '''
@@ -294,7 +314,7 @@ class IOManager(object):
         ::
 
             >>> file_path = '/project/output/example-1.pdf'
-            >>> iotools.IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
+            >>> IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
 
         Returns none.
         '''
@@ -318,7 +338,7 @@ class IOManager(object):
         ::
 
             >>> command = 'echo "hellow world"'
-            >>> iotools.IOManager.spawn_subprocess(command) # doctest: +SKIP
+            >>> IOManager.spawn_subprocess(command) # doctest: +SKIP
             hello world
 
         The function is basically a reimplementation of the

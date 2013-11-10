@@ -42,4 +42,4 @@ def play(expr):
     else:
         extension = 'midi'
     midi_player = abjad_configuration['midi_player']
-    iotools.open_file('%s.%s' % (name[:-3], extension), midi_player)
+    iotools.IOManager.open_file('%s.%s' % (name[:-3], extension), midi_player)

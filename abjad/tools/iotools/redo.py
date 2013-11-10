@@ -75,4 +75,4 @@ def redo(target=-1, lily_time=10):
     pdf_viewer = abjad_configuration['pdf_viewer']
     abjad_output = abjad_configuration['abjad_output']
     name = target_ly
-    iotools.open_file('%s.pdf' % name[:-3], pdf_viewer)
+    iotools.IOManager.open_file('%s.pdf' % name[:-3], pdf_viewer)

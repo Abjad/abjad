@@ -57,4 +57,4 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     pdf_viewer = abjad_configuration['pdf_viewer']
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    iotools.open_file(img_path, pdf_viewer)
+    iotools.IOManager.open_file(img_path, pdf_viewer)

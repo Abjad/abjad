@@ -46,4 +46,4 @@ def plot(expr, image_format='png', width=640, height=320):
 
     pdf_viewer = abjad_configuration['pdf_viewer']
     abjad_output = abjad_configuration['abjad_output']
-    iotools.open_file(img_path, pdf_viewer)
+    iotools.IOManager.open_file(img_path, pdf_viewer)

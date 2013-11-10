@@ -41,7 +41,7 @@ def pdf(target=-1):
 
     if os.stat(target_pdf):
         pdf_viewer = abjad_configuration['pdf_viewer']
-        iotools.open_file(target_pdf, pdf_viewer)
+        iotools.IOManager.open_file(target_pdf, pdf_viewer)
     else:
         message = 'Target PDF {} does not exist.'.format(target_pdf)
         print message

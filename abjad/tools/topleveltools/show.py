@@ -47,7 +47,7 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
         pdf_viewer = abjad_configuration['pdf_viewer']
         ABJADOUTPUT = abjad_configuration['abjad_output']
         name = os.path.join(ABJADOUTPUT, name)
-        iotools.open_file('%s.pdf' % name[:-3], pdf_viewer)
+        iotools.IOManager.open_file('%s.pdf' % name[:-3], pdf_viewer)
 
     # return timing if requested
     if return_timing:

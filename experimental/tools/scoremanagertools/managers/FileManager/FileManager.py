@@ -142,7 +142,7 @@ class FileManager(FilesystemAssetManager):
 
         Returns none.
         '''
-        iotools.open_file(self.filesystem_path)
+        iotools.IOManager.open_file(self.filesystem_path)
 
     def interactively_view(self):
         r'''Interactively views file.
