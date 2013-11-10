@@ -66,8 +66,8 @@ class Clef(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, clef_name):
-        from abjad.tools.scoretools.Staff import Staff
-        ContextMark.__init__(self, _target_context=Staff)
+        from abjad.tools import scoretools
+        ContextMark.__init__(self, _target_context=scoretools.Staff)
         if isinstance(clef_name, str):
             self._clef_name = clef_name
         elif isinstance(clef_name, type(self)):

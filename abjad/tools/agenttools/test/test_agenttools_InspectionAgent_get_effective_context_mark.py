@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_01():
@@ -261,14 +261,14 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_12():
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_13():
-    r'''Tempo interface works on staves.
+    r'''Attaches tempo to staff.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = Tempo(Duration(1, 8), 38, _target_context=Staff)
-    attach(tempo, staff)
-    tempo = Tempo(Duration(1, 8), 42, _target_context=Staff)
-    attach(tempo, staff[2])
+    tempo = Tempo(Duration(1, 8), 38)
+    attach(tempo, staff, target_context=Staff)
+    tempo = Tempo(Duration(1, 8), 42)
+    attach(tempo, staff[2], target_context=Staff)
 
     assert testtools.compare(
         staff,
@@ -285,6 +285,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_13():
         )
 
     assert inspect(staff).is_well_formed()
+
     assert inspect(staff[0]).get_effective_context_mark(
         Tempo) == Tempo(Duration(1, 8), 38)
     assert inspect(staff[1]).get_effective_context_mark(
@@ -296,12 +297,12 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_13():
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_14():
-    r'''Tempo interface works on chords.
+    r'''Attaches tempo to chord scoped in staff.
     '''
 
     staff = Staff([Chord([2, 3, 4], (1, 4))])
-    tempo = Tempo(Duration(1, 8), 38, _target_context=Staff)
-    attach(tempo, staff[0])
+    tempo = Tempo(Duration(1, 8), 38)
+    attach(tempo, staff[0], target_context=Staff)
 
     assert testtools.compare(
         staff,
@@ -315,12 +316,10 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_14():
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_15():
-    r'''Tempo interface accepts durations.
-    '''
 
     staff = Staff([Note("c'4")])
-    tempo = Tempo(Duration(1, 8), 38, _target_context=Staff)
-    attach(tempo, staff[0])
+    tempo = Tempo(Duration(1, 8), 38)
+    attach(tempo, staff[0], target_context=Staff)
 
     assert testtools.compare(
         staff,
@@ -334,12 +333,12 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_15():
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_16():
-    r'''Detach tempo mark.
+    r'''Detaches tempo mark.
     '''
 
     staff = Staff([Note("c'4")])
-    tempo = Tempo(Duration(1, 8), 38, _target_context=Staff)
-    attach(tempo, staff[0])
+    tempo = Tempo(Duration(1, 8), 38)
+    attach(tempo, staff[0], target_context=Staff)
     detach(tempo, staff[0])
 
     assert testtools.compare(

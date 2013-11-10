@@ -32,7 +32,7 @@ class Tempo(ContextMark):
             }
         >>
 
-    Tempo marks target **score** context by default.
+    Tempo marks attach to the **score context** by default.
 
     Initialization allows many different types of input argument structure.
     '''
@@ -50,8 +50,7 @@ class Tempo(ContextMark):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
-        _target_context = kwargs.get('_target_context', scoretools.Score)
-        ContextMark.__init__(self, _target_context=_target_context)
+        ContextMark.__init__(self, _target_context=scoretools.Score)
         if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
             duration = durationtools.Duration(tempo_indication.duration)
@@ -123,7 +122,6 @@ class Tempo(ContextMark):
             self.textual_indication, 
             self.duration, 
             self.units_per_minute,
-            _target_context=self._target_context,
             )
 
     def __div__(self, expr):

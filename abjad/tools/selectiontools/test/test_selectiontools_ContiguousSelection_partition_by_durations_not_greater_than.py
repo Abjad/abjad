@@ -6,8 +6,8 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_not_greater_t
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    tempo = Tempo(Duration(1, 4), 60, _target_context=Staff)
-    attach(tempo, staff)
+    tempo = Tempo(Duration(1, 4), 60)
+    attach(tempo, staff, target_context=Staff)
 
     assert testtools.compare(
         staff,
@@ -129,8 +129,8 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_not_greater_t
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    tempo = Tempo(Duration(1, 4), 60, _target_context=Staff)
-    attach(tempo, staff)
+    tempo = Tempo(Duration(1, 4), 60)
+    attach(tempo, staff, target_context=Staff)
 
     leaves = staff.select_leaves()
     parts = leaves.partition_by_durations_not_greater_than(
