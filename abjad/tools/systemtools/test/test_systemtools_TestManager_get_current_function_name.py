@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_testtools_get_current_function_name_01():
+def test_systemtools_TestManager_get_current_function_name_01():
 
     def bar():
         return systemtools.TestManager.get_current_function_name()
@@ -10,7 +10,7 @@ def test_testtools_get_current_function_name_01():
     assert bar() == 'bar'
 
 
-def test_testtools_get_current_function_name_02():
+def test_systemtools_TestManager_get_current_function_name_02():
 
     def foo():
         return systemtools.TestManager.get_current_function_name()

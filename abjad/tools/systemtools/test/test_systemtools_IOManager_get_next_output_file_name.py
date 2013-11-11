@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import systemtools
 
 
-def test_iotools_IOManager_get_next_output_file_name_01():
+def test_systemtools_IOManager_get_next_output_file_name_01():
 
     next_output_file_name = systemtools.IOManager.get_next_output_file_name()
 
