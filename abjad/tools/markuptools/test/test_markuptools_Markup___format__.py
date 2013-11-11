@@ -7,7 +7,7 @@ def test_markuptools_Markup___format___01():
     markup = markuptools.Markup(r'\bold { foo }')
 
     assert testtools.compare(
-        format(markup),
+        format(markup, 'storage'),
         r'''
         markuptools.Markup((
             markuptools.MarkupCommand(
@@ -29,7 +29,7 @@ def test_markuptools_Markup___format___02():
         )
 
     assert testtools.compare(
-        format(markup),
+        format(markup, 'storage'),
         r'''
         markuptools.Markup((
             markuptools.MarkupCommand(
