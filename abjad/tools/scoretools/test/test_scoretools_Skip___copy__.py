@@ -20,7 +20,8 @@ def test_scoretools_Skip___copy___02():
     r'''Copy skip with LilyPond multiplier.
     '''
 
-    skip_1 = scoretools.Skip((1, 4), (1, 2))
+    skip_1 = scoretools.Skip('s4')
+    attach(Multiplier(1, 2), skip_1)
     skip_2 = copy.copy(skip_1)
 
     assert isinstance(skip_1, scoretools.Skip)
