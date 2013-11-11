@@ -7,7 +7,7 @@ def test_agenttools_MutationAgent_rewrite_meter_01():
 
     source = parse('abj: | 4/4 8 2. 8 |')
     target = parse('abj: | 4/4 8 8 ~ 2 ~ 8 8 |')
-    meter = timesignaturetools.Meter(source)
+    meter = metertools.Meter(source)
     mutate(source[:]).rewrite_meter(meter)
     assert format(source) == format(target)
 
@@ -19,7 +19,7 @@ def test_agenttools_MutationAgent_rewrite_meter_02():
 
     source = parse('abj: | 2/4 4 4 ~ || 4/4 8 2. 8 ~ || 2/4 4 4 |')
     target = parse('abj: | 2/4 4 4 ~ || 4/4 8 8 ~ 2 ~ 8 8 ~ || 2/4 4 4 |')
-    meter = timesignaturetools.Meter(source[1])
+    meter = metertools.Meter(source[1])
     mutate(source[1][:]).rewrite_meter(meter)
     assert format(source) == format(target)
 
@@ -30,7 +30,7 @@ def test_agenttools_MutationAgent_rewrite_meter_03():
 
     source = parse('abj: | 2/4 2 ~ || 5/4 8 ~ 8 ~ 2/3 { 4 ~ 4 4 ~ } 4 ~ 4 ~ || 2/4 2 |')
     target = parse('abj: | 2/4 2 ~ || 5/4 4 ~ 2/3 { 2 4 ~ } 2 ~ || 2/4 2 |')
-    meter = timesignaturetools.Meter(source[1])
+    meter = metertools.Meter(source[1])
     mutate(source[1][:]).rewrite_meter(meter)
     assert format(source) == format(target)
 
@@ -39,22 +39,22 @@ def test_agenttools_MutationAgent_rewrite_meter_04():
 
     source = parse("abj: | 4/4 c'8. d'4.. e'4. |")
     target = parse("abj: | 4/4 c'8. d'16 ~ d'4. e'4. |")
-    meter = timesignaturetools.Meter(source)
+    meter = metertools.Meter(source)
     mutate(source[:]).rewrite_meter(meter)
     assert format(source) == format(target)
 
 
 def test_agenttools_MutationAgent_rewrite_meter_05():
 
-    meter = timesignaturetools.Meter((4, 4))
+    meter = metertools.Meter((4, 4))
     for rhythm_number in range(8):
         # without boundary enforcement
-        notes = timesignaturetools.Meter._make_gridded_test_rhythm(
+        notes = metertools.Meter._make_gridded_test_rhythm(
             4, rhythm_number, denominator=4)
         measure = Measure((4, 4), notes)
         mutate(measure[:]).rewrite_meter(meter)
         # with boundary enforcement
-        notes = timesignaturetools.Meter._make_gridded_test_rhythm(
+        notes = metertools.Meter._make_gridded_test_rhythm(
             4, rhythm_number, denominator=4)
         measure = Measure((4, 4), notes)
         mutate(measure[:]).rewrite_meter(meter, boundary_depth=-1)
@@ -64,7 +64,7 @@ def test_agenttools_MutationAgent_rewrite_meter_06():
 
     source = parse('abj: | 4/4 8 4. 2 |')
     target = parse('abj: | 4/4 8 4. 2 |')
-    meter = timesignaturetools.Meter((4, 4))
+    meter = metertools.Meter((4, 4))
     mutate(source[:]).rewrite_meter(meter)
     assert format(source) == format(target)
 

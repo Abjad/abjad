@@ -13,7 +13,7 @@ def _rewrite_meter(
     boundary_depth=None,
     maximum_dot_count=None,
     ):
-    from abjad.tools import timesignaturetools
+    from abjad.tools import metertools
 
     assert isinstance(components, selectiontools.ContiguousSelection), \
         repr(components)
@@ -135,9 +135,9 @@ def _rewrite_meter(
     assert Selection._all_are_contiguous_components_in_same_logical_voice(
         components)
     if not isinstance(meter,
-        timesignaturetools.Meter):
+        metertools.Meter):
         meter = \
-            timesignaturetools.Meter(meter)
+            metertools.Meter(meter)
     assert sum([x._preprolated_duration for x in components]) == \
         meter.preprolated_duration
     if boundary_depth is not None:
@@ -172,7 +172,7 @@ def _rewrite_meter(
                     preprolated_duration)
                 preprolated_duration = preprolated_duration.with_denominator(
                     preprolated_duration.denominator * 4)
-            sub_metrical_hierarchy = timesignaturetools.Meter(preprolated_duration)
+            sub_metrical_hierarchy = metertools.Meter(preprolated_duration)
             sub_boundary_depth = 1
             if boundary_depth is None:
                 sub_boundary_depth = None
@@ -236,7 +236,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     ::
 
-        >>> from abjad.tools.timesignaturetools._rewrite_meter \
+        >>> from abjad.tools.metertools._rewrite_meter \
         ...     import _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr
 
     ::

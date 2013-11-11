@@ -26,7 +26,7 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> meter = timesignaturetools.Meter((4, 4))
+        >>> meter = metertools.Meter((4, 4))
 
     ::
 
@@ -44,7 +44,7 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> meter = timesignaturetools.Meter((3, 4))
+        >>> meter = metertools.Meter((3, 4))
         >>> print meter.pretty_rtm_format
         (3/4 (
             1/4
@@ -53,7 +53,7 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> meter = timesignaturetools.Meter((6, 8))
+        >>> meter = metertools.Meter((6, 8))
         >>> print meter.pretty_rtm_format
         (6/8 (
             (3/8 (
@@ -67,7 +67,7 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> meter = timesignaturetools.Meter((5, 4))
+        >>> meter = metertools.Meter((5, 4))
         >>> print meter.pretty_rtm_format
         (5/4 (
             (3/4 (
@@ -80,7 +80,7 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> meter = timesignaturetools.Meter(
+        >>> meter = metertools.Meter(
         ...     (5, 4), decrease_durations_monotonically=False)
         >>> print meter.pretty_rtm_format
         (5/4 (
@@ -94,7 +94,7 @@ class Meter(AbjadObject):
 
     ::
 
-        >>> meter = timesignaturetools.Meter((12, 8))
+        >>> meter = metertools.Meter((12, 8))
         >>> print meter.pretty_rtm_format
         (12/8 (
             (3/8 (
@@ -258,9 +258,9 @@ class Meter(AbjadObject):
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
 
-            >>> meter = timesignaturetools.Meter((5, 4))
+            >>> meter = metertools.Meter((5, 4))
             >>> print format(meter)
-            timesignaturetools.Meter(
+            metertools.Meter(
                 '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
                 )
 
@@ -275,7 +275,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meter = timesignaturetools.Meter((5, 4))
+            >>> meter = metertools.Meter((5, 4))
 
         ::
 
@@ -338,7 +338,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> meter = \
-                ...     timesignaturetools.Meter((5, 4),
+                ...     metertools.Meter((5, 4),
                 ...     decrease_durations_monotonically=False)
 
             ::
@@ -366,7 +366,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> meter = \
-                ...     timesignaturetools.Meter((5, 4),
+                ...     metertools.Meter((5, 4),
                 ...     decrease_durations_monotonically=True)
 
             ::
@@ -476,7 +476,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> timesignaturetools.Meter((4, 4)).implied_time_signature
+            >>> metertools.Meter((4, 4)).implied_time_signature
             TimeSignature((4, 4))
 
         Returns TimeSignature object.
@@ -608,7 +608,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> from abjad.tools.timesignaturetools import Meter
+                >>> from abjad.tools.metertools import Meter
                 >>> for rhythm_number in range(8):
                 ...     notes = Meter._make_gridded_test_rhythm(
                 ...         4, rhythm_number, denominator=4)
@@ -698,7 +698,7 @@ class Meter(AbjadObject):
 
         ::
 
-            >>> meters = [timesignaturetools.Meter(x)
+            >>> meters = [metertools.Meter(x)
             ...     for x in [(3, 4), (4, 4), (5, 4)]
             ...     ]
 
@@ -709,7 +709,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-                >>> for x in timesignaturetools.Meter.fit_meters_to_expr(
+                >>> for x in metertools.Meter.fit_meters_to_expr(
                 ...     expr, meters):
                 ...     print x.implied_time_signature
                 ...
@@ -725,7 +725,7 @@ class Meter(AbjadObject):
             ::
 
                 >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-                >>> for x in timesignaturetools.Meter.fit_meters_to_expr(
+                >>> for x in metertools.Meter.fit_meters_to_expr(
                 ...     expr, meters):
                 ...     print x.implied_time_signature
                 ...
@@ -742,9 +742,9 @@ class Meter(AbjadObject):
 
         Returns list.
         '''
-        from abjad.tools import timesignaturetools
+        from abjad.tools import metertools
         offset_counter = \
-            timesignaturetools.MetricAccentKernel.count_offsets_in_expr(expr)
+            metertools.MetricAccentKernel.count_offsets_in_expr(expr)
         ordered_offsets = sorted(offset_counter, reverse=True)
         if not ordered_offsets:
             return []
@@ -754,7 +754,7 @@ class Meter(AbjadObject):
             start_offset = durationtools.Offset(starting_offset)
         metrical_hierarchy_inventory = datastructuretools.TypedTuple(
             tokens=meters,
-            item_class=timesignaturetools.Meter,
+            item_class=metertools.Meter,
             )
         longest_hierarchy = sorted(metrical_hierarchy_inventory,
             key=lambda x: x.preprolated_duration, reverse=True)[0]
@@ -808,7 +808,7 @@ class Meter(AbjadObject):
         ::
 
             >>> meter = \
-            ...     timesignaturetools.Meter((4, 4))
+            ...     metertools.Meter((4, 4))
             >>> kernel = \
             ...     meter.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.iteritems()):
@@ -829,7 +829,7 @@ class Meter(AbjadObject):
 
         Returns dictionary.
         '''
-        from abjad.tools import timesignaturetools
+        from abjad.tools import metertools
         assert mathtools.is_positive_integer_power_of_two(
             denominator / self.denominator)
 
@@ -860,4 +860,4 @@ class Meter(AbjadObject):
             for offset, response in kernel.iteritems():
                 kernel[offset] = durationtools.Multiplier(response, total)
 
-        return timesignaturetools.MetricAccentKernel(kernel)
+        return metertools.MetricAccentKernel(kernel)

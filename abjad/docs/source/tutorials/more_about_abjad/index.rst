@@ -28,7 +28,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'pitcharraytools', 'pitchtools', 'play', 'scoretools', 'rhythmtreetools',
     'schemetools', 'scoretemplatetools', 'scoretools', 'sequencetools', 'show',
     'sievetools', 'scoretools', 'spannertools', 'scoretools', 'stringtools',
-    'tempotools', 'tietools', 'timeintervaltools', 'timesignaturetools',
+    'tempotools', 'tietools', 'timeintervaltools', 'metertools',
     'rhythmmakertools', 'tonalanalysistools', 'scoretools',
     'verticalitytools', 'scoretools', 'wellformednesstools', 'z']
 

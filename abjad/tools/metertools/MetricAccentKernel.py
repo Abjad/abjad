@@ -9,7 +9,7 @@ class MetricAccentKernel(AbjadObject):
 
     ::
 
-        >>> hierarchy = timesignaturetools.Meter((5, 8))
+        >>> hierarchy = metertools.Meter((5, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> kernel
         MetricAccentKernel({
@@ -126,7 +126,7 @@ class MetricAccentKernel(AbjadObject):
 
             ::
 
-                >>> MetricAccentKernel = timesignaturetools.MetricAccentKernel
+                >>> MetricAccentKernel = metertools.MetricAccentKernel
                 >>> leaves = score.select_leaves(
                 ...     allow_discontiguous_leaves=True)
                 >>> counter = MetricAccentKernel.count_offsets_in_expr(leaves)
