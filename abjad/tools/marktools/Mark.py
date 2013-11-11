@@ -87,12 +87,11 @@ class Mark(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _attach(self, start_component):
-        self._bind_start_component(start_component)
+        self._bind_to_start_component(start_component)
         return self
 
-    def _bind_start_component(self, start_component):
+    def _bind_to_start_component(self, start_component):
         from abjad.tools import scoretools
-        #print 'binding MARK to start component ...'
         assert isinstance(start_component, scoretools.Component)
         self._unbind_start_component()
         start_component._start_marks.append(self)

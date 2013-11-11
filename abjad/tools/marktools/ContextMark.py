@@ -83,8 +83,8 @@ class ContextMark(Mark):
         self._effective_context = correct_effective_context
         self._update_effective_context()
 
-    def _bind_start_component(self, start_component):
-        Mark._bind_start_component(self, start_component)
+    def _bind_to_start_component(self, start_component):
+        Mark._bind_to_start_component(self, start_component)
         self._update_effective_context()
 
     def _detach(self):

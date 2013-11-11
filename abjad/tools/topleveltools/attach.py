@@ -20,4 +20,9 @@ def attach(attachable, component_expression, target_context=None):
             assert isinstance(target_context, scoretools.Context)
         attachable._target_context = target_context
 
-    attachable._attach(component_expression)
+    if hasattr(attachable, '_attach'):
+        attachable._attach(component_expression)
+#    elif hasattr(component_expression, '_start_marks'):
+#        component_expression._start_marks.append(attachable)
+    else:
+        raise TypeError((attachable, component_expression))

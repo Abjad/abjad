@@ -20,6 +20,15 @@ def detach(attachable, component_expression):
             spanners = inspector.get_spanners(attachable)
         if issubclass(attachable, scoretools.GraceContainer):
             grace_containers = inspector.get_grace_containers(attachable)
+#        else:
+#            assert hasattr(component_expression, '_start_marks')
+#            result = []
+#            for x in component_expression._start_marks[:]:
+#                if isinstance(x, attachable):
+#                    component_expression._start_marks.remove(x)
+#                    result.append(x)
+#            result = tuple(result)
+#            return result
     else:
         if isinstance(attachable, marktools.Mark):
             marks = inspector.get_marks(attachable)
