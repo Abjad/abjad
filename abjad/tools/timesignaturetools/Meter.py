@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import marktools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
@@ -14,15 +15,14 @@ class Meter(AbjadObject):
     The structure of the tree corresponds to the monotonically increasing
     sequence of factors of the time signature's numerator.
 
-    Each deeper level of the tree divides the previous by the next 
-    factor in sequence.
+    Each deeper level of the tree divides the previous by the next factor in
+    sequence.
 
-    Prime divisions greater than ``3`` are converted to sequences of 
-    ``2`` and ``3`` summing to that prime. 
-    Hence ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2``.
+    Prime divisions greater than ``3`` are converted to sequences of ``2`` and
+    ``3`` summing to that prime.  Hence ``5`` becomes ``3+2`` and ``7`` becomes
+    ``3+2+2``.
 
-    The meter models many parts of the common practice 
-    understanding of meter:
+    The meter models many parts of the common practice understanding of meter:
 
     ::
 
@@ -327,12 +327,12 @@ class Meter(AbjadObject):
 
     @property
     def decrease_durations_monotonically(self):
-        r'''True if the meter divides large primes into 
-        collections of ``2`` and ``3`` that decrease monotonically.
-        
+        r'''True if the meter divides large primes into collections of ``2``
+        and ``3`` that decrease monotonically.
+
         ..  container:: example
 
-            **Example 1.** Metrical hiearchy with durations that increase 
+            **Example 1.** Metrical hiearchy with durations that increase
             monotonically:
 
             ::
@@ -360,7 +360,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Meter with durations that 
+            **Example 2.** Meter with durations that
             decrease monotonically:
 
             ::
@@ -603,7 +603,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** The eight test rhythms that fit a length-``4`` 
+            **Example 1.** The eight test rhythms that fit a length-``4``
             grid:
 
             ::
@@ -626,7 +626,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** The sixteenth test rhythms for that a length-``5`` 
+            **Example 2.** The sixteenth test rhythms for that a length-``5``
             grid:
 
             ::
@@ -657,41 +657,147 @@ class Meter(AbjadObject):
         Use for testing meter establishment.
         '''
         from abjad.tools import scoretools
-
         # check input
         assert mathtools.is_positive_integer(grid_length)
         assert isinstance(rhythm_number, int)
         assert mathtools.is_positive_integer_power_of_two(denominator)
-
         # find count of all rhythms that fit grid length
         rhythm_count = 2 ** (grid_length - 1)
-
-        # read rhythm number cyclically to allow large and 
+        # read rhythm number cyclically to allow large and
         # negative rhythm numbers
         rhythm_number = rhythm_number % rhythm_count
-
         # find binary representation of rhythm
         binary_representation = \
             mathtools.integer_to_binary_string(rhythm_number)
         binary_representation = binary_representation.zfill(grid_length)
-
         # partition binary representation of rhythm
         parts = sequencetools.partition_sequence_by_value_of_elements(
             binary_representation)
-
         # find durations
         durations = [
-            durationtools.Duration(len(part), denominator) 
+            durationtools.Duration(len(part), denominator)
             for part in parts
             ]
-
         # make notes
         notes = scoretools.make_notes([0], durations)
-
         # return notes
         return notes
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def fit_meters_to_expr(
+        expr,
+        meters,
+        discard_final_orphan_downbeat=True,
+        starting_offset=None,
+        denominator=32,
+        ):
+        r'''Find the best-matching sequence of meters for the offsets
+        contained in `expr`.
+
+        ::
+
+            >>> meters = [timesignaturetools.Meter(x)
+            ...     for x in [(3, 4), (4, 4), (5, 4)]
+            ...     ]
+
+        ..  container:: example
+
+            **Example 1.** Matching a series of hypothetical 4/4 measures:
+
+            ::
+
+                >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
+                >>> for x in timesignaturetools.Meter.fit_meters_to_expr(
+                ...     expr, meters):
+                ...     print x.implied_time_signature
+                ...
+                4/4
+                4/4
+                4/4
+                4/4
+
+        ..  container:: example
+
+            **Example 2.** Matching a series of hypothetical 5/4 measures:
+
+            ::
+
+                >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
+                >>> for x in timesignaturetools.Meter.fit_meters_to_expr(
+                ...     expr, meters):
+                ...     print x.implied_time_signature
+                ...
+                5/4
+                5/4
+                5/4
+                5/4
+
+        Offsets are coerced from `expr` via
+        `MetricAccentKernel.count_offsets_in_expr()`.
+
+        MetricalHierarchies are coerced from `meters` via
+        `MetricalHierarchyInventory`.
+
+        Returns list.
+        '''
+        from abjad.tools import timesignaturetools
+        offset_counter = \
+            timesignaturetools.MetricAccentKernel.count_offsets_in_expr(expr)
+        ordered_offsets = sorted(offset_counter, reverse=True)
+        if not ordered_offsets:
+            return []
+        if starting_offset is None:
+            start_offset = durationtools.Offset(0)
+        else:
+            start_offset = durationtools.Offset(starting_offset)
+        metrical_hierarchy_inventory = datastructuretools.TypedTuple(
+            tokens=meters,
+            item_class=timesignaturetools.Meter,
+            )
+        longest_hierarchy = sorted(metrical_hierarchy_inventory,
+            key=lambda x: x.preprolated_duration, reverse=True)[0]
+        longest_kernel_duration = max(
+            x.preprolated_duration for x in metrical_hierarchy_inventory)
+        kernels = [x.generate_offset_kernel_to_denominator(denominator)
+            for x in metrical_hierarchy_inventory]
+        current_start_offset = start_offset
+        selected_hierarchies = []
+        while len(ordered_offsets) and \
+            ordered_offsets[-1] < current_start_offset:
+            ordered_offsets.pop()
+        while len(ordered_offsets) and \
+            current_start_offset <= ordered_offsets[-1]:
+            if len(ordered_offsets) == 1:
+                if discard_final_orphan_downbeat:
+                    if ordered_offsets[0] == current_start_offset:
+                        break
+            current_stop_offset = \
+                current_start_offset + longest_kernel_duration
+            current_offset_counter = {}
+            for offset in reversed(ordered_offsets):
+                if current_start_offset <= offset <= current_stop_offset:
+                    current_offset_counter[offset - current_start_offset] = \
+                        offset_counter[offset]
+                else:
+                    break
+            if not current_offset_counter:
+                winner = longest_hierarchy
+            else:
+                candidates = []
+                for i, kernel in enumerate(kernels):
+                    response = kernel(current_offset_counter)
+                    candidates.append((response, i))
+                candidates.sort(key=lambda x: x[0], reverse=True)
+                response, index = candidates[0]
+                winner = metrical_hierarchy_inventory[index]
+            selected_hierarchies.append(winner)
+            current_start_offset += winner.preprolated_duration
+            while len(ordered_offsets) \
+                and ordered_offsets[-1] < current_start_offset:
+                ordered_offsets.pop()
+        return selected_hierarchies
 
     def generate_offset_kernel_to_denominator(
         self, denominator, normalize=True):
