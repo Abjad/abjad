@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.abctools.AbjadObject import AbjadObject

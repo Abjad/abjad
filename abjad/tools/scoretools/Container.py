@@ -346,7 +346,6 @@ class Container(Component):
         return spanners_receipt
 
     def _scale_contents(self, multiplier):
-        from abjad.tools import iterationtools
         for expr in iterate(self[:]).by_topmost_tie_chains_and_components():
             expr._scale(multiplier)
 
@@ -362,10 +361,8 @@ class Container(Component):
         constitutes a composer-unsafe use of this method.
         Only private methods should set this keyword.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import marktools
-        from abjad.tools import iterationtools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         # cache context marks attached to expr

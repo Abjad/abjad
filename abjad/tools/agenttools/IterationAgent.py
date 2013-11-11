@@ -391,7 +391,6 @@ class IterationAgent(object):
 
         Returns generator.
         '''
-        from abjad.tools import iterationtools
         vertical_moments = self.by_vertical_moment()
         for moment_1, moment_2 in \
             sequencetools.iterate_sequence_pairwise_strict(vertical_moments):
@@ -469,8 +468,6 @@ class IterationAgent(object):
 
         Returns generator.
         '''
-        from abjad.tools import iterationtools
-
         if isinstance(self._client, component_class) and \
             self._client._get_parentage().logical_voice_indicator == \
                 logical_voice_indicator:

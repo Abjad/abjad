@@ -1,12 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
 import math
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import iterationtools
 from abjad.tools import mathtools
+from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools

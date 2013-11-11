@@ -230,7 +230,6 @@ class Component(AbjadObject):
         pass
 
     def _get_components(self, component_classes=None, include_self=True):
-        from abjad.tools import iterationtools
         expr = self
         if include_self:
             expr = [self]
@@ -380,7 +379,6 @@ class Component(AbjadObject):
         return tuple(result)
 
     def _get_in_my_logical_voice(self, n, component_class=None):
-        from abjad.tools import iterationtools
         if 0 <= n:
             generator = iterate(self).by_logical_voice_from_component(
                 component_class=component_class,

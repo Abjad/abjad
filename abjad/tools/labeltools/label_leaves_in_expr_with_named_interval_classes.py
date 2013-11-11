@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools

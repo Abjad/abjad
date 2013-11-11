@@ -512,7 +512,6 @@ class MutationAgent(object):
         Returns none.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import iterationtools
         for leaf in iterate(self._client).by_class(scoretools.Leaf):
             if isinstance(leaf, scoretools.Chord):
                 for note_head in leaf.note_heads:

@@ -74,18 +74,13 @@ class Scale(PitchClassSegment):
     ### PRIVATE METHODS ###
 
     def _set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(self, expr):
-        from abjad.tools import scoretools
-        from abjad.tools import iterationtools
-        from abjad.tools import scoretools
         from abjad.tools import pitchtools
+        from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
-
         dicg = self.named_interval_class_segment
         length = len(dicg)
-
         octave_number = 4
         pitch = pitchtools.NamedPitch(self[0], octave_number)
-
         for i, tie_chain in enumerate(iterate(expr).by_tie_chain()):
             if isinstance(tie_chain[0], scoretools.Note):
                 for note in tie_chain:
