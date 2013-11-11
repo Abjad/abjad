@@ -37,21 +37,13 @@ class Skip(Leaf):
 
     def __init__(self, arg):
         from abjad.tools import lilypondparsertools
-        lilypond_duration_multiplier = None
         if isinstance(arg, str):
             input = '{{ {} }}'.format(arg)
             parsed = lilypondparsertools.LilyPondParser()(input)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arg = parsed[0]
         if isinstance(arg, Leaf):
-            leaf = arg
-            written_duration = leaf.written_duration
-            multipliers = leaf._get_attached_items(durationtools.Multiplier)
-            if 1 < len(multipliers):
-                raise ValueError('too many multipliers')
-            elif len(multipliers) == 1:
-                lilypond_duration_multiplier = multipliers[0]
-            self._copy_override_and_set_from_leaf(leaf)
+            written_duration = arg.written_duration
         elif not isinstance(arg, str):
             written_duration = arg
         else:
@@ -59,16 +51,8 @@ class Skip(Leaf):
             message = message.format(arg)
             raise ValueError(message)
         Leaf.__init__(self, written_duration)
-        if lilypond_duration_multiplier is not None:
-            assert isinstance(
-                lilypond_duration_multiplier, 
-                durationtools.Multiplier), repr(lilypond_duration_multiplier)
-            attach(lilypond_duration_multiplier, self)
-
-    ### SPECIAL METHODS ###
-
-    def __getnewargs__(self):
-        return (self.written_duration,)
+        if isinstance(arg, Leaf):
+            self._copy_override_and_set_from_leaf(arg)
 
     ### PRIVATE PROPERTIES ###
 

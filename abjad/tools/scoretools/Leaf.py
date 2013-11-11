@@ -26,7 +26,6 @@ class Leaf(Component):
         '_after_grace',
         '_grace',
         '_leaf_index',
-        '_lilypond_duration_multiplier',
         '_written_duration',
         '_written_pitch_indication_is_nonsemantic',
         '_written_pitch_indication_is_at_sounding_pitch',
@@ -41,7 +40,6 @@ class Leaf(Component):
     @abc.abstractmethod
     def __init__(self, written_duration):
         Component.__init__(self)
-        self._lilypond_duration_multiplier = None
         self._leaf_index = None
         self.written_duration = durationtools.Duration(written_duration)
         self.written_pitch_indication_is_nonsemantic = False
@@ -54,12 +52,7 @@ class Leaf(Component):
 
         Returns tuple.
         '''
-        result = []
-        result.append(self.written_duration)
-        if self._get_attached_items(durationtools.Multiplier):
-            multiplier = self._get_attached_item(durationtools.Multiplier)
-            result.append(multiplier)
-        return tuple(result)
+        return (self.written_duration,)
 
     def __repr__(self):
         '''Interpreter representation of leaf.
@@ -146,6 +139,11 @@ class Leaf(Component):
             self._override = copy.copy(override(leaf))
         if getattr(leaf, '_set', None) is not None:
             self._set = copy.copy(contextualize(leaf))
+        new_items = []
+        for item in leaf._attached_items:
+            new_item = copy.copy(item)
+            new_items.append(new_item)
+        self._attached_items = new_items
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Component._copy_with_marks_but_without_children_or_spanners(self)
@@ -634,22 +632,6 @@ class Leaf(Component):
         return tuplet
 
     ### PUBLIC PROPERTIES ###
-
-    @apply
-    def lilypond_duration_multiplier():
-        def fget(self):
-            '''LilyPond duration multiplier.
-
-            Set to positive multiplier or none.
-
-            Returns positive multiplier or none.
-            '''
-            assert self._lilypond_duration_multiplier is None
-            return self._lilypond_duration_multiplier
-        def fset(self, expr):
-            assert isinstance(expr, durationtools.Multiplier), repr(expr)
-            self._lilypond_duration_multiplier = expr
-        return property(**locals())
 
     @apply
     def written_duration():

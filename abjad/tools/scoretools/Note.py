@@ -50,7 +50,6 @@ class Note(Leaf):
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
         assert len(args) in (1, 2)
-        lilypond_duration_multiplier = None
         if len(args) == 1 and isinstance(args[0], str):
             string = '{{ {} }}'.format(args[0])
             parsed = lilypondparsertools.LilyPondParser()(string)
@@ -61,14 +60,6 @@ class Note(Leaf):
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
-            lilypond_duration_multiplier = leaf.lilypond_duration_multiplier
-            if lilypond_duration_multiplier is None:
-                multipliers = leaf._get_attached_items(
-                    durationtools.Multiplier)
-                if 1 < len(multipliers):
-                    raise ValueError('too many multipliers')
-                elif len(multipliers) == 1:
-                    lilypond_duration_multiplier = multipliers[0]
             if hasattr(leaf, 'written_pitch'):
                 pitch = leaf.written_pitch
                 is_cautionary = leaf.note_head.is_cautionary
@@ -80,7 +71,6 @@ class Note(Leaf):
                 is_forced = leaf.note_heads[0].is_forced
             else:
                 pitch = None
-            self._copy_override_and_set_from_leaf(leaf)
         elif len(args) == 2:
             pitch, written_duration = args
         else:
@@ -95,22 +85,16 @@ class Note(Leaf):
                 )
         else:
             self.note_head = None
-        if lilypond_duration_multiplier is not None:
-            assert isinstance(
-                lilypond_duration_multiplier, 
-                durationtools.Multiplier), repr(lilypond_duration_multiplier)
-            attach(lilypond_duration_multiplier, self)
+        if len(args) == 1 and isinstance(args[0], Leaf):
+            self._copy_override_and_set_from_leaf(args[0])
 
     ### SPECIAL METHODS ###
 
-    # TODO: revert to previous definition after deprecating lilypond
-    #       duration multiplier
-    #def __getnewargs__(self):
-    #    result = []
-    #    result.append(self.written_pitch)
-    #    result.extend(Leaf.__getnewargs__(self))
-    #    return tuple(result)
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self.written_pitch, self.written_duration)
 
     ### PRIVATE PROPERTIES ###

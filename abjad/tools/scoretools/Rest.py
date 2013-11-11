@@ -42,7 +42,6 @@ class Rest(Leaf):
 
     def __init__(self, arg):
         from abjad.tools import lilypondparsertools
-        lilypond_duration_multiplier = None
         if isinstance(arg, str):
             string = '{{ {} }}'.format(arg)
             parsed = lilypondparsertools.LilyPondParser()(string)
@@ -51,15 +50,6 @@ class Rest(Leaf):
         if isinstance(arg, Leaf):
             leaf = arg
             written_duration = leaf.written_duration
-            lilypond_duration_multiplier = leaf.lilypond_duration_multiplier
-            if lilypond_duration_multiplier is None:
-                multipliers = leaf._get_attached_items(
-                    durationtools.Multiplier)
-                if 1 < len(multipliers):
-                    raise ValueError('too many multipliers')
-                elif len(multipliers) == 1:
-                    lilypond_duration_multiplier = multipliers[0]
-            self._copy_override_and_set_from_leaf(leaf)
         elif not isinstance(arg, str):
             written_duration = arg
         else:
@@ -67,17 +57,8 @@ class Rest(Leaf):
             message = message.format(arg)
             raise ValueError(message)
         Leaf.__init__(self, written_duration)
-        if lilypond_duration_multiplier is not None:
-            assert isinstance(
-                lilypond_duration_multiplier, 
-                durationtools.Multiplier), repr(lilypond_duration_multiplier)
-            attach(lilypond_duration_multiplier, self)
-
-    ### SPECIAL METHODS ###
-
-    # TODO: remove after deprecating lilypond_duration_multiplier
-    def __getnewargs__(self):
-        return (self.written_duration,)
+        if isinstance(arg, Leaf):
+            self._copy_override_and_set_from_leaf(arg)
 
     ### PRIVATE PROPERTIES ###
 

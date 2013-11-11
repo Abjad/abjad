@@ -39,7 +39,6 @@ class Chord(Leaf):
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
         assert len(args) in (1, 2)
-        lilypond_duration_multiplier = None
         self._note_heads = scoretools.NoteHeadInventory(
             client=self,
             )
@@ -53,11 +52,6 @@ class Chord(Leaf):
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
-            multipliers = leaf._get_attached_items(durationtools.Multiplier)
-            if len(multipliers) == 1:
-                lilypond_duration_multiplier = multipliers[0]
-            else:
-                lilypond_duration_multiplier = None
             if hasattr(leaf, 'written_pitch'):
                 written_pitches = [leaf.written_pitch]
                 is_cautionary = [leaf.note_head.is_cautionary]
@@ -68,7 +62,6 @@ class Chord(Leaf):
                 is_forced = [x.is_forced for x in leaf.note_heads]
             else:
                 written_pitches = []
-            self._copy_override_and_set_from_leaf(leaf)
         elif len(args) == 2:
             written_pitches, written_duration = args
             if isinstance(written_pitches, str):
@@ -92,26 +85,16 @@ class Chord(Leaf):
                 is_forced=forced,
                 )
             self._note_heads.append(note_head)
-        if lilypond_duration_multiplier is not None:
-            assert isinstance(
-                lilypond_duration_multiplier, 
-                durationtools.Multiplier), repr(lilypond_duration_multiplier)
-            attach(lilypond_duration_multiplier, self)
+        if len(args) == 1 and isinstance(args[0], Leaf):
+            self._copy_override_and_set_from_leaf(args[0])
 
     ### SPECIAL METHODS ###
 
-    # TODO: revert to previous definition after deprecating lilypond
-    #       duration multiplier
-    #def __getnewargs__(self):
-    #    '''Gets new arguments.
-    #
-    #    Returns tuple.
-    #    '''
-    #    result = []
-    #    result.append(self.written_pitches)
-    #    result.extend(Leaf.__getnewargs__(self))
-    #    return tuple(result)
     def __getnewargs__(self):
+        r'''Gets new arguments.
+    
+        Returns tuple.
+        '''
         return (self.written_pitches, self.written_duration)
 
     ### PRIVATE PROPERTIES ###
