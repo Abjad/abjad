@@ -1636,7 +1636,7 @@ class MutationAgent(object):
             ::
 
                 >>> note = Note("c'8")
-                >>> note.lilypond_duration_multiplier = Multiplier(1, 2)
+                >>> attach(Multiplier(1, 2), note)
                 >>> show(note) # doctest: +SKIP
 
             ..  doctest::

@@ -10,6 +10,7 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import contextualize
 from abjad.tools.topleveltools import iterate
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
@@ -274,7 +275,6 @@ class Scale(PitchClassSegment):
 
         Returns score.
         '''
-        from abjad.tools.topleveltools import attach
         ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
         descending_notes = copy.deepcopy(ascending_notes[:-1])
         descending_notes = list(descending_notes)

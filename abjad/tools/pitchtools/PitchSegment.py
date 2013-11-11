@@ -72,7 +72,6 @@ class PitchSegment(Segment):
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.topleveltools import iterate
         if not isinstance(selection, selectiontools.Selection):
             selection = select(selection)
         named_pitches = []

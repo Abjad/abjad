@@ -5,11 +5,12 @@ from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import contextualize
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
-from abjad.tools.topleveltools import contextualize
 from abjad.tools.scoretools.Component import Component
 
 
@@ -405,15 +406,17 @@ class Leaf(Component):
 
     def _set_duration(self, new_duration):
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools import attach
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self.lilypond_duration_multiplier is not None:
             multiplier = new_duration / self.written_duration
             self.lilypond_duration_multiplier = multiplier
+            return [self]
+        if self._get_attached_items(durationtools.Multiplier):
+            detach(durationtools.Multiplier, self)
+            multiplier = new_duration / self.written_duration
+            attach(multiplier, self)
             return [self]
         # change written duration if new duration is assignable
         try:

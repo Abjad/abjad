@@ -57,8 +57,8 @@ def test_agenttools_MutationAgent_fuse_05():
     '''
 
     staff = Staff([scoretools.Skip((1, 1)), scoretools.Skip((1, 1))])
-    staff[0].lilypond_duration_multiplier = Multiplier(1, 16)
-    staff[1].lilypond_duration_multiplier = Multiplier(5, 16)
+    attach(Multiplier(1, 16), staff[0])
+    attach(Multiplier(5, 16), staff[1])
 
     assert testtools.compare(
         staff,

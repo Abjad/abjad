@@ -6,9 +6,9 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.topleveltools import contextualize
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
-from abjad.tools.topleveltools import contextualize
 Selection = selectiontools.Selection
 
 
@@ -275,7 +275,6 @@ class Spanner(AbjadObject):
 
     def _initialize_components(self, components):
         from abjad.tools import scoretools
-        from abjad.tools.topleveltools import iterate
         if components:
             raise Exception('deprecated')
         if isinstance(components, scoretools.Component):

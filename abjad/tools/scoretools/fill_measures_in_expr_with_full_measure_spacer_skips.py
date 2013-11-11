@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.topleveltools import iterate
 
 
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
     r'''Fill measures in `expr` with full-measure spacer skips.
     '''
     from abjad.tools import scoretools
-    from abjad.tools.topleveltools import iterate
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True

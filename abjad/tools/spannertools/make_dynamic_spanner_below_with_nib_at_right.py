@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import markuptools
 from abjad.tools import schemetools
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import override
 
 
@@ -47,7 +48,6 @@ def make_dynamic_spanner_below_with_nib_at_right(
     Returns spanner.
     '''
     from abjad.tools import spannertools
-    from abjad.tools.topleveltools import attach
 
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, components)
