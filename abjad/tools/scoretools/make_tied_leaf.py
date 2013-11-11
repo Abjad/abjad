@@ -2,6 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
+from abjad.tools.topleveltools import attach
 
 
 def make_tied_leaf(
@@ -129,7 +130,6 @@ def make_tied_leaf(
     Returns selection of unincorporated leaves.
     '''
     from abjad.tools import spannertools
-    from abjad.tools.topleveltools import attach
 
     # check input
     duration = durationtools.Duration(duration)

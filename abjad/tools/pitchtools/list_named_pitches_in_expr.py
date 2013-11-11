@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.topleveltools import iterate
 
 
 def list_named_pitches_in_expr(expr):
@@ -25,7 +26,6 @@ def list_named_pitches_in_expr(expr):
     from abjad.tools import pitchtools
     from abjad.tools import scoretools
     from abjad.tools import spannertools
-    from abjad.tools.topleveltools import iterate
 
     # TODO: remove try-except
     try:

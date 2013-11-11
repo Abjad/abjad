@@ -1,15 +1,9 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import durationtools
-from abjad.tools import iterationtools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from abjad.tools import scoretools
 from abjad.tools.agenttools import inspect
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin \
     import CounttimeComponentSelectExpressionSetMethodMixin

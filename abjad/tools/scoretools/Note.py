@@ -151,38 +151,6 @@ class Note(Leaf):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def lilypond_duration_multiplier():
-        def fget(self):
-            r'''Gets and sets LilyPond duration multiplier of note.
-
-            ..  container:: example
-
-                Gets LilyPond duration multiplier:
-
-                ::
-
-                    >>> note = Note("c'4 * 1/2")
-                    >>> note.lilypond_duration_multiplier
-                    Multiplier(1, 2)
-
-            ..  container:: example
-
-                Sets LilyPond duration multiplier:
-
-                ::
-
-                    >>> note.lilypond_duration_multiplier = Multiplier(2, 3)
-                    >>> format(note)
-                    "c'4 * 2/3"
-
-            Returns multiplier.
-            '''
-            return Leaf.lilypond_duration_multiplier.fget(self)
-        def fset(self, expr):
-            return Leaf.lilypond_duration_multiplier.fset(self, expr)
-        return property(**locals())
-
-    @apply
     def note_head():
         def fget(self):
             r'''Gets and sets note head of note.

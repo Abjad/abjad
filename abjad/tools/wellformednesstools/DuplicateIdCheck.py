@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import iterationtools
 from abjad.tools import sequencetools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.wellformednesstools.Check import Check

@@ -345,7 +345,6 @@ class Selection(object):
         return result
 
     def _iterate_components(self, recurse=True, reverse=False):
-        from abjad.tools import iterationtools
         if recurse:
             return iterate(self).by_class()
         else:

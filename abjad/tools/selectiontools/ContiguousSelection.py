@@ -3,6 +3,7 @@ import copy
 import itertools
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.selectiontools.Selection import Selection
@@ -56,7 +57,6 @@ class ContiguousSelection(Selection):
     def _attach_tie_spanner_to_leaf_pair(self):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools.topleveltools import attach
         assert len(self) == 2
         left_leaf, right_leaf = self
         assert isinstance(left_leaf, scoretools.Leaf), left_leaf
@@ -85,8 +85,6 @@ class ContiguousSelection(Selection):
             attach(tie, [left_leaf, right_leaf])
 
     def _copy_and_include_enclosing_containers(self):
-        from abjad.tools import scoretools
-        from abjad.tools import iterationtools
         from abjad.tools import scoretools
         # get governor
         parentage = self[0]._get_parentage(include_self=True)
@@ -241,7 +239,6 @@ class ContiguousSelection(Selection):
         In other words, there is some intersection -- but not total
         intersection -- between the components of P and C.
         '''
-        from abjad.tools import iterationtools
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         all_components = set(iterate(self).by_class())
         contained_spanners = set()
@@ -308,7 +305,6 @@ class ContiguousSelection(Selection):
                 spanner._remove(component)
 
     def _make_spanner_schema(self):
-        from abjad.tools import iterationtools
         schema = {}
         spanners = set()
         for component in iterate(self).by_class():
@@ -480,9 +476,8 @@ class ContiguousSelection(Selection):
 
         Returns contiguous selection.
         '''
-        from abjad.tools import spannertools
         from abjad.tools import scoretools
-        from abjad.tools import iterationtools
+        from abjad.tools import spannertools
         # check input
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         # return empty list when nothing to copy

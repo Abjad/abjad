@@ -1,10 +1,7 @@
 # -*- encoding: utf-8 -*-
 import math
-from abjad.tools import scoretools
 from abjad.tools import marktools
-from abjad.tools import iterationtools
 from abjad.tools import scoretools
-from abjad.tools import marktools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler

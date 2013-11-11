@@ -10,6 +10,7 @@ from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import contextualize
 from abjad.tools.topleveltools import iterate
 from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
@@ -74,18 +75,13 @@ class Scale(PitchClassSegment):
     ### PRIVATE METHODS ###
 
     def _set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(self, expr):
-        from abjad.tools import scoretools
-        from abjad.tools import iterationtools
-        from abjad.tools import scoretools
         from abjad.tools import pitchtools
+        from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
-
         dicg = self.named_interval_class_segment
         length = len(dicg)
-
         octave_number = 4
         pitch = pitchtools.NamedPitch(self[0], octave_number)
-
         for i, tie_chain in enumerate(iterate(expr).by_tie_chain()):
             if isinstance(tie_chain[0], scoretools.Note):
                 for note in tie_chain:
@@ -279,7 +275,6 @@ class Scale(PitchClassSegment):
 
         Returns score.
         '''
-        from abjad.tools.topleveltools import attach
         ascending_notes = self.make_notes(8, durationtools.Duration(1, 8))
         descending_notes = copy.deepcopy(ascending_notes[:-1])
         descending_notes = list(descending_notes)

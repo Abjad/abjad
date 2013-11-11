@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import marktools
-from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
+from abjad.tools.topleveltools import iterate
 
 
 def transpose_from_sounding_pitch_to_written_pitch(expr):
@@ -47,7 +47,6 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
     Returns none.
     '''
     from abjad.tools import instrumenttools
-    from abjad.tools.topleveltools import iterate
     for note_or_chord in iterate(expr).by_class(
         (scoretools.Note, scoretools.Chord)):
         if not note_or_chord.written_pitch_indication_is_at_sounding_pitch:

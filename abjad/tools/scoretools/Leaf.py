@@ -5,11 +5,12 @@ from abjad.tools import durationtools
 from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import contextualize
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
-from abjad.tools.topleveltools import contextualize
 from abjad.tools.scoretools.Component import Component
 
 
@@ -56,6 +57,9 @@ class Leaf(Component):
         result.append(self.written_duration)
         if self.lilypond_duration_multiplier is not None:
             result.append(self.lilypond_duration_multiplier)
+        elif self._get_attached_items(durationtools.Multiplier):
+            multiplier = self._get_attached_item(durationtools.Multiplier)
+            result.append(multiplier)
         return tuple(result)
 
     def __repr__(self):
@@ -97,12 +101,23 @@ class Leaf(Component):
 
     @property
     def _formatted_duration(self):
+        from abjad.tools import marktools
         duration_string = self.written_duration.lilypond_duration_string
-        if self.lilypond_duration_multiplier is not None:
-            return '{} * {!s}'.format(
-                duration_string, self.lilypond_duration_multiplier)
+        multiplier = self.lilypond_duration_multiplier
+        if multiplier is None:
+            multipliers = self._get_attached_items(durationtools.Multiplier)
+            if not multipliers:
+                pass
+            elif len(multipliers) == 1:
+                multiplier = multipliers[0]
+            elif 1 < len(multipliers):
+                message = 'more than one LilyPond duration multiplier.'
+                raise ValueError(message)
+        if multiplier is not None:
+            result = '{} * {!s}'.format(duration_string, multiplier)
         else:
-            return duration_string
+            result = duration_string
+        return result
 
     @property
     def _multiplied_duration(self):
@@ -110,6 +125,16 @@ class Leaf(Component):
             if self.lilypond_duration_multiplier is not None:
                 multiplied_duration = self.written_duration
                 multiplied_duration *= self.lilypond_duration_multiplier
+                return multiplied_duration
+            elif self._get_attached_items(durationtools.Multiplier):
+                multipliers = self._get_attached_items(
+                    durationtools.Multiplier)
+                if 1 == len(multipliers):
+                    multiplier = multipliers[0]
+                elif 1 < len(multipliers):
+                    message = 'more than one duration multiplier.'
+                    raise ValueError(message)
+                multiplied_duration = multiplier * self.written_duration
                 return multiplied_duration
             else:
                 return durationtools.Duration(self.written_duration)
@@ -384,15 +409,17 @@ class Leaf(Component):
 
     def _set_duration(self, new_duration):
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import spannertools
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools import attach
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
         if self.lilypond_duration_multiplier is not None:
             multiplier = new_duration / self.written_duration
             self.lilypond_duration_multiplier = multiplier
+            return [self]
+        if self._get_attached_items(durationtools.Multiplier):
+            detach(durationtools.Multiplier, self)
+            multiplier = new_duration / self.written_duration
+            attach(multiplier, self)
             return [self]
         # change written duration if new duration is assignable
         try:

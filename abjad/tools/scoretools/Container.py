@@ -154,7 +154,6 @@ class Container(Component):
     @property
     def _duration_in_seconds(self):
         from abjad.tools import scoretools
-        from abjad.tools.topleveltools import iterate
         if self.is_simultaneous:
             return max([durationtools.Duration(0)] +
                 [x._get_duration(in_seconds=True) for x in self])
@@ -346,7 +345,6 @@ class Container(Component):
         return spanners_receipt
 
     def _scale_contents(self, multiplier):
-        from abjad.tools import iterationtools
         for expr in iterate(self[:]).by_topmost_tie_chains_and_components():
             expr._scale(multiplier)
 
@@ -362,10 +360,8 @@ class Container(Component):
         constitutes a composer-unsafe use of this method.
         Only private methods should set this keyword.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import marktools
-        from abjad.tools import iterationtools
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         # cache context marks attached to expr
@@ -702,7 +698,6 @@ class Container(Component):
         ):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.topleveltools import iterate
         # check input
         duration = durationtools.Duration(duration)
         assert 0 <= duration, repr(duration)
@@ -1274,7 +1269,6 @@ class Container(Component):
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.topleveltools import iterate
         Selection = selectiontools.Selection
         leaf_classes = leaf_classes or (scoretools.Leaf,)
         expr = self
@@ -1307,6 +1301,5 @@ class Container(Component):
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.topleveltools import iterate
         generator = iterate(self).by_class((scoretools.Note, scoretools.Chord))
         return selectiontools.Selection(generator)

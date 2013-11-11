@@ -199,8 +199,8 @@ class Tempo(ContextMark):
             self, correct_effective_context)
         correct_effective_context._update_later(offsets_in_seconds=True)
 
-    def _bind_start_component(self, start_component):
-        ContextMark._bind_start_component(self, start_component)
+    def _bind_to_start_component(self, start_component):
+        ContextMark._bind_to_start_component(self, start_component)
         self._start_component._update_later(offsets_in_seconds=True)
 
     ### PRIVATE PROPERTIES ###

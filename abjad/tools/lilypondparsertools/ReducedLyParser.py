@@ -509,7 +509,6 @@ class ReducedLyParser(abctools.Parser):
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, leaves):
-        from abjad.tools.topleveltools import attach
 
         spanner_references = {
             spannertools.Beam: None,

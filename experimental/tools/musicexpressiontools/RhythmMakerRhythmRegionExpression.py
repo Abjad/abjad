@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import scoretools
-from abjad.tools import iterationtools
 from abjad.tools import rhythmmakertools
+from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate

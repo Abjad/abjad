@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
-from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach

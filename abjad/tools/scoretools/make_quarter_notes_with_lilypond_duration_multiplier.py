@@ -2,10 +2,13 @@
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools import selectiontools
+from abjad.tools.topleveltools import attach
 
 
 def make_quarter_notes_with_lilypond_duration_multiplier(
-    pitches, multiplied_durations):
+    pitches, 
+    multiplied_durations,
+    ):
     r'''Make quarter notes with `pitches` and `multiplied_durations`:
 
     ::
@@ -44,7 +47,8 @@ def make_quarter_notes_with_lilypond_duration_multiplier(
         quarter_note = scoretools.Note(pitch, durationtools.Duration(1, 4))
         duration = durationtools.Duration(duration)
         multiplier = durationtools.Multiplier(duration / durationtools.Duration(1, 4))
-        quarter_note.lilypond_duration_multiplier = multiplier
+        #quarter_note.lilypond_duration_multiplier = multiplier
+        attach(multiplier, quarter_note)
         quarter_notes.append(quarter_note)
 
     quarter_notes = selectiontools.Selection(quarter_notes)
