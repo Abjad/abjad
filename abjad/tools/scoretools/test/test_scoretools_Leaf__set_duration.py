@@ -206,7 +206,8 @@ def test_scoretools_Leaf__set_duration_06():
     '''
 
     note = Note(0, (1, 8))
-    note.lilypond_duration_multiplier = Multiplier(1, 2)
+    #note.lilypond_duration_multiplier = Multiplier(1, 2)
+    attach(Multiplier(1, 2), note)
 
     assert format(note) == "c'8 * 1/2"
 
@@ -223,7 +224,8 @@ def test_scoretools_Leaf__set_duration_07():
     '''
 
     note = Note(0, (1, 8))
-    note.lilypond_duration_multiplier = Multiplier(1, 2)
+    #note.lilypond_duration_multiplier = Multiplier(1, 2)
+    attach(Multiplier(1, 2), note)
 
     assert format(note) == "c'8 * 1/2"
 
@@ -240,7 +242,8 @@ def test_scoretools_Leaf__set_duration_08():
     '''
 
     note = Note(0, (1, 8))
-    note.lilypond_duration_multiplier = Multiplier(1, 2)
+    #note.lilypond_duration_multiplier = Multiplier(1, 2)
+    attach(Multiplier(1, 2), note)
 
     assert format(note) == "c'8 * 1/2"
 
@@ -257,7 +260,8 @@ def test_scoretools_Leaf__set_duration_09():
     '''
 
     note = Note(0, (1, 8))
-    note.lilypond_duration_multiplier = Multiplier(1, 2)
+    #note.lilypond_duration_multiplier = Multiplier(1, 2)
+    attach(Multiplier(1, 2), note)
 
     assert format(note) == "c'8 * 1/2"
 
@@ -274,7 +278,8 @@ def test_scoretools_Leaf__set_duration_10():
     '''
 
     note = Note(0, (1, 8))
-    note.lilypond_duration_multiplier = Multiplier(1, 2)
+    #note.lilypond_duration_multiplier = Multiplier(1, 2)
+    attach(Multiplier(1, 2), note)
 
     assert format(note) == "c'8 * 1/2"
 

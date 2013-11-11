@@ -1187,7 +1187,8 @@ def test_scoretools_Container__split_by_duration_20():
     '''
 
     note = Note(0, (1, 8))
-    note.lilypond_duration_multiplier = Multiplier(1, 2)
+    #note.lilypond_duration_multiplier = Multiplier(1, 2)
+    attach(Multiplier(1, 2), note)
 
     assert format(note) == "c'8 * 1/2"
 
@@ -1212,7 +1213,8 @@ def test_scoretools_Container__split_by_duration_21():
     '''
 
     note = Note(0, (1, 8))
-    note.lilypond_duration_multiplier = Multiplier(1, 2)
+    #note.lilypond_duration_multiplier = Multiplier(1, 2)
+    attach(Multiplier(1, 2), note)
 
     assert format(note) == "c'8 * 1/2"
 
@@ -1239,7 +1241,8 @@ def test_scoretools_Container__split_by_duration_22():
     staff.append(Measure((2, 16), "c'8 d'8"))
     staff.append(Measure((2, 16), "e'8 f'8"))
     for leaf in staff.select_leaves():
-        leaf.lilypond_duration_multiplier = Multiplier(1, 2)
+        #leaf.lilypond_duration_multiplier = Multiplier(1, 2)
+        attach(Multiplier(1, 2), leaf)
     beam = Beam()
     attach(beam, staff[0])
     beam = Beam()
@@ -1303,7 +1306,8 @@ def test_scoretools_Container__split_by_duration_23():
     staff.append(Measure((2, 16), "c'8 d'8"))
     staff.append(Measure((2, 16), "e'8 f'8"))
     for leaf in staff.select_leaves():
-        leaf.lilypond_duration_multiplier = Multiplier(1, 2)
+        #leaf.lilypond_duration_multiplier = Multiplier(1, 2)
+        attach(Multiplier(1, 2), leaf)
     beam = Beam()
     attach(beam, staff[0])
     beam = Beam()
@@ -1371,7 +1375,8 @@ def test_scoretools_Container__split_by_duration_24():
     staff.append(Measure((2, 16), "c'8 d'8"))
     staff.append(Measure((2, 16), "e'8 f'8"))
     for leaf in staff.select_leaves():
-        leaf.lilypond_duration_multiplier = Multiplier(1, 2)
+        #leaf.lilypond_duration_multiplier = Multiplier(1, 2)
+        attach(Multiplier(1, 2), leaf)
     beam = Beam()
     attach(beam, staff[0])
     beam = Beam()
