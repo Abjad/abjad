@@ -17,9 +17,9 @@ def test_SegmentSpecification__select_measures_01():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_02():
@@ -36,9 +36,9 @@ def test_SegmentSpecification__select_measures_02():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_03():
@@ -55,9 +55,9 @@ def test_SegmentSpecification__select_measures_03():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_04():
@@ -74,9 +74,9 @@ def test_SegmentSpecification__select_measures_04():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_05():
@@ -93,9 +93,9 @@ def test_SegmentSpecification__select_measures_05():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_06():
@@ -111,9 +111,9 @@ def test_SegmentSpecification__select_measures_06():
     left_measures.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_07():
@@ -133,9 +133,9 @@ def test_SegmentSpecification__select_measures_07():
     right_measures.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_08():
@@ -155,9 +155,9 @@ def test_SegmentSpecification__select_measures_08():
     left_measures.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_09():
@@ -175,9 +175,9 @@ def test_SegmentSpecification__select_measures_09():
     left_measures.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_10():
@@ -195,9 +195,9 @@ def test_SegmentSpecification__select_measures_10():
     left_measures.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_11():
@@ -213,9 +213,9 @@ def test_SegmentSpecification__select_measures_11():
     measures.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_12():
@@ -233,9 +233,9 @@ def test_SegmentSpecification__select_measures_12():
     measures.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_13():
@@ -253,9 +253,9 @@ def test_SegmentSpecification__select_measures_13():
     measures.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_14():
@@ -272,9 +272,9 @@ def test_SegmentSpecification__select_measures_14():
     measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_measures_15():
@@ -291,6 +291,6 @@ def test_SegmentSpecification__select_measures_15():
     measure.timespan.select_leaves('Voice 1').set_spanner(spannertools.Slur())
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)

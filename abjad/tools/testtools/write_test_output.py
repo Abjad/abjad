@@ -7,7 +7,7 @@ def write_test_output(output, full_file_name, test_function_name,
     cache_ly=False, cache_pdf=False, go=False, render_pdf=False):
     r'''Write test output.
     '''
-    from experimental.tools import testtools
+    from experimental.tools import systemtools
     if go: cache_ly = cache_pdf = render_pdf = True
     if not any([cache_ly, cache_pdf, render_pdf]):
         return
@@ -15,7 +15,7 @@ def write_test_output(output, full_file_name, test_function_name,
         lilypond_file = \
             lilypondfiletools.make_floating_time_signature_lilypond_file(
                 output)
-        testtools.apply_additional_layout(lilypond_file)
+        systemtools.TestManager.apply_additional_layout(lilypond_file)
         score = output
     elif isinstance(output, lilypondfiletools.LilyPondFile):
         lilypond_file = output

@@ -15,9 +15,9 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_01():
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_02():
@@ -34,9 +34,9 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_02():
     first_two_measures.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_03():
@@ -53,9 +53,9 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_03():
     first_two_measures.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_04():
@@ -72,9 +72,9 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_04():
     first_two_measures.timespan.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_single_segment_solo__overlapping_rhythm_select_expressions_05():
@@ -92,6 +92,6 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_05():
     last_measure.timespan.set_rhythm(rhythmic_cell)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)

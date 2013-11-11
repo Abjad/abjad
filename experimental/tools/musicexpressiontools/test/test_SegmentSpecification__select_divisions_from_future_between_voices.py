@@ -20,9 +20,9 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_01():
     blue_segment.set_divisions([(2, 16), (3, 16)], contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_divisions_from_future_between_voices_02():
@@ -43,9 +43,9 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_02():
     blue_segment.set_divisions([(2, 16), (3, 16)], contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_divisions_from_future_between_voices_03():
@@ -66,9 +66,9 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_03():
     blue_segment.set_divisions([(2, 16), (3, 16)], contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification__select_divisions_from_future_between_voices_04():
@@ -90,6 +90,6 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_04():
     blue_segment.set_divisions([(2, 16), (3, 16)], contexts=['Voice 1'])
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)

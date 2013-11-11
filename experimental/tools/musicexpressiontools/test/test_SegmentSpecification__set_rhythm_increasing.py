@@ -54,6 +54,6 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     blue_segment.set_rhythm(red_rhythm_set_expression.reflect())
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)

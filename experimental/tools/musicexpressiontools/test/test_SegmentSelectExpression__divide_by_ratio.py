@@ -14,9 +14,9 @@ def test_SegmentSelectExpression__divide_by_ratio_01():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSelectExpression__divide_by_ratio_02():
@@ -31,9 +31,9 @@ def test_SegmentSelectExpression__divide_by_ratio_02():
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSelectExpression__divide_by_ratio_03():
@@ -49,9 +49,9 @@ def test_SegmentSelectExpression__divide_by_ratio_03():
     red_segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSelectExpression__divide_by_ratio_04():
@@ -69,6 +69,6 @@ def test_SegmentSelectExpression__divide_by_ratio_04():
     blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)

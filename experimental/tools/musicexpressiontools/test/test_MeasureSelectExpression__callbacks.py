@@ -16,9 +16,9 @@ def test_MeasureSelectExpression__callbacks_01():
     measures.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_MeasureSelectExpression__callbacks_02():
@@ -35,9 +35,9 @@ def test_MeasureSelectExpression__callbacks_02():
     right.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_MeasureSelectExpression__callbacks_03():
@@ -54,9 +54,9 @@ def test_MeasureSelectExpression__callbacks_03():
     right.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_MeasureSelectExpression__callbacks_04():
@@ -74,9 +74,9 @@ def test_MeasureSelectExpression__callbacks_04():
     blue_segment.set_time_signatures(measures)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_MeasureSelectExpression__callbacks_05():
@@ -94,9 +94,9 @@ def test_MeasureSelectExpression__callbacks_05():
     blue_segment.set_time_signatures(measures)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_MeasureSelectExpression__callbacks_06():
@@ -114,9 +114,9 @@ def test_MeasureSelectExpression__callbacks_06():
     blue_segment.set_time_signatures(measures)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_MeasureSelectExpression__callbacks_07():
@@ -134,9 +134,9 @@ def test_MeasureSelectExpression__callbacks_07():
     blue_segment.set_time_signatures(measures)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_MeasureSelectExpression__callbacks_08():
@@ -155,6 +155,6 @@ def test_MeasureSelectExpression__callbacks_08():
     blue_segment.set_time_signatures(red_measures)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)

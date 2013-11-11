@@ -8,7 +8,7 @@ def get_current_function_name():
     ::
 
         >>> def foo():
-        ...        function_name = testtools.get_current_function_name()
+        ...        function_name = systemtools.TestManager.get_current_function_name()
         ...        print 'Function name is {!r}.'.format(function_name)
 
     ::

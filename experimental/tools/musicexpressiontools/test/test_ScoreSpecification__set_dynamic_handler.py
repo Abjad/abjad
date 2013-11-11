@@ -16,9 +16,9 @@ def test_ScoreSpecification__set_dynamic_handler_01():
     score_specification.select_leaves('Voice 1').set_dynamic_handler(handler)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_dynamic_handler_02():
@@ -35,9 +35,9 @@ def test_ScoreSpecification__set_dynamic_handler_02():
     score_specification.select_leaves('Voice 1')[2:5].set_dynamic_handler(handler)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
 
 
 def test_ScoreSpecification__set_dynamic_handler_03():
@@ -55,6 +55,6 @@ def test_ScoreSpecification__set_dynamic_handler_03():
     divisions.timespan.select_leaves('Voice 1').set_dynamic_handler(handler)
     score = score_specification.interpret()
 
-    current_function_name = testtools.get_current_function_name()
-    testtools.write_test_output(score, __file__, current_function_name)
-    assert format(score) == testtools.read_test_output(__file__, current_function_name)
+    current_function_name = systemtools.TestManager.get_current_function_name()
+    systemtools.TestManager.write_test_output(score, __file__, current_function_name)
+    assert format(score) == systemtools.TestManager.read_test_output(__file__, current_function_name)
