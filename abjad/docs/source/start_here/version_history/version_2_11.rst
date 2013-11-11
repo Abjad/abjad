@@ -689,7 +689,7 @@ Music notation images now appear in the docstrings of many functions throughout
 the API.
 
 
-Added new ``topleveltools.graph()`` function to the ``iotools`` package.  A small
+Added new ``topleveltools.graph()`` function to the ``systemtools`` package.  A small
 number of classes throughout the system have started to gain a
 `graphviz_format` attribute, including ``datastructuretools.Digraph``,
 ``documentationtools.InheritanceGraph``, some of the

@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools import iotools
 
 
 view_inventory=datastructuretools.TypedList([
-	iotools.View([
+	systemtools.View([
 		'segment 03',
 		'segment 02',
 		'segment 01'

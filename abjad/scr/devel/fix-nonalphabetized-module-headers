@@ -47,7 +47,7 @@ def _main():
 
 
 if __name__ == '__main__':
-    iotools.IOManager.clear_terminal()
+    systemtools.IOManager.clear_terminal()
     #print 'Fixing nonalphabetized module headers ...'
     #print ''
     #_main()

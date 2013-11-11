@@ -3,7 +3,7 @@
 import inspect
 import os
 from abjad import abjad_configuration
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.documentationtools import ClassCrawler
 from abjad.tools.documentationtools import InheritanceGraph
@@ -39,5 +39,5 @@ def _find_inconsistencies():
 
 
 if __name__ == '__main__':
-    iotools.IOManager.clear_terminal()
+    systemtools.IOManager.clear_terminal()
     graph = _find_inconsistencies()

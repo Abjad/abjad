@@ -77,7 +77,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   - Embedded Scheme statements (anything beginning with ``#``)
 
 
-- Added ``iotools.p( )``, for conveniently parsing LilyPond syntax::
+- Added ``systemtools.p( )``, for conveniently parsing LilyPond syntax::
 
     >>> result = p(r"\new Staff { c'4 d e f }")
     >>> f(result)
@@ -165,7 +165,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     >>> stringtools.is_snake_case_file_name_with_extension('foo_bar.blah')
     True
 
-- Added ``iotools.is_underscore_delimited_file_name()`` string predicate.
+- Added ``systemtools.is_underscore_delimited_file_name()`` string predicate.
 
   Returns true on any underscore-delimited lowercase string.
 
@@ -221,7 +221,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     >>> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
     True
 
-- Extended case-testing ``iotools`` string predicates to allow digits.
+- Extended case-testing ``systemtools`` string predicates to allow digits.
 
   Functions changed:
 

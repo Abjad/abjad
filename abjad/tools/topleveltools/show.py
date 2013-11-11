@@ -37,17 +37,17 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
     Returns none or timing tuple.
     '''
     from abjad import abjad_configuration
-    from abjad.tools import iotools
+    from abjad.tools import systemtools
 
     name, actual_format_time, actual_lily_time = \
-        iotools.IOManager.log_render_lilypond_input(expr, docs=docs)
+        systemtools.IOManager.log_render_lilypond_input(expr, docs=docs)
 
     # do not open PDF if we're running pytest regression battery
     if not suppress_pdf:
         pdf_viewer = abjad_configuration['pdf_viewer']
         ABJADOUTPUT = abjad_configuration['abjad_output']
         name = os.path.join(ABJADOUTPUT, name)
-        iotools.IOManager.open_file('%s.pdf' % name[:-3], pdf_viewer)
+        systemtools.IOManager.open_file('%s.pdf' % name[:-3], pdf_viewer)
 
     # return timing if requested
     if return_timing:

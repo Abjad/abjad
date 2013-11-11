@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 from abjad.tools.developerscripttools.SvnMessageScript import SvnMessageScript
 
@@ -65,7 +65,7 @@ class SvnCommitScript(DirectoryScript):
             result = raw_input(
                 'Accept [Y], Reject [n], Abort [a]: ').strip().lower()
             if result in ('', 'y', 'yes'):
-                iotools.IOManager.spawn_subprocess(commit_command)
+                systemtools.IOManager.spawn_subprocess(commit_command)
                 return
             elif result in ('n', 'no'):
                 SvnMessageScript()()

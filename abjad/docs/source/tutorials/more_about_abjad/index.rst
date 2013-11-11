@@ -21,7 +21,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'marktools', 'datastructuretools', 'decoratortools',
     'developerscripttools', 'documentationtools', 'durationtools',
     'exceptiontools', 'f', 'formattools', 'gracetools', 'systemtools',
-    'instrumenttools', 'introspectiontools', 'iotools', 'iterationtools',
+    'instrumenttools', 'introspectiontools', 'systemtools', 'iterationtools',
     'labeltools', 'layouttools', 'scoretools', 'lilypondfiletools',
     'lilypondparsertools', 'lilypondproxytools', 'marktools', 'markuptools',
     'mathtools', 'scoretools', 'scoretools', 'systemtools', 'p',
@@ -42,11 +42,11 @@ transpose music or change the way beams look in your score.
 Inspecting output
 -----------------
 
-Use ``dir()`` to take a look at the contents of the ``iotools`` package:
+Use ``dir()`` to take a look at the contents of the ``systemtools`` package:
 
 ::
 
-    >>> dir(iotools)
+    >>> dir(systemtools)
     ['__builtins__', '__doc__', '__file__', '__name__', '__package__',
     '__path__', '_documentation_section', 'clear_terminal', 'f',
     'get_last_output_file_name', 'get_next_output_file_name', 'systemtools',
@@ -54,10 +54,10 @@ Use ``dir()`` to take a look at the contents of the ``iotools`` package:
     'save_last_pdf_as', 'show', 'spawn_subprocess', 'write_expr_to_ly',
     'write_expr_to_pdf', 'z']
 
-The ``iotools`` package implements I/O functions that help you work with the
+The ``systemtools`` package implements I/O functions that help you work with the
 files you create in Abjad.
 
-Use ``iotools.ly()`` to see the last LilyPond input file created in Abjad:
+Use ``systemtools.ly()`` to see the last LilyPond input file created in Abjad:
 
 ::
 
@@ -95,7 +95,7 @@ above.  Abjad then called LilyPond on that ``.ly`` file to create a PDF.
 
 (Quit your text editor in the usual way to return to the Python interpreter.)
 
-Now use ``iotools.log()`` to see the output LilyPond created as it ran:
+Now use ``systemtools.log()`` to see the output LilyPond created as it ran:
 
 ::
 

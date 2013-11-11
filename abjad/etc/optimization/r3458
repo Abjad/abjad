@@ -17,15 +17,15 @@ r3458:
    0.195698022842
    1.93302893639
 
-#3 iotools.IOManager.profile_expr('Note("c'4")')
+#3 systemtools.IOManager.profile_expr('Note("c'4")')
    2998 function calls (2971 primitive calls) in 0.011 CPU seconds
 
 #4 note = Note("c'4")
-   iotools.IOManager.profile_expr('note.format')
+   systemtools.IOManager.profile_expr('note.format')
    2336 function calls (1926 primitive calls) in 0.004 CPU seconds
 
 #5 class Foo(object): pass
-   iotools.IOManager.profile_expr('Foo( )')
+   systemtools.IOManager.profile_expr('Foo( )')
    2 function calls in 0.000 CPU seconds
    # conclusion: toy classes are extremely thin
    # conclusion: the heaviness of custom classes matters

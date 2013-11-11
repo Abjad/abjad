@@ -2,7 +2,7 @@
 
 import os
 from abjad import abjad_configuration
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
 def _find_initializers():
@@ -27,6 +27,6 @@ def _find_initializers():
 
 
 if __name__ == '__main__':
-    iotools.IOManager.clear_terminal()
+    systemtools.IOManager.clear_terminal()
     print 'Finding manual class loads in initializers ...'
     _find_initializers()

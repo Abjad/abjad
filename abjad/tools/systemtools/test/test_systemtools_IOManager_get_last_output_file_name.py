@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
 def test_iotools_get_last_output_file_name_01():
 
-    last_output_file_name = iotools.IOManager.get_last_output_file_name()
+    last_output_file_name = systemtools.IOManager.get_last_output_file_name()
 
     assert isinstance(last_output_file_name, (str, type(None)))
     if isinstance(last_output_file_name, str):

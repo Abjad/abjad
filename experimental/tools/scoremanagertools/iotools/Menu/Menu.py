@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools import mathtools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
@@ -389,7 +389,7 @@ class Menu(ScoreManagerObject):
             file_name = self.where[1]
             line_number = self.where[2]
             command = 'vim +{} {}'.format(line_number, file_name)
-            iotools.IOManager.spawn_subprocess(command)
+            systemtools.IOManager.spawn_subprocess(command)
         else:
             lines = []
             message = 'where-tracking not enabled.'

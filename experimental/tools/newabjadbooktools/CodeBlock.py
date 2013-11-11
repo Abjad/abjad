@@ -3,7 +3,7 @@ import StringIO
 import copy
 import contextlib
 import random
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import webbrowser
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.documentationtools import AbjadAPIGenerator
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
@@ -101,43 +101,37 @@ class BuildApiScript(DeveloperScript):
         # optionally, make clean before building
         if clean:
             print 'Cleaning build directory ...'
-            iotools.IOManager.spawn_subprocess('make clean')
+            systemtools.IOManager.spawn_subprocess('make clean')
 
         if format == 'coverage':
-            iotools.IOManager.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
+            systemtools.IOManager.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
                 'source',
                 os.path.join('build', 'coverage'),
                 ))
         else:
-            iotools.IOManager.spawn_subprocess('make {}'.format(format))
+            systemtools.IOManager.spawn_subprocess('make {}'.format(format))
 
     def _build_mainline_api(self, format='html', clean=False):
-
         from abjad import abjad_configuration
-
         AbjadAPIGenerator()(verbose=True)
-
         # print greeting
         print 'Now building the {} docs ...'.format(format.upper())
         print ''
-
         # change to docs directory because makefile lives there
         docs_directory = os.path.relpath(os.path.join(
             abjad_configuration.abjad_directory_path, 'docs'))
         os.chdir(docs_directory)
-
         # optionally, make clean before building
         if clean:
             print 'Cleaning build directory ...'
-            iotools.IOManager.spawn_subprocess('make clean')
-
+            systemtools.IOManager.spawn_subprocess('make clean')
         if format == 'coverage':
-            iotools.IOManager.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
+            systemtools.IOManager.spawn_subprocess('sphinx-build -b coverage {} {}'.format(
                 'source',
                 os.path.join('build', 'coverage'),
                 ))
         else:
-            iotools.IOManager.spawn_subprocess('make {}'.format(format))
+            systemtools.IOManager.spawn_subprocess('make {}'.format(format))
 
     ### PUBLIC METHODS ###
 

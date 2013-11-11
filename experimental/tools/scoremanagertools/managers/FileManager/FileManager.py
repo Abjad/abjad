@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.managers.FilesystemAssetManager \
     import FilesystemAssetManager
@@ -63,7 +63,7 @@ class FileManager(FilesystemAssetManager):
 
     def _interpret_in_external_process(self):
         command = 'python {}'.format(self.filesystem_path)
-        result = iotools.IOManager.spawn_subprocess(command)
+        result = systemtools.IOManager.spawn_subprocess(command)
         if result != 0:
             self.session.io_manager.display('')
             self.session.io_manager.proceed()
@@ -103,13 +103,13 @@ class FileManager(FilesystemAssetManager):
 
     def _run_abjad(self, prompt=True):
         command = 'abjad {}'.format(self.filesystem_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         message = 'file executed.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
     def _run_python(self, prompt=True):
         command = 'python {}'.format(self.filesystem_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         message = 'file executed.'
         self.session.io_manager.proceed(message, is_interactive=prompt)
 
@@ -126,7 +126,7 @@ class FileManager(FilesystemAssetManager):
         Returns none.
         '''
         command = 'lily {}'.format(self.filesystem_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
     def interactively_edit(self):
@@ -135,14 +135,14 @@ class FileManager(FilesystemAssetManager):
         Returns none.
         '''
         command = 'vim + {}'.format(self.filesystem_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
 
     def interactively_open(self):
         r'''Interactively opens file.
 
         Returns none.
         '''
-        iotools.IOManager.open_file(self.filesystem_path)
+        systemtools.IOManager.open_file(self.filesystem_path)
 
     def interactively_view(self):
         r'''Interactively views file.
@@ -153,7 +153,7 @@ class FileManager(FilesystemAssetManager):
             command = 'open {}'.format(self.filesystem_path)
         else:
             command = 'vim -R {}'.format(self.filesystem_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
 
     def interactively_typeset_tex_file(self, prompt=True):
         r'''Interactively typesets TeX file.
@@ -171,11 +171,11 @@ class FileManager(FilesystemAssetManager):
             input_directory, 
             input_file_name_stem,
             )
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         command = 'rm {}/*.aux'.format(output_directory)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         command = 'rm {}/*.log'.format(output_directory)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
 
     ### UI MANIFEST ###

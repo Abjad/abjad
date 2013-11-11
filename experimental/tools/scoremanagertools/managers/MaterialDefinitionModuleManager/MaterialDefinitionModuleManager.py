@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from experimental.tools.scoremanagertools.managers.FileManager \
     import FileManager
 
@@ -20,7 +20,7 @@ class MaterialDefinitionModuleManager(FileManager):
         columns = len(self.material_package_name) + 3
         command = "vim + -c'norm {}l' {}"
         command = command.format(columns, self.filesystem_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
 
     def write_stub_data_material_definition_to_disk(self):
         lines = []

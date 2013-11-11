@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
 def test_scoretools_make_piano_score_from_leaves_01():

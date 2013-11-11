@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import \
     PackageWrangler
 
@@ -132,7 +132,7 @@ class SegmentPackageWrangler(PackageWrangler):
                 output_pdf_file_paths.append(output_pdf_file_path)
         command = ' '.join(output_pdf_file_paths)
         command = 'open ' + command
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
 
     def interactively_version_all_assets(
         self,

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import argparse
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 from abjad.tools.developerscripttools.CleanScript import CleanScript
 
@@ -44,14 +44,14 @@ If no PATH flag is specified, the current directory will be searched.
 
     def process_args(self, args):
 
-        iotools.IOManager.clear_terminal()
+        systemtools.IOManager.clear_terminal()
         if args.whole_words_only:
             whole_words_only = '-w'
         else:
             whole_words_only = ''
         command = r'grep {} -Irn {!r} {} | grep -v svn-base | grep -v svn\/ | grep -v docs'.format(
             whole_words_only, args.pattern, os.path.relpath(args.path))
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
 
     def setup_argument_parser(self, parser):
 

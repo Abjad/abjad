@@ -91,16 +91,16 @@ package.
 You may now clear the pitches of a chord with ``chord[:] = []``.
 The ``Chord.clear()`` method has been removed.
 
-New ``iotools.IOManager.profile_expr()`` keywords available. The ``print_callers=True``
+New ``systemtools.IOManager.profile_expr()`` keywords available. The ``print_callers=True``
 and ``print_callees=True`` break profiler output to calling and called
 functions, respectively.  Set ``print_to_terminal=False`` to return profiler
 output as a string.
 
-A new ``iotools.IOManager.count_function_calls()`` function is available. Use the
+A new ``systemtools.IOManager.count_function_calls()`` function is available. Use the
 function to return the number of function calls required to interpret any Abjad
 expression.
 
-A new ``iotools.which()`` function is available. The new function is
+A new ``systemtools.which()`` function is available. The new function is
 cross-platform and can be used to check for the presence of commandline tools
 before opening pipes.
 

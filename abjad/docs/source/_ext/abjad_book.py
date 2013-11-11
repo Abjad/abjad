@@ -97,7 +97,7 @@ def on_builder_inited(app):
 
 
 def rewrite_literal_block_line(line):
-    if line.strip().startswith(('f(', 'play(', 'print ', 'redo(', 'z(', 'iotools.log(')):
+    if line.strip().startswith(('f(', 'play(', 'print ', 'redo(', 'z(', 'systemtools.log(')):
         return '', False
     elif not line.startswith(('show(', 'topleveltools.graph(')):
         return line, False

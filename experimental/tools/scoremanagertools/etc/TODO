@@ -74,9 +74,9 @@
 
 24. Finish the docstrings for all io classes.
 
-25. Refactor iotools as a single IOManager class.
+25. Refactor systemtools as a single IOManager class.
 
-26. Make scoremanagertools.iotools.IOManager inherit from iotools.IOManager.
+26. Make scoremanagertools.iotools.IOManager inherit from systemtools.IOManager.
 
 27. Audit all '*_file_name' variables in the system.
     Most are probably file path variables and should be renamed.
@@ -105,7 +105,7 @@
         segment = Segment()
         lilypond_file = segment()
         current_directory_path = os.path.dirname(__file__)
-        iotools.log_render_lilypond_input(
+        systemtools.log_render_lilypond_input(
             lilypond_file,
             output_directory_path=current_directory_path,
             output_file_name_root='output',

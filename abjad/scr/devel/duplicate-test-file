@@ -4,7 +4,7 @@ import os
 import pprint
 import re
 from abjad import abjad_configuration
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
 def _capitalize_test_file_names():
@@ -35,19 +35,19 @@ def _rename_test_file(short_file_name, full_file_name, old, new):
         new_short_file_name = new_short_file_name.replace('.py', '_tmp.py')
         new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
         first_command = 'svn mv %s %s' % (full_file_name, new_full_file_name)
-        iotools.IOManager.spawn_subprocess(first_command)
+        systemtools.IOManager.spawn_subprocess(first_command)
     else:
         new_short_file_name = short_file_name.replace(old, new)
         new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
         command = 'svn mv %s %s' % (full_file_name, new_full_file_name)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
     print ''
     print ''
     return old, new
 
 
 if __name__ == '__main__':
-    iotools.IOManager.clear_terminal()
+    systemtools.IOManager.clear_terminal()
 #    print 'Source test file path example:'
 #    print ''
 #    print '    tools/spannertools/Beam/test/test_BeamSpanner___eq__.py'

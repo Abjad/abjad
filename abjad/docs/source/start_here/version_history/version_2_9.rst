@@ -380,7 +380,7 @@ New functionality is available for working with ties.
 
 Added a new ``stringtools`` package.
 
-- The following functions all migrated from the ``iotools`` package::
+- The following functions all migrated from the ``systemtools`` package::
 
     stringtools.capitalize_string_start()
     stringtools.format_input_lines_as_doc_string()

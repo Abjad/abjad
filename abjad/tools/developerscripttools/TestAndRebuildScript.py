@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import importlib
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
@@ -47,7 +47,7 @@ class TestAndRebuildScript(DeveloperScript):
         return terminal_width
 
     def process_args(self, args):
-        iotools.IOManager.clear_terminal()
+        systemtools.IOManager.clear_terminal()
         if not self.run_doctest(args):
             print
             if not self.run_pytest(args):

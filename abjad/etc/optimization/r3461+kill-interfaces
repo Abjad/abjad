@@ -33,12 +33,12 @@ RESULTS:
    2.03 sec (r3461 with opt)
    # 22.0 % speed increase
 
-   iotools.IOManager.profile_expr('Note("c'4")')
+   systemtools.IOManager.profile_expr('Note("c'4")')
    2797 function calls (2778 primitive calls) in 0.008 CPU seconds (r3461)
    2170 function calls (2151 primitive calls) in 0.006 CPU seconds (r3461 with opt)
    # 22.4 % fewer function calls
 
-   iotools.IOManager.profile_expr('note.format')
+   systemtools.IOManager.profile_expr('note.format')
    2053 function calls (1636 primitive calls) in 0.004 CPU seconds (r3461)
    1633 function calls (1336 primitive calls) in 0.004 CPU seconds (r3461 with opt)
    # 20.5 % fewer function calls

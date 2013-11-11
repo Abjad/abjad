@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 import argparse
 import os
@@ -51,7 +51,7 @@ class SvnAddAllScript(DirectoryScript):
         for line in lines:
             if line.startswith('?'):
                 command = 'svn add {}'.format(line.split()[-1])
-                iotools.IOManager.spawn_subprocess(command)
+                systemtools.IOManager.spawn_subprocess(command)
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',

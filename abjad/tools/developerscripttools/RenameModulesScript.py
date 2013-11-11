@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import documentationtools
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 from abjad.tools.developerscripttools.ReplaceInFilesScript \
     import ReplaceInFilesScript
@@ -167,7 +167,7 @@ class RenameModulesScript(DeveloperScript):
             new_docs_path, new_tools_package_name, new_rst_file_name)
         command = 'mv {} {}'.format(
             old_api_path, new_api_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         print ''
 
     def _rename_old_module(self,
@@ -191,7 +191,7 @@ class RenameModulesScript(DeveloperScript):
             new_tools_path, new_tools_package_name, new_module)
         command = 'git mv -f {} {}'.format(
             old_path, new_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         print ''
 
     def _rename_old_test_files(self,
@@ -228,7 +228,7 @@ class RenameModulesScript(DeveloperScript):
                 new_test_path, new_test_file_name)
             command = 'git mv -f {} {}'.format(
                 old_test_file_path, new_test_file_path)
-            iotools.IOManager.spawn_subprocess(command)
+            systemtools.IOManager.spawn_subprocess(command)
         print ''
 
     def _update_codebase(self,
@@ -282,7 +282,7 @@ class RenameModulesScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-        iotools.IOManager.clear_terminal()
+        systemtools.IOManager.clear_terminal()
         # Handle source path:
         old_codebase, old_tools_package_name, old_module_name = \
             self._parse_tools_package_path(args.source)

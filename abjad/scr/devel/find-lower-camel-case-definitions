@@ -2,7 +2,7 @@
 
 import os
 import re
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
 def _find_lower_camel_case_definitions():
@@ -32,7 +32,7 @@ def _find_lower_camel_case_definitions():
 
 
 if __name__ == '__main__':
-    iotools.IOManager.clear_terminal()
+    systemtools.IOManager.clear_terminal()
     print 'Finding lower camel case definitions ...\n'
     _find_lower_camel_case_definitions()
     print ''

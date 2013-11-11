@@ -13,14 +13,14 @@ def compare_images(image_one, image_two):
     If `compare` is not available, return `False`.
     '''
     import tempfile
-    from abjad.tools import iotools
+    from abjad.tools import systemtools
 
     assert os.path.exists(image_one)
     assert os.path.exists(image_two)
 
     result = False
 
-    if iotools.IOManager.find_executable('compare'):
+    if systemtools.IOManager.find_executable('compare'):
 
         tempdir = tempfile.mkdtemp()
         comparison = os.path.join(tempdir, 'comparison.png')

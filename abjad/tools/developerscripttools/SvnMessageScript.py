@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
@@ -55,7 +55,7 @@ class SvnMessageScript(DeveloperScript):
             if os.path.exists(self.commit_message_path):
                 os.remove(self.commit_message_path)
         command = '{} {}'.format(text_editor, self.commit_message_path)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
 
     def setup_argument_parser(self, parser):
         parser.add_argument('-C', '--clean',

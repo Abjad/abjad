@@ -2,7 +2,7 @@
 import argparse
 import multiprocessing
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 

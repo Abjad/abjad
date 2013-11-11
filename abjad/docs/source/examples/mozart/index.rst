@@ -53,7 +53,7 @@ How might we store this corpus compactly?
 
 Some basic musical information in Abjad can be stored as strings, rather than
 actual collections of class instances.  Abjad can parse simple LilyPond strings
-via :py:func:`p <abjad.tools.iotools.p>`, which interprets a subset of LilyPond
+via :py:func:`p <abjad.tools.systemtools.p>`, which interprets a subset of LilyPond
 syntax, and understands basic concepts like notes, chords, rests and skips, as
 well as beams, slurs, ties, and articulations.
 
@@ -327,7 +327,7 @@ will take care of that for us.  The complete corpus looks like this:
        ]
 
 
-We can then use the :py:func:`~abjad.tools.iotools.p` function we saw earlier
+We can then use the :py:func:`~abjad.tools.systemtools.p` function we saw earlier
 to "build" the treble and bass components of a measure like this:
 
 ::

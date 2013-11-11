@@ -2,7 +2,7 @@
 import importlib
 import os
 import StringIO
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
@@ -55,7 +55,7 @@ class RunDoctestsScript(DirectoryScript):
             )
         if args.diff:
             optionflags = optionflags | doctest.REPORT_NDIFF
-        iotools.IOManager.clear_terminal()
+        systemtools.IOManager.clear_terminal()
         total_failures = 0
         total_modules = 0
         total_tests = 0

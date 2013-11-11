@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools import lilypondfiletools
 from experimental.tools.newabjadbooktools.AssetOutputProxy \
     import AssetOutputProxy
@@ -28,7 +28,7 @@ class MIDIOutputProxy(AssetOutputProxy):
             self._payload = payload
         else:
             payload = copy.deepcopy(payload)
-            lilypond_file = iotools.IOManager.insert_expr_into_lilypond_file(payload)
+            lilypond_file = systemtools.IOManager.insert_expr_into_lilypond_file(payload)
             lilypond_file.file_initial_system_comments[:] = []
             lilypond_version_token = lilypondfiletools.LilyPondVersionToken(
                 abjad_configuration.get_lilypond_minimum_version_string(),

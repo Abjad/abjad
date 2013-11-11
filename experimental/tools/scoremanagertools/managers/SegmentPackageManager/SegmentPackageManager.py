@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import itertools
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from experimental.tools.scoremanagertools.managers.PackageManager \
     import PackageManager
 
@@ -204,7 +204,7 @@ class SegmentPackageManager(PackageManager):
                 is_interactive=is_interactive,
                 )
             return
-        next_output_file_name = iotools.IOManager.get_next_output_file_name(
+        next_output_file_name = systemtools.IOManager.get_next_output_file_name(
             output_directory_path=self._get_versions_directory_path(),
             )
         result = os.path.splitext(next_output_file_name)
@@ -218,7 +218,7 @@ class SegmentPackageManager(PackageManager):
             asset_definition_module_file_path,
             target_file_path,
             )
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         target_file_name = next_output_file_name_root + '.pdf'
         target_file_path = os.path.join(
             self._get_versions_directory_path(),
@@ -228,7 +228,7 @@ class SegmentPackageManager(PackageManager):
             output_pdf_file_path,
             target_file_path,
             )
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         target_file_name = next_output_file_name_root + '.ly'
         target_file_path = os.path.join(
             self._get_versions_directory_path(),
@@ -238,7 +238,7 @@ class SegmentPackageManager(PackageManager):
             output_lilypond_file_path,
             target_file_path,
             )
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
         version_number = int(next_output_file_name_root)
         message = 'version {} written to disk.'
         message = message.format(version_number)
@@ -271,7 +271,7 @@ class SegmentPackageManager(PackageManager):
             return
         file_paths = ' '.join(file_paths)
         command = 'open {}'.format(file_paths)
-        iotools.IOManager.spawn_subprocess(command)
+        systemtools.IOManager.spawn_subprocess(command)
 
     def interactively_view_current_output_ly(self):
         r'''Interactively views current output LilyPond file.
@@ -281,7 +281,7 @@ class SegmentPackageManager(PackageManager):
         output_lilypond_file_path = self._get_output_lilypond_file_path()
         if os.path.isfile(output_lilypond_file_path):
             command = 'vim -R {}'.format(output_lilypond_file_path)
-            iotools.IOManager.spawn_subprocess(command)
+            systemtools.IOManager.spawn_subprocess(command)
 
     def _interactively_view_versioned_file(self, extension):
         assert extension in ('.ly', '.pdf', '.py')
@@ -316,7 +316,7 @@ class SegmentPackageManager(PackageManager):
                 command = 'vim -R {}'.format(file_path)
             elif extension == '.pdf':
                 command = 'open {}'.format(file_path)
-            iotools.IOManager.spawn_subprocess(command)
+            systemtools.IOManager.spawn_subprocess(command)
         
     def interactively_view_versioned_output_ly(self):
         r'''Interactively views output LilyPond file.
@@ -355,7 +355,7 @@ class SegmentPackageManager(PackageManager):
         output_pdf_file_path = self._get_output_pdf_file_path()
         if os.path.isfile(output_pdf_file_path):
             command = 'open {}'.format(output_pdf_file_path)
-            iotools.IOManager.spawn_subprocess(command)
+            systemtools.IOManager.spawn_subprocess(command)
 
     def write_initializer_to_disk(self):
         r'''Writes initializer to disk.

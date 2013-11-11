@@ -25,14 +25,14 @@ def graph(expr, image_format='pdf', layout='dot'):
     Returns none.
     '''
     from abjad import abjad_configuration
-    from abjad.tools import iotools
+    from abjad.tools import systemtools
 
     assert image_format in ('pdf', 'png')
     layouts =('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
     assert layout in layouts
     message = 'Cannot find `{}` command-line tool.'.format(layout)
     message += ' Please download Graphviz from graphviz.org.'
-    assert iotools.IOManager.find_executable(layout), message
+    assert systemtools.IOManager.find_executable(layout), message
 
     if isinstance(expr, str):
         graphviz_format = expr
@@ -41,10 +41,10 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    iotools.IOManager.ensure_directory_existence(ABJADOUTPUT)
+    systemtools.IOManager.ensure_directory_existence(ABJADOUTPUT)
     dot_path = os.path.join(
         ABJADOUTPUT,
-        iotools.IOManager.get_next_output_file_name(file_extension='dot'),
+        systemtools.IOManager.get_next_output_file_name(file_extension='dot'),
         )
     img_path = os.path.join(ABJADOUTPUT, dot_path.replace('dot', 'pdf'))
 
@@ -57,4 +57,4 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     pdf_viewer = abjad_configuration['pdf_viewer']
     ABJADOUTPUT = abjad_configuration['abjad_output']
-    iotools.IOManager.open_file(img_path, pdf_viewer)
+    systemtools.IOManager.open_file(img_path, pdf_viewer)

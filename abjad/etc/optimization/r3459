@@ -9,10 +9,10 @@ r3459
    print timer.timeit(1000)
    2.02 (sec)
 
-   iotools.IOManager.profile_expr('Note("c'4")')
+   systemtools.IOManager.profile_expr('Note("c'4")')
    3045 function calls (3026 primitive calls) in 0.008 CPU seconds
 
-   iotools.IOManager.profile_expr('note.format')
+   systemtools.IOManager.profile_expr('note.format')
    2053 function calls (1636 primitive calls) in 0.004 CPU seconds
 
    notes = [Note("c'4") for x in range(1000)]
@@ -32,11 +32,11 @@ r3459 + remove _Parser
    2.02 sec
    2.56 sec (with opt)
 
-   iotools.IOManager.profile_expr('Note("c'4")')
+   systemtools.IOManager.profile_expr('Note("c'4")')
    3045 function calls (3026 primitive calls) in 0.008 CPU seconds
    2797 function calls (2778 primitive calls) in 0.008 CPU seconds (with opt)
 
-   iotools.IOManager.profile_expr('note.format')
+   systemtools.IOManager.profile_expr('note.format')
    2053 function calls (1636 primitive calls) in 0.004 CPU seconds
    2011 function calls (1594 primitive calls) in 0.004 CPU seconds (with opt)
 

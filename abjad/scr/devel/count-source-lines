@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
 def _count_source_lines():
@@ -55,5 +55,5 @@ def _report(source_modules, source_lines, test_modules, test_lines):
     print ''
 
 if __name__ == '__main__':
-    iotools.IOManager.clear_terminal()
+    systemtools.IOManager.clear_terminal()
     _report(*_count_source_lines())

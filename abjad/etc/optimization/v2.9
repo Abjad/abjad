@@ -36,14 +36,14 @@ Key:
 
 Tests:
     1. import and use guppy as described in the docs
-    2. iotools.IOManager.profile_expr('[Note(0, (1, 4)) for x in range(1000)]')
+    2. systemtools.IOManager.profile_expr('[Note(0, (1, 4)) for x in range(1000)]')
     3. notes = [Note(0, (1, 4)) for x in range(1000);
-       iotools.IOManager.profile_expr('[note.lilypond_format for note in notes]') 
-    4. iotools.IOManager.profile_expr('Note(0, (1, 4))')
+       systemtools.IOManager.profile_expr('[note.lilypond_format for note in notes]') 
+    4. systemtools.IOManager.profile_expr('Note(0, (1, 4))')
     5. note = Note(0, (1, 4));
-       iotools.IOManager.profile_expr('note.format')
+       systemtools.IOManager.profile_expr('note.format')
     6. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
-       iotools.IOManager.profile_expr('staff.format')
+       systemtools.IOManager.profile_expr('staff.format')
     7. ibid.
     8. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
        for note in staff: marktools.Articulation('staccato')(note)

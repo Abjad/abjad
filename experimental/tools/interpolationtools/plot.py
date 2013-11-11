@@ -9,17 +9,17 @@ def plot(expr, image_format='png', width=640, height=320):
     Returns none.
     '''
     from abjad import abjad_configuration
-    from abjad.tools import iotools
+    from abjad.tools import systemtools
     assert image_format in ('pdf', 'png')
     assert isinstance(width, int) and 0 < width
     assert isinstance(height, int) and 0 < height
     message = 'Cannot find `gnuplot` command-line tool.'
-    assert iotools.IOManager.find_executable('gnuplot'), message
+    assert systemtools.IOManager.find_executable('gnuplot'), message
     gnuplot_format = expr.gnuplot_format
     abjad_output = abjad_configuration['abjad_output']
-    iotools.IOManager.ensure_directory_existence(abjad_output)
+    systemtools.IOManager.ensure_directory_existence(abjad_output)
     txt_path = os.path.join(
-        abjad_output, iotools.IOManager.get_next_output_file_name(
+        abjad_output, systemtools.IOManager.get_next_output_file_name(
             file_extension='txt'))
     img_path = os.path.join(
         abjad_output,
@@ -36,7 +36,7 @@ def plot(expr, image_format='png', width=640, height=320):
     with open(txt_path, 'w') as f:
         f.write(gnuplot_format)
     command = 'gnuplot {}'.format(txt_path)
-    iotools.IOManager.spawn_subprocess(command)
+    systemtools.IOManager.spawn_subprocess(command)
     pdf_viewer = abjad_configuration['pdf_viewer']
     abjad_output = abjad_configuration['abjad_output']
-    iotools.IOManager.open_file(img_path, pdf_viewer)
+    systemtools.IOManager.open_file(img_path, pdf_viewer)

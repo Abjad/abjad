@@ -4,7 +4,7 @@ import os
 import pprint
 import re
 from abjad import abjad_configuration
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
 directory_name_blacklist = (
@@ -69,5 +69,5 @@ def _has_multiple_public_function_definitions(path, file_name):
 
 
 if __name__ == '__main__':
-    iotools.IOManager.clear_terminal()
+    systemtools.IOManager.clear_terminal()
     _find_multifunction_modules()

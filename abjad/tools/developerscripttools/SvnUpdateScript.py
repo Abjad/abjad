@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import argparse
 import os
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 from abjad.tools.developerscripttools.CleanScript import CleanScript
 
@@ -57,7 +57,7 @@ class SvnUpdateScript(DirectoryScript):
             clean_script(clean_args)
 
         print 'Updating...'
-        iotools.IOManager.spawn_subprocess('svn update {}'.format(args.path))
+        systemtools.IOManager.spawn_subprocess('svn update {}'.format(args.path))
 
     def setup_argument_parser(self, parser):
 

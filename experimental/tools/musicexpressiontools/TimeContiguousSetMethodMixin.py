@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import iotools
+from abjad.tools import systemtools
 from experimental.tools.musicexpressiontools.SetMethodMixin \
     import SetMethodMixin
 

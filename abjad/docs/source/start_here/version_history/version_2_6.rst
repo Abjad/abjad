@@ -182,12 +182,12 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     >>> stringtools.strip_diacritics_from_binary_string(binary_string)
     'Dvorak'
 
-* Added other new functions to ``iotools``::
+* Added other new functions to ``systemtools``::
 
     stringtools.capitalize_string_start()
-    iotools.is_space_delimited_lowercamelcase_string()
-    iotools.is_underscore_delimited_lowercamelcase_package_name()
-    iotools.is_underscore_delimited_lowercamelcase_string()
+    systemtools.is_space_delimited_lowercamelcase_string()
+    systemtools.is_underscore_delimited_lowercamelcase_package_name()
+    systemtools.is_underscore_delimited_lowercamelcase_string()
     stringtools.is_lower_camel_case_string()
     stringtools.is_upper_camel_case_string()
     stringtools.space_delimited_lowercase_to_upper_camel_case()
@@ -240,7 +240,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 * Extended instruments with ``is_primary`` and ``is_secondary`` attributes.
 * Extended instruments with ``instrument_name`` and ``instrument_name_markup`` attributes.
 * Extended instruments with ``short_instrument_name`` and ``short_instrument_name_markup`` attributes.
-* Extended ``iotools.IOManager.write_expr_to_ly()`` and ``iotools.IOManager.write_expr_to_pdf()`` with ``'tagline'`` keyword.
+* Extended ``systemtools.IOManager.write_expr_to_ly()`` and ``systemtools.IOManager.write_expr_to_pdf()`` with ``'tagline'`` keyword.
 * Extended ``replace-in-files`` script to skip ``.text``, ``.ly`` and ``.txt`` files.
 
 * Renamed ``Accidental.symbolic_string`` to ``Accidental.symbolic_accidental_string``.

@@ -2,20 +2,20 @@ Note that as of r9,872 it takes only 181 function calls to initialize
 the score manager ...
 
     >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
-    >>> iotools.IOManager.profile_expr(expr)
+    >>> systemtools.IOManager.profile_expr(expr)
     181 function calls in 0.000 seconds
 
 ... but that it takes 819,997 function calls to start and immediately quit 
 the score manager a first time and then significantly fewer function calls 
 on successive tests:
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     819997 function calls (819894 primitive calls) in 0.734 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     241391 function calls in 0.220 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     241391 function calls in 0.220 seconds
 
 CONCLUSION: don't know what's going on here but it's clear that the score 
@@ -40,7 +40,7 @@ OBSERVATION: Note that the following ...
 ... reduces score manager start-up from 820,000 function calls to 
 153,000 function calls. Removing the call to self._where removes the call 
 to inspect.stack(). This was tricky to find because 
-iotools.IOManager.profile_expr('inspect.stack()') is lean.
+systemtools.IOManager.profile_expr('inspect.stack()') is lean.
 The function must be called inside a complex stack to reveal its true cost.
 
 CONCLUSION: Stack inspection can not be a mandatory part of menu creation
@@ -52,7 +52,7 @@ because stack inspection is expensive.
 As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
     >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
-    >>> iotools.IOManager.profile_expr(expr)
+    >>> systemtools.IOManager.profile_expr(expr)
     6658 function calls (6646 primitive calls) in 0.008 seconds
 
    Ordered by: cumulative time
@@ -80,13 +80,13 @@ This increase from 181 to 6,658 is probably nothing to worry about.
 But note that it takes between 325,000 and 323,000 function calls to start 
 and then immediately quit the score manager, totaling ~0.4 seconds on the iMac:
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     325311 function calls (324734 primitive calls) in 0.407 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     323222 function calls (322706 primitive calls) in 0.435 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     323222 function calls (322706 primitive calls) in 0.395 seconds
 
 This represents an increase from 240,000 function calls to 323,000 function
@@ -101,16 +101,16 @@ Turning on the quick-and-dirty caching code included in r10,250 gives the
 following results:
 
     >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
-    >>> iotools.IOManager.profile_expr(expr)
+    >>> systemtools.IOManager.profile_expr(expr)
     6658 function calls (6646 primitive calls) in 0.008 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     8417 function calls (8382 primitive calls) in 0.009 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     8169 function calls (8157 primitive calls) in 0.009 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     8169 function calls (8157 primitive calls) in 0.009 seconds
 
 CONCLUSION: the quick-and-dirty caching code turned on in r10,250 effectively 
@@ -152,16 +152,16 @@ RESULTS: correcting the inefficiency produces the following results.
 Note that all of these results are with caching turned off:
 
     >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
-    >>> iotools.IOManager.profile_expr(expr)
+    >>> systemtools.IOManager.profile_expr(expr)
     760 function calls in 0.001 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     77889 function calls (77828 primitive calls) in 0.097 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     75800 function calls in 0.073 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     75800 function calls in 0.073 seconds
 
 Also, the pytest battery now runs in 46 seconds on the iMac.
@@ -181,16 +181,16 @@ RESULTS: pytest battery time decreases from 46 seconds to 37 seconds.
 Also these:
 
     >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
-    >>> iotools.IOManager.profile_expr(expr)
+    >>> systemtools.IOManager.profile_expr(expr)
     760 function calls in 0.001 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     2663 function calls (2640 primitive calls) in 0.003 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     2415 function calls in 0.002 seconds
 
-    >>> iotools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
+    >>> systemtools.IOManager.profile_expr("score_manager._run(pending_user_input='q')")
     2415 function calls in 0.002 seconds
 
 CONCLUSION: quick-and-dirty caching saves about 20% of pytest run time for 

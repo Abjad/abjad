@@ -2,10 +2,10 @@
 
 import sys
 import time
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
-iotools.IOManager.clear_terminal()
+systemtools.IOManager.clear_terminal()
 start_time = time.time()
 command = r'ack --ignore-dir=docs --ignore-dir=build {!r}'
 command = command.format(sys.argv[1])
@@ -14,7 +14,7 @@ print
 print '    ' + command
 print
 
-iotools.IOManager.spawn_subprocess(command)
+systemtools.IOManager.spawn_subprocess(command)
 stop_time = time.time()
 total_time = stop_time - start_time
 

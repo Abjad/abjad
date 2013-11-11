@@ -2,7 +2,7 @@
 
 import os
 import re
-from abjad.tools import iotools
+from abjad.tools import systemtools
 
 
 def _fix_test_case_block_comments():
@@ -64,6 +64,6 @@ def _fix_test_case_block_comments():
 
 
 if __name__ == '__main__':
-    iotools.IOManager.clear_terminal()
+    systemtools.IOManager.clear_terminal()
     _fix_test_case_block_comments()
     print ''

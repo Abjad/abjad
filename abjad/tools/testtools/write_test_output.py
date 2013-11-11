@@ -33,7 +33,7 @@ def write_test_output(output, full_file_name, test_function_name,
     if cache_pdf:
         file_name = '{}.pdf'.format(test_function_name)
         pdf_path_name = os.path.join(parent_directory_name, file_name)
-        iotools.IOManager.write_expr_to_pdf(lilypond_file, pdf_path_name)
+        systemtools.IOManager.write_expr_to_pdf(lilypond_file, pdf_path_name)
     if cache_ly:
         file_name = '{}.ly'.format(test_function_name)
         ly_path_name = os.path.join(parent_directory_name, file_name)

@@ -57,8 +57,8 @@ class PersistenceAgent(object):
             >>> persist(staff).as_ly('~/example.ly') # doctest: +SKIP
 
         '''
-        from abjad.tools import iotools
-        iotools.IOManager.write_expr_to_ly(self._client, filename)
+        from abjad.tools import systemtools
+        systemtools.IOManager.write_expr_to_ly(self._client, filename)
 
     def as_module(self, filename, object_name):
         r'''Persists client as Python module.
@@ -104,5 +104,5 @@ class PersistenceAgent(object):
             >>> persist(staff).as_pdf('~/example.pdf') # doctest: +SKIP
 
         '''
-        from abjad.tools import iotools
-        iotools.IOManager.write_expr_to_pdf(self._client, filename)
+        from abjad.tools import systemtools
+        systemtools.IOManager.write_expr_to_pdf(self._client, filename)
