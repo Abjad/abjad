@@ -8,7 +8,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ::
 
-        >>> meter = timesignaturetools.Meter((4, 4))
+        >>> meter = metertools.Meter((4, 4))
         >>> print meter.graphviz_format
         digraph G {
             node_0 [label="4/4",

@@ -40,7 +40,7 @@ The same type of functions are likewise implemented for the following context ma
 
 * Renamed ``cfgtools`` to ``configurationtools``.
 * Renamed ``durtools`` to ``durationtools``.
-* Renamed ``metertools`` to ``timesignaturetools``.
+* Renamed ``metertools`` to ``metertools``.
 * Renamed ``seqtools`` to ``sequencetools``.
 * Renamed ``Mark.attach_mark()`` to ``Mark.attach()``.
 * Renamed ``Mark.detach_mark()`` to ``Mark.detach()``.

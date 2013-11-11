@@ -16,7 +16,7 @@ The following packages now load by default when you start Abjad::
     'lilypondfiletools', 'marktools', 'markuptools', 'mathtools', 'scoretools', 'scoretools', '
     'systemtools', 'pitcharraytools', 'pitchtools', 'scoretools', 'rhythmtreetools', 'schemetools', 
     'scoretemplatetools', 'scoretools', 'sequencetools', 'sievetools', 'scoretools', 'spannertools', 
-    'scoretools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools', 'timesignaturetools', 
+    'scoretools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools', 'metertools', 
     'rhythmmakertools', 'tonalanalysistools', 'scoretools', 'verticalitytools', 'scoretools']
 
 Improved formatting engine.  Scores now format approximately 30% faster.

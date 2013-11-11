@@ -568,7 +568,7 @@ class MutationAgent(object):
 
             ::
 
-                >>> meter = timesignaturetools.Meter((4, 4))
+                >>> meter = metertools.Meter((4, 4))
                 >>> print meter.pretty_rtm_format
                 (4/4 (
                     1/4
@@ -643,7 +643,7 @@ class MutationAgent(object):
             ::
 
                 >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-                >>> meter = timesignaturetools.Meter(rtm)
+                >>> meter = metertools.Meter(rtm)
                 >>> print meter.pretty_rtm_format # doctest: +SKIP
                 (4/4 (
                     (2/4 (
@@ -829,7 +829,7 @@ class MutationAgent(object):
 
             ::
 
-                >>> meter = timesignaturetools.Meter((9, 8))
+                >>> meter = metertools.Meter((9, 8))
                 >>> print meter.pretty_rtm_format
                 (9/8 (
                     (3/8 (
@@ -1250,7 +1250,7 @@ class MutationAgent(object):
 
             When establishing a meter on a selection of components
             which contain containers, like `Tuplets` or `Containers`,
-            `timesignaturetools.rewrite_meter()` will recurse into
+            `metertools.rewrite_meter()` will recurse into
             those containers, treating them as measures whose time
             signature is derived from the preprolated preprolated_duration
             of the container's contents:
@@ -1291,7 +1291,7 @@ class MutationAgent(object):
         Operates in place and returns none.
         '''
         from abjad.tools import selectiontools
-        from abjad.tools.timesignaturetools._rewrite_meter \
+        from abjad.tools.metertools._rewrite_meter \
             import _rewrite_meter
         assert isinstance(self._client, selectiontools.Selection)
         result = _rewrite_meter(

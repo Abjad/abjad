@@ -10,7 +10,7 @@ The ``Meter`` class
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A new ``Meter`` class is now available in the
-``timesignaturetools`` package.
+``metertools`` package.
 
 The class implements a rhythm tree-based model of nested time signature
 groupings.
@@ -28,7 +28,7 @@ Prime divisions greater than ``3`` are converted to sequences of ``2`` and
 The ``Meter`` class models a common-practice understanding of
 meter::
 
-    >>> meter = timesignaturetools.Meter((4, 4))
+    >>> meter = metertools.Meter((4, 4))
 
 ::
 
@@ -46,7 +46,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.Meter((3, 4)).pretty_rtm_format
+    >>> print metertools.Meter((3, 4)).pretty_rtm_format
     (3/4 (
         1/4
         1/4
@@ -54,7 +54,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.Meter((6, 8)).pretty_rtm_format
+    >>> print metertools.Meter((6, 8)).pretty_rtm_format
     (6/8 (
         (3/8 (
             1/8
@@ -67,7 +67,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.Meter((5, 4)).pretty_rtm_format
+    >>> print metertools.Meter((5, 4)).pretty_rtm_format
     (5/4 (
         (3/4 (
             1/4
@@ -79,7 +79,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.Meter((5, 4),
+    >>> print metertools.Meter((5, 4),
     ...     decrease_durations_monotonically=False).pretty_rtm_format
     (5/4 (
         (2/4 (
@@ -92,7 +92,7 @@ meter::
 
 ::
 
-    >>> print timesignaturetools.Meter((12, 8)).pretty_rtm_format
+    >>> print metertools.Meter((12, 8)).pretty_rtm_format
     (12/8 (
         (3/8 (
             1/8
@@ -115,7 +115,7 @@ Rewriting rhythms according to a different metric hierarchy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A new ``rewrite_meter()`` function is now available in the
-``timesignaturetools`` package.
+``metertools`` package.
 
 The function rewrites the contents of tie chains to match a meter.
 
@@ -152,7 +152,7 @@ meter for that measure's time signature:
 
 ::
 
-    >>> hierarchy = timesignaturetools.Meter((4, 4))
+    >>> hierarchy = metertools.Meter((4, 4))
     >>> print hierarchy.pretty_rtm_format
     (4/4 (
         1/4
@@ -162,7 +162,7 @@ meter for that measure's time signature:
 
 ::
 
-    >>> timesignaturetools.rewrite_meter(staff[1][:], hierarchy)
+    >>> metertools.rewrite_meter(staff[1][:], hierarchy)
     >>> f(staff)
     \new Staff {
         {
@@ -215,7 +215,7 @@ meter:
 ::
 
     >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-    >>> hierarchy = timesignaturetools.Meter(rtm)
+    >>> hierarchy = metertools.Meter(rtm)
     >>> print hierarchy.pretty_rtm_format
     (4/4 (
         (2/4 (
@@ -227,7 +227,7 @@ meter:
 
 ::
 
-    >>> timesignaturetools.rewrite_meter(staff[1][:], hierarchy)
+    >>> metertools.rewrite_meter(staff[1][:], hierarchy)
     >>> f(staff)
     \new Staff {
         {
@@ -271,7 +271,7 @@ Do not constrain the `maximum_dot_count`:
 
 ::
 
-    >>> timesignaturetools.rewrite_meter(measure[:], measure)
+    >>> metertools.rewrite_meter(measure[:], measure)
     >>> f(measure)
     {
         \time 3/4
@@ -290,7 +290,7 @@ Constrain the `maximum_dot_count` to `2`:
 ::
 
     >>> measure = p(parseable)
-    >>> timesignaturetools.rewrite_meter(measure[:], measure,
+    >>> metertools.rewrite_meter(measure[:], measure,
     ...     maximum_dot_count=2)
     >>> f(measure)
     {
@@ -311,7 +311,7 @@ Constrain the `maximum_dot_count` to `1`:
 ::
 
     >>> measure = p(parseable)
-    >>> timesignaturetools.rewrite_meter(measure[:], measure,
+    >>> metertools.rewrite_meter(measure[:], measure,
     ...     maximum_dot_count=1)
     >>> f(measure)
     {
@@ -333,7 +333,7 @@ Constrain the `maximum_dot_count` to `0`:
 ::
 
     >>> measure = p(parseable)
-    >>> timesignaturetools.rewrite_meter(measure[:], measure,
+    >>> metertools.rewrite_meter(measure[:], measure,
     ...     maximum_dot_count=0)
     >>> f(measure)
     {
@@ -694,9 +694,9 @@ number of classes throughout the system have started to gain a
 `graphviz_format` attribute, including ``datastructuretools.Digraph``,
 ``documentationtools.InheritanceGraph``, some of the
 ``rhythmtreetools.RhythmTreeNode`` subclasses, and even
-``timesignaturetools.Meter``::
+``metertools.Meter``::
 
-    >>> hierarchy = timesignaturetools.Meter((7, 4))
+    >>> hierarchy = metertools.Meter((7, 4))
     >>> topleveltools.graph(hierarchy)
 
 .. image:: images/graph.png

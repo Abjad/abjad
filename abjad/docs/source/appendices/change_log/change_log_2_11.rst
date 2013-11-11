@@ -191,10 +191,10 @@ Use ``TimeSignature.implied_prolation`` instead.
 Removed ``Measure.multiplier`` property.
 Use ``Measure.implied_prolation`` instead.
 
-Deprecated ``timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator()`` function.
+Deprecated ``metertools.time_signature_to_time_signature_with_power_of_two_denominator()`` function.
 Use ``TimeSignature.with_power_of_two_denominator()`` method instead.
 
-Remvoed ``timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator()`` function.
+Remvoed ``metertools.time_signature_to_time_signature_with_power_of_two_denominator()`` function.
 Use ``TimeSignature.with_power_of_two_denominator()`` method instead.
 
 Moved one function from ``scoretools`` to ``scoretools``.
