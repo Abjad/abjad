@@ -219,7 +219,7 @@ class CodeBlock(AbjadObject):
             result += line + '\n'
             first, sep, rest = line.partition('(')
             with contextlib.closing(StringIO.StringIO()) as stream:
-                with iotools.RedirectedStreams(stream, stream):
+                with systemtools.RedirectedStreams(stream, stream):
 
                     output_method = first.strip()
                     # We treat the line as a normal line
@@ -270,7 +270,7 @@ class CodeBlock(AbjadObject):
 
         # Simulate a final carriage return to break any incomplete indents
         with contextlib.closing(StringIO.StringIO()) as stream:
-            with iotools.RedirectedStreams(stream, stream):
+            with systemtools.RedirectedStreams(stream, stream):
                 console.push('')
                 output = stream.getvalue()
                 if output:

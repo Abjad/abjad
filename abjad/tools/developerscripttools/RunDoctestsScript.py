@@ -71,7 +71,7 @@ class RunDoctestsScript(DirectoryScript):
                         os.path.join(dir_path, file_name))
                     print os.path.relpath(file_path),
                     string_buffer = StringIO.StringIO()
-                    with iotools.RedirectedStreams(stdout=string_buffer):
+                    with systemtools.RedirectedStreams(stdout=string_buffer):
                         failure_count, test_count = doctest.testfile(
                             file_path,
                             module_relative=False,
