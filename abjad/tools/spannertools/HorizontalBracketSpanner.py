@@ -20,7 +20,7 @@ class HorizontalBracketSpanner(Spanner):
 
     ..  doctest::
 
-        >>> f(voice)
+        >>> print format(voice)
         \new Voice \with {
             \consists Horizontal_bracket_engraver
         } {

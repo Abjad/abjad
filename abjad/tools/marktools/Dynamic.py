@@ -17,7 +17,7 @@ class Dynamic(ContextMark):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'8 \f
                 d'8

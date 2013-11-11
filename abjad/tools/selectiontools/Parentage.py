@@ -26,7 +26,7 @@ class Parentage(SimultaneousSelection):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \new Score <<
                 \context Staff = "Treble Staff" {
                     \context Voice = "Treble Voice" {
@@ -156,7 +156,7 @@ class Parentage(SimultaneousSelection):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \context Score = "CustomScore" <<
                 \context Staff = "CustomStaff" {
                     \context Voice = "CustomVoice" {
@@ -255,7 +255,7 @@ class Parentage(SimultaneousSelection):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \new Score <<
                 \new Staff {
                     \times 2/3 {

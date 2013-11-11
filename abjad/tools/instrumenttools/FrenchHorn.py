@@ -17,7 +17,7 @@ class FrenchHorn(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Horn }
             \set Staff.shortInstrumentName = \markup { Hn. }

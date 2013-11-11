@@ -17,7 +17,7 @@ class ContraltoVoice(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Contralto voice }
             \set Staff.shortInstrumentName = \markup { Contralto }

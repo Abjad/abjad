@@ -16,7 +16,7 @@ class Voice(Context):
 
     ..  doctest::
 
-        >>> f(voice)
+        >>> print format(voice)
         \new Voice {
             c'8
             d'8

@@ -104,7 +104,7 @@ class InspectionAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8 [
                     d'4
@@ -225,7 +225,7 @@ class InspectionAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8
                     \grace {
@@ -285,7 +285,7 @@ class InspectionAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \new Voice {
                         c'8
@@ -471,7 +471,7 @@ class InspectionAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 3/8
                     c'4
@@ -542,7 +542,7 @@ class InspectionAgent(object):
 
             ..  doctest::
 
-                >>> f(container)
+                >>> print format(container)
                 {
                     \override NoteHead #'color = #red
                     \override NoteHead #'style = #'harmonic
@@ -608,7 +608,7 @@ class InspectionAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8 [
                     d'4

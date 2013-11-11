@@ -112,7 +112,7 @@ class NoteHeadInventory(TypedList):
 
             ..  doctest::
 
-                >>> f(chord)
+                >>> print format(chord)
                 <
                     \tweak #'color #red
                     e'
@@ -137,7 +137,7 @@ class NoteHeadInventory(TypedList):
 
             ..  doctest::
 
-                >>> f(chord)
+                >>> print format(chord)
                 <
                     \tweak #'color #red
                     e'

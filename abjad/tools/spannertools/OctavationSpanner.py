@@ -22,7 +22,7 @@ class OctavationSpanner(Spanner):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \ottava #1
                 c'8
@@ -164,7 +164,7 @@ class OctavationSpanner(Spanner):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                     {
                         \time 4/8
                         \ottava #1

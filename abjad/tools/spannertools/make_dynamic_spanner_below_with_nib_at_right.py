@@ -25,7 +25,7 @@ def make_dynamic_spanner_below_with_nib_at_right(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { \dynamic { mp } }
             \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . 1) }

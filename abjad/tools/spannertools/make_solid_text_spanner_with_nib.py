@@ -26,7 +26,7 @@ def make_solid_text_spanner_with_nib(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \override TextSpanner #'bound-details #'left #'text = \markup { foo }
                 \override TextSpanner #'bound-details #'right #'text = \markup {
@@ -54,7 +54,7 @@ def make_solid_text_spanner_with_nib(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \override TextSpanner #'bound-details #'left #'text = \markup { foo }
                 \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . 1) }

@@ -16,7 +16,7 @@ class StaffGroup(Context):
 
     ..  doctest::
 
-        >>> f(staff_group)
+        >>> print format(staff_group)
         \new StaffGroup <<
             \new Staff {
                 c'4

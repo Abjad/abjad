@@ -162,7 +162,7 @@ class PitchClassSegment(Segment):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 d'8
                 eqs'8
@@ -184,7 +184,7 @@ class PitchClassSegment(Segment):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \time 5/4
                 d'4 ~

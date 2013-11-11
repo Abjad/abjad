@@ -20,7 +20,7 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 _ \markup { \small 1 }
             d'8 _ \markup { \small 1 }

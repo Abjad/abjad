@@ -18,7 +18,7 @@ class SliceSelection(ContiguousSelection):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'4
                 d'4

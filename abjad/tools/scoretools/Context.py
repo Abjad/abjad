@@ -20,7 +20,7 @@ class Context(Container):
 
     ..  doctest::
 
-        >>> f(context)
+        >>> print format(context)
         \context TimeSignatureContext = "MeterVoice" {
         }
 
@@ -190,7 +190,7 @@ class Context(Container):
 
             >>> staff = Staff([])
             >>> staff.engraver_consists.append('Horizontal_bracket_engraver')
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff \with {
                 \consists Horizontal_bracket_engraver
             } {
@@ -209,7 +209,7 @@ class Context(Container):
 
             >>> staff = Staff([])
             >>> staff.engraver_removals.append('Time_signature_engraver')
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff \with {
                 \remove Time_signature_engraver
             } {
@@ -237,7 +237,7 @@ class Context(Container):
 
             ..  doctest::
 
-                >>> f(voice)
+                >>> print format(voice)
                 \context Voice = "HiddenTimeSignatureVoice" {
                     {
                         \time 1/8

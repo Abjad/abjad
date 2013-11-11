@@ -17,7 +17,7 @@ class BookBlock(NonattributedBlock):
 
     ..  doctest::
 
-        >>> f(book_block)
+        >>> print format(book_block)
         \book {}
 
     Returns book block.

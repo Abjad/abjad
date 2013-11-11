@@ -59,7 +59,7 @@ class PitchArrayInventory(TypedList):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \new Score <<
                 \new StaffGroup <<
                     \new Staff {

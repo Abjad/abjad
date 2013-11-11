@@ -70,7 +70,7 @@ class WoodwindFingering(AbjadObject):
 
     ..  doctest::
 
-        >>> f(chord)
+        >>> print format(chord)
         <ds' fs''>4
             _ \markup {
                 \woodwind-diagram
@@ -119,7 +119,7 @@ class WoodwindFingering(AbjadObject):
 
     ..  doctest::
 
-        >>> f(chord)
+        >>> print format(chord)
         <e' as' gqf''>1
             _ \markup {
                 \override
@@ -155,7 +155,7 @@ class WoodwindFingering(AbjadObject):
 
     ..  doctest::
 
-        >>> f(chord)
+        >>> print format(chord)
         <e' as' gqf''>1
             _ \markup {
                 \override

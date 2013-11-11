@@ -11,7 +11,7 @@ def make_empty_piano_score():
 
     ..  doctest::
 
-        >>> f(score)
+        >>> print format(score)
         \new Score <<
             \new PianoStaff <<
                 \context Staff = "treble" {

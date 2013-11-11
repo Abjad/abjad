@@ -15,7 +15,7 @@ class Tie(Spanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 ~
             c'8 ~

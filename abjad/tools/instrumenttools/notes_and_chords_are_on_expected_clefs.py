@@ -50,7 +50,7 @@ def notes_and_chords_are_on_expected_clefs(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \clef "percussion"
             \set Staff.instrumentName = \markup { Violin }

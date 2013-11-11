@@ -29,7 +29,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
 
     ..  doctest::
                 
-        >>> f(score)        
+        >>> print format(score)        
         \context Score = "String Orchestra Score" <<
             \context StaffGroup = "Violin Staff Group" <<
                 \context Staff = "Violin 1 Voice" {

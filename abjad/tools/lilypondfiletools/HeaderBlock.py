@@ -21,7 +21,7 @@ class HeaderBlock(AttributedBlock):
 
     ..  doctest::
 
-        >>> f(header_block)
+        >>> print format(header_block)
         \header {
             composer = \markup { Josquin }
             title = \markup { Missa sexti tonus }

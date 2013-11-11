@@ -19,7 +19,7 @@ class AltoTrombone(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Alto trombone }

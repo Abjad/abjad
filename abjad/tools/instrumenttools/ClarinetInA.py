@@ -17,7 +17,7 @@ class ClarinetInA(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in A }
             \set Staff.shortInstrumentName = \markup { Cl. A \natural }

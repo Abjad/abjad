@@ -17,7 +17,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
 
     ..  doctest::
 
-        >>> f(voice)
+        >>> print format(voice)
         \new Voice {
             c'16
             c'16
@@ -35,7 +35,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
 
     ..  doctest::
 
-        >>> f(voice)
+        >>> print format(voice)
         \new Voice {
             c'16
             c'16
@@ -54,7 +54,7 @@ def make_repeated_notes_with_shorter_notes_at_end(
 
     ..  doctest::
 
-        >>> f(voice)
+        >>> print format(voice)
         \new Voice {
             c'16
             c'16

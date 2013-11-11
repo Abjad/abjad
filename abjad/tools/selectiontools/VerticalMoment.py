@@ -17,7 +17,7 @@ class VerticalMoment(SimultaneousSelection):
 
     ..  doctest::
 
-        >>> f(score)
+        >>> print format(score)
         \new Score <<
             \new PianoStaff <<
                 \new Staff {

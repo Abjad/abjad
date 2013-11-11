@@ -14,7 +14,7 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction=Down):
         >>> scoretools.FixedDurationTuplet(Duration(2, 8), staff[-3:])
         FixedDurationTuplet(1/4, [e'8, f'8, g'8])
         >>> labeltools.label_leaves_in_expr_with_tuplet_depth(staff)
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 0 }

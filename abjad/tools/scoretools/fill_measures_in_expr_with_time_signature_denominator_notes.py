@@ -14,7 +14,7 @@ def fill_measures_in_expr_with_time_signature_denominator_notes(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             {
                 \time 3/4

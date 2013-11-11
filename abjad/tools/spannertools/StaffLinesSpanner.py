@@ -15,7 +15,7 @@ class StaffLinesSpanner(Spanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \stopStaff
             \override Staff.StaffSymbol #'line-count = #1

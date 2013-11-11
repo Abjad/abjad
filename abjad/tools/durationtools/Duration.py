@@ -850,7 +850,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
             ..  doctest::
 
-                >>> f(note)
+                >>> print format(note)
                 c'4 ^ \markup { 1'57\\" }
 
         Returns string.

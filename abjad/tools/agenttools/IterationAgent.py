@@ -62,7 +62,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 {
                     \time 2/8
@@ -124,7 +124,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 {
                     \time 2/8
@@ -267,7 +267,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(voice)
+            >>> print format(voice)
             \new Voice {
                 c'8 [
                 \grace {
@@ -350,7 +350,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \new Score <<
                 \new Staff {
                     c'8
@@ -430,7 +430,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 <<
                     \context Voice = "voice 1" {
@@ -529,7 +529,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 <<
                     \context Voice = "voice 1" {
@@ -662,7 +662,7 @@ class IterationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \times 2/3 {
                         c'8
@@ -744,7 +744,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff <<
                 \context Voice = "TimeSignatuerVoice" {
                     {
@@ -807,7 +807,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'4 ~
                 \times 2/3 {
@@ -902,7 +902,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \new Score <<
                 \new Staff {
                     c'4
@@ -1000,7 +1000,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \new Score <<
                 \new Staff {
                     c'4
@@ -1075,7 +1075,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'8 ~
                 c'32
@@ -1155,7 +1155,7 @@ class IterationAgent(object):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \new Score <<
                 \new Staff {
                     \tweak #'text #tuplet-number::calc-fraction-text

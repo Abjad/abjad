@@ -87,7 +87,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     ..  doctest::
 
-        >>> f(_[0])
+        >>> print format(_[0])
         \times 2/3 {
             c'8
             \times 4/5 {

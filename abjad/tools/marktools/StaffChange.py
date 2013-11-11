@@ -16,7 +16,7 @@ class StaffChange(ContextMark):
 
     ..  doctest::
 
-        >>> f(piano_staff)
+        >>> print format(piano_staff)
         \new PianoStaff <<
             \context Staff = "RHStaff" {
                 c'8
@@ -41,7 +41,7 @@ class StaffChange(ContextMark):
 
     ..  doctest::
 
-        >>> f(piano_staff)
+        >>> print format(piano_staff)
         \new PianoStaff <<
             \context Staff = "RHStaff" {
                 c'8

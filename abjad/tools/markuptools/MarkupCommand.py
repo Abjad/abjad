@@ -36,7 +36,7 @@ class MarkupCommand(AbjadObject):
 
     ..  doctest::
 
-        >>> f(note)
+        >>> print format(note)
         c'4
             - \markup {
                 \combine

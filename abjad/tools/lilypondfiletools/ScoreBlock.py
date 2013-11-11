@@ -18,7 +18,7 @@ class ScoreBlock(NonattributedBlock):
     ::
 
         >>> score_block.append(Staff([]))
-        >>> f(score_block)
+        >>> print format(score_block)
         \score {
             \new Staff {
             }

@@ -12,7 +12,7 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(pitch_carriers,
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8
             d'8

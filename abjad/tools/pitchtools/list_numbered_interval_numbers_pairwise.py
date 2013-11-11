@@ -11,7 +11,7 @@ def list_numbered_interval_numbers_pairwise(pitch_carriers, wrap=False):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8
             d'8

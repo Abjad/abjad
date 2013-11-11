@@ -28,7 +28,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             {
                 \time 3/8

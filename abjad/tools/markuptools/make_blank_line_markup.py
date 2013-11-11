@@ -15,7 +15,7 @@ def make_blank_line_markup():
 
     ..  doctest::
 
-        >>> f(markup)
+        >>> print format(markup)
         \markup { \fill-line { " " } }
 
     Returns markup.

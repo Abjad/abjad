@@ -18,7 +18,7 @@ def color_note_head_by_numbered_pitch_class_color_map(pitch_carrier):
 
     ..  doctest::
 
-        >>> f(note)
+        >>> print format(note)
         \once \override NoteHead #'color = #(x11-color 'red)
         c'4
 

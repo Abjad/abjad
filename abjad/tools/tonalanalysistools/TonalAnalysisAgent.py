@@ -17,7 +17,7 @@ class TonalAnalysisAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'4
                 d'4
@@ -38,7 +38,7 @@ class TonalAnalysisAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'4
                 d'4

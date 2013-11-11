@@ -96,7 +96,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 3/4
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -119,7 +119,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 3/4
                     c'4 \< \p
@@ -145,7 +145,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 3/4
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -170,7 +170,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 3/4
                     c'4. \< \p
@@ -203,7 +203,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8
                     d'4.
@@ -231,7 +231,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \times 2/3 {
                         c'8 [
@@ -254,7 +254,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \times 2/3 {
                         c'8 [
@@ -293,7 +293,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     {
                         \time 1/4
@@ -316,7 +316,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -360,7 +360,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \times 2/3 {
                         c'4 \< \p (
@@ -385,7 +385,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'16 \< \p (
                     d'16
@@ -434,7 +434,7 @@ class MutationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'8
                 cs'8
@@ -451,7 +451,7 @@ class MutationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'8
                 df'8
@@ -482,7 +482,7 @@ class MutationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'8
                 cs'8
@@ -499,7 +499,7 @@ class MutationAgent(object):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'8
                 cs'8
@@ -543,7 +543,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -582,7 +582,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -617,7 +617,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -659,7 +659,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     {
                         \time 2/4
@@ -694,7 +694,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/4
                     c'32
@@ -715,7 +715,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/4
                     c'32
@@ -742,7 +742,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/4
                     c'32
@@ -770,7 +770,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/4
                     c'32
@@ -799,7 +799,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/4
                     c'32
@@ -855,7 +855,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 9/8
                     c'2
@@ -873,7 +873,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 9/8
                     c'2
@@ -901,7 +901,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 9/8
                     c'4. ~
@@ -929,7 +929,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 9/8
                     c'2
@@ -972,7 +972,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(score)
+                >>> print format(score)
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1052,7 +1052,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(score)
+                >>> print format(score)
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1135,7 +1135,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(score)
+                >>> print format(score)
                 \new Score \with {
                     \remove Timing_translator
                     \remove Time_signature_engraver
@@ -1226,7 +1226,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 4/4
                     c'16 ~
@@ -1264,7 +1264,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 4/4
                     c'4 ~
@@ -1321,7 +1321,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8 (
                     d'8.
@@ -1343,7 +1343,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 3/8
                     c'8 -\accent ~
@@ -1359,7 +1359,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 3/8
                     c'4. -\accent
@@ -1377,7 +1377,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(container)
+                >>> print format(container)
                 {
                     c'8 (
                     d'8
@@ -1392,7 +1392,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(container)
+                >>> print format(container)
                 {
                     c'8. (
                     d'8.
@@ -1416,7 +1416,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8 (
                     d'8 ~
@@ -1439,7 +1439,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 5/16
                     c'8 -\accent ~
@@ -1455,7 +1455,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 5/16
                     c'4 -\accent ~
@@ -1474,7 +1474,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(container)
+                >>> print format(container)
                 {
                     c'8 (
                     d'8
@@ -1489,7 +1489,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(container)
+                >>> print format(container)
                 {
                     c'8 ( ~
                     c'32
@@ -1517,7 +1517,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8 (
                     \times 2/3 {
@@ -1539,7 +1539,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8 -\accent
                 }
@@ -1552,7 +1552,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \times 2/3 {
                         c'4 -\accent
@@ -1570,7 +1570,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(container)
+                >>> print format(container)
                 {
                     c'8 (
                     d'8
@@ -1585,7 +1585,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(container)
+                >>> print format(container)
                 {
                     \times 2/3 {
                         c'4 (
@@ -1618,7 +1618,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'8 (
                     \times 2/3 {
@@ -1641,7 +1641,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(note)
+                >>> print format(note)
                 c'8 * 1/2
 
             ::
@@ -1651,7 +1651,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(note)
+                >>> print format(note)
                 c'8 * 5/6
 
         ..  container:: example
@@ -1670,7 +1670,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 4/8
                     \times 4/5 {
@@ -1689,7 +1689,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 4/8
                     \times 4/5 {
@@ -1717,7 +1717,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 4/8
                     \times 4/5 {
@@ -1736,7 +1736,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 4/8
                     \times 4/5 {
@@ -1803,7 +1803,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1828,7 +1828,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1859,7 +1859,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1885,7 +1885,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1916,7 +1916,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1942,7 +1942,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -1975,7 +1975,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -2002,7 +2002,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -2037,7 +2037,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \times 2/3 {
                         c'4 (
@@ -2063,7 +2063,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \times 2/3 {
                         c'4 (
@@ -2230,7 +2230,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     {
                         \time 3/4
@@ -2255,7 +2255,7 @@ class MutationAgent(object):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \times 4/6 {
                         c'4 \< \p (

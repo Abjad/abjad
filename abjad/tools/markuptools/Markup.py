@@ -21,7 +21,7 @@ class Markup(Mark):
 
     ..  doctest::
 
-        >>> f(markup)
+        >>> print format(markup)
         \markup { \bold { "This is markup text." } }
 
     ::
@@ -37,12 +37,12 @@ class Markup(Mark):
 
     ..  doctest::
 
-        >>> f(markup_1)
+        >>> print format(markup_1)
         ^ \markup { foo }
 
     ..  doctest::
 
-        >>> f(markup_2) # doctest: +SKIP
+        >>> print format(markup_2) # doctest: +SKIP
         _ \markup { foo }
 
     Attach markup to score components by calling them on the component:
@@ -62,7 +62,7 @@ class Markup(Mark):
 
     ..  doctest::
 
-        >>> f(note)
+        >>> print format(note)
         c'4 ^ \markup { \italic { "This is also markup text." } }
 
     ::
@@ -145,12 +145,15 @@ class Markup(Mark):
         r'''Formats markup.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
+        Interprets `''` equal to `'lilypond'`.
 
         Returns string.
         '''
-        superclass = super(Markup, self)
-        return superclass.__format__(format_specification=format_specification)
+        if format_specification in ('', 'lilypond'):
+            return self._lilypond_format
+        elif format_specification == 'storage':
+            return self._tools_package_qualified_indented_repr
+        return str(self)
 
     def __hash__(self):
         return hash((type(self).__name__, self.contents))

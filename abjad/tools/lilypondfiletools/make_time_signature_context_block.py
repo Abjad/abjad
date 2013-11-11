@@ -16,7 +16,7 @@ def make_time_signature_context_block(
 
     ..  doctest::
 
-        >>> f(context_block) # doctest: +SKIP
+        >>> print format(context_block) # doctest: +SKIP
         \context {
             \type Engraver_group
             \name TimeSignatureContext

@@ -17,7 +17,7 @@ class MezzoSopranoVoice(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Mezzo-soprano voice }
             \set Staff.shortInstrumentName = \markup { Mezzo-soprano }

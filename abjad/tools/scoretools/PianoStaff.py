@@ -16,7 +16,7 @@ class PianoStaff(StaffGroup):
 
     ..  doctest::
 
-        >>> f(piano_staff)
+        >>> print format(piano_staff)
         \new PianoStaff <<
             \new Staff {
                 c'4

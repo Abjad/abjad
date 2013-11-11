@@ -13,7 +13,7 @@ class ComplexBeamSpanner(Beam):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'16
             e'16
@@ -30,7 +30,7 @@ class ComplexBeamSpanner(Beam):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set stemLeftBeamCount = #0
             \set stemRightBeamCount = #2
@@ -218,7 +218,7 @@ class ComplexBeamSpanner(Beam):
 
             ..  doctest::
 
-                >>> f(note)
+                >>> print format(note)
                 \set stemLeftBeamCount = #2
                 \set stemRightBeamCount = #0
                 c'16 [ ]
@@ -236,7 +236,7 @@ class ComplexBeamSpanner(Beam):
 
             ..  doctest::
 
-                >>> f(note)
+                >>> print format(note)
                 \set stemLeftBeamCount = #0
                 \set stemRightBeamCount = #2
                 c'16 [ ]
@@ -254,7 +254,7 @@ class ComplexBeamSpanner(Beam):
 
             ..  doctest::
 
-                >>> f(note)
+                >>> print format(note)
                 \set stemLeftBeamCount = #2
                 \set stemRightBeamCount = #2
                 c'16 [ ]
@@ -273,7 +273,7 @@ class ComplexBeamSpanner(Beam):
 
             ..  doctest::
 
-                >>> f(note)
+                >>> print format(note)
                 \set stemLeftBeamCount = #2
                 \set stemRightBeamCount = #2
                 c'16 [ ]
@@ -291,7 +291,7 @@ class ComplexBeamSpanner(Beam):
 
             ..  doctest::
 
-                >>> f(note)
+                >>> print format(note)
                 c'16
 
             Set to ``'left'``, ``'right'``, ``'both'``, true or false 

@@ -19,7 +19,7 @@ def label_leaves_in_expr_with_named_intervals(expr, markup_direction=Up):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 ^ \markup { +aug15 }
             cs'''8 ^ \markup { -M9 }

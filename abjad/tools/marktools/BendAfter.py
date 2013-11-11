@@ -14,7 +14,7 @@ class BendAfter(Mark):
 
     ..  doctest::
 
-        >>> f(note)
+        >>> print format(note)
         c'4 - \bendAfter #'-4.0
 
     '''

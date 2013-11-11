@@ -17,7 +17,7 @@ class Guitar(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Guitar }
             \set Staff.shortInstrumentName = \markup { Gt. }

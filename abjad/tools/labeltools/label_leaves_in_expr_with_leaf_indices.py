@@ -12,7 +12,7 @@ def label_leaves_in_expr_with_leaf_indices(expr, markup_direction=Down):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> labeltools.label_leaves_in_expr_with_leaf_indices(staff)
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 1 }

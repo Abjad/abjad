@@ -30,7 +30,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 {
                     \time 5/16
@@ -71,7 +71,7 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 {
                     \time 5/16

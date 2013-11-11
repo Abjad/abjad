@@ -28,7 +28,7 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \tempo 8=44
             {
@@ -58,7 +58,7 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(
 
     ::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \tempo 8=44
             {

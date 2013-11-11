@@ -20,7 +20,7 @@ class BarLine(Mark):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'4
             d'4
@@ -100,7 +100,7 @@ class BarLine(Mark):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'4
                     d'4

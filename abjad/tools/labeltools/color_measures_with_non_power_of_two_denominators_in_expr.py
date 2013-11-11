@@ -14,7 +14,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             {
                 \time 2/8
@@ -41,7 +41,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             {
                 \time 2/8

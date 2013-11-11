@@ -34,7 +34,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 {
                     \time 5/16
@@ -89,7 +89,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 {
                     \time 5/16

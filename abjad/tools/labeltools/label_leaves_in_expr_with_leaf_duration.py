@@ -11,7 +11,7 @@ def label_leaves_in_expr_with_leaf_duration(expr, markup_direction=Down):
 
     ..  doctest::
 
-        >>> f(tuplet)
+        >>> print format(tuplet)
         \times 2/3 {
             c'8 _ \markup { \small 1/12 }
             d'8 _ \markup { \small 1/12 }

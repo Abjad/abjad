@@ -16,7 +16,7 @@ def make_basic_lilypond_file(music=None):
 
     ..  doctest::
 
-        >>> f(lilypond_file) # doctest: +SKIP
+        >>> print format(lilypond_file) # doctest: +SKIP
         \header {
             composer = \markup { Josquin }
         }

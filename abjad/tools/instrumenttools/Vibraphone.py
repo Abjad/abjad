@@ -17,7 +17,7 @@ class Vibraphone(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Vibraphone }
             \set Staff.shortInstrumentName = \markup { Vibr. }

@@ -36,7 +36,7 @@ def label_leaves_in_expr_with_leaf_durations(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff \with {
                 \override TextScript #'staff-padding = #2.5
                 \override TimeSignature #'stencil = ##f
@@ -69,7 +69,7 @@ def label_leaves_in_expr_with_leaf_durations(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff \with {
                 \override TextScript #'staff-padding = #2.5
                 \override TimeSignature #'stencil = ##f
@@ -103,7 +103,7 @@ def label_leaves_in_expr_with_leaf_durations(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff \with {
                 \override TextScript #'staff-padding = #2.5
                 \override TimeSignature #'stencil = ##f

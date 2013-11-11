@@ -17,7 +17,7 @@ class Piccolo(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Piccolo }
             \set Staff.shortInstrumentName = \markup { Picc. }

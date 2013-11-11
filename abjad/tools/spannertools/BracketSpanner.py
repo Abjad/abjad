@@ -16,7 +16,7 @@ class BracketSpanner(TextSpanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup {
                 \draw-line #'(0 . -1) }

@@ -17,7 +17,7 @@ class EFlatClarinet(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in E-flat }
             \set Staff.shortInstrumentName = \markup { Cl. E-flat }

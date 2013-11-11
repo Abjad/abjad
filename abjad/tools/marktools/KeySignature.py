@@ -14,7 +14,7 @@ class KeySignature(ContextMark):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \key e \major
             e'8

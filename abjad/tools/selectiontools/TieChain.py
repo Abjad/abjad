@@ -217,7 +217,7 @@ class TieChain(ContiguousSelection):
                 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -239,7 +239,7 @@ class TieChain(ContiguousSelection):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -273,7 +273,7 @@ class TieChain(ContiguousSelection):
                 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {
@@ -295,7 +295,7 @@ class TieChain(ContiguousSelection):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff \with {
                     \override DynamicLineSpanner #'staff-padding = #3
                 } {

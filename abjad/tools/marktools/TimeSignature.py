@@ -19,7 +19,7 @@ class TimeSignature(ContextMark):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \time 4/8
             c'8

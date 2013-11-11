@@ -11,7 +11,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'4
             d'4
@@ -25,7 +25,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'4
             c'4

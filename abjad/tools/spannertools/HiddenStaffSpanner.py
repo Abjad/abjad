@@ -14,7 +14,7 @@ class HiddenStaffSpanner(Spanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \stopStaff
             c'8

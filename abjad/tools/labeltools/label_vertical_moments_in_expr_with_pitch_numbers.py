@@ -25,7 +25,7 @@ def label_vertical_moments_in_expr_with_pitch_numbers(
 
     ..  doctest::
 
-        >>> f(score)
+        >>> print format(score)
         \new Score <<
             \new Staff {
                 c'8

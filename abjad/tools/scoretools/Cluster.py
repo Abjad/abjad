@@ -16,7 +16,7 @@ class Cluster(Container):
 
     ..  doctest::
 
-        >>> f(cluster)
+        >>> print format(cluster)
         \makeClusters {
             c'8
             <d' g'>8

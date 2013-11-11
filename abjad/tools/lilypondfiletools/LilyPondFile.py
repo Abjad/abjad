@@ -40,7 +40,7 @@ class LilyPondFile(AbjadObject, list):
 
     ..  doctest::
 
-        >>> f(lilypond_file)
+        >>> print format(lilypond_file)
         % Abjad revision ...
         % ...
 

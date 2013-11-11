@@ -17,7 +17,7 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             {
                 \time 2/8
@@ -39,7 +39,7 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             {
                 \time 2/8

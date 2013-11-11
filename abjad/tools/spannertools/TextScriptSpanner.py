@@ -18,7 +18,7 @@ class TextScriptSpanner(Spanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \override TextScript #'color = #red
             c'8

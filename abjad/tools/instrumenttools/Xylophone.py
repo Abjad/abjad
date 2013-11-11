@@ -17,7 +17,7 @@ class Xylophone(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Xylophone }
             \set Staff.shortInstrumentName = \markup { Xyl. }

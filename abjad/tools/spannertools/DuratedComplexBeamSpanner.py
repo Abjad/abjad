@@ -24,7 +24,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set stemLeftBeamCount = #0
             \set stemRightBeamCount = #2

@@ -24,7 +24,7 @@ class StringQuartetScoreTemplate(AbjadObject):
 
     ..  doctest::
 
-        >>> f(score)
+        >>> print format(score)
         \context Score = "String Quartet Score" <<
             \context StaffGroup = "String Quartet Staff Group" <<
                 \context Staff = "First Violin Staff" {

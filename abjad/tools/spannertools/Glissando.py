@@ -16,7 +16,7 @@ class Glissando(Spanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 \glissando
             d'8 \glissando
@@ -37,7 +37,7 @@ class Glissando(Spanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'16 [ \glissando
             \once \override NoteColumn #'glissando-skip = ##t

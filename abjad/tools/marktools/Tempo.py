@@ -22,7 +22,7 @@ class Tempo(ContextMark):
 
     ..  doctest::
 
-        >>> f(score)
+        >>> print format(score)
         \new Score <<
             \new Staff {
                 \tempo 8=52

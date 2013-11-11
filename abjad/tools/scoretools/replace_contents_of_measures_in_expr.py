@@ -19,7 +19,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 {
                     \time 1/8
@@ -40,7 +40,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 {
                     \time 1/8

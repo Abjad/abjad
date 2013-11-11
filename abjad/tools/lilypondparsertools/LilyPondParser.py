@@ -35,7 +35,7 @@ class LilyPondParser(abctools.Parser):
         >>> parser = lilypondparsertools.LilyPondParser()
         >>> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
         >>> result = parser(input)
-        >>> f(result)
+        >>> print format(result)
         \new Staff {
             c'4 (
             d'8
@@ -51,7 +51,7 @@ class LilyPondParser(abctools.Parser):
         >>> parser = lilypondparsertools.LilyPondParser('nederlands')
         >>> input = '{ c des e fis }'
         >>> result = parser(input)
-        >>> f(result)
+        >>> print format(result)
         {
             c4
             df4

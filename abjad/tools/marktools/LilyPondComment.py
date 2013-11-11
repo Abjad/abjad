@@ -15,7 +15,7 @@ class LilyPondComment(Mark):
 
     ..  doctest::
 
-        >>> f(note)
+        >>> print format(note)
         % this is a comment
         c'4
 

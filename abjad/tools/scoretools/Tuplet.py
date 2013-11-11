@@ -21,7 +21,7 @@ class Tuplet(Container):
 
         ..  doctest::
 
-            >>> f(tuplet)
+            >>> print format(tuplet)
             \times 2/3 {
                 c'8
                 d'8
@@ -38,7 +38,7 @@ class Tuplet(Container):
 
         ..  doctest::
 
-            >>> f(tuplet)
+            >>> print format(tuplet)
             \times 2/3 {
                 c'8
                 \times 4/7 {
@@ -61,7 +61,7 @@ class Tuplet(Container):
 
         ..  doctest::
 
-            >>> f(tuplet)
+            >>> print format(tuplet)
             \times 2/3 {
                 c'8
                 \times 4/7 {
@@ -331,7 +331,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(tuplet)
+                    >>> print format(tuplet)
                     \times 2/3 {
                         c'8
                         d'8
@@ -355,7 +355,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(tuplet)
+                    >>> print format(tuplet)
                     \tweak #'text #tuplet-number::calc-fraction-text
                     \times 2/3 {
                         c'8
@@ -520,7 +520,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(tuplet)
+                    >>> print format(tuplet)
                     \times 2/3 {
                         c'8
                         d'8
@@ -545,7 +545,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(staff)
+                    >>> print format(staff)
                     \new Staff {
                         \times 2/3 {
                             c'4
@@ -566,7 +566,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(staff)
+                    >>> print format(staff)
                     \new Staff {
                         \scaleDurations #'(2 . 3) {
                             c'4
@@ -647,7 +647,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(tuplet)
+                    >>> print format(tuplet)
                     \tweak #'text #tuplet-number::calc-fraction-text
                     \times 4/3 {
                         c'8
@@ -691,7 +691,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(tuplet)
+                    >>> print format(tuplet)
                     \times 2/3 {
                         c'8
                         d'8
@@ -709,7 +709,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(tuplet)
+                    >>> print format(tuplet)
                     \times 2/3 {
                         c'8
                         d'8
@@ -723,7 +723,7 @@ class Tuplet(Container):
 
                 ..  doctest::
 
-                    >>> f(tuplet)
+                    >>> print format(tuplet)
                     \times 4/6 {
                         c'8
                         d'8
@@ -776,7 +776,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -806,7 +806,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -837,7 +837,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -869,7 +869,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -900,7 +900,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -933,7 +933,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -963,7 +963,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -994,7 +994,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -1026,7 +1026,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \times 4/5 {
@@ -1055,7 +1055,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/16
                     \times 8/11 {
@@ -1153,7 +1153,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 {
                     c'8.
                 }
@@ -1175,7 +1175,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 {
                     c'16
                     c'8
@@ -1198,7 +1198,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 8/5 {
                     c'64.
@@ -1223,7 +1223,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 3/2 {
                     c'64
@@ -1249,7 +1249,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 12/11 {
                     c'64
@@ -1276,7 +1276,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 8/5 {
                     c'128
@@ -1304,7 +1304,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 {
                     c'8.
                 }
@@ -1326,7 +1326,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 {
                     c'16
                     c'8
@@ -1349,7 +1349,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \times 4/5 {
                     c'32.
                     c'16.
@@ -1373,7 +1373,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     c'32
@@ -1399,7 +1399,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 6/11 {
                     c'32
@@ -1426,7 +1426,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \times 4/5 {
                     c'64
                     c'32
@@ -1465,7 +1465,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 7/16
                     {
@@ -1490,7 +1490,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 7/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -1512,7 +1512,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 7/16
                     {
@@ -1534,7 +1534,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 7/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -1558,7 +1558,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 7/16
                     \tweak #'text #tuplet-number::calc-fraction-text
@@ -1583,7 +1583,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 7/16
                     \times 1/2 {
@@ -1661,7 +1661,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'4
@@ -1678,7 +1678,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 6/10 {
                     c'4
@@ -1753,7 +1753,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
@@ -1768,7 +1768,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \times 2/3 {
                     c'4
                     d'4
@@ -1789,7 +1789,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \times 2/3 {
                     c'4
                     d'4
@@ -1803,7 +1803,7 @@ class Tuplet(Container):
 
             ..  doctest::
 
-                >>> f(tuplet)
+                >>> print format(tuplet)
                 \tweak #'text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8

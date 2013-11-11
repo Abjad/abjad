@@ -360,7 +360,7 @@ class PitchArrayRow(AbjadObject):
 
         ..  doctest::
 
-            >>> f(measure)
+            >>> print format(measure)
             {
                 \time 4/8
                 r8

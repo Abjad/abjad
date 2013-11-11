@@ -22,7 +22,7 @@ class Measure(FixedDurationContainer):
 
     ..  doctest::
 
-        >>> f(measure)
+        >>> print format(measure)
         {
             \time 4/8
             c'8
@@ -555,7 +555,7 @@ class Measure(FixedDurationContainer):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 {
                     \time 3/4
@@ -621,7 +621,7 @@ class Measure(FixedDurationContainer):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/8
                     c'8
@@ -636,7 +636,7 @@ class Measure(FixedDurationContainer):
 
             ..  doctest::
 
-                >>> f(measure)
+                >>> print format(measure)
                 {
                     \time 3/12
                     \scaleDurations #'(2 . 3) {

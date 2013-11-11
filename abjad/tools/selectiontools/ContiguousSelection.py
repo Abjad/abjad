@@ -365,7 +365,7 @@ class ContiguousSelection(Selection):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \time 2/4
                     c'8 (
@@ -387,7 +387,7 @@ class ContiguousSelection(Selection):
 
             ..  doctest::
 
-                >>> f(new_staff)
+                >>> print format(new_staff)
                 \new Staff {
                     e'8 (
                     f'8 )
@@ -413,7 +413,7 @@ class ContiguousSelection(Selection):
 
             ::
 
-                >>> f(new_staff)
+                >>> print format(new_staff)
                 \new Staff {
                     e'8 (
                     f'8 )
@@ -436,7 +436,7 @@ class ContiguousSelection(Selection):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \new Voice {
                         \times 2/3 {
@@ -460,7 +460,7 @@ class ContiguousSelection(Selection):
 
             ..  doctest::
 
-                >>> f(new_staff)
+                >>> print format(new_staff)
                 \new Staff {
                     \new Voice {
                         \times 2/3 {

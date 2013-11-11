@@ -17,7 +17,7 @@ class Glockenspiel(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Glockenspiel }
             \set Staff.shortInstrumentName = \markup { Gkspl. }

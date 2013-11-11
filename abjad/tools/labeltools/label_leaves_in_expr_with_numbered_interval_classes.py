@@ -24,7 +24,7 @@ def label_leaves_in_expr_with_numbered_interval_classes(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 ^ \markup { +1 }
             cs'''8 ^ \markup { -2 }

@@ -11,7 +11,7 @@ def remove_markup_from_leaves_in_expr(expr):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(staff)
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 2 }
@@ -26,7 +26,7 @@ def remove_markup_from_leaves_in_expr(expr):
     ::
 
         >>> labeltools.remove_markup_from_leaves_in_expr(staff)
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8
             d'8

@@ -20,7 +20,7 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
     ..  doctest::
 
-        >>> f(lilypond_file) # doctest: +SKIP
+        >>> print format(lilypond_file) # doctest: +SKIP
         % Abjad revision 4229
         % 2011-04-07 15:19
 

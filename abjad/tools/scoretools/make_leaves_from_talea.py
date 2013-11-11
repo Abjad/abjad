@@ -32,7 +32,7 @@ def make_leaves_from_talea(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 \time 4/4
                 c'8.
@@ -59,7 +59,7 @@ def make_leaves_from_talea(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 \time 4/4
                 c'8.
@@ -87,7 +87,7 @@ def make_leaves_from_talea(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 \time 4/4
                 c'8.

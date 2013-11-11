@@ -11,7 +11,7 @@ class LilyPondDimension(abctools.AbjadObject):
 
     ..  doctest::
 
-        >>> f(dimension)
+        >>> print format(dimension)
         2.0\in
 
     Returns LilyPondDimension instance.

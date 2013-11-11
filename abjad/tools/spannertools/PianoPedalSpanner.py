@@ -14,7 +14,7 @@ class PianoPedalSpanner(Spanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
             c'8 \sustainOn

@@ -19,7 +19,7 @@ class Accordion(Instrument):
 
     ..  doctest::
 
-        >>> f(piano_staff)
+        >>> print format(piano_staff)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Accordion }
             \set PianoStaff.shortInstrumentName = \markup { Acc. }

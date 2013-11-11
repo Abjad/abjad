@@ -9,7 +9,7 @@ def label_leaves_in_expr_with_written_leaf_duration(
 
         >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
         >>> labeltools.label_leaves_in_expr_with_leaf_durations(tuplet)
-        >>> f(tuplet)
+        >>> print format(tuplet)
         \times 2/3 {
             c'8 _ \markup { \column { \small 1/8 \small 1/12 } }
             d'8 _ \markup { \column { \small 1/8 \small 1/12 } }

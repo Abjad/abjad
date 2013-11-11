@@ -18,7 +18,7 @@ class FixedDurationContainer(Container):
 
     ..  doctest::
 
-        >>> f(container)
+        >>> print format(container)
         {
             c'8
             d'8

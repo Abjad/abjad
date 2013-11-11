@@ -17,7 +17,7 @@ class AltoFlute(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Alto flute }
             \set Staff.shortInstrumentName = \markup { Alt. fl. }

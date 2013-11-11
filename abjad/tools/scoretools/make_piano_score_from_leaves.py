@@ -11,7 +11,7 @@ def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):
 
     ..  doctest::
 
-        >>> f(score)
+        >>> print format(score)
         \new Score <<
             \new PianoStaff <<
                 \context Staff = "treble" {

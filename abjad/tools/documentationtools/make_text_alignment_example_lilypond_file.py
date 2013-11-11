@@ -11,7 +11,7 @@ def make_text_alignment_example_lilypond_file(music=None):
 
     ..  doctest::
 
-        >>> f(lilypond_file) # doctest: +SKIP
+        >>> print format(lilypond_file) # doctest: +SKIP
         % Abjad revision 5651
         % 2012-05-19 10:04
 

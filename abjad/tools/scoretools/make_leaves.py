@@ -33,7 +33,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 d'4
                 e'4
@@ -55,7 +55,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 <c' d' e'>2
                 <fs'' gs'' as''>2
@@ -75,7 +75,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 r4
                 r4
@@ -97,7 +97,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 <c' d' e'>4
                 r4
@@ -120,7 +120,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c''4.
                 c''8
@@ -143,7 +143,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c''4
                 d''4
@@ -166,7 +166,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \times 2/3 {
                     d''2
@@ -192,7 +192,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \time 13/16
                 ds''2. ~
@@ -220,7 +220,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \time 13/16
                 e''16 ~
@@ -249,7 +249,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new RhythmicStaff {
                 \time 5/8
                 r2 ~
@@ -277,7 +277,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \time 5/4
                 f'4 ~
@@ -310,7 +310,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \time 5/4
                 f'8 ~

@@ -22,7 +22,7 @@ class PaperBlock(AttributedBlock):
 
     ..  doctest::
 
-        >>> f(paper_block)
+        >>> print format(paper_block)
         \paper {
             print-first-page-number = ##f
             print-page-number = ##t

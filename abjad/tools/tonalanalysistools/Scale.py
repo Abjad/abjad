@@ -183,7 +183,7 @@ class Scale(PitchClassSegment):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 c'8
                 d'8
@@ -210,7 +210,7 @@ class Scale(PitchClassSegment):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 \time 5/4
                 c'4 ~
@@ -245,7 +245,7 @@ class Scale(PitchClassSegment):
 
         ..  doctest::
 
-            >>> f(score)
+            >>> print format(score)
             \new Score \with {
                 tempoWholesPerMinute = #(ly:make-moment 30 1)
             } <<

@@ -17,7 +17,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ..  doctest::
 
-        >>> f(score)
+        >>> print format(score)
         \new Score <<
             \new Staff {
                 \times 2/3 {

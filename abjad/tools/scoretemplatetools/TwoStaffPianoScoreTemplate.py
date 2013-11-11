@@ -24,7 +24,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
 
     ..  doctest::
 
-        >>> f(score)
+        >>> print format(score)
         \context Score = "Two-Staff Piano Score" <<
             \context PianoStaff = "Piano Staff" <<
                 \set PianoStaff.instrumentName = \markup { Piano }

@@ -22,7 +22,7 @@ class LayoutBlock(AttributedBlock):
 
     ..  doctest::
 
-        >>> f(layout_block)
+        >>> print format(layout_block)
         \layout {
             indent = #0
             ragged-right = ##t
@@ -82,7 +82,7 @@ class LayoutBlock(AttributedBlock):
 
         ..  doctest::
 
-            >>> f(layout_block)
+            >>> print format(layout_block)
             \layout {
                 \context {
                     \Score

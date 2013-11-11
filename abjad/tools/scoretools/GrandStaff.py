@@ -16,7 +16,7 @@ class GrandStaff(StaffGroup):
 
     ..  doctest::
 
-        >>> f(grand_staff)
+        >>> print format(grand_staff)
         \new GrandStaff <<
             \new Staff {
                 c'4

@@ -21,7 +21,7 @@ class Rest(Leaf):
 
         ..  doctest::
 
-            >>> f(measure)
+            >>> print format(measure)
             {
                 \time 3/16
                 r8.

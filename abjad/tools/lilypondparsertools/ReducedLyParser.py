@@ -28,7 +28,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = "c'4 r8. <b d' fs'>16"
         >>> result = parser(string)
-        >>> f(result)
+        >>> print format(result)
         {
             c'4
             r8.
@@ -42,7 +42,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = '4 -8 16. -32'
         >>> result = parser(string)
-        >>> f(result)
+        >>> print format(result)
         {
             c'4
             r8
@@ -58,7 +58,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = "4 d' 4"
         >>> result = parser(string)
-        >>> f(result)
+        >>> print format(result)
         {
             c'4
             d'4
@@ -70,7 +70,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = "c'4 d' e' f'"
         >>> result = parser(string)
-        >>> f(result)
+        >>> print format(result)
         {
             c'4
             d'4
@@ -86,7 +86,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
         >>> result = parser(string)
-        >>> f(result)
+        >>> print format(result)
         \times 2/3 {
             c'4
             c'4
@@ -126,7 +126,7 @@ class ReducedLyParser(abctools.Parser):
 
         >>> string = 'c16 [ ( d ~ d ) f ]'
         >>> result = parser(string)
-        >>> f(result)
+        >>> print format(result)
         {
             c16 [ (
             d16 ~

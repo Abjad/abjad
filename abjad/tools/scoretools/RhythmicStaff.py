@@ -11,7 +11,7 @@ class RhythmicStaff(Staff):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new RhythmicStaff {
             c'8
             d'8

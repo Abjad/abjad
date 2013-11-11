@@ -12,7 +12,7 @@ def color_leaves_in_expr(expr, color):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             cs'8. [
             r8.
@@ -30,7 +30,7 @@ def color_leaves_in_expr(expr, color):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \once \override Accidental #'color = #red
             \once \override Beam #'color = #red

@@ -12,7 +12,7 @@ def label_tie_chains_in_expr_with_tie_chain_duration(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \times 2/3 {
                 c'8 ~ _ \markup { \small 1/6 }

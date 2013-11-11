@@ -18,7 +18,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
     ..  doctest::
 
-        >>> f(measure)
+        >>> print format(measure)
         {
             \time 3/8
             c'8 [
@@ -33,7 +33,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
     ..  doctest::
 
-        >>> f(measure)
+        >>> print format(measure)
         {
             \time 6/16
             c'8 [

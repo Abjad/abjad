@@ -15,7 +15,7 @@ class StemTremolo(Mark):
 
     ..  doctest::
 
-        >>> f(note)
+        >>> print format(note)
         c'4 :16
 
     '''

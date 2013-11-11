@@ -19,7 +19,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
 
     ..  doctest::
 
-        >>> f(voice)
+        >>> print format(voice)
         \new Voice {
             c'4 ~
             c'16

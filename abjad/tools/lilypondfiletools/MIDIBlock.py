@@ -23,7 +23,7 @@ class MIDIBlock(AttributedBlock):
 
     ..  doctest::
 
-        >>> f(lilypond_file.score_block)
+        >>> print format(lilypond_file.score_block)
         \score {
             \new Score <<
                 \new Staff {

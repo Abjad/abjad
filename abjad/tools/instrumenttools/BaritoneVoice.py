@@ -18,7 +18,7 @@ class BaritoneVoice(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Baritone voice }
             \set Staff.shortInstrumentName = \markup { Baritone }

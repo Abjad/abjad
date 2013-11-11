@@ -17,7 +17,7 @@ def color_leaf(leaf, color):
 
     ..  doctest::
 
-        >>> f(note)
+        >>> print format(note)
         \once \override Accidental #'color = #red
         \once \override Beam #'color = #red
         \once \override Dots #'color = #red
@@ -42,7 +42,7 @@ def color_leaf(leaf, color):
 
     ..  doctest::
 
-        >>> f(rest)
+        >>> print format(rest)
         \once \override Dots #'color = #red
         \once \override Rest #'color = #red
         r4
@@ -64,7 +64,7 @@ def color_leaf(leaf, color):
 
     ..  doctest::
 
-        >>> f(chord)
+        >>> print format(chord)
         \once \override Accidental #'color = #red
         \once \override Beam #'color = #red
         \once \override Dots #'color = #red

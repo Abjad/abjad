@@ -21,7 +21,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             {
                 \time 2/16

@@ -14,7 +14,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 d'8
                 r8
@@ -28,7 +28,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 d'64
             }
@@ -41,7 +41,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 d'16
                 r64
@@ -55,7 +55,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 d'8
                 r1 ~

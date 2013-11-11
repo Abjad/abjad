@@ -192,7 +192,7 @@ class RhythmMaker(Maker):
 
         ..  doctest::
 
-            >>> f(staff)
+            >>> print format(staff)
             \new Staff {
                 {
                     \time 5/16

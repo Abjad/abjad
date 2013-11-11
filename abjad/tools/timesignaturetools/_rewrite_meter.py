@@ -199,7 +199,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             {
                 \time 2/4

@@ -28,7 +28,7 @@ class ContextBlock(AttributedBlock):
 
     ..  doctest::
 
-        >>> f(context_block)
+        >>> print format(context_block)
         \context {
             \Score
             \override BarNumber #'transparent = ##t

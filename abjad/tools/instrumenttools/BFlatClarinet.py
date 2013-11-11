@@ -17,7 +17,7 @@ class BFlatClarinet(Instrument):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in B-flat }
             \set Staff.shortInstrumentName = \markup { Cl. in B-flat }

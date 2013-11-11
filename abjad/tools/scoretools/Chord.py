@@ -20,7 +20,7 @@ class Chord(Leaf):
 
         ..  doctest::
 
-            >>> f(chord)
+            >>> print format(chord)
             <e' cs'' f''>4
 
     '''
@@ -245,7 +245,7 @@ class Chord(Leaf):
 
                 ..  doctest::
 
-                    >>> f(chord)
+                    >>> print format(chord)
                     <c' d' fs'>4
 
             ..  container:: example
@@ -262,7 +262,7 @@ class Chord(Leaf):
 
                 ..  doctest::
 
-                    >>> f(chord)
+                    >>> print format(chord)
                     <e'' f'' g''>4
 
             Set note heads with any iterable.
@@ -296,7 +296,7 @@ class Chord(Leaf):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     \set Staff.instrumentName = \markup { Glockenspiel }
                     \set Staff.shortInstrumentName = \markup { Gkspl. }
@@ -406,7 +406,7 @@ class Chord(Leaf):
 
                 ..  doctest::
 
-                    >>> f(chord)
+                    >>> print format(chord)
                     <f' b' d''>4
 
             Set written pitches with any iterable.

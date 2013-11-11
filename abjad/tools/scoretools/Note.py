@@ -21,7 +21,7 @@ class Note(Leaf):
 
         ..  doctest::
 
-            >>> f(measure)
+            >>> print format(measure)
             {
                 \time 3/16
                 cs''8.
@@ -229,7 +229,7 @@ class Note(Leaf):
 
                 ..  doctest::
 
-                    >>> f(staff)
+                    >>> print format(staff)
                     \new Staff {
                         \set Staff.instrumentName = \markup { Piccolo }
                         \set Staff.shortInstrumentName = \markup { Picc. }
@@ -248,7 +248,7 @@ class Note(Leaf):
                 ::
 
                     >>> staff[0].sounding_pitch = "dqs''"
-                    >>> f(staff)
+                    >>> print format(staff)
                     \new Staff {
                         \set Staff.instrumentName = \markup { Piccolo }
                         \set Staff.shortInstrumentName = \markup { Picc. }
@@ -396,7 +396,7 @@ class Note(Leaf):
 
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     c'4 [
                     d'4
@@ -412,7 +412,7 @@ class Note(Leaf):
     
             ..  doctest::
 
-                >>> f(staff)
+                >>> print format(staff)
                 \new Staff {
                     <
                         c'

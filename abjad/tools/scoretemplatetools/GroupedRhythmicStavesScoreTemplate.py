@@ -56,7 +56,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
             ::
 
-                >>> f(score_1)
+                >>> print format(score_1)
                 \context Score = "Grouped Rhythmic Staves Score" <<
                     \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                         \context RhythmicStaff = "Staff 1" {
@@ -88,7 +88,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
 
             ::
 
-                >>> f(score_2)
+                >>> print format(score_2)
                 \context Score = "Grouped Rhythmic Staves Score" <<
                     \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                         \context RhythmicStaff = "Staff 1" <<

@@ -12,7 +12,7 @@ def color_measure(measure, color='red'):
 
     ..  doctest::
 
-        >>> f(measure)
+        >>> print format(measure)
         {
             \time 2/8
             c'8
@@ -30,7 +30,7 @@ def color_measure(measure, color='red'):
 
     ..  doctest::
 
-        >>> f(measure)
+        >>> print format(measure)
         {
             \override Beam #'color = #red
             \override Dots #'color = #red

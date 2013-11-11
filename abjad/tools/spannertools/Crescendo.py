@@ -12,7 +12,7 @@ class Crescendo(Hairpin):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             r4
             c'8
@@ -30,7 +30,7 @@ class Crescendo(Hairpin):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             r4 \<
             c'8
@@ -49,7 +49,7 @@ class Crescendo(Hairpin):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             r4
             c'8
@@ -67,7 +67,7 @@ class Crescendo(Hairpin):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             r4
             c'8 \<

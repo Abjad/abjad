@@ -15,7 +15,7 @@ class PhrasingSlur(Spanner):
 
     ..  doctest::
 
-        >>> f(staff)
+        >>> print format(staff)
         \new Staff {
             c'8 \(
             d'8
