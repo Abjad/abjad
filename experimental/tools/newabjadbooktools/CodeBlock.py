@@ -194,7 +194,7 @@ class CodeBlock(AbjadObject):
         return {
             'topleveltools.graph': newabjadbooktools.GraphvizOutputProxy,
             'topleveltools.play':  newabjadbooktools.MIDIOutputProxy,
-            'iotools.plot': newabjadbooktools.GnuplotOutputProxy,
+            'interpolationtools.plot': newabjadbooktools.GnuplotOutputProxy,
             'topleveltools.show': newabjadbooktools.LilyPondOutputProxy,
             'play': newabjadbooktools.MIDIOutputProxy,
             'show': newabjadbooktools.LilyPondOutputProxy,

@@ -8,7 +8,7 @@ class GnuplotOutputProxy(ImageOutputProxy):
 
     ::
 
-        >>> bpf = datastructuretools.BreakPointFunction({
+        >>> bpf = interpolationtools.BreakPointFunction({
         ...     0.:   0.,  
         ...     0.75: (-1, 1.),
         ...     1.:   0.25,
