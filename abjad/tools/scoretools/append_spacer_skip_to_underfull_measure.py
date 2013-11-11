@@ -52,7 +52,6 @@ def append_spacer_skip_to_underfull_measure(measure):
         time_signature_multiplier = \
             measure.time_signature.implied_prolation
         new_multiplier = (target_duration - duration) / time_signature_multiplier
-        #skip.lilypond_duration_multiplier = new_multiplier
         attach(new_multiplier, skip)
         measure.append(skip)
 

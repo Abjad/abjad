@@ -1099,7 +1099,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         chord = scoretools.Chord(pitches, duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            #chord.lilypond_duration_multiplier = p[2].multiplier
             multiplier = durationtools.Multiplier(p[2].multiplier)
             attach(multiplier, chord)
         self.client._process_post_events(chord, p[3])
@@ -1115,7 +1114,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events'
         rest = scoretools.MultimeasureRest(p[2].duration)
         if p[2].multiplier is not None:
-            #rest.lilypond_duration_multiplier = p[2].multiplier
             multiplier = durationtools.Multiplier([2].multiplier)
             attach(multiplier, rest)
         self.client._process_post_events(rest, p[3])
@@ -2432,7 +2430,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         post_events.extend(p[3])
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            #chord.lilypond_duration_multiplier = p[2].multiplier
             multiplier = durationtools.Multiplier(p[2].multiplier)
             attach(multiplier, chord)
         self.client._process_post_events(chord, post_events)
@@ -3056,7 +3053,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             rest = scoretools.Skip(p[2].duration)
         if p[2].multiplier is not None:
-            #rest.lilypond_duration_multiplier = p[2].multiplier
             multiplier = durationtools.Multiplier(p[2].multiplier)
             attach(multiplier, rest)
         p[0] = rest
@@ -3071,7 +3067,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             leaf = scoretools.Rest(p[5].duration)
         if p[5].multiplier is not None:
-            #leaf.lilypond_duration_multiplier = p[5].multiplier
             multiplier = durationtools.Multiplier(p[5].multiplier)
             attach(multiplier, leaf)
         # TODO: handle exclamations, questions, octave_check

@@ -21,6 +21,7 @@ class Leaf(Component):
     ### CLASS VARIABLES ##
 
     # TODO: see if _grace and _after_grace can be removed
+    #       or grace and after_grace; should only need one set of attrs
     __slots__ = (
         '_after_grace',
         '_grace',
@@ -656,12 +657,14 @@ class Leaf(Component):
             '''
             return self._lilypond_duration_multiplier
         def fset(self, expr):
-            if expr is None:
-                self._lilypond_duration_multiplier = None
-            else:
-                lilypond_duration_multiplier = durationtools.Multiplier(expr)
-                assert 0 <= lilypond_duration_multiplier
-                self._lilypond_duration_multiplier = lilypond_duration_multiplier
+#            if expr is None:
+#                self._lilypond_duration_multiplier = None
+#            else:
+#                lilypond_duration_multiplier = durationtools.Multiplier(expr)
+#                assert 0 <= lilypond_duration_multiplier
+#                self._lilypond_duration_multiplier = lilypond_duration_multiplier
+            assert isinstance(expr, durationtools.Multiplier), repr(expr)
+            self._lilypond_duration_multiplier = expr
         return property(**locals())
 
     @apply

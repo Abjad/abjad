@@ -50,7 +50,6 @@ class Chord(Leaf):
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
-            #lilypond_duration_multiplier = leaf.lilypond_duration_multiplier
             multipliers = leaf._get_attached_items(durationtools.Multiplier)
             if len(multipliers) == 1:
                 lilypond_duration_multiplier = multipliers[0]
