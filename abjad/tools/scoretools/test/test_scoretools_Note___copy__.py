@@ -20,7 +20,8 @@ def test_scoretools_Note___copy___02():
     r'''Copy note with LilyPond multiplier.
     '''
 
-    note_1 = Note(12, (1, 4), (1, 2))
+    note_1 = Note("c''4")
+    attach(Multiplier(1, 2), note_1)
     note_2 = copy.copy(note_1)
 
     assert isinstance(note_1, Note)

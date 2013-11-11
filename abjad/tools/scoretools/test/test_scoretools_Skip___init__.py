@@ -10,7 +10,7 @@ def test_scoretools_Skip___init___01():
     assert isinstance(skip, scoretools.Skip)
 
 
-def test_scoretools_Skip___init___03():
+def test_scoretools_Skip___init___02():
     r'''Initialize skip from containerize note.
     '''
 
@@ -25,7 +25,7 @@ def test_scoretools_Skip___init___03():
     assert skip.written_duration == duration
 
 
-def test_scoretools_Skip___init___04():
+def test_scoretools_Skip___init___03():
     r'''Initialize skip from tupletized note.
     '''
 
@@ -40,7 +40,7 @@ def test_scoretools_Skip___init___04():
     assert skip._parent is None
 
 
-def test_scoretools_Skip___init___05():
+def test_scoretools_Skip___init___04():
     r'''Initialize skip from beamed chord.
     '''
 
@@ -54,7 +54,7 @@ def test_scoretools_Skip___init___05():
     assert skip._parent is None
 
 
-def test_scoretools_Skip___init___06():
+def test_scoretools_Skip___init___05():
 
     note = Note(2, (1, 8))
     d = note.written_duration
@@ -68,7 +68,7 @@ def test_scoretools_Skip___init___06():
     assert skip.written_duration == d
 
 
-def test_scoretools_Skip___init___07():
+def test_scoretools_Skip___init___06():
 
     tuplet = scoretools.FixedDurationTuplet(
         Duration(2, 8), Note(0, (1, 8)) * 3)
@@ -80,7 +80,7 @@ def test_scoretools_Skip___init___07():
     assert tuplet[0].written_duration == d
 
 
-def test_scoretools_Skip___init___08():
+def test_scoretools_Skip___init___07():
     r'''Initialize skip from beamed note.
     '''
 
@@ -93,7 +93,7 @@ def test_scoretools_Skip___init___08():
     assert staff[0]._parent is staff
 
 
-def test_scoretools_Skip___init___09():
+def test_scoretools_Skip___init___08():
     r'''Initialize skip from unincorporaed rest.
     '''
 
@@ -108,7 +108,7 @@ def test_scoretools_Skip___init___09():
     assert skip.written_duration == d
 
 
-def test_scoretools_Skip___init___10():
+def test_scoretools_Skip___init___09():
     r'''Initialize skip from tupletized rest.
     '''
 
@@ -122,7 +122,7 @@ def test_scoretools_Skip___init___10():
     assert skip._parent is None
 
 
-def test_scoretools_Skip___init___11():
+def test_scoretools_Skip___init___10():
     r'''Initialize skip from spanned rest.
     '''
 

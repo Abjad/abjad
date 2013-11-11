@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from abjad import *
-from pytest import raises
 
 
 def test_scoretools_Note___init___01():
-    r'''Init note with pitch in octave zero.
+    r'''Initialize note with pitch in octave zero.
     '''
 
     note = Note(-37, (1, 4))
@@ -12,14 +12,14 @@ def test_scoretools_Note___init___01():
 
 
 def test_scoretools_Note___init___02():
-    r'''Init note with non-assignable duration.
+    r'''Initialize note with non-assignable duration.
     '''
 
-    raises(AssignabilityError, 'Note(0, (5, 8))')
+    pytest.raises(AssignabilityError, 'Note(0, (5, 8))')
 
 
 def test_scoretools_Note___init___03():
-    r'''Init note with LilyPond-style pitch string.
+    r'''Initialize note with LilyPond-style pitch string.
     '''
 
     note = Note('c,,', (1, 4))
@@ -27,7 +27,7 @@ def test_scoretools_Note___init___03():
 
 
 def test_scoretools_Note___init___04():
-    r'''Init note with complete LilyPond-style note string.
+    r'''Initialize note with complete LilyPond-style note string.
     '''
 
     note = Note('cs8.')
@@ -35,15 +35,7 @@ def test_scoretools_Note___init___04():
 
 
 def test_scoretools_Note___init___05():
-    r'''Init note with pitch, written duration and LilyPond multiplier.
-    '''
-
-    note = Note(12, (1, 4), (1, 2))
-    assert isinstance(note, Note)
-
-
-def test_scoretools_Note___init___06():
-    r'''Init note from chord.
+    r'''Initialize note from chord.
     '''
 
     c = Chord([2, 3, 4], (1, 4))
@@ -57,8 +49,8 @@ def test_scoretools_Note___init___06():
     assert note.written_duration == duration
 
 
-def test_scoretools_Note___init___07():
-    r'''Init note from tupletized chord.
+def test_scoretools_Note___init___06():
+    r'''Initialize note from tupletized chord.
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
@@ -70,8 +62,8 @@ def test_scoretools_Note___init___07():
     assert isinstance(note, Note)
 
 
-def test_scoretools_Note___init___08():
-    r'''Init note from beamed chord.
+def test_scoretools_Note___init___07():
+    r'''Initialize note from beamed chord.
     '''
 
     staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
@@ -83,8 +75,8 @@ def test_scoretools_Note___init___08():
     assert isinstance(note, Note)
 
 
-def test_scoretools_Note___init___09():
-    r'''Init note from rest.
+def test_scoretools_Note___init___08():
+    r'''Initialize note from rest.
     '''
 
     rest = Rest((1, 8))
@@ -99,8 +91,8 @@ def test_scoretools_Note___init___09():
     assert isinstance(rest, Rest)
 
 
-def test_scoretools_Note___init___10():
-    r'''Init note from tupletized rest.
+def test_scoretools_Note___init___09():
+    r'''Initialize note from tupletized rest.
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
@@ -113,8 +105,8 @@ def test_scoretools_Note___init___10():
     assert note._parent is None
 
 
-def test_scoretools_Note___init___11():
-    r'''Init note from beamed rest.
+def test_scoretools_Note___init___10():
+    r'''Initialize note from beamed rest.
     '''
 
     staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
@@ -127,7 +119,7 @@ def test_scoretools_Note___init___11():
     assert note._parent is None
 
 
-def test_scoretools_Note___init___12():
+def test_scoretools_Note___init___11():
     r'''Cast skip as note.
     '''
     skip = scoretools.Skip((1, 8))
@@ -140,8 +132,8 @@ def test_scoretools_Note___init___12():
     assert note.written_duration == d
 
 
-def test_scoretools_Note___init___13():
-    r'''Init note from tupletized skip.
+def test_scoretools_Note___init___12():
+    r'''Initialize note from tupletized skip.
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), scoretools.Skip((1, 8)) * 3)
@@ -154,8 +146,8 @@ def test_scoretools_Note___init___13():
     assert note._parent is None
 
 
-def test_scoretools_Note___init___14():
-    r'''Init note from beamed skip.
+def test_scoretools_Note___init___13():
+    r'''Initialize note from beamed skip.
     '''
 
     staff = Staff([Note(0, (1, 8)), scoretools.Skip((1, 8)), Note(0, (1, 8))])
@@ -168,32 +160,32 @@ def test_scoretools_Note___init___14():
     assert note._parent is None
 
 
-def test_scoretools_Note___init___15():
-    r'''Init note with cautionary accidental.
+def test_scoretools_Note___init___14():
+    r'''Initialize note with cautionary accidental.
     '''
 
     note = Note("c'?4")
     assert format(note) == "c'?4"
 
 
-def test_scoretools_Note___init___16():
-    r'''Init note with forced accidental.
+def test_scoretools_Note___init___15():
+    r'''Initialize note with forced accidental.
     '''
 
     note = Note("c'!4")
     assert format(note) == "c'!4"
 
 
-def test_scoretools_Note___init___17():
-    r'''Init note with both forced and cautionary accidental.
+def test_scoretools_Note___init___16():
+    r'''Initialize note with both forced and cautionary accidental.
     '''
 
     note = Note("c'!?4")
     assert format(note) == "c'!?4"
 
 
-def test_scoretools_Note___init___18():
-    r'''Init note from chord with forced and cautionary accidental.
+def test_scoretools_Note___init___17():
+    r'''Initialize note from chord with forced and cautionary accidental.
     '''
 
     c = Chord("<c'!? e' g'>4")
