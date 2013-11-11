@@ -3,17 +3,16 @@ from abjad import *
 
 
 def test_scoretools_Leaf__multiplied_duration_01():
-    r'''Mulplied leaf duration == written * multiplier.
+    r'''Mulplied duration == written * multiplier.
     '''
 
     note = Note("c'4")
-    note.lilypond_duration_multiplier = Multiplier(1, 2)
+    attach(Multiplier(1, 2), note)
     assert note._multiplied_duration == Duration(1, 8)
 
 
 def test_scoretools_Leaf__multiplied_duration_02():
-    r'''Mulplied leaf duration == written,
-    when multiplier is none.
+    r'''Mulplied duration equals duration when multiplier is none.
     '''
 
     note = Note("c'4")
@@ -21,20 +20,20 @@ def test_scoretools_Leaf__multiplied_duration_02():
 
 
 def test_scoretools_Leaf__multiplied_duration_03():
-    r'''Mulplied leaf duration can be set and then unset.
+    r'''Attach multiplier and then detach multiplier.
     '''
 
     note = Note("c'4")
     note.written_duration = Duration(3, 8)
-    note.lilypond_duration_multiplier = Multiplier(2, 3)
+    attach(Multiplier(2, 3), note)
 
     assert note.written_duration == Duration(3, 8)
-    assert note.lilypond_duration_multiplier == Multiplier(2, 3)
+    assert inspect(note).get_attached_item(Multiplier) == Multiplier(2, 3)
     assert note._multiplied_duration == Duration(1, 4)
 
     note.written_duration = Duration(1, 4)
-    note.lilypond_duration_multiplier = None
+    detach(Multiplier, note)
 
     assert note.written_duration == Duration(1, 4)
-    assert note.lilypond_duration_multiplier is None
+    assert inspect(note).get_attached_items(Multiplier) == ()
     assert note._multiplied_duration == Duration(1, 4)

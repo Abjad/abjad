@@ -17,7 +17,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Component(AbjadObject):
-    r'''Any score component.
+    r'''A score component.
 
     Notes, rests, chords, tuplets, voices, staves
     and scores are all components.
@@ -26,6 +26,7 @@ class Component(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_attached_items',
         '_dependent_context_marks',
         '_is_forbidden_to_update',
         '_marks_are_current',
@@ -50,6 +51,7 @@ class Component(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self):
+        self._attached_items = list()
         self._dependent_context_marks = list()
         self._is_forbidden_to_update = False
         self._marks_are_current = False
@@ -130,6 +132,40 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_attached_item(self, item_prototypes=None):
+        items = self._get_attached_items(item_prototypes=item_prototypes)
+        if not items:
+            message = 'no attached items found matching {!r}.'
+            message = message.format(item_prototypes)
+            raise ValueError(message)
+        elif 1 < len(items):
+            message = 'multiple attached items found matching {!r}.'
+            message = message.format(item_prototypes)
+            raise ValueError(message)
+        else:
+            return items[0]
+
+    def _get_attached_items(self, item_prototypes=None):
+        item_prototypes = item_prototypes or (object,)
+        if not isinstance(item_prototypes, tuple):
+            item_prototypes = (item_prototypes,)
+        prototype_objects, prototype_classes = [], []
+        for item_prototype in item_prototypes:
+            if isinstance(item_prototype, types.TypeType):
+                prototype_classes.append(item_prototype)
+            else:
+                prototype_objects.append(item_prototype)
+        prototype_objects = tuple(prototype_objects)
+        prototype_classes = tuple(prototype_classes)
+        matching_items = []
+        for item in self._attached_items:
+            if isinstance(item, prototype_classes):
+                matching_items.append(item)
+            elif any(item == x for x in prototype_objects):
+                matching_items.append(item)
+        matching_items = tuple(matching_items)
+        return matching_items
+
     def _cache_named_children(self):
         name_dictionary = {}
         if hasattr(self, '_named_children'):
@@ -166,10 +202,10 @@ class Component(AbjadObject):
 
     def _detach_marks(
         self,
-        mark_classes=None,
+        mark_prototypes=None,
         ):
         marks = []
-        for mark in self._get_marks(mark_classes=mark_classes):
+        for mark in self._get_marks(mark_prototypes=mark_prototypes):
             mark.detach()
             marks.append(mark)
         return tuple(marks)
@@ -284,12 +320,12 @@ class Component(AbjadObject):
             parentage = self._get_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
-    def _get_effective_context_mark(self, context_mark_classes=None):
+    def _get_effective_context_mark(self, context_mark_prototypes=None):
         from abjad.tools import marktools
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
         # do special things for time signature marks
-        if context_mark_classes == marktools.TimeSignature:
+        if context_mark_prototypes == marktools.TimeSignature:
             if isinstance(self, scoretools.Measure):
                 if self._has_mark(marktools.TimeSignature):
                     return self._get_mark(marktools.TimeSignature)
@@ -301,7 +337,7 @@ class Component(AbjadObject):
         for parent in self._get_parentage(include_self=True):
             parent_marks = parent._dependent_context_marks
             for mark in parent_marks:
-                if isinstance(mark, context_mark_classes):
+                if isinstance(mark, context_mark_prototypes):
                     if mark._get_effective_context() is not None:
                         candidate_marks.insert(mark)
                     elif isinstance(mark, marktools.TimeSignature):
@@ -400,9 +436,8 @@ class Component(AbjadObject):
     def _get_lineage(self):
         return selectiontools.Lineage(self)
 
-    # TODO: rename mark_classes=None to mark_items=None
-    def _get_mark(self, mark_classes=None):
-        marks = self._get_marks(mark_classes=mark_classes)
+    def _get_mark(self, mark_prototypes=None):
+        marks = self._get_marks(mark_prototypes=mark_prototypes)
         if not marks:
             raise MissingMarkError
         elif 1 < len(marks):
@@ -410,27 +445,26 @@ class Component(AbjadObject):
         else:
             return marks[0]
 
-    # TODO: rename mark_classes=None to mark_items=None
-    def _get_marks(self, mark_classes=None):
+    def _get_marks(self, mark_prototypes=None):
         from abjad.tools import marktools
-        mark_classes = mark_classes or (marktools.Mark,)
-        if not isinstance(mark_classes, tuple):
-            mark_classes = (mark_classes,)
-        mark_items = mark_classes[:]
-        mark_classes, mark_objects = [], []
+        mark_prototypes = mark_prototypes or (marktools.Mark,)
+        if not isinstance(mark_prototypes, tuple):
+            mark_prototypes = (mark_prototypes,)
+        mark_items = mark_prototypes[:]
+        mark_prototypes, mark_objects = [], []
         for mark_item in mark_items:
             if isinstance(mark_item, types.TypeType):
-                mark_classes.append(mark_item)
+                mark_prototypes.append(mark_item)
             elif isinstance(mark_item, marktools.Mark):
                 mark_objects.append(mark_item)
             else:
                 message = 'must be mark class or mark object: {!r}'
                 message = message.format(mark_item)
-        mark_classes = tuple(mark_classes)
+        mark_prototypes = tuple(mark_prototypes)
         mark_objects = tuple(mark_objects)
         matching_marks = []
         for mark in self._start_marks:
-            if isinstance(mark, mark_classes):
+            if isinstance(mark, mark_prototypes):
                 matching_marks.append(mark)
             elif any(mark == x for x in mark_objects):
                 matching_marks.append(mark)
@@ -438,7 +472,7 @@ class Component(AbjadObject):
 
     def _get_markup(self, direction=None):
         from abjad.tools import markuptools
-        markup = self._get_marks(mark_classes=(markuptools.Markup,))
+        markup = self._get_marks(mark_prototypes=(markuptools.Markup,))
         if direction is Up:
             return tuple(x for x in markup if x.direction is Up)
         elif direction is Down:
@@ -556,8 +590,8 @@ class Component(AbjadObject):
     def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
-    def _has_mark(self, mark_classes=None):
-        marks = self._get_marks(mark_classes=mark_classes)
+    def _has_mark(self, mark_prototypes=None):
+        marks = self._get_marks(mark_prototypes=mark_prototypes)
         return bool(marks)
 
     def _has_spanner(self, spanner_classes=None):

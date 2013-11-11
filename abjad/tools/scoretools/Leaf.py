@@ -98,18 +98,17 @@ class Leaf(Component):
     @property
     def _formatted_duration(self):
         from abjad.tools import marktools
-        from abjad.tools.agenttools.InspectionAgent import inspect
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = self.lilypond_duration_multiplier
-#        if multiplier is None:
-#            multipliers = inspect(self).get_marks(durationtools.Multiplier)
-#            if not multipliers:
-#                pass
-#            elif len(multipliers) == 1:
-#                multiplier = multipliers[0]
-#            elif 1 < len(multipliers):
-#                message = 'more than one LilyPond duration multiplier.'
-#                raise ValueError(message)
+        if multiplier is None:
+            multipliers = self._get_attached_items(durationtools.Multiplier)
+            if not multipliers:
+                pass
+            elif len(multipliers) == 1:
+                multiplier = multipliers[0]
+            elif 1 < len(multipliers):
+                message = 'more than one LilyPond duration multiplier.'
+                raise ValueError(message)
         if multiplier is not None:
             result = '{} * {!s}'.format(duration_string, multiplier)
         else:
@@ -123,15 +122,16 @@ class Leaf(Component):
                 multiplied_duration = self.written_duration
                 multiplied_duration *= self.lilypond_duration_multiplier
                 return multiplied_duration
-#            elif self._get_marks(durationtools.Multiplier):
-#                multipliers = self._get_marks(durationtools.Multiplier)
-#                if 1 == len(multipliers):
-#                    multiplier = multipliers[0]
-#                elif 1 < len(multipliers):
-#                    message = 'more than one duration multiplier.'
-#                    raise ValueError(message)
-#                multiplied_duration = multiplier * self.written_duration
-#                return multiplied_duration
+            elif self._get_attached_items(durationtools.Multiplier):
+                multipliers = self._get_attached_items(
+                    durationtools.Multiplier)
+                if 1 == len(multipliers):
+                    multiplier = multipliers[0]
+                elif 1 < len(multipliers):
+                    message = 'more than one duration multiplier.'
+                    raise ValueError(message)
+                multiplied_duration = multiplier * self.written_duration
+                return multiplied_duration
             else:
                 return durationtools.Duration(self.written_duration)
         else:

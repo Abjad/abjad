@@ -1,10 +1,10 @@
 import types
 
 
-def detach(attachable, component_expression):
-    r'''Detaches all matching attachables from `component_expression`.
+def detach(item, component_expression):
+    r'''Detaches all matching items from `component_expression`.
 
-    Returns tuple of zero detached attachables.
+    Returns tuple of zero detached items.
     '''
     from abjad.tools import marktools
     from abjad.tools import scoretools
@@ -13,34 +13,34 @@ def detach(attachable, component_expression):
 
     marks, spanners, grace_containers = [], [], []
     inspector = inspect(component_expression)
-    if isinstance(attachable, types.TypeType):
-        if issubclass(attachable, marktools.Mark):
-            marks = inspector.get_marks(attachable)
-        if issubclass(attachable, spannertools.Spanner):
-            spanners = inspector.get_spanners(attachable)
-        if issubclass(attachable, scoretools.GraceContainer):
-            grace_containers = inspector.get_grace_containers(attachable)
-#        else:
-#            assert hasattr(component_expression, '_start_marks')
-#            result = []
-#            for x in component_expression._start_marks[:]:
-#                if isinstance(x, attachable):
-#                    component_expression._start_marks.remove(x)
-#                    result.append(x)
-#            result = tuple(result)
-#            return result
+    if isinstance(item, types.TypeType):
+        if issubclass(item, marktools.Mark):
+            marks = inspector.get_marks(item)
+        elif issubclass(item, spannertools.Spanner):
+            spanners = inspector.get_spanners(item)
+        elif issubclass(item, scoretools.GraceContainer):
+            grace_containers = inspector.get_grace_containers(item)
+        else:
+            assert hasattr(component_expression, '_attached_items')
+            result = []
+            for x in component_expression._attached_items[:]:
+                if isinstance(x, item):
+                    component_expression._attached_items.remove(x)
+                    result.append(x)
+            result = tuple(result)
+            return result
     else:
-        if isinstance(attachable, marktools.Mark):
-            marks = inspector.get_marks(attachable)
-        elif isinstance(attachable, spannertools.Spanner):
-            spanners = inspector.get_spanners(attachable)
-        elif isinstance(attachable, scoretools.GraceContainer):
-            grace_containers = inspector.get_grace_containers(attachable)
-    attachables = []
-    attachables.extend(marks)
-    attachables.extend(spanners)
-    attachables.extend(grace_containers)
-    for attachable in attachables:
-        attachable._detach()
-    attachables = tuple(attachables)
-    return attachables
+        if isinstance(item, marktools.Mark):
+            marks = inspector.get_marks(item)
+        elif isinstance(item, spannertools.Spanner):
+            spanners = inspector.get_spanners(item)
+        elif isinstance(item, scoretools.GraceContainer):
+            grace_containers = inspector.get_grace_containers(item)
+    items = []
+    items.extend(marks)
+    items.extend(spanners)
+    items.extend(grace_containers)
+    for item in items:
+        item._detach()
+    items = tuple(items)
+    return items

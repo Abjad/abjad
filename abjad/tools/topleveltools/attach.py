@@ -1,12 +1,12 @@
 import types
 
 
-def attach(attachable, component_expression, target_context=None):
-    r'''Attaches `attachable` to `component_expression`.
+def attach(item, component_expression, target_context=None):
+    r'''Attaches `item` to `component_expression`.
 
     Creates attachment expression effective at `target_context`.
 
-    Derives `target_context` from the default target context of `attachable`
+    Derives `target_context` from the default target context of `item`
     when `target_context` is none.
 
     Returns none.
@@ -14,15 +14,19 @@ def attach(attachable, component_expression, target_context=None):
     from abjad.tools import scoretools
 
     if target_context is not None:
+        assert hasattr(item, '_attach')
+        assert hasattr(item, '_target_context')
         if isinstance(target_context, types.TypeType):
             assert issubclass(target_context, scoretools.Context)
         else:
             assert isinstance(target_context, scoretools.Context)
-        attachable._target_context = target_context
+        item._target_context = target_context
 
-    if hasattr(attachable, '_attach'):
-        attachable._attach(component_expression)
-#    elif hasattr(component_expression, '_start_marks'):
-#        component_expression._start_marks.append(attachable)
+    if hasattr(item, '_attach'):
+        item._attach(component_expression)
+    elif hasattr(component_expression, '_attached_items'):
+        component_expression._attached_items.append(item)
     else:
-        raise TypeError((attachable, component_expression))
+        message = 'can not attach {!r} to {!r}'
+        message = message.format(item, component_expression)
+        raise TypeError(message)

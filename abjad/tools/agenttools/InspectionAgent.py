@@ -62,6 +62,34 @@ class InspectionAgent(object):
         annotation_value = with_correct_name[0].value
         return annotation_value
 
+    def get_attached_item(
+        self,
+        item_prototypes=None,
+        ):
+        r'''Gets exactly one item matching `item_prototypes` attached to 
+        component.
+
+        Raises exception when no item matching `item_prototypes` is attached
+        to component.
+
+        Returns item.
+        '''
+        return self._component._get_attached_item(
+            item_prototypes=item_prototypes,
+            )
+
+    def get_attached_items(
+        self,
+        item_prototypes=None,
+        ):
+        r'''Get all items matching `item_prototypes` attached to component.
+
+        Returns tuple.
+        '''
+        return self._component._get_attached_items(
+            item_prototypes=item_prototypes,
+            )
+
     def get_badly_formed_components(self):
         r'''Gets badly formed components in component.
 
@@ -152,7 +180,7 @@ class InspectionAgent(object):
 
     def get_effective_context_mark(
         self,
-        context_mark_classes=None,
+        context_mark_prototypes=None,
         ):
         r'''Gets effective context mark of `context_mark_class`
         that governs component.
@@ -160,7 +188,7 @@ class InspectionAgent(object):
         Returns context mark or none.
         '''
         return self._component._get_effective_context_mark(
-            context_mark_classes=context_mark_classes,
+            context_mark_prototypes=context_mark_prototypes,
             )
 
     def get_effective_staff(self):
@@ -301,14 +329,13 @@ class InspectionAgent(object):
         '''
         return self._component._get_lineage()
 
-    # TODO: rename mark_classes=None to mark_items=None
     def get_mark(
         self,
-        mark_classes=None,
+        mark_prototypes=None,
         ):
-        r'''Gets exactly one mark of `mark_classes` attached to component.
+        r'''Gets exactly one mark of `mark_prototypes` attached to component.
 
-        Raises exception when no mark of `mark_classes` is attached
+        Raises exception when no mark of `mark_prototypes` is attached
         to component.
 
         .. note:: may now pass in both classes and objects.
@@ -316,22 +343,21 @@ class InspectionAgent(object):
         Returns mark.
         '''
         return self._component._get_mark(
-            mark_classes=mark_classes,
+            mark_prototypes=mark_prototypes,
             )
 
-    # TODO: rename mark_classes=None to mark_items=None
     def get_marks(
         self,
-        mark_classes=None,
+        mark_prototypes=None,
         ):
-        r'''Get all marks of `mark_classes` attached to component.
+        r'''Get all marks of `mark_prototypes` attached to component.
 
         .. note:: may now pass in both classes and objects.
 
         Returns tuple.
         '''
         return self._component._get_marks(
-            mark_classes=mark_classes,
+            mark_prototypes=mark_prototypes,
             )
 
     def get_markup(
