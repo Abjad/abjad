@@ -83,7 +83,6 @@ class Note(Leaf):
             self._copy_override_and_set_from_leaf(leaf)
         elif len(args) == 2:
             pitch, written_duration = args
-            lilypond_duration_multiplier = None
         else:
             message = 'can not initialize note from {!r}.'
             raise ValueError(message.format(args))

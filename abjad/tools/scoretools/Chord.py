@@ -75,7 +75,6 @@ class Chord(Leaf):
                 written_pitches = [x for x in written_pitches.split() if x]
             elif isinstance(written_pitches, type(self)):
                 written_pitches = written_pitches.written_pitches
-            lilypond_duration_multiplier = None
         else:
             message = 'can not initialize chord from {!r}.'
             message = message.format(args)

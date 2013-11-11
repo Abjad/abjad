@@ -125,8 +125,6 @@ def label_leaves_in_expr_with_leaf_durations(
             if leaf._get_attached_items(durationtools.Multiplier):
                 multiplier = leaf._get_attached_item(durationtools.Multiplier)
                 multiplier = '* %s' % str(leaf.lilypond_duration_multiplier)
-            elif leaf.lilypond_duration_multiplier is not None:
-                multiplier = '* %s' % str(leaf.lilypond_duration_multiplier)
             else:
                 multiplier = ''
             if label_written_durations:

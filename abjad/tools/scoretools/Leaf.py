@@ -39,9 +39,9 @@ class Leaf(Component):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, written_duration, lilypond_duration_multiplier=None):
+    def __init__(self, written_duration):
         Component.__init__(self)
-        self._lilypond_duration_multiplier = lilypond_duration_multiplier
+        self._lilypond_duration_multiplier = None
         self._leaf_index = None
         self.written_duration = durationtools.Duration(written_duration)
         self.written_pitch_indication_is_nonsemantic = False
@@ -56,9 +56,7 @@ class Leaf(Component):
         '''
         result = []
         result.append(self.written_duration)
-        if self.lilypond_duration_multiplier is not None:
-            result.append(self.lilypond_duration_multiplier)
-        elif self._get_attached_items(durationtools.Multiplier):
+        if self._get_attached_items(durationtools.Multiplier):
             multiplier = self._get_attached_item(durationtools.Multiplier)
             result.append(multiplier)
         return tuple(result)
@@ -104,16 +102,15 @@ class Leaf(Component):
     def _formatted_duration(self):
         from abjad.tools import marktools
         duration_string = self.written_duration.lilypond_duration_string
-        multiplier = self.lilypond_duration_multiplier
-        if multiplier is None:
-            multipliers = self._get_attached_items(durationtools.Multiplier)
-            if not multipliers:
-                pass
-            elif len(multipliers) == 1:
-                multiplier = multipliers[0]
-            elif 1 < len(multipliers):
-                message = 'more than one LilyPond duration multiplier.'
-                raise ValueError(message)
+        multiplier = None
+        multipliers = self._get_attached_items(durationtools.Multiplier)
+        if not multipliers:
+            pass
+        elif len(multipliers) == 1:
+            multiplier = multipliers[0]
+        elif 1 < len(multipliers):
+            message = 'more than one LilyPond duration multiplier.'
+            raise ValueError(message)
         if multiplier is not None:
             result = '{} * {!s}'.format(duration_string, multiplier)
         else:
@@ -123,11 +120,7 @@ class Leaf(Component):
     @property
     def _multiplied_duration(self):
         if self.written_duration:
-            if self.lilypond_duration_multiplier is not None:
-                multiplied_duration = self.written_duration
-                multiplied_duration *= self.lilypond_duration_multiplier
-                return multiplied_duration
-            elif self._get_attached_items(durationtools.Multiplier):
+            if self._get_attached_items(durationtools.Multiplier):
                 multipliers = self._get_attached_items(
                     durationtools.Multiplier)
                 if 1 == len(multipliers):
@@ -413,10 +406,6 @@ class Leaf(Component):
         from abjad.tools import spannertools
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
-        if self.lilypond_duration_multiplier is not None:
-            multiplier = new_duration / self.written_duration
-            self.lilypond_duration_multiplier = multiplier
-            return [self]
         if self._get_attached_items(durationtools.Multiplier):
             detach(durationtools.Multiplier, self)
             multiplier = new_duration / self.written_duration
@@ -655,14 +644,9 @@ class Leaf(Component):
 
             Returns positive multiplier or none.
             '''
+            assert self._lilypond_duration_multiplier is None
             return self._lilypond_duration_multiplier
         def fset(self, expr):
-#            if expr is None:
-#                self._lilypond_duration_multiplier = None
-#            else:
-#                lilypond_duration_multiplier = durationtools.Multiplier(expr)
-#                assert 0 <= lilypond_duration_multiplier
-#                self._lilypond_duration_multiplier = lilypond_duration_multiplier
             assert isinstance(expr, durationtools.Multiplier), repr(expr)
             self._lilypond_duration_multiplier = expr
         return property(**locals())

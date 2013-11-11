@@ -50,7 +50,6 @@ class NaturalHarmonic(Leaf):
         Leaf.__init__(
             self, 
             self._note.written_duration,
-            self._note.lilypond_duration_multiplier,
             )
 
     ### SPECIAL METHODS ###
