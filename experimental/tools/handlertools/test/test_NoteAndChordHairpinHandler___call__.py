@@ -8,7 +8,7 @@ def test_NoteAndChordHairpinHandler___call___01():
     staff = Staff("r4 c'8 d'8 r4 e'8 r8")
     handler(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

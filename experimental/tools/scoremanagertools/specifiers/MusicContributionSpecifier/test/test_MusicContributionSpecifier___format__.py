@@ -21,7 +21,7 @@ def test_MusicContributionSpecifier___format___02():
     specifier.append(specifiers.ClefSpecifier(clef_name='treble'))
     specifier.append(specifiers.DirectiveSpecifier(directive_handler_name='foo directives'))
 
-    testtools.compare(
+    systemtools.TestManager.compare(
         format(specifier),
         '''
         specifiers.MusicContributionSpecifier([

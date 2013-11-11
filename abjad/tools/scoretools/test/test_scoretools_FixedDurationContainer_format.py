@@ -6,7 +6,7 @@ import pytest
 def test_scoretools_FixedDurationContainer_format_01():
 
     container = scoretools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

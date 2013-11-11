@@ -11,7 +11,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -39,7 +39,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -68,7 +68,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -99,7 +99,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -132,7 +132,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     measure = Measure((2, 8), [])
     measure.append(r"\times 2/3 { \times 2/3 { c'16 d'16 e'16 } f'8 g'8 }")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -153,7 +153,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -210,7 +210,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     '''
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

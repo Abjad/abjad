@@ -10,7 +10,7 @@ def test_scoretools_Container___setitem___slice_01():
     staff = Staff("c'8 d'8 e'8 f'8")
     staff[2:2] = [Note(7, (1, 8))]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -36,7 +36,7 @@ def test_scoretools_Container___setitem___slice_02():
     note = Note(7, (1, 8))
     staff[2:2] = [note]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -69,7 +69,7 @@ def test_scoretools_Container___setitem___slice_03():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -83,7 +83,7 @@ def test_scoretools_Container___setitem___slice_03():
 
     staff[2:2] = middle
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -110,7 +110,7 @@ def test_scoretools_Container___setitem___slice_04():
     note = Note(12, (1, 8))
     staff[1:3] = [note]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -135,7 +135,7 @@ def test_scoretools_Container___setitem___slice_05():
     notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
     staff[1:3] = notes
         
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -159,7 +159,7 @@ def test_scoretools_Container___setitem___slice_06():
     beam = Beam()
     attach(beam, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -178,7 +178,7 @@ def test_scoretools_Container___setitem___slice_06():
     sequential = staff[0]
     staff[0:1] = sequential.select_leaves()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -204,7 +204,7 @@ def test_scoretools_Container___setitem___slice_07():
     beam = Beam()
     attach(beam, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -222,7 +222,7 @@ def test_scoretools_Container___setitem___slice_07():
 
     staff[0:0] = staff[0][:1]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -249,7 +249,7 @@ def test_scoretools_Container___setitem___slice_08():
     beam = Beam()
     attach(beam, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -267,7 +267,7 @@ def test_scoretools_Container___setitem___slice_08():
 
     staff[0:0] = staff[0][:]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -292,7 +292,7 @@ def test_scoretools_Container___setitem___slice_09():
     beam = Beam()
     attach(beam, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -312,7 +312,7 @@ def test_scoretools_Container___setitem___slice_09():
     staff[0:0] = sequential[:]
     sequential[0:0] = staff[-1][:1]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -339,7 +339,7 @@ def test_scoretools_Container___setitem___slice_10():
     beam = Beam()
     attach(beam, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -358,7 +358,7 @@ def test_scoretools_Container___setitem___slice_10():
     staff[0:0] = staff[0][:1]
     staff[len(staff):len(staff)] = staff[-1][-1:]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -374,7 +374,7 @@ def test_scoretools_Container___setitem___slice_10():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -402,7 +402,7 @@ def test_scoretools_Container___setitem___slice_11():
     attach(beam, voice[:])
     voice[-1000:-1000] = [Rest((1, 8))]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -415,7 +415,7 @@ def test_scoretools_Container___setitem___slice_11():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -440,7 +440,7 @@ def test_scoretools_Container___setitem___slice_12():
     attach(beam, voice[:])
     voice[1000:1000] = [Rest((1, 8))]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -472,7 +472,7 @@ def test_scoretools_Container___setitem___slice_13():
     beam = Beam()
     attach(beam, inner[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -491,7 +491,7 @@ def test_scoretools_Container___setitem___slice_13():
     # empty outer container
     outer[:] = []
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -504,7 +504,7 @@ def test_scoretools_Container___setitem___slice_13():
         )
 
     # inner container leaves DO withdraw from all spanners
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         inner,
         r'''
         {
@@ -541,7 +541,7 @@ def test_scoretools_Container___setitem___slice_13():
     '''
 
     # inner container leaves DO NOT withdraw from spanners
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         inner,
         r'''
         {

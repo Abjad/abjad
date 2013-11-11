@@ -8,7 +8,7 @@ def test_marktools_Annotation___call___01():
     annotation = marktools.Annotation('foo')
     attach(annotation, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

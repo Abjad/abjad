@@ -17,7 +17,7 @@ def test_marktools_LilyPondComment_right_01():
     attach(comment, voice)
 
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -45,7 +45,7 @@ def test_marktools_LilyPondComment_right_02():
     comment = marktools.LilyPondComment('More comments right.', 'right')
     attach(comment, note)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override Beam #'thickness = #3

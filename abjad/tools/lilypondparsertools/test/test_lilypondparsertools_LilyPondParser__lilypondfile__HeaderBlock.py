@@ -23,7 +23,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     assert isinstance(result, lilypondfiletools.LilyPondFile)
     assert len(result) == 2
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result[0],
         r'''
         \header {
@@ -50,7 +50,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result[1],
         r'''
         \score {

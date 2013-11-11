@@ -18,7 +18,7 @@ def test_scoretools_append_spacer_skips_to_underfull_measures_in_expr_01():
 
     scoretools.append_spacer_skips_to_underfull_measures_in_expr(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

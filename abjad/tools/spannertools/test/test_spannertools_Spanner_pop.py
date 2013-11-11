@@ -10,7 +10,7 @@ def test_spannertools_Spanner_pop_01():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -32,7 +32,7 @@ def test_spannertools_Spanner_pop_01():
 
     result = beam.pop()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

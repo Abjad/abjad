@@ -13,7 +13,7 @@ def test_labeltools_color_note_head_by_numbered_pitch_class_color_map_01():
     '''
 
     assert inspect(note).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'color = #(x11-color 'red)

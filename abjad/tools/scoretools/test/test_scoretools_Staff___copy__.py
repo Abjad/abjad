@@ -15,7 +15,7 @@ def test_scoretools_Staff___copy___01():
 
     staff_2 = copy.copy(staff_1)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff_2,
         r'''
         \new Staff \with {

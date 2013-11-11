@@ -9,7 +9,7 @@ def test_lilypondfiletools_LayoutBlock_lilypond_command_mark_01():
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
     lilypond_file.layout_block.append(marktools.LilyPondCommand('accidentalStyle forget'))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         lilypond_file.layout_block,
         r'''
         \layout {

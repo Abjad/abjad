@@ -18,7 +18,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
     slur = Slur()
     attach(slur, voice[1:3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -34,7 +34,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
     beam = Beam()
     attach(beam, recipient[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         recipient,
         r'''
         \new Voice {
@@ -50,7 +50,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
 
     "Both crescendo and beam are now discontiguous."
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -66,7 +66,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
 
     "Slur is contiguous but recipient participates in discont. cresc."
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         recipient,
         r'''
         \new Voice {
@@ -88,7 +88,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -108,7 +108,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
     recipient = Voice("c'8 d'8 e'8 f'8")
     voice[:1]._give_dominant_spanners([recipient])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -124,7 +124,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         recipient,
         r'''
         \new Voice {

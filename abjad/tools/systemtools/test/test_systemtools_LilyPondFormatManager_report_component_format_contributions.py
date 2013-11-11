@@ -22,7 +22,7 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
     comment = marktools.LilyPondComment('textual information after', 'after')
     attach(comment, t)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         systemtools.LilyPondFormatManager.report_component_format_contributions(t),
         r'''
         slot 1:

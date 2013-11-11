@@ -12,7 +12,7 @@ def test_labeltools_label_tie_chains_in_expr_with_tie_chain_durations_01():
     attach(tie, staff.select_leaves()[2:])
     labeltools.label_tie_chains_in_expr_with_tie_chain_durations(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

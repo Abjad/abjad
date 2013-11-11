@@ -12,7 +12,7 @@ def test_marktools_LilyPondComment___init___01():
     comment = marktools.LilyPondComment('beginning of note content')
     attach(comment, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

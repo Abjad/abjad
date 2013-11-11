@@ -9,7 +9,7 @@ def test_scoretools_FixedDurationTuplet_scale_01():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     mutate(tuplet).scale(Multiplier(2))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -30,7 +30,7 @@ def test_scoretools_FixedDurationTuplet_scale_02():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     mutate(tuplet).scale(Multiplier(1, 2))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -51,7 +51,7 @@ def test_scoretools_FixedDurationTuplet_scale_03():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     mutate(tuplet).scale(Multiplier(4))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -72,7 +72,7 @@ def test_scoretools_FixedDurationTuplet_scale_04():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     mutate(tuplet).scale(Multiplier(1, 4))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -93,7 +93,7 @@ def test_scoretools_FixedDurationTuplet_scale_05():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     mutate(tuplet).scale(Multiplier(3, 2))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -114,7 +114,7 @@ def test_scoretools_FixedDurationTuplet_scale_06():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     mutate(tuplet).scale(Multiplier(2, 3))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 8/9 {
@@ -135,7 +135,7 @@ def test_scoretools_FixedDurationTuplet_scale_07():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     mutate(tuplet).scale(Multiplier(3, 5))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 4/5 {
@@ -157,7 +157,7 @@ def test_scoretools_FixedDurationTuplet_scale_08():
     tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8")
     mutate(tuplet).scale(Multiplier(3, 2))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -179,7 +179,7 @@ def test_scoretools_FixedDurationTuplet_scale_09():
 
     mutate(tuplet).scale(Multiplier(2, 3))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 4/5 {
@@ -198,7 +198,7 @@ def test_scoretools_FixedDurationTuplet_scale_10():
 
     tuplet = scoretools.FixedDurationTuplet(Duration(4, 8), "c'4 c'4.")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 4/5 {
@@ -210,7 +210,7 @@ def test_scoretools_FixedDurationTuplet_scale_10():
 
     mutate(tuplet).scale(Multiplier(2, 3))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 8/15 {

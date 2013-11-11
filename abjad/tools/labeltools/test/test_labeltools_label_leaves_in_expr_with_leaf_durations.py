@@ -33,7 +33,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_durations_01():
     '''
 
     assert inspect(tuplet).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {

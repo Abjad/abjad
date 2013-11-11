@@ -10,7 +10,7 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_01():
     tempo = Tempo("As fast as possible")
     attach(tempo, target.select_leaves()[0], target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Score <<
@@ -37,7 +37,7 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_02():
     tempo = Tempo((1, 4), 60)
     attach(tempo, target.select_leaves()[0], target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Score <<
@@ -63,7 +63,7 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_03():
     tempo = Tempo((1, 4), (59, 63))
     attach(tempo, target.select_leaves()[0], target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Score <<
@@ -93,7 +93,7 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_04():
         )
     attach(tempo, target.select_leaves()[0], target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Score <<
@@ -122,7 +122,7 @@ def test_lilypondparsertools_LilyPondParser__marks__TempoMark_05():
         )
     attach(tempo, target.select_leaves()[0], target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Score <<

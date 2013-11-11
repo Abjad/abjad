@@ -6,7 +6,7 @@ def test_scoretools_Component__move_marks_01():
 
     staff = Staff(r'\clef "bass" c \staccato d e f')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -26,7 +26,7 @@ def test_scoretools_Component__move_marks_01():
     
     staff[0]._move_marks(staff[2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

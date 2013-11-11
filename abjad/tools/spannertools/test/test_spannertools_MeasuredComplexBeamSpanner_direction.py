@@ -31,7 +31,7 @@ def test_spannertools_MeasuredComplexBeamSpanner_direction_01():
     beam = spannertools.MeasuredComplexBeamSpanner(direction=Down)
     attach(beam, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

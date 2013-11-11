@@ -20,7 +20,7 @@ def test_scoretools_Score_add_double_bar_01():
     >>
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

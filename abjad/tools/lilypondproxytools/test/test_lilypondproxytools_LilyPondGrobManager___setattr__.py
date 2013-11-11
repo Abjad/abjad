@@ -10,7 +10,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___01():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).accidental.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -32,7 +32,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___02():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff[1]).accidental.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -54,7 +54,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___03():
     override(score).bar_number.break_visibility = \
         schemetools.Scheme('end-of-line-invisible')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -83,7 +83,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___04():
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     override(score).bar_number.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -111,7 +111,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___05():
     attach(beam, voice[:])
     override(beam).beam.positions = (4, 4)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -133,7 +133,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___06():
     note = Note("c'4")
     override(note).clef.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override Clef #'color = #red
@@ -149,7 +149,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___07():
     note = Note("c'4")
     override(note).staff.clef.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override Staff.Clef #'color = #red
@@ -165,7 +165,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___08():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).clef.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -188,7 +188,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___09():
     override(cluster).cluster_spanner.style = 'ramp'
     override(cluster).cluster_spanner.padding = 0.1
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         cluster,
         r'''
         \makeClusters {
@@ -206,7 +206,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___09():
 
     del(override(cluster).cluster_spanner)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         cluster,
         r'''
         \makeClusters {
@@ -228,7 +228,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___10():
     attach(hairpin, voice[:])
     override(hairpin).dynamic_line_spanner.staff_padding = 4
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -251,7 +251,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___11():
     override(staff).dynamic_line_spanner.staff_padding = 2
     override(staff).dynamic_line_spanner.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -278,7 +278,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___12():
     attach(dynamic_text_spanner, voice[:])
     override(dynamic_text_spanner).dynamic_text.thickness = 3
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -303,7 +303,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___13():
     override(staff).dynamic_text.staff_padding = 2
     override(staff).dynamic_text.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -327,7 +327,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___14():
     override(staff).dynamic_text_spanner.staff_padding = 2
     override(staff).dynamic_text_spanner.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -352,7 +352,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___15():
     attach(glissando, voice[:])
     override(glissando).glissando.thickness = 3
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -375,7 +375,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___16():
     override(staff).hairpin.staff_padding = 2
     override(staff).hairpin.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -399,7 +399,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___17():
     contextualize(staff).instrument_name = markuptools.Markup(r'\circle { V }')
     override(staff).instrument_name.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -427,7 +427,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___18():
     attach(tempo, staff[0])
     override(score).metronome_mark.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -454,7 +454,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___19():
     staff = Staff([Note("c'4")])
     override(staff).multi_measure_rest.expand_limit = 12
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -474,7 +474,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___20():
     override(score).non_musical_paper_column.line_break_permission = False
     override(score).non_musical_paper_column.page_break_permission = False
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -501,7 +501,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___21():
     note = Note("c'4")
     override(note).note_column.ignore_collision = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteColumn #'ignore-collision = ##t
@@ -519,7 +519,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___22():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).note_column.ignore_collision = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -544,7 +544,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___23():
     override(note).note_head.style = 'cross'
 
     assert override(note).note_head.style == 'cross'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'style = #'cross
@@ -564,7 +564,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___24():
     override(note).note_head.style = 'mystrangehead'
 
     assert override(note).note_head.style == 'mystrangehead'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'style = #'mystrangehead
@@ -583,7 +583,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___25():
     chord = Chord([1, 2, 3], (1, 4))
     chord.note_heads[0].tweak.style = 'harmonic'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         chord,
         r'''
         <
@@ -604,7 +604,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___26():
     override(note).note_head.style = 'triangle'
 
     assert override(note).note_head.style == 'triangle'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'style = #'triangle
@@ -624,7 +624,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___27():
     override(note).note_head.style = 'do'
 
     assert override(note).note_head.style == 'do'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'style = #'do
@@ -644,7 +644,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___28():
     override(note).note_head.transparent = True
 
     assert override(note).note_head.transparent
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'transparent = ##t
@@ -663,7 +663,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___29():
     voice = Voice("c'8 d'8 e'8 f'8")
     override(voice).note_head.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice \with {
@@ -689,7 +689,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___30():
     attach(octavation_spanner, voice[:])
     override(octavation_spanner).staff.ottava_bracket.staff_position = 4
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -714,7 +714,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___31():
     override(staff).rehearsal_mark.staff_padding = 2
     override(staff).rehearsal_mark.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -737,7 +737,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___32():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).rest.transparent = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -761,7 +761,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___33():
     attach(articulation, note)
     override(note).script.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override Script #'color = #red
@@ -778,7 +778,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___34():
     override(staff).script.staff_padding = 2
     override(staff).script.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -805,7 +805,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___35():
     override(beam).score.spacing_spanner.strict_note_spacing = True
     override(beam).score.spacing_spanner.uniform_stretching = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -841,7 +841,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___36():
     override(beam).score.spacing_spanner.uniform_stretching = True
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -877,7 +877,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___37():
     override(score).spacing_spanner.strict_note_spacing = True
     override(score).spacing_spanner.uniform_stretching = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -903,7 +903,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___38():
     bass.extend(notes)
     override(score).span_bar.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -939,7 +939,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___39():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).staff_symbol.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -961,7 +961,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___40():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff[2]).staff.staff_symbol.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -983,7 +983,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___41():
     override(staff).staff_symbol.line_positions = \
         schemetools.SchemeVector(-4, -2, 2, 4)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -1006,7 +1006,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___42():
     override(note).stem.stroke_style = \
         schemetools.Scheme('grace', force_quotes=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override Stem #'stroke-style = #"grace"
@@ -1023,7 +1023,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___43():
     override(staff).stem_tremolo.slope = 0.5
     override(staff).stem_tremolo.staff_padding = 2
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -1047,7 +1047,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___44():
     override(score).system_start_bar.collapse_height = 0
     override(score).system_start_bar.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -1080,7 +1080,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___45():
     attach(text_script_spanner, staff[:])
     override(text_script_spanner).text_script.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1106,7 +1106,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___46():
     attach(text_spanner, staff[:])
     override(text_spanner).text_spanner.font_shape = 'italic'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1130,7 +1130,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___47():
     note = Note("c'4")
     override(note).tie.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override Tie #'color = #red
@@ -1146,7 +1146,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___48():
     staff = Staff("c'8 d'8 e'8 f'8")
     override(staff).time_signature.transparent = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -1168,7 +1168,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___49():
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     override(measure).time_signature.transparent = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -1191,7 +1191,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___50():
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     override(measure).staff.time_signature.transparent = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -1215,7 +1215,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___51():
     override(staff).trill_pitch_accidental.staff_padding = 2
     override(staff).trill_pitch_accidental.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -1240,7 +1240,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___52():
     attach(trill, voice[:])
     override(trill).trill_spanner.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -1264,7 +1264,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___53():
     attach(beam, voice[:])
     override(voice).tuplet_bracket.direction = Down
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice \with {
@@ -1290,7 +1290,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___54():
     attach(beam, voice[:])
     override(voice[1]).tuplet_bracket.direction = Down
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -1313,7 +1313,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___55():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     override(tuplet).tuplet_number.fraction = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \override TupletNumber #'fraction = ##t
@@ -1338,7 +1338,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___56():
     attach(beam, voice[:])
     override(voice).tuplet_number.fraction = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice \with {
@@ -1364,7 +1364,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___57():
     attach(beam, voice[:])
     override(voice[1]).tuplet_number.fraction = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -1389,7 +1389,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___58():
     attach(beam, voice[:])
     override(voice).tuplet_number.text = markuptools.Markup('6:4')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice \with {
@@ -1414,7 +1414,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___59():
     override(staff).vertical_alignment.staff_padding = 2
     override(staff).vertical_alignment.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -1438,7 +1438,7 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___60():
     override(staff).vertical_axis_group.staff_padding = 2
     override(staff).vertical_axis_group.Y_extent = (-1.5, 1.5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {

@@ -301,7 +301,7 @@ def test_agenttools_InspectionAgent_get_timespan_26():
     tempo = Tempo(Duration(1, 8), 48)
     attach(tempo, staff, target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -27,7 +27,7 @@ def test_agenttools_MutationAgent_respell_with_flats_03():
     staff = Staff([Note(n, (1, 8)) for n in range(12, 0, -1)])
     mutate(staff).respell_with_flats()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

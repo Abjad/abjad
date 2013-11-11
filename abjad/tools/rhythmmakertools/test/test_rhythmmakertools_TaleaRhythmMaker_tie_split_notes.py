@@ -35,7 +35,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -100,7 +100,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

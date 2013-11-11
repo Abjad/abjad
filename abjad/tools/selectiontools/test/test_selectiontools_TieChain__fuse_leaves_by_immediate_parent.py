@@ -30,7 +30,7 @@ def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_01():
     tie_chain = inspect(staff.select_leaves()[1]).get_tie_chain()
     result = tie_chain._fuse_leaves_by_immediate_parent()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -71,7 +71,7 @@ def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_02():
     tie_chain = inspect(staff.select_leaves()[1]).get_tie_chain()
     result = tie_chain._fuse_leaves_by_immediate_parent()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

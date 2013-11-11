@@ -7,7 +7,7 @@ def test_spannertools_make_dynamic_spanner_below_with_nib_at_right_01():
     staff = Staff("c'8 d'8 e'8 f'8")
     spannertools.make_dynamic_spanner_below_with_nib_at_right('mp', staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

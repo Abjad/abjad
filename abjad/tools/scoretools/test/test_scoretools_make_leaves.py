@@ -113,7 +113,7 @@ def test_scoretools_make_leaves_08():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -138,7 +138,7 @@ def test_scoretools_make_leaves_09():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -165,7 +165,7 @@ def test_scoretools_make_leaves_10():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

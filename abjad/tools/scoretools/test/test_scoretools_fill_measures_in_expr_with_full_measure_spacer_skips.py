@@ -19,7 +19,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
     '''
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -41,7 +41,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     staff.extend("abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -72,7 +72,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     scoretools.fill_measures_in_expr_with_full_measure_spacer_skips(
         staff, iterctrl)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -110,7 +110,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
         Measure((4, 8), "c'8 d'8 e'8 f'8"),
         ])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -141,7 +141,7 @@ def test_scoretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
         lambda m, i: 2 < len(m),
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

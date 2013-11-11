@@ -15,7 +15,7 @@ def test_agenttools_MutationAgent_replace_01():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -31,7 +31,7 @@ def test_agenttools_MutationAgent_replace_01():
     new_notes = 5 * Note(12, (1, 16))
     mutate(old_notes).replace(new_notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -62,7 +62,7 @@ def test_agenttools_MutationAgent_replace_02():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -78,7 +78,7 @@ def test_agenttools_MutationAgent_replace_02():
     new_notes = 5 * Note(12, (1, 16))
     mutate(old_notes).replace(new_notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -110,7 +110,7 @@ def test_agenttools_MutationAgent_replace_03():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -126,7 +126,7 @@ def test_agenttools_MutationAgent_replace_03():
     new_notes = 5 * Note(12, (1, 16))
     mutate(old_notes).replace(new_notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -157,7 +157,7 @@ def test_agenttools_MutationAgent_replace_04():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -173,7 +173,7 @@ def test_agenttools_MutationAgent_replace_04():
     new_notes = 5 * Note(12, (1, 16))
     mutate(old_notes).replace(new_notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -203,7 +203,7 @@ def test_agenttools_MutationAgent_replace_05():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -219,7 +219,7 @@ def test_agenttools_MutationAgent_replace_05():
     new_notes = 5 * Note(12, (1, 16))
     mutate(old_notes).replace(new_notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -244,7 +244,7 @@ def test_agenttools_MutationAgent_replace_06():
     beam = Beam()
     attach(beam, staff[0][:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -262,7 +262,7 @@ def test_agenttools_MutationAgent_replace_06():
     voice = voice_selection[0]
     old_components = mutate(voice_selection).replace(staff[0][:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

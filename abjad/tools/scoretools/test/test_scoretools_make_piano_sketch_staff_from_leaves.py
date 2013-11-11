@@ -45,7 +45,7 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
     >>
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {

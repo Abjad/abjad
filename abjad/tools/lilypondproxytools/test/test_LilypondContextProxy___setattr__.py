@@ -10,7 +10,7 @@ def test_LilypondContextProxy___setattr___01():
     score = Score([staff])
     contextualize(score).tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -36,7 +36,7 @@ def test_LilypondContextProxy___setattr___02():
     moment = schemetools.SchemeMoment(24)
     contextualize(score.select_leaves()[1]).score.tempo_wholes_per_minute = moment
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

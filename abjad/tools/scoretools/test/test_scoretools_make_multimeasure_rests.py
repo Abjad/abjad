@@ -7,7 +7,7 @@ def test_scoretools_make_multimeasure_rests_01():
     mmrs = scoretools.make_multimeasure_rests([(4, 8), (6, 8), (7, 8)])
     staff = Staff(mmrs)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

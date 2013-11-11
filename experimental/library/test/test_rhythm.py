@@ -9,7 +9,7 @@ def test_rhythm_01():
     containers = [Container(x) for x in leaf_lists]
     staff = Staff(containers)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -44,7 +44,7 @@ def test_rhythm_02():
     containers = [Container(x) for x in leaf_lists]
     staff = Staff(containers)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -72,7 +72,7 @@ def test_rhythm_03():
     containers = [Container(x) for x in leaf_lists]
     staff = Staff(containers)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -97,7 +97,7 @@ def test_rhythm_04():
     containers = [Container(x) for x in leaf_lists]
     staff = Staff(containers)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

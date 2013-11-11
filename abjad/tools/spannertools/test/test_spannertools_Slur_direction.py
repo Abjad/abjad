@@ -8,7 +8,7 @@ def test_spannertools_Slur_direction_01():
     slur = Slur(direction=Up)
     attach(slur, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

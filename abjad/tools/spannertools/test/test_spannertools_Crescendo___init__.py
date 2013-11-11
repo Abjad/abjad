@@ -16,7 +16,7 @@ def test_spannertools_Crescendo___init___02():
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

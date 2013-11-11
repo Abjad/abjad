@@ -8,7 +8,7 @@ def test_spannertools_ComplexBeamSpanner_direction_01():
     beam = spannertools.ComplexBeamSpanner(direction=Up)
     attach(beam, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -34,7 +34,7 @@ def test_spannertools_ComplexBeamSpanner_direction_02():
     beam = spannertools.ComplexBeamSpanner(direction=Down)
     attach(beam, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

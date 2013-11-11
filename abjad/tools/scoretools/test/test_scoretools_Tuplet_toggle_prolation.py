@@ -7,7 +7,7 @@ def test_scoretools_Tuplet_toggle_prolation_01():
 
     tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -21,7 +21,7 @@ def test_scoretools_Tuplet_toggle_prolation_01():
 
     tuplet.toggle_prolation()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -41,7 +41,7 @@ def test_scoretools_Tuplet_toggle_prolation_02():
 
     tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -54,7 +54,7 @@ def test_scoretools_Tuplet_toggle_prolation_02():
 
     tuplet.toggle_prolation()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text

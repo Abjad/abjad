@@ -20,7 +20,7 @@ def test_labeltools_label_leaves_in_expr_with_named_intervals_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -57,7 +57,7 @@ def test_labeltools_label_leaves_in_expr_with_named_intervals_02():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

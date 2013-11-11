@@ -23,7 +23,7 @@ def test_marktools_TimeSignature_numerator_02():
     attach(time_signature, staff)
     time_signature.numerator = 2
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

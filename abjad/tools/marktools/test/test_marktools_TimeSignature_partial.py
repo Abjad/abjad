@@ -8,7 +8,7 @@ def test_marktools_TimeSignature_partial_01():
     time_signature = TimeSignature((2, 8), partial=Duration(1, 8))
     attach(time_signature, staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -45,7 +45,7 @@ def test_marktools_TimeSignature_partial_03():
     attach(time_signature, staff)
     time_signature.partial = Duration(2, 8)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -63,7 +63,7 @@ def test_marktools_TimeSignature_partial_03():
 
     time_signature.partial = None
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -40,7 +40,7 @@ def test_spannertools_HiddenStaffSpanner___init___02():
     spanner = spannertools.HiddenStaffSpanner()
     attach(spanner, staff[1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -76,7 +76,7 @@ def test_spannertools_HiddenStaffSpanner___init___03():
     spanner = spannertools.HiddenStaffSpanner()
     attach(spanner, note)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \stopStaff

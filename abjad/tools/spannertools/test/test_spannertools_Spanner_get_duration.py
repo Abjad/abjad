@@ -21,7 +21,7 @@ def test_spannertools_Spanner_get_duration_01():
     decrescendo = Decrescendo()
     attach(decrescendo, voice[1][:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -60,7 +60,7 @@ def test_spannertools_Spanner_get_duration_02():
     decrescendo = Decrescendo()
     attach(decrescendo, voice[1][:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

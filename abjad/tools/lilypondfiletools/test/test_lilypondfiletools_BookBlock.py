@@ -6,7 +6,7 @@ def test_lilypondfiletools_BookBlock_01():
 
     book_block = lilypondfiletools.BookBlock()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         book_block,
         r'''
         \book {}

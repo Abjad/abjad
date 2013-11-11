@@ -32,7 +32,7 @@ def test_tonalanalysistools_Scale_make_score_01():
     >>
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {

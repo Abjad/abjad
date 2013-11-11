@@ -13,7 +13,7 @@ def test_marktools_LilyPondCommand___init___01():
     command = marktools.LilyPondCommand(r'slurDotted')
     attach(command, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -39,7 +39,7 @@ def test_marktools_LilyPondCommand___init___02():
     command = marktools.LilyPondCommand(r'slurUp')
     attach(command, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

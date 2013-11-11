@@ -6,7 +6,7 @@ def test_lilypondfiletools_make_time_signature_context_block_01():
 
     context_block = lilypondfiletools.make_time_signature_context_block()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         context_block,
         r'''
         \context {

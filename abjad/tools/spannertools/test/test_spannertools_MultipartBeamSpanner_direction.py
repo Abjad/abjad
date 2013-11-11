@@ -8,7 +8,7 @@ def test_spannertools_MultipartBeamSpanner_direction_01():
     spanner = spannertools.MultipartBeamSpanner(direction=Up)
     attach(spanner, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -24,7 +24,7 @@ def test_spannertools_MultipartBeamSpanner_direction_01():
 
     spanner.direction = Down
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

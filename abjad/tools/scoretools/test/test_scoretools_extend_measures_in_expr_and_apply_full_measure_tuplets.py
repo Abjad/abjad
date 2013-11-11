@@ -48,7 +48,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_01():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -46,7 +46,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -118,7 +118,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___02():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -195,7 +195,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___03():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -273,7 +273,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___04():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -351,7 +351,7 @@ def test_rhythmmakertools_DivisionBurnishedTaleaRhythmMaker___call___05():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

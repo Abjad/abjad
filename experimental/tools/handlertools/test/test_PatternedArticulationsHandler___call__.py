@@ -8,7 +8,7 @@ def test_PatternedArticulationsHandler___call___01():
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8")
     handler(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

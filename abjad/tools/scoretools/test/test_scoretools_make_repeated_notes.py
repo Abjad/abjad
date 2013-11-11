@@ -17,7 +17,7 @@ def test_scoretools_make_repeated_notes_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

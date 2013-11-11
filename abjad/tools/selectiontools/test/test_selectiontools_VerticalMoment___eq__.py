@@ -58,7 +58,7 @@ def test_selectiontools_VerticalMoment___eq___02():
         ''')
     score.append(piano_staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

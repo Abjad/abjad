@@ -11,7 +11,7 @@ def test_spannertools_StaffLinesSpanner_format_01():
     spanner = spannertools.StaffLinesSpanner(lines=3)
     attach(spanner, staff[2:7])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -45,7 +45,7 @@ def test_spannertools_StaffLinesSpanner_format_02():
         )
     attach(spanner, staff[2:7])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -77,7 +77,7 @@ def test_spannertools_StaffLinesSpanner_format_03():
     attach(spanner, staff[1:3])
     spanner.lines = [-1.5, 0, 1.5]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

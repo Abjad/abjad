@@ -10,7 +10,7 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_01(
     tie = spannertools.Tie()
     attach(tie, voice[:2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -24,7 +24,7 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_01(
 
     voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -49,7 +49,7 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_02(
     tie = spannertools.Tie()
     attach(tie, voice[2:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -63,7 +63,7 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_02(
 
     voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -105,7 +105,7 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_03(
     '''
 
     assert inspect(voice).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

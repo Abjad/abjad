@@ -6,7 +6,7 @@ def test_agenttools_InspectionAgent_get_leaf_01():
 
     staff = Staff([Voice("c'8 d'8 e'8 f'8"), Voice("g'8 a'8 b'8 c''8")])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -55,7 +55,7 @@ def test_agenttools_InspectionAgent_get_leaf_02():
     assert inspect(voice[2]).get_leaf(-1) is voice[1]
     assert inspect(voice[3]).get_leaf(-1) is voice[2]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -84,7 +84,7 @@ def test_agenttools_InspectionAgent_get_leaf_03():
     assert inspect(staff[2]).get_leaf(-1) is staff[1]
     assert inspect(staff[3]).get_leaf(-1) is staff[2]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -103,7 +103,7 @@ def test_agenttools_InspectionAgent_get_leaf_04():
 
     container = Container([Note(i, (1, 8)) for i in range(4)])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -132,7 +132,7 @@ def test_agenttools_InspectionAgent_get_leaf_05():
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 cs'8 d'8")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -160,7 +160,7 @@ def test_agenttools_InspectionAgent_get_leaf_06():
     container_2 = Container([Note(i, (1, 8)) for i in range(4, 8)])
     voice = Voice([container_1, container_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -199,7 +199,7 @@ def test_agenttools_InspectionAgent_get_leaf_07():
     tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 8), "ef'8 e'8 f'8")
     voice = Voice([tuplet_1, tuplet_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -234,7 +234,7 @@ def test_agenttools_InspectionAgent_get_leaf_08():
     voice_2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
     staff = Staff([voice_1, voice_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -268,7 +268,7 @@ def test_agenttools_InspectionAgent_get_leaf_09():
     voice_2.name = 'My Voice'
     staff = Staff([voice_1, voice_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -309,7 +309,7 @@ def test_agenttools_InspectionAgent_get_leaf_10():
     voice_2.name = 'My Voice'
     staff = Staff([voice_1, voice_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -360,7 +360,7 @@ def test_agenttools_InspectionAgent_get_leaf_11():
 
     container = Container([staff_1, staff_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -411,7 +411,7 @@ def test_agenttools_InspectionAgent_get_leaf_12():
 
     container = Container([staff_1, staff_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -464,7 +464,7 @@ def test_agenttools_InspectionAgent_get_leaf_13():
     container_2 = Container([container_2])
     voice = Voice([container_1, container_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -510,7 +510,7 @@ def test_agenttools_InspectionAgent_get_leaf_14():
     container_2 = Container([container_2])
     voice = Voice([container_1, container_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -556,7 +556,7 @@ def test_agenttools_InspectionAgent_get_leaf_15():
     container_2 = Container([Note(i, (1 ,8)) for i in range(4 ,8)])
     voice = Voice([container_1, container_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -599,7 +599,7 @@ def test_agenttools_InspectionAgent_get_leaf_16():
     container_2 = Container([Note(i, (1 ,8)) for i in range(3,5)])
     voice = Voice([container_1, Note(2, (1 ,8)), container_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -631,7 +631,7 @@ def test_agenttools_InspectionAgent_get_leaf_17():
     tuplet_2 = scoretools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(4,7)])
     voice = Voice([tuplet_1, Note(3, (1 ,8)), tuplet_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -664,7 +664,7 @@ def test_agenttools_InspectionAgent_get_leaf_18():
     inner_tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), inner_tuplet, Note("c'4")])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -694,7 +694,7 @@ def test_agenttools_InspectionAgent_get_leaf_19():
     voice_2 = Voice([Note(i , (1 ,8)) for i in range(4 ,8)])
     staff = Staff([voice_1, note, voice_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -733,7 +733,7 @@ def test_agenttools_InspectionAgent_get_leaf_20():
     voice_3.name = 'My Voice'
     staff = Staff([voice_1, voice_2, voice_3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -777,7 +777,7 @@ def test_agenttools_InspectionAgent_get_leaf_21():
     inner_voice = Voice([Note(i, (1 ,8)) for i in range(3)])
     outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         outer_voice,
         r'''
         \new Voice {
@@ -807,7 +807,7 @@ def test_agenttools_InspectionAgent_get_leaf_22():
     inner_voice = Voice([Note(i, (1 ,8)) for i in range(1,4)])
     outer_voice = Voice([Note(0, (1 ,8)), inner_voice])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         outer_voice,
         r'''
         \new Voice {
@@ -840,7 +840,7 @@ def test_agenttools_InspectionAgent_get_leaf_23():
     outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
     outer_voice.name = 'My Voice'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         outer_voice,
         r'''
         \context Voice = "My Voice" {
@@ -872,7 +872,7 @@ def test_agenttools_InspectionAgent_get_leaf_24():
     outer_voice = Voice([Note(0, (1 ,8)), inner_voice])
     outer_voice.name = 'My Voice'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         outer_voice,
         r'''
         \context Voice = "My Voice" {
@@ -904,7 +904,7 @@ def test_agenttools_InspectionAgent_get_leaf_25():
     outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
     outer_voice.name = 'My Voice'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         outer_voice,
         r'''
         \context Voice = "My Voice" {
@@ -936,7 +936,7 @@ def test_agenttools_InspectionAgent_get_leaf_26():
     outer_voice = Voice([Note(0, (1, 8)), inner_voice])
     outer_voice.name = 'My Voice'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         outer_voice,
         r'''
         \context Voice = "My Voice" {

@@ -10,7 +10,7 @@ def test_spannertools_TextSpanner__make_storage_format_with_overrides_01():
     staff_1 = Staff("c'8 d'8 e'8 f'8")
     attach(text_spanner_1, staff_1[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff_1,
         r'''
         \new Staff {

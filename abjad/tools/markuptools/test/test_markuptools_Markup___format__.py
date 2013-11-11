@@ -6,7 +6,7 @@ def test_markuptools_Markup___format___01():
 
     markup = markuptools.Markup(r'\bold { foo }')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(markup),
         r'''
         markuptools.Markup((
@@ -28,7 +28,7 @@ def test_markuptools_Markup___format___02():
         markup_name='non troppo',
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(markup),
         r'''
         markuptools.Markup((

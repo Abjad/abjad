@@ -17,7 +17,7 @@ def test_lilypondfiletools_PaperBlock_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         paper_block,
         r'''
         \paper {
@@ -42,7 +42,7 @@ def test_lilypondfiletools_PaperBlock_02():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         paper_block,
         r'''
         \paper {
@@ -71,7 +71,7 @@ def test_lilypondfiletools_PaperBlock_03():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         paper_block,
         r'''
         \paper {

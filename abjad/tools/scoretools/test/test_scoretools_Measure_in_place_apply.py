@@ -27,7 +27,7 @@ def test_scoretools_Measure_in_place_apply_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -70,7 +70,7 @@ def test_scoretools_Measure_in_place_apply_02():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -109,7 +109,7 @@ def test_scoretools_Measure_in_place_apply_03():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -156,7 +156,7 @@ def test_scoretools_Measure_in_place_apply_04():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

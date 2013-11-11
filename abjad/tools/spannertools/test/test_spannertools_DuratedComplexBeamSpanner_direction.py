@@ -14,7 +14,7 @@ def test_spannertools_DuratedComplexBeamSpanner_direction_01():
 
     attach(beam, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

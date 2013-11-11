@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Score_01():
 
     target = Score()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Score <<

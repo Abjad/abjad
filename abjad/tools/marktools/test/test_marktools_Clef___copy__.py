@@ -14,7 +14,7 @@ def test_marktools_Clef___copy___01():
     copied_notes = mutate(staff[:2]).copy()
     staff.extend(copied_notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -92,7 +92,7 @@ def test_marktools_Clef___copy___02():
     assert inspect(staff[9]).get_effective_context_mark(
         Clef) == Clef('bass')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

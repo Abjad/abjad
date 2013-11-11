@@ -9,7 +9,7 @@ def test_spannertools_PianoPedalSpanner_01():
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -36,7 +36,7 @@ def test_spannertools_PianoPedalSpanner_02():
     piano_pedal_spanner.kind = 'sostenuto'
     attach(piano_pedal_spanner, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -61,7 +61,7 @@ def test_spannertools_PianoPedalSpanner_03():
     piano_pedal_spanner.kind = 'corda'
     attach(piano_pedal_spanner, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -87,7 +87,7 @@ def test_spannertools_PianoPedalSpanner_04():
     assert piano_pedal_spanner.kind == 'sustain'
     piano_pedal_spanner.style = 'text'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -113,7 +113,7 @@ def test_spannertools_PianoPedalSpanner_05():
     assert piano_pedal_spanner.kind == 'sustain'
     piano_pedal_spanner.style = 'bracket'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -139,7 +139,7 @@ def test_spannertools_PianoPedalSpanner_06():
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[3:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

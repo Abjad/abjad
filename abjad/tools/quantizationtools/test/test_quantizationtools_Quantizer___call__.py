@@ -16,7 +16,7 @@ def test_quantizationtools_Quantizer___call___01():
 
     score = Score([Staff([result])])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<
@@ -59,7 +59,7 @@ def test_quantizationtools_Quantizer___call___02():
 
     result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result,
         r'''
         \new Voice {
@@ -99,7 +99,7 @@ def test_quantizationtools_Quantizer___call___03():
 
     result = quantizer(sequence, q_schema=q_schema, attack_point_optimizer=attack_point_optimizer)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result,
         r'''
         \new Voice {

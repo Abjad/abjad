@@ -20,7 +20,7 @@ def test_spannertools_BracketSpanner___init___02():
     attach(bracket_spanner, staff[1])
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

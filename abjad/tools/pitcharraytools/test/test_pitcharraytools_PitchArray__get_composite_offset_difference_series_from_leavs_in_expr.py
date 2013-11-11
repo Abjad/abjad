@@ -8,7 +8,7 @@ def test_pitcharraytools_PitchArray__get_composite_offset_difference_series_from
     staff_2 = Staff("f'8 g'8 a'8 b'8")
     score = Score([staff_1, staff_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

@@ -13,7 +13,7 @@ def test_scoretools_Container___setitem___integer_01():
     glissando = spannertools.Glissando()
     attach(glissando, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -27,7 +27,7 @@ def test_scoretools_Container___setitem___integer_01():
 
     voice[1] = Note(12, (1, 8))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -52,7 +52,7 @@ def test_scoretools_Container___setitem___integer_02():
     glissando = spannertools.Glissando()
     attach(glissando, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -66,7 +66,7 @@ def test_scoretools_Container___setitem___integer_02():
 
     voice[1] = Container(scoretools.make_repeated_notes(3, Duration(1, 16)))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -96,7 +96,7 @@ def test_scoretools_Container___setitem___integer_03():
     glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -114,7 +114,7 @@ def test_scoretools_Container___setitem___integer_03():
 
     voice[1] = Note(12, (1, 8))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -141,7 +141,7 @@ def test_scoretools_Container___setitem___integer_04():
     glissando = spannertools.Glissando()
     attach(glissando, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -159,7 +159,7 @@ def test_scoretools_Container___setitem___integer_04():
 
     voice[1] = Note(12, (1, 8))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -185,7 +185,7 @@ def test_scoretools_Container___setitem___integer_05():
     glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -203,7 +203,7 @@ def test_scoretools_Container___setitem___integer_05():
 
     voice[1] = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -233,7 +233,7 @@ def test_scoretools_Container___setitem___integer_06():
     glissando = spannertools.Glissando()
     attach(glissando, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -251,7 +251,7 @@ def test_scoretools_Container___setitem___integer_06():
 
     voice[1] = Note(12, (1, 8))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -276,7 +276,7 @@ def test_scoretools_Container___setitem___integer_07():
     beam = Beam()
     attach(beam, voice.select_leaves()[0:6])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -298,7 +298,7 @@ def test_scoretools_Container___setitem___integer_07():
 
     voice[1] = Rest((1, 2))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -362,7 +362,7 @@ def test_scoretools_Container___setitem___integer_08():
 
     assert inspect(voice).is_well_formed()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -375,7 +375,7 @@ def test_scoretools_Container___setitem___integer_08():
 
     "Modified u:"
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         u,
         r'''
         \new Voice {
@@ -402,7 +402,7 @@ def test_scoretools_Container___setitem___integer_09():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -420,7 +420,7 @@ def test_scoretools_Container___setitem___integer_09():
     slur = Slur()
     attach(slur, u[1].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         u,
         r'''
         \new Voice {
@@ -438,7 +438,7 @@ def test_scoretools_Container___setitem___integer_09():
 
     "Voice voice is now ..."
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -457,7 +457,7 @@ def test_scoretools_Container___setitem___integer_09():
     "Voice u is now ..."
 
     assert inspect(u).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         u,
         r'''
         \new Voice {

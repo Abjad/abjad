@@ -7,7 +7,7 @@ def test_markuptools_make_vertically_adjusted_composer_markup_01():
     markup = markuptools.make_vertically_adjusted_composer_markup(
         'Josquin Desprez')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         markup.indented_lilypond_format,
         r'''
         \markup {

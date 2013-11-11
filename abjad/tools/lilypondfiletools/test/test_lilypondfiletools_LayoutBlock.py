@@ -15,7 +15,7 @@ def test_lilypondfiletools_LayoutBlock_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         lb,
         r'''
         \layout {
@@ -38,7 +38,7 @@ def test_lilypondfiletools_LayoutBlock_02():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         lb,
         r'''
         \layout {

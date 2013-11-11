@@ -52,7 +52,7 @@ def test_spannertools_Slur___init___02():
     slur = Slur()
     attach(slur, leaves)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -120,7 +120,7 @@ def test_spannertools_Slur___init___03():
     slur = Slur()
     attach(slur, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

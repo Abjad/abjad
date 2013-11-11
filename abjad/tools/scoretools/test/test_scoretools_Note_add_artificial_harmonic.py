@@ -8,7 +8,7 @@ def test_scoretools_Note_add_artificial_harmonic_01():
 
     note = Note("c'4")
     note = note.add_artificial_harmonic()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         <
@@ -35,7 +35,7 @@ def test_scoretools_Note_add_artificial_harmonic_02():
     note = Note("c'4")
     named_interval = pitchtools.NamedInterval('minor', 3)
     note = note.add_artificial_harmonic(named_interval)
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         <
@@ -80,7 +80,7 @@ def test_scoretools_Note_add_artificial_harmonic_03():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

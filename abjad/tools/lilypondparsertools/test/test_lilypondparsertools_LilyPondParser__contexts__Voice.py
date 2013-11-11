@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Voice_01():
 
     target = Voice([])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Voice {

@@ -11,7 +11,7 @@ def test_agenttools_InspectionAgent_is_bar_line_crossing_01():
         (2, 8), partial=Duration(1, 8))
     attach(time_signature, staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -16,7 +16,7 @@ def test_scoretools_Note_grace_01():
     c'4
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \grace {
@@ -43,7 +43,7 @@ def test_scoretools_Note_grace_02():
     c'4
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \grace {
@@ -70,7 +70,7 @@ def test_scoretools_Note_grace_03():
     c'4
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \appoggiatura {
@@ -95,7 +95,7 @@ def test_scoretools_Note_grace_04():
     c'4
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \acciaccatura {
@@ -121,7 +121,7 @@ def test_scoretools_Note_grace_05():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \afterGrace

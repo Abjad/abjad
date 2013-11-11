@@ -15,7 +15,7 @@ def test_selectiontools_ContiguousSelection__get_crossing_spanners_01():
     trill = spannertools.TrillSpanner()
     attach(trill, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -55,7 +55,7 @@ def test_selectiontools_ContiguousSelection__get_crossing_spanners_02():
     beam = Beam()
     attach(beam, voice[1:2] + voice[2][0:1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

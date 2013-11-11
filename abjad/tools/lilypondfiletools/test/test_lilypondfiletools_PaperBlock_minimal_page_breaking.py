@@ -13,7 +13,7 @@ def test_lilypondfiletools_PaperBlock_minimal_page_breaking_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         pb,
         r'''
         \paper {

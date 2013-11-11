@@ -95,7 +95,7 @@ def test_scoretools_Component__get_in_my_logical_voice_07():
     container_2.is_simultaneous = True
     staff = Staff([container_1, container_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

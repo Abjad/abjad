@@ -22,7 +22,7 @@ def test_scoretools_Measure_duration_01():
     assert measure._preprolated_duration == Duration(3, 8)
     assert inspect(measure).get_duration() == Duration(3, 8)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -56,7 +56,7 @@ def test_scoretools_Measure_duration_02():
     assert measure._preprolated_duration == Duration(3, 10)
     assert inspect(measure).get_duration() == Duration(3, 10)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

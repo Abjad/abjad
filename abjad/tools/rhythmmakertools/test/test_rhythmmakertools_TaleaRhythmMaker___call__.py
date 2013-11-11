@@ -41,7 +41,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -112,7 +112,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -22,7 +22,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_01():
     articulation = Articulation('portato')
     attach(articulation, target[6])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {
@@ -96,7 +96,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_03():
     articulation = Articulation('fermata')
     attach(articulation, target[3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {

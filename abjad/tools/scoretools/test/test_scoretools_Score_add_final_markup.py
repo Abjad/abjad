@@ -31,7 +31,7 @@ def test_scoretools_Score_add_final_markup_01():
     >>
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

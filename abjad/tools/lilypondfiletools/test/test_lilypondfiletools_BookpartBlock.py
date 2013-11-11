@@ -6,7 +6,7 @@ def test_lilypondfiletools_BookpartBlock_01():
 
     bookpart_block = lilypondfiletools.BookpartBlock()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         bookpart_block,
         r'''
         \bookpart {}

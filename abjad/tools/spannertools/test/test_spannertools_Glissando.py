@@ -8,7 +8,7 @@ def test_spannertools_Glissando_01():
     glissando = spannertools.Glissando()
     attach(glissando, staff.select_leaves()[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

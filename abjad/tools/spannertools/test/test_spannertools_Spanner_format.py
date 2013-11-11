@@ -17,7 +17,7 @@ def test_spannertools_Spanner_format_01():
     spanner = MockSpanner()
     attach(spanner, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

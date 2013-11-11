@@ -10,7 +10,7 @@ def test_scoretools_Leaf__split_by_duration_01():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -27,7 +27,7 @@ def test_scoretools_Leaf__split_by_duration_01():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -49,7 +49,7 @@ def test_scoretools_Leaf__split_by_duration_02():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -66,7 +66,7 @@ def test_scoretools_Leaf__split_by_duration_02():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -88,7 +88,7 @@ def test_scoretools_Leaf__split_by_duration_03():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -105,7 +105,7 @@ def test_scoretools_Leaf__split_by_duration_03():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -133,7 +133,7 @@ def test_scoretools_Leaf__split_by_duration_04():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -160,7 +160,7 @@ def test_scoretools_Leaf__split_by_duration_05():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -188,7 +188,7 @@ def test_scoretools_Leaf__split_by_duration_06():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -207,7 +207,7 @@ def test_scoretools_Leaf__split_by_duration_06():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

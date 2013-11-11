@@ -23,7 +23,7 @@ def test_scoretools_fill_measures_in_expr_with_time_signature_denominator_notes_
     '''
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

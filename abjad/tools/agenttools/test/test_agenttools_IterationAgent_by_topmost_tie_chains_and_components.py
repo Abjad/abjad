@@ -10,7 +10,7 @@ def test_agenttools_IterationAgent_by_topmost_tie_chains_and_components_01():
     tuplet = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
     staff.insert(4, tuplet)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

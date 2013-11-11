@@ -21,7 +21,7 @@ def test_scoretools_Staff_engraver_removals_01():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {

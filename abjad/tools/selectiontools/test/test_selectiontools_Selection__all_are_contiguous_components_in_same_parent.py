@@ -49,7 +49,7 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_
         }
         ''')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

@@ -16,7 +16,7 @@ def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
 
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -34,7 +34,7 @@ def test_instrumenttools_transpose_from_sounding_pitch_to_written_pitch_01():
         if isinstance(leaf, (Note, Chord)):
             assert not leaf.written_pitch_indication_is_at_sounding_pitch
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

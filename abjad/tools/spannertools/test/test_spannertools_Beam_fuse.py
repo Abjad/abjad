@@ -13,7 +13,7 @@ def test_spannertools_Beam_fuse_01():
     attach(right_beam, staff[2:4])
     left_beam.fuse(right_beam)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

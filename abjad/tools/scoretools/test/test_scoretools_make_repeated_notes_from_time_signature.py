@@ -10,7 +10,7 @@ def test_scoretools_make_repeated_notes_from_time_signature_01():
     staff = Staff(notes)
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -33,7 +33,7 @@ def test_scoretools_make_repeated_notes_from_time_signature_02():
     staff = Staff(notes)
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

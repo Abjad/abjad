@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__StaffGroup_01():
 
     target = scoretools.StaffGroup([])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new StaffGroup <<

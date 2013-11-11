@@ -27,7 +27,7 @@ def test_rhythmmakertools_NoteRhythmMaker_new_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -28,7 +28,7 @@ def test_scoretools_Container_insert_01():
     '''
 
     assert inspect(voice).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -62,7 +62,7 @@ def test_scoretools_Container_insert_02():
     '''
 
     assert inspect(voice).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -97,7 +97,7 @@ def test_scoretools_Container_insert_03():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -131,7 +131,7 @@ def test_scoretools_Container_insert_04():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -165,7 +165,7 @@ def test_scoretools_Container_insert_05():
     '''
 
     assert inspect(voice).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -199,7 +199,7 @@ def test_scoretools_Container_insert_06():
     '''
 
     assert inspect(voice).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -247,7 +247,7 @@ def test_scoretools_Container_insert_08():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -286,7 +286,7 @@ def test_scoretools_Container_insert_09():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -320,7 +320,7 @@ def test_scoretools_Container_insert_10():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -354,7 +354,7 @@ def test_scoretools_Container_insert_11():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -388,7 +388,7 @@ def test_scoretools_Container_insert_12():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -422,7 +422,7 @@ def test_scoretools_Container_insert_13():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -456,7 +456,7 @@ def test_scoretools_Container_insert_14():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -9,7 +9,7 @@ def test_scoretools_Tuplet_get_timespan_01():
     tempo = Tempo((1, 4), 60)
     attach(tempo, staff.select_leaves()[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

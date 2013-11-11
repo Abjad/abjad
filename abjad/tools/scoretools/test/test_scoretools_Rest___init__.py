@@ -165,7 +165,7 @@ def test_scoretools_Rest___init___12():
     rest = Rest(voice[-1])
     voice[-1:] = [rest]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -189,7 +189,7 @@ def test_scoretools_Rest___init___13():
         rest = Rest(note)
         mutate(note).replace(rest)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

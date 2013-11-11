@@ -23,7 +23,7 @@ def test_scoretools_Measure_append_02():
     measure.append('r')
 
     assert not measure.is_misfilled
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

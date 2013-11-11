@@ -10,7 +10,7 @@ def test_spannertools_Beam_detach_01():
     beam = Beam()
     attach(beam, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -28,7 +28,7 @@ def test_spannertools_Beam_detach_01():
 
     detach(beam, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -55,7 +55,7 @@ def test_spannertools_Beam_detach_02():
     beam = Beam()
     attach(beam, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -73,7 +73,7 @@ def test_spannertools_Beam_detach_02():
 
     detach(beam, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -35,7 +35,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_01():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -97,7 +97,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

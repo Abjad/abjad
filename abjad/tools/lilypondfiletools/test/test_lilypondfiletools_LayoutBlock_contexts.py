@@ -19,7 +19,7 @@ def test_lilypondfiletools_LayoutBlock_contexts_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         layout_block,
         r'''
         \layout {

@@ -24,7 +24,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_co
     '''
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -63,7 +63,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_co
     '''
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

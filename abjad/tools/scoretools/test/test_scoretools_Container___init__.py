@@ -14,7 +14,7 @@ def test_scoretools_Container___init___01():
     '''
 
     assert isinstance(container, Container)
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -38,7 +38,7 @@ def test_scoretools_Container___init___02():
     '''
 
     assert isinstance(container, Container)
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -76,7 +76,7 @@ def test_scoretools_Container___init___03():
     '''
 
     assert isinstance(container, Container)
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -113,7 +113,7 @@ def test_scoretools_Container___init___04():
     '''
 
     assert isinstance(container, Container)
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

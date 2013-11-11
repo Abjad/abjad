@@ -8,7 +8,7 @@ def test_timeintervaltools_TimeInterval___format___01():
         'a': timeintervaltools.TimeInterval(3, 4, {'x': 'y'}), 'b': 3
     })
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(t),
         r'''
         timeintervaltools.TimeInterval(

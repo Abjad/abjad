@@ -10,7 +10,7 @@ def test_lilypondparsertools_LilyPondParser__marks__BarLine_01():
     bar_line = marktools.BarLine('|.')
     attach(bar_line, target[-1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {

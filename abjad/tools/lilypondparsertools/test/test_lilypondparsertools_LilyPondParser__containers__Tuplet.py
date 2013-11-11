@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__containers__Tuplet_01():
     notes = scoretools.make_notes([0, 2, 4, 5, 7], (1, 8))
     target = scoretools.Tuplet(Multiplier(2, 3), notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \times 2/3 {

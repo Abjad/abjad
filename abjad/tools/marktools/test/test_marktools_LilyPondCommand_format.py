@@ -8,7 +8,7 @@ def test_marktools_LilyPondCommand_format_01():
     command = marktools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -28,7 +28,7 @@ def test_marktools_LilyPondCommand_format_02():
     command = marktools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, staff[1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -50,7 +50,7 @@ def test_marktools_LilyPondCommand_format_03():
     command = marktools.LilyPondCommand(r'break', 'after')
     attach(command, note)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         c'4
@@ -67,7 +67,7 @@ def test_marktools_LilyPondCommand_format_04():
     command = marktools.LilyPondCommand(r'break')
     attach(command, staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -104,7 +104,7 @@ def test_marktools_LilyPondCommand_format_07():
     command = marktools.LilyPondCommand('compressFullBarRests')
     attach(command, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -121,7 +121,7 @@ def test_marktools_LilyPondCommand_format_08():
     command = marktools.LilyPondCommand('expandFullBarRests')
     attach(command, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -140,7 +140,7 @@ def test_marktools_LilyPondCommand_format_09():
     command = marktools.LilyPondCommand('voiceOne')
     attach(command, voice[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -162,7 +162,7 @@ def test_marktools_LilyPondCommand_format_10():
     voice = Voice(scoretools.make_repeated_notes(4))
     command = marktools.LilyPondCommand('voiceOne')
     attach(command, voice[0])
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -178,7 +178,7 @@ def test_marktools_LilyPondCommand_format_10():
     detach(command, voice[0])
     command = marktools.LilyPondCommand('voiceTwo')
     attach(command, voice[0])
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -194,7 +194,7 @@ def test_marktools_LilyPondCommand_format_10():
     detach(command, voice[0])
     command = marktools.LilyPondCommand('voiceThree')
     attach(command, voice[0])
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -210,7 +210,7 @@ def test_marktools_LilyPondCommand_format_10():
     detach(command, voice[0])
     command = marktools.LilyPondCommand('voiceFour')
     attach(command, voice[0])
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -224,7 +224,7 @@ def test_marktools_LilyPondCommand_format_10():
         )
 
     detach(command, voice[0])
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -247,7 +247,7 @@ def test_marktools_LilyPondCommand_format_11():
     attach(command, voice)
     command = marktools.LilyPondCommand('voiceTwo')
     attach(command, voice[1])
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

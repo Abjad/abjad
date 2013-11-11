@@ -11,7 +11,7 @@ def test_spannertools_TrillSpanner_pitch_01():
     attach(trill, staff[:2])
     trill.pitch = pitchtools.NamedPitch(1)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -36,7 +36,7 @@ def test_spannertools_TrillSpanner_pitch_02():
     attach(trill, staff[:2])
     trill.pitch = 1
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -62,7 +62,7 @@ def test_spannertools_TrillSpanner_pitch_03():
     trill.pitch = pitchtools.NamedPitch(1)
     trill.pitch = None
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

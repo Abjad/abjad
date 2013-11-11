@@ -10,7 +10,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_01():
     key_signature = marktools.KeySignature('e', 'major')
     attach(key_signature, target[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {
@@ -36,7 +36,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_02():
     key_signature = marktools.KeySignature('ef', 'major')
     attach(key_signature, target[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {
@@ -62,7 +62,7 @@ def test_lilypondparsertools_LilyPondParser__functions__transpose_03():
         Container(scoretools.make_notes(["df'", "ef'", "f'", "gf'"], (1, 4)))
     ])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {

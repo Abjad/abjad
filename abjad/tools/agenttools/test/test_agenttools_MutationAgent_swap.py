@@ -12,7 +12,7 @@ def test_agenttools_MutationAgent_swap_01():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -35,7 +35,7 @@ def test_agenttools_MutationAgent_swap_01():
     tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
     mutate(voice[:2]).swap(tuplet)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -68,7 +68,7 @@ def test_agenttools_MutationAgent_swap_02():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \context Voice = "foo" {
@@ -92,7 +92,7 @@ def test_agenttools_MutationAgent_swap_02():
     new_voice.name = 'foo'
     mutate(voice[1:2]).swap(new_voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \context Voice = "foo" {
@@ -125,7 +125,7 @@ def test_agenttools_MutationAgent_swap_03():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -149,7 +149,7 @@ def test_agenttools_MutationAgent_swap_03():
     mutate(voice[1:2]).swap(tuplet)
 
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -214,7 +214,7 @@ def test_agenttools_MutationAgent_swap_06():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -247,7 +247,7 @@ def test_agenttools_MutationAgent_swap_07():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -263,7 +263,7 @@ def test_agenttools_MutationAgent_swap_07():
     new_measure = Measure((4, 8), [])
     mutate(measure).swap(new_measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_measure,
         r'''
         {

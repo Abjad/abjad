@@ -16,7 +16,7 @@ def test_scoretools_NoteHeadInventory_extend_01():
     note_heads.append(note_head)
     chord.note_heads.extend(note_heads)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         chord,
         r'''
         <

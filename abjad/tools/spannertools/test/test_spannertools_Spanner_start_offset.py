@@ -12,7 +12,7 @@ def test_spannertools_Spanner_start_offset_01():
     glissando = spannertools.Glissando()
     attach(glissando, [container])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

@@ -15,7 +15,7 @@ def test_lilypondfiletools_HeaderBlock_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         header_block,
         r'''
         \header {

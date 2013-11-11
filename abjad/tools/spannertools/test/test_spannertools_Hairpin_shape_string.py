@@ -9,7 +9,7 @@ def test_spannertools_Hairpin_shape_string_01():
     attach(hairpin, staff[:])
 
     assert hairpin.shape_string == '<'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -33,7 +33,7 @@ def test_spannertools_Hairpin_shape_string_01():
     '''
 
     assert hairpin.shape_string == '>'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

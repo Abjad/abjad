@@ -55,7 +55,7 @@ def test_labeltools_color_measures_with_non_power_of_two_denominators_in_expr_01
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -16,7 +16,7 @@ def test_scoretools_Measure___add___01():
     attach(slur, measure_2[:])
     new = measure_1 + measure_2
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new,
         r'''
         {
@@ -47,7 +47,7 @@ def test_scoretools_Measure___add___02():
     attach(slur, measure_2[:])
     staff = Staff([measure_1, measure_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -71,7 +71,7 @@ def test_scoretools_Measure___add___02():
     assert len(measure_1) == 0
     assert len(measure_2) == 0
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

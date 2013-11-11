@@ -7,7 +7,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_01():
 
     target = Staff([])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {
@@ -27,7 +27,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Staff_02():
     target.append(Voice(scoretools.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
     target.append(Voice(scoretools.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8))))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff <<

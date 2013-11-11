@@ -20,7 +20,7 @@ def test_spannertools_Spanner___init___02():
     beam = Beam()
     attach(beam, container[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

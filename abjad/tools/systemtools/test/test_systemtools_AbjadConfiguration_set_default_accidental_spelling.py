@@ -6,7 +6,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_01():
 
     staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -32,7 +32,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_02():
     abjad_configuration.set_default_accidental_spelling('sharps')
     staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -60,7 +60,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_03():
     abjad_configuration.set_default_accidental_spelling('flats')
     staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -90,7 +90,7 @@ def test_systemtools_AbjadConfiguration_set_default_accidental_spelling_04():
     abjad_configuration.set_default_accidental_spelling('mixed')
     staff = Staff([Note(n, (1, 8)) for n in range(12)])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

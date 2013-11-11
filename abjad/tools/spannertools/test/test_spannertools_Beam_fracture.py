@@ -13,7 +13,7 @@ def test_spannertools_Beam_fracture_01():
     attach(beam, staff[:4])
     beam.fracture(0, direction=Left)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -39,7 +39,7 @@ def test_spannertools_Beam_fracture_02():
     attach(beam, staff[:4])
     beam.fracture(1, direction=Left)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -69,7 +69,7 @@ def test_spannertools_Beam_fracture_03():
     attach(beam, staff[:4])
     beam.fracture(-1, direction=Right)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -95,7 +95,7 @@ def test_spannertools_Beam_fracture_04():
     attach(beam, staff[:4])
     beam.fracture(1, direction=Right)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -123,7 +123,7 @@ def test_spannertools_Beam_fracture_05():
     attach(beam, staff[:5])
     beam.fracture(2, direction=None)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -151,7 +151,7 @@ def test_spannertools_Beam_fracture_06():
     attach(beam, staff[:5])
     beam.fracture(0, direction=None)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -179,7 +179,7 @@ def test_spannertools_Beam_fracture_07():
     attach(beam, staff[:5])
     beam.fracture(4, direction=None)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -207,7 +207,7 @@ def test_spannertools_Beam_fracture_08():
     attach(beam, staff[:5])
     beam.fracture(-1, direction=None)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -29,7 +29,7 @@ def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_01():
     '''
 
     assert inspect(chord).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         chord,
         r'''
         <
@@ -65,7 +65,7 @@ def test_labeltools_color_chord_note_heads_by_numbered_pitch_class_02():
     '''
 
     assert inspect(note).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'color = #red

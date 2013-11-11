@@ -17,7 +17,7 @@ def test_agenttools_MutationAgent_copy_01():
     beam = Beam()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -42,7 +42,7 @@ def test_agenttools_MutationAgent_copy_01():
     result = mutate(selection).copy()
     new = Voice(result)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new,
         r'''
         \new Voice {
@@ -67,7 +67,7 @@ def test_agenttools_MutationAgent_copy_02():
     beam = Beam()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -91,7 +91,7 @@ def test_agenttools_MutationAgent_copy_02():
     result = mutate(voice[1:2]).copy()
     new = Voice(result)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new,
         r'''
         \new Voice {
@@ -119,7 +119,7 @@ def test_agenttools_MutationAgent_copy_03():
     beam = Beam()
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -144,7 +144,7 @@ def test_agenttools_MutationAgent_copy_03():
     result = mutate(selection).copy()
     new = Voice(result)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new,
         r'''
         \new Voice {
@@ -171,7 +171,7 @@ def test_agenttools_MutationAgent_copy_04():
     attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
     scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -198,7 +198,7 @@ def test_agenttools_MutationAgent_copy_04():
     new = Voice(result)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new,
         r'''
         \new Voice {
@@ -233,7 +233,7 @@ def test_agenttools_MutationAgent_copy_05():
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -268,7 +268,7 @@ def test_agenttools_MutationAgent_copy_05():
         detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_voice,
         r'''
         \new Voice {
@@ -308,7 +308,7 @@ def test_agenttools_MutationAgent_copy_06():
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -342,7 +342,7 @@ def test_agenttools_MutationAgent_copy_06():
         detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_voice,
         r'''
         \new Voice {
@@ -378,7 +378,7 @@ def test_agenttools_MutationAgent_copy_07():
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -412,7 +412,7 @@ def test_agenttools_MutationAgent_copy_07():
         detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_voice,
         r'''
         \new Voice {
@@ -439,7 +439,7 @@ def test_agenttools_MutationAgent_copy_08():
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -473,7 +473,7 @@ def test_agenttools_MutationAgent_copy_08():
         detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_voice,
         r'''
         \new Voice {
@@ -505,7 +505,7 @@ def test_agenttools_MutationAgent_copy_09():
     attach(slur, voice[0][:] + voice[1][:] + voice[2:])
     scoretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -539,7 +539,7 @@ def test_agenttools_MutationAgent_copy_09():
         detach(spannertools.Spanner, component)
     scoretools.set_always_format_time_signature_of_measures_in_expr(new_voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_voice,
         r'''
         \new Voice {
@@ -587,7 +587,7 @@ def test_agenttools_MutationAgent_copy_10():
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -606,7 +606,7 @@ def test_agenttools_MutationAgent_copy_10():
     new_notes = mutate(staff[:4]).copy()
     staff.extend(new_notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -635,7 +635,7 @@ def test_agenttools_MutationAgent_copy_11():
 
     staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -656,7 +656,7 @@ def test_agenttools_MutationAgent_copy_11():
     leaves = staff.select_leaves(1, 5)
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_staff,
         r'''
         \new Staff {
@@ -684,7 +684,7 @@ def test_agenttools_MutationAgent_copy_12():
     voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
     staff = Staff([voice])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -707,7 +707,7 @@ def test_agenttools_MutationAgent_copy_12():
     leaves = staff.select_leaves(1, 5)
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_staff,
         r'''
         \new Staff {
@@ -739,7 +739,7 @@ def test_agenttools_MutationAgent_copy_13():
     staff = Staff([voice_1, voice_2])
     staff.is_simultaneous = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff <<
@@ -762,7 +762,7 @@ def test_agenttools_MutationAgent_copy_13():
     leaves = voice_1.select_leaves(1, 3)
     new_voice = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_voice,
         r'''
         \new Voice {
@@ -785,7 +785,7 @@ def test_agenttools_MutationAgent_copy_14():
     leaves = measure.select_leaves(1, 3)
     new_measure = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_measure,
         r'''
         {
@@ -809,7 +809,7 @@ def test_agenttools_MutationAgent_copy_15():
     leaves = staff.select_leaves(1, 3)
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_staff,
         r'''
         \new Staff {
@@ -833,7 +833,7 @@ def test_agenttools_MutationAgent_copy_16():
     tuplet.extend("c'8 d'8 e'8 f'8 g'8")
     measure = Measure((4, 8), [tuplet])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -852,7 +852,7 @@ def test_agenttools_MutationAgent_copy_16():
     leaves = measure.select_leaves(1, 4)
     new_measure = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_measure,
         r'''
         {
@@ -882,7 +882,7 @@ def test_agenttools_MutationAgent_copy_17():
     tuplet.extend("c'8 d'8 e'8 f'8 g'8")
     voice = Voice([Measure((4, 8), [tuplet])])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -903,7 +903,7 @@ def test_agenttools_MutationAgent_copy_17():
     leaves = voice.select_leaves(1, 4)
     new_voice = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_voice,
         r'''
         \new Voice {
@@ -936,7 +936,7 @@ def test_agenttools_MutationAgent_copy_18():
     tuplet_2 = scoretools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
     measure = Measure((4, 8), [tuplet_1, tuplet_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -958,7 +958,7 @@ def test_agenttools_MutationAgent_copy_18():
     leaves = measure.select_leaves(1, None)
     new_measure = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_measure,
         r'''
         {
@@ -991,7 +991,7 @@ def test_agenttools_MutationAgent_copy_19():
     measure_2 = Measure((3, 8), "f'8 g'8 a'8")
     staff = Staff([measure_1, measure_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1013,7 +1013,7 @@ def test_agenttools_MutationAgent_copy_19():
     leaves = staff.select_leaves(2, 4)
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_staff,
         r'''
         \new Staff {
@@ -1042,7 +1042,7 @@ def test_agenttools_MutationAgent_copy_20():
     tuplet_2 = scoretools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
     staff = Staff([tuplet_1, tuplet_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1063,7 +1063,7 @@ def test_agenttools_MutationAgent_copy_20():
     leaves = tuplet_2.select_leaves(1, 3)
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_staff,
         r'''
         \new Staff {
@@ -1089,7 +1089,7 @@ def test_agenttools_MutationAgent_copy_21():
     measure_2 = Measure((3, 8), "f'8 g'8 a'8")
     staff = Staff([measure_1, measure_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1111,7 +1111,7 @@ def test_agenttools_MutationAgent_copy_21():
     leaves = measure_2.select_leaves(1, 3)
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_staff,
         r'''
         \new Staff {
@@ -1138,7 +1138,7 @@ def test_agenttools_MutationAgent_copy_22():
     measure_2 = Measure((3, 9), "f'8 g'8 a'8")
     staff = Staff([measure_1, measure_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1164,7 +1164,7 @@ def test_agenttools_MutationAgent_copy_22():
     leaves = measure_2.select_leaves(1, 3)
     new_staff = mutate(leaves).copy(include_enclosing_containers=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new_staff,
         r'''
         \new Staff {

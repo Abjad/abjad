@@ -8,7 +8,7 @@ def test_spannertools_Crescendo_direction_01():
     crescendo = Crescendo(direction=Up)
     attach(crescendo, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

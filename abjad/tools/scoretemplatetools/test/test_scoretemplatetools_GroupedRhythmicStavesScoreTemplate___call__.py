@@ -7,7 +7,7 @@ def test_scoretemplatetools_GroupedRhythmicStavesScoreTemplate___call___01():
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score = template()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \context Score = "Grouped Rhythmic Staves Score" <<
@@ -39,7 +39,7 @@ def test_scoretemplatetools_GroupedRhythmicStavesScoreTemplate___call___02():
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
     score = template()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \context Score = "Grouped Rhythmic Staves Score" <<

@@ -26,7 +26,7 @@ def test_pitchtools_set_written_pitch_of_pitched_components_in_expr_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

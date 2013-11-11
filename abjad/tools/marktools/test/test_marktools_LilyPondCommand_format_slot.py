@@ -8,7 +8,7 @@ def test_marktools_LilyPondCommand_format_slot_01():
     command = marktools.LilyPondCommand('break', 'closing')
     attach(command, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

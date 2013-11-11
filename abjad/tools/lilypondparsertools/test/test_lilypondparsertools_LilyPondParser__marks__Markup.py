@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_01():
     markup = markuptools.Markup('hello!', Up)
     attach(markup, target[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {
@@ -33,7 +33,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_02():
     markup = markuptools.Markup(['X', 'Y', 'Z', 'a b c'], Down)
     attach(markup, target[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {
@@ -68,7 +68,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_03():
     articulation = Articulation('.')
     attach(articulation, target[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {

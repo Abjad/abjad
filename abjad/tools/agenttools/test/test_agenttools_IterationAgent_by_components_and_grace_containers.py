@@ -13,7 +13,7 @@ def test_agenttools_IterationAgent_by_components_and_grace_containers_01():
     scoretools.GraceContainer(notes[:2], kind='grace')(voice[1])
     scoretools.GraceContainer(notes[2:], kind='after')(voice[1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

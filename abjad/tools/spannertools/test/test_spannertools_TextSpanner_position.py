@@ -9,7 +9,7 @@ def test_spannertools_TextSpanner_position_01():
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -30,7 +30,7 @@ def test_spannertools_TextSpanner_position_02():
     command = marktools.LilyPondCommand('textSpannerNeutral')
     attach(command, text_spanner[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -52,7 +52,7 @@ def test_spannertools_TextSpanner_position_03():
     command = marktools.LilyPondCommand('textSpannerUp')
     attach(command, text_spanner[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -74,7 +74,7 @@ def test_spannertools_TextSpanner_position_04():
     command = marktools.LilyPondCommand('textSpannerDown')
     attach(command, text_spanner[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -96,7 +96,7 @@ def test_spannertools_TextSpanner_position_05():
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

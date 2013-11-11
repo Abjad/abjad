@@ -43,7 +43,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_01():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -118,7 +118,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_02():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -196,7 +196,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_05():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -229,7 +229,7 @@ def test_scoretools_replace_contents_of_measures_in_expr_06():
     staff = Staff(measures)
     measures = scoretools.replace_contents_of_measures_in_expr(staff, leaves)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

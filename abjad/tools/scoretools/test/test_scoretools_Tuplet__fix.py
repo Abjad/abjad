@@ -9,7 +9,7 @@ def test_scoretools_Tuplet__fix_01():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'4 d'4 e'4")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 1/3 {
@@ -22,7 +22,7 @@ def test_scoretools_Tuplet__fix_01():
 
     tuplet._fix()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {
@@ -44,7 +44,7 @@ def test_scoretools_Tuplet__fix_02():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'32 d'32 e'32")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -58,7 +58,7 @@ def test_scoretools_Tuplet__fix_02():
 
     tuplet._fix()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -81,7 +81,7 @@ def test_scoretools_Tuplet__fix_03():
     tuplet = scoretools.FixedDurationTuplet(Duration(5, 16), "c'4 d'4 e'4")
     assert not tuplet.multiplier.is_proper_tuplet_multiplier
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -95,7 +95,7 @@ def test_scoretools_Tuplet__fix_03():
 
     tuplet._fix()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text

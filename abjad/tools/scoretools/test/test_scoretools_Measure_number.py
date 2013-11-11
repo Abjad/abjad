@@ -39,7 +39,7 @@ def test_scoretools_Measure_number_03():
     assert staff[1].measure_number == 2
     assert staff[2].measure_number == 3
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

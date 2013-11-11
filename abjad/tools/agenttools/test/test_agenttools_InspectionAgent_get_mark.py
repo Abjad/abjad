@@ -112,7 +112,7 @@ def test_agenttools_InspectionAgent_get_mark_10():
     command_2 = marktools.LilyPondCommand('slurUp')
     attach(command_2, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

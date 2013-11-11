@@ -17,7 +17,7 @@ def test_agenttools_MutationAgent_split_01():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -41,7 +41,7 @@ def test_agenttools_MutationAgent_split_01():
         fracture_spanners=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -76,7 +76,7 @@ def test_agenttools_MutationAgent_split_02():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -100,7 +100,7 @@ def test_agenttools_MutationAgent_split_02():
         fracture_spanners=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -137,7 +137,7 @@ def test_agenttools_MutationAgent_split_03():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -162,7 +162,7 @@ def test_agenttools_MutationAgent_split_03():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -204,7 +204,7 @@ def test_agenttools_MutationAgent_split_04():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -229,7 +229,7 @@ def test_agenttools_MutationAgent_split_04():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -288,7 +288,7 @@ def test_agenttools_MutationAgent_split_05():
     music = sequencetools.flatten_sequence(result)
     staff = Staff(music)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -339,7 +339,7 @@ def test_agenttools_MutationAgent_split_06():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -364,7 +364,7 @@ def test_agenttools_MutationAgent_split_06():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -400,7 +400,7 @@ def test_agenttools_MutationAgent_split_07():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -425,7 +425,7 @@ def test_agenttools_MutationAgent_split_07():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -462,7 +462,7 @@ def test_agenttools_MutationAgent_split_08():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -487,7 +487,7 @@ def test_agenttools_MutationAgent_split_08():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -530,7 +530,7 @@ def test_agenttools_MutationAgent_split_09():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -555,7 +555,7 @@ def test_agenttools_MutationAgent_split_09():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -606,7 +606,7 @@ def test_agenttools_MutationAgent_split_10():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -630,7 +630,7 @@ def test_agenttools_MutationAgent_split_10():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -665,7 +665,7 @@ def test_agenttools_MutationAgent_split_11():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -689,7 +689,7 @@ def test_agenttools_MutationAgent_split_11():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -726,7 +726,7 @@ def test_agenttools_MutationAgent_split_12():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -751,7 +751,7 @@ def test_agenttools_MutationAgent_split_12():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -792,7 +792,7 @@ def test_agenttools_MutationAgent_split_13():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -817,7 +817,7 @@ def test_agenttools_MutationAgent_split_13():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -871,7 +871,7 @@ def test_agenttools_MutationAgent_split_14():
     music = sequencetools.flatten_sequence(result)
     staff = Staff(music)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -911,7 +911,7 @@ def test_agenttools_MutationAgent_split_15():
     music = sequencetools.flatten_sequence(result)
     staff = Staff(music)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -962,7 +962,7 @@ def test_agenttools_MutationAgent_split_16():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -987,7 +987,7 @@ def test_agenttools_MutationAgent_split_16():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1023,7 +1023,7 @@ def test_agenttools_MutationAgent_split_17():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1048,7 +1048,7 @@ def test_agenttools_MutationAgent_split_17():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1085,7 +1085,7 @@ def test_agenttools_MutationAgent_split_18():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1110,7 +1110,7 @@ def test_agenttools_MutationAgent_split_18():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1152,7 +1152,7 @@ def test_agenttools_MutationAgent_split_19():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1177,7 +1177,7 @@ def test_agenttools_MutationAgent_split_19():
         tie_split_notes=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1228,7 +1228,7 @@ def test_agenttools_MutationAgent_split_20():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1253,7 +1253,7 @@ def test_agenttools_MutationAgent_split_20():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1294,7 +1294,7 @@ def test_agenttools_MutationAgent_split_21():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1319,7 +1319,7 @@ def test_agenttools_MutationAgent_split_21():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1364,7 +1364,7 @@ def test_agenttools_MutationAgent_split_22():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1389,7 +1389,7 @@ def test_agenttools_MutationAgent_split_22():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1430,7 +1430,7 @@ def test_agenttools_MutationAgent_split_23():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1456,7 +1456,7 @@ def test_agenttools_MutationAgent_split_23():
 
     assert inspect(staff).is_well_formed()
     assert len(result) == 4
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1503,7 +1503,7 @@ def test_agenttools_MutationAgent_split_24():
     notes = sequencetools.flatten_sequence(result)
     staff = Staff(notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1525,7 +1525,7 @@ def test_agenttools_MutationAgent_split_25():
 
     staff = Staff("c'8 [ ]")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1542,7 +1542,7 @@ def test_agenttools_MutationAgent_split_25():
         tie_split_notes=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1573,7 +1573,7 @@ def test_agenttools_MutationAgent_split_26():
         fracture_spanners=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -1613,7 +1613,7 @@ def test_agenttools_MutationAgent_split_27():
         fracture_spanners=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -1656,7 +1656,7 @@ def test_agenttools_MutationAgent_split_28():
         fracture_spanners=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -1704,7 +1704,7 @@ def test_agenttools_MutationAgent_split_29():
     voice_1 = result[0][0]
     voice_2 = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice_1,
         r'''
         \new Voice {
@@ -1716,7 +1716,7 @@ def test_agenttools_MutationAgent_split_29():
 
     assert inspect(voice_1).is_well_formed()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice_2,
         r'''
         \new Voice {
@@ -1744,7 +1744,7 @@ def test_agenttools_MutationAgent_split_30():
     left = result[0][0]
     right = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         left,
         r'''
         \new Voice {
@@ -1754,7 +1754,7 @@ def test_agenttools_MutationAgent_split_30():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         right,
         r'''
         \new Voice {
@@ -1764,7 +1764,7 @@ def test_agenttools_MutationAgent_split_30():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -1772,7 +1772,7 @@ def test_agenttools_MutationAgent_split_30():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1808,7 +1808,7 @@ def test_agenttools_MutationAgent_split_31():
     left = result[0][0]
     right = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1824,7 +1824,7 @@ def test_agenttools_MutationAgent_split_31():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         left,
         r'''
         {
@@ -1834,7 +1834,7 @@ def test_agenttools_MutationAgent_split_31():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         right,
         r'''
         {
@@ -1844,7 +1844,7 @@ def test_agenttools_MutationAgent_split_31():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         {
@@ -1852,7 +1852,7 @@ def test_agenttools_MutationAgent_split_31():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1889,7 +1889,7 @@ def test_agenttools_MutationAgent_split_32():
     left = result[0][0]
     right = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1908,7 +1908,7 @@ def test_agenttools_MutationAgent_split_32():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         left,
         r'''
         \times 4/5 {
@@ -1918,7 +1918,7 @@ def test_agenttools_MutationAgent_split_32():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         right,
         r'''
         \times 4/5 {
@@ -1929,7 +1929,7 @@ def test_agenttools_MutationAgent_split_32():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 4/5 {
@@ -1937,7 +1937,7 @@ def test_agenttools_MutationAgent_split_32():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -1954,7 +1954,7 @@ def test_agenttools_MutationAgent_split_32():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -1987,7 +1987,7 @@ def test_agenttools_MutationAgent_split_33():
     attach(beam, voice[:])
     tuplet = voice[1]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2013,7 +2013,7 @@ def test_agenttools_MutationAgent_split_33():
     left = result[0][0]
     right = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         left,
         r'''
         \times 2/3 {
@@ -2022,7 +2022,7 @@ def test_agenttools_MutationAgent_split_33():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         right,
         r'''
         \times 2/3 {
@@ -2034,7 +2034,7 @@ def test_agenttools_MutationAgent_split_33():
 
     assert format(tuplet) == '\\times 2/3 {\n}'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2069,7 +2069,7 @@ def test_agenttools_MutationAgent_split_34():
     attach(beam, voice[:])
     measure = voice[1]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2096,7 +2096,7 @@ def test_agenttools_MutationAgent_split_34():
     left = result[0][0]
     right = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         left,
         r'''
         {
@@ -2106,7 +2106,7 @@ def test_agenttools_MutationAgent_split_34():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         right,
         r'''
         {
@@ -2119,7 +2119,7 @@ def test_agenttools_MutationAgent_split_34():
 
     assert pytest.raises(UnderfullContainerError, 'format(measure)')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2157,7 +2157,7 @@ def test_agenttools_MutationAgent_split_35():
     attach(beam, voice[:])
     measure = voice[1]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2188,7 +2188,7 @@ def test_agenttools_MutationAgent_split_35():
     left = result[0][0]
     right = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         left,
         r'''
         {
@@ -2200,7 +2200,7 @@ def test_agenttools_MutationAgent_split_35():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         right,
         r'''
         {
@@ -2215,7 +2215,7 @@ def test_agenttools_MutationAgent_split_35():
 
     assert pytest.raises(UnderfullContainerError, 'format(measure)')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2256,7 +2256,7 @@ def test_agenttools_MutationAgent_split_36():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2276,7 +2276,7 @@ def test_agenttools_MutationAgent_split_36():
     left = result[0][0]
     right = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         left,
         r'''
         \new Voice {
@@ -2286,7 +2286,7 @@ def test_agenttools_MutationAgent_split_36():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         right,
         r'''
         \new Voice {
@@ -2296,7 +2296,7 @@ def test_agenttools_MutationAgent_split_36():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2319,7 +2319,7 @@ def test_agenttools_MutationAgent_split_37():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -2345,7 +2345,7 @@ def test_agenttools_MutationAgent_split_37():
     left = result[0][0]
     right = result[1][0]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -2380,7 +2380,7 @@ def test_agenttools_MutationAgent_split_38():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -2399,7 +2399,7 @@ def test_agenttools_MutationAgent_split_38():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -2429,7 +2429,7 @@ def test_agenttools_MutationAgent_split_39():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2454,7 +2454,7 @@ def test_agenttools_MutationAgent_split_39():
         fracture_spanners=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2491,7 +2491,7 @@ def test_agenttools_MutationAgent_split_40():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2512,7 +2512,7 @@ def test_agenttools_MutationAgent_split_40():
         fracture_spanners=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2547,7 +2547,7 @@ def test_agenttools_MutationAgent_split_41():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2572,7 +2572,7 @@ def test_agenttools_MutationAgent_split_41():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2610,7 +2610,7 @@ def test_agenttools_MutationAgent_split_42():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2631,7 +2631,7 @@ def test_agenttools_MutationAgent_split_42():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2666,7 +2666,7 @@ def test_agenttools_MutationAgent_split_43():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2687,7 +2687,7 @@ def test_agenttools_MutationAgent_split_43():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2718,7 +2718,7 @@ def test_agenttools_MutationAgent_split_44():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2739,7 +2739,7 @@ def test_agenttools_MutationAgent_split_44():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2769,7 +2769,7 @@ def test_agenttools_MutationAgent_split_45():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2794,7 +2794,7 @@ def test_agenttools_MutationAgent_split_45():
         fracture_spanners=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2832,7 +2832,7 @@ def test_agenttools_MutationAgent_split_46():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2857,7 +2857,7 @@ def test_agenttools_MutationAgent_split_46():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2894,7 +2894,7 @@ def test_agenttools_MutationAgent_split_47():
     slur = Slur()
     attach(slur, voice[0].select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2915,7 +2915,7 @@ def test_agenttools_MutationAgent_split_47():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -2947,7 +2947,7 @@ def test_agenttools_MutationAgent_split_48():
         [Duration(5, 24)],
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -2981,7 +2981,7 @@ def test_agenttools_MutationAgent_split_49():
     slur = Slur()
     attach(slur, staff.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -3002,7 +3002,7 @@ def test_agenttools_MutationAgent_split_49():
         fracture_spanners=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

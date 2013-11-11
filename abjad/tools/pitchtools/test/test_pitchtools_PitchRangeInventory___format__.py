@@ -6,7 +6,7 @@ def test_pitchtools_PitchRangeInventory___format___01():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]', '[C4, D5]'])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(inventory),
         r'''
         pitchtools.PitchRangeInventory([

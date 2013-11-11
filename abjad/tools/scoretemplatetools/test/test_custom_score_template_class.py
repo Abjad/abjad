@@ -36,7 +36,7 @@ def test_custom_score_template_class_01():
     >>
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \context Score = "Green Score" <<
@@ -84,7 +84,7 @@ def test_custom_score_template_class_02():
     >>
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<
@@ -125,7 +125,7 @@ def test_custom_score_template_class_02():
     context_block.context_name = 'Score'
     context_block.accepts.append('CustomStaff')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         lilypond_file.layout_block,
         r'''
         \layout {
@@ -153,7 +153,7 @@ def test_custom_score_template_class_02():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         lilypond_file.score_block,
         r'''
         \score {

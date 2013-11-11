@@ -50,7 +50,7 @@ def test_scoretools_Container_is_simultaneous_04():
     container = Container([Voice("c'8 cs'8"), Voice("d'8 ef'8")])
     container.is_simultaneous = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         <<

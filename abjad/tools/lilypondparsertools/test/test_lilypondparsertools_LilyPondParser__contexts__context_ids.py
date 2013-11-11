@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__context_ids_01():
     target = Staff(scoretools.make_notes([0, 2, 4, 5, 7], (1, 8)))
     target.name = 'foo'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \context Staff = "foo" {

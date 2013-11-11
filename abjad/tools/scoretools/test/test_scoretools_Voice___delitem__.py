@@ -14,7 +14,7 @@ def test_scoretools_Voice___delitem___01():
         f'8 ]
         ''')
 
-    testtools.compare(
+    systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -31,7 +31,7 @@ def test_scoretools_Voice___delitem___01():
     container = voice[1]
     del(voice[1:2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

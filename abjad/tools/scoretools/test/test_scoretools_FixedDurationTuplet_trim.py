@@ -8,7 +8,7 @@ def test_scoretools_FixedDurationTuplet_trim_01():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(0)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -27,7 +27,7 @@ def test_scoretools_FixedDurationTuplet_trim_02():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(1)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -52,7 +52,7 @@ def test_scoretools_FixedDurationTuplet_trim_04():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(0, 0)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -72,7 +72,7 @@ def test_scoretools_FixedDurationTuplet_trim_05():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(0, 1)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -91,7 +91,7 @@ def test_scoretools_FixedDurationTuplet_trim_06():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), "c'8 d'8 e'8")
     tuplet.trim(1, 2)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text

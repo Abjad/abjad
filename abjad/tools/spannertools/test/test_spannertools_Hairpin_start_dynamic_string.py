@@ -18,7 +18,7 @@ def test_spannertools_Hairpin_start_dynamic_string_01():
     '''
 
     assert hairpin.start_dynamic_string == 'p'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -42,7 +42,7 @@ def test_spannertools_Hairpin_start_dynamic_string_01():
     '''
 
     assert hairpin.start_dynamic_string == 'mf'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

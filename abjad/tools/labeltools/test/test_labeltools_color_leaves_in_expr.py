@@ -28,7 +28,7 @@ def test_labeltools_color_leaves_in_expr_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

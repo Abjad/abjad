@@ -45,7 +45,7 @@ def test_quantizationtools_QGrid___call___02():
     result = q_grid((1, 4))
 
     assert isinstance(result, list) and len(result) == 1
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result[0],
         r'''
         \times 2/3 {
@@ -102,7 +102,7 @@ def test_quantizationtools_QGrid___call___03():
     result = q_grid((1, 3))
 
     assert isinstance(result, list) and len(result) == 1
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result[0],
         r'''
         \times 2/3 {

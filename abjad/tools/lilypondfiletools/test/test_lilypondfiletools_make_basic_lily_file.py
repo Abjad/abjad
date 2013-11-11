@@ -44,7 +44,7 @@ def test_lilypondfiletools_make_basic_lily_file_01():
     assert score.lilypond_file is lilypond_file
     assert lilypond_file.score_block[0] is score
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         lilypond_file,
         r'''
         \header {

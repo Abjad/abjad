@@ -12,7 +12,7 @@ def test_scoretools_Measure_time_signature_update_01():
     time_signature = TimeSignature((3, 8))
     attach(time_signature, measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

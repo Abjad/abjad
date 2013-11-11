@@ -13,7 +13,7 @@ def test_spannertools_DuratedComplexBeamSpanner_span_01():
         )
     attach(beam, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -47,7 +47,7 @@ def test_spannertools_DuratedComplexBeamSpanner_span_02():
         )
     attach(beam, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

@@ -13,7 +13,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -30,7 +30,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -48,7 +48,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -66,7 +66,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -86,7 +86,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -112,7 +112,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -129,7 +129,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -146,7 +146,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -165,7 +165,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
         
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -185,7 +185,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -213,7 +213,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_03():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -257,7 +257,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_04():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -278,7 +278,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -294,7 +294,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -311,7 +311,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -329,7 +329,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -348,7 +348,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -374,7 +374,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -390,7 +390,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -407,7 +407,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -426,7 +426,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -446,7 +446,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -489,7 +489,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_07():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -510,7 +510,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -527,7 +527,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -545,7 +545,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -563,7 +563,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -583,7 +583,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
         is_diminution=True,
         )
         
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -609,7 +609,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -626,7 +626,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -643,7 +643,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -662,7 +662,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -682,7 +682,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -710,7 +710,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_10():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -749,7 +749,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_11():
 
     tuplet = Tuplet.from_duration_and_ratio(Duration(1, 8), [27])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -770,7 +770,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -786,7 +786,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -803,7 +803,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -821,7 +821,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -840,7 +840,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_12():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 4/5 {
@@ -865,7 +865,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -881,7 +881,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -898,7 +898,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 4/5 {
@@ -916,7 +916,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -936,7 +936,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -980,7 +980,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_14():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -1001,7 +1001,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_15():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 2/3 {

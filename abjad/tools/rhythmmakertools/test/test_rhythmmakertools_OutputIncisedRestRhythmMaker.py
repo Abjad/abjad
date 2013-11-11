@@ -44,7 +44,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -110,7 +110,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_02():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -172,7 +172,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_03():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -239,7 +239,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_04():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -320,7 +320,7 @@ def test_rhythmmakertools_OutputIncisedRestRhythmMaker_05():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

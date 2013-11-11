@@ -120,7 +120,7 @@ def test_scoretools_Container_reverse_08():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -143,7 +143,7 @@ def test_scoretools_Container_reverse_08():
 
     staff.reverse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -186,7 +186,7 @@ def test_scoretools_Container_reverse_09():
     gliss = spannertools.Glissando()
     attach(gliss, container.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -210,7 +210,7 @@ def test_scoretools_Container_reverse_09():
 
     container.reverse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

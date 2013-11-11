@@ -36,7 +36,7 @@ def test_datastructuretools_TypedList_subclassing_02():
     foo = SpecialObjectInventory([])
 
     assert repr(foo) == 'SpecialObjectInventory([])'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         foo._tools_package_qualified_indented_repr,
         'specialtools.SpecialObjectInventory([])',
         )
@@ -49,7 +49,7 @@ def test_datastructuretools_TypedList_subclassing_03():
     foo = SpecialObjectInventory(name='foo', color='red')
 
     assert repr(foo) == "SpecialObjectInventory([], color='red', name='foo')"
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         foo._tools_package_qualified_indented_repr,
         r'''
         specialtools.SpecialObjectInventory([],
@@ -66,13 +66,13 @@ def test_datastructuretools_TypedList_subclassing_04():
 
     foo = SpecialObjectInventory(['foo', 99])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         repr(foo),
         r'''
         SpecialObjectInventory(['foo', 99])
         ''',
         )
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         foo._tools_package_qualified_indented_repr,
         r'''
         specialtools.SpecialObjectInventory([
@@ -89,13 +89,13 @@ def test_datastructuretools_TypedList_subclassing_05():
 
     foo = SpecialObjectInventory(['foo', 99], name='foo', color='red')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         repr(foo),
         r'''
         SpecialObjectInventory(['foo', 99], color='red', name='foo')
         ''',
         )
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         foo._tools_package_qualified_indented_repr,
         r'''
         specialtools.SpecialObjectInventory([

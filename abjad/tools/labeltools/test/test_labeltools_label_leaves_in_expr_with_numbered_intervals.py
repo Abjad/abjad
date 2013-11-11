@@ -21,7 +21,7 @@ def test_labeltools_label_leaves_in_expr_with_numbered_intervals_01():
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -44,7 +44,7 @@ def test_labeltools_label_leaves_in_expr_with_numbered_intervals_02():
     labeltools.label_leaves_in_expr_with_numbered_intervals(staff)
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r"""
         \new Staff {
@@ -71,7 +71,7 @@ def test_labeltools_label_leaves_in_expr_with_numbered_intervals_03():
     labeltools.label_leaves_in_expr_with_numbered_intervals(staff)
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r"""
         \new Staff {

@@ -28,7 +28,7 @@ def test_LilyFile_01():
     >>
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         lilypond_file,
         r'''
         #(set-default-paper-size "11x17" 'landscape)

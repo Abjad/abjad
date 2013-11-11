@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlurSpanner_01():
     slur = spannertools.PhrasingSlur()
     attach(slur, target[:3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -41,7 +41,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__PhrasingSlurSpanner_02():
     slur = spannertools.PhrasingSlur()
     attach(slur, target[:3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {

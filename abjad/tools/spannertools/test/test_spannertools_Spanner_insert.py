@@ -14,7 +14,7 @@ def test_spannertools_Spanner_insert_01():
     beam = Beam()
     attach(beam, voice[:2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -42,7 +42,7 @@ def test_spannertools_Spanner_insert_02():
     beam = Beam()
     attach(beam, voice[1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -64,7 +64,7 @@ def test_spannertools_Spanner_insert_02():
 
     beam._insert(0, voice[0][1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

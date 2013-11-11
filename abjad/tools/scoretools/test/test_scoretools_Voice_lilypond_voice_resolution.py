@@ -20,7 +20,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
     voice[2].is_simultaneous = True
     override(voice).note_head.color = 'red'
 
-    testtools.compare(
+    systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice \with {
@@ -60,7 +60,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_02():
     voice[2][0].name = 'foo'
     override(voice).note_head.color = 'red'
 
-    testtools.compare(
+    systemtools.TestManager.compare(
         voice,
         r'''
         \context Voice = "foo" \with {
@@ -148,7 +148,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
     override(container[1][1]).note_head.color = 'red'
     override(container[2][1]).note_head.color = 'red'
 
-    testtools.compare(
+    systemtools.TestManager.compare(
         container,
         r'''
         {

@@ -25,7 +25,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_beam_each_cell_01():
     score = Score([staff])
     contextualize(score).autoBeaming = False
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {

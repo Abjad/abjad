@@ -12,7 +12,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_01():
     beam = Beam()
     attach(beam, measure[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -26,7 +26,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_01():
     scoretools.scale_measure_denominator_and_adjust_measure_contents(
         measure, 3)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -52,7 +52,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_02():
     beam = Beam()
     attach(beam, measure[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -66,7 +66,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_02():
     scoretools.scale_measure_denominator_and_adjust_measure_contents(
         measure, 5)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -94,7 +94,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_03():
     beam = Beam()
     attach(beam, measure[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -108,7 +108,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_03():
     scoretools.scale_measure_denominator_and_adjust_measure_contents(
         measure, 7)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -134,7 +134,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_04():
     beam = Beam()
     attach(beam, measure[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -148,7 +148,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_04():
     scoretools.scale_measure_denominator_and_adjust_measure_contents(
         measure, 9)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

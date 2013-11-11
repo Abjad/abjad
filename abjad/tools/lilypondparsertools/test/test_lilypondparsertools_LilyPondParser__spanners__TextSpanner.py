@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_01():
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, target[:3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -41,7 +41,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__TextSpanner_02():
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, target[:3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {

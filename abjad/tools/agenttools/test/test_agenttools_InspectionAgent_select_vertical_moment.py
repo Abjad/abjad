@@ -14,7 +14,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_01():
     attach(clef, piano_staff[1])
     score.append(piano_staff)
         
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<
@@ -71,7 +71,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_02():
     attach(clef, piano_staff[1])
     score.append(piano_staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

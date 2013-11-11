@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_01():
     pitches = [2, 5, 9, 7, 12, 11, 5, 2]
     target = Container(scoretools.make_notes(pitches, (1, 4)))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -35,7 +35,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_02():
     pitches = [11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5]
     target = Container(scoretools.make_notes(pitches, (1, 4)))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -66,7 +66,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_03():
     pitches = [9, -3, 12, 5, 7, 31, 9, 17]
     target = Container(scoretools.make_notes(pitches, (1, 4)))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r"""
         {
@@ -93,7 +93,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_04():
     pitches = [["a'", "c''", "e''"], ["f'", "a'", "c''"], ["a'", "c''", "e''"], ["f''", "a''", "c'''"], ["b", "b'", "e''"]]
     target = Container(scoretools.make_leaves(pitches, 1))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r"""
         {
@@ -117,7 +117,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_05():
     pitches = ["c", "f", "b", "e'", "a'", "d''", "g''", "c'''"]
     target = Container(scoretools.make_notes(pitches, [(1, 4)]))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r"""
         {
@@ -147,7 +147,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_06():
         ])
     ])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -181,7 +181,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_07():
         ])
     ])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -214,7 +214,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_08():
         Chord(["e", "c'", "g''"], (1, 4)),
     ])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r"""
         {
@@ -238,7 +238,7 @@ def test_lilypondparsertools_LilyPondParser__functions__relative_09():
     pitches = ["c''", "fs''", "c''", "gf'", "b'", "ess''", "b'", "fff'"]
     target = Container(scoretools.make_notes(pitches, [(1, 2)]))
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {

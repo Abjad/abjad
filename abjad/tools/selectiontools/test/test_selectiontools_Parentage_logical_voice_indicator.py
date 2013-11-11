@@ -67,7 +67,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_04():
 
     override(voice).note_head.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice \with {
@@ -130,7 +130,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_05():
     override(voice).note_head.color = 'red'
     voice.name = 'foo'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \context Voice = "foo" \with {
@@ -195,7 +195,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_06():
     beam = Beam()
     attach(beam, leaves[2:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -256,7 +256,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_07():
     override(container[1][1]).note_head.color = 'red'
     override(container[2][1]).note_head.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -351,7 +351,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_10():
         f'8
         ''')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -382,7 +382,7 @@ def test_selectiontools_Parentage_logical_voice_indicator_11():
     container = Container(Staff(scoretools.make_repeated_notes(2)) * 2)
     container[0].name = container[1].name = 'staff'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

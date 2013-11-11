@@ -13,7 +13,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_01():
     staff_change = marktools.StaffChange(piano[1])
     attach(staff_change, piano[0][0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         piano,
         r'''
         \new PianoStaff <<
@@ -58,7 +58,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_02():
     staff_change = marktools.StaffChange(piano[0])
     attach(staff_change, piano[0][2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         piano,
         r'''
         \new PianoStaff <<
@@ -102,7 +102,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_03():
     staff_change = marktools.StaffChange(piano[1])
     attach(staff_change, piano[0][-1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         piano,
         r'''
         \new PianoStaff <<
@@ -139,7 +139,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_04():
     staff_change = marktools.StaffChange(piano[1])
     attach(staff_change, piano[0][1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         piano,
         r'''
         \new PianoStaff <<

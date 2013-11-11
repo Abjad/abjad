@@ -11,7 +11,7 @@ def test_lilypondparsertools_LilyPondParser__misc__default_duration_01():
     attach(Multiplier(5, 17), target[-2])
     attach(Multiplier(5, 17), target[-1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {

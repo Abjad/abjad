@@ -12,7 +12,7 @@ def test_timeintervaltools_TimeIntervalTreeDictionary___format___01():
 
     treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(treedict),
         r'''
         timeintervaltools.TimeIntervalTreeDictionary({

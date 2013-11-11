@@ -8,7 +8,7 @@ def test_spannertools_MeasuredComplexBeamSpanner_01():
         "| 2/16 g'16 a'16 |")
     scoretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -34,7 +34,7 @@ def test_spannertools_MeasuredComplexBeamSpanner_01():
     beam = spannertools.MeasuredComplexBeamSpanner()
     attach(beam, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

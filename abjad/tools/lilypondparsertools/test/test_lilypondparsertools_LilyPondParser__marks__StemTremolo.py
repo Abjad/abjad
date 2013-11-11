@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__marks__StemTremolo_01():
     stem_tremolo = marktools.StemTremolo(4)
     attach(stem_tremolo, target[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {

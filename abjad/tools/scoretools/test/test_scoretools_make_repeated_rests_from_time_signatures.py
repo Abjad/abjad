@@ -24,7 +24,7 @@ def test_scoretools_make_repeated_rests_from_time_signatures_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

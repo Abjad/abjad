@@ -10,7 +10,7 @@ def test_scoretools_Staff_time_signature_01():
     time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -36,7 +36,7 @@ def test_scoretools_Staff_time_signature_02():
     time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

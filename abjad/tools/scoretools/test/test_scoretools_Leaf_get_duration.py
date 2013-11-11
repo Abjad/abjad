@@ -14,7 +14,7 @@ def test_scoretools_Leaf_get_duration_01():
     attach(tempo, staff[2])
     Score([staff])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

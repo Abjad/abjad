@@ -12,7 +12,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_01():
     beam = Beam()
     attach(beam, target[3:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -39,7 +39,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_02():
     beam = Beam()
     attach(beam, target[3:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -65,7 +65,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_03():
     beam = Beam()
     attach(beam, target[1:3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -88,7 +88,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_04():
     beam = Beam()
     attach(beam, target[2:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {
@@ -126,7 +126,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_07():
     beam = Beam(direction=Down)
     attach(beam, target[3:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {

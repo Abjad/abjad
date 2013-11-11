@@ -19,7 +19,7 @@ def test_tonalanalysistools_Scale_make_notes_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

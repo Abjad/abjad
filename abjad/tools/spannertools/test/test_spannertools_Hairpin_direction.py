@@ -8,7 +8,7 @@ def test_spannertools_Hairpin_direction_01():
     hairpin = Hairpin(descriptor='p < f', direction=Down)
     attach(hairpin, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

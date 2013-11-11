@@ -8,7 +8,7 @@ def test_scoretools_FixedDurationTuplet___copy___01():
     tuplet_1 = scoretools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8")
     override(tuplet_1).note_head.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet_1,
         r'''
         \override NoteHead #'color = #red

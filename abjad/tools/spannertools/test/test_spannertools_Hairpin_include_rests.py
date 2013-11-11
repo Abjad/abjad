@@ -10,7 +10,7 @@ def test_spannertools_Hairpin_include_rests_01():
     crescendo = Crescendo(include_rests=False)
     attach(crescendo, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -38,7 +38,7 @@ def test_spannertools_Hairpin_include_rests_02():
     attach(crescendo, staff[:])
 
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

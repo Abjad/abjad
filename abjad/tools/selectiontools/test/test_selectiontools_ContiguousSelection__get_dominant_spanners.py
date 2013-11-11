@@ -20,7 +20,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_01():
     trill = spannertools.TrillSpanner()
     attach(trill, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -194,7 +194,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_09():
     trill = spannertools.TrillSpanner()
     attach(trill, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

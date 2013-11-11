@@ -16,7 +16,7 @@ def test_spannertools_ComplexBeamSpanner___init___02():
     beam = spannertools.ComplexBeamSpanner()
     attach(beam, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

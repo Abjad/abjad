@@ -17,7 +17,7 @@ def test_scoretools_Voice___copy___01():
     contextualize(voice_1).tuplet_full_length = True
     voice_2 = copy.copy(voice_1)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice_2,
         r'''
         \context Voice = "SopranoVoice" \with {
@@ -39,7 +39,7 @@ def test_scoretools_Voice___copy___02():
     voice_1.name = 'SkipVoice'
     voice_1.is_nonsemantic = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice_1,
         r'''
         \context Voice = "SkipVoice" {
@@ -53,7 +53,7 @@ def test_scoretools_Voice___copy___02():
 
     voice_2 = copy.copy(voice_1)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice_2,
         r'''
         \context Voice = "SkipVoice" {

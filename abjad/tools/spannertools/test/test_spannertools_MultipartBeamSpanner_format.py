@@ -8,7 +8,7 @@ def test_spannertools_MultipartBeamSpanner_format_01():
     beam = spannertools.MultipartBeamSpanner()
     attach(beam, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

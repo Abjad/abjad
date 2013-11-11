@@ -14,7 +14,7 @@ def test_selectiontools_Parentage__get_spanners_01():
     trill = spannertools.TrillSpanner()
     attach(trill, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {
@@ -44,7 +44,7 @@ def test_selectiontools_Parentage__get_spanners_02():
     trill = spannertools.TrillSpanner()
     attach(trill, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

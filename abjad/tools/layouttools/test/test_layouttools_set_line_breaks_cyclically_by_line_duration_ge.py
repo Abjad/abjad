@@ -17,7 +17,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
         Duration(4, 8),
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -63,7 +63,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02():
         line_break_class=scoretools.Leaf,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

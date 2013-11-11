@@ -11,7 +11,7 @@ def test_scoretools_GraceContainer_01():
 
     assert isinstance(gracecontainer, Container)
     assert len(gracecontainer) == 3
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         gracecontainer,
         r'''
         \grace {
@@ -54,7 +54,7 @@ def test_scoretools_GraceContainer_03():
 
     gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
     gracecontainer.kind = 'grace'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         gracecontainer,
         r'''
         \grace {
@@ -80,7 +80,7 @@ def test_scoretools_GraceContainer_04():
 
     gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
     gracecontainer.kind = 'acciaccatura'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         gracecontainer,
         r'''
         \acciaccatura {
@@ -106,7 +106,7 @@ def test_scoretools_GraceContainer_05():
 
     gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
     gracecontainer.kind = 'appoggiatura'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         gracecontainer,
         r'''
         \appoggiatura {
@@ -132,7 +132,7 @@ def test_scoretools_GraceContainer_06():
 
     gracecontainer = scoretools.GraceContainer(scoretools.make_repeated_notes(3))
     gracecontainer.kind = 'after'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         gracecontainer,
         r'''
         {

@@ -9,7 +9,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___01():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff).auto_beaming = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -34,7 +34,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___02():
     contextualize(staff).auto_beaming = True
     del(contextualize(staff).auto_beaming)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -56,7 +56,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___03():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff[0]).score.current_bar_number = 12
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -81,7 +81,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___04():
     staff.append(Measure((2, 8), "e'8 f'8"))
     contextualize(staff[0]).score.current_bar_number = 12
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -109,7 +109,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___05():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff).font_size = -3
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -133,7 +133,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___06():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff).instrument_name = 'Violini I'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -157,7 +157,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___07():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff).instrument_name = markuptools.Markup(r'\circle { V }')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -182,7 +182,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___08():
     moment = schemetools.SchemeMoment(Fraction(1, 56))
     contextualize(score).proportional_notation_duration = moment
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score \with {
@@ -208,7 +208,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___09():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff).short_instrument_name = 'Vni. I'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -232,7 +232,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___10():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff).short_instrument_name = markuptools.Markup(r'\circle { V }')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -256,7 +256,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___11():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff).suggest_accidentals = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -280,7 +280,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___12():
     staff = Staff("c'8 d'8 e'8 f'8")
     contextualize(staff[1]).suggest_accidentals = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -303,7 +303,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___13():
     staff = Staff([])
     contextualize(staff).tuplet_full_length = True
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -317,7 +317,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___13():
 
     contextualize(staff).tuplet_full_length = False
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
@@ -331,7 +331,7 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___13():
 
     del(contextualize(staff).tuplet_full_length)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

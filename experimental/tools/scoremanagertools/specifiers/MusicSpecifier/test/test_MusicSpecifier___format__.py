@@ -20,7 +20,7 @@ def test_MusicSpecifier___format___02():
     specifier = scoremanagertools.specifiers.MusicSpecifier([], name='foo')
 
     assert repr(specifier) == "MusicSpecifier([], name='foo')"
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(specifier),
         r'''
         specifiers.MusicSpecifier([],
@@ -42,7 +42,7 @@ def test_MusicSpecifier___format___03():
 
     ms = scoremanagertools.specifiers.MusicSpecifier([mcs_1, mcs_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(ms),
         '''
         specifiers.MusicSpecifier([
@@ -73,7 +73,7 @@ def test_MusicSpecifier___format___04():
 
     ms = scoremanagertools.specifiers.MusicSpecifier([mcs_1, mcs_2], name='blue music')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(ms),
         '''
         specifiers.MusicSpecifier([

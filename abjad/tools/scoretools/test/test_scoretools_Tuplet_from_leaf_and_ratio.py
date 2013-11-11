@@ -9,7 +9,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1], is_diminution=False)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -20,7 +20,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=False)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -36,7 +36,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -55,7 +55,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -75,7 +75,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -97,7 +97,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1], is_diminution=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -108,7 +108,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -120,7 +120,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2, 2, 3], is_diminution=True)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -139,7 +139,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -159,7 +159,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \times 4/5 {
@@ -186,7 +186,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -201,7 +201,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -217,7 +217,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -234,7 +234,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -252,7 +252,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
@@ -279,7 +279,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -294,7 +294,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -310,7 +310,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {
@@ -327,7 +327,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         is_diminution=True,
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         {

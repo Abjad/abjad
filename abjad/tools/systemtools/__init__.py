@@ -5,6 +5,7 @@ from ImportManager import ImportManager
 from IOManager import IOManager
 from LilyPondFormatManager import LilyPondFormatManager
 from RedirectedStreams import RedirectedStreams
+from TestManager import TestManager
 from UpdateManager import UpdateManager
 from requires import requires
 

@@ -12,7 +12,7 @@ def test_scoretools_NaturalHarmonic_01():
     '''
 
     assert naturalharmonic.written_pitch == pitchtools.NamedPitch(10)
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         naturalharmonic,
         r'''
         \once \override NoteHead #'style = #'harmonic

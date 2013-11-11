@@ -17,7 +17,7 @@ def test_lilypondfiletools_ScoreBlock_01():
     score_block.append(layout_block)
     score_block.append(midi_block)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score_block,
         r'''
         \score {

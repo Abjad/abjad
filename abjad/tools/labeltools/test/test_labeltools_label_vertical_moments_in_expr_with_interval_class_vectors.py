@@ -15,7 +15,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
     score[2].append(Note(-24, (1, 2)))
     labeltools.label_vertical_moments_in_expr_with_interval_class_vectors(score)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<
@@ -76,7 +76,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_interval_class_vectors_0
             }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         chord,
         r'''
         <bf bqf a'>4

@@ -10,7 +10,7 @@ def test_labeltools_color_contents_of_container_01():
     staff.append(Measure((2, 8), "g'8 a'8"))
     labeltools.color_contents_of_container(staff[1], 'blue')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

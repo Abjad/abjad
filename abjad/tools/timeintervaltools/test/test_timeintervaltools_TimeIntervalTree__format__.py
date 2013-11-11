@@ -10,7 +10,7 @@ def test_timeintervaltools_TimeIntervalTree__format___01():
     b = TimeInterval(Offset(0, 1), Offset(1, 1), {'x': 'y'})
     tree = TimeIntervalTree([a, b])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(tree),
         r'''
         timeintervaltools.TimeIntervalTree([

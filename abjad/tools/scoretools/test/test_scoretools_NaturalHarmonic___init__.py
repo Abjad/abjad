@@ -10,7 +10,7 @@ def test_scoretools_NaturalHarmonic___init___01():
     natural_harmonic = scoretools.NaturalHarmonic(staff[1])
     staff[1:2] = [natural_harmonic]
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

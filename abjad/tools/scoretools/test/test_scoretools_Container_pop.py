@@ -15,7 +15,7 @@ def test_scoretools_Container_pop_01():
     beam = Beam()
     attach(beam, voice[1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -29,7 +29,7 @@ def test_scoretools_Container_pop_01():
 
     result = voice.pop(1)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -57,7 +57,7 @@ def test_scoretools_Container_pop_02():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -75,7 +75,7 @@ def test_scoretools_Container_pop_02():
 
     sequential = staff.pop()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -88,7 +88,7 @@ def test_scoretools_Container_pop_02():
         )
     assert inspect(staff).is_well_formed()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         sequential,
         r'''
         {

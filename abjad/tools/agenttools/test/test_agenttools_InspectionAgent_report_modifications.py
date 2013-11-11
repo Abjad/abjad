@@ -15,7 +15,7 @@ def test_agenttools_InspectionAgent_report_modifications_01():
     attach(beam, voice[:])
     override(beam).beam.thickness = 3
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         % Example voice
@@ -35,7 +35,7 @@ def test_agenttools_InspectionAgent_report_modifications_01():
 
     result = inspect(voice).report_modifications()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result,
         r'''
         % Example voice
@@ -61,7 +61,7 @@ def test_agenttools_InspectionAgent_report_modifications_02():
     attach(beam, tuplet[:])
     override(beam).beam.thickness = 3
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet,
         r'''
         % Example tuplet
@@ -80,7 +80,7 @@ def test_agenttools_InspectionAgent_report_modifications_02():
 
     result = inspect(tuplet).report_modifications()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result,
         r'''
         % Example tuplet

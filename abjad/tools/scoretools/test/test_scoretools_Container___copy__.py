@@ -27,7 +27,7 @@ def test_scoretools_Container___copy___01():
     '''
 
     assert container_1 is not container_2
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container_2,
         r'''
         <<

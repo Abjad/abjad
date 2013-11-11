@@ -33,7 +33,7 @@ def test_scoretools_Chord_lilypond_format_03():
     command = marktools.LilyPondCommand('glissando', 'right')
     attach(command, chord)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         chord,
         r'''
         <

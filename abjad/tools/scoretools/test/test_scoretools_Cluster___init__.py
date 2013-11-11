@@ -8,7 +8,7 @@ def test_scoretools_Cluster___init___01():
     cluster = scoretools.Cluster([])
     assert not cluster.is_simultaneous
     assert len(cluster) == 0
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         cluster,
         r'''
         \makeClusters {
@@ -22,7 +22,7 @@ def test_scoretools_Cluster___init___02():
     assert isinstance(cluster, scoretools.Cluster)
     assert not cluster.is_simultaneous
     assert len(cluster) == 4
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         cluster,
         r'''
         \makeClusters {

@@ -8,7 +8,7 @@ def test_scoretools_make_quarter_notes_with_lilypond_duration_multiplier_01():
     notes = scoretools.make_quarter_notes_with_lilypond_duration_multiplier([0], multipliers)
     staff = Staff(notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

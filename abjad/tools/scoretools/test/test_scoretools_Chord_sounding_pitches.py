@@ -9,7 +9,7 @@ def test_scoretools_Chord_sounding_pitches_01():
     attach(glockenspiel, staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -8,7 +8,7 @@ def test_scoretools_Tuplet___copy___01():
     tuplet_1 = Tuplet((2, 3), "c'8 d'8 e'8")
     override(tuplet_1).note_head.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet_1,
         r'''
         \override NoteHead #'color = #red
@@ -24,7 +24,7 @@ def test_scoretools_Tuplet___copy___01():
     tuplet_2 = copy.copy(tuplet_1)
 
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet_2,
         r'''
         \override NoteHead #'color = #red

@@ -13,7 +13,7 @@ def test_scoretools_Measure___delitem___01():
     del(measure[:1])
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -37,7 +37,7 @@ def test_scoretools_Measure___delitem___02():
     del(measure[-1:])
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -61,7 +61,7 @@ def test_scoretools_Measure___delitem___03():
     del(measure[:2])
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -84,7 +84,7 @@ def test_scoretools_Measure___delitem___04():
     del(measure[:1])
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -120,7 +120,7 @@ def test_scoretools_Measure___delitem___05():
     '''
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -170,7 +170,7 @@ def test_scoretools_Measure___delitem___06():
     '''
 
     assert inspect(measure).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

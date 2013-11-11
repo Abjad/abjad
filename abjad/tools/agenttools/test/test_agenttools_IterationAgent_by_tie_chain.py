@@ -12,7 +12,7 @@ def test_agenttools_IterationAgent_by_tie_chain_01():
     tie = spannertools.Tie()
     attach(tie, staff[2:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

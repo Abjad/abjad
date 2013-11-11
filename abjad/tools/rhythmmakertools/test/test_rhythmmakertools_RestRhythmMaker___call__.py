@@ -29,7 +29,7 @@ def test_rhythmmakertools_RestRhythmMaker___call___01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__marks__KeySignatureMark_01():
     key_signature = marktools.KeySignature('g', 'major')
     attach(key_signature, target[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {

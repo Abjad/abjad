@@ -30,7 +30,7 @@ def test_scoretools_make_measures_with_full_measure_spacer_skips_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

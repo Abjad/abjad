@@ -10,7 +10,7 @@ def test_scoretools_Note_sounding_pitch_01():
     attach(piccolo, staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

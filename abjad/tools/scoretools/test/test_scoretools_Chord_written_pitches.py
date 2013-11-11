@@ -35,7 +35,7 @@ def test_scoretools_Chord_written_pitches_03():
     attach(glockenspiel, staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

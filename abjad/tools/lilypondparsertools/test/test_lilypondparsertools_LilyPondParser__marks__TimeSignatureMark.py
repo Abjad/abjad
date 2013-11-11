@@ -9,7 +9,7 @@ def test_lilypondparsertools_LilyPondParser__marks__TimeSignatureMark_01():
     time_signature = TimeSignature((8, 8))
     attach(time_signature, target.select_leaves()[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         \new Score <<

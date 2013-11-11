@@ -60,7 +60,7 @@ def test_agenttools_MutationAgent_fuse_05():
     attach(Multiplier(1, 16), staff[0])
     attach(Multiplier(5, 16), staff[1])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -74,7 +74,7 @@ def test_agenttools_MutationAgent_fuse_05():
 
     mutate(staff[:]).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -100,7 +100,7 @@ def test_agenttools_MutationAgent_fuse_06():
     slur = Slur()
     attach(slur, tuplet_2[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet_1,
         r'''
         \times 2/3 {
@@ -111,7 +111,7 @@ def test_agenttools_MutationAgent_fuse_06():
         '''
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         tuplet_2,
         r'''
         \times 2/3 {
@@ -125,7 +125,7 @@ def test_agenttools_MutationAgent_fuse_06():
     tuplets = select([tuplet_1, tuplet_2], contiguous=True)
     new = mutate(tuplets).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new,
         r'''
         \times 2/3 {
@@ -159,7 +159,7 @@ def test_agenttools_MutationAgent_fuse_07():
     attach(slur, tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -180,7 +180,7 @@ def test_agenttools_MutationAgent_fuse_07():
     tuplets = voice[:]
     mutate(tuplets).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -211,7 +211,7 @@ def test_agenttools_MutationAgent_fuse_08():
     attach(slur, tuplet_2[:])
     voice = Voice([tuplet_1, tuplet_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -234,7 +234,7 @@ def test_agenttools_MutationAgent_fuse_08():
     tuplets = voice[:]
     mutate(tuplets).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -289,7 +289,7 @@ def test_agenttools_MutationAgent_fuse_11():
     slur = Slur()
     attach(slur, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -307,7 +307,7 @@ def test_agenttools_MutationAgent_fuse_11():
     tuplets = voice[:2]
     mutate(tuplets).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -336,7 +336,7 @@ def test_agenttools_MutationAgent_fuse_12():
     attach(slur, measure_2[:])
     staff = Staff([measure_1, measure_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -360,7 +360,7 @@ def test_agenttools_MutationAgent_fuse_12():
     assert len(measure_1) == 0
     assert len(measure_2) == 0
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         new,
         r'''
         {
@@ -386,7 +386,7 @@ def test_agenttools_MutationAgent_fuse_13():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -406,7 +406,7 @@ def test_agenttools_MutationAgent_fuse_13():
 
     mutate(voice[:]).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -434,7 +434,7 @@ def test_agenttools_MutationAgent_fuse_14():
     beam = Beam()
     attach(beam, voice[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -454,7 +454,7 @@ def test_agenttools_MutationAgent_fuse_14():
 
     mutate(voice[:]).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -485,7 +485,7 @@ def test_agenttools_MutationAgent_fuse_15():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -505,7 +505,7 @@ def test_agenttools_MutationAgent_fuse_15():
 
     mutate(voice[:]).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -551,7 +551,7 @@ def test_agenttools_MutationAgent_fuse_18():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -574,7 +574,7 @@ def test_agenttools_MutationAgent_fuse_18():
 
     mutate(voice[:]).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
@@ -606,7 +606,7 @@ def test_agenttools_MutationAgent_fuse_19():
     scoretools.fill_measures_in_expr_with_time_signature_denominator_notes(
         staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -635,7 +635,7 @@ def test_agenttools_MutationAgent_fuse_19():
 
     new = mutate(staff[:]).fuse()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

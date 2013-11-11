@@ -9,7 +9,7 @@ def test_schemetools_SchemeColor___init___01():
     note = Note("c'4")
     override(note).note_head.color = schemetools.SchemeColor('ForestGreen')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'color = #(x11-color 'ForestGreen)
@@ -25,7 +25,7 @@ def test_schemetools_SchemeColor___init___02():
     note = Note("c'4")
     override(note).note_head.color = 'grey'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \once \override NoteHead #'color = #grey

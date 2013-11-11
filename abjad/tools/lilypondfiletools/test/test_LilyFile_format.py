@@ -54,7 +54,7 @@ def test_LilyFile_format_01():
     }
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         lilypond_file,
         r'''
         % User comments 1.

@@ -42,7 +42,7 @@ def test_scoretemplatetools_StringQuartetScoreTemplate___call___01():
     >>
     '''
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \context Score = "String Quartet Score" <<

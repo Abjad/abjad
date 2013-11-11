@@ -16,7 +16,7 @@ def test_spannertools_Decrescendo___init___02():
     decrescendo = Decrescendo()
     attach(decrescendo, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

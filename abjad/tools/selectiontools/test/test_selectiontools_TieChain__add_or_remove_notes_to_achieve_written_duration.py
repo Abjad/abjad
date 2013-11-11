@@ -18,7 +18,7 @@ def test_selectiontools_TieChain__add_or_remove_notes_to_achieve_written_duratio
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -44,7 +44,7 @@ def test_selectiontools_TieChain__add_or_remove_notes_to_achieve_written_duratio
     '''
 
     assert inspect(staff).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -48,7 +48,7 @@ def test_spannertools_Spanner_fracture_01():
     assert right.components[0] is staff[2]
     assert len(right.leaves) == 4
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

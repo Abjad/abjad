@@ -18,7 +18,7 @@ def test_selectiontools_TieChain_all_leaves_are_in_same_parent_02():
     tie = spannertools.Tie()
     attach(tie, staff.select_leaves()[1:3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -45,7 +45,7 @@ def test_selectiontools_TieChain_all_leaves_are_in_same_parent_03():
 
     staff = Staff(r"\times 2/3 { c'8 c'8 c'8 ~ } \times 2/3 { c'8 c'8 c'8 }")
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

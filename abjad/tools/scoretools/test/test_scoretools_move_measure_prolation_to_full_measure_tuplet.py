@@ -11,7 +11,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_01():
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -31,7 +31,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_01():
 
     scoretools.move_measure_prolation_to_full_measure_tuplet(measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -63,7 +63,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -88,7 +88,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
 
     scoretools.move_measure_prolation_to_full_measure_tuplet(measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

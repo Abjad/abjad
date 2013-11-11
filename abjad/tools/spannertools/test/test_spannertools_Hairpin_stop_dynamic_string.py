@@ -9,7 +9,7 @@ def test_spannertools_Hairpin_stop_dynamic_string_01():
     attach(hairpin, staff[:])
 
     assert hairpin.stop_dynamic_string == 'f'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -24,7 +24,7 @@ def test_spannertools_Hairpin_stop_dynamic_string_01():
     hairpin.stop_dynamic_string = 'mf'
 
     assert hairpin.stop_dynamic_string == 'mf'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

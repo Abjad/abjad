@@ -12,7 +12,7 @@ def test_spannertools_DynamicTextSpanner_01():
     spanner = spannertools.DynamicTextSpanner(mark='p')
     attach(spanner, voice[2:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {

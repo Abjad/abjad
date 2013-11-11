@@ -12,7 +12,7 @@ def test_agenttools_InspectionAgent_get_marks_01():
     command_2 = marktools.LilyPondCommand('slurUp')
     attach(command_2, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -42,7 +42,7 @@ def test_agenttools_InspectionAgent_get_marks_02():
     command = marktools.LilyPondCommand('slurDotted')
     attach(command, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -70,7 +70,7 @@ def test_agenttools_InspectionAgent_get_marks_03():
     dynamic = Dynamic('p')
     attach(dynamic, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -96,7 +96,7 @@ def test_agenttools_InspectionAgent_get_marks_04():
     dynamic = Dynamic('p')
     attach(dynamic, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -122,7 +122,7 @@ def test_agenttools_InspectionAgent_get_marks_05():
     annotation_2 = marktools.Annotation('annotation 2')
     attach(annotation_2, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -146,7 +146,7 @@ def test_agenttools_InspectionAgent_get_marks_06():
     comment_2 = marktools.LilyPondComment('comment 2')
     attach(comment_2, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

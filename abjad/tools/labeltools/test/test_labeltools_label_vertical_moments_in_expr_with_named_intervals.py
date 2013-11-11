@@ -15,7 +15,7 @@ def test_labeltools_label_vertical_moments_in_expr_with_named_intervals_01():
     score[2].append(Note(-24, (1, 2)))
     labeltools.label_vertical_moments_in_expr_with_named_intervals(score)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

@@ -92,7 +92,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_06():
     clef = Clef('treble')
     attach(clef, staff[4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -123,7 +123,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_07():
     clef = Clef('treble')
     attach(clef, staff[4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -165,7 +165,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_09():
     dynamic = Dynamic('f')
     attach(dynamic, staff[2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -195,7 +195,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_10():
     flute = instrumenttools.Flute()
     attach(flute, staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -234,7 +234,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_11():
         marktools.KeySignature)
     assert key_signature == marktools.KeySignature('c', 'major')
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -270,7 +270,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_13():
     tempo = Tempo(Duration(1, 8), 42)
     attach(tempo, staff[2], target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -304,7 +304,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_14():
     tempo = Tempo(Duration(1, 8), 38)
     attach(tempo, staff[0], target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -321,7 +321,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_15():
     tempo = Tempo(Duration(1, 8), 38)
     attach(tempo, staff[0], target_context=Staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -341,7 +341,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_16():
     attach(tempo, staff[0], target_context=Staff)
     detach(tempo, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -371,7 +371,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_18():
     time_signature = TimeSignature((2, 8))
     attach(time_signature, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -399,7 +399,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_19():
     attach(time_signature, staff[0])
     detach(time_signature, staff[0])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

@@ -15,7 +15,7 @@ def test_marktools_LilyPondComment_before_01():
     comment = marktools.LilyPondComment('More voice before comments.', 'before')
     attach(comment, voice)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         voice,
         r'''
         % Voice before comments here.
@@ -45,7 +45,7 @@ def test_marktools_LilyPondComment_before_02():
     comment = marktools.LilyPondComment('More comments before.', 'before')
     attach(comment, note)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         % Leaf comments before here.

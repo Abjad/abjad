@@ -55,7 +55,7 @@ def test_scoretools_Note___copy___04():
         [Note("d'32")], kind='after')
     attach(grace_container_1, note_1)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note_1,
         r'''
         \afterGrace
@@ -72,7 +72,7 @@ def test_scoretools_Note___copy___04():
     assert note_1 is not note_2
     assert grace_container_1 is not grace_container_2
     assert grace_container_1.kind == grace_container_2.kind == 'after'
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note_2,
         r'''
         \afterGrace
@@ -95,7 +95,7 @@ def test_scoretools_Note___copy___05():
     attach(grace, note)
     override(note).note_head.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         note,
         r'''
         \grace {
@@ -124,7 +124,7 @@ def test_scoretools_Note___copy___06():
     attach(grace, note)
     override(note).note_head.color = 'red'
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -159,7 +159,7 @@ def test_scoretools_Note___copy___07():
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -178,7 +178,7 @@ def test_scoretools_Note___copy___07():
     new_note = copy.copy(staff[0])
     staff.append(new_note)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

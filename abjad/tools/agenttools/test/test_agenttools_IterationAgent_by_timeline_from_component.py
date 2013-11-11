@@ -13,7 +13,7 @@ def test_agenttools_IterationAgent_by_timeline_from_component_01():
     staff_2 = Staff("g'8 a'8 b'8 c''8")
     score.extend([staff_1, staff_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<
@@ -55,7 +55,7 @@ def test_agenttools_IterationAgent_by_timeline_from_component_02():
     staff_2 = Staff("g'4 a'4 b'4 c''4")
     score.extend([staff_1, staff_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<
@@ -99,7 +99,7 @@ def test_agenttools_IterationAgent_by_timeline_from_component_03():
     staff_2 = Staff("g'8 a'8 b'8 c''8")
     score.extend([staff_1, staff_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<
@@ -139,7 +139,7 @@ def test_agenttools_IterationAgent_by_timeline_from_component_04():
     staff_2 = Staff("g'4 a'4 b'4 c''4")
     score.extend([staff_1, staff_2])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

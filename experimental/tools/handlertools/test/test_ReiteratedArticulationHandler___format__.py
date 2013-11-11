@@ -10,7 +10,7 @@ def test_ReiteratedArticulationHandler___format___01():
         maximum_duration=Duration(1, 8),
         )
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         format(handler),
         r'''
         handlertools.ReiteratedArticulationHandler(

@@ -8,7 +8,7 @@ def test_scoretools_make_notes_with_multiplied_durations_01():
         0, Duration(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)])
     staff = Staff(notes)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

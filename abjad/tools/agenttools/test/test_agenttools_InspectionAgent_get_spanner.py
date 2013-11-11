@@ -13,7 +13,7 @@ def test_agenttools_InspectionAgent_get_spanner_01():
     trill = spannertools.TrillSpanner()
     attach(trill, container)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         container,
         r'''
         {

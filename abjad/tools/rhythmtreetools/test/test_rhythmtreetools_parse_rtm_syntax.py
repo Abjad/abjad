@@ -7,7 +7,7 @@ def test_rhythmtreetools_parse_rtm_syntax_01():
     rtm = '(3 (1 (3 (1 (3 (1 (3 (1 1 1 1))))))))'
     result = rhythmtreetools.parse_rtm_syntax(rtm)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         result,
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text

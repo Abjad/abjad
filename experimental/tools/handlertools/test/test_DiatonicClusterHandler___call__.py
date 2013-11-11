@@ -10,7 +10,7 @@ def test_DiatonicClusterHandler___call___01():
     staff = Staff("c' d' e' f'")
     diatonic_cluster_handler(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

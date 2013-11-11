@@ -15,7 +15,7 @@ def test_scoretools_Container_get_duration_01():
     attach(tempo, staff[2])
     score = Score([staff])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<

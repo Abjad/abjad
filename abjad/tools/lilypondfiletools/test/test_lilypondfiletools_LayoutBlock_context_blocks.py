@@ -11,7 +11,7 @@ def test_lilypondfiletools_LayoutBlock_context_blocks_01():
         schemetools.Scheme('end-of-line-invisible')
     layout_block.context_blocks.append(context_block)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         layout_block,
         r'''
         \layout {

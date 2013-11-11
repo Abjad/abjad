@@ -14,7 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     bracket = spannertools.HorizontalBracketSpanner()
     attach(bracket, target[2:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         target,
         r'''
         {

@@ -13,7 +13,7 @@ def test_spannertools_Hairpin_01():
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -41,7 +41,7 @@ def test_spannertools_Hairpin_02():
     attach(crescendo, staff[0:1])
     checker = ShortHairpinCheck()
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -72,7 +72,7 @@ def test_spannertools_Hairpin_03():
     dynamic = Dynamic('f')
     attach(dynamic, staff[3])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -122,7 +122,7 @@ def test_spannertools_Hairpin_05():
     dynamic = Dynamic('f')
     attach(dynamic, staff[6])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -149,7 +149,7 @@ def test_spannertools_Hairpin_06():
     crescendo = Crescendo()
     attach(crescendo, staff[:])
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
@@ -187,7 +187,7 @@ def test_spannertools_Hairpin_07():
     spanner = inspect(staff[0]).get_spanner(spanner_classes=spanner_classes)
     assert len(spanner.components) == len(staff)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {

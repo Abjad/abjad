@@ -15,7 +15,7 @@ def test_scoretools_append_spacer_skip_to_underfull_measure_01():
 
     scoretools.append_spacer_skip_to_underfull_measure(measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {
@@ -46,7 +46,7 @@ def test_scoretools_append_spacer_skip_to_underfull_measure_02():
 
     scoretools.append_spacer_skip_to_underfull_measure(measure)
 
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         measure,
         r'''
         {

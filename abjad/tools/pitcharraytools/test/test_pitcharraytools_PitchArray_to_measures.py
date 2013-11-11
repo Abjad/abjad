@@ -41,7 +41,7 @@ def test_pitcharraytools_PitchArray_to_measures_01():
     '''
 
     assert inspect(score).is_well_formed()
-    assert testtools.compare(
+    assert systemtools.TestManager.compare(
         score,
         r'''
         \new Score <<
