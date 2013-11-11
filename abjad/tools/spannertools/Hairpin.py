@@ -3,10 +3,10 @@ from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import marktools
 from abjad.tools import stringtools
-from abjad.tools.spannertools.DirectedSpanner import DirectedSpanner
+from abjad.tools.spannertools.Spanner import Spanner
 
 
-class Hairpin(DirectedSpanner):
+class Hairpin(Spanner):
     r'''A dynamic hairpin spanner.
 
     ..  container:: example
@@ -17,7 +17,7 @@ class Hairpin(DirectedSpanner):
 
             >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
             >>> hairpin = spannertools.Hairpin(
-            ...     descriptor='p < f', 
+            ...     descriptor='p < f',
             ...     include_rests=False,
             ...     )
             >>> attach(hairpin, staff[:])
@@ -43,7 +43,7 @@ class Hairpin(DirectedSpanner):
 
             >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
             >>> hairpin = spannertools.Hairpin(
-            ...     descriptor='p < f', 
+            ...     descriptor='p < f',
             ...     include_rests=True,
             ...     )
             >>> attach(hairpin, staff[:])
@@ -80,12 +80,12 @@ class Hairpin(DirectedSpanner):
         direction=None,
         overrides=None,
         ):
-        DirectedSpanner.__init__(
+        Spanner.__init__(
             self,
             components=components,
-            direction=direction,
             overrides=overrides,
             )
+        self.direction = direction
         self.include_rests = include_rests
         start_dynamic_string, shape_string, stop_dynamic_string = \
             self._parse_descriptor(descriptor)
@@ -96,7 +96,8 @@ class Hairpin(DirectedSpanner):
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        DirectedSpanner._copy_keyword_args(self, new)
+        Spanner._copy_keyword_args(self, new)
+        new.direction = self.direction
         new.include_rests = self.include_rests
         new.shape_string = self.shape_string
         new.start_dynamic_string = self.start_dynamic_string
@@ -180,6 +181,15 @@ class Hairpin(DirectedSpanner):
     ### PUBLIC PROPERTIES ###
 
     @apply
+    def direction():
+        def fget(self):
+            return self._direction
+        def fset(self, arg):
+            self._direction = \
+                stringtools.arg_to_tridirectional_lilypond_symbol(arg)
+        return property(**locals())
+
+    @apply
     def include_rests():
         def fget(self):
             r'''Get boolean hairpin rests contextualize:
@@ -188,7 +198,7 @@ class Hairpin(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.Hairpin(
-                ...     descriptor='p < f', 
+                ...     descriptor='p < f',
                 ...     include_rests=True,
                 ...     )
                 >>> attach(hairpin, staff[:])
@@ -201,7 +211,7 @@ class Hairpin(DirectedSpanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> hairpin = spannertools.Hairpin(
-                ...     descriptor='p < f', 
+                ...     descriptor='p < f',
                 ...     include_rests=True,
                 ...     )
                 >>> attach(hairpin, staff[:])

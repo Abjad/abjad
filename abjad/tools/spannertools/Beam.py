@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.spannertools.DirectedSpanner import DirectedSpanner
+from abjad.tools import stringtools
+from abjad.tools.spannertools.Spanner import Spanner
 
 
-class Beam(DirectedSpanner):
+class Beam(Spanner):
     r'''A beam spanner.
 
     ::
@@ -43,16 +44,17 @@ class Beam(DirectedSpanner):
     ### INITIALIZER ###
 
     def __init__(self, components=None, direction=None, overrides=None):
-        DirectedSpanner.__init__(self, 
-        components, 
-        direction, 
+        Spanner.__init__(self,
+        components,
         overrides=overrides,
         )
+        self.direction = direction
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        DirectedSpanner._copy_keyword_args(self, new)
+        #Spanner._copy_keyword_args(self, new)
+        new.direction = self.direction
 
     def _format_right_of_leaf(self, leaf):
         result = []
@@ -101,3 +103,15 @@ class Beam(DirectedSpanner):
             if 0 < expr.written_duration.flag_count:
                 return True
         return False
+
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def direction():
+        def fget(self):
+            return self._direction
+        def fset(self, arg):
+            self._direction = \
+                stringtools.arg_to_tridirectional_lilypond_symbol(arg)
+        return property(**locals())
+
