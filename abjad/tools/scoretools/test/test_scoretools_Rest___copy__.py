@@ -20,7 +20,8 @@ def test_scoretools_Rest___copy___02():
     r'''Copy rest with LilyPond multiplier.
     '''
 
-    rest_1 = Rest((1, 4), (1, 2))
+    rest_1 = Rest('r4')
+    attach(Multiplier(1, 2), rest_1)
     rest_2 = copy.copy(rest_1)
 
     assert isinstance(rest_1, Rest)

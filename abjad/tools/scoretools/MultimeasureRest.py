@@ -30,7 +30,6 @@ class MultimeasureRest(Leaf):
         Leaf.__init__(
             self, 
             rest.written_duration, 
-            rest.lilypond_duration_multiplier,
             )
 
     ### PRIVATE PROPERTIES ###

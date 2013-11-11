@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import iotools
 
 
-def test_iotools_get_last_output_file_name_01():
+def test_iotools_IOManager_get_last_output_file_name_01():
 
     last_output_file_name = iotools.IOManager.get_last_output_file_name()
 
