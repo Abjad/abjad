@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 import copy
+from abjad.tools import durationtools
 from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 
 
@@ -38,27 +40,44 @@ class Rest(Leaf):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, arg):
         from abjad.tools import lilypondparsertools
-        if len(args) == 1 and isinstance(args[0], str):
-            string = '{{ {} }}'.format(args[0])
+        lilypond_duration_multiplier = None
+        if isinstance(arg, str):
+            string = '{{ {} }}'.format(arg)
             parsed = lilypondparsertools.LilyPondParser()(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            args = [parsed[0]]
-        if len(args) == 1 and isinstance(args[0], Leaf):
-            leaf = args[0]
+            arg = parsed[0]
+        if isinstance(arg, Leaf):
+            leaf = arg
             written_duration = leaf.written_duration
             lilypond_duration_multiplier = leaf.lilypond_duration_multiplier
+            if lilypond_duration_multiplier is None:
+                multipliers = leaf._get_attached_items(
+                    durationtools.Multiplier)
+                if 1 < len(multipliers):
+                    raise ValueError('too many multipliers')
+                elif len(multipliers) == 1:
+                    lilypond_duration_multiplier = multipliers[0]
             self._copy_override_and_set_from_leaf(leaf)
-        elif len(args) == 1 and not isinstance(args[0], str):
-            written_duration = args[0]
-            lilypond_duration_multiplier = None
-        elif len(args) == 2:
-            written_duration, lilypond_duration_multiplier = args
+        elif not isinstance(arg, str):
+            written_duration = arg
         else:
             message = 'can not initialize rest from {!r}.'
-            raise ValueError(message.format(args))
-        Leaf.__init__(self, written_duration, lilypond_duration_multiplier)
+            message = message.format(arg)
+            raise ValueError(message)
+        Leaf.__init__(self, written_duration)
+        if lilypond_duration_multiplier is not None:
+            assert isinstance(
+                lilypond_duration_multiplier, 
+                durationtools.Multiplier), repr(lilypond_duration_multiplier)
+            attach(lilypond_duration_multiplier, self)
+
+    ### SPECIAL METHODS ###
+
+    # TODO: remove after deprecating lilypond_duration_multiplier
+    def __getnewargs__(self):
+        return (self.written_duration,)
 
     ### PRIVATE PROPERTIES ###
 

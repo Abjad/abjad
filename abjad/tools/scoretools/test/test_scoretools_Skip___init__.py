@@ -3,24 +3,15 @@ from abjad import *
 
 
 def test_scoretools_Skip___init___01():
-    r'''Init skip from LilyPond input string.
+    r'''Initialize skip from LilyPond input string.
     '''
 
     skip = scoretools.Skip('s8.')
     assert isinstance(skip, scoretools.Skip)
 
 
-def test_scoretools_Skip___init___02():
-    r'''Init skip from written duration and LilyPond multiplier.
-    '''
-
-    skip = scoretools.Skip((1, 4), (1, 2))
-
-    assert isinstance(skip, scoretools.Skip)
-
-
 def test_scoretools_Skip___init___03():
-    r'''Init skip from containerize note.
+    r'''Initialize skip from containerize note.
     '''
 
     c = Chord([2, 3, 4], (1, 4))
@@ -35,10 +26,11 @@ def test_scoretools_Skip___init___03():
 
 
 def test_scoretools_Skip___init___04():
-    r'''Init skip from tupletized note.
+    r'''Initialize skip from tupletized note.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
+    tuplet = scoretools.FixedDurationTuplet(
+        Duration(2, 8), Chord([2, 3, 4], (1, 4)) * 3)
     d = tuplet[0].written_duration
     skip = scoretools.Skip(tuplet[0])
     assert isinstance(tuplet[0], Chord)
@@ -49,7 +41,7 @@ def test_scoretools_Skip___init___04():
 
 
 def test_scoretools_Skip___init___05():
-    r'''Init skip from beamed chord.
+    r'''Initialize skip from beamed chord.
     '''
 
     staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
@@ -63,6 +55,7 @@ def test_scoretools_Skip___init___05():
 
 
 def test_scoretools_Skip___init___06():
+
     note = Note(2, (1, 8))
     d = note.written_duration
     skip = scoretools.Skip(note)
@@ -76,7 +69,9 @@ def test_scoretools_Skip___init___06():
 
 
 def test_scoretools_Skip___init___07():
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+
+    tuplet = scoretools.FixedDurationTuplet(
+        Duration(2, 8), Note(0, (1, 8)) * 3)
     d = tuplet[0].written_duration
     skip = scoretools.Skip(tuplet[0])
     assert isinstance(tuplet[0], Note)
@@ -86,7 +81,7 @@ def test_scoretools_Skip___init___07():
 
 
 def test_scoretools_Skip___init___08():
-    r'''Init skip from beamed note.
+    r'''Initialize skip from beamed note.
     '''
 
     staff = Staff(Note(0, (1, 8)) * 3)
@@ -99,7 +94,7 @@ def test_scoretools_Skip___init___08():
 
 
 def test_scoretools_Skip___init___09():
-    r'''Init skip from unincorporaed rest.
+    r'''Initialize skip from unincorporaed rest.
     '''
 
     rest = Rest((1, 8))
@@ -114,7 +109,7 @@ def test_scoretools_Skip___init___09():
 
 
 def test_scoretools_Skip___init___10():
-    r'''Init skip from tupletized rest.
+    r'''Initialize skip from tupletized rest.
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), Rest((1, 8)) * 3)
@@ -128,7 +123,7 @@ def test_scoretools_Skip___init___10():
 
 
 def test_scoretools_Skip___init___11():
-    r'''Init skip from spanned rest.
+    r'''Initialize skip from spanned rest.
     '''
 
     staff = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])

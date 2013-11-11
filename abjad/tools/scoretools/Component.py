@@ -190,6 +190,9 @@ class Component(AbjadObject):
         for mark in self._get_marks():
             new_mark = copy.copy(mark)
             attach(new_mark, new)
+        for item in self._get_attached_items():
+            new_item = copy.copy(item)
+            attach(new_item, new)
         return new
 
     def _detach_grace_containers(self, kind=None):
