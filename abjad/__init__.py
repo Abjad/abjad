@@ -73,8 +73,6 @@ from abjad.tools.topleveltools import persist
 from abjad.tools.topleveltools import select
 from abjad.tools.topleveltools import contextualize
 from abjad.tools.topleveltools import show
-from abjad.tools.iotools import f
-from abjad.tools.iotools import z
 from abjad.tools.agenttools.InspectionAgent import inspect
 
 # import custom exceptions into the builtins module
@@ -91,3 +89,33 @@ del tools
 # import version information
 from abjad._version import __version_info__, __version__
 del _version
+
+def f(expr):
+    r'''Formats `expr` and prints to standard out.
+
+    ::
+
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> show(staff) # doctest: +SKIP
+
+    ..  doctest::
+
+        >>> f(staff)
+        \new Staff {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+
+    Returns none.
+    '''
+    print format(expr, 'lilypond')
+
+def z(expr):
+    r'''Prints the storage format of `expr`.
+
+    Returns none.
+
+    '''
+    print format(expr, 'storage')
