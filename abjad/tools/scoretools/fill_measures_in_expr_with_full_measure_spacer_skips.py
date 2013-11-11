@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import attach
 
 
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
@@ -15,8 +16,10 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
             skip = scoretools.Skip(1)
             # allow zero-update iteration
             time_signature = measure.time_signature
-            skip.lilypond_duration_multiplier = \
-                time_signature.duration / time_signature.implied_prolation
+            #skip.lilypond_duration_multiplier = \
+            #    time_signature.duration / time_signature.implied_prolation
+            multiplier = time_signature.duration / time_signature.implied_prolation
+            attach(multiplier, skip)
             measure[:] = [skip]
             for spanner in measure._get_spanners():
                 spanner._remove(measure)

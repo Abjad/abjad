@@ -1,9 +1,13 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools.topleveltools import attach
 
 
 def make_notes_with_multiplied_durations(
-    pitch, written_duration, multiplied_durations):
+    pitch, 
+    written_duration, 
+    multiplied_durations,
+    ):
     '''Make `written_duration` notes with `pitch` and `multiplied_durations`:
 
     ::
@@ -28,7 +32,8 @@ def make_notes_with_multiplied_durations(
         multiplied_duration = durationtools.Duration(multiplied_duration)
         note = scoretools.Note(pitch, written_duration)
         multiplier = multiplied_duration / written_duration
-        note.lilypond_duration_multiplier = multiplier
+        #note.lilypond_duration_multiplier = multiplier
+        attach(multiplier, note)
         notes.append(note)
 
     # return notes

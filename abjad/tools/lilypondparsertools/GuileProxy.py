@@ -133,7 +133,8 @@ class GuileProxy(AbjadObject):
     def skip(self, duration):
         leaf = scoretools.Skip(duration.duration)
         if duration.multiplier is not None:
-            leaf.lilypond_duration_multiplier = duration.multiplier
+            #leaf.lilypond_duration_multiplier = duration.multiplier
+            attach(duration.multiplier, leaf)
         return leaf
 
     def slashed_grace_container(self, music):

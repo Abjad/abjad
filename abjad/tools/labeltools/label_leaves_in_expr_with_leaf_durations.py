@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
@@ -121,7 +122,10 @@ def label_leaves_in_expr_with_leaf_durations(
     for leaf in iterate(expr).by_class(scoretools.Leaf):
         tie_spanners = leaf._get_spanners(spanner_classes)
         if not tie_spanners:
-            if leaf.lilypond_duration_multiplier is not None:
+            if leaf._get_attached_items(durationtools.Multiplier):
+                multiplier = leaf._get_attached_item(durationtools.Multiplier)
+                multiplier = '* %s' % str(leaf.lilypond_duration_multiplier)
+            elif leaf.lilypond_duration_multiplier is not None:
                 multiplier = '* %s' % str(leaf.lilypond_duration_multiplier)
             else:
                 multiplier = ''

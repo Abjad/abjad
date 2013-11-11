@@ -57,6 +57,9 @@ class Leaf(Component):
         result.append(self.written_duration)
         if self.lilypond_duration_multiplier is not None:
             result.append(self.lilypond_duration_multiplier)
+        elif self._get_attached_items(durationtools.Multiplier):
+            multiplier = self._get_attached_item(durationtools.Multiplier)
+            result.append(multiplier)
         return tuple(result)
 
     def __repr__(self):

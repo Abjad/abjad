@@ -1,9 +1,13 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import selectiontools
+from abjad.tools.topleveltools import attach
 
 
-def make_skips_with_multiplied_durations(written_duration, multiplied_durations):
+def make_skips_with_multiplied_durations(
+    written_duration, 
+    multiplied_durations,
+    ):
     '''Make `written_duration` skips with `multiplied_durations`:
 
     ::
@@ -27,7 +31,8 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
         multiplied_duration = durationtools.Duration(multiplied_duration)
         skip = scoretools.Skip(written_duration)
         multiplier = multiplied_duration / written_duration
-        skip.lilypond_duration_multiplier = multiplier
+        #skip.lilypond_duration_multiplier = multiplier
+        attach(multiplier, skip)
         skips.append(skip)
 
     # return skips
