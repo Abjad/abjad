@@ -3,6 +3,7 @@ import copy
 import re
 from abjad.tools import durationtools
 from abjad.tools.scoretools.Leaf import Leaf
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 
 
