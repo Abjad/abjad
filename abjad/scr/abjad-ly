@@ -1,5 +1,5 @@
 #! /usr/bin/env python
 
-from abjad.tools.iotools.ly import ly
+from abjad.tools import iotools
 
-ly()
+iotools.IOManager.view_last_ly()

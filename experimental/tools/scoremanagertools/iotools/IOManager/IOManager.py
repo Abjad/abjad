@@ -101,7 +101,8 @@ class IOManager(AbjadObject):
         elif key == 'here':
             self.interactively_edit_calling_code()
         elif key == 'log':
-            self.interactively_exec_statement('iotools.log()')
+            self.interactively_exec_statement(
+                'iotools.IOManager.view_last_log()')
         elif key == 'next':
             self.session.is_navigating_to_next_score = True
             self.session.is_backtracking_to_score_manager = True

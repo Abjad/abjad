@@ -147,7 +147,10 @@ Abjad packaging checklist:
 11. Return to the mainline.
     Start the Abjad interpreter to run one final sanity check.
     Run 'show(Note("c4"))'.
-    Then call iotools.ly(), iotools.log(), iotools.pdf() and iotools.redo().
+    Then call:
+        iotools.IOManager.view_last_ly()
+        iotools.IOManager.view_last_log()
+        iotools.IOManager.view_last_pdf()
     Then run 'play(Note("c4"))'.
     If any test fails, fix, commit and go back to (6.)
     Record sanity check test results in the packaging transcript.
