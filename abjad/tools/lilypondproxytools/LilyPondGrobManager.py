@@ -39,8 +39,7 @@ class LilyPondGrobManager(AbjadObject):
                 try:
                     return vars(self)['_' + name]
                 except KeyError:
-                    context = \
-                        lilypondproxytools.LilyPondGrobProxyContextWrapper()
+                    context = lilypondproxytools.LilyPondGrobManager()
                     vars(self)['_' + name] = context
                     return context
             elif camel_name in ly.grob_interfaces:

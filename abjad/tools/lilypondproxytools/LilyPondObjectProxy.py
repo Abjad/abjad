@@ -22,9 +22,6 @@ class LilyPondObjectProxy(AbjadObject):
             return self._get_attribute_pairs() == arg._get_attribute_pairs()
         return False
 
-    def __ne__(self, arg):
-        return not self == arg
-
     def __repr__(self):
         body_string = ''
         skeleton_strings = self._get_skeleton_strings()

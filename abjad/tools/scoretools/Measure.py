@@ -61,7 +61,7 @@ class Measure(FixedDurationContainer):
     def __add__(self, arg):
         r'''Add two measures together in-score or outside-of-score.
 
-        Wrapper around ``scoretools.fuse_measures()``.
+        Interface to ``scoretools.fuse_measures()``.
         '''
         assert isinstance(arg, type(self))
         from abjad.tools import scoretools
