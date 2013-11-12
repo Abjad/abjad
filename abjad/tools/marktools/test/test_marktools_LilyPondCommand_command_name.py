@@ -7,7 +7,7 @@ def test_marktools_LilyPondCommand_command_name_01():
     '''
 
     lilypond_command = marktools.LilyPondCommand('slurDotted')
-    assert lilypond_command.command_name == 'slurDotted'
+    assert lilypond_command.name == 'slurDotted'
 
-    lilypond_command.command_name = 'slurDashed'
-    assert lilypond_command.command_name == 'slurDashed'
+    lilypond_command.name = 'slurDashed'
+    assert lilypond_command.name == 'slurDashed'

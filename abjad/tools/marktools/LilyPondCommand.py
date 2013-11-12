@@ -33,7 +33,7 @@ class LilyPondCommand(Mark):
 
         >>> show(staff) # doctest: +SKIP
 
-    Initialize LilyPond commands from command name; or from command name
+    Initialize LilyPond commands from name; or from name
     with format slot; or from another LilyPond command mark;
     or from another LilyPond command mark with format slot.
     '''
@@ -41,7 +41,7 @@ class LilyPondCommand(Mark):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_command_name',
+        '_name',
         '_format_slot',
         )
 
@@ -50,16 +50,16 @@ class LilyPondCommand(Mark):
     def __init__(self,  *args):
         Mark.__init__(self)
         if len(args) == 1 and isinstance(args[0], type(self)):
-            self.command_name = copy.copy(args[0].command_name)
+            self.name = copy.copy(args[0].name)
             self.format_slot = copy.copy(args[0].format_slot)
         elif len(args) == 1 and not isinstance(args[0], type(self)):
-            self.command_name = copy.copy(args[0])
+            self.name = copy.copy(args[0])
             self.format_slot = None
         elif len(args) == 2 and isinstance(args[0], type(self)):
-            self.command_name = copy.copy(args[0].command_name)
+            self.name = copy.copy(args[0].name)
             self.format_slot = args[1]
         elif len(args) == 2 and not isinstance(args[0], type(self)):
-            self.command_name = args[0]
+            self.name = args[0]
             self.format_slot = args[1]
         else:
             message = 'can not initialize LilyPond command.'
@@ -68,25 +68,34 @@ class LilyPondCommand(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        new = type(self)(self._command_name)
+        r'''Copies LilyPond command.
+
+        Returns new LilyPond command.
+        '''
+        new = type(self)(self._name)
         new.format_slot = self.format_slot
         return new
 
     def __eq__(self, arg):
+        r'''True when `arg` is a LilyPond command with name equal to
+        LilyPond command. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
-            return self._command_name == arg._command_name
+            return self._name == arg._name
         return False
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return repr(self.command_name)
+        return repr(self.name)
 
     @property
     def _lilypond_format(self):
         from abjad.tools import stringtools
-        command = self._command_name
+        command = self._name
         if command.startswith('#'):
             return command
         else:
@@ -95,36 +104,36 @@ class LilyPondCommand(Mark):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def command_name():
+    def name():
         def fget(self):
-            r'''Gets and sets command name of LilyPond command.
+            r'''Gets and sets name of LilyPond command.
 
             ::
 
                 >>> command = marktools.LilyPondCommand('slurDotted')
-                >>> command.command_name
+                >>> command.name
                 'slurDotted'
 
-            Sets command name of LilyPond command:
+            Sets name of LilyPond command:
 
             ::
 
-                >>> command.command_name = 'slurDashed'
-                >>> command.command_name
+                >>> command.name = 'slurDashed'
+                >>> command.name
                 'slurDashed'
 
             Returns string.
             '''
-            return self._command_name
-        def fset(self, command_name):
-            assert isinstance(command_name, str)
-            self._command_name = command_name
+            return self._name
+        def fset(self, name):
+            assert isinstance(name, str)
+            self._name = name
         return property(**locals())
 
     @apply
     def format_slot():
         def fget(self):
-            '''Gets and sets format slot of LilyPond command:
+            '''Gets and sets format slot of LilyPond command.
 
             ::
 

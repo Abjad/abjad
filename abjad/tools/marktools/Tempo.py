@@ -98,6 +98,10 @@ class Tempo(ContextMark):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
+        r'''Adds tempo to `expr`.
+
+        Returns new tempo.
+        '''
         if isinstance(expr, type(self)):
             if self.is_imprecise or expr.is_imprecise:
                 raise ImpreciseTempoError
@@ -118,6 +122,10 @@ class Tempo(ContextMark):
             return new_tempo_indication
 
     def __copy__(self, *args):
+        r'''Copies tempo.
+
+        Returns new tempo.
+        '''
         return type(self)(
             self.textual_indication, 
             self.duration, 
@@ -125,6 +133,10 @@ class Tempo(ContextMark):
             )
 
     def __div__(self, expr):
+        r'''Divides tempo by `expr`.
+
+        Returns new tempo.
+        '''
         if isinstance(expr, type(self)):
             if self.is_imprecise or expr.is_imprecise:
                 raise ImpreciseTempoError
@@ -134,6 +146,11 @@ class Tempo(ContextMark):
         raise TypeError(message)
 
     def __eq__(self, expr):
+        r'''True when `expr` is a tempo with duration, textual indication
+        and units-per-minute all equal to this tempo. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.duration == expr.duration:
                 if self.textual_indication == expr.textual_indication:
@@ -163,6 +180,10 @@ class Tempo(ContextMark):
         return superclass.__format__(format_specification=format_specification)
 
     def __mul__(self, multiplier):
+        r'''Multiplies tempo by `multiplier`.
+
+        Returns new tempo.
+        '''
         if isinstance(multiplier, (int, float, durationtools.Duration)):
             if self.is_imprecise:
                 raise ImpreciseTempoError
@@ -173,6 +194,10 @@ class Tempo(ContextMark):
             return new_tempo_indication
 
     def __sub__(self, expr):
+        r'''Subtracts `expr` from tempo.
+
+        Returns new tempo.
+        '''
         if isinstance(expr, type(self)):
             if self.is_imprecise or expr.is_imprecise:
                 raise ImpreciseTempoError
@@ -207,14 +232,10 @@ class Tempo(ContextMark):
 
     @property
     def _dotted(self):
-        r'''Dotted numeral representation of duration.
-        '''
         return self.duration.lilypond_duration_string
 
     @property
     def _equation(self):
-        r'''Dotted numeral and units per minute together around equal sign.
-        '''
         if isinstance(self.units_per_minute, tuple):
             return '%s=%s-%s' % (
                 self._dotted, 
@@ -226,15 +247,16 @@ class Tempo(ContextMark):
     def _lilypond_format(self):
         text, equation = None, None
         if self.textual_indication is not None:
-            text = schemetools.Scheme.format_scheme_value(self.textual_indication)
+            text = schemetools.Scheme.format_scheme_value(
+                self.textual_indication)
         if self.duration is not None and self.units_per_minute is not None:
             equation = self._equation
         if text and equation:
-            return r'\tempo %s %s' % (text, equation)
+            return r'\tempo {} {}'.format(text, equation)
         elif equation:
-            return r'\tempo %s' % equation
+            return r'\tempo {}'.format(equation)
         elif text:
-            return r'\tempo %s' % text
+            return r'\tempo {}'.format(text)
         else:
             return r'\tempo \default'
 
@@ -316,7 +338,7 @@ class Tempo(ContextMark):
 
     @property
     def quarters_per_minute(self):
-        r'''Quaryters per minute of tempo.
+        r'''Quarters per minute of tempo.
 
         ::
 
@@ -364,7 +386,7 @@ class Tempo(ContextMark):
     @apply
     def units_per_minute():
         def fget(self):
-            r'''Get units per minute of tempo.
+            r'''Gets and sets units per minute of tempo.
 
             ::
 
@@ -397,7 +419,7 @@ class Tempo(ContextMark):
     ### PUBLIC METHODS ###
 
     def duration_to_milliseconds(self, duration):
-        r'''Returns the millisecond value of `duration` under a given tempo:
+        r'''Millisecond value of `duration` under a given tempo.
 
         ::
 

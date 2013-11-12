@@ -97,12 +97,23 @@ class TimeSignature(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies time signature.
+
+        Returns new time signature.
+        '''
         return type(self)(
             (self.numerator, self.denominator),
             partial=self.partial, 
             )
 
     def __eq__(self, arg):
+        r'''True when `arg` is a time signature with numerator and denominator
+        equal to this time signature. Also true when `arg` is a tuple with
+        first and second elements equal to numerator and denominator of this
+        time signature. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             return self.numerator == arg.numerator and \
                 self.denominator == arg.denominator
@@ -127,36 +138,59 @@ class TimeSignature(ContextMark):
         return superclass.__format__(format_specification=format_specification)
 
     def __ge__(self, arg):
+        r'''True when duration of time signature is greater than or equal to
+        duration of `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             return self.duration >= arg.duration
         else:
             raise TypeError
 
     def __gt__(self, arg):
+        r'''True when duration of time signature is greater than duration of 
+        `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             return self.duration > arg.duration
         else:
             raise TypeError
 
     def __le__(self, arg):
+        r'''True when duration of time signature is less than duration of
+        `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             return self.duration <= arg.duration
         else:
             raise TypeError
 
     def __lt__(self, arg):
+        r'''True when duration of time signature is less than duration of
+        `arg`. Otherwise false.
+
+        Returns booelan.
+        '''
         if isinstance(arg, type(self)):
             return self.duration < arg.duration
         else:
             raise TypeError
 
-    def __ne__(self, arg):
-        return not self == arg
-
-    def __nonzero__(self):
-        return True
+#    def __nonzero__(self):
+#        r'''Returns true.
+#        '''
+#        return True
 
     def __repr__(self):
+        r'''Interpreter representation of time signature.
+
+        Returns string.
+        '''
         result = '{}(({}, {}){}){}'
         result = result.format(
             type(self).__name__, 
@@ -168,6 +202,10 @@ class TimeSignature(ContextMark):
         return result
 
     def __str__(self):
+        r'''String representation of time signature.
+
+        Returns string.
+        '''
         return '{}/{}'.format(self.numerator, self.denominator)
 
     ### PRIVATE PROPERTIES ###
@@ -201,6 +239,16 @@ class TimeSignature(ContextMark):
     @property
     def _positional_argument_values(self):
         return (self.pair, )
+
+    ### PRIVATE METHODS ###
+
+    def _attach(self, start_component):
+        from abjad.tools import marktools
+        classes = (type(self), )
+        if start_component._has_mark(mark_prototypes=classes):
+            message = 'component already has context mark attached.'
+            raise ValueError(message)
+        return marktools.Mark._attach(self, start_component)
 
     ### PUBLIC PROPERTIES ###
 
@@ -330,7 +378,7 @@ class TimeSignature(ContextMark):
 
     @property
     def pair(self):
-        '''Time signature numerator / denominator pair:
+        '''Time signature numerator / denominator pair.
 
         ::
 
@@ -344,7 +392,7 @@ class TimeSignature(ContextMark):
     @apply
     def partial():
         def fget(self):
-            r'''Gets partial measure pick-up of time signature.
+            r'''Gets and sets partial measure pick-up of time signature.
 
             ::
 
@@ -353,7 +401,7 @@ class TimeSignature(ContextMark):
                 >>> time_signature.partial
                 Duration(1, 8)
 
-            Sets partial measure pick-up of time signature.
+            Sets partial measure pick-up of time signature:
 
             ::
 
@@ -372,17 +420,11 @@ class TimeSignature(ContextMark):
 
     ### PUBLIC METHODS ###
 
-    def _attach(self, start_component):
-        from abjad.tools import marktools
-        classes = (type(self), )
-        if start_component._has_mark(mark_prototypes=classes):
-            message = 'component already has context mark attached.'
-            raise ValueError(message)
-        return marktools.Mark._attach(self, start_component)
-
-    def with_power_of_two_denominator(self, 
-        contents_multiplier=durationtools.Multiplier(1)):
-        r'''Create new time signature equivalent to current
+    def with_power_of_two_denominator(
+        self, 
+        contents_multiplier=durationtools.Multiplier(1),
+        ):
+        r'''Creates new time signature equivalent to current
         time signature with power-of-two denominator.
 
             >>> time_signature = TimeSignature((3, 12))

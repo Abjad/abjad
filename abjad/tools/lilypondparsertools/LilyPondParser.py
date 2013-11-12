@@ -504,7 +504,7 @@ class LilyPondParser(abctools.Parser):
                 if isinstance(x, marktools.BarLine):
                     apply_backward.append(x)
                 elif isinstance(x, marktools.LilyPondCommand) and \
-                    x.command_name in ['breathe']:
+                    x.name in ['breathe']:
                         apply_backward.append(x)
                 else:
                     apply_forward.append(x)

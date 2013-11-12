@@ -48,12 +48,21 @@ class KeySignature(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies key signature.
+
+        Returns new key signature.
+        '''
         return type(self)(
             self._tonic, 
             self._mode,
             )
 
     def __eq__(self, arg):
+        r'''True when `arg` is a key signature with tonic and mode equal
+        to key signature. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.tonic == arg.tonic:
                 if self.mode == arg.mode:
@@ -61,6 +70,10 @@ class KeySignature(ContextMark):
         return False
 
     def __str__(self):
+        r'''String representation of key signature.
+
+        Returns string.
+        '''
         return '{!s}-{!s}'.format(self.tonic, self.mode)
 
     ### PRIVATE PROPERTIES ###
@@ -78,7 +91,7 @@ class KeySignature(ContextMark):
     @apply
     def mode():
         def fget(self):
-            r'''Get mode of key signature:
+            r'''Gets and sets mode of key signature.
 
             ::
 
@@ -86,7 +99,7 @@ class KeySignature(ContextMark):
                 >>> key_signature.mode
                 Mode('major')
 
-            Set mode of key signature:
+            Sets mode of key signature:
 
             ::
 
@@ -105,7 +118,7 @@ class KeySignature(ContextMark):
 
     @property
     def name(self):
-        r'''Name of key signature:
+        r'''Name of key signature.
 
         ::
 
@@ -124,7 +137,7 @@ class KeySignature(ContextMark):
     @apply
     def tonic():
         def fget(self):
-            r'''Get tonic of key signature:
+            r'''Get and sets tonic of key signature.
 
             ::
 
@@ -132,7 +145,7 @@ class KeySignature(ContextMark):
                 >>> key_signature.tonic
                 NamedPitchClass('e')
 
-            Set tonic of key signature:
+            Sets tonic of key signature:
 
             ::
 

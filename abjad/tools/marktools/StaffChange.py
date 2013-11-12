@@ -67,7 +67,7 @@ class StaffChange(ContextMark):
         from abjad.tools import scoretools
         ContextMark.__init__(self)
         if not isinstance(staff, (scoretools.Staff, type(None))):
-            message = 'staff change mark input value {!r}'
+            message = 'staff change input value {!r}'
             message += ' must be staff instance.'
             message.format(staff)
             raise TypeError(message)
@@ -76,9 +76,18 @@ class StaffChange(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies staff change.
+
+        Returns new staff change.
+        '''
         return type(self)(self.staff)
 
     def __eq__(self, arg):
+        r'''True when `arg` is a staff change with staff equal to staff change.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             return self.staff is arg.staff
         return False
@@ -98,7 +107,7 @@ class StaffChange(ContextMark):
     @apply
     def staff():
         def fget(self):
-            r'''Get staff of staff change mark:
+            r'''Gets and sets staff of staff change.
 
             ::
 
@@ -108,7 +117,7 @@ class StaffChange(ContextMark):
                 >>> staff_change.staff
                 Staff-"RHStaff"{4}
 
-            Set staff of staff change mark:
+            Sets staff of staff change:
 
             ::
 

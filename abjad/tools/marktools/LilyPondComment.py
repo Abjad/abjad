@@ -55,11 +55,20 @@ class LilyPondComment(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies LilyPond comment.
+
+        Returns new LilyPond comment.
+        '''
         new = type(self)(self._contents_string)
         new.format_slot = self.format_slot
         return new
 
     def __eq__(self, arg):
+        r'''True when `arg` is a LilyPond comment with contents string
+        equal to LilyPond comment. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             return self._contents_string == arg._contents_string
         return False
@@ -82,7 +91,7 @@ class LilyPondComment(Mark):
     @apply
     def contents_string():
         def fget(self):
-            r'''Get contents string of comment:
+            r'''Gets and sets contents string of comment.
 
             ::
 
@@ -91,7 +100,7 @@ class LilyPondComment(Mark):
                 >>> comment.contents_string
                 'comment contents string'
 
-            Set contents string of comment:
+            Sets contents string of comment:
 
             ::
 
@@ -99,7 +108,7 @@ class LilyPondComment(Mark):
                 >>> comment.contents_string
                 'new comment contents string'
 
-            Set string.
+            Returns string.
             '''
             return self._contents_string
         def fset(self, contents_string):
@@ -110,7 +119,7 @@ class LilyPondComment(Mark):
     @apply
     def format_slot():
         def fget(self):
-            '''Get format slot of LilyPond comment:
+            '''Gets and sets format slot of LilyPond comment.
 
             ::
 
@@ -119,7 +128,7 @@ class LilyPondComment(Mark):
                 >>> lilypond_comment.format_slot
                 'before'
 
-            Set format slot of LiyPond comment:
+            Sets format slot of LiyPond comment:
 
             ::
 
