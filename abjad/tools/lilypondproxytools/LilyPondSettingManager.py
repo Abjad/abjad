@@ -1,13 +1,27 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondManager import LilyPondManager
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LilyPondSettingManager(LilyPondManager):
-    '''LilyPond context setting namespace.
+class LilyPondSettingManager(AbjadObject):
+    '''LilyPond setting namespace.
     '''
 
+    ### INITIALIZER ###
+
+    def __init__(self, **kwargs):
+        # note_head__color = 'red' or staff__tuplet_full_length = True
+        for key, value in kwargs.iteritems():
+            proxy_name, attr_name = key.split('__')
+            proxy = getattr(self, proxy_name)
+            setattr(proxy, attr_name, value)
+
     ### SPECIAL METHODS ###
+
+    def __eq__(self, arg):
+        if isinstance(arg, type(self)):
+            return self._get_attribute_tuples() == arg._get_attribute_tuples()
+        return False
 
     def __getattr__(self, name):
         from abjad import ly
@@ -41,7 +55,7 @@ class LilyPondSettingManager(LilyPondManager):
             # remove 'set__'
             skeleton_strings = [x[5:] for x in skeleton_strings]
             body_string = ', '.join(skeleton_strings)
-        return '%s(%s)' % (type(self).__name__, body_string)
+        return '{}({})'.format(type(self).__name__, body_string)
 
     ### PRIVATE METHODS ###
 
@@ -73,7 +87,8 @@ class LilyPondSettingManager(LilyPondManager):
                 context_name, attribute_name, attribute_value = \
                     attribute_tuple
                 key = '__'.join((context_name, attribute_name))
-                result.append('%s=%s' % (key, repr(attribute_value)))
+                string = '{}={}'.format(key, repr(attribute_value))
+                result.append(string)
             else:
                 raise ValueError
         result = ['set__' + x for x in result]

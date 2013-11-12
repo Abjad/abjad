@@ -1,13 +1,27 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondManager import LilyPondManager
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LilyPondGrobManager(LilyPondManager):
+class LilyPondGrobManager(AbjadObject):
     '''LilyPond grob override component plug-in.
     '''
 
+    ### INITIALIZER ###
+
+    def __init__(self, **kwargs):
+        # note_head__color = 'red' or staff__tuplet_full_length = True
+        for key, value in kwargs.iteritems():
+            proxy_name, attr_name = key.split('__')
+            proxy = getattr(self, proxy_name)
+            setattr(proxy, attr_name, value)
+
     ### SPECIAL METHODS ###
+
+    def __eq__(self, arg):
+        if isinstance(arg, type(self)):
+            return self._get_attribute_tuples() == arg._get_attribute_tuples()
+        return False
 
     def __getattr__(self, name):
         from abjad import ly
