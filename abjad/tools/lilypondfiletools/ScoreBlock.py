@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.lilypondfiletools.NonattributedBlock \
-	import NonattributedBlock
+    import NonattributedBlock
 
 
 class ScoreBlock(NonattributedBlock):
@@ -47,6 +47,7 @@ class ScoreBlock(NonattributedBlock):
 
     @property
     def _format_pieces(self):
+        from abjad.tools import markuptools
         from abjad.tools import scoretools
         result = []
         if not len(self):
@@ -54,7 +55,8 @@ class ScoreBlock(NonattributedBlock):
                 result.append(r'%s {}' % self._escaped_name)
         else:
             result.append(r'%s {' % self._escaped_name)
-            if len(self) == 1 and isinstance(self[0], scoretools.Leaf):
+            if len(self) == 1 and \
+                isinstance(self[0], (scoretools.Leaf, markuptools.Markup)):
                 result.append('\t{')
                 result.extend(
                     ['\t\t' + piece for piece in self[0]._format_pieces])

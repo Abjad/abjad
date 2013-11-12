@@ -158,6 +158,14 @@ class Markup(Mark):
     def __hash__(self):
         return hash((type(self).__name__, self.contents))
 
+    def __illustrate__(self):
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.append(self)
+        return lilypond_file
+
     def __ne__(self, expr):
         return not self == expr
 
@@ -165,6 +173,10 @@ class Markup(Mark):
         return self._lilypond_format
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_pieces(self):
+        return self._get_format_pieces()
 
     @property
     def _lilypond_format(self):
