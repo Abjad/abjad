@@ -59,8 +59,8 @@ class Articulation(Mark):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_string', 
-        '_direction', 
+        '_string',
+        '_direction',
         '_format_slot',
         )
 
@@ -71,7 +71,7 @@ class Articulation(Mark):
         assert len(args) in range(3), repr(args)
         if 2 <= len(args):
             assert isinstance(args[0], (str, type(None))), repr(args[0])
-            assert isinstance(args[1], 
+            assert isinstance(args[1],
                 (str, type(None), datastructuretools.OrdinalConstant)), \
                 repr(args[1])
             string, direction = args
@@ -79,7 +79,7 @@ class Articulation(Mark):
             string = args[0].name
             direction = args[0].direction
         elif len(args) == 1:
-            assert isinstance(args[0], 
+            assert isinstance(args[0],
                 (str, type(None), datastructuretools.OrdinalConstant)), \
                 repr(args[0])
             if args[0]:
@@ -123,6 +123,19 @@ class Articulation(Mark):
                     return True
         return False
 
+    def __illustrate__(self):
+        import copy
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
+        from abjad.tools import scoretools
+        from abjad.tools import topleveltools
+        note = scoretools.Note("c'4")
+        articulation = copy.copy(self)
+        topleveltools.attach(articulation, note)
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(note)
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        return lilypond_file
+
     def __str__(self):
         r'''String representation of articulation.
 
@@ -144,67 +157,67 @@ class Articulation(Mark):
 
     ### PRIVATE PROPERTIES ###
 
-    # this causes unnecessary coupling to changeable lilypond codebase 
+    # this causes unnecessary coupling to changeable lilypond codebase
     # and is discouraged
     _articulations_supported = (
-        'accent', 
+        'accent',
         'marcato',
-        'staccatissimo',        
+        'staccatissimo',
         'espressivo'
-        'staccato',             
-        'tenuto'                 
+        'staccato',
+        'tenuto'
         'portato'
-        'upbow',                  
-        'downbow'                
+        'upbow',
+        'downbow'
         'flageolet'
-        'thumb',                  
-        'lheel'                  
+        'thumb',
+        'lheel'
         'rheel'
-        'ltoe',                   
-        'rtoe'                   
+        'ltoe',
+        'rtoe'
         'open'
-        'stopped',                
-        'turn'                   
+        'stopped',
+        'turn'
         'reverseturn'
-        'trill',                  
-        'prall'                  
+        'trill',
+        'prall'
         'mordent'
-        'prallprall'            
-        'prallmordent',        
+        'prallprall'
+        'prallmordent',
         'upprall',
-        'downprall',            
-        'upmordent',           
+        'downprall',
+        'upmordent',
         'downmordent',
-        'pralldown',            
-        'prallup',             
+        'pralldown',
+        'prallup',
         'lineprall',
-        'signumcongruentiae', 
-        'shortfermata',        
+        'signumcongruentiae',
+        'shortfermata',
         'fermata',
-        'longfermata',          
-        'verylongfermata',   
+        'longfermata',
+        'verylongfermata',
         'segno',
-        'coda',                   
+        'coda',
         'varcoda',
-        '^', 
-        '+', 
-        '-', 
-        '|', 
-        '>', 
-        '.', 
+        '^',
+        '+',
+        '-',
+        '|',
+        '>',
+        '.',
         '_',
         )
 
-    # this causes unnecessary coupling to changeable lilypond codebase 
+    # this causes unnecessary coupling to changeable lilypond codebase
     # and is discouraged
     _shortcut_to_word = {
-        '^':'marcato', 
-        '+':'stopped', 
-        '-':'tenuto', 
-        '|':'staccatissimo',
-        '>':'accent', 
-        '.':'staccato', 
-        '_':'portato',
+        '^': 'marcato',
+        '+': 'stopped',
+        '-': 'tenuto',
+        '|': 'staccatissimo',
+        '>': 'accent',
+        '.': 'staccato',
+        '_': 'portato',
         }
 
     @property
