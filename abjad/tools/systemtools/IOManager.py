@@ -459,16 +459,16 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        from abjad.tools import systemtools
         abjad_output_directory_path = abjad_configuration['abjad_output']
         if not lilypond_path:
             lilypond_path = abjad_configuration['lilypond_path']
             if not lilypond_path:
                 lilypond_path = 'lilypond'
         log_file_path = os.path.join(abjad_output_directory_path, 'lily.log')
-        command = '{} -dno-point-and-click {} > {} 2>&1'
+        command = '{} -dno-point-and-click -o {} {} > {} 2>&1'
         command = command.format(
             lilypond_path,
+            os.path.splitext(lilypond_file_name)[0],
             lilypond_file_name,
             log_file_path,
             )

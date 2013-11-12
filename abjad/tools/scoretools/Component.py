@@ -98,7 +98,10 @@ class Component(AbjadObject):
 
     def __illustrate__(self):
         from abjad.tools import lilypondfiletools
-        return lilypondfiletools.make_basic_lilypond_file(self)
+        from abjad.tools import markuptools
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(self)
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        return lilypond_file
 
     def __mul__(self, n):
         r'''Copies component `n` times and detaches spanners.

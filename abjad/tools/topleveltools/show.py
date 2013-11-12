@@ -2,7 +2,7 @@
 import os
 
 
-def show(expr, return_timing=False, suppress_pdf=False, docs=False):
+def show(expr, return_timing=False, suppress_pdf=False):
     r'''Shows `expr`.
 
     ..  container:: example
@@ -39,16 +39,34 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
     from abjad import abjad_configuration
     from abjad.tools import systemtools
 
-    name, actual_format_time, actual_lily_time = \
-        systemtools.IOManager.log_render_lilypond_input(expr, docs=docs)
+    # get the illustration
+    assert '__illustrate__' in dir(expr)
+    illustration = expr.__illustrate__()
+    timer = systemtools.Timer()
 
-    # do not open PDF if we're running pytest regression battery
-    if not suppress_pdf:
-        pdf_viewer = abjad_configuration['pdf_viewer']
-        ABJADOUTPUT = abjad_configuration['abjad_output']
-        name = os.path.join(ABJADOUTPUT, name)
-        systemtools.IOManager.open_file('%s.pdf' % name[:-3], pdf_viewer)
+    # get the lilypond format string
+    with timer:
+        illustration_format = format(illustration, 'lilypond')
+    actual_format_time = timer.elapsed_time
 
-    # return timing if requested
+    # write the lilypond file
+    lilypond_file_name = systemtools.IOManager.get_next_output_file_name()
+    lilypond_file_path = os.path.join(
+        abjad_configuration.abjad_output_directory_path,
+        lilypond_file_name,
+        )
+    with open(lilypond_file_path, 'w') as file_handle:
+        file_handle.write(illustration_format)
+
+    # generate the pdf
+    with timer:
+        systemtools.IOManager.run_lilypond(lilypond_file_path)
+    actual_lily_time = timer.elapsed_time
+
+    # open the pdf
+    pdf_file_path = '{}.pdf'.format(os.path.splitext(lilypond_file_path)[0])
+    systemtools.IOManager.open_file(pdf_file_path)
+
+    # return timing information
     if return_timing:
         return actual_format_time, actual_lily_time
