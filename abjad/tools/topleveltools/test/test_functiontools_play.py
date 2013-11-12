@@ -7,7 +7,7 @@ from abjad import *
 def test_functiontools_play_01():
     r'''A note can be played.
     '''
-    note = Note(1, (1, 32))
+    note = Note(1, (1, 2))
     play(note)
 
 
