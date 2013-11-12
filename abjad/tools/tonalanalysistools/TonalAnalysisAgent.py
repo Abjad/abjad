@@ -147,7 +147,7 @@ class TonalAnalysisAgent(object):
             quality, extent = 'major', 'seventh'
         else:
             message = 'can not identify incomplete tertian chord.'
-            raise TonalHarmonyError(message)
+            raise ValueError(message)
         bass = min(pitches).named_pitch_class
         try:
             npcseg = npcset.order_by(
@@ -157,7 +157,7 @@ class TonalAnalysisAgent(object):
                     ))
         except ValueError:
             message = 'can not identify incomplete tertian chord.'
-            raise TonalHarmonyError(message)
+            raise ValueError(message)
         inversion = npcseg.index(bass)
         root = npcseg[0]
         return tonalanalysistools.ChordClass(

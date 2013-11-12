@@ -40,4 +40,4 @@ def test_scoretools_Leaf_get_duration_02():
 
     note = Note("c'4")
     statement = 'inspect(note).get_duration(in_seconds=True)'
-    assert pytest.raises(MissingTempoError, statement)
+    assert pytest.raises(Exception, statement)

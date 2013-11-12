@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_selectiontools_Parentage__get_spanner_01():
@@ -30,6 +30,6 @@ def test_selectiontools_Parentage__get_spanner_01():
     assert container._get_parentage()._get_spanner() == trill
 
     string = 'container[0]._get_parentage()._get_spanner()'
-    assert pytest.raises(ExtraSpannerError, string)
+    assert pytest.raises(Exception, string)
 
     assert container[-1]._get_parentage()._get_spanner() == trill

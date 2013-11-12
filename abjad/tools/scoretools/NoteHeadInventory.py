@@ -161,9 +161,11 @@ class NoteHeadInventory(TypedList):
                 result.append(note_head)
         count = len(result)
         if count == 0:
-            raise MissingNoteHeadError
+            message = 'missing note head.'
+            raise ValueError(message)
         elif count == 1:
             note_head = result[0]
             return note_head
         else:
-            raise ExtraNoteHeadError
+            message = 'extra note head.'
+            raise ValueError(message)

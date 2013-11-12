@@ -313,7 +313,7 @@ class Chord(Leaf):
                 instrumenttools.Instrument)
             if not instrument:
                 message = 'effective instrument of note can not be determined.'
-                raise InstrumentError(message)
+                raise ValueError(message)
             sounding_pitch = instrument.sounding_pitch_of_written_middle_c
             interval = pitchtools.NamedPitch('C4') - sounding_pitch
             sounding_pitches = [

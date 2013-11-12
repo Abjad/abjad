@@ -3,7 +3,7 @@ import numbers
 
 
 def get_named_pitch_from_pitch_carrier(pitch_carrier):
-    '''Get named pitch from `pitch_carrier`:
+    '''Gets named pitch from `pitch_carrier`.
 
     ::
 
@@ -42,9 +42,9 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
         >>> pitchtools.get_named_pitch_from_pitch_carrier(13)
         NamedPitch("cs''")
 
-    Raise missing pitch error when `pitch_carrier` carries no pitch.
+    Raise value error when `pitch_carrier` carries no pitch.
 
-    Raise extra pitch error when `pitch_carrier` carries more than one pitch.
+    Raises value error when `pitch_carrier` carries more than one pitch.
 
     Returns named pitch.
     '''
@@ -63,20 +63,30 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
         if pitch is not None:
             return get_named_pitch_from_pitch_carrier(pitch)
         else:
-            raise MissingPitchError
+            message = 'no pitch found on {!r}.'
+            message = message.format(pitch_carrier)
+            raise ValueError(message)
     elif isinstance(pitch_carrier, scoretools.NoteHead):
         pitch = pitch_carrier.written_pitch
         if pitch is not None:
             return get_named_pitch_from_pitch_carrier(pitch)
         else:
-            raise MissingPitchError
+            message = 'no pitch found on {!r}.'
+            message = message.format(pitch_carrier)
+            raise ValueError(message)
     elif isinstance(pitch_carrier, scoretools.Chord):
         pitches = pitch_carrier.written_pitches
         if len(pitches) == 0:
-            raise MissingPitchError
+            message = 'no pitch found on {!r}.'
+            message = message.format(pitch_carrier)
+            raise ValueError(message)
         elif len(pitches) == 1:
             return get_named_pitch_from_pitch_carrier(pitches[0])
         else:
-            raise ExtraPitchError
+            message = 'multiple pitches found on {!r}.'
+            message = message.format(pitch_carrier)
+            raise ValueError(message)
     else:
-        raise TypeError('%s must be Pitch, Note, NoteHead or Chord.' % pitch_carrier)
+        message = 'pitch carrier {!r} must be pitch, note, note head or chord.'
+        message = message.format(pitch_carrier)
+        raise TypeError(message)

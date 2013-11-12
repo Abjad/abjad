@@ -87,8 +87,9 @@ class Container(Component):
         components._set_parents(None)
 
     def __getitem__(self, i):
-        r'''Get container `i`.
-        Shallow traversal of container for numeric indices only.
+        r'''Gets container `i`.
+
+        Traverses top-level items only.
 
         Returns component.
         '''
@@ -100,11 +101,17 @@ class Container(Component):
             return selectiontools.SimultaneousSelection(self._music[i])
         elif isinstance(i, str):
             if i not in self._named_children:
-                raise MissingNamedComponentError(repr(i))
+                message = 'can not find component named {!r}.'
+                message = message.format(i)
+                raise ValueError(message)
             elif 1 < len(self._named_children[i]):
-                raise ExtraNamedComponentError(repr(i))
+                message = 'multiple components named {!r}.'
+                message = message.format(i)
+                raise ValueError(message)
             return self._named_children[i][0]
-        raise ValueError(repr(i))
+        message = 'can not get container item {!r}.'
+        message = message.format(i)
+        raise ValueError(message)
 
     def __len__(self):
         r'''Number of items in container.
@@ -114,7 +121,7 @@ class Container(Component):
         return len(self._music)
 
     def __repr__(self):
-        r'''Representation of container in Python interpreter.
+        r'''Interpreter representation of container.
 
         Returns string.
         '''

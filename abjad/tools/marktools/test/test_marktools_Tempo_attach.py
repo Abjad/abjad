@@ -10,5 +10,5 @@ def test_marktools_Tempo_attach_01():
     attach(tempo, score[0][0])
 
     tempo = Tempo((1, 8), 52)
-    assert pytest.raises(ExtraMarkError, 'attach(tempo, score[0][0])')
-    assert pytest.raises(ExtraMarkError, 'attach(tempo, score[1][0])')
+    assert pytest.raises(Exception, 'attach(tempo, score[0][0])')
+    assert pytest.raises(Exception, 'attach(tempo, score[1][0])')

@@ -377,7 +377,7 @@ class TimeSignature(ContextMark):
         classes = (type(self), )
         if start_component._has_mark(mark_prototypes=classes):
             message = 'component already has context mark attached.'
-            raise ExtraMarkError(message)
+            raise ValueError(message)
         return marktools.Mark._attach(self, start_component)
 
     def with_power_of_two_denominator(self, 

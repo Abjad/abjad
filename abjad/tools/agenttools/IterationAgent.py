@@ -1115,7 +1115,7 @@ class IterationAgent(object):
                 yield tie_chain
             else:
                 message = 'can not have only one leaf in tie chain.'
-                raise TieChainError(message)
+                raise ValueError(message)
         elif isinstance(
             self._client, (
                 collections.Sequence,

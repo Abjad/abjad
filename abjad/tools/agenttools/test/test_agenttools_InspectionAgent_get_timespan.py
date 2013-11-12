@@ -265,9 +265,9 @@ def test_agenttools_InspectionAgent_get_timespan_24():
     voice_1b= Voice(scoretools.make_repeated_notes(4))
     voice_2b= Voice(scoretools.make_repeated_notes(4))
     voice_1.name = voice_1b.name = 'voiceOne'
-    s1 = Staff([voice_1, voice_1b])
-    s2 = Staff([voice_2, voice_2b])
-    gs = scoretools.GrandStaff([s1, s2])
+    staff_1 = Staff([voice_1, voice_1b])
+    staff_2 = Staff([voice_2, voice_2b])
+    gs = scoretools.GrandStaff([staff_1, staff_2])
     assert inspect(voice_1).get_timespan().start_offset == 0
     assert inspect(voice_2).get_timespan().start_offset == 0
     assert inspect(voice_1b).get_timespan().start_offset == Duration(4, 8)
@@ -280,17 +280,8 @@ def test_agenttools_InspectionAgent_get_timespan_25():
 
     staff = Staff("c'8 d'8 e'8 f'8")
 
-    r'''
-    \new Staff {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    '''
-
     statement = 'inspect(staff[0]).get_timespan(in_seconds=True).start_offset'
-    assert pytest.raises(MissingTempoError, statement)
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_timespan_26():

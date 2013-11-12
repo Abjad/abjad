@@ -72,7 +72,7 @@ class ContextMark(Mark):
             if mark_start_offset == start_component_start_offset:
                 message = 'effective context mark already attached'
                 message += ' to component starting at same time.'
-                raise ExtraMarkError(message)
+                raise ValueError(message)
         return Mark._attach(self, start_component)
 
     def _bind_correct_effective_context(self, correct_effective_context):

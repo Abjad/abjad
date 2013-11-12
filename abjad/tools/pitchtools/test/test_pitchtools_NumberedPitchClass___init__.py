@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_pitchtools_NumberedPitchClass___init___01():
-    r'''Pitch class initialization works with numbers.
+    r'''Pitch-class initialization works with numbers.
     '''
 
     assert isinstance(pitchtools.NumberedPitchClass(0),
@@ -25,22 +25,22 @@ def test_pitchtools_NumberedPitchClass___init___02():
     r'''Pitch class initialization works with other pitch-classes.
     '''
 
-    pc = pitchtools.NumberedPitchClass(pitchtools.NumberedPitchClass(0))
-    assert isinstance(pc, pitchtools.NumberedPitchClass)
+    pitch_class = pitchtools.NumberedPitchClass(pitchtools.NumberedPitchClass(0))
+    assert isinstance(pitch_class, pitchtools.NumberedPitchClass)
 
-    pc = pitchtools.NumberedPitchClass(pitchtools.NumberedPitchClass(12))
-    assert isinstance(pc, pitchtools.NumberedPitchClass)
+    pitch_class = pitchtools.NumberedPitchClass(pitchtools.NumberedPitchClass(12))
+    assert isinstance(pitch_class, pitchtools.NumberedPitchClass)
 
 
 def test_pitchtools_NumberedPitchClass___init___03():
-    r'''PitchClass initialization works with pitches.
+    r'''Pitch-class initialization works with pitches.
     '''
 
-    pc = pitchtools.NumberedPitchClass(pitchtools.NamedPitch(0))
-    assert isinstance(pc, pitchtools.NumberedPitchClass)
+    pitch_class = pitchtools.NumberedPitchClass(pitchtools.NamedPitch(0))
+    assert isinstance(pitch_class, pitchtools.NumberedPitchClass)
 
-    pc = pitchtools.NumberedPitchClass(pitchtools.NamedPitch(12))
-    assert isinstance(pc, pitchtools.NumberedPitchClass)
+    pitch_class = pitchtools.NumberedPitchClass(pitchtools.NamedPitch(12))
+    assert isinstance(pitch_class, pitchtools.NumberedPitchClass)
 
 
 def test_pitchtools_NumberedPitchClass___init___04():
@@ -48,8 +48,8 @@ def test_pitchtools_NumberedPitchClass___init___04():
     '''
 
     note = Note(13, (1, 4))
-    pc = pitchtools.NumberedPitchClass(note)
-    assert pc == pitchtools.NumberedPitchClass(1)
+    pitch_class = pitchtools.NumberedPitchClass(note)
+    assert pitch_class == pitchtools.NumberedPitchClass(1)
 
 
 def test_pitchtools_NumberedPitchClass___init___05():
@@ -57,28 +57,28 @@ def test_pitchtools_NumberedPitchClass___init___05():
     '''
 
     chord = Chord([13], (1, 4))
-    pc = pitchtools.NumberedPitchClass(chord)
-    assert pc == pitchtools.NumberedPitchClass(1)
+    pitch_class = pitchtools.NumberedPitchClass(chord)
+    assert pitch_class == pitchtools.NumberedPitchClass(1)
 
 
 def test_pitchtools_NumberedPitchClass___init___06():
-    r'''Init with named pitch-class instance.
+    r'''Initialize with named pitch-class instance.
     '''
 
     npc = pitchtools.NamedPitchClass('cs')
-    pc = pitchtools.NumberedPitchClass(npc)
-    assert pc == pitchtools.NumberedPitchClass(1)
+    pitch_class = pitchtools.NumberedPitchClass(npc)
+    assert pitch_class == pitchtools.NumberedPitchClass(1)
 
 
 def test_pitchtools_NumberedPitchClass___init___07():
-    r'''PitchClass initialization raises ValueError.
+    r'''Pitch-class initialization raises exception.
     '''
 
     assert pytest.raises(Exception, "pitchtools.NumberedPitchClass('foo')")
 
 
 def test_pitchtools_NumberedPitchClass___init___08():
-    r'''PitchClass initialization raises TypeError on rest.
+    r'''Pitch-class initialization raises TypeError on rest.
     '''
 
     rest = Rest((1, 4))
@@ -86,15 +86,15 @@ def test_pitchtools_NumberedPitchClass___init___08():
 
 
 def test_pitchtools_NumberedPitchClass___init___09():
-    r'''PitchClass initialization raises MissingPitchError on empty chord.
+    r'''Pitch-class initialization raises exception on empty chord.
     '''
 
     chord = Chord([], (1, 4))
-    assert pytest.raises(MissingPitchError, 'pitchtools.NumberedPitchClass(chord)')
+    assert pytest.raises(Exception, 'pitchtools.NumberedPitchClass(chord)')
 
 
 def test_pitchtools_NumberedPitchClass___init___10():
-    r'''Init from named pitch-class string.
+    r'''Initialize from named pitch-class string.
     '''
 
     assert pitchtools.NumberedPitchClass('c') == 0

@@ -252,9 +252,8 @@ class Note(Leaf):
                 instrument = self._get_effective_context_mark(
                     instrumenttools.Instrument)
                 if not instrument:
-                    message = 'effective instrument of note'
-                    message += ' can not be determined.'
-                    raise InstrumentError(message)
+                    message = 'effective instrument can not be determined.'
+                    raise Value(message)
                 sounding_pitch = instrument.sounding_pitch_of_written_middle_c
                 t_n = pitchtools.NamedPitch('C4') - sounding_pitch
                 sounding_pitch = \
@@ -271,9 +270,8 @@ class Note(Leaf):
                 instrument = self._get_effective_context_mark(
                     instrumenttools.Instrument)
                 if not instrument:
-                    message = 'effective instrument of note'
-                    message += ' can not be determined.'
-                    raise InstrumentError(message)
+                    message = 'effective instrument can not be determined.'
+                    raise ValueError(message)
                 sounding_pitch = instrument.sounding_pitch_of_written_middle_c
                 t_n = pitchtools.NamedPitch('C4') - sounding_pitch
                 t_n *= -1

@@ -442,9 +442,11 @@ class Component(AbjadObject):
     def _get_mark(self, mark_prototypes=None):
         marks = self._get_marks(mark_prototypes=mark_prototypes)
         if not marks:
-            raise MissingMarkError
+            message = 'no marks found.'
+            raise ValueError(message)
         elif 1 < len(marks):
-            raise ExtraMarkError
+            message = 'multiple marks found.'
+            raise ValueError(message)
         else:
             return marks[0]
 
@@ -529,22 +531,13 @@ class Component(AbjadObject):
     def _get_spanner(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
         if not spanners:
-            raise MissingSpannerError
+            message = 'no spanner found.'
+            raise MissingSpannerError(message)
         elif len(spanners) == 1:
             return spanners.pop()
         else:
-            raise ExtraSpannerError
-
-#    def _get_spanners(self, spanner_classes=None):
-#        from abjad.tools import spannertools
-#        spanner_classes = spanner_classes or (spannertools.Spanner,)
-#        if not isinstance(spanner_classes, tuple):
-#            spanner_classes = (spanner_classes, )
-#        spanners = set()
-#        for spanner in set(self._spanners):
-#            if isinstance(spanner, spanner_classes):
-#                spanners.add(spanner)
-#        return spanners
+            message = 'multiple spanners found.'
+            raise ExtraSpannerError(message)
 
     def _get_spanners(self, spanner_classes=None):
         from abjad.tools import spannertools
@@ -762,8 +755,8 @@ class Component(AbjadObject):
                             index = spanner.index(component)
                             break
                     else:
-                        message = 'no component in spanner at offset'
-                        raise SpannerPopulationError(message)
+                        message = 'no component in spanner at offset.'
+                        raise ValueError(message)
                     for component in reversed(components):
                         spanner._insert(index, component)
                         component._spanners.add(spanner)

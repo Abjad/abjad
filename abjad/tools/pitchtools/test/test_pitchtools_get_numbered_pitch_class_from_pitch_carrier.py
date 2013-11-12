@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_01():
@@ -8,7 +8,8 @@ def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_01():
     '''
 
     note = Note(13, (1, 4))
-    assert pitchtools.get_numbered_pitch_class_from_pitch_carrier(note) == pitchtools.NumberedPitchClass(1)
+    result = pitchtools.get_numbered_pitch_class_from_pitch_carrier(note)
+    assert result == pitchtools.NumberedPitchClass(1)
 
 
 def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_02():
@@ -16,7 +17,8 @@ def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_02():
     '''
 
     chord = Chord([13], (1, 4))
-    assert pitchtools.get_numbered_pitch_class_from_pitch_carrier(chord) == pitchtools.NumberedPitchClass(1)
+    result = pitchtools.get_numbered_pitch_class_from_pitch_carrier(chord)
+    assert result == pitchtools.NumberedPitchClass(1)
 
 
 def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_03():
@@ -24,8 +26,8 @@ def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_03():
     '''
 
     chord = Chord([], (1, 4))
-    assert pytest.raises(MissingPitchError,
-        'pitchtools.get_numbered_pitch_class_from_pitch_carrier(chord)')
+    statement = 'pitchtools.get_numbered_pitch_class_from_pitch_carrier(chord)'
+    assert pytest.raises(Exception, statement)
 
 
 def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_04():
@@ -33,5 +35,5 @@ def test_pitchtools_get_numbered_pitch_class_from_pitch_carrier_04():
     '''
 
     chord = Chord([13, 14, 15], (1, 4))
-    assert pytest.raises(ExtraPitchError,
-        'pitchtools.get_numbered_pitch_class_from_pitch_carrier(chord)')
+    statement = 'pitchtools.get_numbered_pitch_class_from_pitch_carrier(chord)'
+    assert pytest.raises(Exception, statement)

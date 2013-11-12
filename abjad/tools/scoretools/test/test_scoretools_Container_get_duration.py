@@ -40,5 +40,5 @@ def test_scoretools_Container_get_duration_02():
     '''
 
     container = Container("c'8 d'8 e'8 f'8")
-    assert pytest.raises(MissingTempoError, 
-        'inspect(container).get_duration(in_seconds=True)')
+    statement = 'inspect(container).get_duration(in_seconds=True)'
+    assert pytest.raises(Exception, statement)

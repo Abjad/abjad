@@ -326,11 +326,13 @@ class Selection(object):
     def _get_spanner(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
         if not spanners:
-            raise MissingSpannerError
+            message = 'no spanners found.'
+            raise MissingSpannerError(message)
         elif len(spanners) == 1:
             return spanners.pop()
         else:
-            raise ExtraSpannerError
+            message = 'multiple spanners found.'
+            raise ExtraSpannerError(message)
 
     def _get_spanners(self, spanner_classes=None):
         from abjad.tools import spannertools

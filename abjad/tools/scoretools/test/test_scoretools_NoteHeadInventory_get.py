@@ -60,5 +60,5 @@ def test_scoretools_NoteHeadInventory_get_04():
 
     chord = Chord("<c' d' d'>4")
 
-    assert pytest.raises(MissingNoteHeadError, 'chord.note_heads.get(9)')
-    assert pytest.raises(ExtraNoteHeadError, 'chord.note_heads.get(2)')
+    assert pytest.raises(Exception, 'chord.note_heads.get(9)')
+    assert pytest.raises(Exception, 'chord.note_heads.get(2)')

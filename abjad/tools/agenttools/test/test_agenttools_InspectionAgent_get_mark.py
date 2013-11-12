@@ -16,10 +16,8 @@ def test_agenttools_InspectionAgent_get_mark_02():
 
     note = Note("c'8")
 
-    assert pytest.raises(
-        MissingMarkError,
-        'inspect(note).get_mark(marktools.Annotation)',
-        )
+    statement = 'inspect(note).get_mark(marktools.Annotation)'
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_mark_03():
@@ -30,10 +28,8 @@ def test_agenttools_InspectionAgent_get_mark_03():
     annotation = marktools.Annotation('more special information')
     attach(annotation, note)
 
-    assert pytest.raises(
-        ExtraMarkError, 
-        'inspect(note).get_mark(marktools.Annotation)',
-        )
+    statement = 'inspect(note).get_mark(marktools.Annotation)',
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_mark_04():
@@ -49,10 +45,8 @@ def test_agenttools_InspectionAgent_get_mark_05():
 
     note = Note("c'8")
 
-    assert pytest.raises(
-        MissingMarkError,
-        'inspect(note).get_mark(Articulation)',
-        )
+    statement = 'inspect(note).get_mark(Articulation)',
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_mark_06():
@@ -63,10 +57,8 @@ def test_agenttools_InspectionAgent_get_mark_06():
     articulation = Articulation('marcato')
     attach(articulation, note)
 
-    assert pytest.raises(
-        ExtraMarkError,
-        'inspect(note).get_mark(Articulation)',
-        )
+    statement = 'inspect(note).get_mark(Articulation)',
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_mark_07():
@@ -82,10 +74,8 @@ def test_agenttools_InspectionAgent_get_mark_08():
 
     note = Note("c'8")
 
-    assert pytest.raises(
-        MissingMarkError,
-        'inspect(note).get_mark(marktools.LilyPondCommand)',
-        )
+    statement = 'inspect(note).get_mark(marktools.LilyPondCommand)'
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_mark_09():
@@ -96,10 +86,8 @@ def test_agenttools_InspectionAgent_get_mark_09():
     command = marktools.LilyPondCommand('slurUp')
     attach(command, note)
 
-    assert pytest.raises(
-        ExtraMarkError,
-        'inspect(note).get_mark(marktools.LilyPondCommand)',
-        )
+    statement = 'inspect(note).get_mark(marktools.LilyPondCommand)'
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_mark_10():
@@ -147,10 +135,8 @@ def test_agenttools_InspectionAgent_get_mark_12():
 
     note = Note("c'8")
 
-    assert pytest.raises(
-        MissingMarkError,
-        'inspect(note).get_mark(marktools.LilyPondComment)',
-        )
+    statement = 'inspect(note).get_mark(marktools.LilyPondComment)'
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_mark_13():
@@ -161,10 +147,8 @@ def test_agenttools_InspectionAgent_get_mark_13():
     comment = marktools.LilyPondComment('another comment')
     attach(comment, note)
 
-    assert pytest.raises(
-        ExtraMarkError,
-        'inspect(note).get_mark(marktools.LilyPondComment)',
-        )
+    statement = 'inspect(note).get_mark(marktools.LilyPondComment)'
+    assert pytest.raises(Exception, statement)
 
 
 def test_agenttools_InspectionAgent_get_mark_14():
@@ -180,7 +164,7 @@ def test_agenttools_InspectionAgent_get_mark_15():
 
     note = Note("c'8")
 
-    assert pytest.raises(MissingMarkError, 'inspect(note).get_mark()')
+    assert pytest.raises(Exception, 'inspect(note).get_mark()')
 
 
 def test_agenttools_InspectionAgent_get_mark_16():
@@ -191,7 +175,7 @@ def test_agenttools_InspectionAgent_get_mark_16():
     mark = marktools.Mark()
     attach(mark, note)
 
-    assert pytest.raises(ExtraMarkError, 'inspect(note).get_mark()')
+    assert pytest.raises(Exception, 'inspect(note).get_mark()')
 
 
 def test_agenttools_InspectionAgent_get_mark_17():

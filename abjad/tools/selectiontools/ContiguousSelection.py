@@ -206,9 +206,11 @@ class ContiguousSelection(Selection):
         first_type = type(first)
         for tuplet in self[1:]:
             if tuplet.multiplier != first_multiplier:
-                raise TupletFuseError('tuplets must carry same multiplier.')
+                message = 'tuplets must carry same multiplier.'
+                raise ValueError(message)
             if type(tuplet) != first_type:
-                raise TupletFuseError('tuplets must be same type.')
+                message = 'tuplets must be same type.'
+                raise TypeError(message)
         if isinstance(first, scoretools.FixedDurationTuplet):
             total_contents_duration = sum(
                 [x._contents_duration for x in self])

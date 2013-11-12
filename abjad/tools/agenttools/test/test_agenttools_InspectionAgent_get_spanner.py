@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_agenttools_InspectionAgent_get_spanner_01():
@@ -28,7 +28,7 @@ def test_agenttools_InspectionAgent_get_spanner_01():
     assert inspect(container).get_spanner() == trill
 
     string = 'inspect(container[0]).get_spanner()'
-    assert pytest.raises(ExtraSpannerError, string)
+    assert pytest.raises(Exception, string)
 
     string = 'inspect(container[-1]).get_spanner()'
-    assert pytest.raises(MissingSpannerError, string)
+    assert pytest.raises(Exception, string)

@@ -26,11 +26,12 @@ def iterate_out_of_range_notes_and_chords(expr):
     '''
     from abjad.tools import instrumenttools
 
-    for note_or_chord in iterate(expr).by_class(
-        (scoretools.Note, scoretools.Chord)):
+    component_classes = (scoretools.Note, scoretools.Chord)
+    for note_or_chord in iterate(expr).by_class(component_classes):
         instrument = note_or_chord._get_effective_context_mark(
             instrumenttools.Instrument)
         if instrument is None:
-            raise MissingInstrumentError
+            message = 'no instrument found.'
+            raise ValueError(message)
         if note_or_chord not in instrument._default_pitch_range:
             yield note_or_chord
