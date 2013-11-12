@@ -269,7 +269,7 @@ class AltoTrombone(Instrument):
                     >>> score, tenor_staff, bass_staff = result
                     >>> clef = inspect(tenor_staff).get_effective_context_mark(
                     ...     marktools.Clef)
-                    >>> clef.clef_name = 'tenor'
+                    >>> clef.name = 'tenor'
                     >>> note = Note("c'1")
                     >>> start_pitch = alto_trombone.pitch_range.start_pitch
                     >>> note.written_pitch = start_pitch

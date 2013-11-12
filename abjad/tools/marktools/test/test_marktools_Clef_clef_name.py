@@ -7,7 +7,7 @@ def test_marktools_Clef_clef_name_01():
     '''
 
     clef = Clef('treble')
-    assert clef.clef_name == 'treble'
+    assert clef.name == 'treble'
 
-    clef.clef_name = 'alto'
-    assert clef.clef_name == 'alto'
+    clef.name = 'alto'
+    assert clef.name == 'alto'

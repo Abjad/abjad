@@ -64,15 +64,15 @@ class Clef(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, clef_name):
+    def __init__(self, name):
         from abjad.tools import scoretools
         ContextMark.__init__(self)
-        if isinstance(clef_name, str):
-            self._clef_name = clef_name
-        elif isinstance(clef_name, type(self)):
-            self._clef_name = clef_name.clef_name
+        if isinstance(name, str):
+            self._name = name
+        elif isinstance(name, type(self)):
+            self._name = name.name
         else:
-            message = 'can not initialize clef from {}.'.format(clef_name)
+            message = 'can not initialize clef from {}.'.format(name)
             raise TypeError(message)
 
     ### SPECIAL METHODS ###
@@ -103,7 +103,7 @@ class Clef(ContextMark):
 
         Returns new clef.
         '''
-        return type(self)(self.clef_name)
+        return type(self)(self.name)
 
     def __eq__(self, arg):
         r'''True when clef name of `arg` equal clef name of clef.
@@ -128,7 +128,7 @@ class Clef(ContextMark):
         Returns boolean.
         '''
         if isinstance(arg, type(self)):
-            return self._clef_name == arg._clef_name
+            return self._name == arg._name
         return False
 
     def __format__(self, format_specification=''):
@@ -207,11 +207,11 @@ class Clef(ContextMark):
 
     @property
     def _contents_repr_string(self):
-        return repr(self._clef_name)
+        return repr(self._name)
 
     @property
     def _lilypond_format(self):
-        return r'\clef "%s"' % self._clef_name
+        return r'\clef "%s"' % self._name
 
     ### PUBLIC METHODS ###
 
@@ -243,28 +243,28 @@ class Clef(ContextMark):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def clef_name():
+    def name():
         def fget(self):
             r'''Gets and sets clef name.
 
             ::
 
                 >>> clef = marktools.Clef('treble')
-                >>> clef.clef_name
+                >>> clef.name
                 'treble'
 
             ::
 
-                >>> clef.clef_name = 'alto'
-                >>> clef.clef_name
+                >>> clef.name = 'alto'
+                >>> clef.name
                 'alto'
 
             Returns string.
             '''
-            return self._clef_name
-        def fset(self, clef_name):
-            assert isinstance(clef_name, str)
-            self._clef_name = clef_name
+            return self._name
+        def fset(self, name):
+            assert isinstance(name, str)
+            self._name = name
         return property(**locals())
 
     @property
@@ -280,8 +280,8 @@ class Clef(ContextMark):
         Returns integer number of stafflines.
         '''
         alteration = 0
-        if '_' in self._clef_name:
-            base_name, part, suffix = self._clef_name.partition('_')
+        if '_' in self._name:
+            base_name, part, suffix = self._name.partition('_')
             if suffix == '8':
                 alteration = 7
             elif suffix == '15':
@@ -290,8 +290,8 @@ class Clef(ContextMark):
                 message = "Bad clef alteration suffix: {!r}"
                 message = message.format(suffix)
                 raise Exception(message)
-        elif '^' in self._clef_name:
-            base_name, part, suffix = self._clef_name.partition('^')
+        elif '^' in self._name:
+            base_name, part, suffix = self._name.partition('^')
             if suffix == '8':
                 alteration = -7
             elif suffix == '15':
@@ -301,5 +301,5 @@ class Clef(ContextMark):
                 message = message.format(suffix)
                 raise Exception(message)
         else:
-            base_name = self._clef_name
+            base_name = self._name
         return self._clef_name_to_middle_c_position[base_name] + alteration

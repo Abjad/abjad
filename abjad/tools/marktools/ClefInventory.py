@@ -41,4 +41,4 @@ class ClefInventory(TypedList):
 
     @property
     def _one_line_menuing_summary(self):
-        return ', '.join([clef_mark.clef_name for clef_mark in self])
+        return ', '.join([clef.name for clef in self])
