@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 import os
 import shutil
-from abjad.tools import systemtools
 from abjad.tools import mathtools
+from abjad.tools import systemtools
+from abjad.tools import topleveltools
 from experimental.tools.scoremanagertools import wizards
 from experimental.tools.scoremanagertools.managers.PackageManager \
     import PackageManager
@@ -879,16 +880,19 @@ class MaterialPackageManager(PackageManager):
 
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
-        systemtools.IOManager.write_expr_to_pdf(
-            illustration,
+        topleveltools.persist(illustration).as_pdf(
             self.illustration_pdf_file_name,
-            print_status=False,
             )
-        systemtools.IOManager.write_expr_to_ly(
-            illustration,
-            self.illustration_ly_file_name,
-            print_status=False,
-            )
+#        systemtools.IOManager.write_expr_to_pdf(
+#            illustration,
+#            self.illustration_pdf_file_name,
+#            print_status=False,
+#            )
+#        systemtools.IOManager.write_expr_to_ly(
+#            illustration,
+#            self.illustration_ly_file_name,
+#            print_status=False,
+#            )
         self.session.io_manager.proceed(
             'PDF and LilyPond file written to disk.',
             is_interactive=prompt,
@@ -896,11 +900,14 @@ class MaterialPackageManager(PackageManager):
 
     def write_illustration_ly_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
-        systemtools.IOManager.write_expr_to_ly(
-            illustration,
+        topleveltools.persist(illustration).as_pdf(
             self.illustration_ly_file_name,
-            print_status=False,
             )
+#        systemtools.IOManager.write_expr_to_ly(
+#            illustration,
+#            self.illustration_ly_file_name,
+#            print_status=False,
+#            )
         self.session.io_manager.proceed(
             'LilyPond file written to disk.',
             is_interactive=prompt,
@@ -908,11 +915,14 @@ class MaterialPackageManager(PackageManager):
 
     def write_illustration_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
-        systemtools.IOManager.write_expr_to_pdf(
-            illustration,
+        topleveltools.persist(illustration).as_pdf(
             self.illustration_pdf_file_name,
-            print_status=False,
             )
+#        systemtools.IOManager.write_expr_to_pdf(
+#            illustration,
+#            self.illustration_pdf_file_name,
+#            print_status=False,
+#            )
         self.session.io_manager.proceed(
             'PDF written to disk.',
             is_interactive=prompt)
