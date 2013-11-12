@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
 
 
 class LilyPondGrobProxyContextWrapper(object):
@@ -11,12 +10,13 @@ class LilyPondGrobProxyContextWrapper(object):
 
     def __getattr__(self, name):
         from abjad import ly
+        from abjad.tools import lilypondproxytools
         try:
             return vars(self)[name]
         except KeyError:
             cased_name = stringtools.snake_case_to_upper_camel_case(name)
             if cased_name in ly.grob_interfaces:
-                vars(self)[name] = LilyPondGrobProxy()
+                vars(self)[name] = lilypondproxytools.LilyPondObjectProxy()
                 return vars(self)[name]
             else:
                 message = 'object can have only'

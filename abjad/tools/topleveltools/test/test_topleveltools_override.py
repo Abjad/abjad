@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_lilypondproxytools_LilyPondGrobProxy___setattr___01():
+def test_topleveltools_override_01():
 
     note = Note("c'4")
     override(note).accidental.color = 'red'

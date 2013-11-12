@@ -1,10 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
-from abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper \
-    import LilyPondGrobProxyContextWrapper
-from abjad.tools.lilypondproxytools.LilyPondManager \
-    import LilyPondManager
+from abjad.tools.lilypondproxytools.LilyPondManager import LilyPondManager
 
 
 class LilyPondGrobManager(LilyPondManager):
@@ -15,6 +11,7 @@ class LilyPondGrobManager(LilyPondManager):
 
     def __getattr__(self, name):
         from abjad import ly
+        from abjad.tools import lilypondproxytools
         if name.startswith('_'):
             try:
                 return vars(self)[name]
@@ -28,14 +25,15 @@ class LilyPondGrobManager(LilyPondManager):
                 try:
                     return vars(self)['_' + name]
                 except KeyError:
-                    context = LilyPondGrobProxyContextWrapper()
+                    context = \
+                        lilypondproxytools.LilyPondGrobProxyContextWrapper()
                     vars(self)['_' + name] = context
                     return context
             elif camel_name in ly.grob_interfaces:
                 try:
                     return vars(self)[name]
                 except KeyError:
-                    vars(self)[name] = LilyPondGrobProxy()
+                    vars(self)[name] = lilypondproxytools.LilyPondObjectProxy()
                     return vars(self)[name]
             else:
                 return vars(self)[name]
@@ -58,9 +56,10 @@ class LilyPondGrobManager(LilyPondManager):
     ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self):
+        from abjad.tools import lilypondproxytools
         result = []
         for name, value in vars(self).iteritems():
-            if isinstance(value, LilyPondGrobProxy):
+            if isinstance(value, lilypondproxytools.LilyPondObjectProxy):
                 grob_name, grob_proxy = name, value
                 for attribute_name, attribute_value in \
                     vars(grob_proxy).iteritems():
