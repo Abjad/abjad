@@ -7,7 +7,4 @@ class LilyPondGrobProxy(LilyPondObjectProxy):
     '''LilyPond grob proxy.
     '''
 
-    ### SPECIAL METHODS ###
-
-    def __copy__(self):
-        return eval(repr(self))
+    pass

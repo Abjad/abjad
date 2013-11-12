@@ -3,11 +3,11 @@ from abjad.tools import stringtools
 from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
 from abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper \
     import LilyPondGrobProxyContextWrapper
-from abjad.tools.lilypondproxytools.LilyPondComponentPlugIn \
-    import LilyPondComponentPlugIn
+from abjad.tools.lilypondproxytools.LilyPondManager \
+    import LilyPondManager
 
 
-class LilyPondGrobManager(LilyPondComponentPlugIn):
+class LilyPondGrobManager(LilyPondManager):
     '''LilyPond grob override component plug-in.
     '''
 

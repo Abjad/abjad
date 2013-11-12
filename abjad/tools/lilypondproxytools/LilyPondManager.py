@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
-import abc
-from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LilyPondComponentPlugIn(AbjadObject):
-    '''Shared LilyPond grob proxy and LilyPond context proxy functionality.
+class LilyPondManager(AbjadObject):
+    '''Shared LilyPond grob manager and LilyPond setting manager functionality.
     '''
 
     ### INITIALIZER ###
@@ -32,4 +30,5 @@ class LilyPondComponentPlugIn(AbjadObject):
         skeleton_strings = self._get_skeleton_strings()
         if skeleton_strings:
             body_string = ', '.join(skeleton_strings)
-        return '%s(%s)' % (type(self).__name__, body_string)
+        result = '{}({})'.format(type(self).__name__, body_string)
+        return result

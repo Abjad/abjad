@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
-import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondObjectProxy(AbjadObject):
-    '''Shared LilyPond grob proxy and LilyPond context proxy functionality.
+    r'''Shared LilyPond grob proxy and LilyPond context proxy functionality.
     '''
 
     ### INITIALIZER ###
@@ -31,7 +30,7 @@ class LilyPondObjectProxy(AbjadObject):
         skeleton_strings = self._get_skeleton_strings()
         if skeleton_strings:
             body_string = ', '.join(skeleton_strings)
-        return '%s(%s)' % (type(self).__name__, body_string)
+        return '{}({})'.format(type(self).__name__, body_string)
 
     ### PRIVATE METHODS ###
 
@@ -41,5 +40,6 @@ class LilyPondObjectProxy(AbjadObject):
     def _get_skeleton_strings(self):
         result = []
         for attribute_name, attribute_value in self._get_attribute_pairs():
-            result.append('%s = %s' % (attribute_name, repr(attribute_value)))
+            string = '{} = {}'.format(attribute_name, repr(attribute_value))
+            result.append(string)
         return result
