@@ -665,7 +665,7 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair()
+    pitchtools.pitch_class_name_to_diatonic_pitch_class_name_abbreviation_pair()
 
   ::
 
@@ -690,7 +690,7 @@ Changes to the ``pitchtools`` package:
 
 - Renamed::
 
-    pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair()
+    pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_abbreviation_octave_number_pair()
 
   ::
 

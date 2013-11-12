@@ -169,10 +169,9 @@ class NamedPitchClass(PitchClass):
             raise ValueError
         groups = match.groups()
         diatonic_pitch_class_name = groups[0]
-        alphabetic_accidental_abbreviation = groups[1]
+        abbreviation = groups[1]
         self._alteration_in_semitones = \
-            pitchtools.Accidental._alphabetic_accidental_abbreviation_to_semitones[
-                alphabetic_accidental_abbreviation]
+            pitchtools.Accidental._abbreviation_to_semitones[abbreviation]
         self._diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]
@@ -180,20 +179,19 @@ class NamedPitchClass(PitchClass):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental):
-        r'''Apply `accidental`:
+        r'''Applies `accidental`.
 
         ::
 
             >>> pitchtools.NamedPitchClass('cs').apply_accidental('qs')
             NamedPitchClass('ctqs')
 
-        Emit new named pitch-class.
+        Emits new named pitch-class.
         '''
         from abjad.tools import pitchtools
         accidental = pitchtools.Accidental(accidental)
         new_accidental = self.accidental + accidental
-        new_name = self.diatonic_pitch_class_name + \
-            new_accidental.alphabetic_accidental_abbreviation
+        new_name = self.diatonic_pitch_class_name + new_accidental.abbreviation
         return type(self)(new_name)
 
     def invert(self):
@@ -348,7 +346,7 @@ class NamedPitchClass(PitchClass):
         from abjad.tools import pitchtools
         return '{}{}'.format(
             self.diatonic_pitch_class_name,
-            pitchtools.Accidental._semitones_to_alphabetic_accidental_abbreviation[
+            pitchtools.Accidental._semitones_to_abbreviation[
                 self._alteration_in_semitones],
             )
 

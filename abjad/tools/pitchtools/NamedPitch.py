@@ -242,7 +242,7 @@ class NamedPitch(Pitch):
             pitchtools.spell_pitch_number(
                 pitch_number, diatonic_pitch_class_name)
         pitch_class_name = diatonic_pitch_class_name + \
-            accidental.alphabetic_accidental_abbreviation
+            accidental.abbreviation
         named_pitch_class = pitchtools.NamedPitchClass(pitch_class_name)
         self._init_by_named_pitch_class_and_octave_number(
             named_pitch_class, octave_number)
@@ -273,7 +273,7 @@ class NamedPitch(Pitch):
         accidental = pitchtools.Accidental(accidental)
         new_accidental = self.accidental + accidental
         new_name = self.diatonic_pitch_class_name
-        new_name += new_accidental.alphabetic_accidental_abbreviation
+        new_name += new_accidental.abbreviation
         return type(self)(new_name, self.octave_number)
 
     def invert(self, axis=None):
@@ -505,7 +505,7 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         return '{}{}'.format(
             self.diatonic_pitch_class_name,
-            pitchtools.Accidental._semitones_to_alphabetic_accidental_abbreviation[
+            pitchtools.Accidental._semitones_to_abbreviation[
                 self._alteration_in_semitones],
             )
 

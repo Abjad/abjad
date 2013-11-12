@@ -162,12 +162,12 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added ``pitchtools.symbolic_accidental_string_to_alphabetic_accidental_string_abbreviation()``::
 
-    >>> pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string('tqs')
+    >>> pitchtools.abbreviation_to_symbolic_accidental_string('tqs')
     '#+'
 
 * Added other new functions to ``pitchtools``::
 
-    pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string()
+    pitchtools.abbreviation_to_symbolic_accidental_string()
     pitchtools.is_smbolic_accidental_string()
     pitchtools.is_pitch_class_octave_number_string()
 
@@ -244,7 +244,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 * Extended ``replace-in-files`` script to skip ``.text``, ``.ly`` and ``.txt`` files.
 
 * Renamed ``Accidental.symbolic_string`` to ``Accidental.symbolic_accidental_string``.
-* Renamed ``Accidental.alphabetic_string`` to ``Accidental.alphabetic_accidental_abbreviation``.
+* Renamed ``Accidental.alphabetic_string`` to ``Accidental.abbreviation``.
 
 * Fixed bug in ``topleveltools.play()``.
 * Fixed bug in ``quantizationtools`` regarding quantizing a stream of ``QEvents`` directly.

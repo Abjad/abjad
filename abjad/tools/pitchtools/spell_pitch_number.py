@@ -33,10 +33,10 @@ def spell_pitch_number(pitch_number, diatonic_pitch_class_name):
     semitones = pitch_number - nearest_neighbor
 
     # find accidental alphabetic string
-    alphabetic_accidental_abbreviation = \
-        pitchtools.Accidental._semitones_to_alphabetic_accidental_abbreviation[
+    abbreviation = \
+        pitchtools.Accidental._semitones_to_abbreviation[
             semitones]
-    accidental = pitchtools.Accidental(alphabetic_accidental_abbreviation)
+    accidental = pitchtools.Accidental(abbreviation)
 
     # find octave
     octave_number = int(math.floor((pitch_number - semitones) / 12)) + 4
