@@ -103,6 +103,9 @@ class LilyPondFile(AbjadObject, list):
             return self._lilypond_format
         return str(self)
 
+    def __illustrate__(self):
+        return self
+
     def __repr__(self):
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
             return '%s(%s)' % (type(self).__name__, self.score_block[0])

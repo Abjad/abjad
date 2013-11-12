@@ -44,27 +44,23 @@ def make_basic_lilypond_file(music=None):
     Returns LilyPond file.
     '''
     from abjad.tools import lilypondfiletools
-
     if isinstance(music, lilypondfiletools.LilyPondFile):
         return music
-
     lilypond_file = lilypondfiletools.LilyPondFile()
-
     header_block = lilypondfiletools.HeaderBlock()
     layout_block = lilypondfiletools.LayoutBlock()
     paper_block = lilypondfiletools.PaperBlock()
     score_block = lilypondfiletools.ScoreBlock()
-
-    lilypond_file.extend([header_block, layout_block, paper_block, score_block])
-
+    lilypond_file.extend([
+        header_block,
+        layout_block,
+        paper_block,
+        score_block,
+        ])
     lilypond_file.header_block = header_block
     lilypond_file.layout_block = layout_block
     lilypond_file.paper_block = paper_block
     lilypond_file.score_block = score_block
-
     if music is not None:
         score_block.append(music)
-        if isinstance(music, scoretools.Component):
-            music.lilypond_file = lilypond_file
-
     return lilypond_file

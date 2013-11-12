@@ -43,7 +43,6 @@ class Component(AbjadObject):
         '_stop_offset',
         '_stop_offset_in_seconds',
         '_timespan',
-        'lilypond_file',
         )
 
     _is_counttime_component = False
@@ -96,6 +95,10 @@ class Component(AbjadObject):
         Returns tuple.
         '''
         return ()
+
+    def __illustrate__(self):
+        from abjad.tools import lilypondfiletools
+        return lilypondfiletools.make_basic_lilypond_file(self)
 
     def __mul__(self, n):
         r'''Copies component `n` times and detaches spanners.
