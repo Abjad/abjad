@@ -20,5 +20,5 @@ class ContextManager(AbjadObject):
         raise NotImplemented
 
     @abc.abstractmethod
-    def __exit__(self):
+    def __exit__(self, exc_type, exc_value, traceback):
         raise NotImplemented
