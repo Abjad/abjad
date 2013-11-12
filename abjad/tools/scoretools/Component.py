@@ -4,7 +4,7 @@ import copy
 import types
 from abjad.tools import durationtools
 from abjad.tools import systemtools
-from abjad.tools import lilypondproxytools
+from abjad.tools import lilypondnametools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools

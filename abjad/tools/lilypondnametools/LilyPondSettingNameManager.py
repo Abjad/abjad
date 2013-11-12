@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondNameManager \
+from abjad.tools.lilypondnametools.LilyPondNameManager \
     import LilyPondNameManager
 
 
@@ -16,7 +16,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
 
     def __getattr__(self, name):
         from abjad import ly
-        from abjad.tools import lilypondproxytools
+        from abjad.tools import lilypondnametools
         camel_name = stringtools.snake_case_to_upper_camel_case(name)
         if name.startswith('_'):
             try:
@@ -29,7 +29,7 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = lilypondproxytools.LilyPondNameManager()
+                context = lilypondnametools.LilyPondNameManager()
                 vars(self)['_' + name] = context
                 return context
         else:
@@ -43,10 +43,10 @@ class LilyPondSettingNameManager(LilyPondNameManager):
     ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self):
-        from abjad.tools import lilypondproxytools
+        from abjad.tools import lilypondnametools
         result = []
         for name, value in vars(self).iteritems():
-            if type(value) is lilypondproxytools.LilyPondNameManager:
+            if type(value) is lilypondnametools.LilyPondNameManager:
                 prefixed_context_name = name
                 context_name = prefixed_context_name.strip('_')
                 context_proxy = value

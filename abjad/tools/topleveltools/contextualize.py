@@ -3,10 +3,10 @@ def contextualize(expr):
 
     Returns LilyPond context setting manager.
     '''
-    from abjad.tools import lilypondproxytools
+    from abjad.tools import lilypondnametools
 
     if not hasattr(expr, '_set'):
-        manager = lilypondproxytools.LilyPondSettingNameManager()
+        manager = lilypondnametools.LilyPondSettingNameManager()
         expr._set = manager
 
     return expr._set

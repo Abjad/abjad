@@ -227,9 +227,9 @@ class NoteHead(AbjadObject):
 
         Returns LilyPond tweak reservoir.
         '''
-        from abjad.tools import lilypondproxytools
+        from abjad.tools import lilypondnametools
         if not hasattr(self, '_tweak'):
-            self._tweak = lilypondproxytools.LilyPondNameManager()
+            self._tweak = lilypondnametools.LilyPondNameManager()
         return self._tweak
 
     @apply

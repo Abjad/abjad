@@ -23,7 +23,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'exceptiontools', 'f', 'formattools', 'gracetools', 'systemtools',
     'instrumenttools', 'introspectiontools', 'systemtools', 'iterationtools',
     'labeltools', 'layouttools', 'scoretools', 'lilypondfiletools',
-    'lilypondparsertools', 'lilypondproxytools', 'marktools', 'markuptools',
+    'lilypondparsertools', 'lilypondnametools', 'marktools', 'markuptools',
     'mathtools', 'scoretools', 'scoretools', 'systemtools', 'p',
     'pitcharraytools', 'pitchtools', 'play', 'scoretools', 'rhythmtreetools',
     'schemetools', 'scoretemplatetools', 'scoretools', 'sequencetools', 'show',

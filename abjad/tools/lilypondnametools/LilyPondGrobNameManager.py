@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondNameManager \
+from abjad.tools.lilypondnametools.LilyPondNameManager \
     import LilyPondNameManager
 
 
@@ -16,7 +16,7 @@ class LilyPondGrobNameManager(LilyPondNameManager):
 
     def __getattr__(self, name):
         from abjad import ly
-        from abjad.tools import lilypondproxytools
+        from abjad.tools import lilypondnametools
         camel_name = stringtools.snake_case_to_upper_camel_case(name)
         if name.startswith('_'):
             try:
@@ -29,14 +29,14 @@ class LilyPondGrobNameManager(LilyPondNameManager):
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = lilypondproxytools.LilyPondGrobNameManager()
+                context = lilypondnametools.LilyPondGrobNameManager()
                 vars(self)['_' + name] = context
                 return context
         elif camel_name in ly.grob_interfaces:
             try:
                 return vars(self)[name]
             except KeyError:
-                vars(self)[name] = lilypondproxytools.LilyPondNameManager()
+                vars(self)[name] = lilypondnametools.LilyPondNameManager()
                 return vars(self)[name]
         else:
             try:
@@ -54,10 +54,10 @@ class LilyPondGrobNameManager(LilyPondNameManager):
     ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self):
-        from abjad.tools import lilypondproxytools
+        from abjad.tools import lilypondnametools
         result = []
         for name, value in vars(self).iteritems():
-            if type(value) is lilypondproxytools.LilyPondNameManager:
+            if type(value) is lilypondnametools.LilyPondNameManager:
                 grob_name, grob_proxy = name, value
                 pairs = vars(grob_proxy).iteritems()
                 for attribute_name, attribute_value in pairs:
