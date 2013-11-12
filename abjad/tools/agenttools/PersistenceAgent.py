@@ -137,6 +137,8 @@ class PersistenceAgent(object):
         if pdf_filename is not None:
             pdf_filepath = os.path.expanduser(pdf_filename)
             ly_filepath = '{}.ly'.format(os.path.splitext(pdf_filepath)[0])
+        else:
+            ly_filepath = None
         # format and write the lilypond file
         ly_filepath, abjad_formatting_time = self.as_ly(ly_filepath)
         pdf_filepath = '{}.pdf'.format(os.path.splitext(ly_filepath)[0])
