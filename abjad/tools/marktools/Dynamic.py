@@ -124,82 +124,75 @@ class Dynamic(ContextMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, dynamic_name):
+    def __init__(self, name):
         ContextMark.__init__(self)
-        if isinstance(dynamic_name, type(self)):
-            dynamic_name = dynamic_name.dynamic_name
-        self._dynamic_name = dynamic_name
+        if isinstance(name, type(self)):
+            name = name.name
+        self._name = name
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, *args):
-        from abjad.tools import spannertools
-        if len(args) == 1:
-            spanner_classes = (
-                spannertools.DynamicTextSpanner, 
-                spannertools.Hairpin,
-                )
-            parentage = args[0]._get_parentage()
-            dynamic_spanners = parentage._get_spanners(spanner_classes)
-            for dynamic_spanner in dynamic_spanners:
-                if not dynamic_spanner._is_exterior_leaf(args[0]):
-                    message = 'can not attach dynamic'
-                    message += ' to interior component of dynamic spanner.'
-                    raise WellFormednessError(message)
-        return ContextMark.__call__(self, *args)
-
     def __copy__(self, *args):
-        return type(self)(self._dynamic_name)
+        r'''Copies dynamic.
+
+        Returns new dynamic.
+        '''
+        return type(self)(self._name)
 
     def __eq__(self, arg):
+        r'''True when `arg` is a dynamic with a name equal to the name of this
+        dynamic. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
-            return self._dynamic_name == arg._dynamic_name
+            return self._name == arg._name
         return False
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return repr(self._dynamic_name)
+        return repr(self._name)
 
     @property
     def _lilypond_format(self):
-        return r'\%s' % self._dynamic_name
+        return r'\%s' % self._name
 
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def dynamic_name():
+    def name():
         def fget(self):
-            r'''Get dynamic name:
+            r'''Gets and sets dynamic name.
 
             ::
 
                 >>> dynamic = Dynamic('f')
-                >>> dynamic.dynamic_name
+                >>> dynamic.name
                 'f'
 
-            Set dynamic name:
+            Sets dynamic name:
 
             ::
 
-                >>> dynamic.dynamic_name = 'p'
-                >>> dynamic.dynamic_name
+                >>> dynamic.name = 'p'
+                >>> dynamic.name
                 'p'
 
             Returns string.
             '''
-            return self._dynamic_name
-        def fset(self, dynamic_name):
-            assert isinstance(dynamic_name, str)
-            self._dynamic_name = dynamic_name
+            return self._name
+        def fset(self, name):
+            assert isinstance(name, str)
+            self._name = name
         return property(**locals())
 
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def composite_dynamic_name_to_steady_state_dynamic_name(dynamic_name):
-        r'''Change composite `dynamic_name` to steady state dynamic name:
+    def composite_dynamic_name_to_steady_state_dynamic_name(name):
+        r'''Changes composite `name` to steady state dynamic name.
 
         ::
 
@@ -208,11 +201,11 @@ class Dynamic(ContextMark):
 
         Returns string.
         '''
-        return Dynamic._composite_dynamic_name_to_steady_state_dynamic_name[dynamic_name]
+        return Dynamic._composite_dynamic_name_to_steady_state_dynamic_name[name]
 
     @staticmethod
-    def dynamic_name_to_dynamic_ordinal(dynamic_name):
-        r'''Change `dynamic_name` to dynamic ordinal:
+    def dynamic_name_to_dynamic_ordinal(name):
+        r'''Changes `name` to dynamic ordinal.
 
         ::
 
@@ -222,15 +215,15 @@ class Dynamic(ContextMark):
         Returns integer.
         '''
         try:
-            return Dynamic._dynamic_name_to_dynamic_ordinal[dynamic_name]
+            return Dynamic._dynamic_name_to_dynamic_ordinal[name]
         except KeyError:
-            dynamic_name = Dynamic.composite_dynamic_name_to_steady_state_dynamic_name(
-                dynamic_name)
-            return Dynamic._dynamic_name_to_dynamic_ordinal[dynamic_name]
+            name = Dynamic.composite_dynamic_name_to_steady_state_dynamic_name(
+                name)
+            return Dynamic._dynamic_name_to_dynamic_ordinal[name]
 
     @staticmethod
     def dynamic_ordinal_to_dynamic_name(dynamic_ordinal):
-        r'''Change `dynamic_ordinal` to dynamic name:
+        r'''Changes `dynamic_ordinal` to dynamic name.
 
         ::
 
@@ -243,7 +236,7 @@ class Dynamic(ContextMark):
 
     @staticmethod
     def is_dynamic_name(arg):
-        r'''True when `arg` is dynamic name. False otherwise:
+        r'''True when `arg` is dynamic name. Otherwise false.
 
         ::
 
