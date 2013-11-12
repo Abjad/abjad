@@ -22,12 +22,12 @@ def test_datastructuretools_TypedList___format___02():
     r'''Empty inventory. With keywords.
     '''
 
-    inventory = datastructuretools.TypedList(name='foo')
+    inventory = datastructuretools.TypedList(custom_identifier='foo')
 
     assert systemtools.TestManager.compare(
         repr(inventory),
         r'''
-        TypedList([], name='foo')
+        TypedList([], custom_identifier='foo')
         ''',
         )
 
@@ -35,7 +35,7 @@ def test_datastructuretools_TypedList___format___02():
         format(inventory),
         r'''
         datastructuretools.TypedList([],
-            name='foo',
+            custom_identifier='foo',
             )
         ''',
         )
@@ -83,7 +83,7 @@ def test_datastructuretools_TypedList___format___04():
         'bar',
         pitchtools.PitchRange('[A0, C8]'),
         'blah'],
-        name='foo')
+        custom_identifier='foo')
 
     assert systemtools.TestManager.compare(
         format(inventory),
@@ -97,7 +97,7 @@ def test_datastructuretools_TypedList___format___04():
                 ),
             'blah',
             ],
-            name='foo',
+            custom_identifier='foo',
             )
         ''',
         )

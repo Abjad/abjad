@@ -11,13 +11,13 @@ class RhythmSpecifier(ParameterSpecifier):
         self,
         description=None,
         rhythm_maker_package_path=None,
-        name=None,
+        custom_identifier=None,
         source=None,
         ):
         ParameterSpecifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
         self.rhythm_maker_package_path = rhythm_maker_package_path
@@ -26,4 +26,4 @@ class RhythmSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name or self.rhythm_maker_package_path
+        return self.custom_identifier or self.rhythm_maker_package_path

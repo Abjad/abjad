@@ -46,7 +46,7 @@ class IntervalVector(Vector):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None, name=None):
+    def __init__(self, tokens=None, item_class=None, custom_identifier=None):
         from abjad.tools import pitchtools
         if isinstance(tokens, (
             pitchtools.PitchSegment, 
@@ -64,7 +64,7 @@ class IntervalVector(Vector):
             self,
             tokens=tokens,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             )
 
     ### PRIVATE PROPERTIES ###
@@ -87,11 +87,11 @@ class IntervalVector(Vector):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, name=None):
+    def from_selection(cls, selection, item_class=None, custom_identifier=None):
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         return cls(
             pitch_segment,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             )

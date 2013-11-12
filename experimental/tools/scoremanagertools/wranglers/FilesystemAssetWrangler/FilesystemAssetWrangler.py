@@ -291,7 +291,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return
         tokens = editor.target
         self.session.io_manager.display('')
-        view = self.session.io_manager.make_view(tokens, name=view_name)
+        view = self.session.io_manager.make_view(tokens, custom_identifier=view_name)
         self.write_view_to_disk(view)
 
     def interactively_select_view(

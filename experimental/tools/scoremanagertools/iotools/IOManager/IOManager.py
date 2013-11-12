@@ -250,11 +250,11 @@ class IOManager(AbjadObject):
             )
         return selector
 
-    def make_view(self, tokens, name=None):
+    def make_view(self, tokens, custom_identifier=None):
         from experimental.tools import scoremanagertools
         view = scoremanagertools.iotools.View(
             tokens=tokens,
-            name=name,
+            custom_identifier=custom_identifier,
             )
         return view
 

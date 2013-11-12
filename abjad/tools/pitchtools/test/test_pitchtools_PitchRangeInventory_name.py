@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
-def test_pitchtools_PitchRangeInventory_name_01():
-
-    inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
-    assert inventory.name is None
-
-    inventory.name = 'blue inventory'
-    assert inventory.name == 'blue inventory'
-
-
-def test_pitchtools_PitchRangeInventory_name_02():
+def test_pitchtools_PitchRangeinventory_custom_identifier_01():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
-    assert pytest.raises(Exception, 'inventory.name = 99')
+    assert inventory.custom_identifier is None
+
+    inventory.custom_identifier = 'blue inventory'
+    assert inventory.custom_identifier == 'blue inventory'
+
+
+def test_pitchtools_PitchRangeinventory_custom_identifier_02():
+
+    inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
+    assert pytest.raises(Exception, 'inventory.custom_identifier = 99')

@@ -56,7 +56,7 @@ class PitchSegment(Segment):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, name=None):
+    def from_selection(cls, selection, item_class=None, custom_identifier=None):
         r'''Initialize pitch segment from component selection:
 
         ::
@@ -84,7 +84,7 @@ class PitchSegment(Segment):
         return cls(
             tokens=named_pitches,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             )
 
     def invert(self, axis):

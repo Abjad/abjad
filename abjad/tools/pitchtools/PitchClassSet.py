@@ -68,7 +68,7 @@ class PitchClassSet(Set):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, name=None):
+    def from_selection(cls, selection, item_class=None, custom_identifier=None):
         r'''Initialize pitch-class set from component selection:
 
         ::
@@ -86,7 +86,7 @@ class PitchClassSet(Set):
         return cls(
             tokens=pitch_segment,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             )
 
     def invert(self):

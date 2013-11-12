@@ -10,13 +10,13 @@ class TempoSpecifier(ParameterSpecifier):
     def __init__(
         self,
         description=None,
-        name=None,
+        custom_identifier=None,
         source=None,
         ):
         ParameterSpecifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
 
@@ -24,4 +24,4 @@ class TempoSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name
+        return self.custom_identifier

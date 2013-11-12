@@ -11,13 +11,13 @@ class NoteHeadSpecifier(ParameterSpecifier):
         self,
         description=None,
         note_head_handler_name=None,
-        name=None,
+        custom_identifier=None,
         source=None,
         ):
         ParameterSpecifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
         self.note_head_handler_name = note_head_handler_name
@@ -26,4 +26,4 @@ class NoteHeadSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name or self.note_head_handler_name
+        return self.custom_identifier or self.note_head_handler_name

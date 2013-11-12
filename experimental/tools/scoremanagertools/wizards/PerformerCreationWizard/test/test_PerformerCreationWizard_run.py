@@ -18,8 +18,11 @@ def test_PerformerCreationWizard_run_01():
 def test_PerformerCreationWizard_run_02():
 
     wizard = scoremanagertools.wizards.PerformerCreationWizard()
-    assert wizard._run(pending_user_input='vn default') == instrumenttools.Performer(
-        name='violinist', instruments=[instrumenttools.Violin()])
+    assert wizard._run(pending_user_input='vn default') == \
+        instrumenttools.Performer(
+            name='violinist', 
+            instruments=[instrumenttools.Violin()],
+            )
 
 
 def test_PerformerCreationWizard_run_03():

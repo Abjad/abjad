@@ -75,11 +75,11 @@ class TypedList(TypedCollection):
         tokens=None,
         item_class=None,
         keep_sorted=None,
-        name=None,
+        custom_identifier=None,
         ):
         TypedCollection.__init__(self,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             tokens=tokens,
             )
         self._collection = []
@@ -320,7 +320,7 @@ class TypedList(TypedCollection):
         tokens=None,
         item_class=None,
         keep_sorted=None,
-        name=None,
+        custom_identifier=None,
         ):
         r'''Makes new typed list.
 
@@ -332,11 +332,11 @@ class TypedList(TypedCollection):
         item_class = item_class or self.item_class
         if keep_sorted is None:
             keep_sorted = self.keep_sorted
-        name = name or self.name
+        custom_identifier = custom_identifier or self.custom_identifier
         return type(self)(
             tokens=tokens,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             )
 
     def pop(self, i=-1):

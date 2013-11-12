@@ -30,14 +30,14 @@ class TwelveToneRow(PitchClassSegment):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, name=None):
+    def __init__(self, tokens=None, custom_identifier=None):
         from abjad.tools import pitchtools
         assert tokens is not None
         PitchClassSegment.__init__(
             self,
             tokens=tokens,
             item_class=pitchtools.NumberedPitchClass,
-            name=name,
+            custom_identifier=custom_identifier,
             )
         self._validate_pitch_classes(self)
 
@@ -49,7 +49,7 @@ class TwelveToneRow(PitchClassSegment):
         return PitchClassSegment(
             tokens=tokens,
             item_class=pitchtools.NumberedPitchClass,
-            name=self.name,
+            custom_identifier=self.custom_identifier,
             )
 
     def __mul__(self, expr):
@@ -76,16 +76,16 @@ class TwelveToneRow(PitchClassSegment):
     ### PUBLIC METHODS ###d
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, name=None):
+    def from_selection(cls, selection, item_class=None, custom_identifier=None):
         raise NotImplementedError
 
-    def new(self, tokens=None, name=None):
+    def new(self, tokens=None, custom_identifier=None):
         from abjad.tools import pitchtools
         # Allow for empty iterables:
         if tokens is None:
             tokens = self._collection
-        name = name or self.name
+        custom_identifier = custom_identifier or self.custom_identifier
         return type(self)(
             tokens=tokens,
-            name=name,
+            custom_identifier=custom_identifier,
             )

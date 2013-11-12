@@ -14,7 +14,7 @@ class SpecialObjectInventory(TypedList):
     def _keyword_argument_names(self):
         result = []
         result.extend(TypedList._keyword_argument_names.fget(self))
-        result.extend(['name', 'flavor', 'color'])
+        result.extend(['custom_identifier', 'flavor', 'color'])
         return tuple(sorted(result))
     @property
     def _tools_package_name(self):
@@ -26,7 +26,11 @@ def test_datastructuretools_TypedList_subclassing_01():
     '''
 
     foo = SpecialObjectInventory([])
-    assert foo._keyword_argument_names == ('color', 'flavor', 'name')
+    assert foo._keyword_argument_names == (
+        'color', 
+        'custom_identifier',
+        'flavor',
+        )
 
 
 def test_datastructuretools_TypedList_subclassing_02():
@@ -46,15 +50,15 @@ def test_datastructuretools_TypedList_subclassing_03():
     r'''Empty inventory. With keywords.
     '''
 
-    foo = SpecialObjectInventory(name='foo', color='red')
+    foo = SpecialObjectInventory(custom_identifier='foo', color='red')
 
-    assert repr(foo) == "SpecialObjectInventory([], color='red', name='foo')"
+    assert repr(foo) == "SpecialObjectInventory([], color='red', custom_identifier='foo')"
     assert systemtools.TestManager.compare(
         foo._tools_package_qualified_indented_repr,
         r'''
         specialtools.SpecialObjectInventory([],
             color='red',
-            name='foo',
+            custom_identifier='foo',
             )
         ''',
         )
@@ -87,12 +91,12 @@ def test_datastructuretools_TypedList_subclassing_05():
     r'''Populated inventory. With keywords.
     '''
 
-    foo = SpecialObjectInventory(['foo', 99], name='foo', color='red')
+    foo = SpecialObjectInventory(['foo', 99], custom_identifier='foo', color='red')
 
     assert systemtools.TestManager.compare(
         repr(foo),
         r'''
-        SpecialObjectInventory(['foo', 99], color='red', name='foo')
+        SpecialObjectInventory(['foo', 99], color='red', custom_identifier='foo')
         ''',
         )
     assert systemtools.TestManager.compare(
@@ -103,7 +107,7 @@ def test_datastructuretools_TypedList_subclassing_05():
             99,
             ],
             color='red',
-            name='foo',
+            custom_identifier='foo',
             )
         ''',
         )

@@ -31,7 +31,7 @@ class IntervalSet(Set):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, name=None):
+    def from_selection(cls, selection, item_class=None, custom_identifier=None):
         r'''Initialize interval set from component selection:
 
         ::
@@ -72,5 +72,5 @@ class IntervalSet(Set):
         return cls(
             tokens=intervals,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             )

@@ -9,7 +9,7 @@ def test_pitchtools_OctaveTranspositionMappingInventory_append_01():
     inventory = pitchtools.OctaveTranspositionMappingInventory()
     assert repr(inventory) == 'OctaveTranspositionMappingInventory([])'
 
-    mapping = pitchtools.OctaveTranspositionMapping(name='foo')
+    mapping = pitchtools.OctaveTranspositionMapping(custom_identifier='foo')
     inventory.append(mapping)
     assert repr(inventory) == \
-        "OctaveTranspositionMappingInventory([OctaveTranspositionMapping([], name='foo')])"
+        "OctaveTranspositionMappingInventory([OctaveTranspositionMapping([], custom_identifier='foo')])"

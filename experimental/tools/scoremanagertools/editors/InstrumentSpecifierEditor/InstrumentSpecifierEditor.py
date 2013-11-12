@@ -26,7 +26,7 @@ class InstrumentSpecifierEditor(ParameterSpecifierEditor):
 
     target_manifest = TargetManifest(
         specifiers.InstrumentSpecifier,
-        ('name', 'nm', getters.get_string),
+        ('custom_identifier', 'id', getters.get_string),
         ('instrument', 'st', wizards.InstrumentSelectionWizard),
         target_attribute_name='name',
         )

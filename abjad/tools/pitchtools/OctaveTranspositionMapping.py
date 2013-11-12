@@ -73,9 +73,9 @@ class OctaveTranspositionMapping(TypedList):
         return superclass.__format__(format_specification=format_specification)
 
     def __repr__(self):
-        if self.name:
-            return '{}([{}], name={!r})'.format(
-                type(self).__name__, self._repr_contents_string, self.name)
+        if self.custom_identifier:
+            return '{}([{}], custom_identifier={!r})'.format(
+                type(self).__name__, self._repr_contents_string, self.custom_identifier)
         else:
             return '{}([{}])'.format(
                 type(self).__name__, self._repr_contents_string)
@@ -106,7 +106,7 @@ class OctaveTranspositionMapping(TypedList):
 
     @property
     def _one_line_menuing_summary(self):
-        name = self.name or 'mapping'
+        name = self.custom_identifier or 'mapping'
         contents = []
         for mapping_component in self:
             contents.append(mapping_component._one_line_menuing_summary)

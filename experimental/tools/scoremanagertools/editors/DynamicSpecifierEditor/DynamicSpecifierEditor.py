@@ -15,7 +15,7 @@ class DynamicSpecifierEditor(ParameterSpecifierEditor):
 
     target_manifest = TargetManifest(
         DynamicSpecifier,
-        ('name', 'nm', getters.get_string),
+        ('custom_identifier', 'id', getters.get_string),
         ('description', 'ds', getters.get_string),
         (),
         (

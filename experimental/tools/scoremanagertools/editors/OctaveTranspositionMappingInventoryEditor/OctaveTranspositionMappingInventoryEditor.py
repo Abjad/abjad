@@ -23,6 +23,6 @@ class OctaveTranspositionMappingInventoryEditor(ObjectInventoryEditor):
 
     target_manifest = TargetManifest(
         pitchtools.OctaveTranspositionMappingInventory,
-        ('name', 'name', 'nm', getters.get_string),
+        ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
         target_attribute_name='name',
         )

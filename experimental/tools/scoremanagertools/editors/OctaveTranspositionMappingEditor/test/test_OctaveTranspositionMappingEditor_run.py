@@ -17,13 +17,13 @@ def test_OctaveTranspositionMappingEditor_run_02():
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingEditor()
-    editor._run(pending_user_input='name piccolo~second~octave '
+    editor._run(pending_user_input='id piccolo~second~octave '
         'add source [A0, F#4] target 22 done '
         'add source (F#4, C8] target 26 done done done ')
 
     mapping = pitchtools.OctaveTranspositionMapping(
             [('[A0, F#4]', 22), ('(F#4, C8]', 26)],
-            name='piccolo second octave')
+            custom_identifier='piccolo second octave')
 
     assert editor.target == mapping
 
@@ -33,7 +33,8 @@ def test_OctaveTranspositionMappingEditor_run_03():
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingEditor()
-    editor._run(pending_user_input='name piccolo~second~octave done')
+    editor._run(pending_user_input='id piccolo~second~octave done')
 
-    mapping = pitchtools.OctaveTranspositionMapping(name='piccolo second octave')
+    mapping = pitchtools.OctaveTranspositionMapping(
+        custom_identifier='piccolo second octave')
     assert editor.target == mapping

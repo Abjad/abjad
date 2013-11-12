@@ -8,14 +8,14 @@ class PerformerSpecifier(ParameterSpecifier):
     def __init__(
         self,
         description=None,
-        name=None,
+        custom_identifier=None,
         performer=None,
         source=None,
         ):
         ParameterSpecifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
         self.performer = performer
@@ -24,7 +24,7 @@ class PerformerSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        if self.name:
-            return self.name
+        if self.custom_identifier:
+            return self.custom_identifier
         elif self.performer:
             return self.performer.name

@@ -23,7 +23,7 @@ class MusicSpecifier(Specifier, TypedList):
         self,
         contributions=None,
         description=None,
-        name=None,
+        custom_identifier=None,
         source=None,
         ):
         contributions = contributions or []
@@ -34,7 +34,7 @@ class MusicSpecifier(Specifier, TypedList):
         Specifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
 
@@ -49,8 +49,8 @@ class MusicSpecifier(Specifier, TypedList):
         r'''Is there a way to do this programmatically?
         '''
         return tuple(sorted([
+            'custom_identifier',
             'description',
-            'name',
             ]))
 
     ### PUBLIC PROPERTIES ###

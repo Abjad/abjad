@@ -9,14 +9,14 @@ def test_InstrumentSpecifierEditor_run_01():
 
     editor = scoremanagertools.editors.InstrumentSpecifierEditor()
     editor.session.snake_case_current_score_name = 'red_example_score'
-    editor._run(pending_user_input='name foo instrument horn done')
+    editor._run(pending_user_input='id foo instrument horn done')
 
     assert systemtools.TestManager.compare(
         format(editor.target),
         r'''
         specifiers.InstrumentSpecifier(
             instrument=instrumenttools.FrenchHorn(),
-            name='foo'
+            custom_identifier='foo'
             )
         '''
         )
@@ -27,7 +27,7 @@ def test_InstrumentSpecifierEditor_run_02():
     '''
 
     editor = scoremanagertools.editors.InstrumentSpecifierEditor()
-    editor._run(pending_user_input='name foo instrument untuned ratt done')
+    editor._run(pending_user_input='id foo instrument untuned ratt done')
 
     assert systemtools.TestManager.compare(
         format(editor.target),
@@ -37,7 +37,7 @@ def test_InstrumentSpecifierEditor_run_02():
                 instrument_name='rattle',
                 short_instrument_name='rattle'
                 ),
-            name='foo'
+            custom_identifier='foo'
             )
         '''
         )

@@ -11,13 +11,13 @@ class TropingSpecifier(ParameterSpecifier):
         self,
         description=None,
         troping_handler_name=None,
-        name=None,
+        custom_identifier=None,
         source=None,
         ):
         ParameterSpecifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
         self.troping_handler_name = troping_handler_name
@@ -26,4 +26,4 @@ class TropingSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name or self.troping_handler_name
+        return self.custom_identifier or self.troping_handler_name

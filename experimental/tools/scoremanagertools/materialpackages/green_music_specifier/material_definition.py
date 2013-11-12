@@ -10,9 +10,9 @@ output_material_module_import_statements = [
 green_music_specifier = specifiers.MusicSpecifier([
     specifiers.MusicContributionSpecifier(
         [specifiers.InstrumentSpecifier(instrument=instrumenttools.Violin())],
-        name='green violin pizzicati',
+        custom_identifier='green violin pizzicati',
         description='upper register violin pizzicati'
         )
     ],
-    name='green music'
+    custom_identifier='green music'
     )

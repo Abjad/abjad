@@ -9,7 +9,7 @@ class PitchClassSpecifier(ParameterSpecifier):
 
     def __init__(self,
         description=None,
-        name=None,
+        custom_identifier=None,
         pitch_class_reservoir=None,
         pitch_class_reservoir_helper=None,
         pitch_class_transform=None,
@@ -18,7 +18,7 @@ class PitchClassSpecifier(ParameterSpecifier):
         ParameterSpecifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
         self.pitch_class_reservoir = pitch_class_reservoir
@@ -29,5 +29,5 @@ class PitchClassSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name or \
+        return self.custom_identifier or \
             self.pitch_class_reservoir._one_line_menuing_summary

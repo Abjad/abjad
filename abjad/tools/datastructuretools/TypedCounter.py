@@ -31,10 +31,16 @@ class TypedCounter(TypedCollection):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None, name=None, **kwargs):
+    def __init__(
+        self, 
+        tokens=None, 
+        item_class=None, 
+        custom_identifier=None, 
+        **kwargs
+        ):
         TypedCollection.__init__(self,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             tokens=tokens,
             )
         self._collection = collections.Counter()

@@ -31,7 +31,7 @@ def test_MarkupInventoryMaterialPackageMaker_01():
                 markup_name='presto'
                 )
             ],
-            name='test markup inventory'
+            custom_identifier='test markup inventory'
             )
         assert mpp.output_material == inventory
     finally:

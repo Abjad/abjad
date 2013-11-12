@@ -15,7 +15,7 @@ class RhythmSpecifierEditor(ParameterSpecifierEditor):
 
     target_manifest = TargetManifest(
         RhythmSpecifier,
-        ('name', 'nm', getters.get_string),
+        ('custom_identifier', 'id', getters.get_string),
         ('description', 'ds', getters.get_string),
         (),
         (

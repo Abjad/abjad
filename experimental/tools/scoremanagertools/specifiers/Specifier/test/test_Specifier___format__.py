@@ -27,7 +27,7 @@ def test_Specifier___format___02():
     r'''With keywords.
     '''
 
-    specifier = ConcreteSpecifier(name='foo')
+    specifier = ConcreteSpecifier(custom_identifier='foo')
 
-    assert repr(specifier) == "ConcreteSpecifier(name='foo')"
-    assert format(specifier) == "specialtools.ConcreteSpecifier(\n\tname='foo'\n\t)"
+    assert repr(specifier) == "ConcreteSpecifier(custom_identifier='foo')"
+    assert format(specifier) == "specialtools.ConcreteSpecifier(\n\tcustom_identifier='foo'\n\t)"

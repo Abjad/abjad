@@ -23,6 +23,6 @@ class MusicSpecifierEditor(ObjectInventoryEditor):
 
     target_manifest = TargetManifest(
         specifiers.MusicSpecifier,
-        #('name', 'name', 'nm', getters.get_string, False),
+        #('custom_identifier', 'custom_identifier', 'id', getters.get_string, False),
         #target_attribute_name='name',
         )

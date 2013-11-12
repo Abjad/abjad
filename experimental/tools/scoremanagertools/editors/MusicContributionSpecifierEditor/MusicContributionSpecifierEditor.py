@@ -30,7 +30,7 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
 
     target_manifest = TargetManifest(
         specifiers.MusicContributionSpecifier,
-        ('name', 'nm', getters.get_string),
+        ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
         ('description', 'ds', getters.get_string),
         target_attribute_name='name',
         )

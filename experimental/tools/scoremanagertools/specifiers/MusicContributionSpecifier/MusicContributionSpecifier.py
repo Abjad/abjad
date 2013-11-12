@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
-from experimental.tools.scoremanagertools.specifiers.Specifier \
-    import Specifier
+from experimental.tools.scoremanagertools.specifiers.Specifier import Specifier
 from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier \
     import ArticulationSpecifier
 
@@ -12,14 +11,14 @@ class MusicContributionSpecifier(Specifier, TypedList):
         self,
         parameter_specifiers,
         description=None,
-        name=None,
+        custom_identifier=None,
         source=None,
         ):
         TypedList.__init__(self, parameter_specifiers)
         Specifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
         self._articulations = ArticulationSpecifier
@@ -28,7 +27,7 @@ class MusicContributionSpecifier(Specifier, TypedList):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name or 'unknown contribution'
+        return self.custom_identifier or 'unknown contribution'
 
     ### PUBLIC PROPERTIES ###
 

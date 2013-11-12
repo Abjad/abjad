@@ -11,13 +11,13 @@ class ClefSpecifier(ParameterSpecifier):
         self, 
         description=None, 
         clef_name=None, 
-        name=None, 
+        custom_identifier=None, 
         source=None,
         ):
         ParameterSpecifier.__init__(
             self, 
             description=description, 
-            name=name, 
+            custom_identifier=custom_identifier, 
             source=source,
             )
         self.clef_name = clef_name
@@ -26,4 +26,4 @@ class ClefSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name or self.clef_name
+        return self.custom_identifier or self.clef_name

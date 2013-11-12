@@ -11,13 +11,13 @@ class TrillSpecifier(ParameterSpecifier):
         self,
         description=None,
         trill_handler_name=None,
-        name=None,
+        custom_identifier=None,
         source=None,
         ):
         ParameterSpecifier.__init__(
             self,
             description=description,
-            name=name,
+            custom_identifier=custom_identifier,
             source=source,
             )
         self.trill_handler_name = trill_handler_name
@@ -26,4 +26,4 @@ class TrillSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name or self.trill_handler_name
+        return self.custom_identifier or self.trill_handler_name

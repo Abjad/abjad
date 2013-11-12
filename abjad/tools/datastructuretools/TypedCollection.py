@@ -12,18 +12,18 @@ class TypedCollection(AbjadObject):
     __slots__ = (
         '_collection',
         '_item_class',
-        '_name',
+        '_custom_identifier',
         )
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, tokens=None, item_class=None, name=None):
+    def __init__(self, tokens=None, item_class=None, custom_identifier=None):
         assert isinstance(item_class, (type(None), type))
         self._item_class = item_class
         if isinstance(tokens, type(self)):
-            name = tokens.name or name
-        self.name = name
+            custom_identifier = tokens.custom_identifier or custom_identifier
+        self.custom_identifier = custom_identifier
 
     ### SPECIAL METHODS ###
 
@@ -54,7 +54,7 @@ class TypedCollection(AbjadObject):
         return str(self)
 
     def __getnewargs__(self):
-        return tuple((self._collection, self.item_class, self.name))
+        return (self._collection, self.item_class, self.custom_identifier)
 
     def __iter__(self):
         return self._collection.__iter__()
@@ -172,33 +172,33 @@ class TypedCollection(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def new(self, tokens=None, item_class=None, name=None):
+    def new(self, tokens=None, item_class=None, custom_identifier=None):
         # Allow for empty iterables:
         if tokens is None:
             tokens = self._collection
         item_class = item_class or self.item_class
-        name = name or self.name
+        custom_identifier = custom_identifier or self.custom_identifier
         return type(self)(
             tokens=tokens,
             item_class=item_class,
-            name=name,
+            custom_identifier=custom_identifier,
             )
 
     ### PUBLIC PROPERTIES ###
+
+    @apply
+    def custom_identifier():
+        def fget(self):
+            r'''Read / write custom identifier of typed collection.
+            '''
+            return self._custom_identifier
+        def fset(self, _custom_identifier):
+            assert isinstance(_custom_identifier, (str, type(None)))
+            self._custom_identifier = _custom_identifier
+        return property(**locals())
 
     @property
     def item_class(self):
         r'''Item class to coerce tokens into.
         '''
         return self._item_class
-
-    @apply
-    def name():
-        def fget(self):
-            r'''Read / write name of typed tuple.
-            '''
-            return self._name
-        def fset(self, _name):
-            assert isinstance(_name, (str, type(None)))
-            self._name = _name
-        return property(**locals())

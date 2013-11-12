@@ -12,7 +12,7 @@ def test_MusicSpecifierEditor_public_attributes_01():
     assert not editor.has_target
     assert editor.target is None
     assert editor.target_attribute_tokens == [
-        #('nm', 'name', 'None'),
+        #('id', 'custom_identifier', 'None'),
         ]
     assert editor.target_name is None
 
