@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.lilypondproxytools.LilyPondTweakReservoir \
-	import LilyPondTweakReservoir
 
 
 def test_scoretools_NoteHead___init___01():
-    r'''Init note head by number.
+    r'''Initialize note head by number.
     '''
 
     notehead = scoretools.NoteHead(6)
@@ -13,7 +11,7 @@ def test_scoretools_NoteHead___init___01():
 
 
 def test_scoretools_NoteHead___init___02():
-    r'''Init note head by LilyPond-style pitch string.
+    r'''Initialize note head by LilyPond-style pitch string.
     '''
 
     notehead = scoretools.NoteHead('cs,,,')
@@ -21,7 +19,7 @@ def test_scoretools_NoteHead___init___02():
 
 
 def test_scoretools_NoteHead___init___03():
-    r'''Init note head by other note head instance.
+    r'''Initialize note head by other note head instance.
     '''
 
     notehead = scoretools.NoteHead(6)
@@ -33,11 +31,11 @@ def test_scoretools_NoteHead___init___03():
 
 
 def test_scoretools_NoteHead___init___04():
-    r'''Init note head with tweak pairs.
+    r'''Initialize note head with tweak pairs.
     '''
 
     note_head = scoretools.NoteHead("cs''", tweak_pairs=(('color', 'red'),))
-    tweak = LilyPondTweakReservoir()
+    tweak = lilypondproxytools.LilyPondObjectProxy()
     tweak.color = 'red'
 
     assert note_head.written_pitch == pitchtools.NamedPitch("cs''")

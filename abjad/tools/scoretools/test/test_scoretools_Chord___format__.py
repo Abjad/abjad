@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_scoretools_Chord_lilypond_format_01():
+def test_scoretools_Chord___format___01():
     r'''Format chord with one note head.
     '''
 
@@ -13,7 +13,7 @@ def test_scoretools_Chord_lilypond_format_01():
     assert len(chord.written_pitches) == 1
 
 
-def test_scoretools_Chord_lilypond_format_02():
+def test_scoretools_Chord___format___02():
     r'''Format chord with LilyPond command mark.
     '''
 
@@ -24,7 +24,7 @@ def test_scoretools_Chord_lilypond_format_02():
     assert format(chord) == "<d' ef' e'>4 \\glissando"
 
 
-def test_scoretools_Chord_lilypond_format_03():
+def test_scoretools_Chord___format___03():
     r'''Format tweaked chord with LilyPond command mark.
     '''
 
@@ -46,3 +46,43 @@ def test_scoretools_Chord_lilypond_format_03():
         )
 
     assert inspect(chord).is_well_formed()
+
+
+def test_scoretools_Chord___format___04():
+    '''Format tweaked chord.
+    '''
+
+    chord = Chord("<d' ef' e'>4")
+    chord.note_heads[0].tweak.transparent = True
+
+    assert systemtools.TestManager.compare(
+        chord,
+        r'''
+        <
+            \tweak #'transparent ##t
+            d'
+            ef'
+            e'
+        >4
+        '''
+        )
+
+
+def test_scoretools_Chord___format___05():
+    r'''Formats tweaked chord.
+    '''
+
+    chord = Chord("<d' ef' e'>4")
+    chord.note_heads[0].tweak.style = 'harmonic'
+
+    assert systemtools.TestManager.compare(
+        chord,
+        r'''
+        <
+            \tweak #'style #'harmonic
+            d'
+            ef'
+            e'
+        >4
+        '''
+        )

@@ -2,7 +2,6 @@
 import copy
 import functools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
 
 @functools.total_ordering
@@ -224,12 +223,13 @@ class NoteHead(AbjadObject):
 
             >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.tweak
-            LilyPondTweakReservoir()
+            LilyPondObjectProxy()
 
         Returns LilyPond tweak reservoir.
         '''
+        from abjad.tools import lilypondproxytools
         if not hasattr(self, '_tweak'):
-            self._tweak = LilyPondTweakReservoir()
+            self._tweak = lilypondproxytools.LilyPondObjectProxy()
         return self._tweak
 
     @apply

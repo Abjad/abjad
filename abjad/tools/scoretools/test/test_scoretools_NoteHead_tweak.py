@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_LilyPondTweaksReservoir___eq___01():
+def test_scoretools_NoteHead_tweak_01():
 
     chord = Chord([0, 2, 10], (1, 4))
 
