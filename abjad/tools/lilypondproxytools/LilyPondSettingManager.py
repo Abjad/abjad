@@ -1,9 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondContextProxy \
-	import LilyPondContextProxy
-from abjad.tools.lilypondproxytools.LilyPondManager \
-	import LilyPondManager
+from abjad.tools.lilypondproxytools.LilyPondManager import LilyPondManager
 
 
 class LilyPondSettingManager(LilyPondManager):
@@ -14,6 +11,7 @@ class LilyPondSettingManager(LilyPondManager):
 
     def __getattr__(self, name):
         from abjad import ly
+        from abjad.tools import lilypondproxytools
         if name.startswith('_'):
             try:
                 return vars(self)[name]
@@ -25,7 +23,7 @@ class LilyPondSettingManager(LilyPondManager):
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = LilyPondContextProxy()
+                context = lilypondproxytools.LilyPondObjectProxy()
                 vars(self)['_' + name] = context
                 return context
         else:
@@ -48,9 +46,10 @@ class LilyPondSettingManager(LilyPondManager):
     ### PRIVATE METHODS ###
 
     def _get_attribute_tuples(self):
+        from abjad.tools import lilypondproxytools
         result = []
         for name, value in vars(self).iteritems():
-            if isinstance(value, LilyPondContextProxy):
+            if isinstance(value, lilypondproxytools.LilyPondObjectProxy):
                 prefixed_context_name = name
                 context_name = prefixed_context_name.strip('_')
                 context_proxy = value

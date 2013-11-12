@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_LilypondContextProxy___setattr___01():
+def test_topleveltools_contextualize_01():
     r'''Works with score tempo interface.
     Does not include LilyPond \set command.'''
 
@@ -27,7 +27,7 @@ def test_LilypondContextProxy___setattr___01():
         )
 
 
-def test_LilypondContextProxy___setattr___02():
+def test_topleveltools_contextualize_02():
     r'''Works with leaf tempo interface.
     Includes LilyPond \set command.'''
 

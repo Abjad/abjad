@@ -3,7 +3,7 @@ import copy
 from abjad import *
 
 
-def test_LilypondContextProxy___eq___01():
+def test_lilypondproxytools_LilyPondObjectProxy___eq___01():
 
     note_1 = Note("c'4")
     contextualize(note_1).voice.auto_beaming = False
