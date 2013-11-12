@@ -160,14 +160,14 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     >>> pitchtools.pitch_class_octave_number_string_to_chromatic_pitch_name('A#4')
     "as'"
 
-* Added ``pitchtools.symbolic_accidental_string_to_alphabetic_accidental_string_abbreviation()``::
+* Added ``pitchtools.symbolic_string_to_alphabetic_accidental_string_abbreviation()``::
 
-    >>> pitchtools.abbreviation_to_symbolic_accidental_string('tqs')
+    >>> pitchtools.abbreviation_to_symbolic_string('tqs')
     '#+'
 
 * Added other new functions to ``pitchtools``::
 
-    pitchtools.abbreviation_to_symbolic_accidental_string()
+    pitchtools.abbreviation_to_symbolic_string()
     pitchtools.is_smbolic_accidental_string()
     pitchtools.is_pitch_class_octave_number_string()
 
@@ -243,7 +243,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 * Extended ``systemtools.IOManager.write_expr_to_ly()`` and ``systemtools.IOManager.write_expr_to_pdf()`` with ``'tagline'`` keyword.
 * Extended ``replace-in-files`` script to skip ``.text``, ``.ly`` and ``.txt`` files.
 
-* Renamed ``Accidental.symbolic_string`` to ``Accidental.symbolic_accidental_string``.
+* Renamed ``Accidental.symbolic_string`` to ``Accidental.symbolic_string``.
 * Renamed ``Accidental.alphabetic_string`` to ``Accidental.abbreviation``.
 
 * Fixed bug in ``topleveltools.play()``.

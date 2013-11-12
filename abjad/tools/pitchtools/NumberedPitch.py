@@ -360,7 +360,7 @@ class NumberedPitch(Pitch):
         '''
         return '{}{}{}'.format(
             self.diatonic_pitch_class_name.upper(),
-            self.accidental.symbolic_accidental_string,
+            self.accidental.symbolic_string,
             self.octave_number,
             )
 

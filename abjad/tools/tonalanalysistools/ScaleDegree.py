@@ -67,7 +67,7 @@ class ScaleDegree(AbjadObject):
     @property
     def _compact_format_string(self):
         return '{}{}'.format(
-            self.accidental.symbolic_accidental_string, self.number)
+            self.accidental.symbolic_string, self.number)
 
     @property
     def _format_string(self):
@@ -191,7 +191,7 @@ class ScaleDegree(AbjadObject):
 
     @property
     def symbolic_string(self):
-        return '{}{}'.format(self.accidental.symbolic_accidental_string,
+        return '{}{}'.format(self.accidental.symbolic_string,
             self.roman_numeral_string)
 
     @property

@@ -154,10 +154,10 @@ class NamedPitchClass(PitchClass):
         groups = pitchtools.Pitch._pitch_class_octave_number_regex.match(
             expr).groups()
         diatonic_pitch_class_name = groups[0].lower()
-        symbolic_accidental_string = groups[1]
+        symbolic_string = groups[1]
         self._alteration_in_semitones = \
-            pitchtools.Accidental._symbolic_accidental_string_to_semitones[
-                symbolic_accidental_string]
+            pitchtools.Accidental._symbolic_string_to_semitones[
+                symbolic_string]
         self._diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]
@@ -329,7 +329,7 @@ class NamedPitchClass(PitchClass):
         '''
         return '{}{}'.format(
             self.diatonic_pitch_class_name.upper(),
-            self.accidental.symbolic_accidental_string,
+            self.accidental.symbolic_string,
             )
 
     @property

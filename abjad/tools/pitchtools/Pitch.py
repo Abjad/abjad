@@ -37,7 +37,7 @@ class Pitch(AbjadObject):
         ([-]?           # plus an optional negative sign
         [0-9]+)         # plus one or more digits
         '''.format(
-        Accidental._symbolic_accidental_string_regex_body,
+        Accidental._symbolic_string_regex_body,
         )
 
     _pitch_class_octave_number_regex = re.compile(

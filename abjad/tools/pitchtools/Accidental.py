@@ -42,7 +42,7 @@ class Accidental(AbjadObject):
         'ss'  : 2,
     }
 
-    _abbreviation_to_symbolic_accidental_string = {
+    _abbreviation_to_symbolic_string = {
         'ff'  : 'bb',
         'tqf' : 'b~',
         'f'   : 'b',
@@ -93,7 +93,7 @@ class Accidental(AbjadObject):
         2    : 'ss',
     }
 
-    _symbolic_accidental_string_regex_body = '''
+    _symbolic_string_regex_body = '''
         ([#]{1,2}   # # or ## for sharp or double sharp
         |[b]{1,2}   # or b or bb for flat or double flat
         |[#]?[+]    # or + or #+ for qs and tqs
@@ -102,12 +102,12 @@ class Accidental(AbjadObject):
         )
         '''
 
-    _symbolic_accidental_string_regex = re.compile(
-        '^{}$'.format(_symbolic_accidental_string_regex_body),
+    _symbolic_string_regex = re.compile(
+        '^{}$'.format(_symbolic_string_regex_body),
         re.VERBOSE,
         )
 
-    _symbolic_accidental_string_to_abbreviation = {
+    _symbolic_string_to_abbreviation = {
         'bb' : 'ff',
         'b~' : 'tqf',
         'b'  : 'f',
@@ -120,7 +120,7 @@ class Accidental(AbjadObject):
         '##' : 'ss',
         }
 
-    _symbolic_accidental_string_to_semitones = {
+    _symbolic_string_to_semitones = {
         'bb' : -2,
         'b~' : -1.5,
         'b'  : -1,
@@ -137,7 +137,7 @@ class Accidental(AbjadObject):
         '_is_adjusted',
         '_name',
         '_semitones',
-        '_symbolic_accidental_string',
+        '_symbolic_string',
         )
 
     ### INITIALIZER ##
@@ -147,9 +147,9 @@ class Accidental(AbjadObject):
         # initialize symbolic string from arg
         if self.is_abbreviation(arg):
             _abbreviation = arg
-        elif self.is_symbolic_accidental_string(arg):
+        elif self.is_symbolic_string(arg):
             _abbreviation = \
-                self._symbolic_accidental_string_to_abbreviation[
+                self._symbolic_string_to_abbreviation[
                     arg]
         elif arg in self._all_accidental_names:
             _abbreviation = \
@@ -176,10 +176,10 @@ class Accidental(AbjadObject):
         self._name = _name
         _is_adjusted = not self.semitones == 0
         self._is_adjusted = _is_adjusted
-        _symbolic_accidental_string = \
-            self._abbreviation_to_symbolic_accidental_string[
+        _symbolic_string = \
+            self._abbreviation_to_symbolic_string[
                 self.abbreviation]
-        self._symbolic_accidental_string = _symbolic_accidental_string
+        self._symbolic_string = _symbolic_string
 
     ### SPECIAL METHODS ###
 
@@ -237,7 +237,7 @@ class Accidental(AbjadObject):
 
     @property
     def _all_accidental_abbreviations(self):
-        return self._abbreviation_to_symbolic_accidental_string.keys()
+        return self._abbreviation_to_symbolic_string.keys()
 
     @property
     def _all_accidental_names(self):
@@ -269,12 +269,12 @@ class Accidental(AbjadObject):
         return bool(Accidental._alphabetic_accidental_regex.match(expr))
 
     @staticmethod
-    def is_symbolic_accidental_string(expr):
+    def is_symbolic_string(expr):
         '''True when `expr` is a symbolic accidental string. Otherwise false:
 
         ::
 
-            >>> pitchtools.Accidental.is_symbolic_accidental_string('#+')
+            >>> pitchtools.Accidental.is_symbolic_string('#+')
             True
 
         True on empty string.
@@ -286,7 +286,7 @@ class Accidental(AbjadObject):
         '''
         if not isinstance(expr, str):
             return False
-        return bool(Accidental._symbolic_accidental_string_regex.match(expr))
+        return bool(Accidental._symbolic_string_regex.match(expr))
 
     @property
     def _lilypond_format(self):
@@ -352,15 +352,15 @@ class Accidental(AbjadObject):
         return self._semitones
 
     @property
-    def symbolic_accidental_string(self):
+    def symbolic_string(self):
         r'''Symbolic string of accidental:
 
         ::
 
             >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.symbolic_accidental_string
+            >>> accidental.symbolic_string
             '#'
 
         Returns string.
         '''
-        return self._symbolic_accidental_string
+        return self._symbolic_string
