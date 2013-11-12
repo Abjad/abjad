@@ -3,7 +3,7 @@ import copy
 from abjad import *
 
 
-def test_lilypondproxytools_LilyPondObjectProxy___eq___01():
+def test_lilypondproxytools_LilyPondNameManager___eq___01():
 
     note_1 = Note("c'4")
     contextualize(note_1).voice.auto_beaming = False
@@ -31,7 +31,7 @@ def test_lilypondproxytools_LilyPondObjectProxy___eq___01():
     assert      context_proxy_3 == context_proxy_3
 
 
-def test_lilypondproxytools_LilyPondObjectProxy___eq___02():
+def test_lilypondproxytools_LilyPondNameManager___eq___02():
 
     note_1 = Note("c'4")
     override(note_1).note_head.color = 'red'

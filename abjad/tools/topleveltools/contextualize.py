@@ -6,7 +6,7 @@ def contextualize(expr):
     from abjad.tools import lilypondproxytools
 
     if not hasattr(expr, '_set'):
-        manager = lilypondproxytools.LilyPondSettingManager()
+        manager = lilypondproxytools.LilyPondSettingNameManager()
         expr._set = manager
 
     return expr._set

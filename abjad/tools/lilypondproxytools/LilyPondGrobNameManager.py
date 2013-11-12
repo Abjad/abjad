@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondObjectProxy \
-    import LilyPondObjectProxy
+from abjad.tools.lilypondproxytools.LilyPondNameManager \
+    import LilyPondNameManager
 
 
-class LilyPondGrobManager(LilyPondObjectProxy):
+class LilyPondGrobNameManager(LilyPondNameManager):
     '''LilyPond grob manager.
     '''
 
@@ -29,14 +29,14 @@ class LilyPondGrobManager(LilyPondObjectProxy):
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = lilypondproxytools.LilyPondGrobManager()
+                context = lilypondproxytools.LilyPondGrobNameManager()
                 vars(self)['_' + name] = context
                 return context
         elif camel_name in ly.grob_interfaces:
             try:
                 return vars(self)[name]
             except KeyError:
-                vars(self)[name] = lilypondproxytools.LilyPondObjectProxy()
+                vars(self)[name] = lilypondproxytools.LilyPondNameManager()
                 return vars(self)[name]
         else:
             try:
@@ -57,7 +57,7 @@ class LilyPondGrobManager(LilyPondObjectProxy):
         from abjad.tools import lilypondproxytools
         result = []
         for name, value in vars(self).iteritems():
-            if type(value) is lilypondproxytools.LilyPondObjectProxy:
+            if type(value) is lilypondproxytools.LilyPondNameManager:
                 grob_name, grob_proxy = name, value
                 pairs = vars(grob_proxy).iteritems()
                 for attribute_name, attribute_value in pairs:

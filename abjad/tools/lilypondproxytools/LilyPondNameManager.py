@@ -2,7 +2,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LilyPondObjectProxy(AbjadObject):
+class LilyPondNameManager(AbjadObject):
     r'''Base class from which LilyPond grob and setting managers inherit.
     '''
 

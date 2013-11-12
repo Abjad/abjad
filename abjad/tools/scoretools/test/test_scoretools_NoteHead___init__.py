@@ -35,7 +35,7 @@ def test_scoretools_NoteHead___init___04():
     '''
 
     note_head = scoretools.NoteHead("cs''", tweak_pairs=(('color', 'red'),))
-    tweak = lilypondproxytools.LilyPondObjectProxy()
+    tweak = lilypondproxytools.LilyPondNameManager()
     tweak.color = 'red'
 
     assert note_head.written_pitch == pitchtools.NamedPitch("cs''")

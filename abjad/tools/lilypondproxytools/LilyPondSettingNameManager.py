@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.lilypondproxytools.LilyPondObjectProxy \
-    import LilyPondObjectProxy
+from abjad.tools.lilypondproxytools.LilyPondNameManager \
+    import LilyPondNameManager
 
 
-class LilyPondSettingManager(LilyPondObjectProxy):
+class LilyPondSettingNameManager(LilyPondNameManager):
     '''LilyPond setting manager.
     '''
 
@@ -29,7 +29,7 @@ class LilyPondSettingManager(LilyPondObjectProxy):
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = lilypondproxytools.LilyPondObjectProxy()
+                context = lilypondproxytools.LilyPondNameManager()
                 vars(self)['_' + name] = context
                 return context
         else:
@@ -46,7 +46,7 @@ class LilyPondSettingManager(LilyPondObjectProxy):
         from abjad.tools import lilypondproxytools
         result = []
         for name, value in vars(self).iteritems():
-            if type(value) is lilypondproxytools.LilyPondObjectProxy:
+            if type(value) is lilypondproxytools.LilyPondNameManager:
                 prefixed_context_name = name
                 context_name = prefixed_context_name.strip('_')
                 context_proxy = value

@@ -223,13 +223,13 @@ class NoteHead(AbjadObject):
 
             >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.tweak
-            LilyPondObjectProxy()
+            LilyPondNameManager()
 
         Returns LilyPond tweak reservoir.
         '''
         from abjad.tools import lilypondproxytools
         if not hasattr(self, '_tweak'):
-            self._tweak = lilypondproxytools.LilyPondObjectProxy()
+            self._tweak = lilypondproxytools.LilyPondNameManager()
         return self._tweak
 
     @apply
