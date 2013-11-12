@@ -883,16 +883,6 @@ class MaterialPackageManager(PackageManager):
         topleveltools.persist(illustration).as_pdf(
             self.illustration_pdf_file_name,
             )
-#        systemtools.IOManager.write_expr_to_pdf(
-#            illustration,
-#            self.illustration_pdf_file_name,
-#            print_status=False,
-#            )
-#        systemtools.IOManager.write_expr_to_ly(
-#            illustration,
-#            self.illustration_ly_file_name,
-#            print_status=False,
-#            )
         self.session.io_manager.proceed(
             'PDF and LilyPond file written to disk.',
             is_interactive=prompt,
@@ -903,11 +893,6 @@ class MaterialPackageManager(PackageManager):
         topleveltools.persist(illustration).as_pdf(
             self.illustration_ly_file_name,
             )
-#        systemtools.IOManager.write_expr_to_ly(
-#            illustration,
-#            self.illustration_ly_file_name,
-#            print_status=False,
-#            )
         self.session.io_manager.proceed(
             'LilyPond file written to disk.',
             is_interactive=prompt,
@@ -918,11 +903,6 @@ class MaterialPackageManager(PackageManager):
         topleveltools.persist(illustration).as_pdf(
             self.illustration_pdf_file_name,
             )
-#        systemtools.IOManager.write_expr_to_pdf(
-#            illustration,
-#            self.illustration_pdf_file_name,
-#            print_status=False,
-#            )
         self.session.io_manager.proceed(
             'PDF written to disk.',
             is_interactive=prompt)
