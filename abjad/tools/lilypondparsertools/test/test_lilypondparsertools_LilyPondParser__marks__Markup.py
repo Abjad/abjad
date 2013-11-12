@@ -105,4 +105,12 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_05():
     command = r'\markup { \char ##x03EE }'
     parser = LilyPondParser()
     result = parser(command)
-    assert format(result, 'lilypond') == '\\markup { \\char #1006 }'
+    assert systemtools.TestManager.compare(
+        format(result, 'lilypond'),
+        r'''
+        \markup {
+            \char
+                #1006
+            }
+        ''',
+        )

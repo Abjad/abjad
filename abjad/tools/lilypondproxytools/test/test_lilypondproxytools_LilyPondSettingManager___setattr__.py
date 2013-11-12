@@ -161,7 +161,12 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___07():
         staff,
         r'''
         \new Staff \with {
-            instrumentName = \markup { \circle { V } }
+            instrumentName = \markup {
+                \circle
+                    {
+                        V
+                    }
+                }
         } {
             c'8
             d'8
@@ -230,13 +235,19 @@ def test_lilypondproxytools_LilyPondSettingManager___setattr___10():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    contextualize(staff).short_instrument_name = markuptools.Markup(r'\circle { V }')
+    contextualize(staff).short_instrument_name = markuptools.Markup(
+        r'\circle { V }')
 
     assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff \with {
-            shortInstrumentName = \markup { \circle { V } }
+            shortInstrumentName = \markup {
+                \circle
+                    {
+                        V
+                    }
+                }
         } {
             c'8
             d'8

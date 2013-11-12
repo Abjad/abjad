@@ -12,4 +12,27 @@ def test_markuptools_MarkupCommand___format___01():
     f = markuptools.MarkupCommand('triangle', False)
     g = markuptools.MarkupCommand('concat', [e, f])
 
-    assert format(g, 'lilypond') == '\\concat { \\rotate #45 \\combine \\draw-circle #1 #0.1 ##f \\rounded-box \\line { one two three } \\triangle ##f }'
+    assert systemtools.TestManager.compare(
+        format(g, 'lilypond'),
+        r'''
+        \concat
+            {
+                \rotate
+                    #45
+                    \combine
+                        \draw-circle
+                            #1
+                            #0.1
+                            ##f
+                        \rounded-box
+                            \line
+                                {
+                                    one
+                                    two
+                                    three
+                                }
+                \triangle
+                    ##f
+            }
+        ''',
+        )

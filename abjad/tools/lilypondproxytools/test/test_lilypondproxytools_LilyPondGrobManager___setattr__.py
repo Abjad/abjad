@@ -404,14 +404,19 @@ def test_lilypondproxytools_LilyPondGrobManager___setattr___17():
         r'''
         \new Staff \with {
             \override InstrumentName #'color = #red
-            instrumentName = \markup { \circle { V } }
+            instrumentName = \markup {
+                \circle
+                    {
+                        V
+                    }
+                }
         } {
             c'8
             d'8
             e'8
             f'8
         }
-        '''
+        ''',
         )
 
     assert inspect(staff).is_well_formed()

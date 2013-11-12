@@ -80,9 +80,9 @@ class Markup(Mark):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_contents', 
-        '_direction', 
-        '_format_slot', 
+        '_contents',
+        '_direction',
+        '_format_slot',
         '_markup_name',
         )
 
@@ -167,12 +167,8 @@ class Markup(Mark):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_pieces(self):
-        return self._get_format_pieces(is_indented=False)
-
-    @property
     def _lilypond_format(self):
-        return ' '.join(self._get_format_pieces(is_indented=False))
+        return '\n'.join(self._get_format_pieces())
 
     @property
     def _positional_argument_values(self):
@@ -207,32 +203,13 @@ class Markup(Mark):
         return property(**locals())
 
     @property
-    def indented_lilypond_format(self):
-        r'''Indented LilyPond format of markup:
-
-        ::
-
-            >>> markup = \
-            ...     markuptools.Markup(r'\bold { "This is markup text." }')
-            >>> print markup.indented_lilypond_format
-            \markup {
-                \bold {
-                    "This is markup text."
-                    }
-                }
-
-        Returns string.
-        '''
-        return '\n'.join(self._get_format_pieces(is_indented=True))
-
-    @property
     def markup_name(self):
         r'''Name of markup:
 
         ::
 
             >>> markup = markuptools.Markup(
-            ...     r'\bold { allegro ma non troppo }', 
+            ...     r'\bold { allegro ma non troppo }',
             ...     markup_name='non troppo')
 
         ::
@@ -246,20 +223,15 @@ class Markup(Mark):
 
     ### PRIVATE METHODS ###
 
-    def _get_format_pieces(self, is_indented=True):
-        indent = ''
-        if is_indented:
-            indent = '\t'
-
+    def _get_format_pieces(self):
+        indent = '\t'
         direction = ''
         if self.direction is not None:
             direction = stringtools.arg_to_tridirectional_lilypond_symbol(
                 self.direction)
-
         # None
         if self.contents is None:
             return [r'\markup { }']
-
         # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
@@ -268,7 +240,6 @@ class Markup(Mark):
             if direction:
                 return [r'{} \markup {{ {} }}'.format(direction, content)]
             return [r'\markup {{ {} }}'.format(content)]
-
         # multiple strings or markup commands
         if direction:
             pieces = [r'{} \markup {{'.format(direction)]
@@ -280,9 +251,8 @@ class Markup(Mark):
                 pieces.append('{}{}'.format(indent, content))
             else:
                 pieces.extend(['{}{}'.format(indent, x) for x in
-                    content._get_format_pieces(is_indented=is_indented)])
+                    content._get_format_pieces()])
         pieces.append('{}}}'.format(indent))
-
         return pieces
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):

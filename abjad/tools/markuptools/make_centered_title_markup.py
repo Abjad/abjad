@@ -10,7 +10,7 @@ def make_centered_title_markup(title, font_name='Times', font_size=18, vspace_be
 
     ::
 
-        >>> print markup.indented_lilypond_format
+        >>> print format(markup, 'lilypond')
         \markup {
             \override
                 #'(font-name . "Times")

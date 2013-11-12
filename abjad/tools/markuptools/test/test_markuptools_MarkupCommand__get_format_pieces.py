@@ -10,7 +10,7 @@ def test_markuptools_MarkupCommand__get_format_pieces_01():
     rotate = markuptools.MarkupCommand('rotate', 60, line)
     combine = markuptools.MarkupCommand('combine', rotate, circle)
 
-    assert combine._get_format_pieces(is_indented=True) == [
+    assert combine._get_format_pieces() == [
         '\\combine',
         '\t\\rotate',
         '\t\t#60',

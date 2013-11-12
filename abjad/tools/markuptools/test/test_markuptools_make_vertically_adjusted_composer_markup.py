@@ -8,7 +8,7 @@ def test_markuptools_make_vertically_adjusted_composer_markup_01():
         'Josquin Desprez')
 
     assert systemtools.TestManager.compare(
-        markup.indented_lilypond_format,
+        format(markup, 'lilypond'),
         r'''
         \markup {
             \override
@@ -25,7 +25,5 @@ def test_markuptools_make_vertically_adjusted_composer_markup_01():
                         #0
                 }
             }
-        '''
+        ''',
         )
-
-    assert format(markup, 'lilypond') == '\\markup { \\override #\'(font-name . "Times") { \\hspace #0 \\raise #-20 \\fontsize #3 "Josquin Desprez" \\hspace #0 } }'

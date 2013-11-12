@@ -34,8 +34,11 @@ class LilyPondFormatManager(object):
         name = first + rest
         name = ''.join(name)
         value = LilyPondFormatManager.format_lilypond_value(value)
-        result = r'{!s} = {!s}'.format(name, value)
-        return result
+        value_parts = value.split('\n')
+        result = [r'{!s} = {!s}'.format(name, value_parts[0])]
+        for part in value_parts[1:]:
+            result.append('\t' + part)
+        return '\n'.join(result)
 
     @staticmethod
     def format_lilypond_context_setting_inline(name, value, context=None):
@@ -252,15 +255,14 @@ class LilyPondFormatManager(object):
                     direction = '-'
                 command = markuptools.MarkupCommand('column', contents)
                 markup = markuptools.Markup(command, direction=direction)
-                result.extend(markup._get_format_pieces(is_indented=True))
+                result.extend(markup._get_format_pieces())
             else:
                 if markup_list[0].direction is None:
                     markup = markuptools.Markup(markup_list[0])
                     markup.direction = '-'
-                    result.extend(markup._get_format_pieces(is_indented=True))
+                    result.extend(markup._get_format_pieces())
                 else:
-                    result.extend(markup_list[0]._get_format_pieces(
-                        is_indented=True))
+                    result.extend(markup_list[0]._get_format_pieces())
         if result:
             if 'right' not in contributions:
                 contributions['right'] = {}

@@ -16,8 +16,20 @@ class MarkupCommand(AbjadObject):
 
     ::
 
-        >>> print combine
-        \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f
+        >>> print format(combine, 'lilypond')
+        \combine
+            \rotate
+                #60
+                \line
+                    {
+                        \rounded-box
+                            hello?
+                        wow!
+                    }
+            \draw-circle
+                #2.5
+                #0.1
+                ##f
 
     Insert a markup command in markup in order to attach it to 
     score components:
@@ -110,12 +122,8 @@ class MarkupCommand(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_pieces(self):
-        return self._get_format_pieces(is_indented=False)
-
-    @property
     def _lilypond_format(self):
-        return ' '.join(self._format_pieces)
+        return '\n'.join(self._get_format_pieces())
 
     ### PUBLIC PROPERTIES ###
 
@@ -143,10 +151,8 @@ class MarkupCommand(AbjadObject):
             string = string[:-1] + '"'
         return string
 
-    def _get_format_pieces(self, is_indented=True):
-        indent = ''
-        if is_indented:
-            indent = '\t'
+    def _get_format_pieces(self):
+        indent = '\t'
         def recurse(iterable):
             result = []
             for x in iterable:
@@ -155,8 +161,7 @@ class MarkupCommand(AbjadObject):
                     result.extend(recurse(x))
                     result.append('}')
                 elif isinstance(x, type(self)):
-                    result.extend(x._get_format_pieces(
-                        is_indented=is_indented))
+                    result.extend(x._get_format_pieces())
                 elif isinstance(x, schemetools.Scheme):
                     result.append(format(x))
                 else:
@@ -166,7 +171,7 @@ class MarkupCommand(AbjadObject):
                     else:
                         result.append('#{}'.format(formatted))
             return ['{}{}'.format(indent, x) for x in result]
-        parts = [r'\%s' % self.command]
+        parts = [r'\{}'.format(self.command)]
         parts.extend(recurse(self.args))
         return parts
 

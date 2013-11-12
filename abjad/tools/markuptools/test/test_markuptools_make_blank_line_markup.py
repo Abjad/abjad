@@ -6,4 +6,14 @@ def test_markuptools_make_blank_line_markup_01():
 
     markup = markuptools.make_blank_line_markup()
 
-    assert format(markup, 'liliypond') == '\\markup { \\fill-line { " " } }'
+    assert systemtools.TestManager.compare(
+        format(markup, 'lilypond'),
+        r'''
+        \markup {
+            \fill-line
+                {
+                    " "
+                }
+            }
+        ''',
+        )

@@ -9,7 +9,7 @@ def test_markuptools_Markup__get_format_pieces_01():
     line = markuptools.MarkupCommand('line', [square, 'wow!'])
     markup = markuptools.Markup(('X', circle, 'Y', line, 'Z'), direction=Up)
 
-    assert markup._get_format_pieces(is_indented=True) == [
+    assert markup._get_format_pieces() == [
         '^ \\markup {',
         '\tX',
         '\t\\draw-circle',

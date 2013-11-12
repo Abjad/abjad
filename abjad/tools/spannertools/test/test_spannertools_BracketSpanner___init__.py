@@ -31,9 +31,15 @@ def test_spannertools_BracketSpanner___init___02():
             }
             {
                 \time 2/8
-                \override TextSpanner #'bound-details #'left #'text = \markup { \draw-line #'(0 . -1) }
+                \override TextSpanner #'bound-details #'left #'text = \markup {
+                    \draw-line
+                        #'(0 . -1)
+                    }
                 \override TextSpanner #'bound-details #'left-broken #'text = ##f
-                \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . -1) }
+                \override TextSpanner #'bound-details #'right #'text = \markup {
+                    \draw-line
+                        #'(0 . -1)
+                    }
                 \override TextSpanner #'bound-details #'right-broken #'text = ##f
                 \override TextSpanner #'color = #red
                 \override TextSpanner #'dash-fraction = #1
@@ -53,5 +59,5 @@ def test_spannertools_BracketSpanner___init___02():
                 a'8
             }
         }
-        '''
+        ''',
         )

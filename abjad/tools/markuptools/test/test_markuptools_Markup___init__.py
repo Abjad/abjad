@@ -36,7 +36,14 @@ def test_markuptools_Markup___init___04():
 
     command = markuptools.MarkupCommand('flat')
     markup = markuptools.Markup(command)
-    assert str(markup) == '\\markup { \\flat }'
+    assert systemtools.TestManager.compare(
+        str(markup),
+        r'''
+        \markup {
+            \flat
+            }
+        ''',
+        )
 
 
 def test_markuptools_Markup___init___05():
@@ -46,8 +53,18 @@ def test_markuptools_Markup___init___05():
     command_1 = markuptools.MarkupCommand('flat')
     command_2 = markuptools.MarkupCommand('sharp')
     markup = markuptools.Markup(['X', command_1, 'Y', command_2, 'Z'])
-    assert str(markup) == '\\markup { X \\flat Y \\sharp Z }'
-
+    assert systemtools.TestManager.compare(
+        str(markup),
+        r'''
+        \markup {
+            X
+            \flat
+            Y
+            \sharp
+            Z
+            }
+        ''',
+        )
 
 def test_markuptools_Markup___init___06():
     r'''Preserve all keywords when initializing from other markup instance.

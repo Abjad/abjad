@@ -11,8 +11,16 @@ def test_spannertools_make_dynamic_spanner_below_with_nib_at_right_01():
         staff,
         r'''
         \new Staff {
-            \override TextSpanner #'bound-details #'left #'text = \markup { \dynamic { mp } }
-            \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . 1) }
+            \override TextSpanner #'bound-details #'left #'text = \markup {
+                \dynamic
+                    {
+                        mp
+                    }
+                }
+            \override TextSpanner #'bound-details #'right #'text = \markup {
+                \draw-line
+                    #'(0 . 1)
+                }
             \override TextSpanner #'bound-details #'right-broken #'text = ##f
             \override TextSpanner #'dash-fraction = #1
             \override TextSpanner #'direction = #down
@@ -24,5 +32,5 @@ def test_spannertools_make_dynamic_spanner_below_with_nib_at_right_01():
             \revert TextSpanner #'dash-fraction
             \revert TextSpanner #'direction
         }
-        '''
+        ''',
         )
