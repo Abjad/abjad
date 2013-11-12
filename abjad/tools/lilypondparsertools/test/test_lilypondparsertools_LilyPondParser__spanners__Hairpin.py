@@ -4,7 +4,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_01():
+def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_01():
 
     target = Staff(scoretools.make_notes([0] * 5, [(1, 4)]))
     hairpin = Hairpin(descriptor='<')
@@ -32,7 +32,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_01():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_02():
+def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_02():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     hairpin = Hairpin(descriptor='<')
@@ -60,7 +60,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_02():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_03():
+def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
     r'''Dynamic marks can terminate hairpins.
     '''
 
@@ -91,7 +91,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_03():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_04():
+def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_04():
     r'''Unterminated.
     '''
 
@@ -99,7 +99,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_04():
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_05():
+def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_05():
     r'''Unbegun is okay.
     '''
 
@@ -107,7 +107,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_05():
     result = LilyPondParser()(string)
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_06():
+def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_06():
     r'''No double dynamic spans permitted.
     '''
 
@@ -115,7 +115,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_06():
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HairpinSpanner_07():
+def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
     r'''With direction.
     '''
 

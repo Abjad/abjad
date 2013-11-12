@@ -4,7 +4,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_01():
+def test_lilypondparsertools_LilyPondParser__spanners__Beam_01():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     beam = Beam()
@@ -29,7 +29,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_01():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_02():
+def test_lilypondparsertools_LilyPondParser__spanners__Beam_02():
     r'''With start and stop reversed.
     '''
 
@@ -57,7 +57,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_02():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_03():
+def test_lilypondparsertools_LilyPondParser__spanners__Beam_03():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     beam = Beam()
@@ -80,7 +80,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_03():
     assert pytest.raises(Exception, "LilyPondParser()(format(target))")
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_04():
+def test_lilypondparsertools_LilyPondParser__spanners__Beam_04():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     beam = Beam()
@@ -103,20 +103,20 @@ def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_04():
     assert pytest.raises(Exception, "LilyPondParser()(format(target))")
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_05():
+def test_lilypondparsertools_LilyPondParser__spanners__Beam_05():
 
     string = "{ c'4 [ c'4 c'4 c'4 }"
     assert pytest.raises(Exception, "LilyPondParser()(string)")
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_06():
+def test_lilypondparsertools_LilyPondParser__spanners__Beam_06():
 
     string = "{ c'4 c'4 c'4 c'4 ] }"
     result = LilyPondParser()(string)
     assert not inspect(result[-1]).get_spanners()
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__BeamSpanner_07():
+def test_lilypondparsertools_LilyPondParser__spanners__Beam_07():
     r'''With direction.
     '''
 

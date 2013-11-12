@@ -4,7 +4,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 # TODO: dynamics should accept direction strings.
-def test_lilypondparsertools_LilyPondParser__marks__DynamicMark_01():
+def test_lilypondparsertools_LilyPondParser__marks__Dynamic_01():
 
     target = Staff(Note(-12, (1, 2)) * 6)
     dynamic = Dynamic('ppp')

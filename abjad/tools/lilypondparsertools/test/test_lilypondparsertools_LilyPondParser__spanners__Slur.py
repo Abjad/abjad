@@ -4,7 +4,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_01():
+def test_lilypondparsertools_LilyPondParser__spanners__Slur_01():
     r'''Successful slurs, showing single leaf overlap.
     '''
 
@@ -31,7 +31,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_01():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_02():
+def test_lilypondparsertools_LilyPondParser__spanners__Slur_02():
     r'''Swapped start and stop.
     '''
 
@@ -60,7 +60,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_02():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_03():
+def test_lilypondparsertools_LilyPondParser__spanners__Slur_03():
     r'''Single leaf.
     '''
 
@@ -68,7 +68,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_03():
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_04():
+def test_lilypondparsertools_LilyPondParser__spanners__Slur_04():
     r'''Unterminated.
     '''
 
@@ -76,7 +76,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_04():
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_05():
+def test_lilypondparsertools_LilyPondParser__spanners__Slur_05():
     r'''Unstarted.
     '''
 
@@ -84,7 +84,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_05():
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_06():
+def test_lilypondparsertools_LilyPondParser__spanners__Slur_06():
     r'''Nested.
     '''
 
@@ -92,7 +92,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_06():
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__SlurSpanner_07():
+def test_lilypondparsertools_LilyPondParser__spanners__Slur_07():
     r'''With direction.
     '''
 

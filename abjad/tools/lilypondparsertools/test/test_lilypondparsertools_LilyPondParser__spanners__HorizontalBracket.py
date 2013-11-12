@@ -4,7 +4,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_01():
+def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
 
     target = Container(scoretools.make_notes([0] * 4, [(1, 4)]))
     bracket = spannertools.HorizontalBracketSpanner()
@@ -31,7 +31,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_02():
+def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_02():
     r'''Starting and stopping on the same leaf.
     '''
 
@@ -39,7 +39,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_03():
+def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_03():
     r'''One group stopping on a leaf, while another begins on the same leaf.
     '''
 
@@ -47,7 +47,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_04():
+def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_04():
     r'''Unterminated.
     '''
 
@@ -55,7 +55,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracketSpanner_05():
+def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_05():
     r'''Unstarted.
     '''
 

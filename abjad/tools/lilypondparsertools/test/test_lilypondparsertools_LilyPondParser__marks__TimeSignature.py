@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__marks__TimeSignatureMark_01():
+def test_lilypondparsertools_LilyPondParser__marks__TimeSignature_01():
 
     target = Score([Staff([Note(0, 1)])])
     time_signature = TimeSignature((8, 8))

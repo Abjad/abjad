@@ -4,7 +4,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_01():
+def test_lilypondparsertools_LilyPondParser__spanners__Tie_01():
 
     target = Container([Note(0, 1), Note(0, 1)])
     tie = spannertools.Tie()
@@ -14,19 +14,19 @@ def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_01():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_02():
+def test_lilypondparsertools_LilyPondParser__spanners__Tie_02():
 
     string = r'{ c ~ }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_03():
+def test_lilypondparsertools_LilyPondParser__spanners__Tie_03():
 
     string = r'{ ~ c }'
     assert pytest.raises(Exception, 'LilyPondParser()(string)')
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_04():
+def test_lilypondparsertools_LilyPondParser__spanners__Tie_04():
     r'''With direction.
     '''
 
@@ -38,7 +38,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_04():
     assert format(target) == format(result) and target is not result
 
 
-def test_lilypondparsertools_LilyPondParser__spanners__TieSpanner_05():
+def test_lilypondparsertools_LilyPondParser__spanners__Tie_05():
     r'''With direction.
     '''
 
