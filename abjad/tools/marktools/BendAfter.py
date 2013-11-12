@@ -39,24 +39,37 @@ class BendAfter(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies bend after.
+
+        Returns new bend after.
+        '''
         new = type(self)(self.bend_amount)
         new.format_slot = self.format_slot
         return new
 
     def __eq__(self, expr):
+        r'''True when `expr` is a bend after with bend amount equal to bend
+        after. Otherwise false.
+
+        Returns boolean.
+        '''
         assert isinstance(expr, type(self))
         if self.bend_amount == expr.bend_amount:
             return True
         return False
 
     def __str__(self):
-        return r"- \bendAfter #'%s" % self.bend_amount
+        r'''String representation of bend after.
+
+        Returns string.
+        '''
+        return r"- \bendAfter #'{}".format(self.bend_amount)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return '%s' % self.bend_amount
+        return str(self.bend_amount)
 
     @property
     def _lilypond_format(self):
@@ -67,7 +80,7 @@ class BendAfter(Mark):
     @apply
     def bend_amount():
         def fget(self):
-            r'''Get bend amount:
+            r'''Gets and sets bend amount.
 
             ::
 
@@ -75,7 +88,7 @@ class BendAfter(Mark):
                 >>> bend.bend_amount
                 8.0
 
-            Set bend amount:
+            Sets bend amount:
 
             ::
 
@@ -83,7 +96,7 @@ class BendAfter(Mark):
                 >>> bend.bend_amount
                 -4.0
 
-            Set float.
+            Returns float.
             '''
             return self._bend_amount
         def fset(self, bend_amount):

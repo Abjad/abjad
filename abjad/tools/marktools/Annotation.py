@@ -56,9 +56,18 @@ class Annotation(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies annotation.
+
+        Returns new annotation.
+        '''
         return type(self)(self.name, self.value)
 
     def __eq__(self, arg):
+        r'''True when arg is an annotation with name and value
+        equal to annotation. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.name == arg.name:
                 if self.value == self.value:
@@ -78,7 +87,7 @@ class Annotation(Mark):
     @apply
     def name():
         def fget(self):
-            r'''Get name of annotation:
+            r'''Gets and sets name of annotation.
 
             ::
 
@@ -106,7 +115,7 @@ class Annotation(Mark):
     @apply
     def value():
         def fget(self):
-            r'''Get value of annotation:
+            r'''Gets and sets value of annotation.
 
             ::
 

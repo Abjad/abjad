@@ -34,7 +34,7 @@ class BarLine(Mark):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_bar_line_string',
+        '_abbreviation',
         '_format_slot',
         )
 
@@ -42,9 +42,9 @@ class BarLine(Mark):
 
     ### INITIALIZER ##
 
-    def __init__(self, bar_line_string='|'):
+    def __init__(self, abbreviation='|'):
         Mark.__init__(self)
-        self.bar_line_string = bar_line_string
+        self.abbreviation = abbreviation
 
     ### SPECIAL METHODS ###
 
@@ -53,49 +53,49 @@ class BarLine(Mark):
 
         Returns new bar line.
         '''
-        return type(self)(self.bar_line_string)
+        return type(self)(self.abbreviation)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a bar line with equal bar line string.
+        r'''True when `arg` is a bar line with equal abbreviation.
         Otherwise false.
 
         Returns boolean.
         '''
         if isinstance(arg, type(self)):
-            return self.bar_line_string == arg.bar_line_string
+            return self.abbreviation == arg.abbreviation
         return False
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
-        return repr(self.bar_line_string)
+        return repr(self.abbreviation)
 
     @property
     def _lilypond_format(self):
-        return r'\bar "{}"'.format(self.bar_line_string)
+        return r'\bar "{}"'.format(self.abbreviation)
 
     ## PUBLIC PROPERTIES ##
 
     @apply
-    def bar_line_string():
+    def abbreviation():
         def fget(self):
-            r'''Gets and sets bar line string.
+            r'''Gets and sets abbreviation.
 
             ::
 
                 >>> staff = Staff("c'4 d'4 e'4 f'4")
                 >>> bar_line = marktools.BarLine()
                 >>> attach(bar_line, staff[-1])
-                >>> bar_line.bar_line_string
+                >>> bar_line.abbreviation
                 '|'
 
-            Sets bar line string:
+            Sets abbreviation.
 
             ::
 
-                >>> bar_line.bar_line_string = '|.'
-                >>> bar_line.bar_line_string
+                >>> bar_line.abbreviation = '|.'
+                >>> bar_line.abbreviation
                 '|.'
 
             ..  doctest::
@@ -111,8 +111,8 @@ class BarLine(Mark):
 
             Returns string.
             '''
-            return self._bar_line_string
-        def fset(self, bar_line_string):
-            assert isinstance(bar_line_string, str)
-            self._bar_line_string = bar_line_string
+            return self._abbreviation
+        def fset(self, abbreviation):
+            assert isinstance(abbreviation, str)
+            self._abbreviation = abbreviation
         return property(**locals())
