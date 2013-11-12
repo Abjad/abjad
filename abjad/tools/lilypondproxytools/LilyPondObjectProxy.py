@@ -3,19 +3,10 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class LilyPondObjectProxy(AbjadObject):
-    r'''Shared LilyPond grob proxy and LilyPond context proxy functionality.
+    r'''Base class from which LilyPond grob and setting managers inherit.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self, **kwargs):
-        for key, value in kwargs.iteritems():
-            setattr(self, key, value)
-
     ### SPECIAL METHODS ###
-
-    def __copy__(self):
-        return eval(repr(self))
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -24,9 +15,11 @@ class LilyPondObjectProxy(AbjadObject):
 
     def __repr__(self):
         body_string = ''
-        skeleton_strings = self._get_skeleton_strings()
-        if skeleton_strings:
-            body_string = ', '.join(skeleton_strings)
+        strings = self._get_skeleton_strings()
+        if strings:
+            prefix = getattr(self, 'skeleton_string_prefix', '')
+            strings = [x.replace(prefix, '') for x in strings]
+            body_string = ', '.join(strings)
         return '{}({})'.format(type(self).__name__, body_string)
 
     ### PRIVATE METHODS ###

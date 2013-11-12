@@ -1,31 +1,23 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.lilypondproxytools.LilyPondObjectProxy \
+    import LilyPondObjectProxy
 
 
-class LilyPondGrobManager(AbjadObject):
-    '''LilyPond grob override component plug-in.
+class LilyPondGrobManager(LilyPondObjectProxy):
+    '''LilyPond grob manager.
     '''
 
-    ### INITIALIZER ###
+    ### CLASS VARIABLES ###
 
-    def __init__(self, **kwargs):
-        # note_head__color = 'red' or staff__tuplet_full_length = True
-        for key, value in kwargs.iteritems():
-            proxy_name, attr_name = key.split('__')
-            proxy = getattr(self, proxy_name)
-            setattr(proxy, attr_name, value)
+    skeleton_string_prefix = 'override__'
 
     ### SPECIAL METHODS ###
-
-    def __eq__(self, arg):
-        if isinstance(arg, type(self)):
-            return self._get_attribute_tuples() == arg._get_attribute_tuples()
-        return False
 
     def __getattr__(self, name):
         from abjad import ly
         from abjad.tools import lilypondproxytools
+        camel_name = stringtools.snake_case_to_upper_camel_case(name)
         if name.startswith('_'):
             try:
                 return vars(self)[name]
@@ -33,38 +25,31 @@ class LilyPondGrobManager(AbjadObject):
                 message = '{!r} object has no attribute: {!r}.'
                 message = message.format(type(self).__name__, name)
                 raise AttributeError(message)
-        else:
-            camel_name = stringtools.snake_case_to_upper_camel_case(name)
-            if camel_name in ly.contexts:
-                try:
-                    return vars(self)['_' + name]
-                except KeyError:
-                    context = lilypondproxytools.LilyPondGrobManager()
-                    vars(self)['_' + name] = context
-                    return context
-            elif camel_name in ly.grob_interfaces:
-                try:
-                    return vars(self)[name]
-                except KeyError:
-                    vars(self)[name] = lilypondproxytools.LilyPondObjectProxy()
-                    return vars(self)[name]
-            else:
+        elif camel_name in ly.contexts:
+            try:
+                return vars(self)['_' + name]
+            except KeyError:
+                context = lilypondproxytools.LilyPondGrobManager()
+                vars(self)['_' + name] = context
+                return context
+        elif camel_name in ly.grob_interfaces:
+            try:
                 return vars(self)[name]
+            except KeyError:
+                vars(self)[name] = lilypondproxytools.LilyPondObjectProxy()
+                return vars(self)[name]
+        else:
+            try:
+                return vars(self)[name]
+            except KeyError:
+                message = '{!r} object has no attribute: {!r}.'
+                message = message.format(type(self).__name__, name)
+                raise AttributeError(message)
 
-    def __repr__(self):
-        body_string = ''
-        skeleton_strings = self._get_skeleton_strings()
-        if skeleton_strings:
-            # remove 'override__'
-            skeleton_strings = [x[10:] for x in skeleton_strings]
-            skeleton_strings.sort()
-            body_string = ', '.join(skeleton_strings)
-        return '%s(%s)' % (type(self).__name__, body_string)
-
-    def __setattr__(self, attr, value):
-        # make sure attr is valid grob name before setting value
-        attr_value = getattr(self, attr)
-        object.__setattr__(self, attr, value)
+    def __setattr__(self, attribute_name, value):
+        # make sure attribute name is valid grob name before setting value
+        attribute_value = getattr(self, attribute_name)
+        object.__setattr__(self, attribute_name, value)
 
     ### PRIVATE METHODS ###
 
@@ -72,23 +57,24 @@ class LilyPondGrobManager(AbjadObject):
         from abjad.tools import lilypondproxytools
         result = []
         for name, value in vars(self).iteritems():
-            if isinstance(value, lilypondproxytools.LilyPondObjectProxy):
+            if type(value) is lilypondproxytools.LilyPondObjectProxy:
                 grob_name, grob_proxy = name, value
-                for attribute_name, attribute_value in \
-                    vars(grob_proxy).iteritems():
-                    result.append(
-                        (grob_name, attribute_name, attribute_value))
+                pairs = vars(grob_proxy).iteritems()
+                for attribute_name, attribute_value in pairs:
+                    triple = (grob_name, attribute_name, attribute_value)
+                    result.append(triple)
             else:
                 context_name, context_proxy = name.strip('_'), value
                 for grob_name, grob_proxy in vars(context_proxy).iteritems():
-                    for attribute_name, attribute_value in \
-                        vars(grob_proxy).iteritems():
-                        result.append((
+                    pairs = vars(grob_proxy).iteritems()
+                    for attribute_name, attribute_value in pairs:
+                        quadruple = (
                             context_name,
                             grob_name,
                             attribute_name,
                             attribute_value,
-                            ))
+                            )
+                        result.append(quadruple)
         return tuple(result)
 
     def _get_skeleton_strings(self):
@@ -97,14 +83,15 @@ class LilyPondGrobManager(AbjadObject):
         for grob_override_tuple in grob_override_tuples:
             most = '__'.join(grob_override_tuple[:-1])
             value = grob_override_tuple[-1]
-            value = getattr(
-                value, '_tools_package_qualified_repr', repr(value))
-            skeleton_string = 'override__{}={}'.format(most, value)
-            skeleton_strings.append(skeleton_string)
+            attribute_name = '_tools_package_qualified_repr'
+            value = getattr(value, attribute_name, repr(value))
+            string = 'override__{}={}'.format(most, value)
+            skeleton_strings.append(string)
         return tuple(skeleton_strings)
 
     def _list_format_contributions(self, contribution_type, is_once=False):
         from abjad.tools import systemtools
+        manager = systemtools.LilyPondFormatManager
         assert contribution_type in ('override', 'revert')
         result = []
         for attribute_tuple in self._get_attribute_tuples():
@@ -121,7 +108,7 @@ class LilyPondGrobManager(AbjadObject):
             else:
                 raise ValueError
             if contribution_type == 'override':
-                override_string = systemtools.LilyPondFormatManager.make_lilypond_override_string(
+                override_string = manager.make_lilypond_override_string(
                     grob_name,
                     attribute_name,
                     attribute_value,
@@ -130,7 +117,7 @@ class LilyPondGrobManager(AbjadObject):
                     )
                 result.append(override_string)
             else:
-                revert_string = systemtools.LilyPondFormatManager.make_lilypond_revert_string(
+                revert_string = manager.make_lilypond_revert_string(
                     grob_name,
                     attribute_name,
                     context_name=context_name,
