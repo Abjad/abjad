@@ -160,7 +160,7 @@ class QTarget(AbjadObject):
             leaf_one, leaf_two = leaves[i], leaves[i + 1]
             leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
             leaves[i] = leaf_one
-            if not leaf_two._get_marks(marktools.Annotation):
+            if not leaf_two._get_attached_items(marktools.Annotation):
                 spanner_classes = (spannertools.Tie, )
                 spanner = tuple(leaf_one._get_spanners(spanner_classes))[0]
                 leaf_two = self._copy_leaf_type_and_pitches(leaf_one, leaf_two)
@@ -170,7 +170,7 @@ class QTarget(AbjadObject):
         self._notate_one_leaf(leaves[-1], grace_handler)
 
     def _notate_one_leaf(self, leaf, grace_handler):
-        leaf_annotations = leaf._get_marks(marktools.Annotation)
+        leaf_annotations = leaf._get_attached_items(marktools.Annotation)
         tempo_marks = leaf._get_marks(marktools.Tempo)
         if leaf_annotations:
             pitches, grace_container = grace_handler(leaf_annotations[0].value)

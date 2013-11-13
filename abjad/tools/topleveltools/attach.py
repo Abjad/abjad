@@ -25,10 +25,8 @@ def attach(item, component_expression, target_context=None):
     if hasattr(item, '_attach'):
         item._attach(component_expression)
     elif hasattr(component_expression, '_attached_items'):
-        from abjad.tools import durationtools
-        assert type(item) == durationtools.Multiplier, repr(item)
         component_expression._attached_items.append(item)
     else:
-        message = 'can not attach {!r} to {!r}'
+        message = 'can not attach {!r} to {!r}.'
         message = message.format(item, component_expression)
         raise TypeError(message)

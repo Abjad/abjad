@@ -48,7 +48,7 @@ class InspectionAgent(object):
         is attached to component.
         '''
         from abjad.tools import marktools
-        annotations = self.get_marks(marktools.Annotation)
+        annotations = self.get_attached_items(marktools.Annotation)
         if not annotations:
             return default
         with_correct_name = []
@@ -58,7 +58,9 @@ class InspectionAgent(object):
         if not with_correct_name:
             return default
         if 1 < len(with_correct_name):
-            raise Exception('more than one annotation.')
+            message = 'multiple annotations with name {!r} attached.'
+            message = message.format(name)
+            raise Exception(message)
         annotation_value = with_correct_name[0].value
         return annotation_value
 

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Annotation(Mark):
+class Annotation(AbjadObject):
     r'''An annotation.
 
     ::
@@ -30,7 +30,6 @@ class Annotation(Mark):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_format_slot', 
         '_name', 
         '_value',
         )
@@ -38,7 +37,6 @@ class Annotation(Mark):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        Mark.__init__(self)
         if len(args) == 1 and isinstance(args[0], type(self)):
             self._name = copy.copy(args[0].name)
             self._value = copy.copy(args[0].value)
@@ -49,9 +47,9 @@ class Annotation(Mark):
             self._name = copy.copy(args[0])
             self._value = copy.copy(args[1])
         else:
-            message = 'unknown annotation initialization signature.'
+            message = 'can not initialize annotation: {!r}'
+            message = message.format(args)
             raise ValueError(message)
-        self._format_slot = None
 
     ### SPECIAL METHODS ###
 
@@ -74,13 +72,19 @@ class Annotation(Mark):
                     return True
         return False
 
-    ### PRIVATE PROPERTIES ###
+    def __repr__(self):
+        r'''Interpreter representation of annotation.
 
-    @property
-    def _contents_repr_string(self):
-        if self.value is None:
-            return repr(self.name)
-        return ', '.join([repr(self.name), repr(self.value)])
+        ::
+
+            >>> annotation
+            Annotation('special pitch', NamedPitch('ds'))
+
+        Returns string.
+        '''
+        result = '{}({!r}, {!r})'
+        result = result.format(type(self).__name__, self.name, self.value)
+        return result
 
     ### PUBLIC PROPERTIES ###
 

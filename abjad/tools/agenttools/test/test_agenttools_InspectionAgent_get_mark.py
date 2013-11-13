@@ -9,14 +9,14 @@ def test_agenttools_InspectionAgent_get_mark_01():
     annotation = marktools.Annotation('special information')
     attach(annotation, note)
 
-    assert inspect(note).get_mark(marktools.Annotation) is annotation
+    assert inspect(note).get_attached_item(marktools.Annotation) is annotation
 
 
 def test_agenttools_InspectionAgent_get_mark_02():
 
     note = Note("c'8")
 
-    statement = 'inspect(note).get_mark(marktools.Annotation)'
+    statement = 'inspect(note).get_attached_item(marktools.Annotation)'
     assert pytest.raises(Exception, statement)
 
 
@@ -28,7 +28,7 @@ def test_agenttools_InspectionAgent_get_mark_03():
     annotation = marktools.Annotation('more special information')
     attach(annotation, note)
 
-    statement = 'inspect(note).get_mark(marktools.Annotation)',
+    statement = 'inspect(note).get_attached_item(marktools.Annotation)',
     assert pytest.raises(Exception, statement)
 
 

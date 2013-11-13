@@ -592,6 +592,10 @@ class Component(AbjadObject):
     def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
+    def _has_attached_item(self, item_prototypes=None):
+        items = self._get_attached_items(item_prototypes=item_prototypes)
+        return bool(items)
+
     def _has_mark(self, mark_prototypes=None):
         marks = self._get_marks(mark_prototypes=mark_prototypes)
         return bool(marks)

@@ -134,7 +134,7 @@ def test_agenttools_InspectionAgent_get_marks_05():
         '''
         )
 
-    annotations = inspect(staff[0]).get_marks(marktools.Annotation)
+    annotations = inspect(staff[0]).get_attached_items(marktools.Annotation)
     assert annotations == (annotation_1, annotation_2)
 
 

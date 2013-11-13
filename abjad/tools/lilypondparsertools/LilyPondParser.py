@@ -595,7 +595,7 @@ class LilyPondParser(abctools.Parser):
         }
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_marks(marktools.Annotation)
+        annotations = leaf._get_attached_items(marktools.Annotation)
         detach(marktools.Annotation, leaf)
         if annotations:
             spanners_annotations = [
@@ -603,8 +603,9 @@ class LilyPondParser(abctools.Parser):
             if 1 == len(spanners_annotations):
                 return spanners_annotations[0].value
             elif 1 < len(spanners_annotations):
-                message = 'multiple span events lists attached to %s'
-                raise Exception(message % leaf)
+                message = 'multiple span events lists attached to {}.'
+                message = message.format(leaf)
+                raise Exception(message)
         return []
 
     def _pop_variable_scope(self):
@@ -617,7 +618,7 @@ class LilyPondParser(abctools.Parser):
                 attach(post_event, leaf)
             else:
                 annotation = [
-                    x for x in leaf._get_marks(marktools.Annotation)
+                    x for x in leaf._get_attached_items(marktools.Annotation)
                     if x.name == 'spanners'
                     ]
                 if not annotation:

@@ -602,7 +602,7 @@ class ReducedLyParser(abctools.Parser):
         return parsed[0]
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_marks(marktools.Annotation)
+        annotations = leaf._get_attached_items(marktools.Annotation)
         detach(marktools.Annotation, leaf)
         annotations = [x for x in annotations if x.name == 'post events']
         if annotations:
