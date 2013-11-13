@@ -158,3 +158,29 @@ class StorageFormatManager(object):
         elif type(object_) is object_.__class__:
             return True
         return False
+
+    @staticmethod
+    def get_storage_format_pieces(
+        object_,
+        is_indented=True,
+        keyword_argument_names=None,
+        positional_argument_values=None,
+        tools_package_name=None,
+        ):
+        pass
+
+    @staticmethod
+    def get_storage_format_keyword_argument_pieces(
+        object_,
+        is_indented=True,
+        keyword_argument_names=None,
+        ):
+        pass
+
+    @staticmethod
+    def get_storage_format_positional_argument_pieces(
+        object_,
+        is_indented=True,
+        positional_argument_values=None,
+        ):
+        pass
