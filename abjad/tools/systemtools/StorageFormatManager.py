@@ -21,9 +21,6 @@ class StorageFormatManager(object):
 
     @staticmethod
     def format_one_value(value, is_indented=True):
-        prefix, suffix = '', ', '
-        if is_indented:
-            prefix, suffix = '\t', ','
         result = []
         if isinstance(value, types.MethodType):
             return result
@@ -31,18 +28,17 @@ class StorageFormatManager(object):
             value = \
                 StorageFormatManager.get_tools_package_qualified_class_name(
                     value)
-            result.append('{}{}{}'.format(prefix, value, suffix))
+            result.append(value)
         elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
-            pieces = value._get_tools_package_qualified_repr_pieces(
-                is_indented=is_indented)
-            for piece in pieces[:-1]:
-                result.append('{}{}'.format(prefix, piece))
-            result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
+            result.extend(value._get_tools_package_qualified_repr_pieces(
+                is_indented=is_indented))
         elif hasattr(value, '_tools_package_name'):
-            result.append('{}{}.{!r}{}'.format(
-                prefix, value._tools_package_name, value, suffix))
+            result.append('{}.{!r}'.format(
+                value._tools_package_name,
+                value,
+                ))
         else:
-            result.append('{}{!r}{}'.format(prefix, value, suffix))
+            result.append(repr(value))
         return result
 
     @staticmethod

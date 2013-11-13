@@ -150,12 +150,10 @@ class AbjadObject(object):
         self, is_indented=True):
         from abjad.tools import systemtools
         result = []
+        prefix, suffix = '', ', '
         if is_indented:
             prefix, suffix = '\t', ','
-        else:
-            prefix, suffix = '', ', '
         manager = systemtools.StorageFormatManager
-        tmp = manager.get_tools_package_qualified_class_name
         for name in manager.get_keyword_argument_names(self):
             if self._has_default_attribute_values:
                 default_keyword_argument_name = '_default_{}'.format(name)
@@ -170,71 +168,28 @@ class AbjadObject(object):
                 value = getattr(self, mapped_attribute_name)
             else:
                 value = getattr(self, name)
-            if value is not None:
-                if not isinstance(value, types.MethodType):
-                    # if value is noninstantiable class
-                    if type(value) is abc.ABCMeta:
-                        value = tmp(value)
-                        result.append('{}{}={}{}'.format(
-                            prefix, name, value, suffix))
-                    elif hasattr(
-                        value, '_get_tools_package_qualified_repr_pieces'):
-                        pieces = \
-                            value._get_tools_package_qualified_repr_pieces(
-                            is_indented=is_indented)
-                        if len(pieces) == 1:
-                            result.append('{}{}={}{}'.format(
-                                prefix, name, pieces[0], suffix))
-                        else:
-                            assert 3 <= len(pieces)
-                            result.append('{}{}={}'.format(
-                                prefix, name, pieces[0]))
-                            for piece in pieces[1:-1]:
-                                result.append('{}{}'.format(prefix, piece))
-                            result.append('{}{}{}'.format(
-                                prefix, pieces[-1], suffix))
-                    elif hasattr(value, '_tools_package_name'):
-                        result.append('{}{}={}.{!r}{}'.format(
-                            prefix,
-                            name,
-                            value._tools_package_name,
-                            value,
-                            suffix,
-                            ))
-                    else:
-                        result.append('{}{}={!r}{}'.format(
-                            prefix, name, value, suffix))
+            if value is None or isinstance(value, types.MethodType):
+                continue
+            pieces = manager.format_one_value(value)
+            pieces[0] = '{}={}'.format(name, pieces[0])
+            for piece in pieces[:-1]:
+                result.append(prefix + piece)
+            result.append(prefix + pieces[-1] + suffix)
         return tuple(result)
 
     def _get_tools_package_qualified_positional_argument_repr_pieces(
         self, is_indented=True):
         from abjad.tools import systemtools
         result = []
+        prefix, suffix = '', ', '
         if is_indented:
             prefix, suffix = '\t', ','
-        else:
-            prefix, suffix = '', ', '
         manager = systemtools.StorageFormatManager
         for value in manager.get_positional_argument_values(self):
-            # if value is a (noninstantiated) class
-            result.extend(manager.format_one_value(
-                value,
-                is_indented=is_indented,
-                ))
-#            if type(value) is abc.ABCMeta:
-#                value = tmp(value)
-#                result.append('{}{}{}'.format(prefix, value, suffix))
-#            elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
-#                pieces = value._get_tools_package_qualified_repr_pieces(
-#                    is_indented=is_indented)
-#                for piece in pieces[:-1]:
-#                    result.append('{}{}'.format(prefix, piece))
-#                result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
-#            elif hasattr(value, '_tools_package_name'):
-#                result.append('{}{}.{!r}{}'.format(
-#                    prefix, value._tools_package_name, value, suffix))
-#            else:
-#                result.append('{}{!r}{}'.format(prefix, value, suffix))
+            pieces = manager.format_one_value(value, is_indented=is_indented)
+            for piece in pieces[:-1]:
+                result.append(prefix + piece)
+            result.append(prefix + pieces[-1] + suffix)
         return tuple(result)
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
