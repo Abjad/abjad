@@ -79,7 +79,7 @@ class Score(Context):
         ::
 
             >>> score.add_double_bar()
-            BarLine('|.')(f'4)
+            BarLine('|.')
 
         ..  doctest::
 

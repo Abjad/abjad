@@ -3,13 +3,10 @@ import pytest
 from abjad import *
 
 
-def test_marktools_Articulation_01():
+def test_marktools_Articulation___init___01():
     r'''Articulations can be initialized from zero, one or two arguments.
     '''
 
-    articulation = Articulation()
-    assert articulation.name == None
-    assert articulation.direction is None
     articulation = Articulation('^\\marcato')
     assert articulation.name == 'marcato'
     assert articulation.direction is Up
@@ -18,7 +15,7 @@ def test_marktools_Articulation_01():
     assert articulation.direction is Down
 
 
-def test_marktools_Articulation_02():
+def test_marktools_Articulation___init___02():
     r'''Articulations have string and direction.
     '''
 
@@ -29,18 +26,7 @@ def test_marktools_Articulation_02():
     assert articulation.direction is None
 
 
-def test_marktools_Articulation_03():
-    r'''Articulation name can be set to none.
-    '''
-
-    note = Note("c'4")
-    articulation = Articulation()
-    attach(articulation, note)
-    assert articulation.name is None
-    assert str(articulation) == ''
-
-
-def test_marktools_Articulation_04():
+def test_marktools_Articulation___init___03():
     r'''Direction can be set to None.
     '''
 
@@ -51,7 +37,7 @@ def test_marktools_Articulation_04():
     assert str(articulation) == r'-\staccato'
 
 
-def test_marktools_Articulation_05():
+def test_marktools_Articulation___init___04():
     r'''Direction can be set to up.
     '''
 
@@ -66,7 +52,7 @@ def test_marktools_Articulation_05():
     assert str(articulation) == r'^\staccato'
 
 
-def test_marktools_Articulation_06():
+def test_marktools_Articulation___init___05():
     r'''Direction can be set to down.
     '''
 
@@ -81,7 +67,7 @@ def test_marktools_Articulation_06():
     assert str(articulation) == r'_\staccato'
 
 
-def test_marktools_Articulation_07():
+def test_marktools_Articulation___init___06():
     r'''Direction can be set to default.
     '''
 
@@ -96,7 +82,7 @@ def test_marktools_Articulation_07():
 
 
 
-def test_marktools_Articulation_08():
+def test_marktools_Articulation___init___07():
     r'''Shortcut strings are replaced with full word.
     '''
 

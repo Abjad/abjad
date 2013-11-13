@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class BendAfter(Mark):
+class BendAfter(AbjadObject):
     r'''A fall or doit.
 
     ::
@@ -26,15 +26,17 @@ class BendAfter(Mark):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        Mark.__init__(self)
         self._format_slot = 'right'
         if len(args) == 1 and isinstance(args[0], type(self)):
-            self.bend_amount = args[0].bend_amount
+            bend_amount = args[0].bend_amount
         elif len(args) == 1 and not isinstance(args[0], type(self)):
-            self.bend_amount = args[0]
+            bend_amount = args[0]
         else:
-            message = 'can not initialize stem tremolo.'
+            message = 'can not initialize bend after from {!r}.'
+            message = message.format(args)
             raise ValueError(message)
+        bend_amount = float(bend_amount)
+        self._bend_amount = bend_amount
 
     ### SPECIAL METHODS ###
 
@@ -77,29 +79,15 @@ class BendAfter(Mark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def bend_amount():
-        def fget(self):
-            r'''Gets and sets bend amount.
+    @property
+    def bend_amount(self):
+        r'''Amount of bend after.
 
-            ::
+        ::
 
-                >>> bend = marktools.BendAfter(8)
-                >>> bend.bend_amount
-                8.0
+            >>> bend.bend_amount
+            -4.0
 
-            Sets bend amount:
-
-            ::
-
-                >>> bend.bend_amount = -4
-                >>> bend.bend_amount
-                -4.0
-
-            Returns float.
-            '''
-            return self._bend_amount
-        def fset(self, bend_amount):
-            assert isinstance(bend_amount, (int, float))
-            self._bend_amount = float(bend_amount)
-        return property(**locals())
+        Returns float.
+        '''
+        return self._bend_amount

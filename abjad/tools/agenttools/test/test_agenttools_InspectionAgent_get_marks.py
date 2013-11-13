@@ -26,7 +26,7 @@ def test_agenttools_InspectionAgent_get_marks_01():
         '''
         )
 
-    marks = inspect(staff[0]).get_marks(marktools.LilyPondCommand)
+    marks = inspect(staff[0]).get_attached_items(marktools.LilyPondCommand)
     assert command_1 in marks
     assert command_2 in marks
     assert len(marks) == 2
@@ -56,10 +56,10 @@ def test_agenttools_InspectionAgent_get_marks_02():
         '''
         )
 
-    marks = inspect(staff[0]).get_marks()
-    assert comment in marks
-    assert command in marks
-    assert len(marks) == 2
+    items = inspect(staff[0]).get_attached_items()
+    assert comment in items
+    assert command in items
+    assert len(items) == 2
 
 
 def test_agenttools_InspectionAgent_get_marks_03():
@@ -160,7 +160,7 @@ def test_agenttools_InspectionAgent_get_marks_06():
         '''
         )
 
-    marks = inspect(staff[0]).get_marks(marktools.LilyPondComment)
+    marks = inspect(staff[0]).get_attached_items(marktools.LilyPondComment)
     assert comment_1 in marks
     assert comment_2 in marks
     assert len(marks) == 2

@@ -448,7 +448,9 @@ class LilyPondParser(abctools.Parser):
         if context in known_contexts:
             context = known_contexts[context]([])
         else:
-            raise Exception('Context type %s not supported.' % context)
+            message = 'context type {!r} not supported.'
+            message = message.format(context)
+            raise Exception(message)
 
         if optional_id is not None:
             context.name = optional_id
@@ -456,7 +458,8 @@ class LilyPondParser(abctools.Parser):
         if optional_context_mod is not None:
             for x in optional_context_mod:
                 print x
-            pass # TODO: Implement context mods on contexts. #
+            # TODO: impelement context mods on contexts
+            pass
 
         context.is_simultaneous = music.is_simultaneous
 
@@ -491,7 +494,8 @@ class LilyPondParser(abctools.Parser):
                         attach(mark, x)
                 if previous_leaf:
                     for mark in apply_backward:
-                        if hasattr(mark, '_attach'):
+                        #if hasattr(mark, '_attach'):
+                        if True:
                             attach(mark, previous_leaf)
                 else:
                     for mark in apply_backward:
@@ -519,7 +523,8 @@ class LilyPondParser(abctools.Parser):
                     mark.format_slot = 'after'
                     attach(mark, previous_leaf)
             for mark in apply_backward:
-                if hasattr(mark, '_attach'):
+                #if hasattr(mark, '_attach'):
+                if True:
                     attach(mark, previous_leaf)
         else:
             for mark in apply_forward:
@@ -620,9 +625,14 @@ class LilyPondParser(abctools.Parser):
             #       post events like StemTremolo no longer implement _attach.
             #       Is there a way to identify spanner LilyPondEvents?
             #       Then we can just (blindly) attach all other post events.
+            nonspanner_post_event_types = (
+                marktools.BarLine,
+                marktools.LilyPondCommand,
+                marktools.StemTremolo,
+                )
             if hasattr(post_event, '_attach'):
                 attach(post_event, leaf)
-            elif isinstance(post_event, marktools.StemTremolo):
+            elif isinstance(post_event, nonspanner_post_event_types):
                 attach(post_event, leaf)
             else:
                 #print post_event, 'debugging'

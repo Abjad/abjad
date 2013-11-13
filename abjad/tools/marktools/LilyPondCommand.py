@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 # TODO: extend LilyPond command marks to attach to spanners.
-class LilyPondCommand(Mark):
+class LilyPondCommand(AbjadObject):
     r'''A LilyPond command.
 
     ::
@@ -45,25 +45,38 @@ class LilyPondCommand(Mark):
         '_format_slot',
         )
 
+    _valid_format_slots = (
+        'before', 
+        'after', 
+        'opening', 
+        'closing', 
+        'right',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self,  *args):
-        Mark.__init__(self)
         if len(args) == 1 and isinstance(args[0], type(self)):
-            self.name = copy.copy(args[0].name)
-            self.format_slot = copy.copy(args[0].format_slot)
+            name = copy.copy(args[0].name)
+            format_slot = copy.copy(args[0].format_slot)
         elif len(args) == 1 and not isinstance(args[0], type(self)):
-            self.name = copy.copy(args[0])
-            self.format_slot = None
+            name = copy.copy(args[0])
+            format_slot = None
         elif len(args) == 2 and isinstance(args[0], type(self)):
-            self.name = copy.copy(args[0].name)
-            self.format_slot = args[1]
+            name = copy.copy(args[0].name)
+            format_slot = args[1]
         elif len(args) == 2 and not isinstance(args[0], type(self)):
-            self.name = args[0]
-            self.format_slot = args[1]
+            name = args[0]
+            format_slot = args[1]
         else:
-            message = 'can not initialize LilyPond command.'
+            message = 'can not initialize LilyPond command from {!r}.'
+            message = message.format(args)
             raise ValueError(message)
+        format_slot = format_slot or 'opening'
+        assert format_slot in self._valid_format_slots, repr(format_slot)
+        assert isinstance(name, str), repr(name)
+        self._name = name
+        self._format_slot = format_slot
 
     ### SPECIAL METHODS ###
 
@@ -77,14 +90,28 @@ class LilyPondCommand(Mark):
         return new
 
     def __eq__(self, arg):
-        r'''True when `arg` is a LilyPond command with name equal to
-        LilyPond command. Otherwise false.
+        r'''True when `arg` is a LilyPond command with a name equal to
+        that of this LilyPond command. Otherwise false.
 
         Returns boolean.
         '''
         if isinstance(arg, type(self)):
             return self._name == arg._name
         return False
+
+    def __format__(self, format_specification=''):
+        r'''Formats LilyPond command.
+
+        Set `format_specification` to `''`, `'lilypond`' or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        elif format_specification == 'lilypond':
+            return self._lilypond_format
+        return str(self)
 
     ### PRIVATE PROPERTIES ###
 
@@ -103,64 +130,29 @@ class LilyPondCommand(Mark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def name():
-        def fget(self):
-            r'''Gets and sets name of LilyPond command.
+    @property
+    def format_slot(self):
+        r'''Format slot of LilyPond command.
 
-            ::
+        ::
 
-                >>> command = marktools.LilyPondCommand('slurDotted')
-                >>> command.name
-                'slurDotted'
+            >>> command.format_slot
+            'opening'
 
-            Sets name of LilyPond command:
+        Returns string.
+        '''
+        return self._format_slot
 
-            ::
 
-                >>> command.name = 'slurDashed'
-                >>> command.name
-                'slurDashed'
+    @property
+    def name(self):
+        r'''Name of LilyPond command.
 
-            Returns string.
-            '''
-            return self._name
-        def fset(self, name):
-            assert isinstance(name, str)
-            self._name = name
-        return property(**locals())
+        ::
 
-    @apply
-    def format_slot():
-        def fget(self):
-            '''Gets and sets format slot of LilyPond command.
+            >>> command.name
+            'slurDotted'
 
-            ::
-
-                >>> note = Note("c'4")
-                >>> command = marktools.LilyPondCommand('break', 'after')
-                >>> command.format_slot
-                'after'
-
-            Sets format slot of LiyPond command:
-
-            ::
-
-                >>> note = Note("c'4")
-                >>> command = marktools.LilyPondCommand('break', 'after')
-                >>> command.format_slot = 'before'
-                >>> command.format_slot
-                'before'
-
-            Set to ``'before'``, ``'after'``, ``'opening'``,
-            ``'closing'``, ``'right'`` or none.
-            '''
-            return self._format_slot
-        def fset(self, format_slot):
-            assert format_slot in (
-                'before', 'after', 'opening', 'closing', 'right', None)
-            if format_slot is None:
-                self._format_slot = 'opening'
-            else:
-                self._format_slot = format_slot
-        return property(**locals())
+        Returns string.
+        '''
+        return self._name
