@@ -33,13 +33,15 @@ class TreeNode(AbjadObject):
         return False
 
     def __getnewargs__(self):
-        return self._positional_argument_values + \
-            self._keyword_argument_values
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager(self)
+        return manager.positional_argument_values + \
+            manager.keyword_argument_values
 
     def __getstate__(self):
         state = {}
         class_dir = set(dir(type(self)))
-        self_dir = set(x for x in dir(self) if x.startswith('_') and 
+        self_dir = set(x for x in dir(self) if x.startswith('_') and
             not x.startswith('__'))
         for name in self_dir.difference(class_dir):
             state[name] = getattr(self, name)
@@ -49,6 +51,9 @@ class TreeNode(AbjadObject):
         return not self.__eq__(expr)
 
     def __repr__(self):
+        from abjad.tools import systemtools
+
+        manager = systemtools.StorageFormatManager(self)
 
         def format_mapping(name, value):
             if not value:
@@ -87,7 +92,7 @@ class TreeNode(AbjadObject):
             return result
 
         attr_pieces = []
-        for name in self._keyword_argument_names:
+        for name in manager.keyword_argument_names:
             value = getattr(self, name)
             if isinstance(value, (list, tuple)):
                 attr_piece = format_tuple(name, value)

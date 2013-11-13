@@ -187,7 +187,7 @@ class TimeRelation(AbjadObject):
         for key, value in kwargs.iteritems():
             keyword_argument_dictionary[key] = value
         result = type(self)(
-            *self._positional_argument_values,
+            *manager.positional_argument_values,
             **keyword_argument_dictionary
             )
         return result

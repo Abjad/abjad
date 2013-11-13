@@ -39,9 +39,12 @@ class StatalServerCursor(AbjadObject):
 
         Returns boolean.
         '''
+        from abjad.tools import systemtools
         if isinstance(expr, type(self)):
-            return self._keyword_argument_values == \
-                expr._keyword_argument_values
+            self_manager = systemtools.StorageFormatManager(self)
+            expr_manager = systemtools.StorageFormatManager(expr)
+            return self_manager.keyword_argument_values == \
+                expr_manager.keyword_argument_values
         return False
 
     ### PRIVATE METHODS ###

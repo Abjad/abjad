@@ -1153,7 +1153,7 @@ class Timespan(BoundedObject):
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager(self)
         keyword_argument_dictionary = manager.keyword_argument_dictionary
-        positional_argument_dictionary = self._positional_argument_dictionary
+        positional_argument_dictionary = manager.positional_argument_dictionary
         for key, value in kwargs.iteritems():
             if key in positional_argument_dictionary:
                 positional_argument_dictionary[key] = value

@@ -113,7 +113,9 @@ class NoteHead(AbjadObject):
 
     @property
     def _keyword_argument_names(self):
-        result = AbjadObject._keyword_argument_names.fget(self)
+        from abjad.tools import systemtools
+        result = systemtools.StorageFormatManager.get_keyword_argument_names(
+            self)
         result = list(result)
         if 'client' in result:
             result.remove('client')
@@ -150,6 +152,10 @@ class NoteHead(AbjadObject):
         return result
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        return self._client
 
     @apply
     def is_cautionary():
