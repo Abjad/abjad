@@ -26,7 +26,7 @@ class PitchRange(AbjadObject):
 
     ::
 
-        >>> show(pitch_range)
+        >>> show(pitch_range) # doctest: +SKIP
 
     Initalize from pitch numbers, pitch names, pitch instances,
     one-line reprs or other pitch range objects.

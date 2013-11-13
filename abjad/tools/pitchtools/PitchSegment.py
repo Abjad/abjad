@@ -202,7 +202,6 @@ class PitchSegment(Segment):
         '''
         from abjad.tools import durationtools
         from abjad.tools import scoretools
-        from abjad.tools import pitchtools
         n = n or len(self)
         written_duration = written_duration or durationtools.Duration(1, 8)
         result = scoretools.make_notes([0] * n, [written_duration])
@@ -302,7 +301,7 @@ class PitchSegment(Segment):
         result = []
         if 3 <= len(self):
             for i in range(1, len(self) - 1):
-                left, middle, right = self[i-1], self[i], self[i+1]
+                left, middle, right = self[i - 1], self[i], self[i + 1]
                 if left < middle and right < middle:
                     result.append(middle)
         return tuple(result)
@@ -312,7 +311,7 @@ class PitchSegment(Segment):
         result = []
         if 3 <= len(self):
             for i in range(1, len(self) - 1):
-                left, middle, right = self[i-1], self[i], self[i+1]
+                left, middle, right = self[i - 1], self[i], self[i + 1]
                 if middle < left and middle < right:
                     result.append(middle)
         return tuple(result)
