@@ -141,17 +141,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> import copy
-                    >>> skips = []
-                    >>> for clef in accordion.allowable_clefs:
-                    ...     skip = scoretools.Skip((1, 8))
-                    ...     clef = copy.copy(clef)
-                    ...     attach(clef, skip)
-                    ...     skips.append(skip)
-                    >>> staff = Staff(skips)
-                    >>> override(staff).clef.full_size_change = True
-                    >>> override(staff).time_signature.stencil = False
-                    >>> show(staff) # doctest: +SKIP
+                    >>> show(accordion.allowable_clefs)
 
             ..  container:: example
 
@@ -163,6 +153,10 @@ class Accordion(Instrument):
                     >>> accordion.allowable_clefs
                     ClefInventory([Clef('treble')])
 
+                ::
+
+                    >>> show(accordion.allowable_clefs)
+
             ..  container:: example
 
                 Restores default:
@@ -172,6 +166,10 @@ class Accordion(Instrument):
                     >>> accordion.allowable_clefs = None
                     >>> accordion.allowable_clefs
                     ClefInventory([Clef('treble'), Clef('bass')])
+
+                ::
+
+                    >>> show(accordion.allowable_clefs)
 
             Returns clef inventory.
             '''
@@ -235,6 +233,10 @@ class Accordion(Instrument):
                     >>> accordion.instrument_name_markup
                     Markup(('Accordion',))
 
+                ::
+
+                    >>> show(accordion.instrument_name_markup)
+
             ..  container:: example
 
                 Sets property:
@@ -246,6 +248,10 @@ class Accordion(Instrument):
                     >>> accordion.instrument_name_markup
                     Markup(('Fisarmonica',))
 
+                ::
+
+                    >>> show(accordion.instrument_name_markup)
+
             ..  container:: example
 
                 Restores default:
@@ -255,6 +261,10 @@ class Accordion(Instrument):
                     >>> accordion.instrument_name_markup = None
                     >>> accordion.instrument_name_markup
                     Markup(('Accordion',))
+
+                ::
+
+                    >>> show(accordion.instrument_name_markup)
 
             Returns markup.
             '''
@@ -279,16 +289,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> result = scoretools.make_empty_piano_score()
-                    >>> score, treble_staff, bass_staff = result
-                    >>> note = Note("c'1")
-                    >>> note.written_pitch = accordion.pitch_range.start_pitch
-                    >>> bass_staff.append(note)
-                    >>> note = Note("c'1")
-                    >>> note.written_pitch = accordion.pitch_range.stop_pitch
-                    >>> treble_staff.append(note)
-                    >>> override(score).time_signature.stencil = False
-                    >>> show(score) # doctest: +SKIP
+                    >>> show(accordion.pitch_range) # doctest: +SKIP
 
             ..  container:: example
 
@@ -300,6 +301,10 @@ class Accordion(Instrument):
                     >>> accordion.pitch_range
                     PitchRange('[C2, C6]')
 
+                ::
+
+                    >>> show(accordion.pitch_range) # doctest: +SKIP
+
             ..  container:: example
 
                 Restores default:
@@ -309,6 +314,10 @@ class Accordion(Instrument):
                     >>> accordion.pitch_range = None
                     >>> accordion.pitch_range
                     PitchRange('[E1, C8]')
+
+                ::
+
+                    >>> show(accordion.pitch_range) # doctest: +SKIP
 
             Returns pitch range.
             """
@@ -372,6 +381,10 @@ class Accordion(Instrument):
                     >>> accordion.short_instrument_name_markup
                     Markup(('Acc.',))
 
+                ::
+
+                    >>> show(accordion.short_instrument_name_markup)
+
             ..  container:: example
 
                 Sets property:
@@ -383,6 +396,10 @@ class Accordion(Instrument):
                     >>> accordion.short_instrument_name_markup
                     Markup(('fis.',))
 
+                ::
+
+                    >>> show(accordion.short_instrument_name_markup)
+
             ..  container:: example
 
                 Restores default:
@@ -392,6 +409,10 @@ class Accordion(Instrument):
                     >>> accordion.short_instrument_name_markup = None
                     >>> accordion.short_instrument_name_markup
                     Markup(('Acc.',))
+
+                ::
+
+                    >>> show(accordion.short_instrument_name_markup)
 
             Returns markup.
             '''
@@ -416,11 +437,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> pitch = accordion.sounding_pitch_of_written_middle_c
-                    >>> note = Note(pitch, Duration(1))
-                    >>> staff = Staff([note])
-                    >>> override(staff).time_signature.stencil = False
-                    >>> show(staff) # doctest: +SKIP
+                    >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
 
             ..  container:: example
 
@@ -432,6 +449,10 @@ class Accordion(Instrument):
                     >>> accordion.sounding_pitch_of_written_middle_c
                     NamedPitch('cs')
 
+                ::
+
+                    >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
             ..  container:: example
 
                 Restores default:
@@ -441,6 +462,10 @@ class Accordion(Instrument):
                     >>> accordion.sounding_pitch_of_written_middle_c = None
                     >>> accordion.sounding_pitch_of_written_middle_c
                     NamedPitch("c'")
+
+                ::
+
+                    >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
 
             Returns named pitch.
             '''
