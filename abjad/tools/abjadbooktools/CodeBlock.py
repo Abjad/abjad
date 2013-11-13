@@ -82,38 +82,26 @@ class CodeBlock(AbjadObject):
                     print x
 
             if line.startswith('show('):
-
                 image_count += 1
                 file_name = '{}-{}'.format(image_prefix, image_count)
-                docs = False
-
                 if ',' in line:
                     object_name = line.split(',')[0][5:].strip()
-                    if 'docs=True' in line:
-                        docs = True
                 else:
                     object_name = line.partition(')')[0][5:]
-
+                file_path = file_name + '.ly'
                 if directory:
-                    command = \
-                        "persist({}).as_ly({!r})".format(
-                            object_name, os.path.join(directory, file_name))
-                else:
-                    command = \
-                        "persist({}).as_ly({!r})".format(
-                            object_name, file_name)
-
+                    file_path = os.path.join(directory, file_path)
+                command = '__result__ = persist({}).as_ly({!r})'.format(
+                    object_name, file_path)
                 pipe.write(command)
                 grouped_results.append(result)
-
                 image_dict = {
                     'file_name': file_name,
                     'image_count': image_count,
                     'image_prefix': image_prefix,
                     'page_range': page_range,
-                }
+                    }
                 grouped_results.append(image_dict)
-
                 result = []
                 pipe.write('\n')
                 previous_line_was_empty = False

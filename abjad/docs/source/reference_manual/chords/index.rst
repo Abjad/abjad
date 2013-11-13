@@ -11,13 +11,7 @@ You can make chords from a LilyPond input string:
    >>> chord = Chord("<c' d' bf'>4")
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-1.png
 
 
 
@@ -31,13 +25,7 @@ You can also make chords from pitch numbers and duration:
    >>> chord = Chord([0, 2, 10], Duration(1, 4))
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-2.png
 
 
 
@@ -82,13 +70,7 @@ You can add a note head to a chord with a pitch number:
    >>> chord.note_heads.append(9)
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-3.png
 
 
 Or you can add a note head to a chord with a pitch name:
@@ -98,13 +80,7 @@ Or you can add a note head to a chord with a pitch name:
    >>> chord.note_heads.append("df''")
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-4.png
 
 
 Chords sort their note heads every time you add a new one.
@@ -124,13 +100,7 @@ You can use pitch numbers:
    >>> chord.note_heads.extend([3, 4, 14])
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-5.png
 
 
 Or you can use pitch names:
@@ -140,13 +110,7 @@ Or you can use pitch names:
    >>> chord.note_heads.extend(["g''", "af''"])
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-6.png
 
 
 
@@ -160,13 +124,7 @@ Delete note heads from a chord with ``del()``:
    >>> del(chord.note_heads[0])
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-7.png
 
 
 Negative indices work too:
@@ -176,13 +134,7 @@ Negative indices work too:
    >>> del(chord.note_heads[-1])
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-8.png
 
 
 
@@ -198,13 +150,7 @@ You can tweak note heads like this:
    >>> chord.note_heads[4].tweak.color = 'green'
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-9.png
 
 
 
@@ -231,11 +177,5 @@ into it chord in any of the ways described above:
    >>> chord.note_heads.extend(["gf'", "df''", "g''"])
    >>> show(chord)
 
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
-       assert ly_filepath.endswith('.ly')
-   AssertionError
+.. image:: images/index-10.png
 

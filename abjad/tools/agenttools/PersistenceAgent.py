@@ -78,7 +78,7 @@ class PersistenceAgent(object):
                 )
         else:
             ly_filepath = os.path.expanduser(ly_filename)
-        assert ly_filepath.endswith('.ly')
+        assert ly_filepath.endswith('.ly'), ly_filepath
         # format the illustration
         timer = systemtools.Timer()
         with timer:
