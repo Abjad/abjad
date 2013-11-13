@@ -25,10 +25,18 @@ This install file refers to the 2.x releases of Abjad.
 Dependencies
 ------------
 
-Abjad depends on the following programs:
+Abjad depends on the following binaries:
 
     * Python 2.7
-    * LilyPond 2.14 or newer
+    * LilyPond 2.16 or newer
+    * Graphviz (optional, for documentation)
+
+and on the following Python packages:
+
+    * configobj
+    * ply
+    * pytest
+    * sphinx
 
 For Abjad to install and run properly, you must already have both Python 2.7
 and LilyPond installed in your computer.
@@ -54,6 +62,8 @@ Otherwise you'll have to add the location of the executables to your PATH.
 You can find Python here: http://www.python.org
 
 You can find LilyPond here: http://www.lilypond.org
+
+You can find Graphviz here: http://graphviz.org/
 
 
 Installing the latest prebuilt version of Abjad
