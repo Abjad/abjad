@@ -215,23 +215,26 @@ class AbjadObject(object):
         else:
             prefix, suffix = '', ', '
         manager = systemtools.StorageFormatManager
-        tmp = manager.get_tools_package_qualified_class_name
         for value in manager.get_positional_argument_values(self):
             # if value is a (noninstantiated) class
-            if type(value) is abc.ABCMeta:
-                value = tmp(value)
-                result.append('{}{}{}'.format(prefix, value, suffix))
-            elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
-                pieces = value._get_tools_package_qualified_repr_pieces(
-                    is_indented=is_indented)
-                for piece in pieces[:-1]:
-                    result.append('{}{}'.format(prefix, piece))
-                result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
-            elif hasattr(value, '_tools_package_name'):
-                result.append('{}{}.{!r}{}'.format(
-                    prefix, value._tools_package_name, value, suffix))
-            else:
-                result.append('{}{!r}{}'.format(prefix, value, suffix))
+            result.extend(manager.format_one_value(
+                value,
+                is_indented=is_indented,
+                ))
+#            if type(value) is abc.ABCMeta:
+#                value = tmp(value)
+#                result.append('{}{}{}'.format(prefix, value, suffix))
+#            elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
+#                pieces = value._get_tools_package_qualified_repr_pieces(
+#                    is_indented=is_indented)
+#                for piece in pieces[:-1]:
+#                    result.append('{}{}'.format(prefix, piece))
+#                result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
+#            elif hasattr(value, '_tools_package_name'):
+#                result.append('{}{}.{!r}{}'.format(
+#                    prefix, value._tools_package_name, value, suffix))
+#            else:
+#                result.append('{}{!r}{}'.format(prefix, value, suffix))
         return tuple(result)
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
