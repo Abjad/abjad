@@ -627,6 +627,7 @@ class LilyPondParser(abctools.Parser):
             #       Then we can just (blindly) attach all other post events.
             nonspanner_post_event_types = (
                 marktools.BarLine,
+                marktools.LilyPondCommand,
                 marktools.StemTremolo,
                 )
             if hasattr(post_event, '_attach'):
