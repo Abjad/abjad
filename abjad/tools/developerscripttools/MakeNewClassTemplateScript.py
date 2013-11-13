@@ -47,12 +47,13 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def _get_class_text(self, class_name):
         return [
+            '# -*- encoding: utf-8 -*-',
             'from abjad.tools.abctools import AbjadObject',
             '',
             '',
             'class {}(AbjadObject):'.format(class_name),
             '    pass'
-        ]
+            ]
 
     def _get_tools_package_names(self, root):
         names = []
