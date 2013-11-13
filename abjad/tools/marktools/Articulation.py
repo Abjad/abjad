@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools import stringtools
 from abjad.tools.marktools.Mark import Mark
 
@@ -59,7 +60,7 @@ class Articulation(Mark):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_string',
+        '_name',
         '_direction',
         '_format_slot',
         )
@@ -74,9 +75,9 @@ class Articulation(Mark):
             assert isinstance(args[1],
                 (str, type(None), datastructuretools.OrdinalConstant)), \
                 repr(args[1])
-            string, direction = args
+            name, direction = args
         elif len(args) == 1 and isinstance(args[0], type(self)):
-            string = args[0].name
+            name = args[0].name
             direction = args[0].direction
         elif len(args) == 1:
             assert isinstance(args[0],
@@ -86,19 +87,19 @@ class Articulation(Mark):
                 splits = args[0].split('\\')
                 assert len(splits) in (1, 2), repr(splits)
                 if len(splits) == 1:
-                    string, direction = args[0], None
+                    name, direction = args[0], None
                 elif len(splits) == 2:
-                    string = splits[1]
+                    name = splits[1]
                     if splits[0]:
                         direction = splits[0]
                     else:
                         direction = None
             else:
-                string, direction = None, None
+                name, direction = None, None
         else:
-            string, direction = None, None
+            name, direction = None, None
         Mark.__init__(self)
-        self._string = string
+        self._name = name
         self.direction = direction
         self._format_slot = 'right'
 
@@ -112,8 +113,8 @@ class Articulation(Mark):
         return type(self)(self.name, self.direction)
 
     def __eq__(self, expr):
-        r'''True when `expr` equals name and direction of articulation.
-        Otherwise false.
+        r'''True when `expr` is an articulation with name and direction 
+        equal to that of this articulation. Otherwise false.
 
         Returns boolean.
         '''
@@ -124,7 +125,10 @@ class Articulation(Mark):
         return False
 
     def __illustrate__(self):
-        import copy
+        r'''Illustrates articulation.
+
+        Returns LilyPond file.
+        '''
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
@@ -275,35 +279,15 @@ class Articulation(Mark):
             self._direction = arg
         return property(**locals())
 
-    @apply
-    def name():
-        def fget(self):
-            r'''Gets and sets name of articulation.
+    @property
+    def name(self):
+        r'''Name of articulation.
 
-            ..  container:: example
+        ::
 
-                Gets property:
+            >>> articulation.name
+            'staccato'
 
-                ::
-
-                    >>> articulation = Articulation('staccato')
-                    >>> articulation.name
-                    'staccato'
-
-            ..  container:: example
-
-                Sets property:
-
-                ::
-
-                    >>> articulation.name = 'marcato'
-                    >>> articulation.name
-                    'marcato'
-
-            Returns string.
-            '''
-            return self._string
-        def fset(self, name):
-            assert isinstance(name, str), repr(name)
-            self._string = name
-        return property(**locals())
+        Returns string.
+        '''
+        return self._name
