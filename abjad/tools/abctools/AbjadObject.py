@@ -61,13 +61,6 @@ class AbjadObject(object):
         return ', '.join(result)
 
     @property
-    def _input_argument_values(self):
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        return manager.get_positional_argument_values(self) + \
-            manager.get_keyword_argument_values(self)
-
-    @property
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import systemtools
         result = []
