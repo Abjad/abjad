@@ -57,7 +57,8 @@ def make_reference_manual_lilypond_file(music=None):
     from abjad.tools import lilypondfiletools
     from abjad.tools import schemetools
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(music=music)
+    assert '__illustrate__' in dir(music)
+    lilypond_file = music.__illustrate__()
 
     # header
     lilypond_file.header_block.tagline = markuptools.Markup('""')
