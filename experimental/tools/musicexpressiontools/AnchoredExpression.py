@@ -23,7 +23,10 @@ class AnchoredExpression(Expression):
     def __deepcopy__(self, memo):
         r'''Remove score specification and then reattach score specification.
         '''
-        result = type(self)(*self._input_argument_values)
+        from abjad.tools import systemtools
+        input_argument_values = \
+            systemtools.StorageFormatManager.get_input_argument_values(self)
+        result = type(self)(*input_argument_values)
         result._score_specification = self.score_specification
         if hasattr(self, '_lexical_rank'):
             result._lexical_rank = self._lexical_rank
