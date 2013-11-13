@@ -106,7 +106,7 @@ def test_scoretools_Chord___copy___05():
     assert format(chord_1) == format(chord_2)
     assert chord_1 is not chord_2
 
-    articulation_2 = inspect(chord_2).get_marks(Articulation)[0]
+    articulation_2 = inspect(chord_2).get_attached_items(Articulation)[0]
     assert articulation_1 == articulation_2
     assert articulation_1 is not articulation_2
 

@@ -38,7 +38,7 @@ def test_agenttools_InspectionAgent_get_mark_04():
     articulation = Articulation('staccato')
     attach(articulation, note)
 
-    assert inspect(note).get_mark(Articulation) is articulation
+    assert inspect(note).get_attached_item(Articulation) is articulation
 
 
 def test_agenttools_InspectionAgent_get_mark_05():
