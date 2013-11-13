@@ -100,7 +100,10 @@ class Articulation(Mark):
             name, direction = None, None
         Mark.__init__(self)
         self._name = name
-        self.direction = direction
+        direction = \
+            stringtools.arg_to_tridirectional_ordinal_constant(direction)
+        #self.direction = direction
+        self._direction = direction
         self._format_slot = 'right'
 
     ### SPECIAL METHODS ###
@@ -237,47 +240,16 @@ class Articulation(Mark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def direction():
-        def fget(self):
-            r'''Gets and sets direction of articulation.
+    @property
+    def direction(self):
+        r'''Direction of articulation.
 
-            ..  container:: example
+        Returns ordinal constant or none.
+        '''
+        assert self._direction in (Up, Down, Center, None), \
+            repr(self._direction)
+        return self._direction
 
-                Example score:
-
-                ::
-
-                    >>> note = Note("c'4")
-                    >>> articulation = Articulation('staccato', Down)
-                    >>> attach(articulation, note)
-                    >>> show(note) # doctest: +SKIP
-
-            ..  container:: example
-
-                Gets property:
-
-                ::
-
-                    >>> articulation.direction
-                    Down
-
-            ..  container:: example
-
-                Sets property:
-
-                ::
-
-                    >>> articulation.direction = Up
-                    >>> show(note) # doctest: +SKIP
-
-            Returns string.
-            '''
-            return self._direction
-        def fset(self, arg):
-            arg = stringtools.arg_to_tridirectional_ordinal_constant(arg)
-            self._direction = arg
-        return property(**locals())
 
     @property
     def name(self):

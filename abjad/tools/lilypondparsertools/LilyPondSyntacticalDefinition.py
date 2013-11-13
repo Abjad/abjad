@@ -10,6 +10,7 @@ from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
+from abjad.tools import stringtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 
@@ -2714,14 +2715,32 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_post_event_nofinger__script_dir__direction_less_event(self, p):
         'post_event_nofinger : script_dir direction_less_event'
-        p[2].direction = p[1]
+        #p[2].direction = p[1]
+        # TODO: this is cheating; articulation direction should be given
+        #       at initialization and not after (as is done here)
+        try:
+            p[2].direction = p[1]
+        except AttributeError:
+            direction = \
+                stringtools.arg_to_tridirectional_ordinal_constant(p[1])
+            assert hasattr(p[2], '_direction')
+            p[2]._direction = direction
         p[0] = p[2]
 
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         'post_event_nofinger : script_dir direction_reqd_event'
-        # TODO: Give marks, markup and spanners the same direction_string functionality. #
-        p[2].direction = p[1]
+        # TODO: give marks, markup and spanners the same direction_string 
+        #       functionality.
+        # TODO: this is cheating; articulation direction should be given
+        #       at initialization and not after (as is done here)
+        try:
+            p[2].direction = p[1]
+        except AttributeError:
+            direction = \
+                stringtools.arg_to_tridirectional_ordinal_constant(p[1])
+            assert hasattr(p[2], '_direction')
+            p[2]._direction = direction
         p[0] = p[2]
 
 
