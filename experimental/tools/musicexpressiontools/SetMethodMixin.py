@@ -160,7 +160,7 @@ class SetMethodMixin(AbjadObject):
         Returns mark set expression.
         '''
         from experimental.tools import musicexpressiontools
-        assert isinstance(source_expression, marktools.Mark)
+        #assert isinstance(source_expression, marktools.Mark)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'mark'

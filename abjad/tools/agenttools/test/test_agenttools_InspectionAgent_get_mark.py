@@ -183,7 +183,7 @@ def test_agenttools_InspectionAgent_get_mark_17():
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)
     attach(stem_tremolo, note)
-    stem_tremolo = inspect(note).get_mark(marktools.StemTremolo)
+    stem_tremolo = inspect(note).get_attached_item(marktools.StemTremolo)
 
     assert stem_tremolo is stem_tremolo
 

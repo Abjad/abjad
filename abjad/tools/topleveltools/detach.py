@@ -36,6 +36,15 @@ def detach(item, component_expression):
             spanners = inspector.get_spanners(item)
         elif isinstance(item, scoretools.GraceContainer):
             grace_containers = inspector.get_grace_containers(item)
+        else:
+            assert hasattr(component_expression, '_attached_items')
+            result = []
+            for x in component_expression._attached_items[:]:
+                if x == item:
+                    component_expression._attached_items.remove(x)
+                    result.append(x)
+            result = tuple(result)
+            return result
     items = []
     items.extend(marks)
     items.extend(spanners)

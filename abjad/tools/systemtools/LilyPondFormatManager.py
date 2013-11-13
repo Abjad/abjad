@@ -168,7 +168,7 @@ class LilyPondFormatManager(object):
             marktools.StemTremolo: ('stem tremolos', True),
             }
         contributions = {}
-        marks = component._get_marks()
+        marks = component._get_marks() + component._get_attached_items()
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
         # organize marks attached directly to component

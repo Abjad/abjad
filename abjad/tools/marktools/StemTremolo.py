@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class StemTremolo(Mark):
+class StemTremolo(AbjadObject):
     '''A stem tremolo.
 
     ::
@@ -30,15 +30,20 @@ class StemTremolo(Mark):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        Mark.__init__(self)
         self._format_slot = 'right'
         if len(args) == 1 and isinstance(args[0], type(self)):
-            self.tremolo_flags = args[0].tremolo_flags
+            tremolo_flags = args[0].tremolo_flags
         elif len(args) == 1 and not isinstance(args[0], type(self)):
-            self.tremolo_flags = args[0]
+            tremolo_flags = args[0]
         else:
-            message = 'can not initialize stem tremolo.'
+            message = 'can not initialize stem tremolo: {!r}.'
+            message = message.format(args)
             raise ValueError(message)
+        if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
+            message = 'must be nonnegative integer power of 2: {!r}.'
+            message = message.format(tremolo_flags)
+            raise ValueError(message)
+        self._tremolo_flags = tremolo_flags
 
     ### SPECIAL METHODS ###
 
@@ -105,6 +110,20 @@ class StemTremolo(Mark):
             return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats stem tremolo.
+
+        ::
+
+            >>> print format(stem_tremolo)
+            :16
+
+        Returns string.
+        '''
+        if format_specification in ('', 'lilypond'):
+            return self._lilypond_format
+        return str(self)
+
     def __str__(self):
         r'''String representation of stem tremolo.
 
@@ -112,11 +131,19 @@ class StemTremolo(Mark):
         '''
         return ':{!s}'.format(self.tremolo_flags)
 
-    ### PRIVATE PROPERTIES ###
+    def __repr__(self):
+        r'''Interpreter representation of stem tremolo.
 
-    @property
-    def _contents_repr_string(self):
-        return str(self.tremolo_flags)
+        ::
+
+            >>> stem_tremolo
+            StemTremolo(16)
+
+        Returns string.
+        '''
+        return '{}({})'.format(type(self).__name__, self.tremolo_flags)
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):
@@ -124,33 +151,15 @@ class StemTremolo(Mark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def tremolo_flags():
-        def fget(self):
-            r'''Gets and sets tremolo flags.
+    @property
+    def tremolo_flags(self):
+        r'''Flags of stem tremolo.
 
-            ::
+        ::
 
-                >>> stem_tremolo = marktools.StemTremolo(16)
-                >>> stem_tremolo.tremolo_flags
-                16
+            >>> stem_tremolo.tremolo_flags
+            16
 
-            Sets tremolo flags:
-
-            ::
-
-                >>> stem_tremolo.tremolo_flags = 32
-                >>> stem_tremolo.tremolo_flags
-                32
-
-            Returns integer.
-            '''
-            return self._tremolo_flags
-        def fset(self, tremolo_flags):
-            if not mathtools.is_nonnegative_integer_power_of_two(
-                tremolo_flags):
-                message ='tremolo flags must be'
-                message += ' nonnegative integer power of 2.'
-                raise ValueError(message)
-            self._tremolo_flags = tremolo_flags
-        return property(**locals())
+        Returns nonnegative integer power of ``2``.
+        '''
+        return self._tremolo_flags

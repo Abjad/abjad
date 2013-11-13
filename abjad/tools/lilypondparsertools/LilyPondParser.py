@@ -142,11 +142,13 @@ class LilyPondParser(abctools.Parser):
             result = self._parser._lilypond_patch_parse_debug(
                 input_string,
                 lexer=self._lexer,
-                debug=self._logger)
+                debug=self._logger,
+                )
         else:
             result = self._parser._lilypond_patch_parse(
                 input_string,
-                lexer=self._lexer)
+                lexer=self._lexer,
+                )
 
         if isinstance(result, scoretools.Container):
             self._apply_spanners(result)
@@ -614,9 +616,17 @@ class LilyPondParser(abctools.Parser):
 
     def _process_post_events(self, leaf, post_events):
         for post_event in post_events:
+            # TODO: the conditional logic here will have to change;
+            #       post events like StemTremolo no longer implement _attach.
+            #       Is there a way to identify spanner LilyPondEvents?
+            #       Then we can just (blindly) attach all other post events.
             if hasattr(post_event, '_attach'):
                 attach(post_event, leaf)
+            elif isinstance(post_event, marktools.StemTremolo):
+                attach(post_event, leaf)
             else:
+                #print post_event, 'debugging'
+                #raise Exception('debugging')
                 annotation = [
                     x for x in leaf._get_attached_items(marktools.Annotation)
                     if x.name == 'spanners'

@@ -16,7 +16,7 @@ class MarkSetExpression(LeafSetExpression):
         r'''Execute mark set expression against `score`.
         '''
         mark = self.source_expression.payload
-        assert isinstance(mark, marktools.Mark), repr(mark)
+        #assert isinstance(mark, marktools.Mark), repr(mark)
         for leaf in self._iterate_selected_leaves_in_score(score):
             new_mark = copy.deepcopy(mark)
             attach(new_mark, leaf)

@@ -60,8 +60,8 @@ def test_scoretools_Component__has_mark_06():
     stem_tremolo = marktools.StemTremolo(16)
     attach(stem_tremolo, staff[0])
 
-    assert staff[0]._has_mark(marktools.StemTremolo)
-    assert not staff[1]._has_mark(marktools.StemTremolo)
+    assert staff[0]._has_attached_item(marktools.StemTremolo)
+    assert not staff[1]._has_attached_item(marktools.StemTremolo)
 
 
 def test_scoretools_Component__has_mark_07():
