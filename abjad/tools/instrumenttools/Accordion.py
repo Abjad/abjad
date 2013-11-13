@@ -44,7 +44,7 @@ class Accordion(Instrument):
         Instrument.__init__(self, **kwargs)
         self._target_context = scoretools.PianoStaff
         self._default_allowable_clefs = marktools.ClefInventory([
-            marktools.Clef('treble'), 
+            marktools.Clef('treble'),
             marktools.Clef('bass'),
             ])
         self._default_instrument_name = 'accordion'
@@ -55,7 +55,7 @@ class Accordion(Instrument):
         self._default_pitch_range = pitchtools.PitchRange(-32, 48)
         self._default_short_instrument_name = 'acc.'
         self._default_starting_clefs = marktools.ClefInventory([
-            marktools.Clef('treble'), 
+            marktools.Clef('treble'),
             marktools.Clef('bass'),
             ])
         self._is_primary_instrument = True
@@ -343,7 +343,7 @@ class Accordion(Instrument):
             ..  container:: example
 
                 Sets property:
-        
+
                 ::
 
                     >>> accordion.short_instrument_name = 'fis.'

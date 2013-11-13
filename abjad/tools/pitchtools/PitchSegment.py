@@ -18,12 +18,20 @@ class PitchSegment(Segment):
 
     ::
 
+        >>> show(numbered_pitch_segment)
+
+    ::
+
         >>> named_pitch_segment = pitchtools.PitchSegment(
         ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
         ...     item_class=pitchtools.NamedPitch,
         ...     )
         >>> named_pitch_segment
         PitchSegment(['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"])
+
+    ::
+
+        >>> show(named_pitch_segment)
 
     Returns pitch segment.
     '''
@@ -35,6 +43,29 @@ class PitchSegment(Segment):
         )
 
     __slots__ = ()
+
+    ### SPECIAL METHODS ###
+
+    def __illustrate__(self):
+        from abjad.tools import durationtools
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import attach
+        from abjad.tools.topleveltools import iterate
+        from abjad.tools.topleveltools import override
+        named_pitches = [pitchtools.NamedPitch(x) for x in self]
+        notes = scoretools.make_notes(named_pitches, [1])
+        score, treble_staff, bass_staff = \
+            scoretools.make_piano_sketch_score_from_leaves(notes)
+        for leaf in iterate(score).by_class(scoretools.Leaf):
+            attach(durationtools.Multiplier(1, 8), leaf)
+        override(score).rest.transparent = True
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        return lilypond_file
 
     ### PRIVATE PROPERTIES ###
 
@@ -64,8 +95,14 @@ class PitchSegment(Segment):
             >>> staff_1 = Staff("c'4 <d' fs' a'>4 b2")
             >>> staff_2 = Staff("c4. r8 g2")
             >>> selection = select((staff_1, staff_2))
-            >>> pitchtools.PitchSegment.from_selection(selection)
+            >>> pitch_segment = pitchtools.PitchSegment.from_selection(
+            ...     selection)
+            >>> pitch_segment
             PitchSegment(["c'", "d'", "fs'", "a'", 'b', 'c', 'g'])
+
+        ::
+
+            >>> show(pitch_segment) # doctest: +SKIP
 
         Returns pitch segment.
         '''
@@ -180,8 +217,13 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> named_pitch_segment.retrograde()
+            >>> result = named_pitch_segment.retrograde()
+            >>> result
             PitchSegment(["g'", 'bqf', "g'", "fs'", 'aqs', 'bf,'])
+
+        ::
+
+            >>> show(result) # doctest: +SKIP
 
         Emit new pitch segment.
         '''
@@ -192,14 +234,24 @@ class PitchSegment(Segment):
 
         ::
 
-            >>> numbered_pitch_segment.rotate(1)
+            >>> result = numbered_pitch_segment.rotate(1)
+            >>> result
             PitchSegment([7, -2, -1.5, 6, 7, -1.5])
 
         ::
 
-            >>> named_pitch_segment.rotate(-2)
+            >>> show(result) # doctest: +SKIP
+        
+        ::
+
+            >>> result = named_pitch_segment.rotate(-2)
+            >>> result
             PitchSegment(["fs'", "g'", 'bqf', "g'", 'bf,', 'aqs'])
 
+        ::
+
+            >>> show(result) # doctest: +SKIP
+        
         Emit new pitch segment.
         '''
         from abjad.tools import sequencetools
