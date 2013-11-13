@@ -81,6 +81,26 @@ class Pitch(AbjadObject):
     def __hash__(self):
         return hash(repr(self))
 
+    def __illustrate__(self):
+        from abjad.tools import durationtools
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        from abjad.tools.topleveltools import attach
+        from abjad.tools.topleveltools import override
+        pitch = pitchtools.NamedPitch(self)
+        note = scoretools.Note(pitch, 1)
+        attach(durationtools.Multiplier(1, 4), note)
+        clef = pitchtools.suggest_clef_for_named_pitches([pitch])
+        staff = scoretools.Staff()
+        attach(clef, staff)
+        staff.append(note)
+        override(staff).time_signature.stencil = False
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        return lilypond_file
+
     @abc.abstractmethod
     def __int__(self):
         raise NotImplementedError(

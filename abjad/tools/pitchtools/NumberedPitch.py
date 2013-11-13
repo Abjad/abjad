@@ -10,8 +10,13 @@ class NumberedPitch(Pitch):
 
     ::
 
-        >>> pitchtools.NumberedPitch(13)
+        >>> numbered_pitch = pitchtools.NumberedPitch(13)
+        >>> numbered_pitch
         NumberedPitch(13)
+
+    ::
+
+        >>> show(numbered_pitch) # doctest: +SKIP
 
     Returns numbered pitch.
     '''

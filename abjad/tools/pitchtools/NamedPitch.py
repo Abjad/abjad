@@ -10,8 +10,13 @@ class NamedPitch(Pitch):
 
     ::
 
-        >>> pitchtools.NamedPitch("cs''")
+        >>> named_pitch = pitchtools.NamedPitch("cs''")
+        >>> named_pitch
         NamedPitch("cs''")
+
+    ::
+
+        >>> show(named_pitch) # doctest: +SKIP
 
     Returns named pitch.
     '''
