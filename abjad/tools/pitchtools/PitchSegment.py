@@ -18,7 +18,7 @@ class PitchSegment(Segment):
 
     ::
 
-        >>> show(numbered_pitch_segment)
+        >>> show(numbered_pitch_segment) # doctest: +SKIP
 
     ::
 
@@ -31,7 +31,7 @@ class PitchSegment(Segment):
 
     ::
 
-        >>> show(named_pitch_segment)
+        >>> show(named_pitch_segment) # doctest: +SKIP
 
     Returns pitch segment.
     '''
