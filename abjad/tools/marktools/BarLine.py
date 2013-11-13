@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-#from abjad.tools.marktools.LilyPondCommand import LilyPondCommand
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class BarLine(Mark):
+class BarLine(AbjadObject):
     r'''A bar line.
 
     ::
@@ -16,7 +15,7 @@ class BarLine(Mark):
     ::
 
         >>> bar_line
-        BarLine('|.')(f'4)
+        BarLine('|.')
 
     ..  doctest::
 
@@ -43,8 +42,8 @@ class BarLine(Mark):
     ### INITIALIZER ##
 
     def __init__(self, abbreviation='|'):
-        Mark.__init__(self)
-        self.abbreviation = abbreviation
+        assert isinstance(abbreviation, str), repr(abbreviation)
+        self._abbreviation = abbreviation
 
     ### SPECIAL METHODS ###
 
@@ -56,8 +55,8 @@ class BarLine(Mark):
         return type(self)(self.abbreviation)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a bar line with equal abbreviation.
-        Otherwise false.
+        r'''True when `arg` is a bar line with an abbreviation equal
+        to that of this bar line. Otherwise false.
 
         Returns boolean.
         '''
@@ -77,42 +76,15 @@ class BarLine(Mark):
 
     ## PUBLIC PROPERTIES ##
 
-    @apply
-    def abbreviation():
-        def fget(self):
-            r'''Gets and sets abbreviation.
+    @property
+    def abbreviation(self):
+        r'''Abbreviation of bar line.
 
-            ::
+        ::
 
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> bar_line = marktools.BarLine()
-                >>> attach(bar_line, staff[-1])
-                >>> bar_line.abbreviation
-                '|'
+            >>> bar_line.abbreviation
+            '|.'
 
-            Sets abbreviation.
-
-            ::
-
-                >>> bar_line.abbreviation = '|.'
-                >>> bar_line.abbreviation
-                '|.'
-
-            ..  doctest::
-
-                >>> print format(staff)
-                \new Staff {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                    \bar "|."
-                }
-
-            Returns string.
-            '''
-            return self._abbreviation
-        def fset(self, abbreviation):
-            assert isinstance(abbreviation, str)
-            self._abbreviation = abbreviation
-        return property(**locals())
+        Returns string.
+        '''
+        return self._abbreviation

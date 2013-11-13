@@ -4,6 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class Mark(AbjadObject):
     r'''A mark.
+
     '''
 
     ### CLASS VARIABLES ###
