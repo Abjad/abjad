@@ -18,14 +18,9 @@ class Handler(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
-            if self._positional_argument_values == \
-                other._positional_argument_values:
-                if self._keyword_argument_values == \
-                    other._keyword_argument_values:
-                    return True
-        return False
+    def __eq__(self, expr):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     def __format__(self, format_specification=''):
         r'''Formats handler.

@@ -370,9 +370,11 @@ class DivisionList(BoundedObject):
         Returns newly constructed division list.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager(self)
-        keyword_argument_dictionary = manager.keyword_argument_dictionary
-        positional_argument_dictionary = self._positional_argument_dictionary
+        manager = systemtools.StorageFormatManager
+        keyword_argument_dictionary = \
+            manager.get_keyword_argument_dictionary(self)
+        positional_argument_dictionary = \
+            manager.get_positional_argument_dictionary(self)
         for key, value in kwargs.iteritems():
             if key in positional_argument_dictionary:
                 positional_argument_dictionary[key] = value

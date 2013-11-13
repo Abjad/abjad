@@ -182,12 +182,13 @@ class TimeRelation(AbjadObject):
         Returns newly constructed time relation.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager(self)
-        keyword_argument_dictionary = manager.keyword_argument_dictionary
+        manager = systemtools.StorageFormatManager
+        keyword_argument_dictionary = \
+            manager.get_keyword_argument_dictionary(self)
         for key, value in kwargs.iteritems():
             keyword_argument_dictionary[key] = value
         result = type(self)(
-            *self._positional_argument_values,
+            *manager.get_positional_argument_values(self),
             **keyword_argument_dictionary
             )
         return result

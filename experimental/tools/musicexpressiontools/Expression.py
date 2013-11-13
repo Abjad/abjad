@@ -20,15 +20,8 @@ class Expression(AbjadObject):
 
         Returns boolean.
         '''
-        if not isinstance(expr, type(self)):
-            return False
-        if not self._positional_argument_values == \
-            expr._positional_argument_values:
-            return False
-        if not self._keyword_argument_values == \
-            expr._keyword_argument_values:
-            return False
-        return True
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     def __hash__(self):
         r'''Expression hash.
@@ -89,9 +82,11 @@ class Expression(AbjadObject):
         r'''Initialize new expression with `kwargs`.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager(self)
-        keyword_argument_dictionary = manager.keyword_argument_dictionary
-        positional_argument_dictionary = self._positional_argument_dictionary
+        manager = systemtools.StorageFormatManager
+        keyword_argument_dictionary = \
+            manager.get_keyword_argument_dictionary(self)
+        positional_argument_dictionary = \
+            manager.get_positional_argument_dictionary(self)
         for key, value in kwargs.iteritems():
             if key in positional_argument_dictionary:
                 positional_argument_dictionary[key] = value
@@ -100,10 +95,8 @@ class Expression(AbjadObject):
             else:
                 raise KeyError(key)
         positional_argument_values = []
-        positional_argument_names = getattr(
-            self, '_positional_argument_names', None) or \
-            manager.get_positional_argument_names(self)
-        for positional_argument_name in positional_argument_names:
+        for positional_argument_name in \
+            manager.get_positional_argument_names(self):
             positional_argument_value = \
                 positional_argument_dictionary[positional_argument_name]
             positional_argument_values.append(positional_argument_value)

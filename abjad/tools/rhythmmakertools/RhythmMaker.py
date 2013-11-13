@@ -47,12 +47,14 @@ class RhythmMaker(Maker):
 
         Returns boolean.
         '''
+        from abjad.tools import systemtools
         if isinstance(expr, type(self)):
-            if self._positional_argument_values == \
-                expr._positional_argument_values:
+            manager = systemtools.StorageFormatManager
+            if manager.get_positional_argument_values(self) == \
+                manager.get_positional_argument_values(expr):
                 nonhelper_keyword_argument_names = [
-                    x for x in self._keyword_argument_names 
-                        if 'helper' not in x]
+                    x for x in manager.get_keyword_argument_names(self)
+                    if 'helper' not in x]
                 for nonhelper_keyword_argument_name in \
                     nonhelper_keyword_argument_names:
                     if not getattr(self, nonhelper_keyword_argument_name) == \
@@ -66,7 +68,7 @@ class RhythmMaker(Maker):
 
         Set `format_specification` to `''` or `'storage'`.
 
-        Defaults `format_specification=None` to 
+        Defaults `format_specification=None` to
         `format_specification='storage'`.
 
         Returns string.
@@ -103,7 +105,7 @@ class RhythmMaker(Maker):
         self, duration_pairs, secondary_divisions):
         if not secondary_divisions:
             return duration_pairs[:]
-        numerators = [duration_pair.numerator 
+        numerators = [duration_pair.numerator
             for duration_pair in duration_pairs]
         secondary_numerators = sequencetools.split_sequence_by_weights(
             numerators, secondary_divisions, cyclic=True, overhang=True)

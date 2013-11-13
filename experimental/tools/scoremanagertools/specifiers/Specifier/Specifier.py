@@ -19,11 +19,13 @@ class Specifier(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        from abjad.tools import systemtools
         if self is expr:
             return True
         if isinstance(expr, type(self)):
-            if self._positional_argument_values == \
-                expr._positional_argument_values:
+            manager = systemtools.StorageFormatManager
+            if manager.get_positional_argument_values(self) == \
+                manager.get_positional_argument_values(expr):
                 if self._keyword_argument_name_value_strings == \
                     expr._keyword_argument_name_value_strings:
                     return True

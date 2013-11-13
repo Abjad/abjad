@@ -145,12 +145,14 @@ class TypedCollection(AbjadObject):
 
     @property
     def _keyword_argument_names(self):
-        result = AbjadObject._keyword_argument_names.fget(self)
-        result = list(result)
-        if 'tokens' in result:
-            result.remove('tokens')
-        result = tuple(result)
-        return result
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        names = manager.get_signature_keyword_argument_names(self)
+        names = list(names)
+        if 'tokens' in names:
+            names.remove('tokens')
+        names = tuple(names)
+        return names
 
     @property
     def _positional_argument_repr_string(self):
