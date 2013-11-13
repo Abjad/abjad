@@ -177,8 +177,10 @@ class QSchema(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _create_lookups(self):
+        from abjad.tools import systemtools
+        fields = systemtools.StorageFormatManager.get_keyword_argument_names(
+            self.item_class)
         lookups = {}
-        fields = self.item_class._get_keyword_argument_names()
         for field in fields:
             lookups[field] = {0: getattr(self, field)}
             for position, item in self.items.iteritems():

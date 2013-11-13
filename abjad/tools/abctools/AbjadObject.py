@@ -77,8 +77,8 @@ class AbjadObject(object):
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import systemtools
         result = []
-        tmp = systemtools.StorageFormatManager.class_to_tools_package_qualified_class_name
-        #tmp = self._class_to_tools_package_qualified_class_name
+        manager = systemtools.StorageFormatManager
+        tmp = manager.class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
@@ -97,7 +97,6 @@ class AbjadObject(object):
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager
         return manager.get_keyword_argument_names(type(self))
-        #return self._get_keyword_argument_names()
 
     @property
     def _keyword_argument_values(self):
@@ -112,7 +111,11 @@ class AbjadObject(object):
 
     @property
     def _positional_argument_dictionary(self):
-        names = self._positional_argument_names
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        names = getattr(self, '_positional_argument_names') or \
+            manager.get_positional_argument_names(type(self))
+        #names = self._positional_argument_names
         values = self._positional_argument_values
         assert len(names) == len(values)
         result = dict(zip(names, values))
@@ -143,8 +146,13 @@ class AbjadObject(object):
 
     @property
     def _positional_argument_values(self):
+        from abjad.tools import systemtools
         result = []
-        for name in self._positional_argument_names:
+        manager = systemtools.StorageFormatManager
+        names = getattr(self, '_positional_argument_names') or \
+            manager.get_positional_argument_names(type(self))
+        for name in names:
+        #for name in self._positional_argument_names:
             result.append(getattr(self, name))
         return tuple(result)
 
@@ -179,15 +187,6 @@ class AbjadObject(object):
 
     ### PRIVATE METHODS ###
 
-    def _class_to_tools_package_qualified_class_name(self, class_):
-        module_parts = class_.__module__.split('.')
-        unique_parts = [module_parts[0]]
-        for part in module_parts[1:]:
-            if part != unique_parts[-1]:
-                unique_parts.append(part)
-        tools_package_qualified_class_name = '.'.join(unique_parts[-2:])
-        return tools_package_qualified_class_name
-
     def _debug(self, value, annotation=None, blank=False):
         if annotation is None:
             print 'debug: {!r}'.format(value)
@@ -207,22 +206,6 @@ class AbjadObject(object):
             if blank:
                 print ''
 
-    @classmethod
-    def _get_keyword_argument_names(cls):
-        if hasattr(cls.__init__, '__func__'):
-            initializer = cls.__init__.__func__
-            if initializer.func_defaults:
-                keyword_argument_count = len(initializer.func_defaults)
-                initializer_code = initializer.func_code
-                positional_argument_count = (
-                    initializer_code.co_argcount - keyword_argument_count - 1)
-                start_index = 1 + positional_argument_count
-                stop_index = start_index + keyword_argument_count
-                return initializer_code.co_varnames[start_index:stop_index]
-            else:
-                return ()
-        return ()
-
     def _get_tools_package_qualified_keyword_argument_repr_pieces(
         self, is_indented=True):
         from abjad.tools import systemtools
@@ -231,8 +214,8 @@ class AbjadObject(object):
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        tmp = systemtools.StorageFormatManager.class_to_tools_package_qualified_class_name
-        #tmp = self._class_to_tools_package_qualified_class_name
+        manager = systemtools.StorageFormatManager
+        tmp = manager.class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             if self._has_default_attribute_values:
                 default_keyword_argument_name = '_default_{}'.format(name)
@@ -291,8 +274,8 @@ class AbjadObject(object):
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        tmp = systemtools.StorageFormatManager.class_to_tools_package_qualified_class_name
-        #tmp = self._class_to_tools_package_qualified_class_name
+        manager = systemtools.StorageFormatManager
+        tmp = manager.class_to_tools_package_qualified_class_name
         for value in self._positional_argument_values:
             # if value is a (noninstantiated) class
             if type(value) is abc.ABCMeta:

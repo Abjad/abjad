@@ -41,7 +41,8 @@ class StorageFormatManager(object):
 
         ::
 
-            >>> systemtools.StorageFormatManager.class_to_tools_package_qualified_class_name(Note)
+            >>> manager = systemtools.StorageFormatManager
+            >>> manager.class_to_tools_package_qualified_class_name(Note)
             'scoretools.Note'
 
         Returns string.
@@ -68,4 +69,19 @@ class StorageFormatManager(object):
                 return initializer_code.co_varnames[start_index:stop_index]
             else:
                 return ()
+        return ()
+
+    @staticmethod
+    def get_positional_argument_names(class_):
+        if hasattr(class_.__init__, '__func__'):
+            initializer = class_.__init__.__func__
+            if initializer.func_defaults:
+                keyword_argument_count = len(initializer.func_defaults)
+            else:
+                keyword_argument_count = 0
+            initializer_code = initializer.func_code
+            positional_argument_count = (
+                initializer_code.co_argcount - keyword_argument_count - 1)
+            start_index, stop_index = 1, 1 + positional_argument_count
+            return initializer_code.co_varnames[start_index:stop_index]
         return ()
