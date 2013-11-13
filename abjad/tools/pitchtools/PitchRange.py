@@ -24,12 +24,16 @@ class PitchRange(AbjadObject):
                 ))
             )
 
-    Initalize from pitch numbers, pitch names, pitch instances, 
+    ::
+
+        >>> show(pitch_range)
+
+    Initalize from pitch numbers, pitch names, pitch instances,
     one-line reprs or other pitch range objects.
 
     Pitch ranges implement equality testing against other pitch ranges.
 
-    Pitch ranges test less than, greater than, less-equal and 
+    Pitch ranges test less than, greater than, less-equal and
     greater-equal against pitches.
 
     Pitch ranges do not sort relative to other pitch ranges.
@@ -59,9 +63,9 @@ class PitchRange(AbjadObject):
         )
 
     __slots__ = (
-        '_start', 
-        '_stop', 
-        '_pitch_range_name', 
+        '_start',
+        '_stop',
+        '_pitch_range_name',
         '_pitch_range_name_markup',
         )
 
@@ -195,6 +199,48 @@ class PitchRange(AbjadObject):
         except (TypeError, ValueError):
             return False
 
+    def __illustrate__(self):
+        from abjad.tools import durationtools
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import marktools
+        from abjad.tools import markuptools
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import attach
+        from abjad.tools.topleveltools import iterate
+        from abjad.tools.topleveltools import override
+        result = scoretools.make_empty_piano_score()
+        score, treble_staff, bass_staff = result
+        start_pitch_clef = pitchtools.suggest_clef_for_named_pitches(
+            self.start_pitch)
+        stop_pitch_clef = pitchtools.suggest_clef_for_named_pitches(
+            self.stop_pitch)
+        start_note = scoretools.Note(self.start_pitch, 1)
+        stop_note = scoretools.Note(self.stop_pitch, 1)
+        glissando = spannertools.Glissando()
+        if start_pitch_clef == stop_pitch_clef:
+            if start_pitch_clef == marktools.Clef('bass'):
+                bass_staff.extend([start_note, stop_note])
+                attach(glissando, bass_staff.select_leaves())
+            else:
+                treble_staff.extend([start_note, stop_note])
+                attach(glissando, treble_staff.select_leaves())
+        else:
+            bass_staff.extend([start_note, stop_note])
+            treble_staff.extend(scoretools.Skip(1) * 2)
+            attach(glissando, bass_staff.select_leaves())
+            attach(marktools.StaffChange(treble_staff), bass_staff[1])
+        for leaf in iterate(score).by_class(scoretools.Leaf):
+            attach(durationtools.Multiplier(1, 4), leaf)
+        override(score).bar_line.stencil = False
+        override(score).span_bar.stencil = False
+        override(score).glissando.thickness = 2
+        override(score).time_signature.stencil = False
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        return lilypond_file
+
     def __le__(self, arg):
         from abjad.tools import pitchtools
         try:
@@ -327,8 +373,8 @@ class PitchRange(AbjadObject):
             ...     '[A0, C8]')
             True
 
-        The regex that underlies this predicate matches against two 
-        comma-separated pitch indicators enclosed in some combination of square 
+        The regex that underlies this predicate matches against two
+        comma-separated pitch indicators enclosed in some combination of square
         brackets and round parentheses.
 
         Returns boolean.
@@ -363,7 +409,7 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_numbered_pitch_repr(self):
-        r'''One-line numbered pitch repr 
+        r'''One-line numbered pitch repr
         of pitch of range:
 
         ::
@@ -404,7 +450,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.pitch_range_name_markup
             Markup(('four-octave range',))
 
-        Default to `pitch_range_name` when `pitch_range_name_markup` 
+        Default to `pitch_range_name` when `pitch_range_name_markup`
         not set explicitly.
 
         Returns markup or none.
@@ -432,7 +478,7 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch_is_included_in_range(self):
-        r'''Boolean true when start pitch is included in range. 
+        r'''Boolean true when start pitch is included in range.
         Otherwise false:
 
         ::
@@ -463,7 +509,7 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        r'''Boolean true when stop pitch is included in range. 
+        r'''Boolean true when stop pitch is included in range.
         Otherwise false:
 
         ::
