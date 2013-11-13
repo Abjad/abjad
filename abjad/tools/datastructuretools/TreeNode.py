@@ -34,9 +34,8 @@ class TreeNode(AbjadObject):
 
     def __getnewargs__(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager(self)
-        return manager.positional_argument_values + \
-            manager.keyword_argument_values
+        return systemtools.StorageFormatManager.get_input_argument_values(
+            self)
 
     def __getstate__(self):
         state = {}
@@ -52,8 +51,6 @@ class TreeNode(AbjadObject):
 
     def __repr__(self):
         from abjad.tools import systemtools
-
-        manager = systemtools.StorageFormatManager(self)
 
         def format_mapping(name, value):
             if not value:
@@ -92,7 +89,8 @@ class TreeNode(AbjadObject):
             return result
 
         attr_pieces = []
-        for name in manager.keyword_argument_names:
+        for name in \
+            systemtools.StorageFormatManager.get_keyword_argument_names(self):
             value = getattr(self, name)
             if isinstance(value, (list, tuple)):
                 attr_piece = format_tuple(name, value)

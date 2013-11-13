@@ -34,18 +34,13 @@ class StatalServerCursor(AbjadObject):
             n, level=level)
 
     def __eq__(self, expr):
-        r'''True `expr` is a statal server cursor and keyword 
+        r'''True `expr` is a statal server cursor and keyword
         argument values are equal. Otherwise false.
 
         Returns boolean.
         '''
         from abjad.tools import systemtools
-        if isinstance(expr, type(self)):
-            self_manager = systemtools.StorageFormatManager(self)
-            expr_manager = systemtools.StorageFormatManager(expr)
-            return self_manager.keyword_argument_values == \
-                expr_manager.keyword_argument_values
-        return False
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     ### PRIVATE METHODS ###
 

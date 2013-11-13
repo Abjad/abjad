@@ -114,8 +114,8 @@ class NoteHead(AbjadObject):
     @property
     def _keyword_argument_names(self):
         from abjad.tools import systemtools
-        result = systemtools.StorageFormatManager.get_keyword_argument_names(
-            self)
+        manager = systemtools.StorageFormatManager
+        result = manager.get_signature_keyword_argument_names(self)
         result = list(result)
         if 'client' in result:
             result.remove('client')

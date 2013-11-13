@@ -4,68 +4,6 @@ import types
 
 class StorageFormatManager(object):
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        '_client',
-        )
-
-    ### INITIALIZER ###
-
-    def __init__(self, client):
-        self._client = client
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        return self._client
-
-    @property
-    def keyword_argument_dictionary(self):
-        names = self.keyword_argument_names
-        values = self.keyword_argument_values
-        assert len(names) == len(values)
-        result = dict(zip(names, values))
-        return result
-
-    @property
-    def keyword_argument_names(self):
-        return self.get_keyword_argument_names(self.client)
-
-    @property
-    def keyword_argument_values(self):
-        return self.get_keyword_argument_values(self.client)
-
-    @property
-    def positional_argument_dictionary(self):
-        names = self.positional_argument_names
-        values = self.positional_argument_values
-        assert len(names) == len(values)
-        result = dict(zip(names, values))
-        return result
-
-    @property
-    def positional_argument_names(self):
-        return self.get_positional_argument_names(self.client)
-
-    @property
-    def positional_argument_values(self):
-        return self.get_positional_argument_values(self.client)
-
-    @property
-    def tools_package_name(self):
-        for part in reversed(self.client__module__.split('.')):
-            if not part == type(self.client).__name__:
-                return part
-
-    @property
-    def tools_package_qualified_class_name(self):
-        return '{}.{}'.format(
-            self.clienttools_package_name,
-            type(self.client).__name__,
-            )
-
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -81,6 +19,19 @@ class StorageFormatManager(object):
         return True
 
     @staticmethod
+    def get_input_argument_values(object_):
+        return StorageFormatManager.get_positional_argument_values(object_) + \
+            StorageFormatManager.get_keyword_argument_values(object_)
+
+    @staticmethod
+    def get_keyword_argument_dictionary(object_):
+        names = StorageFormatManager.get_keyword_argument_names(object_)
+        values = StorageFormatManager.get_keyword_argument_values(object_)
+        assert len(names) == len(values)
+        result = dict(zip(names, values))
+        return result
+
+    @staticmethod
     def get_keyword_argument_names(object_):
         if StorageFormatManager.is_instance(object_):
             if hasattr(object_, '_keyword_argument_names'):
@@ -94,6 +45,14 @@ class StorageFormatManager(object):
         for name in StorageFormatManager.get_keyword_argument_names(object_):
             result.append(getattr(object_, name))
         return tuple(result)
+
+    @staticmethod
+    def get_positional_argument_dictionary(object_):
+        names = StorageFormatManager.get_positional_argument_names(object_)
+        values = StorageFormatManager.get_positional_argument_values(object_)
+        assert len(names) == len(values)
+        result = dict(zip(names, values))
+        return result
 
     @staticmethod
     def get_positional_argument_names(object_):
@@ -152,7 +111,7 @@ class StorageFormatManager(object):
         ::
 
             >>> manager = systemtools.StorageFormatManager
-            >>> manager.get_tools_package_qualified_object_name(Note)
+            >>> manager.get_tools_package_qualified_class_name(Note)
             'scoretools.Note'
 
         Returns string.
@@ -169,7 +128,9 @@ class StorageFormatManager(object):
 
     @staticmethod
     def is_instance(object_):
-        if type(object_) is object_.__class__:
+        if isinstance(object_, types.TypeType):
+            return False
+        elif type(object_) is object_.__class__:
             return True
         return False
 

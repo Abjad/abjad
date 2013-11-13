@@ -63,17 +63,17 @@ class AbjadObject(object):
     @property
     def _input_argument_values(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager(self)
-        return manager.positional_argument_values + \
-            manager.keyword_argument_values
+        manager = systemtools.StorageFormatManager
+        return manager.get_positional_argument_values(self) + \
+            manager.get_keyword_argument_values(self)
 
     @property
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import systemtools
         result = []
-        manager = systemtools.StorageFormatManager(self)
+        manager = systemtools.StorageFormatManager
         tmp = manager.get_tools_package_qualified_class_name
-        for name in manager.keyword_argument_names:
+        for name in manager.get_keyword_argument_names(self):
             value = getattr(self, name)
             if value is not None:
                 # if the value is a class like Note (which is unusual)
@@ -93,9 +93,9 @@ class AbjadObject(object):
     @property
     def _positional_argument_repr_string(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager(self)
+        manager = systemtools.StorageFormatManager
         positional_argument_repr_string = [
-            repr(x) for x in manager.positional_argument_values]
+            repr(x) for x in manager.get_positional_argument_values(self)]
         positional_argument_repr_string = ', '.join(
             positional_argument_repr_string)
         return positional_argument_repr_string
@@ -158,9 +158,9 @@ class AbjadObject(object):
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        manager = systemtools.StorageFormatManager(self)
+        manager = systemtools.StorageFormatManager
         tmp = manager.get_tools_package_qualified_class_name
-        for name in manager.keyword_argument_names:
+        for name in manager.get_keyword_argument_names(self):
             if self._has_default_attribute_values:
                 default_keyword_argument_name = '_default_{}'.format(name)
                 default_value = getattr(self, default_keyword_argument_name)
@@ -218,9 +218,9 @@ class AbjadObject(object):
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        manager = systemtools.StorageFormatManager(self)
+        manager = systemtools.StorageFormatManager
         tmp = manager.get_tools_package_qualified_class_name
-        for value in manager.positional_argument_values:
+        for value in manager.get_positional_argument_values(self):
             # if value is a (noninstantiated) class
             if type(value) is abc.ABCMeta:
                 value = tmp(value)

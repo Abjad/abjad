@@ -21,17 +21,7 @@ class Expression(AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import systemtools
-        this_manager = systemtools.StorageFormatManager(self)
-        that_manager = systemtools.StorageFormatManager(expr)
-        if not isinstance(expr, type(self)):
-            return False
-        if not this_manager.positional_argument_values == \
-            that_manager.positional_argument_values:
-            return False
-        if not this_manager.keyword_argument_values == \
-            that_manager.keyword_argument_values:
-            return False
-        return True
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     def __hash__(self):
         r'''Expression hash.
@@ -92,9 +82,11 @@ class Expression(AbjadObject):
         r'''Initialize new expression with `kwargs`.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager(self)
-        keyword_argument_dictionary = manager.keyword_argument_dictionary
-        positional_argument_dictionary = manager.positional_argument_dictionary
+        manager = systemtools.StorageFormatManager
+        keyword_argument_dictionary = \
+            manager.get_keyword_argument_dictionary(self)
+        positional_argument_dictionary = \
+            manager.get_positional_argument_dictionary(self)
         for key, value in kwargs.iteritems():
             if key in positional_argument_dictionary:
                 positional_argument_dictionary[key] = value
@@ -103,7 +95,8 @@ class Expression(AbjadObject):
             else:
                 raise KeyError(key)
         positional_argument_values = []
-        for positional_argument_name in manager.positional_argument_names:
+        for positional_argument_name in \
+            manager.get_positional_argument_names(self):
             positional_argument_value = \
                 positional_argument_dictionary[positional_argument_name]
             positional_argument_values.append(positional_argument_value)

@@ -49,13 +49,12 @@ class RhythmMaker(Maker):
         '''
         from abjad.tools import systemtools
         if isinstance(expr, type(self)):
-            self_manager = systemtools.StorageFormatManager(self)
-            expr_manager = systemtools.StorageFormatManager(expr)
-            if self_manager.positional_argument_values == \
-                expr_manager.positional_argument_values:
+            manager = systemtools.StorageFormatManager
+            if manager.get_positional_argument_values(self) == \
+                manager.get_positional_argument_values(expr):
                 nonhelper_keyword_argument_names = [
-                    x for x in self_manager.keyword_argument_names
-                        if 'helper' not in x]
+                    x for x in manager.get_keyword_argument_names(self)
+                    if 'helper' not in x]
                 for nonhelper_keyword_argument_name in \
                     nonhelper_keyword_argument_names:
                     if not getattr(self, nonhelper_keyword_argument_name) == \
