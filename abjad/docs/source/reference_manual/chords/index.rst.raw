@@ -48,46 +48,46 @@ Chords index the pitch they contain starting from ``0``, just like tuples and
 lists.
 
 
-Adding one pitch to a chord at a time
--------------------------------------
+Adding one note head to a chord at a time
+-----------------------------------------
 
-Use ``append()`` to add one pitch to a chord.
+Use ``append()`` to add one note head to a chord.
 
-You can add a pitch to a chord with a pitch number:
+You can add a note head to a chord with a pitch number:
 
 <abjad>
-chord.append(9)
+chord.note_heads.append(9)
 show(chord)
 </abjad>
 
-Or you can add a pitch to a chord with a pitch name:
+Or you can add a note head to a chord with a pitch name:
 
 <abjad>
-chord.append("df''")
+chord.note_heads.append("df''")
 show(chord)
 </abjad>
 
-Chords sort their pitches every time you add a new one.
+Chords sort their note heads every time you add a new one.
 
-This means you can add pitches to your chord in any order.
+This means you can add note heads to your chord in any order.
 
 
 Adding many pitches to a chord at once
 --------------------------------------
 
-Use ``extend()`` to add many pitches to a chord.
+Use ``extend()`` to add many note heads to a chord.
 
 You can use pitch numbers:
 
 <abjad>
-chord.extend([3, 4, 14])
+chord.note_heads.extend([3, 4, 14])
 show(chord)
 </abjad>
 
 Or you can use pitch names:
 
 <abjad>
-chord.extend(["g''", "af''"])
+chord.note_heads.extend(["g''", "af''"])
 show(chord)
 </abjad>
 
@@ -95,56 +95,30 @@ show(chord)
 Deleting pitches from a chord
 -----------------------------
 
-Delete pitches from a chord with ``del()``:
+Delete note heads from a chord with ``del()``:
 
 <abjad>
-del(chord[0])
+del(chord.note_heads[0])
 show(chord)
 </abjad>
 
 Negative indices work too:
 
 <abjad>
-del(chord[-1])
+del(chord.note_heads[-1])
 show(chord)
 </abjad>
 
 
-Formatting chords
------------------
+Tweaking note heads
+-------------------
 
-Get the LilyPond input format of any Abjad object with ``lilypond_format``:
-
-<abjad>
-chord.lilypond_format
-</abjad>
-
-Use ``f()`` as a short-cut to print the LilyPond input format 
-of any Abjad object:
+You can tweak note heads like this:
 
 <abjad>
-f(chord)
-</abjad>
-
-
-Working with note heads
------------------------
-
-Most of the time you will work with the pitches of a chord.
-But you can get the note heads of a chord, too:
-
-<abjad>
-for note_head in chord.note_heads:
-    note_head
-</abjad>
-
-This is useful when you want to apply LilyPond overrides to note 
-heads in a chord one at a time:
-
-<abjad>
-chord[2].tweak.color = 'red'
-chord[3].tweak.color = 'blue'
-chord[4].tweak.color = 'green'
+chord.note_heads[2].tweak.color = 'red'
+chord.note_heads[3].tweak.color = 'blue'
+chord.note_heads[4].tweak.color = 'green'
 show(chord)
 </abjad>
 
@@ -156,12 +130,7 @@ Abjad allows empty chords:
 
 <abjad>
 chord = Chord([], Duration(1, 4))
-</abjad>
-
-Abjad formats empty chords, too:
-
-<abjad>
-f(chord)
+chord
 </abjad>
 
 But if you pass empty chords to ``show()`` LilyPond will complain
@@ -171,6 +140,6 @@ When you are done working with an empty chord you can add pitches back
 into it chord in any of the ways described above:
 
 <abjad>
-chord.extend(["gf'", "df''", "g''"])
+chord.note_heads.extend(["gf'", "df''", "g''"])
 show(chord)
 </abjad>

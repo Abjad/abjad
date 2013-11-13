@@ -11,7 +11,13 @@ You can make chords from a LilyPond input string:
    >>> chord = Chord("<c' d' bf'>4")
    >>> show(chord)
 
-.. image:: images/index-1.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
 
 
@@ -25,7 +31,13 @@ You can also make chords from pitch numbers and duration:
    >>> chord = Chord([0, 2, 10], Duration(1, 4))
    >>> show(chord)
 
-.. image:: images/index-2.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
 
 
@@ -58,139 +70,141 @@ Chords index the pitch they contain starting from ``0``, just like tuples and
 lists.
 
 
-Adding one pitch to a chord at a time
--------------------------------------
+Adding one note head to a chord at a time
+-----------------------------------------
 
-Use ``append()`` to add one pitch to a chord.
+Use ``append()`` to add one note head to a chord.
 
-You can add a pitch to a chord with a pitch number:
-
-::
-
-   >>> chord.append(9)
-   >>> show(chord)
-
-.. image:: images/index-3.png
-
-
-Or you can add a pitch to a chord with a pitch name:
+You can add a note head to a chord with a pitch number:
 
 ::
 
-   >>> chord.append("df''")
+   >>> chord.note_heads.append(9)
    >>> show(chord)
 
-.. image:: images/index-4.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
 
-Chords sort their pitches every time you add a new one.
+Or you can add a note head to a chord with a pitch name:
 
-This means you can add pitches to your chord in any order.
+::
+
+   >>> chord.note_heads.append("df''")
+   >>> show(chord)
+
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
+
+
+Chords sort their note heads every time you add a new one.
+
+This means you can add note heads to your chord in any order.
 
 
 Adding many pitches to a chord at once
 --------------------------------------
 
-Use ``extend()`` to add many pitches to a chord.
+Use ``extend()`` to add many note heads to a chord.
 
 You can use pitch numbers:
 
 ::
 
-   >>> chord.extend([3, 4, 14])
+   >>> chord.note_heads.extend([3, 4, 14])
    >>> show(chord)
 
-.. image:: images/index-5.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
 
 Or you can use pitch names:
 
 ::
 
-   >>> chord.extend(["g''", "af''"])
+   >>> chord.note_heads.extend(["g''", "af''"])
    >>> show(chord)
 
-.. image:: images/index-6.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
 
 
 Deleting pitches from a chord
 -----------------------------
 
-Delete pitches from a chord with ``del()``:
+Delete note heads from a chord with ``del()``:
 
 ::
 
-   >>> del(chord[0])
+   >>> del(chord.note_heads[0])
    >>> show(chord)
 
-.. image:: images/index-7.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
 
 Negative indices work too:
 
 ::
 
-   >>> del(chord[-1])
+   >>> del(chord.note_heads[-1])
    >>> show(chord)
 
-.. image:: images/index-8.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
 
 
-Formatting chords
------------------
+Tweaking note heads
+-------------------
 
-Get the LilyPond input format of any Abjad object with ``lilypond_format``:
+You can tweak note heads like this:
 
 ::
 
-   >>> chord.lilypond_format
-   "<d' ef' e' a' bf' df'' d'' g''>4"
-
-
-Use ``f()`` as a short-cut to print the LilyPond input format 
-of any Abjad object:
-
-::
-
-   >>> f(chord)
-   <d' ef' e' a' bf' df'' d'' g''>4
-
-
-
-Working with note heads
------------------------
-
-Most of the time you will work with the pitches of a chord.
-But you can get the note heads of a chord, too:
-
-::
-
-   >>> for note_head in chord.note_heads:
-   ...     note_head
-   ... 
-   NoteHead("d'")
-   NoteHead("ef'")
-   NoteHead("e'")
-   NoteHead("a'")
-   NoteHead("bf'")
-   NoteHead("df''")
-   NoteHead("d''")
-   NoteHead("g''")
-
-
-This is useful when you want to apply LilyPond overrides to note 
-heads in a chord one at a time:
-
-::
-
-   >>> chord[2].tweak.color = 'red'
-   >>> chord[3].tweak.color = 'blue'
-   >>> chord[4].tweak.color = 'green'
+   >>> chord.note_heads[2].tweak.color = 'red'
+   >>> chord.note_heads[3].tweak.color = 'blue'
+   >>> chord.note_heads[4].tweak.color = 'green'
    >>> show(chord)
 
-.. image:: images/index-9.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
 
 
@@ -202,14 +216,8 @@ Abjad allows empty chords:
 ::
 
    >>> chord = Chord([], Duration(1, 4))
-
-
-Abjad formats empty chords, too:
-
-::
-
-   >>> f(chord)
-   <>4
+   >>> chord
+   Chord('<>4')
 
 
 But if you pass empty chords to ``show()`` LilyPond will complain
@@ -220,8 +228,14 @@ into it chord in any of the ways described above:
 
 ::
 
-   >>> chord.extend(["gf'", "df''", "g''"])
+   >>> chord.note_heads.extend(["gf'", "df''", "g''"])
    >>> show(chord)
 
-.. image:: images/index-10.png
+::
+
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/Users/trevorbaca/Documents/abjad/abjad/tools/agenttools/PersistenceAgent.py", line 81, in as_ly
+       assert ly_filepath.endswith('.ly')
+   AssertionError
 
