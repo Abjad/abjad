@@ -141,7 +141,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.allowable_clefs)
+                    >>> show(accordion.allowable_clefs) # doctest: +SKIP
 
             ..  container:: example
 
@@ -155,7 +155,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.allowable_clefs)
+                    >>> show(accordion.allowable_clefs) # doctest: +SKIP
 
             ..  container:: example
 
@@ -169,7 +169,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.allowable_clefs)
+                    >>> show(accordion.allowable_clefs) # doctest: +SKIP
 
             Returns clef inventory.
             '''
@@ -235,7 +235,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.instrument_name_markup)
+                    >>> show(accordion.instrument_name_markup) # doctest: +SKIP
 
             ..  container:: example
 
@@ -250,7 +250,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.instrument_name_markup)
+                    >>> show(accordion.instrument_name_markup) # doctest: +SKIP
 
             ..  container:: example
 
@@ -264,7 +264,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.instrument_name_markup)
+                    >>> show(accordion.instrument_name_markup) # doctest: +SKIP
 
             Returns markup.
             '''
