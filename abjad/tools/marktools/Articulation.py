@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import stringtools
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Articulation(Mark):
+class Articulation(AbjadObject):
     r'''An articulation.
 
     ..  container:: example
@@ -98,11 +98,9 @@ class Articulation(Mark):
                 name, direction = None, None
         else:
             name, direction = None, None
-        Mark.__init__(self)
         self._name = name
         direction = \
             stringtools.arg_to_tridirectional_ordinal_constant(direction)
-        #self.direction = direction
         self._direction = direction
         self._format_slot = 'right'
 
@@ -126,6 +124,20 @@ class Articulation(Mark):
                 if self.direction == expr.direction:
                     return True
         return False
+
+    def __format__(self, format_specification=''):
+        r'''Formats articulation.
+
+        Set `format_specification` to `''`, `'lilypond`' or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        elif format_specification == 'lilypond':
+            return self._lilypond_format
+        return str(self)
 
     def __illustrate__(self):
         r'''Illustrates articulation.

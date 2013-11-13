@@ -621,7 +621,9 @@ class Component(AbjadObject):
         result = []
         for mark in self._get_marks():
             result.append(attach(mark, recipient_component))
-        return tuple(result)
+        for item in self._get_attached_items():
+            detach(item, self)
+            attach(item, recipient_component)
 
     # TODO: eventually reimplement as a keyword option to remove()
     def _remove_and_shrink_durated_parent_containers(self):

@@ -626,6 +626,7 @@ class LilyPondParser(abctools.Parser):
             #       Is there a way to identify spanner LilyPondEvents?
             #       Then we can just (blindly) attach all other post events.
             nonspanner_post_event_types = (
+                marktools.Articulation,
                 marktools.BarLine,
                 marktools.LilyPondCommand,
                 marktools.StemTremolo,
