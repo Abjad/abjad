@@ -64,7 +64,7 @@ class Annotation(Mark):
 
     def __eq__(self, arg):
         r'''True when arg is an annotation with name and value
-        equal to annotation. Otherwise false.
+        equal to those of this annotation. Otherwise false.
 
         Returns boolean.
         '''
@@ -84,55 +84,28 @@ class Annotation(Mark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def name():
-        def fget(self):
-            r'''Gets and sets name of annotation.
+    @property
+    def name(self):
+        r'''Name of annotation.
 
-            ::
+        ::
 
-                >>> pitch = pitchtools.NamedPitch('ds')
-                >>> annotation = marktools.Annotation('special_pitch', pitch)
-                >>> annotation.name
-                'special_pitch'
+            >>> annotation.name
+            'special pitch'
 
-            Set name of annotation:
+        Returns string.
+        '''
+        return self._name
 
-            ::
+    @property
+    def value(self):
+        r'''Value of annotation.
 
-                >>> annotation.name = 'revised special pitch'
-                >>> annotation.name
-                'revised special pitch'
+        ::
 
-            Set string.
-            '''
-            return self._name
-        def fset(self, name):
-            assert isinstance(name, str)
-            self._name = name
-        return property(**locals())
+            >>> annotation.value
+            NamedPitch('ds')
 
-    @apply
-    def value():
-        def fget(self):
-            r'''Gets and sets value of annotation.
-
-            ::
-
-                >>> annotation.value
-                NamedPitch('ds')
-
-            Set value of annotation:
-
-            ::
-
-                >>> annotation.value = pitchtools.NamedPitch('e')
-                >>> annotation.value
-                NamedPitch('e')
-
-            Set arbitrary object.
-            '''
-            return self._value
-        def fset(self, value):
-            self._value = value
-        return property(**locals())
+        Returns arbitrary object.
+        '''
+        return self._value
