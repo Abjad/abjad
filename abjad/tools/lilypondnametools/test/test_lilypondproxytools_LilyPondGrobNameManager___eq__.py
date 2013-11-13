@@ -3,7 +3,7 @@ import copy
 from abjad import *
 
 
-def test_lilypondnametools_LilyPondGrobNameManager___eq___01():
+def test_lilypondproxytools_LilyPondGrobNameManager___eq___01():
 
     note_1 = Note("c'4")
     override(note_1).note_head.color = 'red'

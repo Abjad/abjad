@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_pitchtools_OctaveTranspositionmapping_custom_identifier_01():
+def test_pitchtools_OctaveTranspositionMapping_name_01():
 
     mapping = pitchtools.OctaveTranspositionMapping()
     assert mapping.custom_identifier is None

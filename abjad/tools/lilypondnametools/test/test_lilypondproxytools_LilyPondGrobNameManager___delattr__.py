@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_lilypondnametools_LilyPondGrobNameManager___delattr___01():
+def test_lilypondproxytools_LilyPondGrobNameManager___delattr___01():
 
     note = Note("c'4")
     override(note).accidental.color = 'red'
@@ -31,7 +31,7 @@ def test_lilypondnametools_LilyPondGrobNameManager___delattr___01():
         )
 
 
-def test_lilypondnametools_LilyPondGrobNameManager___delattr___02():
+def test_lilypondproxytools_LilyPondGrobNameManager___delattr___02():
     r'''Delete LilyPond Rest grob override.
     '''
 
@@ -52,7 +52,7 @@ def test_lilypondnametools_LilyPondGrobNameManager___delattr___02():
         )
 
 
-def test_lilypondnametools_LilyPondGrobNameManager___delattr___03():
+def test_lilypondproxytools_LilyPondGrobNameManager___delattr___03():
     r'''Delete LilyPond TimeSignature grob override.
     '''
 
