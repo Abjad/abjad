@@ -105,7 +105,10 @@ class AbjadObject(object):
 
     @property
     def _tools_package_qualified_class_name(self):
-        return '{}.{}'.format(self._tools_package_name, type(self).__name__)
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        return manager.get_tools_package_qualified_class_name(self)
+        #return '{}.{}'.format(self._tools_package_name, type(self).__name__)
 
     @property
     def _tools_package_qualified_indented_repr(self):

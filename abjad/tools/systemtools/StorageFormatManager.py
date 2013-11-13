@@ -105,8 +105,29 @@ class StorageFormatManager(object):
         return ()
 
     @staticmethod
+    def get_tools_package_name(object_):
+        r'''Gets tools-package name of `object_`:
+
+        ::
+
+            >>> manager = systemtools.StorageFormatManager
+            >>> manager.get_tools_package_name(Note)
+            'scoretools'
+
+        '''
+        if StorageFormatManager.is_instance(object_):
+            class_name = type(object_).__name__
+            if hasattr(object_, '_tools_package_name'):
+                return object_._tools_package_name
+        else:
+            class_name = object_.__name__
+        for part in reversed(object_.__module__.split('.')):
+            if not part == class_name:
+                return part
+
+    @staticmethod
     def get_tools_package_qualified_class_name(object_):
-        r'''Gets tools-package qualified class name from class:
+        r'''Gets tools-package qualified class name of `object_`:
 
         ::
 
@@ -116,15 +137,19 @@ class StorageFormatManager(object):
 
         Returns string.
         '''
+        tools_package_name = None
         if StorageFormatManager.is_instance(object_):
-            object_ = type(object_)
-        module_parts = object_.__module__.split('.')
-        unique_parts = [module_parts[0]]
-        for part in module_parts[1:]:
-            if part != unique_parts[-1]:
-                unique_parts.append(part)
-        tools_package_qualified_object_name = '.'.join(unique_parts[-2:])
-        return tools_package_qualified_object_name
+            class_name = type(object_).__name__
+            if hasattr(object_, '_tools_package_name'):
+                tools_package_name = object_._tools_package_name
+        else:
+            class_name = object_.__name__
+        if not tools_package_name:
+            for part in reversed(object_.__module__.split('.')):
+                if not part == class_name:
+                    tools_package_name = part
+                    break
+        return '{}.{}'.format(tools_package_name, class_name)
 
     @staticmethod
     def is_instance(object_):
@@ -133,4 +158,3 @@ class StorageFormatManager(object):
         elif type(object_) is object_.__class__:
             return True
         return False
-
