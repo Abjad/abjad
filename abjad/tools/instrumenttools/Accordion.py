@@ -383,7 +383,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.short_instrument_name_markup)
+                    >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
 
             ..  container:: example
 
@@ -398,7 +398,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.short_instrument_name_markup)
+                    >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
 
             ..  container:: example
 
@@ -412,7 +412,7 @@ class Accordion(Instrument):
 
                 ::
 
-                    >>> show(accordion.short_instrument_name_markup)
+                    >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
 
             Returns markup.
             '''
