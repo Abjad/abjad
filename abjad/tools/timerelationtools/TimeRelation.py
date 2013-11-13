@@ -12,8 +12,8 @@ class TimeRelation(AbjadObject):
         >>> timespan_2 = timespantools.Timespan(5, 15)
         >>> time_relation = \
         ...     timerelationtools.timespan_2_starts_during_timespan_1(
-        ...     timespan_1=timespan_1, 
-        ...     timespan_2=timespan_2, 
+        ...     timespan_1=timespan_1,
+        ...     timespan_2=timespan_2,
         ...     hold=True,
         ...     )
 
@@ -181,11 +181,13 @@ class TimeRelation(AbjadObject):
 
         Returns newly constructed time relation.
         '''
-        keyword_argument_dictionary = self._keyword_argument_dictionary
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager(self)
+        keyword_argument_dictionary = manager.keyword_argument_dictionary
         for key, value in kwargs.iteritems():
             keyword_argument_dictionary[key] = value
         result = type(self)(
-            *self._positional_argument_values, 
+            *self._positional_argument_values,
             **keyword_argument_dictionary
             )
         return result

@@ -66,19 +66,11 @@ class AbjadObject(object):
             self._keyword_argument_values
 
     @property
-    def _keyword_argument_dictionary(self):
-        names = self._keyword_argument_names
-        values = self._keyword_argument_values
-        assert len(names) == len(values)
-        result = dict(zip(names, values))
-        return result
-
-    @property
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import systemtools
         result = []
         manager = systemtools.StorageFormatManager
-        tmp = manager.class_to_tools_package_qualified_class_name
+        tmp = manager.get_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
@@ -113,28 +105,13 @@ class AbjadObject(object):
     def _positional_argument_dictionary(self):
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager
-        names = getattr(self, '_positional_argument_names') or \
+        names = getattr(self, '_positional_argument_names', None) or \
             manager.get_positional_argument_names(type(self))
         #names = self._positional_argument_names
         values = self._positional_argument_values
         assert len(names) == len(values)
         result = dict(zip(names, values))
         return result
-
-    @property
-    def _positional_argument_names(self):
-        if hasattr(self.__init__, '__func__'):
-            initializer = type(self).__init__.__func__
-            if initializer.func_defaults:
-                keyword_argument_count = len(initializer.func_defaults)
-            else:
-                keyword_argument_count = 0
-            initializer_code = initializer.func_code
-            positional_argument_count = (
-                initializer_code.co_argcount - keyword_argument_count - 1)
-            start_index, stop_index = 1, 1 + positional_argument_count
-            return initializer_code.co_varnames[start_index:stop_index]
-        return ()
 
     @property
     def _positional_argument_repr_string(self):
@@ -149,7 +126,8 @@ class AbjadObject(object):
         from abjad.tools import systemtools
         result = []
         manager = systemtools.StorageFormatManager
-        names = getattr(self, '_positional_argument_names') or \
+
+        names = getattr(self, '_positional_argument_names', None) or \
             manager.get_positional_argument_names(type(self))
         for name in names:
         #for name in self._positional_argument_names:
@@ -215,7 +193,7 @@ class AbjadObject(object):
         else:
             prefix, suffix = '', ', '
         manager = systemtools.StorageFormatManager
-        tmp = manager.class_to_tools_package_qualified_class_name
+        tmp = manager.get_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             if self._has_default_attribute_values:
                 default_keyword_argument_name = '_default_{}'.format(name)
@@ -275,7 +253,7 @@ class AbjadObject(object):
         else:
             prefix, suffix = '', ', '
         manager = systemtools.StorageFormatManager
-        tmp = manager.class_to_tools_package_qualified_class_name
+        tmp = manager.get_tools_package_qualified_class_name
         for value in self._positional_argument_values:
             # if value is a (noninstantiated) class
             if type(value) is abc.ABCMeta:
