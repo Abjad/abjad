@@ -40,7 +40,7 @@ class AbjadObject(object):
         '''
         result = '{}({})'
         result = result.format(
-            type(self).__name__, 
+            type(self).__name__,
             self._contents_repr_string,
             )
         return result
@@ -75,8 +75,10 @@ class AbjadObject(object):
 
     @property
     def _keyword_argument_name_value_strings(self):
+        from abjad.tools import systemtools
         result = []
-        tmp = self._class_to_tools_package_qualified_class_name
+        tmp = systemtools.StorageFormatManager.class_to_tools_package_qualified_class_name
+        #tmp = self._class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
@@ -92,7 +94,10 @@ class AbjadObject(object):
 
     @property
     def _keyword_argument_names(self):
-        return self._get_keyword_argument_names()
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        return manager.get_keyword_argument_names(type(self))
+        #return self._get_keyword_argument_names()
 
     @property
     def _keyword_argument_values(self):
@@ -220,12 +225,14 @@ class AbjadObject(object):
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(
         self, is_indented=True):
+        from abjad.tools import systemtools
         result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        tmp = self._class_to_tools_package_qualified_class_name
+        tmp = systemtools.StorageFormatManager.class_to_tools_package_qualified_class_name
+        #tmp = self._class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             if self._has_default_attribute_values:
                 default_keyword_argument_name = '_default_{}'.format(name)
@@ -265,10 +272,10 @@ class AbjadObject(object):
                                 prefix, pieces[-1], suffix))
                     elif hasattr(value, '_tools_package_name'):
                         result.append('{}{}={}.{!r}{}'.format(
-                            prefix, 
-                            name, 
-                            value._tools_package_name, 
-                            value, 
+                            prefix,
+                            name,
+                            value._tools_package_name,
+                            value,
                             suffix,
                             ))
                     else:
@@ -278,12 +285,14 @@ class AbjadObject(object):
 
     def _get_tools_package_qualified_positional_argument_repr_pieces(
         self, is_indented=True):
+        from abjad.tools import systemtools
         result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        tmp = self._class_to_tools_package_qualified_class_name
+        tmp = systemtools.StorageFormatManager.class_to_tools_package_qualified_class_name
+        #tmp = self._class_to_tools_package_qualified_class_name
         for value in self._positional_argument_values:
             # if value is a (noninstantiated) class
             if type(value) is abc.ABCMeta:
