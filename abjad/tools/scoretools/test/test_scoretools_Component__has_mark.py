@@ -40,8 +40,8 @@ def test_scoretools_Component__has_mark_04():
     comment = marktools.LilyPondComment('comment')
     attach(comment, staff[0])
 
-    assert staff[0]._has_mark(marktools.LilyPondComment)
-    assert not staff[1]._has_mark(marktools.LilyPondComment)
+    assert staff[0]._has_attached_item(marktools.LilyPondComment)
+    assert not staff[1]._has_attached_item(marktools.LilyPondComment)
 
 
 def test_scoretools_Component__has_mark_05():

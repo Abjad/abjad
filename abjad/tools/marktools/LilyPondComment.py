@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class LilyPondComment(Mark):
+class LilyPondComment(AbjadObject):
     r'''A LilyPond comment.
 
     ::
@@ -35,22 +35,25 @@ class LilyPondComment(Mark):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        Mark.__init__(self)
         if len(args) == 1 and isinstance(args[0], type(self)):
-            self.contents_string = copy.copy(args[0].contents_string)
-            self.format_slot = copy.copy(args[0].format_slot)
+            contents_string = copy.copy(args[0].contents_string)
+            format_slot = copy.copy(args[0].format_slot)
         elif len(args) == 1 and not isinstance(args[0], type(self)):
-            self.contents_string = copy.copy(args[0])
-            self.format_slot = None
+            contents_string = copy.copy(args[0])
+            format_slot = None
         elif len(args) == 2 and isinstance(args[0], type(self)):
-            self.contents_string = copy.copy(args[0].contents_string)
-            self.format_slot = args[1]
+            contents_string = copy.copy(args[0].contents_string)
+            format_slot = args[1]
         elif len(args) == 2 and not isinstance(args[0], type(self)):
-            self.contents_string = args[0]
-            self.format_slot = args[1]
+            contents_string = args[0]
+            format_slot = args[1]
         else:
-            message = 'can not initialize LilyPond comment.'
+            message = 'can not initialize LilyPond comment from {!r}.'
+            message = message.format(args)
             raise ValueError(message)
+        format_slot = format_slot or 'before'
+        self._contents_string = contents_string
+        self._format_slot = format_slot
 
     ### SPECIAL METHODS ###
 
@@ -88,65 +91,28 @@ class LilyPondComment(Mark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def contents_string():
-        def fget(self):
-            r'''Gets and sets contents string of comment.
+    @property
+    def contents_string(self):
+        r'''Contents string of LilyPond comment.
 
-            ::
+        ::
 
-                >>> string = 'comment contents string'
-                >>> comment = marktools.LilyPondComment(string)
-                >>> comment.contents_string
-                'comment contents string'
+            >>> comment.contents_string
+            'this is a comment'
 
-            Sets contents string of comment:
+        Returns string.
+        '''
+        return self._contents_string
 
-            ::
+    @property
+    def format_slot(self):
+        r'''Format slot of LilyPond comment.
 
-                >>> comment.contents_string = 'new comment contents string'
-                >>> comment.contents_string
-                'new comment contents string'
+        ::
 
-            Returns string.
-            '''
-            return self._contents_string
-        def fset(self, contents_string):
-            assert isinstance(contents_string, str)
-            self._contents_string = contents_string
-        return property(**locals())
+            >>> comment.format_slot
+            'before'
 
-    @apply
-    def format_slot():
-        def fget(self):
-            '''Gets and sets format slot of LilyPond comment.
-
-            ::
-
-                >>> note = Note("c'4")
-                >>> lilypond_comment = marktools.LilyPondComment('comment')
-                >>> lilypond_comment.format_slot
-                'before'
-
-            Sets format slot of LiyPond comment:
-
-            ::
-
-                >>> note = Note("c'4")
-                >>> lilypond_comment = marktools.LilyPondComment('comment')
-                >>> lilypond_comment.format_slot = 'after'
-                >>> lilypond_comment.format_slot
-                'after'
-
-            Set to ``'before'``, ``'after'``, ``'opening'``,
-            ``'closing'``, ``'right'`` or none.
-            '''
-            return self._format_slot
-        def fset(self, format_slot):
-            assert format_slot in (
-                'before', 'after', 'opening', 'closing', 'right', None)
-            if format_slot is None:
-                self._format_slot = 'before'
-            else:
-                self._format_slot = format_slot
-        return property(**locals())
+        Returns string.
+        '''
+        return self._format_slot

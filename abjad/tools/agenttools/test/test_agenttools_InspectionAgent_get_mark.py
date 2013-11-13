@@ -127,7 +127,7 @@ def test_agenttools_InspectionAgent_get_mark_11():
     comment = marktools.LilyPondComment('comment')
     attach(comment, note)
 
-    mark = inspect(note).get_mark(marktools.LilyPondComment) 
+    mark = inspect(note).get_attached_item(marktools.LilyPondComment) 
     assert mark is comment
 
 
@@ -135,7 +135,7 @@ def test_agenttools_InspectionAgent_get_mark_12():
 
     note = Note("c'8")
 
-    statement = 'inspect(note).get_mark(marktools.LilyPondComment)'
+    statement = 'inspect(note).get_attached_item(marktools.LilyPondComment)'
     assert pytest.raises(Exception, statement)
 
 
@@ -147,7 +147,7 @@ def test_agenttools_InspectionAgent_get_mark_13():
     comment = marktools.LilyPondComment('another comment')
     attach(comment, note)
 
-    statement = 'inspect(note).get_mark(marktools.LilyPondComment)'
+    statement = 'inspect(note).get_attached_item(marktools.LilyPondComment)'
     assert pytest.raises(Exception, statement)
 
 
