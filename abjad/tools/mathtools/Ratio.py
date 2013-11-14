@@ -41,3 +41,9 @@ class Ratio(NonreducedRatio):
             args)
         self = NonreducedRatio.__new__(cls, args)
         return self
+
+    ### SPECIAL METHODS ###
+
+    def __str__(self):
+        terms = (str(x) for x in self)
+        return ':'.join(terms)
