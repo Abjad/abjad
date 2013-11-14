@@ -32,7 +32,7 @@ class TwoStageHairpinHandler(DynamicHandler):
                 spanner.detach()
         # TODO: this should eventually be changed to remove dynamics only
         for leaf in leaves:
-            marktools.detach_lilypond_command_marks_attached_to_component(leaf)
+            marktools.detach_lilypond_commands_attached_to_component(leaf)
         if 3 <= len(leaves):
             #marktools.Dynamic(start_dynamic)(leaves[0])
             #marktools.Dynamic(stop_dynamic)(leaves[-1])

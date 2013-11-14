@@ -42,7 +42,7 @@ Attachments
         annotations/index
         articulations/index
         instruments/index
-        lilypond_command_marks/index
+        lilypond_commands/index
         lilypond_comments/index
         spanners/index
 

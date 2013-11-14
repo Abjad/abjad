@@ -27,7 +27,7 @@ Let's make some imports:
        add_string_music_to_score(score)
    
        apply_bowing_marks(score)
-       apply_dynamic_marks(score)
+       apply_dynamics(score)
        apply_expressive_marks(score)
        apply_page_breaks(score)
        apply_rehearsal_marks(score)
@@ -639,7 +639,7 @@ and attach:
 
 ::
 
-   def apply_dynamic_marks(score):
+   def apply_dynamics(score):
    
        voice = score['Bell Voice']
        marktools.Dynamic('ppp')(voice[0][1])

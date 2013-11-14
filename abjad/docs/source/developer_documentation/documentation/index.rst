@@ -122,8 +122,8 @@ you're in when you run the following command:
     ...
     ...
     ...
-    copying images... [ 89%] reference_manual/lilypond_command_marks/images/index-2.
-    copying images... [ 93%] tutorials/understanding_time_signature_marks/images/ind
+    copying images... [ 89%] reference_manual/lilypond_commands/images/index-2.
+    copying images... [ 93%] tutorials/understanding_time_signatures/images/ind
     copying images... [ 94%] tutorials/working_with_threads/images/thread-resolution
     copying images... [100%] reference_manual/staves/images/index-8.png             
     copying static files... done

@@ -7,6 +7,6 @@ def test_marktools_LilyPondCommand___setattr___01():
     r'''Slots constrain LilyPond command marks.
     '''
 
-    lilypond_command_mark = marktools.LilyPondCommand('break')
+    lilypond_command = marktools.LilyPondCommand('break')
 
-    assert pytest.raises(AttributeError, "lilypond_command_mark.foo = 'bar'")
+    assert pytest.raises(AttributeError, "lilypond_command.foo = 'bar'")

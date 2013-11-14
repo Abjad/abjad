@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def apply_dynamic_marks(score):
+def apply_dynamics(score):
 
     voice = score['Bell Voice']
     dynamic = marktools.Dynamic('ppp')

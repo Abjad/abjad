@@ -178,7 +178,7 @@ Let's take a look:
 After dealing with custom markup, applying dynamics is easy.  Just instantiate
 and attach:
 
-<abjadextract abjad.demos.part.apply_dynamic_marks.apply_dynamic_marks \>[strip_prompt=true]
+<abjadextract abjad.demos.part.apply_dynamics.apply_dynamics \>[strip_prompt=true]
 
 We apply expressive marks the same way we applied our dynamics:
 

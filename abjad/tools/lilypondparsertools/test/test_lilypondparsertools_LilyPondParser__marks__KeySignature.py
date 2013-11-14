@@ -22,6 +22,6 @@ def test_lilypondparsertools_LilyPondParser__marks__KeySignature_01():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    key_signature_marks = \
+    key_signatures = \
         inspect(result[0]).get_marks(marktools.KeySignature)
-    assert len(key_signature_marks) == 1
+    assert len(key_signatures) == 1

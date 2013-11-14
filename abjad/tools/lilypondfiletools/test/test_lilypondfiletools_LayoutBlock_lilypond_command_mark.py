@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_lilypondfiletools_LayoutBlock_lilypond_command_mark_01():
+def test_lilypondfiletools_LayoutBlock_lilypond_command_01():
 
     staff = Staff("fs'2 fs'2 gs'2 gs'2")
     score = Score([staff])

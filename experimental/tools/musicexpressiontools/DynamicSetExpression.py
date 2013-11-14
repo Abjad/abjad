@@ -14,9 +14,9 @@ class DynamicSetExpression(LeafSetExpression):
     def execute_against_score(self, score):
         r'''Execute dynamic set expression against `score`.
         '''
-        dynamic_mark = self.source_expression.payload
+        dynamic = self.source_expression.payload
         for leaf in self._iterate_selected_leaves_in_score(score):
             for mark in leaf._get_marks(marktools.Dynamic):
                 mark.detach()
-            dynamic = marktools.Dynamic(dynamic_mark)
+            dynamic = marktools.Dynamic(dynamic)
             attach(dynamic, leaf)

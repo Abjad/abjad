@@ -364,10 +364,10 @@ class Component(AbjadObject):
     def _get_effective_staff(self):
         from abjad.tools import marktools
         from abjad.tools import scoretools
-        staff_change_mark = self._get_effective_context_mark(
+        staff_change = self._get_effective_context_mark(
             marktools.StaffChange)
-        if staff_change_mark is not None:
-            effective_staff = staff_change_mark.staff
+        if staff_change is not None:
+            effective_staff = staff_change.staff
         else:
             parentage = self._get_parentage()
             effective_staff = parentage.get_first(scoretools.Staff)

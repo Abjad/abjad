@@ -16,15 +16,18 @@ Getting started
 
 We start by creating a staff full of notes:
 
-<abjad>
-staff = Staff("c'4 d'4 e'4 f'4 g'2")
-</abjad>
+::
+
+   >>> staff = Staff("c'4 d'4 e'4 f'4 g'2")
+
 
 The interpreter representation of our staff looks like this:
 
-<abjad>
-staff
-</abjad>
+::
+
+   >>> staff
+   Staff{5}
+
 
 The ``5`` in ``Staff{5}`` shows that the staff contains five top-level
 components.  The curly braces in ``Staff{5}`` show that the contents of the
@@ -44,27 +47,44 @@ in effect for either our staff or for the five notes it contains.
 
 We can use the inspector to see that this is the case:
 
-<abjad>
-print inspect(staff).get_effective_context_mark(marktools.TimeSignature)
-</abjad>
+::
+
+   >>> print inspect(staff).get_effective_context_mark(marktools.TimeSignature)
+   None
+
 
 And:
 
-<abjad>
-for leaf in staff.select_leaves():
-    print inspect(leaf).get_effective_context_mark(
-        marktools.TimeSignature)
-</abjad>
+::
+
+   >>> for leaf in staff.select_leaves():
+   ...     print inspect(leaf).get_effective_context_mark(
+   ...         marktools.TimeSignature)
+   ... 
+   None
+   None
+   None
+   None
+   None
+
 
 And we can iterate both the staff and its leaves at one and the same time like
 this:
 
-<abjad>
-for component in iterationtools.iterate_components_in_expr(staff):
-    effective_time_signature = inspect(component).get_effective_context_mark(
-        marktools.TimeSignature)
-    print component, effective_time_signature
-</abjad>
+::
+
+   >>> for component in iterationtools.iterate_components_in_expr(staff):
+   ...     effective_time_signature = inspect(component).get_effective_context_mark(
+   ...         marktools.TimeSignature)
+   ...     print component, effective_time_signature
+   ... 
+   Staff{5} None
+   c'4 None
+   d'4 None
+   e'4 None
+   f'4 None
+   g'2 None
+
 
 This confirms the answers to our questions. There is not yet any time
 signature in effect for any component in our staff because we have not yet
@@ -80,9 +100,12 @@ signature? Will LilyPond refuse to render the example at all?
 
 We find out like this:
 
-<abjad>
-show(staff)
-</abjad>
+::
+
+   >>> show(staff)
+
+.. image:: images/index-1.png
+
 
 It turns out LilyPond defaults to a time signature of ``4/4``.
 
@@ -94,9 +117,17 @@ on with rendering your music."
 We can further confirm that this is the case by asking Abjad for the LilyPond
 format of our staff:
 
-<abjad>
-f(staff)
-</abjad>
+::
+
+   >>> f(staff)
+   \new Staff {
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
 
 The LilyPond format of our staff contains no LilyPond ``\time`` command.
 This is, again, because we have not yet attached a time signature
@@ -118,24 +149,29 @@ what's going on.
 
 First, we create a ``3/4`` time signature:
 
-<abjad>
-time_signature_mark = marktools.TimeSignature((3, 4))
-</abjad>
+::
+
+   >>> time_signature = marktools.TimeSignature((3, 4))
+
 
 The interpreter representation of our time signature looks like this:
 
-<abjad>
-time_signature_mark
-</abjad>
+::
+
+   >>> time_signature
+   TimeSignature((3, 4))
+
 
 All this tells us is that we have in fact created a ``3/4`` time signature
 mark. Nothing too exciting yet. At this point our ``3/4`` time signature is
 not yet attached to anything. We could say that the "state" of our time
 signature is "unattached." And we can see this like so:
 
-<abjad>
-time_signature_mark.start_component is None
-</abjad>
+::
+
+   >>> time_signature.start_component is None
+   True
+
 
 What does it mean for a time signature to have ``'start_component'`` equal
 to none? It means that the time signature isn't yet attached to any score
@@ -143,9 +179,11 @@ component anywhere.
 
 So now we attach our time signature to our staff:
 
-<abjad>
-time_signature_mark.attach(staff)
-</abjad>
+::
+
+   >>> time_signature.attach(staff)
+   TimeSignature((3, 4))(Staff{5})
+
 
 Abjad responds immediately by returning the time signature we have just
 attached.
@@ -159,28 +197,39 @@ statal.
 Our time signature has transitioned from an "unattached" state to an
 "attached" state. We can see this like so:
 
-<abjad>
-time_signature_mark.start_component
-</abjad>
+::
+
+   >>> time_signature.start_component
+   Staff{5}
+
 
 And our staff has likewise transitioned from a state of having no effective
 time signature to a state of having an effective time signature:
 
-<abjad>
-inspect(staff).get_effective_context_mark(marktools.TimeSignature)
-</abjad>
+::
+
+   >>> inspect(staff).get_effective_context_mark(marktools.TimeSignature)
+   TimeSignature((3, 4))(Staff{5})
+
 
 And what about the leaves inside our staff?
 Do the leaves now "know" that they are governed by a ``3/4`` time signature?
 
 Indeed they do:
 
-<abjad>
-for leaf in staff.select_leaves():
-    effective_time_signature = inspect(leaf).get_effective_context_mark(
-        marktools.TimeSignature)
-    print leaf, effective_time_signature
-</abjad>
+::
+
+   >>> for leaf in staff.select_leaves():
+   ...     effective_time_signature = inspect(leaf).get_effective_context_mark(
+   ...         marktools.TimeSignature)
+   ...     print leaf, effective_time_signature
+   ... 
+   c'4 3/4
+   d'4 3/4
+   e'4 3/4
+   f'4 3/4
+   g'2 3/4
+
 
 Briefly to resume:
 
@@ -194,15 +243,27 @@ then attach.
 
 Before moving on let's look at the PDF corresponding to our staff:
 
-<abjad>
-show(staff)
-</abjad>
+::
+
+   >>> show(staff)
+
+.. image:: images/index-2.png
+
 
 And let's confirm what we see in the PDF in the staff's format:
 
-<abjad>
-f(staff)
-</abjad>
+::
+
+   >>> f(staff)
+   \new Staff {
+       \time 3/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
 
 The staff's format now contains a LilyPond ``\time`` command because we have
 attached an Abjad time signature to the staff.
@@ -215,24 +276,30 @@ next.
 
 Detaching a time signature is easy:
 
-<abjad>
-time_signature_mark.detach()
-</abjad>
+::
+
+   >>> time_signature.detach()
+   TimeSignature((3, 4))
+
 
 Abjad returns the mark we have just detached. And the interpreter
 representation of the time signature has again changed state:
 the time signature has transitioned from attached to unattached.
 We confirm this like so:
 
-<abjad>
-time_signature_mark.start_component is None
-</abjad>
+::
+
+   >>> time_signature.start_component is None
+   True
+
 
 And also like so:
 
-<abjad>
-print inspect(staff).get_effective_context_mark(marktools.TimeSignature)
-</abjad>
+::
+
+   >>> print inspect(staff).get_effective_context_mark(marktools.TimeSignature)
+   None
+
 
 Our time signature now knows nothing about our staff. And vice versa.
 
@@ -242,18 +309,32 @@ We have a couple of options.
 
 We can simply create and attach a new time signature:
 
-<abjad>
-duple_time_signature_mark = marktools.TimeSignature((2, 4))
-duple_time_signature_mark.attach(staff)
-</abjad>
+::
 
-<abjad>
-f(staff)
-</abjad>
+   >>> duple_time_signature = marktools.TimeSignature((2, 4))
+   >>> duple_time_signature.attach(staff)
+   TimeSignature((2, 4))(Staff{5})
 
-<abjad>
-show(staff)
-</abjad>
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       \time 2/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-3.png
+
 
 Yup. That works.
 
@@ -262,63 +343,106 @@ mark.
 
 To do this we'll first detach our ``2/4`` time signature ...
 
-<abjad>
-duple_time_signature_mark.detach()
-</abjad>
+::
+
+   >>> duple_time_signature.detach()
+   TimeSignature((2, 4))
+
 
 ... confirm that our staff is now time signatureless ...
 
-<abjad>
-print inspect(staff).get_effective_context_mark(marktools.TimeSignature)
-</abjad>
+::
 
-<abjad>
-f(staff)
-</abjad>
+   >>> print inspect(staff).get_effective_context_mark(marktools.TimeSignature)
+   None
+
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
 
 ... reattach our previous ``3/4`` time signature ...
 
-<abjad>
-time_signature_mark.attach(staff)
-</abjad>
+::
+
+   >>> time_signature.attach(staff)
+   TimeSignature((3, 4))(Staff{5})
+
 
 ... change the numerator of our time signature ...
 
-<abjad>
-time_signature_mark.numerator = 2
-</abjad>
+::
+
+   >>> time_signature.numerator = 2
+
 
 ... and check to make sure that everything is as it should be:
 
-<abjad>
-inspect(staff).get_effective_context_mark(marktools.TimeSignature)
-time_signature_mark.start_component
-</abjad>
+::
 
-<abjad>
-f(staff)
-</abjad>
+   >>> inspect(staff).get_effective_context_mark(marktools.TimeSignature)
+   TimeSignature((2, 4))(Staff{5})
+   >>> time_signature.start_component
+   Staff{5}
 
-<abjad>
-show(staff)
-</abjad>
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       \time 2/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-4.png
+
 
 And everything works as it should.
 
 To change to ``4/4`` we change just change the time signature's numerator
 again:
 
-<abjad>
-time_signature_mark.numerator = 4
-</abjad>
+::
 
-<abjad>
-show(staff)
-</abjad>
+   >>> time_signature.numerator = 4
 
-<abjad>
-f(staff)
-</abjad>
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-5.png
+
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
 
 
 First-measure pick-ups
@@ -329,17 +453,31 @@ But what if our time signature has a ``2/4`` pick-up?
 The LilyPond command for pick-ups is ``\partial``.
 Abjad time signatures implement this as a read / write attribute:
 
-<abjad>
-time_signature_mark.partial = Duration(2, 4)
-</abjad>
+::
 
-<abjad>
-f(staff)
-</abjad>
+   >>> time_signature.partial = Duration(2, 4)
 
-<abjad>
-show(staff)
-</abjad>
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       \partial 2
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-6.png
+
 
 And what if time signature changes all over the place?
 
@@ -350,28 +488,50 @@ To do this we will need two time signatures.
 
 We've already got a ``4/4`` time signature attached to our staff:
 
-<abjad>
-f(staff)
-</abjad>
+::
+
+   >>> f(staff)
+   \new Staff {
+       \partial 2
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
 
 Let's get rid of the pick-up:
 
-<abjad>
-time_signature_mark.partial = None
-</abjad>
+::
 
-<abjad>
-f(staff)
-</abjad>
+   >>> time_signature.partial = None
+
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
+   }
+
 
 Now what about the ``2/4`` time signature?
 
 We create it in the usual way:
 
-<abjad>
-duple_time_signature_mark = marktools.TimeSignature((2, 4))
-duple_time_signature_mark
-</abjad>
+::
+
+   >>> duple_time_signature = marktools.TimeSignature((2, 4))
+   >>> duple_time_signature
+   TimeSignature((2, 4))
+
 
 But should we attach it? We can't attach our ``2/4`` time signature to our
 staff because we've already attached our ``4/4`` time signature to our staff.
@@ -384,26 +544,43 @@ only one choice for where to attach the new ``2/4`` time signature. And
 that is one the ``g'2`` that comes on the downbeat of the second measure. We
 do that like this:
 
-<abjad>
-duple_time_signature_mark.attach(staff[4])
-</abjad>
+::
 
-<abjad>
-f(staff)
-</abjad>
+   >>> duple_time_signature.attach(staff[4])
+   TimeSignature((2, 4))(g'2)
 
-<abjad>
-show(staff)
-</abjad>
+
+::
+
+   >>> f(staff)
+   \new Staff {
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       \time 2/4
+       g'2
+   }
+
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-7.png
+
 
 And everything works as we would like.
 
 Incidentally, ``staff[4]`` means the component sitting at index ``4`` inside
 our staff. Using the interpreter we can verify that this is ``g'2``:
 
-<abjad>
-staff[4]
-</abjad>
+::
+
+   >>> staff[4]
+   Note("g'2")
+
 
 Depending on how we had chosen to build our staff we would have had more
 options for where to attach our ``2/4`` time signature. If, for example,

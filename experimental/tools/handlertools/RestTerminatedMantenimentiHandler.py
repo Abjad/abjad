@@ -33,11 +33,11 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
             attach(spanner, group)
             override(spanner).text_spanner.dash_fraction = 1
             dynamic_string = self.dynamics_talea[i]
-            dynamic_markup = markuptools.Markup([
+            dynamicup = markuptools.Markup([
                 markuptools.MarkupCommand('dynamic', dynamic_string),
                 markuptools.MarkupCommand('hspace', 0.75)])
             override(spanner).text_spanner.bound_details__left__text = \
-                dynamic_markup
+                dynamicup
             nib_markup = markuptools.Markup(
                 markuptools.MarkupCommand(
                 'draw-line', schemetools.SchemePair(0, 1)))
