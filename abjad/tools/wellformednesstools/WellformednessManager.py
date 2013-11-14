@@ -26,16 +26,16 @@ class WellformednessManager(AbjadObject):
         Returns something.
         '''
         check_names = [x for x in dir(self) if x.startswith('check_')]
-        all_violators = []
-        for check_name in sorted(check_names):
+        triples = []
+        for current_check_name in sorted(check_names):
             if self.allow_empty_containers:
-                if check_name == 'check_empty_containers':
+                if current_check_name == 'check_empty_containers':
                     continue
-            check = getattr(self, check_name) 
-            violators, total = check()
-            all_violators.extend(violators)
-        result = not bool(all_violators)
-        return result
+            current_check = getattr(self, current_check_name) 
+            current_violators, current_total = current_check()
+            triple = (current_violators, current_total, current_check_name)
+            triples.append(triple)
+        return triples
 
     ### PUBLIC METHODS ###
 

@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 import pytest
 from abjad import *
-from abjad.tools.wellformednesstools import IntermarkedHairpinCheck
-from abjad.tools.wellformednesstools import ShortHairpinCheck
 
 
 def test_spannertools_Hairpin_01():
@@ -39,7 +37,6 @@ def test_spannertools_Hairpin_02():
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = Crescendo()
     attach(crescendo, staff[0:1])
-    checker = ShortHairpinCheck()
 
     assert systemtools.TestManager.compare(
         staff,
@@ -57,7 +54,7 @@ def test_spannertools_Hairpin_02():
         '''
         )
 
-    assert not checker.check(staff)
+    assert not inspect(staff).is_well_formed()
 
 
 def test_spannertools_Hairpin_03():
@@ -203,5 +200,4 @@ def test_spannertools_Hairpin_07():
         '''
         )
 
-    checker = IntermarkedHairpinCheck()
-    assert checker.check(staff)
+    assert inspect(staff).is_well_formed()

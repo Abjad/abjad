@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.wellformednesstools import OverlappingOctavationCheck
 
 
 def test_spannertools_OctavationSpanner_01():
@@ -158,7 +157,6 @@ def test_spannertools_OctavationSpanner_06():
     attach(spanner, staff[:4])
     spanner = spannertools.OctavationSpanner(start=2)
     attach(spanner, staff[2:6])
-    checker = OverlappingOctavationCheck()
 
     assert systemtools.TestManager.compare(
         staff,
@@ -180,4 +178,4 @@ def test_spannertools_OctavationSpanner_06():
         '''
         )
 
-    assert not checker.check(staff)
+    assert not inspect(staff).is_well_formed()

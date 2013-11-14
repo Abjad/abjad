@@ -124,10 +124,11 @@ class InspectionAgent(object):
         Returns list.
         '''
         from abjad.tools import wellformednesstools
-        badly_formed_components = []
-        for checker in wellformednesstools.Check._list_checks():
-            badly_formed_components.extend(checker.violators(self._component))
-        return badly_formed_components
+        manager = wellformednesstools.WellformednessManager(self._component)
+        violators = []
+        for current_violators, total, check_name in manager():
+            violators.extend(current_violators)
+        return violators
 
     def get_components(
         self,
@@ -524,8 +525,10 @@ class InspectionAgent(object):
             self._component,
             allow_empty_containers=allow_empty_containers,
             )
-        result = manager()
-        return result
+        for violators, total, check_name in manager():
+            if violators:
+                return False
+        return True
 
     def report_modifications(self):
         r'''Reports modifications of component.
@@ -624,33 +627,37 @@ class InspectionAgent(object):
             ::
 
                 >>> print result
-                1 /    4 beamed quarter note
-                0 /    1 discontiguous spanner
-                0 /    5 duplicate id
-                0 /    1 empty container
-                0 /    0 intermarked hairpin
-                0 /    0 misdurated measure
-                0 /    0 misfilled measure
-                0 /    4 mispitched tie
-                0 /    4 misrepresented flag
-                0 /    5 missing parent
-                0 /    0 nested measure
-                0 /    1 overlapping beam
-                0 /    0 overlapping glissando
-                0 /    0 overlapping octavation
-                0 /    0 short hairpin
+                1 / 4 beamed quarter notes
+                0 / 1 discontiguous spanners
+                0 / 5 duplicate ids
+                0 / 0 intermarked hairpins
+                0 / 0 misdurated measures
+                0 / 0 misfilled measures
+                0 / 4 mispitched ties
+                0 / 4 misrepresented flags
+                0 / 5 missing parents
+                0 / 0 nested measures
+                0 / 1 overlapping beams
+                0 / 0 overlapping glissandi
+                0 / 0 overlapping octavation spanners
+                0 / 0 short hairpins
 
             Beamed quarter notes are not well formed.
 
         Returns string.
         '''
         from abjad.tools import wellformednesstools
-        lines = []
-        for checker in wellformednesstools.Check._list_checks():
-            lines.append(checker.report(self._component))
-        result = '\n'.join(lines)
-        return result
-
+        manager = wellformednesstools.WellformednessManager(self._component)
+        triples = manager()
+        strings = []
+        for violators, total, check_name in triples:
+            violator_count = len(violators)
+            string = '{} /\t{} {}'
+            check_name = check_name.replace('check_', '')
+            check_name = check_name.replace('_', ' ')
+            string = string.format(violator_count, total, check_name)
+            strings.append(string)
+        return '\n'.join(strings)
 
 def inspect(component):
     r'''Inspect `component`.
