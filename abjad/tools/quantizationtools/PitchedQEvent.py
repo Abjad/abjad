@@ -14,7 +14,11 @@ class PitchedQEvent(QEvent):
         >>> q_event
         quantizationtools.PitchedQEvent(
             durationtools.Offset(1000, 1),
-            (NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")),
+            (
+                pitchtools.NamedPitch("c'"),
+                pitchtools.NamedPitch("cs'"),
+                pitchtools.NamedPitch("e'"),
+                ),
             attachments=(),
             )
 

@@ -85,13 +85,13 @@ class AltoSaxophone(Instrument):
                 >>> print format(custom)
                 instrumenttools.AltoSaxophone(
                     instrument_name='sassofono contralto',
-                    instrument_name_markup=markuptools.Markup((
-                        'Sassofono contralto',
-                        )),
+                    instrument_name_markup=markuptools.Markup(
+                        ('Sassofono contralto',)
+                        ),
                     short_instrument_name='sass. contr.',
-                    short_instrument_name_markup=markuptools.Markup((
-                        'Sass. contr.',
-                        )),
+                    short_instrument_name_markup=markuptools.Markup(
+                        ('Sass. contr.',)
+                        ),
                     pitch_range=pitchtools.PitchRange(
                         '[G3, C7]'
                         ),

@@ -58,7 +58,9 @@ class QGrid(AbjadObject):
         [quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(250, 1),
-                (NamedPitch("c'"),),
+                (
+                    pitchtools.NamedPitch("c'"),
+                    ),
                 attachments=(),
                 ),
             durationtools.Offset(1, 4)
@@ -70,7 +72,9 @@ class QGrid(AbjadObject):
         [quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(750, 1),
-                (NamedPitch("cs'"),),
+                (
+                    pitchtools.NamedPitch("cs'"),
+                    ),
                 attachments=(),
                 ),
             durationtools.Offset(3, 4)

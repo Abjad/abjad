@@ -7,7 +7,7 @@ from experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression
 class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
     r'''Multiple-context set expression.
 
-    Set `attribute` to `source_expression` for `target_timespan` over 
+    Set `attribute` to `source_expression` for `target_timespan` over
     all `contexts`:
 
     ::
@@ -31,7 +31,10 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         musicexpressiontools.MultipleContextSetExpression(
             attribute='time_signatures',
             source_expression=musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 8), (3, 8)),
+                payload=(
+                    (4, 8),
+                    (3, 8),
+                    ),
                 ),
             target_timespan='red',
             persist=True,
@@ -101,10 +104,11 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
             target_timespan = copy.deepcopy(self.target_timespan)
             single_context_set_expression = \
                 single_context_set_expression_class(
-                source_expression=self.source_expression,
-                target_timespan=target_timespan,
-                target_context_name=target_context_name,
-                persist=self.persist)
+                    source_expression=self.source_expression,
+                    target_timespan=target_timespan,
+                    target_context_name=target_context_name,
+                    persist=self.persist,
+                    )
             single_context_set_expression._score_specification = \
                 self.score_specification
             single_context_set_expression._lexical_rank = \
@@ -118,7 +122,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         return single_context_set_expressions
 
     def evaluate_and_store_in_root_specification(self):
-        r'''Evaluate multiple-context set expression 
+        r'''Evaluate multiple-context set expression
         and store in root specification.
 
         Returns none.

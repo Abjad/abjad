@@ -100,13 +100,13 @@ class Accordion(Instrument):
                 >>> print format(custom)
                 instrumenttools.Accordion(
                     instrument_name='fisarmonica',
-                    instrument_name_markup=markuptools.Markup((
-                        'Fisarmonica',
-                        )),
+                    instrument_name_markup=markuptools.Markup(
+                        ('Fisarmonica',)
+                        ),
                     short_instrument_name='fis.',
-                    short_instrument_name_markup=markuptools.Markup((
-                        'Fis.',
-                        )),
+                    short_instrument_name_markup=markuptools.Markup(
+                        ('Fis.',)
+                        ),
                     allowable_clefs=marktools.ClefInventory([
                         marktools.Clef(
                             'treble'

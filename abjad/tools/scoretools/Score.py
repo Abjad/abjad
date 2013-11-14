@@ -122,19 +122,17 @@ class Score(Context):
         ::
 
             >>> print format(markup, 'storage')
-            markuptools.Markup((
-                markuptools.MarkupCommand(
-                    'italic',
+            markuptools.Markup(
+                (
                     markuptools.MarkupCommand(
-                        'right-column',
-                        [
-                            'Bremen - Boston - LA.',
-                            'Jul 2010 - May 2011.'
-                        ]
-                        )
+                        'italic',
+                        markuptools.MarkupCommand(
+                            'right-column',
+                            ['Bremen - Boston - LA.', 'Jul 2010 - May 2011.']
+                            )
+                        ),
                     ),
-                ),
-                direction=Down
+                direction=Down,
                 )
 
         ..  doctest::

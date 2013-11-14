@@ -11,7 +11,10 @@ def test_datastructuretools_CyclicTree___format___01():
         format(cyclic_tree),
         r'''
         datastructuretools.CyclicPayloadTree(
-            [[1, 2, 3], [4, 5]]
+            [
+                [1, 2, 3],
+                [4, 5],
+                ]
             )
         '''
         )

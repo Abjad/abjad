@@ -16,7 +16,11 @@ class QEventProxy(AbjadObject):
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(130, 1),
-                (NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")),
+                (
+                    pitchtools.NamedPitch("c'"),
+                    pitchtools.NamedPitch("cs'"),
+                    pitchtools.NamedPitch("e'"),
+                    ),
                 attachments=(),
                 ),
             durationtools.Offset(1, 2)

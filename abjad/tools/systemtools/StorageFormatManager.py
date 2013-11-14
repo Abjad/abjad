@@ -22,6 +22,8 @@ class StorageFormatManager(object):
     @staticmethod
     def format_one_value(value, is_indented=True):
         result = []
+        prefix, suffix = StorageFormatManager.get_indentation_strings(
+            is_indented)
         if isinstance(value, types.MethodType):
             return result
         if type(value) is abc.ABCMeta:
@@ -37,6 +39,23 @@ class StorageFormatManager(object):
                 value._tools_package_name,
                 value,
                 ))
+        elif isinstance(value, (list, tuple)):
+            # just return the repr, if all contents are builtin types
+            if all(isinstance(x, (bool, int, float, str, type(None)))
+                for x in value):
+                return [repr(value)]
+            if isinstance(value, list):
+                braces = '[', ']'
+            else:
+                braces = '(', ')'
+            result.append(braces[0])
+            for x in value:
+                pieces = StorageFormatManager.format_one_value(
+                    x, is_indented=is_indented)
+                for piece in pieces[:-1]:
+                    result.append('{}{}'.format(prefix, piece))
+                result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
+            result.append('{}{}'.format(prefix, braces[1]))
         else:
             result.append(repr(value))
         return result
@@ -63,9 +82,8 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_keyword_argument_names(object_):
-        if StorageFormatManager.is_instance(object_):
-            if hasattr(object_, '_keyword_argument_names'):
-                return object_._keyword_argument_names
+        if hasattr(object_, '_keyword_argument_names'):
+            return object_._keyword_argument_names
         return StorageFormatManager.get_signature_keyword_argument_names(
             object_)
 
@@ -133,61 +151,6 @@ class StorageFormatManager(object):
             start_index, stop_index = 1, 1 + positional_argument_count
             return initializer_code.co_varnames[start_index:stop_index]
         return ()
-
-    @staticmethod
-    def get_tools_package_name(object_):
-        r'''Gets tools-package name of `object_`:
-
-        ::
-
-            >>> manager = systemtools.StorageFormatManager
-            >>> manager.get_tools_package_name(Note)
-            'scoretools'
-
-        '''
-        if StorageFormatManager.is_instance(object_):
-            class_name = type(object_).__name__
-            if hasattr(object_, '_tools_package_name'):
-                return object_._tools_package_name
-        else:
-            class_name = object_.__name__
-        for part in reversed(object_.__module__.split('.')):
-            if not part == class_name:
-                return part
-
-    @staticmethod
-    def get_tools_package_qualified_class_name(object_):
-        r'''Gets tools-package qualified class name of `object_`:
-
-        ::
-
-            >>> manager = systemtools.StorageFormatManager
-            >>> manager.get_tools_package_qualified_class_name(Note)
-            'scoretools.Note'
-
-        Returns string.
-        '''
-        tools_package_name = None
-        if StorageFormatManager.is_instance(object_):
-            class_name = type(object_).__name__
-            if hasattr(object_, '_tools_package_name'):
-                tools_package_name = object_._tools_package_name
-        else:
-            class_name = object_.__name__
-        if not tools_package_name:
-            for part in reversed(object_.__module__.split('.')):
-                if not part == class_name:
-                    tools_package_name = part
-                    break
-        return '{}.{}'.format(tools_package_name, class_name)
-
-    @staticmethod
-    def is_instance(object_):
-        if isinstance(object_, types.TypeType):
-            return False
-        elif type(object_) is object_.__class__:
-            return True
-        return False
 
     @staticmethod
     def get_storage_format_pieces(
@@ -280,3 +243,59 @@ class StorageFormatManager(object):
                 result.append(prefix + piece)
             result.append(prefix + pieces[-1] + suffix)
         return tuple(result)
+
+    @staticmethod
+    def get_tools_package_name(object_):
+        r'''Gets tools-package name of `object_`:
+
+        ::
+
+            >>> manager = systemtools.StorageFormatManager
+            >>> manager.get_tools_package_name(Note)
+            'scoretools'
+
+        '''
+        if StorageFormatManager.is_instance(object_):
+            class_name = type(object_).__name__
+            if hasattr(object_, '_tools_package_name'):
+                return object_._tools_package_name
+        else:
+            class_name = object_.__name__
+        for part in reversed(object_.__module__.split('.')):
+            if not part == class_name:
+                return part
+
+    @staticmethod
+    def get_tools_package_qualified_class_name(object_):
+        r'''Gets tools-package qualified class name of `object_`:
+
+        ::
+
+            >>> manager = systemtools.StorageFormatManager
+            >>> manager.get_tools_package_qualified_class_name(Note)
+            'scoretools.Note'
+
+        Returns string.
+        '''
+        tools_package_name = None
+        if StorageFormatManager.is_instance(object_):
+            class_name = type(object_).__name__
+            if hasattr(object_, '_tools_package_name'):
+                tools_package_name = object_._tools_package_name
+        else:
+            class_name = object_.__name__
+        if not tools_package_name:
+            for part in reversed(object_.__module__.split('.')):
+                if not part == class_name:
+                    tools_package_name = part
+                    break
+        return '{}.{}'.format(tools_package_name, class_name)
+
+    @staticmethod
+    def is_instance(object_):
+        if isinstance(object_, types.TypeType):
+            return False
+        elif type(object_) is object_.__class__:
+            return True
+        return False
+

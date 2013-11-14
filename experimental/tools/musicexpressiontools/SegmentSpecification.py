@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import *
 from experimental.tools.musicexpressiontools.Specification \
-	import Specification
+    import Specification
 
 
 class SegmentSpecification(Specification):
@@ -123,7 +123,11 @@ class SegmentSpecification(Specification):
             timespantools.TimespanInventory([
                 musicexpressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=((2, 8), (3, 8), (4, 8)),
+                        payload=(
+                            (2, 8),
+                            (3, 8),
+                            (4, 8),
+                            ),
                         ),
                     target_timespan='red',
                     fresh=True,

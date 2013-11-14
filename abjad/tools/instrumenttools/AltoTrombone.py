@@ -91,13 +91,13 @@ class AltoTrombone(Instrument):
                 >>> print format(custom)
                 instrumenttools.AltoTrombone(
                     instrument_name='trombone contralto',
-                    instrument_name_markup=markuptools.Markup((
-                        'Trombone contralto',
-                        )),
+                    instrument_name_markup=markuptools.Markup(
+                        ('Trombone contralto',)
+                        ),
                     short_instrument_name='trb. contr.',
-                    short_instrument_name_markup=markuptools.Markup((
-                        'Trb. contr.',
-                        )),
+                    short_instrument_name_markup=markuptools.Markup(
+                        ('Trb. contr.',)
+                        ),
                     pitch_range=pitchtools.PitchRange(
                         '[A2, C6]'
                         ),

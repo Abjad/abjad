@@ -19,9 +19,9 @@ class PitchRange(AbjadObject):
         pitchtools.PitchRange(
             '[C3, C7]',
             pitch_range_name='four-octave range',
-            pitch_range_name_markup=markuptools.Markup((
-                'four-octave range',
-                )),
+            pitch_range_name_markup=markuptools.Markup(
+                ('four-octave range',)
+                ),
             )
 
     ::

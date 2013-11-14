@@ -9,14 +9,14 @@ def test_markuptools_Markup___format___01():
     assert systemtools.TestManager.compare(
         format(markup, 'storage'),
         r'''
-        markuptools.Markup((
-            markuptools.MarkupCommand(
-                'bold',
-                [
-                    'foo'
-                ]
-                ),
-            ))
+        markuptools.Markup(
+            (
+                markuptools.MarkupCommand(
+                    'bold',
+                    ['foo']
+                    ),
+                )
+            )
         '''
         )
 
@@ -24,25 +24,21 @@ def test_markuptools_Markup___format___01():
 def test_markuptools_Markup___format___02():
 
     markup = markuptools.Markup(
-        r'\bold { allegro ma non troppo }', 
+        r'\bold { allegro ma non troppo }',
         markup_name='non troppo',
         )
 
     assert systemtools.TestManager.compare(
         format(markup, 'storage'),
         r'''
-        markuptools.Markup((
-            markuptools.MarkupCommand(
-                'bold',
-                [
-                    'allegro',
-                    'ma',
-                    'non',
-                    'troppo'
-                ]
+        markuptools.Markup(
+            (
+                markuptools.MarkupCommand(
+                    'bold',
+                    ['allegro', 'ma', 'non', 'troppo']
+                    ),
                 ),
-            ),
-            markup_name='non troppo'
+            markup_name='non troppo',
             )
         '''
         )

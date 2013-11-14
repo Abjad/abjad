@@ -53,8 +53,13 @@ class Division(NonreducedFraction, BoundedObject):
 
     ### CONSTRUCTOR ###
 
-    def __new__(cls, arg,
-        is_left_open=None, is_right_open=None, start_offset=None):
+    def __new__(
+        cls,
+        arg,
+        is_left_open=None,
+        is_right_open=None,
+        start_offset=None,
+        ):
         if isinstance(arg, str):
             triple = mathtools.interval_string_to_pair_and_indicators(arg)
             pair, is_left_open, is_right_open = triple
@@ -106,12 +111,36 @@ class Division(NonreducedFraction, BoundedObject):
         return '{}{}, {}{}'.format(
             left_symbol, self.numerator, self.denominator, right_symbol)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _positional_argument_values(self):
+        return (str(self),)
+
+    @property
+    def _keyword_argument_names(self):
+        result = []
+        if self.is_left_open:
+            result.append('is_left_open')
+        if self.is_right_open:
+            result.append('is_right_open')
+        if self.start_offset is not None:
+            result.append('start_offset')
+        return result
+
     ### PRIVATE METHODS ###
 
+    # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        string = '{}({!r})'.format(
-            self._tools_package_qualified_class_name, str(self))
-        return [string]
+        from abjad.tools import abctools
+        is_indented = bool(self._keyword_argument_names)
+        pieces = abctools.AbjadObject._get_tools_package_qualified_repr_pieces(
+            self,
+            is_indented=is_indented,
+            )
+        if not is_indented:
+            return [''.join(pieces)]
+        return pieces
 
     ### PUBLIC PROPERTIES ###
 

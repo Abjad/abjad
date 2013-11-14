@@ -51,7 +51,10 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         >>> print format(fresh_single_context_set_expression)
         musicexpressiontools.SingleContextTimeSignatureSetExpression(
             source_expression=musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 8), (3, 8)),
+                payload=(
+                    (4, 8),
+                    (3, 8),
+                    ),
                 ),
             target_timespan='red',
             fresh=True,

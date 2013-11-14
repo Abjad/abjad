@@ -82,13 +82,13 @@ class AltoFlute(Instrument):
                 >>> print format(custom)
                 instrumenttools.AltoFlute(
                     instrument_name='flauto contralto',
-                    instrument_name_markup=markuptools.Markup((
-                        'Flauto contralto',
-                        )),
+                    instrument_name_markup=markuptools.Markup(
+                        ('Flauto contralto',)
+                        ),
                     short_instrument_name='fl. contr.',
-                    short_instrument_name_markup=markuptools.Markup((
-                        'Fl. contr.',
-                        )),
+                    short_instrument_name_markup=markuptools.Markup(
+                        ('Fl. contr.',)
+                        ),
                     pitch_range=pitchtools.PitchRange(
                         '[G3, C7]'
                         ),

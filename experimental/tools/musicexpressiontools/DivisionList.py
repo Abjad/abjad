@@ -57,20 +57,64 @@ class DivisionList(BoundedObject):
 
         >>> print format(division_list)
         musicexpressiontools.DivisionList(
-           [Division('[3, 16]', start_offset=Offset(0, 1)),
-            Division('[3, 16]', start_offset=Offset(3, 16)),
-            Division('[3, 16]', start_offset=Offset(3, 8)),
-            Division('[3, 16]', start_offset=Offset(9, 16)),
-            Division('[3, 16]', start_offset=Offset(3, 4)),
-            Division('[3, 16]', start_offset=Offset(15, 16)),
-            Division('[3, 16]', start_offset=Offset(9, 8)),
-            Division('[3, 16]', start_offset=Offset(21, 16)),
-            Division('[3, 16]', start_offset=Offset(3, 2)),
-            Division('[3, 16]', start_offset=Offset(27, 16)),
-            Division('[3, 16]', start_offset=Offset(15, 8)),
-            Division('[3, 16]', start_offset=Offset(33, 16)),
-            Division('[3, 16]', start_offset=Offset(9, 4)),
-            Division('[3, 16]', start_offset=Offset(39, 16))],
+            [
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(0, 1),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(3, 16),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(3, 8),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(9, 16),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(3, 4),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(15, 16),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(9, 8),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(21, 16),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(3, 2),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(27, 16),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(15, 8),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(33, 16),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(9, 4),
+                    ),
+                musicexpressiontools.Division(
+                    '[3, 16]',
+                    start_offset=durationtools.Offset(39, 16),
+                    ),
+                ],
             start_offset=durationtools.Offset(0, 1),
             voice_name='Voice 1',
             )
@@ -132,20 +176,64 @@ class DivisionList(BoundedObject):
 
             >>> print format(division_list)
             musicexpressiontools.DivisionList(
-                [Division('[3, 16]', start_offset=Offset(0, 1)),
-                Division('[3, 16]', start_offset=Offset(3, 16)),
-                Division('[3, 16]', start_offset=Offset(3, 8)),
-                Division('[3, 16]', start_offset=Offset(9, 16)),
-                Division('[3, 16]', start_offset=Offset(3, 4)),
-                Division('[3, 16]', start_offset=Offset(15, 16)),
-                Division('[3, 16]', start_offset=Offset(9, 8)),
-                Division('[3, 16]', start_offset=Offset(21, 16)),
-                Division('[3, 16]', start_offset=Offset(3, 2)),
-                Division('[3, 16]', start_offset=Offset(27, 16)),
-                Division('[3, 16]', start_offset=Offset(15, 8)),
-                Division('[3, 16]', start_offset=Offset(33, 16)),
-                Division('[3, 16]', start_offset=Offset(9, 4)),
-                Division('[3, 16]', start_offset=Offset(39, 16))],
+                [
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(0, 1),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(3, 16),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(3, 8),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(9, 16),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(3, 4),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(15, 16),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(9, 8),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(21, 16),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(3, 2),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(27, 16),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(15, 8),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(33, 16),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(9, 4),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(39, 16),
+                        ),
+                    ],
                 start_offset=durationtools.Offset(0, 1),
                 voice_name='Voice 1',
                 )
@@ -411,10 +499,24 @@ class DivisionList(BoundedObject):
 
             >>> print format(result)
             musicexpressiontools.DivisionList(
-                [Division('[4, 16]', start_offset=Offset(5, 1)),
-                Division('[3, 16]', start_offset=Offset(21, 4)),
-                Division('[4, 16]', start_offset=Offset(87, 16)),
-                Division('[3, 16]', start_offset=Offset(91, 16))],
+                [
+                    musicexpressiontools.Division(
+                        '[4, 16]',
+                        start_offset=durationtools.Offset(5, 1),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(21, 4),
+                        ),
+                    musicexpressiontools.Division(
+                        '[4, 16]',
+                        start_offset=durationtools.Offset(87, 16),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(91, 16),
+                        ),
+                    ],
                 start_offset=durationtools.Offset(5, 1),
                 voice_name='Voice 1',
                 )
@@ -440,10 +542,24 @@ class DivisionList(BoundedObject):
 
             >>> print format(result)
             musicexpressiontools.DivisionList(
-                [Division('[4, 16]', start_offset=Offset(5, 1)),
-                Division('[3, 16]', start_offset=Offset(21, 4)),
-                Division('[4, 16]', start_offset=Offset(87, 16)),
-                Division('[3, 16]', start_offset=Offset(91, 16))],
+                [
+                    musicexpressiontools.Division(
+                        '[4, 16]',
+                        start_offset=durationtools.Offset(5, 1),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(21, 4),
+                        ),
+                    musicexpressiontools.Division(
+                        '[4, 16]',
+                        start_offset=durationtools.Offset(87, 16),
+                        ),
+                    musicexpressiontools.Division(
+                        '[3, 16]',
+                        start_offset=durationtools.Offset(91, 16),
+                        ),
+                    ],
                 start_offset=durationtools.Offset(5, 1),
                 voice_name='Voice 1',
                 )
