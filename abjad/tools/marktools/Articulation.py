@@ -9,7 +9,7 @@ class Articulation(AbjadObject):
 
     ..  container:: example
 
-        Initialize s from name:
+        Initializes from name:
 
         ::
 
@@ -18,7 +18,7 @@ class Articulation(AbjadObject):
 
     ..  container:: example
 
-        Initialize s from abbreviation:
+        Initializes from abbreviation:
 
         ::
 
@@ -27,7 +27,7 @@ class Articulation(AbjadObject):
 
     ..  container:: example
 
-        Initialize s from other articulation:
+        Initializes from other articulation:
 
         ::
 
@@ -37,7 +37,7 @@ class Articulation(AbjadObject):
 
     ..  container:: example
 
-        Initialize s with direction:
+        Initializes with direction:
 
         ::
 

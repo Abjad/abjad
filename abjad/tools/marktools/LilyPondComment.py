@@ -19,7 +19,7 @@ class LilyPondComment(AbjadObject):
         % this is a comment
         c'4
 
-    Initialize s LilyPond comment from contents string;
+    Initializes LilyPond comment from contents string;
     or contents string and format slot;
     or from other LilyPond comment;
     or from other LilyPond comment and format slot.
