@@ -150,7 +150,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             '.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker'
             '.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker'
             '.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker'
-            '.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/TempoInventoryMaterialPackageMaker'
 
         Returns list.
         '''
@@ -189,7 +189,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             'pitch range inventory material package maker'
             'rhythm maker material package maker'
             'sargasso measure material package maker'
-            'tempo mark inventory material package maker'
+            'tempo inventory material package maker'
 
         Returns list.
         '''
@@ -228,7 +228,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.TempoInventoryMaterialPackageMaker'
 
         Returns list.
         '''
@@ -267,7 +267,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker')
             MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker')
             MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/TempoInventoryMaterialPackageMaker')
 
         Returns list.
         '''

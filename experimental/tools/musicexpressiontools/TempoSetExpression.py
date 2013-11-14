@@ -13,6 +13,6 @@ class TempoSetExpression(LeafSetExpression):
     def execute_against_score(self, score):
         r'''Execute tempo set expression against `score`.
         '''
-        tempo_mark = self.source_expression.payload
+        tempo = self.source_expression.payload
         first_leaf = self._iterate_selected_leaves_in_score(score)[0]
-        attach(tempo_mark, first_leaf)
+        attach(tempo, first_leaf)

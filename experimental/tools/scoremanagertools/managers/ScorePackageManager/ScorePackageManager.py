@@ -127,7 +127,7 @@ class ScorePackageManager(PackageManager):
         wrangler = self.material_package_wrangler
         for manager in wrangler.list_asset_managers(head=self.package_path):
             class_name = manager._get_metadata('material_package_maker_class_name')
-            if class_name == 'TempoMarkInventoryMaterialPackageMaker':
+            if class_name == 'TempoInventoryMaterialPackageMaker':
                 return manager.output_material
 
     def _get_title(self):

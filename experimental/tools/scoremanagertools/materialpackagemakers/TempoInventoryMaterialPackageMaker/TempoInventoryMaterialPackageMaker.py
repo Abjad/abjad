@@ -2,11 +2,11 @@
 from abjad import *
 from experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker \
     import InventoryMaterialPackageMaker
-from experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor \
-    import TempoMarkInventoryEditor
+from experimental.tools.scoremanagertools.editors.TempoInventoryEditor \
+    import TempoInventoryEditor
 
 
-class TempoMarkInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
+class TempoInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
 
     ### CLASS VARIABLES ###
 
@@ -15,7 +15,7 @@ class TempoMarkInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
     output_material_checker = staticmethod(
         lambda x: isinstance(x, marktools.TempoInventory))
 
-    output_material_editor = TempoMarkInventoryEditor
+    output_material_editor = TempoInventoryEditor
 
     output_material_maker = marktools.TempoInventory
 
@@ -27,13 +27,13 @@ class TempoMarkInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def illustration_builder(tempo_mark_inventory, **kwargs):
+    def illustration_builder(tempo_inventory, **kwargs):
         notes = []
-        for tempo_mark in tempo_mark_inventory:
+        for tempo in tempo_inventory:
             note = Note("c'4")
-            tempo_mark = marktools.Tempo(
-                tempo_mark, target_context=Staff)
-            tempo_mark(note)
+            tempo = marktools.Tempo(
+                tempo, target_context=Staff)
+            tempo(note)
             notes.append(note)
         staff = scoretools.RhythmicStaff(notes)
         score = Score([staff])

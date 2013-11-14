@@ -367,7 +367,7 @@ class Selector(ScoreManagerObject):
         return selector
 
     @staticmethod
-    def make_tempo_mark_selector(
+    def make_tempo_selector(
         session=None,
         ):
         selector = Selector(session=session)

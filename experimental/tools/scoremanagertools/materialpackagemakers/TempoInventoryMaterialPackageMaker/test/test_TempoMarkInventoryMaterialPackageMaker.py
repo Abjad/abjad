@@ -2,7 +2,7 @@
 from experimental import *
 
 
-def test_TempoMarkInventoryMaterialPackageMaker_01():
+def test_TempoInventoryMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
@@ -13,7 +13,7 @@ def test_TempoMarkInventoryMaterialPackageMaker_01():
             'testtempoinventory omi add ((1, 4), 60) add ((1, 4), 90) b default '
             'q '
             )
-        mpp = scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker(
+        mpp = scoremanagertools.materialpackagemakers.TempoInventoryMaterialPackageMaker(
             'experimental.tools.scoremanagertools.materialpackages.testtempoinventory')
         assert mpp._list_directory() == [
             '__init__.py', 

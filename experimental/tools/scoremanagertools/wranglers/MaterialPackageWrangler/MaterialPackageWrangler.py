@@ -338,7 +338,7 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageManager('.../tools/scoremanagertools/materialpackages/red_numbers')
             SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_sargasso_measures')
             MaterialPackageManager('.../tools/scoremanagertools/materialpackages/sargasso_multipliers')
-            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/materials/tempo_inventory')
+            TempoInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/materials/tempo_inventory')
 
         Returns list.
         '''

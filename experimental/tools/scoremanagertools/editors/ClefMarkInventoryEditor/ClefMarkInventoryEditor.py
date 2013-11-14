@@ -7,8 +7,8 @@ from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
-from experimental.tools.scoremanagertools.editors.TempoMarkEditor \
-    import TempoMarkEditor
+from experimental.tools.scoremanagertools.editors.TempoEditor \
+    import TempoEditor
 
 
 class ClefMarkInventoryEditor(ObjectInventoryEditor):

@@ -5,19 +5,19 @@ from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
-from experimental.tools.scoremanagertools.editors.TempoMarkEditor \
-    import TempoMarkEditor
+from experimental.tools.scoremanagertools.editors.TempoEditor \
+    import TempoEditor
 from experimental.tools.scoremanagertools.iotools.UserInputGetter \
     import UserInputGetter
 
 
-class TempoMarkInventoryEditor(ObjectInventoryEditor):
+class TempoInventoryEditor(ObjectInventoryEditor):
 
     ### CLASS VARIABLES ###
 
     item_class = marktools.Tempo
 
-    item_editor_class = TempoMarkEditor
+    item_editor_class = TempoEditor
 
     item_getter_configuration_method = UserInputGetter.append_tempo
 
