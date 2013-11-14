@@ -171,6 +171,20 @@ class Container(Component):
             return duration
 
     @property
+    def _keyword_argument_names(self):
+        return ()
+
+    @property
+    def _positional_argument_values(self):
+        if not self:
+            return ()
+        lilypond_format = ' '.join(format(x, 'lilypond') for x in self)
+        lilypond_format = lilypond_format.replace('\n', ' ')
+        lilypond_format = lilypond_format.replace('\t', ' ')
+        lilypond_format = lilypond_format.replace('  ', ' ')
+        return (lilypond_format,)
+
+    @property
     def _preprolated_duration(self):
         return self._contents_duration
 

@@ -649,9 +649,7 @@ class ScoreSpecification(Specification):
                 ])
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
-                    payload=scoretools.Container(
-                        music=[],
-                        ),
+                    payload=scoretools.Container(),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 1',
                     ),
@@ -698,9 +696,7 @@ class ScoreSpecification(Specification):
                 ])
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
-                    payload=scoretools.Container(
-                        music=[],
-                        ),
+                    payload=scoretools.Container(),
                     start_offset=durationtools.Offset(0, 1),
                     voice_name='Voice 2',
                     ),
