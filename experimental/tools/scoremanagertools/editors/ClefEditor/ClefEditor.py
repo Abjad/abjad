@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
 
 
-class ClefMarkEditor(InteractiveEditor):
+class ClefEditor(InteractiveEditor):
 
     ### CLASS VARIABLES ###
 

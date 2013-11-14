@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import marktools
 from experimental.tools.scoremanagertools import iotools
-from experimental.tools.scoremanagertools.editors.ClefMarkEditor \
-    import ClefMarkEditor
+from experimental.tools.scoremanagertools.editors.ClefEditor \
+    import ClefEditor
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
@@ -11,13 +11,13 @@ from experimental.tools.scoremanagertools.editors.TempoEditor \
     import TempoEditor
 
 
-class ClefMarkInventoryEditor(ObjectInventoryEditor):
+class ClefInventoryEditor(ObjectInventoryEditor):
 
     ### CLASS VARIABLES ###
 
     item_class = marktools.Clef
 
-    item_editor_class = ClefMarkEditor
+    item_editor_class = ClefEditor
 
     item_getter_configuration_method = iotools.UserInputGetter.append_clef
 

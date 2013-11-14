@@ -4,8 +4,8 @@ from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools import wizards
 from abjad.tools.instrumenttools.Instrument import Instrument
 from abjad.tools import instrumenttools
-from experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor \
-    import ClefMarkInventoryEditor
+from experimental.tools.scoremanagertools.editors.ClefInventoryEditor \
+    import ClefInventoryEditor
 from experimental.tools.scoremanagertools.editors.InteractiveEditor \
     import InteractiveEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
@@ -28,7 +28,7 @@ class InstrumentEditor(InteractiveEditor):
             'rg', 
             getters.get_symbolic_pitch_range_string,
             ),
-        ('allowable_clefs', 'clefs', 'cf', ClefMarkInventoryEditor),
+        ('allowable_clefs', 'clefs', 'cf', ClefInventoryEditor),
         )
 
     ### PRIVATE METHODS ###
