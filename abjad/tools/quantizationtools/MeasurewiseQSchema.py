@@ -84,7 +84,7 @@ class MeasurewiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: Tempo(Duration(1, 4), 54)
+        tempo: 4=54
         time_signature: 3/4
         use_full_measure: True
 
@@ -96,7 +96,7 @@ class MeasurewiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: Tempo(Duration(1, 4), 54)
+        tempo: 4=54
         time_signature: 3/4
         use_full_measure: True
 

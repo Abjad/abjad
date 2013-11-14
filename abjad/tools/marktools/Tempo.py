@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 import fractions
+import functools
+import math
 import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -8,6 +10,7 @@ from abjad.tools.marktools.ContextMark import ContextMark
 from abjad.tools.scoretools.Score import Score
 
 
+@functools.total_ordering
 class Tempo(ContextMark):
     r'''A tempo indication.
 
@@ -179,6 +182,10 @@ class Tempo(ContextMark):
         superclass = super(Tempo, self)
         return superclass.__format__(format_specification=format_specification)
 
+    def __lt__(self, arg):
+        assert isinstance(arg, type(self)), repr(arg)
+        return self.quarters_per_minute < arg.quarters_per_minute
+
     def __mul__(self, multiplier):
         r'''Multiplies tempo by `multiplier`.
 
@@ -192,6 +199,9 @@ class Tempo(ContextMark):
             new_tempo_indication = \
                 type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
+
+    def __str__(self):
+        return self._equation
 
     def __sub__(self, expr):
         r'''Subtracts `expr` from tempo.
@@ -465,3 +475,110 @@ class Tempo(ContextMark):
             return isinstance(tempo, type(self))
         except:
             return False
+
+    def list_related_tempos(
+        self, 
+        maximum_numerator=None, 
+        maximum_denominator=None,
+        ):
+        r'''Lists tempos related to this tempo.
+
+        Returns list of tempo / ratio pairs.
+
+        Each new tempo equals not less than half of this tempo
+        and not more than twice this tempo.
+
+        ..  container:: example
+
+            Rewrites tempo ``58`` MM by ratios of the form ``n:d`` such that 
+            ``1 <= n <= 8`` and ``1 <= d <= 8``:
+            ...
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 58)
+                >>> pairs = tempo.list_related_tempos(
+                ...     maximum_numerator=8, 
+                ...     maximum_denominator=8,
+                ...     )
+
+            ::
+
+                >>> for tempo, ratio in pairs:
+                ...     string = '{!s}\t{}'.format(tempo, ratio)
+                ...     print string
+                4=29    1:2
+                4=58    1:1
+                4=87    3:2
+                4=116   2:1
+
+        ..  container:: example
+
+            Rewrites tempo ``58`` MM by ratios of the form ``n:d`` such that
+            ``1 <= n <= 30`` and ``1 <= d <= 30``:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 58)
+                >>> pairs = tempo.list_related_tempos(
+                ...     maximum_numerator=30, 
+                ...     maximum_denominator=30,
+                ...     )
+
+            ::
+
+                >>> for tempo, ratio in pairs:
+                ...     string = '{!s}\t{}'.format(tempo, ratio)
+                ...     print string
+                ...
+                4=30    15:29
+                4=32    16:29
+                4=34    17:29
+                4=36    18:29
+                4=38    19:29
+                4=40    20:29
+                4=42    21:29
+                4=44    22:29
+                4=46    23:29
+                4=48    24:29
+                4=50    25:29
+                4=52    26:29
+                4=54    27:29
+                4=56    28:29
+                4=58    1:1
+                4=60    30:29
+
+        Returns list.
+        '''
+        # assert integer tempo
+        assert isinstance(self.units_per_minute, int), repr(self)
+        # find divisors
+        divisors = mathtools.divisors(self.units_per_minute)
+        if maximum_denominator is not None:
+            divisors = [x for x in divisors if x <= maximum_denominator]
+        # make pairs
+        pairs = []
+        for divisor in divisors:
+            start = int(math.ceil(divisor / 2.0))
+            stop = 2 * divisor
+            numerators = range(start, stop + 1)
+            if maximum_numerator is not None:
+                    numerators = [
+                        x for x in numerators 
+                        if x <= maximum_numerator
+                        ]
+        for numerator in numerators:
+                ratio = mathtools.Ratio(numerator, divisor)
+                multiplier = durationtools.Multiplier(*ratio)
+                new_units_per_minute = multiplier * self.units_per_minute
+                assert mathtools.is_integer_equivalent_expr(
+                    new_units_per_minute)
+                new_units_per_minute = int(new_units_per_minute)
+                new_tempo = type(self)(self.duration, new_units_per_minute)
+                pair = (new_tempo, ratio)
+                if pair not in pairs:
+                    pairs.append(pair)
+        # sort pairs
+        pairs.sort()
+        # return pairs
+        return pairs

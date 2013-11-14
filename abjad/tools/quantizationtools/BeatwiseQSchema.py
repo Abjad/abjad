@@ -65,7 +65,7 @@ class BeatwiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: Tempo(Duration(1, 4), 54)
+        tempo: 4=54
 
     ::
 
@@ -76,7 +76,7 @@ class BeatwiseQSchema(QSchema):
         search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
-        tempo: Tempo(Duration(1, 4), 54)
+        tempo: 4=54
 
     Per-time-step settings can be applied in a variety of ways.
 

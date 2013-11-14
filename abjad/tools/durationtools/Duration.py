@@ -683,7 +683,7 @@ class Duration(AbjadObject, fractions.Fraction):
         from abjad.tools import durationtools
 
         if not self.is_assignable:
-            raise AssignabilityError
+            raise AssignabilityError(self)
         undotted_rational = self.equal_or_lesser_power_of_two
         if undotted_rational <= 1:
             undotted_duration_string = str(undotted_rational.denominator)
