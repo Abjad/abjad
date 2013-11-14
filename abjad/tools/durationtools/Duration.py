@@ -498,11 +498,16 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> for n in range(1, 16 + 1):
             ...     try:
             ...         duration = Duration(n, 16)
-            ...         print '{!s}\t{}'.format(
-            ...             duration.with_denominator(16), duration.dot_count)
+            ...         sixteenths = duration.with_denominator(16)
+            ...         dot_count = duration.dot_count
+            ...         string = '{!s}\t{}'
+            ...         string = string.format(sixteenths, dot_count)
+            ...         print string
             ...     except AssignabilityError:
-            ...         print '{!s}\t{}'.format(
-            ...             duration.with_denominator(16), '--')
+            ...         sixteenths = duration.with_denominator(16)
+            ...         string = '{!s}\t{}'
+            ...         string = string.format(sixteenths, '--')
+            ...         print string
             ...
             1/16    0
             2/16    0
@@ -541,8 +546,8 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
             ...     result = duration.equal_or_greater_assignable
-            ...     print '{!s}\t{!s}'.format(
-            ...         duration.with_denominator(16), result)
+            ...     sixteenths = duration.with_denominator(16)
+            ...     print '{!s}\t{!s}'.format(sixteenths, result)
             ...
             1/16    1/16
             2/16    1/8
@@ -581,8 +586,8 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
             ...     result = duration.equal_or_greater_power_of_two
-            ...     print '{!s}\t{!s}'.format(
-            ...         duration.with_denominator(16), result)
+            ...     sixteenths = duration.with_denominator(16)
+            ...     print '{!s}\t{!s}'.format(sixteenths, result)
             ...
             1/16    1/16
             2/16    1/8
@@ -615,8 +620,8 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_assignable
-            ...     print '{!s}\t{!s}'.format(
-            ...         duration.with_denominator(16), result)
+            ...     sixteenths = duration.with_denominator(16)
+            ...     print '{!s}\t{!s}'.format(sixteenths, result)
             ...
             1/16    1/16
             2/16    1/8
@@ -656,8 +661,8 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_power_of_two
-            ...     print '{!s}\t{!s}'.format(
-            ...         duration.with_denominator(16), result)
+            ...     sixteenths = duration.with_denominator(16)
+            ...     print '{!s}\t{!s}'.format(sixteenths, result)
             ...
             1/16    1/16
             2/16    1/8
@@ -689,8 +694,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
             >>> for n in range(1, 16 + 1):
             ...     duration = Duration(n, 64)
-            ...     print '{!s}\t{}'.format(
-            ...         duration.with_denominator(64), duration.flag_count)
+            ...     sixty_fourths = duration.with_denominator(64)
+            ...     print '{!s}\t{}'.format(sixty_fourths, duration.flag_count)
             ...
             1/64    4
             2/64    3
@@ -725,8 +730,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
             >>> for n in range(1, 16 + 1):
             ...     duration = Duration(1, n)
-            ...     print '{!s}\t{}'.format(duration, 
-            ...         duration.has_power_of_two_denominator)
+            ...     result = duration.has_power_of_two_denominator
+            ...     print '{!s}\t{}'.format(duration, result)
             ...
             1       True
             1/2     True
@@ -757,9 +762,9 @@ class Duration(AbjadObject, fractions.Fraction):
         ::
 
             >>> for denominator in range(1, 16 + 1):
-            ...     multiplier = Multiplier(1, denominator)
-            ...     print '{!s}\t{!s}'.format(multiplier, 
-            ...         multiplier.implied_prolation)
+            ...     duration = Duration(1, denominator)
+            ...     result = duration.implied_prolation
+            ...     print '{!s}\t{!s}'.format(duration, result)
             ...
             1       1
             1/2     1
@@ -793,8 +798,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
             >>> for numerator in range(0, 16 + 1):
             ...     duration = Duration(numerator, 16)
-            ...     print '{!s}\t{}'.format(duration.with_denominator(16), 
-            ...         duration.is_assignable)
+            ...     sixteenths = duration.with_denominator(16)
+            ...     print '{!s}\t{}'.format(sixteenths, duration.is_assignable)
             ...
             0/16    False
             1/16    True
@@ -918,15 +923,15 @@ class Duration(AbjadObject, fractions.Fraction):
     ### PUBLIC FUNCTIONS ###
 
     @staticmethod
-    def durations_to_nonreduced_fractions_with_common_denominator(durations):
+    def durations_to_nonreduced_fractions(durations):
         r'''Change `durations` to nonreduced fractions sharing
         least common denominator.
 
         ::
 
             >>> durations = [Duration(2, 4), 3, (5, 16)]
-            >>> for x in Duration.durations_to_nonreduced_fractions_with_common_denominator(
-            ...     durations):
+            >>> result = Duration.durations_to_nonreduced_fractions(durations)
+            >>> for x in result:
             ...     x
             ...
             NonreducedFraction(8, 16)
@@ -1013,7 +1018,8 @@ class Duration(AbjadObject, fractions.Fraction):
         Returns string.
         '''
         if self < 0:
-            message = 'seconds must be positive.'
+            message = 'seconds must be positive: {!r}.'
+            message = message.format(self)
             raise ValueError(message)
         minutes = int(self / 60)
         remaining_seconds = str(int(self - minutes * 60)).zfill(2)
@@ -1029,9 +1035,6 @@ class Duration(AbjadObject, fractions.Fraction):
         ::
 
             >>> duration = Duration(1, 4)
-
-        ::
-
             >>> for denominator in (4, 8, 16, 32):
             ...     print duration.with_denominator(denominator)
             ...
@@ -1051,7 +1054,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         ..  container:: example
 
-            Yield all positive durations in Cantor diagonalized order:
+            Yields all positive durations in Cantor diagonalized order:
 
             ::
 

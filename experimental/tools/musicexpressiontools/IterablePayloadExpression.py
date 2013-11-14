@@ -161,7 +161,7 @@ class IterablePayloadExpression(PayloadExpression):
         from abjad.tools import durationtools
         # change to nonreduced fractions
         nonreduced_fractions = \
-            durationtools.Duration.durations_to_nonreduced_fractions_with_common_denominator(
+            durationtools.Duration.durations_to_nonreduced_fractions(
             durations)
         # find common denominator
         common_denominator = nonreduced_fractions[0].denominator

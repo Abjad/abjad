@@ -1699,7 +1699,7 @@ class Tuplet(Container):
             self._preprolated_duration,
             Duration(1, denominator),
             ]
-        duration_pairs = Duration.durations_to_nonreduced_fractions_with_common_denominator(
+        duration_pairs = Duration.durations_to_nonreduced_fractions(
             durations)
         self.preferred_denominator = duration_pairs[1].numerator
 
