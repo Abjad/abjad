@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+#from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.marktools.Mark import Mark
 
 
+#class ContextMark(AbjadObject):
 class ContextMark(Mark):
     '''A context mark.
     '''
@@ -10,6 +12,7 @@ class ContextMark(Mark):
 
     __slots__ = (
         '_effective_context', 
+        '_start_component',
         '_target_context',
         )
 
@@ -17,8 +20,8 @@ class ContextMark(Mark):
 
     def __init__(self):
         from abjad.tools import scoretools
-        Mark.__init__(self)
         self._effective_context = None
+        self._start_component = None
         self._target_context = scoretools.Staff
 
     ### SPECIAL METHODS ###
@@ -38,10 +41,35 @@ class ContextMark(Mark):
 
         Returns string.
         '''
-        superclass = super(ContextMark, self)
-        return superclass.__format__(format_specification=format_specification)
+        if format_specification in ('', 'storage'):
+            return self._tools_package_qualified_indented_repr
+        elif format_specification == 'lilypond':
+            return self._lilypond_format
+        return str(self)
+
+    def __repr__(self):
+        r'''Interpreter representation of context mark.
+
+        Returns string.
+        '''
+        return '{}({}){}'.format(
+            type(self).__name__,
+            self._contents_repr_string, 
+            self._attachment_repr_string,
+            )
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _attachment_repr_string(self):
+        if self._start_component is None:
+            return ''
+        else:
+            return '({!s})'.format(self._start_component)
+
+    @property
+    def _one_line_menuing_summary(self):
+        return repr(self)
 
     @property
     def _target_context_name(self):
@@ -73,7 +101,8 @@ class ContextMark(Mark):
                 message = 'effective context mark already attached'
                 message += ' to component starting at same time.'
                 raise ValueError(message)
-        return Mark._attach(self, start_component)
+        #return Mark._attach(self, start_component)
+        self._bind_to_start_component(start_component)
 
     def _bind_correct_effective_context(self, correct_effective_context):
         self._unbind_effective_context()
@@ -84,11 +113,17 @@ class ContextMark(Mark):
         self._update_effective_context()
 
     def _bind_to_start_component(self, start_component):
-        Mark._bind_to_start_component(self, start_component)
+        #Mark._bind_to_start_component(self, start_component)
+        from abjad.tools import scoretools
+        assert isinstance(start_component, scoretools.Component)
+        self._unbind_start_component()
+        start_component._start_marks.append(self)
+        self._start_component = start_component
         self._update_effective_context()
 
     def _detach(self):
-        Mark._detach(self)
+        #Mark._detach(self)
+        self._unbind_start_component()
         self._unbind_effective_context()
         return self
 
@@ -126,6 +161,15 @@ class ContextMark(Mark):
             except ValueError:
                 pass
         self._effective_context = None
+
+    def _unbind_start_component(self):
+        start_component = self._start_component
+        if start_component is not None:
+            try:
+                start_component._start_marks.remove(self)
+            except ValueError:
+                pass
+        self._start_component = None
 
     def _update_effective_context(self):
         r'''This function is designed to be called by score components 

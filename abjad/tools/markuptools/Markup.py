@@ -2,13 +2,14 @@
 from abjad.tools import abctools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
-from abjad.tools.marktools.Mark import Mark
+#from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Markup(Mark):
+class Markup(AbjadObject):
     r'''Abjad model of LilyPond markup.
 
-    Initialize from string:
+    Initializes from string:
 
     ::
 
@@ -28,7 +29,7 @@ class Markup(Mark):
 
         >>> show(markup) # doctest: +SKIP
 
-    Initialize any markup from existing markup:
+    Initializes any markup from existing markup:
 
     ::
 
@@ -120,15 +121,21 @@ class Markup(Mark):
             contents = tuple(contents)
         else:
             contents = (str(argument),)
-        Mark.__init__(self)
+        #Mark.__init__(self)
         self._contents = contents
         self._format_slot = 'right'
         self._markup_name = markup_name
-        self.direction = direction
+        direction = \
+            stringtools.arg_to_tridirectional_ordinal_constant(direction)
+        self._direction = direction
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies markup.
+
+        Returns new markup.
+        '''
         return type(self)(
             self._contents,
             direction=self._direction,
@@ -136,6 +143,11 @@ class Markup(Mark):
             )
 
     def __eq__(self, expr):
+        r'''True when `expr` is a markup with format equal to that
+        of this markup. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if format(self) == format(expr):
                 return True
@@ -156,9 +168,17 @@ class Markup(Mark):
         return str(self)
 
     def __hash__(self):
+        r'''Hashes markup.
+
+        Returns integer.
+        '''
         return hash((type(self).__name__, self.contents))
 
     def __illustrate__(self):
+        r'''Illustrates markup.
+
+        Returns LilyPond file.
+        '''
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
@@ -166,10 +186,11 @@ class Markup(Mark):
         lilypond_file.append(self)
         return lilypond_file
 
-    def __ne__(self, expr):
-        return not self == expr
-
     def __str__(self):
+        r'''String representation of markup.
+
+        Returns string.
+        '''
         return self._lilypond_format
 
     ### PRIVATE PROPERTIES ###
@@ -192,7 +213,7 @@ class Markup(Mark):
 
     @property
     def contents(self):
-        r'''Tuple of contents of markup:
+        r'''Tuple of contents of markup.
 
         ::
 
@@ -205,18 +226,17 @@ class Markup(Mark):
         '''
         return self._contents
 
-    @apply
-    def direction():
-        def fget(self):
-            return self._direction
-        def fset(self, arg):
-            self._direction = \
-                stringtools.arg_to_tridirectional_ordinal_constant(arg)
-        return property(**locals())
+    @property
+    def direction(self):
+        r'''Direction of markup.
+
+        Returns ordinal constant.
+        '''
+        return self._direction
 
     @property
     def markup_name(self):
-        r'''Name of markup:
+        r'''Name of markup.
 
         ::
 
