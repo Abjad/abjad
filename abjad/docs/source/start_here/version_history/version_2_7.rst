@@ -215,10 +215,10 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 - Extended tempo marks to be able to initialize from 'tempo mark tokens'.
   A tempo mark token is a length-2 or length-3 tuple of tempo mark arguments.
 
-- Extended tempo mark with ``is_tempo_mark_token()`` method::
+- Extended tempo mark with ``is_tempo_token()`` method::
 
-    >>> tempo_mark = marktools.Tempo(Duration(1, 4), 72)
-    >>> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
+    >>> tempo = marktools.Tempo(Duration(1, 4), 72)
+    >>> tempo.is_tempo_token((Duration(1, 4), 84))
     True
 
 - Extended case-testing ``systemtools`` string predicates to allow digits.

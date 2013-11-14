@@ -25,8 +25,8 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
             sub_chains = []
             current_sub_chain = []
             for leaf in tie_chain:
-                tempo_marks = leaf._get_marks(marktools.Tempo)
-                if tempo_marks:
+                tempos = leaf._get_marks(marktools.Tempo)
+                if tempos:
                     if current_sub_chain:
                         current_sub_chain = \
                             selectiontools.TieChain(current_sub_chain)

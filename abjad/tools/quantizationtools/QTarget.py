@@ -43,7 +43,7 @@ class QTarget(AbjadObject):
         heuristic=None,
         job_handler=None,
         attack_point_optimizer=None,
-        attach_tempo_marks=True
+        attach_tempos=True
         ):
 
         from abjad.tools import quantizationtools
@@ -107,7 +107,7 @@ class QTarget(AbjadObject):
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
         return self._notate(
-            grace_handler, attack_point_optimizer, attach_tempo_marks)
+            grace_handler, attack_point_optimizer, attach_tempos)
 
     ### PUBLIC PROPERTIES ###
 
@@ -139,16 +139,16 @@ class QTarget(AbjadObject):
             new_leaf = scoretools.Chord(leaf_one.written_pitches, duration)
         else:
             new_leaf = scoretools.Rest(duration)
-        tempo_marks = leaf_two._get_marks(marktools.Tempo)
-        if tempo_marks:
-            tempo = tempo_marks[0]
+        tempos = leaf_two._get_marks(marktools.Tempo)
+        if tempos:
+            tempo = tempos[0]
             attach(tempo, new_leaf)
         leaf_two._get_parentage().parent[index] = new_leaf
         return new_leaf
 
     @abc.abstractmethod
     def _notate(
-        self, grace_handler, attack_point_optimizer, attach_tempo_marks):
+        self, grace_handler, attack_point_optimizer, attach_tempos):
         raise NotImplemented
 
     def _notate_leaves_pairwise(self, voice, grace_handler):
@@ -171,7 +171,7 @@ class QTarget(AbjadObject):
 
     def _notate_one_leaf(self, leaf, grace_handler):
         leaf_annotations = leaf._get_attached_items(marktools.Annotation)
-        tempo_marks = leaf._get_marks(marktools.Tempo)
+        tempos = leaf._get_marks(marktools.Tempo)
         if leaf_annotations:
             pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:
@@ -186,8 +186,8 @@ class QTarget(AbjadObject):
                 grace_container(new_leaf)
             leaf._get_parentage().parent[
                 leaf._get_parentage().parent.index(leaf)] = new_leaf
-            if tempo_marks:
-                tempo = tempo_marks[0]
+            if tempos:
+                tempo = tempos[0]
                 attach(tempo, new_leaf)
             tie = spannertools.Tie()
             attach(tie, new_leaf)

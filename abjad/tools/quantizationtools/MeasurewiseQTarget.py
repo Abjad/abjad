@@ -32,7 +32,7 @@ class MeasurewiseQTarget(QTarget):
         self,
         grace_handler,
         attack_point_optimizer,
-        attach_tempo_marks,
+        attach_tempos,
         ):
         voice = scoretools.Voice()
 
@@ -41,7 +41,7 @@ class MeasurewiseQTarget(QTarget):
         measure = scoretools.Measure(q_target_measure.time_signature)
         for beat in q_target_measure.beats:
             measure.extend(beat.q_grid(beat.beatspan))
-        if attach_tempo_marks:
+        if attach_tempos:
             tempo = copy.copy(q_target_measure.tempo)
             attach(tempo, measure)
         voice.append(measure)
@@ -53,7 +53,7 @@ class MeasurewiseQTarget(QTarget):
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
             if (q_target_measure_two.tempo != q_target_measure_one.tempo) \
-                and attach_tempo_marks:
+                and attach_tempos:
                 tempo = copy.copy(q_target_measure_two.tempo)
                 attach(tempo, measure)
             voice.append(measure)
