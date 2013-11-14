@@ -101,7 +101,7 @@ class AltoTrombone(Instrument):
                     pitch_range=pitchtools.PitchRange(
                         '[A2, C6]'
                         ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('ef')
+                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('ef'),
                     )
 
         Returns string.

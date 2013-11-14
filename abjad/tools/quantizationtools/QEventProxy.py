@@ -17,7 +17,7 @@ class QEventProxy(AbjadObject):
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(130, 1),
                 (NamedPitch("c'"), NamedPitch("cs'"), NamedPitch("e'")),
-                attachments=()
+                attachments=(),
                 ),
             durationtools.Offset(1, 2)
             )

@@ -41,25 +41,25 @@ class QEventSequence(AbjadObject):
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
             (NamedPitch("c'"),),
-            attachments=()
+            attachments=(),
             )
         quantizationtools.SilentQEvent(
             durationtools.Offset(1000, 1),
-            attachments=()
+            attachments=(),
             )
         quantizationtools.PitchedQEvent(
             durationtools.Offset(1500, 1),
             (NamedPitch("c'"),),
-            attachments=()
+            attachments=(),
             )
         quantizationtools.SilentQEvent(
             durationtools.Offset(2750, 1),
-            attachments=()
+            attachments=(),
             )
         quantizationtools.PitchedQEvent(
             durationtools.Offset(3250, 1),
             (NamedPitch("c'"),),
-            attachments=()
+            attachments=(),
             )
         quantizationtools.TerminalQEvent(
             durationtools.Offset(4000, 1)
@@ -113,21 +113,21 @@ class QEventSequence(AbjadObject):
                 (quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 ), quantizationtools.SilentQEvent(
                 durationtools.Offset(1000, 1),
-                attachments=()
+                attachments=(),
                 ), quantizationtools.PitchedQEvent(
                 durationtools.Offset(1500, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 ), quantizationtools.SilentQEvent(
                 durationtools.Offset(2750, 1),
-                attachments=()
+                attachments=(),
                 ), quantizationtools.PitchedQEvent(
                 durationtools.Offset(3250, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 ), quantizationtools.TerminalQEvent(
                 durationtools.Offset(4000, 1)
                 ))
@@ -176,25 +176,25 @@ class QEventSequence(AbjadObject):
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(1000, 1),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(1500, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(2750, 1),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(3250, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.TerminalQEvent(
                 durationtools.Offset(4000, 1)
@@ -228,25 +228,25 @@ class QEventSequence(AbjadObject):
             ...
             quantizationtools.SilentQEvent(
                 durationtools.Offset(0, 1),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(250, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(750, 1),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(1750, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(3000, 1),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.TerminalQEvent(
                 durationtools.Offset(4000, 1)
@@ -297,27 +297,27 @@ class QEventSequence(AbjadObject):
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(250, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(750, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(1750, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(3000, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.TerminalQEvent(
                 durationtools.Offset(4000, 1)
@@ -356,25 +356,25 @@ class QEventSequence(AbjadObject):
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(250, 1),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(750, 1),
                 (NamedPitch("d'"), NamedPitch("ef'")),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(1750, 1),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(3000, 1),
                 (NamedPitch("cs'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.TerminalQEvent(
                 durationtools.Offset(4000, 1)
@@ -444,20 +444,20 @@ class QEventSequence(AbjadObject):
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(10000, 29),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(17500, 29),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(20000, 29),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.TerminalQEvent(
                 durationtools.Offset(40000, 29)
@@ -512,21 +512,21 @@ class QEventSequence(AbjadObject):
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(2500, 3),
                 (NamedPitch("d'"), NamedPitch("fs'")),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.SilentQEvent(
                 durationtools.Offset(4375, 3),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(5000, 3),
                 (NamedPitch("gqs'"),),
-                attachments=()
+                attachments=(),
                 )
             quantizationtools.TerminalQEvent(
                 durationtools.Offset(10000, 3)

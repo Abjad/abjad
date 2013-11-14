@@ -61,7 +61,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 tie_rests=False,
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         Returns string.
@@ -100,7 +100,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 tie_rests=False,
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::
@@ -144,7 +144,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
                 decrease_durations_monotonically=False,
                 tie_rests=False,
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::

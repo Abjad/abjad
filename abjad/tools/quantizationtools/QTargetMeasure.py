@@ -38,7 +38,7 @@ class QTargetMeasure(AbjadObject):
                 durationtools.Duration(1, 4),
                 60
                 ),
-            use_full_measure=False
+            use_full_measure=False,
             )
 
     ``QTargetMeasures`` group ``QTargetBeats``:
@@ -168,7 +168,7 @@ class QTargetMeasure(AbjadObject):
                 tempo=marktools.Tempo(
                     durationtools.Duration(1, 4),
                     60
-                    )
+                    ),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -179,7 +179,7 @@ class QTargetMeasure(AbjadObject):
                 tempo=marktools.Tempo(
                     durationtools.Duration(1, 4),
                     60
-                    )
+                    ),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -190,7 +190,7 @@ class QTargetMeasure(AbjadObject):
                 tempo=marktools.Tempo(
                     durationtools.Duration(1, 4),
                     60
-                    )
+                    ),
                 )
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
@@ -201,7 +201,7 @@ class QTargetMeasure(AbjadObject):
                 tempo=marktools.Tempo(
                     durationtools.Duration(1, 4),
                     60
-                    )
+                    ),
                 )
 
         Returns tuple.

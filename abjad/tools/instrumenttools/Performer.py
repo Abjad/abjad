@@ -21,7 +21,7 @@ class Performer(AbjadObject):
             instruments=instrumenttools.InstrumentInventory([
                 instrumenttools.Flute(),
                 instrumenttools.Piccolo(),
-                ])
+                ]),
             )
 
     The purpose of the class is to model things like

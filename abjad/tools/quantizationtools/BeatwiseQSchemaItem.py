@@ -25,7 +25,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
             tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
                 60
-                )
+                ),
             )
 
     Define a change in beatspan:
@@ -37,7 +37,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print format(q_schema_item)
         quantizationtools.BeatwiseQSchemaItem(
-            beatspan=durationtools.Duration(1, 8)
+            beatspan=durationtools.Duration(1, 8),
             )
 
     Returns beat-wise q-schema item.

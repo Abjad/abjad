@@ -206,17 +206,17 @@ class Chord(Leaf):
                         scoretools.NoteHead(
                             written_pitch=pitchtools.NamedPitch("g'"),
                             is_cautionary=False,
-                            is_forced=False
+                            is_forced=False,
                             ),
                         scoretools.NoteHead(
                             written_pitch=pitchtools.NamedPitch("c''"),
                             is_cautionary=False,
-                            is_forced=False
+                            is_forced=False,
                             ),
                         scoretools.NoteHead(
                             written_pitch=pitchtools.NamedPitch("e''"),
                             is_cautionary=False,
-                            is_forced=False
+                            is_forced=False,
                             ),
                         ],
                         client=scoretools.Chord(),

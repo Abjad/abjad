@@ -70,7 +70,7 @@ class TypedCollection(AbjadObject):
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         result = []
         if is_indented:
-            prefix = '\t'
+            prefix = '    '
         else:
             prefix = ''
         positionals = \

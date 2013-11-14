@@ -114,7 +114,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
                 secondary_divisions=[],
                 beam_each_cell=False,
                 beam_cells_together=False,
-                tie_split_notes=True
+                tie_split_notes=True,
                 )
 
         Returns string.
@@ -141,7 +141,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
                 secondary_divisions=[],
                 beam_each_cell=False,
                 beam_cells_together=False,
-                tie_split_notes=True
+                tie_split_notes=True,
                 )
 
         ::
@@ -181,7 +181,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
                 secondary_divisions=[],
                 beam_each_cell=False,
                 beam_cells_together=False,
-                tie_split_notes=True
+                tie_split_notes=True,
                 )
 
         ::

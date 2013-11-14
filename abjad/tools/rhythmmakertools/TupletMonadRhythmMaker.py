@@ -64,7 +64,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> print format(maker)
             rhythmmakertools.TupletMonadRhythmMaker(
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         Returns string.
@@ -101,7 +101,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> print format(new_maker)
             rhythmmakertools.TupletMonadRhythmMaker(
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::
@@ -131,7 +131,7 @@ class TupletMonadRhythmMaker(RhythmMaker):
             >>> print format(reversed_maker)
             rhythmmakertools.TupletMonadRhythmMaker(
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::

@@ -57,7 +57,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 tie_rests=False,
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         Returns string.
@@ -92,7 +92,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 tie_rests=False,
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::
@@ -113,7 +113,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 tie_rests=False,
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::
@@ -153,7 +153,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
                 decrease_durations_monotonically=True,
                 tie_rests=False,
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::
@@ -174,7 +174,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
                 decrease_durations_monotonically=False,
                 tie_rests=False,
                 beam_each_cell=False,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::

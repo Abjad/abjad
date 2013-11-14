@@ -85,7 +85,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 leaf_count=4,
                 is_diminution=True,
                 beam_each_cell=True,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         Returns string.
@@ -153,7 +153,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 leaf_count=4,
                 is_diminution=False,
                 beam_each_cell=True,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::
@@ -190,7 +190,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
                 leaf_count=4,
                 is_diminution=True,
                 beam_each_cell=True,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::

@@ -91,7 +91,7 @@ class AltoFlute(Instrument):
                         )),
                     pitch_range=pitchtools.PitchRange(
                         '[G3, C7]'
-                        )
+                        ),
                     )
 
         Returns string.

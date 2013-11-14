@@ -20,17 +20,17 @@ class NoteHeadInventory(TypedList):
             scoretools.NoteHead(
                 written_pitch=pitchtools.NamedPitch("a'"),
                 is_cautionary=False,
-                is_forced=False
+                is_forced=False,
                 ),
             scoretools.NoteHead(
                 written_pitch=pitchtools.NamedPitch("bf'"),
                 is_cautionary=False,
-                is_forced=False
+                is_forced=False,
                 ),
             scoretools.NoteHead(
                 written_pitch=pitchtools.NamedPitch("b'"),
                 is_cautionary=False,
-                is_forced=False
+                is_forced=False,
                 ),
             ],
             client=scoretools.Chord(),
