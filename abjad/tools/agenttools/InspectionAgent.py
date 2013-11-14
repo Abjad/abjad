@@ -520,13 +520,12 @@ class InspectionAgent(object):
         Returns false.
         '''
         from abjad.tools import wellformednesstools
-        results = []
-        for checker in wellformednesstools.Check._list_checks():
-            if allow_empty_containers:
-                if getattr(checker, 'runtime', False) == 'composition':
-                    continue
-            results.append(checker.check(self._component))
-        return all(results)
+        manager = wellformednesstools.WellformednessManager(
+            self._component,
+            allow_empty_containers=allow_empty_containers,
+            )
+        result = manager()
+        return result
 
     def report_modifications(self):
         r'''Reports modifications of component.
