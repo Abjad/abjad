@@ -8,7 +8,7 @@ from abjad.tools.marktools.Mark import Mark
 class Markup(Mark):
     r'''Abjad model of LilyPond markup.
 
-    Initialize from string:
+    Initializes from string:
 
     ::
 
@@ -28,7 +28,7 @@ class Markup(Mark):
 
         >>> show(markup) # doctest: +SKIP
 
-    Initialize any markup from existing markup:
+    Initializes any markup from existing markup:
 
     ::
 
@@ -124,7 +124,9 @@ class Markup(Mark):
         self._contents = contents
         self._format_slot = 'right'
         self._markup_name = markup_name
-        self.direction = direction
+        direction = \
+            stringtools.arg_to_tridirectional_ordinal_constant(direction)
+        self._direction = direction
 
     ### SPECIAL METHODS ###
 
@@ -205,14 +207,13 @@ class Markup(Mark):
         '''
         return self._contents
 
-    @apply
-    def direction():
-        def fget(self):
-            return self._direction
-        def fset(self, arg):
-            self._direction = \
-                stringtools.arg_to_tridirectional_ordinal_constant(arg)
-        return property(**locals())
+    @property
+    def direction(self):
+        r'''Direction of markup.
+
+        Returns ordinal constant.
+        '''
+        return self._direction
 
     @property
     def markup_name(self):

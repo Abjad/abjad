@@ -258,8 +258,7 @@ class LilyPondFormatManager(object):
                 result.extend(markup._get_format_pieces())
             else:
                 if markup_list[0].direction is None:
-                    markup = markuptools.Markup(markup_list[0])
-                    markup.direction = '-'
+                    markup = markuptools.Markup(markup_list[0], direction='-')
                     result.extend(markup._get_format_pieces())
                 else:
                     result.extend(markup_list[0]._get_format_pieces())
