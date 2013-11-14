@@ -16,7 +16,7 @@ def test_InstrumentSpecifierEditor_run_01():
         r'''
         specifiers.InstrumentSpecifier(
             instrument=instrumenttools.FrenchHorn(),
-            custom_identifier='foo'
+            custom_identifier='foo',
             )
         '''
         )
@@ -35,9 +35,9 @@ def test_InstrumentSpecifierEditor_run_02():
         specifiers.InstrumentSpecifier(
             instrument=instrumenttools.UntunedPercussion(
                 instrument_name='rattle',
-                short_instrument_name='rattle'
+                short_instrument_name='rattle',
                 ),
-            custom_identifier='foo'
+            custom_identifier='foo',
             )
         '''
         )

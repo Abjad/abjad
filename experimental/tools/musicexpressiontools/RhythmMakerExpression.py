@@ -33,8 +33,8 @@ class RhythmMakerExpression(PayloadExpression):
                     secondary_divisions=[],
                     beam_each_cell=False,
                     beam_cells_together=True,
-                    tie_split_notes=False
-                    )
+                    tie_split_notes=False,
+                    ),
                 )
 
         ::
@@ -52,8 +52,8 @@ class RhythmMakerExpression(PayloadExpression):
                     secondary_divisions=[],
                     beam_each_cell=False,
                     beam_cells_together=True,
-                    tie_split_notes=False
-                    )
+                    tie_split_notes=False,
+                    ),
                 )
 
         Returns newly constructed rhythm-maker payload expression.

@@ -29,9 +29,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         >>> print format(expression)
         musicexpressiontools.StartPositionedRhythmPayloadExpression(
             payload=scoretools.Container(
-                music=[{c'8, d'8, e'8, f'8}]
+                music=[{c'8, d'8, e'8, f'8}],
                 ),
-            start_offset=durationtools.Offset(10, 1)
+            start_offset=durationtools.Offset(10, 1),
             )
 
     Start-positioned rhythm payload expressions are immutable.
@@ -67,9 +67,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{c'8, d'8, e'8}]
+                        music=[{c'8, d'8, e'8}],
                         ),
-                    start_offset=durationtools.Offset(0, 1)
+                    start_offset=durationtools.Offset(0, 1),
                     ),
                 ])
 
@@ -90,9 +90,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{d'8, e'8, f'8}]
+                        music=[{d'8, e'8, f'8}],
                         ),
-                    start_offset=durationtools.Offset(1, 8)
+                    start_offset=durationtools.Offset(1, 8),
                     ),
                 ])
 
@@ -110,9 +110,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{d'8, e'8}]
+                        music=[{d'8, e'8}],
                         ),
-                    start_offset=durationtools.Offset(1, 8)
+                    start_offset=durationtools.Offset(1, 8),
                     ),
                 ])
 
@@ -144,9 +144,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8, e'8, f'8}]
+                    music=[{c'8, d'8, e'8, f'8}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Returns string.
@@ -166,9 +166,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(result)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8}]
+                    music=[{c'8, d'8}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Returns newly constructed start-positioned rhythm payload expression.
@@ -235,9 +235,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{c'8, d'8, e'8, f'8, g'8, a'8, b'8, c''8}]
+                        music=[{c'8, d'8, e'8, f'8, g'8, a'8, b'8, c''8}],
                         ),
-                    start_offset=durationtools.Offset(0, 1)
+                    start_offset=durationtools.Offset(0, 1),
                     ),
                 ])
 
@@ -248,9 +248,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression_1)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8, e'8, f'8}]
+                    music=[{c'8, d'8, e'8, f'8}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Leave `expr` unchanged:
@@ -260,9 +260,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression_2)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{g'8, a'8, b'8, c''8}]
+                    music=[{g'8, a'8, b'8, c''8}],
                     ),
-                start_offset=durationtools.Offset(1, 2)
+                start_offset=durationtools.Offset(1, 2),
                 )
 
         Returns timespan inventory.
@@ -289,9 +289,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 timespantools.TimespanInventory([
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
-                            music=[{d'8, e'8, f'8}]
+                            music=[{d'8, e'8, f'8}],
                             ),
-                        start_offset=durationtools.Offset(1, 8)
+                        start_offset=durationtools.Offset(1, 8),
                         ),
                     ])
 
@@ -311,9 +311,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{c'8, d'8, e'8}]
+                        music=[{c'8, d'8, e'8}],
                         ),
-                    start_offset=durationtools.Offset(0, 1)
+                    start_offset=durationtools.Offset(0, 1),
                     ),
                 ])
 
@@ -334,15 +334,15 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{c'8}]
+                        music=[{c'8}],
                         ),
-                    start_offset=durationtools.Offset(0, 1)
+                    start_offset=durationtools.Offset(0, 1),
                     ),
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{f'8}]
+                        music=[{f'8}],
                         ),
-                    start_offset=durationtools.Offset(3, 8)
+                    start_offset=durationtools.Offset(3, 8),
                     ),
                 ])
 
@@ -362,9 +362,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             timespantools.TimespanInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{c'8, d'8, e'8, f'8}]
+                        music=[{c'8, d'8, e'8, f'8}],
                         ),
-                    start_offset=durationtools.Offset(0, 1)
+                    start_offset=durationtools.Offset(0, 1),
                     ),
                 ])
 
@@ -521,21 +521,21 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{c'8}]
+                        music=[{c'8}],
                         ),
-                    start_offset=durationtools.Offset(10, 1)
+                    start_offset=durationtools.Offset(10, 1),
                     ),
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{d'8, e'8}]
+                        music=[{d'8, e'8}],
                         ),
-                    start_offset=durationtools.Offset(81, 8)
+                    start_offset=durationtools.Offset(81, 8),
                     ),
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{f'8}]
+                        music=[{f'8}],
                         ),
-                    start_offset=durationtools.Offset(83, 8)
+                    start_offset=durationtools.Offset(83, 8),
                     ),
                 ])
 
@@ -564,15 +564,15 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory([
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{c'2}]
+                        music=[{c'2}],
                         ),
-                    start_offset=durationtools.Offset(10, 1)
+                    start_offset=durationtools.Offset(10, 1),
                     ),
                 musicexpressiontools.StartPositionedRhythmPayloadExpression(
                     payload=scoretools.Container(
-                        music=[{d'8, e'8, f'4}]
+                        music=[{d'8, e'8, f'4}],
                         ),
-                    start_offset=durationtools.Offset(21, 2)
+                    start_offset=durationtools.Offset(21, 2),
                     ),
                 ])
 
@@ -601,9 +601,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{f'8, e'8, d'8, c'8}]
+                    music=[{f'8, e'8, d'8, c'8}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Operates in place and returns start-positioned rhythm 
@@ -637,9 +637,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8, e'16}]
+                    music=[{c'8, d'8, e'16}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Example 2. Repeat to duration greater than start-positioned 
@@ -661,9 +661,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'16}]
+                    music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'16}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Operates in place and returns start-positioned rhythm 
@@ -704,9 +704,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8, e'8}]
+                    music=[{c'8, d'8, e'8}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Example 2. Repeat to `length` greater than start-positioned 
@@ -728,9 +728,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'8}]
+                    music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'8}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Operates in place and returns start-positioned rhythm 
@@ -760,9 +760,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'8, f'8}, {c'16}]
+                    music=[{c'8, d'8, e'8, f'8}, {c'8, d'8, e'8, f'8}, {c'16}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Operates in place and returns start-positioned rhythm 
@@ -810,9 +810,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{d'8, e'8, f'8}, {c'8}]
+                    music=[{d'8, e'8, f'8}, {c'8}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Example 2. Rotate by duration:
@@ -833,9 +833,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{d'16, e'8, f'8}, {c'8, d'16}]
+                    music=[{d'16, e'8, f'8}, {c'8, d'16}],
                     ),
-                start_offset=durationtools.Offset(0, 1)
+                start_offset=durationtools.Offset(0, 1),
                 )
 
         Operates in place and returns start-positioned rhythm 
@@ -958,9 +958,9 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> print format(expression)
             musicexpressiontools.StartPositionedRhythmPayloadExpression(
                 payload=scoretools.Container(
-                    music=[{c'8, d'8, e'8, f'8}]
+                    music=[{c'8, d'8, e'8, f'8}],
                     ),
-                start_offset=durationtools.Offset(10, 1)
+                start_offset=durationtools.Offset(10, 1),
                 )
 
         Operates in place and returns start-positioned rhythm payload expression.

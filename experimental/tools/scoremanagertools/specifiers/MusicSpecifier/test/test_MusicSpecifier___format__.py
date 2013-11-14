@@ -48,12 +48,12 @@ def test_MusicSpecifier___format___03():
         specifiers.MusicSpecifier([
             specifiers.MusicContributionSpecifier([
                 specifiers.ArticulationSpecifier(
-                    articulation_handler_name='foo articulations'
+                    articulation_handler_name='foo articulations',
                     ),
                 ]),
             specifiers.MusicContributionSpecifier([
                 specifiers.ArticulationSpecifier(
-                    articulation_handler_name='bar articulations'
+                    articulation_handler_name='bar articulations',
                     ),
                 ]),
             ])
@@ -79,12 +79,12 @@ def test_MusicSpecifier___format___04():
         specifiers.MusicSpecifier([
             specifiers.MusicContributionSpecifier([
                 specifiers.ArticulationSpecifier(
-                    articulation_handler_name='foo articulations'
+                    articulation_handler_name='foo articulations',
                     ),
                 ]),
             specifiers.MusicContributionSpecifier([
                 specifiers.ArticulationSpecifier(
-                    articulation_handler_name='bar articulations'
+                    articulation_handler_name='bar articulations',
                     ),
                 ]),
             ],

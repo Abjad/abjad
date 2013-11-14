@@ -38,10 +38,13 @@ class LookupMethodMixin(AbjadObject):
             musicexpressiontools.DivisionSetExpressionLookupExpression(
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(
-                        anchor='red'
-                        )
+                        anchor='red',
+                        callbacks=musicexpressiontools.CallbackInventory([]),
+                        ),
+                    callbacks=musicexpressiontools.CallbackInventory([]),
                     ),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns lookup expression.
@@ -69,10 +72,13 @@ class LookupMethodMixin(AbjadObject):
             musicexpressiontools.RhythmSetExpressionLookupExpression(
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(
-                        anchor='red'
-                        )
+                        anchor='red',
+                        callbacks=musicexpressiontools.CallbackInventory([]),
+                        ),
+                    callbacks=musicexpressiontools.CallbackInventory([]),
                     ),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns lookup expression.
@@ -99,10 +105,13 @@ class LookupMethodMixin(AbjadObject):
             musicexpressiontools.TimeSignatureSetExpressionLookupExpression(
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(
-                        anchor='red'
-                        )
+                        anchor='red',
+                        callbacks=musicexpressiontools.CallbackInventory([]),
+                        ),
+                    callbacks=musicexpressiontools.CallbackInventory([]),
                     ),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns lookup expression.

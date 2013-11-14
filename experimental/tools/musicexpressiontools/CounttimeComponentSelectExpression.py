@@ -41,7 +41,8 @@ class CounttimeComponentSelectExpression(
             classes=musicexpressiontools.ClassInventory([
                 scoretools.Leaf,
                 ]),
-            voice_name='Voice 1'
+            voice_name='Voice 1',
+            callbacks=musicexpressiontools.CallbackInventory([]),
             )
 
     Example 2. Select voice ``1`` leaves that start during segment ``'red'``:
@@ -58,7 +59,8 @@ class CounttimeComponentSelectExpression(
             classes=musicexpressiontools.ClassInventory([
                 scoretools.Leaf,
                 ]),
-            voice_name='Voice 1'
+            voice_name='Voice 1',
+            callbacks=musicexpressiontools.CallbackInventory([]),
             )
 
     Counttime component select expressions are immutable.

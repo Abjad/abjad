@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from experimental.tools.scoremanagertools.specifiers.Specifier \
-	import Specifier
+from abjad import *
+from experimental.tools.scoremanagertools.specifiers.Specifier import Specifier
 from experimental import *
 
 
@@ -30,4 +30,11 @@ def test_Specifier___format___02():
     specifier = ConcreteSpecifier(custom_identifier='foo')
 
     assert repr(specifier) == "ConcreteSpecifier(custom_identifier='foo')"
-    assert format(specifier) == "specialtools.ConcreteSpecifier(\n\tcustom_identifier='foo'\n\t)"
+    assert systemtools.TestManager.compare(
+        format(specifier),
+        r'''
+        specialtools.ConcreteSpecifier(
+            custom_identifier='foo',
+            )
+        ''',
+        )

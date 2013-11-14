@@ -217,19 +217,19 @@ class TextualDocumentHandler(DocumentHandler):
                 ('print "hello, world!"',),
                 allow_exceptions=False,
                 hide=False,
-                strip_prompt=False
+                strip_prompt=False,
                 )
             newabjadbooktools.CodeBlock(
                 ("just_a_string = '''", 'show(Nothing!)', "'''"),
                 allow_exceptions=False,
                 hide=False,
-                strip_prompt=False
+                strip_prompt=False,
                 )
             newabjadbooktools.CodeBlock(
                 ('show(Note("c\'4"))',),
                 allow_exceptions=False,
                 hide=False,
-                strip_prompt=False
+                strip_prompt=False,
                 )
 
         Returns mapping.
