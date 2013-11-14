@@ -18,10 +18,12 @@ class Performer(AbjadObject):
         >>> print format(performer)
         instrumenttools.Performer(
             name='flutist',
-            instruments=instrumenttools.InstrumentInventory([
-                instrumenttools.Flute(),
-                instrumenttools.Piccolo(),
-                ]),
+            instruments=instrumenttools.InstrumentInventory(
+                [
+                    instrumenttools.Flute(),
+                    instrumenttools.Piccolo(),
+                    ]
+                ),
             )
 
     The purpose of the class is to model things like

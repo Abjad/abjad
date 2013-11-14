@@ -120,36 +120,38 @@ class SegmentSpecification(Specification):
         ::
 
             >>> print format(red_segment.fresh_single_context_set_expressions)
-            timespantools.TimespanInventory([
-                musicexpressiontools.SingleContextTimeSignatureSetExpression(
-                    source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=(
-                            (2, 8),
-                            (3, 8),
-                            (4, 8),
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.SingleContextTimeSignatureSetExpression(
+                        source_expression=musicexpressiontools.IterablePayloadExpression(
+                            payload=(
+                                (2, 8),
+                                (3, 8),
+                                (4, 8),
+                                ),
                             ),
+                        target_timespan='red',
+                        fresh=True,
+                        persist=True,
                         ),
-                    target_timespan='red',
-                    fresh=True,
-                    persist=True,
-                    ),
-                musicexpressiontools.SingleContextRhythmSetExpression(
-                    source_expression=musicexpressiontools.RhythmMakerExpression(
-                        payload=rhythmmakertools.TaleaRhythmMaker(
-                            talea=[1],
-                            talea_denominator=16,
-                            prolation_addenda=[],
-                            secondary_divisions=[],
-                            beam_each_cell=False,
-                            beam_cells_together=True,
-                            tie_split_notes=False,
+                    musicexpressiontools.SingleContextRhythmSetExpression(
+                        source_expression=musicexpressiontools.RhythmMakerExpression(
+                            payload=rhythmmakertools.TaleaRhythmMaker(
+                                talea=[1],
+                                talea_denominator=16,
+                                prolation_addenda=[],
+                                secondary_divisions=[],
+                                beam_each_cell=False,
+                                beam_cells_together=True,
+                                tie_split_notes=False,
+                                ),
                             ),
+                        target_timespan='red',
+                        fresh=True,
+                        persist=True,
                         ),
-                    target_timespan='red',
-                    fresh=True,
-                    persist=True,
-                    ),
-                ])
+                    ]
+                )
 
         Returns timespan inventory.
         '''

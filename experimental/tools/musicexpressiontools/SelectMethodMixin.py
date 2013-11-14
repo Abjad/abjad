@@ -36,7 +36,9 @@ class SelectMethodMixin(AbjadObject):
             musicexpressiontools.BeatSelectExpression(
                 anchor='red',
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns beat select expression.
@@ -63,7 +65,9 @@ class SelectMethodMixin(AbjadObject):
             musicexpressiontools.DivisionSelectExpression(
                 anchor='red',
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns division select expression.
@@ -90,11 +94,15 @@ class SelectMethodMixin(AbjadObject):
             >>> print format(leaves)
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
-                classes=musicexpressiontools.ClassInventory([
-                    scoretools.Leaf,
-                    ]),
+                classes=musicexpressiontools.ClassInventory(
+                    [
+                        scoretools.Leaf,
+                        ]
+                    ),
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns counttime component select expression.
@@ -123,7 +131,9 @@ class SelectMethodMixin(AbjadObject):
             musicexpressiontools.MeasureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns measure select expression.
@@ -131,10 +141,10 @@ class SelectMethodMixin(AbjadObject):
         from experimental.tools import musicexpressiontools
         select_expression = \
             musicexpressiontools.MeasureSelectExpression(
-            anchor=self._expression_abbreviation,
-            voice_name=voice_name,
-            time_relation=time_relation,
-            )
+                anchor=self._expression_abbreviation,
+                voice_name=voice_name,
+                time_relation=time_relation,
+                )
         select_expression._score_specification = self.score_specification
         return select_expression
 
@@ -151,12 +161,16 @@ class SelectMethodMixin(AbjadObject):
             >>> print format(notes_and_chords)
             musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
-                classes=musicexpressiontools.ClassInventory([
-                    scoretools.Note,
-                    scoretools.Chord,
-                    ]),
+                classes=musicexpressiontools.ClassInventory(
+                    [
+                        scoretools.Note,
+                        scoretools.Chord,
+                        ]
+                    ),
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns counttime component select expression.
@@ -207,7 +221,9 @@ class SelectMethodMixin(AbjadObject):
             musicexpressiontools.TimeSignatureSelectExpression(
                 anchor='red',
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns time signature select expression.
@@ -215,9 +231,9 @@ class SelectMethodMixin(AbjadObject):
         from experimental.tools import musicexpressiontools
         select_expression = \
             musicexpressiontools.TimeSignatureSelectExpression(
-            anchor=self._expression_abbreviation,
-            time_relation=time_relation,
-            voice_name=voice_name,
-            )
+                anchor=self._expression_abbreviation,
+                time_relation=time_relation,
+                voice_name=voice_name,
+                )
         select_expression._score_specification = self.score_specification
         return select_expression

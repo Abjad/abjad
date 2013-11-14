@@ -39,12 +39,18 @@ class LookupMethodMixin(AbjadObject):
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(
                         anchor='red',
-                        callbacks=musicexpressiontools.CallbackInventory([]),
+                        callbacks=musicexpressiontools.CallbackInventory(
+                            []
+                            ),
                         ),
-                    callbacks=musicexpressiontools.CallbackInventory([]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        []
+                        ),
                     ),
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns lookup expression.
@@ -73,12 +79,18 @@ class LookupMethodMixin(AbjadObject):
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(
                         anchor='red',
-                        callbacks=musicexpressiontools.CallbackInventory([]),
+                        callbacks=musicexpressiontools.CallbackInventory(
+                            []
+                            ),
                         ),
-                    callbacks=musicexpressiontools.CallbackInventory([]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        []
+                        ),
                     ),
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns lookup expression.
@@ -106,12 +118,18 @@ class LookupMethodMixin(AbjadObject):
                 offset=musicexpressiontools.OffsetExpression(
                     anchor=musicexpressiontools.TimespanExpression(
                         anchor='red',
-                        callbacks=musicexpressiontools.CallbackInventory([]),
+                        callbacks=musicexpressiontools.CallbackInventory(
+                            []
+                            ),
                         ),
-                    callbacks=musicexpressiontools.CallbackInventory([]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        []
+                        ),
                     ),
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns lookup expression.

@@ -130,16 +130,16 @@ class TypedCounter(TypedCollection):
         itemdict = _coerce_mapping(kwargs)
         return items, itemdict
 
-    def _get_tools_package_qualified_positional_argument_repr_pieces(
-        self, is_indented=True):
-        result = []
-        if is_indented:
-            prefix, suffix = '\t', ','
-        else:
-            prefix, suffix = '', ', '
-        for value in self._positional_argument_values:
-            result.append('{}{}{}'.format(prefix, value, suffix))
-        return tuple(result)
+#    def _get_tools_package_qualified_positional_argument_repr_pieces(
+#        self, is_indented=True):
+#        result = []
+#        if is_indented:
+#            prefix, suffix = '\t', ','
+#        else:
+#            prefix, suffix = '', ', '
+#        for value in self._positional_argument_values:
+#            result.append('{}{}{}'.format(prefix, value, suffix))
+#        return tuple(result)
 
     ### PRIVATE PROPERTIES ###
 

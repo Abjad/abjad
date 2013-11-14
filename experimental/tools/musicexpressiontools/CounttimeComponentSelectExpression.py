@@ -38,11 +38,15 @@ class CounttimeComponentSelectExpression(
 
         >>> print format(select_expression)
         musicexpressiontools.CounttimeComponentSelectExpression(
-            classes=musicexpressiontools.ClassInventory([
-                scoretools.Leaf,
-                ]),
+            classes=musicexpressiontools.ClassInventory(
+                [
+                    scoretools.Leaf,
+                    ]
+                ),
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Example 2. Select voice ``1`` leaves that start during segment ``'red'``:
@@ -56,11 +60,15 @@ class CounttimeComponentSelectExpression(
         >>> print format(select_expression)
         musicexpressiontools.CounttimeComponentSelectExpression(
             anchor='red',
-            classes=musicexpressiontools.ClassInventory([
-                scoretools.Leaf,
-                ]),
+            classes=musicexpressiontools.ClassInventory(
+                [
+                    scoretools.Leaf,
+                    ]
+                ),
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Counttime component select expressions are immutable.
@@ -69,11 +77,11 @@ class CounttimeComponentSelectExpression(
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        anchor=None, 
-        classes=None, 
-        voice_name=None, 
-        time_relation=None, 
+        self,
+        anchor=None,
+        classes=None,
+        voice_name=None,
+        time_relation=None,
         callbacks=None,
         ):
         from experimental.tools import musicexpressiontools

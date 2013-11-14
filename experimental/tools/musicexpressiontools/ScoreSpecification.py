@@ -153,7 +153,9 @@ class ScoreSpecification(Specification):
         ::
 
             >>> print format(score_specification.fresh_single_context_set_expressions)
-            timespantools.TimespanInventory([])
+            timespantools.TimespanInventory(
+                []
+                )
 
         Returns timespan inventory.
         '''
@@ -179,58 +181,60 @@ class ScoreSpecification(Specification):
         ::
 
             >>> print format(score_specification.multiple_context_set_expressions)
-            timespantools.TimespanInventory([
-                musicexpressiontools.MultipleContextSetExpression(
-                    attribute='time_signatures',
-                    source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=(
-                            (2, 8),
-                            (3, 8),
-                            (4, 8),
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.MultipleContextSetExpression(
+                        attribute='time_signatures',
+                        source_expression=musicexpressiontools.IterablePayloadExpression(
+                            payload=(
+                                (2, 8),
+                                (3, 8),
+                                (4, 8),
+                                ),
                             ),
+                        target_timespan='red',
+                        persist=True,
                         ),
-                    target_timespan='red',
-                    persist=True,
-                    ),
-                musicexpressiontools.MultipleContextSetExpression(
-                    attribute='time_signatures',
-                    source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=(
-                            (4, 16),
-                            (4, 16),
+                    musicexpressiontools.MultipleContextSetExpression(
+                        attribute='time_signatures',
+                        source_expression=musicexpressiontools.IterablePayloadExpression(
+                            payload=(
+                                (4, 16),
+                                (4, 16),
+                                ),
                             ),
+                        target_timespan='orange',
+                        persist=True,
                         ),
-                    target_timespan='orange',
-                    persist=True,
-                    ),
-                musicexpressiontools.MultipleContextSetExpression(
-                    attribute='time_signatures',
-                    source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=(
-                            (5, 16),
-                            (5, 16),
+                    musicexpressiontools.MultipleContextSetExpression(
+                        attribute='time_signatures',
+                        source_expression=musicexpressiontools.IterablePayloadExpression(
+                            payload=(
+                                (5, 16),
+                                (5, 16),
+                                ),
                             ),
+                        target_timespan='yellow',
+                        persist=True,
                         ),
-                    target_timespan='yellow',
-                    persist=True,
-                    ),
-                musicexpressiontools.MultipleContextSetExpression(
-                    attribute='rhythm',
-                    source_expression=musicexpressiontools.RhythmMakerExpression(
-                        payload=rhythmmakertools.TaleaRhythmMaker(
-                            talea=[1],
-                            talea_denominator=16,
-                            prolation_addenda=[],
-                            secondary_divisions=[],
-                            beam_each_cell=False,
-                            beam_cells_together=True,
-                            tie_split_notes=False,
+                    musicexpressiontools.MultipleContextSetExpression(
+                        attribute='rhythm',
+                        source_expression=musicexpressiontools.RhythmMakerExpression(
+                            payload=rhythmmakertools.TaleaRhythmMaker(
+                                talea=[1],
+                                talea_denominator=16,
+                                prolation_addenda=[],
+                                secondary_divisions=[],
+                                beam_each_cell=False,
+                                beam_cells_together=True,
+                                tie_split_notes=False,
+                                ),
                             ),
+                        target_timespan='red',
+                        persist=True,
                         ),
-                    target_timespan='red',
-                    persist=True,
-                    ),
-                ])
+                    ]
+                )
 
         Returns context dictionary.
         '''
@@ -243,7 +247,9 @@ class ScoreSpecification(Specification):
         ::
 
             >>> print format(score_specification.postrhythm_set_expressions)
-            musicexpressiontools.ExpressionInventory([])
+            musicexpressiontools.ExpressionInventory(
+                []
+                )
 
         Returns expression inventory.
         '''
@@ -259,132 +265,136 @@ class ScoreSpecification(Specification):
             ...     score_specification.region_expressions_by_attribute.itervalues():
             ...     if timespan_inventory:
             ...         print format(timespan_inventory)
-            timespantools.TimespanInventory([
-                musicexpressiontools.LiteralDivisionRegionExpression(
-                    source_expression=(
-                        (2, 8),
-                        (3, 8),
-                        (4, 8),
-                        (4, 16),
-                        (4, 16),
-                        (5, 16),
-                        (5, 16),
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.LiteralDivisionRegionExpression(
+                        source_expression=(
+                            (2, 8),
+                            (3, 8),
+                            (4, 8),
+                            (4, 16),
+                            (4, 16),
+                            (5, 16),
+                            (5, 16),
+                            ),
+                        start_offset=durationtools.Offset(0, 1),
+                        total_duration=durationtools.Duration(9, 4),
+                        voice_name='Voice 1',
                         ),
-                    start_offset=durationtools.Offset(0, 1),
-                    total_duration=durationtools.Duration(9, 4),
-                    voice_name='Voice 1',
-                    ),
-                musicexpressiontools.LiteralDivisionRegionExpression(
-                    source_expression=(
-                        (2, 8),
-                        (3, 8),
-                        (4, 8),
-                        (4, 16),
-                        (4, 16),
-                        (5, 16),
-                        (5, 16),
+                    musicexpressiontools.LiteralDivisionRegionExpression(
+                        source_expression=(
+                            (2, 8),
+                            (3, 8),
+                            (4, 8),
+                            (4, 16),
+                            (4, 16),
+                            (5, 16),
+                            (5, 16),
+                            ),
+                        start_offset=durationtools.Offset(0, 1),
+                        total_duration=durationtools.Duration(9, 4),
+                        voice_name='Voice 2',
                         ),
-                    start_offset=durationtools.Offset(0, 1),
-                    total_duration=durationtools.Duration(9, 4),
-                    voice_name='Voice 2',
-                    ),
-                ])
-            timespantools.TimespanInventory([
-                musicexpressiontools.RhythmMakerRhythmRegionExpression(
-                    source_expression=rhythmmakertools.TaleaRhythmMaker(
-                        talea=[1],
-                        talea_denominator=16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False,
-                        ),
-                    division_list=musicexpressiontools.DivisionList(
-                        [
-                            musicexpressiontools.Division(
-                                '[2, 8]',
-                                start_offset=durationtools.Offset(0, 1),
-                                ),
-                            musicexpressiontools.Division(
-                                '[3, 8]',
-                                start_offset=durationtools.Offset(1, 4),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 8]',
-                                start_offset=durationtools.Offset(5, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 16]',
-                                start_offset=durationtools.Offset(9, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 16]',
-                                start_offset=durationtools.Offset(11, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[5, 16]',
-                                start_offset=durationtools.Offset(13, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[5, 16]',
-                                start_offset=durationtools.Offset(31, 16),
-                                ),
-                            ],
+                    ]
+                )
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.RhythmMakerRhythmRegionExpression(
+                        source_expression=rhythmmakertools.TaleaRhythmMaker(
+                            talea=[1],
+                            talea_denominator=16,
+                            prolation_addenda=[],
+                            secondary_divisions=[],
+                            beam_each_cell=False,
+                            beam_cells_together=True,
+                            tie_split_notes=False,
+                            ),
+                        division_list=musicexpressiontools.DivisionList(
+                            [
+                                musicexpressiontools.Division(
+                                    '[2, 8]',
+                                    start_offset=durationtools.Offset(0, 1),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[3, 8]',
+                                    start_offset=durationtools.Offset(1, 4),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 8]',
+                                    start_offset=durationtools.Offset(5, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 16]',
+                                    start_offset=durationtools.Offset(9, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 16]',
+                                    start_offset=durationtools.Offset(11, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[5, 16]',
+                                    start_offset=durationtools.Offset(13, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[5, 16]',
+                                    start_offset=durationtools.Offset(31, 16),
+                                    ),
+                                ],
+                            start_offset=durationtools.Offset(0, 1),
+                            voice_name='Voice 1',
+                            ),
                         start_offset=durationtools.Offset(0, 1),
                         voice_name='Voice 1',
                         ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 1',
-                    ),
-                musicexpressiontools.RhythmMakerRhythmRegionExpression(
-                    source_expression=rhythmmakertools.TaleaRhythmMaker(
-                        talea=[1],
-                        talea_denominator=16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False,
-                        ),
-                    division_list=musicexpressiontools.DivisionList(
-                        [
-                            musicexpressiontools.Division(
-                                '[2, 8]',
-                                start_offset=durationtools.Offset(0, 1),
-                                ),
-                            musicexpressiontools.Division(
-                                '[3, 8]',
-                                start_offset=durationtools.Offset(1, 4),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 8]',
-                                start_offset=durationtools.Offset(5, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 16]',
-                                start_offset=durationtools.Offset(9, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 16]',
-                                start_offset=durationtools.Offset(11, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[5, 16]',
-                                start_offset=durationtools.Offset(13, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[5, 16]',
-                                start_offset=durationtools.Offset(31, 16),
-                                ),
-                            ],
+                    musicexpressiontools.RhythmMakerRhythmRegionExpression(
+                        source_expression=rhythmmakertools.TaleaRhythmMaker(
+                            talea=[1],
+                            talea_denominator=16,
+                            prolation_addenda=[],
+                            secondary_divisions=[],
+                            beam_each_cell=False,
+                            beam_cells_together=True,
+                            tie_split_notes=False,
+                            ),
+                        division_list=musicexpressiontools.DivisionList(
+                            [
+                                musicexpressiontools.Division(
+                                    '[2, 8]',
+                                    start_offset=durationtools.Offset(0, 1),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[3, 8]',
+                                    start_offset=durationtools.Offset(1, 4),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 8]',
+                                    start_offset=durationtools.Offset(5, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 16]',
+                                    start_offset=durationtools.Offset(9, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 16]',
+                                    start_offset=durationtools.Offset(11, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[5, 16]',
+                                    start_offset=durationtools.Offset(13, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[5, 16]',
+                                    start_offset=durationtools.Offset(31, 16),
+                                    ),
+                                ],
+                            start_offset=durationtools.Offset(0, 1),
+                            voice_name='Voice 2',
+                            ),
                         start_offset=durationtools.Offset(0, 1),
                         voice_name='Voice 2',
                         ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 2',
-                    ),
-                ])
+                    ]
+                )
 
         Returns attribute dictionary.
         '''
@@ -502,42 +512,44 @@ class ScoreSpecification(Specification):
         ::
 
             >>> print format(score_specification.single_context_time_signature_set_expressions)
-            timespantools.TimespanInventory([
-                musicexpressiontools.SingleContextTimeSignatureSetExpression(
-                    source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=(
-                            (2, 8),
-                            (3, 8),
-                            (4, 8),
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.SingleContextTimeSignatureSetExpression(
+                        source_expression=musicexpressiontools.IterablePayloadExpression(
+                            payload=(
+                                (2, 8),
+                                (3, 8),
+                                (4, 8),
+                                ),
                             ),
+                        target_timespan='red',
+                        fresh=True,
+                        persist=True,
                         ),
-                    target_timespan='red',
-                    fresh=True,
-                    persist=True,
-                    ),
-                musicexpressiontools.SingleContextTimeSignatureSetExpression(
-                    source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=(
-                            (4, 16),
-                            (4, 16),
+                    musicexpressiontools.SingleContextTimeSignatureSetExpression(
+                        source_expression=musicexpressiontools.IterablePayloadExpression(
+                            payload=(
+                                (4, 16),
+                                (4, 16),
+                                ),
                             ),
+                        target_timespan='orange',
+                        fresh=True,
+                        persist=True,
                         ),
-                    target_timespan='orange',
-                    fresh=True,
-                    persist=True,
-                    ),
-                musicexpressiontools.SingleContextTimeSignatureSetExpression(
-                    source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=(
-                            (5, 16),
-                            (5, 16),
+                    musicexpressiontools.SingleContextTimeSignatureSetExpression(
+                        source_expression=musicexpressiontools.IterablePayloadExpression(
+                            payload=(
+                                (5, 16),
+                                (5, 16),
+                                ),
                             ),
+                        target_timespan='yellow',
+                        fresh=True,
+                        persist=True,
                         ),
-                    target_timespan='yellow',
-                    fresh=True,
-                    persist=True,
-                    ),
-                ])
+                    ]
+                )
 
         Returns timespan inventory.
         '''
@@ -607,100 +619,108 @@ class ScoreSpecification(Specification):
             ...         voice_proxy.payload_expressions_by_attribute.itervalues():
             ...         if timespan_inventory:
             ...             print format(timespan_inventory)
-            timespantools.TimespanInventory([
-                musicexpressiontools.StartPositionedDivisionPayloadExpression(
-                    payload=musicexpressiontools.DivisionList(
-                        [
-                            musicexpressiontools.Division(
-                                '[2, 8]',
-                                start_offset=durationtools.Offset(0, 1),
-                                ),
-                            musicexpressiontools.Division(
-                                '[3, 8]',
-                                start_offset=durationtools.Offset(1, 4),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 8]',
-                                start_offset=durationtools.Offset(5, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 16]',
-                                start_offset=durationtools.Offset(9, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 16]',
-                                start_offset=durationtools.Offset(11, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[5, 16]',
-                                start_offset=durationtools.Offset(13, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[5, 16]',
-                                start_offset=durationtools.Offset(31, 16),
-                                ),
-                            ],
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.StartPositionedDivisionPayloadExpression(
+                        payload=musicexpressiontools.DivisionList(
+                            [
+                                musicexpressiontools.Division(
+                                    '[2, 8]',
+                                    start_offset=durationtools.Offset(0, 1),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[3, 8]',
+                                    start_offset=durationtools.Offset(1, 4),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 8]',
+                                    start_offset=durationtools.Offset(5, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 16]',
+                                    start_offset=durationtools.Offset(9, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 16]',
+                                    start_offset=durationtools.Offset(11, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[5, 16]',
+                                    start_offset=durationtools.Offset(13, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[5, 16]',
+                                    start_offset=durationtools.Offset(31, 16),
+                                    ),
+                                ],
+                            start_offset=durationtools.Offset(0, 1),
+                            voice_name='Voice 1',
+                            ),
                         start_offset=durationtools.Offset(0, 1),
                         voice_name='Voice 1',
                         ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 1',
-                    ),
-                ])
-            timespantools.TimespanInventory([
-                musicexpressiontools.StartPositionedRhythmPayloadExpression(
-                    payload=scoretools.Container(),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 1',
-                    ),
-                ])
-            timespantools.TimespanInventory([
-                musicexpressiontools.StartPositionedDivisionPayloadExpression(
-                    payload=musicexpressiontools.DivisionList(
-                        [
-                            musicexpressiontools.Division(
-                                '[2, 8]',
-                                start_offset=durationtools.Offset(0, 1),
-                                ),
-                            musicexpressiontools.Division(
-                                '[3, 8]',
-                                start_offset=durationtools.Offset(1, 4),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 8]',
-                                start_offset=durationtools.Offset(5, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 16]',
-                                start_offset=durationtools.Offset(9, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[4, 16]',
-                                start_offset=durationtools.Offset(11, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[5, 16]',
-                                start_offset=durationtools.Offset(13, 8),
-                                ),
-                            musicexpressiontools.Division(
-                                '[5, 16]',
-                                start_offset=durationtools.Offset(31, 16),
-                                ),
-                            ],
+                    ]
+                )
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.StartPositionedRhythmPayloadExpression(
+                        payload=scoretools.Container(),
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 1',
+                        ),
+                    ]
+                )
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.StartPositionedDivisionPayloadExpression(
+                        payload=musicexpressiontools.DivisionList(
+                            [
+                                musicexpressiontools.Division(
+                                    '[2, 8]',
+                                    start_offset=durationtools.Offset(0, 1),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[3, 8]',
+                                    start_offset=durationtools.Offset(1, 4),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 8]',
+                                    start_offset=durationtools.Offset(5, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 16]',
+                                    start_offset=durationtools.Offset(9, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[4, 16]',
+                                    start_offset=durationtools.Offset(11, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[5, 16]',
+                                    start_offset=durationtools.Offset(13, 8),
+                                    ),
+                                musicexpressiontools.Division(
+                                    '[5, 16]',
+                                    start_offset=durationtools.Offset(31, 16),
+                                    ),
+                                ],
+                            start_offset=durationtools.Offset(0, 1),
+                            voice_name='Voice 2',
+                            ),
                         start_offset=durationtools.Offset(0, 1),
                         voice_name='Voice 2',
                         ),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 2',
-                    ),
-                ])
-            timespantools.TimespanInventory([
-                musicexpressiontools.StartPositionedRhythmPayloadExpression(
-                    payload=scoretools.Container(),
-                    start_offset=durationtools.Offset(0, 1),
-                    voice_name='Voice 2',
-                    ),
-                ])
+                    ]
+                )
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.StartPositionedRhythmPayloadExpression(
+                        payload=scoretools.Container(),
+                        start_offset=durationtools.Offset(0, 1),
+                        voice_name='Voice 2',
+                        ),
+                    ]
+                )
 
         Returns voice dictionary.
         '''

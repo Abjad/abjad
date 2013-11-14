@@ -34,7 +34,9 @@ class MeasureSelectExpression(SelectExpression):
         >>> print format(measures)
         musicexpressiontools.MeasureSelectExpression(
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Example 2. Select voice ``1`` measures starting during segment ``'red'``:
@@ -49,7 +51,9 @@ class MeasureSelectExpression(SelectExpression):
         musicexpressiontools.MeasureSelectExpression(
             anchor='red',
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Example 3. Select voice ``1`` measures that start during three contiguous 
@@ -67,14 +71,20 @@ class MeasureSelectExpression(SelectExpression):
             anchor=musicexpressiontools.TimespanExpression(
                 anchor=musicexpressiontools.SegmentSelectExpression(
                     voice_name='Voice 1',
-                    callbacks=musicexpressiontools.CallbackInventory([
-                        "result = self._getitem__(payload_expression, slice('red', ('red', 3), None))",
-                        ]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        [
+                            "result = self._getitem__(payload_expression, slice('red', ('red', 3), None))",
+                            ]
+                        ),
                     ),
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 ),
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Measure select expressions are immutable.

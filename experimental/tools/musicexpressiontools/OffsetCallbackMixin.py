@@ -31,10 +31,14 @@ class OffsetCallbackMixin(CallbackMixin):
         musicexpressiontools.OffsetExpression(
             anchor=musicexpressiontools.TimespanExpression(
                 anchor='red',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 ),
             edge=Right,
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Add to classes that should implement offset callbacks.
@@ -79,12 +83,14 @@ class OffsetCallbackMixin(CallbackMixin):
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(
                     anchor='red',
-                    callbacks=musicexpressiontools.CallbackInventory([]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        []
+                        ),
                     ),
                 edge=Right,
-                callbacks=musicexpressiontools.CallbackInventory([
-                    'self._scale(offset, Multiplier(4, 5))',
-                    ]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    ['self._scale(offset, Multiplier(4, 5))']
+                    ),
                 )
 
         Returns offset expression copy with callback.
@@ -107,12 +113,14 @@ class OffsetCallbackMixin(CallbackMixin):
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(
                     anchor='red',
-                    callbacks=musicexpressiontools.CallbackInventory([]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        []
+                        ),
                     ),
                 edge=Right,
-                callbacks=musicexpressiontools.CallbackInventory([
-                    'self._translate(offset, Duration(9, 2))',
-                    ]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    ['self._translate(offset, Duration(9, 2))']
+                    ),
                 )
 
         Returns offset expression copy with callback.

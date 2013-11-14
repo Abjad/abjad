@@ -37,14 +37,20 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
                 anchor=musicexpressiontools.MeasureSelectExpression(
                     anchor='red',
                     voice_name='Voice 1',
-                    callbacks=musicexpressiontools.CallbackInventory([
-                        'result = self._getitem__(payload_expression, slice(4, 5, None))',
-                        ]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        [
+                            'result = self._getitem__(payload_expression, slice(4, 5, None))',
+                            ]
+                        ),
                     ),
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 ),
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Lookup methods create division set expression lookup expressions.

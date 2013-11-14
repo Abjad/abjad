@@ -37,15 +37,21 @@ class OffsetExpression(
         musicexpressiontools.OffsetExpression(
             anchor=musicexpressiontools.CounttimeComponentSelectExpression(
                 anchor='red',
-                classes=musicexpressiontools.ClassInventory([
-                    scoretools.Note,
-                    scoretools.Chord,
-                    ]),
+                classes=musicexpressiontools.ClassInventory(
+                    [
+                        scoretools.Note,
+                        scoretools.Chord,
+                        ]
+                    ),
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 ),
             edge=Right,
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Offset expressions implement the lookup interface.

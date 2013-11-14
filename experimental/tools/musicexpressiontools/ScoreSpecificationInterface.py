@@ -152,11 +152,13 @@ class ScoreSpecificationInterface(SpecificationInterface):
             >>> print format(offset_expression)
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(
-                    callbacks=musicexpressiontools.CallbackInventory([]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        []
+                        ),
                     ),
-                callbacks=musicexpressiontools.CallbackInventory([
-                    'self._translate(offset, Duration(3, 8))',
-                    ]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    ['self._translate(offset, Duration(3, 8))']
+                    ),
                 )
 
         Returns offset expression.
@@ -194,7 +196,9 @@ class ScoreSpecificationInterface(SpecificationInterface):
             >>> print format(select_expression)
             musicexpressiontools.SegmentSelectExpression(
                 voice_name='Voice 1',
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 )
 
         Returns segment select expression.

@@ -26,21 +26,27 @@ class InstrumentationSpecifier(AbjadObject):
 
         >>> print format(instrumentation_specifier)
         instrumenttools.InstrumentationSpecifier(
-            performers=instrumenttools.PerformerInventory([
-                instrumenttools.Performer(
-                    name='Flute',
-                    instruments=instrumenttools.InstrumentInventory([
-                        instrumenttools.Flute(),
-                        instrumenttools.AltoFlute(),
-                        ]),
-                    ),
-                instrumenttools.Performer(
-                    name='Guitar',
-                    instruments=instrumenttools.InstrumentInventory([
-                        instrumenttools.Guitar(),
-                        ]),
-                    ),
-                ]),
+            performers=instrumenttools.PerformerInventory(
+                [
+                    instrumenttools.Performer(
+                        name='Flute',
+                        instruments=instrumenttools.InstrumentInventory(
+                            [
+                                instrumenttools.Flute(),
+                                instrumenttools.AltoFlute(),
+                                ]
+                            ),
+                        ),
+                    instrumenttools.Performer(
+                        name='Guitar',
+                        instruments=instrumenttools.InstrumentInventory(
+                            [
+                                instrumenttools.Guitar(),
+                                ]
+                            ),
+                        ),
+                    ]
+                ),
             )
 
     Returns instrumentation specifier.
@@ -140,21 +146,27 @@ class InstrumentationSpecifier(AbjadObject):
             ::
 
                 >>> print format(instrumentation_specifier.performers)
-                instrumenttools.PerformerInventory([
-                    instrumenttools.Performer(
-                        name='Flute',
-                        instruments=instrumenttools.InstrumentInventory([
-                            instrumenttools.Flute(),
-                            instrumenttools.AltoFlute(),
-                            ]),
-                        ),
-                    instrumenttools.Performer(
-                        name='Guitar',
-                        instruments=instrumenttools.InstrumentInventory([
-                            instrumenttools.Guitar(),
-                            ]),
-                        ),
-                    ])
+                instrumenttools.PerformerInventory(
+                    [
+                        instrumenttools.Performer(
+                            name='Flute',
+                            instruments=instrumenttools.InstrumentInventory(
+                                [
+                                    instrumenttools.Flute(),
+                                    instrumenttools.AltoFlute(),
+                                    ]
+                                ),
+                            ),
+                        instrumenttools.Performer(
+                            name='Guitar',
+                            instruments=instrumenttools.InstrumentInventory(
+                                [
+                                    instrumenttools.Guitar(),
+                                    ]
+                                ),
+                            ),
+                        ]
+                    )
 
             Returns performer inventory.
             '''

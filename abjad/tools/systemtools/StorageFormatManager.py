@@ -43,7 +43,9 @@ class StorageFormatManager(object):
             # just return the repr, if all contents are builtin types
             if all(isinstance(x, (bool, int, float, str, type(None)))
                 for x in value):
-                return [repr(value)]
+                piece = repr(value)
+                if len(piece) < 50:
+                    return [repr(value)]
             if isinstance(value, list):
                 braces = '[', ']'
             else:
@@ -161,6 +163,8 @@ class StorageFormatManager(object):
         tools_package_name=None,
         ):
         result = []
+        prefix, suffix = StorageFormatManager.get_indentation_strings(
+            is_indented)
         class_name = type(object_).__name__
         tools_package_name = tools_package_name or \
             StorageFormatManager.get_tools_package_name(object_)
@@ -189,7 +193,7 @@ class StorageFormatManager(object):
             else:
                 result.extend(keyword_argument_pieces)
             if is_indented:
-                result.append('    )')
+                result.append('{})'.format(prefix))
             else:
                 result.append(')')
         return tuple(result)

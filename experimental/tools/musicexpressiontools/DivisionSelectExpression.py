@@ -32,7 +32,9 @@ class DivisionSelectExpression(SelectExpression):
         >>> print format(select_expression)
         musicexpressiontools.DivisionSelectExpression(
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Example 2. Select voice ``1`` divisions that start during segment 
@@ -48,7 +50,9 @@ class DivisionSelectExpression(SelectExpression):
         musicexpressiontools.DivisionSelectExpression(
             anchor='red',
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Division select expressions are immutable.

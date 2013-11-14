@@ -107,11 +107,13 @@ class Accordion(Instrument):
                     short_instrument_name_markup=markuptools.Markup(
                         ('Fis.',)
                         ),
-                    allowable_clefs=marktools.ClefInventory([
-                        marktools.Clef(
-                            'treble'
-                            ),
-                        ]),
+                    allowable_clefs=marktools.ClefInventory(
+                        [
+                            marktools.Clef(
+                                'treble'
+                                ),
+                            ]
+                        ),
                     pitch_range=pitchtools.PitchRange(
                         '[C4, C6]'
                         ),

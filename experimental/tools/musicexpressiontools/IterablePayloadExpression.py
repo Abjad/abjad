@@ -69,20 +69,22 @@ class IterablePayloadExpression(PayloadExpression):
         ::
 
             >>> print format(result)
-            timespantools.TimespanInventory([
-                musicexpressiontools.IterablePayloadExpression(
-                    payload=(
-                        musicexpressiontools.Division(
-                            '[3, 16]',
-                            start_offset=durationtools.Offset(1, 16),
-                            ),
-                        musicexpressiontools.Division(
-                            '[1, 16]',
-                            start_offset=durationtools.Offset(1, 4),
+            timespantools.TimespanInventory(
+                [
+                    musicexpressiontools.IterablePayloadExpression(
+                        payload=(
+                            musicexpressiontools.Division(
+                                '[3, 16]',
+                                start_offset=durationtools.Offset(1, 16),
+                                ),
+                            musicexpressiontools.Division(
+                                '[1, 16]',
+                                start_offset=durationtools.Offset(1, 4),
+                                ),
                             ),
                         ),
-                    ),
-                ])
+                    ]
+                )
 
         Returns newly constructed payload expression.
         '''

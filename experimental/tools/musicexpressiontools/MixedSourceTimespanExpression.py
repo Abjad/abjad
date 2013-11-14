@@ -49,24 +49,34 @@ class MixedSourceTimespanExpression(TimespanExpression):
                 anchor=musicexpressiontools.MeasureSelectExpression(
                     anchor='red',
                     voice_name='Voice 1',
-                    callbacks=musicexpressiontools.CallbackInventory([
-                        'result = self._getitem__(payload_expression, slice(-1, None, None))',
-                        ]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        [
+                            'result = self._getitem__(payload_expression, slice(-1, None, None))',
+                            ]
+                        ),
                     ),
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 ),
             stop_offset=musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.MeasureSelectExpression(
                     anchor='blue',
                     voice_name='Voice 1',
-                    callbacks=musicexpressiontools.CallbackInventory([
-                        'result = self._getitem__(payload_expression, slice(None, 1, None))',
-                        ]),
+                    callbacks=musicexpressiontools.CallbackInventory(
+                        [
+                            'result = self._getitem__(payload_expression, slice(None, 1, None))',
+                            ]
+                        ),
                     ),
                 edge=Right,
-                callbacks=musicexpressiontools.CallbackInventory([]),
+                callbacks=musicexpressiontools.CallbackInventory(
+                    []
+                    ),
                 ),
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Mixed-source timespan expressions are immutable.

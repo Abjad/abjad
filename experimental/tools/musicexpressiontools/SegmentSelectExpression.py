@@ -32,7 +32,9 @@ class SegmentSelectExpression(SelectExpression):
         >>> print format(select_expression)
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                []
+                ),
             )
 
     Example 2. Select the first two voice ``1`` segments in score:
@@ -47,9 +49,11 @@ class SegmentSelectExpression(SelectExpression):
         >>> print format(select_expression)
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([
-                'result = self._getitem__(payload_expression, slice(None, 2, None))',
-                ]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                [
+                    'result = self._getitem__(payload_expression, slice(None, 2, None))',
+                    ]
+                ),
             )
 
     Example 3. Select voice ``1`` segments up to but not including ``'green'``:
@@ -64,9 +68,11 @@ class SegmentSelectExpression(SelectExpression):
         >>> print format(select_expression)
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([
-                "result = self._getitem__(payload_expression, slice(None, 'green', None))",
-                ]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                [
+                    "result = self._getitem__(payload_expression, slice(None, 'green', None))",
+                    ]
+                ),
             )
 
     Examle 4. Select voice ``1`` segments up to and including ``'green'``:
@@ -81,9 +87,11 @@ class SegmentSelectExpression(SelectExpression):
         >>> print format(select_expression)
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([
-                "result = self._getitem__(payload_expression, slice(None, ('green', 1), None))",
-                ]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                [
+                    "result = self._getitem__(payload_expression, slice(None, ('green', 1), None))",
+                    ]
+                ),
             )
 
     Example 5. Select voice ``1`` segment ``'red'``:
@@ -99,9 +107,11 @@ class SegmentSelectExpression(SelectExpression):
         >>> print format(select_expression)
         musicexpressiontools.SegmentSelectExpression(
             voice_name='Voice 1',
-            callbacks=musicexpressiontools.CallbackInventory([
-                "result = self._getitem__(payload_expression, slice('red', ('red', 1), None))",
-                ]),
+            callbacks=musicexpressiontools.CallbackInventory(
+                [
+                    "result = self._getitem__(payload_expression, slice('red', ('red', 1), None))",
+                    ]
+                ),
             )
 
     Segment select expressions are immutable.
