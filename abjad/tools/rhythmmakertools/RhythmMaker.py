@@ -139,7 +139,7 @@ class RhythmMaker(Maker):
         duration_pairs.append(dummy_duration_pair)
         Duration = durationtools.Duration
         duration_pairs = \
-            Duration.durations_to_nonreduced_fractions_with_common_denominator(
+            Duration.durations_to_nonreduced_fractions(
             duration_pairs)
         dummy_duration_pair = duration_pairs.pop()
         lcd = dummy_duration_pair.denominator

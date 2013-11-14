@@ -113,7 +113,7 @@ Removed ``durationtools.duration_tokens_to_least_common_denominator()``.
 Function is no longer supported. Use ``mathtools.least_common_multiple()`` instead.
 
 Renamed ``durationtools.duration_tokens_to_duration_pairs_with_least_common_denominator()``.
-The new name is ``durationtools.durations_to_nonreduced_fractions_with_common_denominator()``.
+The new name is ``durationtools.durations_to_nonreduced_fractions()``.
 
 Renamed ``durationtools.yield_all_assignable_durations()``.
 The new name is ``durationtools.yield_assignable_durations()``.

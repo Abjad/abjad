@@ -51,7 +51,7 @@ class Check(AbjadObject):
         from abjad.tools import wellformednesstools
         result = []
         for name in dir(wellformednesstools):
-            if not name == 'Check':
+            if not name in ('Check', 'WellformednessManager'):
                 if name[0].isupper():
                     exec('check = wellformednesstools.{}()'.format(name))
                     result.append(check)

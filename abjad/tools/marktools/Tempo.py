@@ -582,3 +582,54 @@ class Tempo(ContextMark):
         pairs.sort()
         # return pairs
         return pairs
+
+    def rewrite_duration(self, duration, new_tempo):
+        r'''Rewrite `duration` under `new_tempo`.
+
+        Given `duration` governed by this tempo
+        return new duration governed by `new_tempo`.
+
+        Ensure that `duration` and new duration
+        consume the same amount of time in seconds.
+
+        ..  container:: example
+
+            **Example.** Consider the two tempo indications below. 
+            
+            ::
+
+                >>> tempo = marktools.Tempo(Duration(1, 4), 60)
+                >>> new_tempo = marktools.Tempo(Duration(1, 4), 90)
+
+            `tempo` specifies quarter equal to ``60 MM``.
+
+            `new_tempo` indication specifies quarter equal to ``90 MM``.
+
+            `new_tempo` is ``3/2`` times as fast as `tempo`:
+
+            ::
+
+                >>> new_tempo / tempo
+                Multiplier(3, 2)
+
+            Note that a triplet eighth note under `tempo` equals a regular 
+            eighth note under `new_tempo`:
+
+            ::
+
+                >>> tempo.rewrite_duration(Duration(1, 12), new_tempo)
+                Duration(1, 8)
+
+            And note that a regular eighth note under `tempo` equals a dotted
+            sixteenth under `new_tempo`:
+
+            ::
+
+                >>> tempo.rewrite_duration(Duration(1, 8), new_tempo)
+                Duration(3, 16)
+
+        Returns duration.
+        '''
+        tempo_ratio = new_tempo / self
+        new_duration = tempo_ratio * duration
+        return new_duration
