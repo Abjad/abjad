@@ -14,9 +14,9 @@ def test_InstrumentEditor_base_states_01():
     ['Accordion',
       '',
       "     1: instrument name (in): accordion",
-      "     2: instrument name markup (im): Markup(('Accordion',))",
+      "     2: instrument name markup (im): \markup { Accordion }",
       "     3: short instrument name (sn): acc.",
-      "     4: short instrument name markup (sm): Markup(('Acc.',))",
+      "     4: short instrument name markup (sm): \markup { Acc. }",
       '     5: range (rg): [E1, C8]',
       '     6: clefs (cf): treble, bass',
       '']

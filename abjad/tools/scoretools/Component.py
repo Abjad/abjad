@@ -483,7 +483,7 @@ class Component(AbjadObject):
 
     def _get_markup(self, direction=None):
         from abjad.tools import markuptools
-        markup = self._get_marks(mark_prototypes=(markuptools.Markup,))
+        markup = self._get_attached_items(markuptools.Markup)
         if direction is Up:
             return tuple(x for x in markup if x.direction is Up)
         elif direction is Down:

@@ -10,6 +10,7 @@ from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import lilypondfiletools
 from abjad.tools import marktools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
@@ -629,6 +630,7 @@ class LilyPondParser(abctools.Parser):
                 marktools.Articulation,
                 marktools.BarLine,
                 marktools.LilyPondCommand,
+                markuptools.Markup,
                 marktools.StemTremolo,
                 )
             if hasattr(post_event, '_attach'):
