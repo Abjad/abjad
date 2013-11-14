@@ -69,7 +69,7 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def duration(self):
-        r'''The prolated preprolated_duration of the node:
+        r'''Thepreprolated_duration of the node:
 
         ::
 

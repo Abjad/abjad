@@ -11,7 +11,7 @@ def set_line_breaks_cyclically_by_line_duration_ge(
     add_empty_bars=False,
     ):
     r'''Iterate `line_break_class` instances in `expr` and 
-    accumulate prolated duration.
+    accumulateduration.
 
     Add line break after every total less than or equal to `line_duration`:
 

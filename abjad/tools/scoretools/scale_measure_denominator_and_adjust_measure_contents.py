@@ -50,7 +50,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     Treats new denominator `factor` like clever form of ``1``:
     ``3/3`` or ``5/5`` or ``7/7``, etc.
 
-    Preserves `measure` prolated duration.
+    Preserves `measure`duration.
 
     Derives new `measure` multiplier.
 

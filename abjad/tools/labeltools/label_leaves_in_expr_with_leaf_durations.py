@@ -146,7 +146,7 @@ def label_leaves_in_expr_with_leaf_durations(
                 markup = markuptools.Markup(label, markup_direction)
                 attach(markup, leaf)
             if label_durations:
-                prolated = sum([x._get_duration() for x in tie])
-                label = markuptools.MarkupCommand('small', str(prolated))
+                duration = sum([x._get_duration() for x in tie])
+                label = markuptools.MarkupCommand('small', str(duration))
                 markup = markuptools.Markup(label, markup_direction)
                 attach(markup, leaf)

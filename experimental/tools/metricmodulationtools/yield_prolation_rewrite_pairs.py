@@ -7,7 +7,7 @@ def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
 
     Ensure written duration never less than `minimum_written_duration`.
 
-    The different ways to notate a prolated duration of ``1/8``:
+    The different ways to notate aduration of ``1/8``:
 
     ::
 
@@ -26,7 +26,7 @@ def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
         (Multiplier(16, 15), Duration(15, 128))
         (Multiplier(16, 31), Duration(31, 128))
 
-    The different ways to notate a prolated duration of ``1/12``:
+    The different ways to notate aduration of ``1/12``:
 
     ::
 
@@ -44,7 +44,7 @@ def yield_prolation_rewrite_pairs(duration, minimum_written_duration=None):
         (Multiplier(32, 21), Duration(7, 128))
         (Multiplier(32, 45), Duration(15, 128))
 
-    The different ways to notate a prolated duration of ``5/48``:
+    The different ways to notate aduration of ``5/48``:
 
     ::
 
