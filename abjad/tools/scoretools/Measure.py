@@ -450,7 +450,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_full(self):
-        r'''True whenduration equals time signature duration:
+        r'''True when duration equals time signature duration:
 
         ::
 
@@ -507,7 +507,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_overfull(self):
-        '''True whenduration is greater than time signature duration:
+        '''True when duration is greater than time signature duration:
 
         ::
 
@@ -526,7 +526,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_underfull(self):
-        '''True whenduration is less than time signature duration:
+        '''True when duration is less than time signature duration:
 
         ::
 

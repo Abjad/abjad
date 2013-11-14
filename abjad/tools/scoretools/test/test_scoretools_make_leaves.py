@@ -15,7 +15,7 @@ def test_scoretools_make_leaves_01():
 
 
 def test_scoretools_make_leaves_02():
-    r'''Leaves constructor can createchords, notes and rests
+    r'''Leaves constructor can create chords, notes and rests
     simultaneously. Contiguous leaves with the same prolation are
     put together inside a tuplet.
     '''

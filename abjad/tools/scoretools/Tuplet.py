@@ -1083,7 +1083,7 @@ class Tuplet(Container):
         ratio = \
             sequencetools.divide_sequence_elements_by_greatest_common_divisor(
                 ratio)
-        # find basicduration of note in tuplet
+        # find basic duration of note in tuplet
         basic_prolated_duration = duration / mathtools.weight(ratio)
         # find basic written duration of note in tuplet
         if avoid_dots:

@@ -602,7 +602,7 @@ class Leaf(Component):
         proportions = mathtools.Ratio(proportions)
         # find target duration of fixed-duration tuplet
         target_duration = self.written_duration
-        # find basicduration of note in tuplet
+        # find basic duration of note in tuplet
         basic_prolated_duration = target_duration / sum(proportions)
         # find basic written duration of note in tuplet
         basic_written_duration = \

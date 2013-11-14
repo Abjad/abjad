@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
-    r'''Iterate classes in expr and accumulateduration.
+    r'''Iterate classes in expr and accumulate duration.
     Add line break after every total le line duration.
     '''
 
@@ -48,7 +48,7 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
 
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02():
-    r'''Iterate classes in expr and accumulateduration.
+    r'''Iterate classes in expr and accumulate duration.
     Add line break after every total le line duration.
     '''
 

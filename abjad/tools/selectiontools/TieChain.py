@@ -329,7 +329,7 @@ class TieChain(ContiguousSelection):
         # find target duration of fixed-duration tuplet
         target_duration = self._preprolated_duration
 
-        # findduration of each note in tuplet
+        # find duration of each note in tuplet
         prolated_duration = target_duration / sum(proportions)
 
         # find written duration of each notes in tuplet

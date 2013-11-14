@@ -2,7 +2,7 @@
 
 
 def label_leaves_in_expr_with_leaf_duration(expr, markup_direction=Down):
-    r'''Label leaves in `expr` withleaf duration:
+    r'''Label leaves in `expr` with leaf duration:
 
     ::
 

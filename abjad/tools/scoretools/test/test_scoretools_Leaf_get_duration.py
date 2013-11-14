@@ -4,7 +4,7 @@ import pytest
 
 
 def test_scoretools_Leaf_get_duration_01():
-    r'''Clock duration equalsduration divide by effective tempo.
+    r'''Clock duration equals duration divide by effective tempo.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")

@@ -2,9 +2,9 @@
 
 
 def rewrite_duration_under_new_tempo(duration, tempo_1, tempo_2):
-    r'''Rewrite`duration` under new tempo.
+    r'''Rewrite `duration` under new tempo.
 
-    Given`duration` governed by `tempo_1`,
+    Given `duration` governed by `tempo_1`,
     return new duration governed by `tempo_2`.
 
     Ensure that `duration` and new duration
