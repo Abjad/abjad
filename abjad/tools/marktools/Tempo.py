@@ -312,7 +312,7 @@ class Tempo(ContextMark):
 
     @property
     def is_imprecise(self):
-        r'''True if tempo is entirely textual, or if tempo mark's
+        r'''True if tempo is entirely textual, or if tempo's
         units_per_minute is a range.
 
         ::

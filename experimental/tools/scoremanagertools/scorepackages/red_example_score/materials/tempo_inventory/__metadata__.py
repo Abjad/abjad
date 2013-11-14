@@ -3,7 +3,7 @@ import collections
 
 
 tags = collections.OrderedDict([
-    ('generic_output_name', 'tempo mark inventory'),
+    ('generic_output_name', 'tempo inventory'),
     ('is_material_package', True),
     ('material_package_maker_class_name', 'TempoInventoryMaterialPackageMaker'),
     ('should_have_illustration', True),

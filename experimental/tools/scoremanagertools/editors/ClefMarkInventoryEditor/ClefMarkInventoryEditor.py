@@ -21,7 +21,7 @@ class ClefMarkInventoryEditor(ObjectInventoryEditor):
 
     item_getter_configuration_method = iotools.UserInputGetter.append_clef
 
-    item_identifier = 'clef mark'
+    item_identifier = 'clef'
 
     target_manifest = TargetManifest(
         marktools.ClefInventory,

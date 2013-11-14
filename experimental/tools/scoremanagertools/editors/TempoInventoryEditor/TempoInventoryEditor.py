@@ -21,7 +21,7 @@ class TempoInventoryEditor(ObjectInventoryEditor):
 
     item_getter_configuration_method = UserInputGetter.append_tempo
 
-    item_identifier = 'tempo mark'
+    item_identifier = 'tempo'
 
     target_manifest = TargetManifest(
         marktools.TempoInventory,

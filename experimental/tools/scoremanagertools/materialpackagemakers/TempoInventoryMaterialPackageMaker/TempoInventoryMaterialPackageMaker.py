@@ -10,7 +10,7 @@ class TempoInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'tempo mark inventory'
+    generic_output_name = 'tempo inventory'
 
     output_material_checker = staticmethod(
         lambda x: isinstance(x, marktools.TempoInventory))

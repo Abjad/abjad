@@ -115,7 +115,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return voice
 
     def make_context_mark_score_01(self):
-        r'''Make 200-note voice with dynamic mark on every 20th note:
+        r'''Make 200-note voice with dynamic on every 20th note:
 
         ::
 
@@ -143,7 +143,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return staff
 
     def make_context_mark_score_02(self):
-        r'''Make 200-note staff with dynamic mark on every 4th note.
+        r'''Make 200-note staff with dynamic on every 4th note.
 
         ::
 
@@ -171,7 +171,7 @@ class BenchmarkScoreMaker(AbjadObject):
         return staff
 
     def make_context_mark_score_03(self):
-        r'''Make 200-note staff with dynamic mark on every note.
+        r'''Make 200-note staff with dynamic on every note.
 
         ::
 

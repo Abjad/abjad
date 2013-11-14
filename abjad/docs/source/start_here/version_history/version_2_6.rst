@@ -235,7 +235,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     >>> pitchtools.PitchRange('A0', 'C8')
     PitchRange('[A0, C8]')
 
-* Extended ``scoretools.is_bar_line_crossing_leaf()`` to work when no explicit time signature mark is found.
+* Extended ``scoretools.is_bar_line_crossing_leaf()`` to work when no explicit time signature is found.
 * Extended ``Markup`` to be able to function as a top-level ``LilyPondFile`` element.
 * Extended instruments with ``is_primary`` and ``is_secondary`` attributes.
 * Extended instruments with ``instrument_name`` and ``instrument_name_markup`` attributes.

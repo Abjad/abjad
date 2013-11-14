@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_marktools_StaffChange_staff_01():
-    r'''Staff of staff change mark is read / write.
+    r'''Staff of staff change is read / write.
     '''
 
     rh_staff = Staff("c'8 d'8 e'8 f'8")

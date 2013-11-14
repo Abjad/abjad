@@ -111,7 +111,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def time_signature(self):
         r'''The optionally defined TimeSignature.
 
-        Returns time signature mark or none
+        Returns time signature or none
         '''
         return self._time_signature
 

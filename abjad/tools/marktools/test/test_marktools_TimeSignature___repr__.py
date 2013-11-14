@@ -4,7 +4,7 @@ from abjad.tools.marktools import TimeSignature
 
 
 def test_marktools_TimeSignature___repr___01():
-    r'''Time signature mark returns nonempty string repr.
+    r'''Time signature returns nonempty string repr.
     '''
 
     time_signature_repr = TimeSignature((3, 8)).__repr__()

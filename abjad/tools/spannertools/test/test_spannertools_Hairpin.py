@@ -169,7 +169,7 @@ def test_spannertools_Hairpin_06():
 
 
 def test_spannertools_Hairpin_07():
-    r'''Trimmed hairpins with dynamic marks behave as expected.
+    r'''Trimmed hairpins with dynamics behave as expected.
     '''
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
