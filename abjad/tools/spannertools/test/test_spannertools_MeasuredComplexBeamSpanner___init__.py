@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_MeasuredComplexBeamSpanner___init___01():
-    r'''Initializeempty measured complex beam spanner.
+    r'''Initialize empty measured complex beam spanner.
     '''
 
     beam = spannertools.MeasuredComplexBeamSpanner()

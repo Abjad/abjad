@@ -4,7 +4,7 @@ import pytest
 
 
 def test_spannertools_Spanner___init___01():
-    r'''Initializeempty spanner.
+    r'''Initialize empty spanner.
     '''
 
     beam = Beam()
@@ -13,7 +13,7 @@ def test_spannertools_Spanner___init___01():
 
 
 def test_spannertools_Spanner___init___02():
-    r'''Initializenonempty spanner.
+    r'''Initialize nonempty spanner.
     '''
 
     container = Container("c'8 d'8 e'8 f'8")

@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_BracketSpanner___init___01():
-    r'''Initializeempty bracket spanner.
+    r'''Initialize empty bracket spanner.
     '''
 
     bracket = spannertools.BracketSpanner()

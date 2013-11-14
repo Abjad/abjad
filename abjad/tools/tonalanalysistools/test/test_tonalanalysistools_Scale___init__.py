@@ -4,7 +4,7 @@ from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_Scale___init___01():
-    r'''Initializewith tonic and mode strings.
+    r'''Initialize with tonic and mode strings.
     '''
 
     scale = tonalanalysistools.Scale('g', 'major')
@@ -12,7 +12,7 @@ def test_tonalanalysistools_Scale___init___01():
 
 
 def test_tonalanalysistools_Scale___init___02():
-    r'''Initializewith key signature instance.
+    r'''Initialize with key signature instance.
     '''
 
     key_signature = marktools.KeySignature('g', 'major')
@@ -21,7 +21,7 @@ def test_tonalanalysistools_Scale___init___02():
 
 
 def test_tonalanalysistools_Scale___init___03():
-    r'''Initializewith other scale instance.
+    r'''Initialize with other scale instance.
     '''
 
     scale = tonalanalysistools.Scale('g', 'major')

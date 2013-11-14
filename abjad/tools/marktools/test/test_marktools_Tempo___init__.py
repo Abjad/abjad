@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_marktools_Tempo___init___01():
-    r'''Initializetempo with integer-valued mark.
+    r'''Initialize tempo with integer-valued mark.
     '''
 
     tempo = Tempo(Duration(3, 32), 52)
@@ -11,7 +11,7 @@ def test_marktools_Tempo___init___01():
 
 
 def test_marktools_Tempo___init___02():
-    r'''Initializetempo with float-valued mark.
+    r'''Initialize tempo with float-valued mark.
     '''
 
     tempo = Tempo(Duration(3, 32), 52.5)
@@ -19,7 +19,7 @@ def test_marktools_Tempo___init___02():
 
 
 def test_marktools_Tempo___init___03():
-    r'''Initializetempo from tempo.
+    r'''Initialize tempo from tempo.
     '''
 
     tempo = Tempo(Duration(3, 32), 52)
@@ -33,7 +33,7 @@ def test_marktools_Tempo___init___03():
 
 
 def test_marktools_Tempo___init___04():
-    r'''Initializetempo from integer pair.
+    r'''Initialize tempo from integer pair.
     '''
 
     tempo = Tempo((3, 32), 52.5)
@@ -41,7 +41,7 @@ def test_marktools_Tempo___init___04():
 
 
 def test_marktools_Tempo___init___05():
-    r'''Initializetempo from textual indication.
+    r'''Initialize tempo from textual indication.
     '''
 
     tempo = Tempo('Langsam')
@@ -49,7 +49,7 @@ def test_marktools_Tempo___init___05():
 
 
 def test_marktools_Tempo___init___06():
-    r'''Initializetempo with tempo range.
+    r'''Initialize tempo with tempo range.
     '''
 
     tempo = Tempo((1, 8), (52, 57.5))
@@ -57,7 +57,7 @@ def test_marktools_Tempo___init___06():
 
 
 def test_marktools_Tempo___init___07():
-    r'''Initializetempo from text, duration and range.
+    r'''Initialize tempo from text, duration and range.
     '''
 
     tempo = Tempo('Quick', Duration(1, 4), (120, 133))
@@ -65,7 +65,7 @@ def test_marktools_Tempo___init___07():
 
 
 def test_marktools_Tempo___init___08():
-    r'''Initializetempo from length-2 tuple.
+    r'''Initialize tempo from length-2 tuple.
     '''
 
     tempo = Tempo((Duration(1, 4), (120, 133)))
@@ -73,7 +73,7 @@ def test_marktools_Tempo___init___08():
 
 
 def test_marktools_Tempo___init___09():
-    r'''Initializetempo from length-3 tuple.
+    r'''Initialize tempo from length-3 tuple.
     '''
 
     tempo = Tempo(('Quick', Duration(1, 4), (120, 133)))

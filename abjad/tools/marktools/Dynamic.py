@@ -7,7 +7,7 @@ class Dynamic(ContextMark):
 
     ..  container:: example
     
-        **Example 1.** Initializes from dynamic name:
+        **Example 1.** Initialize s from dynamic name:
 
         ::
 
@@ -31,7 +31,7 @@ class Dynamic(ContextMark):
 
     ..  container:: example
 
-        **Example 2.** Initializes from other dynamic:
+        **Example 2.** Initialize s from other dynamic:
 
         ::
 

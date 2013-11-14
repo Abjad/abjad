@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_schemetools_SchemeColor___init___01():
-    r'''Initializescheme color with string.
+    r'''Initialize scheme color with string.
     '''
 
     note = Note("c'4")

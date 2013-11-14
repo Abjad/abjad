@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_ScaleDegree__init_by_number_01():
@@ -11,7 +10,7 @@ def test_tonalanalysistools_ScaleDegree__init_by_number_01():
 
 
 def test_tonalanalysistools_ScaleDegree__init_by_number_02():
-    r'''Initializefrom other scale degree instance.
+    r'''Initialize from other scale degreeinstance.
     '''
 
     degree = tonalanalysistools.ScaleDegree(2)

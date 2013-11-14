@@ -11,51 +11,51 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        **Initializer examples.**
+        **Initialize r examples.**
 
-        Initialize from integer numerator:
+        Initialize  from integer numerator:
 
         ::
 
             >>> Duration(3)
             Duration(3, 1)
 
-        Initialize from integer numerator and denominator:
+        Initialize  from integer numerator and denominator:
 
         ::
 
             >>> Duration(3, 16)
             Duration(3, 16)
 
-        Initialize from integer-equivalent numeric numerator:
+        Initialize  from integer-equivalent numeric numerator:
 
         ::
 
             >>> Duration(3.0)
             Duration(3, 1)
 
-        Initialize from integer-equivalent numeric numerator and denominator:
+        Initialize  from integer-equivalent numeric numerator and denominator:
 
         ::
 
             >>> Duration(3.0, 16)
             Duration(3, 16)
 
-        Initialize from integer-equivalent singleton:
+        Initialize  from integer-equivalent singleton:
 
         ::
 
             >>> Duration((3,))
             Duration(3, 1)
 
-        Initialize from integer-equivalent pair:
+        Initialize  from integer-equivalent pair:
 
         ::
 
             >>> Duration((3, 16))
             Duration(3, 16)
 
-        Initialize from other duration:
+        Initialize  from other duration:
 
         ::
 
@@ -69,14 +69,14 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> Duration(Fraction(3, 16))
             Duration(3, 16)
 
-        Initialize from solidus string:
+        Initialize  from solidus string:
 
         ::
 
             >>> Duration('3/16')
             Duration(3, 16)
 
-        Initialize from nonreduced fraction:
+        Initialize  from nonreduced fraction:
 
         ::
 
@@ -792,7 +792,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @staticmethod
     def from_lilypond_duration_string(lilypond_duration_string):
-        r'''Initialize from LilyPond duration string:
+        r'''Initialize  from LilyPond duration string:
 
         ::
 

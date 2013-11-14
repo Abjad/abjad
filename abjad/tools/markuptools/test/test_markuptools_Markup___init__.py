@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_markuptools_Markup___init___01():
-    r'''Initializemarkup with string.
+    r'''Initialize markup with string.
     '''
 
     markup = markuptools.Markup('foo')
@@ -11,7 +11,7 @@ def test_markuptools_Markup___init___01():
 
 
 def test_markuptools_Markup___init___02():
-    r'''Initializemarkup with other markup instance.
+    r'''Initialize markup with other markup instance.
     '''
 
     markup_1 = markuptools.Markup('foo')
@@ -22,7 +22,7 @@ def test_markuptools_Markup___init___02():
 
 
 def test_markuptools_Markup___init___03():
-    r'''Initializemarkup with nonstring and nonmarkup instance.
+    r'''Initialize markup with nonstring and nonmarkup instance.
     '''
 
     markup = markuptools.Markup(27)
@@ -31,7 +31,7 @@ def test_markuptools_Markup___init___03():
 
 
 def test_markuptools_Markup___init___04():
-    r'''Initializemarkup from MarkupCommand.
+    r'''Initialize markup from MarkupCommand.
     '''
 
     command = markuptools.MarkupCommand('flat')
@@ -47,7 +47,7 @@ def test_markuptools_Markup___init___04():
 
 
 def test_markuptools_Markup___init___05():
-    r'''Initializemarkup from sequence of strings or MarkupCommands.
+    r'''Initialize markup from sequence of strings or MarkupCommands.
     '''
 
     command_1 = markuptools.MarkupCommand('flat')

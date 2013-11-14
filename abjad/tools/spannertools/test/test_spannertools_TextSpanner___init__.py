@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_TextSpanner___init___01():
-    r'''Initializeempty text spanner.
+    r'''Initialize empty text spanner.
     '''
 
     spanner = spannertools.TextSpanner()

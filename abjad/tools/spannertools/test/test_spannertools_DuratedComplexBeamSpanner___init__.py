@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_DuratedComplexBeamSpanner___init___01():
-    r'''Initializeempty durated complex beam spanner.
+    r'''Initialize empty durated complex beam spanner.
     '''
 
     beam = spannertools.DuratedComplexBeamSpanner()

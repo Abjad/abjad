@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_Decrescendo___init___01():
-    r'''Initializeempty decrescendo spanner.
+    r'''Initialize empty decrescendo spanner.
     '''
 
     decrescendo = Decrescendo()

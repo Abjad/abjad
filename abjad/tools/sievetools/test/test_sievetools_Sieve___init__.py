@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_sievetools_Sieve___init___01():
-    r'''Initializesieve from rc instances and logical operator keyword.
+    r'''Initialize sieve from rc instances and logical operator keyword.
     '''
 
     rcs = []
@@ -18,7 +18,7 @@ def test_sievetools_Sieve___init___01():
 
 
 def test_sievetools_Sieve___init___02():
-    r'''Initializesieve from other sieve instance.
+    r'''Initialize sieve from other sieve instance.
     '''
 
     rcs = []

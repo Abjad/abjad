@@ -3,7 +3,7 @@ from abjad import *
 
 
 #def test_pitchtools_PitchRange___init___01():
-#    r'''Initializeinfinite pitch range.'''
+#    r'''Initialize infinite pitch range.'''
 #
 #    pr = pitchtools.PitchRange()
 #    assert pr._start is None
@@ -55,7 +55,7 @@ def test_pitchtools_PitchRange___init___05():
 
 
 def test_pitchtools_PitchRange___init___06():
-    r'''Initializefrom pitch names.
+    r'''Initialize from pitch names.
     '''
 
     pr = pitchtools.PitchRange("c'", ("c''", 'exclusive'))
@@ -64,7 +64,7 @@ def test_pitchtools_PitchRange___init___06():
 
 
 def test_pitchtools_PitchRange___init___07():
-    r'''Initializefrom pitch-class / octave number strings.
+    r'''Initialize from pitch-class / octave number strings.
     '''
 
     pr = pitchtools.PitchRange('A0', 'C8')
@@ -73,7 +73,7 @@ def test_pitchtools_PitchRange___init___07():
 
 
 def test_pitchtools_PitchRange___init___08():
-    r'''Initializepitch range from other pitch range.
+    r'''Initialize pitch range from other pitch range.
     '''
 
     pitch_range_1 = pitchtools.PitchRange(-39, 48)
@@ -86,7 +86,7 @@ def test_pitchtools_PitchRange___init___08():
 
 
 def test_pitchtools_PitchRange___init___09():
-    r'''Initializepitch range from pair.
+    r'''Initialize pitch range from pair.
     '''
 
     pitch_range_1 = pitchtools.PitchRange(-39, 48)
@@ -96,7 +96,7 @@ def test_pitchtools_PitchRange___init___09():
 
 
 def test_pitchtools_PitchRange___init___10():
-    r'''Initializefrom symbolic pitch range string.
+    r'''Initialize from symbolic pitch range string.
     '''
 
     assert pitchtools.PitchRange('[A0, C8]') == pitchtools.PitchRange(

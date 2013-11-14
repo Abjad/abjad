@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_Hairpin___init___01():
-    r'''Initializeempty hairpin spanner.
+    r'''Initialize empty hairpin spanner.
     '''
 
     hairpin = Hairpin()
