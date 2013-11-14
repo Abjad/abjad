@@ -223,7 +223,7 @@ class Quantizer(AbjadObject):
         heuristic=None, 
         job_handler=None, 
         attack_point_optimizer=None,
-        attach_tempo_marks=True,
+        attach_tempos=True,
         ):
         from abjad.tools import quantizationtools
 
@@ -240,7 +240,7 @@ class Quantizer(AbjadObject):
             heuristic=heuristic,
             job_handler=job_handler,
             attack_point_optimizer=attack_point_optimizer,
-            attach_tempo_marks=attach_tempo_marks,
+            attach_tempos=attach_tempos,
             )
 
         return notation

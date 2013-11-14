@@ -223,7 +223,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_10():
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_11():
-    r'''Apply key signature mark.
+    r'''Apply key signature.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -333,7 +333,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_15():
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_16():
-    r'''Detaches tempo mark.
+    r'''Detaches tempo.
     '''
 
     staff = Staff([Note("c'4")])

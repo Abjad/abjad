@@ -67,8 +67,8 @@ class QSchemaItem(AbjadObject):
 
     @property
     def tempo(self):
-        r'''The optionally defined tempo mark.
+        r'''The optionally defined tempo.
 
-        Returns tempo mark or none.
+        Returns tempo or none.
         '''
         return self._tempo

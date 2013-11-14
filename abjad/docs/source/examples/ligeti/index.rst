@@ -48,7 +48,7 @@ eight note funs.
 stem up.
 
 4. The eight note runs are always beamed together and slurred, and the first
-two notes always have the dynamic markings 'f' 'p'.
+two notes always have the dynamicings 'f' 'p'.
 
 The two "layers" of the *cell* we will model with two Voices inside a
 simultaneous Container. The top Voice will hold the octave "chord" while the
@@ -77,7 +77,7 @@ lower Voice will hold the eighth note run. First the eighth notes:
 
 
 The notes belonging to the eighth note run are first beamed and slurred. Then
-we add the dynamic marks to the first two notes, and finally we put them inside
+we add the dynamics to the first two notes, and finally we put them inside
 a Voice. After naming the voice we number it ``2`` so that the stems of the
 notes point down.
 

@@ -22,7 +22,7 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
 
 * The ``marktools``, ``instrumenttools``, ``intervaltreetools``, ``lilyfiletools``, ``marktools``, ``pitcharraytools``, ``quantizationtools``, ``sievetools``, ``tonalanalysistools`` and ``verticalitytools`` packages are completely new.
 
-* The classes implemented in the ``marktools`` and ``marktools`` packages provide an object-oriented interfaces to clefs, time signatures, key signatures, articulations, tempo marks and other symbols stuck to the outside of the hierarchical score tree. The classes implemented in ``marktools`` and ``marktools`` model information outside the score tree much the way that the classes implemented in ``spannertools`` implement object-oriented interfaces to beams, brackets, hairpins, glissandi and other line-like symbols.
+* The classes implemented in the ``marktools`` and ``marktools`` packages provide an object-oriented interfaces to clefs, time signatures, key signatures, articulations, tempos and other symbols stuck to the outside of the hierarchical score tree. The classes implemented in ``marktools`` and ``marktools`` model information outside the score tree much the way that the classes implemented in ``spannertools`` implement object-oriented interfaces to beams, brackets, hairpins, glissandi and other line-like symbols.
 
 * The ``instrumenttools`` package provides an object-oriented model of most of the conventional instruments of the orchestra.
 

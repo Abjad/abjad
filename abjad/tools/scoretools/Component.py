@@ -333,7 +333,7 @@ class Component(AbjadObject):
         from abjad.tools import marktools
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
-        # do special things for time signature marks
+        # do special things for time signatures
         if context_mark_prototypes == marktools.TimeSignature:
             if isinstance(self, scoretools.Measure):
                 if self._has_mark(marktools.TimeSignature):

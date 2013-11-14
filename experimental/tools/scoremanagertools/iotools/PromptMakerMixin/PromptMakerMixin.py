@@ -109,7 +109,7 @@ class PromptMakerMixin(AbjadObject):
         default_value=None,
         ):
         help_template = 'value for {!r}'
-        help_template += ' must successfully initialize clef mark.'
+        help_template += ' must successfully initialize clef.'
         self._make_prompt(
             spaced_attribute_name, 
             validation_function=predicates.is_clef_token,
@@ -180,7 +180,7 @@ class PromptMakerMixin(AbjadObject):
         default_value=None,
         ):
         help_template = 'value for {!r}'
-        help_template += ' must successfully initialize dynamic mark.'
+        help_template += ' must successfully initialize dynamic.'
         self._make_prompt(
             spaced_attribute_name, 
             validation_function=predicates.is_dynamic_token,
@@ -194,7 +194,7 @@ class PromptMakerMixin(AbjadObject):
         default_value=None,
         ):
         help_template = 'value for {!r}'
-        help_template += ' must be list of dynamic mark initializers.'
+        help_template += ' must be list of dynamic initializers.'
         self._make_prompt(
             spaced_attribute_name, 
             validation_function=predicates.are_dynamic_tokens,
@@ -592,7 +592,7 @@ class PromptMakerMixin(AbjadObject):
         spaced_attribute_name, 
         default_value=None,
         ):
-        help_template = 'value for {!r} must successfully initialize tempo mark.'
+        help_template = 'value for {!r} must successfully initialize tempo.'
         self._make_prompt(
             spaced_attribute_name, 
             validation_function=predicates.is_tempo_token,

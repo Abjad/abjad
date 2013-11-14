@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_marktools_Tempo_duration_01():
-    r'''Duration of tempo mark is read / write.
+    r'''Duration of tempo is read / write.
     '''
 
     tempo = Tempo(Duration(1, 8), 52)

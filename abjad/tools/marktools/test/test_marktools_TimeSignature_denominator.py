@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_marktools_TimeSignature_denominator_01():
-    r'''Time signature mark denominator is read / write.
+    r'''Time signature denominator is read / write.
     '''
 
     time_signature = TimeSignature((3, 8))

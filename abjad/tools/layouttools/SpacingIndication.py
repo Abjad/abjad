@@ -11,7 +11,7 @@ class SpacingIndication(AbjadObject):
     will equal ``proportional_notation_duration`` when tempo
     equals ``tempo_indication``.
 
-    Initialize from tempo mark and proportional notation duration:
+    Initialize from tempo and proportional notation duration:
 
     ::
 

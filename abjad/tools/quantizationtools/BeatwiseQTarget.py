@@ -31,13 +31,13 @@ class BeatwiseQTarget(QTarget):
     ### PRIVATE METHODS ###
 
     def _notate(self, 
-        grace_handler, attack_point_optimizer, attach_tempo_marks):
+        grace_handler, attack_point_optimizer, attach_tempos):
         voice = scoretools.Voice()
 
         # generate the first
         beat = self.items[0]
         components = beat.q_grid(beat.beatspan)
-        if attach_tempo_marks:
+        if attach_tempos:
             attachment_target = components[0]
             if isinstance(attachment_target, scoretools.Container):
                 attachment_target = attachment_target.select_leaves()[0]
@@ -49,7 +49,7 @@ class BeatwiseQTarget(QTarget):
         for beat_one, beat_two in \
             sequencetools.iterate_sequence_pairwise_strict(self.items):
             components = beat_two.q_grid(beat_two.beatspan)
-            if (beat_two.tempo != beat_one.tempo) and attach_tempo_marks:
+            if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]
                 if isinstance(attachment_target, scoretools.Container):
                     attachment_target = attachment_target.select_leaves()[0]

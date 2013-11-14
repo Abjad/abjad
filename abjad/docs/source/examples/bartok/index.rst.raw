@@ -127,9 +127,9 @@ clef = marktools.Clef('bass')
 clef.attach(lower_staff)
 </abjad>
 
-Now let's add dynamic marks. For the top staff, we'll add them to the first
+Now let's add dynamics. For the top staff, we'll add them to the first
 note of the first measure and the second note of the second measure. For the
-bottom staff, we'll add dynamic markings to the second note of the first
+bottom staff, we'll add dynamicings to the second note of the first
 measure and the fourth note of the second measure:
 
 <abjad>

@@ -1,62 +1,39 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import tempotools
-
-
-def test_tempotools_rewrite_integer_tempo_01():
-
-    pairs = tempotools.rewrite_integer_tempo(58, 8, 8)
-
-    assert pairs == [(Fraction(1, 2), Fraction(29, 1)),
-        (Fraction(1, 1), Fraction(58, 1)),
-        (Fraction(3, 2), Fraction(87, 1)),
-        (Fraction(2, 1), Fraction(116, 1))]
-
-
-def test_tempotools_rewrite_integer_tempo_02():
-
-    pairs = tempotools.rewrite_integer_tempo(58, 30, 30)
-
-    assert pairs == [(Fraction(1, 2), Fraction(29, 1)),
-        (Fraction(15, 29), Fraction(30, 1)),
-        (Fraction(16, 29), Fraction(32, 1)),
-        (Fraction(17, 29), Fraction(34, 1)),
-        (Fraction(18, 29), Fraction(36, 1)),
-        (Fraction(19, 29), Fraction(38, 1)),
-        (Fraction(20, 29), Fraction(40, 1)),
-        (Fraction(21, 29), Fraction(42, 1)),
-        (Fraction(22, 29), Fraction(44, 1)),
-        (Fraction(23, 29), Fraction(46, 1)),
-        (Fraction(24, 29), Fraction(48, 1)),
-        (Fraction(25, 29), Fraction(50, 1)),
-        (Fraction(26, 29), Fraction(52, 1)),
-        (Fraction(27, 29), Fraction(54, 1)),
-        (Fraction(28, 29), Fraction(56, 1)),
-        (Fraction(1, 1), Fraction(58, 1)),
-        (Fraction(30, 29), Fraction(60, 1)),
-        (Fraction(3, 2), Fraction(87, 1)),
-        (Fraction(2, 1), Fraction(116, 1))]
+from abjad.tools.mathtools import Ratio
 
 
 def test_tempotools_rewrite_integer_tempo_03():
 
-    pairs = tempotools.rewrite_integer_tempo(52, 4, 4)
+    pairs = tempotools.rewrite_integer_tempo(
+        52, 
+        maximum_numerator=4, 
+        maximum_denominator=4,
+        )
 
-    assert pairs == [(Fraction(1, 2), Fraction(26, 1)),
-        (Fraction(3, 4), Fraction(39, 1)),
-        (Fraction(1, 1), Fraction(52, 1)),
-        (Fraction(3, 2), Fraction(78, 1)),
-        (Fraction(2, 1), Fraction(104, 1))]
+    assert pairs == [
+        (26, Ratio(1, 2)), 
+        (39, Ratio(3, 4)), 
+        (52, Ratio(1, 1)), 
+        (78, Ratio(3, 2)), 
+        (104, Ratio(2, 1)),
+        ]
 
 
 def test_tempotools_rewrite_integer_tempo_04():
 
-    pairs = tempotools.rewrite_integer_tempo(52, 8, 8)
+    pairs = tempotools.rewrite_integer_tempo(
+        52, 
+        maximum_numerator=8, 
+        maximum_denominator=8,
+        )
 
-    assert pairs == [(Fraction(1, 2), Fraction(26, 1)),
-        (Fraction(3, 4), Fraction(39, 1)),
-        (Fraction(1, 1), Fraction(52, 1)),
-        (Fraction(5, 4), Fraction(65, 1)),
-        (Fraction(3, 2), Fraction(78, 1)),
-        (Fraction(7, 4), Fraction(91, 1)),
-        (Fraction(2, 1), Fraction(104, 1))]
+    assert pairs == [
+        (26, Ratio(1, 2)), 
+        (39, Ratio(3, 4)), 
+        (52, Ratio(1, 1)), 
+        (65, Ratio(5, 4)), 
+        (78, Ratio(3, 2)), 
+        (91, Ratio(7, 4)), 
+        (104, Ratio(2, 1)),
+        ]

@@ -100,7 +100,7 @@ musical notation.
    construction of the musical fragment and its full Abjad code.
 
 There are many musical signs of different types on the pages: notes,
-dynamic markings, clefs, staves, slurs, etc. These signs are
+dynamicings, clefs, staves, slurs, etc. These signs are
 structurally related to each other in different ways. Let's start by
 looking at the larger picture. The piano piece is written in two
 staves. As is customary, the staves are graphically grouped with a

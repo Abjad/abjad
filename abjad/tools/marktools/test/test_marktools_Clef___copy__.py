@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_marktools_Clef___copy___01():
-    r'''Copies explicit clef marks copy.
+    r'''Copies explicit clefs copy.
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")

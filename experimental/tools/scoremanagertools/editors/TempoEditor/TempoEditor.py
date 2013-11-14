@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 from experimental.tools.scoremanagertools import getters
 
 
-class TempoMarkEditor(InteractiveEditor):
+class TempoEditor(InteractiveEditor):
 
     ### CLASS VARIABLES ###
 

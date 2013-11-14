@@ -14,8 +14,8 @@ class TempoInventory(TypedList):
 
     ::
 
-        >>> for tempo_mark in inventory:
-        ...     tempo_mark
+        >>> for tempo in inventory:
+        ...     tempo
         ...
         Tempo('Andante', Duration(1, 8), 72)
         Tempo('Allegro', Duration(1, 8), 84)
