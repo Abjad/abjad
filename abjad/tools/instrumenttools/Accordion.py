@@ -115,7 +115,7 @@ class Accordion(Instrument):
                     pitch_range=pitchtools.PitchRange(
                         '[C4, C6]'
                         ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''")
+                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''"),
                     )
 
         Returns string.

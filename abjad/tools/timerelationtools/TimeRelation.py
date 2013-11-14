@@ -30,12 +30,12 @@ class TimeRelation(AbjadObject):
                 ),
             timespan_1=timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(10, 1)
+                stop_offset=durationtools.Offset(10, 1),
                 ),
             timespan_2=timespantools.Timespan(
                 start_offset=durationtools.Offset(5, 1),
-                stop_offset=durationtools.Offset(15, 1)
-                )
+                stop_offset=durationtools.Offset(15, 1),
+                ),
             )
 
     Time relations are immutable.
@@ -127,12 +127,12 @@ class TimeRelation(AbjadObject):
                     ),
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1)
+                    stop_offset=durationtools.Offset(10, 1),
                     ),
                 timespan_2=timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(15, 1)
-                    )
+                    stop_offset=durationtools.Offset(15, 1),
+                    ),
                 )
 
         Returns string.
@@ -175,8 +175,8 @@ class TimeRelation(AbjadObject):
                     ),
                 timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(5, 1)
-                    )
+                    stop_offset=durationtools.Offset(5, 1),
+                    ),
                 )
 
         Returns newly constructed time relation.

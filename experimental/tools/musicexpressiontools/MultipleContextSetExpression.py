@@ -31,10 +31,10 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         musicexpressiontools.MultipleContextSetExpression(
             attribute='time_signatures',
             source_expression=musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 8), (3, 8))
+                payload=((4, 8), (3, 8)),
                 ),
             target_timespan='red',
-            persist=True
+            persist=True,
             )
 
     Set methods create multiple-context set expressions.

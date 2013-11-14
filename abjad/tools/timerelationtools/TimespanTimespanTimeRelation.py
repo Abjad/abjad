@@ -187,12 +187,12 @@ class TimespanTimespanTimeRelation(TimeRelation):
                         ),
                     timespan_1=timespantools.Timespan(
                         start_offset=durationtools.Offset(5, 1),
-                        stop_offset=durationtools.Offset(15, 1)
+                        stop_offset=durationtools.Offset(15, 1),
                         ),
                     timespan_2=timespantools.Timespan(
                         start_offset=durationtools.Offset(10, 1),
-                        stop_offset=durationtools.Offset(20, 1)
-                        )
+                        stop_offset=durationtools.Offset(20, 1),
+                        ),
                     )
 
             ::

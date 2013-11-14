@@ -80,11 +80,11 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
             musicexpressiontools.MultipleContextSetExpression(
                 attribute='divisions',
                 source_expression=musicexpressiontools.IterablePayloadExpression(
-                    payload=((3, 16),)
+                    payload=((3, 16),),
                     ),
                 target_timespan='red',
                 target_context_names=['Voice 1', 'Voice 3'],
-                persist=True
+                persist=True,
                 )
 
         Returns multiple-context set expression.
@@ -127,11 +127,11 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
                         secondary_divisions=[],
                         beam_each_cell=False,
                         beam_cells_together=True,
-                        tie_split_notes=False
-                        )
+                        tie_split_notes=False,
+                        ),
                     ),
                 target_timespan='red',
-                persist=True
+                persist=True,
                 )
 
         Returns multiple-context set expression.
@@ -167,10 +167,10 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
             musicexpressiontools.MultipleContextSetExpression(
                 attribute='time_signatures',
                 source_expression=musicexpressiontools.IterablePayloadExpression(
-                    payload=((3, 8), (4, 8))
+                    payload=((3, 8), (4, 8)),
                     ),
                 target_timespan='red',
-                persist=True
+                persist=True,
                 )
 
         Returns multiple-context set expression.

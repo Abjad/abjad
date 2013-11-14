@@ -50,7 +50,7 @@ def offset_happens_before_timespan_starts(
                     ],
                     logical_operator='and',
                     ),
-                offset=durationtools.Offset(1, 2)
+                offset=durationtools.Offset(1, 2),
                 )
 
     ..  container:: example
@@ -79,8 +79,8 @@ def offset_happens_before_timespan_starts(
                     ),
                 timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(2, 1),
-                    stop_offset=durationtools.Offset(8, 1)
-                    )
+                    stop_offset=durationtools.Offset(8, 1),
+                    ),
                 )
 
     ..  container:: example
@@ -107,9 +107,9 @@ def offset_happens_before_timespan_starts(
                     ),
                 timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(2, 1),
-                    stop_offset=durationtools.Offset(8, 1)
+                    stop_offset=durationtools.Offset(8, 1),
                     ),
-                offset=durationtools.Offset(1, 2)
+                offset=durationtools.Offset(1, 2),
                 )
 
     ..  container:: example

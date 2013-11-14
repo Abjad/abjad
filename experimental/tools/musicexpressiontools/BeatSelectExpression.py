@@ -33,7 +33,8 @@ class BeatSelectExpression(SelectExpression):
 
         >>> print format(select_expression)
         musicexpressiontools.BeatSelectExpression(
-            voice_name='Voice 1'
+            voice_name='Voice 1',
+            callbacks=musicexpressiontools.CallbackInventory([]),
             )
 
     Example 2. Select voice ``1`` beats that start during segment ``'red'``:
@@ -47,7 +48,8 @@ class BeatSelectExpression(SelectExpression):
         >>> print format(select_expression)
         musicexpressiontools.BeatSelectExpression(
             anchor='red',
-            voice_name='Voice 1'
+            voice_name='Voice 1',
+            callbacks=musicexpressiontools.CallbackInventory([]),
             )
 
     Beat select expressions are immutable.

@@ -125,7 +125,7 @@ class Timespan(BoundedObject):
             >>> print format(timespan_1)
             timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(10, 1)
+                stop_offset=durationtools.Offset(10, 1),
                 )
 
         Returns string.
@@ -293,7 +293,7 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(12, 1)
+                    stop_offset=durationtools.Offset(12, 1),
                     ),
                 ])
 
@@ -304,7 +304,7 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
-                    stop_offset=durationtools.Offset(10, 1)
+                    stop_offset=durationtools.Offset(10, 1),
                     ),
                 ])
 
@@ -316,7 +316,7 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    stop_offset=durationtools.Offset(20, 1),
                     ),
                 ])
 
@@ -327,11 +327,11 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
-                    stop_offset=durationtools.Offset(2, 1)
+                    stop_offset=durationtools.Offset(2, 1),
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(12, 1)
+                    stop_offset=durationtools.Offset(12, 1),
                     ),
                 ])
 
@@ -342,7 +342,7 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    stop_offset=durationtools.Offset(20, 1),
                     ),
                 ])
 
@@ -353,11 +353,11 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
-                    stop_offset=durationtools.Offset(2, 1)
+                    stop_offset=durationtools.Offset(2, 1),
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(10, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    stop_offset=durationtools.Offset(20, 1),
                     ),
                 ])
 
@@ -536,11 +536,11 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(5, 1)
+                    stop_offset=durationtools.Offset(5, 1),
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(10, 1),
-                    stop_offset=durationtools.Offset(12, 1)
+                    stop_offset=durationtools.Offset(12, 1),
                     ),
                 ])
 
@@ -551,11 +551,11 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
-                    stop_offset=durationtools.Offset(0, 1)
+                    stop_offset=durationtools.Offset(0, 1),
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(2, 1),
-                    stop_offset=durationtools.Offset(10, 1)
+                    stop_offset=durationtools.Offset(10, 1),
                     ),
                 ])
 
@@ -566,11 +566,11 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1)
+                    stop_offset=durationtools.Offset(10, 1),
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(10, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    stop_offset=durationtools.Offset(20, 1),
                     ),
                 ])
 
@@ -581,11 +581,11 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
-                    stop_offset=durationtools.Offset(2, 1)
+                    stop_offset=durationtools.Offset(2, 1),
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(12, 1)
+                    stop_offset=durationtools.Offset(12, 1),
                     ),
                 ])
 
@@ -596,11 +596,11 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(10, 1)
+                    stop_offset=durationtools.Offset(10, 1),
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(12, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    stop_offset=durationtools.Offset(20, 1),
                     ),
                 ])
 
@@ -611,11 +611,11 @@ class Timespan(BoundedObject):
             timespantools.TimespanInventory([
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(-2, 1),
-                    stop_offset=durationtools.Offset(2, 1)
+                    stop_offset=durationtools.Offset(2, 1),
                     ),
                 timespantools.Timespan(
                     start_offset=durationtools.Offset(10, 1),
-                    stop_offset=durationtools.Offset(20, 1)
+                    stop_offset=durationtools.Offset(20, 1),
                     ),
                 ])
 

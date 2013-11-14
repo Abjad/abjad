@@ -16,7 +16,7 @@ def test_ReiteratedArticulationHandler___format___01():
         handlertools.ReiteratedArticulationHandler(
             articulation_list=['.', '^'],
             minimum_duration=durationtools.Duration(1, 16),
-            maximum_duration=durationtools.Duration(1, 8)
+            maximum_duration=durationtools.Duration(1, 8),
             )
         '''
         )

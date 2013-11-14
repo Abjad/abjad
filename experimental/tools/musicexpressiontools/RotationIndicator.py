@@ -16,7 +16,7 @@ class RotationIndicator(abctools.AbjadObject):
         musicexpressiontools.RotationIndicator(
             index=-1,
             level=2,
-            fracture_spanners=False
+            fracture_spanners=False,
             )
 
     Rotation indicators are immutable.
@@ -47,7 +47,7 @@ class RotationIndicator(abctools.AbjadObject):
             musicexpressiontools.RotationIndicator(
                 index=-1,
                 level=2,
-                fracture_spanners=False
+                fracture_spanners=False,
                 )
 
         Returns string.

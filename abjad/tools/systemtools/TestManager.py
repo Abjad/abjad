@@ -60,10 +60,10 @@ class TestManager(object):
         massaged_lines = []
         for split_line in split_lines:
             massaged_line = split_line[indent_width:]
-            massaged_line = massaged_line.replace(tab_string, '\t')
+            #massaged_line = massaged_line.replace(tab_string, '\t')
             massaged_lines.append(massaged_line)
         massaged_string = '\n'.join(massaged_lines)
-        return string_1 == massaged_string
+        return string_1.replace('\t', '    ') == massaged_string
 
     @staticmethod
     def get_current_function_name():

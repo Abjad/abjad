@@ -32,15 +32,15 @@ class InstrumentationSpecifier(AbjadObject):
                     instruments=instrumenttools.InstrumentInventory([
                         instrumenttools.Flute(),
                         instrumenttools.AltoFlute(),
-                        ])
+                        ]),
                     ),
                 instrumenttools.Performer(
                     name='Guitar',
                     instruments=instrumenttools.InstrumentInventory([
                         instrumenttools.Guitar(),
-                        ])
+                        ]),
                     ),
-                ])
+                ]),
             )
 
     Returns instrumentation specifier.
@@ -146,13 +146,13 @@ class InstrumentationSpecifier(AbjadObject):
                         instruments=instrumenttools.InstrumentInventory([
                             instrumenttools.Flute(),
                             instrumenttools.AltoFlute(),
-                            ])
+                            ]),
                         ),
                     instrumenttools.Performer(
                         name='Guitar',
                         instruments=instrumenttools.InstrumentInventory([
                             instrumenttools.Guitar(),
-                            ])
+                            ]),
                         ),
                     ])
 

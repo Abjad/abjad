@@ -24,13 +24,13 @@ class QGrid(AbjadObject):
             root_node=quantizationtools.QGridLeaf(
                 preprolated_duration=durationtools.Duration(1, 1),
                 q_event_proxies=[],
-                is_divisible=True
+                is_divisible=True,
                 ),
             next_downbeat=quantizationtools.QGridLeaf(
                 preprolated_duration=durationtools.Duration(1, 1),
                 q_event_proxies=[],
-                is_divisible=True
-                )
+                is_divisible=True,
+                ),
             )
 
     ``QGrids`` model not only the internal nodes of the nesting
@@ -59,7 +59,7 @@ class QGrid(AbjadObject):
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(250, 1),
                 (NamedPitch("c'"),),
-                attachments=()
+                attachments=(),
                 ),
             durationtools.Offset(1, 4)
             )]
@@ -71,7 +71,7 @@ class QGrid(AbjadObject):
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(750, 1),
                 (NamedPitch("cs'"),),
-                attachments=()
+                attachments=(),
                 ),
             durationtools.Offset(3, 4)
             )]

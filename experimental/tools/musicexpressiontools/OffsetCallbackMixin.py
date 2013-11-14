@@ -30,9 +30,11 @@ class OffsetCallbackMixin(CallbackMixin):
         >>> print format(offset)
         musicexpressiontools.OffsetExpression(
             anchor=musicexpressiontools.TimespanExpression(
-                anchor='red'
+                anchor='red',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 ),
-            edge=Right
+            edge=Right,
+            callbacks=musicexpressiontools.CallbackInventory([]),
             )
 
     Add to classes that should implement offset callbacks.
@@ -76,12 +78,13 @@ class OffsetCallbackMixin(CallbackMixin):
             >>> print format(result)
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(
-                    anchor='red'
+                    anchor='red',
+                    callbacks=musicexpressiontools.CallbackInventory([]),
                     ),
                 edge=Right,
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._scale(offset, Multiplier(4, 5))',
-                    ])
+                    ]),
                 )
 
         Returns offset expression copy with callback.
@@ -103,12 +106,13 @@ class OffsetCallbackMixin(CallbackMixin):
             >>> print format(result)
             musicexpressiontools.OffsetExpression(
                 anchor=musicexpressiontools.TimespanExpression(
-                    anchor='red'
+                    anchor='red',
+                    callbacks=musicexpressiontools.CallbackInventory([]),
                     ),
                 edge=Right,
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._translate(offset, Duration(9, 2))',
-                    ])
+                    ]),
                 )
 
         Returns offset expression copy with callback.

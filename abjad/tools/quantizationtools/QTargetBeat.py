@@ -35,7 +35,7 @@ class QTargetBeat(AbjadObject):
             tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
                 56
-                )
+                ),
             )
 
     Not composer-safe.

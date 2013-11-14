@@ -59,28 +59,28 @@ class TimespanScopedSingleContextRhythmSetExpression(
                 musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
                     source_expression=musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
-                            music=[{c'16, c'8}]
+                            music=[{c'16, c'8}],
                             ),
-                        start_offset=durationtools.Offset(0, 1)
+                        start_offset=durationtools.Offset(0, 1),
                         ),
                     target_timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(0, 1),
-                        stop_offset=durationtools.Offset(5, 1)
+                        stop_offset=durationtools.Offset(5, 1),
                         ),
-                    target_context_name='Voice 1'
+                    target_context_name='Voice 1',
                     ),
                 musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
                     source_expression=musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
-                            music=[{c'16, c'8}]
+                            music=[{c'16, c'8}],
                             ),
-                        start_offset=durationtools.Offset(0, 1)
+                        start_offset=durationtools.Offset(0, 1),
                         ),
                     target_timespan=timespantools.Timespan(
                         start_offset=durationtools.Offset(15, 1),
-                        stop_offset=durationtools.Offset(20, 1)
+                        stop_offset=durationtools.Offset(20, 1),
                         ),
-                    target_context_name='Voice 1'
+                    target_context_name='Voice 1',
                     ),
                 ])
 

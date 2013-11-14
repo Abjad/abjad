@@ -72,7 +72,7 @@ class DivisionList(BoundedObject):
             Division('[3, 16]', start_offset=Offset(9, 4)),
             Division('[3, 16]', start_offset=Offset(39, 16))],
             start_offset=durationtools.Offset(0, 1),
-            voice_name='Voice 1'
+            voice_name='Voice 1',
             )
 
     Interpreter byproduct.
@@ -132,22 +132,22 @@ class DivisionList(BoundedObject):
 
             >>> print format(division_list)
             musicexpressiontools.DivisionList(
-                [Division('[3, 16]', start_offset=Offset(0, 1)), 
-                Division('[3, 16]', start_offset=Offset(3, 16)), 
-                Division('[3, 16]', start_offset=Offset(3, 8)), 
-                Division('[3, 16]', start_offset=Offset(9, 16)), 
-                Division('[3, 16]', start_offset=Offset(3, 4)), 
-                Division('[3, 16]', start_offset=Offset(15, 16)), 
-                Division('[3, 16]', start_offset=Offset(9, 8)), 
-                Division('[3, 16]', start_offset=Offset(21, 16)), 
-                Division('[3, 16]', start_offset=Offset(3, 2)), 
-                Division('[3, 16]', start_offset=Offset(27, 16)), 
-                Division('[3, 16]', start_offset=Offset(15, 8)), 
-                Division('[3, 16]', start_offset=Offset(33, 16)), 
-                Division('[3, 16]', start_offset=Offset(9, 4)), 
+                [Division('[3, 16]', start_offset=Offset(0, 1)),
+                Division('[3, 16]', start_offset=Offset(3, 16)),
+                Division('[3, 16]', start_offset=Offset(3, 8)),
+                Division('[3, 16]', start_offset=Offset(9, 16)),
+                Division('[3, 16]', start_offset=Offset(3, 4)),
+                Division('[3, 16]', start_offset=Offset(15, 16)),
+                Division('[3, 16]', start_offset=Offset(9, 8)),
+                Division('[3, 16]', start_offset=Offset(21, 16)),
+                Division('[3, 16]', start_offset=Offset(3, 2)),
+                Division('[3, 16]', start_offset=Offset(27, 16)),
+                Division('[3, 16]', start_offset=Offset(15, 8)),
+                Division('[3, 16]', start_offset=Offset(33, 16)),
+                Division('[3, 16]', start_offset=Offset(9, 4)),
                 Division('[3, 16]', start_offset=Offset(39, 16))],
                 start_offset=durationtools.Offset(0, 1),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
                 )
 
         Returns string.
@@ -416,7 +416,7 @@ class DivisionList(BoundedObject):
                 Division('[4, 16]', start_offset=Offset(87, 16)),
                 Division('[3, 16]', start_offset=Offset(91, 16))],
                 start_offset=durationtools.Offset(5, 1),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
                 )
 
         Emit newly constructed division list.
@@ -445,7 +445,7 @@ class DivisionList(BoundedObject):
                 Division('[4, 16]', start_offset=Offset(87, 16)),
                 Division('[3, 16]', start_offset=Offset(91, 16))],
                 start_offset=durationtools.Offset(5, 1),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
                 )
 
         Emit newly constructed division list.

@@ -26,7 +26,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
             tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
                 60
-                )
+                ),
             )
 
     Define a change in time signature:
@@ -40,7 +40,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         quantizationtools.MeasurewiseQSchemaItem(
             time_signature=marktools.TimeSignature(
                 (6, 8)
-                )
+                ),
             )
 
     Test for beatspan, given a defined time signature:

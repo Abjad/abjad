@@ -115,7 +115,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             rhythmmakertools.EvenRunRhythmMaker(
                 denominator_multiplier_exponent=1,
                 beam_each_cell=True,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         Returns string.
@@ -170,7 +170,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             rhythmmakertools.EvenRunRhythmMaker(
                 denominator_multiplier_exponent=0,
                 beam_each_cell=True,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::
@@ -206,7 +206,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             rhythmmakertools.EvenRunRhythmMaker(
                 denominator_multiplier_exponent=1,
                 beam_each_cell=True,
-                beam_cells_together=False
+                beam_cells_together=False,
                 )
 
         ::

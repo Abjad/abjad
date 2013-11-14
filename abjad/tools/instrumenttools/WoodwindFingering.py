@@ -29,7 +29,7 @@ class WoodwindFingering(AbjadObject):
             'clarinet',
             center_column=('one', 'two', 'three', 'five'),
             left_hand=('R', 'thumb'),
-            right_hand=('e',)
+            right_hand=('e',),
             )
 
     Initialize a WoodwindFingering from another WoodwindFingering:
@@ -43,7 +43,7 @@ class WoodwindFingering(AbjadObject):
             'clarinet',
             center_column=('one', 'two', 'three', 'five'),
             left_hand=('R', 'thumb'),
-            right_hand=('e',)
+            right_hand=('e',),
             )
 
     Call a WoodwindFingering to create a woodwind diagram MarkupCommand:

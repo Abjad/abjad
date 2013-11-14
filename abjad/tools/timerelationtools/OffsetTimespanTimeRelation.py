@@ -29,9 +29,9 @@ class OffsetTimespanTimeRelation(TimeRelation):
                 ),
             timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(10, 1)
+                stop_offset=durationtools.Offset(10, 1),
                 ),
-            offset=durationtools.Offset(5, 1)
+            offset=durationtools.Offset(5, 1),
             )
 
     Offset / timespan time relations are immutable.
@@ -117,9 +117,9 @@ class OffsetTimespanTimeRelation(TimeRelation):
                     ),
                 timespan=timespantools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1)
+                    stop_offset=durationtools.Offset(10, 1),
                     ),
-                offset=durationtools.Offset(5, 1)
+                offset=durationtools.Offset(5, 1),
                 )
 
         Returns string.

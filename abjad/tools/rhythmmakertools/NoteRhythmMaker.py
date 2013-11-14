@@ -127,7 +127,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=True,
                 forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False
+                tie_rests=False,
                 )
 
         Returns string.
@@ -157,7 +157,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
                 forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False
+                tie_rests=False,
                 )
 
         ::
@@ -193,7 +193,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             rhythmmakertools.NoteRhythmMaker(
                 decrease_durations_monotonically=False,
                 forbidden_written_duration=durationtools.Duration(1, 2),
-                tie_rests=False
+                tie_rests=False,
                 )
 
         ::

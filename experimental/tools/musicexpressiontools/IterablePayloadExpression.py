@@ -28,7 +28,7 @@ class IterablePayloadExpression(PayloadExpression):
 
         >>> print format(payload_expression)
         musicexpressiontools.IterablePayloadExpression(
-            payload=((4, 16), (2, 16))
+            payload=((4, 16), (2, 16)),
             )
 
     Payload expressions are assumed to evaluate to a list or other iterable.
@@ -69,7 +69,7 @@ class IterablePayloadExpression(PayloadExpression):
             timespantools.TimespanInventory([
                 musicexpressiontools.IterablePayloadExpression(
                     payload=(Division('[3, 16]', start_offset=Offset(1, 16)),
-                    Division('[1, 16]', start_offset=Offset(1, 4)))
+                    Division('[1, 16]', start_offset=Offset(1, 4))),
                     ),
                 ])
 
@@ -101,7 +101,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> print format(payload_expression)
             musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 16), (2, 16))
+                payload=((4, 16), (2, 16)),
                 )
 
         Returns string.
@@ -120,7 +120,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 16),)
+                payload=((4, 16),),
                 )
 
         Returns newly constructed payload expression
@@ -231,10 +231,10 @@ class IterablePayloadExpression(PayloadExpression):
             >>> for element in result:
             ...     print format(element)
             musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 16),)
+                payload=((4, 16),),
                 )
             musicexpressiontools.IterablePayloadExpression(
-                payload=((2, 16),)
+                payload=((2, 16),),
                 )
 
         Returns list of newly constructed payload expressions.
@@ -260,10 +260,10 @@ class IterablePayloadExpression(PayloadExpression):
             >>> for element in result:
             ...     print format(element)
             musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 16),)
+                payload=((4, 16),),
                 )
             musicexpressiontools.IterablePayloadExpression(
-                payload=((2, 16),)
+                payload=((2, 16),),
                 )
 
         Returns newly constructed payload expression.
@@ -294,7 +294,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
-                payload=((2, 16), (4, 16))
+                payload=((2, 16), (4, 16)),
                 )
 
         Returns newly constructed payload expression.
@@ -316,11 +316,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
-                payload=(NonreducedFraction(4, 16),
-                NonreducedFraction(2, 16),
-                NonreducedFraction(4, 16),
-                NonreducedFraction(2, 16),
-                NonreducedFraction(1, 16))
+                payload=(NonreducedFraction(4, 16), NonreducedFraction(2, 16), NonreducedFraction(4, 16), NonreducedFraction(2, 16), NonreducedFraction(1, 16)),
                 )
 
         Returns newly constructed payload expression.
@@ -345,7 +341,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
-                payload=((4, 16), (2, 16), (4, 16), (2, 16))
+                payload=((4, 16), (2, 16), (4, 16), (2, 16)),
                 )
 
         Returns newly constructed payload expression.
@@ -366,7 +362,7 @@ class IterablePayloadExpression(PayloadExpression):
 
             >>> print format(result)
             musicexpressiontools.IterablePayloadExpression(
-                payload=((2, 16), (4, 16))
+                payload=((2, 16), (4, 16)),
                 )
 
         Returns newly constructed payload expression.

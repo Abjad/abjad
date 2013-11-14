@@ -41,9 +41,11 @@ class OffsetExpression(
                     scoretools.Note,
                     scoretools.Chord,
                     ]),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 ),
-            edge=Right
+            edge=Right,
+            callbacks=musicexpressiontools.CallbackInventory([]),
             )
 
     Offset expressions implement the lookup interface.

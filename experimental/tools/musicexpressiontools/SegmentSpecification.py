@@ -69,7 +69,7 @@ class SegmentSpecification(Specification):
             >>> print format(red_segment)
             musicexpressiontools.SegmentSpecification(
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=2
+                    staff_count=2,
                     ),
                 'red'
                 )
@@ -123,11 +123,11 @@ class SegmentSpecification(Specification):
             timespantools.TimespanInventory([
                 musicexpressiontools.SingleContextTimeSignatureSetExpression(
                     source_expression=musicexpressiontools.IterablePayloadExpression(
-                        payload=((2, 8), (3, 8), (4, 8))
+                        payload=((2, 8), (3, 8), (4, 8)),
                         ),
                     target_timespan='red',
                     fresh=True,
-                    persist=True
+                    persist=True,
                     ),
                 musicexpressiontools.SingleContextRhythmSetExpression(
                     source_expression=musicexpressiontools.RhythmMakerExpression(
@@ -138,12 +138,12 @@ class SegmentSpecification(Specification):
                             secondary_divisions=[],
                             beam_each_cell=False,
                             beam_cells_together=True,
-                            tie_split_notes=False
-                            )
+                            tie_split_notes=False,
+                            ),
                         ),
                     target_timespan='red',
                     fresh=True,
-                    persist=True
+                    persist=True,
                     ),
                 ])
 

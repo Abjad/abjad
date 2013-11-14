@@ -146,7 +146,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)',
-                    ])
+                    ]),
                 )
 
         ::
@@ -156,7 +156,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)',
-                    ])
+                    ]),
                 )
 
         Coerce integer `ratio` to ``Ratio(ratio*[1])``:
@@ -172,7 +172,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)',
-                    ])
+                    ]),
                 )
 
         ::
@@ -182,7 +182,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)',
-                    ])
+                    ]),
                 )
 
         ::
@@ -192,7 +192,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)',
-                    ])
+                    ]),
                 )
 
         Returns tuple of newly constructed timespans with callback.
@@ -221,7 +221,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 anchor='red',
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
-                    ])
+                    ]),
                 )
 
         Returns copy of timespan expression with callback.
@@ -247,7 +247,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
                     'self._set_duration(original_start_offset, original_stop_offset, Duration(6, 1))',
-                    ])
+                    ]),
                 )
 
         Returns copy of timespan expression with callback.
@@ -274,7 +274,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
                     'self._set_offsets(original_start_offset, original_stop_offset, Offset(3, 2), Offset(7, 2))',
-                    ])
+                    ]),
                 )
 
         Returns copy of timespan expression with callback.
@@ -303,7 +303,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
                     'self._translate(original_start_offset, original_stop_offset, Duration(8, 1))',
-                    ])
+                    ]),
                 )
 
         Returns copy of timespan expression with callback.
@@ -335,7 +335,7 @@ class TimespanCallbackMixin(CallbackMixin):
                 callbacks=musicexpressiontools.CallbackInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))',
                     'self._translate_offsets(original_start_offset, original_stop_offset, Duration(1, 1), Duration(3, 2))',
-                    ])
+                    ]),
                 )
 
         Returns copy of timespan expression with callback.

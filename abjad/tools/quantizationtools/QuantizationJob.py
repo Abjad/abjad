@@ -144,14 +144,14 @@ class QuantizationJob(AbjadObject):
                 quantizationtools.PitchedQEvent(
                     durationtools.Offset(250, 1),
                     (NamedPitch("c'"), NamedPitch("cs'")),
-                    attachments=()
+                    attachments=(),
                     ),
                 durationtools.Offset(1, 4)
                 )
             quantizationtools.QEventProxy(
                 quantizationtools.SilentQEvent(
                     durationtools.Offset(500, 1),
-                    attachments=()
+                    attachments=(),
                     ),
                 durationtools.Offset(1, 2)
                 )
@@ -159,7 +159,7 @@ class QuantizationJob(AbjadObject):
                 quantizationtools.PitchedQEvent(
                     durationtools.Offset(750, 1),
                     (NamedPitch("ef'"), NamedPitch("g'")),
-                    attachments=()
+                    attachments=(),
                     ),
                 durationtools.Offset(3, 4)
                 )

@@ -61,7 +61,7 @@ class RunDoctestsScript(DirectoryScript):
         total_tests = 0
         failed_file_paths = []
         error_messages = []
-        for dir_path, dir_names, file_names in os.walk('.'):
+        for dir_path, dir_names, file_names in os.walk(args.path):
             for file_name in sorted(file_names):
                 if file_name.endswith('.py') and \
                     not file_name.startswith('test_') and \
@@ -109,6 +109,11 @@ class RunDoctestsScript(DirectoryScript):
             )
 
     def setup_argument_parser(self, parser):
+        parser.add_argument('path',
+            default=os.getcwd(),
+            help='directory tree to be recursed over',
+            nargs='?',
+            )
         parser.add_argument('--diff',
             action='store_true',
             help='print diff-like output on failed tests.',

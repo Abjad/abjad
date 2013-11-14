@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -37,7 +35,8 @@ class SelectMethodMixin(AbjadObject):
             >>> print format(beats)
             musicexpressiontools.BeatSelectExpression(
                 anchor='red',
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns beat select expression.
@@ -63,7 +62,8 @@ class SelectMethodMixin(AbjadObject):
             >>> print format(divisions)
             musicexpressiontools.DivisionSelectExpression(
                 anchor='red',
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns division select expression.
@@ -93,7 +93,8 @@ class SelectMethodMixin(AbjadObject):
                 classes=musicexpressiontools.ClassInventory([
                     scoretools.Leaf,
                     ]),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns counttime component select expression.
@@ -121,7 +122,8 @@ class SelectMethodMixin(AbjadObject):
             >>> print format(measures)
             musicexpressiontools.MeasureSelectExpression(
                 anchor='red',
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns measure select expression.
@@ -153,7 +155,8 @@ class SelectMethodMixin(AbjadObject):
                     scoretools.Note,
                     scoretools.Chord,
                     ]),
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns counttime component select expression.
@@ -203,7 +206,8 @@ class SelectMethodMixin(AbjadObject):
             >>> print format(time_signatures)
             musicexpressiontools.TimeSignatureSelectExpression(
                 anchor='red',
-                voice_name='Voice 1'
+                voice_name='Voice 1',
+                callbacks=musicexpressiontools.CallbackInventory([]),
                 )
 
         Returns time signature select expression.

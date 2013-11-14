@@ -6,4 +6,11 @@ def test_pitchtools_PitchRange___format___01():
 
     pitch_range = pitchtools.PitchRange('[A0, C8]')
 
-    assert format(pitch_range) == "pitchtools.PitchRange(\n\t'[A0, C8]'\n\t)"
+    assert systemtools.TestManager.compare(
+        format(pitch_range),
+        r'''
+        pitchtools.PitchRange(
+            '[A0, C8]'
+            )
+        ''',
+        )
