@@ -123,8 +123,8 @@ class InspectionAgent(object):
 
         Returns list.
         '''
-        from abjad.tools import wellformednesstools
-        manager = wellformednesstools.WellformednessManager(self._component)
+        from abjad.tools import systemtools
+        manager = systemtools.WellformednessManager(self._component)
         violators = []
         for current_violators, total, check_name in manager():
             violators.extend(current_violators)
@@ -520,8 +520,8 @@ class InspectionAgent(object):
 
         Returns false.
         '''
-        from abjad.tools import wellformednesstools
-        manager = wellformednesstools.WellformednessManager(
+        from abjad.tools import systemtools
+        manager = systemtools.WellformednessManager(
             self._component,
             allow_empty_containers=allow_empty_containers,
             )
@@ -646,8 +646,8 @@ class InspectionAgent(object):
 
         Returns string.
         '''
-        from abjad.tools import wellformednesstools
-        manager = wellformednesstools.WellformednessManager(self._component)
+        from abjad.tools import systemtools
+        manager = systemtools.WellformednessManager(self._component)
         triples = manager()
         strings = []
         for violators, total, check_name in triples:

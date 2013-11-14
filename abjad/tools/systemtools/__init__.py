@@ -10,6 +10,7 @@ from StorageFormatManager import StorageFormatManager
 from TestManager import TestManager
 from Timer import Timer
 from UpdateManager import UpdateManager
+from WellformednessManager import WellformednessManager
 from requires import requires
 
 _documentation_section = 'internals'

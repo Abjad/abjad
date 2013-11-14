@@ -8,7 +8,6 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from abjad.tools import wellformednesstools
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import select
 from experimental.tools.musicexpressiontools.IterablePayloadExpression \

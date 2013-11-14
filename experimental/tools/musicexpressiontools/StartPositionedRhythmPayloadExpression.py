@@ -402,7 +402,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         shards = [shard[0] for shard in shards]
         for shard in shards:
             if not inspect(shard).is_well_formed():
-                wellformednesstools.tabulate_well_formedness_violations_in_expr(shard)
+                inspect(shard).tabulate_well_formedness_violations_in_expr()
         return shards
 
     ### PUBLIC PROPERTIES ###
