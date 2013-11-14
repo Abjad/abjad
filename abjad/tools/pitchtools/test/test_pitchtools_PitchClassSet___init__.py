@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_PitchClassSet___init___01():
-    r'''Init with named pitch-classes.
+    r'''Initializewith named pitch-classes.
     '''
 
     named_pitch_class_set = pitchtools.PitchClassSet([

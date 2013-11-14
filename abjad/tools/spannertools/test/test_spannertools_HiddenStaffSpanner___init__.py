@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_HiddenStaffSpanner___init___01():
-    r'''Init empty hidden staff spanner.
+    r'''Initializeempty hidden staff spanner.
     '''
 
     spanner = spannertools.HiddenStaffSpanner()

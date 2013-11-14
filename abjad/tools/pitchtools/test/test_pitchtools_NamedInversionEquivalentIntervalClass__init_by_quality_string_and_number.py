@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_01():
-    r'''Init unison.
+    r'''Initializeunison.
     '''
 
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('perfect', 1)) == 'P1'
@@ -15,7 +15,7 @@ def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_strin
 
 
 def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_02():
-    r'''Init usual cases.
+    r'''Initializeusual cases.
     '''
 
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('minor', 2)) == '+m2'
@@ -27,7 +27,7 @@ def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_strin
 
 
 def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_03():
-    r'''Init inverted cases less than one octave.
+    r'''Initializeinverted cases less than one octave.
     '''
 
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('major', 7)) == '+m2'
@@ -39,7 +39,7 @@ def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_strin
 
 
 def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_04():
-    r'''Init noninverted cases greater than one octave.
+    r'''Initializenoninverted cases greater than one octave.
     '''
 
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('minor', 9)) == '+m2'
@@ -51,7 +51,7 @@ def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_strin
 
 
 def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_05():
-    r'''Init inverted cases greater than one octave.
+    r'''Initializeinverted cases greater than one octave.
     '''
 
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('major', 14)) == '+m2'

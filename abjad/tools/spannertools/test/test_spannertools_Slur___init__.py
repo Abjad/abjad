@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_Slur___init___01():
-    r'''Init empty slur spanner.
+    r'''Initializeempty slur spanner.
     '''
 
     slur = Slur()

@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_NumberedInversionEquivalentIntervalClass___init___01():
-    r'''Init from zero.
+    r'''Initializefrom zero.
     '''
 
     ic = pitchtools.NumberedInversionEquivalentIntervalClass(0)
@@ -11,7 +11,7 @@ def test_pitchtools_NumberedInversionEquivalentIntervalClass___init___01():
 
 
 def test_pitchtools_NumberedInversionEquivalentIntervalClass___init___02():
-    r'''Init from positive integer.
+    r'''Initializefrom positive integer.
     '''
 
     ic = pitchtools.NumberedInversionEquivalentIntervalClass(1)
@@ -34,7 +34,7 @@ def test_pitchtools_NumberedInversionEquivalentIntervalClass___init___02():
 
 
 def test_pitchtools_NumberedInversionEquivalentIntervalClass___init___03():
-    r'''Init from positive float.
+    r'''Initializefrom positive float.
     '''
 
     ic = pitchtools.NumberedInversionEquivalentIntervalClass(0.5)

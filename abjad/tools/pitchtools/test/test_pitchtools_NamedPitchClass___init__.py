@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_NamedPitchClass___init___01():
-    r'''Init from name.
+    r'''Initializefrom name.
     '''
 
     assert pitchtools.NamedPitchClass('c') == 'c'
@@ -14,7 +14,7 @@ def test_pitchtools_NamedPitchClass___init___01():
 
 
 def test_pitchtools_NamedPitchClass___init___02():
-    r'''Init from other named pitch-class instance.
+    r'''Initializefrom other named pitch-class instance.
     '''
 
     npc = pitchtools.NamedPitchClass('c')
@@ -25,7 +25,7 @@ def test_pitchtools_NamedPitchClass___init___02():
 
 
 def test_pitchtools_NamedPitchClass___init___03():
-    r'''Init from note head instance.
+    r'''Initializefrom note head instance.
     '''
 
     chord = Chord([0, 2, 3], (1, 4))

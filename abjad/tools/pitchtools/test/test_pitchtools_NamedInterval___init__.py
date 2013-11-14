@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_NamedInterval___init___01():
-    r'''Init named interval from abbreviation.
+    r'''Initializenamed interval from abbreviation.
     '''
 
     mdi = pitchtools.NamedInterval('+M3')

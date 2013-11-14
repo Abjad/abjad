@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_Glissando___init___01():
-    r'''Init empty glissando spanner.
+    r'''Initializeempty glissando spanner.
     '''
 
     glissando = spannertools.Glissando()

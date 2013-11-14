@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_PitchSegment___init___01():
-    r'''Init named pitch segment from named pitches.
+    r'''Initializenamed pitch segment from named pitches.
     '''
 
     named_pitches = []

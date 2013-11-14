@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_scoretools_Container___init___01():
-    r'''Init empty container.
+    r'''Initializeempty container.
     '''
 
     container = Container([])
@@ -24,7 +24,7 @@ def test_scoretools_Container___init___01():
 
 
 def test_scoretools_Container___init___02():
-    r'''Init container with LilyPond note-entry string.
+    r'''Initializecontainer with LilyPond note-entry string.
     '''
 
     container = Container("c'8 d'8 e'8")
@@ -51,7 +51,7 @@ def test_scoretools_Container___init___02():
 
 
 def test_scoretools_Container___init___03():
-    r'''Init container with RTM-syntax string.
+    r'''Initializecontainer with RTM-syntax string.
     '''
 
     container = Container('rtm: (1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))')
@@ -99,7 +99,7 @@ def test_scoretools_Container___init___03():
         )
 
 def test_scoretools_Container___init___04():
-    r'''Init container with "reduced ly" syntax string.
+    r'''Initializecontainer with "reduced ly" syntax string.
     '''
 
     container = Container('abj: 2/3 { 8 8 8 }')

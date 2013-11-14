@@ -4,7 +4,7 @@ from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_Mode___init___01():
-    r'''Init with mode name.
+    r'''Initializewith mode name.
     '''
 
     mode = tonalanalysistools.Mode('dorian')
@@ -12,7 +12,7 @@ def test_tonalanalysistools_Mode___init___01():
 
 
 def test_tonalanalysistools_Mode___init___02():
-    r'''Init with other mode instance.
+    r'''Initializewith other mode instance.
     '''
 
     mode = tonalanalysistools.Mode('dorian')

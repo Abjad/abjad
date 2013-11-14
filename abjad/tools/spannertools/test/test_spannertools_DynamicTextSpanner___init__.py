@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_DynamicTextSpanner___init___01():
-    r'''Init empty dynamic text spanner.
+    r'''Initializeempty dynamic text spanner.
     '''
 
     spanner = spannertools.DynamicTextSpanner()

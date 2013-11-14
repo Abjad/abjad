@@ -11,7 +11,7 @@ def test_tonalanalysistools_ScaleDegree__init_by_number_01():
 
 
 def test_tonalanalysistools_ScaleDegree__init_by_number_02():
-    r'''Init from other scale degree instance.
+    r'''Initializefrom other scale degree instance.
     '''
 
     degree = tonalanalysistools.ScaleDegree(2)

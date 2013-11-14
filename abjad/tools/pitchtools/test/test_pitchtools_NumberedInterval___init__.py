@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_NumberedInterval___init___01():
-    r'''Init from positive number.
+    r'''Initializefrom positive number.
     '''
 
     i = pitchtools.NumberedInterval(3)
@@ -11,7 +11,7 @@ def test_pitchtools_NumberedInterval___init___01():
 
 
 def test_pitchtools_NumberedInterval___init___02():
-    r'''Init from negative number.
+    r'''Initializefrom negative number.
     '''
 
     i = pitchtools.NumberedInterval(-3)
@@ -19,7 +19,7 @@ def test_pitchtools_NumberedInterval___init___02():
 
 
 def test_pitchtools_NumberedInterval___init___03():
-    r'''Init from other numbered interval.
+    r'''Initializefrom other numbered interval.
     '''
 
     i = pitchtools.NumberedInterval(3)
@@ -29,7 +29,7 @@ def test_pitchtools_NumberedInterval___init___03():
 
 
 def test_pitchtools_NumberedInterval___init___04():
-    r'''Init from named interval.
+    r'''Initializefrom named interval.
     '''
 
     named_interval = pitchtools.NamedInterval('perfect', 4)

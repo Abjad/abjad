@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_MultipartBeamSpanner___init___01():
-    r'''Init empty multipart beam spanner.
+    r'''Initializeempty multipart beam spanner.
     '''
 
     beam = spannertools.MultipartBeamSpanner()

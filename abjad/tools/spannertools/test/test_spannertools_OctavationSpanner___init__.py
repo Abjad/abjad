@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_OctavationSpanner___init___01():
-    r'''Init empty octavation spanner.
+    r'''Initializeempty octavation spanner.
     '''
 
     octavation = spannertools.OctavationSpanner()

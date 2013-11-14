@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_NumberedPitch___init___01():
-    r'''Init with number.
+    r'''Initializewith number.
     '''
 
     assert isinstance(pitchtools.NumberedPitch(0), pitchtools.NumberedPitch)
@@ -15,7 +15,7 @@ def test_pitchtools_NumberedPitch___init___01():
 
 
 def test_pitchtools_NumberedPitch___init___02():
-    r'''Init with other numbered pitch instance.
+    r'''Initializewith other numbered pitch instance.
     '''
 
     numbered_pitch_1 = pitchtools.NumberedPitch(13)

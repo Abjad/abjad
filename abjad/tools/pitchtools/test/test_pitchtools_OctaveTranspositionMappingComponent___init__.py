@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_pitchtools_OctaveTranspositionMappingComponent___init___01():
-    r'''Init from range and start pitch.
+    r'''Initializefrom range and start pitch.
     '''
 
     component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
@@ -11,7 +11,7 @@ def test_pitchtools_OctaveTranspositionMappingComponent___init___01():
 
 
 def test_pitchtools_OctaveTranspositionMappingComponent___init___02():
-    r'''Init from pair.
+    r'''Initializefrom pair.
     '''
 
     component = pitchtools.OctaveTranspositionMappingComponent(('[A0, C8]', 15))
@@ -19,7 +19,7 @@ def test_pitchtools_OctaveTranspositionMappingComponent___init___02():
 
 
 def test_pitchtools_OctaveTranspositionMappingComponent___init___03():
-    r'''Init from instance.
+    r'''Initializefrom instance.
     '''
 
     component_1 = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
@@ -29,7 +29,7 @@ def test_pitchtools_OctaveTranspositionMappingComponent___init___03():
 
 
 def test_pitchtools_OctaveTranspositionMappingComponent___init___04():
-    r'''Init from string with number.
+    r'''Initializefrom string with number.
     '''
 
     component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8] => 15')
@@ -37,7 +37,7 @@ def test_pitchtools_OctaveTranspositionMappingComponent___init___04():
 
 
 def test_pitchtools_OctaveTranspositionMappingComponent___init___05():
-    r'''Init from string with pitch name.
+    r'''Initializefrom string with pitch name.
     '''
 
     component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8] => Eb5')

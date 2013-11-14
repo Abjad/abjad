@@ -4,14 +4,14 @@ from abjad.tools import tonalanalysistools
 
 
 def test_tonalanalysistools_ExtentIndicator___init___01():
-    r'''Init from number.
+    r'''Initializefrom number.
     '''
 
     assert tonalanalysistools.ExtentIndicator(7).number == 7
 
 
 def test_tonalanalysistools_ExtentIndicator___init___02():
-    r'''Init by reference.
+    r'''Initializeby reference.
     '''
 
     extent_indicator = tonalanalysistools.ExtentIndicator(7)

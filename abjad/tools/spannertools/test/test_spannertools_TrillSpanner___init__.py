@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_spannertools_TrillSpanner___init___01():
-    r'''Init empty trill spanner.
+    r'''Initializeempty trill spanner.
     '''
 
     trill = spannertools.TrillSpanner()

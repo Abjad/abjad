@@ -4,7 +4,7 @@ import pytest
 
 
 def test_pitchtools_NamedPitch___init___01():
-    r'''Init by name and octave.
+    r'''Initializeby name and octave.
     '''
 
     pitch = NamedPitch('df', 5)
@@ -24,7 +24,7 @@ def test_pitchtools_NamedPitch___init___02():
 
 
 def test_pitchtools_NamedPitch___init___03():
-    r'''Init by number.
+    r'''Initializeby number.
     '''
 
     pitch = NamedPitch(13)
@@ -36,7 +36,7 @@ def test_pitchtools_NamedPitch___init___03():
 
 
 def test_pitchtools_NamedPitch___init___04():
-    r'''Init by number and diatonic_pitch_class_name.
+    r'''Initializeby number and diatonic_pitch_class_name.
     '''
 
     pitch = NamedPitch(13, 'd')
@@ -50,7 +50,7 @@ def test_pitchtools_NamedPitch___init___04():
 
 
 def test_pitchtools_NamedPitch___init___05():
-    r'''Init by pair.
+    r'''Initializeby pair.
     '''
 
     pitch = NamedPitch(('df', 5))
@@ -75,7 +75,7 @@ def test_pitchtools_NamedPitch___init___06():
 
 
 def test_pitchtools_NamedPitch___init___07():
-    r'''Init by reference.
+    r'''Initializeby reference.
     '''
 
     pitch_1 = NamedPitch('df', 5)
@@ -90,7 +90,7 @@ def test_pitchtools_NamedPitch___init___07():
 
 
 def test_pitchtools_NamedPitch___init___08():
-    r'''Init by pitch-class / octave number string.
+    r'''Initializeby pitch-class / octave number string.
     '''
 
     assert NamedPitch('A4') == NamedPitch("a'")

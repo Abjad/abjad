@@ -4,7 +4,7 @@ import pytest
 
 
 def test_pitcharraytools_PitchArrayCell___init___01():
-    r'''Init empty.
+    r'''Initializeempty.
     '''
 
     cell = pitcharraytools.PitchArrayCell()
@@ -13,7 +13,7 @@ def test_pitcharraytools_PitchArrayCell___init___01():
 
 
 def test_pitcharraytools_PitchArrayCell___init___02():
-    r'''Init with positive integer width.
+    r'''Initializewith positive integer width.
     '''
 
     cell = pitcharraytools.PitchArrayCell(2)
@@ -22,7 +22,7 @@ def test_pitcharraytools_PitchArrayCell___init___02():
 
 
 def test_pitcharraytools_PitchArrayCell___init___03():
-    r'''Init with pitch instance.
+    r'''Initializewith pitch instance.
     '''
 
     cell = pitcharraytools.PitchArrayCell(pitchtools.NamedPitch(0))
@@ -31,7 +31,7 @@ def test_pitcharraytools_PitchArrayCell___init___03():
 
 
 def test_pitcharraytools_PitchArrayCell___init___04():
-    r'''Init with list of pitch tokens.
+    r'''Initializewith list of pitch tokens.
     '''
 
     cell = pitcharraytools.PitchArrayCell([0, 2, 4])
@@ -40,7 +40,7 @@ def test_pitcharraytools_PitchArrayCell___init___04():
 
 
 def test_pitcharraytools_PitchArrayCell___init___05():
-    r'''Init with list of pitch instances.
+    r'''Initializewith list of pitch instances.
     '''
 
     cell = pitcharraytools.PitchArrayCell([pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)])
@@ -49,7 +49,7 @@ def test_pitcharraytools_PitchArrayCell___init___05():
 
 
 def test_pitcharraytools_PitchArrayCell___init___06():
-    r'''Init with list of pitch pairs.
+    r'''Initializewith list of pitch pairs.
     '''
 
     cell = pitcharraytools.PitchArrayCell([('c', 4), ('d', 4), ('e', 4)])
@@ -58,7 +58,7 @@ def test_pitcharraytools_PitchArrayCell___init___06():
 
 
 def test_pitcharraytools_PitchArrayCell___init___07():
-    r'''Init with pitch token, width pair.
+    r'''Initializewith pitch token, width pair.
     '''
 
     cell = pitcharraytools.PitchArrayCell((0, 2))
@@ -67,7 +67,7 @@ def test_pitcharraytools_PitchArrayCell___init___07():
 
 
 def test_pitcharraytools_PitchArrayCell___init___08():
-    r'''Init with pitch instance, width pair.
+    r'''Initializewith pitch instance, width pair.
     '''
 
     cell = pitcharraytools.PitchArrayCell((pitchtools.NamedPitch(0), 2))
@@ -76,7 +76,7 @@ def test_pitcharraytools_PitchArrayCell___init___08():
 
 
 def test_pitcharraytools_PitchArrayCell___init___09():
-    r'''Init with pitch token list, width pair.
+    r'''Initializewith pitch token list, width pair.
     '''
 
     cell = pitcharraytools.PitchArrayCell(([0, 2, 4], 2))
@@ -85,7 +85,7 @@ def test_pitcharraytools_PitchArrayCell___init___09():
 
 
 def test_pitcharraytools_PitchArrayCell___init___10():
-    r'''Init with pitch instance list, width pair.
+    r'''Initializewith pitch instance list, width pair.
     '''
 
     cell = pitcharraytools.PitchArrayCell(([pitchtools.NamedPitch(0), pitchtools.NamedPitch(2), pitchtools.NamedPitch(4)], 2))

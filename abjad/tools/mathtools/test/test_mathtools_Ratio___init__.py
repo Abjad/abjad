@@ -4,7 +4,7 @@ import pytest
 
 
 def test_mathtools_Ratio___init___01():
-    r'''Init from integers.
+    r'''Initializefrom integers.
     '''
 
     ratio = mathtools.Ratio(1, 2, 1)
@@ -12,7 +12,7 @@ def test_mathtools_Ratio___init___01():
 
 
 def test_mathtools_Ratio___init___02():
-    r'''Init from a tuple or list.
+    r'''Initializefrom a tuple or list.
     '''
 
     ratio = mathtools.Ratio((1, 2, 1))
