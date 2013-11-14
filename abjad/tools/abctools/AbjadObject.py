@@ -152,7 +152,7 @@ class AbjadObject(object):
         result = []
         prefix, suffix = '', ', '
         if is_indented:
-            prefix, suffix = '\t', ','
+            prefix, suffix = '    ', ','
         manager = systemtools.StorageFormatManager
         for name in manager.get_keyword_argument_names(self):
             if self._has_default_attribute_values:
@@ -183,7 +183,7 @@ class AbjadObject(object):
         result = []
         prefix, suffix = '', ', '
         if is_indented:
-            prefix, suffix = '\t', ','
+            prefix, suffix = '    ', ','
         manager = systemtools.StorageFormatManager
         for value in manager.get_positional_argument_values(self):
             pieces = manager.format_one_value(value, is_indented=is_indented)
@@ -193,6 +193,9 @@ class AbjadObject(object):
         return tuple(result)
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_storage_format_pieces(
+            self, is_indented=is_indented)
         result = []
         argument_repr_pieces = []
         argument_repr_pieces.extend(
@@ -212,7 +215,7 @@ class AbjadObject(object):
                 self._tools_package_qualified_class_name))
             result.extend(argument_repr_pieces)
             if is_indented:
-                result.append('\t)')
+                result.append('    )')
             else:
                 result.append(')')
         return tuple(result)
