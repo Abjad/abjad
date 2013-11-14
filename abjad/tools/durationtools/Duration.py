@@ -1117,3 +1117,84 @@ class Duration(AbjadObject, fractions.Fraction):
                 yield duration
             elif duration.pair == integer_pair:
                 yield duration
+
+    def yield_equivalent_durations(self, minimum_written_duration=None):
+        r'''Yields all durations equivalent to this duration.
+
+        Returns output in Cantor diagonalized order.
+
+        Ensures written duration never less than `minimum_written_duration`.
+
+        ..  container:: example
+
+            Yields durations equivalent to ``1/8``:
+
+            ::
+
+                >>> pairs = Duration(1, 8).yield_equivalent_durations()
+                >>> for pair in pairs: pair
+                ...
+                (Multiplier(1, 1), Duration(1, 8))
+                (Multiplier(2, 3), Duration(3, 16))
+                (Multiplier(4, 3), Duration(3, 32))
+                (Multiplier(4, 7), Duration(7, 32))
+                (Multiplier(8, 7), Duration(7, 64))
+                (Multiplier(8, 15), Duration(15, 64))
+                (Multiplier(16, 15), Duration(15, 128))
+                (Multiplier(16, 31), Duration(31, 128))
+
+        ..  container:: example
+
+            Yields durations equivalent ot ``1/12``:
+
+            ::
+
+                >>> pairs = Duration(1, 12).yield_equivalent_durations()
+                >>> for pair in pairs: pair
+                ...
+                (Multiplier(2, 3), Duration(1, 8))
+                (Multiplier(4, 3), Duration(1, 16))
+                (Multiplier(8, 9), Duration(3, 32))
+                (Multiplier(16, 9), Duration(3, 64))
+                (Multiplier(16, 21), Duration(7, 64))
+                (Multiplier(32, 21), Duration(7, 128))
+                (Multiplier(32, 45), Duration(15, 128))
+
+        ..  container:: example
+
+            Yields durations equivalent to ``5/48``:
+
+            ::
+
+                >>> pairs = Duration(5, 48).yield_equivalent_durations()
+                >>> for pair in pairs: pair
+                ...
+                (Multiplier(5, 6), Duration(1, 8))
+                (Multiplier(5, 3), Duration(1, 16))
+                (Multiplier(5, 9), Duration(3, 16))
+                (Multiplier(10, 9), Duration(3, 32))
+                (Multiplier(20, 21), Duration(7, 64))
+                (Multiplier(40, 21), Duration(7, 128))
+                (Multiplier(8, 9), Duration(15, 128))
+
+        Defaults `minimum_written_duration` to ``1/128``.
+
+        Returns generator.
+        '''
+        if minimum_written_duration is None:
+            minimum_written_duration = type(self)(1, 128)
+        else:
+            minimum_written_duration = type(self)(minimum_written_duration)
+        generator = type(self).yield_durations(unique=True)
+        pairs = []
+        while True:
+            written_duration = generator.next()
+            if not written_duration.is_assignable:
+                continue
+            if written_duration < minimum_written_duration:
+                pairs = tuple(pairs)
+                return pairs
+            prolation = self / written_duration
+            if prolation.is_proper_tuplet_multiplier:
+                pair = (prolation, written_duration)
+                pairs.append(pair)
