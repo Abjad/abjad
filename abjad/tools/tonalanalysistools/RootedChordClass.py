@@ -5,10 +5,29 @@ from abjad.tools.pitchtools import PitchClassSet
 
 
 class RootedChordClass(PitchClassSet):
-    '''A tonal chord class such as G 7, G 6/5, G half-diminished 6/5, etc.
+    '''A rooted chord class.
 
-    Note that notions like G 7 represent an entire *class of* chords because
-    there are many different spacings and registrations of a G 7 chord.
+    ..  container:: example
+
+        G major triad in root position:
+
+        ::
+
+            >>> tonalanalysistools.RootedChordClass('g', 'major')
+            GMajorTriadInRootPosition
+
+    ..  container:: example
+
+        G dominant seventh in root position:
+
+        ::
+
+            >>> tonalanalysistools.RootedChordClass('g', 'dominant', 7)
+            GDominantSeventhInRootPosition
+
+    Note that notions like a G dominant seventh represent an entire class of
+    chords because there are many different spacings and registrations of a G
+    dominant seventh.
     '''
 
     ### CLASS VARIABLES ###

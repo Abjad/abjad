@@ -6,17 +6,33 @@ from abjad.tools.pitchtools import IntervalSegment
 
 
 class RootlessChordClass(IntervalSegment):
-    r'''A chord quality.
+    r'''A rootless chord class.
 
-    ::
+    ..  container:: example
 
-        >>> tonalanalysistools.RootlessChordClass(
-        ...     'German',
-        ...     'augmented sixth',
-        ...     )
+        Major triad in root position:
+
+        ::
+
+            >>> tonalanalysistools.RootlessChordClass('major')
+            MajorTriadInRootPosition('P1', '+M3', '+P5')
+
+    ..  container:: example
+
+        Dominant seventh in root position:
+
+        ::
+
+            >>> tonalanalysistools.RootlessChordClass('dominant', 7)
+            DominantSeventhInRootPosition('P1', '+M3', '+P5', '+m7')
+
+    ..  container:: example
+
+        German augmented sixth in root position:
+
+        >>> tonalanalysistools.RootlessChordClass('German', 'augmented sixth')
         GermanAugmentedSixthInRootPosition('P1', '+M3', '+m3', '+aug2')
 
-    Returns chord quality.
     '''
 
     ### CLASS VARIABLES ###
