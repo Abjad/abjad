@@ -155,14 +155,14 @@ class Selection(object):
         if not first._get_parentage().is_orphan:
             orphan_components = False
         same_logical_voice = True
-        first_signature = first._get_parentage().logical_voice_indicator
+        first_signature = first._get_parentage().logical_voice
         for component in expr[1:]:
             parentage = component._get_parentage()
             if not parentage.is_orphan:
                 orphan_components = False
             if not allow_orphans and orphan_components:
                 return False
-            if parentage.logical_voice_indicator != first_signature:
+            if parentage.logical_voice != first_signature:
                 same_logical_voice = False
             if not allow_orphans and not same_logical_voice:
                 return False
@@ -208,18 +208,18 @@ class Selection(object):
         if not isinstance(first, component_classes):
             return False
         first_parentage = first._get_parentage()
-        first_logical_voice_indicator = first_parentage.logical_voice_indicator
+        first_logical_voice = first_parentage.logical_voice
         first_root = first_parentage.root
         previous = first
         for current in expr[1:]:
             current_parentage = current._get_parentage()
-            current_logical_voice_indicator = \
-                current_parentage.logical_voice_indicator
+            current_logical_voice = \
+                current_parentage.logical_voice
             # false if wrong type of component found
             if not isinstance(current, component_classes):
                 return False
             # false if in different logical voices
-            if current_logical_voice_indicator != first_logical_voice_indicator:
+            if current_logical_voice != first_logical_voice:
                 return False
             # false if components are in same score and are discontiguous
             if current_parentage.root == first_root:

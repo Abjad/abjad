@@ -830,7 +830,7 @@ Changes to end-user functionality:
     scoretools.iterate_thread_backward_in_expr()
     scoretools.iterate_thread_forward_from_component()
     scoretools.iterate_thread_forward_in_expr()
-    scoretools.component_to_logical_voice_indicator()
+    scoretools.component_to_logical_voice()
 
 - Removed the read-only ``Component.marks`` property entirely.
 

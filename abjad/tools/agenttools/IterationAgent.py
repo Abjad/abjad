@@ -409,11 +409,11 @@ class IterationAgent(object):
     def by_logical_voice(
         self,
         component_class,
-        logical_voice_indicator,
+        logical_voice,
         reverse=False,
         ):
         r'''Yield left-to-right instances of `component_class` in `expr`
-        with `logical_voice_indicator`:
+        with `logical_voice`:
 
         ::
 
@@ -457,7 +457,7 @@ class IterationAgent(object):
         ::
 
             >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
-            >>> signature = inspect(leaf).get_parentage().logical_voice_indicator
+            >>> signature = inspect(leaf).get_parentage().logical_voice
             >>> for x in iterate(staff).by_logical_voice(Note, signature):
             ...     x
             ...
@@ -469,8 +469,8 @@ class IterationAgent(object):
         Returns generator.
         '''
         if isinstance(self._client, component_class) and \
-            self._client._get_parentage().logical_voice_indicator == \
-                logical_voice_indicator:
+            self._client._get_parentage().logical_voice == \
+                logical_voice:
             yield self._client
 
         if not reverse:
@@ -478,14 +478,14 @@ class IterationAgent(object):
                 for m in self._client:
                     for x in iterate(m).by_logical_voice(
                         component_class,
-                        logical_voice_indicator,
+                        logical_voice,
                         ):
                         yield x
             if hasattr(self._client, '_music'):
                 for m in self._client._music:
                     for x in iterate(m).by_logical_voice(
                         component_class,
-                        logical_voice_indicator,
+                        logical_voice,
                         ):
                         yield x
         else:
@@ -493,7 +493,7 @@ class IterationAgent(object):
                 for m in reversed(self._client):
                     for x in iterate(m).by_logical_voice(
                         component_class,
-                        logical_voice_indicator,
+                        logical_voice,
                         reverse=True,
                         ):
                         yield x
@@ -501,7 +501,7 @@ class IterationAgent(object):
                 for m in reversed(self._client._music):
                     for x in iterate(m).by_logical_voice(
                         component_class,
-                        logical_voice_indicator,
+                        logical_voice,
                         reverse=True,
                         ):
                         yield x
@@ -631,19 +631,19 @@ class IterationAgent(object):
         if component_class is None:
             component_class = scoretools.Component
         # save logical voice signature of input component
-        signature = self._client._get_parentage().logical_voice_indicator
+        signature = self._client._get_parentage().logical_voice
         # iterate component depth-first allowing to crawl UP into score
         if not reverse:
             for x in iterate(self._client).depth_first(
                 capped=False):
                 if isinstance(x, component_class):
-                    if x._get_parentage().logical_voice_indicator == signature:
+                    if x._get_parentage().logical_voice == signature:
                         yield x
         else:
             for x in iterate(self._client).depth_first(
                 capped=False, direction=Right):
                 if isinstance(x, component_class):
-                    if x._get_parentage().logical_voice_indicator == signature:
+                    if x._get_parentage().logical_voice == signature:
                         yield x
 
     def by_run(self, classes):

@@ -7,7 +7,7 @@ def test_agenttools_IterationAgent_by_logical_voice_01():
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Rest,
         signature,
@@ -21,7 +21,7 @@ def test_agenttools_IterationAgent_by_logical_voice_02():
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Tuplet,
         signature,
@@ -35,7 +35,7 @@ def test_agenttools_IterationAgent_by_logical_voice_03():
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Note,
         signature,
@@ -50,7 +50,7 @@ def test_agenttools_IterationAgent_by_logical_voice_04():
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.scoretools.Leaf import Leaf
-    signature = inspect(staff[-1][-1]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[-1][-1]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Leaf,
         signature,
@@ -67,7 +67,7 @@ def test_agenttools_IterationAgent_by_logical_voice_05():
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Note,
         signature,
@@ -87,7 +87,7 @@ def test_agenttools_IterationAgent_by_logical_voice_06():
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
-    signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Note,
         signature,
@@ -110,7 +110,7 @@ def test_agenttools_IterationAgent_by_logical_voice_07():
     v1.name = 'flute'
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    signature = inspect(staff[-1]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[-1]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Note,
         signature,
@@ -129,7 +129,7 @@ def test_agenttools_IterationAgent_by_logical_voice_08():
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = inspect(staff[0]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Rest,
         signature,
@@ -142,7 +142,7 @@ def test_agenttools_IterationAgent_by_logical_voice_09():
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = inspect(staff[0]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Tuplet,
         signature,
@@ -155,7 +155,7 @@ def test_agenttools_IterationAgent_by_logical_voice_10():
     '''
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    signature = inspect(staff[0]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Note,
         signature,
@@ -169,7 +169,7 @@ def test_agenttools_IterationAgent_by_logical_voice_11():
 
     staff = Staff(scoretools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.scoretools.Leaf import Leaf
-    signature = inspect(staff[0][0]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[0][0]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Leaf,
         signature,
@@ -185,7 +185,7 @@ def test_agenttools_IterationAgent_by_logical_voice_12():
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    signature = inspect(staff[0]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Note,
         signature,
@@ -204,7 +204,7 @@ def test_agenttools_IterationAgent_by_logical_voice_13():
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     staff = Staff([v1, v2])
-    signature = inspect(staff[0]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Note,
         signature,
@@ -226,7 +226,7 @@ def test_agenttools_IterationAgent_by_logical_voice_14():
     v1.name = 'flute'
     v2.name = 'piccolo'
     staff = Staff([v1, v2])
-    signature = inspect(staff[0]).get_parentage().logical_voice_indicator
+    signature = inspect(staff[0]).get_parentage().logical_voice
     iter = iterate(staff).by_logical_voice(
         Note,
         signature,

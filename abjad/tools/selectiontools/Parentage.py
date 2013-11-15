@@ -144,8 +144,8 @@ class Parentage(SimultaneousSelection):
         return self.parent is None
 
     @property
-    def logical_voice_indicator(self):
-        r'''Logical voice indicator of component.
+    def logical_voice(self):
+        r'''Logical voice of component.
 
         ::
 
@@ -172,11 +172,11 @@ class Parentage(SimultaneousSelection):
 
             >>> leaf = score.select_leaves()[0]
             >>> parentage = inspect(leaf).get_parentage()
-            >>> indicator = parentage.logical_voice_indicator
+            >>> logical_voice = parentage.logical_voice
 
         ::
 
-            >>> for key, value in indicator.iteritems():
+            >>> for key, value in logical_voice.iteritems():
             ...     print '%12s: %s' % (key, value)
             ...
                      score: Score-'CustomScore'
@@ -192,26 +192,26 @@ class Parentage(SimultaneousSelection):
         from abjad.tools import scoretools
         from abjad.tools import scoretools
         keys = ('score', 'staff group', 'staff', 'voice')
-        indicator = collections.OrderedDict.fromkeys(keys, '')
+        logical_voice = collections.OrderedDict.fromkeys(keys, '')
         for component in self:
             if isinstance(component, scoretools.Voice):
-                if not indicator['voice']:
-                    indicator['voice'] = self._id_string(component)
+                if not logical_voice['voice']:
+                    logical_voice['voice'] = self._id_string(component)
             elif isinstance(component, scoretools.Staff):
-                if not indicator['staff']:
-                    indicator['staff'] = self._id_string(component)
+                if not logical_voice['staff']:
+                    logical_voice['staff'] = self._id_string(component)
                     # explicit staff demands a nested voice:
                     # if no explicit voice has been found,
                     # create implicit voice here with random integer
-                    if not indicator['voice']:
-                        indicator['voice'] = id(component)
+                    if not logical_voice['voice']:
+                        logical_voice['voice'] = id(component)
             elif isinstance(component, scoretools.StaffGroup):
-                if not indicator['staff group']:
-                    indicator['staff group'] = self._id_string(component)
+                if not logical_voice['staff group']:
+                    logical_voice['staff group'] = self._id_string(component)
             elif isinstance(component, scoretools.Score):
-                if not indicator['score']:
-                    indicator['score'] = self._id_string(component)
-        return indicator
+                if not logical_voice['score']:
+                    logical_voice['score'] = self._id_string(component)
+        return logical_voice
 
     @property
     def parent(self):
