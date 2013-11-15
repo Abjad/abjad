@@ -23,6 +23,19 @@ class Expression(AbjadObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
 
+    def __format__(self, format_specification=''):
+        r'''Formats expression.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __hash__(self):
         r'''Expression hash.
 
@@ -32,18 +45,6 @@ class Expression(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_tools_package_qualified_keyword_argument_repr_pieces(
-        self, is_indented=True):
-        filtered_result = []
-        result = \
-            AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
-            self, is_indented=is_indented)
-        for string in result:
-            if not 'callbacks=musicexpressiontools.CallbackInventory([])' \
-                in string:
-                filtered_result.append(string)
-        return filtered_result
-
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
@@ -51,20 +52,6 @@ class Expression(AbjadObject):
             result = list(result)
             result.remove('callbacks=CallbackInventory([])')
         return tuple(result)
-
-    ### PUBLIC PROPERTIES ###
-
-    def __format__(self, format_specification=''):
-        r'''Formats expression.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
-        return str(self)
 
     ### PUBLIC METHODS ###
 

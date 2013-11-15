@@ -47,7 +47,7 @@ class MutationAgent(object):
 
         Returns string.
         '''
-        return '{}({})'.format(
+        return '{}({!r})'.format(
             type(self).__name__,
             self._client,
             )

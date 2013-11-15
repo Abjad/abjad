@@ -41,7 +41,7 @@ class PersistenceAgent(object):
 
         Returns string.
         '''
-        return '{}({!s})'.format(
+        return '{}({!r})'.format(
             type(self).__name__,
             self._client,
             )

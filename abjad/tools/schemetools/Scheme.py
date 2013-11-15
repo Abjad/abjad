@@ -101,15 +101,18 @@ class Scheme(AbjadObject):
 
         ::
 
-            >>> format(scheme, 'storage')
-            "schemetools.Scheme('foo')"
+            >>> print format(scheme, 'storage')
+            schemetools.Scheme(
+                'foo'
+                )
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         elif format_specification == 'storage':
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __getnewargs__(self):
@@ -138,21 +141,16 @@ class Scheme(AbjadObject):
         return '#%s' % self._formatted_value
 
     @property
-    def _positional_argument_values(self):
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
         if isinstance(self._value, basestring):
-            return (self._value,)
-        return self._value
-
-    ### PRIVATE METHODS ###
-
-    # do not indent in storage
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        pieces = AbjadObject._get_tools_package_qualified_repr_pieces(
+            positional_argument_values = (self._value,)
+        else:
+            positional_argument_values = self._value
+        return systemtools.StorageFormatSpecification(
             self,
-            is_indented=False,
+            positional_argument_values=positional_argument_values,
             )
-        string = ''.join(pieces)
-        return [string]
 
     ### PUBLIC METHODS ###
 

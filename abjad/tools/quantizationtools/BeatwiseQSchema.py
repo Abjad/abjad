@@ -5,8 +5,8 @@ from abjad.tools.quantizationtools.QSchema import QSchema
 
 
 class BeatwiseQSchema(QSchema):
-    r'''Concrete ``QSchema`` subclass which treats "beats" as its 
-    time-step unit:
+    r'''Concrete ``QSchema`` subclass which treats "beats" as its time-step
+    unit:
 
     ::
 
@@ -20,12 +20,35 @@ class BeatwiseQSchema(QSchema):
         quantizationtools.BeatwiseQSchema(
             beatspan=durationtools.Duration(1, 4),
             search_tree=quantizationtools.UnweightedSearchTree(
-                definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
-                    3: {   2: {   2: None}, 3: None, 5: None},
-                    5: {   2: None, 3: None},
-                    7: {   2: None},
+                definition={
+                    2: {
+                        2: {
+                            2: {
+                                2: None,
+                                },
+                            3: None,
+                            },
+                        3: None,
+                        5: None,
+                        7: None,
+                        },
+                    3: {
+                        2: {
+                            2: None,
+                            },
+                        3: None,
+                        5: None,
+                        },
+                    5: {
+                        2: None,
+                        3: None,
+                        },
+                    7: {
+                        2: None,
+                        },
                     11: None,
-                    13: None}
+                    13: None,
+                    },
                 ),
             tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
@@ -39,8 +62,8 @@ class BeatwiseQSchema(QSchema):
         * ``search_tree``
         * ``tempo``
 
-    These settings can be applied as global defaults for the schema 
-    via keyword arguments, which persist until overridden:
+    These settings can be applied as global defaults for the schema via keyword
+    arguments, which persist until overridden:
 
     ::
 
@@ -53,8 +76,8 @@ class BeatwiseQSchema(QSchema):
         ...     tempo=tempo,
         ...     )
 
-    The computed value at any non-negative time-step can be found 
-    by subscripting:
+    The computed value at any non-negative time-step can be found by
+    subscripting:
 
     ::
 
@@ -115,7 +138,7 @@ class BeatwiseQSchema(QSchema):
         >>> q_schema[3]['beatspan']
         Duration(1, 8)
 
-    Similarly, instantiating the schema from a single dictionary, consisting 
+    Similarly, instantiating the schema from a single dictionary, consisting
     of integer:specification pairs, or a sequence via ``*args`` of (integer,
     specification) pairs, allows for applying settings to  non-sequential
     time-steps:
@@ -203,10 +226,10 @@ class BeatwiseQSchema(QSchema):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_beatspan', 
-        '_items', 
-        '_lookups', 
-        '_search_tree', 
+        '_beatspan',
+        '_items',
+        '_lookups',
+        '_search_tree',
         '_tempo',
         )
 
@@ -214,29 +237,32 @@ class BeatwiseQSchema(QSchema):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import quantizationtools
-
         self._beatspan = durationtools.Duration(
             kwargs.get('beatspan',
                 (1, 4)))
-
-        search_tree = kwargs.get('search_tree', quantizationtools.UnweightedSearchTree())
+        search_tree = kwargs.get('search_tree',
+            quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
-
         self._tempo = marktools.Tempo(
             kwargs.get('tempo',
                 ((1, 4), 60)))
-
         QSchema.__init__(self, *args, **kwargs)
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _keyword_argument_names(self):
-        return (
-            'beatspan',
-            'search_tree',
-            'tempo',
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = self.items or ()
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(
+                'beatspan',
+                'search_tree',
+                'tempo',
+                ),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PUBLIC PROPERTIES ###

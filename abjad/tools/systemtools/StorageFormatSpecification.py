@@ -84,9 +84,3 @@ class StorageFormatSpecification(AbjadObject):
             return self._tools_package_name
         return systemtools.StorageFormatManager.get_tools_package_name(
             self.instance)
-
-    ### PUBLIC PROPERTIES ###
-
-    def get_storage_format_pieces(self):
-        result = []
-

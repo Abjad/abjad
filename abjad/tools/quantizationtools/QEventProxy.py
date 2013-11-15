@@ -44,7 +44,6 @@ class QEventProxy(AbjadObject):
 
     def __init__(self, *args):
         from abjad.tools import quantizationtools
-
         if len(args) == 2:
             q_event, offset = args[0], durationtools.Offset(args[1])
             assert isinstance(q_event, quantizationtools.QEvent)
@@ -58,7 +57,6 @@ class QEventProxy(AbjadObject):
             offset = (q_event.offset - minimum) / (maximum - minimum)
         else:
             raise ValueError
-
         self._q_event = q_event
         self._offset = offset
 
@@ -70,6 +68,19 @@ class QEventProxy(AbjadObject):
                 if self.q_event == expr.q_event:
                     return True
         return False
+
+    def __format__(self, format_specification=''):
+        r'''Formats q-event.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
 
     def __getnewargs__(self):
         return (self.q_event, self.offset)
@@ -84,7 +95,7 @@ class QEventProxy(AbjadObject):
         return state
 
     def __repr__(self):
-        return '\n'.join(self._get_tools_package_qualified_repr_pieces())
+        return format(self)
 
     def __setstate__(self, state):
         for key, value in state.iteritems():
@@ -93,8 +104,15 @@ class QEventProxy(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _positional_argument_names(self):
-        return ('q_event', 'offset')
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.q_event,
+                self.offset,
+                )
+            )
 
     ### PUBLIC PROPERTIES ###
 

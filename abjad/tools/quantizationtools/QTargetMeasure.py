@@ -29,7 +29,8 @@ class QTargetMeasure(AbjadObject):
         quantizationtools.QTargetMeasure(
             offset_in_ms=durationtools.Offset(1000, 1),
             search_tree=quantizationtools.UnweightedSearchTree(
-                definition={   2: None}
+                definition={   2: None,
+                    },
                 ),
             time_signature=marktools.TimeSignature(
                 (4, 4)
@@ -146,8 +147,21 @@ class QTargetMeasure(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification=''):
+        r'''Formats q-event.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __repr__(self):
-        return self._tools_package_qualified_indented_repr
+        return format(self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -163,7 +177,8 @@ class QTargetMeasure(AbjadObject):
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(1000, 1),
                 search_tree=quantizationtools.UnweightedSearchTree(
-                    definition={   2: None}
+                    definition={   2: None,
+                        },
                     ),
                 tempo=marktools.Tempo(
                     durationtools.Duration(1, 4),
@@ -174,7 +189,8 @@ class QTargetMeasure(AbjadObject):
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(2000, 1),
                 search_tree=quantizationtools.UnweightedSearchTree(
-                    definition={   2: None}
+                    definition={   2: None,
+                        },
                     ),
                 tempo=marktools.Tempo(
                     durationtools.Duration(1, 4),
@@ -185,7 +201,8 @@ class QTargetMeasure(AbjadObject):
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(3000, 1),
                 search_tree=quantizationtools.UnweightedSearchTree(
-                    definition={   2: None}
+                    definition={   2: None,
+                        },
                     ),
                 tempo=marktools.Tempo(
                     durationtools.Duration(1, 4),
@@ -196,7 +213,8 @@ class QTargetMeasure(AbjadObject):
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(4000, 1),
                 search_tree=quantizationtools.UnweightedSearchTree(
-                    definition={   2: None}
+                    definition={   2: None,
+                        },
                     ),
                 tempo=marktools.Tempo(
                     durationtools.Duration(1, 4),

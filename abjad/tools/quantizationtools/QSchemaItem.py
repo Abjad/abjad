@@ -51,8 +51,9 @@ class QSchemaItem(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     ### PUBLIC PROPERTIES ###

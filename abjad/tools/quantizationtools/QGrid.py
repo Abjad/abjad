@@ -93,17 +93,14 @@ class QGrid(AbjadObject):
 
     def __init__(self, root_node=None, next_downbeat=None):
         from abjad.tools import quantizationtools
-
         if root_node is None:
             root_node = quantizationtools.QGridLeaf(preprolated_duration=1)
         assert isinstance(root_node,
             (quantizationtools.QGridLeaf, quantizationtools.QGridContainer))
-
         if next_downbeat is None:
             next_downbeat = quantizationtools.QGridLeaf(
                 preprolated_duration=1)
         assert isinstance(next_downbeat, quantizationtools.QGridLeaf)
-
         self._root_node = root_node
         self._next_downbeat = next_downbeat
         self._next_downbeat._offset = durationtools.Offset(1)
@@ -142,6 +139,19 @@ class QGrid(AbjadObject):
                     return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats q-event.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __getnewargs__(self):
         return (self.root_node, self.next_downbeat)
 
@@ -152,7 +162,7 @@ class QGrid(AbjadObject):
         }
 
     def __repr__(self):
-        return self._tools_package_qualified_indented_repr
+        return format(self)
 
     def __setstate__(self, state):
         self._next_downbeat = state['_next_downbeat']

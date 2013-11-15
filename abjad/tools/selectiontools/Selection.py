@@ -57,6 +57,19 @@ class Selection(object):
         elif isinstance(expr, (list, tuple)):
             return self._music == tuple(expr)
 
+    def __format__(self, format_specification=''):
+        r'''Formats duration.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __getitem__(self, expr):
         r'''Gets item `expr` from selection.
 
@@ -112,9 +125,15 @@ class Selection(object):
         return sum(component._preprolated_duration for component in self)
 
     @property
-    def _tools_package_qualified_repr(self):
-        return 'selectiontools.{}({!r})'.format(
-            type(self).__name__, list(self))
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                self._music,
+                ),
+            )
 
     ### PRIVATE METHODS ###
 

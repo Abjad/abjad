@@ -9,10 +9,10 @@ from experimental.tools.musicexpressiontools.SelectMethodMixin \
 class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
     r'''Specification interface.
 
-    Score and segment specification interfaces constitute the 
+    Score and segment specification interfaces constitute the
     primary vehicle of composition.
 
-    Composers call many methods against score and segment specification 
+    Composers call many methods against score and segment specification
     interfaces.
     '''
 
@@ -36,8 +36,9 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __repr__(self):
@@ -53,7 +54,7 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
 
     @property
     def score_specification(self):
-        r'''Read-only reference to score against which segment 
+        r'''Read-only reference to score against which segment
         specification is defined.
 
         Returns score specification.

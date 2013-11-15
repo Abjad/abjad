@@ -74,6 +74,40 @@ class TimeRelation(AbjadObject):
         '''
         pass
 
+    def __format__(self, format_specification=''):
+        r'''Formats time relation.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(time_relation)
+            timerelationtools.TimespanTimespanTimeRelation(
+                timerelationtools.CompoundInequality(
+                    [
+                        timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                        timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                timespan_1=timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1),
+                    ),
+                timespan_2=timespantools.Timespan(
+                    start_offset=durationtools.Offset(5, 1),
+                    stop_offset=durationtools.Offset(15, 1),
+                    ),
+                )
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -109,39 +143,6 @@ class TimeRelation(AbjadObject):
         Returns boolean.
         '''
         pass
-
-    def __format__(self, format_specification=''):
-        r'''Formats time relation.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        ::
-
-            >>> print format(time_relation)
-            timerelationtools.TimespanTimespanTimeRelation(
-                timerelationtools.CompoundInequality(
-                    [
-                        timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                        timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
-                        ],
-                    logical_operator='and',
-                    ),
-                timespan_1=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1),
-                    ),
-                timespan_2=timespantools.Timespan(
-                    start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(15, 1),
-                    ),
-                )
-
-        Returns string.
-        '''
-        if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
-        return str(self)
 
     ### PUBLIC METHODS ###
 

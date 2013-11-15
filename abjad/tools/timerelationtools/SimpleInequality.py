@@ -78,9 +78,20 @@ class SimpleInequality(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -115,12 +126,6 @@ class SimpleInequality(AbjadObject):
         if i:
             return i - 1
         raise ValueError
-
-    # do not indent storage format
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        return [''.join(
-            AbjadObject._get_tools_package_qualified_repr_pieces(
-                self, is_indented=False))]
 
     def _index(self, a, x):
         r'''Find index of leftmost value exactly equal to x.

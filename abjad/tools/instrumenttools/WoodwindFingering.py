@@ -54,8 +54,23 @@ class WoodwindFingering(AbjadObject):
         >>> print format(fingering_command)
         markuptools.MarkupCommand(
             'woodwind-diagram',
-            schemetools.Scheme('clarinet'),
-            schemetools.Scheme(schemetools.SchemePair('cc', ('one', 'two', 'three', 'five')), schemetools.SchemePair('lh', ('R', 'thumb')), schemetools.SchemePair('rh', ('e',)))
+            schemetools.Scheme(
+                'clarinet'
+                ),
+            schemetools.Scheme(
+                schemetools.SchemePair(
+                    'cc',
+                    ('one', 'two', 'three', 'five')
+                    ),
+                schemetools.SchemePair(
+                    'lh',
+                    ('R', 'thumb')
+                    ),
+                schemetools.SchemePair(
+                    'rh',
+                    ('e',)
+                    )
+                )
             )
 
     Attach the MarkupCommand to score components, such as a chord
@@ -235,15 +250,20 @@ class WoodwindFingering(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _positional_argument_names(self):
-        return ('_instrument_name',)
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(self.instrument_name,),
+            )
 
     @property
     def _valid_instrument_names(self):

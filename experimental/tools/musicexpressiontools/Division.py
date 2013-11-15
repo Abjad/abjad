@@ -114,37 +114,28 @@ class Division(NonreducedFraction, BoundedObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _positional_argument_values(self):
-        return (str(self),)
-
-    @property
-    def _keyword_argument_names(self):
-        result = []
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        keyword_argument_names = []
         if self.is_left_open:
-            result.append('is_left_open')
+            keyword_argument_names.append('is_left_open')
         if self.is_right_open:
-            result.append('is_right_open')
+            keyword_argument_names.append('is_right_open')
         if self.start_offset is not None:
-            result.append('start_offset')
-        return result
+            keyword_argument_names.append('start_offset')
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=(
+                str(self),
+                ),
+            )
 
     ### PRIVATE METHODS ###
 
     # TODO: maybe keep only _get_timespan?
     def _get_timespan(self):
         return timespantools.Timespan(self.start_offset, self.stop_offset)
-
-    # do not indent in storage
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        from abjad.tools import abctools
-        is_indented = bool(self._keyword_argument_names)
-        pieces = abctools.AbjadObject._get_tools_package_qualified_repr_pieces(
-            self,
-            is_indented=is_indented,
-            )
-        if not is_indented:
-            return [''.join(pieces)]
-        return pieces
 
     ### PUBLIC PROPERTIES ###
 

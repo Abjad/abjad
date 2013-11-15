@@ -68,7 +68,7 @@ class SpacingIndication(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Spacing indications compare equal when normalized 
+        r'''Spacing indications compare equal when normalized
         spacing durations compare equal.
         '''
         if isinstance(expr, SpacingIndication):
@@ -80,8 +80,15 @@ class SpacingIndication(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _positional_argument_names(self):
-        return ('_tempo_indication', '_proportional_notation_duration')
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self._tempo_indication,
+                self._proportional_notation_duration,
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 

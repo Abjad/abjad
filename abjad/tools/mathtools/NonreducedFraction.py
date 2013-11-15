@@ -214,8 +214,9 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __ge__(self, expr):
@@ -350,6 +351,13 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         fraction = expr / self.reduce()
         return self._fraction_with_denominator(fraction, max(denominators))
 
+    def __repr__(self):
+        return '{}({}, {})'.format(
+            type(self).__name__,
+            self.numerator,
+            self.denominator,
+            )
+
     def __rmul__(self, expr):
         r'''Multiplies `expr` by nonreduced fraction.
 
@@ -410,8 +418,17 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _positional_argument_values(self):
-        return self.numerator, self.denominator
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                self.numerator,
+                self.denominator,
+                ),
+            )
 
     ### PRIVATE METHODS ###
 
@@ -421,12 +438,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         denominator = mathtools.least_common_multiple(
             denominator, fraction.denominator)
         return NonreducedFraction(fraction).with_denominator(denominator)
-
-    # do not indent in storage
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        return [''.join(
-            AbjadObject._get_tools_package_qualified_repr_pieces(
-            self, is_indented=False))]
 
     ### PUBLIC PROPERTIES ###
 

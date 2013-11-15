@@ -105,8 +105,9 @@ class MarkupCommand(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         elif format_specification == 'lilypond':
             return self._lilypond_format
         return str(self)
@@ -126,8 +127,12 @@ class MarkupCommand(AbjadObject):
         return '\n'.join(self._get_format_pieces())
 
     @property
-    def _positional_argument_values(self):
-        return (self.command,) + self.args
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(self.command,) + self.args,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -164,44 +169,6 @@ class MarkupCommand(AbjadObject):
         parts = [r'\{}'.format(self.command)]
         parts.extend(recurse(self.args))
         return parts
-
-#    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-#        def recurse(args, is_indented=True):
-#            indent = '\t'
-#            if not is_indented:
-#                indent = ''
-#            result = []
-#            for i, arg in enumerate(args):
-#                if len(args) == 1:
-#                    comma = ''
-#                elif 1 < len(args) and i == len(args) - 1:
-#                    comma = ''
-#                else:
-#                    comma = ','
-#                if isinstance(arg, AbjadObject):
-#                    pieces = arg._get_tools_package_qualified_repr_pieces(
-#                        is_indented=is_indented)
-#                    for piece in pieces[:-1]:
-#                        result.append('{}{}'.format(indent, piece))
-#                    result.append('{}{}{}'.format(indent, pieces[-1], comma))
-#                elif isinstance(arg, (list, tuple)):
-#                    result.append('{}['.format(indent))
-#                    pieces = recurse(arg, is_indented=is_indented)
-#                    for piece in pieces:
-#                        result.append('{}{}'.format(indent, piece))
-#                    result.append('{}]{}'.format(indent, comma))
-#                else:
-#                    result.append('{}{!r}{}'.format(indent, arg, comma))
-#            return result
-#        indent = '\t'
-#        if not is_indented:
-#            indent = ''
-#        result = []
-#        result.append('{}('.format(self._tools_package_qualified_class_name))
-#        result.append('{}{!r},'.format(indent, self.command))
-#        result.extend(recurse(self.args, is_indented=is_indented))
-#        result.append('{})'.format(indent))
-#        return result
 
     ### PUBLIC PROPERTIES ###
 

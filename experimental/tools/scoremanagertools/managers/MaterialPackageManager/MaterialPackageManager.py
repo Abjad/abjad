@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import shutil
+import traceback
 from abjad.tools import mathtools
 from abjad.tools import systemtools
 from abjad.tools import topleveltools
@@ -468,9 +469,10 @@ class MaterialPackageManager(PackageManager):
         try:
             output_material = \
                 self.output_material_module_manager._execute_file_lines(
-                return_attribute_name=self.material_package_name,
-                )
+                    return_attribute_name=self.material_package_name,
+                    )
         except:
+            traceback.print_exc()
             output_material = None
         return output_material
 
@@ -644,7 +646,9 @@ class MaterialPackageManager(PackageManager):
     def get_tools_package_qualified_repr(self, expr):
         if hasattr(expr, '_make_storage_format_with_overrides'):
             return expr._make_storage_format_with_overrides()
-        return getattr(expr, '_tools_package_qualified_repr', repr(expr))
+        elif hasattr(expr, '_storage_format_specification'):
+            return format(expr, 'storage')
+        return repr(expr)
 
     def interactively_edit_illustration_builder_module(self):
         self.illustration_builder_module_manager.interactively_edit()

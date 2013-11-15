@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.pitchtools import NamedPitch
 
 
 def test_pitchtools_NamedPitch___repr___01():
@@ -25,6 +24,4 @@ def test_pitchtools_NamedPitch___repr___02():
     named_pitch = pitchtools.NamedPitch("cs''")
 
     assert repr(named_pitch) == 'NamedPitch("cs\'\'")'
-    assert named_pitch._tools_package_qualified_repr == 'pitchtools.NamedPitch("cs\'\'")'
-    assert named_pitch._tools_package_qualified_indented_repr == \
-        named_pitch._tools_package_qualified_repr
+    assert format(named_pitch, 'storage') == 'pitchtools.NamedPitch("cs\'\'")'

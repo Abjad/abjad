@@ -101,8 +101,9 @@ class Instrument(ContextMark):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __hash__(self):
@@ -183,18 +184,6 @@ class Instrument(ContextMark):
             return [performer_name]
         else:
             return self._default_performer_names[:]
-
-    def _get_tools_package_qualified_keyword_argument_repr_pieces(
-        self, 
-        is_indented=True,
-        ):
-        if self._default_instrument_name_markup is None or \
-            self._default_short_instrument_name_markup is None:
-            self._make_default_name_markups()
-        superclass = super(Instrument, self)
-        return superclass._get_tools_package_qualified_keyword_argument_repr_pieces(
-            is_indented=is_indented
-            )
 
     @classmethod
     def _list_instrument_names(cls):

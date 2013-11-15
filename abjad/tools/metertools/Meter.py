@@ -266,9 +266,10 @@ class Meter(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
-        return str(meter)
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
 
     def __iter__(self):
         r'''Iterate meter:
@@ -316,12 +317,15 @@ class Meter(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _keyword_argument_names(self):
-        return ()
-
-    @property
-    def _positional_argument_values(self):
-        return (self.rtm_format,)
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                self.rtm_format,
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 

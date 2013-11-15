@@ -2,7 +2,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.pitchtools.NamedPitch import NamedPitch
 from abjad.tools.pitchtools.NumberedPitch \
-	import NumberedPitch
+    import NumberedPitch
 from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
@@ -18,7 +18,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     Initialize from input parameters separately, from a pair, from
     a string or from another mapping component.
 
-    Model 
+    Model
     ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
     input part. (See the docs for that function.)
 
@@ -68,6 +68,18 @@ class OctaveTranspositionMappingComponent(AbjadObject):
                     return True
         return False
 
+    def __format__(self, format_specification=''):
+        r'''Formats component.
+
+        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __ne__(self, expr):
         return not self == expr
 
@@ -78,7 +90,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     @property
     def _input_argument_token(self):
-        return '({!r}, {})'.format(
+        return '({!r}, {:d})'.format(
             self.source_pitch_range.one_line_named_pitch_repr,
             self.target_octave_start_pitch)
 
@@ -95,17 +107,21 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     @property
     def _one_line_menuing_summary(self):
-        return '{} => {}'.format(
-            self.source_pitch_range.one_line_named_pitch_repr, 
+        return '{} => {:d}'.format(
+            self.source_pitch_range.one_line_named_pitch_repr,
             self.target_octave_start_pitch,
             )
 
     @property
-    def _positional_argument_values(self):
-        result = []
-        result.append(self.source_pitch_range)
-        result.append(self.target_octave_start_pitch)
-        return tuple(result)
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.source_pitch_range,
+                self.target_octave_start_pitch,
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 

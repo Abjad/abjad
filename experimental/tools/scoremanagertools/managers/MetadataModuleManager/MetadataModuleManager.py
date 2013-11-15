@@ -21,9 +21,11 @@ class MetadataModuleManager(FileManager):
                     value = '\n    '.join(repr_lines)
                     lines.append('({}, {})'.format(key, value))
                 else:
-                    value = getattr(
-                        value, '_tools_package_qualified_repr', repr(value))
-                    lines.append('({}, {})'.format(key, value))
+                    if hasattr(value, '_storage_format_specification'):
+                        string = format(value)
+                    else:
+                        string = repr(value)
+                    lines.append('({}, {})'.format(key, string))
             lines = ',\n    '.join(lines)
             result = 'tags = collections.OrderedDict([\n    {}])'.format(lines)
         else:
