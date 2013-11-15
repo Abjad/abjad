@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_tonalanalysistools_QualityIndicator___eq___01():
+def test_tonalanalysistools_ChordQuality___eq___01():
 
-    quality_indicator = tonalanalysistools.QualityIndicator('major')
-    u = tonalanalysistools.QualityIndicator('major')
-    voice = tonalanalysistools.QualityIndicator('minor')
+    quality_indicator = tonalanalysistools.ChordQuality('major')
+    u = tonalanalysistools.ChordQuality('major')
+    voice = tonalanalysistools.ChordQuality('minor')
 
     assert     quality_indicator == quality_indicator
     assert     quality_indicator == u
