@@ -37,7 +37,7 @@ class Presentation(object):
         '''
         # run setup code
         # TODO: there must be a better way to insert imports and variables
-        # into the scope of this function.
+        # into this function.
         for expr in self.setup:
             exec(expr)
         #

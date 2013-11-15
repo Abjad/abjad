@@ -7,7 +7,7 @@ from experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpre
 
 class TimespanScopedSingleContextDivisionSetExpression(
     TimespanScopedSingleContextSetExpression):
-    r'''Timespan-scoped single-context division set expression.
+    r'''Timespan-delimited single-context division set expression.
     '''
 
     ### INITIALIZER ###
@@ -50,7 +50,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
 
     @property
     def truncate(self):
-        r'''True when timespan-scoped single-context division set expression
+        r'''True when timespan-delimited single-context division set expression
         should truncate at segment boundaries.
         Otherwise false.
 
@@ -69,7 +69,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
     ### PUBLIC METHODS ###
 
     def evaluate(self, voice_name):
-        r'''Evaluate timespan-scoped single-context division set expression.
+        r'''Evaluate timespan-delimited single-context division set expression.
 
         Returns division region expression.
         '''

@@ -8,7 +8,7 @@ from experimental.tools.musicexpressiontools.SetExpression \
 
 
 class TimespanScopedSingleContextSetExpression(SetExpression):
-    r'''Timespan-scoped single-context set expression.
+    r'''Timespan-delimited single-context set expression.
     '''
 
     ### CLASS VARIABLES ###
@@ -38,7 +38,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when `expr` is a timespan-scoped single-context set expression
+        r'''True when `expr` is a timespan-delimited single-context set expression
         with same source_expression, target timespan and target context name.
         Otherwise false.
 
@@ -52,7 +52,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __lt__(self, expr):
-        r'''True when timespan-scoped single-context set expression 
+        r'''True when timespan-delimited single-context set expression 
         target timespan is less than `expr` target_timespan.
         Otherwise false.
 
@@ -65,10 +65,10 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __or__(self, set_expression):
-        r'''Logical OR of timespan-scoped single-context set expression 
+        r'''Logical OR of timespan-delimited single-context set expression 
         and `set_expression`.
 
-        Raises exception when timespan-scoped single-context set expression 
+        Raises exception when timespan-delimited single-context set expression 
         can not fuse with `set_expression`.
 
         Returns timespan inventory.
@@ -81,10 +81,10 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
-        r'''Subtract `timespan` from timespan-scoped single-context 
+        r'''Subtract `timespan` from timespan-delimited single-context 
         set expression.
 
-        Operates in place and returns timespan-scoped single-context 
+        Operates in place and returns timespan-delimited single-context 
         set expression inventory.
         '''
         from experimental.tools import musicexpressiontools
@@ -147,7 +147,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     @abc.abstractmethod
     def evaluate(self):
-        r'''Evaluate timespan-scoped single-context set expression.
+        r'''Evaluate timespan-delimited single-context set expression.
 
         Returns region expression.
         '''

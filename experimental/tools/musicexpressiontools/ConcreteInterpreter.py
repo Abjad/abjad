@@ -150,13 +150,13 @@ class ConcreteInterpreter(Interpreter):
             leaf_set_expression.execute_against_score(self.score)
 
     def interpret_divisions(self):
-        self.make_timespan_scoped_single_context_set_expressions('divisions')
+        self.make_timespan_delimited_single_context_set_expressions('divisions')
         self.make_region_expressions('divisions')
         self.make_payload_expressions('divisions')
         self.add_division_lists_to_score()
 
     def interpret_rhythm(self):
-        self.make_timespan_scoped_single_context_set_expressions('rhythm')
+        self.make_timespan_delimited_single_context_set_expressions('rhythm')
         self.make_region_expressions('rhythm')
         self.make_payload_expressions('rhythm')
         self.add_rhythms_to_score()
@@ -172,7 +172,7 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.single_context_set_expressions_by_context[
                 voice_name]
         set_expressions = \
-            voice_proxy.timespan_scoped_single_context_set_expressions_by_attribute[
+            voice_proxy.timespan_delimited_single_context_set_expressions_by_attribute[
                 'divisions'][:]
         region_expressions = []
         for set_expression in set_expressions:
@@ -234,8 +234,8 @@ class ConcreteInterpreter(Interpreter):
         voice_proxy = \
             self.score_specification.single_context_set_expressions_by_context[voice_name]
         expressions = \
-            voice_proxy.timespan_scoped_single_context_set_expressions_by_attribute['rhythm']
-        timespan_scoped_single_context_rhythm_set_expressions = expressions
+            voice_proxy.timespan_delimited_single_context_set_expressions_by_attribute['rhythm']
+        timespan_delimited_single_context_rhythm_set_expressions = expressions
         voice_proxy = \
             self.score_specification.voice_data_structures_by_voice[voice_name]
         voice_division_list = voice_proxy.voice_division_list
@@ -243,26 +243,26 @@ class ConcreteInterpreter(Interpreter):
             return []
         division_region_durations = \
             [x.timespan.duration for x in division_payload_expressions]
-        timespan_scoped_single_context_rhythm_set_expression_durations = [
+        timespan_delimited_single_context_rhythm_set_expression_durations = [
             x.target_timespan.duration 
-            for x in timespan_scoped_single_context_rhythm_set_expressions]
+            for x in timespan_delimited_single_context_rhythm_set_expressions]
         assert sum(division_region_durations) == \
-            sum(timespan_scoped_single_context_rhythm_set_expression_durations)
-        timespan_scoped_single_context_rhythm_set_expression_merged_durations = \
+            sum(timespan_delimited_single_context_rhythm_set_expression_durations)
+        timespan_delimited_single_context_rhythm_set_expression_merged_durations = \
             sequencetools.merge_duration_sequences(
                 division_region_durations,
-                timespan_scoped_single_context_rhythm_set_expression_durations)
+                timespan_delimited_single_context_rhythm_set_expression_durations)
         # assert that rhythm set expressions cover rhythm regions exactly
         assert sequencetools.partition_sequence_by_weights_exactly(
-            timespan_scoped_single_context_rhythm_set_expression_merged_durations,
-            timespan_scoped_single_context_rhythm_set_expression_durations)
+            timespan_delimited_single_context_rhythm_set_expression_merged_durations,
+            timespan_delimited_single_context_rhythm_set_expression_durations)
         rhythm_region_start_division_duration_lists = \
                 sequencetools.partition_sequence_by_backgrounded_weights(
                 voice_division_list.divisions,
-                timespan_scoped_single_context_rhythm_set_expression_merged_durations)
+                timespan_delimited_single_context_rhythm_set_expression_merged_durations)
         #self._debug_values(rhythm_region_start_division_duration_lists, 'rrsddls')
         assert len(rhythm_region_start_division_duration_lists) == \
-            len(timespan_scoped_single_context_rhythm_set_expression_merged_durations)
+            len(timespan_delimited_single_context_rhythm_set_expression_merged_durations)
         rhythm_region_start_division_counts = \
             [len(l) for l in rhythm_region_start_division_duration_lists]
         rhythm_region_division_lists = \
@@ -275,7 +275,7 @@ class ConcreteInterpreter(Interpreter):
             musicexpressiontools.DivisionList(x, voice_name=voice_name) 
             for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == \
-            len(timespan_scoped_single_context_rhythm_set_expression_merged_durations)
+            len(timespan_delimited_single_context_rhythm_set_expression_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         rhythm_region_durations = \
             [x.duration for x in rhythm_region_division_lists]
@@ -285,28 +285,28 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_start_offsets = cumulative_sums[:-1]
         rhythm_region_start_offsets = \
             [durationtools.Offset(x) for x in rhythm_region_start_offsets]
-        timespan_scoped_single_context_rhythm_set_expression_duration_pairs = [
+        timespan_delimited_single_context_rhythm_set_expression_duration_pairs = [
             (x, x.target_timespan.duration) 
-            for x in timespan_scoped_single_context_rhythm_set_expressions]
-        #self._debug_values(timespan_scoped_single_context_rhythm_set_expression_duration_pairs,
+            for x in timespan_delimited_single_context_rhythm_set_expressions]
+        #self._debug_values(timespan_delimited_single_context_rhythm_set_expression_duration_pairs,
         #    'rhythm expression / duration pairs')
-        merged_duration_timespan_scoped_single_context_rhythm_set_expression_pairs = \
+        merged_duration_timespan_delimited_single_context_rhythm_set_expression_pairs = \
             sequencetools.pair_duration_sequence_elements_with_input_pair_values(
-            timespan_scoped_single_context_rhythm_set_expression_merged_durations,
-            timespan_scoped_single_context_rhythm_set_expression_duration_pairs)
+            timespan_delimited_single_context_rhythm_set_expression_merged_durations,
+            timespan_delimited_single_context_rhythm_set_expression_duration_pairs)
         # the first column in pairs is not used for anything further at all is discarded
-        timespan_scoped_single_context_rhythm_set_expressions = [
-            x[-1] for x in merged_duration_timespan_scoped_single_context_rhythm_set_expression_pairs]
-        assert len(timespan_scoped_single_context_rhythm_set_expressions) == \
+        timespan_delimited_single_context_rhythm_set_expressions = [
+            x[-1] for x in merged_duration_timespan_delimited_single_context_rhythm_set_expression_pairs]
+        assert len(timespan_delimited_single_context_rhythm_set_expressions) == \
             len(rhythm_region_division_lists)
         rhythm_region_expressions = []
-        for timespan_scoped_single_context_rhythm_set_expression, \
+        for timespan_delimited_single_context_rhythm_set_expression, \
             rhythm_region_start_offset, rhythm_region_division_list in zip(
-            timespan_scoped_single_context_rhythm_set_expressions,
+            timespan_delimited_single_context_rhythm_set_expressions,
             rhythm_region_start_offsets, rhythm_region_division_lists):
-            #self._debug(timespan_scoped_single_context_rhythm_set_expression, 'tsscrsx')
+            #self._debug(timespan_delimited_single_context_rhythm_set_expression, 'tsscrsx')
             rhythm_region_expression = \
-                timespan_scoped_single_context_rhythm_set_expression.evaluate(
+                timespan_delimited_single_context_rhythm_set_expression.evaluate(
                 rhythm_region_division_list,
                 rhythm_region_start_offset, voice_name)
             rhythm_region_expressions.append(rhythm_region_expression)
@@ -317,20 +317,20 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_region_expressions, 'rrxs')
         return rhythm_region_expressions
 
-    def make_timespan_scoped_single_context_set_expressions(self, attribute):
+    def make_timespan_delimited_single_context_set_expressions(self, attribute):
         for voice in iterate(self.score).by_class(scoretools.Voice):
-            timespan_scoped_single_context_set_expressions = \
-                self.score_specification.make_timespan_scoped_single_context_set_expressions_for_voice(
+            timespan_delimited_single_context_set_expressions = \
+                self.score_specification.make_timespan_delimited_single_context_set_expressions_for_voice(
                 attribute, voice.name)
-            timespan_scoped_single_context_set_expressions.sort_and_split_set_expressions()
-            timespan_scoped_single_context_set_expressions.compute_logical_or()
-            timespan_scoped_single_context_set_expressions.supply_missing_set_expressions(
+            timespan_delimited_single_context_set_expressions.sort_and_split_set_expressions()
+            timespan_delimited_single_context_set_expressions.compute_logical_or()
+            timespan_delimited_single_context_set_expressions.supply_missing_set_expressions(
                 attribute, self.score_specification, voice.name)
             voice_proxy = \
                 self.score_specification.single_context_set_expressions_by_context[voice.name]
             inventory = \
-                voice_proxy.timespan_scoped_single_context_set_expressions_by_attribute[attribute]
-            inventory[:] = timespan_scoped_single_context_set_expressions[:]
+                voice_proxy.timespan_delimited_single_context_set_expressions_by_attribute[attribute]
+            inventory[:] = timespan_delimited_single_context_set_expressions[:]
 
     def merge_prolonging_rhythm_region_expressions(
         self, rhythm_region_expressions):

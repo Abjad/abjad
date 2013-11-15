@@ -297,7 +297,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_13():
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_14():
-    r'''Attaches tempo to chord scoped in staff.
+    r'''Attaches tempo to chord in staff.
     '''
 
     staff = Staff([Chord([2, 3, 4], (1, 4))])

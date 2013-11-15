@@ -47,15 +47,15 @@ class SetExpressionLookupExpression(
 
     ### PRIVATE METHODS ###
 
-    def _get_timespan_scoped_single_context_set_expressions(self, attribute):
+    def _get_timespan_delimited_single_context_set_expressions(self, attribute):
         result = timespantools.TimespanInventory()
         for context_proxy in \
             self.score_specification.single_context_set_expressions_by_context.itervalues():
             expressions = \
-                context_proxy.timespan_scoped_single_context_set_expressions_by_attribute[attribute]
-            for timespan_scoped_single_context_set_expression in expressions:
-                if not timespan_scoped_single_context_set_expression.source_expression == self:
-                    result.append(timespan_scoped_single_context_set_expression)
+                context_proxy.timespan_delimited_single_context_set_expressions_by_attribute[attribute]
+            for timespan_delimited_single_context_set_expression in expressions:
+                if not timespan_delimited_single_context_set_expression.source_expression == self:
+                    result.append(timespan_delimited_single_context_set_expression)
         return result
 
     ### PUBLIC PROPERTIES ###

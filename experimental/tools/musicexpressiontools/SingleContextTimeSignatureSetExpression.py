@@ -33,7 +33,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
     def evaluate(self):
         r'''Evaluate single-context time signature set expression.
 
-        Returns timespan-scoped single-context time signature set expression.
+        Returns timespan-delimited single-context time signature set expression.
         '''
         from experimental.tools import musicexpressiontools
         target_timespan = self._evaluate_anchor_timespan()

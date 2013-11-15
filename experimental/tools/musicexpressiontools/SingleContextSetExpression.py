@@ -136,7 +136,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     def evaluate(self):
         r'''Evaluate single-context set expression.
 
-        Returns timespan-scoped single-context set expression.
+        Returns timespan-delimited single-context set expression.
         '''
         pass
 

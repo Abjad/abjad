@@ -6,7 +6,7 @@ from abjad.tools.timespantools.TimespanInventory import TimespanInventory
 
 
 class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
-    r'''Timespan-scoped single-context set expression inventory.
+    r'''Timespan-delimited single-context set expression inventory.
     '''
 
     ### PUBLIC METHODS ###
@@ -86,7 +86,7 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
         elif not self and score_specification.time_signatures:
             timespan = score_specification.timespan
             set_expression = \
-                score_specification.make_default_timespan_scoped_single_context_set_expression(
+                score_specification.make_default_timespan_delimited_single_context_set_expression(
                 attribute, timespan, voice_name)
             self[:] = [set_expression]
             return self
@@ -96,7 +96,7 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
         missing_region_timespans = timespans.compute_logical_xor()
         for missing_region_timespan in missing_region_timespans:
             missing_set_expression = \
-                score_specification.make_default_timespan_scoped_single_context_set_expression(
+                score_specification.make_default_timespan_delimited_single_context_set_expression(
                 attribute, missing_region_timespan, voice_name)
             self.append(missing_set_expression)
         self.sort()

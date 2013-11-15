@@ -9,7 +9,7 @@ from experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpre
 
 class TimespanScopedSingleContextRhythmSetExpression(
     TimespanScopedSingleContextSetExpression):
-    r'''Timespan-scoped single-context rhythm set expression.
+    r'''Timespan-delimited single-context rhythm set expression.
     '''
 
     ### CLASS VARIABLES ###
@@ -37,20 +37,20 @@ class TimespanScopedSingleContextRhythmSetExpression(
     ### SPECIAL METHODS ###
 
     def __sub__(self, timespan):
-        r'''Subtract `timespan` from timespan-scoped single-context 
+        r'''Subtract `timespan` from timespan-delimited single-context 
         rhythm set expression.
 
             >>> source_expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     "{ c'16 [ c'8 ] }", start_offset=0)
             >>> timespan = timespantools.Timespan(0, 20)
-            >>> timespan_scoped_single_context_rhythm_set_expression = \
+            >>> timespan_delimited_single_context_rhythm_set_expression = \
             ...     musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
             ...     source_expression, timespan, 'Voice 1')
 
         ::
 
-            >>> result = timespan_scoped_single_context_rhythm_set_expression - timespantools.Timespan(5, 15)
+            >>> result = timespan_delimited_single_context_rhythm_set_expression - timespantools.Timespan(5, 15)
 
         ::
 
@@ -86,7 +86,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                     ]
                 )
 
-        Returns timespan-scoped single-context set expression inventory.
+        Returns timespan-delimited single-context set expression inventory.
         '''
         return TimespanScopedSingleContextSetExpression.__sub__(self, timespan)
 
@@ -107,7 +107,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
     ### PUBLIC METHODS ###
 
     def evaluate(self, division_list, start_offset, voice_name):
-        r'''Evaluate timespan-scoped single-context rhythm set expression.
+        r'''Evaluate timespan-delimited single-context rhythm set expression.
 
         Returns rhythm region expression.
         '''
