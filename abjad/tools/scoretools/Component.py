@@ -461,7 +461,7 @@ class Component(AbjadObject):
 
     def _get_marks(self, mark_prototypes=None):
         from abjad.tools import marktools
-        mark_prototypes = mark_prototypes or (marktools.Mark,)
+        mark_prototypes = mark_prototypes or (marktools.ContextMark,)
         if not isinstance(mark_prototypes, tuple):
             mark_prototypes = (mark_prototypes,)
         mark_items = mark_prototypes[:]
@@ -469,7 +469,7 @@ class Component(AbjadObject):
         for mark_item in mark_items:
             if isinstance(mark_item, types.TypeType):
                 mark_prototypes.append(mark_item)
-            elif isinstance(mark_item, marktools.Mark):
+            elif isinstance(mark_item, marktools.ContextMark):
                 mark_objects.append(mark_item)
             else:
                 message = 'must be mark class or mark object: {!r}'

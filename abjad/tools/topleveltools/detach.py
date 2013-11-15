@@ -14,7 +14,7 @@ def detach(item, component_expression):
     marks, spanners, grace_containers = [], [], []
     inspector = inspect(component_expression)
     if isinstance(item, types.TypeType):
-        if issubclass(item, marktools.Mark):
+        if issubclass(item, marktools.ContextMark):
             marks = inspector.get_marks(item)
         elif issubclass(item, spannertools.Spanner):
             spanners = inspector.get_spanners(item)
@@ -30,7 +30,7 @@ def detach(item, component_expression):
             result = tuple(result)
             return result
     else:
-        if isinstance(item, marktools.Mark):
+        if isinstance(item, marktools.ContextMark):
             marks = inspector.get_marks(item)
         elif isinstance(item, spannertools.Spanner):
             spanners = inspector.get_spanners(item)

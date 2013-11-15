@@ -158,17 +158,6 @@ def test_agenttools_InspectionAgent_get_mark_14():
     assert pytest.raises(Exception, 'inspect(note).get_mark()')
 
 
-def test_agenttools_InspectionAgent_get_mark_15():
-
-    note = Note("c'8")
-    mark = marktools.Mark()
-    attach(mark, note)
-    mark = marktools.Mark()
-    attach(mark, note)
-
-    assert pytest.raises(Exception, 'inspect(note).get_mark()')
-
-
 def test_agenttools_InspectionAgent_get_mark_16():
 
     note = Note("c'4")

@@ -101,7 +101,6 @@ class ContextMark(Mark):
                 message = 'effective context mark already attached'
                 message += ' to component starting at same time.'
                 raise ValueError(message)
-        #return Mark._attach(self, start_component)
         self._bind_to_start_component(start_component)
 
     def _bind_correct_effective_context(self, correct_effective_context):
@@ -113,7 +112,6 @@ class ContextMark(Mark):
         self._update_effective_context()
 
     def _bind_to_start_component(self, start_component):
-        #Mark._bind_to_start_component(self, start_component)
         from abjad.tools import scoretools
         assert isinstance(start_component, scoretools.Component)
         self._unbind_start_component()
@@ -122,7 +120,6 @@ class ContextMark(Mark):
         self._update_effective_context()
 
     def _detach(self):
-        #Mark._detach(self)
         self._unbind_start_component()
         self._unbind_effective_context()
         return self

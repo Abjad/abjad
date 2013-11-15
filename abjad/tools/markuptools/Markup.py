@@ -2,7 +2,6 @@
 from abjad.tools import abctools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
-#from abjad.tools.marktools.Mark import Mark
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -121,7 +120,6 @@ class Markup(AbjadObject):
             contents = tuple(contents)
         else:
             contents = (str(argument),)
-        #Mark.__init__(self)
         self._contents = contents
         self._format_slot = 'right'
         self._markup_name = markup_name
