@@ -61,7 +61,7 @@ class Division(NonreducedFraction, BoundedObject):
         start_offset=None,
         ):
         if isinstance(arg, str):
-            triple = mathtools.interval_string_to_pair_and_indicators(arg)
+            triple = self.parse_interval_range_string(arg)
             pair, is_left_open, is_right_open = triple
         elif isinstance(arg, cls):
             pair = arg
@@ -130,6 +130,10 @@ class Division(NonreducedFraction, BoundedObject):
 
     ### PRIVATE METHODS ###
 
+    # TODO: maybe keep only _get_timespan?
+    def _get_timespan(self):
+        return timespantools.Timespan(self.start_offset, self.stop_offset)
+
     # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         from abjad.tools import abctools
@@ -191,14 +195,6 @@ class Division(NonreducedFraction, BoundedObject):
 
     ### PUBLIC METHODS ###
 
-    # TODO: maybe keep only _get_timespan?
-    def _get_timespan(self):
-        '''Get timespan of division.
-
-        Returns timespan.
-        '''
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
-
     def get_timespan(self):
         '''Get timespan of division.
 
@@ -231,3 +227,46 @@ class Division(NonreducedFraction, BoundedObject):
         result = type(self)(
             *positional_argument_values, **keyword_argument_dictionary)
         return result
+
+    @staticmethod
+    def parse_interval_range_string(interval_range_string):
+        r'''Parses `interval_range_string` into interval pair, boolean start 
+        and boolean stop.
+
+        ::
+
+            >>> Division.parse_interval_range_string('[5, 8)')
+            ((5, 8), False, True)
+
+        Parses square brackets as closed interval bounds.
+
+        Parses parentheses as open interval bounds.
+
+        Returns triple.
+        '''
+        assert isinstance(interval_range_string, str)
+        spaceless_interval_range_string = \
+            interval_range_string.replace(' ', '')
+        left, right = spaceless_interval_range_string.split(',')
+        if left[0] == '(':
+            is_left_open = True
+        elif left[0] == '[':
+            is_left_open = False
+        else:
+            message = 'can not initialize interval start from {!r}.'
+            message = message.format(interval_range_string)
+            raise ValueError(message)
+        # probably attackable
+        start = eval(left[1:])
+        if right[-1] == ')':
+            is_right_open = True
+        elif right[-1] == ']':
+            is_right_open = False
+        else:
+            message = 'can not initialize interval stop from {!r}.'
+            message = message.format(interval_range_string)
+            raise ValueError(message)
+        # probably attackable
+        stop = eval(right[:-1])
+        pair = start, stop
+        return pair, is_left_open, is_right_open
