@@ -103,19 +103,6 @@ class AbjadObject(object):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(self)
 
-    @property
-    def _tools_package_name(self):
-        for part in reversed(self.__module__.split('.')):
-            if not part == type(self).__name__:
-                return part
-
-    @property
-    def _tools_package_qualified_class_name(self):
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        return manager.get_tools_package_qualified_class_name(self)
-        #return '{}.{}'.format(self._tools_package_name, type(self).__name__)
-
     ### PRIVATE METHODS ###
 
     def _debug(self, value, annotation=None, blank=False):

@@ -352,10 +352,11 @@ class Spanner(AbjadObject):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
     def _make_storage_format_with_overrides(self):
+        from abjad.tools import systemtools
         override_dictionary = override(self)._make_override_dictionary()
         lines = []
         line = '{}.{}('.format(
-            self._tools_package_name,
+            systemtools.StorageFormatManager.get_tools_package_name(self),
             type(self).__name__,
             )
         lines.append(line)
