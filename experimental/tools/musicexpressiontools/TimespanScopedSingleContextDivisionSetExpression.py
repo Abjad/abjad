@@ -15,7 +15,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
     def __init__(self, 
         source_expression=None, 
         target_timespan=None, 
-        target_context_name=None,
+        scope_name=None,
         fresh=None, 
         truncate=None,
         ):
@@ -24,7 +24,7 @@ class TimespanScopedSingleContextDivisionSetExpression(
             attribute='divisions',
             source_expression=source_expression, 
             target_timespan=target_timespan,
-            target_context_name=target_context_name, 
+            scope_name=scope_name, 
             fresh=fresh,
             )
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
@@ -60,11 +60,11 @@ class TimespanScopedSingleContextDivisionSetExpression(
 
     @property
     def voice_name(self):
-        r'''Aliased to `target_context_name`.
+        r'''Aliased to `scope_name`.
 
         Returns string.
         '''
-        return self.target_context_name
+        return self.scope_name
 
     ### PUBLIC METHODS ###
 

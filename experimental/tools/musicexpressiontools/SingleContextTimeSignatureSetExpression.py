@@ -14,7 +14,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
         self,
         source_expression=None,
         target_timespan=None,
-        target_context_name=None,
+        scope_name=None,
         fresh=True,
         persist=True,
         ):
@@ -23,7 +23,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
             attribute='time_signatures',
             source_expression=source_expression,
             target_timespan=target_timespan,
-            target_context_name=target_context_name,
+            scope_name=scope_name,
             fresh=fresh,
             persist=persist,
             )
@@ -41,7 +41,7 @@ class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):
             musicexpressiontools.TimespanScopedSingleContextTimeSignatureExpression(
             source_expression=self.source_expression,
             target_timespan=target_timespan,
-            target_context_name=self.target_context_name,
+            scope_name=self.scope_name,
             fresh=self.fresh,
             )
         expression._lexical_rank = self._lexical_rank

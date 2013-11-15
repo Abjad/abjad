@@ -13,7 +13,7 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
         self,
         source_expression=None,
         target_timespan=None,
-        target_context_name=None,
+        scope_name=None,
         fresh=True,
         persist=True,
         truncate=None,
@@ -24,7 +24,7 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
             attribute='divisions',
             source_expression=source_expression,
             target_timespan=target_timespan,
-            target_context_name=target_context_name,
+            scope_name=scope_name,
             fresh=fresh,
             persist=persist,
             )
@@ -43,7 +43,7 @@ class SingleContextDivisionSetExpression(SingleContextSetExpression):
             musicexpressiontools.TimespanScopedSingleContextDivisionSetExpression(
             source_expression=self.source_expression,
             target_timespan=target_timespan,
-            target_context_name=self.target_context_name,
+            scope_name=self.scope_name,
             fresh=self.fresh,
             truncate=self.truncate,
             )

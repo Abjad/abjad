@@ -22,7 +22,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
         self,
         source_expression=None,
         target_timespan=None,
-        target_context_name=None,
+        scope_name=None,
         fresh=None,
         ):
         TimespanScopedSingleContextSetExpression.__init__(
@@ -30,7 +30,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
             attribute='rhythm',
             source_expression=source_expression,
             target_timespan=target_timespan,
-            target_context_name=target_context_name,
+            scope_name=scope_name,
             fresh=fresh,
             )
 
@@ -68,7 +68,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                             start_offset=durationtools.Offset(0, 1),
                             stop_offset=durationtools.Offset(5, 1),
                             ),
-                        target_context_name='Voice 1',
+                        scope_name='Voice 1',
                         ),
                     musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
                         source_expression=musicexpressiontools.StartPositionedRhythmPayloadExpression(
@@ -81,7 +81,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                             start_offset=durationtools.Offset(15, 1),
                             stop_offset=durationtools.Offset(20, 1),
                             ),
-                        target_context_name='Voice 1',
+                        scope_name='Voice 1',
                         ),
                     ]
                 )

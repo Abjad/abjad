@@ -32,7 +32,7 @@ class TempoInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
         for tempo in tempo_inventory:
             note = Note("c'4")
             tempo = marktools.Tempo(
-                tempo, target_context=Staff)
+                tempo, scope=Staff)
             tempo(note)
             notes.append(note)
         staff = scoretools.RhythmicStaff(notes)

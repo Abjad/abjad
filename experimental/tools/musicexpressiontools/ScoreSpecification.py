@@ -107,7 +107,7 @@ class ScoreSpecification(Specification):
 
     def _compare_expressions(self, x, y):
         result = self.compare_context_names(
-            x.target_context_name, y.target_context_name)
+            x.scope_name, y.scope_name)
         if result in (-1, 1):
             return result
         else:
@@ -836,7 +836,7 @@ class ScoreSpecification(Specification):
         return musicexpressiontools.TimespanScopedSingleContextDivisionSetExpression(
             source_expression=musicexpressiontools.IterablePayloadExpression(divisions),
             target_timespan=target_timespan,
-            target_context_name=voice_name,
+            scope_name=voice_name,
             fresh=True,
             truncate=True,
             )
@@ -848,7 +848,7 @@ class ScoreSpecification(Specification):
         return musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
             source_expression=musicexpressiontools.RhythmMakerExpression(library.skip_tokens),
             target_timespan=target_timespan,
-            target_context_name=voice_name,
+            scope_name=voice_name,
             fresh=True,
             )
 

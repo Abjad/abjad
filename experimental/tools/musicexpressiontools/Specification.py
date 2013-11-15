@@ -62,9 +62,9 @@ class Specification(AbjadObject):
             self._context_name_to_improper_parentage_names(context_name)
         for parentage_name in parentage_names:
             for expression in expressions:
-                if expression.target_context_name is None:
+                if expression.scope_name is None:
                     return expression
-                elif expression.target_context_name == parentage_name:
+                elif expression.scope_name == parentage_name:
                     return expression
 
     ### PRIVATE METHODS ###

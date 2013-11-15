@@ -84,12 +84,12 @@ class Interpreter(AbjadObject):
                 segment_specification.fresh_single_context_set_expressions:
                 fresh_single_context_set_expression.store_in_root_specification_by_context_and_attribute()
                 if fresh_single_context_set_expression.persist:
-                    target_context_name = \
-                        fresh_single_context_set_expression.target_context_name
+                    scope_name = \
+                        fresh_single_context_set_expression.scope_name
                     attribute = fresh_single_context_set_expression.attribute
                     expressions = \
                         persistent_single_context_set_expressions_by_context[
-                        target_context_name].single_context_set_expressions_by_attribute[attribute]
+                        scope_name].single_context_set_expressions_by_attribute[attribute]
                     for expression in expressions[:]:
                         if expression.target_timespan == \
                             fresh_single_context_set_expression.target_timespan:
