@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-#from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.marktools.Mark import Mark
 
 
-#class ContextMark(AbjadObject):
-class ContextMark(Mark):
+#class ContextMark(Mark):
+class ContextMark(AbjadObject):
     '''A context mark.
     '''
 
