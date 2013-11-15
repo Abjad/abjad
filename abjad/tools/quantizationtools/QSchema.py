@@ -2,7 +2,6 @@
 import abc
 import bisect
 import copy
-from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
@@ -13,16 +12,15 @@ class QSchema(AbjadObject):
     ``QSchema`` allows for the specification of quantization settings
     diachronically, at any time-step of the quantization process.
 
-    In practice, this provides a means for the composer to change the
-    tempo, search-tree, time-signature etc., effectively creating
-    a template into which quantized rhythms can be "poured", without
-    yet knowing what those rhythms might be, or even how much time the
-    ultimate result will take.  Like Abjad's ``ContextMarks``, the
-    settings made at any given time-step via a ``QSchema`` instance
-    are understood to persist until changed.
+    In practice, this provides a means for the composer to change the tempo,
+    search-tree, time-signature etc., effectively creating a template into
+    which quantized rhythms can be "poured", without yet knowing what those
+    rhythms might be, or even how much time the ultimate result will take.
+    Like Abjad's ``ContextMarks``, the settings made at any given time-step via
+    a ``QSchema`` instance are understood to persist until changed.
 
-    All concrete ``QSchema`` subclasses strongly implement default
-    values for all of their parameters.
+    All concrete ``QSchema`` subclasses strongly implement default values for
+    all of their parameters.
 
     `QSchema` is abstract.
     '''
@@ -30,7 +28,7 @@ class QSchema(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_items', 
+        '_items',
         '_lookups',
         )
 
@@ -40,7 +38,6 @@ class QSchema(AbjadObject):
     def __init__(self, *args, **kwargs):
         if 1 == len(args) and isinstance(args[0], type(self)):
             items = copy.copy(args[0].items)
-
         elif 1 == len(args) and isinstance(args[0], dict):
             items = args[0].items()
             if sequencetools.all_are_pairs_of_types(items, int, dict):
@@ -48,30 +45,22 @@ class QSchema(AbjadObject):
             assert sequencetools.all_are_pairs_of_types(
                 items, int, self.item_class)
             items = dict(items)
-
         elif sequencetools.all_are_pairs_of_types(args, int, self.item_class):
             items = dict(args)
-
         elif sequencetools.all_are_pairs_of_types(args, int, dict):
             items = [(x, self.item_class(**y)) for x, y in args]
             items = dict(items)
-
         elif all(isinstance(x, self.item_class) for x in args):
             items = [(i, x) for i, x in enumerate(args)]
             items = dict(items)
-
         elif all(isinstance(x, dict) for x in args):
             items = [(i, self.item_class(**x)) for i, x in enumerate(args)]
             items = dict(items)
-
         else:
             raise ValueError
-
         if items:
             assert 0 <= min(items)
-
         self._items = dict(items)
-
         self._lookups = self._create_lookups()
 
     ### SPECIAL METHODS ###
@@ -87,6 +76,19 @@ class QSchema(AbjadObject):
             current_offset += target_item.duration_in_ms
             idx += 1
         return self.target_class(target_items)
+
+    def __format__(self, format_specification=''):
+        r'''Formats q-event.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
 
     def __getitem__(self, i):
         assert isinstance(i, int) and 0 <= i
@@ -106,35 +108,7 @@ class QSchema(AbjadObject):
         return result
 
     def __repr__(self):
-        if self.items:
-            result = ['{}({{'.format(
-                self._tools_package_qualified_class_name)]
-            for i, pair in enumerate(sorted(self.items.items())):
-                key, value = pair
-                itemrepr = value._get_tools_package_qualified_repr_pieces()
-                result.append('\t{}: {}'.format(key, itemrepr[0]))
-                result.extend(['\t{}'.format(x) for x in itemrepr[1:-1]])
-                if i == len(self.items) - 1:
-                    result.append('\t{}'.format(itemrepr[-1]))
-                else:
-                    result.append('\t{},'.format(itemrepr[-1]))
-            result.append('\t},')
-        else:
-            result = ['{}('.format(self._tools_package_qualified_class_name)]
-        result.extend(
-            self._get_tools_package_qualified_keyword_argument_repr_pieces())
-        result.append('\t)')
-        return '\n'.join(result)
-
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _keyword_argument_names(self):
-        raise NotImplemented
-
-    @property
-    def _positional_argument_names(self):
-        return ('items',)
+        return format(self)
 
     ### PUBLIC PROPERTIES ###
 

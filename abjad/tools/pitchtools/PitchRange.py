@@ -175,8 +175,9 @@ class PitchRange(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __ge__(self, arg):
@@ -304,10 +305,12 @@ class PitchRange(AbjadObject):
             return '('
 
     @property
-    def _positional_argument_values(self):
-        result = []
-        result.append(self.one_line_named_pitch_repr)
-        return tuple(result)
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(self.one_line_named_pitch_repr,),
+            )
 
     ### PRIVATE METHODS ###
 

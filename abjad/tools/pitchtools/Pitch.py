@@ -78,6 +78,20 @@ class Pitch(AbjadObject):
         raise NotImplementedError(
             'TODO: all pitch-related classes must implement float.')
 
+    def __format__(self, format_specification=''):
+        r'''Formats component.
+
+        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'lilypond'):
+            return self._lilypond_format
+        elif format_specification == 'storage':
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __hash__(self):
         return hash(repr(self))
 
@@ -115,15 +129,6 @@ class Pitch(AbjadObject):
     def _lilypond_format(self):
         r'''LilyPond input format.'''
         raise NotImplementedError
-
-    ### PRIVATE METHODS ###
-
-    # do not indent in storage
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        from abjad.tools import abctools
-        return [''.join(
-            abctools.AbjadObject._get_tools_package_qualified_repr_pieces(
-                self, is_indented=False))]
 
     ### PUBLIC METHODS ###
 

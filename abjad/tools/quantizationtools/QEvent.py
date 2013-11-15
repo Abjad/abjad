@@ -41,8 +41,9 @@ class QEvent(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __getstate__(self):
@@ -61,7 +62,7 @@ class QEvent(AbjadObject):
         return False
 
     def __repr__(self):
-        return '\n'.join(self._get_tools_package_qualified_repr_pieces())
+        return format(self)
 
     def __setstate__(self, state):
         for key, value in state.iteritems():

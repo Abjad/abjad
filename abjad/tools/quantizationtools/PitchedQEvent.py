@@ -56,18 +56,6 @@ class PitchedQEvent(QEvent):
             return True
         return False
 
-    def __format__(self, format_specification=''):
-        r'''Formats q-event.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
-        return str(self)
-
     ### PUBLIC PROPERTIES ###
 
     @property

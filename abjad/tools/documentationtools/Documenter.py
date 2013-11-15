@@ -26,8 +26,9 @@ class Documenter(abctools.Maker):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     ### PRIVATE METHODS ###
@@ -43,10 +44,14 @@ class Documenter(abctools.Maker):
         return '.'.join(unique)
 
     ### PRIVATE PROPERTIES ###
-    
+
     @property
-    def _positional_argument_names(self):
-        return ('_object',)
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(self._object,),
+            )
 
     ### PUBLIC METHODS ###
 

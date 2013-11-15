@@ -5,8 +5,8 @@ from abjad.tools.quantizationtools.QSchema import QSchema
 
 
 class MeasurewiseQSchema(QSchema):
-    r'''Concrete QSchema subclass which treats "measures" as 
-    its time-step unit:
+    r'''Concrete QSchema subclass which treats "measures" as its time-step
+    unit:
 
     ::
 
@@ -19,12 +19,35 @@ class MeasurewiseQSchema(QSchema):
         >>> q_schema
         quantizationtools.MeasurewiseQSchema(
             search_tree=quantizationtools.UnweightedSearchTree(
-                definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
-                    3: {   2: {   2: None}, 3: None, 5: None},
-                    5: {   2: None, 3: None},
-                    7: {   2: None},
+                definition={
+                    2: {
+                        2: {
+                            2: {
+                                2: None,
+                                },
+                            3: None,
+                            },
+                        3: None,
+                        5: None,
+                        7: None,
+                        },
+                    3: {
+                        2: {
+                            2: None,
+                            },
+                        3: None,
+                        5: None,
+                        },
+                    5: {
+                        2: None,
+                        3: None,
+                        },
+                    7: {
+                        2: None,
+                        },
                     11: None,
-                    13: None}
+                    13: None,
+                    },
                 ),
             tempo=marktools.Tempo(
                 durationtools.Duration(1, 4),
@@ -43,8 +66,8 @@ class MeasurewiseQSchema(QSchema):
         * ``time_signature``
         * ``use_full_measure``
 
-    These settings can be applied as global defaults for the schema via 
-    keyword arguments, which persist until overridden:
+    These settings can be applied as global defaults for the schema via keyword
+    arguments, which persist until overridden:
 
     ::
 
@@ -60,21 +83,19 @@ class MeasurewiseQSchema(QSchema):
         ...     )
 
     All of these settings are self-descriptive, except for
-    ``use_full_measure``, which controls whether the measure is 
-    subdivided by the ``Quantizer`` into beats according to its 
-    time signature.
+    ``use_full_measure``, which controls whether the measure is subdivided by
+    the ``Quantizer`` into beats according to its time signature.
 
-    If ``use_full_measure`` is ``False``, the time-step's measure 
-    will be divided into units according to its time-signature.  
-    For example, a 4/4 measure will be divided into 4 units, 
-    each having a beatspan of 1/4.
+    If ``use_full_measure`` is ``False``, the time-step's measure will be
+    divided into units according to its time-signature.  For example, a 4/4
+    measure will be divided into 4 units, each having a beatspan of 1/4.
 
-    On the other hand, if ``use_full_measure`` is set to ``True``, 
-    the time-step's measure will not be subdivided into independent 
-    quantization units. This usually results in full-measure tuplets.
+    On the other hand, if ``use_full_measure`` is set to ``True``, the
+    time-step's measure will not be subdivided into independent quantization
+    units. This usually results in full-measure tuplets.
 
-    The computed value at any non-negative time-step can be 
-    found by subscripting:
+    The computed value at any non-negative time-step can be found by
+    subscripting:
 
     ::
 
@@ -103,9 +124,9 @@ class MeasurewiseQSchema(QSchema):
     Per-time-step settings can be applied in a variety of ways.
 
     Instantiating the schema via ``*args`` with a series of either
-    ``MeasurewiseQSchemaItem`` instances, or dictionaries which could be 
-    used to instantiate ``MeasurewiseQSchemaItem`` instances, will apply 
-    those settings sequentially, starting from time-step ``0``:
+    ``MeasurewiseQSchemaItem`` instances, or dictionaries which could be used
+    to instantiate ``MeasurewiseQSchemaItem`` instances, will apply those
+    settings sequentially, starting from time-step ``0``:
 
     ::
 
@@ -145,10 +166,10 @@ class MeasurewiseQSchema(QSchema):
             definition={   5: None}
             )
 
-    Similarly, instantiating the schema from a single dictionary, 
-    consisting of integer:specification pairs, or a sequence via 
-    ``*args`` of (integer, specification) pairs, allows for applying 
-    settings to non-sequential time-steps:
+    Similarly, instantiating the schema from a single dictionary, consisting of
+    integer:specification pairs, or a sequence via ``*args`` of (integer,
+    specification) pairs, allows for applying settings to non-sequential
+    time-steps:
 
     ::
 
@@ -224,11 +245,11 @@ class MeasurewiseQSchema(QSchema):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_items', 
-        '_lookups', 
-        '_search_tree', 
+        '_items',
+        '_lookups',
+        '_search_tree',
         '_tempo',
-        '_time_signature', 
+        '_time_signature',
         '_use_full_measure',
         )
 
@@ -236,29 +257,35 @@ class MeasurewiseQSchema(QSchema):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import quantizationtools
-
         search_tree = kwargs.get(
             'search_tree', quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
-
         self._tempo = marktools.Tempo(
             kwargs.get('tempo',
                 ((1, 4), 60)))
-
         self._time_signature = marktools.TimeSignature(
             kwargs.get('time_signature',
                 (4, 4)))
-
         self._use_full_measure = bool(kwargs.get('use_full_measure'))
-
         QSchema.__init__(self, *args, **kwargs)
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _keyword_argument_names(self):
-        return ('search_tree', 'tempo', 'time_signature', 'use_full_measure')
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = self.items or ()
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(
+                'search_tree',
+                'tempo',
+                'time_signature',
+                'use_full_measure',
+                ),
+            positional_argument_values=positional_argument_values
+            )
 
     ### PUBLIC PROPERTIES ###
 

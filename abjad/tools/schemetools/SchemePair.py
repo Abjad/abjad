@@ -10,7 +10,7 @@ class SchemePair(Scheme):
         >>> schemetools.SchemePair('spacing', 4)
         SchemePair(('spacing', 4))
 
-    Initialize Scheme pairs with a tuple, two separate values 
+    Initialize Scheme pairs with a tuple, two separate values
     or another Scheme pair.
 
     Scheme pairs are immutable.
@@ -52,10 +52,13 @@ class SchemePair(Scheme):
             >>> format(scheme_pair)
             "#'(-1 . 1)"
 
-        :: 
-        
-            >>> format(scheme_pair, 'storage')
-            'schemetools.SchemePair(-1, 1)'
+        ::
+
+            >>> print format(scheme_pair, 'storage')
+            schemetools.SchemePair(
+                -1,
+                1
+                )
 
         Returns string.
         '''
@@ -69,7 +72,7 @@ class SchemePair(Scheme):
         from abjad.tools import schemetools
         assert len(self._value) == 2
         lhs = schemetools.Scheme.format_scheme_value(self._value[0])
-        # need to force quotes around pairs like 
+        # need to force quotes around pairs like
         # \override #'(font-name . "Times")
         rhs = schemetools.Scheme.format_scheme_value(
             self._value[-1], force_quotes=True)

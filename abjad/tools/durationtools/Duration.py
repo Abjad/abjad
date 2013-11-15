@@ -238,8 +238,9 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __ge__(self, arg):
@@ -369,8 +370,8 @@ class Duration(AbjadObject, fractions.Fraction):
         Returns string.
         '''
         return '{}({}, {})'.format(
-            type(self).__name__, 
-            self.numerator, 
+            type(self).__name__,
+            self.numerator,
             self.denominator,
             )
 
@@ -422,18 +423,25 @@ class Duration(AbjadObject, fractions.Fraction):
         result.append(self.denominator)
         return tuple(result)
 
-    ### PRIVATE METHODS ###
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                self.numerator,
+                self.denominator,
+                ),
+            )
 
-    # do not indent in storage
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        return [''.join(
-            AbjadObject._get_tools_package_qualified_repr_pieces(
-                self, is_indented=False))]
+    ### PRIVATE METHODS ###
 
     @staticmethod
     def _group_nonreduced_fractions_by_implied_prolation(durations):
         durations = [
-            mathtools.NonreducedFraction(duration) 
+            mathtools.NonreducedFraction(duration)
             for duration in durations
             ]
         assert 0 < len(durations)
@@ -944,7 +952,7 @@ class Duration(AbjadObject, fractions.Fraction):
         denominators = [duration.denominator for duration in durations]
         lcd = mathtools.least_common_multiple(*denominators)
         nonreduced_fractions = [
-            mathtools.NonreducedFraction(x).with_denominator(lcd) 
+            mathtools.NonreducedFraction(x).with_denominator(lcd)
             for x in durations
             ]
         result = type(durations)(nonreduced_fractions)
@@ -1081,7 +1089,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         ..  container:: example
 
-            Yields all positive durations in Cantor diagonalized order 
+            Yields all positive durations in Cantor diagonalized order
             uniquely:
 
             ::

@@ -105,8 +105,9 @@ class MarkupCommand(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         elif format_specification == 'lilypond':
             return self._lilypond_format
         return str(self)
@@ -126,8 +127,12 @@ class MarkupCommand(AbjadObject):
         return '\n'.join(self._get_format_pieces())
 
     @property
-    def _positional_argument_values(self):
-        return (self.command,) + self.args
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(self.command,) + self.args,
+            )
 
     ### PRIVATE METHODS ###
 

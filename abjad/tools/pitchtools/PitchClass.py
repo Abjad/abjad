@@ -174,6 +174,20 @@ class PitchClass(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification=''):
+        r'''Formats component.
+
+        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'lilypond'):
+            return self._lilypond_format
+        elif format_specification == 'storage':
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __hash__(self):
         return hash(repr(self))
 

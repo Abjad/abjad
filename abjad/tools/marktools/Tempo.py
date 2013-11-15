@@ -505,7 +505,7 @@ class Tempo(ContextMark):
             ::
 
                 >>> for tempo, ratio in pairs:
-                ...     string = '{!s}\t{}'.format(tempo, ratio)
+                ...     string = '{!s}\t{!s}'.format(tempo, ratio)
                 ...     print string
                 4=29    1:2
                 4=58    1:1
@@ -528,7 +528,7 @@ class Tempo(ContextMark):
             ::
 
                 >>> for tempo, ratio in pairs:
-                ...     string = '{!s}\t{}'.format(tempo, ratio)
+                ...     string = '{!s}\t{!s}'.format(tempo, ratio)
                 ...     print string
                 ...
                 4=30    15:29

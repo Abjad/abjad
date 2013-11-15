@@ -102,9 +102,14 @@ class NumberedPitch(Pitch):
         return self.pitch_name
 
     @property
-    def _positional_argument_values(self):
-        return (
-            self.pitch_number,
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.pitch_number,
+                )
             )
 
     ### PUBLIC METHODS ###

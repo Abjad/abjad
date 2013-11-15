@@ -161,10 +161,11 @@ class Markup(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         elif format_specification == 'storage':
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __hash__(self):
@@ -204,9 +205,13 @@ class Markup(AbjadObject):
         return '\n'.join(self._get_format_pieces())
 
     @property
-    def _positional_argument_values(self):
-        return (
-            self.contents,
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.contents,
+                ),
             )
 
     ### PUBLIC PROPERTIES ###
@@ -286,31 +291,3 @@ class Markup(AbjadObject):
                     content._get_format_pieces()])
         pieces.append('{}}}'.format(indent))
         return pieces
-
-#    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-#        result = []
-#        indent = '\t'
-#        if not is_indented:
-#            indent = ''
-#        result.append('{}(('.format(self._tools_package_qualified_class_name))
-#        for i, content in enumerate(self.contents):
-#            comma = ','
-#            if 1 < len(self.contents) and i == len(self.contents) - 1:
-#                comma = ''
-#            if isinstance(content, abctools.AbjadObject):
-#                pieces = content._get_tools_package_qualified_repr_pieces()
-#                for piece in pieces[:-1]:
-#                    result.append('{}{}'.format(indent, piece))
-#                result.append('{}{}{}'.format(indent, pieces[-1], comma))
-#            else:
-#                result.append('{}{!r}{}'.format(indent, content, comma))
-#        strings = self._keyword_argument_name_value_strings
-#        if strings:
-#            result.append('{}),'.format(indent))
-#            for string in strings[:-1]:
-#                result.append('{}{},'.format(indent, string))
-#            result.append('{}{}'.format(indent, strings[-1]))
-#            result.append('{})'.format(indent))
-#        else:
-#            result.append('{}))'.format(indent))
-#        return result

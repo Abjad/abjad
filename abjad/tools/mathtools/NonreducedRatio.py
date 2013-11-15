@@ -41,19 +41,29 @@ class NonreducedRatio(AbjadObject, tuple):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        other = type(self)(expr)
+        expr = type(self)(expr)
         return tuple(self) == tuple(expr)
+
+    def __format__(self, format_specification=''):
+        r'''Formats duration.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _positional_argument_values(self):
-        return tuple(self)
-
-    ### PRIVATE METHODS ###
-
-    # do not indent in storage
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        return [''.join(
-            AbjadObject._get_tools_package_qualified_repr_pieces(
-            self, is_indented=False))]
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=tuple(self),
+            )

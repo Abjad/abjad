@@ -181,9 +181,14 @@ class NamedPitch(Pitch):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _positional_argument_values(self):
-        return (
-            self.pitch_name,
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.pitch_name,
+                )
             )
 
     ### PRIVATE METHODS ###

@@ -99,8 +99,9 @@ class OrdinalConstant(AbjadObject):
 
         Returns string.
         '''
+        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
+            return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
     def __ge__(self, expr):
@@ -108,7 +109,11 @@ class OrdinalConstant(AbjadObject):
         return self._value >= expr._value
 
     def __getnewargs__(self):
-        return self._positional_argument_values
+        return (
+            self._dimension,
+            self._value,
+            self._representation,
+            )
 
     def __gt__(self, expr):
         self._check_comparator(expr)
@@ -128,11 +133,11 @@ class OrdinalConstant(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _positional_argument_values(self):
-        return (
-            self._dimension,
-            self._value,
-            self._representation,
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            storage_format_pieces=(repr(self),),
             )
 
     ### PRIVATE METHODS ###
@@ -143,7 +148,3 @@ class OrdinalConstant(AbjadObject):
             not self._dimension == expr._dimension:
             message = 'can only compare like-dimensioned ordinal constants.'
             raise Exception(message)
-
-    # ordinal constants appear as constants in storage format
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        return [repr(self)]
