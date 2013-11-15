@@ -163,15 +163,3 @@ class QSchema(AbjadObject):
                     lookups[field][position] = value
             lookups[field] = dict(lookups[field])
         return dict(lookups)
-
-    def _get_tools_package_qualified_repr_pieces(self):
-        if not len(self.items):
-            return ['{}()'.format(self._tools_package_qualified_class_name)]
-        result = ['{}({{'.format(self._tools_package_qualified_class_name)]
-        for key, value in sorted(self.items.items()):
-            value_repr = value._get_tools_package_qualified_repr_pieces()
-            result.append('\t{}: {}'.format(key, value_repr[0]))
-            result.extend(['\t' + x for x in value_repr[1:-1]])
-            result.append('\t{},'.format(value_repr[-1]))
-        result.append('\t})')
-        return result

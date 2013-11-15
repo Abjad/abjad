@@ -37,12 +37,17 @@ class UserInputWrapper(collections.OrderedDict):
             result.append(
                 'user_input_wrapper = {}(['.format(type(self).__name__))
             for name, value in items[:-1]:
-                line = '\t({!r}, {}),'.format(
-                    name, self.get_tools_package_qualified_repr(value))
+                template = '\t({!r}, {!r}),'
+                if hasattr(value, '_storage_format_specification'):
+                    template = '\t({!r}, {:storage}),'
+                line = template.format(name, value)
                 result.append(line)
-            result.append('\t({!r}, {})])'.format(
-                items[-1][0], self.get_tools_package_qualified_repr(
-                    items[-1][1])))
+            name, value = items[-1]
+            template = '\t({!r}, {!r})])'
+            if hasattr(value, '_storage_format_specification'):
+                template = '\t({!r}, {:storage})])'
+            line = template.format(name, value)
+            result.append(line)
         return result
 
     @property
@@ -70,9 +75,6 @@ class UserInputWrapper(collections.OrderedDict):
     def clear(self):
         for key in self:
             self[key] = None
-
-    def get_tools_package_qualified_repr(self, expr):
-        return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
     def list_items(self):
         return list(self.iteritems())

@@ -23,6 +23,19 @@ class Expression(AbjadObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
 
+    def __format__(self, format_specification=''):
+        r'''Formats expression.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __hash__(self):
         r'''Expression hash.
 
@@ -51,20 +64,6 @@ class Expression(AbjadObject):
             result = list(result)
             result.remove('callbacks=CallbackInventory([])')
         return tuple(result)
-
-    ### PUBLIC PROPERTIES ###
-
-    def __format__(self, format_specification=''):
-        r'''Formats expression.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        if format_specification in ('', 'storage'):
-            return self._tools_package_qualified_indented_repr
-        return str(self)
 
     ### PUBLIC METHODS ###
 

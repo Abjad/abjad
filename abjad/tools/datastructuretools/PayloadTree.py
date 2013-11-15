@@ -314,16 +314,14 @@ class PayloadTree(AbjadObject):
         return list(self._children)
 
     @property
-    def _positional_argument_values(self):
-        return (self._input_argument, )
-
-    @property
-    def _tools_package_qualified_repr(self):
-        for part in reversed(type(self).__module__.split('.')):
-            if not part == type(self).__name__:
-                tools_package = part
-                break
-        return '{}.{}({})'.format(tools_package, type(self).__name__, self)
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self._input_argument,
+                ),
+            )
 
     ### PRIVATE METHODS ###
 

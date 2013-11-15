@@ -191,15 +191,6 @@ class PitchClass(AbjadObject):
     def __hash__(self):
         return hash(repr(self))
 
-    ### PRIVATE METHODS ###
-
-    # do not indent in storage
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        from abjad.tools import abctools
-        return [''.join(
-            abctools.AbjadObject._get_tools_package_qualified_repr_pieces(
-                self, is_indented=False))]
-
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
