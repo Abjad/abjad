@@ -98,6 +98,11 @@ class AbjadObject(object):
         return [repr(self)]
 
     @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(self)
+
+    @property
     def _tools_package_name(self):
         for part in reversed(self.__module__.split('.')):
             if not part == type(self).__name__:
@@ -112,7 +117,7 @@ class AbjadObject(object):
 
     @property
     def _tools_package_qualified_indented_repr(self):
-        return '\n'.join(
+        return ''.join(
             self._get_tools_package_qualified_repr_pieces(is_indented=True))
 
     @property

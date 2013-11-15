@@ -7,6 +7,7 @@ from ImportManager import ImportManager
 from LilyPondFormatManager import LilyPondFormatManager
 from RedirectedStreams import RedirectedStreams
 from StorageFormatManager import StorageFormatManager
+from StorageFormatSpecification import StorageFormatSpecification
 from TestManager import TestManager
 from Timer import Timer
 from UpdateManager import UpdateManager

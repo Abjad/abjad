@@ -22,7 +22,7 @@ class StorageFormatManager(object):
     @staticmethod
     def format_one_value(value, is_indented=True):
         result = []
-        prefix, suffix = StorageFormatManager.get_indentation_strings(
+        prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
             is_indented)
         if isinstance(value, types.MethodType):
             return result
@@ -31,6 +31,9 @@ class StorageFormatManager(object):
                 StorageFormatManager.get_tools_package_qualified_class_name(
                     value)
             result.append(value)
+#        elif hasattr(value, '_storage_format_specification'):
+#            specification = value._get_storage_format_specification()
+#            result.extend(specification.get_storage_format_pieces())
         elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
             result.extend(value._get_tools_package_qualified_repr_pieces(
                 is_indented=is_indented))
@@ -50,7 +53,7 @@ class StorageFormatManager(object):
                 braces = '[', ']'
             else:
                 braces = '(', ')'
-            result.append(braces[0])
+            result.append('{}{}'.format(braces[0], infix))
             for x in value:
                 pieces = StorageFormatManager.format_one_value(
                     x, is_indented=is_indented)
@@ -77,10 +80,10 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_indentation_strings(is_indented):
-        prefix, suffix = '', ', '
+        prefix, infix, suffix = '', '', ', '
         if is_indented:
-            prefix, suffix = '    ', ','
-        return prefix, suffix
+            prefix, infix, suffix = '    ', '\n', ',\n'
+        return prefix, infix, suffix
 
     @staticmethod
     def get_input_argument_values(object_):
@@ -168,48 +171,23 @@ class StorageFormatManager(object):
         return ()
 
     @staticmethod
-    def get_storage_format_pieces(
+    def get_storage_format(
         object_,
         is_indented=True,
         keyword_argument_names=None,
         positional_argument_values=None,
         tools_package_name=None,
         ):
-        result = []
-        prefix, suffix = StorageFormatManager.get_indentation_strings(
-            is_indented)
-        class_name = type(object_).__name__
-        tools_package_name = tools_package_name or \
-            StorageFormatManager.get_tools_package_name(object_)
-        tools_package_qualified_class_name = '{}.{}'.format(
-            tools_package_name, class_name)
-        positional_argument_pieces = \
-            StorageFormatManager.get_storage_format_positional_argument_pieces(
-                object_,
-                is_indented=is_indented,
-                positional_argument_values=positional_argument_values,
-                )
-        keyword_argument_pieces = \
-            StorageFormatManager.get_storage_format_keyword_argument_pieces(
-                object_,
-                is_indented=is_indented,
-                keyword_argument_names=keyword_argument_names,
-                )
-        if not positional_argument_pieces and not keyword_argument_pieces:
-            result.append('{}()'.format(tools_package_qualified_class_name))
-        else:
-            result.append('{}('.format(tools_package_qualified_class_name))
-            result.extend(positional_argument_pieces)
-            if positional_argument_pieces and not keyword_argument_pieces:
-                result[-1] = result[-1].rstrip(' ')
-                result[-1] = result[-1].rstrip(',')
-            else:
-                result.extend(keyword_argument_pieces)
-            if is_indented:
-                result.append('{})'.format(prefix))
-            else:
-                result.append(')')
-        return tuple(result)
+        pieces = StorageFormatManager.get_storage_format_pieces(
+            object_,
+            is_indented=is_indented,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=positional_argument_values,
+            tools_package_name=tools_package_name,
+            )
+#        if is_indented:
+#            return '\n'.join(pieces)
+        return ''.join(pieces)
 
     @staticmethod
     def get_storage_format_keyword_argument_pieces(
@@ -218,7 +196,7 @@ class StorageFormatManager(object):
         keyword_argument_names=None,
         ):
         result = []
-        prefix, suffix = StorageFormatManager.get_indentation_strings(
+        prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
             is_indented)
         for name in StorageFormatManager.get_keyword_argument_names(object_):
             if object_._has_default_attribute_values:
@@ -250,7 +228,7 @@ class StorageFormatManager(object):
         positional_argument_values=None,
         ):
         result = []
-        prefix, suffix = StorageFormatManager.get_indentation_strings(
+        prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
             is_indented)
         for value in StorageFormatManager.get_positional_argument_values(
             object_):
@@ -259,6 +237,52 @@ class StorageFormatManager(object):
             for piece in pieces[:-1]:
                 result.append(prefix + piece)
             result.append(prefix + pieces[-1] + suffix)
+        return tuple(result)
+
+    @staticmethod
+    def get_storage_format_pieces(
+        object_,
+        is_indented=True,
+        keyword_argument_names=None,
+        positional_argument_values=None,
+        tools_package_name=None,
+        ):
+        result = []
+        prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
+            is_indented)
+        class_name = type(object_).__name__
+        tools_package_name = tools_package_name or \
+            StorageFormatManager.get_tools_package_name(object_)
+        tools_package_qualified_class_name = '{}.{}'.format(
+            tools_package_name, class_name)
+        positional_argument_pieces = \
+            StorageFormatManager.get_storage_format_positional_argument_pieces(
+                object_,
+                is_indented=is_indented,
+                positional_argument_values=positional_argument_values,
+                )
+        keyword_argument_pieces = \
+            StorageFormatManager.get_storage_format_keyword_argument_pieces(
+                object_,
+                is_indented=is_indented,
+                keyword_argument_names=keyword_argument_names,
+                )
+        if not positional_argument_pieces and not keyword_argument_pieces:
+            result.append('{}()'.format(tools_package_qualified_class_name))
+        else:
+            result.append('{}({}'.format(
+                tools_package_qualified_class_name,
+                infix,
+                ))
+            result.extend(positional_argument_pieces)
+            if positional_argument_pieces and not keyword_argument_pieces:
+                result[-1] = result[-1].rstrip(suffix) + infix
+            else:
+                result.extend(keyword_argument_pieces)
+            if is_indented:
+                result.append('{})'.format(prefix))
+            else:
+                result.append(')')
         return tuple(result)
 
     @staticmethod
