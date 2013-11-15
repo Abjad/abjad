@@ -16,12 +16,6 @@ class DynamicHandler(Handler):
     def __init__(self, minimum_duration=None):
         self.minimum_duration = minimum_duration
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _tools_package_name(self):
-        return 'handlertools'
-
     ### PUBLIC PROPERTIES ###
 
     @apply

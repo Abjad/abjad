@@ -9,8 +9,12 @@ class ConcreteSpecifier(Specifier):
     def _one_line_menuing_summary(self):
         pass
     @property
-    def _tools_package_name(self):
-        return 'specialtools'
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            tools_package_name='specialtools',
+            )
 
 
 def test_Specifier___format___01():

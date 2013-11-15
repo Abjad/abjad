@@ -37,9 +37,3 @@ class ArticulationHandler(Handler):
         else:
             self.maximum_written_pitch = \
                 pitchtools.NamedPitch(maximum_written_pitch)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _tools_package_name(self):
-        return 'handlertools'
