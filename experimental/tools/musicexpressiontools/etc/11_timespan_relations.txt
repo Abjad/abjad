@@ -2,10 +2,10 @@ TIMESPAN RELATIONS.
 
 This document revises #10 before it.
 
-A reference timespan t and and a "movable" timespan s together define four timepoints.
-There are t.start, t.stop, s.start and s.stop. And we may choose to abbreviate these X, Y
-(for reference timespan t) and A, B (for movable timespan s). Regardless of labeling,
-two timespans define four timepoints.
+A reference timespan t and and a "movable" timespan s together define four
+timepoints.  There are t.start, t.stop, s.start and s.stop. And we may choose
+to abbreviate these X, Y (for reference timespan t) and A, B (for movable
+timespan s). Regardless of labeling, two timespans define four timepoints.
 
 Perhaps the ultimate question to is ask is what set of natural language API
 functions best capture the various relationships that obtain between s and t?
@@ -15,142 +15,162 @@ But there's no hope of getting there if there formalization isn't clear.
 
 So what's the formalization?
 
-We must first make decisions about zero-length timespans. Do we allow them or not?
-On the one hand, the most intuitive cases all make reference to timespans with positive
-duration. On the other hand, hard-won experience suggests that zero-duration whatevers
-will eventually make themselves useful. Additionally, prelimiary thoughts from the last
-couple of days' work suggest that the cases of positively durated timespans are actually
-trickier to work out that the case that allows for zero-duration timespans.
+We must first make decisions about zero-length timespans. Do we allow them or
+not?  On the one hand, the most intuitive cases all make reference to timespans
+with positive duration. On the other hand, hard-won experience suggests that
+zero-duration whatevers will eventually make themselves useful. Additionally,
+prelimiary thoughts from the last couple of days' work suggest that the cases
+of positively durated timespans are actually trickier to work out that the case
+that allows for zero-duration timespans.
 
-At any rate, we make the decision here to enumerate cases for positively durated timespans only.
+At any rate, we make the decision here to enumerate cases for positively
+durated timespans only.
 
 And with that we are now in a position to procede.
 
 * * *
 
-We recall that two timespans define four timepoints, which we label X, Y (reference) 
-and A, B (movable). In the most basic case this means that we've got four objects. And
-it also means that we can be certain we can characterize all possible relationships obtaining
-between s and t if we can exhaustively characterize the relationships obtaining between
-these four objects.
+We recall that two timespans define four timepoints, which we label X, Y
+(reference) and A, B (movable). In the most basic case this means that we've
+got four objects. And it also means that we can be certain we can characterize
+all possible relationships obtaining between s and t if we can exhaustively
+characterize the relationships obtaining between these four objects.
 
-So our insistence on positively durated timespans s, t then provides us with something
-very useful. By definition, s.start < s.stop and t.start < t.stop or, equivalently,
-A < B and X < Y.
+So our insistence on positively durated timespans s, t then provides us with
+something very useful. By definition, s.start < s.stop and t.start < t.stop or,
+equivalently, A < B and X < Y.
 
-Why does this matter? It matters because in the exhaustive enumeration that we're about
-to undertake, we will repeatedly inquire as to the relationship(s) obtaining between
-two or more timepoints. And our upfront restrictions that A < B and X < Y means that
-everytime we ask about the relationship between A and B or between X and Y we will
-have a context-free answer ready-made.
+Why does this matter? It matters because in the exhaustive enumeration that
+we're about to undertake, we will repeatedly inquire as to the relationship(s)
+obtaining between two or more timepoints. And our upfront restrictions that A <
+B and X < Y means that everytime we ask about the relationship between A and B
+or between X and Y we will have a context-free answer ready-made.
 
 So:
 
-We begin by observing that all of the cases that we are interested in relate A, B
-to X, Y  in some way. Why? Because we are free to make observations about A, B in 
-isolation all day. But unless or until we observe something about A, B *in relation to*
-X, Y we are not yet answering the question of how two different timespans relate.
+We begin by observing that all of the cases that we are interested in relate A,
+B to X, Y  in some way. Why? Because we are free to make observations about A,
+B in isolation all day. But unless or until we observe something about A, B *in
+relation to* X, Y we are not yet answering the question of how two different
+timespans relate.
 
-So we start at the beginning and proceded, perhaps bizarrely, by dialetic questioning:
+So we start at the beginning and proceded, perhaps bizarrely, by dialetic
+questioning:
 
-Does it make sense to let A < X. Yes, it absolutely does. That criterion (or inequality)
-taken all by itself picks out an enormously important set of timespans. If we think
-of reference timespan t as a (probably large) segment and think of movable timespan
-timespan s as a (probably smaller) measure, then the restriction that A < X picks out
-the set of all measures that start before segment t starts.
+Does it make sense to let A < X. Yes, it absolutely does. That criterion (or
+inequality) taken all by itself picks out an enormously important set of
+timespans. If we think of reference timespan t as a (probably large) segment
+and think of movable timespan timespan s as a (probably smaller) measure, then
+the restriction that A < X picks out the set of all measures that start before
+segment t starts.
 
-Then: with A < X fixed we should consider B (ie, s.stop). If A is fixed prior to X,
-does it make sense to consider the time-relative positioning of B at all? Indeed it does.
-This gives the first of the inequalities we will record:
+Then: with A < X fixed we should consider B (ie, s.stop). If A is fixed prior
+to X, does it make sense to consider the time-relative positioning of B at all?
+Indeed it does.  This gives the first of the inequalities we will record:
 
   [1] A < X             "measures that start before segment blah starts"
 
-What about considering the relationships that may obtain between B and X? 
+What about considering the relationships that may obtain between B and X?
 These are B < X, B == X and X < B. We consider each in turn. "A < X && B < X"
-We find that it is of no use at all to consider the cases where B < X when we have 
-already decided that A < X. Why?
-Because we insist that A < B (ie, that our movable measure have a positive duration).
-And so it is absolutely redudant to declare that A < X if we then go on to declare
-that B < X. Looked at another way, it is a very significant thing indeed to declare
-that B < X because this one criterion alone picks out the set of, for example, all
+We find that it is of no use at all to consider the cases where B < X when we
+have already decided that A < X. Why?  Because we insist that A < B (ie, that
+our movable measure have a positive duration).  And so it is absolutely
+redudant to declare that A < X if we then go on to declare that B < X. Looked
+at another way, it is a very significant thing indeed to declare that B < X
+because this one criterion alone picks out the set of, for example, all
 measures that stop before a certain segment begins. So if we declare that we're
 interested in the set of measures that obtain when both A < X and B < X we are
-then being redundant. It is clearly enough to declare only that B < X and to move on.
+then being redundant. It is clearly enough to declare only that B < X and to
+move on.
 
-So we return to the basic proposition that A < X. To write "A < X && B < X" is redudant,
-as shown above. So we do not do this. We procede to the next relation that may obtain
-between B and X, namely B == X.  Does is make sense to write "A < X && B == X"? No. 
-Because A < B the statement that B == X entails A < X. So the compound assertion "A < X && B == X"
-is redundant. So we avoid writing this. We procede to the next relation that may obtain
-between B and X, namely X < B. Does it make sense to write "A < X && X < B"? Definitely.
-This expression denotes an enormously important set of cases of, for examples, measures
-that overlap the start of some segment. So we have garnered the second of our inequalities:
+So we return to the basic proposition that A < X. To write "A < X && B < X" is
+redudant, as shown above. So we do not do this. We procede to the next relation
+that may obtain between B and X, namely B == X.  Does is make sense to write "A
+< X && B == X"? No.  Because A < B the statement that B == X entails A < X. So
+the compound assertion "A < X && B == X" is redundant. So we avoid writing
+this. We procede to the next relation that may obtain between B and X, namely X
+< B. Does it make sense to write "A < X && X < B"? Definitely.  This expression
+denotes an enormously important set of cases of, for examples, measures that
+overlap the start of some segment. So we have garnered the second of our
+inequalities:
     
   [2] A < X && X < B      "measures that overlap the start of segment blah"
 
-So far we have fixed A < X and then considered the three relations that may obtain
-between B and X. What if we continue to fix A < X and consider the relations that
-may obtain between B and Y? These are B < Y, B == Y, and Y < B. We consider each in turn.
-Does it make sense to write "A < X && B < Y"? Yes. Does it make sense to write
-"A < X && B == Y"? Yes. Does it make sense to write "A < X && Y < B"? Yes. We have
-garnered three further inequalities:
+So far we have fixed A < X and then considered the three relations that may
+obtain between B and X. What if we continue to fix A < X and consider the
+relations that may obtain between B and Y? These are B < Y, B == Y, and Y < B.
+We consider each in turn.  Does it make sense to write "A < X && B < Y"? Yes.
+Does it make sense to write "A < X && B == Y"? Yes. Does it make sense to write
+"A < X && Y < B"? Yes. We have garnered three further inequalities:
 
-  [3] A < X && B < Y      "measures that start before blah starts and end before blah ends"
-  [4] A < X && B == Y     "measures that start before blah starts and end when blah ends"
-  [5] A < X && Y < B      "measures that start before blah starts and end after blah ends"
+  [3] A < X && B < Y      "measures that start before blah starts and 
+                            end before blah ends"
+  [4] A < X && B == Y     "measures that start before blah starts and 
+                            end when blah ends"
+  [5] A < X && Y < B      "measures that start before blah starts and 
+                            end after blah ends"
 
-So we are still considering cases where the primary assertion is that A < X. So far we 
-have let B vary with respect to X. And we have also let B vary with respect to Y.
-Are there cases where it makes sense to let B vary with both X and Y? That is, does
-it make sense to combine "A < X && X < B" with any of the three inequalities listed
-immediately above? We consider each in turn. Does it makes sense to write
-"A < X && X < B && A < X && B < Y"? This simplifies to "A < X && X < B && B < Y".
-Does this make sense? Yes. Does it make sense to write "A < X && X < B && A < X && B == Y"?
-This simplifies to "A < X && X < B && B == Y". This reduces to "A < X && B == Y" which
-is redundant with any entry already on our list. Finally, does it make sense to
-write "A < X && X < B && A < X && Y < B"? This simplifies to "A < X && X < B && Y < B".
-This is redundant with "A < X && Y < B" which is redundant with an entry already on our list.
-So there are no cases where it makes sense to let B vary with both X and Y. This yields
-no additional inequalities for our list.
+So we are still considering cases where the primary assertion is that A < X. So
+far we have let B vary with respect to X. And we have also let B vary with
+respect to Y.  Are there cases where it makes sense to let B vary with both X
+and Y? That is, does it make sense to combine "A < X && X < B" with any of the
+three inequalities listed immediately above? We consider each in turn. Does it
+makes sense to write "A < X && X < B && A < X && B < Y"? This simplifies to "A
+< X && X < B && B < Y".  Does this make sense? Yes. Does it make sense to write
+"A < X && X < B && A < X && B == Y"?  This simplifies to "A < X && X < B && B
+== Y". This reduces to "A < X && B == Y" which is redundant with any entry
+already on our list. Finally, does it make sense to write "A < X && X < B && A
+< X && Y < B"? This simplifies to "A < X && X < B && Y < B".  This is redundant
+with "A < X && Y < B" which is redundant with an entry already on our list.  So
+there are no cases where it makes sense to let B vary with both X and Y. This
+yields no additional inequalities for our list.
 
 * * *
 
-The next set of cases will depend on moving A to the right such that A == X. This inequality
-itself picks out an enormously important set of cases of, for example, all measures that
-start at the same time as an arbitrary reference segment.
+The next set of cases will depend on moving A to the right such that A == X.
+This inequality itself picks out an enormously important set of cases of, for
+example, all measures that start at the same time as an arbitrary reference
+segment.
 
   [6] A == X            "measures that start when blah starts"
 
-What remains to be done now is to move B through the various positions it can take
-with respect to A, X, Y and evaluate the relevance and redundancy B provides in those positions.
+What remains to be done now is to move B through the various positions it can
+take with respect to A, X, Y and evaluate the relevance and redundancy B
+provides in those positions.
 
-So we assert that A == X. What other restrictions make sense together with A == X?
-Consider B. Does it make sense to position B with respect to A? No because we state
-up front that A < B in all cases. Then does it make sense to position B with respect to X?
-Three possible relations obtain between any two timepoints. So between B and X three relations
-are possible. We examine each to find which of the three make sense. When A == X does it make
-sense to write "A == X && B < X"? No. This is impossible. We move B to the right and ask
-if it makes sense to write "A == X && B == X". This too is impossible. We move B further
-to the right and ask whether it makes sense to write "A == X && X < B". No, this is redundant.
-We have not considered the three relationships possible between X and B. Those are that B
-precede X, that B equal X, and that B follow X. When we assert A == X and A < B, none of these
-three relations between X and B make sense.
+So we assert that A == X. What other restrictions make sense together with A ==
+X?  Consider B. Does it make sense to position B with respect to A? No because
+we state up front that A < B in all cases. Then does it make sense to position
+B with respect to X?  Three possible relations obtain between any two
+timepoints. So between B and X three relations are possible. We examine each to
+find which of the three make sense. When A == X does it make sense to write "A
+== X && B < X"? No. This is impossible. We move B to the right and ask if it
+makes sense to write "A == X && B == X". This too is impossible. We move B
+further to the right and ask whether it makes sense to write "A == X && X < B".
+No, this is redundant.  We have not considered the three relationships possible
+between X and B. Those are that B precede X, that B equal X, and that B follow
+X. When we assert A == X and A < B, none of these three relations between X and
+B make sense.
 
-We continue to assert that A == X. And we continue to consider B. Does it make sense to
-position B with respect to Y? Three relations are possible between any two timepoints.
-These are B < Y, B == Y, and Y < B. We consider each in turn together with A == X.
-Does it make sense to write "A == X && B < Y"? Yes. Does it make sense to write
-"A == X && B == Y". Again yes. Does it make sense to write "A == X && Y < B"? Yes.
-So we have garnered three new compound inequalitites:
+We continue to assert that A == X. And we continue to consider B. Does it make
+sense to position B with respect to Y? Three relations are possible between any
+two timepoints.  These are B < Y, B == Y, and Y < B. We consider each in turn
+together with A == X.  Does it make sense to write "A == X && B < Y"? Yes. Does
+it make sense to write "A == X && B == Y". Again yes. Does it make sense to
+write "A == X && Y < B"? Yes.  So we have garnered three new compound
+inequalitites:
 
-  [7] A == X && B < Y     "measures that start with segment blah but end before segment blah"
+  [7] A == X && B < Y     "measures that start with segment blah but 
+                            end before segment blah"
   [8] A == X && B == Y    "measures that start and stop with segment blah"
-  [9] A == X && Y < B     "measures that start with segment blah and overlap the end of blah"
+  [9] A == X && Y < B     "measures that start with segment blah 
+                            and overlap the end of blah"
 
-* * *
+                                     * * *
 
-Now we move A further to the right and ask whether it makes sense to assert X < A. Indeed it does.
-These are, for example, the measures that start after segment blah starts.
+Now we move A further to the right and ask whether it makes sense to assert X <
+A. Indeed it does.  These are, for example, the measures that start after
+segment blah starts.
 
  [10] X < A                 "measures that start after blah starts"
 
@@ -158,156 +178,188 @@ Now, given X < A, what other restrictions make sense?
 
 Does it make sense to compare A to B? No because we know that A < B.
 
-Does it make sense to compare A to Y? In fact it does. Three timerelations obtain
-between any three timepoints. Between A and Y these are A < Y, A == Y, and Y < A.
-With X < A, we consider each of these three relations in turn. Does it make sense
-to write "X < A && A < Y"? Yes. Does it make sense to write "X < A && A == Y"? No.
-Does it make sense to write "X < A && Y < A"? No. This is impossible. So we have
-garnered one new inequality:
+Does it make sense to compare A to Y? In fact it does. Three timerelations
+obtain between any three timepoints. Between A and Y these are A < Y, A == Y,
+and Y < A.  With X < A, we consider each of these three relations in turn. Does
+it make sense to write "X < A && A < Y"? Yes. Does it make sense to write "X <
+A && A == Y"? No.  Does it make sense to write "X < A && Y < A"? No. This is
+impossible. So we have garnered one new inequality:
 
- [11] X < A && A < Y     "measures that start after segment blah starts but before segment blah stops"
+ [11] X < A && A < Y     "measures that start after segment blah starts but 
+                            before segment blah stops"
 
-Still with X < A, does it make sense to compare B to Y? Three timerelations are possible.
-These are B < Y, B == Y, and Y < B. We consider each in turn with X < A. Does it make sense
-to write "X < A && B < Y"? Yes. Does it make sense to write "X < A && B == Y"? Yes. Does it
-make sense to write "X < A && Y < B"? Yes. We have garnered three new inequalitites:
+Still with X < A, does it make sense to compare B to Y? Three timerelations are
+possible.  These are B < Y, B == Y, and Y < B. We consider each in turn with X
+< A. Does it make sense to write "X < A && B < Y"? Yes. Does it make sense to
+write "X < A && B == Y"? Yes. Does it make sense to write "X < A && Y < B"?
+Yes. We have garnered three new inequalitites:
 
- [12] X < A && B < Y      "measures that start after blah starts and stop before blah stops"
- [13] X < A && B == Y     "measures that start after blah starts and stop when blah stops"
- [14] X < A && Y < B      "measures that start after blah starts and stop and after blah stops"
+ [12] X < A && B < Y      "measures that start after blah starts and 
+                            stop before blah stops"
+ [13] X < A && B == Y     "measures that start after blah starts and 
+                            stop when blah stops"
+ [14] X < A && Y < B      "measures that start after blah starts and 
+                            stop and after blah stops"
 
-So far with X < A, we have enumerated four different compound inequalities, as shown above.
-Does it make sense to combine the first of these four inequalities (X < A && A < Y) with
-any of the three other such inequalities? We consider each of the three cases in turn.
-To write "X < A && A < Y" together with "X < A && B < Y" we can simplify to
-"X < A && A < Y && B < Y". Does this make sense? It makes sense but is redundant. Why?
-Because the A < Y clause is entailed in the other two clauses. That is, the statement
-"X < A && A < Y && B < Y" simplifies to "X < A && B < Y", which is already on our list, above.
-Does it make sense to write "X < A && A < Y && B == Y"? It is redundant and simplifies to
-"X < A && B == Y", which is already on our list, above. Does it make sense to write
-"X < A && A < Y && Y < B"? Yes, it does. We have garnered one new compound inequality:
+So far with X < A, we have enumerated four different compound inequalities, as
+shown above.  Does it make sense to combine the first of these four
+inequalities (X < A && A < Y) with any of the three other such inequalities? We
+consider each of the three cases in turn.  To write "X < A && A < Y" together
+with "X < A && B < Y" we can simplify to "X < A && A < Y && B < Y". Does this
+make sense? It makes sense but is redundant. Why?  Because the A < Y clause is
+entailed in the other two clauses. That is, the statement "X < A && A < Y && B
+< Y" simplifies to "X < A && B < Y", which is already on our list, above.  Does
+it make sense to write "X < A && A < Y && B == Y"? It is redundant and
+simplifies to "X < A && B == Y", which is already on our list, above. Does it
+make sense to write "X < A && A < Y && Y < B"? Yes, it does. We have garnered
+one new compound inequality:
 
- [15] X < A && A < Y && Y < B "measures that start after blah starts and overlap the stop of blah"
+ [15] X < A && A < Y && Y < B "measures that start after blah starts and 
+                                overlap the stop of blah"
 
-* * *
+                                     * * *
 
-We've now exhaustively considered the cases built on the three relations possible between A and X.
-These are A < X, A == X, and X < A. During this process we've enumerated the following:
+We've now exhaustively considered the cases built on the three relations
+possible between A and X.  These are A < X, A == X, and X < A. During this
+process we've enumerated the following:
 
   [1] A < X                     "measures that begin before segment blah"
   [2] A < X && X < B            "measures that overlap the start of segment blah"
-  [3] A < X && B < Y            "measures that start before blah starts and end before blah ends"
-  [4] A < X && B == Y           "measures that start before blah starts and end when blah ends"
-  [5] A < X && Y < B            "measures that start before blah starts and end after blah ends"
+  [3] A < X && B < Y            "measures that start before blah starts and 
+                                    end before blah ends"
+  [4] A < X && B == Y           "measures that start before blah starts and 
+                                    end when blah ends"
+  [5] A < X && Y < B            "measures that start before blah starts and 
+                                    end after blah ends"
   [6] A == X                    "measures that start when blah starts"
-  [7] A == X && B < Y           "measures that start with segment blah but end before segment blah"
+  [7] A == X && B < Y           "measures that start with segment blah but 
+                                    end before segment blah"
   [8] A == X && B == Y          "measures that start and stop with segment blah"
-  [9] A == X && Y < B           "measures that start with segment blah and overlap the end of blah"
+  [9] A == X && Y < B           "measures that start with segment blah and 
+                                    overlap the end of blah"
  [10] X < A                     "measures that start after blah starts" 
- [11] X < A && A < Y            "measures that start after segment blah starts but before segment blah stops"
- [12] X < A && B < Y            "measures that start after blah starts and stop before blah stops"
- [13] X < A && B == Y           "measures that start after blah starts and stop when blah stops"
- [14] X < A && Y < B            "measures that start after blah starts and stop and after blah stops"
- [15] X < A && A < Y && Y < B   "measures that start after blah starts and overlap the stop of blah"
+ [11] X < A && A < Y            "measures that start after segment blah starts 
+                                    but before segment blah stops"
+ [12] X < A && B < Y            "measures that start after blah starts and 
+                                    stop before blah stops"
+ [13] X < A && B == Y           "measures that start after blah starts and 
+                                    stop when blah stops"
+ [14] X < A && Y < B            "measures that start after blah starts and 
+                                    stop and after blah stops"
+ [15] X < A && A < Y && Y < B   "measures that start after blah starts and 
+                                    overlap the stop of blah"
 
-We must now ask after the relations that obtain between A and Y. These are A < Y, A == Y, and Y < A.
-All of these are valid. Though these three cases will combine with restrictions on B and X to produce
-fewer compound inequalities than those enumerated so far.
+We must now ask after the relations that obtain between A and Y. These are A <
+Y, A == Y, and Y < A.  All of these are valid. Though these three cases will
+combine with restrictions on B and X to produce fewer compound inequalities
+than those enumerated so far.
 
-* * *
+                                     * * *
 
-Each of the relations between A and Y is valid in isolation. Each is a simple inequality.
-We add each to our list:
+Each of the relations between A and Y is valid in isolation. Each is a simple
+inequality.  We add each to our list:
 
  [16] A < Y                     "measures that start before blah stops"
  [17] A == Y                    "measures that start when blah stops"
  [18] Y < A                     "measures that start after blah stops"
 
-We next consider each of these simple restrictions between A and Y in turn and ask what
-other restrictions make sense together with these.
+We next consider each of these simple restrictions between A and Y in turn and
+ask what other restrictions make sense together with these.
 
-We start with A < Y. In relation to which other timepoints can we locate A? The timerelation
-between A and B is fixed at A < B. And we considered all three of the timerelations 
-obtaining between A and X above. (Additionally, the three timerelations between A and Y
-imply timerelations between A and X exactly: relating A to Y renders it absolutely redundant
-to then relate A to X.) What about relating B to X? The three relations are B < X, B == X,
-and X < B. We consider each in turn together with A < Y. Does it make sense to write
-"A < Y && B < X"? Redundant because it is enough to assert only that B < X. So we will acquire
-this simple inequality later when we consider the timerelations obtaining between B and
-the other timepoints in our configuration. Does it make sense to write "A < Y && B == X"?
-Redundant because B == X is enough. Does it make sense to write "A < Y && X < B"? Redundant
-because X < B is enough. So A < Y does not combine effectively with B < X, B == X, or X < B.
-What about the timerelations obtaining between B and Y? They are B < Y, B == Y, and Y < B.
-We consider each in turn with A < Y. Does it make sense to write "A < Y && B < Y"? Redundant
-because B < Y is enough. Does it make sense to write "A < Y && B == Y"? Redundant because
-B == Y is enough. Does it make sense to write "A < Y && Y < B". Yes. That's a compound inequality
-that picks out a completely novel set of timespans. We add it to our list:
+We start with A < Y. In relation to which other timepoints can we locate A? The
+timerelation between A and B is fixed at A < B. And we considered all three of
+the timerelations obtaining between A and X above. (Additionally, the three
+timerelations between A and Y imply timerelations between A and X exactly:
+relating A to Y renders it absolutely redundant to then relate A to X.) What
+about relating B to X? The three relations are B < X, B == X, and X < B. We
+consider each in turn together with A < Y. Does it make sense to write "A < Y
+&& B < X"? Redundant because it is enough to assert only that B < X. So we will
+acquire this simple inequality later when we consider the timerelations
+obtaining between B and the other timepoints in our configuration. Does it make
+sense to write "A < Y && B == X"?  Redundant because B == X is enough. Does it
+make sense to write "A < Y && X < B"? Redundant because X < B is enough. So A <
+Y does not combine effectively with B < X, B == X, or X < B.  What about the
+timerelations obtaining between B and Y? They are B < Y, B == Y, and Y < B.  We
+consider each in turn with A < Y. Does it make sense to write "A < Y && B < Y"?
+Redundant because B < Y is enough. Does it make sense to write "A < Y && B ==
+Y"? Redundant because B == Y is enough. Does it make sense to write "A < Y && Y
+< B". Yes. That's a compound inequality that picks out a completely novel set
+of timespans. We add it to our list:
 
  [19] A < Y && Y < B            "measures that overlap the stop of blah"
 
-Our consideration of A < Y in combination with all other timerelations yielded only
-single composite inequality given immediately above.
+Our consideration of A < Y in combination with all other timerelations yielded
+only single composite inequality given immediately above.
 
-We now turn to A == Y. We write no compositie inequalities with A == Y because A == Y
-implies X < A, X < B, and Y < B.
+We now turn to A == Y. We write no compositie inequalities with A == Y because
+A == Y implies X < A, X < B, and Y < B.
 
-We then turn to Y < A. This implies X < A, X < B, and Y < B. For this reason we write
-no composite inequalities with Y < A.
+We then turn to Y < A. This implies X < A, X < B, and Y < B. For this reason we
+write no composite inequalities with Y < A.
 
-We've now considered all three relations A < Y, A == Y, and Y < A obtaining between A and Y.
+We've now considered all three relations A < Y, A == Y, and Y < A obtaining
+between A and Y.
 
 * * *
 
-Consider the fourth of our six timepoint 2-sets. This is {B, X}. The three relations possible
-between B and X are B < X, B == X, and X < B. All three pick out important timespan configurations.
-We add all three inequalities to our list:
+Consider the fourth of our six timepoint 2-sets. This is {B, X}. The three
+relations possible between B and X are B < X, B == X, and X < B. All three pick
+out important timespan configurations.  We add all three inequalities to our
+list:
 
  [20] B < X                     "measures that stop before blah starts"
  [21] B == X                    "measures that stop when blah starts"
  [22] X < B                     "measures that stop after blah starts"
 
-Does B < X compound? It is clear that B < X implies A < X, A < Y, and B < Y. So we write
-no compound inequalitites with B < X.
+Does B < X compound? It is clear that B < X implies A < X, A < Y, and B < Y. So
+we write no compound inequalitites with B < X.
 
-Does B == X compound? It is clear that B == X implies A < X, A < Y, and B < Y. So we write
-no compound inequalities with B == X. 
+Does B == X compound? It is clear that B == X implies A < X, A < Y, and B < Y.
+So we write no compound inequalities with B == X. 
 
-Does X < B compound? It is clear that X < B fixes the timerelations obtaining between 
-neither {A, X} nor {A, Y} nor {B, Y}. So we consider X < B in combination with arrangements 
-of the timepoints in each of the these 2-sets in turn.
+Does X < B compound? It is clear that X < B fixes the timerelations obtaining
+between neither {A, X} nor {A, Y} nor {B, Y}. So we consider X < B in
+combination with arrangements of the timepoints in each of the these 2-sets in
+turn.
 
-The three timerelations obtaining between A and X are A < X, A == X, and X < A. We've examined
-each of these before. But let's see what happens when we combine these with X < B.
-Does it make sense to write "X < B && A < X". Yes but this is equivalent to "A < X && X < B",
-which is already on our list. Does it make sense to write "X < B && A == X"? Redundant because
-A == X is enough. Does it make sense to write "X < B && X < A"? Redundant because X < A is enough.
+The three timerelations obtaining between A and X are A < X, A == X, and X < A.
+We've examined each of these before. But let's see what happens when we combine
+these with X < B.  Does it make sense to write "X < B && A < X". Yes but this
+is equivalent to "A < X && X < B", which is already on our list. Does it make
+sense to write "X < B && A == X"? Redundant because A == X is enough. Does it
+make sense to write "X < B && X < A"? Redundant because X < A is enough.
 
-We combine X < B with A < Y, A == Y, and Y < A. But we have evaluated each of the realtions
-obtaining between A and Y before. So all such combinations with X < B will be redundant.
+We combine X < B with A < Y, A == Y, and Y < A. But we have evaluated each of
+the realtions obtaining between A and Y before. So all such combinations with X
+< B will be redundant.
 
-We combine X < B with B < Y, B == Y, and Y < B. Because we have not yet examined the relations
-obtaining between B and Y it is possible that these will yield novel inequalities.
-Does it make sense to write "X < B && B < Y"? Yes. Does it make sense to write "X < B && B == Y"?
-Redundant because this simplifies to B == Y. Does it make sense to write "X < B && Y < B"?
-Redundant because this simplifies to Y < B. So we have garnered one new inequality:
+We combine X < B with B < Y, B == Y, and Y < B. Because we have not yet
+examined the relations obtaining between B and Y it is possible that these will
+yield novel inequalities.  Does it make sense to write "X < B && B < Y"? Yes.
+Does it make sense to write "X < B && B == Y"?  Redundant because this
+simplifies to B == Y. Does it make sense to write "X < B && Y < B"?  Redundant
+because this simplifies to Y < B. So we have garnered one new inequality:
 
- [23] X < B && B < Y            "measures that stop after blah starts but before blah stops"
+ [23] X < B && B < Y            "measures that stop after blah starts but 
+                                    before blah stops"
 
 We've now considered {B, X} exhaustively.
 
 We next consider {B, Y}.
 
-Three timerelations obtain between B and Y. These are B < Y, B == Y, and Y < B. All three 
-pick out important timespan configurations. We add all three to our list:
+Three timerelations obtain between B and Y. These are B < Y, B == Y, and Y < B.
+All three pick out important timespan configurations. We add all three to our
+list:
 
  [24] B < Y                     "measures that stop before blah stops"
  [25] B == Y                    "measures that stop when blah stops"
  [26] Y < B                     "measures that stop after blah stops"
 
-We have now considered {A, X}, {A, Y}, {B, X} and {B, Y} exhaustively. These are the four
-timepoint 2-sets we allow to vary (because we do not allow (A, B) or (X, Y) to vary). And
-because we considered these four categories in order there is no point in reexamining 
-the three variable categories {A, X}, {A, Y}, {B, X} that precede {B, Y}.
+We have now considered {A, X}, {A, Y}, {B, X} and {B, Y} exhaustively. These
+are the four timepoint 2-sets we allow to vary (because we do not allow (A, B)
+or (X, Y) to vary). And because we considered these four categories in order
+there is no point in reexamining the three variable categories {A, X}, {A, Y},
+{B, X} that precede {B, Y}.
 
 The complete enumeration follows.
 
@@ -327,27 +379,42 @@ The complete enumeration follows.
  [25] B == Y                        "measures that stop when blah stops"
  [26] Y <  B                        "measures that stop after blah stops"
 
-  [3] A <  X && B <  Y              "measures that start before blah starts and stop before blah stops"
-  [4] A <  X && B == Y              "measures that start before blah starts and stop when blah stops"
-  [5] A <  X && Y <  B              "measures that start before blah starts and stop after blah stops"
+  [3] A <  X && B <  Y              "measures that start before blah starts 
+                                        and stop before blah stops"
+  [4] A <  X && B == Y              "measures that start before blah starts 
+                                        and stop when blah stops"
+  [5] A <  X && Y <  B              "measures that start before blah starts 
+                                        and stop after blah stops"
 
-  [2] A <  X && X <  B              "measures that start before blah starts and stop after blah starts"
+  [2] A <  X && X <  B              "measures that start before blah starts 
+                                        and stop after blah starts"
 
-  [7] A == X && B <  Y              "measures that start when blah starts   and stop before blah stops"
-  [8] A == X && B == Y              "measures that start when blah starts   and stop when blah stops"
-  [9] A == X && Y <  B              "measures that start when blah starts   and stop after blah stops"
+  [7] A == X && B <  Y              "measures that start when blah starts
+                                        and stop before blah stops"
+  [8] A == X && B == Y              "measures that start when blah starts
+                                        and stop when blah stops"
+  [9] A == X && Y <  B              "measures that start when blah starts
+                                        and stop after blah stops"
 
 
- [12] X <  A && B <  Y              "measures that start after blah starts  and stop before blah stops"
- [13] X <  A && B == Y              "measures that start after blah starts  and stop when blah stops"
- [14] X <  A && Y <  B              "measures that start after blah starts  and stop and after blah stops"
+ [12] X <  A && B <  Y              "measures that start after blah starts
+                                        and stop before blah stops"
+ [13] X <  A && B == Y              "measures that start after blah starts
+                                        and stop when blah stops"
+ [14] X <  A && Y <  B              "measures that start after blah starts
+                                        and stop and after blah stops"
 
- [11] X <  A && A <  Y              "measures that start after blah starts  and start before blah stops"
+ [11] X <  A && A <  Y              "measures that start after blah starts
+                                        and start before blah stops"
 
- [19] A <  Y && Y <  B              "measures that start before blah stops  and stop after blah stops"
- [23] X <  B && B <  Y              "measures that stop after blah starts   and stop before blah stops"
+ [19] A <  Y && Y <  B              "measures that start before blah stops
+                                        and stop after blah stops"
+ [23] X <  B && B <  Y              "measures that stop after blah starts
+                                        and stop before blah stops"
 
- [15] X <  A && A <  Y && Y <  B    "measures that start after blah starts  and start before blah stops
-                                                                            and stop after blah stop"
- [27] A <  X && X <  B && B <  Y    "measures that start before blah start  and stop after blah starts
-                                                                            and stop before blah stops"
+ [15] X <  A && A <  Y && Y <  B    "measures that start after blah starts
+                                        and start before blah stops
+                                        and stop after blah stop"
+ [27] A <  X && X <  B && B <  Y    "measures that start before blah start
+                                        and stop after blah starts
+                                        and stop before blah stops"

@@ -7,12 +7,12 @@ class RotationExpression(abctools.AbjadObject):
 
     ::
 
-        >>> rotation_indicator = musicexpressiontools.RotationExpression(
+        >>> rotation_expression = musicexpressiontools.RotationExpression(
         ...     index=-1, level=2, fracture_spanners=False)
 
     ::
 
-        >>> print format(rotation_indicator)
+        >>> print format(rotation_expression)
         musicexpressiontools.RotationExpression(
             index=-1,
             level=2,
@@ -43,7 +43,7 @@ class RotationExpression(abctools.AbjadObject):
 
         ::
 
-            >>> print format(rotation_indicator)
+            >>> print format(rotation_expression)
             musicexpressiontools.RotationExpression(
                 index=-1,
                 level=2,
@@ -65,7 +65,7 @@ class RotationExpression(abctools.AbjadObject):
 
         ::
 
-            >>> rotation_indicator.fracture_spanners
+            >>> rotation_expression.fracture_spanners
             False
 
         Returns boolean or none.
@@ -78,7 +78,7 @@ class RotationExpression(abctools.AbjadObject):
 
         ::
 
-            >>> rotation_indicator.index
+            >>> rotation_expression.index
             -1
 
         Returns integer.
@@ -91,7 +91,7 @@ class RotationExpression(abctools.AbjadObject):
 
         ::
 
-            >>> rotation_indicator.level
+            >>> rotation_expression.level
             2
 
         Returns integer.

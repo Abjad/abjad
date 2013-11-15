@@ -873,34 +873,34 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             else:
                 split_offset = leaves[-(n+1)]._get_timespan().stop_offset
         elif isinstance(n, musicexpressiontools.RotationExpression):
-            rotation_indicator = n
-            if rotation_indicator.level is None:
+            rotation_expression = n
+            if rotation_expression.level is None:
                 components_at_level = self.payload.select_leaves()
             else:
                 components_at_level = []
                 for component in \
                     iterate(self.payload).by_class():
                     score_index = component._get_parentage().score_index
-                    if len(score_index) == rotation_indicator.level:
+                    if len(score_index) == rotation_expression.level:
                         components_at_level.append(component)
             components_at_level = datastructuretools.CyclicTuple(components_at_level)
-            if isinstance(rotation_indicator.index, int):
-                if 0 < rotation_indicator.index:
+            if isinstance(rotation_expression.index, int):
+                if 0 < rotation_expression.index:
                     split_offset = components_at_level[
-                        -rotation_indicator.index]._get_timespan().start_offset
+                        -rotation_expression.index]._get_timespan().start_offset
                 elif n == 0:
                     return self
                 else:
                     split_offset = components_at_level[
-                        -(rotation_indicator.index+1)]._get_timespan().stop_offset
+                        -(rotation_expression.index+1)]._get_timespan().stop_offset
             else:
-                index = durationtools.Duration(rotation_indicator.index)
+                index = durationtools.Duration(rotation_expression.index)
                 if 0 <= index:
                     split_offset = self.payload._get_duration() - index
                 else:
                     split_offset = abs(index)
-            if rotation_indicator.fracture_spanners is not None:
-                fracture_spanners = rotation_indicator.fracture_spanners
+            if rotation_expression.fracture_spanners is not None:
+                fracture_spanners = rotation_expression.fracture_spanners
         else:
             n = durationtools.Duration(n)
             if 0 <= n:

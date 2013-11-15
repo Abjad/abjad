@@ -39,8 +39,8 @@ Select the last three elements of the tuplet picked out above:
 
 ### KINDS ###
 
-It's not clear that the object designs indicated above are correct yet.
-Better to start again with more examples.
+It's not clear that the object designs indicated above are correct yet.  Better
+to start again with more examples.
 
 * Select voice 1 (top-level) components.
 * Select voice 1 (top-level) components 10-15.
@@ -85,7 +85,8 @@ K
 
 
 L
-* Select voice 1 (top-level) components m-n; then select components of the result satisfying arbitrary timespan t.
+* Select voice 1 (top-level) components m-n; then select components of the
+* result satisfying arbitrary timespan t.
 [slice-restriction followed by timespan-restriction]
 
 

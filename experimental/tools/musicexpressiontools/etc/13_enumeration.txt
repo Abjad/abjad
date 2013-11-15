@@ -16,27 +16,42 @@ ENUMERATION.
  [11] B == Y                        "measures that stop when blah stops"
  [12] Y <  B                        "measures that stop after blah stops"
 
- [13] A <  X && X <  B              "measures that start before blah starts and stop after blah starts"
+ [13] A <  X && X <  B              "measures that start before blah starts
+                                        and stop after blah starts"
 
- [14] A <  X && B <  Y              "measures that start before blah starts and stop before blah stops"
- [15] A <  X && B == Y              "measures that start before blah starts and stop when blah stops"
- [16] A <  X && Y <  B              "measures that start before blah starts and stop after blah stops"
+ [14] A <  X && B <  Y              "measures that start before blah starts
+                                        and stop before blah stops"
+ [15] A <  X && B == Y              "measures that start before blah starts
+                                        and stop when blah stops"
+ [16] A <  X && Y <  B              "measures that start before blah starts
+                                        and stop after blah stops"
 
- [17] A == X && B <  Y              "measures that start when blah starts   and stop before blah stops"
- [18] A == X && B == Y              "measures that start when blah starts   and stop when blah stops"
- [19] A == X && Y <  B              "measures that start when blah starts   and stop after blah stops"
+ [17] A == X && B <  Y              "measures that start when blah starts
+                                        and stop before blah stops"
+ [18] A == X && B == Y              "measures that start when blah starts
+                                        and stop when blah stops"
+ [19] A == X && Y <  B              "measures that start when blah starts
+                                        and stop after blah stops"
 
- [20] X <  A && A <  Y              "measures that start after blah starts  and start before blah stops"
+ [20] X <  A && A <  Y              "measures that start after blah starts
+                                        and start before blah stops"
 
- [21] X <  A && B <  Y              "measures that start after blah starts  and stop before blah stops"
- [22] X <  A && B == Y              "measures that start after blah starts  and stop when blah stops"
- [23] X <  A && Y <  B              "measures that start after blah starts  and stop and after blah stops"
+ [21] X <  A && B <  Y              "measures that start after blah starts
+                                        and stop before blah stops"
+ [22] X <  A && B == Y              "measures that start after blah starts
+                                        and stop when blah stops"
+ [23] X <  A && Y <  B              "measures that start after blah starts
+                                        and stop and after blah stops"
 
- [24] A <  Y && Y <  B              "measures that start before blah stops  and stop after blah stops"
+ [24] A <  Y && Y <  B              "measures that start before blah stops
+                                        and stop after blah stops"
 
- [25] X <  B && B <  Y              "measures that stop after blah starts   and stop before blah stops"
+ [25] X <  B && B <  Y              "measures that stop after blah starts
+                                        and stop before blah stops"
 
- [26] X <  A && A <  Y && Y <  B    "measures that start after blah starts  and start before blah stops
-                                                                            and stop after blah stop"
- [27] A <  X && X <  B && B <  Y    "measures that start before blah start  and stop after blah starts
-                                                                            and stop before blah stops"
+ [26] X <  A && A <  Y && Y <  B    "measures that start after blah starts
+                                        and start before blah stops
+                                        and stop after blah stop"
+ [27] A <  X && X <  B && B <  Y    "measures that start before blah start
+                                        and stop after blah starts
+                                        and stop before blah stops"

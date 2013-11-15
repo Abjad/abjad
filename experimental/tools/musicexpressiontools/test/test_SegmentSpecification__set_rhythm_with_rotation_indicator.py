@@ -2,7 +2,7 @@
 from experimental import *
 
 
-def test_SegmentSpecification__set_rhythm_with_rotation_indicator_01():
+def test_SegmentSpecification__set_rhythm_with_rotation_expression_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
