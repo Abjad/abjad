@@ -8,7 +8,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_01():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo("As fast as possible")
-    attach(tempo, target.select_leaves()[0], target_context=Staff)
+    attach(tempo, target.select_leaves()[0], scope=Staff)
 
     assert systemtools.TestManager.compare(
         target,
@@ -35,7 +35,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_02():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo((1, 4), 60)
-    attach(tempo, target.select_leaves()[0], target_context=Staff)
+    attach(tempo, target.select_leaves()[0], scope=Staff)
 
     assert systemtools.TestManager.compare(
         target,
@@ -61,7 +61,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_03():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo((1, 4), (59, 63))
-    attach(tempo, target.select_leaves()[0], target_context=Staff)
+    attach(tempo, target.select_leaves()[0], scope=Staff)
 
     assert systemtools.TestManager.compare(
         target,
@@ -91,7 +91,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_04():
         (1, 4), 
         60, 
         )
-    attach(tempo, target.select_leaves()[0], target_context=Staff)
+    attach(tempo, target.select_leaves()[0], scope=Staff)
 
     assert systemtools.TestManager.compare(
         target,
@@ -120,7 +120,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_05():
         "Faster than a thousand suns",
         (1, 16), (34, 55), 
         )
-    attach(tempo, target.select_leaves()[0], target_context=Staff)
+    attach(tempo, target.select_leaves()[0], scope=Staff)
 
     assert systemtools.TestManager.compare(
         target,

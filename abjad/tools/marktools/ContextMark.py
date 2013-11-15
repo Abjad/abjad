@@ -13,7 +13,7 @@ class ContextMark(Mark):
     __slots__ = (
         '_effective_context', 
         '_start_component',
-        '_target_context',
+        '_scope',
         )
 
     ### INITIALIZER ###
@@ -22,7 +22,7 @@ class ContextMark(Mark):
         from abjad.tools import scoretools
         self._effective_context = None
         self._start_component = None
-        self._target_context = scoretools.Staff
+        self._scope = scoretools.Staff
 
     ### SPECIAL METHODS ###
 
@@ -72,11 +72,11 @@ class ContextMark(Mark):
         return repr(self)
 
     @property
-    def _target_context_name(self):
-        if isinstance(self._target_context, type):
-            return self._target_context.__name__
+    def _scope_name(self):
+        if isinstance(self._scope, type):
+            return self._scope.__name__
         else:
-            return type(self._target_context).__name__
+            return type(self._scope).__name__
 
     ### PRIVATE METHODS ###
 
@@ -129,23 +129,23 @@ class ContextMark(Mark):
 
     def _find_correct_effective_context(self):
         from abjad.tools import scoretools
-        target_context = self._target_context
-        if target_context is None:
+        scope = self._scope
+        if scope is None:
             return None
-        elif isinstance(target_context, type):
-            target_context_type = target_context
+        elif isinstance(scope, type):
+            scope_type = scope
             for component in self._start_component._get_parentage():
-                if isinstance(component, target_context_type):
+                if isinstance(component, scope_type):
                     return component
-        elif isinstance(target_context, str):
-            target_context_name = target_context
+        elif isinstance(scope, str):
+            scope_name = scope
             for component in self._start_component._get_parentage():
-                if component.name == target_context_name:
+                if component.name == scope_name:
                     return component
         else:
             message = 'target context {!r} must be'
             message += ' context type, context name or none.'
-            message = message.format(target_context)
+            message = message.format(scope)
             raise TypeError(message)
 
     def _get_effective_context(self):
