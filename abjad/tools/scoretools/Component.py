@@ -446,6 +446,7 @@ class Component(AbjadObject):
         return selectiontools.Lineage(self)
 
     def _get_mark(self, mark_prototypes=None):
+        from abjad.tools import marktools
         marks = self._get_marks(mark_prototypes=mark_prototypes)
         if not marks:
             message = 'no marks found.'
@@ -454,7 +455,9 @@ class Component(AbjadObject):
             message = 'multiple marks found.'
             raise ValueError(message)
         else:
-            return marks[0]
+            mark = marks[0]
+        assert isinstance(mark, marktools.ContextMark), repr(mark)
+        return mark
 
     def _get_marks(self, mark_prototypes=None):
         from abjad.tools import marktools
@@ -479,6 +482,10 @@ class Component(AbjadObject):
                 matching_marks.append(mark)
             elif any(mark == x for x in mark_objects):
                 matching_marks.append(mark)
+        matching_marks = tuple(matching_marks)
+        assert all(
+            isinstance(x, marktools.ContextMark) for x in matching_marks), \
+            repr(matching_marks)
         return tuple(matching_marks)
 
     def _get_markup(self, direction=None):
