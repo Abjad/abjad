@@ -16,10 +16,11 @@ class TypedCounter(TypedCollection):
     ::
 
         >>> print format(counter)
-        datastructuretools.TypedCounter({
-            NumberedPitch(0): 2,
-            NumberedPitch(1): 4,
-            },
+        datastructuretools.TypedCounter(
+            {
+                pitchtools.NumberedPitch(0): 2,
+                pitchtools.NumberedPitch(1): 4,
+                },
             item_class=pitchtools.NumberedPitch,
             )
 
@@ -130,33 +131,21 @@ class TypedCounter(TypedCollection):
         itemdict = _coerce_mapping(kwargs)
         return items, itemdict
 
-#    def _get_tools_package_qualified_positional_argument_repr_pieces(
-#        self, is_indented=True):
-#        result = []
-#        if is_indented:
-#            prefix, suffix = '\t', ','
-#        else:
-#            prefix, suffix = '', ', '
-#        for value in self._positional_argument_values:
-#            result.append('{}{}{}'.format(prefix, value, suffix))
-#        return tuple(result)
-
     ### PRIVATE PROPERTIES ###
 
     @property
     def _positional_argument_repr_string(self):
-        positional_argument_repr_string = ', '.join(
-            self._positional_argument_values)
+        result = []
+        for key, value in sorted(self.items()):
+            result.append('{!r}: {!r}'.format(key, value))
+        positional_argument_repr_string = ', '.join(result)
         positional_argument_repr_string = '{{{}}}'.format(
             positional_argument_repr_string)
         return positional_argument_repr_string
 
     @property
     def _positional_argument_values(self):
-        result = []
-        for key, value in sorted(self.items()):
-            result.append('{!r}: {!r}'.format(key, value))
-        return result
+        return [dict(self)]
 
     @property
     def _tokens_brace_characters(self):

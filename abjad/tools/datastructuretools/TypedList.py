@@ -19,24 +19,28 @@ class TypedList(TypedCollection):
     ::
 
         >>> print format(object_collection)
-        datastructuretools.TypedList([
-            23,
-            'foo',
-            False,
-            (1, 2, 3),
-            3.14159,
-            ])
+        datastructuretools.TypedList(
+            [
+                23,
+                'foo',
+                False,
+                (1, 2, 3),
+                3.14159,
+                ]
+            )
 
     ::
 
         >>> print format(object_collection.new(keep_sorted=True))
-        datastructuretools.TypedList([
-            23,
-            'foo',
-            False,
-            (1, 2, 3),
-            3.14159,
-            ])
+        datastructuretools.TypedList(
+            [
+                23,
+                'foo',
+                False,
+                (1, 2, 3),
+                3.14159,
+                ]
+            )
 
     ::
 
@@ -50,12 +54,13 @@ class TypedList(TypedCollection):
     ::
 
         >>> print format(pitch_collection)
-        datastructuretools.TypedList([
-            pitchtools.NamedPitch("c'"),
-            pitchtools.NamedPitch("d'"),
-            pitchtools.NamedPitch("e'"),
-            pitchtools.NamedPitch("f'"),
-            ],
+        datastructuretools.TypedList(
+            [
+                pitchtools.NamedPitch("c'"),
+                pitchtools.NamedPitch("d'"),
+                pitchtools.NamedPitch("e'"),
+                pitchtools.NamedPitch("f'"),
+                ],
             item_class=pitchtools.NamedPitch,
             )
 
@@ -119,23 +124,24 @@ class TypedList(TypedCollection):
         ::
 
             >>> print format(dynamic_collection)
-            datastructuretools.TypedList([
-                marktools.Dynamic(
-                    'ppp'
-                    ),
-                marktools.Dynamic(
-                    'p'
-                    ),
-                marktools.Dynamic(
-                    'mp'
-                    ),
-                marktools.Dynamic(
-                    'mf'
-                    ),
-                marktools.Dynamic(
-                    'fff'
-                    ),
-                ],
+            datastructuretools.TypedList(
+                [
+                    marktools.Dynamic(
+                        'ppp'
+                        ),
+                    marktools.Dynamic(
+                        'p'
+                        ),
+                    marktools.Dynamic(
+                        'mp'
+                        ),
+                    marktools.Dynamic(
+                        'mf'
+                        ),
+                    marktools.Dynamic(
+                        'fff'
+                        ),
+                    ],
                 item_class=marktools.Dynamic,
                 )
 
@@ -156,12 +162,13 @@ class TypedList(TypedCollection):
 
             >>> pitch_collection[-1] = 'gqs,'
             >>> print format(pitch_collection)
-            datastructuretools.TypedList([
-                pitchtools.NamedPitch("c'"),
-                pitchtools.NamedPitch("d'"),
-                pitchtools.NamedPitch("e'"),
-                pitchtools.NamedPitch('gqs,'),
-                ],
+            datastructuretools.TypedList(
+                [
+                    pitchtools.NamedPitch("c'"),
+                    pitchtools.NamedPitch("d'"),
+                    pitchtools.NamedPitch("e'"),
+                    pitchtools.NamedPitch('gqs,'),
+                    ],
                 item_class=pitchtools.NamedPitch,
                 )
 
@@ -169,16 +176,17 @@ class TypedList(TypedCollection):
 
             >>> pitch_collection[-1:] = ["f'", "g'", "a'", "b'", "c''"]
             >>> print format(pitch_collection)
-            datastructuretools.TypedList([
-                pitchtools.NamedPitch("c'"),
-                pitchtools.NamedPitch("d'"),
-                pitchtools.NamedPitch("e'"),
-                pitchtools.NamedPitch("f'"),
-                pitchtools.NamedPitch("g'"),
-                pitchtools.NamedPitch("a'"),
-                pitchtools.NamedPitch("b'"),
-                pitchtools.NamedPitch("c''"),
-                ],
+            datastructuretools.TypedList(
+                [
+                    pitchtools.NamedPitch("c'"),
+                    pitchtools.NamedPitch("d'"),
+                    pitchtools.NamedPitch("e'"),
+                    pitchtools.NamedPitch("f'"),
+                    pitchtools.NamedPitch("g'"),
+                    pitchtools.NamedPitch("a'"),
+                    pitchtools.NamedPitch("b'"),
+                    pitchtools.NamedPitch("c''"),
+                    ],
                 item_class=pitchtools.NamedPitch,
                 )
 

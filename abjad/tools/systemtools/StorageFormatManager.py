@@ -58,6 +58,19 @@ class StorageFormatManager(object):
                     result.append('{}{}'.format(prefix, piece))
                 result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
             result.append('{}{}'.format(prefix, braces[1]))
+        elif isinstance(value, dict):
+            result.append('{')
+            for key, value in sorted(value.items()):
+                key_pieces = StorageFormatManager.format_one_value(key)
+                value_pieces = StorageFormatManager.format_one_value(value)
+                for x in key_pieces[:-1]:
+                    result.append('{}{}'.format(prefix, x))
+                result.append('{}{}: {}'.format(
+                    prefix, key_pieces[-1], value_pieces[0]))
+                for x in value_pieces[1:]:
+                    result.append('{}{}'.format(prefix, x))
+                result[-1] = '{}{}'.format(result[-1], suffix)
+            result.append('{}}}'.format(prefix))
         else:
             result.append(repr(value))
         return result
