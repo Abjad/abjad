@@ -53,7 +53,7 @@ class Tempo(ContextMark):
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
         ContextMark.__init__(self)
-        self._target_context = scoretools.Score
+        self._scope = scoretools.Score
         if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
             duration = durationtools.Duration(tempo_indication.duration)

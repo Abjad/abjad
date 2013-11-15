@@ -72,7 +72,7 @@ def make_mozart_score():
 
     # remove the old, default piano instrument attached to the piano staff
     # and add a custom instrument mark
-    detach(marktools.Mark, score['Piano Staff'])
+    detach(marktools.ContextMark, score['Piano Staff'])
 
     klavier = instrumenttools.Piano(
         instrument_name='Katzenklavier', 

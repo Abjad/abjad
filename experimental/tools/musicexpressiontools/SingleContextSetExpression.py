@@ -9,7 +9,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     r'''Single-context set expression.
 
     Set `attribute` to `source_expression` for `target_timespan` in 
-    `target_context_name`.
+    `scope_name`.
 
     Example specification:
 
@@ -76,7 +76,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         attribute=None,
         source_expression=None,
         target_timespan=None,
-        target_context_name=None,
+        scope_name=None,
         fresh=True,
         persist=True,
         truncate=None,
@@ -89,9 +89,9 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
             persist=persist,
             truncate=truncate,
             )
-        assert isinstance(target_context_name, (str, type(None)))
+        assert isinstance(scope_name, (str, type(None)))
         self._fresh = fresh
-        self._target_context_name = target_context_name
+        self._scope_name = scope_name
 
     ### PRIVATE METHODS ###
 
@@ -123,12 +123,12 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         return self._fresh
 
     @property
-    def target_context_name(self):
+    def scope_name(self):
         r'''Single-context set expression context name.
 
         Returns string or none.
         '''
-        return self._target_context_name
+        return self._scope_name
 
     ### PUBLIC METHODS ###
 
@@ -136,7 +136,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     def evaluate(self):
         r'''Evaluate single-context set expression.
 
-        Returns timespan-scoped single-context set expression.
+        Returns timespan-delimited single-context set expression.
         '''
         pass
 
@@ -144,13 +144,13 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         r'''Store single-context set expression in root specification 
         by context and attribute.
         '''
-        target_context_name = self.target_context_name or \
+        scope_name = self.scope_name or \
             self.score_specification.score_name
-        target_context_proxy = \
+        scope_proxy = \
             self.root_specification.single_context_set_expressions_by_context[
-                target_context_name]
+                scope_name]
         expressions = \
-            target_context_proxy.single_context_set_expressions_by_attribute[
+            scope_proxy.single_context_set_expressions_by_attribute[
                 self.attribute]
         for expression in expressions[:]:
             if expression.target_timespan == self.target_timespan:

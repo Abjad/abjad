@@ -266,9 +266,9 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_13():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     tempo = Tempo(Duration(1, 8), 38)
-    attach(tempo, staff, target_context=Staff)
+    attach(tempo, staff, scope=Staff)
     tempo = Tempo(Duration(1, 8), 42)
-    attach(tempo, staff[2], target_context=Staff)
+    attach(tempo, staff[2], scope=Staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -297,12 +297,12 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_13():
 
 
 def test_agenttools_InspectionAgent_get_effective_context_mark_14():
-    r'''Attaches tempo to chord scoped in staff.
+    r'''Attaches tempo to chord in staff.
     '''
 
     staff = Staff([Chord([2, 3, 4], (1, 4))])
     tempo = Tempo(Duration(1, 8), 38)
-    attach(tempo, staff[0], target_context=Staff)
+    attach(tempo, staff[0], scope=Staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -319,7 +319,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_15():
 
     staff = Staff([Note("c'4")])
     tempo = Tempo(Duration(1, 8), 38)
-    attach(tempo, staff[0], target_context=Staff)
+    attach(tempo, staff[0], scope=Staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -338,7 +338,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_16():
 
     staff = Staff([Note("c'4")])
     tempo = Tempo(Duration(1, 8), 38)
-    attach(tempo, staff[0], target_context=Staff)
+    attach(tempo, staff[0], scope=Staff)
     detach(tempo, staff[0])
 
     assert systemtools.TestManager.compare(

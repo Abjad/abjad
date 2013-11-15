@@ -36,12 +36,12 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         from experimental.tools import musicexpressiontools
         source_expression = self._expr_to_expression(source_expression)
         assert self.score_specification is not None
-        target_context_names = self.score_specification._context_token_to_context_names(contexts)
+        scope_names = self.score_specification._context_token_to_context_names(contexts)
         multiple_context_set_expression = musicexpressiontools.MultipleContextSetExpression(
             attribute=attribute,
             source_expression=source_expression,
             target_timespan=self._expression_abbreviation,
-            target_context_names=target_context_names,
+            scope_names=scope_names,
             persist=persist,
             truncate=truncate,
             )
@@ -85,7 +85,7 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
                         ),
                     ),
                 target_timespan='red',
-                target_context_names=['Voice 1', 'Voice 3'],
+                scope_names=['Voice 1', 'Voice 3'],
                 persist=True,
                 )
 

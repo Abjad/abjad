@@ -447,6 +447,7 @@ class Component(AbjadObject):
         return selectiontools.Lineage(self)
 
     def _get_mark(self, mark_prototypes=None):
+        from abjad.tools import marktools
         marks = self._get_marks(mark_prototypes=mark_prototypes)
         if not marks:
             message = 'no marks found.'
@@ -455,11 +456,13 @@ class Component(AbjadObject):
             message = 'multiple marks found.'
             raise ValueError(message)
         else:
-            return marks[0]
+            mark = marks[0]
+        assert isinstance(mark, marktools.ContextMark), repr(mark)
+        return mark
 
     def _get_marks(self, mark_prototypes=None):
         from abjad.tools import marktools
-        mark_prototypes = mark_prototypes or (marktools.Mark,)
+        mark_prototypes = mark_prototypes or (marktools.ContextMark,)
         if not isinstance(mark_prototypes, tuple):
             mark_prototypes = (mark_prototypes,)
         mark_items = mark_prototypes[:]
@@ -467,7 +470,7 @@ class Component(AbjadObject):
         for mark_item in mark_items:
             if isinstance(mark_item, types.TypeType):
                 mark_prototypes.append(mark_item)
-            elif isinstance(mark_item, marktools.Mark):
+            elif isinstance(mark_item, marktools.ContextMark):
                 mark_objects.append(mark_item)
             else:
                 message = 'must be mark class or mark object: {!r}'
@@ -480,6 +483,10 @@ class Component(AbjadObject):
                 matching_marks.append(mark)
             elif any(mark == x for x in mark_objects):
                 matching_marks.append(mark)
+        matching_marks = tuple(matching_marks)
+        assert all(
+            isinstance(x, marktools.ContextMark) for x in matching_marks), \
+            repr(matching_marks)
         return tuple(matching_marks)
 
     def _get_markup(self, direction=None):

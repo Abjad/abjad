@@ -9,7 +9,7 @@ from experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpre
 
 class TimespanScopedSingleContextRhythmSetExpression(
     TimespanScopedSingleContextSetExpression):
-    r'''Timespan-scoped single-context rhythm set expression.
+    r'''Timespan-delimited single-context rhythm set expression.
     '''
 
     ### CLASS VARIABLES ###
@@ -22,7 +22,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
         self,
         source_expression=None,
         target_timespan=None,
-        target_context_name=None,
+        scope_name=None,
         fresh=None,
         ):
         TimespanScopedSingleContextSetExpression.__init__(
@@ -30,27 +30,27 @@ class TimespanScopedSingleContextRhythmSetExpression(
             attribute='rhythm',
             source_expression=source_expression,
             target_timespan=target_timespan,
-            target_context_name=target_context_name,
+            scope_name=scope_name,
             fresh=fresh,
             )
 
     ### SPECIAL METHODS ###
 
     def __sub__(self, timespan):
-        r'''Subtract `timespan` from timespan-scoped single-context 
+        r'''Subtract `timespan` from timespan-delimited single-context 
         rhythm set expression.
 
             >>> source_expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     "{ c'16 [ c'8 ] }", start_offset=0)
             >>> timespan = timespantools.Timespan(0, 20)
-            >>> timespan_scoped_single_context_rhythm_set_expression = \
+            >>> timespan_delimited_single_context_rhythm_set_expression = \
             ...     musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
             ...     source_expression, timespan, 'Voice 1')
 
         ::
 
-            >>> result = timespan_scoped_single_context_rhythm_set_expression - timespantools.Timespan(5, 15)
+            >>> result = timespan_delimited_single_context_rhythm_set_expression - timespantools.Timespan(5, 15)
 
         ::
 
@@ -68,7 +68,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                             start_offset=durationtools.Offset(0, 1),
                             stop_offset=durationtools.Offset(5, 1),
                             ),
-                        target_context_name='Voice 1',
+                        scope_name='Voice 1',
                         ),
                     musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
                         source_expression=musicexpressiontools.StartPositionedRhythmPayloadExpression(
@@ -81,12 +81,12 @@ class TimespanScopedSingleContextRhythmSetExpression(
                             start_offset=durationtools.Offset(15, 1),
                             stop_offset=durationtools.Offset(20, 1),
                             ),
-                        target_context_name='Voice 1',
+                        scope_name='Voice 1',
                         ),
                     ]
                 )
 
-        Returns timespan-scoped single-context set expression inventory.
+        Returns timespan-delimited single-context set expression inventory.
         '''
         return TimespanScopedSingleContextSetExpression.__sub__(self, timespan)
 
@@ -107,7 +107,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
     ### PUBLIC METHODS ###
 
     def evaluate(self, division_list, start_offset, voice_name):
-        r'''Evaluate timespan-scoped single-context rhythm set expression.
+        r'''Evaluate timespan-delimited single-context rhythm set expression.
 
         Returns rhythm region expression.
         '''

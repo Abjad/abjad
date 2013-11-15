@@ -97,9 +97,9 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_02():
     attach(tie, staff[7:11])
 
     tempo = Tempo((1, 4), 58)
-    attach(tempo, staff[0], target_context=Staff)
+    attach(tempo, staff[0], scope=Staff)
     tempo = Tempo((1, 4), 77)
-    attach(tempo, staff[9], target_context=Staff)
+    attach(tempo, staff[9], scope=Staff)
 
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
         staff.select_leaves())

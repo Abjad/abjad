@@ -50,7 +50,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
             attribute=None,
             source_expression=None,
             target_timespan=None,
-            target_context_names=None,
+            scope_names=None,
             persist=True,
             truncate=None,
             ):
@@ -62,8 +62,8 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
             persist=persist,
             truncate=truncate,
             )
-        assert isinstance(target_context_names, (list, type(None)))
-        self._target_context_names = target_context_names
+        assert isinstance(scope_names, (list, type(None)))
+        self._scope_names = scope_names
 
     ### PRIVATE METHODS ###
 
@@ -78,12 +78,12 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def target_context_names(self):
+    def scope_names(self):
         r'''Multiple-context set expression target context names.
 
         Returns list or none.
         '''
-        return self._target_context_names
+        return self._scope_names
 
     ### PUBLIC METHODS ###
 
@@ -96,17 +96,17 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         single_context_set_expression_class = \
             self._attribute_to_single_context_set_expression_class(
                 self.attribute)
-        if self.target_context_names is None:
-            target_context_names = [None]
+        if self.scope_names is None:
+            scope_names = [None]
         else:
-            target_context_names = self.target_context_names
-        for target_context_name in target_context_names:
+            scope_names = self.scope_names
+        for scope_name in scope_names:
             target_timespan = copy.deepcopy(self.target_timespan)
             single_context_set_expression = \
                 single_context_set_expression_class(
                     source_expression=self.source_expression,
                     target_timespan=target_timespan,
-                    target_context_name=target_context_name,
+                    scope_name=scope_name,
                     persist=self.persist,
                     )
             single_context_set_expression._score_specification = \

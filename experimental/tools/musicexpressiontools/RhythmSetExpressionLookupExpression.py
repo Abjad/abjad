@@ -32,7 +32,7 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
             return
         offset = expression.payload[0]
         timespan_inventory = \
-            self._get_timespan_scoped_single_context_set_expressions(
+            self._get_timespan_delimited_single_context_set_expressions(
                 self.attribute)
         time_relation = timerelationtools.offset_happens_during_timespan(
             offset=offset)

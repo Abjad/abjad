@@ -607,7 +607,7 @@ Now let's take a look at the code that puts our score together:
        klavier = instrumenttools.Piano(
            instrument_name='Katzenklavier', 
            short_instrument_name='kk.',
-           target_context = scoretools.PianoStaff,
+           scope = scoretools.PianoStaff,
            )
        klavier.attach(score['Piano Staff'])
    

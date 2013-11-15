@@ -8,9 +8,9 @@ class IndicatorExpression(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, indicator, target_context=None):
+    def __init__(self, indicator, scope=None):
         self._indicator = indicator
-        self._target_context = target_context
+        self._scope = scope
 
     ### PUBLIC PROPERTIES ###
 
@@ -23,9 +23,9 @@ class IndicatorExpression(AbjadObject):
         return self._indicator
 
     @property
-    def target_context(self):
+    def scope(self):
         r'''Target context of indicator expression.
 
         Returns context.
         '''
-        return self._target_context
+        return self._scope

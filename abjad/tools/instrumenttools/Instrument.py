@@ -161,8 +161,8 @@ class Instrument(ContextMark):
         return self.instrument_name
 
     @property
-    def _target_context_name(self):
-        return self._target_context.__name__
+    def _scope_name(self):
+        return self._scope.__name__
 
     ### PRIVATE METHODS ###
 
@@ -345,13 +345,13 @@ class Instrument(ContextMark):
         result = []
         line = r'\set {!s}.instrumentName = {!s}'
         line = line.format(
-            self._target_context_name, 
+            self._scope_name, 
             self.instrument_name_markup,
             )
         result.append(line)
         line = r'\set {!s}.shortInstrumentName = {!s}'
         line = line.format(
-            self._target_context_name, 
+            self._scope_name, 
             self.short_instrument_name_markup,
             )
         result.append(line)

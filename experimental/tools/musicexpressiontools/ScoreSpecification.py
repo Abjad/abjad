@@ -107,7 +107,7 @@ class ScoreSpecification(Specification):
 
     def _compare_expressions(self, x, y):
         result = self.compare_context_names(
-            x.target_context_name, y.target_context_name)
+            x.scope_name, y.scope_name)
         if result in (-1, 1):
             return result
         else:
@@ -829,43 +829,43 @@ class ScoreSpecification(Specification):
         self.interpreter = interpreter
         return interpreter(self)
 
-    def make_default_timespan_scoped_single_context_division_set_expression(
+    def make_default_timespan_delimited_single_context_division_set_expression(
         self, target_timespan, voice_name):
         from experimental.tools import musicexpressiontools
         divisions = self.get_time_signature_slice(target_timespan)
         return musicexpressiontools.TimespanScopedSingleContextDivisionSetExpression(
             source_expression=musicexpressiontools.IterablePayloadExpression(divisions),
             target_timespan=target_timespan,
-            target_context_name=voice_name,
+            scope_name=voice_name,
             fresh=True,
             truncate=True,
             )
 
-    def make_default_timespan_scoped_single_context_rhythm_set_expression(
+    def make_default_timespan_delimited_single_context_rhythm_set_expression(
         self, target_timespan, voice_name):
         from experimental import library
         from experimental.tools import musicexpressiontools
         return musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
             source_expression=musicexpressiontools.RhythmMakerExpression(library.skip_tokens),
             target_timespan=target_timespan,
-            target_context_name=voice_name,
+            scope_name=voice_name,
             fresh=True,
             )
 
-    def make_default_timespan_scoped_single_context_set_expression(
+    def make_default_timespan_delimited_single_context_set_expression(
         self, attribute, target_timespan, voice_name):
         if attribute == 'divisions':
-            return self.make_default_timespan_scoped_single_context_division_set_expression(
+            return self.make_default_timespan_delimited_single_context_division_set_expression(
                 target_timespan, voice_name)
         elif attribute == 'rhythm':
-            return self.make_default_timespan_scoped_single_context_rhythm_set_expression(
+            return self.make_default_timespan_delimited_single_context_rhythm_set_expression(
                 target_timespan, voice_name)
         else:
             raise ValueError(attribute)
 
-    def make_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
+    def make_timespan_delimited_single_context_set_expressions_for_voice(self, attribute, voice_name):
         from experimental.tools import musicexpressiontools
-        timespan_scoped_set_expressions = \
+        timespan_delimited_set_expressions = \
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for specification in (self, ) + tuple(self.segment_specifications):
             single_context_set_expressions = \
@@ -875,16 +875,16 @@ class ScoreSpecification(Specification):
             #    self._debug(specification, 'spc')
             #    self._debug_values(single_context_set_expressions, 'SSS')
             for single_context_set_expression in single_context_set_expressions:
-                timespan_scoped_set_expression = single_context_set_expression.evaluate()
+                timespan_delimited_set_expression = single_context_set_expression.evaluate()
                 # make sure set expression was set expression for
                 # timespan that exists in current segment
-                if timespan_scoped_set_expression.target_timespan.is_well_formed:
-                    timespan_scoped_set_expressions.append(
-                        timespan_scoped_set_expression)
-        #self._debug_values(timespan_scoped_set_expressions, 'TTT')
-        timespan_scoped_set_expressions.sort(self._compare_expressions)
-        assert timespan_scoped_set_expressions.all_are_well_formed
-        return timespan_scoped_set_expressions
+                if timespan_delimited_set_expression.target_timespan.is_well_formed:
+                    timespan_delimited_set_expressions.append(
+                        timespan_delimited_set_expression)
+        #self._debug_values(timespan_delimited_set_expressions, 'TTT')
+        timespan_delimited_set_expressions.sort(self._compare_expressions)
+        assert timespan_delimited_set_expressions.all_are_well_formed
+        return timespan_delimited_set_expressions
 
     def report_settings(self):
         for segment_specification in self.segment_specifications:

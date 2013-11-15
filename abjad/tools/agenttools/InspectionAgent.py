@@ -359,9 +359,10 @@ class InspectionAgent(object):
 
         Returns tuple.
         '''
-        return self._component._get_marks(
+        result = self._component._get_marks(
             mark_prototypes=mark_prototypes,
             )
+        return result
 
     def get_markup(
         self,

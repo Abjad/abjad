@@ -36,7 +36,7 @@ class TimeSignature(ContextMark):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> time_signature = TimeSignature((4, 8))
-        >>> attach(time_signature, staff[0], target_context=Score)
+        >>> attach(time_signature, staff[0], scope=Score)
         >>> show(staff) # doctest: +SKIP
 
     '''
@@ -248,7 +248,6 @@ class TimeSignature(ContextMark):
         if start_component._has_mark(mark_prototypes=classes):
             message = 'component already has context mark attached.'
             raise ValueError(message)
-        #return marktools.Mark._attach(self, start_component)
         self._bind_to_start_component(start_component)
 
     ### PUBLIC PROPERTIES ###

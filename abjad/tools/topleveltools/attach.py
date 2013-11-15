@@ -1,26 +1,26 @@
 import types
 
 
-def attach(item, component_expression, target_context=None):
+def attach(item, component_expression, scope=None):
     r'''Attaches `item` to `component_expression`.
 
-    Creates attachment expression effective at `target_context`.
+    Creates attachment expression effective at `scope`.
 
-    Derives `target_context` from the default target context of `item`
-    when `target_context` is none.
+    Derives `scope` from the default target context of `item`
+    when `scope` is none.
 
     Returns none.
     '''
     from abjad.tools import scoretools
 
-    if target_context is not None:
+    if scope is not None:
         assert hasattr(item, '_attach')
-        assert hasattr(item, '_target_context')
-        if isinstance(target_context, types.TypeType):
-            assert issubclass(target_context, scoretools.Context)
+        assert hasattr(item, '_scope')
+        if isinstance(scope, types.TypeType):
+            assert issubclass(scope, scoretools.Context)
         else:
-            assert isinstance(target_context, scoretools.Context)
-        item._target_context = target_context
+            assert isinstance(scope, scoretools.Context)
+        item._scope = scope
 
     if hasattr(item, '_attach'):
         item._attach(component_expression)
