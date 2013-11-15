@@ -199,7 +199,7 @@ class RomanNumeral(AbjadObject):
         quality = tonalanalysistools.ChordQuality(quality)
         extent = tonalanalysistools.ChordExtent(extent)
         inversion = tonalanalysistools.ChordInversion(inversion)
-        suspension = tonalanalysistools.Suspension()
+        suspension = tonalanalysistools.ChordSuspension()
         return scale_degree, quality, extent, inversion, suspension
 
     def _init_by_symbolic_string(self, symbolic_string):
@@ -219,11 +219,11 @@ class RomanNumeral(AbjadObject):
         inversion = tonalanalysistools.ChordInversion(inversion)
         suspension = [x for x in figured_bass_parts if '-' in x]
         if not suspension:
-            suspension = tonalanalysistools.Suspension()
+            suspension = tonalanalysistools.ChordSuspension()
         elif 1 < len(suspension):
             raise NotImplementedError('no multiple suspensions yet.')
         else:
-            suspension = tonalanalysistools.Suspension(suspension[0])
+            suspension = tonalanalysistools.ChordSuspension(suspension[0])
         return scale_degree, quality, extent, inversion, suspension
 
     def _init_with_suspension(self, *args):
@@ -231,7 +231,7 @@ class RomanNumeral(AbjadObject):
         scale_degree, quality, extent, inversion, suspension = \
             self._init_by_scale_degree_quality_extent_and_inversion(*args[:-1])
         suspension = args[-1]
-        suspension = tonalanalysistools.Suspension(suspension)
+        suspension = tonalanalysistools.ChordSuspension(suspension)
         return scale_degree, quality, extent, inversion, suspension
 
     ### PUBLIC PROPERTIES ###

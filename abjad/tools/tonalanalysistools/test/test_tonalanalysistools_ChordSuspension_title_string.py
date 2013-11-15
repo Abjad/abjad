@@ -3,13 +3,13 @@ from abjad import *
 from abjad.tools import tonalanalysistools
 
 
-def test_tonalanalysistools_Suspension_title_string_01():
+def test_tonalanalysistools_ChordSuspension_title_string_01():
 
-    suspension_indicator = tonalanalysistools.Suspension(4, 3)
+    suspension_indicator = tonalanalysistools.ChordSuspension(4, 3)
     assert suspension_indicator.title_string == 'FourThreeSuspension'
 
-    suspension_indicator = tonalanalysistools.Suspension(('flat', 2), 1)
+    suspension_indicator = tonalanalysistools.ChordSuspension(('flat', 2), 1)
     assert suspension_indicator.title_string == 'FlatTwoOneSuspension'
 
-    suspension_indicator = tonalanalysistools.Suspension()
+    suspension_indicator = tonalanalysistools.ChordSuspension()
     assert suspension_indicator.title_string == ''
