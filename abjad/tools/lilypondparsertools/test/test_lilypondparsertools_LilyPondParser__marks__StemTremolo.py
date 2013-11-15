@@ -21,5 +21,5 @@ def test_lilypondparsertools_LilyPondParser__marks__StemTremolo_01():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    stem_tremolos = inspect(result[0]).get_attached_items(marktools.StemTremolo)
+    stem_tremolos = inspect(result[0]).get_indicators(marktools.StemTremolo)
     assert 1 == len(stem_tremolos)

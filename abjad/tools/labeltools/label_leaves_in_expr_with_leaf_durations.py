@@ -122,8 +122,8 @@ def label_leaves_in_expr_with_leaf_durations(
     for leaf in iterate(expr).by_class(scoretools.Leaf):
         tie_spanners = leaf._get_spanners(spanner_classes)
         if not tie_spanners:
-            if leaf._get_attached_items(durationtools.Multiplier):
-                multiplier = leaf._get_attached_item(durationtools.Multiplier)
+            if leaf._get_indicators(durationtools.Multiplier):
+                multiplier = leaf._get_indicator(durationtools.Multiplier)
                 multiplier = '* {}'.format(multiplier)
             else:
                 multiplier = ''

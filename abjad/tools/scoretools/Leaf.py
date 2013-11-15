@@ -96,7 +96,7 @@ class Leaf(Component):
         from abjad.tools import marktools
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = None
-        multipliers = self._get_attached_items(durationtools.Multiplier)
+        multipliers = self._get_indicators(durationtools.Multiplier)
         if not multipliers:
             pass
         elif len(multipliers) == 1:
@@ -113,8 +113,8 @@ class Leaf(Component):
     @property
     def _multiplied_duration(self):
         if self.written_duration:
-            if self._get_attached_items(durationtools.Multiplier):
-                multipliers = self._get_attached_items(
+            if self._get_indicators(durationtools.Multiplier):
+                multipliers = self._get_indicators(
                     durationtools.Multiplier)
                 if 1 == len(multipliers):
                     multiplier = multipliers[0]
@@ -140,10 +140,10 @@ class Leaf(Component):
         if getattr(leaf, '_set', None) is not None:
             self._set = copy.copy(contextualize(leaf))
         new_items = []
-        for item in leaf._attached_items:
+        for item in leaf._indicators:
             new_item = copy.copy(item)
             new_items.append(new_item)
-        self._attached_items = new_items
+        self._indicators = new_items
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Component._copy_with_marks_but_without_children_or_spanners(self)
@@ -405,7 +405,7 @@ class Leaf(Component):
         from abjad.tools import spannertools
         new_duration = durationtools.Duration(new_duration)
         # change LilyPond multiplier if leaf already has LilyPond multiplier
-        if self._get_attached_items(durationtools.Multiplier):
+        if self._get_indicators(durationtools.Multiplier):
             detach(durationtools.Multiplier, self)
             multiplier = new_duration / self.written_duration
             attach(multiplier, self)

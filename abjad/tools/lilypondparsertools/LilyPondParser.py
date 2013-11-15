@@ -603,7 +603,7 @@ class LilyPondParser(abctools.Parser):
         }
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_attached_items(marktools.Annotation)
+        annotations = leaf._get_indicators(marktools.Annotation)
         detach(marktools.Annotation, leaf)
         if annotations:
             spanners_annotations = [
@@ -641,7 +641,7 @@ class LilyPondParser(abctools.Parser):
                 #print post_event, 'debugging'
                 #raise Exception('debugging')
                 annotation = [
-                    x for x in leaf._get_attached_items(marktools.Annotation)
+                    x for x in leaf._get_indicators(marktools.Annotation)
                     if x.name == 'spanners'
                     ]
                 if not annotation:

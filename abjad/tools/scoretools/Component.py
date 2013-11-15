@@ -27,7 +27,7 @@ class Component(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_attached_items',
+        '_indicators',
         '_dependent_context_marks',
         '_is_forbidden_to_update',
         '_marks_are_current',
@@ -51,7 +51,7 @@ class Component(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self):
-        self._attached_items = list()
+        self._indicators = list()
         self._dependent_context_marks = list()
         self._is_forbidden_to_update = False
         self._marks_are_current = False
@@ -139,8 +139,8 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_attached_item(self, item_prototypes=None):
-        items = self._get_attached_items(item_prototypes=item_prototypes)
+    def _get_indicator(self, item_prototypes=None):
+        items = self._get_indicators(item_prototypes=item_prototypes)
         if not items:
             message = 'no attached items found matching {!r}.'
             message = message.format(item_prototypes)
@@ -152,7 +152,7 @@ class Component(AbjadObject):
         else:
             return items[0]
 
-    def _get_attached_items(self, item_prototypes=None):
+    def _get_indicators(self, item_prototypes=None):
         item_prototypes = item_prototypes or (object,)
         if not isinstance(item_prototypes, tuple):
             item_prototypes = (item_prototypes,)
@@ -165,7 +165,7 @@ class Component(AbjadObject):
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
         matching_items = []
-        for item in self._attached_items:
+        for item in self._indicators:
             if isinstance(item, prototype_classes):
                 matching_items.append(item)
             elif any(item == x for x in prototype_objects):
@@ -196,7 +196,7 @@ class Component(AbjadObject):
         for mark in self._get_marks():
             new_mark = copy.copy(mark)
             attach(new_mark, new)
-        for item in self._get_attached_items():
+        for item in self._get_indicators():
             new_item = copy.copy(item)
             attach(new_item, new)
         return new
@@ -483,7 +483,7 @@ class Component(AbjadObject):
 
     def _get_markup(self, direction=None):
         from abjad.tools import markuptools
-        markup = self._get_attached_items(markuptools.Markup)
+        markup = self._get_indicators(markuptools.Markup)
         if direction is Up:
             return tuple(x for x in markup if x.direction is Up)
         elif direction is Down:
@@ -592,8 +592,8 @@ class Component(AbjadObject):
     def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
-    def _has_attached_item(self, item_prototypes=None):
-        items = self._get_attached_items(item_prototypes=item_prototypes)
+    def _has_indicator(self, item_prototypes=None):
+        items = self._get_indicators(item_prototypes=item_prototypes)
         return bool(items)
 
     def _has_mark(self, mark_prototypes=None):
@@ -621,7 +621,7 @@ class Component(AbjadObject):
         result = []
         for mark in self._get_marks():
             result.append(attach(mark, recipient_component))
-        for item in self._get_attached_items():
+        for item in self._get_indicators():
             detach(item, self)
             attach(item, recipient_component)
 

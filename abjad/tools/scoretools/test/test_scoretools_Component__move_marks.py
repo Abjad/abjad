@@ -20,7 +20,7 @@ def test_scoretools_Component__move_marks_01():
         )
 
     assert len(inspect(staff[0]).get_marks()) == 1
-    assert len(inspect(staff[0]).get_attached_items()) == 1
+    assert len(inspect(staff[0]).get_indicators()) == 1
     assert len(inspect(staff[1]).get_marks()) == 0
     assert len(inspect(staff[2]).get_marks()) == 0
     assert len(inspect(staff[3]).get_marks()) == 0
@@ -43,5 +43,5 @@ def test_scoretools_Component__move_marks_01():
     assert len(inspect(staff[0]).get_marks()) == 0
     assert len(inspect(staff[1]).get_marks()) == 0
     assert len(inspect(staff[2]).get_marks()) == 1
-    assert len(inspect(staff[2]).get_attached_items()) == 1
+    assert len(inspect(staff[2]).get_indicators()) == 1
     assert len(inspect(staff[3]).get_marks()) == 0

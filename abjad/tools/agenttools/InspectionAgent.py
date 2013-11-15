@@ -48,7 +48,7 @@ class InspectionAgent(object):
         is attached to component.
         '''
         from abjad.tools import marktools
-        annotations = self.get_attached_items(marktools.Annotation)
+        annotations = self.get_indicators(marktools.Annotation)
         if not annotations:
             return default
         with_correct_name = []
@@ -64,7 +64,7 @@ class InspectionAgent(object):
         annotation_value = with_correct_name[0].value
         return annotation_value
 
-    def get_attached_item(
+    def get_indicator(
         self,
         item_prototypes=None,
         ):
@@ -76,11 +76,11 @@ class InspectionAgent(object):
 
         Returns item.
         '''
-        return self._component._get_attached_item(
+        return self._component._get_indicator(
             item_prototypes=item_prototypes,
             )
 
-    def get_attached_items(
+    def get_indicators(
         self,
         item_prototypes=None,
         ):
@@ -88,7 +88,7 @@ class InspectionAgent(object):
 
         Returns tuple.
         '''
-        return self._component._get_attached_items(
+        return self._component._get_indicators(
             item_prototypes=item_prototypes,
             )
 

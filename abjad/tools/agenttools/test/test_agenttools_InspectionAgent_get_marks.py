@@ -26,7 +26,7 @@ def test_agenttools_InspectionAgent_get_marks_01():
         '''
         )
 
-    marks = inspect(staff[0]).get_attached_items(marktools.LilyPondCommand)
+    marks = inspect(staff[0]).get_indicators(marktools.LilyPondCommand)
     assert command_1 in marks
     assert command_2 in marks
     assert len(marks) == 2
@@ -56,7 +56,7 @@ def test_agenttools_InspectionAgent_get_marks_02():
         '''
         )
 
-    items = inspect(staff[0]).get_attached_items()
+    items = inspect(staff[0]).get_indicators()
     assert comment in items
     assert command in items
     assert len(items) == 2
@@ -134,7 +134,7 @@ def test_agenttools_InspectionAgent_get_marks_05():
         '''
         )
 
-    annotations = inspect(staff[0]).get_attached_items(marktools.Annotation)
+    annotations = inspect(staff[0]).get_indicators(marktools.Annotation)
     assert annotations == (annotation_1, annotation_2)
 
 
@@ -160,7 +160,7 @@ def test_agenttools_InspectionAgent_get_marks_06():
         '''
         )
 
-    marks = inspect(staff[0]).get_attached_items(marktools.LilyPondComment)
+    marks = inspect(staff[0]).get_indicators(marktools.LilyPondComment)
     assert comment_1 in marks
     assert comment_2 in marks
     assert len(marks) == 2
@@ -171,6 +171,6 @@ def test_agenttools_InspectionAgent_get_marks_07():
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)
     attach(stem_tremolo, note)
-    stem_tremolos = inspect(note).get_attached_items(marktools.StemTremolo)
+    stem_tremolos = inspect(note).get_indicators(marktools.StemTremolo)
 
     assert stem_tremolos[0] is stem_tremolo

@@ -21,11 +21,11 @@ def detach(item, component_expression):
         elif issubclass(item, scoretools.GraceContainer):
             grace_containers = inspector.get_grace_containers(item)
         else:
-            assert hasattr(component_expression, '_attached_items')
+            assert hasattr(component_expression, '_indicators')
             result = []
-            for x in component_expression._attached_items[:]:
+            for x in component_expression._indicators[:]:
                 if isinstance(x, item):
-                    component_expression._attached_items.remove(x)
+                    component_expression._indicators.remove(x)
                     result.append(x)
             result = tuple(result)
             return result
@@ -37,11 +37,11 @@ def detach(item, component_expression):
         elif isinstance(item, scoretools.GraceContainer):
             grace_containers = inspector.get_grace_containers(item)
         else:
-            assert hasattr(component_expression, '_attached_items')
+            assert hasattr(component_expression, '_indicators')
             result = []
-            for x in component_expression._attached_items[:]:
+            for x in component_expression._indicators[:]:
                 if x == item:
-                    component_expression._attached_items.remove(x)
+                    component_expression._indicators.remove(x)
                     result.append(x)
             result = tuple(result)
             return result

@@ -9,14 +9,14 @@ def test_agenttools_InspectionAgent_get_mark_01():
     annotation = marktools.Annotation('special information')
     attach(annotation, note)
 
-    assert inspect(note).get_attached_item(marktools.Annotation) is annotation
+    assert inspect(note).get_indicator(marktools.Annotation) is annotation
 
 
 def test_agenttools_InspectionAgent_get_mark_02():
 
     note = Note("c'8")
 
-    statement = 'inspect(note).get_attached_item(marktools.Annotation)'
+    statement = 'inspect(note).get_indicator(marktools.Annotation)'
     assert pytest.raises(Exception, statement)
 
 
@@ -28,7 +28,7 @@ def test_agenttools_InspectionAgent_get_mark_03():
     annotation = marktools.Annotation('more special information')
     attach(annotation, note)
 
-    statement = 'inspect(note).get_attached_item(marktools.Annotation)',
+    statement = 'inspect(note).get_indicator(marktools.Annotation)',
     assert pytest.raises(Exception, statement)
 
 
@@ -38,7 +38,7 @@ def test_agenttools_InspectionAgent_get_mark_04():
     articulation = Articulation('staccato')
     attach(articulation, note)
 
-    assert inspect(note).get_attached_item(Articulation) is articulation
+    assert inspect(note).get_indicator(Articulation) is articulation
 
 
 def test_agenttools_InspectionAgent_get_mark_05():
@@ -67,14 +67,14 @@ def test_agenttools_InspectionAgent_get_mark_07():
     command = marktools.LilyPondCommand('stemUp')
     attach(command, note)
 
-    assert inspect(note).get_attached_item(marktools.LilyPondCommand) is command
+    assert inspect(note).get_indicator(marktools.LilyPondCommand) is command
 
 
 def test_agenttools_InspectionAgent_get_mark_08():
 
     note = Note("c'8")
 
-    statement = 'inspect(note).get_attached_item(marktools.LilyPondCommand)'
+    statement = 'inspect(note).get_indicator(marktools.LilyPondCommand)'
     assert pytest.raises(Exception, statement)
 
 
@@ -86,7 +86,7 @@ def test_agenttools_InspectionAgent_get_mark_09():
     command = marktools.LilyPondCommand('slurUp')
     attach(command, note)
 
-    statement = 'inspect(note).get_attached_item(marktools.LilyPondCommand)'
+    statement = 'inspect(note).get_indicator(marktools.LilyPondCommand)'
     assert pytest.raises(Exception, statement)
 
 
@@ -114,7 +114,7 @@ def test_agenttools_InspectionAgent_get_mark_10():
         '''
         )
 
-    marks = inspect(staff[0]).get_attached_items(marktools.LilyPondCommand)
+    marks = inspect(staff[0]).get_indicators(marktools.LilyPondCommand)
 
     assert command_1 in marks
     assert command_2 in marks
@@ -127,7 +127,7 @@ def test_agenttools_InspectionAgent_get_mark_11():
     comment = marktools.LilyPondComment('comment')
     attach(comment, note)
 
-    mark = inspect(note).get_attached_item(marktools.LilyPondComment) 
+    mark = inspect(note).get_indicator(marktools.LilyPondComment) 
     assert mark is comment
 
 
@@ -135,7 +135,7 @@ def test_agenttools_InspectionAgent_get_mark_12():
 
     note = Note("c'8")
 
-    statement = 'inspect(note).get_attached_item(marktools.LilyPondComment)'
+    statement = 'inspect(note).get_indicator(marktools.LilyPondComment)'
     assert pytest.raises(Exception, statement)
 
 
@@ -147,7 +147,7 @@ def test_agenttools_InspectionAgent_get_mark_13():
     comment = marktools.LilyPondComment('another comment')
     attach(comment, note)
 
-    statement = 'inspect(note).get_attached_item(marktools.LilyPondComment)'
+    statement = 'inspect(note).get_indicator(marktools.LilyPondComment)'
     assert pytest.raises(Exception, statement)
 
 
@@ -183,7 +183,7 @@ def test_agenttools_InspectionAgent_get_mark_17():
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)
     attach(stem_tremolo, note)
-    stem_tremolo = inspect(note).get_attached_item(marktools.StemTremolo)
+    stem_tremolo = inspect(note).get_indicator(marktools.StemTremolo)
 
     assert stem_tremolo is stem_tremolo
 

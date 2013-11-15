@@ -24,8 +24,8 @@ def attach(item, component_expression, target_context=None):
 
     if hasattr(item, '_attach'):
         item._attach(component_expression)
-    elif hasattr(component_expression, '_attached_items'):
-        component_expression._attached_items.append(item)
+    elif hasattr(component_expression, '_indicators'):
+        component_expression._indicators.append(item)
     else:
         message = 'can not attach {!r} to {!r}.'
         message = message.format(item, component_expression)
