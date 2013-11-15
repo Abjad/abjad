@@ -140,39 +140,39 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_indicator(self, item_prototypes=None):
-        items = self._get_indicators(item_prototypes=item_prototypes)
-        if not items:
-            message = 'no attached items found matching {!r}.'
-            message = message.format(item_prototypes)
+    def _get_indicator(self, indicator_prototypes=None):
+        indicators = self._get_indicators(indicator_prototypes=indicator_prototypes)
+        if not indicators:
+            message = 'no attached indicators found matching {!r}.'
+            message = message.format(indicator_prototypes)
             raise ValueError(message)
-        elif 1 < len(items):
-            message = 'multiple attached items found matching {!r}.'
-            message = message.format(item_prototypes)
+        elif 1 < len(indicators):
+            message = 'multiple attached indicators found matching {!r}.'
+            message = message.format(indicator_prototypes)
             raise ValueError(message)
         else:
-            return items[0]
+            return indicators[0]
 
-    def _get_indicators(self, item_prototypes=None):
-        item_prototypes = item_prototypes or (object,)
-        if not isinstance(item_prototypes, tuple):
-            item_prototypes = (item_prototypes,)
+    def _get_indicators(self, indicator_prototypes=None):
+        indicator_prototypes = indicator_prototypes or (object,)
+        if not isinstance(indicator_prototypes, tuple):
+            indicator_prototypes = (indicator_prototypes,)
         prototype_objects, prototype_classes = [], []
-        for item_prototype in item_prototypes:
-            if isinstance(item_prototype, types.TypeType):
-                prototype_classes.append(item_prototype)
+        for indicator_prototype in indicator_prototypes:
+            if isinstance(indicator_prototype, types.TypeType):
+                prototype_classes.append(indicator_prototype)
             else:
-                prototype_objects.append(item_prototype)
+                prototype_objects.append(indicator_prototype)
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
-        matching_items = []
-        for item in self._indicators:
-            if isinstance(item, prototype_classes):
-                matching_items.append(item)
-            elif any(item == x for x in prototype_objects):
-                matching_items.append(item)
-        matching_items = tuple(matching_items)
-        return matching_items
+        matching_indicators = []
+        for indicator in self._indicators:
+            if isinstance(indicator, prototype_classes):
+                matching_indicators.append(indicator)
+            elif any(indicator == x for x in prototype_objects):
+                matching_indicators.append(indicator)
+        matching_indicators = tuple(matching_indicators)
+        return matching_indicators
 
     def _cache_named_children(self):
         name_dictionary = {}
@@ -197,9 +197,9 @@ class Component(AbjadObject):
         for mark in self._get_marks():
             new_mark = copy.copy(mark)
             attach(new_mark, new)
-        for item in self._get_indicators():
-            new_item = copy.copy(item)
-            attach(new_item, new)
+        for indicator in self._get_indicators():
+            new_indicator = copy.copy(indicator)
+            attach(new_indicator, new)
         return new
 
     def _detach_grace_containers(self, kind=None):
@@ -600,9 +600,9 @@ class Component(AbjadObject):
     def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
-    def _has_indicator(self, item_prototypes=None):
-        items = self._get_indicators(item_prototypes=item_prototypes)
-        return bool(items)
+    def _has_indicator(self, indicator_prototypes=None):
+        indicators = self._get_indicators(indicator_prototypes=indicator_prototypes)
+        return bool(indicators)
 
     def _has_mark(self, mark_prototypes=None):
         marks = self._get_marks(mark_prototypes=mark_prototypes)
@@ -629,9 +629,9 @@ class Component(AbjadObject):
         result = []
         for mark in self._get_marks():
             result.append(attach(mark, recipient_component))
-        for item in self._get_indicators():
-            detach(item, self)
-            attach(item, recipient_component)
+        for indicator in self._get_indicators():
+            detach(indicator, self)
+            attach(indicator, recipient_component)
 
     # TODO: eventually reimplement as a keyword option to remove()
     def _remove_and_shrink_durated_parent_containers(self):

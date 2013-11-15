@@ -66,30 +66,31 @@ class InspectionAgent(object):
 
     def get_indicator(
         self,
-        item_prototypes=None,
+        indicator_prototypes=None,
         ):
-        r'''Gets exactly one item matching `item_prototypes` attached to 
+        r'''Gets exactly one indicator matching `indicator_prototypes` attached to 
         component.
 
-        Raises exception when no item matching `item_prototypes` is attached
+        Raises exception when no indicator matching `indicator_prototypes` is attached
         to component.
 
-        Returns item.
+        Returns indicator.
         '''
         return self._component._get_indicator(
-            item_prototypes=item_prototypes,
+            indicator_prototypes=indicator_prototypes,
             )
 
     def get_indicators(
         self,
-        item_prototypes=None,
+        indicator_prototypes=None,
         ):
-        r'''Get all items matching `item_prototypes` attached to component.
+        r'''Get all indicators matching `indicator_prototypes` attached 
+        to component.
 
         Returns tuple.
         '''
         return self._component._get_indicators(
-            item_prototypes=item_prototypes,
+            indicator_prototypes=indicator_prototypes,
             )
 
     def get_badly_formed_components(self):

@@ -150,11 +150,11 @@ class Leaf(Component):
             self._override = copy.copy(override(leaf))
         if getattr(leaf, '_set', None) is not None:
             self._set = copy.copy(contextualize(leaf))
-        new_items = []
-        for item in leaf._indicators:
-            new_item = copy.copy(item)
-            new_items.append(new_item)
-        self._indicators = new_items
+        new_indicators = []
+        for indicator in leaf._indicators:
+            new_indicator = copy.copy(indicator)
+            new_indicators.append(new_indicator)
+        self._indicators = new_indicators
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Component._copy_with_marks_but_without_children_or_spanners(self)

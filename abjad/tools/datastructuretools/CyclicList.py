@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+
+
 class CyclicList(list):
     '''Abjad model of cyclic list:
 
