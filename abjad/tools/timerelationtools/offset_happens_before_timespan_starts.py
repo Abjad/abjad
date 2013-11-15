@@ -19,9 +19,10 @@ def offset_happens_before_timespan_starts(
             >>> relation = timerelationtools.offset_happens_before_timespan_starts()
             >>> print format(relation)
             timerelationtools.OffsetTimespanTimeRelation(
-                timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('offset < timespan.start'),
-                    ],
+                timerelationtools.CompoundInequality(
+                    [
+                        timerelationtools.SimpleInequality('offset < timespan.start'),
+                        ],
                     logical_operator='and',
                     )
                 )
@@ -45,9 +46,10 @@ def offset_happens_before_timespan_starts(
 
             >>> print format(relation)
             timerelationtools.OffsetTimespanTimeRelation(
-                timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('offset < timespan.start'),
-                    ],
+                timerelationtools.CompoundInequality(
+                    [
+                        timerelationtools.SimpleInequality('offset < timespan.start'),
+                        ],
                     logical_operator='and',
                     ),
                 offset=durationtools.Offset(1, 2),
@@ -72,9 +74,10 @@ def offset_happens_before_timespan_starts(
 
             >>> print format(relation)
             timerelationtools.OffsetTimespanTimeRelation(
-                timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('offset < timespan.start'),
-                    ],
+                timerelationtools.CompoundInequality(
+                    [
+                        timerelationtools.SimpleInequality('offset < timespan.start'),
+                        ],
                     logical_operator='and',
                     ),
                 timespan=timespantools.Timespan(
@@ -100,9 +103,10 @@ def offset_happens_before_timespan_starts(
 
             >>> print format(relation)
             timerelationtools.OffsetTimespanTimeRelation(
-                timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('offset < timespan.start'),
-                    ],
+                timerelationtools.CompoundInequality(
+                    [
+                        timerelationtools.SimpleInequality('offset < timespan.start'),
+                        ],
                     logical_operator='and',
                     ),
                 timespan=timespantools.Timespan(

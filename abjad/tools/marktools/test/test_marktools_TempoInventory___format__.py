@@ -10,12 +10,14 @@ def test_marktools_TempoInventory___format___01():
     assert systemtools.TestManager.compare(
         format(tempo_inventory),
         r'''
-        marktools.TempoInventory([
-            marktools.Tempo(
-                'Allegro',
-                durationtools.Duration(1, 4),
-                84
-                ),
-            ])
+        marktools.TempoInventory(
+            [
+                marktools.Tempo(
+                    'Allegro',
+                    durationtools.Duration(1, 4),
+                    84
+                    ),
+                ]
+            )
         ''',
         )

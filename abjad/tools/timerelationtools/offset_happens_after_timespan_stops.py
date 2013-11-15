@@ -14,9 +14,10 @@ def offset_happens_after_timespan_stops(
         >>> relation = timerelationtools.offset_happens_after_timespan_stops()
         >>> print format(relation)
         timerelationtools.OffsetTimespanTimeRelation(
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('timespan.stop < offset'),
-                ],
+            timerelationtools.CompoundInequality(
+                [
+                    timerelationtools.SimpleInequality('timespan.stop < offset'),
+                    ],
                 logical_operator='and',
                 )
             )

@@ -202,24 +202,24 @@ class Chord(Leaf):
                 ::
 
                     >>> print format(chord.note_heads)
-                    scoretools.NoteHeadInventory([
-                        scoretools.NoteHead(
-                            written_pitch=pitchtools.NamedPitch("g'"),
-                            is_cautionary=False,
-                            is_forced=False,
-                            ),
-                        scoretools.NoteHead(
-                            written_pitch=pitchtools.NamedPitch("c''"),
-                            is_cautionary=False,
-                            is_forced=False,
-                            ),
-                        scoretools.NoteHead(
-                            written_pitch=pitchtools.NamedPitch("e''"),
-                            is_cautionary=False,
-                            is_forced=False,
-                            ),
-                        ],
-                        client=scoretools.Chord(),
+                    scoretools.NoteHeadInventory(
+                        [
+                            scoretools.NoteHead(
+                                written_pitch=pitchtools.NamedPitch("g'"),
+                                is_cautionary=False,
+                                is_forced=False,
+                                ),
+                            scoretools.NoteHead(
+                                written_pitch=pitchtools.NamedPitch("c''"),
+                                is_cautionary=False,
+                                is_forced=False,
+                                ),
+                            scoretools.NoteHead(
+                                written_pitch=pitchtools.NamedPitch("e''"),
+                                is_cautionary=False,
+                                is_forced=False,
+                                ),
+                            ]
                         )
 
             ..  container:: example

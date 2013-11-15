@@ -78,7 +78,7 @@ class IOManager(object):
                 ...     "Note('c4')",
                 ...     globals(),
                 ...     )
-                10536
+                10568
 
         ..  container:: example
 

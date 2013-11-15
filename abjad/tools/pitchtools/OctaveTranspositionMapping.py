@@ -52,20 +52,22 @@ class OctaveTranspositionMapping(TypedList):
         ::
 
             >>> print format(mapping)
-            pitchtools.OctaveTranspositionMapping([
-                pitchtools.OctaveTranspositionMappingComponent(
-                    pitchtools.PitchRange(
-                        '[A0, C4)'
+            pitchtools.OctaveTranspositionMapping(
+                [
+                    pitchtools.OctaveTranspositionMappingComponent(
+                        pitchtools.PitchRange(
+                            '[A0, C4)'
+                            ),
+                        pitchtools.NumberedPitch(15)
                         ),
-                    pitchtools.NumberedPitch(15)
-                    ),
-                pitchtools.OctaveTranspositionMappingComponent(
-                    pitchtools.PitchRange(
-                        '[C4, C8)'
+                    pitchtools.OctaveTranspositionMappingComponent(
+                        pitchtools.PitchRange(
+                            '[C4, C8)'
+                            ),
+                        pitchtools.NumberedPitch(27)
                         ),
-                    pitchtools.NumberedPitch(27)
-                    ),
-                ])
+                    ]
+                )
 
         Returns string.
         '''

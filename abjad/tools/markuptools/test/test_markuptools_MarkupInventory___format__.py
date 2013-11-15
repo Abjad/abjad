@@ -9,13 +9,15 @@ def test_markuptools_MarkupInventory___format___01():
     assert systemtools.TestManager.compare(
         format(inventory),
         r'''
-        markuptools.MarkupInventory([
-            markuptools.Markup(
-                ('foo',)
-                ),
-            markuptools.Markup(
-                ('bar',)
-                ),
-            ])
+        markuptools.MarkupInventory(
+            [
+                markuptools.Markup(
+                    ('foo',)
+                    ),
+                markuptools.Markup(
+                    ('bar',)
+                    ),
+                ]
+            )
         ''',
         )

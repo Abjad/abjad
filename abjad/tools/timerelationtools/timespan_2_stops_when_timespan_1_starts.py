@@ -14,9 +14,10 @@ def timespan_2_stops_when_timespan_1_starts(
         >>> relation = timerelationtools.timespan_2_stops_when_timespan_1_starts()
         >>> print format(relation)
         timerelationtools.TimespanTimespanTimeRelation(
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset'),
-                ],
+            timerelationtools.CompoundInequality(
+                [
+                    timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset'),
+                    ],
                 logical_operator='and',
                 )
             )

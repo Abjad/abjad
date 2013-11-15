@@ -26,10 +26,12 @@ class PitchArrayInventory(TypedList):
     ::
 
         >>> print format(inventory)
-        pitcharraytools.PitchArrayInventory([
-            pitcharraytools.PitchArray(),
-            pitcharraytools.PitchArray(),
-            ])
+        pitcharraytools.PitchArrayInventory(
+            [
+                pitcharraytools.PitchArray(),
+                pitcharraytools.PitchArray(),
+                ]
+            )
 
     '''
 

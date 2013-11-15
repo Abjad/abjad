@@ -14,7 +14,11 @@ def test_datastructuretools_TypedList___format___01():
         )
     assert systemtools.TestManager.compare(
         format(inventory),
-        'datastructuretools.TypedList([])',
+        '''
+        datastructuretools.TypedList(
+            []
+            )
+        ''',
         )
 
 
@@ -34,7 +38,8 @@ def test_datastructuretools_TypedList___format___02():
     assert systemtools.TestManager.compare(
         format(inventory),
         r'''
-        datastructuretools.TypedList([],
+        datastructuretools.TypedList(
+            [],
             custom_identifier='foo',
             )
         ''',
@@ -60,15 +65,17 @@ def test_datastructuretools_TypedList___format___03():
     assert systemtools.TestManager.compare(
         format(inventory),
         r'''
-        datastructuretools.TypedList([
-            'foo',
-            instrumenttools.Flute(),
-            'bar',
-            pitchtools.PitchRange(
-                '[A0, C8]'
-                ),
-            'blah',
-            ])
+        datastructuretools.TypedList(
+            [
+                'foo',
+                instrumenttools.Flute(),
+                'bar',
+                pitchtools.PitchRange(
+                    '[A0, C8]'
+                    ),
+                'blah',
+                ]
+            )
         ''',
         )
 
@@ -88,15 +95,16 @@ def test_datastructuretools_TypedList___format___04():
     assert systemtools.TestManager.compare(
         format(inventory),
         r'''
-        datastructuretools.TypedList([
-            'foo',
-            instrumenttools.Flute(),
-            'bar',
-            pitchtools.PitchRange(
-                '[A0, C8]'
-                ),
-            'blah',
-            ],
+        datastructuretools.TypedList(
+            [
+                'foo',
+                instrumenttools.Flute(),
+                'bar',
+                pitchtools.PitchRange(
+                    '[A0, C8]'
+                    ),
+                'blah',
+                ],
             custom_identifier='foo',
             )
         ''',

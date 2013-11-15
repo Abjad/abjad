@@ -14,9 +14,10 @@ def timespan_2_stops_after_timespan_1_stops(
         >>> relation = timerelationtools.timespan_2_stops_after_timespan_1_stops()
         >>> print format(relation)
         timerelationtools.TimespanTimespanTimeRelation(
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('timespan_1.stop_offset < timespan_2.stop_offset'),
-                ],
+            timerelationtools.CompoundInequality(
+                [
+                    timerelationtools.SimpleInequality('timespan_1.stop_offset < timespan_2.stop_offset'),
+                    ],
                 logical_operator='and',
                 )
             )

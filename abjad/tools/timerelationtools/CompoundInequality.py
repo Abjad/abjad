@@ -23,20 +23,23 @@ class CompoundInequality(TypedList):
     ::
 
         >>> print format(compound_inequality)
-        timerelationtools.CompoundInequality([
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+        timerelationtools.CompoundInequality(
+            [
+                timerelationtools.CompoundInequality(
+                    [
+                        timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                        timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
+                timerelationtools.CompoundInequality(
+                    [
+                        timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                        timerelationtools.SimpleInequality('timespan_1.start_offset < timespan_2.stop_offset'),
+                        ],
+                    logical_operator='and',
+                    ),
                 ],
-                logical_operator='and',
-                ),
-            timerelationtools.CompoundInequality([
-                timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
-                timerelationtools.SimpleInequality('timespan_1.start_offset < timespan_2.stop_offset'),
-                ],
-                logical_operator='and',
-                ),
-            ],
             logical_operator='or',
             )
 

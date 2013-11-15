@@ -19,30 +19,36 @@ class OctaveTranspositionMappingInventory(TypedList):
     ::
 
         >>> print format(inventory)
-        pitchtools.OctaveTranspositionMappingInventory([
-            pitchtools.OctaveTranspositionMapping([
-                pitchtools.OctaveTranspositionMappingComponent(
-                    pitchtools.PitchRange(
-                        '[A0, C4)'
-                        ),
-                    pitchtools.NumberedPitch(15)
+        pitchtools.OctaveTranspositionMappingInventory(
+            [
+                pitchtools.OctaveTranspositionMapping(
+                    [
+                        pitchtools.OctaveTranspositionMappingComponent(
+                            pitchtools.PitchRange(
+                                '[A0, C4)'
+                                ),
+                            pitchtools.NumberedPitch(15)
+                            ),
+                        pitchtools.OctaveTranspositionMappingComponent(
+                            pitchtools.PitchRange(
+                                '[C4, C8)'
+                                ),
+                            pitchtools.NumberedPitch(27)
+                            ),
+                        ]
                     ),
-                pitchtools.OctaveTranspositionMappingComponent(
-                    pitchtools.PitchRange(
-                        '[C4, C8)'
-                        ),
-                    pitchtools.NumberedPitch(27)
+                pitchtools.OctaveTranspositionMapping(
+                    [
+                        pitchtools.OctaveTranspositionMappingComponent(
+                            pitchtools.PitchRange(
+                                '[A0, C8]'
+                                ),
+                            pitchtools.NumberedPitch(-18)
+                            ),
+                        ]
                     ),
-                ]),
-            pitchtools.OctaveTranspositionMapping([
-                pitchtools.OctaveTranspositionMappingComponent(
-                    pitchtools.PitchRange(
-                        '[A0, C8]'
-                        ),
-                    pitchtools.NumberedPitch(-18)
-                    ),
-                ]),
-            ])
+                ]
+            )
 
     Octave transposition mapping inventories implement list interface
     and are mutable.

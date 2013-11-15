@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad import *
 from experimental.tools.scoremanagertools import specifiers
 from experimental import *
 
@@ -10,7 +11,14 @@ def test_MusicSpecifier___format___01():
     specifier = scoremanagertools.specifiers.MusicSpecifier([])
 
     assert repr(specifier) == 'MusicSpecifier([])'
-    assert format(specifier) == 'specifiers.MusicSpecifier([])'
+    assert systemtools.TestManager.compare(
+        format(specifier),
+        r'''
+        specifiers.MusicSpecifier(
+            []
+            )
+        ''',
+        )
 
 
 def test_MusicSpecifier___format___02():
@@ -23,7 +31,8 @@ def test_MusicSpecifier___format___02():
     assert systemtools.TestManager.compare(
         format(specifier),
         r'''
-        specifiers.MusicSpecifier([],
+        specifiers.MusicSpecifier(
+            [],
             custom_identifier='foo',
             )
         ''',
@@ -45,18 +54,24 @@ def test_MusicSpecifier___format___03():
     assert systemtools.TestManager.compare(
         format(ms),
         '''
-        specifiers.MusicSpecifier([
-            specifiers.MusicContributionSpecifier([
-                specifiers.ArticulationSpecifier(
-                    articulation_handler_name='foo articulations',
+        specifiers.MusicSpecifier(
+            [
+                specifiers.MusicContributionSpecifier(
+                    [
+                        specifiers.ArticulationSpecifier(
+                            articulation_handler_name='foo articulations',
+                            ),
+                        ]
                     ),
-                ]),
-            specifiers.MusicContributionSpecifier([
-                specifiers.ArticulationSpecifier(
-                    articulation_handler_name='bar articulations',
+                specifiers.MusicContributionSpecifier(
+                    [
+                        specifiers.ArticulationSpecifier(
+                            articulation_handler_name='bar articulations',
+                            ),
+                        ]
                     ),
-                ]),
-            ])
+                ]
+            )
         ''',
         )
 
@@ -76,18 +91,23 @@ def test_MusicSpecifier___format___04():
     assert systemtools.TestManager.compare(
         format(ms),
         '''
-        specifiers.MusicSpecifier([
-            specifiers.MusicContributionSpecifier([
-                specifiers.ArticulationSpecifier(
-                    articulation_handler_name='foo articulations',
+        specifiers.MusicSpecifier(
+            [
+                specifiers.MusicContributionSpecifier(
+                    [
+                        specifiers.ArticulationSpecifier(
+                            articulation_handler_name='foo articulations',
+                            ),
+                        ]
                     ),
-                ]),
-            specifiers.MusicContributionSpecifier([
-                specifiers.ArticulationSpecifier(
-                    articulation_handler_name='bar articulations',
+                specifiers.MusicContributionSpecifier(
+                    [
+                        specifiers.ArticulationSpecifier(
+                            articulation_handler_name='bar articulations',
+                            ),
+                        ]
                     ),
-                ]),
-            ],
+                ],
             custom_identifier='blue music',
             )
         ''',

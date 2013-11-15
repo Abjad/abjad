@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad import *
 from experimental.tools.scoremanagertools import specifiers
 from experimental import *
 
@@ -9,7 +10,14 @@ def test_MusicContributionSpecifier___format___01():
 
     specifier = scoremanagertools.specifiers.MusicContributionSpecifier([])
     assert repr(specifier) == 'MusicContributionSpecifier([])'
-    assert format(specifier) == 'specifiers.MusicContributionSpecifier([])'
+    assert systemtools.TestManager.compare(
+        format(specifier),
+        r'''
+        specifiers.MusicContributionSpecifier(
+            []
+            )
+        ''',
+        )
 
 
 def test_MusicContributionSpecifier___format___02():
@@ -24,17 +32,19 @@ def test_MusicContributionSpecifier___format___02():
     systemtools.TestManager.compare(
         format(specifier),
         '''
-        specifiers.MusicContributionSpecifier([
-            specifiers.ArticulationSpecifier(
-                articulation_handler_name='foo articulations'
-                ),
-            specifiers.ClefSpecifier(
-                clef_name='treble'
-                ),
-            specifiers.DirectiveSpecifier(
-                directive_handler_name='foo directives'
-                ),
-            ])
+        specifiers.MusicContributionSpecifier(
+            [
+                specifiers.ArticulationSpecifier(
+                    articulation_handler_name='foo articulations'
+                    ),
+                specifiers.ClefSpecifier(
+                    clef_name='treble'
+                    ),
+                specifiers.DirectiveSpecifier(
+                    directive_handler_name='foo directives'
+                    ),
+                ]
+            )
         ''',
         )
 

@@ -16,24 +16,24 @@ class NoteHeadInventory(TypedList):
     ::
 
         >>> print format(inventory)
-        scoretools.NoteHeadInventory([
-            scoretools.NoteHead(
-                written_pitch=pitchtools.NamedPitch("a'"),
-                is_cautionary=False,
-                is_forced=False,
-                ),
-            scoretools.NoteHead(
-                written_pitch=pitchtools.NamedPitch("bf'"),
-                is_cautionary=False,
-                is_forced=False,
-                ),
-            scoretools.NoteHead(
-                written_pitch=pitchtools.NamedPitch("b'"),
-                is_cautionary=False,
-                is_forced=False,
-                ),
-            ],
-            client=scoretools.Chord(),
+        scoretools.NoteHeadInventory(
+            [
+                scoretools.NoteHead(
+                    written_pitch=pitchtools.NamedPitch("a'"),
+                    is_cautionary=False,
+                    is_forced=False,
+                    ),
+                scoretools.NoteHead(
+                    written_pitch=pitchtools.NamedPitch("bf'"),
+                    is_cautionary=False,
+                    is_forced=False,
+                    ),
+                scoretools.NoteHead(
+                    written_pitch=pitchtools.NamedPitch("b'"),
+                    is_cautionary=False,
+                    is_forced=False,
+                    ),
+                ]
             )
 
     '''
@@ -81,6 +81,10 @@ class NoteHeadInventory(TypedList):
                 token._client = self.client
             return token
         return coerce
+
+    @property
+    def _keyword_argument_names(self):
+        return ()
 
     ### PUBLIC PROPERTIES ###
 

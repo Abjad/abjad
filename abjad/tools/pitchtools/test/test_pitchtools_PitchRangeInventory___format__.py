@@ -9,13 +9,15 @@ def test_pitchtools_PitchRangeInventory___format___01():
     assert systemtools.TestManager.compare(
         format(inventory),
         r'''
-        pitchtools.PitchRangeInventory([
-            pitchtools.PitchRange(
-                '[A0, C8]'
-                ),
-            pitchtools.PitchRange(
-                '[C4, D5]'
-                ),
-            ])
+        pitchtools.PitchRangeInventory(
+            [
+                pitchtools.PitchRange(
+                    '[A0, C8]'
+                    ),
+                pitchtools.PitchRange(
+                    '[C4, D5]'
+                    ),
+                ]
+            )
         ''',
         )

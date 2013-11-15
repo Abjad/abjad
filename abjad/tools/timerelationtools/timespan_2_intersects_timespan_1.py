@@ -14,20 +14,23 @@ def timespan_2_intersects_timespan_1(
         >>> relation = timerelationtools.timespan_2_intersects_timespan_1()
         >>> print format(relation)
         timerelationtools.TimespanTimespanTimeRelation(
-            timerelationtools.CompoundInequality([
-                timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                    timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+            timerelationtools.CompoundInequality(
+                [
+                    timerelationtools.CompoundInequality(
+                        [
+                            timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
+                            timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
+                            ],
+                        logical_operator='and',
+                        ),
+                    timerelationtools.CompoundInequality(
+                        [
+                            timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                            timerelationtools.SimpleInequality('timespan_1.start_offset < timespan_2.stop_offset'),
+                            ],
+                        logical_operator='and',
+                        ),
                     ],
-                    logical_operator='and',
-                    ),
-                timerelationtools.CompoundInequality([
-                    timerelationtools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
-                    timerelationtools.SimpleInequality('timespan_1.start_offset < timespan_2.stop_offset'),
-                    ],
-                    logical_operator='and',
-                    ),
-                ],
                 logical_operator='or',
                 )
             )
