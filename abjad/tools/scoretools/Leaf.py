@@ -132,6 +132,17 @@ class Leaf(Component):
     def _preprolated_duration(self):
         return self._multiplied_duration
 
+    @property
+    def _storage_format_specification(self):
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                format(self, 'lilypond'),
+                ),
+            )
+
+
     ### PRIVATE METHODS ###
 
     def _copy_override_and_set_from_leaf(self, leaf):

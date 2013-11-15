@@ -45,18 +45,6 @@ class Expression(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_tools_package_qualified_keyword_argument_repr_pieces(
-        self, is_indented=True):
-        filtered_result = []
-        result = \
-            AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
-            self, is_indented=is_indented)
-        for string in result:
-            if not 'callbacks=musicexpressiontools.CallbackInventory([])' \
-                in string:
-                filtered_result.append(string)
-        return filtered_result
-
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)

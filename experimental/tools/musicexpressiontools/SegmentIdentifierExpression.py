@@ -41,14 +41,6 @@ class SegmentIdentifierExpression(AbjadObject):
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
 
-    ### PRIVATE METHODS ###
-
-    # do not indent storage format
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        return [''.join(
-            AbjadObject._get_tools_package_qualified_repr_pieces(
-            self, is_indented=False))]
-
     ### PUBLIC PROPERTIES ###
 
     @property

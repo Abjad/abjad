@@ -196,7 +196,11 @@ class StorageFormatManager(object):
 
         keyword_argument_pieces = []
         for name in specification.keyword_argument_names:
-            if specification.instance._has_default_attribute_values:
+            if getattr(
+                specification.instance,
+                '_has_default_attribute_values',
+                False,
+                ):
                 value = getattr(specification.instance, name)
                 default_keyword_argument_name = '_default_{}'.format(name)
                 default_value = getattr(
