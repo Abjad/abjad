@@ -11,7 +11,7 @@
 
 6.  Make user input handler creation work.
 
-7.  Find a way dynamcially to present default indicator 
+7.  Find a way dynamcially to present default notice 
     with default menu entries.
 
 8.  Distinguish positional editor parameters from keyword editor parameters.
@@ -76,7 +76,8 @@
 
 25. Refactor systemtools as a single IOManager class.
 
-26. Make scoremanagertools.iotools.IOManager inherit from systemtools.IOManager.
+26. Make scoremanagertools.iotools.IOManager inherit from 
+    systemtools.IOManager.
 
 27. Audit all '*_file_name' variables in the system.
     Most are probably file path variables and should be renamed.

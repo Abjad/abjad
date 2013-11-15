@@ -116,7 +116,7 @@ class Menu(ScoreManagerObject):
         if user_input == '':
             user_entered_lone_return = True
         directive = self._change_user_input_to_directive(user_input)
-        directive = self._strip_default_indicators_from_strings(directive)
+        directive = self._strip_default_notice_from_strings(directive)
         self.session.hide_next_redraw = False
         io_manager = self.session.io_manager
         directive = \
@@ -225,9 +225,9 @@ class Menu(ScoreManagerObject):
                 break
         return result
 
-    # TODO: apply default indicators at display time 
+    # TODO: apply default notice at display time 
     #       so this can be completely removed
-    def _strip_default_indicators_from_strings(self, expr):
+    def _strip_default_notice_from_strings(self, expr):
         if isinstance(expr, list):
             cleaned_list = []
             for element in expr:

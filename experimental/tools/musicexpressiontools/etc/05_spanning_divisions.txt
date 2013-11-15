@@ -48,8 +48,8 @@ correctly once interpretation advances from Tn to Tn+1.
 (10) Does other information need to be recorded upon spanning division
 discovery? Yes.  Interpretation needs to record that d is right-spanning. Three
 options present themselves here.  Either, (a) division d itself may bear some
-type of is-spanning indicator. Or, (b), interpretation may add an
-is-right-spanning indicator to the generative set expression that specified the
+type of is-spanning flag. Or, (b), interpretation may add an
+is-right-spanning flag to the generative set expression that specified the
 creation of the divisions in the first place. Or, (c), interpretation may
 maintain some type of mapping data structure that models just such information
 about spanning and nonspanning divisions.  Option (c) seems less good. Maybe it

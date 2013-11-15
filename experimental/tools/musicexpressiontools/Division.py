@@ -61,7 +61,7 @@ class Division(NonreducedFraction, BoundedObject):
         start_offset=None,
         ):
         if isinstance(arg, str):
-            triple = self.parse_interval_range_string(arg)
+            triple = Division.parse_interval_range_string(arg)
             pair, is_left_open, is_right_open = triple
         elif isinstance(arg, cls):
             pair = arg
@@ -235,7 +235,8 @@ class Division(NonreducedFraction, BoundedObject):
 
         ::
 
-            >>> Division.parse_interval_range_string('[5, 8)')
+            >>> musicexpressiontools.Division.parse_interval_range_string(
+            ...     '[5, 8)')
             ((5, 8), False, True)
 
         Parses square brackets as closed interval bounds.

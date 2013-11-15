@@ -18,8 +18,8 @@ def test_SegmentSpecification__set_rhythm_with_rotation_expression_01():
     second_division.timespan.set_rhythm(library.sixteenths)
     third_division.timespan.set_rhythm(library.thirty_seconds)
     red_rhythm = red_segment.select_leaves('Voice 1')
-    indicator = musicexpressiontools.RotationExpression(-1, 1)
-    red_segment.set_rhythm(red_rhythm.rotate(indicator), contexts=['Voice 2'])
+    rotation = musicexpressiontools.RotationExpression(-1, 1)
+    red_segment.set_rhythm(red_rhythm.rotate(rotation), contexts=['Voice 2'])
 
     score = score_specification.interpret()
 

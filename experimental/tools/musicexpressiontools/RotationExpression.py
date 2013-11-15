@@ -3,7 +3,7 @@ from abjad.tools import abctools
 
 
 class RotationExpression(abctools.AbjadObject):
-    r'''Rotation indicator.
+    r'''Rotation expression.
 
     ::
 
@@ -19,7 +19,7 @@ class RotationExpression(abctools.AbjadObject):
             fracture_spanners=False,
             )
 
-    Rotation indicators are immutable.
+    Rotation expressions are immutable.
     '''
 
     ### INITIALIZER ###
@@ -36,7 +36,7 @@ class RotationExpression(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats rotation indicator.
+        r'''Formats rotation expression.
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
@@ -74,7 +74,7 @@ class RotationExpression(abctools.AbjadObject):
 
     @property
     def index(self):
-        r'''Rotation indicator index.
+        r'''Rotation expression index.
 
         ::
 
@@ -87,7 +87,7 @@ class RotationExpression(abctools.AbjadObject):
 
     @property
     def level(self):
-        r'''Rotation indicator level.
+        r'''Rotation expression level.
 
         ::
 

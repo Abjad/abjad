@@ -40,11 +40,11 @@ duration-aware.  (Many other variations are left for later implementation.)
 
 *Set expressions.* Define set expression t equal the 6-tuple (σ, ν, κ, n, s, p)
 with segment name σ, context name ν, timespan κ, attribute name n, source s,
-and persistence indicator p.  This is equivalent to context selection ξ equal
+and persistence flag p.  This is equivalent to context selection ξ equal
 to (σ, ν, κ), defined below, together with three further values n, s, p.
 
 *Directives.* Define directive d equal to the 4-tuple (τ, n, s, p) with target
-selection τ, attribute name n, source s, and persistence indicator p.
+selection τ, attribute name n, source s, and persistence flag p.
 
 *Selections.* Define selection λ equal to the triple (σ, N, κ) with segment
 name σ, context names N = {ν0, ..., νn}, and timespan κ. Note that N is defined
