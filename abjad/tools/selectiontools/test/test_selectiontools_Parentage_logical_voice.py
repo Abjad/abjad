@@ -42,7 +42,7 @@ def test_selectiontools_Parentage_logical_voice_03():
 
 
 def test_selectiontools_Parentage_logical_voice_04():
-    r'''Returns LogicalVoiceIndicator giving the root and
+    r'''Returns logical voice giving the root and
     first voice, staff and score in the parentage of component.
     '''
 
@@ -104,7 +104,7 @@ def test_selectiontools_Parentage_logical_voice_04():
 
 
 def test_selectiontools_Parentage_logical_voice_05():
-    r'''Returns LogicalVoiceIndicator giving the root and
+    r'''Returns logical voice giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -174,7 +174,7 @@ def test_selectiontools_Parentage_logical_voice_05():
 
 
 def test_selectiontools_Parentage_logical_voice_06():
-    r'''Returns LogicalVoiceIndicator giving the root and
+    r'''Returns logical voice giving the root and
     first voice, staff and score in parentage of component.
     '''
 
@@ -226,7 +226,7 @@ def test_selectiontools_Parentage_logical_voice_06():
 
 
 def test_selectiontools_Parentage_logical_voice_07():
-    r'''Returns LogicalVoiceIndicator giving the root and
+    r'''Returns logical voice giving the root and
     first voice, staff and score in parentage of component.
     '''
 

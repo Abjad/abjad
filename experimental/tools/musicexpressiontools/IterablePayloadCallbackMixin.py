@@ -53,7 +53,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
             'NonreducedFraction': mathtools.NonreducedFraction,
             'Offset': durationtools.Offset,
             'Ratio': mathtools.Ratio,
-            'RotationIndicator': musicexpressiontools.RotationIndicator,
+            'RotationExpression': musicexpressiontools.RotationExpression,
             'Timespan': timespantools.Timespan,
             'callback_cache': callback_cache,
             'payload_expression': payload_expression,
@@ -190,7 +190,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(index, (int, 
-            durationtools.Duration, musicexpressiontools.RotationIndicator))
+            durationtools.Duration, musicexpressiontools.RotationExpression))
         callback = 'result = self._rotate(payload_expression, {!r})'
         callback = callback.format(index)
         return self._copy_and_append_callback(callback)

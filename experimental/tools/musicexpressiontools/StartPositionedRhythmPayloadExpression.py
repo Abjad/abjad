@@ -872,7 +872,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 return self
             else:
                 split_offset = leaves[-(n+1)]._get_timespan().stop_offset
-        elif isinstance(n, musicexpressiontools.RotationIndicator):
+        elif isinstance(n, musicexpressiontools.RotationExpression):
             rotation_indicator = n
             if rotation_indicator.level is None:
                 components_at_level = self.payload.select_leaves()

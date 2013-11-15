@@ -2,18 +2,18 @@
 from abjad.tools import abctools
 
 
-class RotationIndicator(abctools.AbjadObject):
+class RotationExpression(abctools.AbjadObject):
     r'''Rotation indicator.
 
     ::
 
-        >>> rotation_indicator = musicexpressiontools.RotationIndicator(
+        >>> rotation_indicator = musicexpressiontools.RotationExpression(
         ...     index=-1, level=2, fracture_spanners=False)
 
     ::
 
         >>> print format(rotation_indicator)
-        musicexpressiontools.RotationIndicator(
+        musicexpressiontools.RotationExpression(
             index=-1,
             level=2,
             fracture_spanners=False,
@@ -44,7 +44,7 @@ class RotationIndicator(abctools.AbjadObject):
         ::
 
             >>> print format(rotation_indicator)
-            musicexpressiontools.RotationIndicator(
+            musicexpressiontools.RotationExpression(
                 index=-1,
                 level=2,
                 fracture_spanners=False,

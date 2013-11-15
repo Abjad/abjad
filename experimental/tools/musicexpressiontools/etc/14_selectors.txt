@@ -1,32 +1,36 @@
 SELECT EXPRESSIONS.
 
 
-The purpose of this document is to list some of the different types of symbolic selection.
-What is a symbolic selection? An indication to pick out a score object at some point
-during interpretation. Or an indication to pick out a collection of related score objects.
+The purpose of this document is to list some of the different types of symbolic
+selection.  What is a symbolic selection? An indication to pick out a score
+object at some point during interpretation. Or an indication to pick out a
+collection of related score objects.
 
 
-*ComponentSelectExpression.* Select a single component. What input parameters are available?
-First, an optional timepsan defaulting to that of the entire score. Second, an optional
-timespan inequality defaulting to the first object that starts during timespan. Then an
-arbitrarily long list of ContainerIndicator objects which might eventually be implemented
-as a ContainerIndicatorList.
+*ComponentSelectExpression.* Select a single component. What input parameters
+are available?  First, an optional timepsan defaulting to that of the entire
+score. Second, an optional timespan inequality defaulting to the first object
+that starts during timespan. Then an arbitrarily long list of
+ContainerExpression objects which might eventually be implemented as a
+ContainerExpressionList.
 
-Select the first depth-0 tuplet in the last measure starting during segment 'red':
+Select the first depth-0 tuplet in the last measure starting during segment
+'red':
 
     select_expression = ComponentSelectExpression(
         timespan=Timespan(class_=Division, name='red'),
         comparator=specificationtools.starts_during_timespan(),
         containment=[
-            ContainmentIndicator(class_=Measure, index=-1),
-            ContainmentIndicator(class_=Tuplet, index=0, depth=0)]
+            ContainmentExpression(class_=Measure, index=-1),
+            ContainmentExpression(class_=Tuplet, index=0, depth=0)]
 
 
-*SliceSelectExpression.* Select zero or more container elements in sequence. Input parameters?
-First, an optional ContainerIndicator defaulting to the entire score. Then, optional
-start and stop indices each defaulting to none. The design goal is to mimic the Python
-slice interface as closely as possible. So only integer values and none are allowed.
-Sequences of named objects like segments will have to be selected some other way.
+*SliceSelectExpression.* Select zero or more container elements in sequence.
+Input parameters?  First, an optional ContainerExpression defaulting to the
+entire score. Then, optional start and stop indices each defaulting to none.
+The design goal is to mimic the Python slice interface as closely as possible.
+So only integer values and none are allowed.  Sequences of named objects like
+segments will have to be selected some other way.
 
 Select the last three elements of the tuplet picked out above:
 
@@ -47,7 +51,8 @@ Better to start again with more examples.
 * Select voice 1 (top-level) components that start during timespan.
 * Select voice 1 (top-level) components that stop during timespan.
 * Select voice 1 (top-level) components that happen during timespan.
-[ Select voice 1 (top-level) components that satisfy arbitrary timespan inequality t.]
+[ Select voice 1 (top-level) components that satisfy arbitrary timespan 
+    inequality t.]
 
 * Select components m-n of arbitrary container c.
 
@@ -75,7 +80,8 @@ K
 * Select voice 1 notes that start during timespan; then select m-n of that.
 * Select voice 1 notes that stop during timespan; then select m-n of that.
 * Select voice 1 notes that happen during timespan; then select m-n of that.
-[ Select voice 1 classes that satisfy arbitrary timespan t; then slice the result.]
+[ Select voice 1 classes that satisfy arbitrary timespan t; then slice the 
+    result.]
 
 
 L
@@ -84,7 +90,8 @@ L
 
 
 M
-* Select voice 1 (top-level) satisfying arbitrary timespan t; then select m-n of the result.
+* Select voice 1 (top-level) satisfying arbitrary timespan t; then select m-n 
+    of the result.
 [timespan-restriction followed by slice-restriction]
 
 
@@ -113,9 +120,12 @@ O
 
 ### NOTES ###
 
-* J and K demonstrate that class-restriction and timespan-restriction do not commute.
-* L and M demonstrate that slice-restriction and timespan-restriction do not commute.
-* N and O demonstrate that slice-restriction and class-restriction do not commute.
+* J and K demonstrate that class-restriction and timespan-restriction 
+    do not commute.
+* L and M demonstrate that slice-restriction and timespan-restriction 
+    do not commute.
+* N and O demonstrate that slice-restriction and class-restriction 
+    do not commute.
 
 We seem to be working with three basic types of restriction:
 
@@ -128,117 +138,132 @@ Note that c() produces a detemporized result.
 So, actually, this should mean that application of t() after c() is impossible.
 Ie, that c(t()) is allowed but that t(c()) isn't.
 
-This points to a potentially useful limitation on the chaining-together of restrictions.
-Timespan-restriction t() operates on temporized input only. This explains why t()
-refuses input from c(). Does t() also refuse input from l()? We can't answer the question.
-Why? Because we can't make any assumptions about the temporality of the output of l():
-it's possible that the output of l() is temporized but it's also possible that the 
-output of l() is detemporized. (The output of l(c()) is detemporized whenever the output
-of c() is detemporized, for example.) So maybe the useful limitation here is that t()
-should apply before everything else. Note too that t() is optional and that t() need
-never apply more than one time. So it looks like we have a relatively strong limitation
-of the system that says that if t() is going to apply in any chaning-together of restrictions
-then t() will apply a single time at the very beginning of the chain.
+This points to a potentially useful limitation on the chaining-together of
+restrictions.  Timespan-restriction t() operates on temporized input only. This
+explains why t() refuses input from c(). Does t() also refuse input from l()?
+We can't answer the question.  Why? Because we can't make any assumptions about
+the temporality of the output of l(): it's possible that the output of l() is
+temporized but it's also possible that the output of l() is detemporized. (The
+output of l(c()) is detemporized whenever the output of c() is detemporized,
+for example.) So maybe the useful limitation here is that t() should apply
+before everything else. Note too that t() is optional and that t() need never
+apply more than one time. So it looks like we have a relatively strong
+limitation of the system that says that if t() is going to apply in any
+chaning-together of restrictions then t() will apply a single time at the very
+beginning of the chain.
 
-So maybe what this means is that all component selections are timespan-restricted. In fact,
-all component selections always have been timespan-restricted. We just didn't notice the fact
-until we got around to modeling timespans explicitly. There is an identity (or null) timespan-
-restriction. The identity timespan-restriction simply returns true no matter what the start
-and stop points of the objects to which the restriction applies; the identity timespan-
-restriction need not even make reference to the timespan of the score. And what this means
-is that all selections made in the years of use of the system up until now have been made
-with this identity timespan-restriction active by implication.
+So maybe what this means is that all component selections are
+timespan-restricted. In fact, all component selections always have been
+timespan-restricted. We just didn't notice the fact until we got around to
+modeling timespans explicitly. There is an identity (or null) timespan-
+restriction. The identity timespan-restriction simply returns true no matter
+what the start and stop points of the objects to which the restriction applies;
+the identity timespan- restriction need not even make reference to the timespan
+of the score. And what this means is that all selections made in the years of
+use of the system up until now have been made with this identity
+timespan-restriction active by implication.
 
-But also note that timespans are awesome because you can turn any selection into a timespan.
-We now observe two things. First that the starting point of every selection is a timespan.
-And second that every selection may be changed into a timespan (which may, in turn,
-be used as the starting point for yet another selection made in succession).
+But also note that timespans are awesome because you can turn any selection
+into a timespan.  We now observe two things. First that the starting point of
+every selection is a timespan.  And second that every selection may be changed
+into a timespan (which may, in turn, be used as the starting point for yet
+another selection made in succession).
 
     * voice 1 top-level components satisfying timespan
     * voice 1 classes satisfying timespan
 
-I think this also points to a useful limitation on the selection of the component at (x, y, z)
-in voice 1. I think if you want to pick out component at (x, y, z) then you have to do that
-before any timespan-restriction. Why? Because (x, y, z) is a special thing. The tuple (x, y, z)
-is basically something like a "score-tree position" or "score-tree index" or something like that.
-Such a score-tree position necessitates the score-tree be in tact. But note that the output of t()
-is a list of components. The list of components output by t() is essentially ripped from the 
-score tree ("deracinated" or "allolocated", perhaps). So we need a name for the operation
-that picks out the component at (x, y, z). We also need to generalize the picking out of the
-component at (x, y, z). What does the generalization look like? The generalization picks out
-a time-contiguous sequence of components from a voice. The components need not all be top-level.
-Call this operation contiguity-restriction and denote it by g().
+I think this also points to a useful limitation on the selection of the
+component at (x, y, z) in voice 1. I think if you want to pick out component at
+(x, y, z) then you have to do that before any timespan-restriction. Why?
+Because (x, y, z) is a special thing. The tuple (x, y, z) is basically
+something like a "score-tree position" or "score-tree index" or something like
+that.  Such a score-tree position necessitates the score-tree be in tact. But
+note that the output of t() is a list of components. The list of components
+output by t() is essentially ripped from the score tree ("deracinated" or
+"allolocated", perhaps). So we need a name for the operation that picks out the
+component at (x, y, z). We also need to generalize the picking out of the
+component at (x, y, z). What does the generalization look like? The
+generalization picks out a time-contiguous sequence of components from a voice.
+The components need not all be top-level.  Call this operation
+contiguity-restriction and denote it by g().
 
 Is the allowable chaining-together of restrictions then l(c(t(g())))?
 
 Perhaps class-restriction c() generalizes to predicate-restriction p().
 
-Is it then that the allowable chaining together of restrictions is l(p(t(g())))?
+Is it then that the allowable chaining together of restrictions is
+l(p(t(g())))?
 
 ### GENERALIZED COMPONENT SELECTION ###
 
-It might suffice to identify g() with logical voice contiguity. We'll run with that idea.
-So then we've got a four-step process to generalize the selection of any component
-(or any slice of components) whatever.
+It might suffice to identify g() with logical voice contiguity. We'll run with
+that idea.  So then we've got a four-step process to generalize the selection
+of any component (or any slice of components) whatever.
 
 (Below we introduce the idea of a noncontext component. What is a noncontext
-component? Noncontext components are leaves, tuplets, containers and measures. Noncontext
-components make up all the scoretree content that lives a level lower than the voice.)
+component? Noncontext components are leaves, tuplets, containers and measures.
+Noncontext components make up all the scoretree content that lives a level
+lower than the voice.)
 
-(Sidenote that this exposes an important principle to be backported to the main codebase.
-Logical voice contiguity should be defined on noncontext components only. No attempt should be
-made to evaluate staves nor even voices for logical voice contiguity. Also it still makes very
-good sense to replace 'logical voice' with 'implicit voice'.)
+(Sidenote that this exposes an important principle to be backported to the main
+codebase.  Logical voice contiguity should be defined on noncontext components
+only. No attempt should be made to evaluate staves nor even voices for logical
+voice contiguity. Also it still makes very good sense to replace 'logical
+voice' with 'implicit voice'.)
 
-First g() select logical-voice-contiguous components. Then t() filter by timespan.
-Then p() filter by predicate. Then l() index or slice as many times as necessary.
+First g() select logical-voice-contiguous components. Then t() filter by
+timespan.  Then p() filter by predicate. Then l() index or slice as many times
+as necessary.
 
-These functions are logical-voice-selection, timespan-restriction, attribute-restriction
-and output-slicing, respectively. Perhaps these are not the best names for g(),
-t(), p(), l() but they will do for now. Interestingly, these are all basically
-different types of restriction that can be placed on the a list of logica-voice-contiguous
-components.
+These functions are logical-voice-selection, timespan-restriction,
+attribute-restriction and output-slicing, respectively. Perhaps these are not
+the best names for g(), t(), p(), l() but they will do for now. Interestingly,
+these are all basically different types of restriction that can be placed on
+the a list of logica-voice-contiguous components.
 
 
 ### MODELING EVENTLIST RESTRICTION ###
 
-First note that there should be a nonoppositional substitute for "noncontext". We propose
-"eventlist component" as a nonoppositional substitute for "noncontext component".
+First note that there should be a nonoppositional substitute for "noncontext".
+We propose "eventlist component" as a nonoppositional substitute for
+"noncontext component".
 
-We can then speak of "event-contiguity" in contrast to "time-contiguity". We refer to a 
-sequence of components as event-contiguous when all are time-successive components in the same 
-implicit voice.
+We can then speak of "event-contiguity" in contrast to "time-contiguity". We
+refer to a sequence of components as event-contiguous when all are
+time-successive components in the same implicit voice.
 
-(There's a distinction here to be worked out between event-contiguity, -succession
-and -ordering. Which can be done later.)
+(There's a distinction here to be worked out between event-contiguity,
+-succession and -ordering. Which can be done later.)
 
 (This introduces a distinction between time-contiguity and time-succession.
-Components c1, ..., cn are time-successive whenever ci.start < cj.start for any i < j.
-Components c1, ...., cn are time-contiguous whenever ci.stop == cj.start for any i = j - 1.)
+Components c1, ..., cn are time-successive whenever ci.start < cj.start for any
+i < j.  Components c1, ...., cn are time-contiguous whenever ci.stop ==
+cj.start for any i = j - 1.)
 
-What we're therefore basically looking to do is to say "here's how you select a subsequence of
-event-contiguous components."
+What we're therefore basically looking to do is to say "here's how you select a
+subsequence of event-contiguous components."
 
-Denote by e, f two eventstream components in the same stream S with e.start < f.start.
-Note that there always exists at least one event-contiguous subsequence of S beginning with e
-and ending with f. (Depending on the appearance of nested components there may be more than one 
-event-contiguous subsequence of S that begins with e and ends with f. But there will always be at 
-least one such subsequence.) Refer to this as the "maximal" subsequence of S beginning with e
-and ending with f. Our generalized l(p(t(g()))) component selection procedes from just such a
-subsequence of S.
+Denote by e, f two eventstream components in the same stream S with e.start <
+f.start.  Note that there always exists at least one event-contiguous
+subsequence of S beginning with e and ending with f. (Depending on the
+appearance of nested components there may be more than one event-contiguous
+subsequence of S that begins with e and ends with f. But there will always be
+at least one such subsequence.) Refer to this as the "maximal" subsequence of S
+beginning with e and ending with f. Our generalized l(p(t(g()))) component
+selection procedes from just such a subsequence of S.
 
-Actually this all becomes massively easier when we notice that for every (implicit) voice v
-there exists an eventlist E(v) of all event components in v, given in order of occurrence
-during depth-first score traversal.
+Actually this all becomes massively easier when we notice that for every
+(implicit) voice v there exists an eventlist E(v) of all event components in v,
+given in order of occurrence during depth-first score traversal.
 
-E(v) is a flat list of components c1, ..., cn such that ci.start <= cj.start for i < j.
-(This means that components in the eventlist of v aren't necessarily time-conitugous
-or -successive but are always time-ordered by <=.) It is therefore trivial to take any
-subsequence of E(v) whatever.
+E(v) is a flat list of components c1, ..., cn such that ci.start <= cj.start
+for i < j.  (This means that components in the eventlist of v aren't
+necessarily time-conitugous or -successive but are always time-ordered by <=.)
+It is therefore trivial to take any subsequence of E(v) whatever.
 
-So the act of taking a subsequence of E(v) would be called something like "eventlist
-subsequence selection". And it is perhaps just this eventlist subsequence selection
-with which our generalized component selection begins.
+So the act of taking a subsequence of E(v) would be called something like
+"eventlist subsequence selection". And it is perhaps just this eventlist
+subsequence selection with which our generalized component selection begins.
 
 So then g(), t(), p(), l() are eventlist-restriction, timespan-restriction,
 predicate-restriction and output-restriction, respectively.
