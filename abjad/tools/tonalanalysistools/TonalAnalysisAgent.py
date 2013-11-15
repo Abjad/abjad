@@ -81,7 +81,7 @@ class TonalAnalysisAgent(object):
     @staticmethod
     def _analyze_chord(expr):
         from abjad.tools import tonalanalysistools
-        from abjad.tools.tonalanalysistools import ChordQuality as CQI
+        from abjad.tools.tonalanalysistools import RootlessChordClass as CQI
         pitches = pitchtools.PitchSegment.from_selection(expr)
         npcset = pitchtools.PitchClassSet(
             pitches, item_class=pitchtools.NamedPitchClass)
@@ -109,7 +109,7 @@ class TonalAnalysisAgent(object):
         indicator = CQI.from_interval_class_segment(segment)
         bass = min(pitches).named_pitch_class
         inversion = ordered_npcs.index(bass)
-        return tonalanalysistools.ChordClass(
+        return tonalanalysistools.RootedChordClass(
             root,
             indicator.quality_string,
             indicator.extent,
@@ -160,7 +160,7 @@ class TonalAnalysisAgent(object):
             raise ValueError(message)
         inversion = npcseg.index(bass)
         root = npcseg[0]
-        return tonalanalysistools.ChordClass(
+        return tonalanalysistools.RootedChordClass(
             root,
             quality,
             extent,
@@ -170,7 +170,7 @@ class TonalAnalysisAgent(object):
     @staticmethod
     def _analyze_incomplete_tonal_function(expr, key_signature):
         from abjad.tools import tonalanalysistools
-        if isinstance(expr, tonalanalysistools.ChordClass):
+        if isinstance(expr, tonalanalysistools.RootedChordClass):
             chord_class = expr
         else:
             selection = tonalanalysistools.select(expr)
@@ -193,7 +193,7 @@ class TonalAnalysisAgent(object):
     @staticmethod
     def _analyze_tonal_function(expr, key_signature):
         from abjad.tools import tonalanalysistools
-        if isinstance(expr, tonalanalysistools.ChordClass):
+        if isinstance(expr, tonalanalysistools.RootedChordClass):
             chord_class = expr
         else:
             selection = tonalanalysistools.select(expr)

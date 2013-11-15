@@ -5,18 +5,18 @@ from abjad.tools import stringtools
 from abjad.tools.pitchtools import IntervalSegment
 
 
-class ChordQuality(IntervalSegment):
-    r'''A chord quality indicator.
+class RootlessChordClass(IntervalSegment):
+    r'''A chord quality.
 
     ::
 
-        >>> tonalanalysistools.ChordQuality(
+        >>> tonalanalysistools.RootlessChordClass(
         ...     'German',
         ...     'augmented sixth',
         ...     )
         GermanAugmentedSixthInRootPosition('P1', '+M3', '+m3', '+aug2')
 
-    Returns chord quality indicator.
+    Returns chord quality.
     '''
 
     ### CLASS VARIABLES ###
@@ -59,7 +59,8 @@ class ChordQuality(IntervalSegment):
         elif extent in ('augmented sixth', 6):
             intervals = self._init_augmented_sixth(quality_string)
         else:
-            raise ValueError('unknown chord quality indicator arguments.')
+            message = 'unknown chord quality arguments.'
+            raise ValueError(message)
         intervals, rotation = self._invert_quality_indicator(
             intervals, inversion)
         IntervalSegment.__init__(
@@ -237,7 +238,9 @@ class ChordQuality(IntervalSegment):
                 pitchtools.NamedInterval('augmented', 5),
                 ]
         else:
-            raise ValueError('unacceptable quality string.')
+            message = 'unacceptable quality string: {!r}.'
+            message = message.format(quality_string)
+            raise ValueError(message)
         intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
 
@@ -274,7 +277,7 @@ class ChordQuality(IntervalSegment):
     @property
     def extent(self):
         from abjad.tools import tonalanalysistools
-        return tonalanalysistools.ChordClass.cardinality_to_extent(self.cardinality)
+        return tonalanalysistools.RootedChordClass.cardinality_to_extent(self.cardinality)
 
     @property
     def extent_name(self):
@@ -282,7 +285,7 @@ class ChordQuality(IntervalSegment):
         if self._quality_string.lower() in \
             self._acceptable_augmented_sixth_qualities:
             return 'augmented sixth'
-        return tonalanalysistools.ChordClass.extent_to_extent_name(self.extent)
+        return tonalanalysistools.RootedChordClass.extent_to_extent_name(self.extent)
 
     @property
     def inversion(self):
@@ -316,5 +319,5 @@ class ChordQuality(IntervalSegment):
     @staticmethod
     def from_interval_class_segment(segment):
         quality, extent = \
-            ChordQuality._segment_to_quality_and_extent[str(segment)]
-        return ChordQuality(quality, extent=extent)
+            RootlessChordClass._segment_to_quality_and_extent[str(segment)]
+        return RootlessChordClass(quality, extent=extent)

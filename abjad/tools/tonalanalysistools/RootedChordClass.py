@@ -4,7 +4,7 @@ from abjad.tools import pitchtools
 from abjad.tools.pitchtools import PitchClassSet
 
 
-class ChordClass(PitchClassSet):
+class RootedChordClass(PitchClassSet):
     '''A tonal chord class such as G 7, G 6/5, G half-diminished 6/5, etc.
 
     Note that notions like G 7 represent an entire *class of* chords because
@@ -48,7 +48,7 @@ class ChordClass(PitchClassSet):
     def __init__(self, root, *args):
         from abjad.tools import tonalanalysistools
         root = pitchtools.NamedPitchClass(root)
-        quality_indicator = tonalanalysistools.ChordQuality(*args)
+        quality_indicator = tonalanalysistools.RootlessChordClass(*args)
         npcs = []
         for hdi in quality_indicator:
             mdi = pitchtools.NamedInterval(hdi)
@@ -232,12 +232,12 @@ class ChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.ChordClass.cardinality_to_extent(4)
+                >>> tonalanalysistools.RootedChordClass.cardinality_to_extent(4)
                 7
 
         Returns integer.
         '''
-        return ChordClass._cardinality_to_extent[cardinality]
+        return RootedChordClass._cardinality_to_extent[cardinality]
 
     @staticmethod
     def extent_to_cardinality(extent):
@@ -250,12 +250,12 @@ class ChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.ChordClass.extent_to_cardinality(7)
+                >>> tonalanalysistools.RootedChordClass.extent_to_cardinality(7)
                 4
 
         Returns integer.
         '''
-        return ChordClass._extent_to_cardinality[extent]
+        return RootedChordClass._extent_to_cardinality[extent]
 
     @staticmethod
     def extent_to_extent_name(extent):
@@ -267,12 +267,12 @@ class ChordClass(PitchClassSet):
 
             ::
 
-                >>> tonalanalysistools.ChordClass.extent_to_extent_name(7)
+                >>> tonalanalysistools.RootedChordClass.extent_to_extent_name(7)
                 'seventh'
 
         Returns string.
         '''
-        return ChordClass._extent_to_extent_name[extent]
+        return RootedChordClass._extent_to_extent_name[extent]
 
     def transpose(self):
         raise NotImplementedError
