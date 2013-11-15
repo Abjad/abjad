@@ -53,6 +53,20 @@ class MusicSpecifier(Specifier, TypedList):
             'description',
             ]))
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(
+                'custom_identifier',
+                'description',
+                ),
+            positional_argument_values=(
+                list(self),
+                ),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

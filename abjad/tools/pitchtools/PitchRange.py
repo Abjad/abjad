@@ -287,13 +287,6 @@ class PitchRange(AbjadObject):
             return ')'
 
     @property
-    def _keyword_argument_names(self):
-        result = []
-        result.append('pitch_range_name')
-        result.append('pitch_range_name_markup')
-        return tuple(result)
-
-    @property
     def _one_line_menuing_summary(self):
         return self.one_line_named_pitch_repr
 
@@ -309,7 +302,13 @@ class PitchRange(AbjadObject):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
             self,
-            positional_argument_values=(self.one_line_named_pitch_repr,),
+            keyword_argument_names=(
+                'pitch_range_name',
+                'pitch_range_name_markup',
+                ),
+            positional_argument_values=(
+                self.one_line_named_pitch_repr,
+                ),
             )
 
     ### PRIVATE METHODS ###

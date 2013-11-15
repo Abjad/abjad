@@ -143,14 +143,6 @@ class TypedCounter(TypedCollection):
             positional_argument_repr_string)
         return positional_argument_repr_string
 
-    @property
-    def _positional_argument_values(self):
-        return [dict(self)]
-
-    @property
-    def _tokens_brace_characters(self):
-        return ('{', '}')
-
     ### PUBLIC METHODS ###
 
     '''

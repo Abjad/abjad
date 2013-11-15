@@ -132,7 +132,15 @@ class Instrument(ContextMark):
     @property
     def _contents_repr_string(self):
         result = []
-        for name in self._keyword_argument_names:
+        for name in (
+            'instrument_name',
+            'instrument_name_markup',
+            'short_instrument_name',
+            'short_instrument_name_markup',
+            'allowable_clefs',
+            'pitch_range',
+            'sounding_pitch_of_written_middle_c',
+            ):
             value = getattr(self, name)
             default_keyword_argument_name = '_default_{}'.format(name)
             default_value = getattr(self, default_keyword_argument_name, None)
@@ -147,13 +155,6 @@ class Instrument(ContextMark):
     @property
     def _keyword_argument_names(self):
         return (
-            'instrument_name',
-            'instrument_name_markup',
-            'short_instrument_name',
-            'short_instrument_name_markup',
-            'allowable_clefs',
-            'pitch_range',
-            'sounding_pitch_of_written_middle_c',
             )
 
     @property
@@ -163,6 +164,22 @@ class Instrument(ContextMark):
     @property
     def _scope_name(self):
         return self._scope.__name__
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(
+                'instrument_name',
+                'instrument_name_markup',
+                'short_instrument_name',
+                'short_instrument_name_markup',
+                'allowable_clefs',
+                'pitch_range',
+                'sounding_pitch_of_written_middle_c',
+                ),
+            )
 
     ### PRIVATE METHODS ###
 

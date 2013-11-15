@@ -171,18 +171,21 @@ class Container(Component):
             return duration
 
     @property
-    def _keyword_argument_names(self):
-        return ()
-
-    @property
-    def _positional_argument_values(self):
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
         if not self:
-            return ()
-        lilypond_format = ' '.join(format(x, 'lilypond') for x in self)
-        lilypond_format = lilypond_format.replace('\n', ' ')
-        lilypond_format = lilypond_format.replace('\t', ' ')
-        lilypond_format = lilypond_format.replace('  ', ' ')
-        return (lilypond_format,)
+            positional_argument_values = ()
+        else:
+            lilypond_format = ' '.join(format(x, 'lilypond') for x in self)
+            lilypond_format = lilypond_format.replace('\n', ' ')
+            lilypond_format = lilypond_format.replace('\t', ' ')
+            lilypond_format = lilypond_format.replace('  ', ' ')
+            positional_argument_values = (lilypond_format,)
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
+            )
 
     @property
     def _preprolated_duration(self):

@@ -215,13 +215,6 @@ class TimeSignature(ContextMark):
         return '{}/{}'.format(self.numerator, self.denominator)
 
     @property
-    def _keyword_argument_names(self):
-        return (
-            'partial',
-            'suppress',
-            )
-
-    @property
     def _lilypond_format(self):
         if self.suppress:
             return []
@@ -237,13 +230,22 @@ class TimeSignature(ContextMark):
             return result
 
     @property
-    def _positional_argument_values(self):
-        return (self.pair, )
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(
+                'partial',
+                'suppress',
+                ),
+            positional_argument_values=(
+                self.pair,
+                ),
+            )
 
     ### PRIVATE METHODS ###
 
     def _attach(self, start_component):
-        from abjad.tools import marktools
         classes = (type(self), )
         if start_component._has_mark(mark_prototypes=classes):
             message = 'component already has context mark attached.'

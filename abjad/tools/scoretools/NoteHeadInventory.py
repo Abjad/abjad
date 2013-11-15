@@ -83,8 +83,15 @@ class NoteHeadInventory(TypedList):
         return coerce
 
     @property
-    def _keyword_argument_names(self):
-        return ()
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                self._collection,
+                )
+            )
 
     ### PUBLIC PROPERTIES ###
 

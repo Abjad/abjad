@@ -96,8 +96,8 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_keyword_argument_names(object_):
-        if hasattr(object_, '_keyword_argument_names'):
-            return object_._keyword_argument_names
+#        if hasattr(object_, '_keyword_argument_names'):
+#            return object_._keyword_argument_names
         return StorageFormatManager.get_signature_keyword_argument_names(
             object_)
 
@@ -118,17 +118,17 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_positional_argument_names(object_):
-        if StorageFormatManager.is_instance(object_):
-            if hasattr(object_, '_positional_argument_names'):
-                return object_._positional_argument_names
+#        if StorageFormatManager.is_instance(object_):
+#            if hasattr(object_, '_positional_argument_names'):
+#                return object_._positional_argument_names
         return StorageFormatManager.get_signature_positional_argument_names(
             object_)
 
     @staticmethod
     def get_positional_argument_values(object_):
-        if StorageFormatManager.is_instance(object_):
-            if hasattr(object_, '_positional_argument_values'):
-                return object_._positional_argument_values
+#        if StorageFormatManager.is_instance(object_):
+#            if hasattr(object_, '_positional_argument_values'):
+#                return object_._positional_argument_values
         names = StorageFormatManager.get_positional_argument_names(object_)
         result = []
         for name in names:
@@ -254,8 +254,8 @@ class StorageFormatManager(object):
         '''
         if StorageFormatManager.is_instance(object_):
             class_name = type(object_).__name__
-            if hasattr(object_, '_tools_package_name'):
-                return object_._tools_package_name
+#            if hasattr(object_, '_tools_package_name'):
+#                return object_._tools_package_name
         else:
             class_name = object_.__name__
         for part in reversed(object_.__module__.split('.')):
@@ -277,8 +277,8 @@ class StorageFormatManager(object):
         tools_package_name = None
         if StorageFormatManager.is_instance(object_):
             class_name = type(object_).__name__
-            if hasattr(object_, '_tools_package_name'):
-                tools_package_name = object_._tools_package_name
+#            if hasattr(object_, '_tools_package_name'):
+#                tools_package_name = object_._tools_package_name
         else:
             class_name = object_.__name__
         if not tools_package_name:

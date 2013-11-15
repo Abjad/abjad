@@ -91,17 +91,6 @@ class TypedCollection(AbjadObject):
         return coerce
 
     @property
-    def _keyword_argument_names(self):
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        names = manager.get_signature_keyword_argument_names(self)
-        names = list(names)
-        if 'tokens' in names:
-            names.remove('tokens')
-        names = tuple(names)
-        return names
-
-    @property
     def _positional_argument_repr_string(self):
         positional_argument_repr_string = [
             repr(x) for x in self]
@@ -112,12 +101,21 @@ class TypedCollection(AbjadObject):
         return positional_argument_repr_string
 
     @property
-    def _positional_argument_values(self):
-        return [list(self)]
-
-    @property
-    def _tokens_brace_characters(self):
-        return ('[', ']')
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_names = list(
+            manager.get_signature_keyword_argument_names(
+                self))
+        if 'tokens' in keyword_argument_names:
+            keyword_argument_names.remove('tokens')
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=(
+                self._collection,
+                )
+            )
 
     ### PUBLIC METHODS ###
 

@@ -175,7 +175,7 @@ class Tempo(ContextMark):
                 'Allegro',
                 durationtools.Duration(1, 4),
                 84
-            )
+                )
 
         Returns string.
         '''
@@ -275,15 +275,19 @@ class Tempo(ContextMark):
         return self._lilypond_format.lstrip(r'\tempo ')
 
     @property
-    def _positional_argument_values(self):
-        result = []
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = []
         if self.textual_indication:
-            result.append(self.textual_indication)
+            positional_argument_values.append(self.textual_indication)
         if self.duration:
-            result.append(self.duration)
+            positional_argument_values.append(self.duration)
         if self.units_per_minute:
-            result.append(self.units_per_minute)
-        return tuple(result)
+            positional_argument_values.append(self.units_per_minute)
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PUBLIC PROPERTIES ###
 
