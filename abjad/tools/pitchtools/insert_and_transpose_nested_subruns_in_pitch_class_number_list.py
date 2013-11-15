@@ -3,16 +3,16 @@ from abjad.tools import sequencetools
 
 
 # TODO: remove from public API altogether
-def insert_and_transpose_nested_subruns_in_pitch_class_number_list(notes, subrun_indicators):
+def insert_and_transpose_nested_subruns_in_pitch_class_number_list(notes, subrun_tokens):
     '''Insert and transpose nested subruns in `pitch_class_number_list`
-    according to `subrun_indicators`:
+    according to `subrun_tokens`:
 
     ::
 
         >>> notes = [Note(p, (1, 4)) for p in [0, 2, 7, 9, 5, 11, 4]]
-        >>> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
+        >>> subrun_tokens = [(0, [2, 4]), (4, [3, 1])]
         >>> pitchtools.insert_and_transpose_nested_subruns_in_pitch_class_number_list(
-        ... notes, subrun_indicators)
+        ... notes, subrun_tokens)
 
         >>> t = []
         >>> for x in notes:
@@ -24,9 +24,9 @@ def insert_and_transpose_nested_subruns_in_pitch_class_number_list(notes, subrun
         >>> t
         [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]
 
-    Set `subrun_indicators` to a list of zero or more ``(index, length_list)`` pairs.
+    Set `subrun_tokens` to a list of zero or more ``(index, length_list)`` pairs.
 
-    For each ``(index, length_list)`` pair in *subrun_indicators*
+    For each ``(index, length_list)`` pair in *subrun_tokens*
     the function will read *index* mod ``len(notes)`` and insert
     a subrun of length ``length_list[0]`` immediately after ``notes[index]``,
     a subrun of length ``length_list[1]`` immediately after ``notes[index+1]``,
@@ -71,13 +71,13 @@ def insert_and_transpose_nested_subruns_in_pitch_class_number_list(notes, subrun
 
     assert isinstance(notes, list)
     assert all(isinstance(x, scoretools.Note) for x in notes)
-    assert isinstance(subrun_indicators, list)
+    assert isinstance(subrun_tokens, list)
 
     len_notes = len(notes)
     instructions = []
 
-    for subrun_indicator in subrun_indicators:
-        pairs = _make_index_length_pairs(subrun_indicator)
+    for subrun_token in subrun_tokens:
+        pairs = _make_index_length_pairs(subrun_token)
         for anchor_index, subrun_length in pairs:
             anchor_note = notes[anchor_index % len_notes]
             anchor_pitch = pitchtools.get_named_pitch_from_pitch_carrier(anchor_note)
@@ -112,8 +112,8 @@ def _get_intervals_in_subrun(subrun_source):
     return result
 
 
-def _make_index_length_pairs(subrun_indicator):
-    anchor_index, subrun_lengths = subrun_indicator
+def _make_index_length_pairs(subrun_token):
+    anchor_index, subrun_lengths = subrun_token
     num_subruns = len(subrun_lengths)
     pairs = []
     for i in range(num_subruns):

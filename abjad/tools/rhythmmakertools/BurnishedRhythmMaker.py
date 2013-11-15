@@ -215,10 +215,10 @@ class BurnishedRhythmMaker(RhythmMaker):
                 #detach(spanner_classes, component)
             tie_spanner.extend(part)
 
-    def _burnish_division_part(self, division_part, indicator):
-        assert len(division_part) == len(indicator)
+    def _burnish_division_part(self, division_part, token):
+        assert len(division_part) == len(token)
         new_division_part = []
-        for number, i in zip(division_part, indicator):
+        for number, i in zip(division_part, token):
             if i == -1:
                 new_division_part.append(-abs(number))
             elif i == 0:

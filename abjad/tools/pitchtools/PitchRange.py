@@ -45,10 +45,10 @@ class PitchRange(AbjadObject):
 
     _symbolic_pitch_range_string_regex_body = '''
         ([\[(])         # open bracket or open parenthesis
-        ({}|{}|-?\d+)   # pitch indicator
+        ({}|{}|-?\d+)   # pitch
         ,               # comma
         [ ]*            # any amount of whitespace
-        ({}|{}|-?\d+)   # pitch indicator
+        ({}|{}|-?\d+)   # pitch
         ([\])])         # close bracket or close parenthesis
         '''.format(
             Pitch._pitch_class_octave_number_regex_body,
@@ -75,17 +75,17 @@ class PitchRange(AbjadObject):
         from abjad.tools import pitchtools
         if len(args) == 1 and isinstance(args[0], type(self)):
             if args[0].start_pitch_is_included_in_range:
-                indicator = 'inclusive'
+                boundedness = 'inclusive'
             else:
-                indicator = 'exclusive'
-            start = (args[0].start_pitch, indicator)
+                boundedness = 'exclusive'
+            start = (args[0].start_pitch, boundedness)
             self._start = start
             assert isinstance(args[0], type(self)), repr(args[0])
             if args[0].stop_pitch_is_included_in_range:
-                indicator = 'inclusive'
+                boundedness = 'inclusive'
             else:
-                indicator = 'exclusive'
-            stop = (args[0].stop_pitch, indicator)
+                boundedness = 'exclusive'
+            stop = (args[0].stop_pitch, boundedness)
             self._stop = stop
         elif len(args) == 1 and isinstance(args[0], str):
             self._init_by_symbolic_pitch_range_string(*args)
@@ -374,7 +374,7 @@ class PitchRange(AbjadObject):
             True
 
         The regex that underlies this predicate matches against two
-        comma-separated pitch indicators enclosed in some combination of square
+        comma-separated pitches enclosed in some combination of square
         brackets and round parentheses.
 
         Returns boolean.

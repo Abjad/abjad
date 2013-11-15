@@ -221,7 +221,7 @@ class Context(Container):
     @apply
     def is_nonsemantic():
         def fget(self):
-            r'''Set indicator of nonsemantic voice:
+            r'''Gets and sets nonsemantic voice flag.
 
             ::
 
@@ -257,7 +257,7 @@ class Context(Container):
                 >>> voice.is_nonsemantic
                 True
 
-            Get indicator of nonsemantic voice:
+            Gets nonsemantic voice voice:
 
             ::
 

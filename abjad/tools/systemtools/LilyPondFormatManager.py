@@ -477,7 +477,7 @@ class LilyPondFormatManager(object):
         ):
         '''Makes Lilypond override string.
 
-        Does not include once indicator.
+        Does not include 'once'.
 
         Returns string.
         '''

@@ -32,7 +32,7 @@ def test_scoretools_Voice___copy___01():
 
 
 def test_scoretools_Voice___copy___02():
-    r'''Voice copies semanticity indicator.
+    r'''Voice copies semanticity flag.
     '''
 
     voice_1 = Voice("s8 s8 s8 s8")

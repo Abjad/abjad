@@ -674,7 +674,7 @@ class Leaf(Component):
 
             Set to true when using leaves only graphically.
 
-            Setting this value to true sets sounding pitch indicator to false.
+            Setting this value to true sets sounding pitch flag to false.
             '''
             return self._written_pitch_indication_is_nonsemantic
         def fset(self, expr):

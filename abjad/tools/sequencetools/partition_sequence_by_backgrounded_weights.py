@@ -77,16 +77,16 @@ def partition_sequence_by_backgrounded_weights(sequence, weights):
 
     start_offsets = \
         mathtools.cumulative_sums([abs(x) for x in sequence])[:-1]
-    indicator = zip(start_offsets, sequence)
+    token = zip(start_offsets, sequence)
 
     result = []
     for interval_start, interval_stop in \
         mathtools.cumulative_sums_pairwise(weights):
         part = []
-        for pair in indicator[:]:
+        for pair in token[:]:
             if interval_start <= pair[0] < interval_stop:
                 part.append(pair[1])
-                indicator.remove(pair)
+                token.remove(pair)
         result.append(part)
 
     return result

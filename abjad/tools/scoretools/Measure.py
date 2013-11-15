@@ -46,8 +46,7 @@ class Measure(FixedDurationContainer):
     ### INITIALIZER ###
 
     def __init__(self, time_signature, music=None):
-        # set time signature adjustment indicator before
-        # contents initialization
+        # set time signature adjustment before contents initialization
         self._automatically_adjust_time_signature = False
         FixedDurationContainer.__init__(self, time_signature, music)
         self._always_format_time_signature = False
