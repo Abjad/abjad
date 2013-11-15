@@ -4,6 +4,8 @@ import types
 
 
 class StorageFormatManager(object):
+    r'''Manages Abjad object storage formats.
+    '''
 
     ### PUBLIC METHODS ###
 
