@@ -31,17 +31,11 @@ class StorageFormatManager(object):
                 StorageFormatManager.get_tools_package_qualified_class_name(
                     value)
             result.append(value)
-#        elif hasattr(value, '_storage_format_specification'):
-#            specification = value._get_storage_format_specification()
-#            result.extend(specification.get_storage_format_pieces())
-        elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
-            result.extend(value._get_tools_package_qualified_repr_pieces(
-                is_indented=is_indented))
-        elif hasattr(value, '_tools_package_name'):
-            result.append('{}.{!r}'.format(
-                value._tools_package_name,
-                value,
-                ))
+        elif hasattr(value, '_storage_format_specification'):
+            specification = value._storage_format_specification
+            pieces = StorageFormatManager.get_storage_format_pieces(
+                specification)
+            result.extend(pieces)
         elif isinstance(value, (list, tuple)):
             # just return the repr, if all contents are builtin types
             if all(isinstance(x, (bool, int, float, str, type(None)))
@@ -62,7 +56,7 @@ class StorageFormatManager(object):
                 result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
             result.append('{}{}'.format(prefix, braces[1]))
         elif isinstance(value, dict):
-            result.append('{')
+            result.append('{{{}'.format(infix))
             for key, value in sorted(value.items()):
                 key_pieces = StorageFormatManager.format_one_value(key)
                 value_pieces = StorageFormatManager.format_one_value(value)
@@ -173,100 +167,54 @@ class StorageFormatManager(object):
     @staticmethod
     def get_storage_format(
         object_,
-        is_indented=True,
-        keyword_argument_names=None,
-        positional_argument_values=None,
-        tools_package_name=None,
         ):
-        pieces = StorageFormatManager.get_storage_format_pieces(
-            object_,
-            is_indented=is_indented,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
-            tools_package_name=tools_package_name,
-            )
-#        if is_indented:
-#            return '\n'.join(pieces)
+        assert '_storage_format_specification' in dir(object_)
+        specification = object_._storage_format_specification
+        pieces = StorageFormatManager.get_storage_format_pieces(specification)
         return ''.join(pieces)
 
     @staticmethod
-    def get_storage_format_keyword_argument_pieces(
-        object_,
-        is_indented=True,
-        keyword_argument_names=None,
-        ):
+    def get_storage_format_pieces(specification):
+        if specification.storage_format_pieces is not None:
+            return specification.storage_format_pieces
+
         result = []
         prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
-            is_indented)
-        for name in StorageFormatManager.get_keyword_argument_names(object_):
-            if object_._has_default_attribute_values:
-                value = getattr(object_, name)
+            specification.is_indented)
+        class_name = type(specification.instance).__name__
+        tools_package_name = specification.tools_package_name
+        tools_package_qualified_class_name = '{}.{}'.format(
+            tools_package_name, class_name)
+
+        positional_argument_pieces = []
+        for value in specification.positional_argument_values:
+            pieces = StorageFormatManager.format_one_value(
+                value, specification.is_indented)
+            for piece in pieces[:-1]:
+                positional_argument_pieces.append(prefix + piece)
+            positional_argument_pieces.append(prefix + pieces[-1] + suffix)
+
+        keyword_argument_pieces = []
+        for name in specification.keyword_argument_names:
+            if specification.instance._has_default_attribute_values:
+                value = getattr(specification.instance, name)
                 default_keyword_argument_name = '_default_{}'.format(name)
-                default_value = getattr(object_, default_keyword_argument_name)
+                default_value = getattr(
+                    specification.instance,
+                    default_keyword_argument_name,
+                    )
                 if value == default_value:
                     value = None
-            # change container.music to container._music
-            elif hasattr(object_, '_storage_format_attribute_mapping'):
-                mapped_attribute_name = \
-                    object_._storage_format_attribute_mapping[name]
-                value = getattr(object_, mapped_attribute_name)
             else:
-                value = getattr(object_, name)
+                value = getattr(specification.instance, name)
             if value is None or isinstance(value, types.MethodType):
                 continue
             pieces = StorageFormatManager.format_one_value(value)
             pieces[0] = '{}={}'.format(name, pieces[0])
             for piece in pieces[:-1]:
-                result.append(prefix + piece)
-            result.append(prefix + pieces[-1] + suffix)
-        return tuple(result)
+                keyword_argument_pieces.append(prefix + piece)
+            keyword_argument_pieces.append(prefix + pieces[-1] + suffix)
 
-    @staticmethod
-    def get_storage_format_positional_argument_pieces(
-        object_,
-        is_indented=True,
-        positional_argument_values=None,
-        ):
-        result = []
-        prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
-            is_indented)
-        for value in StorageFormatManager.get_positional_argument_values(
-            object_):
-            pieces = StorageFormatManager.format_one_value(
-                value, is_indented=is_indented)
-            for piece in pieces[:-1]:
-                result.append(prefix + piece)
-            result.append(prefix + pieces[-1] + suffix)
-        return tuple(result)
-
-    @staticmethod
-    def get_storage_format_pieces(
-        object_,
-        is_indented=True,
-        keyword_argument_names=None,
-        positional_argument_values=None,
-        tools_package_name=None,
-        ):
-        result = []
-        prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
-            is_indented)
-        class_name = type(object_).__name__
-        tools_package_name = tools_package_name or \
-            StorageFormatManager.get_tools_package_name(object_)
-        tools_package_qualified_class_name = '{}.{}'.format(
-            tools_package_name, class_name)
-        positional_argument_pieces = \
-            StorageFormatManager.get_storage_format_positional_argument_pieces(
-                object_,
-                is_indented=is_indented,
-                positional_argument_values=positional_argument_values,
-                )
-        keyword_argument_pieces = \
-            StorageFormatManager.get_storage_format_keyword_argument_pieces(
-                object_,
-                is_indented=is_indented,
-                keyword_argument_names=keyword_argument_names,
-                )
         if not positional_argument_pieces and not keyword_argument_pieces:
             result.append('{}()'.format(tools_package_qualified_class_name))
         else:
@@ -279,10 +227,12 @@ class StorageFormatManager(object):
                 result[-1] = result[-1].rstrip(suffix) + infix
             else:
                 result.extend(keyword_argument_pieces)
-            if is_indented:
+            if specification.is_indented:
                 result.append('{})'.format(prefix))
             else:
                 result.append(')')
+        if not specification.is_indented:
+            return (''.join(result),)
         return tuple(result)
 
     @staticmethod

@@ -64,9 +64,10 @@ class AbjadObject(object):
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import systemtools
         result = []
+        specification = self._storage_format_specification
         manager = systemtools.StorageFormatManager
         tmp = manager.get_tools_package_qualified_class_name
-        for name in manager.get_keyword_argument_names(self):
+        for name in specification.keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
                 # if the value is a class like Note (which is unusual)
@@ -85,10 +86,10 @@ class AbjadObject(object):
 
     @property
     def _positional_argument_repr_string(self):
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
+        specification = self._storage_format_specification
         positional_argument_repr_string = [
-            repr(x) for x in manager.get_positional_argument_values(self)]
+            repr(x) for x in specification.positional_argument_values
+            ]
         positional_argument_repr_string = ', '.join(
             positional_argument_repr_string)
         return positional_argument_repr_string
@@ -115,21 +116,6 @@ class AbjadObject(object):
         return manager.get_tools_package_qualified_class_name(self)
         #return '{}.{}'.format(self._tools_package_name, type(self).__name__)
 
-    @property
-    def _tools_package_qualified_indented_repr(self):
-        return ''.join(
-            self._get_tools_package_qualified_repr_pieces(is_indented=True))
-
-    @property
-    def _tools_package_qualified_repr(self):
-        repr_pieces = self._get_tools_package_qualified_repr_pieces(
-            is_indented=False)
-        return ''.join(repr_pieces)
-
-    @property
-    def _z(self):
-        return self._tools_package_qualified_indented_repr
-
     ### PRIVATE METHODS ###
 
     def _debug(self, value, annotation=None, blank=False):
@@ -150,77 +136,3 @@ class AbjadObject(object):
             self._debug(repr(values), annotation=annotation)
             if blank:
                 print ''
-
-    def _get_tools_package_qualified_keyword_argument_repr_pieces(
-        self, is_indented=True):
-        from abjad.tools import systemtools
-        result = []
-        prefix, suffix = '', ', '
-        if is_indented:
-            prefix, suffix = '    ', ','
-        manager = systemtools.StorageFormatManager
-        for name in manager.get_keyword_argument_names(self):
-            if self._has_default_attribute_values:
-                default_keyword_argument_name = '_default_{}'.format(name)
-                default_value = getattr(self, default_keyword_argument_name)
-                value = getattr(self, name)
-                if value == default_value:
-                    value = None
-            # change container.music to container._music
-            elif hasattr(self, '_storage_format_attribute_mapping'):
-                mapped_attribute_name = \
-                    self._storage_format_attribute_mapping[name]
-                value = getattr(self, mapped_attribute_name)
-            else:
-                value = getattr(self, name)
-            if value is None or isinstance(value, types.MethodType):
-                continue
-            pieces = manager.format_one_value(value)
-            pieces[0] = '{}={}'.format(name, pieces[0])
-            for piece in pieces[:-1]:
-                result.append(prefix + piece)
-            result.append(prefix + pieces[-1] + suffix)
-        return tuple(result)
-
-    def _get_tools_package_qualified_positional_argument_repr_pieces(
-        self, is_indented=True):
-        from abjad.tools import systemtools
-        result = []
-        prefix, suffix = '', ', '
-        if is_indented:
-            prefix, suffix = '    ', ','
-        manager = systemtools.StorageFormatManager
-        for value in manager.get_positional_argument_values(self):
-            pieces = manager.format_one_value(value, is_indented=is_indented)
-            for piece in pieces[:-1]:
-                result.append(prefix + piece)
-            result.append(prefix + pieces[-1] + suffix)
-        return tuple(result)
-
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_storage_format_pieces(
-            self, is_indented=is_indented)
-        result = []
-        argument_repr_pieces = []
-        argument_repr_pieces.extend(
-            self._get_tools_package_qualified_positional_argument_repr_pieces(
-                is_indented=is_indented))
-        argument_repr_pieces.extend(
-            self._get_tools_package_qualified_keyword_argument_repr_pieces(
-                is_indented=is_indented))
-        if argument_repr_pieces:
-            argument_repr_pieces[-1] = argument_repr_pieces[-1].rstrip(' ')
-            argument_repr_pieces[-1] = argument_repr_pieces[-1].rstrip(',')
-        if len(argument_repr_pieces) == 0:
-            result.append('{}()'.format(
-                self._tools_package_qualified_class_name))
-        else:
-            result.append('{}('.format(
-                self._tools_package_qualified_class_name))
-            result.extend(argument_repr_pieces)
-            if is_indented:
-                result.append('    )')
-            else:
-                result.append(')')
-        return tuple(result)
