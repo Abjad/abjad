@@ -3,11 +3,11 @@ from abjad import *
 from abjad.tools import tonalanalysistools
 
 
-def test_tonalanalysistools_InversionIndicator___eq___01():
+def test_tonalanalysistools_ChordInversion___eq___01():
 
-    inversion_indicator = tonalanalysistools.InversionIndicator(0)
-    u = tonalanalysistools.InversionIndicator(0)
-    voice = tonalanalysistools.InversionIndicator(1)
+    inversion_indicator = tonalanalysistools.ChordInversion(0)
+    u = tonalanalysistools.ChordInversion(0)
+    voice = tonalanalysistools.ChordInversion(1)
 
     assert      inversion_indicator == inversion_indicator
     assert      inversion_indicator == u

@@ -5,12 +5,12 @@ from abjad.tools import stringtools
 from abjad.tools.pitchtools import IntervalSegment
 
 
-class ChordQualityIndicator(IntervalSegment):
+class ChordQuality(IntervalSegment):
     r'''A chord quality indicator.
 
     ::
 
-        >>> tonalanalysistools.ChordQualityIndicator(
+        >>> tonalanalysistools.ChordQuality(
         ...     'German',
         ...     'augmented sixth',
         ...     )
@@ -316,5 +316,5 @@ class ChordQualityIndicator(IntervalSegment):
     @staticmethod
     def from_interval_class_segment(segment):
         quality, extent = \
-            ChordQualityIndicator._segment_to_quality_and_extent[str(segment)]
-        return ChordQualityIndicator(quality, extent=extent)
+            ChordQuality._segment_to_quality_and_extent[str(segment)]
+        return ChordQuality(quality, extent=extent)

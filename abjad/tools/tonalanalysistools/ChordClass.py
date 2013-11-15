@@ -48,7 +48,7 @@ class ChordClass(PitchClassSet):
     def __init__(self, root, *args):
         from abjad.tools import tonalanalysistools
         root = pitchtools.NamedPitchClass(root)
-        quality_indicator = tonalanalysistools.ChordQualityIndicator(*args)
+        quality_indicator = tonalanalysistools.ChordQuality(*args)
         npcs = []
         for hdi in quality_indicator:
             mdi = pitchtools.NamedInterval(hdi)
@@ -137,7 +137,7 @@ class ChordClass(PitchClassSet):
     def extent(self):
         from abjad.tools import tonalanalysistools
         extent = self.cardinality_to_extent(self.cardinality)
-        return tonalanalysistools.ExtentIndicator(extent)
+        return tonalanalysistools.ChordExtent(extent)
 
     @property
     def figured_bass(self):

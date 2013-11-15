@@ -81,7 +81,7 @@ class TonalAnalysisAgent(object):
     @staticmethod
     def _analyze_chord(expr):
         from abjad.tools import tonalanalysistools
-        from abjad.tools.tonalanalysistools import ChordQualityIndicator as CQI
+        from abjad.tools.tonalanalysistools import ChordQuality as CQI
         pitches = pitchtools.PitchSegment.from_selection(expr)
         npcset = pitchtools.PitchClassSet(
             pitches, item_class=pitchtools.NamedPitchClass)

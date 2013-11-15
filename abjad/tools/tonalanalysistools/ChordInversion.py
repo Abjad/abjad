@@ -2,7 +2,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class InversionIndicator(AbjadObject):
+class ChordInversion(AbjadObject):
     '''An inversion indicator for tertian chords: 5, 63, 64 and
     also 7, 65, 43, 42, etc.
     

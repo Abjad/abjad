@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.tonalanalysistools import ChordQualityIndicator as CQI
+from abjad.tools.tonalanalysistools import ChordQuality as CQI
 
 
-def test_tonalanalysistools_ChordQualityIndicator_from_interval_class_segment_01():
+def test_tonalanalysistools_ChordQuality_from_interval_class_segment_01():
 
     segment = pitchtools.IntervalClassSegment([
         pitchtools.NamedInversionEquivalentIntervalClass('minor', 3),
@@ -13,7 +13,7 @@ def test_tonalanalysistools_ChordQualityIndicator_from_interval_class_segment_01
     assert indicator == CQI('diminished', 'triad')
 
 
-def test_tonalanalysistools_ChordQualityIndicator_from_interval_class_segment_02():
+def test_tonalanalysistools_ChordQuality_from_interval_class_segment_02():
 
     segment = pitchtools.IntervalClassSegment([
         pitchtools.NamedInversionEquivalentIntervalClass('minor', 3),
@@ -23,7 +23,7 @@ def test_tonalanalysistools_ChordQualityIndicator_from_interval_class_segment_02
     assert indicator == CQI('minor', 'triad')
 
 
-def test_tonalanalysistools_ChordQualityIndicator_from_interval_class_segment_03():
+def test_tonalanalysistools_ChordQuality_from_interval_class_segment_03():
 
     segment = pitchtools.IntervalClassSegment([
         pitchtools.NamedInversionEquivalentIntervalClass('major', 3),

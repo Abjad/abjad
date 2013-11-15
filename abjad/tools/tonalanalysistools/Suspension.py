@@ -3,7 +3,7 @@ import re
 from abjad.tools.abctools import AbjadObject
 
 
-class SuspensionIndicator(AbjadObject):
+class Suspension(AbjadObject):
     '''An indicator of 9-8, 7-6, 4-3, 2-1 and other types of
     suspension typical of, for example, the Bach chorales.
 

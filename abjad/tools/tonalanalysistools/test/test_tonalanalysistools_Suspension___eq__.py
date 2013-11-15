@@ -3,11 +3,11 @@ from abjad import *
 from abjad.tools import tonalanalysistools
 
 
-def test_tonalanalysistools_SuspensionIndicator___eq___01():
+def test_tonalanalysistools_Suspension___eq___01():
 
-    suspension_indicator = tonalanalysistools.SuspensionIndicator(4, 3)
-    u = tonalanalysistools.SuspensionIndicator(4, 3)
-    voice = tonalanalysistools.SuspensionIndicator(2, 1)
+    suspension_indicator = tonalanalysistools.Suspension(4, 3)
+    u = tonalanalysistools.Suspension(4, 3)
+    voice = tonalanalysistools.Suspension(2, 1)
 
     assert      suspension_indicator == suspension_indicator
     assert      suspension_indicator == u

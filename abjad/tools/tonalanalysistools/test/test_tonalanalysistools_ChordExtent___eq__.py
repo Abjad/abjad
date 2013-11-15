@@ -3,11 +3,11 @@ from abjad import *
 from abjad.tools import tonalanalysistools
 
 
-def test_tonalanalysistools_ExtentIndicator___eq___01():
+def test_tonalanalysistools_ChordExtent___eq___01():
 
-    extent_indicator = tonalanalysistools.ExtentIndicator(5)
-    u = tonalanalysistools.ExtentIndicator(5)
-    voice = tonalanalysistools.ExtentIndicator(7)
+    extent_indicator = tonalanalysistools.ChordExtent(5)
+    u = tonalanalysistools.ChordExtent(5)
+    voice = tonalanalysistools.ChordExtent(7)
 
     assert      extent_indicator == extent_indicator
     assert      extent_indicator == u
