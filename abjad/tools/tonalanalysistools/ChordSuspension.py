@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordSuspension(AbjadObject):
-    '''An indicator of 9-8, 7-6, 4-3, 2-1 and other types of
+    '''A chord of 9-8, 7-6, 4-3, 2-1 and other types of
     suspension typical of, for example, the Bach chorales.
 
     Value object that can not be changed after instantiation.
@@ -33,7 +33,8 @@ class ChordSuspension(AbjadObject):
         elif len(args) == 2:
             start, stop = self._init_by_start_and_stop(*args)
         else:
-            raise ValueError('can not initialize suspension indicator.')
+            message = 'can not initialize chord suspension.'
+            raise ValueError(message)
         self._start = start
         self._stop = stop
 
@@ -71,8 +72,8 @@ class ChordSuspension(AbjadObject):
         start, stop = pair
         return self._init_by_start_and_stop(start, stop)
 
-    def _init_by_reference(self, suspension_indicator):
-        start, stop = suspension_indicator.start, suspension_indicator.stop
+    def _init_by_reference(self, chord_suspension):
+        start, stop = chord_suspension.start, chord_suspension.stop
         return self._init_by_start_and_stop(start, stop)
 
     def _init_by_start_and_stop(self, start, stop):

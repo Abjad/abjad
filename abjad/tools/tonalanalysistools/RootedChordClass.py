@@ -34,7 +34,7 @@ class RootedChordClass(PitchClassSet):
 
     __slots__ = (
         '_bass',
-        '_quality_indicator',
+        '_chord_quality',
         '_root',
         )
 
@@ -67,9 +67,9 @@ class RootedChordClass(PitchClassSet):
     def __init__(self, root, *args):
         from abjad.tools import tonalanalysistools
         root = pitchtools.NamedPitchClass(root)
-        quality_indicator = tonalanalysistools.RootlessChordClass(*args)
+        chord_quality = tonalanalysistools.RootlessChordClass(*args)
         npcs = []
-        for hdi in quality_indicator:
+        for hdi in chord_quality:
             mdi = pitchtools.NamedInterval(hdi)
             npc = root + mdi
             npcs.append(npc)
@@ -80,7 +80,7 @@ class RootedChordClass(PitchClassSet):
             item_class=pitchtools.NamedPitchClass,
             )
         self._root = root
-        self._quality_indicator = quality_indicator
+        self._chord_quality = chord_quality
         self._bass = bass
 
     ### SPECIAL METHODS ###
@@ -88,7 +88,7 @@ class RootedChordClass(PitchClassSet):
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
             if self.root == arg.root:
-                if self.quality_indicator == arg.quality_indicator:
+                if self.chord_quality == arg.chord_quality:
                     if self.inversion == arg.inversion:
                         return True
         return False
@@ -98,14 +98,14 @@ class RootedChordClass(PitchClassSet):
 
     def __repr__(self):
         root = str(self.root).title()
-        quality = self.quality_indicator._title_case_name
+        quality = self.chord_quality._title_case_name
         return root + quality
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _markup_root(self):
-        if self.quality_indicator._quality_string in (
+        if self.chord_quality._quality_string in (
             'major', 'augmented', 'dominant'):
             root = str(self.root).upper()
         else:
@@ -124,19 +124,19 @@ class RootedChordClass(PitchClassSet):
     @property
     def _markup_symbol(self):
         circle = r'\draw-circle #0.35 #0 ##f'
-        if self.quality_indicator._quality_string == 'augmented':
+        if self.chord_quality._quality_string == 'augmented':
             return '+'
-        elif self.quality_indicator._quality_string == 'diminished':
+        elif self.chord_quality._quality_string == 'diminished':
             return circle
-        elif self.quality_indicator._quality_string == 'half diminished':
+        elif self.chord_quality._quality_string == 'half diminished':
             line = r"\draw-line #'(1 . 1)"
             markup = r'\concat {{ {} \hspace #-0.85 \raise #-0.5 {} }}'.format(
                 circle, line)
             return markup
-        elif self.quality_indicator._quality_string == 'major' and \
+        elif self.chord_quality._quality_string == 'major' and \
             5 < self.extent.number:
             return 'M'
-        elif self.quality_indicator._quality_string == 'minor' and \
+        elif self.chord_quality._quality_string == 'minor' and \
             5 < self.extent.number:
             return 'm'
         else:
@@ -191,7 +191,7 @@ class RootedChordClass(PitchClassSet):
 
     @property
     def inversion(self):
-        return self._quality_indicator.inversion
+        return self._chord_quality.inversion
 
     @property
     def markup(self):
@@ -215,13 +215,13 @@ class RootedChordClass(PitchClassSet):
         return markuptools.Markup(markup, Down)
 
     @property
-    def quality_indicator(self):
-        return self._quality_indicator
+    def chord_quality(self):
+        return self._chord_quality
 
     @property
     def quality_pair(self):
-        quality_indicator = self.quality_indicator
-        return quality_indicator.quality_string, quality_indicator.extent_name
+        chord_quality = self.chord_quality
+        return chord_quality.quality_string, chord_quality.extent_name
 
     @property
     def root(self):
@@ -232,7 +232,7 @@ class RootedChordClass(PitchClassSet):
         capitalized_qualities = ('major', 'dominant', 'augmented')
         symbolic_name = self.root.pitch_class_label
         letter, accidental = symbolic_name[0], symbolic_name[1:]
-        if self.quality_indicator.quality_string in capitalized_qualities:
+        if self.chord_quality.quality_string in capitalized_qualities:
             letter = letter.upper()
         else:
             letter = letter.lower()

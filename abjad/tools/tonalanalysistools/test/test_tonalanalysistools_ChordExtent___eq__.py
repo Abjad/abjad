@@ -5,18 +5,18 @@ from abjad.tools import tonalanalysistools
 
 def test_tonalanalysistools_ChordExtent___eq___01():
 
-    extent_indicator = tonalanalysistools.ChordExtent(5)
+    chord_extent = tonalanalysistools.ChordExtent(5)
     u = tonalanalysistools.ChordExtent(5)
     voice = tonalanalysistools.ChordExtent(7)
 
-    assert      extent_indicator == extent_indicator
-    assert      extent_indicator == u
-    assert not extent_indicator == voice
+    assert      chord_extent == chord_extent
+    assert      chord_extent == u
+    assert not chord_extent == voice
 
-    assert      u == extent_indicator
+    assert      u == chord_extent
     assert      u == u
     assert not u == voice
 
-    assert not voice == extent_indicator
+    assert not voice == chord_extent
     assert not voice == u
     assert      voice == voice

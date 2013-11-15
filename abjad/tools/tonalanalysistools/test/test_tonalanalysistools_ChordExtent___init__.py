@@ -14,9 +14,9 @@ def test_tonalanalysistools_ChordExtent___init___02():
     r'''Initialize by reference.
     '''
 
-    extent_indicator = tonalanalysistools.ChordExtent(7)
-    new = tonalanalysistools.ChordExtent(extent_indicator)
+    chord_extent = tonalanalysistools.ChordExtent(7)
+    new = tonalanalysistools.ChordExtent(chord_extent)
 
     assert new.number == 7
-    assert new == extent_indicator
-    assert new is not extent_indicator
+    assert new == chord_extent
+    assert new is not chord_extent

@@ -4,18 +4,18 @@ from abjad import *
 
 def test_tonalanalysistools_ChordQuality___eq___01():
 
-    quality_indicator = tonalanalysistools.ChordQuality('major')
+    chord_quality = tonalanalysistools.ChordQuality('major')
     u = tonalanalysistools.ChordQuality('major')
     voice = tonalanalysistools.ChordQuality('minor')
 
-    assert     quality_indicator == quality_indicator
-    assert     quality_indicator == u
-    assert not quality_indicator == voice
+    assert     chord_quality == chord_quality
+    assert     chord_quality == u
+    assert not chord_quality == voice
 
-    assert     u == quality_indicator
+    assert     u == chord_quality
     assert     u == u
     assert not u == voice
 
-    assert not voice == quality_indicator
+    assert not voice == chord_quality
     assert not voice == u
     assert     voice == voice

@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordInversion(AbjadObject):
-    '''An inversion indicator for tertian chords: 5, 63, 64 and
+    '''A chord inversion for tertian chords: 5, 63, 64 and
     also 7, 65, 43, 42, etc.
     
     Also root position, first, second, third
@@ -26,7 +26,8 @@ class ChordInversion(AbjadObject):
         elif isinstance(arg, str):
             number = self._inversion_name_to_inversion_number[arg]
         else:
-            raise ValueError('can not initialize inversion indicator.')
+            message = 'can not initialize chord inversion.'
+            raise ValueError(message)
         self._number = number
 
     ### SPECIAL METHODS ###

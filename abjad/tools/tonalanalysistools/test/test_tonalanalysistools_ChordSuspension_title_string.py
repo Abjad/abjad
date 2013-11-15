@@ -5,11 +5,11 @@ from abjad.tools import tonalanalysistools
 
 def test_tonalanalysistools_ChordSuspension_title_string_01():
 
-    suspension_indicator = tonalanalysistools.ChordSuspension(4, 3)
-    assert suspension_indicator.title_string == 'FourThreeSuspension'
+    chord_suspension = tonalanalysistools.ChordSuspension(4, 3)
+    assert chord_suspension.title_string == 'FourThreeSuspension'
 
-    suspension_indicator = tonalanalysistools.ChordSuspension(('flat', 2), 1)
-    assert suspension_indicator.title_string == 'FlatTwoOneSuspension'
+    chord_suspension = tonalanalysistools.ChordSuspension(('flat', 2), 1)
+    assert chord_suspension.title_string == 'FlatTwoOneSuspension'
 
-    suspension_indicator = tonalanalysistools.ChordSuspension()
-    assert suspension_indicator.title_string == ''
+    chord_suspension = tonalanalysistools.ChordSuspension()
+    assert chord_suspension.title_string == ''

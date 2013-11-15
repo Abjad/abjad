@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordExtent(AbjadObject):
-    '''A chord extent indicator, such as triad, seventh chord, ninth chord,
+    '''A chord extent, such as triad, seventh chord, ninth chord,
     etc.
 
     Value object that can not be changed after instantiation.
@@ -24,7 +24,7 @@ class ChordExtent(AbjadObject):
     def __init__(self, arg):
         if isinstance(arg, (int, long)):
             if arg not in self._acceptable_number:
-                message = 'can not initialize extent indicator: {}'
+                message = 'can not initialize extent: {}.'
                 raise ValueError(message.format(arg))
             number = arg
         elif isinstance(arg, type(self)):

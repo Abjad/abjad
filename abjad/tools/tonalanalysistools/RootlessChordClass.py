@@ -77,7 +77,7 @@ class RootlessChordClass(IntervalSegment):
         else:
             message = 'unknown chord quality arguments.'
             raise ValueError(message)
-        intervals, rotation = self._invert_quality_indicator(
+        intervals, rotation = self._invert_chord_quality(
             intervals, inversion)
         IntervalSegment.__init__(
             self,
@@ -261,7 +261,7 @@ class RootlessChordClass(IntervalSegment):
         return intervals
 
     @staticmethod
-    def _invert_quality_indicator(intervals, inversion):
+    def _invert_chord_quality(intervals, inversion):
         if isinstance(inversion, int):
             intervals = sequencetools.rotate_sequence(intervals, -inversion)
             rotation = -inversion
@@ -280,7 +280,7 @@ class RootlessChordClass(IntervalSegment):
             intervals = sequencetools.rotate_sequence(intervals, -4)
             rotation = -4
         else:
-            message = 'unknown inversion indicator: {!r}.'
+            message = 'unknown chord inversion: {!r}.'
             raise ValueError(message.format(inversion))
         return intervals, rotation
 

@@ -81,7 +81,7 @@ class TonalAnalysisAgent(object):
     @staticmethod
     def _analyze_chord(expr):
         from abjad.tools import tonalanalysistools
-        from abjad.tools.tonalanalysistools import RootlessChordClass as CQI
+        from abjad.tools.tonalanalysistools import RootlessChordClass as RCC
         pitches = pitchtools.PitchSegment.from_selection(expr)
         npcset = pitchtools.PitchClassSet(
             pitches, item_class=pitchtools.NamedPitchClass)
@@ -106,13 +106,13 @@ class TonalAnalysisAgent(object):
         else:
             return None
         root = ordered_npcs[0]
-        indicator = CQI.from_interval_class_segment(segment)
+        rootless_chord_class = RCC.from_interval_class_segment(segment)
         bass = min(pitches).named_pitch_class
         inversion = ordered_npcs.index(bass)
         return tonalanalysistools.RootedChordClass(
             root,
-            indicator.quality_string,
-            indicator.extent,
+            rootless_chord_class.quality_string,
+            rootless_chord_class.extent,
             inversion,
             )
 
@@ -180,7 +180,7 @@ class TonalAnalysisAgent(object):
         root = chord_class.root
         scale = tonalanalysistools.Scale(key_signature)
         scale_degree = scale.named_pitch_class_to_scale_degree(root)
-        quality = chord_class.quality_indicator.quality_string
+        quality = chord_class.chord_quality.quality_string
         extent = chord_class.extent
         inversion = chord_class.inversion
         return tonalanalysistools.RomanNumeral(
@@ -205,7 +205,7 @@ class TonalAnalysisAgent(object):
         root = chord_class.root
         scale = tonalanalysistools.Scale(key_signature)
         scale_degree = scale.named_pitch_class_to_scale_degree(root)
-        quality = chord_class.quality_indicator.quality_string
+        quality = chord_class.chord_quality.quality_string
         extent = chord_class.extent
         inversion = chord_class.inversion
         return tonalanalysistools.RomanNumeral(

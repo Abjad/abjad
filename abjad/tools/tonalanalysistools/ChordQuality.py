@@ -3,8 +3,8 @@ from abjad.tools.abctools import AbjadObject
 
 
 class ChordQuality(AbjadObject):
-    '''An indicator of chord quality, such as major, minor, dominant,
-    diminished, etc.
+    '''A chord quality, such as major, minor, dominant,
+    diminished and so on.
 
     Value object that can not be changed after instantiation.
     '''
@@ -23,7 +23,9 @@ class ChordQuality(AbjadObject):
 
     def __init__(self, quality_string):
         if quality_string not in self._acceptable_quality_strings:
-            raise ValueError('can not initialize quality indicator.')
+            message = 'can not initialize chord quality: {!r}.'
+            message = message.format(quality_string)
+            raise ValueError(message)
         self._quality_string = quality_string
 
     ### SPECIAL METHODS ###

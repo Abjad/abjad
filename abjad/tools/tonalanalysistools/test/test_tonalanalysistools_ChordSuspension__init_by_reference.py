@@ -5,8 +5,8 @@ from abjad.tools import tonalanalysistools
 
 def test_tonalanalysistools_ChordSuspension__init_by_reference_01():
 
-    suspension_indicator = tonalanalysistools.ChordSuspension(4, 3)
-    u = tonalanalysistools.ChordSuspension(suspension_indicator)
+    chord_suspension = tonalanalysistools.ChordSuspension(4, 3)
+    u = tonalanalysistools.ChordSuspension(chord_suspension)
 
-    assert suspension_indicator is not u
-    assert suspension_indicator == u
+    assert chord_suspension is not u
+    assert chord_suspension == u

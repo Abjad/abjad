@@ -5,6 +5,6 @@ from abjad.tools import tonalanalysistools
 
 def test_tonalanalysistools_ChordSuspension_is_empty_01():
 
-    suspension_indicator = tonalanalysistools.ChordSuspension()
+    chord_suspension = tonalanalysistools.ChordSuspension()
 
-    assert suspension_indicator.is_empty
+    assert chord_suspension.is_empty

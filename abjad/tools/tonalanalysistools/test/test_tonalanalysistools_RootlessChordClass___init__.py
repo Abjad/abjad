@@ -32,7 +32,7 @@ def test_tonalanalysistools_RootlessChordClass___init___02():
 
 
 def test_tonalanalysistools_RootlessChordClass___init___03():
-    r'''Initialize with quality string and integer cardinality indicator.
+    r'''Initialize with quality string and integer cardinality.
     '''
 
     cqi = tonalanalysistools.RootlessChordClass('dominant', 7)

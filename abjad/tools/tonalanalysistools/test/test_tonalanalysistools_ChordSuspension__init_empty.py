@@ -5,7 +5,7 @@ from abjad.tools import tonalanalysistools
 
 def test_tonalanalysistools_ChordSuspension__init_empty_01():
 
-    suspension_indicator = tonalanalysistools.ChordSuspension()
+    chord_suspension = tonalanalysistools.ChordSuspension()
 
-    assert suspension_indicator.start is None
-    assert suspension_indicator.stop is None
+    assert chord_suspension.start is None
+    assert chord_suspension.stop is None
