@@ -151,15 +151,16 @@ class LilyPondFormatManager(object):
     def get_all_mark_format_contributions(component):
         r'''Gets all mark format contributions as nested dictionaries.
 
-        The first level of keys represent format slots.
+        Keys in the first level represent format slots.
 
-        The second level of keys represent format contributors
-        (like 'articulations' and 'markup').
+        Keys in the second level represent format contributors
+        like 'articulations' and 'markup'.
 
         Returns dictionary.
         '''
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
+        # the pairs here are (section, is_singleton) pairs
         class_to_section = {
             indicatortools.Articulation: ('articulations', False),
             indicatortools.BendAfter: ('articulations', False),
@@ -171,22 +172,27 @@ class LilyPondFormatManager(object):
         marks = component._get_marks() + component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
+        wrappers = []
         # organize marks attached directly to component
         for mark in marks:
-            # nonprinting marks are skipped (eg, Annotation)
+            # skip nonprinting marks like Annotation
             if not hasattr(mark, '_lilypond_format'):
                 continue
-            # a recognized mark class
+            # get section of recognized mark class
             section, singleton = None, False
             if mark.__class__ in class_to_section:
                 section, singleton = class_to_section[mark.__class__]
-            # context marks to be dealt with later
+            # store context marks for later handling
             elif isinstance(mark, indicatortools.ContextMark):
                 if LilyPondFormatManager.is_formattable_context_mark_for_component(
                     mark, component):
                     context_marks.append(mark)
                     continue
-            # markup to be dealt with later
+            # store wrappers for later handling
+            elif isinstance(mark, indicatortools.IndicatorWrapper):
+                wrappers.append(mark)
+                continue
+            # store markup for later handling
             elif isinstance(mark, markuptools.Markup):
                 if mark.direction is Up:
                     up_markup.append(mark)
@@ -229,18 +235,20 @@ class LilyPondFormatManager(object):
                 if LilyPondFormatManager.is_formattable_context_mark_for_component(
                     mark, component):
                     context_marks.append(mark)
-        #for candidate in context_mark_candidates:
-        #    if candidate not in context_marks:
-        #            context_marks.append(candidate)
         section = 'context marks'
-        for mark in context_marks:
-            format_slot = mark._format_slot
-            result = LilyPondFormatManager.get_context_mark_format_pieces(mark)
+        for context_mark in context_marks:
+            assert isinstance(context_mark, indicatortools.ContextMark)
+            format_slot = context_mark._format_slot
+            result = LilyPondFormatManager.get_context_mark_format_pieces(
+                context_mark)
             if format_slot not in contributions:
                 contributions[format_slot] = {}
             if section not in contributions[format_slot]:
                 contributions[format_slot][section] = []
             contributions[format_slot][section].extend(result)
+
+        # TODO: insert wrapper handling code here
+
         # handle markup
         result = []
         for markup_list in (up_markup, down_markup, neutral_markup):
