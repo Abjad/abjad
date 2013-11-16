@@ -327,7 +327,7 @@ class TonalAnalysisAgent(object):
             ::
 
                 >>> chord = Chord("<c' e'>4")
-                >>> key_signature = indicatortools.KeySignature('g', 'major')
+                >>> key_signature = KeySignature('g', 'major')
                 >>> selection = tonalanalysistools.select(chord)
                 >>> selection.analyze_incomplete_tonal_functions(key_signature)
                 [IVMajorTriadInRootPosition]
@@ -393,7 +393,7 @@ class TonalAnalysisAgent(object):
         ..  container:: example
 
                 >>> chord = Chord('<ef g bf>4')
-                >>> key_signature = indicatortools.KeySignature('c', 'major')
+                >>> key_signature = KeySignature('c', 'major')
                 >>> selection = tonalanalysistools.select(chord)
                 >>> selection.analyze_tonal_functions(key_signature)
                 [FlatIIIMajorTriadInRootPosition]

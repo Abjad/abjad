@@ -8,7 +8,7 @@ class KeySignature(ContextMark):
     ::
 
         >>> staff = Staff("e'8 fs'8 gs'8 a'8")
-        >>> key_signature = indicatortools.KeySignature('e', 'major')
+        >>> key_signature = KeySignature('e', 'major')
         >>> attach(key_signature, staff)
         >>> show(staff) # doctest: +SKIP
 
@@ -95,7 +95,7 @@ class KeySignature(ContextMark):
 
             ::
 
-                >>> key_signature = indicatortools.KeySignature('e', 'major')
+                >>> key_signature = KeySignature('e', 'major')
                 >>> key_signature.mode
                 Mode('major')
 
@@ -122,7 +122,7 @@ class KeySignature(ContextMark):
 
         ::
 
-            >>> key_signature = indicatortools.KeySignature('e', 'major')
+            >>> key_signature = KeySignature('e', 'major')
             >>> key_signature.name
             'E major'
 
@@ -141,7 +141,7 @@ class KeySignature(ContextMark):
 
             ::
 
-                >>> key_signature = indicatortools.KeySignature('e', 'major')
+                >>> key_signature = KeySignature('e', 'major')
                 >>> key_signature.tonic
                 NamedPitchClass('e')
 

@@ -38,6 +38,7 @@ from abjad.tools.durationtools import Offset
 from abjad.tools.indicatortools import Articulation
 from abjad.tools.indicatortools import Clef
 from abjad.tools.indicatortools import Dynamic
+from abjad.tools.indicatortools import KeySignature
 from abjad.tools.indicatortools import Tempo
 from abjad.tools.indicatortools import TimeSignature
 from abjad.tools.markuptools import Markup

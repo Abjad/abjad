@@ -6,7 +6,7 @@ def test_indicatortools_KeySignature_tonic_01():
     r'''Key signature tonic is read / write.
     '''
 
-    key_signature = indicatortools.KeySignature('e', 'major')
+    key_signature = KeySignature('e', 'major')
     key_signature.tonic = pitchtools.NamedPitchClass('e')
 
     key_signature.tonic = 'd'

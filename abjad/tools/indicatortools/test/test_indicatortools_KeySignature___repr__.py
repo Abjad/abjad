@@ -6,5 +6,5 @@ def test_indicatortools_KeySignature___repr___01():
     r'''Key signature returns nonempty string repr.
     '''
 
-    repr = indicatortools.KeySignature('g', 'major').__repr__()
-    assert isinstance(repr, str) and 0 < len(repr)
+    result = repr(KeySignature('g', 'major'))
+    assert isinstance(result, str) and 0 < len(result)
