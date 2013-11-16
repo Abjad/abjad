@@ -227,14 +227,13 @@ class LilyPondFormatManager(object):
                 contribution_list.sort()
         # handle context marks
         for parent in component._get_parentage(include_self=False):
-            for mark in parent._start_marks:
-                if not isinstance(mark, indicatortools.ContextMark):
-                    continue
-                if mark in context_marks:
+            for context_mark in parent._start_context_marks:
+                assert isinstance(context_mark, indicatortools.ContextMark)
+                if context_mark in context_marks:
                     continue
                 if LilyPondFormatManager.is_formattable_context_mark_for_component(
-                    mark, component):
-                    context_marks.append(mark)
+                    context_mark, component):
+                    context_marks.append(context_mark)
         section = 'context marks'
         for context_mark in context_marks:
             assert isinstance(context_mark, indicatortools.ContextMark)

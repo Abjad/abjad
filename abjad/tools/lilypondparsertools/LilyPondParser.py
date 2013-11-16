@@ -469,9 +469,9 @@ class LilyPondParser(abctools.Parser):
             component = music.pop(0)
             context.append(component)
 
-        marks = music._start_marks
-        for mark in marks:
-            attach(mark, context)
+        context_marks = music._start_context_marks
+        for context_mark in context_marks:
+            attach(context_mark, context)
 
         return context
 

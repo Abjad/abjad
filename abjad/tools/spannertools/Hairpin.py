@@ -126,7 +126,7 @@ class Hairpin(Spanner):
                         indicatortools.Dynamic)
                     if effective_dynamic is None or \
                         effective_dynamic not in \
-                        leaf._start_marks:
+                        leaf._start_context_marks:
                         result.append('\\!')
         else:
             if self._is_my_first(leaf, (scoretools.Chord, scoretools.Note)):

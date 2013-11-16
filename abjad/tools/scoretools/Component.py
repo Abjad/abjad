@@ -37,7 +37,7 @@ class Component(AbjadObject):
         '_parent',
         '_set',
         '_spanners',
-        '_start_marks',
+        '_start_context_marks',
         '_start_offset',
         '_start_offset_in_seconds',
         '_stop_offset',
@@ -55,7 +55,7 @@ class Component(AbjadObject):
         self._dependent_context_marks = list()
         self._is_forbidden_to_update = False
         self._marks_are_current = False
-        self._start_marks = list()
+        self._start_context_marks = list()
         self._offsets_in_seconds_are_current = False
         self._offsets_are_current = False
         self._parent = None
@@ -478,11 +478,11 @@ class Component(AbjadObject):
         mark_prototypes = tuple(mark_prototypes)
         mark_objects = tuple(mark_objects)
         matching_marks = []
-        for mark in self._start_marks:
-            if isinstance(mark, mark_prototypes):
-                matching_marks.append(mark)
-            elif any(mark == x for x in mark_objects):
-                matching_marks.append(mark)
+        for context_mark in self._start_context_marks:
+            if isinstance(context_mark, mark_prototypes):
+                matching_marks.append(context_mark)
+            elif any(context_mark == x for x in mark_objects):
+                matching_marks.append(context_mark)
         matching_marks = tuple(matching_marks)
         assert all(
             isinstance(x, indicatortools.ContextMark) for x in matching_marks), \
