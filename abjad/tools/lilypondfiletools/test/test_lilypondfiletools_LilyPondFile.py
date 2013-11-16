@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_LilyFile_01():
+def test_lilypondfiletools_LilyPondFile_01():
     r'''LilyPondFile implements default paper size and global staff size attributes.
     '''
 

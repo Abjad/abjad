@@ -158,7 +158,7 @@ def test_agenttools_InspectionAgent_get_mark_14():
     assert pytest.raises(Exception, 'inspect(note).get_mark()')
 
 
-def test_agenttools_InspectionAgent_get_mark_16():
+def test_agenttools_InspectionAgent_get_mark_15():
 
     note = Note("c'4")
     stem_tremolo = indicatortools.StemTremolo(16)
@@ -168,7 +168,7 @@ def test_agenttools_InspectionAgent_get_mark_16():
     assert stem_tremolo is stem_tremolo
 
 
-def test_agenttools_InspectionAgent_get_mark_17():
+def test_agenttools_InspectionAgent_get_mark_16():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     violin = instrumenttools.Violin()
@@ -179,7 +179,7 @@ def test_agenttools_InspectionAgent_get_mark_17():
     assert found_instrument_mark is violin
 
 
-def test_agenttools_InspectionAgent_get_mark_18():
+def test_agenttools_InspectionAgent_get_mark_17():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
     time_signature = inspect(measure).get_mark(TimeSignature)

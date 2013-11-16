@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_spannertools_make_colored_text_spanner_with_nibs_02():
+def test_spannertools_make_colored_text_spanner_with_nibs_01():
     r'''Bracket defaults to solid red line with left and right nibs
     and with no nibs at left and right broken edges.
     '''
