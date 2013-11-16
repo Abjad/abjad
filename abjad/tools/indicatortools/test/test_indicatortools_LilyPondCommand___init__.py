@@ -4,7 +4,7 @@ import pytest
 
 
 def test_indicatortools_LilyPondCommand___init___01():
-    r'''Initialize LilyPond command mark from command name.
+    r'''Initialize LilyPond command from command name.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -30,7 +30,7 @@ def test_indicatortools_LilyPondCommand___init___01():
 
 
 def test_indicatortools_LilyPondCommand___init___02():
-    r'''Set LilyPond command mark from command name.
+    r'''Set LilyPond command from command name.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -56,7 +56,7 @@ def test_indicatortools_LilyPondCommand___init___02():
 
 
 def test_indicatortools_LilyPondCommand___init___03():
-    r'''Initialize LilyPond command mark from string and format slot.
+    r'''Initialize LilyPond command from string and format slot.
     '''
 
     command = indicatortools.LilyPondCommand('break', 'closing')
@@ -64,7 +64,7 @@ def test_indicatortools_LilyPondCommand___init___03():
 
 
 def test_indicatortools_LilyPondCommand___init___04():
-    r'''Initialize LilyPondCommand mark from other LilyPond command mark.
+    r'''Initialize LilyPondCommand from other LilyPond command mark.
     '''
 
     command_1 = indicatortools.LilyPondCommand('break', 'closing')

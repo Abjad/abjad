@@ -70,7 +70,7 @@ class UpdateManager(AbjadObject):
                 measure._measure_number = measure_number
 
     @staticmethod
-    def _update_all_marks(component):
+    def _update_all_context_marks(component):
         r'''Updating marks does not update offsets.
         On the other hand, getting effective mark updates offsets
         when at least one mark of appropriate type attaches to score.
@@ -156,5 +156,5 @@ class UpdateManager(AbjadObject):
         if offsets_in_seconds and not offsets_in_seconds_are_current:
             UpdateManager._update_all_offsets_in_seconds(component)
         if marks and not marks_are_current:
-            UpdateManager._update_all_marks(component)
+            UpdateManager._update_all_context_marks(component)
             UpdateManager._update_all_offsets_in_seconds(component)

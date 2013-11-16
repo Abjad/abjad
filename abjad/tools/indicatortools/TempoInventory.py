@@ -20,7 +20,7 @@ class TempoInventory(TypedList):
         Tempo('Andante', Duration(1, 8), 72)
         Tempo('Allegro', Duration(1, 8), 84)
 
-    Tempo mark inventories implement list interface and are mutable.
+    Tempo inventories implement list interface and are mutable.
     '''
 
     ### PRIVATE PROPERTIES ###

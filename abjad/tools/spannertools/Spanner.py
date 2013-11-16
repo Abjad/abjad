@@ -14,28 +14,8 @@ Selection = selectiontools.Selection
 
 class Spanner(AbjadObject):
     '''Any type of notation object that stretches horizontally
-    and encompasses some number of notes, rest, chords, tuplets,
-    measures, voices or other Abjad components.
-
-    Beams, slurs, hairpins, trills, glissandi and piano pedal brackets
-    all stretch horizontally on the page to encompass multiple notes
-    and all implement as Abjad spanners.
-    That is, these spanner all have an obvious graphic reality with
-    definite start-, stop- and midpoints.
-
-    Abjad also implements a number of spanners of a different type,
-    such as tempo and instrument spanners, which mark a group of notes,
-    rests, chords or measues as carrying a certain tempo or being
-    played by a certain instrument.
-
-    The spanner class described here
-    abstracts the functionality that all such spanners, both graphic
-    and nongraphics, share.
-    This shared functionality includes methods to add, remove, inspect
-    and test components governed by the spanner, as well as basic
-    formatting properties.
-    The other spanner classes, such as beam and glissando, all inherit from
-    this class and receive the functionality implemented here.
+    and encompasses some number of notes, rest, chords or other components.
+    Examples include beams, slurs, hairpins and trills.
     '''
 
     ### INITIALIZER ###

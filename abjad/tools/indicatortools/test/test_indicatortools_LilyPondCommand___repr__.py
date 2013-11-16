@@ -4,7 +4,7 @@ from abjad.tools.indicatortools import LilyPondCommand
 
 
 def test_indicatortools_LilyPondCommand___repr___01():
-    r'''Repr of unattached LilyPond command mark is evaluable.
+    r'''Repr of unattached LilyPond command is evaluable.
     '''
 
     lily_pond_command_1 = indicatortools.LilyPondCommand('break')

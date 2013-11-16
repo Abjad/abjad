@@ -194,9 +194,9 @@ class Component(AbjadObject):
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(contextualize(self))
-        for mark in self._get_context_marks():
-            new_mark = copy.copy(mark)
-            attach(new_mark, new)
+        for context_mark in self._get_context_marks():
+            new_context_mark = copy.copy(context_mark)
+            attach(new_context_mark, new)
         for indicator in self._get_indicators():
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)
@@ -209,15 +209,16 @@ class Component(AbjadObject):
             detach(grace_container, self)
         return grace_containers
 
-    def _detach_marks(
+    def _detach_context_marks(
         self,
-        mark_prototypes=None,
+        context_mark_prototypes=None,
         ):
         marks = []
-        for mark in self._get_context_marks(mark_prototypes=mark_prototypes):
-            mark.detach()
-            marks.append(mark)
-        return tuple(marks)
+        for context_mark in self._get_context_marks(
+            context_mark_prototypes=context_mark_prototypes):
+            context_mark.detach()
+            context_marks.append(context_mark)
+        return tuple(context_marks)
 
     def _detach_spanners(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
@@ -336,28 +337,28 @@ class Component(AbjadObject):
         # do special things for time signatures
         if context_mark_prototypes == indicatortools.TimeSignature:
             if isinstance(self, scoretools.Measure):
-                if self._has_mark(indicatortools.TimeSignature):
+                if self._has_context_mark(indicatortools.TimeSignature):
                     return self._get_context_mark(indicatortools.TimeSignature)
         # updating marks of entire score tree if necessary
         self._update_now(marks=True)
         # gathering candidate marks
-        candidate_marks = datastructuretools.SortedCollection(
+        candidate_context_marks = datastructuretools.SortedCollection(
             key=lambda x: x._start_component._get_timespan().start_offset)
         for parent in self._get_parentage(include_self=True):
-            parent_marks = parent._dependent_context_marks
-            for mark in parent_marks:
-                if isinstance(mark, context_mark_prototypes):
-                    if mark._get_effective_context() is not None:
-                        candidate_marks.insert(mark)
-                    elif isinstance(mark, indicatortools.TimeSignature):
+            parent_context_marks = parent._dependent_context_marks
+            for context_mark in parent_context_marks:
+                if isinstance(context_mark, context_mark_prototypes):
+                    if context_mark._get_effective_context() is not None:
+                        candidate_context_marks.insert(context_mark)
+                    elif isinstance(context_mark, indicatortools.TimeSignature):
                         if isinstance(
-                            mark._start_component, scoretools.Measure):
-                            candidate_marks.insert(mark)
-        # elect most recent candidate mark
-        if candidate_marks:
+                            context_mark._start_component, scoretools.Measure):
+                            candidate_context_marks.insert(context_mark)
+        # elect most recent candidate context mark
+        if candidate_context_marks:
             try:
                 start_offset = self._get_timespan().start_offset
-                return candidate_marks.find_le(start_offset)
+                return candidate_context_marks.find_le(start_offset)
             except ValueError:
                 pass
 
@@ -445,48 +446,53 @@ class Component(AbjadObject):
     def _get_lineage(self):
         return selectiontools.Lineage(self)
 
-    def _get_context_mark(self, mark_prototypes=None):
+    def _get_context_mark(self, context_mark_prototypes=None):
         from abjad.tools import indicatortools
-        marks = self._get_context_marks(mark_prototypes=mark_prototypes)
-        if not marks:
-            message = 'no marks found.'
+        context_marks = self._get_context_marks(
+            context_mark_prototypes=context_mark_prototypes)
+        if not context_marks:
+            message = 'no context marks found.'
             raise ValueError(message)
-        elif 1 < len(marks):
-            message = 'multiple marks found.'
+        elif 1 < len(context_marks):
+            message = 'multiple context marks found.'
             raise ValueError(message)
         else:
-            mark = marks[0]
-        assert isinstance(mark, indicatortools.ContextMark), repr(mark)
-        return mark
+            context_mark = context_marks[0]
+        assert isinstance(context_mark, indicatortools.ContextMark), \
+            repr(context_mark)
+        return context_mark
 
-    def _get_context_marks(self, mark_prototypes=None):
+    def _get_context_marks(self, context_mark_prototypes=None):
         from abjad.tools import indicatortools
-        mark_prototypes = mark_prototypes or (indicatortools.ContextMark,)
-        if not isinstance(mark_prototypes, tuple):
-            mark_prototypes = (mark_prototypes,)
-        mark_items = mark_prototypes[:]
-        mark_prototypes, mark_objects = [], []
-        for mark_item in mark_items:
-            if isinstance(mark_item, types.TypeType):
-                mark_prototypes.append(mark_item)
-            elif isinstance(mark_item, indicatortools.ContextMark):
-                mark_objects.append(mark_item)
+        context_mark_prototypes = context_mark_prototypes or \
+            (indicatortools.ContextMark,)
+        if not isinstance(context_mark_prototypes, tuple):
+            context_mark_prototypes = (context_mark_prototypes,)
+        context_mark_items = context_mark_prototypes[:]
+        context_mark_prototypes, context_mark_objects = [], []
+        for context_mark_item in context_mark_items:
+            if isinstance(context_mark_item, types.TypeType):
+                context_mark_prototypes.append(context_mark_item)
+            elif isinstance(context_mark_item, indicatortools.ContextMark):
+                context_mark_objects.append(context_mark_item)
             else:
-                message = 'must be mark class or mark object: {!r}'
-                message = message.format(mark_item)
-        mark_prototypes = tuple(mark_prototypes)
-        mark_objects = tuple(mark_objects)
-        matching_marks = []
+                message = \
+                    'must be context mark class or context mark object: {!r}'
+                message = message.format(context_mark_item)
+        context_mark_prototypes = tuple(context_mark_prototypes)
+        context_mark_objects = tuple(context_mark_objects)
+        matching_context_marks = []
         for context_mark in self._start_context_marks:
-            if isinstance(context_mark, mark_prototypes):
-                matching_marks.append(context_mark)
-            elif any(context_mark == x for x in mark_objects):
-                matching_marks.append(context_mark)
-        matching_marks = tuple(matching_marks)
+            if isinstance(context_mark, context_mark_prototypes):
+                matching_context_marks.append(context_mark)
+            elif any(context_mark == x for x in context_mark_objects):
+                matching_context_marks.append(context_mark)
+        matching_context_marks = tuple(matching_context_marks)
         assert all(
-            isinstance(x, indicatortools.ContextMark) for x in matching_marks), \
-            repr(matching_marks)
-        return tuple(matching_marks)
+            isinstance(x, indicatortools.ContextMark) 
+            for x in matching_context_marks), \
+            repr(matching_context_marks)
+        return tuple(matching_context_marks)
 
     def _get_markup(self, direction=None):
         from abjad.tools import markuptools
@@ -603,8 +609,8 @@ class Component(AbjadObject):
         indicators = self._get_indicators(indicator_prototypes=indicator_prototypes)
         return bool(indicators)
 
-    def _has_mark(self, mark_prototypes=None):
-        marks = self._get_context_marks(mark_prototypes=mark_prototypes)
+    def _has_context_mark(self, context_mark_prototypes=None):
+        marks = self._get_context_marks(context_mark_prototypes=context_mark_prototypes)
         return bool(marks)
 
     def _has_spanner(self, spanner_classes=None):
@@ -625,9 +631,8 @@ class Component(AbjadObject):
         return component in temporal_successors
 
     def _move_marks(self, recipient_component):
-        result = []
-        for mark in self._get_context_marks():
-            result.append(attach(mark, recipient_component))
+        for context_mark in self._get_context_marks():
+            attach(context_mark, recipient_component)
         for indicator in self._get_indicators():
             detach(indicator, self)
             attach(indicator, recipient_component)

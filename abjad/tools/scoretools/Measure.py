@@ -206,9 +206,9 @@ class Measure(FixedDurationContainer):
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(contextualize(self))
-        for mark in self._get_context_marks():
-            new_mark = copy.copy(mark)
-            attach(new_mark, new)
+        for context_mark in self._get_context_marks():
+            new_context_mark = copy.copy(context_mark)
+            attach(new_context_mark, new)
         new.is_simultaneous = self.is_simultaneous
         return new
 

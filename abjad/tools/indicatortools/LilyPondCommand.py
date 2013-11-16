@@ -35,7 +35,7 @@ class LilyPondCommand(AbjadObject):
 
     Initialize LilyPond commands from name; or from name
     with format slot; or from another LilyPond command mark;
-    or from another LilyPond command mark with format slot.
+    or from another LilyPond command with format slot.
     '''
 
     ### CLASS VARIABLES ###

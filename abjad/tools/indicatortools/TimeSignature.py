@@ -247,7 +247,7 @@ class TimeSignature(ContextMark):
 
     def _attach(self, start_component):
         classes = (type(self), )
-        if start_component._has_mark(mark_prototypes=classes):
+        if start_component._has_context_mark(context_mark_prototypes=classes):
             message = 'component already has context mark attached.'
             raise ValueError(message)
         self._bind_to_start_component(start_component)

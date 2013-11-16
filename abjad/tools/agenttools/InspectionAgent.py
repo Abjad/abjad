@@ -335,33 +335,31 @@ class InspectionAgent(object):
 
     def get_context_mark(
         self,
-        mark_prototypes=None,
+        context_mark_prototypes=None,
         ):
-        r'''Gets exactly one mark of `mark_prototypes` attached to component.
+        r'''Gets exactly one context mark of `context_mark_prototypes` 
+        attached to component.
 
-        Raises exception when no mark of `mark_prototypes` is attached
-        to component.
+        Raises exception when no context mark of `context_mark_prototypes` 
+        is attached to component.
 
-        .. note:: may now pass in both classes and objects.
-
-        Returns mark.
+        Returns context mark.
         '''
         return self._component._get_context_mark(
-            mark_prototypes=mark_prototypes,
+            context_mark_prototypes=context_mark_prototypes,
             )
 
     def get_context_marks(
         self,
-        mark_prototypes=None,
+        context_mark_prototypes=None,
         ):
-        r'''Get all marks of `mark_prototypes` attached to component.
-
-        .. note:: may now pass in both classes and objects.
+        r'''Get all context marks of `context_mark_prototypes` 
+        attached to component.
 
         Returns tuple.
         '''
         result = self._component._get_context_marks(
-            mark_prototypes=mark_prototypes,
+            context_mark_prototypes=context_mark_prototypes,
             )
         return result
 

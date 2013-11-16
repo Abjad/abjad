@@ -127,8 +127,8 @@ def test_agenttools_InspectionAgent_get_mark_11():
     comment = indicatortools.LilyPondComment('comment')
     attach(comment, note)
 
-    mark = inspect(note).get_indicator(indicatortools.LilyPondComment) 
-    assert mark is comment
+    indicator = inspect(note).get_indicator(indicatortools.LilyPondComment) 
+    assert indicator is comment
 
 
 def test_agenttools_InspectionAgent_get_mark_12():

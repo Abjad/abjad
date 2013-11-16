@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_Tempo_units_per_minute_01():
-    r'''Tempo mark units per minute is read / write.
+    r'''Tempo units per minute is read / write.
     '''
 
     tempo = Tempo(Duration(1, 8), 52)

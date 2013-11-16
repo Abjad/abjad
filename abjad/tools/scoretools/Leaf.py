@@ -497,9 +497,8 @@ class Leaf(Component):
             selection = select(flattened_result)
             for component in selection:
                 # TODO: make top-level detach() work here
-                for mark in component._get_spanners(
-                    spanner_classes=spanner_classes):
-                    mark.detach()
+                for spanner in component._get_spanners(spanner_classes):
+                    spanner.detach()
                 #detach(spanner_classes, component)
         # replace leaf with flattened result
         selection = selectiontools.SliceSelection(self)

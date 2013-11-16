@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_Dynamic___repr___01():
-    r'''Dynamic mark returns nonempty string repr.
+    r'''Dynamic returns nonempty string repr.
     '''
 
     repr = Dynamic('f').__repr__()
