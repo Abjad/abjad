@@ -22,20 +22,35 @@ class StorageFormatManager(object):
         return True
 
     @staticmethod
-    def format_one_value(value, is_indented=True):
+    def format_one_value(
+        value,
+        as_storage_format=True,
+        is_indented=True,
+        ):
         result = []
         prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
             is_indented)
         if isinstance(value, types.MethodType):
             return result
         if type(value) is abc.ABCMeta:
-            value = \
-                StorageFormatManager.get_tools_package_qualified_class_name(
-                    value)
+            if as_storage_format:
+                value = '{}.{}'.format(
+                    StorageFormatManager.get_tools_package_name(value),
+                    value.__name__,
+                    )
+            else:
+                value = value.__name__
             result.append(value)
-        elif hasattr(value, '_storage_format_specification'):
+        elif as_storage_format and hasattr(
+            value, '_storage_format_specification'):
             specification = value._storage_format_specification
             pieces = StorageFormatManager.get_storage_format_pieces(
+                specification)
+            result.extend(pieces)
+        elif not as_storage_format and hasattr(
+            value, '_repr_specification'):
+            specification = value._rep_format_specification
+            pieces = StorageFormatManager.get_repr_pieces(
                 specification)
             result.extend(pieces)
         elif isinstance(value, (list, tuple)):
@@ -52,7 +67,10 @@ class StorageFormatManager(object):
             result.append('{}{}'.format(braces[0], infix))
             for x in value:
                 pieces = StorageFormatManager.format_one_value(
-                    x, is_indented=is_indented)
+                    x,
+                    as_storage_format=as_storage_format,
+                    is_indented=is_indented,
+                    )
                 for piece in pieces[:-1]:
                     result.append('{}{}'.format(prefix, piece))
                 result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
@@ -60,8 +78,16 @@ class StorageFormatManager(object):
         elif isinstance(value, dict):
             result.append('{{{}'.format(infix))
             for key, value in sorted(value.items()):
-                key_pieces = StorageFormatManager.format_one_value(key)
-                value_pieces = StorageFormatManager.format_one_value(value)
+                key_pieces = StorageFormatManager.format_one_value(
+                    key,
+                    as_storage_format=as_storage_format,
+                    is_indented=is_indented,
+                    )
+                value_pieces = StorageFormatManager.format_one_value(
+                    value,
+                    as_storage_format=as_storage_format,
+                    is_indented=is_indented,
+                    )
                 for x in key_pieces[:-1]:
                     result.append('{}{}'.format(prefix, x))
                 result.append('{}{}: {}'.format(
@@ -191,7 +217,10 @@ class StorageFormatManager(object):
         positional_argument_pieces = []
         for value in specification.positional_argument_values:
             pieces = StorageFormatManager.format_one_value(
-                value, specification.is_indented)
+                value,
+                as_storage_format=True,
+                is_indented=specification.is_indented,
+                )
             for piece in pieces[:-1]:
                 positional_argument_pieces.append(prefix + piece)
             positional_argument_pieces.append(prefix + pieces[-1] + suffix)
@@ -215,7 +244,11 @@ class StorageFormatManager(object):
                 value = getattr(specification.instance, name)
             if value is None or isinstance(value, types.MethodType):
                 continue
-            pieces = StorageFormatManager.format_one_value(value)
+            pieces = StorageFormatManager.format_one_value(
+                value,
+                as_storage_format=True,
+                is_indented=specification.is_indented,
+                )
             pieces[0] = '{}={}'.format(name, pieces[0])
             for piece in pieces[:-1]:
                 keyword_argument_pieces.append(prefix + piece)
