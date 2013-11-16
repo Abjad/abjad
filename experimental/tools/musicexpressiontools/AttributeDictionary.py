@@ -33,9 +33,3 @@ class AttributeDictionary(AbjadObject, collections.OrderedDict):
         assert isinstance(value, (list, datastructuretools.TypedList)), \
             repr(value)
         collections.OrderedDict.__setitem__(self, key, value)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _positional_argument_values(self):
-        return self.items()

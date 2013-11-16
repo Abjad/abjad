@@ -413,17 +413,6 @@ class Duration(AbjadObject, fractions.Fraction):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _keyword_argument_names(self):
-        return ()
-
-    @property
-    def _positional_argument_values(self):
-        result = []
-        result.append(self.numerator)
-        result.append(self.denominator)
-        return tuple(result)
-
-    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(

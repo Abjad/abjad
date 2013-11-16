@@ -62,13 +62,3 @@ class Piano(Instrument):
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-39, 48)
 
-    ### PRIVATE PROPERTIES ###
-
-    # TODO: extend class definition to allow for custom target context in repr
-    @property
-    def _keyword_argument_names(self):
-        return ()
-
-    @property
-    def _positional_argument_values(self):
-        return ()

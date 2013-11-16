@@ -34,12 +34,8 @@ class SegmentIdentifierExpression(AbjadObject):
 
         Returns boolean.
         '''
-        if not isinstance(expr, type(self)):
-            return False
-        if not self._positional_argument_values == \
-            expr._positional_argument_values:
-            return False
-        return self._keyword_argument_values == expr._keyword_argument_values
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     ### PUBLIC PROPERTIES ###
 

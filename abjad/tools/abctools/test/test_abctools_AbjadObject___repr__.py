@@ -11,12 +11,6 @@ def test_abctools_AbjadObject___repr___01():
             self.y = y
             self.flavor = flavor
             tmp_2 = 'bar'
-        @property
-        def _keyword_argument_names(self):
-            return ('flavor', )
-        @property
-        def _positional_argument_values(self):
-            return (self.x, self.y)
 
     assert repr(Foo(7, 8)) == 'Foo(7, 8)'
     assert repr(Foo(7, 8, 'cherry')) == "Foo(7, 8, flavor='cherry')"
