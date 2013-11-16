@@ -211,33 +211,12 @@ class Clef(ContextMark):
 
     @property
     def _lilypond_format(self):
-        return r'\clef "%s"' % self._name
+        return r'\clef "{}"'.format(self._name)
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
     @classmethod
-    def list_clef_names(cls):
-        r'''Lists clef names.
-
-        ::
-
-            >>> for name in indicatortools.Clef.list_clef_names():
-            ...     name
-            ...
-            'alto'
-            'baritone'
-            'bass'
-            'french'
-            'mezzosoprano'
-            'percussion'
-            'soprano'
-            'tab'
-            'tenor'
-            'treble'
-            'varbaritone'
-
-        Returns list of strings.
-        '''
+    def _list_clef_names(cls):
         return list(sorted(cls._clef_name_to_middle_c_position))
 
     ### PUBLIC PROPERTIES ###
