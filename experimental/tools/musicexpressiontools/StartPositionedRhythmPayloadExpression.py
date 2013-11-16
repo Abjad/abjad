@@ -935,7 +935,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 tie_split_notes=False,
                 )
             left_half, right_half = result[0], result[-1]
-            spanner_classes = (spannertools.DuratedComplexBeamSpanner, )
+            spanner_classes = (spannertools.DuratedComplexBeam, )
             descendants = self.payload._get_descendants()
             for spanner in descendants.get_spanners(spanner_classes):
                 if left_half[-1] in spanner and right_half[0] in spanner:

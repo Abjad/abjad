@@ -46,7 +46,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
                 for spanner in spanners:
                     spanner.detach()
             durations = [x._get_duration() for x in rhythm_containers]
-            beam = spannertools.DuratedComplexBeamSpanner(
+            beam = spannertools.DuratedComplexBeam(
                 durations=durations,
                 span=1,
                 )
@@ -57,7 +57,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
                 for spanner in spanners:
                     spanner.detach()
             for rhythm_container in rhythm_containers:
-                beam = spannertools.DuratedComplexBeamSpanner(
+                beam = spannertools.DuratedComplexBeam(
                     durations=[rhythm_container._get_duration()],
                     span=1,
                     )

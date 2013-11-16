@@ -2,7 +2,7 @@
 from abjad.tools.spannertools.Beam import Beam
 
 
-class MultipartBeamSpanner(Beam):
+class MultipartBeam(Beam):
     r'''A multipart beam spanner.
 
     ::
@@ -12,7 +12,7 @@ class MultipartBeamSpanner(Beam):
 
     ::
 
-        >>> beam = spannertools.MultipartBeamSpanner()
+        >>> beam = spannertools.MultipartBeam()
         >>> attach(beam, staff[:])
         >>> show(staff) # doctest: +SKIP
 

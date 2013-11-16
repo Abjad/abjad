@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_spannertools_DuratedComplexBeamSpanner_direction_01():
+def test_spannertools_DuratedComplexBeam_direction_01():
 
     container = Container("c'16 d'16 e'16 f'16")
 
-    beam = spannertools.DuratedComplexBeamSpanner(
+    beam = spannertools.DuratedComplexBeam(
         durations=[(1, 8), (1, 8)], 
         span=1, 
         direction=Up,

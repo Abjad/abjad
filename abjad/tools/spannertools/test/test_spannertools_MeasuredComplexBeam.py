@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_spannertools_MeasuredComplexBeamSpanner_01():
+def test_spannertools_MeasuredComplexBeam_01():
 
     staff = Staff("abj: | 2/16 c'16 d'16 || 2/16 e'16 f'16 |"
         "| 2/16 g'16 a'16 |")
@@ -31,7 +31,7 @@ def test_spannertools_MeasuredComplexBeamSpanner_01():
         '''
         )
 
-    beam = spannertools.MeasuredComplexBeamSpanner()
+    beam = spannertools.MeasuredComplexBeam()
     attach(beam, staff[:])
 
     assert systemtools.TestManager.compare(

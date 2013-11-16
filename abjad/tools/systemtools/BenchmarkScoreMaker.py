@@ -312,7 +312,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4],
             cyclic=True,
             ):
-            beam = spannertools.DuratedComplexBeamSpanner()
+            beam = spannertools.DuratedComplexBeam()
             topleveltools.attach(beam, part)
         return voice
 
@@ -340,7 +340,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20],
             cyclic=True,
             ):
-            beam = spannertools.DuratedComplexBeamSpanner()
+            beam = spannertools.DuratedComplexBeam()
             topleveltools.attach(beam, part)
         return voice
 
@@ -368,7 +368,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [100],
             cyclic=True,
             ):
-            beam = spannertools.DuratedComplexBeamSpanner()
+            beam = spannertools.DuratedComplexBeam()
             topleveltools.attach(beam, part)
         return voice
 

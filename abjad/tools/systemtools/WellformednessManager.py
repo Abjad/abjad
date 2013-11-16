@@ -44,7 +44,7 @@ class WellformednessManager(AbjadObject):
             if leaf._has_spanner(spannertools.Beam):
                 beam = leaf._get_spanner(spannertools.Beam)
                 if not isinstance(beam,
-                    spannertools.DuratedComplexBeamSpanner):
+                    spannertools.DuratedComplexBeam):
                     flag_count = leaf.written_duration.flag_count
                     if flag_count < 1:
                         violators.append(leaf)

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_spannertools_DuratedComplexBeamSpanner___copy___01():
+def test_spannertools_DuratedComplexBeam___copy___01():
 
     staff = Staff([
         Container("c'32 d'32 e'32"),
@@ -11,7 +11,7 @@ def test_spannertools_DuratedComplexBeamSpanner___copy___01():
         ])
     durations = [inspect(x).get_duration() for x in staff]
 
-    beam = spannertools.DuratedComplexBeamSpanner(
+    beam = spannertools.DuratedComplexBeam(
         durations=durations, 
         span=2, 
         direction=Down,

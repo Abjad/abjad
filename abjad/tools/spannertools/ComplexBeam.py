@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools.spannertools.Beam import Beam
 
 
-class ComplexBeamSpanner(Beam):
+class ComplexBeam(Beam):
     r'''A complex beam spanner.
 
     ::
@@ -24,7 +24,7 @@ class ComplexBeamSpanner(Beam):
 
     ::
 
-        >>> beam = spannertools.ComplexBeamSpanner()
+        >>> beam = spannertools.ComplexBeam()
         >>> attach(beam, staff[:4])
         >>> show(staff) # doctest: +SKIP
 
@@ -212,7 +212,7 @@ class ComplexBeamSpanner(Beam):
 
             ::
 
-                >>> beam = spannertools.ComplexBeamSpanner(lone='left')
+                >>> beam = spannertools.ComplexBeam(lone='left')
                 >>> attach(beam, note)
                 >>> show(note) # doctest: +SKIP
 
@@ -231,7 +231,7 @@ class ComplexBeamSpanner(Beam):
 
             ::
 
-                >>> beam = spannertools.ComplexBeamSpanner(lone='right')
+                >>> beam = spannertools.ComplexBeam(lone='right')
                 >>> attach(beam, note)
 
             ..  doctest::
@@ -249,7 +249,7 @@ class ComplexBeamSpanner(Beam):
 
             ::
 
-                >>> beam = spannertools.ComplexBeamSpanner(lone='both')
+                >>> beam = spannertools.ComplexBeam(lone='both')
                 >>> attach(beam, note)
 
             ..  doctest::
@@ -268,7 +268,7 @@ class ComplexBeamSpanner(Beam):
 
             ::
 
-                >>> beam = spannertools.ComplexBeamSpanner(lone=True)
+                >>> beam = spannertools.ComplexBeam(lone=True)
                 >>> attach(beam, note)
 
             ..  doctest::
@@ -286,7 +286,7 @@ class ComplexBeamSpanner(Beam):
 
             ::
 
-                >>> beam = spannertools.ComplexBeamSpanner(lone=False)
+                >>> beam = spannertools.ComplexBeam(lone=False)
                 >>> attach(beam, note)
 
             ..  doctest::

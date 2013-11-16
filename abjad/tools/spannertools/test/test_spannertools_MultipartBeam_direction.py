@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_spannertools_MultipartBeamSpanner_direction_01():
+def test_spannertools_MultipartBeam_direction_01():
 
     container = Container("c'8 d'8 r8 e'8 f'8 g'4")
-    spanner = spannertools.MultipartBeamSpanner(direction=Up)
+    spanner = spannertools.MultipartBeam(direction=Up)
     attach(spanner, container)
 
     assert systemtools.TestManager.compare(

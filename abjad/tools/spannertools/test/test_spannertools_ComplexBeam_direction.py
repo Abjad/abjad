@@ -2,10 +2,10 @@
 from abjad import *
 
 
-def test_spannertools_ComplexBeamSpanner_direction_01():
+def test_spannertools_ComplexBeam_direction_01():
 
     staff = Staff("c'16 e'16 r16 f'16 g'2")
-    beam = spannertools.ComplexBeamSpanner(direction=Up)
+    beam = spannertools.ComplexBeam(direction=Up)
     attach(beam, staff[:4])
 
     assert systemtools.TestManager.compare(
@@ -28,10 +28,10 @@ def test_spannertools_ComplexBeamSpanner_direction_01():
         )
 
 
-def test_spannertools_ComplexBeamSpanner_direction_02():
+def test_spannertools_ComplexBeam_direction_02():
 
     staff = Staff("c'16 e'16 r16 f'16 g'2")
-    beam = spannertools.ComplexBeamSpanner(direction=Down)
+    beam = spannertools.ComplexBeam(direction=Down)
     attach(beam, staff[:4])
 
     assert systemtools.TestManager.compare(

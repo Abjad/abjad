@@ -1,10 +1,10 @@
 #[ -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
+from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 
 
-class DuratedComplexBeamSpanner(ComplexBeamSpanner):
+class DuratedComplexBeam(ComplexBeam):
     r'''A durated complex beam spanner.
 
     ::
@@ -15,7 +15,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     ::
 
         >>> durations = [Duration(1, 8), Duration(1, 8)]
-        >>> beam = spannertools.DuratedComplexBeamSpanner(
+        >>> beam = spannertools.DuratedComplexBeam(
         ...     durations=durations, 
         ...     span=1,
         ...     )
@@ -57,7 +57,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         direction=None,
         overrides=None,
         ):
-        ComplexBeamSpanner.__init__(
+        ComplexBeam.__init__(
             self, 
             components=components, 
             direction=direction,
@@ -81,7 +81,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        ComplexBeamSpanner._copy_keyword_args(self, new)
+        ComplexBeam._copy_keyword_args(self, new)
         new.durations = self.durations[:]
         new.span = self.span
 
@@ -116,7 +116,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         return result
 
     def _fracture_left(self, i):
-        self, left, right = ComplexBeamSpanner._fracture_left(self, i)
+        self, left, right = ComplexBeam._fracture_left(self, i)
         weights = [left.get_duration(), right.get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
@@ -127,7 +127,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         return self, left, right
 
     def _fracture_right(self, i):
-        self, left, right = ComplexBeamSpanner._fracture_right(self, i)
+        self, left, right = ComplexBeam._fracture_right(self, i)
         weights = [left.get_duration(), right.get_duration()]
         assert sum(self.durations) == sum(weights)
         split_durations = sequencetools.split_sequence_by_weights(
@@ -138,7 +138,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         return self, left, right
 
     def _reverse_components(self):
-        ComplexBeamSpanner._reverse_components(self)
+        ComplexBeam._reverse_components(self)
         self._durations.reverse()
 
     ### PUBLIC PROPERTIES ###
@@ -152,7 +152,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeamSpanner(
+                >>> beam = spannertools.DuratedComplexBeam(
                 ...     durations=durations,
                 ...     )
                 >>> attach(beam, staff[:])
@@ -165,7 +165,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeamSpanner(
+                >>> beam = spannertools.DuratedComplexBeam(
                 ...     durations=durations,
                 ...     )
                 >>> attach(beam, staff[:])
@@ -200,7 +200,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeamSpanner(
+                >>> beam = spannertools.DuratedComplexBeam(
                 ...     durations=durations, 
                 ...     span=1,
                 ...     )
@@ -214,7 +214,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeamSpanner(
+                >>> beam = spannertools.DuratedComplexBeam(
                 ...     durations=durations, 
                 ...     span=1,
                 ...     )

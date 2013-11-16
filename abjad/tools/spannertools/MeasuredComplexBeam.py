@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
+from abjad.tools.spannertools.ComplexBeam import ComplexBeam
 from abjad.tools import durationtools
 
 
-class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
+class MeasuredComplexBeam(ComplexBeam):
     r'''A measured complex beam spanner.
 
     ::
@@ -15,7 +15,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     ::
 
-        >>> beam = spannertools.MeasuredComplexBeamSpanner()
+        >>> beam = spannertools.MeasuredComplexBeam()
         >>> attach(beam, staff.select_leaves())
         >>> show(staff) # doctest: +SKIP
 
@@ -59,7 +59,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         direction=None,
         overrides=None,
         ):
-        ComplexBeamSpanner.__init__(
+        ComplexBeam.__init__(
             self, 
             components=components, 
             lone=lone, 
@@ -71,7 +71,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        ComplexBeamSpanner._copy_keyword_args(self, new)
+        ComplexBeam._copy_keyword_args(self, new)
         new.span = self.span
 
     def _format_before_leaf(self, leaf):
@@ -117,7 +117,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
                 >>> staff = Staff()
                 >>> staff.append(Measure((2, 16), "c'16 d'16"))
                 >>> staff.append(Measure((2, 16), "e'16 f'16"))
-                >>> beam = spannertools.MeasuredComplexBeamSpanner()
+                >>> beam = spannertools.MeasuredComplexBeam()
                 >>> attach(beam, staff.select_leaves())
                 >>> beam.span
                 1
@@ -129,7 +129,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
                 >>> staff = Staff()
                 >>> staff.append(Measure((2, 16), "c'16 d'16"))
                 >>> staff.append(Measure((2, 16), "e'16 f'16"))
-                >>> beam = spannertools.MeasuredComplexBeamSpanner()
+                >>> beam = spannertools.MeasuredComplexBeam()
                 >>> attach(beam, staff.select_leaves())
                 >>> beam.span = 2
                 >>> beam.span
