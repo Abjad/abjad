@@ -44,6 +44,8 @@ class NamedInterval(Interval):
             number = int(direction_string + number_string)
         elif len(args) == 2:
             quality_string, number = args
+        else:
+            raise ValueError('Bad input: {!r}'.format(args))
         self._quality_string = quality_string
         self._number = number
 
