@@ -45,7 +45,7 @@ def test_agenttools_InspectionAgent_get_mark_05():
 
     note = Note("c'8")
 
-    statement = 'inspect(note).get_mark(Articulation)',
+    statement = 'inspect(note).get_indicator(Articulation)',
     assert pytest.raises(Exception, statement)
 
 
@@ -57,7 +57,7 @@ def test_agenttools_InspectionAgent_get_mark_06():
     articulation = Articulation('marcato')
     attach(articulation, note)
 
-    statement = 'inspect(note).get_mark(Articulation)',
+    statement = 'inspect(note).get_indicator(Articulation)',
     assert pytest.raises(Exception, statement)
 
 
@@ -155,7 +155,7 @@ def test_agenttools_InspectionAgent_get_mark_14():
 
     note = Note("c'8")
 
-    assert pytest.raises(Exception, 'inspect(note).get_mark()')
+    assert pytest.raises(Exception, 'inspect(note).get_context_mark()')
 
 
 def test_agenttools_InspectionAgent_get_mark_15():
@@ -174,7 +174,7 @@ def test_agenttools_InspectionAgent_get_mark_16():
     violin = instrumenttools.Violin()
     attach(violin, staff)
 
-    found_instrument_mark = inspect(staff).get_mark(instrumenttools.Instrument)
+    found_instrument_mark = inspect(staff).get_context_mark(instrumenttools.Instrument)
 
     assert found_instrument_mark is violin
 
@@ -182,6 +182,6 @@ def test_agenttools_InspectionAgent_get_mark_16():
 def test_agenttools_InspectionAgent_get_mark_17():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    time_signature = inspect(measure).get_mark(TimeSignature)
+    time_signature = inspect(measure).get_context_mark(TimeSignature)
 
     assert time_signature == TimeSignature((4, 8))

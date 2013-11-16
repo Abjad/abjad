@@ -15,7 +15,7 @@ def detach(indicator, component_expression):
     inspector = inspect(component_expression)
     if isinstance(indicator, types.TypeType):
         if issubclass(indicator, indicatortools.ContextMark):
-            marks = inspector.get_marks(indicator)
+            marks = inspector.get_context_marks(indicator)
         elif issubclass(indicator, spannertools.Spanner):
             spanners = inspector.get_spanners(indicator)
         elif issubclass(indicator, scoretools.GraceContainer):
@@ -31,7 +31,7 @@ def detach(indicator, component_expression):
             return result
     else:
         if isinstance(indicator, indicatortools.ContextMark):
-            marks = inspector.get_marks(indicator)
+            marks = inspector.get_context_marks(indicator)
         elif isinstance(indicator, spannertools.Spanner):
             spanners = inspector.get_spanners(indicator)
         elif isinstance(indicator, scoretools.GraceContainer):

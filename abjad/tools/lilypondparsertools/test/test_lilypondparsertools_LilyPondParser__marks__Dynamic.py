@@ -26,5 +26,5 @@ def test_lilypondparsertools_LilyPondParser__marks__Dynamic_01():
     result = parser(string)
     assert format(target) == format(result) and target is not result
     for x in result:
-        dynamics = inspect(x).get_marks(Dynamic)
+        dynamics = inspect(x).get_context_marks(Dynamic)
         assert len(dynamics) == 1

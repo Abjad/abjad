@@ -83,7 +83,7 @@ def test_agenttools_InspectionAgent_get_marks_03():
         '''
         )
 
-    context_marks = inspect(staff[0]).get_marks(indicatortools.ContextMark)
+    context_marks = inspect(staff[0]).get_context_marks(indicatortools.ContextMark)
     assert dynamic in context_marks
     assert len(context_marks) == 1
 
@@ -109,7 +109,7 @@ def test_agenttools_InspectionAgent_get_marks_04():
         '''
         )
 
-    dynamics = inspect(staff[0]).get_marks(Dynamic)
+    dynamics = inspect(staff[0]).get_context_marks(Dynamic)
     assert dynamic in dynamics
     assert len(dynamics) == 1
 

@@ -87,7 +87,8 @@ class Measure(FixedDurationContainer):
         Returns string.
         '''
         class_name = type(self).__name__
-        forced_time_signature = self._get_mark(indicatortools.TimeSignature)
+        forced_time_signature = self._get_context_mark(
+            indicatortools.TimeSignature)
         summary = self._summary
         length = len(self)
         if forced_time_signature and length:
@@ -205,7 +206,7 @@ class Measure(FixedDurationContainer):
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(contextualize(self))
-        for mark in self._get_marks():
+        for mark in self._get_context_marks():
             new_mark = copy.copy(mark)
             attach(new_mark, new)
         new.is_simultaneous = self.is_simultaneous

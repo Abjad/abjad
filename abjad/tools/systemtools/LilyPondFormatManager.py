@@ -169,7 +169,7 @@ class LilyPondFormatManager(object):
             indicatortools.StemTremolo: ('stem tremolos', True),
             }
         contributions = {}
-        marks = component._get_marks() + component._get_indicators()
+        marks = component._get_context_marks() + component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
         wrappers = []

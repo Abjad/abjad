@@ -139,7 +139,7 @@ class QTarget(AbjadObject):
             new_leaf = scoretools.Chord(leaf_one.written_pitches, duration)
         else:
             new_leaf = scoretools.Rest(duration)
-        tempos = leaf_two._get_marks(indicatortools.Tempo)
+        tempos = leaf_two._get_context_marks(indicatortools.Tempo)
         if tempos:
             tempo = tempos[0]
             attach(tempo, new_leaf)
@@ -171,7 +171,7 @@ class QTarget(AbjadObject):
 
     def _notate_one_leaf(self, leaf, grace_handler):
         leaf_annotations = leaf._get_indicators(indicatortools.Annotation)
-        tempos = leaf._get_marks(indicatortools.Tempo)
+        tempos = leaf._get_context_marks(indicatortools.Tempo)
         if leaf_annotations:
             pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:
