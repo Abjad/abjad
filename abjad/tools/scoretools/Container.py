@@ -391,7 +391,8 @@ class Container(Component):
         # cache context marks attached to expr
         expr_context_marks = []
         for component in iterate(expr).by_class():
-            context_marks = component._get_marks(indicatortools.ContextMark)
+            context_marks = component._get_context_marks(
+                indicatortools.ContextMark)
             expr_context_marks.extend(context_marks)
         # item assignment
         if isinstance(i, int):

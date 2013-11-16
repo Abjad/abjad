@@ -114,7 +114,7 @@ class ContextMark(AbjadObject):
         from abjad.tools import scoretools
         assert isinstance(start_component, scoretools.Component)
         self._unbind_start_component()
-        start_component._start_marks.append(self)
+        start_component._start_context_marks.append(self)
         self._start_component = start_component
         self._update_effective_context()
 
@@ -162,7 +162,7 @@ class ContextMark(AbjadObject):
         start_component = self._start_component
         if start_component is not None:
             try:
-                start_component._start_marks.remove(self)
+                start_component._start_context_marks.remove(self)
             except ValueError:
                 pass
         self._start_component = None

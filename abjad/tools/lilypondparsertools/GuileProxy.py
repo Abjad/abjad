@@ -156,7 +156,8 @@ class GuileProxy(AbjadObject):
         from abjad.tools import lilypondparsertools
         self._make_unrelativable(music)
         def recurse(music):
-            key_signatures = music._get_marks(indicatortools.KeySignature)
+            key_signatures = music._get_context_marks(
+                indicatortools.KeySignature)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedPitch(x.tonic, 4)

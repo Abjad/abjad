@@ -77,9 +77,9 @@ class UpdateManager(AbjadObject):
         '''
         components = UpdateManager._iterate_entire_score(component)
         for component in components:
-            for mark in component._start_marks:
-                if hasattr(mark, '_update_effective_context'):
-                    mark._update_effective_context()
+            for context_mark in component._start_context_marks:
+                if hasattr(context_mark, '_update_effective_context'):
+                    context_mark._update_effective_context()
             component._marks_are_current = True
 
     @staticmethod

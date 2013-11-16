@@ -37,7 +37,7 @@ class Component(AbjadObject):
         '_parent',
         '_set',
         '_spanners',
-        '_start_marks',
+        '_start_context_marks',
         '_start_offset',
         '_start_offset_in_seconds',
         '_stop_offset',
@@ -55,7 +55,7 @@ class Component(AbjadObject):
         self._dependent_context_marks = list()
         self._is_forbidden_to_update = False
         self._marks_are_current = False
-        self._start_marks = list()
+        self._start_context_marks = list()
         self._offsets_in_seconds_are_current = False
         self._offsets_are_current = False
         self._parent = None
@@ -194,7 +194,7 @@ class Component(AbjadObject):
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(contextualize(self))
-        for mark in self._get_marks():
+        for mark in self._get_context_marks():
             new_mark = copy.copy(mark)
             attach(new_mark, new)
         for indicator in self._get_indicators():
@@ -206,7 +206,6 @@ class Component(AbjadObject):
         from abjad.tools import scoretools
         grace_containers = self._get_grace_containers(kind=kind)
         for grace_container in grace_containers:
-            #grace_container._detach()
             detach(grace_container, self)
         return grace_containers
 
@@ -215,7 +214,7 @@ class Component(AbjadObject):
         mark_prototypes=None,
         ):
         marks = []
-        for mark in self._get_marks(mark_prototypes=mark_prototypes):
+        for mark in self._get_context_marks(mark_prototypes=mark_prototypes):
             mark.detach()
             marks.append(mark)
         return tuple(marks)
@@ -338,7 +337,7 @@ class Component(AbjadObject):
         if context_mark_prototypes == indicatortools.TimeSignature:
             if isinstance(self, scoretools.Measure):
                 if self._has_mark(indicatortools.TimeSignature):
-                    return self._get_mark(indicatortools.TimeSignature)
+                    return self._get_context_mark(indicatortools.TimeSignature)
         # updating marks of entire score tree if necessary
         self._update_now(marks=True)
         # gathering candidate marks
@@ -446,9 +445,9 @@ class Component(AbjadObject):
     def _get_lineage(self):
         return selectiontools.Lineage(self)
 
-    def _get_mark(self, mark_prototypes=None):
+    def _get_context_mark(self, mark_prototypes=None):
         from abjad.tools import indicatortools
-        marks = self._get_marks(mark_prototypes=mark_prototypes)
+        marks = self._get_context_marks(mark_prototypes=mark_prototypes)
         if not marks:
             message = 'no marks found.'
             raise ValueError(message)
@@ -460,7 +459,7 @@ class Component(AbjadObject):
         assert isinstance(mark, indicatortools.ContextMark), repr(mark)
         return mark
 
-    def _get_marks(self, mark_prototypes=None):
+    def _get_context_marks(self, mark_prototypes=None):
         from abjad.tools import indicatortools
         mark_prototypes = mark_prototypes or (indicatortools.ContextMark,)
         if not isinstance(mark_prototypes, tuple):
@@ -478,11 +477,11 @@ class Component(AbjadObject):
         mark_prototypes = tuple(mark_prototypes)
         mark_objects = tuple(mark_objects)
         matching_marks = []
-        for mark in self._start_marks:
-            if isinstance(mark, mark_prototypes):
-                matching_marks.append(mark)
-            elif any(mark == x for x in mark_objects):
-                matching_marks.append(mark)
+        for context_mark in self._start_context_marks:
+            if isinstance(context_mark, mark_prototypes):
+                matching_marks.append(context_mark)
+            elif any(context_mark == x for x in mark_objects):
+                matching_marks.append(context_mark)
         matching_marks = tuple(matching_marks)
         assert all(
             isinstance(x, indicatortools.ContextMark) for x in matching_marks), \
@@ -605,7 +604,7 @@ class Component(AbjadObject):
         return bool(indicators)
 
     def _has_mark(self, mark_prototypes=None):
-        marks = self._get_marks(mark_prototypes=mark_prototypes)
+        marks = self._get_context_marks(mark_prototypes=mark_prototypes)
         return bool(marks)
 
     def _has_spanner(self, spanner_classes=None):
@@ -627,7 +626,7 @@ class Component(AbjadObject):
 
     def _move_marks(self, recipient_component):
         result = []
-        for mark in self._get_marks():
+        for mark in self._get_context_marks():
             result.append(attach(mark, recipient_component))
         for indicator in self._get_indicators():
             detach(indicator, self)
@@ -650,7 +649,7 @@ class Component(AbjadObject):
                 if durationtools.Duration(0) < candidate_new_parent_dur:
                     parent.target_duration = candidate_new_parent_dur
             elif isinstance(parent, scoretools.Measure):
-                parent_time_signature = parent._get_mark(
+                parent_time_signature = parent._get_context_mark(
                     indicatortools.TimeSignature)
                 old_prolation = parent_time_signature.implied_prolation
                 naive_time_signature = (
@@ -663,7 +662,7 @@ class Component(AbjadObject):
                     better_time_signature)
                 detach(indicatortools.TimeSignature, parent)
                 attach(better_time_signature, parent)
-                parent_time_signature = parent._get_mark(
+                parent_time_signature = parent._get_context_mark(
                     indicatortools.TimeSignature)
                 #new_denominator = parent_time_signature.denominator
                 new_prolation = parent_time_signature.implied_prolation

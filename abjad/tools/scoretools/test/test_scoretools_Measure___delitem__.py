@@ -196,7 +196,7 @@ def test_scoretools_Measure___delitem___07():
 
     assert not inspect(measure).is_well_formed()
     assert len(measure) == 3
-    assert inspect(measure).get_mark(TimeSignature) == (4, 8)
+    assert inspect(measure).get_context_mark(TimeSignature) == (4, 8)
 
 
 def test_scoretools_Measure___delitem___08():
@@ -210,4 +210,4 @@ def test_scoretools_Measure___delitem___08():
 
     assert not inspect(measure).is_well_formed()
     assert len(measure) == 3
-    assert inspect(measure).get_mark(TimeSignature) == (4, 9)
+    assert inspect(measure).get_context_mark(TimeSignature) == (4, 9)

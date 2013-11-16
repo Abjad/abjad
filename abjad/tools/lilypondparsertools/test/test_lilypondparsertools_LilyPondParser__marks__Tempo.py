@@ -27,7 +27,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_01():
     assert format(target) == format(result) and \
         target is not result
     leaf = result.select_leaves()[0]
-    tempos = inspect(leaf).get_marks(Tempo)
+    tempos = inspect(leaf).get_context_marks(Tempo)
     assert len(tempos) == 1
 
 
@@ -53,7 +53,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_02():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
-    tempos = inspect(leaf).get_marks(Tempo)
+    tempos = inspect(leaf).get_context_marks(Tempo)
     assert len(tempos) == 1
 
 
@@ -79,7 +79,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_03():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
-    tempos = inspect(leaf).get_marks(Tempo)
+    tempos = inspect(leaf).get_context_marks(Tempo)
     assert len(tempos) == 1
 
 
@@ -109,7 +109,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_04():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
-    tempos = inspect(leaf).get_marks(Tempo)
+    tempos = inspect(leaf).get_context_marks(Tempo)
     assert len(tempos) == 1
 
 
@@ -138,5 +138,5 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_05():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     leaf = result.select_leaves()[0]
-    tempos = inspect(leaf).get_marks(Tempo)
+    tempos = inspect(leaf).get_context_marks(Tempo)
     assert len(tempos) == 1

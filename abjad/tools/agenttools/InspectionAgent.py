@@ -333,7 +333,7 @@ class InspectionAgent(object):
         '''
         return self._component._get_lineage()
 
-    def get_mark(
+    def get_context_mark(
         self,
         mark_prototypes=None,
         ):
@@ -346,11 +346,11 @@ class InspectionAgent(object):
 
         Returns mark.
         '''
-        return self._component._get_mark(
+        return self._component._get_context_mark(
             mark_prototypes=mark_prototypes,
             )
 
-    def get_marks(
+    def get_context_marks(
         self,
         mark_prototypes=None,
         ):
@@ -360,7 +360,7 @@ class InspectionAgent(object):
 
         Returns tuple.
         '''
-        result = self._component._get_marks(
+        result = self._component._get_context_marks(
             mark_prototypes=mark_prototypes,
             )
         return result

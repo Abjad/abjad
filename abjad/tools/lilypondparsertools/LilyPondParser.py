@@ -298,7 +298,7 @@ class LilyPondParser(abctools.Parser):
                     raise Exception('Unterminated %s at %s.' % (spanner_class.__name__, leaf))
 
             # check for DynamicMarks, and terminate any hairpin
-            dynamics = leaf._get_marks(indicatortools.Dynamic)
+            dynamics = leaf._get_context_marks(indicatortools.Dynamic)
             if dynamics and spannertools.Hairpin in all_spanners and \
                 all_spanners[spannertools.Hairpin]:
                 all_spanners[spannertools.Hairpin][0].append(leaf)
@@ -469,9 +469,9 @@ class LilyPondParser(abctools.Parser):
             component = music.pop(0)
             context.append(component)
 
-        marks = music._start_marks
-        for mark in marks:
-            attach(mark, context)
+        context_marks = music._start_context_marks
+        for context_mark in context_marks:
+            attach(context_mark, context)
 
         return context
 
