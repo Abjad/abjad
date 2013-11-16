@@ -117,7 +117,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> dynamic_collection = datastructuretools.TypedList(
-            ...     item_class=marktools.Dynamic)
+            ...     item_class=indicatortools.Dynamic)
             >>> dynamic_collection.append('ppp')
             >>> dynamic_collection += ['p', 'mp', 'mf', 'fff']
 
@@ -126,23 +126,23 @@ class TypedList(TypedCollection):
             >>> print format(dynamic_collection)
             datastructuretools.TypedList(
                 [
-                    marktools.Dynamic(
+                    indicatortools.Dynamic(
                         'ppp'
                         ),
-                    marktools.Dynamic(
+                    indicatortools.Dynamic(
                         'p'
                         ),
-                    marktools.Dynamic(
+                    indicatortools.Dynamic(
                         'mp'
                         ),
-                    marktools.Dynamic(
+                    indicatortools.Dynamic(
                         'mf'
                         ),
-                    marktools.Dynamic(
+                    indicatortools.Dynamic(
                         'fff'
                         ),
                     ],
-                item_class=marktools.Dynamic,
+                item_class=indicatortools.Dynamic,
                 )
 
         Returns collection.

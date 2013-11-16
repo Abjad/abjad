@@ -12,8 +12,8 @@ def is_argument_range_string(expr):
 
 def is_articulation_token(expr):
     try:
-        result = marktools.Articulation(expr)
-        return isinstance(result, marktools.Articulation)
+        result = indicatortools.Articulation(expr)
+        return isinstance(result, indicatortools.Articulation)
     except:
         return False
 
@@ -30,8 +30,8 @@ def is_class_name_or_none(expr):
 
 def is_clef_token(expr):
     try:
-        result = marktools.Clef(expr)
-        return isinstance(result, marktools.Clef)
+        result = indicatortools.Clef(expr)
+        return isinstance(result, indicatortools.Clef)
     except:
         return False
 
@@ -47,8 +47,8 @@ def is_duration_token(expr):
 
 def is_dynamic_token(expr):
     try:
-        result = marktools.Dynamic(expr)
-        return isinstance(result, marktools.Dynamic)
+        result = indicatortools.Dynamic(expr)
+        return isinstance(result, indicatortools.Dynamic)
     except:
         return False
 
@@ -113,9 +113,9 @@ def is_string_or_none(expr):
 def is_tempo_token(expr):
     try:
         exec('from abjad import *')
-        command = 'tempo = marktools.Tempo({})'.format(expr)
+        command = 'tempo = indicatortools.Tempo({})'.format(expr)
         exec(command)
-        return isinstance(tempo, marktools.Tempo)
+        return isinstance(tempo, indicatortools.Tempo)
     except:
         return False
 

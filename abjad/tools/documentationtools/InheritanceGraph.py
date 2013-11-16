@@ -78,7 +78,7 @@ class InheritanceGraph(AbjadObject):
 
         >>> graph = documentationtools.InheritanceGraph(
         ...     addresses=('abjad',),
-        ...     lineage_addresses=(marktools.ContextMark,),
+        ...     lineage_addresses=(indicatortools.ContextMark,),
         ...     lineage_prune_distance=1,
         ...     )
 

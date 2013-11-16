@@ -31,7 +31,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     Returns none.
     '''
     from abjad.tools import scoretools
-    from abjad.tools import marktools
+    from abjad.tools import indicatortools
 
     for measure in iterate(expr).by_class(scoretools.Measure):
         if len(measure) == 1:
@@ -45,8 +45,8 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                     time_signature.numerator, time_signature.denominator)
                 numerator = time_signature_rational.numerator * reduced_denominator
                 denominator = time_signature_rational.denominator * reduced_denominator
-                time_signature = marktools.TimeSignature((numerator, denominator))
-                detach(marktools.TimeSignature, measure)
+                time_signature = indicatortools.TimeSignature((numerator, denominator))
+                detach(indicatortools.TimeSignature, measure)
                 attach(time_signature, measure)
                 time_signature_multiplier = \
                     measure.time_signature.implied_prolation

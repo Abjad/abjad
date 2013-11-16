@@ -10,5 +10,5 @@ def test_Selector_make_tempo_selector_01():
     selector = Selector.make_tempo_selector(session=session)
     result = selector._run(pending_user_input='8=72')
 
-    tempo = marktools.Tempo(durationtools.Duration(1, 8), 72)
+    tempo = indicatortools.Tempo(durationtools.Duration(1, 8), 72)
     assert result == tempo

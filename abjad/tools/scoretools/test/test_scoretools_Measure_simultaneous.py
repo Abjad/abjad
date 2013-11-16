@@ -10,9 +10,9 @@ def test_scoretools_Measure_simultaneous_01():
     measure.append(Voice("c'8 d'8"))
     measure.append(Voice("e'8 f'8"))
     measure.is_simultaneous = True
-    command = marktools.LilyPondCommand('voiceOne')
+    command = indicatortools.LilyPondCommand('voiceOne')
     attach(command, measure[0])
-    command = marktools.LilyPondCommand('voiceTwo')
+    command = indicatortools.LilyPondCommand('voiceTwo')
     attach(command, measure[1])
     staff = Staff([measure])
 

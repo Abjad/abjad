@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from experimental.tools.scoremanagertools.editors.InteractiveEditor \
     import InteractiveEditor
@@ -13,7 +13,7 @@ class TempoEditor(InteractiveEditor):
     ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(
-        marktools.Tempo,
+        indicatortools.Tempo,
         ('duration', 'd', getters.get_duration),
         ('units_per_minute', 'm', getters.get_integer),
         )

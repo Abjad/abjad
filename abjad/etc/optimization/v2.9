@@ -46,15 +46,15 @@ Tests:
        systemtools.IOManager.profile_expr('staff.format')
     7. ibid.
     8. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
-       for note in staff: marktools.Articulation('staccato')(note)
+       for note in staff: indicatortools.Articulation('staccato')(note)
     9. ibid
    10. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
-       for note in staff: marktools.Articulation('staccato')(note)
-       for note in staff: marktools.Comment('comment')(note)
+       for note in staff: indicatortools.Articulation('staccato')(note)
+       for note in staff: indicatortools.Comment('comment')(note)
    11. ibid
    12. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
-       for note in staff: marktools.Articulation('staccato')(note)
-       for note in staff: marktools.Comment('comment')(note)
+       for note in staff: indicatortools.Articulation('staccato')(note)
+       for note in staff: indicatortools.Comment('comment')(note)
        spannertools.Beam(staff[:])
    13. ibid
 

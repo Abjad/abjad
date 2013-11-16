@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import scoretools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
@@ -40,12 +40,12 @@ class Scale(PitchClassSegment):
 
     def __init__(self, *args):
         if len(args) == 1 and isinstance(
-            args[0], marktools.KeySignature):
+            args[0], indicatortools.KeySignature):
             key_signature = args[0]
         elif len(args) == 1 and isinstance(args[0], Scale):
             key_signature = args[0].key_signature
         elif len(args) == 2:
-            key_signature = marktools.KeySignature(*args)
+            key_signature = indicatortools.KeySignature(*args)
         else:
             raise TypeError
         npcs = [key_signature.tonic]
@@ -205,7 +205,7 @@ class Scale(PitchClassSegment):
 
             >>> notes = scale.make_notes(4, Duration(5, 16))
             >>> staff = Staff(notes)
-            >>> time_signature = marktools.TimeSignature((5, 4))
+            >>> time_signature = indicatortools.TimeSignature((5, 4))
             >>> attach(time_signature, staff)
 
         ..  doctest::

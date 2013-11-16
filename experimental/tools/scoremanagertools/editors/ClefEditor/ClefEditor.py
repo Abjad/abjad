@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools.editors.InteractiveEditor \
     import InteractiveEditor
@@ -12,6 +12,6 @@ class ClefEditor(InteractiveEditor):
     ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(
-        marktools.Clef,
+        indicatortools.Clef,
         ('clef_name', 'nm', getters.get_string),
         )

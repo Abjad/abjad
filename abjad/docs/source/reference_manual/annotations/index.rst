@@ -13,7 +13,7 @@ Use mark tools to create annotations:
 
 ::
 
-   >>> annotation_1 = marktools.Annotation('is inner voice', True)
+   >>> annotation_1 = indicatortools.Annotation('is inner voice', True)
 
 
 ::
@@ -43,7 +43,7 @@ Attach annotations to any component with ``attach()``:
 
 ::
 
-   >>> annotation_2 = marktools.Annotation('is phrase-initial', False)
+   >>> annotation_2 = indicatortools.Annotation('is phrase-initial', False)
    >>> annotation_2.attach(note)
    Annotation('is phrase-initial', False)(c'4)
 
@@ -62,7 +62,7 @@ Use the inspector to get all the annotations attached to a component:
 
 ::
 
-   >>> annotations = inspect(note).get_marks(mark_classes=marktools.Annotation)
+   >>> annotations = inspect(note).get_marks(mark_classes=indicatortools.Annotation)
    >>> for annotation in annotations: annotation
    ... 
    Annotation('is inner voice', True)(c'4)

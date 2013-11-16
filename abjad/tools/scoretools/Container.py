@@ -384,14 +384,14 @@ class Container(Component):
         constitutes a composer-unsafe use of this method.
         Only private methods should set this keyword.
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         # cache context marks attached to expr
         expr_context_marks = []
         for component in iterate(expr).by_class():
-            context_marks = component._get_marks(marktools.ContextMark)
+            context_marks = component._get_marks(indicatortools.ContextMark)
             expr_context_marks.extend(context_marks)
         # item assignment
         if isinstance(i, int):
@@ -654,7 +654,7 @@ class Container(Component):
 
         Returns split parts.
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
@@ -664,17 +664,17 @@ class Container(Component):
         # instantiate new left and right containers
         if isinstance(self, scoretools.Measure):
             time_signature = self._get_effective_context_mark(
-                marktools.TimeSignature)
+                indicatortools.TimeSignature)
             denominator = time_signature.denominator
             left_duration = sum([x._get_duration() for x in left_music])
             left_pair = mathtools.NonreducedFraction(left_duration)
             left_pair = left_pair.with_multiple_of_denominator(denominator)
-            left_time_signature = marktools.TimeSignature(left_pair)
+            left_time_signature = indicatortools.TimeSignature(left_pair)
             left = type(self)(left_time_signature, left_music)
             right_duration = sum([x._get_duration() for x in right_music])
             right_pair = mathtools.NonreducedFraction(right_duration)
             right_pair = right_pair.with_multiple_of_denominator(denominator)
-            right_time_signature = marktools.TimeSignature(right_pair)
+            right_time_signature = indicatortools.TimeSignature(right_pair)
             right = type(self)(right_time_signature, right_music)
         elif isinstance(self, scoretools.FixedDurationTuplet):
             multiplier = self.multiplier

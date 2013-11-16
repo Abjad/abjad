@@ -29,7 +29,7 @@ def test_lilypondfiletools_LayoutBlock_01():
 def test_lilypondfiletools_LayoutBlock_02():
 
     lb = lilypondfiletools.LayoutBlock()
-    m = marktools.LilyPondCommand('accidentalStyle modern')
+    m = indicatortools.LilyPondCommand('accidentalStyle modern')
     lb.append(m)
 
     r'''

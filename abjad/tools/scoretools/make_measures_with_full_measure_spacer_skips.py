@@ -35,12 +35,12 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
 
     Returns selection of unincorporated measures.
     '''
-    from abjad.tools import marktools
+    from abjad.tools import indicatortools
     from abjad.tools import scoretools
 
     # check input
     time_signatures = [
-        marktools.TimeSignature(x) for x in time_signatures]
+        indicatortools.TimeSignature(x) for x in time_signatures]
 
     # make measures
     measures = [scoretools.Measure(x, []) for x in time_signatures]

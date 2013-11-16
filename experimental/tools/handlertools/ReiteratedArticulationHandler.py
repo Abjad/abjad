@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
@@ -64,7 +64,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 if self.maximum_written_pitch < maximum_written_pitch:
                     continue
             articulation_list = [
-                marktools.Articulation(x)
+                indicatortools.Articulation(x)
                 for x in self.articulation_list
                 ]
             for articulation in articulation_list:

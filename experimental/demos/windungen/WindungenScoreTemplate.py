@@ -1,4 +1,4 @@
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
@@ -22,7 +22,7 @@ class WindungenScoreTemplate(AbjadObject):
             number = index + 1
             voice = scoretools.Voice(name='Voice {}'.format(number))
             staff = scoretools.Staff([voice], name='Staff {}'.format(number))
-            clef = marktools.Clef('bass')
+            clef = indicatortools.Clef('bass')
             attach(clef, staff)
             cello = instrumenttools.Cello(
                 instrument_name='Cello {}'.format(number),

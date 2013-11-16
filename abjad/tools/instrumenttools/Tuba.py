@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -11,7 +11,7 @@ class Tuba(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = marktools.Clef('bass')
+        >>> clef = indicatortools.Clef('bass')
         >>> attach(clef, staff)
         >>> tuba = instrumenttools.Tuba()
         >>> attach(tuba, staff)
@@ -46,7 +46,7 @@ class Tuba(Instrument):
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
-        self._starting_clefs = [marktools.Clef('bass')]
+        self._starting_clefs = [indicatortools.Clef('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-34, 5)
         #self._make_default_name_markups()

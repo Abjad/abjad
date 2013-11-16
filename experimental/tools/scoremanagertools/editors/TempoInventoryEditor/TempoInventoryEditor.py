@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
@@ -15,7 +15,7 @@ class TempoInventoryEditor(ObjectInventoryEditor):
 
     ### CLASS VARIABLES ###
 
-    item_class = marktools.Tempo
+    item_class = indicatortools.Tempo
 
     item_editor_class = TempoEditor
 
@@ -24,7 +24,7 @@ class TempoInventoryEditor(ObjectInventoryEditor):
     item_identifier = 'tempo'
 
     target_manifest = TargetManifest(
-        marktools.TempoInventory,
+        indicatortools.TempoInventory,
         ('custom_identifier', 'custom_identifier', 'id', getters.get_string),
         target_name_attribute='inventory name',
         )

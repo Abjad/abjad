@@ -8,7 +8,7 @@
     The ``pitchtools`` package should not import any component packages 
     at top level.
 
-    The ``pitchtools`` package should not import ``marktools`` at
+    The ``pitchtools`` package should not import ``indicatortools`` at
     top level, and vice versa.
 
 '''

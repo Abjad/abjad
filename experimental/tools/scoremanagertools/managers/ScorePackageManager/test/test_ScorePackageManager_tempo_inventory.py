@@ -16,9 +16,9 @@ def test_ScorePackageManager_tempo_inventory_01():
         )
 
     assert score_package_manager._get_tempo_inventory() == \
-        marktools.TempoInventory([
-        marktools.Tempo(durationtools.Duration(1, 8), 72),
-        marktools.Tempo(durationtools.Duration(1, 8), 108),
-        marktools.Tempo(durationtools.Duration(1, 8), 90),
-        marktools.Tempo(durationtools.Duration(1, 8), 135),
+        indicatortools.TempoInventory([
+        indicatortools.Tempo(durationtools.Duration(1, 8), 72),
+        indicatortools.Tempo(durationtools.Duration(1, 8), 108),
+        indicatortools.Tempo(durationtools.Duration(1, 8), 90),
+        indicatortools.Tempo(durationtools.Duration(1, 8), 135),
         ])

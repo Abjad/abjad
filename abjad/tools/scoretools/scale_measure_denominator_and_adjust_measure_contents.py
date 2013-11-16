@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -76,7 +76,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     measure._scale(multiplier)
 
     # assign new time signature
-    detach(marktools.TimeSignature, measure)
+    detach(indicatortools.TimeSignature, measure)
     attach(new_time_signature, measure)
 
     # return measure

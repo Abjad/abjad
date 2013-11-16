@@ -10,10 +10,10 @@ The following packages now load by default when you start Abjad::
 
     Abjad 2.10
     >>> [x for x in dir() if x.endswith('tools')]
-    ['abjadbooktools', 'beamtools', 'scoretools', 'scoretools', 'scoretools', 'marktools', 
+    ['abjadbooktools', 'beamtools', 'scoretools', 'scoretools', 'scoretools', 'indicatortools', 
     'developerscripttools', 'durationtools', 'formattools', 'gracetools', 'instrumenttools', 
     'introspectiontools', 'systemtools', 'iterationtools', 'labeltools', 'layouttools', 'scoretools', 
-    'lilypondfiletools', 'marktools', 'markuptools', 'mathtools', 'scoretools', 'scoretools', '
+    'lilypondfiletools', 'indicatortools', 'markuptools', 'mathtools', 'scoretools', 'scoretools', '
     'systemtools', 'pitcharraytools', 'pitchtools', 'scoretools', 'rhythmtreetools', 'schemetools', 
     'scoretemplatetools', 'scoretools', 'sequencetools', 'sievetools', 'scoretools', 'spannertools', 
     'scoretools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools', 'metertools', 
@@ -71,7 +71,7 @@ A new configuration tool is available::
 
 New context tools are available::
 
-    marktools.all_are_contexts()
+    indicatortools.all_are_contexts()
 
 A new ``iterationtools`` package is available::
 

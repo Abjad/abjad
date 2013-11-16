@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 import copy
 import inspect
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
-from abjad.tools.marktools.ContextMark import ContextMark
+from abjad.tools.indicatortools.ContextMark import ContextMark
 
 
 # Note that instruments are the classes in the system that 
@@ -58,7 +58,7 @@ class Instrument(ContextMark):
         self.short_instrument_name = short_instrument_name
         self.short_instrument_name_markup = short_instrument_name_markup
         pitch = pitchtools.NamedPitch("c'")
-        clefs = marktools.ClefInventory(['treble'])
+        clefs = indicatortools.ClefInventory(['treble'])
         self._default_allowable_clefs = copy.deepcopy(clefs)
         self._default_performer_names = ['instrumentalist']
         self._default_sounding_pitch_of_written_middle_c = pitch
@@ -185,7 +185,7 @@ class Instrument(ContextMark):
 
     def _copy_default_starting_clefs_to_default_allowable_clefs(self):
         clefs = self._default_starting_clefs
-        clefs = marktools.ClefInventory(clefs)
+        clefs = indicatortools.ClefInventory(clefs)
         self._default_allowable_clefs = clefs
 
     def _get_default_performer_name(self):
@@ -308,12 +308,12 @@ class Instrument(ContextMark):
             '''
             if self._allowable_clefs is None:
                 clefs = self._default_allowable_clefs
-                clefs = marktools.ClefInventory(clefs)
+                clefs = indicatortools.ClefInventory(clefs)
                 self._allowable_clefs = clefs
             return self._allowable_clefs
         def fset(self, clefs):
             if clefs is not None:
-                clefs = marktools.ClefInventory(clefs)
+                clefs = indicatortools.ClefInventory(clefs)
             self._allowable_clefs = clefs
         return property(**locals())
 

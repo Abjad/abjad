@@ -96,7 +96,7 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_intermarked_hairpins(self):
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import spannertools
         violators = []
         total, bad = 0, 0
@@ -105,7 +105,7 @@ class WellformednessManager(AbjadObject):
         for hairpin in hairpins:
             if 2 < len(hairpin.leaves):
                 for leaf in hairpin.leaves[1:-1]:
-                    if leaf._get_marks(marktools.Dynamic):
+                    if leaf._get_marks(indicatortools.Dynamic):
                         violators.append(hairpin)
                         bad += 1
                         break

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -11,7 +11,7 @@ class AltoTrombone(Instrument):
     ::
 
         >>> staff = Staff("c4 d4 e4 f4")
-        >>> clef = marktools.Clef('bass')
+        >>> clef = indicatortools.Clef('bass')
         >>> attach(clef, staff)
         >>> alto_trombone = instrumenttools.AltoTrombone()
         >>> attach(alto_trombone, staff)
@@ -37,9 +37,9 @@ class AltoTrombone(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
-        self._default_allowable_clefs = marktools.ClefInventory([
-            marktools.Clef('bass'), 
-            marktools.Clef('tenor'),
+        self._default_allowable_clefs = indicatortools.ClefInventory([
+            indicatortools.Clef('bass'), 
+            indicatortools.Clef('tenor'),
             ])
         self._default_instrument_name = 'alto trombone'
         self._default_performer_names.extend([
@@ -48,9 +48,9 @@ class AltoTrombone(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange('[A2, Bb5]')
         self._default_short_instrument_name = 'alt. trb.'
-        self._default_starting_clefs = marktools.ClefInventory([
-            marktools.Clef('bass'), 
-            marktools.Clef('tenor'),
+        self._default_starting_clefs = indicatortools.ClefInventory([
+            indicatortools.Clef('bass'), 
+            indicatortools.Clef('tenor'),
             ])
 
     ### SPECIAL METHODS ###
@@ -268,7 +268,7 @@ class AltoTrombone(Instrument):
                     >>> result = scoretools.make_empty_piano_score()
                     >>> score, tenor_staff, bass_staff = result
                     >>> clef = inspect(tenor_staff).get_effective_context_mark(
-                    ...     marktools.Clef)
+                    ...     indicatortools.Clef)
                     >>> clef.name = 'tenor'
                     >>> note = Note("c'1")
                     >>> start_pitch = alto_trombone.pitch_range.start_pitch

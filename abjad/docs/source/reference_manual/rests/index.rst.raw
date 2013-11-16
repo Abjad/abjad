@@ -57,7 +57,7 @@ show(staff)
 </abjad>
 
 <abjad>
-command = marktools.LilyPondCommand('compressFullBarRests')
+command = indicatortools.LilyPondCommand('compressFullBarRests')
 command.attach(staff)
 show(staff)
 </abjad>

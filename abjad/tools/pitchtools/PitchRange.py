@@ -203,7 +203,7 @@ class PitchRange(AbjadObject):
     def __illustrate__(self):
         from abjad.tools import durationtools
         from abjad.tools import lilypondfiletools
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
@@ -221,7 +221,7 @@ class PitchRange(AbjadObject):
         stop_note = scoretools.Note(self.stop_pitch, 1)
         glissando = spannertools.Glissando()
         if start_pitch_clef == stop_pitch_clef:
-            if start_pitch_clef == marktools.Clef('bass'):
+            if start_pitch_clef == indicatortools.Clef('bass'):
                 bass_staff.extend([start_note, stop_note])
                 attach(glissando, bass_staff.select_leaves())
             else:
@@ -231,7 +231,7 @@ class PitchRange(AbjadObject):
             bass_staff.extend([start_note, stop_note])
             treble_staff.extend(scoretools.Skip(1) * 2)
             attach(glissando, bass_staff.select_leaves())
-            attach(marktools.StaffChange(treble_staff), bass_staff[1])
+            attach(indicatortools.StaffChange(treble_staff), bass_staff[1])
         for leaf in iterate(score).by_class(scoretools.Leaf):
             attach(durationtools.Multiplier(1, 4), leaf)
         override(score).bar_line.stencil = False

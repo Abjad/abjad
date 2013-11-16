@@ -9,7 +9,7 @@ def test_ScoreSpecification__set_mark_01():
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(2, 16)])
     score_specification.set_rhythm(library.note_tokens.new(beam_cells_together=True))
-    score_specification.select_leaves('Voice 1').set_mark(marktools.StemTremolo(32))
+    score_specification.select_leaves('Voice 1').set_mark(indicatortools.StemTremolo(32))
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

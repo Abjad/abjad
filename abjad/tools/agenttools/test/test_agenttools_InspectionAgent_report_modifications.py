@@ -6,10 +6,10 @@ from abjad import *
 def test_agenttools_InspectionAgent_report_modifications_01():
 
     voice = Voice("c'8 d'8 e'8 f'8")
-    comment = marktools.LilyPondComment('Example voice', 'before')
+    comment = indicatortools.LilyPondComment('Example voice', 'before')
     attach(comment, voice)
     override(voice).note_head.color = 'red'
-    command = marktools.LilyPondCommand("#(set-accidental-style 'forget)")
+    command = indicatortools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, voice)
     beam = Beam()
     attach(beam, voice[:])
@@ -52,10 +52,10 @@ def test_agenttools_InspectionAgent_report_modifications_01():
 def test_agenttools_InspectionAgent_report_modifications_02():
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    comment = marktools.LilyPondComment('Example tuplet', 'before')
+    comment = indicatortools.LilyPondComment('Example tuplet', 'before')
     attach(comment, tuplet)
     override(tuplet).note_head.color = 'red'
-    command = marktools.LilyPondCommand("#(set-accidental-style 'forget)")
+    command = indicatortools.LilyPondCommand("#(set-accidental-style 'forget)")
     attach(command, tuplet)
     beam = Beam()
     attach(beam, tuplet[:])

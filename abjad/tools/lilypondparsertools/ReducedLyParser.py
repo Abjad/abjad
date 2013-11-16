@@ -5,7 +5,7 @@ from abjad.tools import abctools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import durationtools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
@@ -322,7 +322,7 @@ class ReducedLyParser(abctools.Parser):
         '''
         p[0] = p[1]
         if p[2]:
-            annotation = marktools.Annotation('post events', p[2])
+            annotation = indicatortools.Annotation('post events', p[2])
             attach(annotation, p[0])
 
     def p_leaf_body__chord_body(self, p):
@@ -596,14 +596,14 @@ class ReducedLyParser(abctools.Parser):
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:
-            detach(marktools.Annotation, leaf)
+            detach(indicatortools.Annotation, leaf)
         if 1 < self._toplevel_component_count:
             return parsed
         return parsed[0]
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_indicators(marktools.Annotation)
-        detach(marktools.Annotation, leaf)
+        annotations = leaf._get_indicators(indicatortools.Annotation)
+        detach(indicatortools.Annotation, leaf)
         annotations = [x for x in annotations if x.name == 'post events']
         if annotations:
             return annotations[0].value

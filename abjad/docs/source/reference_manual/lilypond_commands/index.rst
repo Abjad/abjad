@@ -8,11 +8,11 @@ to Abjad score components.
 Creating LilyPond command marks
 -------------------------------
 
-Use ``marktools`` to create LilyPond command marks:
+Use ``indicatortools`` to create LilyPond command marks:
 
 ::
 
-   >>> command = marktools.LilyPondCommand('bar "||"', 'after')
+   >>> command = indicatortools.LilyPondCommand('bar "||"', 'after')
 
 
 ::
@@ -31,7 +31,7 @@ Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
 
    >>> import copy
    >>> staff = Staff([])
-   >>> key_signature = marktools.KeySignature('f', 'major')
+   >>> key_signature = indicatortools.KeySignature('f', 'major')
    >>> key_signature.attach(staff)
    KeySignature(NamedPitchClass('f'), Mode('major'))(Staff{})
    >>> staff.extend(p("{ d''16 ( c''16 fs''16 g''16 ) }"))
@@ -65,7 +65,7 @@ Use the inspector to get the LilyPond command marks attached to a leaf:
 
 ::
 
-   >>> inspect(staff[-2]).get_marks(marktools.LilyPondCommand)
+   >>> inspect(staff[-2]).get_marks(indicatortools.LilyPondCommand)
    (LilyPondCommand('bar "||"')(b'8),)
 
 
@@ -103,7 +103,7 @@ mark is attached:
 
 ::
 
-   >>> command = marktools.LilyPondCommand('bar "||"', 'closing')
+   >>> command = indicatortools.LilyPondCommand('bar "||"', 'closing')
    >>> command.attach(staff[-2])
    LilyPondCommand('bar "||"')(b'8)
 

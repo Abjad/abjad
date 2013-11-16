@@ -1,22 +1,22 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import durationtools
 
 
-tempo_inventory = marktools.TempoInventory([
-	marktools.Tempo(
+tempo_inventory = indicatortools.TempoInventory([
+	indicatortools.Tempo(
 		durationtools.Duration(1, 8),
 		72
 		),
-	marktools.Tempo(
+	indicatortools.Tempo(
 		durationtools.Duration(1, 8),
 		108
 		),
-	marktools.Tempo(
+	indicatortools.Tempo(
 		durationtools.Duration(1, 8),
 		90
 		),
-	marktools.Tempo(
+	indicatortools.Tempo(
 		durationtools.Duration(1, 8),
 		135
 		)

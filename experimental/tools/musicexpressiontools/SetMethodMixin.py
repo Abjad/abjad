@@ -2,8 +2,8 @@
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import topleveltools
-from abjad.tools import marktools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
+from abjad.tools import indicatortools
 from abjad.tools import pitchtools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
@@ -117,14 +117,14 @@ class SetMethodMixin(AbjadObject):
         Returns articulation set expression.
         '''
         from experimental.tools import musicexpressiontools
-        if isinstance(source_expression, marktools.Articulation):
+        if isinstance(source_expression, indicatortools.Articulation):
             articulation_list = [source_expression]
         elif isinstance(source_expression, str):
-            articulation = marktools.Articulation(source_expression)
+            articulation = indicatortools.Articulation(source_expression)
             articulation_list = [articulation]
         elif isinstance(source_expression, list):
             articulation_list = [
-                marktools.Articulation(x) for x in source_expression]
+                indicatortools.Articulation(x) for x in source_expression]
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=articulation_list)
         attribute = 'articulation'
@@ -136,7 +136,7 @@ class SetMethodMixin(AbjadObject):
         Returns dynamic set expression.
         '''
         from experimental.tools import musicexpressiontools
-        dynamic = marktools.Dynamic(source_expression)
+        dynamic = indicatortools.Dynamic(source_expression)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=dynamic)
         attribute = 'dynamic'
@@ -160,7 +160,7 @@ class SetMethodMixin(AbjadObject):
         Returns mark set expression.
         '''
         from experimental.tools import musicexpressiontools
-        #assert isinstance(source_expression, marktools.Mark)
+        #assert isinstance(source_expression, indicatortools.Mark)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'mark'
@@ -234,7 +234,7 @@ class SetMethodMixin(AbjadObject):
         Returns tempo set expression.
         '''
         from experimental.tools import musicexpressiontools
-        source_expression = marktools.Tempo(source_expression)
+        source_expression = indicatortools.Tempo(source_expression)
         source_expression = \
             musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'tempo'

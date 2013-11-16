@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
@@ -57,6 +57,6 @@ class Harp(Instrument):
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch("c'")
         self._starting_clefs = [
-            marktools.Clef('treble'), marktools.Clef('bass')]
+            indicatortools.Clef('treble'), indicatortools.Clef('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-37, 44)

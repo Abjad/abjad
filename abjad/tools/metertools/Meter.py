@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -213,7 +213,7 @@ class Meter(AbjadObject):
                 fraction = mathtools.NonreducedFraction(arg)
             elif isinstance(arg, scoretools.Measure):
                 time_signature = arg._get_effective_context_mark(
-                    marktools.TimeSignature)
+                    indicatortools.TimeSignature)
                 fraction = mathtools.NonreducedFraction(
                     time_signature.numerator, time_signature.denominator)
             else:
@@ -485,7 +485,7 @@ class Meter(AbjadObject):
 
         Returns TimeSignature object.
         '''
-        return marktools.TimeSignature(
+        return indicatortools.TimeSignature(
             self.root_node.preprolated_duration)
 
     @property

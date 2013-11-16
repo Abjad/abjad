@@ -47,8 +47,8 @@ class InspectionAgent(object):
         Raises exception when more than one annotation with `name`
         is attached to component.
         '''
-        from abjad.tools import marktools
-        annotations = self.get_indicators(marktools.Annotation)
+        from abjad.tools import indicatortools
+        annotations = self.get_indicators(indicatortools.Annotation)
         if not annotations:
             return default
         with_correct_name = []
@@ -470,7 +470,7 @@ class InspectionAgent(object):
             ::
 
                 >>> staff = Staff("c'4 d'4 e'4")
-                >>> time_signature = marktools.TimeSignature((3, 8))
+                >>> time_signature = indicatortools.TimeSignature((3, 8))
                 >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 
@@ -496,9 +496,9 @@ class InspectionAgent(object):
 
         Returns boolean.
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         time_signature = self._component._get_effective_context_mark(
-            marktools.TimeSignature)
+            indicatortools.TimeSignature)
         if time_signature is None:
             time_signature_duration = durationtools.Duration(4, 4)
         else:

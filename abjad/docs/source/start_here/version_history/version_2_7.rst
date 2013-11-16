@@ -128,9 +128,9 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     \concat { #"one word" \rotate #60 \bold { two words } \triangle ##f }
 
 
-- Added ``marktools.TempoInventory``, which models an ordered list of tempos::
+- Added ``indicatortools.TempoInventory``, which models an ordered list of tempos::
 
-    >>> marktools.TempoInventory([('Andante', Duration(1, 8), 72), ('Allegro', Duration(1, 8), 84)])
+    >>> indicatortools.TempoInventory([('Andante', Duration(1, 8), 72), ('Allegro', Duration(1, 8), 84)])
     TempoInventory([Tempo('Andante', Duration(1, 8), 72), Tempo('Allegro', Duration(1, 8), 84)])
 
   Inherits from list. Allows initialization, append and extent on tempo tokens.
@@ -192,16 +192,16 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Extended ``Container`` to use ``LilyPondParser`` to parse input strings.
 
-- Extended ``marktools.InstrumentMark``, ``scoretools.Performer`` and 
+- Extended ``indicatortools.InstrumentMark``, ``scoretools.Performer`` and 
   ``markuptools.Markup`` with ``__hash__`` equality.
 
   Now, if two instances compare equally (via ==), their hashes also compare equally,
   allowing for more intuitive use of these classes as dictionary keys.
 
-- Extended ``marktools.Tempo`` with textual indications and tempo ranges
+- Extended ``indicatortools.Tempo`` with textual indications and tempo ranges
   You may instantiate as normal, or in some new combinations::
 
-    >>> from abjad.tools.marktools import Tempo
+    >>> from abjad.tools.indicatortools import Tempo
     >>> t = Tempo('Langsam', Duration(1, 4), (52, 57))
     >>> t = Tempo('Langsam')
     >>> t = Tempo((1, 4), (52, 57))
@@ -217,7 +217,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Extended tempo with ``is_tempo_token()`` method::
 
-    >>> tempo = marktools.Tempo(Duration(1, 4), 72)
+    >>> tempo = indicatortools.Tempo(Duration(1, 4), 72)
     >>> tempo.is_tempo_token((Duration(1, 4), 84))
     True
 
@@ -235,7 +235,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 - Extended ``lilypondfiletools.NonattributedBlock`` with ``is_formatted_when_empty`` read-write property.
   ``lilypondfiletools.ScoreBlock`` no longer formats when empty, by default.
 
-- Extended ``marktools.BarLine`` with ``format_slot`` keyword.
+- Extended ``indicatortools.BarLine`` with ``format_slot`` keyword.
 
 - Extended ``pitchtools.PitchRange`` class with read-only ``pitch_range_name`` and ``pitch_range_name_markup`` attributes.
 
@@ -276,7 +276,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
   This both clarifies the API, and prevents shadowing of Python's builtin ``min()`` and ``max()``.
 
-- Renamed ``marktools.Articulation.direction_string`` => ``marktools.Articulation.direction``.
+- Renamed ``indicatortools.Articulation.direction_string`` => ``indicatortools.Articulation.direction``.
 
 - Renamed ``markuptools.Markup.direction_string` => ``markuptools.Markup.direction``.
 
@@ -295,7 +295,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Improved ``__repr__`` strings of ``tonalanalysistools.Mode`` and ``tonalanalysistools.Scale``.
 
-- ``marktools.Tempo`` ``__repr__`` now shows ``__repr__`` version of duration
+- ``indicatortools.Tempo`` ``__repr__`` now shows ``__repr__`` version of duration
   instead of string version of duration.
 
 - ``scr/devel/abj-grp`` no longer excludes lines of code that include the string ``'svn'``.

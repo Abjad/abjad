@@ -123,8 +123,8 @@ Added object inventories for several classes.
 
 - This release contains inventories for the following classes::
 
-    marktools.ClefInventory
-    marktools.TempoInventory
+    indicatortools.ClefInventory
+    indicatortools.TempoInventory
     instrumenttools.InstrumentInventory
     markuptools.MarkupInventory
     pitchtools.OctaveTranspositionMappingInventory
@@ -321,17 +321,17 @@ All score components are now public.
 
 Further new functionality:
 
-- Added the ``marktools.BendAfter`` class to model LilyPond's ``\bendAfter command``::
+- Added the ``indicatortools.BendAfter`` class to model LilyPond's ``\bendAfter command``::
 
     >>> n = Note(0, 1)
-    >>> marktools.BendAfter(8)(n)
+    >>> indicatortools.BendAfter(8)(n)
     BendAfter(8.0)(c'1)
     >>> f(n)
     c'1 - \bendAfter #'8.0
 
-- Added public ``pair`` property to ``marktools.TimeSignature``::
+- Added public ``pair`` property to ``indicatortools.TimeSignature``::
 
-    >>> time_signature = marktools.TimeSignature((3, 16))
+    >>> time_signature = indicatortools.TimeSignature((3, 16))
     >>> time_signature.pair
     (3, 16)
 
@@ -350,9 +350,9 @@ Further new functionality:
   voices containing copies of those leaves in both voices. This is useful for
   generating stemmed-glissandi structures.
 
-- Added ``marktools.list_clef_names()``::
+- Added ``indicatortools.list_clef_names()``::
 
-    >>> marktools.list_clef_names()
+    >>> indicatortools.list_clef_names()
     ['alto', 'baritone', 'bass', 'mezzosoprano', 'percussion', 'soprano', 'treble']
 
 - Added ``find-slots-implementation-inconsistencies`` development script.

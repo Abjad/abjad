@@ -15,16 +15,16 @@ def build_chorale():
     treble_staff.is_simultaneous = True
     bass_staff.is_simultaneous = True
 
-    key_signature = marktools.KeySignature(*es_ist_genug['key'])
+    key_signature = indicatortools.KeySignature(*es_ist_genug['key'])
     attach(key_signature, treble_staff)
-    key_signature = marktools.KeySignature(*es_ist_genug['key'])
+    key_signature = indicatortools.KeySignature(*es_ist_genug['key'])
     attach(key_signature, bass_staff)
-    clef = marktools.Clef('bass')
+    clef = indicatortools.Clef('bass')
     attach(clef, bass_staff)
 
-    bar_line = marktools.BarLine('|.')
+    bar_line = indicatortools.BarLine('|.')
     attach(bar_line, treble_staff)
-    bar_line = marktools.BarLine('|.')
+    bar_line = indicatortools.BarLine('|.')
     attach(bar_line, bass_staff)
 
     piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])

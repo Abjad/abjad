@@ -331,14 +331,14 @@ class Component(AbjadObject):
             return parentage.prolation * self._preprolated_duration
 
     def _get_effective_context_mark(self, context_mark_prototypes=None):
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
         # do special things for time signatures
-        if context_mark_prototypes == marktools.TimeSignature:
+        if context_mark_prototypes == indicatortools.TimeSignature:
             if isinstance(self, scoretools.Measure):
-                if self._has_mark(marktools.TimeSignature):
-                    return self._get_mark(marktools.TimeSignature)
+                if self._has_mark(indicatortools.TimeSignature):
+                    return self._get_mark(indicatortools.TimeSignature)
         # updating marks of entire score tree if necessary
         self._update_now(marks=True)
         # gathering candidate marks
@@ -350,7 +350,7 @@ class Component(AbjadObject):
                 if isinstance(mark, context_mark_prototypes):
                     if mark._get_effective_context() is not None:
                         candidate_marks.insert(mark)
-                    elif isinstance(mark, marktools.TimeSignature):
+                    elif isinstance(mark, indicatortools.TimeSignature):
                         if isinstance(
                             mark._start_component, scoretools.Measure):
                             candidate_marks.insert(mark)
@@ -363,10 +363,10 @@ class Component(AbjadObject):
                 pass
 
     def _get_effective_staff(self):
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         staff_change = self._get_effective_context_mark(
-            marktools.StaffChange)
+            indicatortools.StaffChange)
         if staff_change is not None:
             effective_staff = staff_change.staff
         else:
@@ -447,7 +447,7 @@ class Component(AbjadObject):
         return selectiontools.Lineage(self)
 
     def _get_mark(self, mark_prototypes=None):
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         marks = self._get_marks(mark_prototypes=mark_prototypes)
         if not marks:
             message = 'no marks found.'
@@ -457,12 +457,12 @@ class Component(AbjadObject):
             raise ValueError(message)
         else:
             mark = marks[0]
-        assert isinstance(mark, marktools.ContextMark), repr(mark)
+        assert isinstance(mark, indicatortools.ContextMark), repr(mark)
         return mark
 
     def _get_marks(self, mark_prototypes=None):
-        from abjad.tools import marktools
-        mark_prototypes = mark_prototypes or (marktools.ContextMark,)
+        from abjad.tools import indicatortools
+        mark_prototypes = mark_prototypes or (indicatortools.ContextMark,)
         if not isinstance(mark_prototypes, tuple):
             mark_prototypes = (mark_prototypes,)
         mark_items = mark_prototypes[:]
@@ -470,7 +470,7 @@ class Component(AbjadObject):
         for mark_item in mark_items:
             if isinstance(mark_item, types.TypeType):
                 mark_prototypes.append(mark_item)
-            elif isinstance(mark_item, marktools.ContextMark):
+            elif isinstance(mark_item, indicatortools.ContextMark):
                 mark_objects.append(mark_item)
             else:
                 message = 'must be mark class or mark object: {!r}'
@@ -485,7 +485,7 @@ class Component(AbjadObject):
                 matching_marks.append(mark)
         matching_marks = tuple(matching_marks)
         assert all(
-            isinstance(x, marktools.ContextMark) for x in matching_marks), \
+            isinstance(x, indicatortools.ContextMark) for x in matching_marks), \
             repr(matching_marks)
         return tuple(matching_marks)
 
@@ -635,7 +635,7 @@ class Component(AbjadObject):
 
     # TODO: eventually reimplement as a keyword option to remove()
     def _remove_and_shrink_durated_parent_containers(self):
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         prolated_leaf_duration = self._get_duration()
         parentage = self._get_parentage(include_self=False)
@@ -651,7 +651,7 @@ class Component(AbjadObject):
                     parent.target_duration = candidate_new_parent_dur
             elif isinstance(parent, scoretools.Measure):
                 parent_time_signature = parent._get_mark(
-                    marktools.TimeSignature)
+                    indicatortools.TimeSignature)
                 old_prolation = parent_time_signature.implied_prolation
                 naive_time_signature = (
                     parent_time_signature.duration - prolated_leaf_duration)
@@ -659,12 +659,12 @@ class Component(AbjadObject):
                     naive_time_signature)
                 better_time_signature = better_time_signature.with_denominator(
                     parent_time_signature.denominator)
-                better_time_signature = marktools.TimeSignature(
+                better_time_signature = indicatortools.TimeSignature(
                     better_time_signature)
-                detach(marktools.TimeSignature, parent)
+                detach(indicatortools.TimeSignature, parent)
                 attach(better_time_signature, parent)
                 parent_time_signature = parent._get_mark(
-                    marktools.TimeSignature)
+                    indicatortools.TimeSignature)
                 #new_denominator = parent_time_signature.denominator
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation

@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import fractions
 from ply import lex
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools import lilypondfiletools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
@@ -1103,7 +1103,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             multiplier = durationtools.Multiplier(p[2].multiplier)
             attach(multiplier, chord)
         self.client._process_post_events(chord, p[3])
-        annotation = marktools.Annotation('UnrelativableMusic')
+        annotation = indicatortools.Annotation('UnrelativableMusic')
         attach(annotation, chord)
         if self.client._last_chord not in self.client._repeated_chords:
             self.client._repeated_chords[self.client._last_chord] = []
@@ -2967,43 +2967,43 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_script_abbreviation__ANGLE_CLOSE(self, p):
         'script_abbreviation : ANGLE_CLOSE'
         kind = self.client._current_module['dashLarger']['alias']
-        p[0] = marktools.Articulation(kind)
+        p[0] = indicatortools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr124(self, p):
         "script_abbreviation : '|'"
         kind = self.client._current_module['dashBar']['alias']
-        p[0] = marktools.Articulation(kind)
+        p[0] = indicatortools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr43(self, p):
         "script_abbreviation : '+'"
         kind = self.client._current_module['dashPlus']['alias']
-        p[0] = marktools.Articulation(kind)
+        p[0] = indicatortools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr45(self, p):
         "script_abbreviation : '-'"
         kind = self.client._current_module['dashDash']['alias']
-        p[0] = marktools.Articulation(kind)
+        p[0] = indicatortools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr46(self, p):
         "script_abbreviation : '.'"
         kind = self.client._current_module['dashDot']['alias']
-        p[0] = marktools.Articulation(kind)
+        p[0] = indicatortools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr94(self, p):
         "script_abbreviation : '^'"
         kind = self.client._current_module['dashHat']['alias']
-        p[0] = marktools.Articulation(kind)
+        p[0] = indicatortools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr95(self, p):
         "script_abbreviation : '_'"
         kind = self.client._current_module['dashUnderscore']['alias']
-        p[0] = marktools.Articulation(kind)
+        p[0] = indicatortools.Articulation(kind)
 
 
     ### script_dir ###
@@ -3340,15 +3340,15 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_tempo_event__TEMPO__scalar(self, p):
         'tempo_event : TEMPO scalar'
-        p[0] = marktools.Tempo(str(p[2]))
+        p[0] = indicatortools.Tempo(str(p[2]))
 
     def p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
-        p[0] = marktools.Tempo(str(p[2]), p[3].duration, p[5])
+        p[0] = indicatortools.Tempo(str(p[2]), p[3].duration, p[5])
 
     def p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO steno_duration '=' tempo_range"
-        p[0] = marktools.Tempo(p[2].duration, p[4])
+        p[0] = indicatortools.Tempo(p[2].duration, p[4])
 
 
     ### tempo_range ###
@@ -3404,7 +3404,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_tremolo_type__Chr58__bare_unsigned(self, p):
         "tremolo_type : ':' bare_unsigned"
-        p[0] = marktools.StemTremolo(p[2])
+        p[0] = indicatortools.StemTremolo(p[2])
 
     ### unsigned_number ###
 

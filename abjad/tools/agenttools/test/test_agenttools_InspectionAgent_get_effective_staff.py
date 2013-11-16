@@ -10,7 +10,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_01():
     piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
-    staff_change = marktools.StaffChange(piano[1])
+    staff_change = indicatortools.StaffChange(piano[1])
     attach(staff_change, piano[0][0])
 
     assert systemtools.TestManager.compare(
@@ -53,9 +53,9 @@ def test_agenttools_InspectionAgent_get_effective_staff_02():
     piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
-    staff_change = marktools.StaffChange(piano[1])
+    staff_change = indicatortools.StaffChange(piano[1])
     attach(staff_change, piano[0][0])
-    staff_change = marktools.StaffChange(piano[0])
+    staff_change = indicatortools.StaffChange(piano[0])
     attach(staff_change, piano[0][2])
 
     assert systemtools.TestManager.compare(
@@ -99,7 +99,7 @@ def test_agenttools_InspectionAgent_get_effective_staff_03():
     piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
-    staff_change = marktools.StaffChange(piano[1])
+    staff_change = indicatortools.StaffChange(piano[1])
     attach(staff_change, piano[0][-1])
 
     assert systemtools.TestManager.compare(
@@ -134,9 +134,9 @@ def test_agenttools_InspectionAgent_get_effective_staff_04():
     piano.is_simultaneous = True
     piano[0].name = 'RH'
     piano[1].name = 'LH'
-    staff_change = marktools.StaffChange(piano[1])
+    staff_change = indicatortools.StaffChange(piano[1])
     attach(staff_change, piano[0][0])
-    staff_change = marktools.StaffChange(piano[1])
+    staff_change = indicatortools.StaffChange(piano[1])
     attach(staff_change, piano[0][1])
 
     assert systemtools.TestManager.compare(

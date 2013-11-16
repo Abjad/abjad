@@ -7,9 +7,9 @@ def test_agenttools_InspectionAgent_get_marks_01():
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
     attach(slur, staff.select_leaves())
-    command_1 = marktools.LilyPondCommand('slurDotted')
+    command_1 = indicatortools.LilyPondCommand('slurDotted')
     attach(command_1, staff[0])
-    command_2 = marktools.LilyPondCommand('slurUp')
+    command_2 = indicatortools.LilyPondCommand('slurUp')
     attach(command_2, staff[0])
 
     assert systemtools.TestManager.compare(
@@ -26,7 +26,7 @@ def test_agenttools_InspectionAgent_get_marks_01():
         '''
         )
 
-    marks = inspect(staff[0]).get_indicators(marktools.LilyPondCommand)
+    marks = inspect(staff[0]).get_indicators(indicatortools.LilyPondCommand)
     assert command_1 in marks
     assert command_2 in marks
     assert len(marks) == 2
@@ -37,9 +37,9 @@ def test_agenttools_InspectionAgent_get_marks_02():
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
     attach(slur, staff.select_leaves())
-    comment = marktools.LilyPondComment('beginning of note content')
+    comment = indicatortools.LilyPondComment('beginning of note content')
     attach(comment, staff[0])
-    command = marktools.LilyPondCommand('slurDotted')
+    command = indicatortools.LilyPondCommand('slurDotted')
     attach(command, staff[0])
 
     assert systemtools.TestManager.compare(
@@ -83,7 +83,7 @@ def test_agenttools_InspectionAgent_get_marks_03():
         '''
         )
 
-    context_marks = inspect(staff[0]).get_marks(marktools.ContextMark)
+    context_marks = inspect(staff[0]).get_marks(indicatortools.ContextMark)
     assert dynamic in context_marks
     assert len(context_marks) == 1
 
@@ -117,9 +117,9 @@ def test_agenttools_InspectionAgent_get_marks_04():
 def test_agenttools_InspectionAgent_get_marks_05():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    annotation_1 = marktools.Annotation('annotation 1')
+    annotation_1 = indicatortools.Annotation('annotation 1')
     attach(annotation_1, staff[0])
-    annotation_2 = marktools.Annotation('annotation 2')
+    annotation_2 = indicatortools.Annotation('annotation 2')
     attach(annotation_2, staff[0])
 
     assert systemtools.TestManager.compare(
@@ -134,16 +134,16 @@ def test_agenttools_InspectionAgent_get_marks_05():
         '''
         )
 
-    annotations = inspect(staff[0]).get_indicators(marktools.Annotation)
+    annotations = inspect(staff[0]).get_indicators(indicatortools.Annotation)
     assert annotations == (annotation_1, annotation_2)
 
 
 def test_agenttools_InspectionAgent_get_marks_06():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    comment_1 = marktools.LilyPondComment('comment 1')
+    comment_1 = indicatortools.LilyPondComment('comment 1')
     attach(comment_1, staff[0])
-    comment_2 = marktools.LilyPondComment('comment 2')
+    comment_2 = indicatortools.LilyPondComment('comment 2')
     attach(comment_2, staff[0])
 
     assert systemtools.TestManager.compare(
@@ -160,7 +160,7 @@ def test_agenttools_InspectionAgent_get_marks_06():
         '''
         )
 
-    marks = inspect(staff[0]).get_indicators(marktools.LilyPondComment)
+    marks = inspect(staff[0]).get_indicators(indicatortools.LilyPondComment)
     assert comment_1 in marks
     assert comment_2 in marks
     assert len(marks) == 2
@@ -169,8 +169,8 @@ def test_agenttools_InspectionAgent_get_marks_06():
 def test_agenttools_InspectionAgent_get_marks_07():
 
     note = Note("c'4")
-    stem_tremolo = marktools.StemTremolo(16)
+    stem_tremolo = indicatortools.StemTremolo(16)
     attach(stem_tremolo, note)
-    stem_tremolos = inspect(note).get_indicators(marktools.StemTremolo)
+    stem_tremolos = inspect(note).get_indicators(indicatortools.StemTremolo)
 
     assert stem_tremolos[0] is stem_tremolo

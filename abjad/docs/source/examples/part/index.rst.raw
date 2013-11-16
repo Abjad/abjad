@@ -99,7 +99,7 @@ for i, descent in enumerate(descents[1:], 1):
 
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
-time_signature = marktools.TimeSignature((6, 4))(staff)
+time_signature = indicatortools.TimeSignature((6, 4))(staff)
 show(staff)
 </abjad>
 
@@ -117,7 +117,7 @@ for i, descent in enumerate(descents[1:], 1):
 
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
-time_signature = marktools.TimeSignature((6, 4))(staff)
+time_signature = indicatortools.TimeSignature((6, 4))(staff)
 show(staff)
 </abjad>
 
@@ -138,7 +138,7 @@ for i, descent in enumerate(descents[1:], 1):
 <abjad>
 staff = Staff(sequencetools.flatten_sequence(descents))
 shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
-time_signature = marktools.TimeSignature((6, 4))(staff)
+time_signature = indicatortools.TimeSignature((6, 4))(staff)
 show(staff)
 </abjad>
 
@@ -184,7 +184,7 @@ We apply expressive marks the same way we applied our dynamics:
 
 <abjadextract abjad.demos.part.apply_expressive_marks.apply_expressive_marks \>[strip_prompt=true]
 
-We use the `marktools.LilyPondCommandClass` to create LilyPond system breaks,
+We use the `indicatortools.LilyPondCommandClass` to create LilyPond system breaks,
 and attach them to measures in the percussion part.  After this, our score will
 break in the exact same places as the original:
 
@@ -194,8 +194,8 @@ We'll make the rehearsal marks the exact same way we made our line breaks:
 
 <abjadextract abjad.demos.part.apply_rehearsal_marks.apply_rehearsal_marks \>[strip_prompt=true]
 
-And then we add our final bar lines.  `marktools.BarLine` objects inherit from
-`marktools.Mark`, so you can probably guess by now how we add them to the
+And then we add our final bar lines.  `indicatortools.BarLine` objects inherit from
+`indicatortools.Mark`, so you can probably guess by now how we add them to the
 score... instantiate and attach:
 
 <abjadextract abjad.demos.part.apply_final_bar_lines.apply_final_bar_lines \>[strip_prompt=true]

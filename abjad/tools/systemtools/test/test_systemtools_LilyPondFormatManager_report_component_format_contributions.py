@@ -17,9 +17,9 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
     attach(articulation, t)
     markup = markuptools.Markup('some markup', Down)
     attach(markup, t)
-    comment = marktools.LilyPondComment('textual information before', 'before')
+    comment = indicatortools.LilyPondComment('textual information before', 'before')
     attach(comment, t)
-    comment = marktools.LilyPondComment('textual information after', 'after')
+    comment = indicatortools.LilyPondComment('textual information after', 'after')
     attach(comment, t)
 
     assert systemtools.TestManager.compare(

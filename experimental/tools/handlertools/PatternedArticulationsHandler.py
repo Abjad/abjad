@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
@@ -43,7 +43,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
         for i, note_or_chord in enumerate(notes_and_chords):
             articulation_list = articulation_lists[offset+i]
             articulation_list = [
-                marktools.Articulation(x)
+                indicatortools.Articulation(x)
                 for x in articulation_list
                 ]
             if self.minimum_duration is not None:

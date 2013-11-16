@@ -6,7 +6,7 @@ def detach(indicator, component_expression):
 
     Returns tuple of zero detached indicators.
     '''
-    from abjad.tools import marktools
+    from abjad.tools import indicatortools
     from abjad.tools import scoretools
     from abjad.tools import spannertools
     from abjad.tools.agenttools.InspectionAgent import inspect
@@ -14,7 +14,7 @@ def detach(indicator, component_expression):
     marks, spanners, grace_containers = [], [], []
     inspector = inspect(component_expression)
     if isinstance(indicator, types.TypeType):
-        if issubclass(indicator, marktools.ContextMark):
+        if issubclass(indicator, indicatortools.ContextMark):
             marks = inspector.get_marks(indicator)
         elif issubclass(indicator, spannertools.Spanner):
             spanners = inspector.get_spanners(indicator)
@@ -30,7 +30,7 @@ def detach(indicator, component_expression):
             result = tuple(result)
             return result
     else:
-        if isinstance(indicator, marktools.ContextMark):
+        if isinstance(indicator, indicatortools.ContextMark):
             marks = inspector.get_marks(indicator)
         elif isinstance(indicator, spannertools.Spanner):
             spanners = inspector.get_spanners(indicator)

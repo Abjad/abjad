@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -47,8 +47,8 @@ class BaritoneVoice(Instrument):
             ])
         self._default_pitch_range = pitchtools.PitchRange(('A2', 'A4'))
         self._default_short_instrument_name = 'baritone'
-        self._default_starting_clefs = marktools.ClefInventory([
-            marktools.Clef('bass'),
+        self._default_starting_clefs = indicatortools.ClefInventory([
+            indicatortools.Clef('bass'),
             ])
         self._is_primary_instrument = True
         self._copy_default_starting_clefs_to_default_allowable_clefs()

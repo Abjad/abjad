@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import datastructuretools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
@@ -25,8 +25,8 @@ class TerracedDynamicsHandler(DynamicHandler):
             iterate(expr).by_class((scoretools.Note, scoretools.Chord))):
             dynamic_name = dynamics[offset + i]
             if self.minimum_duration <= note_or_chord._get_duration():
-                #marktools.Dynamic(dynamic_name)(note_or_chord)
-                command = marktools.LilyPondCommand(dynamic_name, 'right')
+                #indicatortools.Dynamic(dynamic_name)(note_or_chord)
+                command = indicatortools.LilyPondCommand(dynamic_name, 'right')
                 attach(command, note_or_chord)
         return expr
 
@@ -40,7 +40,7 @@ class TerracedDynamicsHandler(DynamicHandler):
             if dynamics is None:
                 self._dynamics = dynamics
             elif all(
-                marktools.Dynamic.is_dynamic_name(x) for x in dynamics):
+                indicatortools.Dynamic.is_dynamic_name(x) for x in dynamics):
                 self._dynamics = dynamics
             else:
                 raise TypeError(dynamics)

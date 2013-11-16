@@ -89,10 +89,10 @@ to true for each of the last two measures:
 
 <abjad>
 upper_voice = Voice("b2", name='upper voice')
-command = marktools.LilyPondCommand('voiceOne')
+command = indicatortools.LilyPondCommand('voiceOne')
 command.attach(upper_voice)
 lower_voice = Voice("b4 a4", name='lower voice')
-command = marktools.LilyPondCommand('voiceTwo')
+command = indicatortools.LilyPondCommand('voiceTwo')
 command.attach(lower_voice)
 lower_measures[3].extend([upper_voice, lower_voice])
 lower_measures[3].is_simultaneous = True
@@ -100,10 +100,10 @@ lower_measures[3].is_simultaneous = True
 
 <abjad>
 upper_voice = Voice("b2", name='upper voice')
-command = marktools.LilyPondCommand('voiceOne')
+command = indicatortools.LilyPondCommand('voiceOne')
 command.attach(upper_voice)
 lower_voice = Voice("g2", name='lower voice')
-command = marktools.LilyPondCommand('voiceTwo')
+command = indicatortools.LilyPondCommand('voiceTwo')
 command.attach(lower_voice)
 lower_measures[4].extend([upper_voice, lower_voice])
 lower_measures[4].is_simultaneous = True
@@ -123,7 +123,7 @@ Ok, let's add the details. First, notice that the bottom staff has a treble
 clef just like the top staff. Let's change that:
 
 <abjad>
-clef = marktools.Clef('bass')
+clef = indicatortools.Clef('bass')
 clef.attach(lower_staff)
 </abjad>
 
@@ -133,22 +133,22 @@ bottom staff, we'll add dynamicings to the second note of the first
 measure and the fourth note of the second measure:
 
 <abjad>
-dynamic = marktools.Dynamic('pp')
+dynamic = indicatortools.Dynamic('pp')
 dynamic.attach(upper_measures[0][0])
 </abjad>
 
 <abjad>
-dynamic = marktools.Dynamic('mp')
+dynamic = indicatortools.Dynamic('mp')
 dynamic.attach(upper_measures[1][1])
 </abjad>
 
 <abjad>
-dynamic = marktools.Dynamic('pp')
+dynamic = indicatortools.Dynamic('pp')
 dynamic.attach(lower_measures[0][1])
 </abjad>
 
 <abjad>
-dynamic = marktools.Dynamic('mp')
+dynamic = indicatortools.Dynamic('mp')
 dynamic.attach(lower_measures[1][3])
 </abjad>
 

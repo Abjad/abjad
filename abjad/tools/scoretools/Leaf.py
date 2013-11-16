@@ -77,8 +77,8 @@ class Leaf(Component):
 
     @property
     def _duration_in_seconds(self):
-        from abjad.tools import marktools
-        tempo = self._get_effective_context_mark(marktools.Tempo)
+        from abjad.tools import indicatortools
+        tempo = self._get_effective_context_mark(indicatortools.Tempo)
         if tempo is not None and not tempo.is_imprecise:
             result = (self._get_duration() /
                 tempo.duration /
@@ -93,7 +93,7 @@ class Leaf(Component):
 
     @property
     def _formatted_duration(self):
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = None
         multipliers = self._get_indicators(durationtools.Multiplier)
@@ -465,7 +465,7 @@ class Leaf(Component):
         fracture_spanners=False,
         tie_split_notes=True,
         ):
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         from abjad.tools import scoretools
@@ -533,11 +533,11 @@ class Leaf(Component):
         for middle_leaf in flattened_result[1:-1]:
             middle_leaf._detach_grace_containers(kind='grace')
             self._detach_grace_containers(kind='after')
-            detach(marktools.ContextMark, middle_leaf)
+            detach(indicatortools.ContextMark, middle_leaf)
         # adjust last leaf
         last_leaf = flattened_result[-1]
         last_leaf._detach_grace_containers(kind='grace')
-        detach(marktools.ContextMark, last_leaf)
+        detach(indicatortools.ContextMark, last_leaf)
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterate(flattened_result).by_class(
@@ -559,7 +559,7 @@ class Leaf(Component):
         fracture_spanners=False,
         tie_split_notes=True,
         ):
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
         # check input
@@ -580,7 +580,7 @@ class Leaf(Component):
         self._detach_grace_containers(kind='after')
         # adjust new leaf
         new_leaf._detach_grace_containers(kind='grace')
-        detach(marktools.ContextMark, new_leaf)
+        detach(indicatortools.ContextMark, new_leaf)
         left_leaf_list = self._set_duration(preprolated_duration)
         right_preprolated_duration = \
             leaf_multiplied_duration - preprolated_duration

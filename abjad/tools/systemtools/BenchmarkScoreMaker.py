@@ -35,7 +35,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       124,517 function calls
 
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools
         from abjad.tools import spannertools
@@ -48,9 +48,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.Crescendo()
             topleveltools.attach(crescendo, part)
-            dynamic = marktools.Dynamic('p')
+            dynamic = indicatortools.Dynamic('p')
             topleveltools.attach(dynamic, part[0])
-            dynamic = marktools.Dynamic('r')
+            dynamic = indicatortools.Dynamic('r')
             topleveltools.attach(dynamic, part[-1])
         return voice
 
@@ -65,7 +65,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       117,846 function calls
 
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools
         from abjad.tools import spannertools
@@ -78,9 +78,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.Crescendo()
             topleveltools.attach(crescendo, part)
-            dynamic = marktools.Dynamic('p')
+            dynamic = indicatortools.Dynamic('p')
             topleveltools.attach(dynamic, part[0])
-            dynamic = marktools.Dynamic('r')
+            dynamic = indicatortools.Dynamic('r')
             topleveltools.attach(dynamic, part[-1])
         return voice
 
@@ -95,7 +95,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:       116,534 function calls
 
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools
         from abjad.tools import spannertools
@@ -108,9 +108,9 @@ class BenchmarkScoreMaker(AbjadObject):
             ):
             crescendo = spannertools.Crescendo()
             topleveltools.attach(crescendo, part)
-            dynamic = marktools.Dynamic('p')
+            dynamic = indicatortools.Dynamic('p')
             topleveltools.attach(dynamic, part[0])
-            dynamic = marktools.Dynamic('r')
+            dynamic = indicatortools.Dynamic('r')
             topleveltools.attach(dynamic, part[-1])
         return voice
 
@@ -128,7 +128,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:        88,382 function calls
 
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools
         from abjad.tools import topleveltools
@@ -138,7 +138,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [20],
             cyclic=True,
             ):
-            dynamic = marktools.Dynamic('f')
+            dynamic = indicatortools.Dynamic('f')
             topleveltools.attach(dynamic, part[0])
         return staff
 
@@ -156,7 +156,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9726) LilyPond format:        90,056 function calls
 
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools
         from abjad.tools import topleveltools
@@ -166,7 +166,7 @@ class BenchmarkScoreMaker(AbjadObject):
             [4],
             cyclic=True,
             ):
-            dynamic = marktools.Dynamic('f')
+            dynamic = indicatortools.Dynamic('f')
             topleveltools.attach(dynamic, part[0])
         return staff
 
@@ -184,12 +184,12 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:        96,806 function calls
 
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import topleveltools
         staff = scoretools.Staff(200 * scoretools.Note("c'16"))
         for note in staff.select_leaves():
-            dynamic = marktools.Dynamic('f')
+            dynamic = indicatortools.Dynamic('f')
             topleveltools.attach(dynamic, note)
         return staff
 

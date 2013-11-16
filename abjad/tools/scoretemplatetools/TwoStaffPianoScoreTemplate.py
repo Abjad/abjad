@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
@@ -67,7 +67,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
             [rh_voice], 
             name='RH Staff',
             )
-        clef = marktools.Clef('treble')
+        clef = indicatortools.Clef('treble')
         attach(clef, rh_staff)
 
         # make LH voice and staff
@@ -76,7 +76,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
             [lh_voice], 
             name='LH Staff',
             )
-        clef = marktools.Clef('bass')
+        clef = indicatortools.Clef('bass')
         attach(clef, lh_staff)
 
         # make piano staff

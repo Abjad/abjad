@@ -13,14 +13,14 @@ class TempoInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
     generic_output_name = 'tempo inventory'
 
     output_material_checker = staticmethod(
-        lambda x: isinstance(x, marktools.TempoInventory))
+        lambda x: isinstance(x, indicatortools.TempoInventory))
 
     output_material_editor = TempoInventoryEditor
 
-    output_material_maker = marktools.TempoInventory
+    output_material_maker = indicatortools.TempoInventory
 
     output_material_module_import_statements = [
-        'from abjad.tools import marktools',
+        'from abjad.tools import indicatortools',
         'from abjad.tools import durationtools',
         ]
 
@@ -31,7 +31,7 @@ class TempoInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
         notes = []
         for tempo in tempo_inventory:
             note = Note("c'4")
-            tempo = marktools.Tempo(
+            tempo = indicatortools.Tempo(
                 tempo, scope=Staff)
             tempo(note)
             notes.append(note)

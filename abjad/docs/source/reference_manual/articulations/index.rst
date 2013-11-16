@@ -8,11 +8,11 @@ Articulations attach to notes, rests or chords.
 Creating articulations
 ----------------------
 
-Use ``marktools`` to create articulations:
+Use ``indicatortools`` to create articulations:
 
 ::
 
-   >>> articulation = marktools.Articulation('turn')
+   >>> articulation = indicatortools.Articulation('turn')
 
 
 ::
@@ -30,10 +30,10 @@ Use ``attach()`` to attach articulations to a leaf:
 ::
 
    >>> staff = Staff()
-   >>> key_signature = marktools.KeySignature('g', 'major')
+   >>> key_signature = indicatortools.KeySignature('g', 'major')
    >>> key_signature.attach(staff)
    KeySignature(NamedPitchClass('g'), Mode('major'))(Staff{})
-   >>> time_signature = marktools.TimeSignature((2, 4), partial=Duration(1, 8))
+   >>> time_signature = indicatortools.TimeSignature((2, 4), partial=Duration(1, 8))
    >>> time_signature.attach(staff)
    TimeSignature((2, 4), partial=Duration(1, 8))(Staff{})
 
@@ -68,7 +68,7 @@ Write a loop to attach articulations to many notes and chords at one time:
 ::
 
    >>> for leaf in staff[:6]:
-   ...     staccato = marktools.Articulation('staccato')
+   ...     staccato = indicatortools.Articulation('staccato')
    ...     staccato.attach(leaf)
    ... 
    Articulation('staccato')(d'8)
@@ -94,7 +94,7 @@ Use the inspector to get the articulations attached to a leaf:
 
 ::
 
-   >>> inspect(staff[5]).get_marks(mark_classes=marktools.Articulation)
+   >>> inspect(staff[5]).get_marks(mark_classes=indicatortools.Articulation)
    (Articulation('turn')(gs'4), Articulation('staccato')(gs'4))
 
 
@@ -137,7 +137,7 @@ Write a loop to detach all articulations attached to a leaf:
 
 ::
 
-   >>> articulations = inspect(staff[0]).get_marks(marktools.Articulation)
+   >>> articulations = inspect(staff[0]).get_marks(indicatortools.Articulation)
    >>> for articulation in articulations:
    ...     articulation.detach()
    ... 
@@ -160,7 +160,7 @@ an articulation is attached:
 
 ::
 
-   >>> articulation = marktools.Articulation('turn')
+   >>> articulation = indicatortools.Articulation('turn')
    >>> articulation.attach(staff[-1])
    Articulation('turn')(a'4)
 
@@ -187,7 +187,7 @@ to a leaf contains three parts:
 
 ::
 
-   >>> articulation = marktools.Articulation('staccato')
+   >>> articulation = indicatortools.Articulation('staccato')
 
 
 ::

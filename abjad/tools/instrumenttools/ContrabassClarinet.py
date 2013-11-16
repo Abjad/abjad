@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -46,7 +46,7 @@ class ContrabassClarinet(Instrument):
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch('bf,,')
-        self._starting_clefs = [marktools.Clef('treble')]
+        self._starting_clefs = [indicatortools.Clef('treble')]
         self.allowable_clefs = [
-            marktools.Clef('treble'), marktools.Clef('bass')]
+            indicatortools.Clef('treble'), indicatortools.Clef('bass')]
         self._default_pitch_range = pitchtools.PitchRange(-38, 7)

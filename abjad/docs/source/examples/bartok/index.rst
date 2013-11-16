@@ -97,11 +97,11 @@ to true for each of the last two measures:
 ::
 
    >>> upper_voice = Voice("b2", name='upper voice')
-   >>> command = marktools.LilyPondCommand('voiceOne')
+   >>> command = indicatortools.LilyPondCommand('voiceOne')
    >>> command.attach(upper_voice)
    LilyPondCommand('voiceOne')(Voice-"upper voice"{1})
    >>> lower_voice = Voice("b4 a4", name='lower voice')
-   >>> command = marktools.LilyPondCommand('voiceTwo')
+   >>> command = indicatortools.LilyPondCommand('voiceTwo')
    >>> command.attach(lower_voice)
    LilyPondCommand('voiceTwo')(Voice-"lower voice"{2})
    >>> lower_measures[3].extend([upper_voice, lower_voice])
@@ -111,11 +111,11 @@ to true for each of the last two measures:
 ::
 
    >>> upper_voice = Voice("b2", name='upper voice')
-   >>> command = marktools.LilyPondCommand('voiceOne')
+   >>> command = indicatortools.LilyPondCommand('voiceOne')
    >>> command.attach(upper_voice)
    LilyPondCommand('voiceOne')(Voice-"upper voice"{1})
    >>> lower_voice = Voice("g2", name='lower voice')
-   >>> command = marktools.LilyPondCommand('voiceTwo')
+   >>> command = indicatortools.LilyPondCommand('voiceTwo')
    >>> command.attach(lower_voice)
    LilyPondCommand('voiceTwo')(Voice-"lower voice"{1})
    >>> lower_measures[4].extend([upper_voice, lower_voice])
@@ -140,7 +140,7 @@ clef just like the top staff. Let's change that:
 
 ::
 
-   >>> clef = marktools.Clef('bass')
+   >>> clef = indicatortools.Clef('bass')
    >>> clef.attach(lower_staff)
    Clef('bass')(Staff{5})
 
@@ -152,28 +152,28 @@ measure and the fourth note of the second measure:
 
 ::
 
-   >>> dynamic = marktools.Dynamic('pp')
+   >>> dynamic = indicatortools.Dynamic('pp')
    >>> dynamic.attach(upper_measures[0][0])
    Dynamic('pp')(a'8)
 
 
 ::
 
-   >>> dynamic = marktools.Dynamic('mp')
+   >>> dynamic = indicatortools.Dynamic('mp')
    >>> dynamic.attach(upper_measures[1][1])
    Dynamic('mp')(g'8)
 
 
 ::
 
-   >>> dynamic = marktools.Dynamic('pp')
+   >>> dynamic = indicatortools.Dynamic('pp')
    >>> dynamic.attach(lower_measures[0][1])
    Dynamic('pp')(d'8)
 
 
 ::
 
-   >>> dynamic = marktools.Dynamic('mp')
+   >>> dynamic = indicatortools.Dynamic('mp')
    >>> dynamic.attach(lower_measures[1][3])
    Dynamic('mp')(c'8)
 

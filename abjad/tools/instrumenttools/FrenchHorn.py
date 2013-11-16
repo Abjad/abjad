@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -35,8 +35,8 @@ class FrenchHorn(Instrument):
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
         pitch = pitchtools.NamedPitch('f')
-        clefs = [marktools.Clef('treble'), 
-            marktools.Clef('bass'),
+        clefs = [indicatortools.Clef('treble'), 
+            indicatortools.Clef('bass'),
             ]
         self._default_instrument_name = 'horn'
         self._default_performer_names.extend([

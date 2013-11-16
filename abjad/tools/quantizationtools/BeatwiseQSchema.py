@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchema import QSchema
 
@@ -50,7 +50,7 @@ class BeatwiseQSchema(QSchema):
                     13: None,
                     },
                 ),
-            tempo=marktools.Tempo(
+            tempo=indicatortools.Tempo(
                 durationtools.Duration(1, 4),
                 60
                 ),
@@ -69,7 +69,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> beatspan = Duration(5, 16)
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
-        >>> tempo = marktools.Tempo((1, 4), 54)
+        >>> tempo = indicatortools.Tempo((1, 4), 54)
         >>> q_schema = quantizationtools.BeatwiseQSchema(
         ...     beatspan=beatspan,
         ...     search_tree=search_tree,
@@ -244,7 +244,7 @@ class BeatwiseQSchema(QSchema):
             quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
-        self._tempo = marktools.Tempo(
+        self._tempo = indicatortools.Tempo(
             kwargs.get('tempo',
                 ((1, 4), 60)))
         QSchema.__init__(self, *args, **kwargs)

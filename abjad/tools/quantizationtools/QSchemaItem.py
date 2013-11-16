@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import collections
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -31,7 +31,7 @@ class QSchemaItem(AbjadObject):
             assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
         if tempo is not None:
-            tempo = marktools.Tempo(tempo)
+            tempo = indicatortools.Tempo(tempo)
             assert not tempo.is_imprecise
         self._tempo = tempo
 

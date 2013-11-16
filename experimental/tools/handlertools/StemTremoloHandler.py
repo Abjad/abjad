@@ -22,4 +22,4 @@ class StemTremoloHandler(ArticulationHandler):
         hash_mark_counts = datastructuretools.CyclicTuple(self.hash_mark_counts)
         for i, leaf in enumerate(
             scoretools.iterate_components_forward_in_expr(expr, classes)):
-            marktools.StemTremolo(hash_mark_counts[i])(leaf)
+            indicatortools.StemTremolo(hash_mark_counts[i])(leaf)

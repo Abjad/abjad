@@ -20,7 +20,7 @@ def test_TempoInventoryMaterialPackageMaker_01():
             '__metadata__.py',
             'output_material.py', 
             ]
-        inventory = marktools.TempoInventory([((1, 4), 60), ((1, 4), 90)])
+        inventory = indicatortools.TempoInventory([((1, 4), 60), ((1, 4), 90)])
         assert mpp.output_material == inventory
     finally:
         score_manager._run(pending_user_input='m testtempoinventory del remove default q')

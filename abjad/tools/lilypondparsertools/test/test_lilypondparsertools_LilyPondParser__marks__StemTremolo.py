@@ -6,7 +6,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__StemTremolo_01():
 
     target = Staff([Note(0, 1)])
-    stem_tremolo = marktools.StemTremolo(4)
+    stem_tremolo = indicatortools.StemTremolo(4)
     attach(stem_tremolo, target[0])
 
     assert systemtools.TestManager.compare(
@@ -21,5 +21,5 @@ def test_lilypondparsertools_LilyPondParser__marks__StemTremolo_01():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    stem_tremolos = inspect(result[0]).get_indicators(marktools.StemTremolo)
+    stem_tremolos = inspect(result[0]).get_indicators(indicatortools.StemTremolo)
     assert 1 == len(stem_tremolos)

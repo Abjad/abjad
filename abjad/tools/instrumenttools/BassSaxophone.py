@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -46,8 +46,8 @@ class BassSaxophone(Instrument):
         self._default_short_instrument_name = 'bass sax.'
         self._default_pitch_range = pitchtools.PitchRange(-28, 4)
         self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_starting_clefs = marktools.ClefInventory([
-            marktools.Clef('treble'),
+        self._default_starting_clefs = indicatortools.ClefInventory([
+            indicatortools.Clef('treble'),
             ])
         self._is_primary_instrument = False
         self._copy_default_starting_clefs_to_default_allowable_clefs()

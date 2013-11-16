@@ -8,11 +8,11 @@ marks.
 Creating LilyPond comments
 --------------------------
 
-Use ``marktools`` to create LilyPond comments:
+Use ``indicatortools`` to create LilyPond comments:
 
 <abjad>
 message_1 = 'This is a LilyPond comment before a note.'
-comment_1 = marktools.LilyPondComment(message_1, 'before')
+comment_1 = indicatortools.LilyPondComment(message_1, 'before')
 </abjad>
 
 <abjad>
@@ -66,11 +66,11 @@ message_5 = 'LilyPond comment after the staff.'
 </abjad>
 
 <abjad>
-staff_comment_1 = marktools.LilyPondComment(message_1, 'before')
-staff_comment_2 = marktools.LilyPondComment(message_2, 'opening')
-staff_comment_3 = marktools.LilyPondComment(message_3, 'opening')
-staff_comment_4 = marktools.LilyPondComment(message_4, 'closing')
-staff_comment_5 = marktools.LilyPondComment(message_5, 'after')
+staff_comment_1 = indicatortools.LilyPondComment(message_1, 'before')
+staff_comment_2 = indicatortools.LilyPondComment(message_2, 'opening')
+staff_comment_3 = indicatortools.LilyPondComment(message_3, 'opening')
+staff_comment_4 = indicatortools.LilyPondComment(message_4, 'closing')
+staff_comment_5 = indicatortools.LilyPondComment(message_5, 'after')
 </abjad>
 
 <abjad>
@@ -95,7 +95,7 @@ Getting the LilyPond comments attached to a component
 Use the inspector to get the LilyPond comments attached to a component:
 
 <abjad>
-inspect(note).get_marks(marktools.LilyPondComment)
+inspect(note).get_marks(indicatortools.LilyPondComment)
 </abjad>
 
 
@@ -105,7 +105,7 @@ Detaching LilyPond comments from a component
 Use ``detach()`` to detach LilyPond comments from a component:
 
 <abjad>
-comment_1 = inspect(note).get_marks(marktools.LilyPondComment)[0]
+comment_1 = inspect(note).get_marks(indicatortools.LilyPondComment)[0]
 </abjad>
 
 <abjad>
@@ -123,7 +123,7 @@ Detaching all LilyPond comments attached to a component
 Write a loop to detach all LilyPond comments attached to a component:
 
 <abjad>
-comments = inspect(staff).get_marks(marktools.LilyPondComment)
+comments = inspect(staff).get_marks(indicatortools.LilyPondComment)
 for comment in comments:
     print comment
 </abjad>

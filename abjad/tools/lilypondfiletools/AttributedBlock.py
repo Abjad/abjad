@@ -61,14 +61,14 @@ class AttributedBlock(list, AbjadObject):
     @property
     def _formatted_user_attributes(self):
         from abjad.tools import lilypondfiletools
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools import schemetools
         result = []
         for value in self:
             acceptable_types = (
                 schemetools.Scheme, 
-                marktools.LilyPondCommand,
+                indicatortools.LilyPondCommand,
                 )
             if isinstance(value, acceptable_types):
                 result.append(format(value, 'lilypond'))
@@ -85,7 +85,7 @@ class AttributedBlock(list, AbjadObject):
                 accetable_types = (
                     schemetools.Scheme,
                     lilypondfiletools.LilyPondDimension,
-                    marktools.LilyPondCommand,
+                    indicatortools.LilyPondCommand,
                     )
                 if isinstance(value, markuptools.Markup):
                     formatted_value = value._get_format_pieces()

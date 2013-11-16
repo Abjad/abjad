@@ -8,12 +8,12 @@ marks.
 Creating LilyPond comments
 --------------------------
 
-Use ``marktools`` to create LilyPond comments:
+Use ``indicatortools`` to create LilyPond comments:
 
 ::
 
    >>> message_1 = 'This is a LilyPond comment before a note.'
-   >>> comment_1 = marktools.LilyPondComment(message_1, 'before')
+   >>> comment_1 = indicatortools.LilyPondComment(message_1, 'before')
 
 
 ::
@@ -84,11 +84,11 @@ Use ``attach()`` to attach LilyPond comments to a container:
 
 ::
 
-   >>> staff_comment_1 = marktools.LilyPondComment(message_1, 'before')
-   >>> staff_comment_2 = marktools.LilyPondComment(message_2, 'opening')
-   >>> staff_comment_3 = marktools.LilyPondComment(message_3, 'opening')
-   >>> staff_comment_4 = marktools.LilyPondComment(message_4, 'closing')
-   >>> staff_comment_5 = marktools.LilyPondComment(message_5, 'after')
+   >>> staff_comment_1 = indicatortools.LilyPondComment(message_1, 'before')
+   >>> staff_comment_2 = indicatortools.LilyPondComment(message_2, 'opening')
+   >>> staff_comment_3 = indicatortools.LilyPondComment(message_3, 'opening')
+   >>> staff_comment_4 = indicatortools.LilyPondComment(message_4, 'closing')
+   >>> staff_comment_5 = indicatortools.LilyPondComment(message_5, 'after')
 
 
 ::
@@ -132,7 +132,7 @@ Use the inspector to get the LilyPond comments attached to a component:
 
 ::
 
-   >>> inspect(note).get_marks(marktools.LilyPondComment)
+   >>> inspect(note).get_marks(indicatortools.LilyPondComment)
    (LilyPondComment('This is a LilyPond comment before a note.')(cs''4),)
 
 
@@ -144,7 +144,7 @@ Use ``detach()`` to detach LilyPond comments from a component:
 
 ::
 
-   >>> comment_1 = inspect(note).get_marks(marktools.LilyPondComment)[0]
+   >>> comment_1 = inspect(note).get_marks(indicatortools.LilyPondComment)[0]
 
 
 ::
@@ -167,7 +167,7 @@ Write a loop to detach all LilyPond comments attached to a component:
 
 ::
 
-   >>> comments = inspect(staff).get_marks(marktools.LilyPondComment)
+   >>> comments = inspect(staff).get_marks(indicatortools.LilyPondComment)
    >>> for comment in comments:
    ...     print comment
    ... 

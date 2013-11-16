@@ -53,8 +53,8 @@ All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
-    marktools.iterate_contexts_forward_in_expr()
-    marktools.iterate_contexts_backward_in_expr()
+    indicatortools.iterate_contexts_forward_in_expr()
+    indicatortools.iterate_contexts_backward_in_expr()
 
   ::
 

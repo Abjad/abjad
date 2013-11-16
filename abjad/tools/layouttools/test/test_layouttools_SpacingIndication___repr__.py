@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools.marktools import Tempo
+from abjad.tools.indicatortools import Tempo
 from abjad.tools.layouttools import SpacingIndication
 
 

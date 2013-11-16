@@ -58,7 +58,7 @@ Extended markup handling is now available.
     >>> m2 = markuptools.Markup('bar')(staff[0])
     >>> m3 = markuptools.Markup('baz', 'up')(staff[0])
     >>> m4 = markuptools.Markup('quux', 'down')(staff[0])
-    >>> accent = marktools.Articulation('accent')(staff[0])
+    >>> accent = indicatortools.Articulation('accent')(staff[0])
 
   ::
 
@@ -610,7 +610,7 @@ New spanners and spanner handlers are now available.
 
   This works the same way as marks::
 
-    >>> marktools.Articulation('.')(staff[1])
+    >>> indicatortools.Articulation('.')(staff[1])
     Articulation('.')(d'8)
 
   ::
@@ -677,11 +677,11 @@ Further new functionality:
 
   Use the function to strip all grace containers from an arbitrary piece of score.
 
-- Added new ``marktools`` functions::
+- Added new ``indicatortools`` functions::
 
-    marktools.get_marks_attached_to_components_in_expr()
-    marktools.detach_marks_attached_to_components_in_expr()
-    marktools.move_marks(donor, recipient).
+    indicatortools.get_marks_attached_to_components_in_expr()
+    indicatortools.detach_marks_attached_to_components_in_expr()
+    indicatortools.move_marks(donor, recipient).
 
 - Added new ``pitchtools`` function::
 

@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
@@ -11,8 +11,8 @@ class QTargetMeasure(AbjadObject):
     ::
 
         >>> search_tree = quantizationtools.UnweightedSearchTree({2: None})
-        >>> tempo = marktools.Tempo((1, 4), 60)
-        >>> time_signature = marktools.TimeSignature((4, 4))
+        >>> tempo = indicatortools.Tempo((1, 4), 60)
+        >>> time_signature = indicatortools.TimeSignature((4, 4))
 
     ::
 
@@ -32,10 +32,10 @@ class QTargetMeasure(AbjadObject):
                 definition={   2: None,
                     },
                 ),
-            time_signature=marktools.TimeSignature(
+            time_signature=indicatortools.TimeSignature(
                 (4, 4)
                 ),
-            tempo=marktools.Tempo(
+            tempo=indicatortools.Tempo(
                 durationtools.Duration(1, 4),
                 60
                 ),
@@ -107,9 +107,9 @@ class QTargetMeasure(AbjadObject):
         if search_tree is None:
             search_tree = quantizationtools.UnweightedSearchTree()
         assert isinstance(search_tree, quantizationtools.SearchTree)
-        tempo = marktools.Tempo(tempo)
+        tempo = indicatortools.Tempo(tempo)
         assert not tempo.is_imprecise
-        time_signature = marktools.TimeSignature(time_signature)
+        time_signature = indicatortools.TimeSignature(time_signature)
         use_full_measure = bool(use_full_measure)
 
         beats = []
@@ -180,7 +180,7 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=marktools.Tempo(
+                tempo=indicatortools.Tempo(
                     durationtools.Duration(1, 4),
                     60
                     ),
@@ -192,7 +192,7 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=marktools.Tempo(
+                tempo=indicatortools.Tempo(
                     durationtools.Duration(1, 4),
                     60
                     ),
@@ -204,7 +204,7 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=marktools.Tempo(
+                tempo=indicatortools.Tempo(
                     durationtools.Duration(1, 4),
                     60
                     ),
@@ -216,7 +216,7 @@ class QTargetMeasure(AbjadObject):
                     definition={   2: None,
                         },
                     ),
-                tempo=marktools.Tempo(
+                tempo=indicatortools.Tempo(
                     durationtools.Duration(1, 4),
                     60
                     ),

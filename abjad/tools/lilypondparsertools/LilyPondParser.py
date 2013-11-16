@@ -5,11 +5,11 @@ from abjad.tools import abctools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
 from abjad.tools import scoretools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import lilypondfiletools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
@@ -298,7 +298,7 @@ class LilyPondParser(abctools.Parser):
                     raise Exception('Unterminated %s at %s.' % (spanner_class.__name__, leaf))
 
             # check for DynamicMarks, and terminate any hairpin
-            dynamics = leaf._get_marks(marktools.Dynamic)
+            dynamics = leaf._get_marks(indicatortools.Dynamic)
             if dynamics and spannertools.Hairpin in all_spanners and \
                 all_spanners[spannertools.Hairpin]:
                 all_spanners[spannertools.Hairpin][0].append(leaf)
@@ -508,9 +508,9 @@ class LilyPondParser(abctools.Parser):
                 previous_leaf = x
                 container.append(x)
             else:
-                if isinstance(x, marktools.BarLine):
+                if isinstance(x, indicatortools.BarLine):
                     apply_backward.append(x)
-                elif isinstance(x, marktools.LilyPondCommand) and \
+                elif isinstance(x, indicatortools.LilyPondCommand) and \
                     x.name in ['breathe']:
                         apply_backward.append(x)
                 else:
@@ -577,7 +577,7 @@ class LilyPondParser(abctools.Parser):
             'integer?':           lambda x: isinstance(x, int),
             'list?':              lambda x: isinstance(x, (list, tuple)),
             'ly:duration?':       lambda x: isinstance(x, lilypondparsertools.LilyPondDuration),
-            'ly:music?':          lambda x: isinstance(x, (scoretools.Component, marktools.ContextMark)),
+            'ly:music?':          lambda x: isinstance(x, (scoretools.Component, indicatortools.ContextMark)),
             'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedPitch),
             'markup?':            lambda x: isinstance(x, markuptools.MarkupCommand),
             'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
@@ -603,8 +603,8 @@ class LilyPondParser(abctools.Parser):
         }
 
     def _get_span_events(self, leaf):
-        annotations = leaf._get_indicators(marktools.Annotation)
-        detach(marktools.Annotation, leaf)
+        annotations = leaf._get_indicators(indicatortools.Annotation)
+        detach(indicatortools.Annotation, leaf)
         if annotations:
             spanners_annotations = [
                 x for x in annotations if x.name == 'spanners']
@@ -627,11 +627,11 @@ class LilyPondParser(abctools.Parser):
             #       Is there a way to identify spanner LilyPondEvents?
             #       Then we can just (blindly) attach all other post events.
             nonspanner_post_event_types = (
-                marktools.Articulation,
-                marktools.BarLine,
-                marktools.LilyPondCommand,
+                indicatortools.Articulation,
+                indicatortools.BarLine,
+                indicatortools.LilyPondCommand,
                 markuptools.Markup,
-                marktools.StemTremolo,
+                indicatortools.StemTremolo,
                 )
             if hasattr(post_event, '_attach'):
                 attach(post_event, leaf)
@@ -641,11 +641,11 @@ class LilyPondParser(abctools.Parser):
                 #print post_event, 'debugging'
                 #raise Exception('debugging')
                 annotation = [
-                    x for x in leaf._get_indicators(marktools.Annotation)
+                    x for x in leaf._get_indicators(indicatortools.Annotation)
                     if x.name == 'spanners'
                     ]
                 if not annotation:
-                    annotation = marktools.Annotation('spanners', [])
+                    annotation = indicatortools.Annotation('spanners', [])
                     attach(annotation, leaf)
                 else:
                     annotation = annotation[0]
@@ -704,11 +704,11 @@ class LilyPondParser(abctools.Parser):
         lookup = self._current_module[identifier] # without any leading slash
         name = lookup['name']
         if name == 'ArticulationEvent':
-            return marktools.Articulation(lookup['articulation-type'])
+            return indicatortools.Articulation(lookup['articulation-type'])
         elif name == 'AbsoluteDynamicEvent':
-            return marktools.Dynamic(lookup['text'])
+            return indicatortools.Dynamic(lookup['text'])
         elif name == 'LaissezVibrerEvent':
-            return marktools.LilyPondCommand('laissezVibrer', 'after')
+            return indicatortools.LilyPondCommand('laissezVibrer', 'after')
         event = lilypondparsertools.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:

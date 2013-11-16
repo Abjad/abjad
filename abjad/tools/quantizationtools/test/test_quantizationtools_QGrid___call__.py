@@ -19,7 +19,7 @@ def test_quantizationtools_QGrid___call___01():
     assert len(result) == 1
     assert format(result[0]) == "c'4"
 
-    annotation = inspect(result[0]).get_indicator(marktools.Annotation)
+    annotation = inspect(result[0]).get_indicator(indicatortools.Annotation)
 
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 4
     assert annotation.value[0].attachments == ('A',)
@@ -62,16 +62,16 @@ def test_quantizationtools_QGrid___call___02():
         )
 
     leaf = result[0].select_leaves()[0]
-    annotation = inspect(leaf).get_indicators(marktools.Annotation)[0]
+    annotation = inspect(leaf).get_indicators(indicatortools.Annotation)[0]
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 2
     assert annotation.value[0].attachments == ('A',)
     assert annotation.value[1].attachments == ('B',)
 
     leaf = result[0].select_leaves()[1]
-    assert not inspect(leaf).get_indicators(marktools.Annotation)
+    assert not inspect(leaf).get_indicators(indicatortools.Annotation)
 
     leaf = result[0].select_leaves()[2]
-    annotation = inspect(leaf).get_indicator(marktools.Annotation)
+    annotation = inspect(leaf).get_indicator(indicatortools.Annotation)
 
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 3
     assert annotation.value[0].attachments == ('C',)
@@ -79,7 +79,7 @@ def test_quantizationtools_QGrid___call___02():
     assert annotation.value[2].attachments == ('E',)
 
     for leaf in result[0].select_leaves()[3:6]:
-        assert not inspect(leaf).get_indicators(marktools.Annotation)
+        assert not inspect(leaf).get_indicators(indicatortools.Annotation)
 
 
 def test_quantizationtools_QGrid___call___03():

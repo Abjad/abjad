@@ -158,14 +158,14 @@ class LilyPondFormatManager(object):
 
         Returns dictionary.
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import markuptools
         class_to_section = {
-            marktools.Articulation: ('articulations', False),
-            marktools.BendAfter: ('articulations', False),
-            marktools.LilyPondCommand: ('lilypond command marks', False),
-            marktools.LilyPondComment: ('comments', False),
-            marktools.StemTremolo: ('stem tremolos', True),
+            indicatortools.Articulation: ('articulations', False),
+            indicatortools.BendAfter: ('articulations', False),
+            indicatortools.LilyPondCommand: ('lilypond command marks', False),
+            indicatortools.LilyPondComment: ('comments', False),
+            indicatortools.StemTremolo: ('stem tremolos', True),
             }
         contributions = {}
         marks = component._get_marks() + component._get_indicators()
@@ -181,7 +181,7 @@ class LilyPondFormatManager(object):
             if mark.__class__ in class_to_section:
                 section, singleton = class_to_section[mark.__class__]
             # context marks to be dealt with later
-            elif isinstance(mark, marktools.ContextMark):
+            elif isinstance(mark, indicatortools.ContextMark):
                 if LilyPondFormatManager.is_formattable_context_mark_for_component(
                     mark, component):
                     context_marks.append(mark)
@@ -222,7 +222,7 @@ class LilyPondFormatManager(object):
         # handle context marks
         for parent in component._get_parentage(include_self=False):
             for mark in parent._start_marks:
-                if not isinstance(mark, marktools.ContextMark):
+                if not isinstance(mark, indicatortools.ContextMark):
                     continue
                 if mark in context_marks:
                     continue
@@ -277,7 +277,7 @@ class LilyPondFormatManager(object):
 
         Returns list.
         '''
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         addenda = []
         mark_format = mark._lilypond_format
@@ -290,7 +290,7 @@ class LilyPondFormatManager(object):
         # currently used only in metric grid formatting
         if mark._get_effective_context() is not None or \
             getattr(mark, '_is_cosmetic_mark', False) or \
-            (isinstance(mark, marktools.TimeSignature) and
+            (isinstance(mark, indicatortools.TimeSignature) and
             isinstance(mark._start_component, scoretools.Measure)):
             return addenda
         addenda = [r'%%% ' + addendum + r' %%%' for addendum in addenda]
@@ -433,12 +433,12 @@ class LilyPondFormatManager(object):
         r'''Returns true if ContextMark `mark` can format for `component`.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         if mark._start_component is None:
             return False
         if isinstance(mark._start_component, scoretools.Measure):
             if mark._start_component is component:
-                if not isinstance(mark, marktools.TimeSignature):
+                if not isinstance(mark, indicatortools.TimeSignature):
                     return True
                 elif component.always_format_time_signature:
                     return True

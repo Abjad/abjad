@@ -25,19 +25,19 @@ def make_empty_piano_score():
 
     Returns score, treble staff, bass staff.
     '''
-    from abjad.tools import marktools
+    from abjad.tools import indicatortools
     from abjad.tools import scoretools
 
     # make treble staff
     treble_staff = scoretools.Staff([])
     treble_staff.name = 'treble'
-    clef = marktools.Clef('treble')
+    clef = indicatortools.Clef('treble')
     attach(clef, treble_staff)
 
     # make bass staff
     bass_staff = scoretools.Staff([])
     bass_staff.name = 'bass'
-    clef = marktools.Clef('bass')
+    clef = indicatortools.Clef('bass')
     attach(clef, bass_staff)
 
     # make piano staff and score

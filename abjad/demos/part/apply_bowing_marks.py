@@ -10,10 +10,10 @@ def apply_bowing_marks(score):
     for measure in score['First Violin Voice'][6:8]:
         for i, chord in enumerate(iterate(measure).by_class(Chord)):
             if i % 2 == 0:
-                articulation = marktools.Articulation('downbow')
+                articulation = indicatortools.Articulation('downbow')
                 attach(articulation, chord)
             else:
-                articulation = marktools.Articulation('upbow')
+                articulation = indicatortools.Articulation('upbow')
                 attach(articulation, chord)
 
     # create and apply rebowing markup

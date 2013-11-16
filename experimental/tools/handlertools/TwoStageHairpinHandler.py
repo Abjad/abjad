@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import math
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
@@ -32,16 +32,16 @@ class TwoStageHairpinHandler(DynamicHandler):
                 spanner.detach()
         # TODO: this should eventually be changed to remove dynamics only
         for leaf in leaves:
-            marktools.detach_lilypond_commands_attached_to_component(leaf)
+            indicatortools.detach_lilypond_commands_attached_to_component(leaf)
         if 3 <= len(leaves):
-            #marktools.Dynamic(start_dynamic)(leaves[0])
-            #marktools.Dynamic(stop_dynamic)(leaves[-1])
-            marktools.LilyPondCommand(start_dynamic, 'right')(leaves[0])
-            marktools.LilyPondCommand(stop_dynamic, 'right')(leaves[-1])
+            #indicatortools.Dynamic(start_dynamic)(leaves[0])
+            #indicatortools.Dynamic(stop_dynamic)(leaves[-1])
+            indicatortools.LilyPondCommand(start_dynamic, 'right')(leaves[0])
+            indicatortools.LilyPondCommand(stop_dynamic, 'right')(leaves[-1])
             middle_index = int(len(leaves) / 2.0)
             middle_leaf = leaves[middle_index]
-            #marktools.Dynamic(peak_dynamic)(middle_leaf)
-            marktools.LilyPondCommand(peak_dynamic, 'right')(middle_leaf)
+            #indicatortools.Dynamic(peak_dynamic)(middle_leaf)
+            indicatortools.LilyPondCommand(peak_dynamic, 'right')(middle_leaf)
             half_count = middle_index + 1
             left_leaves = leaves[:half_count]
             if len(leaves) % 2 == 0:
@@ -62,9 +62,9 @@ class TwoStageHairpinHandler(DynamicHandler):
                 attach(decrescendo, right_leaves)
             return leaves
         elif len(leaves) == 2:
-            command = marktools.LilyPondCommand(start_dynamic, 'right')
+            command = indicatortools.LilyPondCommand(start_dynamic, 'right')
             attach(command, leaves[0])
-            command = marktools.LilyPondCommand(peak_dynamic, 'right')
+            command = indicatortools.LilyPondCommand(peak_dynamic, 'right')
             attach(command, leaves[-1])
             if left_hairpin == '<':
                 crescendo = spannertools.Crescendo()
@@ -73,7 +73,7 @@ class TwoStageHairpinHandler(DynamicHandler):
                 decrescendo = spannertools.Decrescendo()
                 attach(decrescendo, leaves)
         elif len(leaves) == 1:
-            command = marktools.LilyPondCommand(peak_dynamic, 'right')
+            command = indicatortools.LilyPondCommand(peak_dynamic, 'right')
             attach(command, leaves[0])
         else:
             raise ValueError(len(leaves))

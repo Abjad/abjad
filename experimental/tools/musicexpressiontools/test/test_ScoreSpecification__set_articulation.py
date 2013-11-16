@@ -66,7 +66,7 @@ def test_ScoreSpecification__set_articulation_04():
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
     rhythm = library.sixteenths.new(beam_cells_together=False)
     score_specification.set_rhythm(library.note_tokens, contexts=['Voice 1'])
-    score_specification.select_leaves('Voice 1').set_articulation(marktools.Articulation('-'))
+    score_specification.select_leaves('Voice 1').set_articulation(indicatortools.Articulation('-'))
     score = score_specification.interpret()
 
     current_function_name = systemtools.TestManager.get_current_function_name()

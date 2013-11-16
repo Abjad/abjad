@@ -65,7 +65,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
 
     Returns score, treble staff, bass staff.
     '''
-    from abjad.tools import marktools
+    from abjad.tools import indicatortools
     from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools
     from abjad.tools import markuptools

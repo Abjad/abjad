@@ -227,12 +227,12 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_11():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    key_signature = marktools.KeySignature('c', 'major')
+    key_signature = indicatortools.KeySignature('c', 'major')
     attach(key_signature, staff)
 
     key_signature = inspect(staff).get_effective_context_mark(
-        marktools.KeySignature)
-    assert key_signature == marktools.KeySignature('c', 'major')
+        indicatortools.KeySignature)
+    assert key_signature == indicatortools.KeySignature('c', 'major')
 
     assert systemtools.TestManager.compare(
         staff,
@@ -256,7 +256,7 @@ def test_agenttools_InspectionAgent_get_effective_context_mark_12():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     key_signature = inspect(staff).get_effective_context_mark(
-        marktools.KeySignature)
+        indicatortools.KeySignature)
     assert key_signature is None
 
 

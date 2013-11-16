@@ -8,16 +8,16 @@ def test_tonalanalysistools_Scale___init___01():
     '''
 
     scale = tonalanalysistools.Scale('g', 'major')
-    assert scale.key_signature == marktools.KeySignature('g', 'major')
+    assert scale.key_signature == indicatortools.KeySignature('g', 'major')
 
 
 def test_tonalanalysistools_Scale___init___02():
     r'''Initialize with key signature instance.
     '''
 
-    key_signature = marktools.KeySignature('g', 'major')
+    key_signature = indicatortools.KeySignature('g', 'major')
     scale = tonalanalysistools.Scale(key_signature)
-    assert scale.key_signature == marktools.KeySignature('g', 'major')
+    assert scale.key_signature == indicatortools.KeySignature('g', 'major')
 
 
 def test_tonalanalysistools_Scale___init___03():
@@ -26,4 +26,4 @@ def test_tonalanalysistools_Scale___init___03():
 
     scale = tonalanalysistools.Scale('g', 'major')
     new = tonalanalysistools.Scale(scale)
-    assert new.key_signature == marktools.KeySignature('g', 'major')
+    assert new.key_signature == indicatortools.KeySignature('g', 'major')

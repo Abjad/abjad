@@ -12,7 +12,7 @@ Creating annotations
 Use mark tools to create annotations:
 
 <abjad>
-annotation_1 = marktools.Annotation('is inner voice', True)
+annotation_1 = indicatortools.Annotation('is inner voice', True)
 </abjad>
 
 <abjad>
@@ -35,7 +35,7 @@ annotation_1
 </abjad>
 
 <abjad>
-annotation_2 = marktools.Annotation('is phrase-initial', False)
+annotation_2 = indicatortools.Annotation('is phrase-initial', False)
 annotation_2.attach(note)
 </abjad>
 
@@ -50,7 +50,7 @@ Getting the annotations attached to a component
 Use the inspector to get all the annotations attached to a component:
 
 <abjad>
-annotations = inspect(note).get_marks(mark_classes=marktools.Annotation)
+annotations = inspect(note).get_marks(mark_classes=indicatortools.Annotation)
 for annotation in annotations: annotation
 </abjad>
 

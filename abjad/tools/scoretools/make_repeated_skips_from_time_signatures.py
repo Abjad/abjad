@@ -30,7 +30,7 @@ def _make_repeated_skips_from_time_signature(time_signature):
     from abjad.tools import scoretools
 
     # afford basic input polymorphism
-    time_signature = marktools.TimeSignature(time_signature)
+    time_signature = indicatortools.TimeSignature(time_signature)
 
     # check input
     if time_signature.has_non_power_of_two_denominator:

@@ -200,7 +200,7 @@ def fuse_large_rests_of_duration_in_score_by_duration_threshold(
 def set_vertical_positioning_pitch_on_rest_in_staff(staff, pitch):
     for rest in iterate(staff).by_class(Rest):
         note = Note(rest)
-        command = marktools.LilyPondCommand('rest')
+        command = indicatortools.LilyPondCommand('rest')
         attach(command, note)
 
 
@@ -225,7 +225,7 @@ def make_empty_cello_score(numStaffs):
     score = Score([])
     for x in range(numStaffs):
         score.append( Staff([]) )
-        clef = marktools.Clef('bass')
+        clef = indicatortools.Clef('bass')
         attach(clef, score[x])
         override(score[x]).stem.stemlet_length = 2
         override(score[x]).beam.damping = "+inf.0"

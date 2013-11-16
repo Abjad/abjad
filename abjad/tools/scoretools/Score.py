@@ -101,10 +101,10 @@ class Score(Context):
         Returns bar line.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import marktools
+        from abjad.tools import indicatortools
         selection = select(self)
         last_leaf = selection._get_component(scoretools.Leaf, -1)
-        double_bar = marktools.BarLine('|.')
+        double_bar = indicatortools.BarLine('|.')
         attach(double_bar, last_leaf)
         return double_bar
 

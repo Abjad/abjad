@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import scoretools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
@@ -49,13 +49,13 @@ class GuileProxy(AbjadObject):
         return grace
 
     def bar(self, string):
-        return marktools.BarLine(string)
+        return indicatortools.BarLine(string)
 
     def breathe(self):
-        return marktools.LilyPondCommand('breathe', 'after')
+        return indicatortools.LilyPondCommand('breathe', 'after')
 
     def clef(self, string):
-        return marktools.Clef(string)
+        return indicatortools.Clef(string)
 
     def grace(self, music):
         return scoretools.GraceContainer(music[:])
@@ -63,7 +63,7 @@ class GuileProxy(AbjadObject):
     def key(self, notename_pitch, number_list):
         if number_list is None:
             number_list = 'major'
-        return marktools.KeySignature(notename_pitch, number_list)
+        return indicatortools.KeySignature(notename_pitch, number_list)
 
     def language(self, string):
         if string in self.client._language_pitch_names:
@@ -82,10 +82,10 @@ class GuileProxy(AbjadObject):
     def mark(self, label):
         if label is None:
             label = '\default'
-        return marktools.LilyPondCommand('mark %s' % label)
+        return indicatortools.LilyPondCommand('mark %s' % label)
 
     def one_voice(self):
-        return marktools.LilyPondCommand('oneVoice')
+        return indicatortools.LilyPondCommand('oneVoice')
 
     # pitchedTrill
 
@@ -143,7 +143,7 @@ class GuileProxy(AbjadObject):
 
     def time(self, number_list, fraction):
         n, d = fraction.numerator, fraction.denominator
-        return marktools.TimeSignature((n, d))
+        return indicatortools.TimeSignature((n, d))
 
     def times(self, fraction, music):
         n, d  = fraction.numerator, fraction.denominator
@@ -156,7 +156,7 @@ class GuileProxy(AbjadObject):
         from abjad.tools import lilypondparsertools
         self._make_unrelativable(music)
         def recurse(music):
-            key_signatures = music._get_marks(marktools.KeySignature)
+            key_signatures = music._get_marks(indicatortools.KeySignature)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedPitch(x.tonic, 4)
@@ -182,21 +182,21 @@ class GuileProxy(AbjadObject):
     # tweak
 
     def voiceFour(self):
-        return marktools.LilyPondCommand('voiceTwo')
+        return indicatortools.LilyPondCommand('voiceTwo')
 
     def voiceOne(self):
-        return marktools.LilyPondCommand('voiceOne')
+        return indicatortools.LilyPondCommand('voiceOne')
 
     def voiceThree(self):
-        return marktools.LilyPondCommand('voiceThree')
+        return indicatortools.LilyPondCommand('voiceThree')
 
     def voiceTwo(self):
-        return marktools.LilyPondCommand('voiceFour')
+        return indicatortools.LilyPondCommand('voiceFour')
 
     ### HELPER FUNCTIONS ###
 
     def _is_unrelativable(self, music):
-        annotations = music._get_indicators(marktools.Annotation)
+        annotations = music._get_indicators(indicatortools.Annotation)
         if 'UnrelativableMusic' in [x.name for x in annotations]:
             return True
         return False
@@ -220,7 +220,7 @@ class GuileProxy(AbjadObject):
 
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
-            annotation = marktools.Annotation('UnrelativableMusic')
+            annotation = indicatortools.Annotation('UnrelativableMusic')
             attach(annotation, music)
 
     def _to_relative_octave(self, pitch, reference):

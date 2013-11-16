@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
 from abjad.tools import scoretools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
 
@@ -123,7 +123,7 @@ class Hairpin(Spanner):
                         direction_string, self.stop_dynamic_string))
                 else:
                     effective_dynamic = leaf._get_effective_context_mark(
-                        marktools.Dynamic)
+                        indicatortools.Dynamic)
                     if effective_dynamic is None or \
                         effective_dynamic not in \
                         leaf._start_marks:
@@ -140,7 +140,7 @@ class Hairpin(Spanner):
                         direction_string, self.stop_dynamic_string))
                 else:
                     effective_dynamic = leaf._get_effective_context_mark(
-                        marktools.Dynamic)
+                        indicatortools.Dynamic)
                     if effective_dynamic is None:
                         result.append('\\!')
         return result
@@ -351,12 +351,12 @@ class Hairpin(Spanner):
 
         Returns boolean.
         '''
-        Dynamic = marktools.Dynamic
+        Dynamic = indicatortools.Dynamic
         if isinstance(arg, tuple) and \
             len(arg) == 3 and \
-            (not arg[0] or marktools.Dynamic.is_dynamic_name(arg[0])) and \
+            (not arg[0] or indicatortools.Dynamic.is_dynamic_name(arg[0])) and \
             Hairpin.is_hairpin_shape_string(arg[1]) and \
-            (not arg[2] or marktools.Dynamic.is_dynamic_name(arg[2])):
+            (not arg[2] or indicatortools.Dynamic.is_dynamic_name(arg[2])):
             if arg[0] and arg[2]:
                 start_ordinal = \
                     Dynamic.dynamic_name_to_dynamic_ordinal(arg[0])

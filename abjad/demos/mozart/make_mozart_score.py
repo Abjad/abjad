@@ -21,11 +21,11 @@ def make_mozart_score():
         bass_volta.append(bass)
 
     # add marks to the volta containers
-    command = marktools.LilyPondCommand(
+    command = indicatortools.LilyPondCommand(
         'repeat volta 2', 'before'
         )
     attach(command, treble_volta)
-    command = marktools.LilyPondCommand(
+    command = indicatortools.LilyPondCommand(
         'repeat volta 2', 'before'
         )
     attach(command, bass_volta)
@@ -43,11 +43,11 @@ def make_mozart_score():
         bass_alternative.append(bass)
 
     # add marks to the alternative containers
-    command = marktools.LilyPondCommand(
+    command = indicatortools.LilyPondCommand(
         'alternative', 'before'
         )
     attach(command, treble_alternative)
-    command = marktools.LilyPondCommand(
+    command = indicatortools.LilyPondCommand(
         'alternative', 'before'
         )
     attach(command, bass_alternative)
@@ -63,16 +63,16 @@ def make_mozart_score():
         score['LH Voice'].append(bass)
 
     # add marks
-    time_signature = marktools.TimeSignature((3, 8))
+    time_signature = indicatortools.TimeSignature((3, 8))
     attach(time_signature, score['RH Staff'])
-    bar_line = marktools.BarLine('|.')
+    bar_line = indicatortools.BarLine('|.')
     attach(bar_line, score['RH Voice'][-1])
-    bar_line = marktools.BarLine('|.')
+    bar_line = indicatortools.BarLine('|.')
     attach(bar_line, score['LH Voice'][-1])
 
     # remove the old, default piano instrument attached to the piano staff
     # and add a custom instrument mark
-    detach(marktools.ContextMark, score['Piano Staff'])
+    detach(indicatortools.ContextMark, score['Piano Staff'])
 
     klavier = instrumenttools.Piano(
         instrument_name='Katzenklavier', 

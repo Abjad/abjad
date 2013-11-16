@@ -7,7 +7,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 def test_lilypondparsertools_LilyPondParser__marks__BarLine_01():
 
     target = Staff(scoretools.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
-    bar_line = marktools.BarLine('|.')
+    bar_line = indicatortools.BarLine('|.')
     attach(bar_line, target[-1])
 
     assert systemtools.TestManager.compare(
@@ -26,4 +26,4 @@ def test_lilypondparsertools_LilyPondParser__marks__BarLine_01():
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
     items = inspect(result[2]).get_indicators()
-    assert 1 == len(items) and isinstance(items[0], marktools.BarLine)
+    assert 1 == len(items) and isinstance(items[0], indicatortools.BarLine)

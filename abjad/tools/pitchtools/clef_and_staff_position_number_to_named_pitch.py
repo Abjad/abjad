@@ -6,7 +6,7 @@ def clef_and_staff_position_number_to_named_pitch(clef, staff_position_number):
 
     ::
 
-        >>> clef = marktools.Clef('treble')
+        >>> clef = indicatortools.Clef('treble')
         >>> for n in range(-6, 6):
         ...   pitch = pitchtools.clef_and_staff_position_number_to_named_pitch(clef, n)
         ...   print '%s\t%s\t%s' % (clef.name, n, pitch)

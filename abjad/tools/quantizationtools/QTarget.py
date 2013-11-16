@@ -2,8 +2,8 @@
 import abc
 import bisect
 from abjad.tools import scoretools
-from abjad.tools import marktools
-from abjad.tools import marktools
+from abjad.tools import indicatortools
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -139,7 +139,7 @@ class QTarget(AbjadObject):
             new_leaf = scoretools.Chord(leaf_one.written_pitches, duration)
         else:
             new_leaf = scoretools.Rest(duration)
-        tempos = leaf_two._get_marks(marktools.Tempo)
+        tempos = leaf_two._get_marks(indicatortools.Tempo)
         if tempos:
             tempo = tempos[0]
             attach(tempo, new_leaf)
@@ -160,7 +160,7 @@ class QTarget(AbjadObject):
             leaf_one, leaf_two = leaves[i], leaves[i + 1]
             leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
             leaves[i] = leaf_one
-            if not leaf_two._get_indicators(marktools.Annotation):
+            if not leaf_two._get_indicators(indicatortools.Annotation):
                 spanner_classes = (spannertools.Tie, )
                 spanner = tuple(leaf_one._get_spanners(spanner_classes))[0]
                 leaf_two = self._copy_leaf_type_and_pitches(leaf_one, leaf_two)
@@ -170,8 +170,8 @@ class QTarget(AbjadObject):
         self._notate_one_leaf(leaves[-1], grace_handler)
 
     def _notate_one_leaf(self, leaf, grace_handler):
-        leaf_annotations = leaf._get_indicators(marktools.Annotation)
-        tempos = leaf._get_marks(marktools.Tempo)
+        leaf_annotations = leaf._get_indicators(indicatortools.Annotation)
+        tempos = leaf._get_marks(indicatortools.Tempo)
         if leaf_annotations:
             pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:

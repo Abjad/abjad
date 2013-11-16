@@ -22,7 +22,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         ...     )
         >>> print format(q_schema_item)
         quantizationtools.BeatwiseQSchemaItem(
-            tempo=marktools.Tempo(
+            tempo=indicatortools.Tempo(
                 durationtools.Duration(1, 4),
                 60
                 ),

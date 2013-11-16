@@ -497,21 +497,21 @@ something like this:
 What you see above is really just two containers, each with a little text
 ("\repeat volta n" and "alternative") prepended to their opening curly brace.
 To create that structure in Abjad, we'll need to use the
-:py:class:`~abjad.tools.marktools.LilyPondCommand` class, which allows you
+:py:class:`~abjad.tools.indicatortools.LilyPondCommand` class, which allows you
 to place LilyPond commands like "\break" relative to any score component:
 
 ::
 
    >>> container = Container("c'4 d'4 e'4 f'4")
-   >>> mark = marktools.LilyPondCommand(
+   >>> mark = indicatortools.LilyPondCommand(
    ...     'before-the-container', 'before')(container)
-   >>> mark = marktools.LilyPondCommand(
+   >>> mark = indicatortools.LilyPondCommand(
    ...     'after-the-container', 'after')(container)
-   >>> mark = marktools.LilyPondCommand(
+   >>> mark = indicatortools.LilyPondCommand(
    ...     'opening-of-the-container', 'opening')(container)
-   >>> mark = marktools.LilyPondCommand(
+   >>> mark = indicatortools.LilyPondCommand(
    ...     'closing-of-the-container', 'closing')(container)
-   >>> mark = marktools.LilyPondCommand(
+   >>> mark = indicatortools.LilyPondCommand(
    ...     'to-the-right-of-a-note', 'right')(container[2])
    >>> f(container)
    \before-the-container
@@ -527,11 +527,11 @@ to place LilyPond commands like "\break" relative to any score component:
 
 
 Notice the second argument to each
-:py:class:`~abjad.tools.marktools.LilyPondCommand` above, like `before` and
+:py:class:`~abjad.tools.indicatortools.LilyPondCommand` above, like `before` and
 `closing`.  These are format slot indications, which control where the command
 is placed in the LilyPond code relative to the score element it is attached to.
 To mimic LilyPond's repeat syntax, we'll have to create two
-:py:class:`~abjad.tools.marktools.LilyPondCommand` instances, both using
+:py:class:`~abjad.tools.indicatortools.LilyPondCommand` instances, both using
 the "before" format slot, insuring that their command is placed before their
 container's opening curly brace.
 
@@ -556,10 +556,10 @@ Now let's take a look at the code that puts our score together:
            bass_volta.append(bass)
    
        # add marks to the volta containers
-       marktools.LilyPondCommand(
+       indicatortools.LilyPondCommand(
            'repeat volta 2', 'before'
            )(treble_volta)
-       marktools.LilyPondCommand(
+       indicatortools.LilyPondCommand(
            'repeat volta 2', 'before'
            )(bass_volta)
    
@@ -576,10 +576,10 @@ Now let's take a look at the code that puts our score together:
            bass_alternative.append(bass)
    
        # add marks to the alternative containers
-       marktools.LilyPondCommand(
+       indicatortools.LilyPondCommand(
            'alternative', 'before'
            )(treble_alternative)
-       marktools.LilyPondCommand(
+       indicatortools.LilyPondCommand(
            'alternative', 'before'
            )(bass_alternative)
    
@@ -594,9 +594,9 @@ Now let's take a look at the code that puts our score together:
            score['LH Voice'].append(bass)
    
        # add marks
-       marktools.TimeSignature((3, 8))(score['RH Staff'])
-       marktools.BarLine('|.')(score['RH Voice'][-1])
-       marktools.BarLine('|.')(score['LH Voice'][-1])
+       indicatortools.TimeSignature((3, 8))(score['RH Staff'])
+       indicatortools.BarLine('|.')(score['RH Voice'][-1])
+       indicatortools.BarLine('|.')(score['LH Voice'][-1])
    
        # remove the old, default piano instrument attached to the piano staff
        # and add a custom instrument mark

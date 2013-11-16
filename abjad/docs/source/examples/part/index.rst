@@ -54,17 +54,17 @@ The score template
            # make bell voice and staff
            bell_voice = scoretools.Voice(name='Bell Voice')
            bell_staff = scoretools.Staff([bell_voice], name='Bell Staff')
-           marktools.Clef('treble')(bell_staff)
+           indicatortools.Clef('treble')(bell_staff)
            bells = instrumenttools.Instrument('Campana in La', 'Camp.')
            bells.attach(bell_staff)
-           marktools.Tempo((1, 4), (112, 120))(bell_staff)
-           marktools.TimeSignature((6, 4))(bell_staff)
+           indicatortools.Tempo((1, 4), (112, 120))(bell_staff)
+           indicatortools.TimeSignature((6, 4))(bell_staff)
    
            # make first violin voice and staff
            first_violin_voice = scoretools.Voice(name='First Violin Voice')
            first_violin_staff = scoretools.Staff([first_violin_voice],
                name='First Violin Staff')
-           marktools.Clef('treble')(first_violin_staff)
+           indicatortools.Clef('treble')(first_violin_staff)
            instrumenttools.Violin(
                instrument_name_markup='Violin I',
                short_instrument_name_markup='Vl. I'
@@ -74,7 +74,7 @@ The score template
            second_violin_voice = scoretools.Voice(name='Second Violin Voice')
            second_violin_staff = scoretools.Staff([second_violin_voice],
                name='Second Violin Staff')
-           marktools.Clef('treble')(second_violin_staff)
+           indicatortools.Clef('treble')(second_violin_staff)
            instrumenttools.Violin(
                instrument_name_markup='Violin II',
                short_instrument_name_markup='Vl. II'
@@ -83,13 +83,13 @@ The score template
            # make viola voice and staff
            viola_voice = scoretools.Voice(name='Viola Voice')
            viola_staff = scoretools.Staff([viola_voice], name='Viola Staff')
-           marktools.Clef('alto')(viola_staff)
+           indicatortools.Clef('alto')(viola_staff)
            instrumenttools.Viola()(viola_staff)
    
            # make cello voice and staff
            cello_voice = scoretools.Voice(name='Cello Voice')
            cello_staff = scoretools.Staff([cello_voice], name='Cello Staff')
-           marktools.Clef('bass')(cello_staff)
+           indicatortools.Clef('bass')(cello_staff)
            instrumenttools.Cello(
                short_instrument_name_markup='Vc.'
                )(cello_staff)
@@ -97,7 +97,7 @@ The score template
            # make bass voice and staff
            bass_voice = scoretools.Voice(name='Bass Voice')
            bass_staff = scoretools.Staff([bass_voice], name='Bass Staff')
-           marktools.Clef('bass')(bass_staff)
+           indicatortools.Clef('bass')(bass_staff)
            instrumenttools.Contrabass(
                short_instrument_name_markup='Cb.'
                )(bass_staff)
@@ -391,7 +391,7 @@ give them a 6/4 time signature, just so they line up properly.
 ::
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
-   >>> time_signature = marktools.TimeSignature((6, 4))(staff)
+   >>> time_signature = indicatortools.TimeSignature((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-1.png
@@ -423,7 +423,7 @@ Let's look at the second violins too:
 ::
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
-   >>> time_signature = marktools.TimeSignature((6, 4))(staff)
+   >>> time_signature = indicatortools.TimeSignature((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-2.png
@@ -458,7 +458,7 @@ the bar lines accidentally:
 
    >>> staff = Staff(sequencetools.flatten_sequence(descents))
    >>> shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
-   >>> time_signature = marktools.TimeSignature((6, 4))(staff)
+   >>> time_signature = indicatortools.TimeSignature((6, 4))(staff)
    >>> show(staff)
 
 .. image:: images/index-3.png
@@ -502,16 +502,16 @@ The edits
        copied_descent[-1].written_duration = durationtools.Duration(1, 1)
        copied_descent.append(scoretools.Note('a2'))
        for leaf in copied_descent:
-           marktools.Articulation('accent')(leaf)
-           marktools.Articulation('tenuto')(leaf)
+           indicatortools.Articulation('accent')(leaf)
+           indicatortools.Articulation('tenuto')(leaf)
        voice.extend(copied_descent)
    
        final_sustain = []
        for _ in range(32):
            final_sustain.append(scoretools.Note('a1.'))
        final_sustain.append(scoretools.Note('a2'))
-       marktools.Articulation('accent')(final_sustain[0])
-       marktools.Articulation('tenuto')(final_sustain[0])
+       indicatortools.Articulation('accent')(final_sustain[0])
+       indicatortools.Articulation('tenuto')(final_sustain[0])
    
        voice.extend(final_sustain)
        spannertools.Tie(final_sustain)
@@ -526,8 +526,8 @@ The edits
        descents = durated_reservoir['Viola']
    
        for leaf in descents[-1]:
-           marktools.Articulation('accent')(leaf)
-           marktools.Articulation('tenuto')(leaf)
+           indicatortools.Articulation('accent')(leaf)
+           indicatortools.Articulation('tenuto')(leaf)
        last_descent = topleveltools.select(descents[-1], contiguous=True)
        copied_descent = mutate(last_descent).copy()
        for leaf in copied_descent:
@@ -538,14 +538,14 @@ The edits
        voice.extend(copied_descent)
    
        bridge = scoretools.Note('e1')
-       marktools.Articulation('tenuto')(bridge)
-       marktools.Articulation('accent')(bridge)
+       indicatortools.Articulation('tenuto')(bridge)
+       indicatortools.Articulation('accent')(bridge)
        voice.append(bridge)
    
        final_sustain_rhythm = [(6, 4)] * 21 + [(1, 2)]
        final_sustain_notes = scoretools.make_notes(['e'], final_sustain_rhythm)
-       marktools.Articulation('accent')(final_sustain_notes[0])
-       marktools.Articulation('tenuto')(final_sustain_notes[0])
+       indicatortools.Articulation('accent')(final_sustain_notes[0])
+       indicatortools.Articulation('tenuto')(final_sustain_notes[0])
        voice.extend(final_sustain_notes)
        spannertools.Tie(final_sustain_notes)
        voice.extend('r4 r2.')
@@ -571,8 +571,8 @@ The edits
            index = inspect(chord).get_parentage().parent.index(chord)
            parent[index] = scoretools.Note(
                chord.written_pitches[1], chord.written_duration)
-           marktools.Articulation('accent')(parent[index])
-           marktools.Articulation('tenuto')(parent[index])
+           indicatortools.Articulation('accent')(parent[index])
+           indicatortools.Articulation('tenuto')(parent[index])
    
        voice.extend('a,1. ~ a,2')
        voice.extend('b,1 ~ b,1. ~ b,1.')
@@ -617,9 +617,9 @@ Let's take a look:
        for measure in score['First Violin Voice'][6:8]:
            for i, chord in enumerate(iterationtools.iterate_chords_in_expr(measure)):
                if i % 2 == 0:
-                   marktools.Articulation('downbow')(chord)
+                   indicatortools.Articulation('downbow')(chord)
                else:
-                   marktools.Articulation('upbow')(chord)
+                   indicatortools.Articulation('upbow')(chord)
    
        # create and apply rebowing markup
        rebow_markup = markuptools.Markup(
@@ -642,62 +642,62 @@ and attach:
    def apply_dynamics(score):
    
        voice = score['Bell Voice']
-       marktools.Dynamic('ppp')(voice[0][1])
-       marktools.Dynamic('pp')(voice[8][1])
-       marktools.Dynamic('p')(voice[18][1])
-       marktools.Dynamic('mp')(voice[26][1])
-       marktools.Dynamic('mf')(voice[34][1])
-       marktools.Dynamic('f')(voice[42][1])
-       marktools.Dynamic('ff')(voice[52][1])
-       marktools.Dynamic('fff')(voice[60][1])
-       marktools.Dynamic('ff')(voice[68][1])
-       marktools.Dynamic('f')(voice[76][1])
-       marktools.Dynamic('mf')(voice[84][1])
-       marktools.Dynamic('pp')(voice[-1][0])
+       indicatortools.Dynamic('ppp')(voice[0][1])
+       indicatortools.Dynamic('pp')(voice[8][1])
+       indicatortools.Dynamic('p')(voice[18][1])
+       indicatortools.Dynamic('mp')(voice[26][1])
+       indicatortools.Dynamic('mf')(voice[34][1])
+       indicatortools.Dynamic('f')(voice[42][1])
+       indicatortools.Dynamic('ff')(voice[52][1])
+       indicatortools.Dynamic('fff')(voice[60][1])
+       indicatortools.Dynamic('ff')(voice[68][1])
+       indicatortools.Dynamic('f')(voice[76][1])
+       indicatortools.Dynamic('mf')(voice[84][1])
+       indicatortools.Dynamic('pp')(voice[-1][0])
    
        voice = score['First Violin Voice']
-       marktools.Dynamic('ppp')(voice[6][1])
-       marktools.Dynamic('pp')(voice[15][0])
-       marktools.Dynamic('p')(voice[22][3])
-       marktools.Dynamic('mp')(voice[31][0])
-       marktools.Dynamic('mf')(voice[38][3])
-       marktools.Dynamic('f')(voice[47][0])
-       marktools.Dynamic('ff')(voice[55][2])
-       marktools.Dynamic('fff')(voice[62][2])
+       indicatortools.Dynamic('ppp')(voice[6][1])
+       indicatortools.Dynamic('pp')(voice[15][0])
+       indicatortools.Dynamic('p')(voice[22][3])
+       indicatortools.Dynamic('mp')(voice[31][0])
+       indicatortools.Dynamic('mf')(voice[38][3])
+       indicatortools.Dynamic('f')(voice[47][0])
+       indicatortools.Dynamic('ff')(voice[55][2])
+       indicatortools.Dynamic('fff')(voice[62][2])
    
        voice = score['Second Violin Voice']
-       marktools.Dynamic('pp')(voice[7][0])
-       marktools.Dynamic('p')(voice[12][0])
-       marktools.Dynamic('p')(voice[16][0])
-       marktools.Dynamic('mp')(voice[25][1])
-       marktools.Dynamic('mf')(voice[34][1])
-       marktools.Dynamic('f')(voice[44][1])
-       marktools.Dynamic('ff')(voice[54][0])
-       marktools.Dynamic('fff')(voice[62][1])
+       indicatortools.Dynamic('pp')(voice[7][0])
+       indicatortools.Dynamic('p')(voice[12][0])
+       indicatortools.Dynamic('p')(voice[16][0])
+       indicatortools.Dynamic('mp')(voice[25][1])
+       indicatortools.Dynamic('mf')(voice[34][1])
+       indicatortools.Dynamic('f')(voice[44][1])
+       indicatortools.Dynamic('ff')(voice[54][0])
+       indicatortools.Dynamic('fff')(voice[62][1])
    
        voice = score['Viola Voice']
-       marktools.Dynamic('p')(voice[8][0])
-       marktools.Dynamic('mp')(voice[19][1])
-       marktools.Dynamic('mf')(voice[30][0])
-       marktools.Dynamic('f')(voice[36][0])
-       marktools.Dynamic('f')(voice[42][0])
-       marktools.Dynamic('ff')(voice[52][0])
-       marktools.Dynamic('fff')(voice[62][0])
+       indicatortools.Dynamic('p')(voice[8][0])
+       indicatortools.Dynamic('mp')(voice[19][1])
+       indicatortools.Dynamic('mf')(voice[30][0])
+       indicatortools.Dynamic('f')(voice[36][0])
+       indicatortools.Dynamic('f')(voice[42][0])
+       indicatortools.Dynamic('ff')(voice[52][0])
+       indicatortools.Dynamic('fff')(voice[62][0])
    
        voice = score['Cello Voice']
-       marktools.Dynamic('p')(voice[10][0])
-       marktools.Dynamic('mp')(voice[21][0])
-       marktools.Dynamic('mf')(voice[31][0])
-       marktools.Dynamic('f')(voice[43][0])
-       marktools.Dynamic('ff')(voice[52][1])
-       marktools.Dynamic('fff')(voice[62][0])
+       indicatortools.Dynamic('p')(voice[10][0])
+       indicatortools.Dynamic('mp')(voice[21][0])
+       indicatortools.Dynamic('mf')(voice[31][0])
+       indicatortools.Dynamic('f')(voice[43][0])
+       indicatortools.Dynamic('ff')(voice[52][1])
+       indicatortools.Dynamic('fff')(voice[62][0])
    
        voice = score['Bass Voice']
-       marktools.Dynamic('mp')(voice[14][0])
-       marktools.Dynamic('mf')(voice[27][0])
-       marktools.Dynamic('f')(voice[39][0])
-       marktools.Dynamic('ff')(voice[51][0])
-       marktools.Dynamic('fff')(voice[62][0])
+       indicatortools.Dynamic('mp')(voice[14][0])
+       indicatortools.Dynamic('mf')(voice[27][0])
+       indicatortools.Dynamic('f')(voice[39][0])
+       indicatortools.Dynamic('ff')(voice[51][0])
+       indicatortools.Dynamic('fff')(voice[62][0])
 
 
 We apply expressive marks the same way we applied our dynamics:
@@ -742,7 +742,7 @@ We apply expressive marks the same way we applied our dynamics:
            markuptools.Markup(r'\italic { (non dim.) }', Down)(voice[102][0])
 
 
-We use the `marktools.LilyPondCommandClass` to create LilyPond system breaks,
+We use the `indicatortools.LilyPondCommandClass` to create LilyPond system breaks,
 and attach them to measures in the percussion part.  After this, our score will
 break in the exact same places as the original:
 
@@ -756,7 +756,7 @@ break in the exact same places as the original:
            79, 86, 93, 100]
    
        for measure_index in measure_indices:
-           marktools.LilyPondCommand(
+           indicatortools.LilyPondCommand(
                'break',
                'after'
                )(bell_voice[measure_index])
@@ -774,14 +774,14 @@ We'll make the rehearsal marks the exact same way we made our line breaks:
            90, 96, 102]
    
        for measure_index in measure_indices:
-           marktools.LilyPondCommand(
+           indicatortools.LilyPondCommand(
                r'mark \default',
                'before'
                )(bell_voice[measure_index])
 
 
-And then we add our final bar lines.  `marktools.BarLine` objects inherit from
-`marktools.Mark`, so you can probably guess by now how we add them to the
+And then we add our final bar lines.  `indicatortools.BarLine` objects inherit from
+`indicatortools.Mark`, so you can probably guess by now how we add them to the
 score... instantiate and attach:
 
 ::
@@ -789,7 +789,7 @@ score... instantiate and attach:
    def apply_final_bar_lines(score):
    
        for voice in iterate(score).by_class(scoretools.Voice):
-           marktools.BarLine('|.')(voice[-1])
+           indicatortools.BarLine('|.')(voice[-1])
 
 
 The LilyPond file
@@ -837,7 +837,7 @@ additionally to hide empty staves if they appear in the first system:
        context_block.override.vertical_axis_group.remove_first = True
        lilypond_file.layout_block.context_blocks.append(context_block)
    
-       slash_separator = marktools.LilyPondCommand('slashSeparator')
+       slash_separator = indicatortools.LilyPondCommand('slashSeparator')
        lilypond_file.paper_block.system_separator_markup = slash_separator
    
        bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')

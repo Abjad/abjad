@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import marktools
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
@@ -33,8 +33,8 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 is_short_group = True
         if is_short_group:
             start_dynamic = self.hairpin_token[0]
-            #marktools.Dynamic(start_dynamic)(group[0])
-            command = marktools.LilyPondCommand(start_dynamic, 'right')
+            #indicatortools.Dynamic(start_dynamic)(group[0])
+            command = indicatortools.LilyPondCommand(start_dynamic, 'right')
             attach(command, group[0])
         else:
             descriptor = ' '.join([x for x in self.hairpin_token if x])

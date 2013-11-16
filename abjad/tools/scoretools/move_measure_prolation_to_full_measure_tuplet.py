@@ -15,7 +15,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
     Returns None because processes potentially many measures.
     '''
-    from abjad.tools import marktools
+    from abjad.tools import indicatortools
     from abjad.tools import scoretools
 
     for measure in iterate(expr).by_class(scoretools.Measure):
@@ -30,7 +30,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
             # update non-power-of-two time signature to power-of-two
             power_of_two_time_signature = effective_time_signature.with_power_of_two_denominator(
                 contents_multiplier)
-            detach(marktools.TimeSignature, measure)
+            detach(indicatortools.TimeSignature, measure)
             attach(power_of_two_time_signature, measure)
 
             # find target duration and create tuplet
