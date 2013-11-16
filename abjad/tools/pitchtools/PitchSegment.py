@@ -24,7 +24,7 @@ class PitchSegment(Segment):
 
         >>> named_pitch_segment = pitchtools.PitchSegment(
         ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
-        ...     item_class=pitchtools.NamedPitch,
+        ...     item_class=NamedPitch,
         ...     )
         >>> named_pitch_segment
         PitchSegment(['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"])

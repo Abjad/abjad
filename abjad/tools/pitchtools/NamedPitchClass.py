@@ -18,7 +18,7 @@ class NamedPitchClass(PitchClass):
 
     ::
 
-        >>> pitchtools.NamedPitchClass(pitchtools.NamedPitch('g,'))
+        >>> pitchtools.NamedPitchClass(NamedPitch('g,'))
         NamedPitchClass('g')
 
     ::

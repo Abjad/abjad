@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.pitchtools.NamedPitch import NamedPitch
-from abjad.tools.pitchtools.NumberedPitch \
-    import NumberedPitch
+from abjad.tools.pitchtools.NumberedPitch import NumberedPitch
 from abjad.tools.pitchtools.PitchRange import PitchRange
 
 

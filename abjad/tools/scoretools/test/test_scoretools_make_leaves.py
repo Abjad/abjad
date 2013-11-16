@@ -95,7 +95,7 @@ def test_scoretools_make_leaves_07():
     r'''Works with pitch instances.
     '''
 
-    leaves = scoretools.make_leaves([pitchtools.NamedPitch(0)], [(1, 8), (1, 8), (1, 4)])
+    leaves = scoretools.make_leaves([NamedPitch(0)], [(1, 8), (1, 8), (1, 4)])
     assert [leaf.written_pitch.numbered_pitch._pitch_number for leaf in leaves] == [0, 0, 0]
 
 

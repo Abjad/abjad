@@ -8,7 +8,7 @@ def transpose_named_pitch_by_numbered_interval_and_respell(
 
     ::
 
-        >>> pitch = pitchtools.NamedPitch(0)
+        >>> pitch = NamedPitch(0)
 
     ::
 

@@ -7,7 +7,7 @@ def get_named_pitch_from_pitch_carrier(pitch_carrier):
 
     ::
 
-        >>> pitch = pitchtools.NamedPitch('df', 5)
+        >>> pitch = NamedPitch('df', 5)
         >>> pitch
         NamedPitch("df''")
         >>> pitchtools.get_named_pitch_from_pitch_carrier(pitch)

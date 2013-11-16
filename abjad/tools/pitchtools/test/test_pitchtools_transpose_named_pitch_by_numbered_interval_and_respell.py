@@ -1,34 +1,34 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_pitchtools_transpose_named_pitch_by_numbered_interval_and_respell_01():
 
-    pitch = pitchtools.NamedPitch(0)
+    pitch = NamedPitch(0)
 
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 0) == pitchtools.NamedPitch('dff', 4)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 0.5) == pitchtools.NamedPitch('dtqf', 4)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 1) == pitchtools.NamedPitch('df', 4)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 1.5) == pitchtools.NamedPitch('dqf', 4)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 2) == pitchtools.NamedPitch('d', 4)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 2.5) == pitchtools.NamedPitch('dqs', 4)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 3) == pitchtools.NamedPitch('ds', 4)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 3.5) == pitchtools.NamedPitch('dtqs', 4)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 4) == pitchtools.NamedPitch('dss', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 0) == NamedPitch('dff', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 0.5) == NamedPitch('dtqf', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 1) == NamedPitch('df', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 1.5) == NamedPitch('dqf', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 2) == NamedPitch('d', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 2.5) == NamedPitch('dqs', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 3) == NamedPitch('ds', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 3.5) == NamedPitch('dtqs', 4)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 4) == NamedPitch('dss', 4)
 
-    assert pytest.raises(
-        KeyError, 'pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 4.5)')
+    statement = 'pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, 1, 4.5)'
+    assert pytest.raises(KeyError, statement)
 
 
 def test_pitchtools_transpose_named_pitch_by_numbered_interval_and_respell_02():
 
-    pitch = pitchtools.NamedPitch(0)
+    pitch = NamedPitch(0)
 
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, 0) == pitchtools.NamedPitch('bs', 3)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -0.5) == pitchtools.NamedPitch('bqs', 3)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -1) == pitchtools.NamedPitch('b', 3)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -1.5) == pitchtools.NamedPitch('bqf', 3)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -2) == pitchtools.NamedPitch('bf', 3)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -2.5) == pitchtools.NamedPitch('btqf', 3)
-    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -3) == pitchtools.NamedPitch('bff', 3)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, 0) == NamedPitch('bs', 3)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -0.5) == NamedPitch('bqs', 3)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -1) == NamedPitch('b', 3)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -1.5) == NamedPitch('bqf', 3)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -2) == NamedPitch('bf', 3)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -2.5) == NamedPitch('btqf', 3)
+    assert pitchtools.transpose_named_pitch_by_numbered_interval_and_respell(pitch, -1, -3) == NamedPitch('bff', 3)

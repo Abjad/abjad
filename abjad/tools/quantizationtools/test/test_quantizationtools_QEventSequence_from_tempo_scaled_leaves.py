@@ -34,36 +34,36 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_01():
     assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
-            (pitchtools.NamedPitch("c'"),)
+            (NamedPitch("c'"),)
             ),
         quantizationtools.SilentQEvent(
             durationtools.Offset(12000, 11)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(30000, 11),
-            (pitchtools.NamedPitch("cs'"),)
+            (NamedPitch("cs'"),)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(42000, 11),
-            (pitchtools.NamedPitch("d'"),)
+            (NamedPitch("d'"),)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(54000, 11),
-            (pitchtools.NamedPitch("ef'"),)
+            (NamedPitch("ef'"),)
             ),
         quantizationtools.SilentQEvent(
             durationtools.Offset(60000, 11)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(84000, 11),
-            (pitchtools.NamedPitch("ef'"),)
+            (NamedPitch("ef'"),)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(90000, 11),
             (
-                pitchtools.NamedPitch("c'"),
-                pitchtools.NamedPitch("cs'"),
-                pitchtools.NamedPitch("e'"),
+                NamedPitch("c'"),
+                NamedPitch("cs'"),
+                NamedPitch("e'"),
             )
             ),
         quantizationtools.TerminalQEvent(
@@ -107,36 +107,36 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_02():
     assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
-            (pitchtools.NamedPitch("c'"),)
+            (NamedPitch("c'"),)
             ),
         quantizationtools.SilentQEvent(
             durationtools.Offset(30000, 29)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(75000, 29),
-            (pitchtools.NamedPitch("cs'"),)
+            (NamedPitch("cs'"),)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(105000, 29),
-            (pitchtools.NamedPitch("d'"),)
+            (NamedPitch("d'"),)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(135000, 29),
-            (pitchtools.NamedPitch("ef'"),)
+            (NamedPitch("ef'"),)
             ),
         quantizationtools.SilentQEvent(
             durationtools.Offset(150000, 29)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(15600000, 2233),
-            (pitchtools.NamedPitch("ef'"),)
+            (NamedPitch("ef'"),)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(16470000, 2233),
             (
-                pitchtools.NamedPitch("c'"),
-                pitchtools.NamedPitch("cs'"),
-                pitchtools.NamedPitch("e'"),
+                NamedPitch("c'"),
+                NamedPitch("cs'"),
+                NamedPitch("e'"),
             )
             ),
         quantizationtools.TerminalQEvent(

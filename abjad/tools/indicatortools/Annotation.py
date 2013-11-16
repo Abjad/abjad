@@ -9,7 +9,7 @@ class Annotation(AbjadObject):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> pitch = pitchtools.NamedPitch('ds')
+        >>> pitch = NamedPitch('ds')
         >>> annotation = indicatortools.Annotation('special pitch', pitch)
         >>> attach(annotation, staff[0])
         >>> show(staff) # doctest: +SKIP

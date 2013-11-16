@@ -47,8 +47,8 @@ def test_scoretools_Chord_written_pitches_03():
         ''')
 
     assert staff[0].written_pitches == (
-        pitchtools.NamedPitch("c'"), 
-        pitchtools.NamedPitch("e'"),
+        NamedPitch("c'"), 
+        NamedPitch("e'"),
         )
 
 
@@ -70,9 +70,9 @@ def test_scoretools_Chord_written_pitches_05():
 
     chord = Chord([], (1, 4))
     chord.written_pitches = [
-        pitchtools.NamedPitch(4), 
-        pitchtools.NamedPitch(3),
-        pitchtools.NamedPitch(2),
+        NamedPitch(4), 
+        NamedPitch(3),
+        NamedPitch(2),
         ]
 
     assert format(chord) == "<d' ef' e'>4"
@@ -85,8 +85,8 @@ def test_scoretools_Chord_written_pitches_06():
     chord = Chord([], (1, 4))
     chord.written_pitches = [
         4, 
-        pitchtools.NamedPitch(3), 
-        pitchtools.NamedPitch(2),
+        NamedPitch(3), 
+        NamedPitch(2),
         ]
 
     assert format(chord) == "<d' ef' e'>4"

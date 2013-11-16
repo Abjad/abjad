@@ -10,7 +10,7 @@ class NamedPitch(Pitch):
 
     ::
 
-        >>> named_pitch = pitchtools.NamedPitch("cs''")
+        >>> named_pitch = NamedPitch("cs''")
         >>> named_pitch
         NamedPitch("cs''")
 
@@ -274,7 +274,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").apply_accidental('s')
+            >>> NamedPitch("cs''").apply_accidental('s')
             NamedPitch("css''")
 
         Returns new named pitch.
@@ -298,7 +298,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch('cs,').multiply(3)
+            >>> NamedPitch('cs,').multiply(3)
             NamedPitch('ef,')
 
         Emit new numbered pitch.
@@ -340,7 +340,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").accidental
+            >>> NamedPitch("cs''").accidental
             Accidental('s')
 
         Returns accidental.
@@ -354,7 +354,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").alteration_in_semitones
+            >>> NamedPitch("cs''").alteration_in_semitones
             1
 
         Returns integer or float.
@@ -367,7 +367,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").diatonic_pitch_class_name
+            >>> NamedPitch("cs''").diatonic_pitch_class_name
             'c'
 
         Returns string.
@@ -382,7 +382,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").diatonic_pitch_class_number
+            >>> NamedPitch("cs''").diatonic_pitch_class_number
             0
 
         Returns integer.
@@ -395,7 +395,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").diatonic_pitch_name
+            >>> NamedPitch("cs''").diatonic_pitch_name
             "c''"
 
         Returns string.
@@ -411,7 +411,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").diatonic_pitch_number
+            >>> NamedPitch("cs''").diatonic_pitch_number
             7
 
         Returns integer.
@@ -425,7 +425,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").named_pitch
+            >>> NamedPitch("cs''").named_pitch
             NamedPitch("cs''")
 
         Returns named pitch.
@@ -438,7 +438,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").named_pitch_class
+            >>> NamedPitch("cs''").named_pitch_class
             NamedPitchClass('cs')
 
         Returns named pitch-class.
@@ -452,7 +452,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").numbered_pitch
+            >>> NamedPitch("cs''").numbered_pitch
             NumberedPitch(13)
 
         Returns numbered pitch.
@@ -466,7 +466,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").numbered_pitch_class
+            >>> NamedPitch("cs''").numbered_pitch_class
             NumberedPitchClass(1)
 
         Returns numbered pitch-class.
@@ -480,7 +480,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").octave
+            >>> NamedPitch("cs''").octave
             Octave(5)
 
         Returns octave.
@@ -494,7 +494,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").octave_number
+            >>> NamedPitch("cs''").octave_number
             5
 
         Returns integer.
@@ -507,7 +507,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").pitch_class_name
+            >>> NamedPitch("cs''").pitch_class_name
             'cs'
 
         Returns string.
@@ -525,7 +525,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").pitch_class_number
+            >>> NamedPitch("cs''").pitch_class_number
             1
 
         Returns integer or float.
@@ -541,7 +541,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").pitch_class_octave_label
+            >>> NamedPitch("cs''").pitch_class_octave_label
             'C#5'
 
         Returns string.
@@ -558,7 +558,7 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").pitch_name
+            >>> NamedPitch("cs''").pitch_name
             "cs''"
 
         Returns string.
@@ -574,12 +574,12 @@ class NamedPitch(Pitch):
 
         ::
 
-            >>> pitchtools.NamedPitch("cs''").pitch_number
+            >>> NamedPitch("cs''").pitch_number
             13
 
         ::
 
-            >>> pitchtools.NamedPitch("cff''").pitch_number
+            >>> NamedPitch("cff''").pitch_number
             10
 
         Returns integer or float.

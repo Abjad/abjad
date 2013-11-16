@@ -116,8 +116,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         ::
 
             >>> pitchtools.NamedInversionEquivalentIntervalClass.from_pitch_carriers(
-            ...     pitchtools.NamedPitch(-2),
-            ...     pitchtools.NamedPitch(12),
+            ...     NamedPitch(-2),
+            ...     NamedPitch(12),
             ...     )
             NamedInversionEquivalentIntervalClass('+M2')
 

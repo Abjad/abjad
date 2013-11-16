@@ -2,24 +2,16 @@
 from abjad import *
 
 
-#def test_pitchtools_PitchRange___init___01():
-#    r'''Initialize infinite pitch range.'''
-#
-#    pr = pitchtools.PitchRange()
-#    assert pr._start is None
-#    assert pr._stop is None
-
-
 def test_pitchtools_PitchRange___init___02():
     r'''Initializestop-specified pitch range.
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), None)
-    assert pr._start == (pitchtools.NamedPitch(-39), 'inclusive')
+    assert pr._start == (NamedPitch(-39), 'inclusive')
     assert pr._stop is None
 
     pr = pitchtools.PitchRange((-39, 'exclusive'), None)
-    assert pr._start == (pitchtools.NamedPitch(-39), 'exclusive')
+    assert pr._start == (NamedPitch(-39), 'exclusive')
     assert pr._stop is None
 
 
@@ -29,11 +21,11 @@ def test_pitchtools_PitchRange___init___03():
 
     pr = pitchtools.PitchRange(None, (48, 'inclusive'))
     assert pr._start is None
-    assert pr._stop == (pitchtools.NamedPitch(48), 'inclusive')
+    assert pr._stop == (NamedPitch(48), 'inclusive')
 
     pr = pitchtools.PitchRange(None, (48, 'exclusive'))
     assert pr._start is None
-    assert pr._stop == (pitchtools.NamedPitch(48), 'exclusive')
+    assert pr._stop == (NamedPitch(48), 'exclusive')
 
 
 def test_pitchtools_PitchRange___init___04():
@@ -41,8 +33,8 @@ def test_pitchtools_PitchRange___init___04():
     '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
-    assert pr._start == (pitchtools.NamedPitch(-39), 'inclusive')
-    assert pr._stop == (pitchtools.NamedPitch(48), 'inclusive')
+    assert pr._start == (NamedPitch(-39), 'inclusive')
+    assert pr._stop == (NamedPitch(48), 'inclusive')
 
 
 def test_pitchtools_PitchRange___init___05():
@@ -50,8 +42,8 @@ def test_pitchtools_PitchRange___init___05():
     '''
 
     pr = pitchtools.PitchRange(-39, 48)
-    assert pr._start == (pitchtools.NamedPitch(-39), 'inclusive')
-    assert pr._stop == (pitchtools.NamedPitch(48), 'inclusive')
+    assert pr._start == (NamedPitch(-39), 'inclusive')
+    assert pr._stop == (NamedPitch(48), 'inclusive')
 
 
 def test_pitchtools_PitchRange___init___06():
@@ -59,8 +51,8 @@ def test_pitchtools_PitchRange___init___06():
     '''
 
     pr = pitchtools.PitchRange("c'", ("c''", 'exclusive'))
-    assert pr._start == (pitchtools.NamedPitch("c'"), 'inclusive')
-    assert pr._stop == (pitchtools.NamedPitch("c''"), 'exclusive')
+    assert pr._start == (NamedPitch("c'"), 'inclusive')
+    assert pr._stop == (NamedPitch("c''"), 'exclusive')
 
 
 def test_pitchtools_PitchRange___init___07():
@@ -68,8 +60,8 @@ def test_pitchtools_PitchRange___init___07():
     '''
 
     pr = pitchtools.PitchRange('A0', 'C8')
-    assert pr._start == (pitchtools.NamedPitch('a,,,'), 'inclusive')
-    assert pr._stop == (pitchtools.NamedPitch("c'''''"), 'inclusive')
+    assert pr._start == (NamedPitch('a,,,'), 'inclusive')
+    assert pr._stop == (NamedPitch("c'''''"), 'inclusive')
 
 
 def test_pitchtools_PitchRange___init___08():

@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import pitcharraytools
 
 
 def test_pitcharraytools_PitchArrayRow___iadd___01():
@@ -24,4 +23,4 @@ def test_pitcharraytools_PitchArrayRow___iadd___01():
 
     assert row.cell_widths == (1, 2, 1, 1, 2, 1)
     assert row.dimensions == (1, 8)
-    assert row.pitches == tuple([pitchtools.NamedPitch(x) for x in [0, 2, 0, 2]])
+    assert row.pitches == tuple([NamedPitch(x) for x in [0, 2, 0, 2]])

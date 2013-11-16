@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import pitcharraytools
-from abjad.tools.pitcharraytools import PitchArrayCell
 
 
 def test_pitcharraytools_PitchArrayCell_is_first_in_row_01():
@@ -25,6 +23,6 @@ def test_pitcharraytools_PitchArrayCell_is_first_in_row_01():
 
 def test_pitcharraytools_PitchArrayCell_is_first_in_row_02():
 
-    cell = PitchArrayCell([pitchtools.NamedPitch(1)])
+    cell = pitcharraytools.PitchArrayCell([NamedPitch(1)])
 
     assert not cell.is_first_in_row

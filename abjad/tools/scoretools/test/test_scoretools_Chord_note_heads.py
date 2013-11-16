@@ -40,9 +40,9 @@ def test_scoretools_Chord_note_heads_04():
 
     chord = Chord('<>4')
     chord.note_heads = [
-        pitchtools.NamedPitch(4),
-        pitchtools.NamedPitch(3),
-        pitchtools.NamedPitch(2),
+        NamedPitch(4),
+        NamedPitch(3),
+        NamedPitch(2),
         ]
 
     assert format(chord) == "<d' ef' e'>4"
@@ -54,9 +54,9 @@ def test_scoretools_Chord_note_heads_05():
 
     chord = Chord('<>4')
     chord.note_heads = [
-        pitchtools.NamedPitch(4),
+        NamedPitch(4),
         3,
-        pitchtools.NamedPitch(2),
+        NamedPitch(2),
         ]
 
     assert format(chord) == "<d' ef' e'>4"

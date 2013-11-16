@@ -17,8 +17,8 @@ def test_pitchtools_PitchRange___gt___02():
 
     pitch_range = pitchtools.PitchRange(-39, 48)
 
-    assert pitchtools.NamedPitch(-99) < pitch_range
-    assert not pitchtools.NamedPitch(-39) < pitch_range
-    assert not pitchtools.NamedPitch(0) < pitch_range
-    assert not pitchtools.NamedPitch(48) < pitch_range
-    assert not pitchtools.NamedPitch(99) < pitch_range
+    assert NamedPitch(-99) < pitch_range
+    assert not NamedPitch(-39) < pitch_range
+    assert not NamedPitch(0) < pitch_range
+    assert not NamedPitch(48) < pitch_range
+    assert not NamedPitch(99) < pitch_range

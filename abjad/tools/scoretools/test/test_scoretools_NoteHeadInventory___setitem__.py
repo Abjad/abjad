@@ -17,7 +17,7 @@ def test_scoretools_NoteHeadInventory___setitem___02():
     '''
 
     chord = Chord("<c' d'>4")
-    chord.note_heads[1] = pitchtools.NamedPitch("e'")
+    chord.note_heads[1] = NamedPitch("e'")
 
     assert format(chord) == "<c' e'>4"
 

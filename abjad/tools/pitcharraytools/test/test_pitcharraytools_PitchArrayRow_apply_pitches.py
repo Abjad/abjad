@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import pitcharraytools
 
 
 def test_pitcharraytools_PitchArrayRow_apply_pitches_01():
@@ -24,4 +23,4 @@ def test_pitcharraytools_PitchArrayRow_apply_pitches_01():
 
     assert array[0].dimensions == (1, 4)
     assert array[0].cell_widths == (1, 1, 2)
-    assert array[0].pitches == (pitchtools.NamedPitch(-2), pitchtools.NamedPitch(-1.5))
+    assert array[0].pitches == (NamedPitch(-2), NamedPitch(-1.5))

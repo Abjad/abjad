@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import pitcharraytools
 
 
 def test_pitcharraytools_PitchArrayRow_extend_01():
@@ -25,8 +24,8 @@ def test_pitcharraytools_PitchArrayRow_extend_01():
 
     assert array[0].dimensions == (1, 7)
     assert array[0].cell_widths == (1, 2, 1, 1, 1, 1)
-    assert array[0].pitches == tuple([pitchtools.NamedPitch(x) for x in [0, 2]])
+    assert array[0].pitches == tuple([NamedPitch(x) for x in [0, 2]])
 
     assert array[1].dimensions == (1, 7)
     assert array[1].cell_widths == (2, 1, 1, 3)
-    assert array[1].pitches == tuple([pitchtools.NamedPitch(x) for x in [4]])
+    assert array[1].pitches == tuple([NamedPitch(x) for x in [4]])

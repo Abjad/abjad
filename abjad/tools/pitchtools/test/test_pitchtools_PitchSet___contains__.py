@@ -8,5 +8,5 @@ def test_pitchtools_PitchSet___contains___01():
 
     pitch_set = pitchtools.PitchSet([12, 14, 18, 19])
 
-    assert pitchtools.NamedPitch(14) in pitch_set
-    assert pitchtools.NamedPitch(15) not in pitch_set
+    assert NamedPitch(14) in pitch_set
+    assert NamedPitch(15) not in pitch_set
