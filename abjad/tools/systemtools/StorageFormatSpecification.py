@@ -9,7 +9,9 @@ class StorageFormatSpecification(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_body_text',
         '_instance',
+        '_is_bracketted',
         '_is_indented',
         '_keyword_argument_names',
         '_positional_argument_values',
@@ -21,6 +23,8 @@ class StorageFormatSpecification(AbjadObject):
 
     def __init__(self,
         instance,
+        body_text=None,
+        is_bracketted=False,
         is_indented=True,
         keyword_argument_names=None,
         positional_argument_values=None,
@@ -28,6 +32,11 @@ class StorageFormatSpecification(AbjadObject):
         tools_package_name=None,
         ):
         self._instance = instance
+        if body_text is not None:
+            self._body_text = str(body_text)
+        else:
+            self._body_text = None
+        self._is_bracketted = bool(is_bracketted)
         self._is_indented = bool(is_indented)
         if keyword_argument_names is not None:
             self._keyword_argument_names = tuple(keyword_argument_names)
@@ -50,8 +59,16 @@ class StorageFormatSpecification(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def body_text(self):
+        return self._body_text
+
+    @property
     def instance(self):
         return self._instance
+
+    @property
+    def is_bracketted(self):
+        return self._is_bracketted
 
     @property
     def is_indented(self):
