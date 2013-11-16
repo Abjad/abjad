@@ -45,15 +45,6 @@ class MusicSpecifier(Specifier, TypedList):
 #        return MusicContributionSpecifer
 
     @property
-    def _keyword_argument_names(self):
-        r'''Is there a way to do this programmatically?
-        '''
-        return tuple(sorted([
-            'custom_identifier',
-            'description',
-            ]))
-
-    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(

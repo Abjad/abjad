@@ -23,12 +23,8 @@ class Specifier(AbjadObject):
         if self is expr:
             return True
         if isinstance(expr, type(self)):
-            manager = systemtools.StorageFormatManager
-            if manager.get_positional_argument_values(self) == \
-                manager.get_positional_argument_values(expr):
-                if self._keyword_argument_name_value_strings == \
-                    expr._keyword_argument_name_value_strings:
-                    return True
+            if format(self) == format(expr):
+                return True
         return False
 
     def __format__(self, format_specification=''):
