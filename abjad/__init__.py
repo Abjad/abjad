@@ -111,11 +111,3 @@ def f(expr):
     Returns none.
     '''
     print format(expr, 'lilypond')
-
-def z(expr):
-    r'''Prints the storage format of `expr`.
-
-    Returns none.
-
-    '''
-    print format(expr, 'storage')
