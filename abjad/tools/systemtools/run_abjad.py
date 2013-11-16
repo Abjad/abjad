@@ -9,13 +9,18 @@ def run_abjad():
     Returns none.
     '''
     from abjad.tools import systemtools
+
     try:
-        file = sys.argv[1]
+        file_name = sys.argv[1]
     except IndexError:
-        file = ''
+        file_name = ''
+
     commands = (
         "from abjad import *;",
         "print abjad_configuration.get_abjad_startup_string();",
         )
-    command = r'''python -i {} -c "{}"'''.format(file, ' '.join(commands))
+    commands = ' '.join(commands)
+
+    command = r'''python -i {} -c "{}"'''
+    command = command.format(file_name, commands)
     systemtools.IOManager.spawn_subprocess(command)

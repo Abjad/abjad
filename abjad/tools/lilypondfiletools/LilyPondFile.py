@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.lilypondfiletools.AbjadRevisionToken \
-    import AbjadRevisionToken
 from abjad.tools.lilypondfiletools.DateTimeToken import DateTimeToken
 from abjad.tools.lilypondfiletools.LilyPondLanguageToken \
     import LilyPondLanguageToken
@@ -9,9 +7,8 @@ from abjad.tools.lilypondfiletools.LilyPondVersionToken \
     import LilyPondVersionToken
 
 
-#class LilyPondFile(list):
 class LilyPondFile(AbjadObject, list):
-    r'''Abjad model of LilyPond input file:
+    r'''Abjad model of LilyPond input file.
 
     ::
 
@@ -41,7 +38,6 @@ class LilyPondFile(AbjadObject, list):
     ..  doctest::
 
         >>> print format(lilypond_file)
-        % Abjad revision ...
         % ...
 
         % File construct as an example.
@@ -82,7 +78,6 @@ class LilyPondFile(AbjadObject, list):
     def __init__(self):
         list.__init__(self)
         self._file_initial_system_comments = []
-        self._file_initial_system_comments.append(AbjadRevisionToken())
         self._file_initial_system_comments.append(DateTimeToken())
         self._file_initial_user_comments = []
         self._file_initial_system_includes = []
