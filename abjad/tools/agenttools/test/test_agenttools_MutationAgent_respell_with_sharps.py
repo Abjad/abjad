@@ -7,7 +7,7 @@ def test_agenttools_MutationAgent_respell_with_sharps_01():
     note = Note(('df', 4), 4)
     mutate(note).respell_with_sharps()
 
-    assert note.written_pitch == pitchtools.NamedPitch('cs', 4)
+    assert note.written_pitch == NamedPitch('cs', 4)
 
 
 def test_agenttools_MutationAgent_respell_with_sharps_02():
@@ -16,9 +16,9 @@ def test_agenttools_MutationAgent_respell_with_sharps_02():
     mutate(chord).respell_with_sharps()
 
     assert chord.written_pitches == (
-        pitchtools.NamedPitch('cs', 4),
-        pitchtools.NamedPitch('f', 4),
-        pitchtools.NamedPitch('gs', 4),
+        NamedPitch('cs', 4),
+        NamedPitch('f', 4),
+        NamedPitch('gs', 4),
         )
 
 

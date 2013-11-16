@@ -14,8 +14,8 @@ def test_ReiteratedArticulationHandlerEditor_run_01():
         articulation_list=['.', '^'],
         minimum_duration=Duration(1, 16),
         maximum_duration=Duration(1, 8),
-        minimum_written_pitch=pitchtools.NamedPitch("cs''"),
-        maximum_written_pitch=pitchtools.NamedPitch("c'''"),
+        minimum_written_pitch=NamedPitch("cs''"),
+        maximum_written_pitch=NamedPitch("c'''"),
         )
 
     assert editor.target == handler

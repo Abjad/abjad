@@ -4,23 +4,38 @@ import types
 def attach(indicator, component_expression, scope=None):
     r'''Attaches `indicator` to `component_expression`.
 
-    Creates attachment expression effective at `scope`.
-
     Derives `scope` from the default target context of `indicator`
     when `scope` is none.
 
     Returns none.
     '''
+    from abjad.tools import indicatortools
     from abjad.tools import scoretools
 
-    if scope is not None:
-        assert hasattr(indicator, '_attach')
+    if scope is not None and hasattr(indicator, '_attach'):
         assert hasattr(indicator, '_scope')
         if isinstance(scope, types.TypeType):
             assert issubclass(scope, scoretools.Context)
         else:
             assert isinstance(scope, scoretools.Context)
         indicator._scope = scope
+    elif scope is not None and not hasattr(indicator, '_attach'):
+        assert hasattr(indicator, '_scope')
+        scope = scope or indicator._scope
+        if isinstance(scope, types.TypeType):
+            assert issubclass(scope, scoretools.Context), repr(scope)
+        else:
+            assert isinstance(scope, scoretools.Context), repr(scope)
+        wrapper = indicatortools.IndicatorWrapper(indicator, scope)
+        indicator = wrapper
+    elif not hasattr(indicator, '_attach') and hasattr(indicator, '_scope'):
+        scope = scope or indicator._scope
+        if isinstance(scope, types.TypeType):
+            assert issubclass(scope, scoretools.Context), repr(scope)
+        else:
+            assert isinstance(scope, scoretools.Context), repr(scope)
+        wrapper = indicatortools.IndicatorWrapper(indicator, scope)
+        indicator = wrapper
 
     if hasattr(indicator, '_attach'):
         indicator._attach(component_expression)

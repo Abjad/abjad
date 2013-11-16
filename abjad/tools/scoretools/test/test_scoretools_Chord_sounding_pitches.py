@@ -22,6 +22,6 @@ def test_scoretools_Chord_sounding_pitches_01():
         )
 
     assert staff[0].sounding_pitches == (
-        pitchtools.NamedPitch("c'''"), 
-        pitchtools.NamedPitch("e'''"),
+        NamedPitch("c'''"), 
+        NamedPitch("e'''"),
         )

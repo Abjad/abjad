@@ -21,7 +21,7 @@ def test_scoretools_NoteHead_written_pitch_02():
     '''
 
     note = Note(13, (1, 4))
-    note.note_head.written_pitch = pitchtools.NamedPitch(14)
+    note.note_head.written_pitch = NamedPitch(14)
 
     "NoteHead(d'')"
 
@@ -47,6 +47,6 @@ def test_scoretools_NoteHead_written_pitch_04():
     n2 = Note(14, (1, 4))
     n1.written_pitch = n2.written_pitch
 
-    assert n1.written_pitch == pitchtools.NamedPitch(14)
-    assert n2.written_pitch == pitchtools.NamedPitch(14)
+    assert n1.written_pitch == NamedPitch(14)
+    assert n2.written_pitch == NamedPitch(14)
     assert n1.written_pitch is not n2.written_pitch

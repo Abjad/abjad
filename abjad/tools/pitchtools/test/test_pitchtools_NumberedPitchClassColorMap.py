@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from abjad import *
 import pytest
 
@@ -14,8 +15,25 @@ def test_pitchtools_NumberedPitchClassColorMap_01():
     "PitchClassColorMap([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])"
 
     assert pcm.colors == ['red', 'green', 'blue']
-    assert pcm.pairs == [(0, 'green'), (1, 'blue'), (2, 'red'), (3, 'blue'), (4, 'red'), (5, 'green'), (6, 'blue'), (7, 'blue'), (8, 'green'), (9, 'red'), (10, 'red'), (11, 'green')]
-    assert pcm.pitch_iterables == [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
+    assert pcm.pairs == [
+        (0, 'green'), 
+        (1, 'blue'), 
+        (2, 'red'), 
+        (3, 'blue'), 
+        (4, 'red'), 
+        (5, 'green'), 
+        (6, 'blue'), 
+        (7, 'blue'), 
+        (8, 'green'), 
+        (9, 'red'), 
+        (10, 'red'), 
+        (11, 'green'),
+        ]
+    assert pcm.pitch_iterables == [
+        [-8, 2, 10, 21], 
+        [0, 11, 32, 41], 
+        [15, 25, 42, 43],
+        ]
     assert pcm.twelve_tone_complete
     assert not pcm.twenty_four_tone_complete
 

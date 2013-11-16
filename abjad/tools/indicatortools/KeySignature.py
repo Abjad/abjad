@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.indicatortools.ContextMark import ContextMark
+#from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class KeySignature(ContextMark):
+#class KeySignature(AbjadObject):
     r'''A key signature.
 
     ::
@@ -38,12 +40,14 @@ class KeySignature(ContextMark):
 
     def __init__(self, tonic, mode):
         from abjad.tools import pitchtools
+        from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
         ContextMark.__init__(self)
         tonic = pitchtools.NamedPitchClass(tonic)
         mode = tonalanalysistools.Mode(mode)
         self._tonic = tonic
         self._mode = mode
+        self._scope = scoretools.Staff
 
     ### SPECIAL METHODS ###
 

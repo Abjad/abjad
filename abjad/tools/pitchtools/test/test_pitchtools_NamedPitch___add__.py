@@ -4,15 +4,15 @@ from abjad import *
 
 def test_pitchtools_NamedPitch___add___01():
 
-    pitch = pitchtools.NamedPitch(12)
+    pitch = NamedPitch(12)
     named_interval = pitchtools.NamedInterval('minor', 2)
 
-    assert pitch + named_interval == pitchtools.NamedPitch('df', 5)
+    assert pitch + named_interval == NamedPitch('df', 5)
 
 
 def test_pitchtools_NamedPitch___add___02():
 
-    pitch = pitchtools.NamedPitch(12)
+    pitch = NamedPitch(12)
     numbered_interval = pitchtools.NumberedInterval(1)
 
-    assert pitch + numbered_interval == pitchtools.NamedPitch('cs', 5)
+    assert pitch + numbered_interval == NamedPitch('cs', 5)

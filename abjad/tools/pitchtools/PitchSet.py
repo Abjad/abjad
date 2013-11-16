@@ -18,7 +18,7 @@ class PitchSet(Set):
 
         >>> named_pitch_set = pitchtools.PitchSet(
         ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
-        ...     item_class=pitchtools.NamedPitch,
+        ...     item_class=NamedPitch,
         ...     )
         >>> named_pitch_set
         PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])

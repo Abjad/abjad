@@ -36,10 +36,10 @@ def test_pitchtools_NumberedPitchClass___init___03():
     r'''Pitch-class initialization works with pitches.
     '''
 
-    pitch_class = pitchtools.NumberedPitchClass(pitchtools.NamedPitch(0))
+    pitch_class = pitchtools.NumberedPitchClass(NamedPitch(0))
     assert isinstance(pitch_class, pitchtools.NumberedPitchClass)
 
-    pitch_class = pitchtools.NumberedPitchClass(pitchtools.NamedPitch(12))
+    pitch_class = pitchtools.NumberedPitchClass(NamedPitch(12))
     assert isinstance(pitch_class, pitchtools.NumberedPitchClass)
 
 

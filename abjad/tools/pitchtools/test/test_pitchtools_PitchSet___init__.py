@@ -13,5 +13,5 @@ def test_pitchtools_PitchSet___init___02():
     r'''Works with pitches.
     '''
 
-    assert len(pitchtools.PitchSet([pitchtools.NamedPitch(x) 
+    assert len(pitchtools.PitchSet([NamedPitch(x) 
         for x in [12, 14, 18, 19]])) == 4

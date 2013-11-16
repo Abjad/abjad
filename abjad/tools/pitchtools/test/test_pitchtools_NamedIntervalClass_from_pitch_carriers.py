@@ -7,15 +7,15 @@ def test_pitchtools_NamedIntervalClass_from_pitch_carriers_01():
     '''
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(-3), pitchtools.NamedPitch(12))
+        NamedPitch(-3), NamedPitch(12))
     assert mcpi == pitchtools.NamedIntervalClass('minor', 3)
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(-2), pitchtools.NamedPitch(12))
+        NamedPitch(-2), NamedPitch(12))
     assert mcpi == pitchtools.NamedIntervalClass('major', 2)
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(-1), pitchtools.NamedPitch(12))
+        NamedPitch(-1), NamedPitch(12))
     assert mcpi == pitchtools.NamedIntervalClass('minor', 2)
 
 
@@ -24,7 +24,7 @@ def test_pitchtools_NamedIntervalClass_from_pitch_carriers_02():
     '''
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(0), pitchtools.NamedPitch(12))
+        NamedPitch(0), NamedPitch(12))
     assert mcpi == pitchtools.NamedIntervalClass('perfect', 8)
 
 
@@ -33,15 +33,15 @@ def test_pitchtools_NamedIntervalClass_from_pitch_carriers_03():
     '''
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(9), pitchtools.NamedPitch(12))
+        NamedPitch(9), NamedPitch(12))
     assert mcpi == pitchtools.NamedIntervalClass('minor', 3)
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(10), pitchtools.NamedPitch(12))
+        NamedPitch(10), NamedPitch(12))
     assert mcpi == pitchtools.NamedIntervalClass('major', 2)
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(11), pitchtools.NamedPitch(12))
+        NamedPitch(11), NamedPitch(12))
     assert mcpi == pitchtools.NamedIntervalClass('minor', 2)
 
 
@@ -50,7 +50,7 @@ def test_pitchtools_NamedIntervalClass_from_pitch_carriers_04():
     '''
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(12), pitchtools.NamedPitch(12))
+        NamedPitch(12), NamedPitch(12))
     assert mcpi == pitchtools.NamedIntervalClass('perfect', 1)
 
 
@@ -59,15 +59,15 @@ def test_pitchtools_NamedIntervalClass_from_pitch_carriers_05():
     '''
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-3))
+        NamedPitch(12), NamedPitch(-3))
     assert mcpi == pitchtools.NamedIntervalClass('minor', -3)
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-2))
+        NamedPitch(12), NamedPitch(-2))
     assert mcpi == pitchtools.NamedIntervalClass('major', -2)
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(12), pitchtools.NamedPitch(-1))
+        NamedPitch(12), NamedPitch(-1))
     assert mcpi == pitchtools.NamedIntervalClass('minor', -2)
 
 
@@ -76,7 +76,7 @@ def test_pitchtools_NamedIntervalClass_from_pitch_carriers_06():
     '''
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(12), pitchtools.NamedPitch(0))
+        NamedPitch(12), NamedPitch(0))
     assert mcpi == pitchtools.NamedIntervalClass('perfect', -8)
 
 
@@ -85,13 +85,13 @@ def test_pitchtools_NamedIntervalClass_from_pitch_carriers_07():
     '''
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(12), pitchtools.NamedPitch(9))
+        NamedPitch(12), NamedPitch(9))
     assert mcpi == pitchtools.NamedIntervalClass('minor', -3)
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(12), pitchtools.NamedPitch(10))
+        NamedPitch(12), NamedPitch(10))
     assert mcpi == pitchtools.NamedIntervalClass('major', -2)
 
     mcpi = pitchtools.NamedIntervalClass.from_pitch_carriers(
-        pitchtools.NamedPitch(12), pitchtools.NamedPitch(11))
+        NamedPitch(12), NamedPitch(11))
     assert mcpi == pitchtools.NamedIntervalClass('minor', -2)

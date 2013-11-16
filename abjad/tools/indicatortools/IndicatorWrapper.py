@@ -2,7 +2,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class IndicatorExpression(AbjadObject):
+class IndicatorWrapper(AbjadObject):
     r'''An indicator expression.
     '''
 

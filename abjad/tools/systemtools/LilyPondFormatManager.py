@@ -272,28 +272,27 @@ class LilyPondFormatManager(object):
         return contributions
 
     @staticmethod
-    def get_context_mark_format_pieces(mark):
-        r'''Gets context mark format pieces for `mark`.
+    def get_context_mark_format_pieces(context_mark):
+        r'''Gets format pieces for `context_mark`.
 
         Returns list.
         '''
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
+        assert isinstance(context_mark, indicatortools.ContextMark), \
+            repr(context_mark)
         addenda = []
-        mark_format = mark._lilypond_format
-        if isinstance(mark_format, (tuple, list)):
-            addenda.extend(mark_format)
+        context_mark_format = context_mark._lilypond_format
+        if isinstance(context_mark_format, (tuple, list)):
+            addenda.extend(context_mark_format)
         else:
-            addenda.append(mark_format)
-        # cosmetic mark is a hack to allow marks to format even
-        # without effective context;
-        # currently used only in metric grid formatting
-        if mark._get_effective_context() is not None or \
-            getattr(mark, '_is_cosmetic_mark', False) or \
-            (isinstance(mark, indicatortools.TimeSignature) and
-            isinstance(mark._start_component, scoretools.Measure)):
+            addenda.append(context_mark_format)
+        if context_mark._get_effective_context() is not None:
             return addenda
-        addenda = [r'%%% ' + addendum + r' %%%' for addendum in addenda]
+        if isinstance(context_mark, indicatortools.TimeSignature):
+            if isinstance(context_mark._start_component, scoretools.Measure):
+                return addenda
+        addenda = [r'%%% {} %%%'.format(addendum) for addendum in addenda]
         return addenda
 
     @staticmethod

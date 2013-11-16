@@ -10,4 +10,4 @@ def test_pitchtools_NamedPitch_max_01():
     written_pitches = [note.written_pitch for note in staff]
     max_pitch = max(written_pitches)
 
-    assert max_pitch == pitchtools.NamedPitch('f', 4)
+    assert max_pitch == NamedPitch('f', 4)

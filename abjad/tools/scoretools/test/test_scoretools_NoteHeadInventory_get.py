@@ -41,15 +41,15 @@ def test_scoretools_NoteHeadInventory_get_03():
 
     chord = Chord("<c' d' b'>4")
 
-    pitch = pitchtools.NamedPitch("c'")
+    pitch = NamedPitch("c'")
     note_head = chord.note_heads.get(pitch)
     assert note_head.written_pitch == 0
 
-    pitch = pitchtools.NamedPitch("d'")
+    pitch = NamedPitch("d'")
     note_head = chord.note_heads.get(pitch)
     assert note_head.written_pitch == 2
 
-    pitch = pitchtools.NamedPitch("b'")
+    pitch = NamedPitch("b'")
     note_head = chord.note_heads.get(pitch)
     assert note_head.written_pitch == 11
 

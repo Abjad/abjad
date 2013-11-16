@@ -19,7 +19,7 @@ class NumberedPitchClass(PitchClass):
 
     ::
 
-        >>> pitchtools.NumberedPitchClass(pitchtools.NamedPitch('g,'))
+        >>> pitchtools.NumberedPitchClass(NamedPitch('g,'))
         NumberedPitchClass(7)
 
     ::

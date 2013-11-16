@@ -6,7 +6,7 @@ def apply_accidental_to_named_pitch(named_pitch, accidental=None):
 
     ::
 
-        >>> pitch = pitchtools.NamedPitch("cs''")
+        >>> pitch = NamedPitch("cs''")
         >>> pitchtools.apply_accidental_to_named_pitch(pitch, 'f')
         NamedPitch("c''")
 

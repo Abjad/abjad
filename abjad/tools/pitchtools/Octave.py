@@ -20,7 +20,7 @@ class Octave(AbjadObject):
 
     ::
 
-        >>> pitchtools.Octave(pitchtools.NamedPitch("cs''"))
+        >>> pitchtools.Octave(NamedPitch("cs''"))
         Octave(5)
 
     ::

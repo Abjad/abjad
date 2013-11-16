@@ -14,7 +14,7 @@ def test_quantizationtools_QEventSequence_from_millisecond_pitch_pairs_01():
     assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0),
-            (pitchtools.NamedPitch("c'"),)
+            (NamedPitch("c'"),)
             ),
         quantizationtools.SilentQEvent(
             durationtools.Offset(100, 1)
@@ -22,8 +22,8 @@ def test_quantizationtools_QEventSequence_from_millisecond_pitch_pairs_01():
         quantizationtools.PitchedQEvent(
             durationtools.Offset(400, 1),
             (
-                pitchtools.NamedPitch("cs'"),
-                pitchtools.NamedPitch("e'")
+                NamedPitch("cs'"),
+                NamedPitch("e'")
             )
             ),
         quantizationtools.SilentQEvent(
@@ -31,11 +31,11 @@ def test_quantizationtools_QEventSequence_from_millisecond_pitch_pairs_01():
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(1050, 1),
-            (pitchtools.NamedPitch("f'"),)
+            (NamedPitch("f'"),)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(1450, 1),
-            (pitchtools.NamedPitch("g'"),)
+            (NamedPitch("g'"),)
             ),
         quantizationtools.TerminalQEvent(
             durationtools.Offset(2050, 1),

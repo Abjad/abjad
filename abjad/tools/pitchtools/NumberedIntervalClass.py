@@ -82,8 +82,8 @@ class NumberedIntervalClass(IntervalClass):
         ::
 
             >>> pitchtools.NumberedIntervalClass.from_pitch_carriers(
-            ...     pitchtools.NamedPitch(-2), 
-            ...     pitchtools.NamedPitch(12),
+            ...     NamedPitch(-2), 
+            ...     NamedPitch(12),
             ...     )
             NumberedIntervalClass(+2)
 

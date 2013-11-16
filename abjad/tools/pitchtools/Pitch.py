@@ -275,7 +275,7 @@ class Pitch(AbjadObject):
 
         ::
 
-            >>> pitchtools.NamedPitch("c").accidental_spelling
+            >>> NamedPitch("c").accidental_spelling
             'mixed'
 
         Returns string.

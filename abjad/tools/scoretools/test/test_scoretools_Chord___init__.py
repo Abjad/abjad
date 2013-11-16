@@ -31,8 +31,8 @@ def test_scoretools_Chord___init___04():
     '''
 
     pitches = []
-    pitches.append(pitchtools.NamedPitch('ds', 4))
-    pitches.append(pitchtools.NamedPitch('ef', 4))
+    pitches.append(NamedPitch('ds', 4))
+    pitches.append(NamedPitch('ef', 4))
     chord = Chord(pitches, (1, 4))
     assert format(chord) == "<ds' ef'>4"
 
@@ -41,7 +41,7 @@ def test_scoretools_Chord___init___05():
     r'''Initialize chord with pitches and pitch numbers together.
     '''
 
-    pitches = [2, ('ef', 4), pitchtools.NamedPitch(4)]
+    pitches = [2, ('ef', 4), NamedPitch(4)]
     chord = Chord(pitches, (1, 4))
     assert format(chord) == "<d' ef' e'>4"
 

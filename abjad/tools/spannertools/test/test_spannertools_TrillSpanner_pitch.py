@@ -9,7 +9,7 @@ def test_spannertools_TrillSpanner_pitch_01():
     staff = Staff("c'8 d'8 e'8 f'8")
     trill = spannertools.TrillSpanner()
     attach(trill, staff[:2])
-    trill.pitch = pitchtools.NamedPitch(1)
+    trill.pitch = NamedPitch(1)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -59,7 +59,7 @@ def test_spannertools_TrillSpanner_pitch_03():
     staff = Staff("c'8 d'8 e'8 f'8")
     trill = spannertools.TrillSpanner()
     attach(trill, staff[:2])
-    trill.pitch = pitchtools.NamedPitch(1)
+    trill.pitch = NamedPitch(1)
     trill.pitch = None
 
     assert systemtools.TestManager.compare(

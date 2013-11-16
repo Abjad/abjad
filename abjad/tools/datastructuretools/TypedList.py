@@ -45,11 +45,11 @@ class TypedList(TypedCollection):
     ::
 
         >>> pitch_collection = datastructuretools.TypedList(
-        ...     item_class=pitchtools.NamedPitch)
+        ...     item_class=NamedPitch)
         >>> pitch_collection.append(0)
         >>> pitch_collection.append("d'")
         >>> pitch_collection.append(('e', 4))
-        >>> pitch_collection.append(pitchtools.NamedPitch("f'"))
+        >>> pitch_collection.append(NamedPitch("f'"))
 
     ::
 
@@ -282,7 +282,7 @@ class TypedList(TypedCollection):
 
             >>> pitch_collection = datastructuretools.TypedList(
             ...     tokens=('cqf', "as'", 'b,', 'dss'),
-            ...     item_class=pitchtools.NamedPitch)
+            ...     item_class=NamedPitch)
             >>> pitch_collection.index("as'")
             1
 

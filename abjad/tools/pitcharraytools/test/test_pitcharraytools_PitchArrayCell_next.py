@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from abjad.tools import pitcharraytools
-from abjad.tools.pitcharraytools import PitchArrayCell
 import pytest
 
 
@@ -31,6 +29,6 @@ def test_pitcharraytools_PitchArrayCell_next_02():
 
 def test_pitcharraytools_PitchArrayCell_next_03():
 
-    cell = PitchArrayCell([pitchtools.NamedPitch(1)])
+    cell = pitcharraytools.PitchArrayCell([NamedPitch(1)])
 
     assert pytest.raises(IndexError, 'cell.next')

@@ -26,8 +26,7 @@ def test_UserInputGetter_append_values_01():
 
     getter = scoremanagertools.iotools.UserInputGetter()
     getter.append_named_pitch('attribute')
-    assert getter._run(pending_user_input="cs'") == \
-        pitchtools.NamedPitch("cs'")
+    assert getter._run(pending_user_input="cs'") == NamedPitch("cs'")
 
     getter = scoremanagertools.iotools.UserInputGetter()
     getter.append_string('attribute')

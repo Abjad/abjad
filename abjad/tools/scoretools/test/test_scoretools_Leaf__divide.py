@@ -7,7 +7,7 @@ def test_scoretools_Leaf__divide_01():
     '''
 
     staff = Staff("<d' ef' e'>4")
-    pitch = pitchtools.NamedPitch('D4')
+    pitch = NamedPitch('D4')
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 
@@ -30,7 +30,7 @@ def test_scoretools_Leaf__divide_02():
     '''
 
     staff = Staff("<d' ef' e'>4")
-    pitch = pitchtools.NamedPitch('Eb4')
+    pitch = NamedPitch('Eb4')
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 
@@ -53,7 +53,7 @@ def test_scoretools_Leaf__divide_03():
     '''
 
     staff = Staff("<d' ef' e'>4")
-    pitch = pitchtools.NamedPitch('E4')
+    pitch = NamedPitch('E4')
     treble, bass = staff[0]._divide(pitch)
     staff.extend([treble, bass])
 

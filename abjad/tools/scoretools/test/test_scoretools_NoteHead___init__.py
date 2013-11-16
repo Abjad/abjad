@@ -7,7 +7,7 @@ def test_scoretools_NoteHead___init___01():
     '''
 
     notehead = scoretools.NoteHead(6)
-    assert notehead.written_pitch == pitchtools.NamedPitch(6)
+    assert notehead.written_pitch == NamedPitch(6)
 
 
 def test_scoretools_NoteHead___init___02():
@@ -15,7 +15,7 @@ def test_scoretools_NoteHead___init___02():
     '''
 
     notehead = scoretools.NoteHead('cs,,,')
-    assert notehead.written_pitch == pitchtools.NamedPitch('cs,,,')
+    assert notehead.written_pitch == NamedPitch('cs,,,')
 
 
 def test_scoretools_NoteHead___init___03():
@@ -38,5 +38,5 @@ def test_scoretools_NoteHead___init___04():
     tweak = lilypondnametools.LilyPondNameManager()
     tweak.color = 'red'
 
-    assert note_head.written_pitch == pitchtools.NamedPitch("cs''")
+    assert note_head.written_pitch == NamedPitch("cs''")
     assert note_head.tweak == tweak
