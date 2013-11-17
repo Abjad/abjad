@@ -291,38 +291,19 @@ class Tempo(ContextMark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def duration():
-        def fget(self):
-            r'''Gets and sets tempo duration.
 
-            ::
+    @property
+    def duration(self):
+        r'''Duration of tempo.
 
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.duration
-                Duration(1, 8)
+        ::
 
-            Sets tempo duration:
+            >>> tempo.duration
+            Duration(1, 4)
 
-            ::
-
-                >>> tempo.duration = Duration(1, 4)
-                >>> tempo.duration
-                Duration(1, 4)
-
-            Returns none when tempo is imprecise.
-
-            Returns duration otherwise.
-            '''
-            return self._duration
-        def fset(self, duration):
-            if duration is not None:
-                try:
-                    duration = durationtools.Duration(duration)
-                except TypeError:
-                    duration = durationtools.Duration(*duration)
-            self._duration = duration
-        return property(**locals())
+        Returns duration.
+        '''
+        return self._duration
 
     @property
     def is_imprecise(self):
@@ -378,57 +359,31 @@ class Tempo(ContextMark):
             self.units_per_minute
         return fractions.Fraction(result)
 
-    @apply
-    def textual_indication():
-        def fget(self):
-            r'''Gets and sets textual indication of tempo.
+    @property
+    def textual_indication(self):
+        r'''Optional textual indication of tempo.
 
-            ::
+        ::
 
-                >>> tempo = Tempo('Langsam', Duration(1, 8), 52)
-                >>> tempo.textual_indication
-                'Langsam'
+            >>> tempo.textual_indication is None
+            True
 
-            Returns string or none.
-            '''
-            return self._textual_indication
-        def fset(self, textual_indication):
-            assert isinstance(textual_indication, (str, type(None)))
-            self._textual_indication = textual_indication
-        return property(**locals())
+        Returns string or none.
+        '''
+        return self._textual_indication
 
-    @apply
-    def units_per_minute():
-        def fget(self):
-            r'''Gets and sets units per minute of tempo.
+    @property
+    def units_per_minute(self):
+        r'''Units per minute of tempo.
 
-            ::
+        ::
 
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.units_per_minute
-                52
+            >>> tempo.units_per_minute
+            52
 
-            Sets units per minute of tempo:
-
-            ::
-
-                >>> tempo.units_per_minute = 56
-                >>> tempo.units_per_minute
-                56
-
-            Returns number.
-            '''
-            return self._units_per_minute
-        def fset(self, units_per_minute):
-            valid_types = (numbers.Number, list, tuple, type(None))
-            assert isinstance(units_per_minute, valid_types)
-            if isinstance(units_per_minute, (list, tuple)):
-                assert len(units_per_minute) == 2
-                assert all(
-                    isinstance(x, numbers.Number) for x in units_per_minute)
-                units_per_minute = tuple(sorted(units_per_minute))
-            self._units_per_minute = units_per_minute
-        return property(**locals())
+        Returns number.
+        '''
+        return self._units_per_minute
 
     ### PUBLIC METHODS ###
 
