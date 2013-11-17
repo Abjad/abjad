@@ -59,8 +59,7 @@ class Leaf(Component):
 
         Returns string.
         '''
-        return '{}({!r})'.format(
-            type(self).__name__, self._compact_representation)
+        return systemtools.StorageFormatManager.get_repr_format(self)
 
     def __str__(self):
         '''String representation of leaf.
@@ -93,7 +92,6 @@ class Leaf(Component):
 
     @property
     def _formatted_duration(self):
-        from abjad.tools import indicatortools
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = None
         multipliers = self._get_indicators(durationtools.Multiplier)
@@ -131,6 +129,15 @@ class Leaf(Component):
     @property
     def _preprolated_duration(self):
         return self._multiplied_duration
+
+    @property
+    def _repr_specification(self):
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            body_text=repr(self._compact_representation),
+            positional_argument_values=(),
+            )
 
     @property
     def _storage_format_specification(self):
