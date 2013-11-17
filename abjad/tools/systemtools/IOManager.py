@@ -288,7 +288,7 @@ class IOManager(object):
     @staticmethod
     def profile_expr(
         expr,
-        sort_by='cum',
+        sort_by='cumulative',
         line_count=12, strip_dirs=True,
         print_callers=False,
         print_callees=False,
@@ -327,7 +327,7 @@ class IOManager(object):
 
         Set `expr` to any string of Abjad input.
 
-        Set `sort_by` to `'cum'`, `'time'` or `'calls'`.
+        Set `sort_by` to `'cumulative'`, `'time'` or `'calls'`.
 
         Set `line_count` to any nonnegative integer.
 
