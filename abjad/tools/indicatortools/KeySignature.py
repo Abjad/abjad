@@ -47,7 +47,7 @@ class KeySignature(ContextMark):
         mode = tonalanalysistools.Mode(mode)
         self._tonic = tonic
         self._mode = mode
-        self._scope = scoretools.Staff
+        self._default_scope = scoretools.Staff
 
     ### SPECIAL METHODS ###
 

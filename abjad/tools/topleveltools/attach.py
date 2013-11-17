@@ -13,23 +13,23 @@ def attach(indicator, component_expression, scope=None):
     from abjad.tools import scoretools
 
     if scope is not None and hasattr(indicator, '_attach'):
-        assert hasattr(indicator, '_scope')
+        assert hasattr(indicator, 'scope')
         if isinstance(scope, types.TypeType):
             assert issubclass(scope, scoretools.Context)
         else:
             assert isinstance(scope, scoretools.Context)
         indicator._scope = scope
     elif scope is not None and not hasattr(indicator, '_attach'):
-        assert hasattr(indicator, '_scope')
-        scope = scope or indicator._scope
+        assert hasattr(indicator, 'scope')
+        scope = scope or indicator.scope
         if isinstance(scope, types.TypeType):
             assert issubclass(scope, scoretools.Context), repr(scope)
         else:
             assert isinstance(scope, scoretools.Context), repr(scope)
         wrapper = indicatortools.IndicatorWrapper(indicator, scope)
         indicator = wrapper
-    elif not hasattr(indicator, '_attach') and hasattr(indicator, '_scope'):
-        scope = scope or indicator._scope
+    elif not hasattr(indicator, '_attach') and hasattr(indicator, 'scope'):
+        scope = scope or indicator.scope
         if isinstance(scope, types.TypeType):
             assert issubclass(scope, scoretools.Context), repr(scope)
         else:
