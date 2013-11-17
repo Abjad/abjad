@@ -100,38 +100,19 @@ class StaffChange(ContextMark):
 
     @property
     def _lilypond_format(self):
-        return r'\change Staff = %s' % self.staff.name
+        return r'\change Staff = {}'.format(self.staff.name)
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def staff():
-        def fget(self):
-            r'''Gets and sets staff of staff change.
+    @property
+    def staff(self):
+        r'''Staff of staff change.
 
-            ::
+        ::
 
-                >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
-                >>> rh_staff.name = 'RHStaff'
-                >>> staff_change = indicatortools.StaffChange(rh_staff)
-                >>> staff_change.staff
-                Staff-"RHStaff"{4}
+            >>> staff_change.staff
+            Staff-"LHStaff"{1}
 
-            Sets staff of staff change:
-
-            ::
-
-                >>> lh_staff = Staff("s2")
-                >>> lh_staff.name = 'LHStaff'
-                >>> staff_change.staff = lh_staff
-                >>> staff_change.staff
-                Staff-"LHStaff"{1}
-
-            Returns staff.
-            '''
-            return self._staff
-        def fset(self, staff):
-            from abjad.tools.scoretools.Staff import Staff
-            assert isinstance(staff, Staff)
-            self._staff = staff
-        return property(**locals())
+        Returns staff.
+        '''
+        return self._staff
