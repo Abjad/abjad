@@ -44,14 +44,18 @@ class StorageFormatManager(object):
         elif as_storage_format and hasattr(
             value, '_storage_format_specification'):
             specification = value._storage_format_specification
-            pieces = StorageFormatManager.get_storage_format_pieces(
-                specification)
+            pieces = StorageFormatManager.get_format_pieces(
+                specification,
+                as_storage_format=True,
+                )
             result.extend(pieces)
         elif not as_storage_format and hasattr(
             value, '_repr_specification'):
             specification = value._rep_format_specification
-            pieces = StorageFormatManager.get_repr_pieces(
-                specification)
+            pieces = StorageFormatManager.get_format_pieces(
+                specification,
+                as_storage_format=False,
+                )
             result.extend(pieces)
         elif isinstance(value, (list, tuple)):
             # just return the repr, if all contents are builtin types
@@ -122,8 +126,6 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_keyword_argument_names(object_):
-#        if hasattr(object_, '_keyword_argument_names'):
-#            return object_._keyword_argument_names
         return StorageFormatManager.get_signature_keyword_argument_names(
             object_)
 
@@ -144,17 +146,11 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_positional_argument_names(object_):
-#        if StorageFormatManager.is_instance(object_):
-#            if hasattr(object_, '_positional_argument_names'):
-#                return object_._positional_argument_names
         return StorageFormatManager.get_signature_positional_argument_names(
             object_)
 
     @staticmethod
     def get_positional_argument_values(object_):
-#        if StorageFormatManager.is_instance(object_):
-#            if hasattr(object_, '_positional_argument_values'):
-#                return object_._positional_argument_values
         names = StorageFormatManager.get_positional_argument_names(object_)
         result = []
         for name in names:
@@ -193,16 +189,34 @@ class StorageFormatManager(object):
         return ()
 
     @staticmethod
+    def get_repr_format(
+        object_,
+        ):
+        assert '_repr_specification' in dir(object_)
+        specification = object_._repr_specification
+        pieces = StorageFormatManager.get_format_pieces(
+            specification,
+            as_storage_format=False,
+            )
+        return ''.join(pieces)
+
+    @staticmethod
     def get_storage_format(
         object_,
         ):
         assert '_storage_format_specification' in dir(object_)
         specification = object_._storage_format_specification
-        pieces = StorageFormatManager.get_storage_format_pieces(specification)
+        pieces = StorageFormatManager.get_format_pieces(
+            specification,
+            as_storage_format=True,
+            )
         return ''.join(pieces)
 
     @staticmethod
-    def get_storage_format_pieces(specification):
+    def get_format_pieces(
+        specification,
+        as_storage_format=True,
+        ):
         if specification.storage_format_pieces is not None:
             return specification.storage_format_pieces
 
@@ -287,8 +301,6 @@ class StorageFormatManager(object):
         '''
         if StorageFormatManager.is_instance(object_):
             class_name = type(object_).__name__
-#            if hasattr(object_, '_tools_package_name'):
-#                return object_._tools_package_name
         else:
             class_name = object_.__name__
         for part in reversed(object_.__module__.split('.')):
@@ -310,8 +322,6 @@ class StorageFormatManager(object):
         tools_package_name = None
         if StorageFormatManager.is_instance(object_):
             class_name = type(object_).__name__
-#            if hasattr(object_, '_tools_package_name'):
-#                tools_package_name = object_._tools_package_name
         else:
             class_name = object_.__name__
         if not tools_package_name:
@@ -328,4 +338,3 @@ class StorageFormatManager(object):
         elif type(object_) is object_.__class__:
             return True
         return False
-
