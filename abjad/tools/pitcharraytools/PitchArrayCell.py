@@ -171,7 +171,8 @@ class PitchArrayCell(AbjadObject):
             if 0 < cell_token:
                 pitches, width = [], cell_token
             else:
-                raise ValueError('integer width token must be positive.')
+                message = 'integer width token must be positive.'
+                raise ValueError(message)
         elif isinstance(cell_token, NamedPitch):
             pitches, width = [cell_token], 1
         elif isinstance(cell_token, list):
@@ -179,7 +180,8 @@ class PitchArrayCell(AbjadObject):
             pitches = self._parse_pitch_token(pitch_token)
         elif isinstance(cell_token, tuple):
             if not len(cell_token) == 2:
-                raise ValueError('tuple token must be of length two.')
+                message = 'tuple token must be of length two.'
+                raise ValueError(message)
             if isinstance(cell_token[0], str):
                 pitches = self._parse_pitch_token(cell_token)
                 width = 1
@@ -205,7 +207,8 @@ class PitchArrayCell(AbjadObject):
                 pitch = NamedPitch(element)
                 pitches.append(pitch)
         else:
-            raise TypeError('pitch token must be number, pitch or list.')
+            message = 'pitch token must be number, pitch or list.'
+            raise TypeError(message)
         return pitches
 
     def _withdraw(self):
@@ -230,7 +233,8 @@ class PitchArrayCell(AbjadObject):
                     indices = tuple(indices)
                     return indices
                 cumulative_width += cell.width
-        raise IndexError('cell has no parent row.')
+        message = 'cell has no parent row.'
+        raise IndexError(message)
 
     @property
     def indices(self):
@@ -254,9 +258,11 @@ class PitchArrayCell(AbjadObject):
     def next(self):
         if self.parent_row is not None:
             if self.is_last_in_row:
-                raise IndexError('cell is last in row.')
+                message = 'cell is last in row.'
+                raise IndexError(message)
             return self.parent_row[self.column_indices[-1] + 1]
-        raise IndexError('cell has no parent row.')
+        message = 'cell has no parent row.'
+        raise IndexError(message)
 
     @property
     def parent_array(self):
@@ -286,7 +292,8 @@ class PitchArrayCell(AbjadObject):
             return self._pitches
         def fset(self, arg):
             if not isinstance(arg, (list, tuple)):
-                raise TypeError('must be list or tuple of pitches.')
+                message = 'must be list or tuple of pitches.'
+                raise TypeError(message)
             self._pitches = arg
         return property(**locals())
 
@@ -294,9 +301,11 @@ class PitchArrayCell(AbjadObject):
     def prev(self):
         if self.parent_row is not None:
             if self.is_first_in_row:
-                raise IndexError('cell is first in row.')
+                message = 'cell is first in row.'
+                raise IndexError(message)
             return self.parent_row[self.column_indices[0] - 1]
-        raise IndexError('cell has no parent row.')
+        message = 'cell has no parent row.'
+        raise IndexError(message)
 
     @property
     def row_index(self):

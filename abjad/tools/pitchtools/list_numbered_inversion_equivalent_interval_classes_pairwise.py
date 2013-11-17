@@ -114,7 +114,8 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(pitch_carriers,
         if pitchtools.Pitch.is_pitch_carrier(pitch_carriers[0]):
             return result
         else:
-            raise TypeError('must be Abjad pitch, note, note head or chord.')
+            message = 'must be pitch, note, note-head or chord.'
+            raise TypeError(message)
 
     if wrap:
         pairs = sequencetools.iterate_sequence_pairwise_wrapped(pitch_carriers)

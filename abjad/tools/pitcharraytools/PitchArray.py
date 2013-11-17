@@ -32,9 +32,11 @@ class PitchArray(AbjadObject):
 
     def __add__(self, arg):
         if not isinstance(arg, PitchArray):
-            raise TypeError('must be pitch array.')
+            message = 'must be pitch array.'
+            raise TypeError(message)
         if not self.depth == arg.depth:
-            raise ValueError('array depth must match.')
+            message = 'array depth must match.'
+            raise ValueError(message)
         new_array = PitchArray([])
         for self_row, arg_row in zip(self.rows, arg.rows):
             new_row = self_row + arg_row
@@ -54,7 +56,8 @@ class PitchArray(AbjadObject):
                     return True
             return False
         else:
-            raise ValueError('must be row, column, pitch or pitch cell.')
+            message = 'must be row, column, pitch or pitch cell.'
+            raise ValueError(message)
 
     def __copy__(self):
         return PitchArray(self.cell_tokens_by_row)
@@ -109,7 +112,8 @@ class PitchArray(AbjadObject):
         Returns self.
         '''
         if not isinstance(arg, PitchArray):
-            raise TypeError('must be pitch array.')
+            message = 'must be pitch array.'
+            raise TypeError(message)
         for self_row, arg_row in zip(self.rows, arg.rows):
             self_row += arg_row
         return self
@@ -132,7 +136,8 @@ class PitchArray(AbjadObject):
             arg._parent_array = self
             self._rows[i] = arg
         else:
-            raise ValueError('must be integer index.')
+            message = 'must be integer index.'
+            raise ValueError(message)
 
     def __str__(self):
         return self._two_by_two_format_string
@@ -277,7 +282,8 @@ class PitchArray(AbjadObject):
 
     def append_column(self, column):
         if not isinstance(column, PitchArrayColumn):
-            raise TypeError('must be column.')
+            message = 'must be column.'
+            raise TypeError(message)
         column._parent_array = self
         column_depth = column.depth
         if self.depth < column_depth:
@@ -288,7 +294,8 @@ class PitchArray(AbjadObject):
 
     def append_row(self, row):
         if not isinstance(row, PitchArrayRow):
-            raise TypeError('must be row.')
+            message = 'must be row.'
+            raise TypeError(message)
         row._parent_array = self
         self._rows.append(row)
 
@@ -569,7 +576,8 @@ class PitchArray(AbjadObject):
 
     def remove_row(self, row):
         if row not in self.rows:
-            raise ValueError('row not in array.')
+            message = 'row not in array.'
+            raise ValueError(message)
         self._rows.remove(row)
         row._parent_array = None
 

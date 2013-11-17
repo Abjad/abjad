@@ -250,13 +250,15 @@ class PitchArrayColumn(AbjadObject):
 
     def append(self, cell):
         if not isinstance(cell, PitchArrayCell):
-            raise TypeError('must be cell.')
+            message = 'must be cell.'
+            raise TypeError(message)
         cell._row_parent = self
         self._cells.append(cell)
 
     def extend(self, cells):
         if not all(isinstance(cell, PitchArrayCell) for cell in cells):
-            raise TypeError('must be cells.')
+            message = 'must be cells.'
+            raise TypeError(message)
         for cell in cells:
             self.append(cell)
 

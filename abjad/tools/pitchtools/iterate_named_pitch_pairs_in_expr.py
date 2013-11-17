@@ -102,7 +102,8 @@ def iterate_named_pitch_pairs_in_expr(expr):
             for pair in pitchtools.list_ordered_named_pitch_pairs_from_expr_1_to_expr_2(*leaf_pair):
                 yield pair
         else:
-            raise TypeError('leaf pair must be set or tuple.')
+            message = 'leaf pair must be set or tuple.'
+            raise TypeError(message)
         # iterate chord pitches if last leaf is chord
         for pair in pitchtools.list_unordered_named_pitch_pairs_in_expr(leaf_pair_list[1]):
             yield pair

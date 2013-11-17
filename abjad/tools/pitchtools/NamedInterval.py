@@ -45,7 +45,8 @@ class NamedInterval(Interval):
         elif len(args) == 2:
             quality_string, number = args
         else:
-            raise ValueError('Bad input: {!r}'.format(args))
+            message = 'bad input: {!r}'.format(args)
+            raise ValueError(message)
         self._quality_string = quality_string
         self._number = number
 
@@ -111,7 +112,8 @@ class NamedInterval(Interval):
     def __mul__(self, arg):
         from abjad.tools import pitchtools
         if not isinstance(arg, (int, long)):
-            raise TypeError('%s must be int.' % arg)
+            message = 'must be integer: {!r}.'.format(arg)
+            raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         for i in range(abs(arg)):
             dummy_pitch += self
@@ -128,13 +130,13 @@ class NamedInterval(Interval):
         return type(self)(self.quality_string, -self.number)
 
     def __repr__(self):
-        return "%s('%s')" % (type(self).__name__, str(self))
+        return "{}('{}')".format(type(self).__name__, str(self))
 
     def __rmul__(self, arg):
         return self * arg
 
     def __str__(self):
-        return '%s%s%s' % (
+        return '{}{}{}'.format(
             self._direction_symbol,
             self._quality_abbreviation,
             abs(self.number),

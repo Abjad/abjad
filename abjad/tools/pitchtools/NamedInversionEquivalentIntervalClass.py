@@ -34,8 +34,9 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         elif len(args) == 2:
             self._init_by_quality_string_and_number(*args)
         else:
-            raise ValueError('can not initialize diatonic interval-class: '
-                '{!r}'.format(args))
+            message = 'can not initialize diatonic interval-class: {!r}.'
+            message = message.format(args)
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 
@@ -53,7 +54,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     def _init_by_quality_string_and_number(self, quality_string, number):
         if number == 0:
-            raise ValueError('named intervals can not equal zero.')
+            message = 'named interval can not equal zero.'
+            raise ValueError(message)
         elif abs(number) == 1:
             number = 1
         elif abs(number) % 7 == 0:

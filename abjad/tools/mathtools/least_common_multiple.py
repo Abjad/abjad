@@ -15,14 +15,17 @@ def least_common_multiple(*integers):
 
     if len(integers) == 1:
         if not isinstance(integers[0], int):
-            raise TypeError('must be integer: {!r}.'.format(integers[0]))
+            message = 'must be integer: {!r}.'.format(integers[0])
+            raise TypeError(message)
         if not 0 < integers[0]:
-            raise ValueError('must be positive: {!r}.'.format(integers[0]))
+            message = 'must be positive: {!r}.'.format(integers[0])
+            raise ValueError(message)
         return integers[0]
 
     current_lcm = _least_common_multiple_helper(*integers[:2])
     for remaining_positive_integer in integers[2:]:
-        current_lcm = _least_common_multiple_helper(current_lcm, remaining_positive_integer)
+        current_lcm = _least_common_multiple_helper(
+            current_lcm, remaining_positive_integer)
     return current_lcm
 
 

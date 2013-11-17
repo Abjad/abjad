@@ -54,8 +54,9 @@ class NamedPitch(Pitch):
             elif isinstance(args[0], str):
                 self._init_by_pitch_name(*args)
             else:
-                raise ValueError('Cannot instantiate {} from {!r}.'.format(
-                    type(self).__name__, args))
+                message = 'can not initialize {} from {!r}.'
+                message = message.format(type(self).__name__, args)
+                raise ValueError(message)
         elif len(args) == 2:
             if isinstance(args[0], str):
                 self._init_by_pitch_class_name_and_octave_number(*args)
@@ -70,11 +71,13 @@ class NamedPitch(Pitch):
                 else:
                     raise TypeError
             else:
-                raise ValueError('Cannot instantiate {} from {!r}.'.format(
-                    type(self).__name__, args))
+                message = 'can not initialize {} from {!r}.'
+                message = message.format(type(self).__name__, args)
+                raise ValueError(message)
         else:
-            raise ValueError('Cannot instantiate {} from {!r}.'.format(
-                type(self).__name__, args))
+            message = 'can not initialize {} from {!r}.'
+            message = message.format(type(self).__name__, args)
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 

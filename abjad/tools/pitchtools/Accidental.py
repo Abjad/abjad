@@ -185,7 +185,8 @@ class Accidental(AbjadObject):
 
     def __add__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('can only add accidental to other accidental.')
+            message = 'can only add accidental to other accidental.'
+            raise TypeError(message)
         semitones = self.semitones + arg.semitones
         return type(self)(semitones)
 
@@ -229,7 +230,8 @@ class Accidental(AbjadObject):
 
     def __sub__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('can only sub accidental from other accidental.')
+            message = 'can only subtract accidental from other accidental.'
+            raise TypeError(message)
         semitones = self.semitones - arg.semitones
         return type(self)(semitones)
 

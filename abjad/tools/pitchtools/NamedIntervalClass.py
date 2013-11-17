@@ -42,15 +42,19 @@ class NamedIntervalClass(IntervalClass):
         elif len(args) == 2:
             quality_string, number = args
         else:
-            raise TypeError('what type of instance is this?, {!r}'.format(
-                args))
+            message = 'bad input: {!r}.'.format(args)
+            raise TypeError(message)
         if quality_string not in \
             NamedIntervalClass._acceptable_quality_strings:
-            raise ValueError('not acceptable quality string.')
+            message = 'not acceptable quality string: {!r}.'
+            message =  message.format(quality_string)
+            raise ValueError(message)
         if not isinstance(number, int):
-            raise TypeError('must be integer.')
+            message = 'must be integer: {!r}.'.format(number)
+            raise TypeError(message)
         if number == 0:
-            raise ValueError('must be nonzero.')
+            message = 'must be nonzero: {!r}.'.format(number)
+            raise ValueError(number)
         sign = mathtools.sign(number)
         abs_number = abs(number)
         if abs_number % 7 == 1 and 8 <= abs_number:

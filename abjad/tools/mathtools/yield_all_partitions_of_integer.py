@@ -30,9 +30,11 @@ def yield_all_partitions_of_integer(n):
     from abjad.tools import mathtools
 
     if not isinstance(n, int):
-        raise TypeError('must be integer.')
+        message = 'must be integer.'
+        raise TypeError(message)
     if not 0 < n:
-        raise ValueError('must be positive.')
+        message = 'must be positive.'
+        raise ValueError(message)
 
     partition = (n, )
     while partition is not None:

@@ -71,17 +71,20 @@ def _validate_input(integer_partition):
 
     (8, 2, 2, 1) is OK.
     (8, 1, 2, 2) is not.
-    '''
 
+    '''
     prev = None
     for cur in integer_partition:
         if not isinstance(cur, int):
-            raise TypeError('must be integer.')
+            message = 'must be integer.'
+            raise TypeError(message)
         if not 0 < cur:
-            raise ValueError('must be positive.')
+            message = 'must be positive.'
+            raise ValueError(message)
         if prev is not None:
             if not cur <= prev:
-                raise ValueError('parts must decrease monotonically.')
+                message = 'parts must decrease monotonically.'
+                raise ValueError(message)
 
 
 def _as_special_sequence(n, m):

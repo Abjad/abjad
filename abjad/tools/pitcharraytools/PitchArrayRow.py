@@ -63,7 +63,8 @@ class PitchArrayRow(AbjadObject):
 
     def __add__(self, arg):
         if not isinstance(arg, PitchArrayRow):
-            raise TypeError('must be pitch array row.')
+            message = 'must be pitch array row.'
+            raise TypeError(message)
         self_copy = copy.copy(self)
         arg_copy = copy.copy(arg)
         new_row = PitchArrayRow([])
@@ -104,7 +105,8 @@ class PitchArrayRow(AbjadObject):
                         return cell
                     accumulated_width = total_width
             else:
-                raise IndexError('no such cell in row.')
+                message = 'no such cell in row.'
+                raise IndexError(message)
         elif isinstance(arg, slice):
             cells = []
             start, stop, step = arg.indices(self.width)
@@ -118,11 +120,13 @@ class PitchArrayRow(AbjadObject):
             cells = tuple(cells)
             return cells
         else:
-            raise ValueError('must be int or slice.')
+            message = 'must be int or slice.'
+            raise ValueError(message)
 
     def __iadd__(self, arg):
         if not isinstance(arg, PitchArrayRow):
-            raise TypeError('must be pitch array row.')
+            message = 'must be pitch array row.'
+            raise TypeError(message)
         copy_arg = copy.copy(arg)
         self.extend(copy_arg.cells)
         return self
@@ -211,7 +215,8 @@ class PitchArrayRow(AbjadObject):
             return self._pitch_range
         def fset(self, arg):
             if not isinstance(arg, pitchtools.PitchRange):
-                raise TypeError('must be pitch range.')
+                message = 'must be pitch range.'
+                raise TypeError(message)
             self._pitch_range = arg
         return property(**locals())
 
@@ -227,7 +232,8 @@ class PitchArrayRow(AbjadObject):
         parent_array = self.parent_array
         if parent_array is not None:
             return parent_array._rows.index(self)
-        raise IndexError('row has no parent array.')
+        message = 'row has no parent array.'
+        raise IndexError(message)
 
     @property
     def weight(self):
@@ -257,7 +263,8 @@ class PitchArrayRow(AbjadObject):
         arg = slice(start, stop)
         start, stop, step = arg.indices(self.width)
         if not step == 1:
-            raise NotImplementedError('step not implemented.')
+            message = 'step no implemented.'
+            raise NotImplementedError(message)
         column_indices = set(range(start, stop, step))
         row = PitchArrayRow([])
         cells = self[arg]
@@ -299,7 +306,8 @@ class PitchArrayRow(AbjadObject):
             if not isinstance(cell, PitchArrayCell):
                 raise TypeError
             if not cell.parent_row is self:
-                raise ValueError('cells must belong to row.')
+                message = 'cells must belong to row.'
+                raise ValueError(message)
             column_indices.extend(cell.column_indices)
             pitches.extend(cell.pitches)
             width += cell.width
@@ -307,7 +315,8 @@ class PitchArrayRow(AbjadObject):
         stop = start + len(column_indices)
         strict_series = range(start, stop)
         if not column_indices == strict_series:
-            raise ValueError('cells must be contiguous.')
+            message = 'cells must be contiguous.'
+            raise ValueError(message)
         first_cell = cells[0]
         for cell in cells[1:]:
             self.remove(cell)

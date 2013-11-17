@@ -39,14 +39,20 @@ def partition_integer_by_ratio(n, ratio):
     from abjad.tools import mathtools
 
     if not mathtools.is_integer_equivalent_number(n):
-        raise TypeError('input "%s" is not integer-equivalent number.' % n)
+        message = 'input {!r} is not integer-equivalent number.'.format(n)
+        raise TypeError(message)
 
     if not all(mathtools.is_integer_equivalent_number(part) for part in ratio):
-        raise TypeError('some parts in "%s" not integer-equivalent numbers.' % ratio)
+        message = 'some parts in {!r} not integer-equivalent numbers.'
+        message = message.format(ratio)
+        raise TypeError(message)
 
     result = [0]
 
-    divisions = [float(abs(n)) * abs(part) / mathtools.weight(ratio) for part in ratio]
+    divisions = [
+        float(abs(n)) * abs(part) / mathtools.weight(ratio) 
+        for part in ratio
+        ]
     cumulative_divisions = mathtools.cumulative_sums(divisions, start=None)
 
     for division in cumulative_divisions:

@@ -35,7 +35,8 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(
     from abjad.tools import pitchtools
 
     if not isinstance(pitch_range, pitchtools.PitchRange):
-        raise TypeError('must be pitch range.')
+        message = 'must be pitch range.'
+        raise TypeError(message)
 
     if isinstance(pitch_carrier, collections.Iterable):
         if all(isinstance(x, (int, long, float)) for x in pitch_carrier):
@@ -43,7 +44,9 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(
                 pitch_carrier, pitch_range)
 
     if not isinstance(pitch_carrier, (scoretools.Chord, pitchtools.PitchSet)):
-        raise TypeError('must be chord or pitch set.')
+        message = 'must be chord or pitch-set: {!r}'
+        message = message.format(pitch_carrier)
+        raise TypeError(message)
 
     result = []
 

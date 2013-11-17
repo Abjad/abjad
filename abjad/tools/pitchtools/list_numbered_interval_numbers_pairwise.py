@@ -75,7 +75,8 @@ def list_numbered_interval_numbers_pairwise(pitch_carriers, wrap=False):
         if pitchtools.Pitch.is_pitch_carrier(pitch_carriers[0]):
             return result
         else:
-            raise TypeError('must be Abjad Pitch, Note, NoteHead or Chord.')
+            message = 'must be pitch, not, note-head or chord.'
+            raise TypeError(message)
 
     if wrap:
         pairs = sequencetools.iterate_sequence_pairwise_wrapped(pitch_carriers)
