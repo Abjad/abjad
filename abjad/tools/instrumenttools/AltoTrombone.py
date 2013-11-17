@@ -11,7 +11,7 @@ class AltoTrombone(Instrument):
     ::
 
         >>> staff = Staff("c4 d4 e4 f4")
-        >>> clef = indicatortools.Clef('bass')
+        >>> clef = Clef('bass')
         >>> attach(clef, staff)
         >>> alto_trombone = instrumenttools.AltoTrombone()
         >>> attach(alto_trombone, staff)

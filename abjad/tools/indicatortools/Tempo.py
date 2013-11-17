@@ -298,7 +298,7 @@ class Tempo(ContextMark):
 
             ::
 
-                >>> tempo = indicatortools.Tempo(Duration(1, 8), 52)
+                >>> tempo = Tempo(Duration(1, 8), 52)
                 >>> tempo.duration
                 Duration(1, 8)
 
@@ -602,8 +602,8 @@ class Tempo(ContextMark):
             
             ::
 
-                >>> tempo = indicatortools.Tempo(Duration(1, 4), 60)
-                >>> new_tempo = indicatortools.Tempo(Duration(1, 4), 90)
+                >>> tempo = Tempo(Duration(1, 4), 60)
+                >>> new_tempo = Tempo(Duration(1, 4), 90)
 
             `tempo` specifies quarter equal to ``60 MM``.
 

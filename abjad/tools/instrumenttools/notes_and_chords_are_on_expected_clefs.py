@@ -13,7 +13,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = indicatortools.Clef('treble')
+        >>> clef = Clef('treble')
         >>> attach(clef, staff)
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
@@ -28,7 +28,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = indicatortools.Clef('alto')
+        >>> clef = Clef('alto')
         >>> attach(clef, staff)
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
@@ -43,7 +43,7 @@ def notes_and_chords_are_on_expected_clefs(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = indicatortools.Clef('percussion')
+        >>> clef = Clef('percussion')
         >>> attach(clef, staff)
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)

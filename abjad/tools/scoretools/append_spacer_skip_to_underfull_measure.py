@@ -11,7 +11,7 @@ def append_spacer_skip_to_underfull_measure(measure):
         >>> time_signature = inspect(measure).get_context_mark(TimeSignature)
         >>> detach(time_signature, measure)
         (TimeSignature((4, 12)),)
-        >>> new_time_signature = indicatortools.TimeSignature((5, 12))
+        >>> new_time_signature = TimeSignature((5, 12))
         >>> attach(new_time_signature, measure)
         >>> measure.is_underfull
         True

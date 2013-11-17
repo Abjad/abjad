@@ -179,7 +179,7 @@ class PitchSegment(Segment):
 
             >>> notes = named_pitch_segment.make_notes(4, Duration(5, 16))
             >>> staff = Staff(notes)
-            >>> time_signature = indicatortools.TimeSignature((5, 4))
+            >>> time_signature = TimeSignature((5, 4))
             >>> attach(time_signature, staff)
             >>> show(staff) # doctest: +SKIP
 

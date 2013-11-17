@@ -14,7 +14,7 @@ class SpacingIndication(AbjadObject):
 
     ::
 
-        >>> tempo = indicatortools.Tempo(Duration(1, 8), 44)
+        >>> tempo = Tempo(Duration(1, 8), 44)
         >>> indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
 
     ::

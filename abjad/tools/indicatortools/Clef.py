@@ -85,7 +85,7 @@ class Clef(ContextMark):
         ::
 
             >>> import copy
-            >>> clef_1 = indicatortools.Clef('alto')
+            >>> clef_1 = Clef('alto')
             >>> clef_2 = copy.copy(clef_1)
 
         ::
@@ -113,8 +113,8 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef_1 = indicatortools.Clef('treble')
-            >>> clef_2 = indicatortools.Clef('alto')
+            >>> clef_1 = Clef('treble')
+            >>> clef_2 = Clef('alto')
 
         ::
 
@@ -141,7 +141,7 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef = indicatortools.Clef('treble')
+            >>> clef = Clef('treble')
             >>> print format(clef)
             indicatortools.Clef(
                 'treble'
@@ -158,8 +158,8 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef_1 = indicatortools.Clef('treble')
-            >>> clef_2 = indicatortools.Clef('alto')
+            >>> clef_1 = Clef('treble')
+            >>> clef_2 = Clef('alto')
 
         ::
 
@@ -182,7 +182,7 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef = indicatortools.Clef('treble')
+            >>> clef = Clef('treble')
             >>> clef
             Clef('treble')
 
@@ -255,7 +255,7 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef = indicatortools.Clef('treble')
+            >>> clef = Clef('treble')
             >>> clef.middle_c_position
             -6
 

@@ -72,8 +72,8 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
-        >>> time_signature = indicatortools.TimeSignature((3, 4))
-        >>> tempo = indicatortools.Tempo((1, 4), 54)
+        >>> time_signature = TimeSignature((3, 4))
+        >>> tempo = Tempo((1, 4), 54)
         >>> use_full_measure = True
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
         ...     search_tree=search_tree,
@@ -173,9 +173,9 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> a = {'time_signature': indicatortools.TimeSignature((7, 32))}
-        >>> b = {'time_signature': indicatortools.TimeSignature((3, 4))}
-        >>> c = {'time_signature': indicatortools.TimeSignature((5, 8))}
+        >>> a = {'time_signature': TimeSignature((7, 32))}
+        >>> b = {'time_signature': TimeSignature((3, 4))}
+        >>> c = {'time_signature': TimeSignature((5, 8))}
 
     ::
 
@@ -234,9 +234,9 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
-        ...     (2, {'time_signature': indicatortools.TimeSignature((7, 32))}),
-        ...     (4, {'time_signature': indicatortools.TimeSignature((3, 4))}),
-        ...     (6, {'time_signature': indicatortools.TimeSignature((5, 8))}),
+        ...     (2, {'time_signature': TimeSignature((7, 32))}),
+        ...     (4, {'time_signature': TimeSignature((3, 4))}),
+        ...     (6, {'time_signature': TimeSignature((5, 8))}),
         ...     )
 
     Return ``MeasurewiseQSchema`` instance.

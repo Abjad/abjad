@@ -12,7 +12,7 @@ class QTargetBeat(AbjadObject):
         >>> beatspan = (1, 8)
         >>> offset_in_ms = 1500
         >>> search_tree = quantizationtools.UnweightedSearchTree({3: None})
-        >>> tempo = indicatortools.Tempo((1, 4), 56)
+        >>> tempo = Tempo((1, 4), 56)
 
     ::
 
