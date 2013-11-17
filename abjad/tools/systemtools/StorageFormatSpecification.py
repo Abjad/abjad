@@ -56,6 +56,15 @@ class StorageFormatSpecification(AbjadObject):
         else:
             self._tools_package_name = None
 
+    ### PUBLIC METHODS ###
+
+    def new(self, **kwargs):
+        state = {}
+        for slot in self.__slots__:
+            name = slot[1:]
+            state[name] = kwargs.get(name, getattr(self, name))
+        return type(self)(**state)
+
     ### PUBLIC PROPERTIES ###
 
     @property

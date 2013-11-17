@@ -217,16 +217,21 @@ class StorageFormatManager(object):
         specification,
         as_storage_format=True,
         ):
-        if specification.storage_format_pieces is not None:
+        if as_storage_format and \
+            specification.storage_format_pieces is not None:
             return specification.storage_format_pieces
 
         result = []
         prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
             specification.is_indented)
+
         class_name = type(specification.instance).__name__
-        tools_package_name = specification.tools_package_name
-        tools_package_qualified_class_name = '{}.{}'.format(
-            tools_package_name, class_name)
+        if as_storage_format:
+            tools_package_name = specification.tools_package_name
+            class_name_prefix = '{}.{}'.format(
+                tools_package_name, class_name)
+        else:
+            class_name_prefix = class_name
 
         positional_argument_pieces = []
         for value in specification.positional_argument_values:
@@ -268,22 +273,35 @@ class StorageFormatManager(object):
                 keyword_argument_pieces.append(prefix + piece)
             keyword_argument_pieces.append(prefix + pieces[-1] + suffix)
 
-        if not positional_argument_pieces and not keyword_argument_pieces:
-            result.append('{}()'.format(tools_package_qualified_class_name))
-        else:
-            result.append('{}({}'.format(
-                tools_package_qualified_class_name,
-                infix,
+        if not as_storage_format and specification.is_bracketted:
+            result.append('<')
+
+        if not as_storage_format and specification.body_text:
+            result.append('{}({})'.format(
+                class_name_prefix,
+                specification.body_text,
                 ))
-            result.extend(positional_argument_pieces)
-            if positional_argument_pieces and not keyword_argument_pieces:
-                result[-1] = result[-1].rstrip(suffix) + infix
+        else:
+            if not positional_argument_pieces and not keyword_argument_pieces:
+                result.append('{}()'.format(class_name_prefix))
             else:
-                result.extend(keyword_argument_pieces)
-            if specification.is_indented:
-                result.append('{})'.format(prefix))
-            else:
-                result.append(')')
+                result.append('{}({}'.format(
+                    class_name_prefix,
+                    infix,
+                    ))
+                result.extend(positional_argument_pieces)
+                if positional_argument_pieces and not keyword_argument_pieces:
+                    result[-1] = result[-1].rstrip(suffix) + infix
+                else:
+                    result.extend(keyword_argument_pieces)
+                if specification.is_indented:
+                    result.append('{})'.format(prefix))
+                else:
+                    result.append(')')
+
+        if not as_storage_format and specification.is_bracketted:
+            result.append('>')
+
         if not specification.is_indented:
             return (''.join(result),)
         return tuple(result)
