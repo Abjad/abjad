@@ -226,7 +226,7 @@ class BuildDirectoryManager(DirectoryManager):
         from experimental.tools import scoremanagertools
         self.session.io_manager.assign_user_input(pending_user_input)
         segments_directory_path = self.session.current_segments_directory_path
-        for directory_entry in os.listdir(segments_directory_path):
+        for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
                 directory_entry,
@@ -266,7 +266,7 @@ class BuildDirectoryManager(DirectoryManager):
         from experimental.tools import scoremanagertools
         self.session.io_manager.assign_user_input(pending_user_input)
         segments_directory_path = self.session.current_segments_directory_path
-        for directory_entry in os.listdir(segments_directory_path):
+        for directory_entry in sorted(os.listdir(segments_directory_path)):
             segment_directory_path = os.path.join(
                 segments_directory_path,
                 directory_entry,

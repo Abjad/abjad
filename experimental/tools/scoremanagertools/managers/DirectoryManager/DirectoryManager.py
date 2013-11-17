@@ -46,12 +46,12 @@ class DirectoryManager(FilesystemAssetManager):
         if not os.path.exists(self.filesystem_path):
             return result
         if public_entries_only:
-            for directory_entry in os.listdir(self.filesystem_path):
+            for directory_entry in sorted(os.listdir(self.filesystem_path)):
                 if directory_entry[0].isalpha() and \
                     not directory_entry.endswith('.pyc'):
                     result.append(directory_entry)
         else:
-            for directory_entry in os.listdir(self.filesystem_path):
+            for directory_entry in sorted(os.listdir(self.filesystem_path)):
                 if not directory_entry.startswith('.') and \
                     not directory_entry.endswith('.pyc'):
                     result.append(directory_entry)

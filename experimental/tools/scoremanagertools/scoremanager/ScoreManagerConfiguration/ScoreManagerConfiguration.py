@@ -415,7 +415,8 @@ class ScoreManagerConfiguration(Configuration):
         result = []
         if built_in:
             for directory_entry in \
-                os.listdir(self.built_in_score_packages_directory_path):
+                sorted(os.listdir(
+                    self.built_in_score_packages_directory_path)):
                 if directory_entry[0].isalpha():
                     package_path = '.'.join([
                         self.built_in_score_packages_package_path,
@@ -427,7 +428,7 @@ class ScoreManagerConfiguration(Configuration):
                         result.append(filesystem_path)
         if user:
             for directory_entry in \
-                os.listdir(self.user_score_packages_directory_path):
+                sorted(os.listdir(self.user_score_packages_directory_path)):
                 if directory_entry[0].isalpha():
                     package_path = '.'.join([
                         self.user_score_packages_package_path,

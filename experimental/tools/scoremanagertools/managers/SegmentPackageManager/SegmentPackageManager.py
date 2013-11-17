@@ -42,7 +42,7 @@ class SegmentPackageManager(PackageManager):
 
     def _get_last_version_number(self):
         versions_directory_path = self._get_versions_directory_path()
-        file_names = os.listdir(versions_directory_path)
+        file_names = sorted(os.listdir(versions_directory_path))
         if not file_names:
             return
         file_names.sort()

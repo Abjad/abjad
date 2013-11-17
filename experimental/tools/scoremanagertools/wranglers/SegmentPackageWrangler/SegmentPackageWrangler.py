@@ -85,7 +85,7 @@ class SegmentPackageWrangler(PackageWrangler):
         parts = (self.session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
-        for directory_entry in os.listdir(segments_directory_path):
+        for directory_entry in sorted(os.listdir(segments_directory_path)):
             if not directory_entry[0].isalpha():
                 continue
             segment_package_name = directory_entry
@@ -119,7 +119,7 @@ class SegmentPackageWrangler(PackageWrangler):
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
         output_pdf_file_paths = []
-        for directory_entry in os.listdir(segments_directory_path):
+        for directory_entry in sorted(os.listdir(segments_directory_path)):
             if not directory_entry[0].isalpha():
                 continue
             segment_package_name = directory_entry
@@ -142,7 +142,7 @@ class SegmentPackageWrangler(PackageWrangler):
         parts = (self.session.current_score_directory_path,)
         parts += self.score_package_asset_storehouse_path_infix_parts
         segments_directory_path = os.path.join(*parts)
-        for directory_entry in os.listdir(segments_directory_path):
+        for directory_entry in sorted(os.listdir(segments_directory_path)):
             if not directory_entry[0].isalpha():
                 continue
             segment_package_name = directory_entry

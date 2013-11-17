@@ -478,7 +478,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 directory_path)
             if not os.path.exists(directory_path):
                 continue
-            for directory_entry in os.listdir(directory_path):
+            for directory_entry in sorted(os.listdir(directory_path)):
                 if self._is_valid_directory_entry(directory_entry):
                     filesystem_path = os.path.join(
                         directory_path, directory_entry,

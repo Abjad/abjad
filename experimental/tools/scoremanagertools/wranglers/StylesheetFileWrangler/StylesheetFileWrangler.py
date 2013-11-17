@@ -67,7 +67,8 @@ class StylesheetFileWrangler(FileWrangler):
             return os.path.join(*parts)
     
     def _get_header_stylesheet_file_path(self):
-        for directory_entry in os.listdir(self._get_current_directory()):
+        for directory_entry in sorted(os.listdir(
+            self._get_current_directory())):
             if directory_entry.endswith('header.ly'):
                 file_path = os.path.join(
                     self._get_current_directory(),
@@ -76,7 +77,8 @@ class StylesheetFileWrangler(FileWrangler):
                 return file_path
     
     def _get_layout_stylesheet_file_path(self):
-        for directory_entry in os.listdir(self._get_current_directory()):
+        for directory_entry in sorted(os.listdir(
+            self._get_current_directory())):
             if directory_entry.endswith('layout.ly'):
                 file_path = os.path.join(
                     self._get_current_directory(),
@@ -85,7 +87,8 @@ class StylesheetFileWrangler(FileWrangler):
                 return file_path
     
     def _get_paper_stylesheet_file_path(self):
-        for directory_entry in os.listdir(self._get_current_directory()):
+        for directory_entry in sorted(os.listdir(
+            self._get_current_directory())):
             if directory_entry.endswith('paper.ly'):
                 file_path = os.path.join(
                     self._get_current_directory(),

@@ -277,7 +277,7 @@ class Selector(ScoreManagerObject):
             'Specifier',
             )
         path = selector.configuration.built_in_specifiers_directory_path
-        for directory_entry in os.listdir(path):
+        for directory_entry in sorted(os.listdir(path)):
             if directory_entry.endswith('Specifier'):
                 if not directory_entry in forbidden_directory_entries:
                     items.append(directory_entry)
