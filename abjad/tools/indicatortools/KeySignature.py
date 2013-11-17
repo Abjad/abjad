@@ -47,7 +47,7 @@ class KeySignature(ContextMark):
         mode = tonalanalysistools.Mode(mode)
         self._tonic = tonic
         self._mode = mode
-        self._scope = scoretools.Staff
+        self._default_scope = scoretools.Staff
 
     ### SPECIAL METHODS ###
 
@@ -92,33 +92,18 @@ class KeySignature(ContextMark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def mode():
-        def fget(self):
-            r'''Gets and sets mode of key signature.
+    @property
+    def mode(self):
+        r'''Mode of signature.
 
-            ::
+        ::
 
-                >>> key_signature = KeySignature('e', 'major')
-                >>> key_signature.mode
-                Mode('major')
+            >>> key_signature.mode
+            Mode('major')
 
-            Sets mode of key signature:
-
-            ::
-
-                >>> key_signature.mode = 'minor'
-                >>> key_signature.mode
-                Mode('minor')
-
-            Returns mode.
-            '''
-            return self._mode
-        def fset(self, mode):
-            from abjad.tools import tonalanalysistools
-            mode = tonalanalysistools.Mode(mode)
-            self._mode = mode
-        return property(**locals())
+        Returns mode.
+        '''
+        return self._mode
 
     @property
     def name(self):
@@ -138,30 +123,15 @@ class KeySignature(ContextMark):
             tonic = str(self.tonic)
         return '{!s} {!s}'.format(tonic, self.mode.mode_name)
 
-    @apply
-    def tonic():
-        def fget(self):
-            r'''Get and sets tonic of key signature.
+    @property
+    def tonic(self):
+        r'''Tonic of key signature.
 
-            ::
+        ::
 
-                >>> key_signature = KeySignature('e', 'major')
-                >>> key_signature.tonic
-                NamedPitchClass('e')
+            >>> key_signature.tonic
+            NamedPitchClass('e')
 
-            Sets tonic of key signature:
-
-            ::
-
-                >>> key_signature.tonic = 'd'
-                >>> key_signature.tonic
-                NamedPitchClass('d')
-
-            Returns named pitch.
-            '''
-            return self._tonic
-        def fset(self, tonic):
-            from abjad.tools import pitchtools
-            tonic = pitchtools.NamedPitchClass(tonic)
-            self._tonic = tonic
-        return property(**locals())
+        Returns named pitch-class.
+        '''
+        return self._tonic

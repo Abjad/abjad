@@ -181,11 +181,6 @@ class TimeSignature(ContextMark):
         else:
             raise TypeError
 
-#    def __nonzero__(self):
-#        r'''Returns true.
-#        '''
-#        return True
-
     def __repr__(self):
         r'''Interpreter representation of time signature.
 
@@ -254,38 +249,18 @@ class TimeSignature(ContextMark):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def denominator():
-        def fget(self):
-            r'''Gets and sets time signature denominator.
+    @property
+    def denominator(self):
+        r'''Time signature denominator.
 
-            ::
+        ::
 
-                >>> time_signature = TimeSignature((3, 8))
+            >>> time_signature.denominator
+            8
 
-            ::
-
-                >>> time_signature.denominator
-                8
-
-            Sets time signature denominator:
-
-            ::
-
-                >>> time_signature.denominator = 16
-
-            ::
-
-                >>> time_signature.denominator
-                16
-
-            Returns integer.
-            '''
-            return self._denominator
-        def fset(self, denominator):
-            assert isinstance(denominator, int)
-            self._denominator = denominator
-        return property(**locals())
+        Returns positive integer.
+        '''
+        return self._denominator
 
     @property
     def duration(self):
@@ -351,32 +326,18 @@ class TimeSignature(ContextMark):
         dummy_duration = durationtools.Duration(1, self.denominator)
         return dummy_duration.implied_prolation
 
-    @apply
-    def numerator():
-        def fget(self):
-            r'''Gets and sets time signature numerator.
+    @property
+    def numerator(self):
+        r'''Time signature nuemrator.
 
-            ::
+        ::
 
-                >>> time_signature = TimeSignature((3, 8))
-                >>> time_signature.numerator
-                3
+            >>> time_signature.numerator
+            3
 
-            Sets time signature numerator:
-
-            ::
-
-                >>> time_signature.numerator = 4
-                >>> time_signature.numerator
-                4
-
-            Set integer.
-            '''
-            return self._numerator
-        def fset(self, numerator):
-            assert isinstance(numerator, int)
-            self._numerator = numerator
-        return property(**locals())
+        Returns positive integer.
+        '''
+        return self._numerator
 
     @property
     def pair(self):
@@ -391,34 +352,17 @@ class TimeSignature(ContextMark):
         '''
         return (self.numerator, self.denominator)
 
-    @apply
-    def partial():
-        def fget(self):
-            r'''Gets and sets partial measure pick-up of time signature.
+    @property
+    def partial(self):
+        r'''Duration of time signature pick-up.
 
-            ::
+        ::
 
-                >>> duration = Duration(1, 8)
-                >>> time_signature = TimeSignature((3, 8), partial=duration)
-                >>> time_signature.partial
-                Duration(1, 8)
+            >>> time_signature.partial
 
-            Sets partial measure pick-up of time signature:
-
-            ::
-
-                >>> time_signature.partial = Duration(1, 4)
-                >>> time_signature.partial
-                Duration(1, 4)
-
-            Returns duration.
-            '''
-            return self._partial
-        def fset(self, partial):
-            if partial is not None:
-                partial = durationtools.Duration(partial)
-            self._partial = partial
-        return property(**locals())
+        Returns duration or none.
+        '''
+        return self._partial
 
     ### PUBLIC METHODS ###
 

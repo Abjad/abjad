@@ -468,7 +468,7 @@ class InspectionAgent(object):
             ::
 
                 >>> staff = Staff("c'4 d'4 e'4")
-                >>> time_signature = indicatortools.TimeSignature((3, 8))
+                >>> time_signature = TimeSignature((3, 8))
                 >>> attach(time_signature, staff)
                 >>> show(staff) # doctest: +SKIP
 

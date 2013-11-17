@@ -11,7 +11,7 @@ class AltoTrombone(Instrument):
     ::
 
         >>> staff = Staff("c4 d4 e4 f4")
-        >>> clef = indicatortools.Clef('bass')
+        >>> clef = Clef('bass')
         >>> attach(clef, staff)
         >>> alto_trombone = instrumenttools.AltoTrombone()
         >>> attach(alto_trombone, staff)
@@ -267,9 +267,9 @@ class AltoTrombone(Instrument):
 
                     >>> result = scoretools.make_empty_piano_score()
                     >>> score, tenor_staff, bass_staff = result
-                    >>> clef = inspect(tenor_staff).get_effective_context_mark(
-                    ...     indicatortools.Clef)
-                    >>> clef.name = 'tenor'
+                    >>> detach(Clef, tenor_staff)
+                    (Clef('treble'),)
+                    >>> attach(Clef('tenor'), tenor_staff)
                     >>> note = Note("c'1")
                     >>> start_pitch = alto_trombone.pitch_range.start_pitch
                     >>> note.written_pitch = start_pitch

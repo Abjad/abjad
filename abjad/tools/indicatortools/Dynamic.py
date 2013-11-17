@@ -157,36 +157,23 @@ class Dynamic(ContextMark):
 
     @property
     def _lilypond_format(self):
-        return r'\%s' % self._name
+        return r'\{}'.format(self.name)
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def name():
-        def fget(self):
-            r'''Gets and sets dynamic name.
 
-            ::
+    @property
+    def name(self):
+        r'''Name of dynamic.
 
-                >>> dynamic = Dynamic('f')
-                >>> dynamic.name
-                'f'
+        ::
 
-            Sets dynamic name:
+            >>> dynamic.name
+            'f'
 
-            ::
-
-                >>> dynamic.name = 'p'
-                >>> dynamic.name
-                'p'
-
-            Returns string.
-            '''
-            return self._name
-        def fset(self, name):
-            assert isinstance(name, str)
-            self._name = name
-        return property(**locals())
+        Returns string.
+        '''
+        return self._name
 
     ### PUBLIC METHODS ###
 

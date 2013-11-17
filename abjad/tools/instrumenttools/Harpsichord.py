@@ -48,7 +48,7 @@ class Harpsichord(Instrument):
 
     def __init__(self, **kwargs):
         Instrument.__init__(self, **kwargs)
-        self._scope = scoretools.PianoStaff
+        self._default_scope = scoretools.PianoStaff
         self._default_instrument_name = 'harpsichord'
         self._default_performer_names.extend([
             'keyboardist',

@@ -11,8 +11,8 @@ class QTargetMeasure(AbjadObject):
     ::
 
         >>> search_tree = quantizationtools.UnweightedSearchTree({2: None})
-        >>> tempo = indicatortools.Tempo((1, 4), 60)
-        >>> time_signature = indicatortools.TimeSignature((4, 4))
+        >>> tempo = Tempo((1, 4), 60)
+        >>> time_signature = TimeSignature((4, 4))
 
     ::
 

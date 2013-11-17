@@ -474,7 +474,7 @@ class QEventSequence(AbjadObject):
 
         ::
 
-            >>> tempo = indicatortools.Tempo((1, 4), 174)
+            >>> tempo = Tempo((1, 4), 174)
             >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
 
         ::
@@ -547,7 +547,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> staff = Staff("c'4 <d' fs'>8. r16 gqs'2")
-            >>> tempo = indicatortools.Tempo((1, 4), 72)
+            >>> tempo = Tempo((1, 4), 72)
 
         ::
 

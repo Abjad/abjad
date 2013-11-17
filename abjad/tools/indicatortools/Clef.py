@@ -74,6 +74,8 @@ class Clef(ContextMark):
         else:
             message = 'can not initialize clef from {}.'.format(name)
             raise TypeError(message)
+        middle_c_position = self._calculate_middle_c_position(self._name)
+        self._middle_c_position = middle_c_position
 
     ### SPECIAL METHODS ###
 
@@ -83,7 +85,7 @@ class Clef(ContextMark):
         ::
 
             >>> import copy
-            >>> clef_1 = indicatortools.Clef('alto')
+            >>> clef_1 = Clef('alto')
             >>> clef_2 = copy.copy(clef_1)
 
         ::
@@ -111,8 +113,8 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef_1 = indicatortools.Clef('treble')
-            >>> clef_2 = indicatortools.Clef('alto')
+            >>> clef_1 = Clef('treble')
+            >>> clef_2 = Clef('alto')
 
         ::
 
@@ -139,7 +141,7 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef = indicatortools.Clef('treble')
+            >>> clef = Clef('treble')
             >>> print format(clef)
             indicatortools.Clef(
                 'treble'
@@ -156,8 +158,8 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef_1 = indicatortools.Clef('treble')
-            >>> clef_2 = indicatortools.Clef('alto')
+            >>> clef_1 = Clef('treble')
+            >>> clef_2 = Clef('alto')
 
         ::
 
@@ -180,7 +182,7 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef = indicatortools.Clef('treble')
+            >>> clef = Clef('treble')
             >>> clef
             Clef('treble')
 
@@ -211,61 +213,41 @@ class Clef(ContextMark):
 
     @property
     def _lilypond_format(self):
-        return r'\clef "%s"' % self._name
+        return r'\clef "{}"'.format(self._name)
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
+
+    def _calculate_middle_c_position(self, clef_name):
+        alteration = 0
+        if '_' in self._name:
+            base_name, part, suffix = clef_name.partition('_')
+            if suffix == '8':
+                alteration = 7
+            elif suffix == '15':
+                alteration = 13
+            else:
+                message = 'bad clef alteration suffix: {!r}.'
+                message = message.format(suffix)
+                raise Exception(message)
+        elif '^' in self._name:
+            base_name, part, suffix = clef_name.partition('^')
+            if suffix == '8':
+                alteration = -7
+            elif suffix == '15':
+                alteration = -13
+            else:
+                message = "bad clef alteration suffix: {!r}."
+                message = message.format(suffix)
+                raise Exception(message)
+        else:
+            base_name = clef_name
+        return self._clef_name_to_middle_c_position[base_name] + alteration
 
     @classmethod
-    def list_clef_names(cls):
-        r'''Lists clef names.
-
-        ::
-
-            >>> for name in indicatortools.Clef.list_clef_names():
-            ...     name
-            ...
-            'alto'
-            'baritone'
-            'bass'
-            'french'
-            'mezzosoprano'
-            'percussion'
-            'soprano'
-            'tab'
-            'tenor'
-            'treble'
-            'varbaritone'
-
-        Returns list of strings.
-        '''
+    def _list_clef_names(cls):
         return list(sorted(cls._clef_name_to_middle_c_position))
 
     ### PUBLIC PROPERTIES ###
-
-    @apply
-    def name():
-        def fget(self):
-            r'''Gets and sets clef name.
-
-            ::
-
-                >>> clef = indicatortools.Clef('treble')
-                >>> clef.name
-                'treble'
-
-            ::
-
-                >>> clef.name = 'alto'
-                >>> clef.name
-                'alto'
-
-            Returns string.
-            '''
-            return self._name
-        def fset(self, name):
-            assert isinstance(name, str)
-            self._name = name
-        return property(**locals())
 
     @property
     def middle_c_position(self):
@@ -273,33 +255,18 @@ class Clef(ContextMark):
 
         ::
 
-            >>> clef = indicatortools.Clef('treble')
+            >>> clef = Clef('treble')
             >>> clef.middle_c_position
             -6
 
         Returns integer number of stafflines.
         '''
-        alteration = 0
-        if '_' in self._name:
-            base_name, part, suffix = self._name.partition('_')
-            if suffix == '8':
-                alteration = 7
-            elif suffix == '15':
-                alteration = 13
-            else:
-                message = "Bad clef alteration suffix: {!r}"
-                message = message.format(suffix)
-                raise Exception(message)
-        elif '^' in self._name:
-            base_name, part, suffix = self._name.partition('^')
-            if suffix == '8':
-                alteration = -7
-            elif suffix == '15':
-                alteration = -13
-            else:
-                message = "Bad clef alteration suffix: {!r}"
-                message = message.format(suffix)
-                raise Exception(message)
-        else:
-            base_name = self._name
-        return self._clef_name_to_middle_c_position[base_name] + alteration
+        return self._middle_c_position
+
+    @property
+    def name(self):
+        r'''Name of clef.
+
+        Returns string.
+        '''
+        return self._name

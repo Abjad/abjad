@@ -9,18 +9,20 @@ class ContextMark(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_default_scope',
         '_effective_context', 
-        '_start_component',
         '_scope',
+        '_start_component',
         )
 
     ### INITIALIZER ###
 
     def __init__(self):
         from abjad.tools import scoretools
+        self._default_scope = scoretools.Staff
         self._effective_context = None
+        self._scope = None
         self._start_component = None
-        self._scope = scoretools.Staff
 
     ### SPECIAL METHODS ###
 
@@ -72,10 +74,10 @@ class ContextMark(AbjadObject):
 
     @property
     def _scope_name(self):
-        if isinstance(self._scope, type):
-            return self._scope.__name__
+        if isinstance(self.scope, type):
+            return self.scope.__name__
         else:
-            return type(self._scope).__name__
+            return type(self.scope).__name__
 
     ### PRIVATE METHODS ###
 
@@ -125,7 +127,7 @@ class ContextMark(AbjadObject):
 
     def _find_correct_effective_context(self):
         from abjad.tools import scoretools
-        scope = self._scope
+        scope = self.scope
         if scope is None:
             return None
         elif isinstance(scope, type):
@@ -175,3 +177,9 @@ class ContextMark(AbjadObject):
         correct_effective_context = self._find_correct_effective_context()
         if current_effective_context is not correct_effective_context:
             self._bind_correct_effective_context(correct_effective_context)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def scope(self):
+        return self._scope or self._default_scope

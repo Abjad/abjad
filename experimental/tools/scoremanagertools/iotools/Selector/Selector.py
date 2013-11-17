@@ -145,7 +145,7 @@ class Selector(ScoreManagerObject):
         ):
         from abjad.tools import indicatortools
         selector = Selector(session=session)
-        selector.items = indicatortools.Clef.list_clef_names()
+        selector.items = indicatortools.Clef._list_clef_names()
         return selector
 
     @staticmethod

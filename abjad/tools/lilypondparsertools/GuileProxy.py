@@ -161,7 +161,8 @@ class GuileProxy(AbjadObject):
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedPitch(x.tonic, 4)
-                    x.tonic = lilypondparsertools.LilyPondParser._transpose_enharmonically(
+                    # TODO: cheating to assign to a read-only property
+                    x._tonic = lilypondparsertools.LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, tonic).named_pitch_class
             if isinstance(music, scoretools.Note):
                 music.written_pitch = \

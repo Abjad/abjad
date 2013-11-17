@@ -11,7 +11,7 @@ class Contrabassoon(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = indicatortools.Clef('bass')
+        >>> clef = Clef('bass')
         >>> attach(clef, staff)
         >>> contrabassoon = instrumenttools.Contrabassoon()
         >>> attach(contrabassoon, staff)

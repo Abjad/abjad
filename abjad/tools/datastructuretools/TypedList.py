@@ -117,7 +117,7 @@ class TypedList(TypedCollection):
         ::
 
             >>> dynamic_collection = datastructuretools.TypedList(
-            ...     item_class=indicatortools.Dynamic)
+            ...     item_class=Dynamic)
             >>> dynamic_collection.append('ppp')
             >>> dynamic_collection += ['p', 'mp', 'mf', 'fff']
 

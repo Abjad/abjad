@@ -69,7 +69,7 @@ class BeatwiseQSchema(QSchema):
 
         >>> beatspan = Duration(5, 16)
         >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
-        >>> tempo = indicatortools.Tempo((1, 4), 54)
+        >>> tempo = Tempo((1, 4), 54)
         >>> q_schema = quantizationtools.BeatwiseQSchema(
         ...     beatspan=beatspan,
         ...     search_tree=search_tree,

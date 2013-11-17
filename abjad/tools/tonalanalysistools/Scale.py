@@ -205,7 +205,7 @@ class Scale(PitchClassSegment):
 
             >>> notes = scale.make_notes(4, Duration(5, 16))
             >>> staff = Staff(notes)
-            >>> time_signature = indicatortools.TimeSignature((5, 4))
+            >>> time_signature = TimeSignature((5, 4))
             >>> attach(time_signature, staff)
 
         ..  doctest::

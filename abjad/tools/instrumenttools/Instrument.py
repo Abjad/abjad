@@ -161,9 +161,9 @@ class Instrument(ContextMark):
     def _one_line_menuing_summary(self):
         return self.instrument_name
 
-    @property
-    def _scope_name(self):
-        return self._scope.__name__
+#    @property
+#    def _scope_name(self):
+#        return self.scope.__name__
 
     @property
     def _storage_format_specification(self):
