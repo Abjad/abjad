@@ -11,7 +11,8 @@ class PersistenceAgent(object):
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
-            >>> persist(staff).as_pdf('~/example.pdf') # doctest: +SKIP
+            >>> persist(staff)
+            PersistenceAgent({c'4, e'4, d'4, f'4})
 
     '''
 
@@ -29,21 +30,20 @@ class PersistenceAgent(object):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Interpreter representation of persistence agent.
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_repr_format(self)
 
-        ..  container:: example
+    ### PRIVATE PROPERTIES ###
 
-            ::
-
-                >>> staff = Staff("c'4 e'4 d'4 f'4")
-                >>> persist(staff)
-                PersistenceAgent(Staff{4})
-
-        Returns string.
-        '''
-        return '{}({!r})'.format(
-            type(self).__name__,
-            self._client,
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self._client,
+                ),
             )
 
     ### PUBLIC METHODS ###

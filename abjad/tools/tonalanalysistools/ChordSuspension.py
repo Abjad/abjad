@@ -17,6 +17,8 @@ class ChordSuspension(AbjadObject):
         '_stop',
         )
 
+    _symbolic_string_regex = re.compile(r'([#|b]?\d+)-([#|b]?\d+)')
+
     ### INITIALIZER ###
 
     def __init__(self, *args):
@@ -50,12 +52,6 @@ class ChordSuspension(AbjadObject):
     def __ne__(self, arg):
         return not self == arg
 
-    def __repr__(self):
-        if self.start is not None and self.stop is not None:
-            return '{}({}, {})'.format(type(self).__name__, self.start, self.stop)
-        else:
-            return '{}()'.format(type(self).__name__)
-
     def __str__(self):
         if self.start is not None and self.stop is not None:
             return '{}-{}'.format(self.start, self.stop)
@@ -64,7 +60,17 @@ class ChordSuspension(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-    _symbolic_string_regex = re.compile(r'([#|b]?\d+)-([#|b]?\d+)')
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = []
+        if self.start is not None and self.stop is not None:
+            positional_argument_values.append(self.start)
+            positional_argument_values.append(self.stop)
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PRIVATE METHODS ###
 

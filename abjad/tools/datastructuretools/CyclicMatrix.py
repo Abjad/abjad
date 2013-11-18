@@ -135,8 +135,23 @@ class CyclicMatrix(Matrix):
 
         ::
 
-            >>> cyclic_matrix.columns
-            CyclicTuple([[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+            >>> print format(cyclic_matrix.columns)
+            datastructuretools.CyclicTuple(
+                [
+                    datastructuretools.CyclicTuple(
+                        [0, 10, 20]
+                        ),
+                    datastructuretools.CyclicTuple(
+                        [1, 11, 21]
+                        ),
+                    datastructuretools.CyclicTuple(
+                        [2, 12, 22]
+                        ),
+                    datastructuretools.CyclicTuple(
+                        [3, 13, 23]
+                        ),
+                    ]
+                )
 
         Returns cyclic tuple.
         '''
@@ -153,8 +168,20 @@ class CyclicMatrix(Matrix):
 
         ::
 
-            >>> cyclic_matrix.rows
-            CyclicTuple([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> print format(cyclic_matrix.rows)
+            datastructuretools.CyclicTuple(
+                [
+                    datastructuretools.CyclicTuple(
+                        [0, 1, 2, 3]
+                        ),
+                    datastructuretools.CyclicTuple(
+                        [10, 11, 12, 13]
+                        ),
+                    datastructuretools.CyclicTuple(
+                        [20, 21, 22, 23]
+                        ),
+                    ]
+                )
 
         Returns cyclic tuple.
         '''

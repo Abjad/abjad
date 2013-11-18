@@ -11,7 +11,7 @@ class CyclicTuple(tuple):
     ::
 
         >>> cyclic_tuple
-        CyclicTuple([a, b, c, d])
+        CyclicTuple(['a', 'b', 'c', 'd'])
 
     ::
 
@@ -58,7 +58,26 @@ class CyclicTuple(tuple):
         return tuple(result)
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self)
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_repr_format(self)
 
     def __str__(self):
         return '[%s]' % ', '.join([str(x) for x in self])
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification.new(
+            is_indented=False,
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                list(self),
+                ),
+            )

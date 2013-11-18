@@ -15,8 +15,23 @@ class ChordQuality(AbjadObject):
         '_quality_string',
         )
 
+    _acceptable_quality_strings = (
+        'augmented',
+        'diminished',
+        'dominant',
+        'half diminished',
+        'major',
+        'minor',
+        )
+
     _default_positional_input_arguments = (
         repr('dominant'),
+        )
+
+    _uppercase_quality_strings = (
+        'augmented',
+        'dominant',
+        'major',
         )
 
     ### INITIALIZER ###
@@ -44,16 +59,15 @@ class ChordQuality(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-    _acceptable_quality_strings = (
-        'major', 'minor', 'augmented', 'diminished',
-        'dominant', 'half diminished',
-    )
-
-    _uppercase_quality_strings = (
-        'major',
-        'augmented',
-        'dominant',
-        )
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.quality_string,
+                )
+            )
 
     ### PUBLIC PROPERTIES ###
 

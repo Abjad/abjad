@@ -50,11 +50,20 @@ class Mode(AbjadObject):
     def __ne__(self, arg):
         return not self == arg
 
-    def __repr__(self):
-        return '{}({!r})'.format(type(self).__name__, self.mode_name)
-
     def __str__(self):
         return self.mode_name
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.mode_name,
+                )
+            )
 
     ### PRIVATE METHODS ###
 

@@ -116,8 +116,24 @@ class OctaveTranspositionMapping(TypedList):
         return '{}: {}'.format(name, contents_string)
 
     @property
-    def _repr_contents_string(self):
-        result = []
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        input_argument_tokens = []
         for mapping_component in self:
-            result.append(mapping_component._input_argument_token)
-        return ', '.join(result)
+            token = (
+                mapping_component.source_pitch_range.one_line_named_pitch_repr,
+                mapping_component.target_octave_start_pitch.pitch_number
+                )
+            input_argument_tokens.append(token)
+        keyword_argument_names = []
+        if self.custom_identifier is not None:
+            keyword_argument_names.append('custom_identifier')
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=(
+                input_argument_tokens,
+                ),
+            )
+

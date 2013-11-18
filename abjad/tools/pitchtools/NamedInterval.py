@@ -22,6 +22,22 @@ class NamedInterval(Interval):
         '_quality_string',
         )
 
+    _acceptable_quality_strings = (
+        'perfect',
+        'major',
+        'minor',
+        'diminished',
+        'augmented',
+        )
+
+    _quality_abbreviation_to_quality_string = {
+        'M': 'major',
+        'm': 'minor',
+        'P': 'perfect',
+        'aug': 'augmented',
+        'dim': 'diminished',
+        }
+
     ### INITIALIZER ###
 
     def __init__(self, *args):
@@ -129,9 +145,6 @@ class NamedInterval(Interval):
     def __neg__(self):
         return type(self)(self.quality_string, -self.number)
 
-    def __repr__(self):
-        return "{}('{}')".format(type(self).__name__, str(self))
-
     def __rmul__(self, arg):
         return self * arg
 
@@ -152,22 +165,6 @@ class NamedInterval(Interval):
             dummy_pitch, new_pitch)
 
     ### PRIVATE PROPERTIES ###
-
-    _acceptable_quality_strings = (
-        'perfect',
-        'major',
-        'minor',
-        'diminished',
-        'augmented',
-        )
-
-    _quality_abbreviation_to_quality_string = {
-        'M': 'major',
-        'm': 'minor',
-        'P': 'perfect',
-        'aug': 'augmented',
-        'dim': 'diminished',
-        }
 
     @property
     def _format_string(self):
@@ -214,6 +211,16 @@ class NamedInterval(Interval):
             'major': 'M', 'minor': 'm', 'perfect': 'P',
             'augmented': 'aug', 'diminished': 'dim'}
         return _quality_string_to_quality_abbreviation[self.quality_string]
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                str(self),
+                ),
+            )
 
     ### PUBLIC METHODS ###
 

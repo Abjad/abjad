@@ -73,9 +73,6 @@ class Interval(AbjadObject):
     def __neg__(self):
         pass
 
-    def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
-
     def __str__(self):
         return str(self.number)
 
@@ -95,6 +92,16 @@ class Interval(AbjadObject):
     @property
     def _format_string(self):
         return str(self.number)
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.number,
+                ),
+            )
 
     ### PUBLIC METHODS ###
 
