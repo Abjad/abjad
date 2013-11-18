@@ -52,6 +52,19 @@ class LilyPondFormatBundle(AbjadObject):
         @property
         def stem_tremolos(self):
             return self._stem_tremolos
+
+        def get(self, identifier):
+            return getattr(self, identifier) 
+
+        def make_immutable(self):
+            self._articulations = tuple(self.articulations)
+            self._commands = tuple(self.commands)
+            self._comments = tuple(self.comments)
+            self._context_marks = tuple(self.context_marks)
+            self._markup = tuple(self.markup)
+            self._other_marks = tuple(self.other_marks)
+            self._spanners = tuple(self.spanners)
+            self._stem_tremolos = tuple(self.stem_tremolos)
     
     ### INITIALIZER ###
 
@@ -98,3 +111,18 @@ class LilyPondFormatBundle(AbjadObject):
     @property
     def context_settings(self):
         return self._context_settings
+
+    ### PUBLIC METHODS ###
+
+    def get(self, identifier):
+        return getattr(self, identifier)
+
+    def make_immutable(self):
+        self.before.make_immutable()
+        self.after.make_immutable()
+        self.opening.make_immutable()
+        self.closing.make_immutable()
+        self.right.make_immutable()
+        self._context_settings = tuple(self.context_settings)
+        self._grob_overrides = tuple(self.grob_overrides)
+        self._grob_reverts = tuple(self.grob_reverts)

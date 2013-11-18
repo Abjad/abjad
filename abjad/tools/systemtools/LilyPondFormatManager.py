@@ -142,6 +142,7 @@ class LilyPondFormatManager(object):
         bundle.grob_overrides[:] = overrides
         reverts = manager.get_grob_revert_format_contributions(component)[1]
         bundle.grob_reverts[:] = reverts
+        bundle.make_immutable()
         return bundle
 
     @staticmethod
@@ -172,9 +173,9 @@ class LilyPondFormatManager(object):
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
         wrappers = []
-        # organize marks attached directly to component
+        # organize context marks and indicators attached directly to component
         for mark in marks:
-            # skip nonprinting marks like Annotation
+            # skip nonprinting marks like annotation
             if not hasattr(mark, '_lilypond_format'):
                 continue
             # get section of recognized mark class
@@ -184,9 +185,9 @@ class LilyPondFormatManager(object):
                 assert isinstance(section, str), repr(section)
             # store context marks for later handling
             elif isinstance(mark, indicatortools.ContextMark):
-                if manager.is_formattable_context_mark_for_component(mark, component):
+                if manager.is_formattable_context_mark(mark, component):
                     context_marks.append(mark)
-                    continue
+                continue
             # store wrappers for later handling
             elif isinstance(mark, indicatortools.IndicatorWrapper):
                 wrappers.append(mark)
@@ -213,18 +214,12 @@ class LilyPondFormatManager(object):
 
             # prepare the contributions dictionary
             format_slot = mark._format_slot
-#            if section not in getattr(bundle, format_slot):
-#                getattr(bundle, format_slot)[section] = []
-            if section is None:
-                section = 'dummy'
-                setattr(getattr(bundle, format_slot), section, [])
+
             # add the mark contribution
-            #contribution_list = getattr(bundle, format_slot)[section]
             assert isinstance(section, str), repr((section, mark))
             contribution_list = getattr(getattr(bundle, format_slot), section)
             if len(contribution_list) and singleton:
                 raise ExtraMarkError
-
             result = mark._lilypond_format
             assert isinstance(result, str)
             contribution_list.append(result)
@@ -236,51 +231,38 @@ class LilyPondFormatManager(object):
                 assert isinstance(context_mark, indicatortools.ContextMark)
                 if context_mark in context_marks:
                     continue
-                if manager.is_formattable_context_mark_for_component(context_mark, component):
+                if manager.is_formattable_context_mark(context_mark, component):
                     context_marks.append(context_mark)
         section = 'context_marks'
         for context_mark in context_marks:
             assert isinstance(context_mark, indicatortools.ContextMark)
             format_slot = context_mark._format_slot
-            result = manager.get_context_mark_format_pieces(
-                context_mark)
-#            if section not in getattr(bundle, format_slot):
-#                getattr(bundle, format_slot)[section] = []
-            #getattr(bundle, format_slot)[section].extend(result)
-            getattr(getattr(bundle, format_slot), section).extend(result)
-
+            result = manager.get_context_mark_format_pieces(context_mark)
+            bundle.get(format_slot).get(section).extend(result)
         # TODO: insert wrapper handling code here
-
         # handle markup
-        result = []
         for markup_list in (up_markup, down_markup, neutral_markup):
             if not markup_list:
-                pass
+                continue
             elif 1 < len(markup_list):
                 contents = []
-                for m in markup_list:
-                    contents += m.contents
+                for markup in markup_list:
+                    contents += markup.contents
                 direction = markup_list[0].direction
                 if direction is None:
                     direction = '-'
                 command = markuptools.MarkupCommand('column', contents)
                 markup = markuptools.Markup(command, direction=direction)
-                result.extend(markup._get_format_pieces())
+                format_pieces = markup._get_format_pieces()
+                bundle.right.markup[:] = format_pieces
             else:
                 if markup_list[0].direction is None:
                     markup = markuptools.Markup(markup_list[0], direction='-')
-                    result.extend(markup._get_format_pieces())
+                    format_pieces = markup._get_format_pieces()
+                    bundle.right.markup[:] = format_pieces
                 else:
-                    result.extend(markup_list[0]._get_format_pieces())
-        if result:
-            #bundle.right['markup'] = result
-            bundle.right.markup[:] = result
-
-#        for format_slot in ('before', 'after', 'opening', 'closing', 'right'):
-#            for kind, value in getattr(bundle, format_slot).iteritems():
-#                #getattr(bundle, format_slot)[kind] = tuple(value)
-#                getattr(getattr(bundle, format_slot), kind)[:] = tuple(value)
-
+                    format_pieces = markup_list[0]._get_format_pieces()
+                    bundle.right.markup[:] = format_pieces
         return bundle
 
     @staticmethod
@@ -440,7 +422,7 @@ class LilyPondFormatManager(object):
         return result
 
     @staticmethod
-    def is_formattable_context_mark_for_component(mark, component):
+    def is_formattable_context_mark(mark, component):
         r'''Returns true if ContextMark `mark` can format for `component`.
         '''
         from abjad.tools import scoretools
