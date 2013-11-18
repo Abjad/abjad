@@ -177,7 +177,6 @@ class Leaf(Component):
         result.append(('spanners', bundle.after.spanners))
         result.append(('context marks', bundle.after.context_marks))
         result.append(('commands', bundle.after.commands))
-        result.append(('other marks', bundle.after.other_marks))
         result.append(('comments', bundle.after.comments))
         return result
 

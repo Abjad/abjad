@@ -17,7 +17,6 @@ class LilyPondFormatBundle(AbjadObject):
             self._comments = []
             self._context_marks = []
             self._markup = []
-            self._other_marks = []
             self._spanners = []
             self._stem_tremolos = []
 
@@ -42,10 +41,6 @@ class LilyPondFormatBundle(AbjadObject):
             return self._markup
 
         @property
-        def other_marks(self):
-            return self._other_marks
-
-        @property
         def spanners(self):
             return self._spanners
 
@@ -62,7 +57,6 @@ class LilyPondFormatBundle(AbjadObject):
             self._comments = tuple(self.comments)
             self._context_marks = tuple(self.context_marks)
             self._markup = tuple(self.markup)
-            self._other_marks = tuple(self.other_marks)
             self._spanners = tuple(self.spanners)
             self._stem_tremolos = tuple(self.stem_tremolos)
     

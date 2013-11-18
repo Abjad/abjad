@@ -175,6 +175,8 @@ class LilyPondFormatManager(object):
                 continue
             if isinstance(item, indicatortools.Articulation):
                 format_slot_subsection = 'articulations'
+            elif isinstance(item, indicatortools.BarLine):
+                format_slot_subsection = 'commands'
             elif isinstance(item, indicatortools.BendAfter):
                 format_slot_subsection = 'articulations'
             elif isinstance(item, indicatortools.LilyPondCommand):
@@ -203,7 +205,9 @@ class LilyPondFormatManager(object):
                 continue
             # otherwise the item is something else
             else:
-                format_slot_subsection = 'other_marks'
+                message = 'can not identify where to put item: {!r}.'
+                message = message.format(item)
+                raise Exception(message)
             format_slot = item._format_slot
             format_slot = bundle.get(format_slot)
             contributions = format_slot.get(format_slot_subsection)
@@ -405,6 +409,12 @@ class LilyPondFormatManager(object):
             else:
                 result[key].sort(key=lambda x: x[0].__class__.__name__)
                 result[key] = [x[1] for x in result[key]]
+
+#        spanners = manager.get_spanner_format_contributions(component)
+#        assert all([isinstance(spanners[x], list) for x in spanners]), repr((x, spanners[x]))
+#        for format_slot, contributions in spanners.iteritems():
+#            getattr(bundle, format_slot).spanners[:] = contributions 
+
         return result
 
     @staticmethod
