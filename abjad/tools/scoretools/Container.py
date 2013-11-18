@@ -234,14 +234,14 @@ class Container(Component):
 
     def _format_after_slot(self, bundle):
         result = []
-        result.append(('commands', bundle.after.get('commands', [])))
-        result.append(('comments', bundle.after.get('comments', [])))
+        result.append(('commands', bundle.after.commands))
+        result.append(('comments', bundle.after.comments))
         return tuple(result)
 
     def _format_before_slot(self, bundle):
         result = []
-        result.append(('comments', bundle.before.get('comments', [])))
-        result.append(('commands', bundle.before.get('commands', [])))
+        result.append(('comments', bundle.before.comments))
+        result.append(('commands', bundle.before.commands))
         return tuple(result)
 
     def _format_close_brackets_slot(self, bundle):
@@ -256,8 +256,8 @@ class Container(Component):
     def _format_closing_slot(self, bundle):
         result = []
         result.append(('grob reverts', bundle.grob_reverts))
-        result.append(('commands', bundle.closing.get('commands', [])))
-        result.append(('comments', bundle.closing.get('comments', [])))
+        result.append(('commands', bundle.closing.commands))
+        result.append(('comments', bundle.closing.comments))
         return self._format_slot_contributions_with_indent(result)
 
     def _format_content_pieces(self):
@@ -283,8 +283,8 @@ class Container(Component):
 
     def _format_opening_slot(self, bundle):
         result = []
-        result.append(('comments', bundle.opening.get('comments', [])))
-        result.append(('commands', bundle.opening.get('commands', [])))
+        result.append(('comments', bundle.opening.comments))
+        result.append(('commands', bundle.opening.commands))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
         return self._format_slot_contributions_with_indent(result)

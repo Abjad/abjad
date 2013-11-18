@@ -264,10 +264,10 @@ class Measure(FixedDurationContainer):
         This is also the slot where LilyPond \time commands live.
         '''
         result = []
-        result.append(('comments', bundle.opening.get('comments', [])))
+        result.append(('comments', bundle.opening.comments))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
-        result.append(('context marks', bundle.opening.get('context marks', [])))
+        result.append(('context marks', bundle.opening.context_marks))
         return self._format_slot_contributions_with_indent(result)
 
     @staticmethod

@@ -9,25 +9,58 @@ class LilyPondFormatBundle(AbjadObject):
     format contributions generated on behalf of a single component.
     '''
 
-    ### CLASS VARIABLES ###
-
-#    __slots__ = (
-#        
-#        )
-
     class SlotContributions(object):
         
         def __init__(self):
-            pass
+            self._articulations = []
+            self._commands = []
+            self._comments = []
+            self._context_marks = []
+            self._markup = []
+            self._other_marks = []
+            self._spanners = []
+            self._stem_tremolos = []
+
+        @property
+        def articulations(self):
+            return self._articulations
+
+        @property
+        def comments(self):
+            return self._comments
+
+        @property
+        def commands(self):
+            return self._commands
+
+        @property
+        def context_marks(self):
+            return self._context_marks
+
+        @property
+        def markup(self):
+            return self._markup
+
+        @property
+        def other_marks(self):
+            return self._other_marks
+
+        @property
+        def spanners(self):
+            return self._spanners
+
+        @property
+        def stem_tremolos(self):
+            return self._stem_tremolos
     
     ### INITIALIZER ###
 
     def __init__(self):
-        self._before = {}
-        self._after = {}
-        self._opening = {}
-        self._closing = {}
-        self._right = {}
+        self._before = self.SlotContributions()
+        self._after = self.SlotContributions()
+        self._opening = self.SlotContributions()
+        self._closing = self.SlotContributions()
+        self._right = self.SlotContributions()
         self._context_settings = []
         self._grob_overrides = []
         self._grob_reverts = []

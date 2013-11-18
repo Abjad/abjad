@@ -98,28 +98,28 @@ class Context(Container):
 
     def _format_closing_slot(context, bundle):
         result = []
-        result.append(['context marks', bundle.closing.get('context marks', [])])
-        result.append(['commands', bundle.closing.get('commands', [])])
-        result.append(['comments', bundle.closing.get('comments', [])])
+        result.append(['context marks', bundle.closing.context_marks])
+        result.append(['commands', bundle.closing.commands])
+        result.append(['comments', bundle.closing.comments])
         return context._format_slot_contributions_with_indent(result)
 
     def _format_engraver_consists(self):
         result = []
         for engraver in self.engraver_consists:
-            result.append(r'\consists %s' % engraver)
+            result.append(r'\consists {}'.format(engraver))
         return result
 
     def _format_engraver_removals(self):
         result = []
         for engraver in self.engraver_removals:
-            result.append(r'\remove %s' % engraver)
+            result.append(r'\remove {}'.format(engraver))
         return result
 
     def _format_invocation(self):
         if self.name is not None:
-            return r'\context %s = "%s"' % (self.context_name, self.name)
+            return r'\context {} = "{}"'.format(self.context_name, self.name)
         else:
-            return r'\new %s' % self.context_name
+            return r'\new {}'.format(self.context_name)
 
     def _format_open_brackets_slot(context, bundle):
         result = []
@@ -154,9 +154,9 @@ class Context(Container):
 
     def _format_opening_slot(context, bundle):
         result = []
-        result.append(['comments', bundle.opening.get('comments', [])])
-        result.append(['context marks', bundle.opening.get('context marks', [])])
-        result.append(['commands', bundle.opening.get('commands', [])])
+        result.append(['comments', bundle.opening.comments])
+        result.append(['context marks', bundle.opening.context_marks])
+        result.append(['commands', bundle.opening.commands])
         return context._format_slot_contributions_with_indent(result)
 
     ### PUBLIC PROPERTIES ###

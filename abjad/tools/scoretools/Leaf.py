@@ -174,16 +174,11 @@ class Leaf(Component):
     def _format_after_slot(leaf, bundle):
         result = []
         slot_dictionary = bundle.after
-        contributions = slot_dictionary.get('spanners', [])
-        result.append(('spanners', contributions))
-        contributions = slot_dictionary.get('context marks', [])
-        result.append(('context marks', contributions))
-        contributions = slot_dictionary.get('commands', [])
-        result.append(('commands', contributions))
-        contributions = slot_dictionary.get('other marks', [])
-        result.append(('other marks', contributions))
-        contributions = slot_dictionary.get('comments', [])
-        result.append(('comments', contributions))
+        result.append(('spanners', bundle.after.spanners))
+        result.append(('context marks', bundle.after.context_marks))
+        result.append(('commands', bundle.after.commands))
+        result.append(('other marks', bundle.after.other_marks))
+        result.append(('comments', bundle.after.comments))
         return result
 
     def _format_agrace_body(leaf):
@@ -204,12 +199,12 @@ class Leaf(Component):
     def _format_before_slot(leaf, bundle):
         result = []
         result.append(leaf._format_grace_body())
-        result.append(('comments', bundle.before.get('comments', [])))
-        result.append(('commands', bundle.before.get('commands', [])))
-        result.append(('context marks', bundle.before.get('context marks', [])))
+        result.append(('comments', bundle.before.comments))
+        result.append(('commands', bundle.before.commands))
+        result.append(('context marks', bundle.before.context_marks))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
-        result.append(('spanners', bundle.before.get('spanners', [])))
+        result.append(('spanners', bundle.before.spanners))
         return result
 
     def _format_close_brackets_slot(leaf, bundle):
@@ -218,10 +213,10 @@ class Leaf(Component):
     def _format_closing_slot(leaf, bundle):
         result = []
         result.append(leaf._format_agrace_body())
-        result.append(('spanners', bundle.closing.get('spanners', [])))
-        result.append(('commands', bundle.closing.get('commands', [])))
-        result.append(('context marks', bundle.closing.get('context marks', [])))
-        result.append(('comments', bundle.closing.get('comments', [])))
+        result.append(('spanners', bundle.closing.spanners))
+        result.append(('commands', bundle.closing.commands))
+        result.append(('context marks', bundle.closing.context_marks))
+        result.append(('comments', bundle.closing.comments))
         return result
 
     def _format_contents_slot(leaf, bundle):
@@ -239,16 +234,14 @@ class Leaf(Component):
 
     def _format_leaf_body(leaf, bundle):
         result = leaf._format_leaf_nucleus()[1]
-        right = bundle.right
-        if right:
-            result.extend(right.get('stem tremolos', []))
-            result.extend(right.get('articulations', []))
-            result.extend(right.get('commands', []))
-            result.extend(right.get('context marks', []))
-            result.extend(right.get('spanners', []))
-            result.extend(right.get('comments', []))
+        result.extend(bundle.right.stem_tremolos)
+        result.extend(bundle.right.articulations)
+        result.extend(bundle.right.commands)
+        result.extend(bundle.right.context_marks)
+        result.extend(bundle.right.spanners)
+        result.extend(bundle.right.comments)
         result = [' '.join(result)]
-        markup = right.get('markup')
+        markup = bundle.right.markup
         if markup:
             if len(markup) == 1:
                 result[0] += ' {}'.format(markup[0])
@@ -258,8 +251,8 @@ class Leaf(Component):
 
     # TODO: subclass this properly for chord
     def _format_leaf_nucleus(leaf):
-        from abjad.tools.scoretools.Chord import Chord
-        if not isinstance(leaf, Chord):
+        from abjad.tools import scoretools
+        if not isinstance(leaf, scoretools.Chord):
             return ['nucleus', leaf._body]
         result = []
         chord = leaf
@@ -285,10 +278,10 @@ class Leaf(Component):
 
     def _format_opening_slot(leaf, bundle):
         result = []
-        result.append(('comments', bundle.opening.get('comments', [])))
-        result.append(('context marks', bundle.opening.get('context marks', [])))
-        result.append(('commands', bundle.opening.get('commands', [])))
-        result.append(('spanners', bundle.opening.get('spanners', [])))
+        result.append(('comments', bundle.opening.comments))
+        result.append(('context marks', bundle.opening.context_marks))
+        result.append(('commands', bundle.opening.commands))
+        result.append(('spanners', bundle.opening.spanners))
         result.append(leaf._format_agrace_opening())
         return result
 
