@@ -119,7 +119,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         ::
 
             >>> score_specification.timespan
-            TimespanExpression()
+            TimespanExpression(callbacks=CallbackInventory([]))
 
         Returns timespan expression.
         '''

@@ -25,7 +25,7 @@ class CodeBlock(AbjadObject):
 
         >>> output_proxies = code_block.execute(console)
         >>> print output_proxies
-        [CodeOutputProxy(('>>> message = "hello, world!"', '>>> print message', 'hello, world!',))]
+        [CodeOutputProxy(('>>> message = "hello, world!"', '>>> print message', 'hello, world!'))]
 
     Multiple code block interpretations can be chained together by using a
     common InteractiveConsole instance:
@@ -72,7 +72,7 @@ class CodeBlock(AbjadObject):
         >>> for x in output_proxies:
         ...     x
         ...
-        CodeOutputProxy(('>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")', '>>> show(staff)',))
+        CodeOutputProxy(('>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")', '>>> show(staff)'))
         LilyPondOutputProxy('\\version "2.17.0"\n\\language "english"\n\n\\score {\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc4\n\t\td4\n\t\te4\n\t\tf4\n\t}\n}')
         CodeOutputProxy(('>>> print len(staff)', '4'))
 

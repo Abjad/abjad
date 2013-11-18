@@ -79,7 +79,7 @@ class StorageFormatManager(object):
                     result.append('{}{}'.format(prefix, piece))
                 result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
             if not is_indented:
-                if isinstance(value, list):
+                if isinstance(value, list) or 1 < len(value):
                     result[-1] = result[-1].rstrip(suffix)
                 else:
                     result[-1] = result[-1].rstrip()

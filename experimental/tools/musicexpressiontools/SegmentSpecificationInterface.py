@@ -134,7 +134,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
         ::
 
             >>> red_segment.timespan
-            TimespanExpression(anchor='red')
+            TimespanExpression(anchor='red', callbacks=CallbackInventory([]))
 
         Returns timespan expression.
         '''
