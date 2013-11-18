@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import inspect
+#import inspect
 
 
 class LilyPondFormatManager(object):
@@ -32,6 +32,29 @@ class LilyPondFormatManager(object):
         )
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def bundle_all_format_contributions(component):
+        r'''Gets all format contributions for `component`.
+
+        Returns nested dictionary.
+        '''
+        from abjad.tools import systemtools
+        manager = LilyPondFormatManager
+        bundle = systemtools.LilyPondFormatBundle()
+        manager.get_all_mark_format_contributions(component, bundle)
+        spanners = manager.get_spanner_format_contributions(component)
+        assert all([isinstance(spanners[x], list) for x in spanners]), repr((x, spanners[x]))
+        for format_slot, contributions in spanners.iteritems():
+            getattr(bundle, format_slot).spanners[:] = contributions 
+        settings = manager.get_context_setting_format_contributions(component)[1]
+        bundle.context_settings[:] = settings
+        overrides = manager.get_grob_override_format_contributions(component)[1]
+        bundle.grob_overrides[:] = overrides
+        reverts = manager.get_grob_revert_format_contributions(component)[1]
+        bundle.grob_reverts[:] = reverts
+        bundle.make_immutable()
+        return bundle
 
     @staticmethod
     def format_lilypond_attribute(attribute):
@@ -125,28 +148,7 @@ class LilyPondFormatManager(object):
         return format(expr, 'lilypond')
 
     @staticmethod
-    def get_all_format_contributions(component):
-        r'''Gets all format contributions for `component`.
-
-        Returns nested dictionary.
-        '''
-        manager = LilyPondFormatManager
-        bundle = manager.get_all_mark_format_contributions(component)
-        spanners = manager.get_spanner_format_contributions(component)
-        assert all([isinstance(spanners[x], list) for x in spanners]), repr((x, spanners[x]))
-        for format_slot, contributions in spanners.iteritems():
-            getattr(bundle, format_slot).spanners[:] = contributions 
-        settings = manager.get_context_setting_format_contributions(component)[1]
-        bundle.context_settings[:] = settings
-        overrides = manager.get_grob_override_format_contributions(component)[1]
-        bundle.grob_overrides[:] = overrides
-        reverts = manager.get_grob_revert_format_contributions(component)[1]
-        bundle.grob_reverts[:] = reverts
-        bundle.make_immutable()
-        return bundle
-
-    @staticmethod
-    def get_all_mark_format_contributions(component):
+    def get_all_mark_format_contributions(component, bundle):
         r'''Gets all mark format contributions as nested dictionaries.
 
         Keys in the first level represent format slots.
@@ -159,86 +161,70 @@ class LilyPondFormatManager(object):
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools import systemtools
+        from abjad.tools.agenttools.InspectionAgent import inspect
         manager = LilyPondFormatManager
-        # the pairs here are (section, is_singleton) pairs
-        class_to_section = {
-            indicatortools.Articulation: ('articulations', False),
-            indicatortools.BendAfter: ('articulations', False),
-            indicatortools.LilyPondCommand: ('commands', False),
-            indicatortools.LilyPondComment: ('comments', False),
-            indicatortools.StemTremolo: ('stem_tremolos', True),
-            }
-        bundle = systemtools.LilyPondFormatBundle()
-        marks = component._get_context_marks() + component._get_indicators()
+        items = component._get_context_marks() + component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
         wrappers = []
-        # organize context marks and indicators attached directly to component
-        for mark in marks:
-            # skip nonprinting marks like annotation
-            if not hasattr(mark, '_lilypond_format'):
+        # organize items attached to component
+        for item in items:
+            format_slot_subsection = None
+            # skip nonprinting items like annotation
+            if not hasattr(item, '_lilypond_format'):
                 continue
-            # get section of recognized mark class
-            section, singleton = None, False
-            if mark.__class__ in class_to_section:
-                section, singleton = class_to_section[mark.__class__]
-                assert isinstance(section, str), repr(section)
-            # store context marks for later handling
-            elif isinstance(mark, indicatortools.ContextMark):
-                if manager.is_formattable_context_mark(mark, component):
-                    context_marks.append(mark)
+            if isinstance(item, indicatortools.Articulation):
+                format_slot_subsection = 'articulations'
+            elif isinstance(item, indicatortools.BendAfter):
+                format_slot_subsection = 'articulations'
+            elif isinstance(item, indicatortools.LilyPondCommand):
+                format_slot_subsection = 'commands'
+            elif isinstance(item, indicatortools.LilyPondComment):
+                format_slot_subsection = 'comments'
+            elif isinstance(item, indicatortools.StemTremolo):
+                format_slot_subsection = 'stem_tremolos'
+            # store formattable context marks attached to component
+            elif isinstance(item, indicatortools.ContextMark):
+                if manager.is_formattable_context_mark(item, component):
+                    context_marks.append(item)
                 continue
             # store wrappers for later handling
-            elif isinstance(mark, indicatortools.IndicatorWrapper):
-                wrappers.append(mark)
+            elif isinstance(item, indicatortools.IndicatorWrapper):
+                wrappers.append(item)
                 continue
             # store markup for later handling
-            elif isinstance(mark, markuptools.Markup):
-                if mark.direction is Up:
-                    up_markup.append(mark)
-                elif mark.direction is Down:
-                    down_markup.append(mark)
-                elif mark.direction in (Center, None):
-                    neutral_markup.append(mark)
+            elif isinstance(item, markuptools.Markup):
+                if item.direction is Up:
+                    up_markup.append(item)
+                elif item.direction is Down:
+                    down_markup.append(item)
+                elif item.direction in (Center, None):
+                    neutral_markup.append(item)
                 continue
-            # otherwise, test if mark is a subclass of a recognized mark
+            # otherwise the item is something else
             else:
-                mro = list(inspect.getmro(mark.__class__))
-                while mro:
-                    if mro[-1] in class_to_section:
-                        section, singleton = class_to_section[mro[-1]]
-                    mro.pop()
-                if not section:
-                    section, singleton = 'other_marks', False
-                assert isinstance(section, str), repr(section)
-
-            # prepare the contributions dictionary
-            format_slot = mark._format_slot
-
-            # add the mark contribution
-            assert isinstance(section, str), repr((section, mark))
-            contribution_list = getattr(getattr(bundle, format_slot), section)
-            if len(contribution_list) and singleton:
-                raise ExtraMarkError
-            result = mark._lilypond_format
-            assert isinstance(result, str)
-            contribution_list.append(result)
-            if section == 'articulations':
-                contribution_list.sort()
-        # handle context marks
-        for parent in component._get_parentage(include_self=False):
+                format_slot_subsection = 'other_marks'
+            format_slot = item._format_slot
+            format_slot = bundle.get(format_slot)
+            contributions = format_slot.get(format_slot_subsection)
+            contribution = item._lilypond_format
+            contributions.append(contribution)
+            if format_slot_subsection == 'articulations':
+                contributions.sort()
+        # add formattable context marks attached to parents of component
+        for parent in inspect(component).get_parentage(include_self=False):
             for context_mark in parent._start_context_marks:
                 assert isinstance(context_mark, indicatortools.ContextMark)
                 if context_mark in context_marks:
                     continue
                 if manager.is_formattable_context_mark(context_mark, component):
                     context_marks.append(context_mark)
-        section = 'context_marks'
+        # handle context marks
         for context_mark in context_marks:
             assert isinstance(context_mark, indicatortools.ContextMark)
+            format_pieces = manager.get_context_mark_format_pieces(context_mark)
             format_slot = context_mark._format_slot
-            result = manager.get_context_mark_format_pieces(context_mark)
-            bundle.get(format_slot).get(section).extend(result)
+            bundle.get(format_slot).context_marks.extend(format_pieces)
         # TODO: insert wrapper handling code here
         # handle markup
         for markup_list in (up_markup, down_markup, neutral_markup):
@@ -263,7 +249,7 @@ class LilyPondFormatManager(object):
                 else:
                     format_pieces = markup_list[0]._get_format_pieces()
                     bundle.right.markup[:] = format_pieces
-        return bundle
+        #return bundle
 
     @staticmethod
     def get_context_mark_format_pieces(context_mark):

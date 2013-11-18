@@ -579,7 +579,7 @@ class InspectionAgent(object):
         from abjad.tools import systemtools
         component = self._component
         bundle = \
-            systemtools.LilyPondFormatManager.get_all_format_contributions(
+            systemtools.LilyPondFormatManager.bundle_all_format_contributions(
                 component)
         result = []
         result.extend(component._get_format_contributions_for_slot(
