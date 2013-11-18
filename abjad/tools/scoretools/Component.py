@@ -266,7 +266,7 @@ class Component(AbjadObject):
     def _format_component(self, pieces=False):
         result = []
         manager = systemtools.LilyPondFormatManager
-        bundle = manager.get_all_format_contributions(self)
+        bundle = manager.bundle_format_contributions(self)
         result.extend(self._format_before_slot(bundle))
         result.extend(self._format_open_brackets_slot(bundle))
         result.extend(self._format_opening_slot(bundle))
@@ -398,7 +398,7 @@ class Component(AbjadObject):
         result = []
         if bundle is None:
             manager = systemtools.LilyPondFormatManager
-            bundle = manager.get_all_format_contributions(self)
+            bundle = manager.bundle_format_contributions(self)
         slot_names = (
             'before',
             'open_brackets',

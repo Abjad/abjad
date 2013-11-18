@@ -170,7 +170,6 @@ class Leaf(Component):
         result.append(('spanners', bundle.after.spanners))
         result.append(('context marks', bundle.after.context_marks))
         result.append(('commands', bundle.after.commands))
-        result.append(('other marks', bundle.after.other_marks))
         result.append(('comments', bundle.after.comments))
         return result
 
@@ -357,7 +356,7 @@ class Leaf(Component):
 
     def _report_format_contributors(self):
         manager = systemtools.LilyPondFormatManager
-        bundle = manager.get_all_format_contributions(self)
+        bundle = manager.bundle_format_contributions(self)
         report = ''
         report += 'slot 1:\n'
         packet = self._format_before_slot(bundle)
