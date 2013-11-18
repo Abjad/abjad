@@ -74,14 +74,6 @@ class OctaveTranspositionMapping(TypedList):
         superclass = super(OctaveTranspositionMapping, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __repr__(self):
-        if self.custom_identifier:
-            return '{}([{}], custom_identifier={!r})'.format(
-                type(self).__name__, self._repr_contents_string, self.custom_identifier)
-        else:
-            return '{}([{}])'.format(
-                type(self).__name__, self._repr_contents_string)
-
     ### PRIVATE METHODS ###
 
     def _transpose_pitch(self, pitch):
@@ -136,4 +128,3 @@ class OctaveTranspositionMapping(TypedList):
                 input_argument_tokens,
                 ),
             )
-

@@ -129,6 +129,17 @@ class LilyPondCommand(AbjadObject):
         else:
             return '\\' + stringtools.snake_case_to_lower_camel_case(command)
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = [self.name]
+        if self.format_slot is not None:
+            positional_argument_values.append(self.format_slot)
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
