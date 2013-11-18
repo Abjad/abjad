@@ -216,32 +216,24 @@ class Tuplet(Container):
                 new_written_duration = leaf_multiplier * old_written_duration
                 component._set_duration(new_written_duration)
 
-    def _format_after_slot(self, format_contributions):
+    def _format_after_slot(self, bundle):
         r'''Tuple of format contributions to appear
         immediately after self closing.
         '''
         result = []
-        result.append(('grob reverts',
-            format_contributions.get('grob reverts', [])))
-        result.append(('lilypond command marks',
-            format_contributions.get(
-                'after', {}).get('lilypond command marks', [])))
-        result.append(('comments',
-            format_contributions.get('after', {}).get('comments', [])))
+        result.append(('grob reverts', bundle.grob_reverts))
+        result.append(('lilypond command marks', bundle.after.get('lilypond command marks', [])))
+        result.append(('comments', bundle.after.get('comments', [])))
         return tuple(result)
 
-    def _format_before_slot(self, format_contributions):
+    def _format_before_slot(self, bundle):
         result = []
-        result.append(('comments',
-            format_contributions.get('before', {}).get('comments', [])))
-        result.append(('lilypond command marks',
-            format_contributions.get(
-                'before', {}).get('lilypond command marks', [])))
-        result.append(('grob overrides',
-            format_contributions.get('grob overrides', [])))
+        result.append(('comments', bundle.before.get('comments', [])))
+        result.append(('lilypond command marks', bundle.before.get('lilypond command marks', [])))
+        result.append(('grob overrides', bundle.grob_overrides))
         return tuple(result)
 
-    def _format_close_brackets_slot(self, format_contributions):
+    def _format_close_brackets_slot(self, bundle):
         r'''Tuple of format contributions used to
         generate self closing.
         '''
@@ -250,16 +242,13 @@ class Tuplet(Container):
             result.append([('self_brackets', 'close'), '}'])
         return tuple(result)
 
-    def _format_closing_slot(self, format_contributions):
+    def _format_closing_slot(self, bundle):
         r'''Tuple of format contributions to appear
         immediately before self closing.
         '''
         result = []
-        result.append(('lilypond command marks',
-            format_contributions.get(
-                'closing', {}).get('lilypond command marks', [])))
-        result.append(('comments',
-            format_contributions.get('closing', {}).get('comments', [])))
+        result.append(('lilypond command marks', bundle.closing.get('lilypond command marks', [])))
+        result.append(('comments', bundle.closing.get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
 
     def _format_lilypond_fraction_command_string(self):
@@ -270,7 +259,7 @@ class Tuplet(Container):
                 return r"\tweak #'text #tuplet-number::calc-fraction-text"
         return ''
 
-    def _format_open_brackets_slot(self, format_contributions):
+    def _format_open_brackets_slot(self, bundle):
         result = []
         if self.multiplier:
             if self.is_invisible:
@@ -295,13 +284,10 @@ class Tuplet(Container):
                 result.append([contributor, contributions])
         return tuple(result)
 
-    def _format_opening_slot(self, format_contributions):
+    def _format_opening_slot(self, bundle):
         result = []
-        result.append(('comments',
-            format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('lilypond command marks',
-            format_contributions.get(
-                'opening', {}).get('lilypond command marks', [])))
+        result.append(('comments', bundle.opening.get('comments', [])))
+        result.append(('lilypond command marks', bundle.opening.get('lilypond command marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
     def _scale(self, multiplier):

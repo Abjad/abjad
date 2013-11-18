@@ -96,15 +96,11 @@ class Context(Container):
         return new
         return new
 
-    def _format_closing_slot(context, format_contributions):
+    def _format_closing_slot(context, bundle):
         result = []
-        result.append(['context marks',
-            format_contributions.get('closing', {}).get('context marks', [])])
-        result.append(['lilypond command marks',
-            format_contributions.get(
-                'closing', {}).get('lilypond command marks', [])])
-        result.append(['comments',
-            format_contributions.get('closing', {}).get('comments', [])])
+        result.append(['context marks', bundle.closing.get('context marks', [])])
+        result.append(['lilypond command marks', bundle.closing.get('lilypond command marks', [])])
+        result.append(['comments', bundle.closing.get('comments', [])])
         return context._format_slot_contributions_with_indent(result)
 
     def _format_engraver_consists(self):
@@ -125,7 +121,7 @@ class Context(Container):
         else:
             return r'\new %s' % self.context_name
 
-    def _format_open_brackets_slot(context, format_contributions):
+    def _format_open_brackets_slot(context, bundle):
         result = []
         if context.is_simultaneous:
             brackets_open = ['<<']
@@ -133,8 +129,8 @@ class Context(Container):
             brackets_open = ['{']
         engraver_removals = context._format_engraver_removals()
         engraver_consists = context._format_engraver_consists()
-        overrides = format_contributions.get('grob overrides', [])
-        settings = format_contributions.get('context settings', [])
+        overrides = bundle.grob_overrides
+        settings = bundle.context_settings
         if engraver_removals or engraver_consists or overrides or settings:
             contributions = [context._format_invocation() + r' \with {']
             result.append([('context_brackets', 'open'), contributions])
@@ -156,15 +152,11 @@ class Context(Container):
             result.append([('context_brackets', 'open'), contributions])
         return tuple(result)
 
-    def _format_opening_slot(context, format_contributions):
+    def _format_opening_slot(context, bundle):
         result = []
-        result.append(['comments',
-            format_contributions.get('opening', {}).get('comments', [])])
-        result.append(['context marks',
-            format_contributions.get('opening', {}).get('context marks', [])])
-        result.append(['lilypond command marks',
-            format_contributions.get(
-                'opening', {}).get('lilypond command marks', [])])
+        result.append(['comments', bundle.opening.get('comments', [])])
+        result.append(['context marks', bundle.opening.get('context marks', [])])
+        result.append(['lilypond command marks', bundle.opening.get('lilypond command marks', [])])
         return context._format_slot_contributions_with_indent(result)
 
     ### PUBLIC PROPERTIES ###

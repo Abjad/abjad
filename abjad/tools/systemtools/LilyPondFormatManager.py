@@ -132,27 +132,20 @@ class LilyPondFormatManager(object):
         '''
         manager = LilyPondFormatManager
         FLAMINGO = manager.get_all_mark_format_contributions(component)
-        tmp = manager.get_spanner_format_contributions(component)
-        assert all([isinstance(tmp[x], list) for x in tmp]), repr((x, tmp[x]))
-        for slot, contributions in tmp.iteritems():
-            if slot not in FLAMINGO:
-                FLAMINGO[slot] = {}
-            FLAMINGO[slot]['spanners'] = contributions
+        spanners = manager.get_spanner_format_contributions(component)
+        assert all([isinstance(spanners[x], list) for x in spanners]), repr((x, spanners[x]))
+        for format_slot, contributions in spanners.iteritems():
+            #FLAMINGO[format_slot]['spanners'] = contributions
+            getattr(FLAMINGO, format_slot)['spanners'] = contributions 
         settings = manager.get_context_setting_format_contributions(component)[1]
-        FLAMINGO['context settings'] = settings
+        #FLAMINGO['context settings'] = settings
+        FLAMINGO.context_settings[:] = settings
         overrides = manager.get_grob_override_format_contributions(component)[1]
-        FLAMINGO['grob overrides'] = overrides
+        #FLAMINGO['grob overrides'] = overrides
+        FLAMINGO.grob_overrides[:] = overrides
         reverts = manager.get_grob_revert_format_contributions(component)[1]
-        FLAMINGO['grob reverts'] = reverts
-        for x in FLAMINGO:
-            assert x in (
-                'context settings', 'grob overrides', 'grob reverts', 
-                'right', 'opening', 'before', 'after', 'closing',
-                ), repr(x)
-            if x in ('context settings', 'grob overrides', 'grob reverts'):
-                assert isinstance(FLAMINGO[x], list), repr((x, FLAMINGO[x]))
-            else:
-                assert isinstance(FLAMINGO[x], dict), repr((x, FLAMINGO[x]))
+        #FLAMINGO['grob reverts'] = reverts
+        FLAMINGO.grob_reverts[:] = reverts
         return FLAMINGO
 
     @staticmethod
@@ -168,6 +161,8 @@ class LilyPondFormatManager(object):
         '''
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
+        from abjad.tools import systemtools
+        manager = LilyPondFormatManager
         # the pairs here are (section, is_singleton) pairs
         class_to_section = {
             indicatortools.Articulation: ('articulations', False),
@@ -176,13 +171,14 @@ class LilyPondFormatManager(object):
             indicatortools.LilyPondComment: ('comments', False),
             indicatortools.StemTremolo: ('stem tremolos', True),
             }
-        FLAMINGO = {
-            'before': {},
-            'after': {},
-            'opening': {},
-            'closing': {},
-            'right': {},
-            }
+#        FLAMINGO = {
+#            'before': {},
+#            'after': {},
+#            'opening': {},
+#            'closing': {},
+#            'right': {},
+#            }
+        FLAMINGO = systemtools.LilyPondFormatBundle()
         marks = component._get_context_marks() + component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
@@ -198,8 +194,7 @@ class LilyPondFormatManager(object):
                 section, singleton = class_to_section[mark.__class__]
             # store context marks for later handling
             elif isinstance(mark, indicatortools.ContextMark):
-                if LilyPondFormatManager.is_formattable_context_mark_for_component(
-                    mark, component):
+                if manager.is_formattable_context_mark_for_component(mark, component):
                     context_marks.append(mark)
                     continue
             # store wrappers for later handling
@@ -226,12 +221,13 @@ class LilyPondFormatManager(object):
                     section, singleton = 'other marks', False
             # prepare the contributions dictionary
             format_slot = mark._format_slot
-#            if format_slot not in FLAMINGO:
-#                FLAMINGO[format_slot] = {}
-            if section not in FLAMINGO[format_slot]:
-                FLAMINGO[format_slot][section] = []
+#            if section not in FLAMINGO[format_slot]:
+            if section not in getattr(FLAMINGO, format_slot):
+                #FLAMINGO[format_slot][section] = []
+                getattr(FLAMINGO, format_slot)[section] = []
             # add the mark contribution
-            contribution_list = FLAMINGO[format_slot][section]
+#            contribution_list = FLAMINGO[format_slot][section]
+            contribution_list = getattr(FLAMINGO, format_slot)[section]
             if len(contribution_list) and singleton:
                 raise ExtraMarkError
             result = mark._lilypond_format
@@ -245,20 +241,20 @@ class LilyPondFormatManager(object):
                 assert isinstance(context_mark, indicatortools.ContextMark)
                 if context_mark in context_marks:
                     continue
-                if LilyPondFormatManager.is_formattable_context_mark_for_component(
-                    context_mark, component):
+                if manager.is_formattable_context_mark_for_component(context_mark, component):
                     context_marks.append(context_mark)
         section = 'context marks'
         for context_mark in context_marks:
             assert isinstance(context_mark, indicatortools.ContextMark)
             format_slot = context_mark._format_slot
-            result = LilyPondFormatManager.get_context_mark_format_pieces(
+            result = manager.get_context_mark_format_pieces(
                 context_mark)
-#            if format_slot not in FLAMINGO:
-#                FLAMINGO[format_slot] = {}
-            if section not in FLAMINGO[format_slot]:
-                FLAMINGO[format_slot][section] = []
-            FLAMINGO[format_slot][section].extend(result)
+            #if section not in FLAMINGO[format_slot]:
+            if section not in getattr(FLAMINGO, format_slot):
+                #FLAMINGO[format_slot][section] = []
+                getattr(FLAMINGO, format_slot)[section] = []
+            #FLAMINGO[format_slot][section].extend(result)
+            getattr(FLAMINGO, format_slot)[section].extend(result)
 
         # TODO: insert wrapper handling code here
 
@@ -284,15 +280,14 @@ class LilyPondFormatManager(object):
                 else:
                     result.extend(markup_list[0]._get_format_pieces())
         if result:
-#            if 'right' not in FLAMINGO:
-#                FLAMINGO['right'] = {}
-            FLAMINGO['right']['markup'] = result
-        for slot in FLAMINGO:
-            for kind, value in FLAMINGO[slot].iteritems():
-                FLAMINGO[slot][kind] = tuple(value)
-        for x in FLAMINGO:
-            assert isinstance(FLAMINGO[x], dict), repr((x, FLAMINGO[x]))
-            assert x in ('right', 'before', 'after', 'opening', 'closing'), repr(x)
+            #FLAMINGO['right']['markup'] = result
+            FLAMINGO.right['markup'] = result
+#        for slot in FLAMINGO:
+#            for kind, value in FLAMINGO[slot].iteritems():
+#                FLAMINGO[slot][kind] = tuple(value)
+        for format_slot in ('before', 'after', 'opening', 'closing', 'right'):
+            for kind, value in getattr(FLAMINGO, format_slot).iteritems():
+                getattr(FLAMINGO, format_slot)[kind] = tuple(value)
         return FLAMINGO
 
     @staticmethod

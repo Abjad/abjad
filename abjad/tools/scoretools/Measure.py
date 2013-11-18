@@ -259,19 +259,15 @@ class Measure(FixedDurationContainer):
             result.extend(FixedDurationContainer._format_content_pieces(self))
         return result
 
-    def _format_opening_slot(self, format_contributions):
+    def _format_opening_slot(self, bundle):
         r'''This is the slot where LilyPond grob \override commands live.
         This is also the slot where LilyPond \time commands live.
         '''
         result = []
-        result.append(('comments',
-            format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('grob overrides',
-            format_contributions.get('grob overrides', [])))
-        result.append(('context settings',
-            format_contributions.get('context settings', [])))
-        result.append(('context marks',
-            format_contributions.get('opening', {}).get('context marks', [])))
+        result.append(('comments', bundle.opening.get('comments', [])))
+        result.append(('grob overrides', bundle.grob_overrides))
+        result.append(('context settings', bundle.context_settings))
+        result.append(('context marks', bundle.opening.get('context marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
     @staticmethod
