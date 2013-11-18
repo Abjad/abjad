@@ -164,23 +164,14 @@ class Leaf(Component):
             new_grace_container(new)
         return new
 
-    def _format_after_slot(leaf, format_contributions):
+    def _format_after_slot(leaf, bundle):
         result = []
-        slot_dictionary = format_contributions.get('after', {})
-        contributions = slot_dictionary.get('spanners', [])
-        result.append(('spanners', contributions))
-        slot_dictionary = format_contributions.get('after', {})
-        contributions = slot_dictionary.get('context marks', [])
-        result.append(('context marks', contributions))
-        slot_dictionary = format_contributions.get('after', {})
-        contributions = slot_dictionary.get('lilypond command marks', [])
-        result.append(('lilypond command marks', contributions))
-        slot_dictionary = format_contributions.get('after', {})
-        contributions = slot_dictionary.get('other marks', [])
-        result.append(('other marks', contributions))
-        slot_dictionary = format_contributions.get('after', {})
-        contributions = slot_dictionary.get('comments', [])
-        result.append(('comments', contributions))
+        slot_dictionary = bundle.after
+        result.append(('spanners', bundle.after.spanners))
+        result.append(('context marks', bundle.after.context_marks))
+        result.append(('commands', bundle.after.commands))
+        result.append(('other marks', bundle.after.other_marks))
+        result.append(('comments', bundle.after.comments))
         return result
 
     def _format_agrace_body(leaf):
@@ -198,44 +189,32 @@ class Leaf(Component):
                 result.append(r'\afterGrace')
         return ['agrace opening', result]
 
-    def _format_before_slot(leaf, format_contributions):
+    def _format_before_slot(leaf, bundle):
         result = []
         result.append(leaf._format_grace_body())
-        result.append(('comments',
-            format_contributions.get('before', {}).get('comments', [])))
-        result.append(('lilypond command marks',
-            format_contributions.get(
-                'before', {}).get('lilypond command marks', [])))
-        result.append(('context marks',
-            format_contributions.get('before', {}).get('context marks', [])))
-        result.append(('grob overrides',
-            format_contributions.get('grob overrides', [])))
-        result.append(('context settings',
-            format_contributions.get('context settings', [])))
-        result.append(('spanners',
-            format_contributions.get('before', {}).get('spanners', [])))
+        result.append(('comments', bundle.before.comments))
+        result.append(('commands', bundle.before.commands))
+        result.append(('context marks', bundle.before.context_marks))
+        result.append(('grob overrides', bundle.grob_overrides))
+        result.append(('context settings', bundle.context_settings))
+        result.append(('spanners', bundle.before.spanners))
         return result
 
-    def _format_close_brackets_slot(leaf, format_contributions):
+    def _format_close_brackets_slot(leaf, bundle):
         return []
 
-    def _format_closing_slot(leaf, format_contributions):
+    def _format_closing_slot(leaf, bundle):
         result = []
         result.append(leaf._format_agrace_body())
-        result.append(('spanners',
-            format_contributions.get('closing', {}).get('spanners', [])))
-        result.append(('lilypond command marks',
-            format_contributions.get(
-                'closing', {}).get('lilypond command marks', [])))
-        result.append(('context marks',
-            format_contributions.get('closing', {}).get('context marks', [])))
-        result.append(('comments',
-            format_contributions.get('closing', {}).get('comments', [])))
+        result.append(('spanners', bundle.closing.spanners))
+        result.append(('commands', bundle.closing.commands))
+        result.append(('context marks', bundle.closing.context_marks))
+        result.append(('comments', bundle.closing.comments))
         return result
 
-    def _format_contents_slot(leaf, format_contributions):
+    def _format_contents_slot(leaf, bundle):
         result = []
-        result.append(leaf._format_leaf_body(format_contributions))
+        result.append(leaf._format_leaf_body(bundle))
         return result
 
     def _format_grace_body(leaf):
@@ -246,18 +225,16 @@ class Leaf(Component):
                 result.append(format(grace))
         return ['grace body', result]
 
-    def _format_leaf_body(leaf, format_contributions):
+    def _format_leaf_body(leaf, bundle):
         result = leaf._format_leaf_nucleus()[1]
-        right = format_contributions.get('right', {})
-        if right:
-            result.extend(right.get('stem tremolos', []))
-            result.extend(right.get('articulations', []))
-            result.extend(right.get('lilypond command marks', []))
-            result.extend(right.get('context marks', []))
-            result.extend(right.get('spanners', []))
-            result.extend(right.get('comments', []))
+        result.extend(bundle.right.stem_tremolos)
+        result.extend(bundle.right.articulations)
+        result.extend(bundle.right.commands)
+        result.extend(bundle.right.context_marks)
+        result.extend(bundle.right.spanners)
+        result.extend(bundle.right.comments)
         result = [' '.join(result)]
-        markup = right.get('markup')
+        markup = bundle.right.markup
         if markup:
             if len(markup) == 1:
                 result[0] += ' {}'.format(markup[0])
@@ -267,8 +244,8 @@ class Leaf(Component):
 
     # TODO: subclass this properly for chord
     def _format_leaf_nucleus(leaf):
-        from abjad.tools.scoretools.Chord import Chord
-        if not isinstance(leaf, Chord):
+        from abjad.tools import scoretools
+        if not isinstance(leaf, scoretools.Chord):
             return ['nucleus', leaf._body]
         result = []
         chord = leaf
@@ -289,20 +266,15 @@ class Leaf(Component):
         # single string, but wrapped in list bc contribution
         return ['nucleus', [result]]
 
-    def _format_open_brackets_slot(leaf, format_contributions):
+    def _format_open_brackets_slot(leaf, bundle):
         return []
 
-    def _format_opening_slot(leaf, format_contributions):
+    def _format_opening_slot(leaf, bundle):
         result = []
-        result.append(('comments',
-            format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('context marks',
-            format_contributions.get('opening', {}).get('context marks', [])))
-        result.append(('lilypond command marks',
-            format_contributions.get(
-                'opening', {}).get('lilypond command marks', [])))
-        result.append(('spanners',
-            format_contributions.get('opening', {}).get('spanners', [])))
+        result.append(('comments', bundle.opening.comments))
+        result.append(('context marks', bundle.opening.context_marks))
+        result.append(('commands', bundle.opening.commands))
+        result.append(('spanners', bundle.opening.spanners))
         result.append(leaf._format_agrace_opening())
         return result
 
@@ -385,23 +357,23 @@ class Leaf(Component):
 
     def _report_format_contributors(self):
         manager = systemtools.LilyPondFormatManager
-        format_contributions = manager.get_all_format_contributions(self)
+        bundle = manager.get_all_format_contributions(self)
         report = ''
         report += 'slot 1:\n'
-        packet = self._format_before_slot(format_contributions)
+        packet = self._format_before_slot(bundle)
         report += self._process_contribution_packet(packet)
         report += 'slot 3:\n'
-        packet = self._format_opening_slot(format_contributions)
+        packet = self._format_opening_slot(bundle)
         report += self._process_contribution_packet(packet)
         report += 'slot 4:\n'
         report += '\tleaf body:\n'
-        string = self._format_contents_slot(format_contributions)[0][1][0]
+        string = self._format_contents_slot(bundle)[0][1][0]
         report += '\t\t' + string + '\n'
         report += 'slot 5:\n'
-        packet = self._format_closing_slot(format_contributions)
+        packet = self._format_closing_slot(bundle)
         report += self._process_contribution_packet(packet)
         report += 'slot 7:\n'
-        packet = self._format_after_slot(format_contributions)
+        packet = self._format_after_slot(bundle)
         report += self._process_contribution_packet(packet)
         while report[-1] == '\n':
             report = report[:-1]

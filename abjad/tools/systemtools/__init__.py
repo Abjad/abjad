@@ -4,6 +4,7 @@ from BenchmarkScoreMaker import BenchmarkScoreMaker
 from Configuration import Configuration
 from IOManager import IOManager
 from ImportManager import ImportManager
+from LilyPondFormatBundle import LilyPondFormatBundle
 from LilyPondFormatManager import LilyPondFormatManager
 from RedirectedStreams import RedirectedStreams
 from StorageFormatManager import StorageFormatManager

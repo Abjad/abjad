@@ -578,23 +578,23 @@ class InspectionAgent(object):
         from abjad.tools import scoretools
         from abjad.tools import systemtools
         component = self._component
-        format_contributions = \
+        bundle = \
             systemtools.LilyPondFormatManager.get_all_format_contributions(
                 component)
         result = []
         result.extend(component._get_format_contributions_for_slot(
-            'before', format_contributions))
+            'before', bundle))
         result.extend(component._get_format_contributions_for_slot(
-            'open brackets', format_contributions))
+            'open brackets', bundle))
         result.extend(component._get_format_contributions_for_slot(
-            'opening', format_contributions))
+            'opening', bundle))
         result.append('\t%%%%%% %s components omitted %%%%%%' % len(component))
         result.extend(component._get_format_contributions_for_slot(
-            'closing', format_contributions))
+            'closing', bundle))
         result.extend(component._get_format_contributions_for_slot(
-            'close brackets', format_contributions))
+            'close brackets', bundle))
         result.extend(component._get_format_contributions_for_slot(
-            'after', format_contributions))
+            'after', bundle))
         result = '\n'.join(result)
         return result
 

@@ -6,6 +6,31 @@ class LilyPondFormatManager(object):
     r'''Manages LilyPond formatting logic.
     '''
 
+    ### CLASS VARIABLES ###
+
+    lilypond_color_constants = (
+        'black',
+        'blue',
+        'center',
+        'cyan',
+        'darkblue',
+        'darkcyan',
+        'darkgreen',
+        'darkmagenta',
+        'darkred',
+        'darkyellow',
+        'down',
+        'green',
+        'grey',
+        'left',
+        'magenta',
+        'red',
+        'right',
+        'up',
+        'white',
+        'yellow',
+        )
+
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -15,18 +40,20 @@ class LilyPondFormatManager(object):
 
         Returns string.
         '''
+        assert isinstance(attribute, str), repr(attribute)
         attribute = attribute.replace('__', " #'")
         result = attribute.replace('_', '-')
-        result = "#'%s" % result
+        result = "#'{}".format(result)
         return result
 
     @staticmethod
     def format_lilypond_context_setting_in_with_block(name, value):
         r'''Formats LilyPond context setting `name` with `value`
-        in with block.
+        in LilyPond with-block.
 
         Returns string.
         '''
+        assert isinstance(name, str), repr(name)
         name = name.split('_')
         first = name[0:1]
         rest = name[1:]
@@ -35,7 +62,8 @@ class LilyPondFormatManager(object):
         name = ''.join(name)
         value = LilyPondFormatManager.format_lilypond_value(value)
         value_parts = value.split('\n')
-        result = [r'{!s} = {!s}'.format(name, value_parts[0])]
+        result = r'{!s} = {!s}'.format(name, value_parts[0])
+        result = [result]
         for part in value_parts[1:]:
             result.append('\t' + part)
         return '\n'.join(result)
@@ -68,7 +96,8 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def format_lilypond_value(expr):
-        r'''Formats LilyPond `expr` according to Scheme formatting conventions.
+        r'''Formats LilyPond `expr` according to Scheme formatting 
+        conventions.
 
         Returns string.
         '''
@@ -81,38 +110,16 @@ class LilyPondFormatManager(object):
             expr = schemetools.Scheme(repr(expr).lower())
         elif isinstance(expr, int) or isinstance(expr, float):
             expr = schemetools.Scheme(expr)
-        elif expr in (
-            'black',
-            'blue',
-            'center',
-            'cyan',
-            'darkblue',
-            'darkcyan',
-            'darkgreen',
-            'darkmagenta',
-            'darkred',
-            'darkyellow',
-            'down',
-            'green',
-            'grey',
-            'left',
-            'magenta',
-            'red',
-            'right',
-            'up',
-            'white',
-            'yellow',
-            ):
+        elif expr in LilyPondFormatManager.lilypond_color_constants:
             expr = schemetools.Scheme(expr)
         elif isinstance(expr, str) and '::' in expr:
             expr = schemetools.Scheme(expr)
         elif isinstance(expr, tuple):
             expr = schemetools.SchemePair(expr[0], expr[1])
-        elif isinstance(expr, str):
-            if ' ' not in expr:
-                expr = schemetools.Scheme(expr, quoting="'")
-            else:
-                expr = schemetools.Scheme(expr)
+        elif isinstance(expr, str) and ' ' not in expr:
+            expr = schemetools.Scheme(expr, quoting="'")
+        elif isinstance(expr, str) and ' ' in expr:
+            expr = schemetools.Scheme(expr)
         else:
             expr = schemetools.Scheme(expr, quoting="'")
         return format(expr, 'lilypond')
@@ -123,29 +130,19 @@ class LilyPondFormatManager(object):
 
         Returns nested dictionary.
         '''
-        result = LilyPondFormatManager.get_all_mark_format_contributions(
-            component)
-        for slot, contributions in \
-            LilyPondFormatManager.get_spanner_format_contributions(
-                component).iteritems():
-            if slot not in result:
-                result[slot] = {}
-            result[slot]['spanners'] = contributions
-        settings = \
-            LilyPondFormatManager.get_context_setting_format_contributions(
-                component)[1]
-        if settings:
-            result['context settings'] = settings
-        overrides = \
-            LilyPondFormatManager.get_grob_override_format_contributions(
-                component)[1]
-        if overrides:
-            result['grob overrides'] = overrides
-        reverts = LilyPondFormatManager.get_grob_revert_format_contributions(
-            component)[1]
-        if reverts:
-            result['grob reverts'] = reverts
-        return result
+        manager = LilyPondFormatManager
+        bundle = manager.get_all_mark_format_contributions(component)
+        spanners = manager.get_spanner_format_contributions(component)
+        assert all([isinstance(spanners[x], list) for x in spanners]), repr((x, spanners[x]))
+        for format_slot, contributions in spanners.iteritems():
+            getattr(bundle, format_slot).spanners[:] = contributions 
+        settings = manager.get_context_setting_format_contributions(component)[1]
+        bundle.context_settings[:] = settings
+        overrides = manager.get_grob_override_format_contributions(component)[1]
+        bundle.grob_overrides[:] = overrides
+        reverts = manager.get_grob_revert_format_contributions(component)[1]
+        bundle.grob_reverts[:] = reverts
+        return bundle
 
     @staticmethod
     def get_all_mark_format_contributions(component):
@@ -160,15 +157,17 @@ class LilyPondFormatManager(object):
         '''
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
+        from abjad.tools import systemtools
+        manager = LilyPondFormatManager
         # the pairs here are (section, is_singleton) pairs
         class_to_section = {
             indicatortools.Articulation: ('articulations', False),
             indicatortools.BendAfter: ('articulations', False),
-            indicatortools.LilyPondCommand: ('lilypond command marks', False),
+            indicatortools.LilyPondCommand: ('commands', False),
             indicatortools.LilyPondComment: ('comments', False),
-            indicatortools.StemTremolo: ('stem tremolos', True),
+            indicatortools.StemTremolo: ('stem_tremolos', True),
             }
-        contributions = {}
+        bundle = systemtools.LilyPondFormatBundle()
         marks = component._get_context_marks() + component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
@@ -182,10 +181,10 @@ class LilyPondFormatManager(object):
             section, singleton = None, False
             if mark.__class__ in class_to_section:
                 section, singleton = class_to_section[mark.__class__]
+                assert isinstance(section, str), repr(section)
             # store context marks for later handling
             elif isinstance(mark, indicatortools.ContextMark):
-                if LilyPondFormatManager.is_formattable_context_mark_for_component(
-                    mark, component):
+                if manager.is_formattable_context_mark_for_component(mark, component):
                     context_marks.append(mark)
                     continue
             # store wrappers for later handling
@@ -209,17 +208,23 @@ class LilyPondFormatManager(object):
                         section, singleton = class_to_section[mro[-1]]
                     mro.pop()
                 if not section:
-                    section, singleton = 'other marks', False
+                    section, singleton = 'other_marks', False
+                assert isinstance(section, str), repr(section)
+
             # prepare the contributions dictionary
             format_slot = mark._format_slot
-            if format_slot not in contributions:
-                contributions[format_slot] = {}
-            if section not in contributions[format_slot]:
-                contributions[format_slot][section] = []
+#            if section not in getattr(bundle, format_slot):
+#                getattr(bundle, format_slot)[section] = []
+            if section is None:
+                section = 'dummy'
+                setattr(getattr(bundle, format_slot), section, [])
             # add the mark contribution
-            contribution_list = contributions[format_slot][section]
+            #contribution_list = getattr(bundle, format_slot)[section]
+            assert isinstance(section, str), repr((section, mark))
+            contribution_list = getattr(getattr(bundle, format_slot), section)
             if len(contribution_list) and singleton:
                 raise ExtraMarkError
+
             result = mark._lilypond_format
             assert isinstance(result, str)
             contribution_list.append(result)
@@ -231,20 +236,18 @@ class LilyPondFormatManager(object):
                 assert isinstance(context_mark, indicatortools.ContextMark)
                 if context_mark in context_marks:
                     continue
-                if LilyPondFormatManager.is_formattable_context_mark_for_component(
-                    context_mark, component):
+                if manager.is_formattable_context_mark_for_component(context_mark, component):
                     context_marks.append(context_mark)
-        section = 'context marks'
+        section = 'context_marks'
         for context_mark in context_marks:
             assert isinstance(context_mark, indicatortools.ContextMark)
             format_slot = context_mark._format_slot
-            result = LilyPondFormatManager.get_context_mark_format_pieces(
+            result = manager.get_context_mark_format_pieces(
                 context_mark)
-            if format_slot not in contributions:
-                contributions[format_slot] = {}
-            if section not in contributions[format_slot]:
-                contributions[format_slot][section] = []
-            contributions[format_slot][section].extend(result)
+#            if section not in getattr(bundle, format_slot):
+#                getattr(bundle, format_slot)[section] = []
+            #getattr(bundle, format_slot)[section].extend(result)
+            getattr(getattr(bundle, format_slot), section).extend(result)
 
         # TODO: insert wrapper handling code here
 
@@ -270,13 +273,15 @@ class LilyPondFormatManager(object):
                 else:
                     result.extend(markup_list[0]._get_format_pieces())
         if result:
-            if 'right' not in contributions:
-                contributions['right'] = {}
-            contributions['right']['markup'] = result
-        for slot in contributions:
-            for kind, value in contributions[slot].iteritems():
-                contributions[slot][kind] = tuple(value)
-        return contributions
+            #bundle.right['markup'] = result
+            bundle.right.markup[:] = result
+
+#        for format_slot in ('before', 'after', 'opening', 'closing', 'right'):
+#            for kind, value in getattr(bundle, format_slot).iteritems():
+#                #getattr(bundle, format_slot)[kind] = tuple(value)
+#                getattr(getattr(bundle, format_slot), kind)[:] = tuple(value)
+
+        return bundle
 
     @staticmethod
     def get_context_mark_format_pieces(context_mark):

@@ -251,29 +251,29 @@ class Component(AbjadObject):
         parent.__setitem__(slice(start, stop + 1), music_list)
         return self
 
-    def _format_after_slot(self, format_contributions):
+    def _format_after_slot(self, bundle):
         pass
 
-    def _format_before_slot(self, format_contributions):
+    def _format_before_slot(self, bundle):
         pass
 
-    def _format_close_brackets_slot(self, format_contributions):
+    def _format_close_brackets_slot(self, bundle):
         pass
 
-    def _format_closing_slot(self, format_contributions):
+    def _format_closing_slot(self, bundle):
         pass
 
     def _format_component(self, pieces=False):
         result = []
         manager = systemtools.LilyPondFormatManager
-        format_contributions = manager.get_all_format_contributions(self)
-        result.extend(self._format_before_slot(format_contributions))
-        result.extend(self._format_open_brackets_slot(format_contributions))
-        result.extend(self._format_opening_slot(format_contributions))
-        result.extend(self._format_contents_slot(format_contributions))
-        result.extend(self._format_closing_slot(format_contributions))
-        result.extend(self._format_close_brackets_slot(format_contributions))
-        result.extend(self._format_after_slot(format_contributions))
+        bundle = manager.get_all_format_contributions(self)
+        result.extend(self._format_before_slot(bundle))
+        result.extend(self._format_open_brackets_slot(bundle))
+        result.extend(self._format_opening_slot(bundle))
+        result.extend(self._format_contents_slot(bundle))
+        result.extend(self._format_closing_slot(bundle))
+        result.extend(self._format_close_brackets_slot(bundle))
+        result.extend(self._format_after_slot(bundle))
         contributions = []
         for contributor, contribution in result:
             contributions.extend(contribution)
@@ -282,13 +282,13 @@ class Component(AbjadObject):
         else:
             return '\n'.join(contributions)
 
-    def _format_contents_slot(self, format_contributions):
+    def _format_contents_slot(self, bundle):
         pass
 
-    def _format_open_brackets_slot(self, format_contributions):
+    def _format_open_brackets_slot(self, bundle):
         pass
 
-    def _format_opening_slot(self, format_contributions):
+    def _format_opening_slot(self, bundle):
         pass
 
     def _get_components(self, component_classes=None, include_self=True):
@@ -393,12 +393,12 @@ class Component(AbjadObject):
     def _get_format_contributions_for_slot(
         self, 
         slot_identifier, 
-        format_contributions=None
+        bundle=None
         ):
         result = []
-        if format_contributions is None:
+        if bundle is None:
             manager = systemtools.LilyPondFormatManager
-            format_contributions = manager.get_all_format_contributions(self)
+            bundle = manager.get_all_format_contributions(self)
         slot_names = (
             'before',
             'open_brackets',
@@ -417,7 +417,7 @@ class Component(AbjadObject):
             assert slot_name in slot_names
         method_name = '_format_{}_slot'.format(slot_name)
         method = getattr(self, method_name)
-        for source, contributions in method(format_contributions):
+        for source, contributions in method(bundle):
             result.extend(contributions)
         return result
 
