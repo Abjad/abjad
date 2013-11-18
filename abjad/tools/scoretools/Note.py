@@ -10,8 +10,6 @@ from abjad.tools.topleveltools import detach
 class Note(Leaf):
     '''A note.
 
-
-
     ..  container:: example
         
         **Example.**

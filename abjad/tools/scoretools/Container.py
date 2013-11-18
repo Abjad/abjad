@@ -120,13 +120,6 @@ class Container(Component):
         '''
         return len(self._music)
 
-    def __repr__(self):
-        r'''Interpreter representation of container.
-
-        Returns string.
-        '''
-        return self._compact_representation
-
     def __setitem__(self, i, expr):
         r'''Set container `i` equal to `expr`.
         Find spanners that dominate self[i] and children of self[i].

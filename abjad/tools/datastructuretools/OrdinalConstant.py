@@ -127,17 +127,20 @@ class OrdinalConstant(AbjadObject):
         self._check_comparator(expr)
         return self._value < expr._value
 
-    def __repr__(self):
-        return self._representation
-
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification
 
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
             self,
-            storage_format_pieces=(repr(self),),
+            storage_format_pieces=(
+                self._representation,
+                ),
             )
 
     ### PRIVATE METHODS ###

@@ -38,12 +38,14 @@ class AbjadObject(object):
 
         Returns string.
         '''
-        result = '{}({})'
-        result = result.format(
-            type(self).__name__,
-            self._contents_repr_string,
-            )
-        return result
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_repr_format(self)
+#        result = '{}({})'
+#        result = result.format(
+#            type(self).__name__,
+#            self._contents_repr_string,
+#            )
+#        return result
 
     ### PRIVATE PROPERTIES ###
 
@@ -97,6 +99,14 @@ class AbjadObject(object):
     @property
     def _repr_pieces(self):
         return [repr(self)]
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            )
 
     @property
     def _storage_format_specification(self):
