@@ -164,6 +164,19 @@ class Container(Component):
             return duration
 
     @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(),
+            storage_format_pieces=(
+                self._compact_representation,
+                ),
+            )
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         if not self:
