@@ -363,7 +363,7 @@ class Leaf(Component):
 
     def _report_format_contributors(self):
         manager = systemtools.LilyPondFormatManager
-        bundle = manager.bundle_all_format_contributions(self)
+        bundle = manager.bundle_format_contributions(self)
         report = ''
         report += 'slot 1:\n'
         packet = self._format_before_slot(bundle)

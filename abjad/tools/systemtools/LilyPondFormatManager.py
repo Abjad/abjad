@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-#import inspect
 
 
 class LilyPondFormatManager(object):
@@ -31,28 +30,295 @@ class LilyPondFormatManager(object):
         'yellow',
         )
 
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _get_context_mark_format_pieces(context_mark):
+        from abjad.tools import indicatortools
+        from abjad.tools import scoretools
+        assert isinstance(context_mark, indicatortools.ContextMark), \
+            repr(context_mark)
+        addenda = []
+        context_mark_format = context_mark._lilypond_format
+        if isinstance(context_mark_format, (tuple, list)):
+            addenda.extend(context_mark_format)
+        else:
+            addenda.append(context_mark_format)
+        if context_mark._get_effective_context() is not None:
+            return addenda
+        if isinstance(context_mark, indicatortools.TimeSignature):
+            if isinstance(context_mark._start_component, scoretools.Measure):
+                return addenda
+        addenda = [r'%%% {} %%%'.format(x) for x in addenda]
+        return addenda
+
+    @staticmethod
+    def _is_formattable_context_mark(mark, component):
+        from abjad.tools import scoretools
+        from abjad.tools import indicatortools
+        if mark._start_component is None:
+            return False
+        if isinstance(mark._start_component, scoretools.Measure):
+            if mark._start_component is component:
+                if not isinstance(mark, indicatortools.TimeSignature):
+                    return True
+                elif component.always_format_time_signature:
+                    return True
+                else:
+                    previous_measure = \
+                        scoretools.get_previous_measure_from_component(
+                            mark._start_component)
+                    if previous_measure is not None:
+                        previous_effective_time_signature = \
+                            previous_measure.time_signature
+                    else:
+                        previous_effective_time_signature = None
+                    if not mark == previous_effective_time_signature:
+                        return True
+        elif mark._format_slot == 'right':
+            if mark._start_component is component:
+                return True
+        elif mark._start_component is component:
+            return True
+        else:
+            if mark._get_effective_context() in \
+                component._get_parentage(include_self=True):
+                if mark._get_effective_context() not in \
+                    component._get_parentage(include_self=False):
+                    if mark._start_component.start == component.start:
+                        return True
+        return False
+
+    @staticmethod
+    def _populate_mark_format_contributions(component, bundle):
+        from abjad.tools import indicatortools
+        from abjad.tools import markuptools
+        from abjad.tools import systemtools
+        from abjad.tools.agenttools.InspectionAgent import inspect
+        manager = LilyPondFormatManager
+        items = component._get_context_marks() + component._get_indicators()
+        up_markup, down_markup, neutral_markup = [], [], []
+        context_marks = []
+        wrappers = []
+        # organize items attached to component
+        for item in items:
+            format_slot_subsection = None
+            # skip nonprinting items like annotation
+            if not hasattr(item, '_lilypond_format'):
+                continue
+            if isinstance(item, indicatortools.Articulation):
+                format_slot_subsection = 'articulations'
+            elif isinstance(item, indicatortools.BarLine):
+                format_slot_subsection = 'commands'
+            elif isinstance(item, indicatortools.BendAfter):
+                format_slot_subsection = 'articulations'
+            elif isinstance(item, indicatortools.LilyPondCommand):
+                format_slot_subsection = 'commands'
+            elif isinstance(item, indicatortools.LilyPondComment):
+                format_slot_subsection = 'comments'
+            elif isinstance(item, indicatortools.StemTremolo):
+                format_slot_subsection = 'stem_tremolos'
+            # store formattable context marks attached to component
+            elif isinstance(item, indicatortools.ContextMark):
+                if manager._is_formattable_context_mark(item, component):
+                    context_marks.append(item)
+                continue
+            # store wrappers for later handling
+            elif isinstance(item, indicatortools.IndicatorWrapper):
+                wrappers.append(item)
+                continue
+            # store markup for later handling
+            elif isinstance(item, markuptools.Markup):
+                if item.direction is Up:
+                    up_markup.append(item)
+                elif item.direction is Down:
+                    down_markup.append(item)
+                elif item.direction in (Center, None):
+                    neutral_markup.append(item)
+                continue
+            # otherwise the item is something else
+            else:
+                message = 'can not identify where to put item: {!r}.'
+                message = message.format(item)
+                raise Exception(message)
+            format_slot = item._format_slot
+            format_slot = bundle.get(format_slot)
+            contributions = format_slot.get(format_slot_subsection)
+            contribution = item._lilypond_format
+            contributions.append(contribution)
+            if format_slot_subsection == 'articulations':
+                contributions.sort()
+        # add formattable context marks attached to parents of component
+        for parent in inspect(component).get_parentage(include_self=False):
+            for context_mark in parent._start_context_marks:
+                assert isinstance(context_mark, indicatortools.ContextMark)
+                if context_mark in context_marks:
+                    continue
+                if manager._is_formattable_context_mark(context_mark, component):
+                    context_marks.append(context_mark)
+        # handle context marks
+        for context_mark in context_marks:
+            assert isinstance(context_mark, indicatortools.ContextMark)
+            format_pieces = manager._get_context_mark_format_pieces(context_mark)
+            format_slot = context_mark._format_slot
+            bundle.get(format_slot).context_marks.extend(format_pieces)
+        # TODO: insert wrapper handling code here
+        # handle markup
+        for markup_list in (up_markup, down_markup, neutral_markup):
+            if not markup_list:
+                continue
+            elif 1 < len(markup_list):
+                contents = []
+                for markup in markup_list:
+                    contents += markup.contents
+                direction = markup_list[0].direction
+                if direction is None:
+                    direction = '-'
+                command = markuptools.MarkupCommand('column', contents)
+                markup = markuptools.Markup(command, direction=direction)
+                format_pieces = markup._get_format_pieces()
+                bundle.right.markup[:] = format_pieces
+            else:
+                if markup_list[0].direction is None:
+                    markup = markuptools.Markup(markup_list[0], direction='-')
+                    format_pieces = markup._get_format_pieces()
+                    bundle.right.markup[:] = format_pieces
+                else:
+                    format_pieces = markup_list[0]._get_format_pieces()
+                    bundle.right.markup[:] = format_pieces
+
+    @staticmethod
+    def _populate_context_setting_format_contributions(component, bundle):
+        result = []
+        from abjad.tools.topleveltools import contextualize
+        from abjad.tools import scoretools
+        manager = LilyPondFormatManager
+        if isinstance(component, (scoretools.Leaf, scoretools.Measure)):
+            for name, value in vars(contextualize(component)).iteritems():
+                # if we've found a leaf context namespace
+                if name.startswith('_'):
+                    for x, y in vars(value).iteritems():
+                        if not x.startswith('_'):
+                            string = \
+                                manager.format_lilypond_context_setting_inline(
+                                x, y, name)
+                            result.append(string)
+                # otherwise we've found a default leaf context setting
+                else:
+                    # parse default context setting
+                    string = manager.format_lilypond_context_setting_inline(
+                        name, value)
+                    result.append(string)
+        else:
+            for name, value in vars(contextualize(component)).iteritems():
+                string = manager.format_lilypond_context_setting_in_with_block(
+                    name, value)
+                result.append(string)
+        result.sort()
+        bundle.context_settings[:] = result
+
+    @staticmethod
+    def _populate_grob_override_format_contributions(component, bundle):
+        from abjad.tools import scoretools
+        from abjad.tools.topleveltools.override import override
+        result = []
+        is_once = isinstance(component, scoretools.Leaf)
+        contributions = override(component)._list_format_contributions(
+            'override', 
+            is_once=is_once,
+            )
+        for string in result[:]:
+            if 'NoteHead' in string and 'pitch' in string:
+                contributions.remove(string)
+        bundle.grob_overrides[:] = contributions
+
+    @staticmethod
+    def _populate_grob_revert_format_contributions(component, bundle):
+        from abjad.tools import scoretools
+        from abjad.tools.topleveltools.override import override
+        if not isinstance(component, scoretools.Leaf):
+            manager = override(component)
+            contributions = manager._list_format_contributions('revert')
+            bundle.grob_reverts[:] = contributions
+
+    @staticmethod
+    def _populate_spanner_format_contributions(component, bundle):
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools.override import override
+        result = {
+            'after': [],
+            'before': [],
+            'closing': [],
+            'opening': [],
+            'right': [],
+        }
+        if isinstance(component, scoretools.Container):
+            before_contributions = result['before']
+            after_contributions = result['after']
+        else:
+            before_contributions = result['opening']
+            after_contributions = result['closing']
+        stop_contributions = []
+        other_contributions = []
+        for spanner in component._get_parentage()._get_spanners():
+            # override contributions (in before slot)
+            if spanner._is_my_first_leaf(component):
+                for contribution in \
+                    override(spanner)._list_format_contributions(
+                    'override', is_once=False):
+                    before_contributions.append((spanner, contribution, None))
+            # contributions for before slot
+            for contribution in spanner._format_before_leaf(component):
+                before_contributions.append((spanner, contribution, None))
+            # contributions for after slot
+            contributions = spanner._format_after_leaf(component)
+            for contribution in contributions:
+                after_contributions.append((spanner, contribution, None))
+            # revert contributions (in after slot)
+            if spanner._is_my_last_leaf(component):
+                for contribution in \
+                    override(spanner)._list_format_contributions('revert'):
+                    triple = (spanner, contribution, None)
+                    if triple not in after_contributions:
+                        after_contributions.append(triple)
+            # contributions for right slot
+            contributions = spanner._format_right_of_leaf(component)
+            if contributions:
+                if spanner._is_my_last_leaf(component):
+                    for contribution in contributions:
+                        triple = (spanner, contribution, None)
+                        stop_contributions.append(triple)
+                else:
+                    for contribution in contributions:
+                        triple = (spanner, contribution, None)
+                        other_contributions.append(triple)
+        result['right'] = stop_contributions + other_contributions
+        for key in result.keys():
+            if not result[key]:
+                del(result[key])
+            else:
+                result[key].sort(key=lambda x: x[0].__class__.__name__)
+                result[key] = [x[1] for x in result[key]]
+        for format_slot, contributions in result.iteritems():
+            bundle.get(format_slot).spanners[:] = contributions
+
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def bundle_all_format_contributions(component):
+    def bundle_format_contributions(component):
         r'''Gets all format contributions for `component`.
 
-        Returns nested dictionary.
+        Returns LilyPond format bundle.
         '''
         from abjad.tools import systemtools
         manager = LilyPondFormatManager
         bundle = systemtools.LilyPondFormatBundle()
-        manager.get_all_mark_format_contributions(component, bundle)
-        spanners = manager.get_spanner_format_contributions(component)
-        assert all([isinstance(spanners[x], list) for x in spanners]), repr((x, spanners[x]))
-        for format_slot, contributions in spanners.iteritems():
-            getattr(bundle, format_slot).spanners[:] = contributions 
-        settings = manager.get_context_setting_format_contributions(component)[1]
-        bundle.context_settings[:] = settings
-        overrides = manager.get_grob_override_format_contributions(component)[1]
-        bundle.grob_overrides[:] = overrides
-        reverts = manager.get_grob_revert_format_contributions(component)[1]
-        bundle.grob_reverts[:] = reverts
+        manager._populate_mark_format_contributions(component, bundle)
+        manager._populate_spanner_format_contributions(component, bundle)
+        manager._populate_context_setting_format_contributions(component, bundle)
+        manager._populate_grob_override_format_contributions(component, bundle)
+        manager._populate_grob_revert_format_contributions(component, bundle)
         bundle.make_immutable()
         return bundle
 
@@ -146,315 +412,6 @@ class LilyPondFormatManager(object):
         else:
             expr = schemetools.Scheme(expr, quoting="'")
         return format(expr, 'lilypond')
-
-    @staticmethod
-    def get_all_mark_format_contributions(component, bundle):
-        r'''Gets all mark format contributions as nested dictionaries.
-
-        Keys in the first level represent format slots.
-
-        Keys in the second level represent format contributors
-        like 'articulations' and 'markup'.
-
-        Returns dictionary.
-        '''
-        from abjad.tools import indicatortools
-        from abjad.tools import markuptools
-        from abjad.tools import systemtools
-        from abjad.tools.agenttools.InspectionAgent import inspect
-        manager = LilyPondFormatManager
-        items = component._get_context_marks() + component._get_indicators()
-        up_markup, down_markup, neutral_markup = [], [], []
-        context_marks = []
-        wrappers = []
-        # organize items attached to component
-        for item in items:
-            format_slot_subsection = None
-            # skip nonprinting items like annotation
-            if not hasattr(item, '_lilypond_format'):
-                continue
-            if isinstance(item, indicatortools.Articulation):
-                format_slot_subsection = 'articulations'
-            elif isinstance(item, indicatortools.BarLine):
-                format_slot_subsection = 'commands'
-            elif isinstance(item, indicatortools.BendAfter):
-                format_slot_subsection = 'articulations'
-            elif isinstance(item, indicatortools.LilyPondCommand):
-                format_slot_subsection = 'commands'
-            elif isinstance(item, indicatortools.LilyPondComment):
-                format_slot_subsection = 'comments'
-            elif isinstance(item, indicatortools.StemTremolo):
-                format_slot_subsection = 'stem_tremolos'
-            # store formattable context marks attached to component
-            elif isinstance(item, indicatortools.ContextMark):
-                if manager.is_formattable_context_mark(item, component):
-                    context_marks.append(item)
-                continue
-            # store wrappers for later handling
-            elif isinstance(item, indicatortools.IndicatorWrapper):
-                wrappers.append(item)
-                continue
-            # store markup for later handling
-            elif isinstance(item, markuptools.Markup):
-                if item.direction is Up:
-                    up_markup.append(item)
-                elif item.direction is Down:
-                    down_markup.append(item)
-                elif item.direction in (Center, None):
-                    neutral_markup.append(item)
-                continue
-            # otherwise the item is something else
-            else:
-                message = 'can not identify where to put item: {!r}.'
-                message = message.format(item)
-                raise Exception(message)
-            format_slot = item._format_slot
-            format_slot = bundle.get(format_slot)
-            contributions = format_slot.get(format_slot_subsection)
-            contribution = item._lilypond_format
-            contributions.append(contribution)
-            if format_slot_subsection == 'articulations':
-                contributions.sort()
-        # add formattable context marks attached to parents of component
-        for parent in inspect(component).get_parentage(include_self=False):
-            for context_mark in parent._start_context_marks:
-                assert isinstance(context_mark, indicatortools.ContextMark)
-                if context_mark in context_marks:
-                    continue
-                if manager.is_formattable_context_mark(context_mark, component):
-                    context_marks.append(context_mark)
-        # handle context marks
-        for context_mark in context_marks:
-            assert isinstance(context_mark, indicatortools.ContextMark)
-            format_pieces = manager.get_context_mark_format_pieces(context_mark)
-            format_slot = context_mark._format_slot
-            bundle.get(format_slot).context_marks.extend(format_pieces)
-        # TODO: insert wrapper handling code here
-        # handle markup
-        for markup_list in (up_markup, down_markup, neutral_markup):
-            if not markup_list:
-                continue
-            elif 1 < len(markup_list):
-                contents = []
-                for markup in markup_list:
-                    contents += markup.contents
-                direction = markup_list[0].direction
-                if direction is None:
-                    direction = '-'
-                command = markuptools.MarkupCommand('column', contents)
-                markup = markuptools.Markup(command, direction=direction)
-                format_pieces = markup._get_format_pieces()
-                bundle.right.markup[:] = format_pieces
-            else:
-                if markup_list[0].direction is None:
-                    markup = markuptools.Markup(markup_list[0], direction='-')
-                    format_pieces = markup._get_format_pieces()
-                    bundle.right.markup[:] = format_pieces
-                else:
-                    format_pieces = markup_list[0]._get_format_pieces()
-                    bundle.right.markup[:] = format_pieces
-        #return bundle
-
-    @staticmethod
-    def get_context_mark_format_pieces(context_mark):
-        r'''Gets format pieces for `context_mark`.
-
-        Returns list.
-        '''
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        assert isinstance(context_mark, indicatortools.ContextMark), \
-            repr(context_mark)
-        addenda = []
-        context_mark_format = context_mark._lilypond_format
-        if isinstance(context_mark_format, (tuple, list)):
-            addenda.extend(context_mark_format)
-        else:
-            addenda.append(context_mark_format)
-        if context_mark._get_effective_context() is not None:
-            return addenda
-        if isinstance(context_mark, indicatortools.TimeSignature):
-            if isinstance(context_mark._start_component, scoretools.Measure):
-                return addenda
-        addenda = [r'%%% {} %%%'.format(addendum) for addendum in addenda]
-        return addenda
-
-    @staticmethod
-    def get_context_setting_format_contributions(component):
-        r'''Gets context setting format contributions for `component`.
-
-        Returns sorted list.
-        '''
-        result = []
-        from abjad.tools.scoretools.Leaf import Leaf
-        from abjad.tools.scoretools.Measure import Measure
-        from abjad.tools.topleveltools import contextualize
-        if isinstance(component, (Leaf, Measure)):
-            for name, value in vars(contextualize(component)).iteritems():
-                # if we've found a leaf LilyPondContextNamespace
-                if name.startswith('_'):
-                    for x, y in vars(value).iteritems():
-                        if not x.startswith('_'):
-                            result.append(
-                                LilyPondFormatManager.format_lilypond_context_setting_inline(
-                                    x, y, name))
-                # otherwise we've found a default leaf context contextualize
-                else:
-                    # parse default context contextualize
-                    result.append(
-                        LilyPondFormatManager.format_lilypond_context_setting_inline(
-                            name, value))
-        else:
-            for name, value in vars(contextualize(component)).iteritems():
-                result.append(LilyPondFormatManager.format_lilypond_context_setting_in_with_block(
-                    name, value))
-        result.sort()
-        return ['context settings', result]
-
-    @staticmethod
-    def get_grob_override_format_contributions(component):
-        r'''Gets grob override format contributions for `component`.
-
-        Returns alphabetized list of LilyPond grob overrides.
-        '''
-        from abjad.tools.scoretools import Leaf
-        from abjad.tools.topleveltools.override import override
-        result = []
-        is_once = False
-        if isinstance(component, Leaf):
-            is_once = True
-        result.extend(override(component)._list_format_contributions(
-            'override', is_once=is_once))
-        for string in result[:]:
-            if 'NoteHead' in string and 'pitch' in string:
-                result.remove(string)
-        result = ['grob overrides', result]
-        return result
-
-    @staticmethod
-    def get_grob_revert_format_contributions(component):
-        '''Gets grob revert format contributions.
-
-        Returns alphabetized list of LilyPond grob reverts.
-        '''
-        from abjad.tools.scoretools import Leaf
-        from abjad.tools.topleveltools.override import override
-        result = []
-        if not isinstance(component, Leaf):
-            result.extend(override(component)._list_format_contributions(
-                'revert'))
-        return ['grob reverts', result]
-
-    @staticmethod
-    def get_spanner_format_contributions(component):
-        r'''Gets spanner format contributions for `component`.
-
-        Dictionary keys equal to format slot;
-        dictionary values equal to format contributions.
-        '''
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        from abjad.tools.topleveltools.override import override
-        result = {
-            'after': [],
-            'before': [],
-            'closing': [],
-            'opening': [],
-            'right': [],
-        }
-        if isinstance(component, scoretools.Container):
-            before_contributions = result['before']
-            after_contributions = result['after']
-        else:
-            before_contributions = result['opening']
-            after_contributions = result['closing']
-        stop_contributions = []
-        other_contributions = []
-        for spanner in component._get_parentage()._get_spanners():
-            # override contributions (in before slot)
-            if spanner._is_my_first_leaf(component):
-                for contribution in \
-                    override(spanner)._list_format_contributions(
-                    'override', is_once=False):
-                    before_contributions.append((spanner, contribution, None))
-            # contributions for before slot
-            for contribution in spanner._format_before_leaf(component):
-                before_contributions.append((spanner, contribution, None))
-            # contributions for after slot
-            contributions = spanner._format_after_leaf(component)
-            for contribution in contributions:
-                after_contributions.append((spanner, contribution, None))
-            # revert contributions (in after slot)
-            if spanner._is_my_last_leaf(component):
-                for contribution in \
-                    override(spanner)._list_format_contributions('revert'):
-                    triple = (spanner, contribution, None)
-                    if triple not in after_contributions:
-                        after_contributions.append(triple)
-            # contributions for right slot
-            contributions = spanner._format_right_of_leaf(component)
-            if contributions:
-                if spanner._is_my_last_leaf(component):
-                    for contribution in contributions:
-                        triple = (spanner, contribution, None)
-                        stop_contributions.append(triple)
-                else:
-                    for contribution in contributions:
-                        triple = (spanner, contribution, None)
-                        other_contributions.append(triple)
-        result['right'] = stop_contributions + other_contributions
-        for key in result.keys():
-            if not result[key]:
-                del(result[key])
-            else:
-                result[key].sort(key=lambda x: x[0].__class__.__name__)
-                result[key] = [x[1] for x in result[key]]
-
-#        spanners = manager.get_spanner_format_contributions(component)
-#        assert all([isinstance(spanners[x], list) for x in spanners]), repr((x, spanners[x]))
-#        for format_slot, contributions in spanners.iteritems():
-#            getattr(bundle, format_slot).spanners[:] = contributions 
-
-        return result
-
-    @staticmethod
-    def is_formattable_context_mark(mark, component):
-        r'''Returns true if ContextMark `mark` can format for `component`.
-        '''
-        from abjad.tools import scoretools
-        from abjad.tools import indicatortools
-        if mark._start_component is None:
-            return False
-        if isinstance(mark._start_component, scoretools.Measure):
-            if mark._start_component is component:
-                if not isinstance(mark, indicatortools.TimeSignature):
-                    return True
-                elif component.always_format_time_signature:
-                    return True
-                else:
-                    previous_measure = \
-                        scoretools.get_previous_measure_from_component(
-                            mark._start_component)
-                    if previous_measure is not None:
-                        previous_effective_time_signature = \
-                            previous_measure.time_signature
-                    else:
-                        previous_effective_time_signature = None
-                    if not mark == previous_effective_time_signature:
-                        return True
-        elif mark._format_slot == 'right':
-            if mark._start_component is component:
-                return True
-        elif mark._start_component is component:
-            return True
-        else:
-            if mark._get_effective_context() in \
-                component._get_parentage(include_self=True):
-                if mark._get_effective_context() not in \
-                    component._get_parentage(include_self=False):
-                    if mark._start_component.start == component.start:
-                        return True
-        return False
 
     @staticmethod
     def make_lilypond_override_string(
