@@ -234,14 +234,14 @@ class Container(Component):
 
     def _format_after_slot(self, bundle):
         result = []
-        result.append(('lilypond command marks', bundle.after.get('lilypond command marks', [])))
+        result.append(('commands', bundle.after.get('commands', [])))
         result.append(('comments', bundle.after.get('comments', [])))
         return tuple(result)
 
     def _format_before_slot(self, bundle):
         result = []
         result.append(('comments', bundle.before.get('comments', [])))
-        result.append(('lilypond command marks', bundle.before.get('lilypond command marks', [])))
+        result.append(('commands', bundle.before.get('commands', [])))
         return tuple(result)
 
     def _format_close_brackets_slot(self, bundle):
@@ -256,7 +256,7 @@ class Container(Component):
     def _format_closing_slot(self, bundle):
         result = []
         result.append(('grob reverts', bundle.grob_reverts))
-        result.append(('lilypond command marks', bundle.closing.get('lilypond command marks', [])))
+        result.append(('commands', bundle.closing.get('commands', [])))
         result.append(('comments', bundle.closing.get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
 
@@ -284,7 +284,7 @@ class Container(Component):
     def _format_opening_slot(self, bundle):
         result = []
         result.append(('comments', bundle.opening.get('comments', [])))
-        result.append(('lilypond command marks', bundle.opening.get('lilypond command marks', [])))
+        result.append(('commands', bundle.opening.get('commands', [])))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
         return self._format_slot_contributions_with_indent(result)

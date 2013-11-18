@@ -131,22 +131,18 @@ class LilyPondFormatManager(object):
         Returns nested dictionary.
         '''
         manager = LilyPondFormatManager
-        FLAMINGO = manager.get_all_mark_format_contributions(component)
+        bundle = manager.get_all_mark_format_contributions(component)
         spanners = manager.get_spanner_format_contributions(component)
         assert all([isinstance(spanners[x], list) for x in spanners]), repr((x, spanners[x]))
         for format_slot, contributions in spanners.iteritems():
-            #FLAMINGO[format_slot]['spanners'] = contributions
-            getattr(FLAMINGO, format_slot)['spanners'] = contributions 
+            getattr(bundle, format_slot)['spanners'] = contributions 
         settings = manager.get_context_setting_format_contributions(component)[1]
-        #FLAMINGO['context settings'] = settings
-        FLAMINGO.context_settings[:] = settings
+        bundle.context_settings[:] = settings
         overrides = manager.get_grob_override_format_contributions(component)[1]
-        #FLAMINGO['grob overrides'] = overrides
-        FLAMINGO.grob_overrides[:] = overrides
+        bundle.grob_overrides[:] = overrides
         reverts = manager.get_grob_revert_format_contributions(component)[1]
-        #FLAMINGO['grob reverts'] = reverts
-        FLAMINGO.grob_reverts[:] = reverts
-        return FLAMINGO
+        bundle.grob_reverts[:] = reverts
+        return bundle
 
     @staticmethod
     def get_all_mark_format_contributions(component):
@@ -167,18 +163,11 @@ class LilyPondFormatManager(object):
         class_to_section = {
             indicatortools.Articulation: ('articulations', False),
             indicatortools.BendAfter: ('articulations', False),
-            indicatortools.LilyPondCommand: ('lilypond command marks', False),
+            indicatortools.LilyPondCommand: ('commands', False),
             indicatortools.LilyPondComment: ('comments', False),
             indicatortools.StemTremolo: ('stem tremolos', True),
             }
-#        FLAMINGO = {
-#            'before': {},
-#            'after': {},
-#            'opening': {},
-#            'closing': {},
-#            'right': {},
-#            }
-        FLAMINGO = systemtools.LilyPondFormatBundle()
+        bundle = systemtools.LilyPondFormatBundle()
         marks = component._get_context_marks() + component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
@@ -221,13 +210,10 @@ class LilyPondFormatManager(object):
                     section, singleton = 'other marks', False
             # prepare the contributions dictionary
             format_slot = mark._format_slot
-#            if section not in FLAMINGO[format_slot]:
-            if section not in getattr(FLAMINGO, format_slot):
-                #FLAMINGO[format_slot][section] = []
-                getattr(FLAMINGO, format_slot)[section] = []
+            if section not in getattr(bundle, format_slot):
+                getattr(bundle, format_slot)[section] = []
             # add the mark contribution
-#            contribution_list = FLAMINGO[format_slot][section]
-            contribution_list = getattr(FLAMINGO, format_slot)[section]
+            contribution_list = getattr(bundle, format_slot)[section]
             if len(contribution_list) and singleton:
                 raise ExtraMarkError
             result = mark._lilypond_format
@@ -249,12 +235,9 @@ class LilyPondFormatManager(object):
             format_slot = context_mark._format_slot
             result = manager.get_context_mark_format_pieces(
                 context_mark)
-            #if section not in FLAMINGO[format_slot]:
-            if section not in getattr(FLAMINGO, format_slot):
-                #FLAMINGO[format_slot][section] = []
-                getattr(FLAMINGO, format_slot)[section] = []
-            #FLAMINGO[format_slot][section].extend(result)
-            getattr(FLAMINGO, format_slot)[section].extend(result)
+            if section not in getattr(bundle, format_slot):
+                getattr(bundle, format_slot)[section] = []
+            getattr(bundle, format_slot)[section].extend(result)
 
         # TODO: insert wrapper handling code here
 
@@ -280,15 +263,11 @@ class LilyPondFormatManager(object):
                 else:
                     result.extend(markup_list[0]._get_format_pieces())
         if result:
-            #FLAMINGO['right']['markup'] = result
-            FLAMINGO.right['markup'] = result
-#        for slot in FLAMINGO:
-#            for kind, value in FLAMINGO[slot].iteritems():
-#                FLAMINGO[slot][kind] = tuple(value)
+            bundle.right['markup'] = result
         for format_slot in ('before', 'after', 'opening', 'closing', 'right'):
-            for kind, value in getattr(FLAMINGO, format_slot).iteritems():
-                getattr(FLAMINGO, format_slot)[kind] = tuple(value)
-        return FLAMINGO
+            for kind, value in getattr(bundle, format_slot).iteritems():
+                getattr(bundle, format_slot)[kind] = tuple(value)
+        return bundle
 
     @staticmethod
     def get_context_mark_format_pieces(context_mark):

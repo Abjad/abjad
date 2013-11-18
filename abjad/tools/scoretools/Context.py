@@ -99,7 +99,7 @@ class Context(Container):
     def _format_closing_slot(context, bundle):
         result = []
         result.append(['context marks', bundle.closing.get('context marks', [])])
-        result.append(['lilypond command marks', bundle.closing.get('lilypond command marks', [])])
+        result.append(['commands', bundle.closing.get('commands', [])])
         result.append(['comments', bundle.closing.get('comments', [])])
         return context._format_slot_contributions_with_indent(result)
 
@@ -156,7 +156,7 @@ class Context(Container):
         result = []
         result.append(['comments', bundle.opening.get('comments', [])])
         result.append(['context marks', bundle.opening.get('context marks', [])])
-        result.append(['lilypond command marks', bundle.opening.get('lilypond command marks', [])])
+        result.append(['commands', bundle.opening.get('commands', [])])
         return context._format_slot_contributions_with_indent(result)
 
     ### PUBLIC PROPERTIES ###

@@ -178,8 +178,8 @@ class Leaf(Component):
         result.append(('spanners', contributions))
         contributions = slot_dictionary.get('context marks', [])
         result.append(('context marks', contributions))
-        contributions = slot_dictionary.get('lilypond command marks', [])
-        result.append(('lilypond command marks', contributions))
+        contributions = slot_dictionary.get('commands', [])
+        result.append(('commands', contributions))
         contributions = slot_dictionary.get('other marks', [])
         result.append(('other marks', contributions))
         contributions = slot_dictionary.get('comments', [])
@@ -205,7 +205,7 @@ class Leaf(Component):
         result = []
         result.append(leaf._format_grace_body())
         result.append(('comments', bundle.before.get('comments', [])))
-        result.append(('lilypond command marks', bundle.before.get('lilypond command marks', [])))
+        result.append(('commands', bundle.before.get('commands', [])))
         result.append(('context marks', bundle.before.get('context marks', [])))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
@@ -219,7 +219,7 @@ class Leaf(Component):
         result = []
         result.append(leaf._format_agrace_body())
         result.append(('spanners', bundle.closing.get('spanners', [])))
-        result.append(('lilypond command marks', bundle.closing.get('lilypond command marks', [])))
+        result.append(('commands', bundle.closing.get('commands', [])))
         result.append(('context marks', bundle.closing.get('context marks', [])))
         result.append(('comments', bundle.closing.get('comments', [])))
         return result
@@ -243,7 +243,7 @@ class Leaf(Component):
         if right:
             result.extend(right.get('stem tremolos', []))
             result.extend(right.get('articulations', []))
-            result.extend(right.get('lilypond command marks', []))
+            result.extend(right.get('commands', []))
             result.extend(right.get('context marks', []))
             result.extend(right.get('spanners', []))
             result.extend(right.get('comments', []))
@@ -287,7 +287,7 @@ class Leaf(Component):
         result = []
         result.append(('comments', bundle.opening.get('comments', [])))
         result.append(('context marks', bundle.opening.get('context marks', [])))
-        result.append(('lilypond command marks', bundle.opening.get('lilypond command marks', [])))
+        result.append(('commands', bundle.opening.get('commands', [])))
         result.append(('spanners', bundle.opening.get('spanners', [])))
         result.append(leaf._format_agrace_opening())
         return result

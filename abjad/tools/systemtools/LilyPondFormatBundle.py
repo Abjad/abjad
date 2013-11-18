@@ -14,6 +14,11 @@ class LilyPondFormatBundle(AbjadObject):
 #    __slots__ = (
 #        
 #        )
+
+    class SlotContributions(object):
+        
+        def __init__(self):
+            pass
     
     ### INITIALIZER ###
 

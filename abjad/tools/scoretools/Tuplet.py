@@ -222,14 +222,14 @@ class Tuplet(Container):
         '''
         result = []
         result.append(('grob reverts', bundle.grob_reverts))
-        result.append(('lilypond command marks', bundle.after.get('lilypond command marks', [])))
+        result.append(('commands', bundle.after.get('commands', [])))
         result.append(('comments', bundle.after.get('comments', [])))
         return tuple(result)
 
     def _format_before_slot(self, bundle):
         result = []
         result.append(('comments', bundle.before.get('comments', [])))
-        result.append(('lilypond command marks', bundle.before.get('lilypond command marks', [])))
+        result.append(('commands', bundle.before.get('commands', [])))
         result.append(('grob overrides', bundle.grob_overrides))
         return tuple(result)
 
@@ -247,7 +247,7 @@ class Tuplet(Container):
         immediately before self closing.
         '''
         result = []
-        result.append(('lilypond command marks', bundle.closing.get('lilypond command marks', [])))
+        result.append(('commands', bundle.closing.get('commands', [])))
         result.append(('comments', bundle.closing.get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
 
@@ -287,7 +287,7 @@ class Tuplet(Container):
     def _format_opening_slot(self, bundle):
         result = []
         result.append(('comments', bundle.opening.get('comments', [])))
-        result.append(('lilypond command marks', bundle.opening.get('lilypond command marks', [])))
+        result.append(('commands', bundle.opening.get('commands', [])))
         return self._format_slot_contributions_with_indent(result)
 
     def _scale(self, multiplier):
