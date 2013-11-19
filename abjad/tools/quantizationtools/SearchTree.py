@@ -69,36 +69,9 @@ class SearchTree(AbjadObject):
                         state[slot] = getattr(self, slot)
         return state
 
-    def __repr__(self):
-        result = ['{}('.format(type(self).__name__)]
-        definition = pprint.pformat(
-            self.definition, indent=4, width=64).splitlines()
-        result.append('\tdefinition={}'.format(definition[0]))
-        result.extend(['\t' + x for x in definition[1:]])
-        result.append('\t)')
-        return '\n'.join(result)
-
     def __setstate__(self, state):
         for key, value in state.iteritems():
             setattr(self, key, value)
-
-    ### PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def default_definition(self):
-        r'''The default search tree definition.
-
-        Returns dictionary.
-        '''
-        raise NotImplemented
-
-    @property
-    def definition(self):
-        r'''The search tree definition.
-
-        Returns dictionary.
-        '''
-        return copy.deepcopy(self._definition)
 
     ### PRIVATE METHODS ###
 
@@ -148,3 +121,22 @@ class SearchTree(AbjadObject):
     @abc.abstractmethod
     def _is_valid_definition(self, definition):
         raise NotImplemented
+
+    ### PUBLIC PROPERTIES ###
+
+    @abc.abstractproperty
+    def default_definition(self):
+        r'''The default search tree definition.
+
+        Returns dictionary.
+        '''
+        raise NotImplemented
+
+    @property
+    def definition(self):
+        r'''The search tree definition.
+
+        Returns dictionary.
+        '''
+        return copy.deepcopy(self._definition)
+

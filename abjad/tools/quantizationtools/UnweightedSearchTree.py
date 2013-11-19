@@ -11,14 +11,37 @@ class UnweightedSearchTree(SearchTree):
     ::
 
         >>> search_tree = quantizationtools.UnweightedSearchTree()
-        >>> search_tree
-        UnweightedSearchTree(
-            definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
-                3: {   2: {   2: None}, 3: None, 5: None},
-                5: {   2: None, 3: None},
-                7: {   2: None},
+        >>> print format(search_tree)
+        quantizationtools.UnweightedSearchTree(
+            definition={
+                2: {
+                    2: {
+                        2: {
+                            2: None,
+                            },
+                        3: None,
+                        },
+                    3: None,
+                    5: None,
+                    7: None,
+                    },
+                3: {
+                    2: {
+                        2: None,
+                        },
+                    3: None,
+                    5: None,
+                    },
+                5: {
+                    2: None,
+                    3: None,
+                    },
+                7: {
+                    2: None,
+                    },
                 11: None,
-                13: None}
+                13: None,
+                },
             )
 
     The search tree defines how nodes in a ``QGrid`` may be subdivided, 

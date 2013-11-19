@@ -26,6 +26,19 @@ class AbjadObject(object):
         '''
         return id(self) == id(expr)
 
+    def __format__(self, format_specification=''):
+        r'''Formats duration.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        Returns string.
+        '''
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        return str(self)
+
     def __ne__(self, expr):
         r'''True when ID of `expr` does not equal ID of Abjad object.
 
@@ -43,56 +56,56 @@ class AbjadObject(object):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _contents_repr_string(self):
-        result = []
-        positional_argument_repr_string = \
-            self._positional_argument_repr_string
-        if positional_argument_repr_string:
-            result.append(positional_argument_repr_string)
-        keyword_argument_repr_string = ', '.join(
-            self._keyword_argument_name_value_strings)
-        if keyword_argument_repr_string:
-            result.append(keyword_argument_repr_string)
-        return ', '.join(result)
+#    @property
+#    def _contents_repr_string(self):
+#        result = []
+#        positional_argument_repr_string = \
+#            self._positional_argument_repr_string
+#        if positional_argument_repr_string:
+#            result.append(positional_argument_repr_string)
+#        keyword_argument_repr_string = ', '.join(
+#            self._keyword_argument_name_value_strings)
+#        if keyword_argument_repr_string:
+#            result.append(keyword_argument_repr_string)
+#        return ', '.join(result)
 
-    @property
-    def _keyword_argument_name_value_strings(self):
-        from abjad.tools import systemtools
-        result = []
-        specification = self._storage_format_specification
-        manager = systemtools.StorageFormatManager
-        tmp = manager.get_tools_package_qualified_class_name
-        for name in specification.keyword_argument_names:
-            value = getattr(self, name)
-            if value is not None:
-                # if the value is a class like Note (which is unusual)
-                if type(value) is abc.ABCMeta:
-                    value = tmp(value)
-                    string = '{}={}'.format(name, value)
-                    result.append(string)
-                elif not isinstance(value, types.MethodType):
-                    string = '{}={!r}'.format(name, value)
-                    result.append(string)
-        return tuple(result)
+#    @property
+#    def _keyword_argument_name_value_strings(self):
+#        from abjad.tools import systemtools
+#        result = []
+#        specification = self._storage_format_specification
+#        manager = systemtools.StorageFormatManager
+#        tmp = manager.get_tools_package_qualified_class_name
+#        for name in specification.keyword_argument_names:
+#            value = getattr(self, name)
+#            if value is not None:
+#                # if the value is a class like Note (which is unusual)
+#                if type(value) is abc.ABCMeta:
+#                    value = tmp(value)
+#                    string = '{}={}'.format(name, value)
+#                    result.append(string)
+#                elif not isinstance(value, types.MethodType):
+#                    string = '{}={!r}'.format(name, value)
+#                    result.append(string)
+#        return tuple(result)
 
     @property
     def _one_line_menuing_summary(self):
         return str(self)
 
-    @property
-    def _positional_argument_repr_string(self):
-        specification = self._storage_format_specification
-        positional_argument_repr_string = [
-            repr(x) for x in specification.positional_argument_values
-            ]
-        positional_argument_repr_string = ', '.join(
-            positional_argument_repr_string)
-        return positional_argument_repr_string
+#    @property
+#    def _positional_argument_repr_string(self):
+#        specification = self._storage_format_specification
+#        positional_argument_repr_string = [
+#            repr(x) for x in specification.positional_argument_values
+#            ]
+#        positional_argument_repr_string = ', '.join(
+#            positional_argument_repr_string)
+#        return positional_argument_repr_string
 
-    @property
-    def _repr_pieces(self):
-        return [repr(self)]
+#    @property
+#    def _repr_pieces(self):
+#        return [repr(self)]
 
     @property
     def _repr_specification(self):

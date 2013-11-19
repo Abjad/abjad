@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 import os
 import re
+from abjad.tools import abctools
 
 
-class PersistenceAgent(object):
+class PersistenceAgent(abctools.AbjadObject):
     r'''A wrapper around Abjad's object persistence mechanisms.
 
     ..  container:: example
@@ -27,24 +28,11 @@ class PersistenceAgent(object):
     def __init__(self, client):
         self._client = client
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
-
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                self._client,
-                ),
-            )
+    def client(self):
+        return self._client
 
     ### PUBLIC METHODS ###
 

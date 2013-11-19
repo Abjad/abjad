@@ -25,7 +25,7 @@ class QTargetBeat(AbjadObject):
 
     ::
 
-        >>> q_target_beat
+        >>> print format(q_target_beat)
         quantizationtools.QTargetBeat(
             beatspan=durationtools.Duration(1, 8),
             offset_in_ms=durationtools.Offset(1500, 1),
@@ -123,9 +123,6 @@ class QTargetBeat(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    def __repr__(self):
-        return format(self)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -217,9 +214,7 @@ class QTargetBeat(AbjadObject):
         ::
 
             >>> q_target_beat.search_tree
-            UnweightedSearchTree(
-                definition={   3: None}
-                )
+            UnweightedSearchTree(definition={3: None})
 
         Return ``SearchTree`` instance.
         '''

@@ -8,10 +8,7 @@ class SilentQEvent(QEvent):
 
         >>> q_event = quantizationtools.SilentQEvent(1000)
         >>> q_event
-        quantizationtools.SilentQEvent(
-            durationtools.Offset(1000, 1),
-            attachments=(),
-            )
+        SilentQEvent(Offset(1000, 1), attachments=())
 
     Return ``SilentQEvent`` instance.
     '''

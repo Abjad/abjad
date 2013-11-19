@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-import types
+from abjad.tools import abctools
 from abjad.tools import durationtools
 
 
-class InspectionAgent(object):
+class InspectionAgent(abctools.AbjadObject):
     r'''Inspect one component.
 
     ..  container:: example
@@ -29,24 +29,11 @@ class InspectionAgent(object):
         assert isinstance(component, scoretools.Component)
         self._component = component
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
-
-    ### PRIVATE PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                self._component,
-                ),
-            )
+    def component(self):
+        return self._component
 
     ### PUBLIC METHODS ###
 
@@ -84,7 +71,7 @@ class InspectionAgent(object):
         self,
         indicator_prototypes=None,
         ):
-        r'''Gets exactly one indicator matching `indicator_prototypes` attached to 
+        r'''Gets exactly one indicator matching `indicator_prototypes` attached to
         component.
 
         Raises exception when no indicator matching `indicator_prototypes` is attached
@@ -100,7 +87,7 @@ class InspectionAgent(object):
         self,
         indicator_prototypes=None,
         ):
-        r'''Get all indicators matching `indicator_prototypes` attached 
+        r'''Get all indicators matching `indicator_prototypes` attached
         to component.
 
         Returns tuple.
@@ -353,10 +340,10 @@ class InspectionAgent(object):
         self,
         context_mark_prototypes=None,
         ):
-        r'''Gets exactly one context mark of `context_mark_prototypes` 
+        r'''Gets exactly one context mark of `context_mark_prototypes`
         attached to component.
 
-        Raises exception when no context mark of `context_mark_prototypes` 
+        Raises exception when no context mark of `context_mark_prototypes`
         is attached to component.
 
         Returns context mark.
@@ -369,7 +356,7 @@ class InspectionAgent(object):
         self,
         context_mark_prototypes=None,
         ):
-        r'''Get all context marks of `context_mark_prototypes` 
+        r'''Get all context marks of `context_mark_prototypes`
         attached to component.
 
         Returns tuple.

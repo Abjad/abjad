@@ -37,7 +37,8 @@ class QEventSequence(AbjadObject):
     ::
 
         >>> for q_event in sequence:
-        ...     q_event
+        ...     print format(q_event, 'storage')
+        ...
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
             (
@@ -191,7 +192,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence.sequence:
-            ...     print format(q_event)
+            ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
@@ -250,7 +251,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     q_event
+            ...     print format(q_event, 'storage')
             ...
             quantizationtools.SilentQEvent(
                 durationtools.Offset(0, 1),
@@ -322,7 +323,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     q_event
+            ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
@@ -391,7 +392,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     q_event
+            ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
@@ -486,7 +487,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     q_event
+            ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),
@@ -558,7 +559,7 @@ class QEventSequence(AbjadObject):
         ::
 
             >>> for q_event in sequence:
-            ...     q_event
+            ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(0, 1),

@@ -54,7 +54,7 @@ class ChordSuspension(AbjadObject):
 
     def __str__(self):
         if self.start is not None and self.stop is not None:
-            return '{}-{}'.format(self.start, self.stop)
+            return '{!s}-{!s}'.format(self.start, self.stop)
         else:
             return ''
 
@@ -105,7 +105,7 @@ class ChordSuspension(AbjadObject):
     def chord_name(self):
         if self.is_empty:
             return ''
-        return 'sus{}'.format(self.start)
+        return 'sus{!s}'.format(self.start)
 
     @property
     def figured_bass_pair(self):
@@ -115,7 +115,7 @@ class ChordSuspension(AbjadObject):
     def figured_bass_string(self):
         if self.is_empty:
             return ''
-        return '{}-{}'.format(self.start, self.stop)
+        return '{!s}-{!s}'.format(self.start, self.stop)
 
     @property
     def is_empty(self):
@@ -135,4 +135,4 @@ class ChordSuspension(AbjadObject):
             return ''
         start = self.start.title_string
         stop = self.stop.title_string
-        return '{}{}Suspension'.format(start, stop)
+        return '{!s}{!s}Suspension'.format(start, stop)

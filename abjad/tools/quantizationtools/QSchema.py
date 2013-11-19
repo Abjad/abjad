@@ -107,9 +107,6 @@ class QSchema(AbjadObject):
                 result[field] = self._lookups[field][key]
         return result
 
-    def __repr__(self):
-        return format(self)
-
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty

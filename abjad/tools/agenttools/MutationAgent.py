@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.topleveltools import iterate
 
 
-class MutationAgent(object):
+class MutationAgent(abctools.AbjadObject):
     r'''A wrapper around the Abjad score mutators.
 
     ..  container:: example
@@ -32,24 +33,11 @@ class MutationAgent(object):
     def __init__(self, client):
         self._client = client
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
-
-    ### PRIVATE PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                self._client,
-                ),
-            )
+    def client(self):
+        return self._client
 
     ### PUBLIC METHODS ###
 

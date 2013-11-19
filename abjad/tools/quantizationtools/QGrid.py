@@ -19,7 +19,7 @@ class QGrid(AbjadObject):
 
     ::
 
-        >>> q_grid
+        >>> print format(q_grid, 'storage')
         quantizationtools.QGrid(
             root_node=quantizationtools.QGridLeaf(
                 preprolated_duration=durationtools.Duration(1, 1),
@@ -54,8 +54,10 @@ class QGrid(AbjadObject):
 
     ::
 
-        >>> q_grid.root_node.q_event_proxies
-        [quantizationtools.QEventProxy(
+        >>> for q_event_proxy in q_grid.root_node.q_event_proxies:
+        ...     print format(q_event_proxy, 'storage')
+        ...
+        quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(250, 1),
                 (
@@ -64,12 +66,14 @@ class QGrid(AbjadObject):
                 attachments=(),
                 ),
             durationtools.Offset(1, 4)
-            )]
+            )
 
     ::
 
-        >>> q_grid.next_downbeat.q_event_proxies
-        [quantizationtools.QEventProxy(
+        >>> for q_event_proxy in q_grid.next_downbeat.q_event_proxies:
+        ...     print format(q_event_proxy, 'storage')
+        ...
+        quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(750, 1),
                 (
@@ -78,7 +82,7 @@ class QGrid(AbjadObject):
                 attachments=(),
                 ),
             durationtools.Offset(3, 4)
-            )]
+            )
 
     Used internally by the ``Quantizer``.
 
@@ -160,9 +164,6 @@ class QGrid(AbjadObject):
             '_next_downbeat': self.next_downbeat,
             '_root_node': self.root_node,
         }
-
-    def __repr__(self):
-        return format(self)
 
     def __setstate__(self, state):
         self._next_downbeat = state['_next_downbeat']

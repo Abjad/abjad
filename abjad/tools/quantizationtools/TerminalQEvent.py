@@ -6,7 +6,7 @@ class TerminalQEvent(QEvent):
     r'''The terminal event in a series of ``QEvents``:
 
         >>> q_event = quantizationtools.TerminalQEvent(1000)
-        >>> q_event
+        >>> print format(q_event)
         quantizationtools.TerminalQEvent(
             durationtools.Offset(1000, 1)
             )

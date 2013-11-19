@@ -16,7 +16,7 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> q_schema
+        >>> print format(q_schema, 'storage')
         quantizationtools.MeasurewiseQSchema(
             search_tree=quantizationtools.UnweightedSearchTree(
                 definition={
@@ -102,9 +102,7 @@ class MeasurewiseQSchema(QSchema):
         >>> index = 0
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ...
-        search_tree: UnweightedSearchTree(
-            definition={   7: None}
-            )
+        search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
         time_signature: 3/4
         use_full_measure: True
@@ -114,9 +112,7 @@ class MeasurewiseQSchema(QSchema):
         >>> index = 1000
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ...
-        search_tree: UnweightedSearchTree(
-            definition={   7: None}
-            )
+        search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
         time_signature: 3/4
         use_full_measure: True
@@ -141,30 +137,22 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> q_schema[0]['search_tree']
-        UnweightedSearchTree(
-            definition={   2: None}
-            )
+        UnweightedSearchTree(definition={2: None})
 
     ::
 
         >>> q_schema[1]['search_tree']
-        UnweightedSearchTree(
-            definition={   3: None}
-            )
+        UnweightedSearchTree(definition={3: None})
 
     ::
 
         >>> q_schema[2]['search_tree']
-        UnweightedSearchTree(
-            definition={   5: None}
-            )
+        UnweightedSearchTree(definition={5: None})
 
     ::
 
         >>> q_schema[1000]['search_tree']
-        UnweightedSearchTree(
-            definition={   5: None}
-            )
+        UnweightedSearchTree(definition={5: None})
 
     Similarly, instantiating the schema from a single dictionary, consisting of
     integer:specification pairs, or a sequence via ``*args`` of (integer,

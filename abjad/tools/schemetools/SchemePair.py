@@ -8,7 +8,7 @@ class SchemePair(Scheme):
     ::
 
         >>> schemetools.SchemePair('spacing', 4)
-        SchemePair(('spacing', 4))
+        SchemePair('spacing', 4)
 
     Initialize Scheme pairs with a tuple, two separate values
     or another Scheme pair.

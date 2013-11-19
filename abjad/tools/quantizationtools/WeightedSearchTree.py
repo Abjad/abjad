@@ -13,12 +13,13 @@ class WeightedSearchTree(SearchTree):
 
     ::
 
-        >>> search_tree
-        WeightedSearchTree(
+        >>> print format(search_tree)
+        quantizationtools.WeightedSearchTree(
             definition={
-                'divisors': (2, 3, 5, 7), 
-                'max_depth': 3, 
-                'max_divisions': 2}
+                'divisors': (2, 3, 5, 7),
+                'max_depth': 3,
+                'max_divisions': 2,
+                },
             )
 
     In ``WeightedSearchTree``'s definition:
@@ -56,8 +57,8 @@ class WeightedSearchTree(SearchTree):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_all_compositions', 
-        '_compositions', 
+        '_all_compositions',
+        '_compositions',
         '_definition',
         )
 
@@ -102,7 +103,7 @@ class WeightedSearchTree(SearchTree):
         elif not all(isinstance(x, int) and \
             1 < x for x in definition['divisors']):
             return False
-        elif not all(mathtools.divisors(x) == [1, x] 
+        elif not all(mathtools.divisors(x) == [1, x]
             for x in definition['divisors']):
             return False
         elif 'max_depth' not in definition:
@@ -123,7 +124,7 @@ class WeightedSearchTree(SearchTree):
         compositions = {}
         max_divisions = self._definition['max_divisions']
         for divisor in self._definition['divisors']:
-            compositions[divisor] = [tuple(x) for x in 
+            compositions[divisor] = [tuple(x) for x in
                 mathtools.yield_all_compositions_of_integer(divisor)
                 if 1 < len(x) <= max_divisions]
         return compositions

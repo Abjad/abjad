@@ -104,6 +104,8 @@ class StorageFormatManager(object):
                 for x in value_pieces[1:]:
                     result.append('{}{}'.format(prefix, x))
                 result[-1] = '{}{}'.format(result[-1], suffix)
+            if not is_indented:
+                result[-1] = result[-1].rstrip(suffix) + infix
             result.append('{}}}'.format(prefix))
         else:
             result.append(repr(value))

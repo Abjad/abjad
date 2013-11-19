@@ -139,7 +139,8 @@ class QuantizationJob(AbjadObject):
         ::
 
             >>> for q_event_proxy in job.q_event_proxies:
-            ...     q_event_proxy
+            ...     print format(q_event_proxy, 'storage')
+            ...
             quantizationtools.QEventProxy(
                 quantizationtools.PitchedQEvent(
                     durationtools.Offset(250, 1),
@@ -199,9 +200,7 @@ class QuantizationJob(AbjadObject):
         ::
 
             >>> job.search_tree
-            UnweightedSearchTree(
-                definition={   2: {   2: None}, 3: None, 5: None}
-                )
+            UnweightedSearchTree(definition={2: {2: None}, 3: None, 5: None})
 
         Return ``SearchTree`` instance.
         '''

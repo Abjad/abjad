@@ -9,9 +9,9 @@ class SchemeMoment(Scheme):
     ::
 
         >>> schemetools.SchemeMoment(1, 68)
-        SchemeMoment((1, 68))
+        SchemeMoment(1, 68)
 
-    Initialize scheme moments with a single fraction, 
+    Initialize scheme moments with a single fraction,
     two integers or another scheme moment.
 
     Scheme moments are immutable.
@@ -75,19 +75,23 @@ class SchemeMoment(Scheme):
     def __ne__(self, arg):
         return not self == arg
 
-    def __repr__(self):
-        return '{}(({}, {}))'.format(
-            type(self).__name__, 
-            self._value.numerator, 
-            self._value.denominator,
-            )
-
     ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_value(self):
         numerator, denominator = self._value.numerator, self._value.denominator
         return '(ly:make-moment %s %s)' % (numerator, denominator)
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self._value.numerator,
+                self._value.denominator,
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 

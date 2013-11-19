@@ -61,9 +61,6 @@ class QEvent(AbjadObject):
                 return True
         return False
 
-    def __repr__(self):
-        return format(self)
-
     def __setstate__(self, state):
         for key, value in state.iteritems():
             setattr(self, key, value)

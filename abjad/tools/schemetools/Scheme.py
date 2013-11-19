@@ -118,9 +118,6 @@ class Scheme(AbjadObject):
     def __getnewargs__(self):
         return (self._value,)
 
-    def __repr__(self):
-        return '{}({!r})'.format(type(self).__name__, self._value)
-
     def __str__(self):
         if self._quoting is not None:
             return self._quoting + self._formatted_value

@@ -25,7 +25,7 @@ class QTargetMeasure(AbjadObject):
 
     ::
 
-        >>> q_target_measure
+        >>> print format(q_target_measure, 'storage')
         quantizationtools.QTargetMeasure(
             offset_in_ms=durationtools.Offset(1000, 1),
             search_tree=quantizationtools.UnweightedSearchTree(
@@ -160,9 +160,6 @@ class QTargetMeasure(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    def __repr__(self):
-        return format(self)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -172,7 +169,8 @@ class QTargetMeasure(AbjadObject):
         ::
 
             >>> for q_target_beat in q_target_measure.beats:
-            ...     q_target_beat
+            ...     print format(q_target_beat, 'storage')
+            ...
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(1000, 1),
@@ -262,9 +260,7 @@ class QTargetMeasure(AbjadObject):
         ::
 
             >>> q_target_measure.search_tree
-            UnweightedSearchTree(
-                definition={   2: None}
-                )
+            UnweightedSearchTree(definition={2: None})
 
         Return ``SearchTree`` instance.
         '''

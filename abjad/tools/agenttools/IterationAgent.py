@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
@@ -7,7 +8,7 @@ from abjad.tools import spannertools
 from abjad.tools.topleveltools import iterate
 
 
-class IterationAgent(object):
+class IterationAgent(abctools.AbjadObject):
     r'''A wrapper around the Abjad score iterators.
 
     ..  container:: example
@@ -31,24 +32,11 @@ class IterationAgent(object):
     def __init__(self, client):
         self._client = client
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
-
-    ### PRIVATE PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                self._client,
-                ),
-            )
+    def client(self):
+        return self._client
 
     ### PUBLIC METHODS ###
 

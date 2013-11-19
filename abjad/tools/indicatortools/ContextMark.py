@@ -10,7 +10,7 @@ class ContextMark(AbjadObject):
 
     __slots__ = (
         '_default_scope',
-        '_effective_context', 
+        '_effective_context',
         '_scope',
         '_start_component',
         )
@@ -48,16 +48,16 @@ class ContextMark(AbjadObject):
             return self._lilypond_format
         return str(self)
 
-    def __repr__(self):
-        r'''Interpreter representation of context mark.
-
-        Returns string.
-        '''
-        return '{}({}){}'.format(
-            type(self).__name__,
-            self._contents_repr_string, 
-            self._attachment_repr_string,
-            )
+#    def __repr__(self):
+#        r'''Interpreter representation of context mark.
+#
+#        Returns string.
+#        '''
+#        return '{}({}){}'.format(
+#            type(self).__name__,
+#            self._contents_repr_string,
+#            self._attachment_repr_string,
+#            )
 
     ### PRIVATE PROPERTIES ###
 
@@ -83,8 +83,8 @@ class ContextMark(AbjadObject):
 
     def _attach(self, start_component):
         r'''Attaches context mark to `start_component`.
-        
-        Makes sure no context mark of same type is already attached 
+
+        Makes sure no context mark of same type is already attached
         to score component that starts with start component.
 
         Returns context mark.
@@ -170,7 +170,7 @@ class ContextMark(AbjadObject):
         self._start_component = None
 
     def _update_effective_context(self):
-        r'''This function is designed to be called by score components 
+        r'''This function is designed to be called by score components
         during score update.
         '''
         current_effective_context = self._effective_context

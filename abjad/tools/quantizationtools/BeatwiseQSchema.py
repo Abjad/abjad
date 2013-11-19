@@ -16,7 +16,7 @@ class BeatwiseQSchema(QSchema):
 
     ::
 
-        >>> q_schema
+        >>> print format(q_schema, 'storage')
         quantizationtools.BeatwiseQSchema(
             beatspan=durationtools.Duration(1, 4),
             search_tree=quantizationtools.UnweightedSearchTree(
@@ -85,9 +85,7 @@ class BeatwiseQSchema(QSchema):
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ...
         beatspan: 5/16
-        search_tree: UnweightedSearchTree(
-            definition={   7: None}
-            )
+        search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
 
     ::
@@ -96,9 +94,7 @@ class BeatwiseQSchema(QSchema):
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ...
         beatspan: 5/16
-        search_tree: UnweightedSearchTree(
-            definition={   7: None}
-            )
+        search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
 
     Per-time-step settings can be applied in a variety of ways.
@@ -161,55 +157,93 @@ class BeatwiseQSchema(QSchema):
 
     ::
 
-        >>> q_schema[0]['search_tree']
-        UnweightedSearchTree(
-            definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
-                3: {   2: {   2: None}, 3: None, 5: None},
-                5: {   2: None, 3: None},
-                7: {   2: None},
+        >>> print format(q_schema[0]['search_tree'])
+        quantizationtools.UnweightedSearchTree(
+            definition={
+                2: {
+                    2: {
+                        2: {
+                            2: None,
+                            },
+                        3: None,
+                        },
+                    3: None,
+                    5: None,
+                    7: None,
+                    },
+                3: {
+                    2: {
+                        2: None,
+                        },
+                    3: None,
+                    5: None,
+                    },
+                5: {
+                    2: None,
+                    3: None,
+                    },
+                7: {
+                    2: None,
+                    },
                 11: None,
-                13: None}
+                13: None,
+                },
             )
 
     ::
 
-        >>> q_schema[1]['search_tree']
-        UnweightedSearchTree(
-            definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
-                3: {   2: {   2: None}, 3: None, 5: None},
-                5: {   2: None, 3: None},
-                7: {   2: None},
+        >>> print format(q_schema[1]['search_tree'])
+        quantizationtools.UnweightedSearchTree(
+            definition={
+                2: {
+                    2: {
+                        2: {
+                            2: None,
+                            },
+                        3: None,
+                        },
+                    3: None,
+                    5: None,
+                    7: None,
+                    },
+                3: {
+                    2: {
+                        2: None,
+                        },
+                    3: None,
+                    5: None,
+                    },
+                5: {
+                    2: None,
+                    3: None,
+                    },
+                7: {
+                    2: None,
+                    },
                 11: None,
-                13: None}
+                13: None,
+                },
             )
 
     ::
 
         >>> q_schema[2]['search_tree']
-        UnweightedSearchTree(
-            definition={   2: None}
-            )
+        UnweightedSearchTree(definition={2: None})
 
     ::
 
         >>> q_schema[3]['search_tree']
-        UnweightedSearchTree(
-            definition={   2: None}
-            )
+        UnweightedSearchTree(definition={2: None})
 
     ::
 
         >>> q_schema[4]['search_tree']
-        UnweightedSearchTree(
-            definition={   3: None}
-            )
+        UnweightedSearchTree(definition={3: None})
 
     ::
 
         >>> q_schema[1000]['search_tree']
-        UnweightedSearchTree(
-            definition={   3: None}
-            )
+        UnweightedSearchTree(definition={3: None})
 
     The following is equivalent to the above schema definition:
 
