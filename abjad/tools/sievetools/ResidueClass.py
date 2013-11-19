@@ -104,8 +104,19 @@ class ResidueClass(BaseResidueClass):
     def __ne__(self, expr):
         return not self == expr
 
-    def __repr__(self):
-        return '%s(%i, %i)' % (type(self).__name__, self.modulo, self.residue)
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.modulo,
+                self.residue,
+                ),
+            )
 
     ### PRIVATE METHODS ###
 

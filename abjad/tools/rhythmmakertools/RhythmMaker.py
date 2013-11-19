@@ -78,15 +78,6 @@ class RhythmMaker(Maker):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-#    def __repr__(self):
-#        r'''Interpreter representation of rhythm-maker.
-#
-#        Returns string.
-#        '''
-#        if getattr(self, 'name', None) is not None:
-#            return '{}({!r})'.format(type(self).__name__, self.name)
-#        return Maker.__repr__(self)
-
     ### PRIVATE METHODS ###
 
     # TODO: make static
