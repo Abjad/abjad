@@ -131,23 +131,22 @@ class StemTremolo(AbjadObject):
         '''
         return ':{!s}'.format(self.tremolo_flags)
 
-    def __repr__(self):
-        r'''Interpreter representation of stem tremolo.
-
-        ::
-
-            >>> stem_tremolo
-            StemTremolo(16)
-
-        Returns string.
-        '''
-        return '{}({})'.format(type(self).__name__, self.tremolo_flags)
-
     ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):
         return str(self)
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.tremolo_flags,
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 

@@ -556,7 +556,7 @@ class Meter(AbjadObject):
                             RhythmTreeLeaf(
                                 preprolated_duration=Duration(1, 4),
                                 is_pitched=True
-                                )
+                                ),
                             ),
                         preprolated_duration=NonreducedFraction(3, 4)
                         ),
@@ -569,10 +569,10 @@ class Meter(AbjadObject):
                             RhythmTreeLeaf(
                                 preprolated_duration=Duration(1, 4),
                                 is_pitched=True
-                                )
+                                ),
                             ),
                         preprolated_duration=NonreducedFraction(2, 4)
-                        )
+                        ),
                     ),
                 preprolated_duration=NonreducedFraction(5, 4)
                 )
