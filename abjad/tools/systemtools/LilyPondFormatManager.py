@@ -81,13 +81,37 @@ class LilyPondFormatManager(object):
         elif mark._start_component is component:
             return True
         else:
-            if mark._get_effective_context() in \
-                component._get_parentage(include_self=True):
-                if mark._get_effective_context() not in \
-                    component._get_parentage(include_self=False):
-                    if mark._start_component.start == component.start:
+            return False
+
+    @staticmethod
+    def _is_formattable_wrapper(wrapper, start_component, component):
+        from abjad.tools import scoretools
+        from abjad.tools import indicatortools
+        indicator = wrapper.indicator
+        if isinstance(start_component, scoretools.Measure):
+            if start_component is component:
+                if not isinstance(indicator, indicatortools.TimeSignature):
+                    return True
+                elif component.always_format_time_signature:
+                    return True
+                else:
+                    previous_measure = \
+                        scoretools.get_previous_measure_from_component(
+                            start_component)
+                    if previous_measure is not None:
+                        previous_effective_time_signature = \
+                            previous_measure.time_signature
+                    else:
+                        previous_effective_time_signature = None
+                    if not indicator == previous_effective_time_signature:
                         return True
-        return False
+        elif indicator._format_slot == 'right':
+            if start_component is component:
+                return True
+        elif start_component is component:
+            return True
+        else:
+            return False
 
     @staticmethod
     def _populate_mark_format_contributions(component, bundle):
@@ -104,6 +128,10 @@ class LilyPondFormatManager(object):
         # organize items attached to component
         for item in items:
             format_slot_subsection = None
+            # store wrappers for later handling
+            if isinstance(item, indicatortools.IndicatorWrapper):
+                wrappers.append(item)
+                continue
             # skip nonprinting items like annotation
             if not hasattr(item, '_lilypond_format'):
                 continue
@@ -111,10 +139,6 @@ class LilyPondFormatManager(object):
             if isinstance(item, indicatortools.ContextMark):
                 if manager._is_formattable_context_mark(item, component):
                     context_marks.append(item)
-                continue
-            # store wrappers for later handling
-            if isinstance(item, indicatortools.IndicatorWrapper):
-                wrappers.append(item)
                 continue
             # store markup for later handling
             if isinstance(item, markuptools.Markup):
@@ -142,8 +166,10 @@ class LilyPondFormatManager(object):
             # most likely key signature, time signature or
             # something else that used to be a context mark
             else:
-                other_items.append(item)
-                continue
+                message = 'do not know how to classify {!r}.'.format(item)
+                raise Exception(message)
+                #other_items.append(item)
+                #continue
             format_slot = item._format_slot
             format_slot = bundle.get(format_slot)
             contributions = format_slot.get(format_slot_subsection)
@@ -151,6 +177,7 @@ class LilyPondFormatManager(object):
             contributions.append(contribution)
             if format_slot_subsection == 'articulations':
                 contributions.sort()
+        #print wrappers, 'WWW'
         # add formattable context marks attached to parents of component
         for parent in inspect(component).get_parentage(include_self=False):
             for context_mark in parent._start_context_marks:
@@ -165,6 +192,16 @@ class LilyPondFormatManager(object):
             format_pieces = manager._get_context_mark_format_pieces(context_mark)
             format_slot = context_mark._format_slot
             bundle.get(format_slot).context_marks.extend(format_pieces)
+        # add formattable wrappers attached to parents of component
+        for parent in inspect(component).get_parentage(include_self=False):
+            for wrapper in parent._get_wrappers():
+                assert isinstance(wrapper, indicatortools.IndicatorWrapper)
+                if wrapper in wrappers:
+                    continue
+                start_component = parent
+                if manager._is_formattable_wrapper(
+                    wrapper, start_component, component):
+                    wrappers.append(wrapper)
         # TODO: insert wrapper handling code here
         # handle markup
         for markup_list in (up_markup, down_markup, neutral_markup):

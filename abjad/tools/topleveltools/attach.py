@@ -4,7 +4,7 @@ import types
 def attach(indicator, component_expression, scope=None):
     r'''Attaches `indicator` to `component_expression`.
 
-    Derives `scope` from the default target context of `indicator`
+    Derives `scope` from the default scope of `indicator` 
     when `scope` is none.
 
     Returns none.
@@ -30,6 +30,16 @@ def attach(indicator, component_expression, scope=None):
         indicator = wrapper
     elif not hasattr(indicator, '_attach') and hasattr(indicator, 'scope'):
         scope = scope or indicator.scope
+        if isinstance(scope, types.TypeType):
+            assert issubclass(scope, scoretools.Context), repr(scope)
+        else:
+            assert isinstance(scope, scoretools.Context), repr(scope)
+        wrapper = indicatortools.IndicatorWrapper(indicator, scope)
+        indicator = wrapper
+    elif scope is None and hasattr(indicator, '_attach'):
+        pass
+    elif hasattr(indicator, '_default_scope'):
+        scope = scope or indicator._default_scope
         if isinstance(scope, types.TypeType):
             assert issubclass(scope, scoretools.Context), repr(scope)
         else:
