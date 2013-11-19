@@ -201,7 +201,7 @@ class Tempo(ContextMark):
             return new_tempo_indication
 
     def __str__(self):
-        return self._equation
+        return self._equation or self.textual_indication
 
     def __sub__(self, expr):
         r'''Subtracts `expr` from tempo.
@@ -246,6 +246,8 @@ class Tempo(ContextMark):
 
     @property
     def _equation(self):
+        if self.duration is None:
+            return
         if isinstance(self.units_per_minute, tuple):
             return '%s=%s-%s' % (
                 self._dotted, 
