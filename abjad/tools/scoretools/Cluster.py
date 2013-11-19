@@ -50,14 +50,14 @@ class Cluster(Container):
 
     ### PRIVATE METHODS ###
 
-    def _format_open_brackets_slot(self, format_contributions):
+    def _format_open_brackets_slot(self, bundle):
         result = []
         contributor = ('self_brackets', 'open')
         if self.is_simultaneous:
             brackets_open = ['<<']
         else:
             brackets_open = ['{']
-        contributions = [r'\makeClusters %s' % brackets_open[0]]
+        contributions = [r'\makeClusters {}'.format(brackets_open[0])]
         result.append([contributor, contributions])
         return tuple(result)
 

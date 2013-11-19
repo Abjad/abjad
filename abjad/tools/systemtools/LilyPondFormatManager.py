@@ -264,9 +264,11 @@ class LilyPondFormatManager(object):
         for spanner in component._get_parentage()._get_spanners():
             # override contributions (in before slot)
             if spanner._is_my_first_leaf(component):
-                for contribution in \
-                    override(spanner)._list_format_contributions(
-                    'override', is_once=False):
+                contributions = override(spanner)._list_format_contributions(
+                    'override', 
+                    is_once=False,
+                    )
+                for contribution in contributions:
                     before_contributions.append((spanner, contribution, None))
             # contributions for before slot
             for contribution in spanner._format_before_leaf(component):
@@ -277,8 +279,9 @@ class LilyPondFormatManager(object):
                 after_contributions.append((spanner, contribution, None))
             # revert contributions (in after slot)
             if spanner._is_my_last_leaf(component):
-                for contribution in \
-                    override(spanner)._list_format_contributions('revert'):
+                manager = override(spanner)
+                contributions = manager._list_format_contributions('revert')
+                for contribution in contributions:
                     triple = (spanner, contribution, None)
                     if triple not in after_contributions:
                         after_contributions.append(triple)
@@ -301,6 +304,15 @@ class LilyPondFormatManager(object):
                 result[key].sort(key=lambda x: x[0].__class__.__name__)
                 result[key] = [x[1] for x in result[key]]
         for format_slot, contributions in result.iteritems():
+            # contributions can no be any of these:
+            # 1 contribution: (')',)
+            # 2 contributions: ('[', '(')
+            # 3 contributions: ('[', '(', '~')
+            # 4 contributions: ('[', ']', '(', ')')
+            # and so on such that no length constraint can be assumed
+            if isinstance(contributions, list):
+                contributions = tuple(contributions)
+            assert isinstance(contributions, tuple), repr(contributions)
             bundle.get(format_slot).spanners[:] = contributions
 
     ### PUBLIC METHODS ###

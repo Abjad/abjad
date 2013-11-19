@@ -141,14 +141,14 @@ class GraceContainer(Container):
             self[:] = []
         return self
 
-    def _format_open_brackets_slot(self, format_contributions):
+    def _format_open_brackets_slot(self, bundle):
         result = []
         kind = self.kind
         if kind == 'after':
             result.append([('grace_brackets', 'open'), ['{']])
         else:
             contributor = ('grace_brackets', 'open')
-            contributions = [r'\%s {' % kind]
+            contributions = [r'\{} {{'.format(kind)]
             result.append([contributor, contributions])
         return tuple(result)
 

@@ -173,7 +173,6 @@ class Leaf(Component):
 
     def _format_after_slot(leaf, bundle):
         result = []
-        slot_dictionary = bundle.after
         result.append(('spanners', bundle.after.spanners))
         result.append(('context marks', bundle.after.context_marks))
         result.append(('commands', bundle.after.commands))
