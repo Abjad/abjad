@@ -93,20 +93,6 @@ class AbjadObject(object):
     def _one_line_menuing_summary(self):
         return str(self)
 
-#    @property
-#    def _positional_argument_repr_string(self):
-#        specification = self._storage_format_specification
-#        positional_argument_repr_string = [
-#            repr(x) for x in specification.positional_argument_values
-#            ]
-#        positional_argument_repr_string = ', '.join(
-#            positional_argument_repr_string)
-#        return positional_argument_repr_string
-
-#    @property
-#    def _repr_pieces(self):
-#        return [repr(self)]
-
     @property
     def _repr_specification(self):
         return self._storage_format_specification.new(

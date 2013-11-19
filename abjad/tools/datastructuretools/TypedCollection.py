@@ -91,16 +91,6 @@ class TypedCollection(AbjadObject):
         return coerce
 
     @property
-    def _positional_argument_repr_string(self):
-        positional_argument_repr_string = [
-            repr(x) for x in self]
-        positional_argument_repr_string = ', '.join(
-            positional_argument_repr_string)
-        positional_argument_repr_string = '[{}]'.format(
-            positional_argument_repr_string)
-        return positional_argument_repr_string
-
-    @property
     def _repr_specification(self):
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager

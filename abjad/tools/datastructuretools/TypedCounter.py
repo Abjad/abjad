@@ -131,18 +131,6 @@ class TypedCounter(TypedCollection):
         itemdict = _coerce_mapping(kwargs)
         return items, itemdict
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _positional_argument_repr_string(self):
-        result = []
-        for key, value in sorted(self.items()):
-            result.append('{!r}: {!r}'.format(key, value))
-        positional_argument_repr_string = ', '.join(result)
-        positional_argument_repr_string = '{{{}}}'.format(
-            positional_argument_repr_string)
-        return positional_argument_repr_string
-
     ### PUBLIC METHODS ###
 
     '''
