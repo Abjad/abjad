@@ -80,6 +80,8 @@ class UpdateManager(AbjadObject):
             for context_mark in component._start_context_marks:
                 if hasattr(context_mark, '_update_effective_context'):
                     context_mark._update_effective_context()
+            for wrapper in component._get_wrappers():
+                wrapper._update_effective_context()
             component._marks_are_current = True
 
     @staticmethod

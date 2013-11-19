@@ -12,6 +12,7 @@ class IndicatorWrapper(AbjadObject):
         self._indicator = indicator
         self._start_component = start_component
         self._scope = scope
+        self._effective_context = None
 
     ### SPECIAL METHODS ###
 
@@ -21,6 +22,54 @@ class IndicatorWrapper(AbjadObject):
                 if self.scope == arg.scope:
                     return True
         return False
+
+    ### PRIVATE METHODS ###
+
+    def _bind_correct_effective_context(self, correct_effective_context):
+        self._unbind_effective_context()
+        if correct_effective_context is not None:
+            correct_effective_context._dependent_wrappers.append(self)
+        self._effective_context = correct_effective_context
+        self._update_effective_context()
+
+    def _find_correct_effective_context(self):
+        from abjad.tools import scoretools
+        scope = self.scope
+        if scope is None:
+            return None
+        elif isinstance(scope, type):
+            scope_type = scope
+            for component in self.start_component._get_parentage():
+                if isinstance(component, scope_type):
+                    return component
+        elif isinstance(scope, str):
+            scope_name = scope
+            for component in self.start_component._get_parentage():
+                if component.name == scope_name:
+                    return component
+        else:
+            message = 'target context {!r} must be'
+            message += ' context type, context name or none.'
+            message = message.format(scope)
+            raise TypeError(message)
+
+    def _unbind_effective_context(self):
+        effective_context = self._effective_context
+        if effective_context is not None:
+            try:
+                effective_context._dependent_wrappers.remove(self)
+            except ValueError:
+                pass
+        self._effective_context = None
+
+    def _update_effective_context(self):
+        r'''This function is designed to be called by score components
+        during score update.
+        '''
+        current_effective_context = self._effective_context
+        correct_effective_context = self._find_correct_effective_context()
+        if current_effective_context is not correct_effective_context:
+            self._bind_correct_effective_context(correct_effective_context)
 
     ### PUBLIC PROPERTIES ###
 

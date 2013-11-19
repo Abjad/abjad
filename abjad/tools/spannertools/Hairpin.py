@@ -113,21 +113,34 @@ class Hairpin(Spanner):
             direction_string = '{} '.format(direction_string)
         if self.include_rests:
             if self._is_my_first_leaf(leaf):
-                result.append('%s\\%s' % (direction_string, self.shape_string))
+                string = '{}\\{}'.format(direction_string, self.shape_string)
+                result.append(string)
                 if self.start_dynamic_string:
-                    result.append('%s\\%s' % (
-                        direction_string, self.start_dynamic_string))
+                    string = '{}\\{}'.format(
+                        direction_string, 
+                        self.start_dynamic_string,
+                        )
+                    result.append(string)
             if self._is_my_last_leaf(leaf):
                 if self.stop_dynamic_string:
-                    result.append('%s\\%s' % (
-                        direction_string, self.stop_dynamic_string))
+                    string = '{}\\{}'.format(
+                        direction_string,
+                        self.stop_dynamic_string,
+                        )
+                    result.append(string)
                 else:
                     effective_dynamic = leaf._get_effective_context_mark(
                         indicatortools.Dynamic)
-                    if effective_dynamic is None or \
-                        effective_dynamic not in \
-                        leaf._start_context_marks:
+                    if effective_dynamic is None:
                         result.append('\\!')
+                    elif effective_dynamic not in leaf._start_context_marks:
+                        found_match = False
+                        for wrapper in \
+                            leaf._get_wrappers(indicatortools.Dynamic):
+                            if wrapper.indicator == effective_dynamic:
+                                found_match = True
+                        if not found_match:
+                            result.append('\\!')
         else:
             if self._is_my_first(leaf, (scoretools.Chord, scoretools.Note)):
                 result.append('%s\\%s' % (direction_string, self.shape_string))

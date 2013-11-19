@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.indicatortools.ContextMark import ContextMark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Dynamic(ContextMark):
+class Dynamic(AbjadObject):
     r'''A dynamic.
 
     ..  container:: example
@@ -125,10 +125,11 @@ class Dynamic(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, name):
-        ContextMark.__init__(self)
+        from abjad.tools import scoretools
         if isinstance(name, type(self)):
             name = name.name
         self._name = name
+        self._default_scope = scoretools.Staff
 
     ### SPECIAL METHODS ###
 

@@ -378,10 +378,13 @@ class Container(Component):
         from abjad.tools import spannertools
         # cache context marks attached to expr
         expr_context_marks = []
+        expr_wrappers = []
         for component in iterate(expr).by_class():
             context_marks = component._get_context_marks(
                 indicatortools.ContextMark)
             expr_context_marks.extend(context_marks)
+            wrappers = component._get_wrappers()
+            expr_wrappers.extend(wrappers)
         # item assignment
         if isinstance(i, int):
             if isinstance(expr, str):
@@ -450,8 +453,10 @@ class Container(Component):
                 for component in reversed(expr):
                     spanner._insert(index, component)
                     component._spanners.add(spanner)
-        for expr_context_mark in expr_context_marks:
-            expr_context_mark._update_effective_context()
+        for context_mark in expr_context_marks:
+            context_mark._update_effective_context()
+        for wrapper in expr_wrappers:
+            wrapper._update_effective_context
 
     ### PUBLIC PROPERTIES ###
 

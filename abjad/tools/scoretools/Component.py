@@ -390,9 +390,11 @@ class Component(AbjadObject):
             key=lambda x: x.start_component._get_timespan().start_offset
             )
         for parent in self._get_parentage(include_self=True):
-            wrappers = parent._get_wrappers(context_mark_prototypes)
+            wrappers = parent._dependent_wrappers
             for wrapper in wrappers:
-                candidate_wrappers.insert(wrapper)
+                if isinstance(wrapper.indicator, context_mark_prototypes):
+                    candidate_wrappers.insert(wrapper)
+        #print candidate_wrappers, 'CW'
         if candidate_wrappers:
             try:
                 start_offset = self._get_timespan().start_offset
