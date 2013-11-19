@@ -388,18 +388,6 @@ class Timespan(BoundedObject):
         timespan = type(self)(new_start_offset, new_stop_offset)
         return timespantools.TimespanInventory([timespan])
 
-    def __repr__(self):
-        r'''Interpreter representation of timespan:
-
-        ::
-
-            >>> timespan_1
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
-
-        Returns string.
-        '''
-        return BoundedObject.__repr__(self)
-
     def __sub__(self, expr):
         r'''Subtract `expr` from timespan:
 

@@ -50,14 +50,6 @@ class Segment(TypedTuple):
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        parts = []
-        if self.item_class.__name__.startswith('Named'):
-            parts = [repr(str(x)) for x in self]
-        else:
-            parts = [str(x) for x in self]
-        return '{}([{}])'.format(type(self).__name__, ', '.join(parts))
-
     def __str__(self):
         parts = [str(x) for x in self]
         return '<{}>'.format(', '.join(parts))
@@ -75,6 +67,21 @@ class Segment(TypedTuple):
     @abc.abstractproperty
     def _parent_item_class(self):
         raise NotImplementedError
+
+    @property
+    def _repr_specification(self):
+        tokens = []
+        if self.item_class.__name__.startswith('Named'):
+            tokens = [str(x) for x in self]
+        else:
+            tokens = [abs(x) for x in self]
+        return self._storage_format_specification.new(
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                tokens,
+                ),
+            )
 
     ### PUBLIC METHODS ###
 

@@ -6,20 +6,20 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QEvent(AbjadObject):
-    r'''Abstract base class from which concrete ``QEvent`` subclasses 
+    r'''Abstract base class from which concrete ``QEvent`` subclasses
     inherit.
 
     Represents an attack point to be quantized.
 
-    All ``QEvents`` possess a rational offset in milliseconds, 
-    and an optional index for disambiguating events which fall 
+    All ``QEvents`` possess a rational offset in milliseconds,
+    and an optional index for disambiguating events which fall
     on the same offset in a ``QGrid``.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_index', 
+        '_index',
         '_offset',
         )
 
@@ -32,19 +32,6 @@ class QEvent(AbjadObject):
         self._index = index
 
     ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification=''):
-        r'''Formats q-event.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
-        return str(self)
 
     def __getstate__(self):
         state = {}
@@ -66,6 +53,24 @@ class QEvent(AbjadObject):
             setattr(self, key, value)
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification.new(
+            is_indented=False,
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keywords_ignored_when_false=(
+                'attachments',
+                ),
+            )
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def index(self):

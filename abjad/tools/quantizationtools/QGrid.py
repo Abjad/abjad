@@ -23,12 +23,10 @@ class QGrid(AbjadObject):
         quantizationtools.QGrid(
             root_node=quantizationtools.QGridLeaf(
                 preprolated_duration=durationtools.Duration(1, 1),
-                q_event_proxies=[],
                 is_divisible=True,
                 ),
             next_downbeat=quantizationtools.QGridLeaf(
                 preprolated_duration=durationtools.Duration(1, 1),
-                q_event_proxies=[],
                 is_divisible=True,
                 ),
             )
@@ -62,8 +60,7 @@ class QGrid(AbjadObject):
                 durationtools.Offset(250, 1),
                 (
                     pitchtools.NamedPitch("c'"),
-                    ),
-                attachments=(),
+                    )
                 ),
             durationtools.Offset(1, 4)
             )
@@ -78,8 +75,7 @@ class QGrid(AbjadObject):
                 durationtools.Offset(750, 1),
                 (
                     pitchtools.NamedPitch("cs'"),
-                    ),
-                attachments=(),
+                    )
                 ),
             durationtools.Offset(3, 4)
             )

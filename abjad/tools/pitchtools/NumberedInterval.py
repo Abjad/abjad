@@ -151,7 +151,7 @@ class NumberedInterval(Interval):
 
     @property
     def numbered_interval_number(self):
-        r'''Chromatic interval number:
+        r'''Interval number:
 
         ::
 

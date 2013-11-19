@@ -311,9 +311,6 @@ class Meter(AbjadObject):
                 ).with_denominator(self.denominator)
             yield start_offset, stop_offset
 
-    def __repr__(self):
-        return '{}({!r})'.format(type(self).__name__, self.rtm_format)
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -556,7 +553,7 @@ class Meter(AbjadObject):
                             RhythmTreeLeaf(
                                 preprolated_duration=Duration(1, 4),
                                 is_pitched=True
-                                )
+                                ),
                             ),
                         preprolated_duration=NonreducedFraction(3, 4)
                         ),
@@ -569,10 +566,10 @@ class Meter(AbjadObject):
                             RhythmTreeLeaf(
                                 preprolated_duration=Duration(1, 4),
                                 is_pitched=True
-                                )
+                                ),
                             ),
                         preprolated_duration=NonreducedFraction(2, 4)
-                        )
+                        ),
                     ),
                 preprolated_duration=NonreducedFraction(5, 4)
                 )

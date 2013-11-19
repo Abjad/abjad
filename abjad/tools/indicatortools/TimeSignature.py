@@ -181,21 +181,6 @@ class TimeSignature(ContextMark):
         else:
             raise TypeError
 
-    def __repr__(self):
-        r'''Interpreter representation of time signature.
-
-        Returns string.
-        '''
-        result = '{}(({}, {}){}){}'
-        result = result.format(
-            type(self).__name__, 
-            self.numerator,
-            self.denominator, 
-            self._partial_repr_string, 
-            self._attachment_repr_string,
-            )
-        return result
-
     def __str__(self):
         r'''String representation of time signature.
 

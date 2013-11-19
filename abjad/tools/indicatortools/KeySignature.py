@@ -90,6 +90,18 @@ class KeySignature(AbjadObject):
     def _lilypond_format(self):
         return r'\key {!s} \{!s}'.format(self.tonic, self.mode)
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                str(self.tonic),
+                str(self.mode),
+                ),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

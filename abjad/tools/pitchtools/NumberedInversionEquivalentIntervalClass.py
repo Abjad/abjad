@@ -62,14 +62,18 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
     def __neg__(self):
         return type(self)(self.number)
 
-    def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
-
     def __str__(self):
         return '%s' % self.number
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_string(self):
-        return self.number
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.number,
+                )
+            )

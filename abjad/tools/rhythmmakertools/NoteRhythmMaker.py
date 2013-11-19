@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.rhythmmakertools.DivisionIncisedNoteRhythmMaker \
-	import DivisionIncisedNoteRhythmMaker
+    import DivisionIncisedNoteRhythmMaker
 
 
 class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
@@ -134,13 +134,6 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         '''
         superclass = super(NoteRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
-
-    def __repr__(self):
-        r'''Interpreter representation of note rhythm-maker.
-
-        Returns string.
-        '''
-        return '{}()'.format(type(self).__name__)
 
     ### PUBLIC METHODS ###
 

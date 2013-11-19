@@ -48,25 +48,7 @@ class ContextMark(AbjadObject):
             return self._lilypond_format
         return str(self)
 
-#    def __repr__(self):
-#        r'''Interpreter representation of context mark.
-#
-#        Returns string.
-#        '''
-#        return '{}({}){}'.format(
-#            type(self).__name__,
-#            self._contents_repr_string,
-#            self._attachment_repr_string,
-#            )
-
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attachment_repr_string(self):
-        if self._start_component is None:
-            return ''
-        else:
-            return '({!s})'.format(self._start_component)
 
     @property
     def _one_line_menuing_summary(self):

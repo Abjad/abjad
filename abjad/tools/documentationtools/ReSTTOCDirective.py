@@ -25,11 +25,11 @@ class ReSTTOCDirective(ReSTDirective):
                     ),
                 ReSTTOCItem(
                     text='baz/index'
-                    )
+                    ),
                 ),
             options={
                 'hidden': True,
-                'maxdepth': 1
+                'maxdepth': 1,
                 }
             )
 

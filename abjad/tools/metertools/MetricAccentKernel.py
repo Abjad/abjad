@@ -12,14 +12,16 @@ class MetricAccentKernel(AbjadObject):
         >>> hierarchy = metertools.Meter((5, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> kernel
-        MetricAccentKernel({
-            Offset(0, 1): Multiplier(3, 11),
-            Offset(1, 8): Multiplier(1, 11),
-            Offset(1, 4): Multiplier(1, 11),
-            Offset(3, 8): Multiplier(2, 11),
-            Offset(1, 2): Multiplier(1, 11),
-            Offset(5, 8): Multiplier(3, 11)
-        })
+        MetricAccentKernel(
+            {
+                Offset(0, 1): Multiplier(3, 11),
+                Offset(1, 8): Multiplier(1, 11),
+                Offset(1, 4): Multiplier(1, 11),
+                Offset(3, 8): Multiplier(2, 11),
+                Offset(1, 2): Multiplier(1, 11),
+                Offset(5, 8): Multiplier(3, 11),
+                }
+            )
 
     Call the kernel against an expression from which offsets can be counted
     to receive an impulse-response:
@@ -66,16 +68,11 @@ class MetricAccentKernel(AbjadObject):
                 return True
         return False
 
-    def __repr__(self):
-        result = ['{}({{'.format(type(self).__name__)]
-        offsets = sorted(self._kernel)
-        for offset in offsets[:-1]:
-            result.append('\t{!r}: {!r},'.format(
-                offset, self._kernel[offset]))
-        result.append('\t{!r}: {!r}'.format(
-            offsets[-1], self._kernel[offsets[-1]]))
-        result.append('})')
-        return '\n'.join(result)
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification
 
     ### PUBLIC PROPERTIES ###
 

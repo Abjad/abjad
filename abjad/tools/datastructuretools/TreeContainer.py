@@ -289,6 +289,16 @@ class TreeContainer(TreeNode):
     def _node_class(self):
         return TreeNode
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keywords_ignored_when_false=(
+                'children',
+                ),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -463,7 +473,7 @@ class TreeContainer(TreeNode):
             TreeContainer(
                 children=(
                     TreeNode(),
-                    TreeNode()
+                    TreeNode(),
                     )
                 )
 
@@ -495,7 +505,7 @@ class TreeContainer(TreeNode):
             TreeContainer(
                 children=(
                     TreeNode(),
-                    TreeNode()
+                    TreeNode(),
                     )
                 )
 
@@ -559,7 +569,7 @@ class TreeContainer(TreeNode):
             TreeContainer(
                 children=(
                     TreeNode(),
-                    TreeNode()
+                    TreeNode(),
                     )
                 )
 
@@ -574,7 +584,7 @@ class TreeContainer(TreeNode):
                 children=(
                     TreeNode(),
                     TreeNode(),
-                    TreeNode()
+                    TreeNode(),
                     )
                 )
 
@@ -605,7 +615,7 @@ class TreeContainer(TreeNode):
             TreeContainer(
                 children=(
                     TreeNode(),
-                    TreeNode()
+                    TreeNode(),
                     )
                 )
 
@@ -652,7 +662,7 @@ class TreeContainer(TreeNode):
             TreeContainer(
                 children=(
                     TreeNode(),
-                    TreeNode()
+                    TreeNode(),
                     )
                 )
 

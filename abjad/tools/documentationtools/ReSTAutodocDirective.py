@@ -18,7 +18,7 @@ class ReSTAutodocDirective(ReSTDirective):
             argument='abjad.tools.spannertools.Beam.Beam',
             directive='autoclass',
             options={
-                'noindex': True
+                'noindex': True,
                 }
             )
 

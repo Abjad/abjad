@@ -23,7 +23,7 @@ class ReSTAutosummaryDirective(ReSTDirective):
                     ),
                 ReSTAutosummaryItem(
                     text='baz.Baz'
-                    )
+                    ),
                 )
             )
 

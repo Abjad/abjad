@@ -40,7 +40,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                 RhythmTreeLeaf(
                     preprolated_duration=Duration(2, 1),
                     is_pitched=True
-                    )
+                    ),
                 ),
             preprolated_duration=Duration(1, 1)
             )
@@ -69,10 +69,10 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                         RhythmTreeLeaf(
                             preprolated_duration=Duration(2, 1),
                             is_pitched=True
-                            )
+                            ),
                         ),
                     preprolated_duration=Duration(2, 1)
-                    )
+                    ),
                 ),
             preprolated_duration=Duration(1, 1)
             )
@@ -163,7 +163,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     RhythmTreeLeaf(
                         preprolated_duration=Duration(4, 1),
                         is_pitched=True
-                        )
+                        ),
                     ),
                 preprolated_duration=Duration(3, 1)
                 )

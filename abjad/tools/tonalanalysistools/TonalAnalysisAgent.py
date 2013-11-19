@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import abctools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools.topleveltools import iterate
 
 
-class TonalAnalysisAgent(object):
+class TonalAnalysisAgent(abctools.AbjadObject):
     r'''A tonal analysis interface.
 
     ..  container:: example
@@ -59,22 +60,6 @@ class TonalAnalysisAgent(object):
         if not isinstance(selection, selectiontools.Selection):
             selection = selectiontools.Selection(selection)
         self._selection = selection
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        r'''Interpreter representation of tonal analysis interface.
-
-        ..  container:: example::
-
-            ::
-
-                >>> selection_2
-                TonalAnalysisAgent(Note("c'4"), Note("f'4"))
-
-        Returns string.
-        '''
-        return '{}{!r}'.format(type(self).__name__, self._selection._music)
 
     ### PRIVATE METHODS ###
 

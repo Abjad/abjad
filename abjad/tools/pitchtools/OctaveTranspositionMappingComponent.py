@@ -82,9 +82,6 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     def __ne__(self, expr):
         return not self == expr
 
-    def __repr__(self):
-        return '{}{}'.format(type(self).__name__, self._input_argument_token)
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -109,6 +106,18 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         return '{} => {:d}'.format(
             self.source_pitch_range.one_line_named_pitch_repr,
             self.target_octave_start_pitch,
+            )
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.source_pitch_range.one_line_named_pitch_repr,
+                self.target_octave_start_pitch.pitch_number,
+                ),
             )
 
     @property

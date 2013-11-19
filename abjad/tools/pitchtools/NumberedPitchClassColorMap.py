@@ -41,15 +41,6 @@ class NumberedPitchClassColorMap(AbjadObject):
         color = self._color_dictionary[abs(pc)]
         return color
 
-    def __repr__(self):
-        sorted_keys = self._color_dictionary.keys()
-        sorted_keys.sort()
-        return '%s(%s, %s)' % (
-            type(self).__name__, 
-            self._pitch_iterables, 
-            self._colors,
-            )
-
     ### PRIVATE METHODS ###
 
     def _init_color_dictionary(self):

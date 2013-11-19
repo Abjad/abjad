@@ -14,6 +14,7 @@ class StorageFormatSpecification(AbjadObject):
         '_is_bracketted',
         '_is_indented',
         '_keyword_argument_names',
+        '_keywords_ignored_when_false',
         '_positional_argument_values',
         '_storage_format_pieces',
         '_tools_package_name',
@@ -27,6 +28,7 @@ class StorageFormatSpecification(AbjadObject):
         is_bracketted=False,
         is_indented=True,
         keyword_argument_names=None,
+        keywords_ignored_when_false=None,
         positional_argument_values=None,
         storage_format_pieces=None,
         tools_package_name=None,
@@ -42,6 +44,11 @@ class StorageFormatSpecification(AbjadObject):
             self._keyword_argument_names = tuple(keyword_argument_names)
         else:
             self._keyword_argument_names = None
+        if keywords_ignored_when_false is not None:
+            self._keywords_ignored_when_false = \
+                tuple(keywords_ignored_when_false)
+        else:
+            self._keywords_ignored_when_false = None
         if positional_argument_values is not None:
             self._positional_argument_values = \
                 tuple(positional_argument_values)
@@ -62,7 +69,7 @@ class StorageFormatSpecification(AbjadObject):
         state = {}
         for slot in self.__slots__:
             name = slot[1:]
-            state[name] = kwargs.get(name, getattr(self, name))
+            state[name] = kwargs.get(name, getattr(self, slot))
         return type(self)(**state)
 
     ### PUBLIC PROPERTIES ###
@@ -87,9 +94,23 @@ class StorageFormatSpecification(AbjadObject):
     def keyword_argument_names(self):
         from abjad.tools import systemtools
         if self._keyword_argument_names is not None:
-            return self._keyword_argument_names
-        return systemtools.StorageFormatManager.get_keyword_argument_names(
-            self.instance)
+            names = self._keyword_argument_names
+        else:
+            names = \
+                systemtools.StorageFormatManager.get_keyword_argument_names(
+                    self.instance)
+        if self._keywords_ignored_when_false is not None:
+            names = list(names)
+            for name in self._keywords_ignored_when_false:
+                result = getattr(self.instance, name, True)
+                if not result and name in names:
+                    names.remove(name)
+            return tuple(names)
+        return names
+
+    @property
+    def keywords_ignored_when_false(self):
+        return self._keywords_ignored_when_false
 
     @property
     def positional_argument_values(self):

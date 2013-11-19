@@ -36,14 +36,14 @@ class RhythmTreeParser(Parser):
                         RhythmTreeLeaf(
                             preprolated_duration=Duration(1, 1),
                             is_pitched=True
-                            )
+                            ),
                         ),
                     preprolated_duration=Duration(2, 1)
                     ),
                 RhythmTreeLeaf(
                     preprolated_duration=Duration(2, 1),
                     is_pitched=False
-                    )
+                    ),
                 ),
             preprolated_duration=Duration(1, 1)
             )

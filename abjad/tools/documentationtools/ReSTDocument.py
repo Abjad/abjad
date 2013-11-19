@@ -46,9 +46,9 @@ class ReSTDocument(TreeContainer):
                             ),
                         ReSTTOCItem(
                             text='quux'
-                            )
+                            ),
                         )
-                    )
+                    ),
                 )
             )
 

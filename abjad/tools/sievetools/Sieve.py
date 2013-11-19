@@ -9,7 +9,7 @@ class Sieve(BaseResidueClass):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_logical_operator', 
+        '_logical_operator',
         '_rcs',
         )
 
@@ -33,15 +33,17 @@ class Sieve(BaseResidueClass):
         # sort rcs
         self._sort_rcs()
 
-    ### SPECIAL METHODS ###
+    ### PRIVATE PROPERTIES ###
 
-    def __repr__(self):
-        logical_operator = \
-            self.logical_operator_dictionary[self.logical_operator]
-        logical_operator = ' {} '.format(logical_operator)
-        result = logical_operator.join(
-            [str(residue_class) for residue_class in self.rcs])
-        return '{%s}' % result
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.rcs,
+                ),
+            )
 
     ### PRIVATE METHODS ###
 
@@ -143,9 +145,19 @@ class Sieve(BaseResidueClass):
 
         ::
 
-            >>> sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
-            {ResidueClass(6, 0) | ResidueClass(6, 4) | ResidueClass(6, 5) |
-            ResidueClass(10, 6) | ResidueClass(10, 7) | ResidueClass(10, 8)}
+            >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
+            >>> print format(sieve) 
+            sievetools.Sieve(
+                [
+                    sievetools.ResidueClass(6, 0),
+                    sievetools.ResidueClass(6, 4),
+                    sievetools.ResidueClass(6, 5),
+                    sievetools.ResidueClass(10, 6),
+                    sievetools.ResidueClass(10, 7),
+                    sievetools.ResidueClass(10, 8),
+                    ],
+                logical_operator='or',
+                )
 
         Cycle token comprises `modulo`, `residues` and optional `offset`.
         '''
@@ -162,14 +174,14 @@ class Sieve(BaseResidueClass):
         return current_sieve
 
     def get_boolean_train(self, *min_max):
-        r'''Returns a boolean train with 0s mapped to the integers that are not 
-        congruent bases of the residue class expression and 1s mapped to those 
+        r'''Returns a boolean train with 0s mapped to the integers that are not
+        congruent bases of the residue class expression and 1s mapped to those
         that are.
-        
-        The method takes one or two integer arguments. If only one is given, it 
+
+        The method takes one or two integer arguments. If only one is given, it
         is taken as the max range and min is assumed to be 0.
 
-        ..  container:: 
+        ..  container::
 
             **Example:**
 
@@ -201,7 +213,7 @@ class Sieve(BaseResidueClass):
         r'''Returns all the congruent bases of this residue class expression
         within the given range.
 
-        The method takes one or two integer arguments. If only one it given, it 
+        The method takes one or two integer arguments. If only one it given, it
         is taken as the max range and min is assumed to be 0.
 
         ..  container:: example

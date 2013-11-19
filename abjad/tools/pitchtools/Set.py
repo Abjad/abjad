@@ -17,7 +17,6 @@ class Set(TypedFrozenset):
     ### INITIALIZER ###
 
     def __init__(self, tokens=None, item_class=None, custom_identifier=None):
-        from abjad.tools import pitchtools 
         if isinstance(tokens, str):
             tokens = tokens.split()
         elif isinstance(tokens, (
@@ -47,17 +46,8 @@ class Set(TypedFrozenset):
             item_class=item_class,
             custom_identifier=custom_identifier,
             )
-        
-    ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        parts = []
-        items = self._sort_self()
-        if self.item_class.__name__.startswith('Named'):
-            parts = [repr(str(x)) for x in items]
-        else:
-            parts = [str(x) for x in items]
-        return '{}([{}])'.format(type(self).__name__, ', '.join(parts))
+    ### SPECIAL METHODS ###
 
     def __str__(self):
         parts = [str(x) for x in self]
@@ -73,7 +63,7 @@ class Set(TypedFrozenset):
     @abc.abstractproperty
     def _named_item_class(self):
         raise NotImplementedError
-    
+
     @abc.abstractproperty
     def _numbered_item_class(self):
         raise NotImplementedError
@@ -81,6 +71,21 @@ class Set(TypedFrozenset):
     @abc.abstractproperty
     def _parent_item_class(self):
         raise NotImplementedError
+
+    @property
+    def _repr_specification(self):
+        tokens = []
+        if self.item_class.__name__.startswith('Named'):
+            tokens = [str(x) for x in sorted(self)]
+        else:
+            tokens = sorted([abs(x) for x in self])
+        return self._storage_format_specification.new(
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                tokens,
+                ),
+            )
 
     ### PUBLIC METHODS ###
 

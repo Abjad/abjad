@@ -103,9 +103,6 @@ class NumberedPitchClass(PitchClass):
     def __neg__(self):
         return type(self)(-abs(self))
 
-    def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, abs(self))
-
     def __str__(self):
         return str(abs(self))
 
@@ -123,6 +120,19 @@ class NumberedPitchClass(PitchClass):
         interval_class = pitchtools.NumberedInversionEquivalentIntervalClass(
             expr)
         return type(self)(abs(self) - interval_class.number % 12)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.pitch_class_number,
+                )
+            )
 
     ### PRIVATE METHODS ###
 
