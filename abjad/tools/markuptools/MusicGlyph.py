@@ -29,7 +29,15 @@ class MusicGlyph(MarkupCommand):
         glyph_scheme = schemetools.Scheme(glyph_name, force_quotes=True)
         MarkupCommand.__init__(self, 'musicglyph', glyph_scheme)
 
-    ### SPECIAL METHODS ###
+    ### PRIVATE PROPERTIES ###
 
-    def __repr__(self):
-        return '{}({!r})'.format(type(self).__name__, self.args[0]._value)
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.args[0]._value,
+                ),
+            )
