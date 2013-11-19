@@ -49,69 +49,69 @@ class TreeNode(AbjadObject):
     def __ne__(self, expr):
         return not self.__eq__(expr)
 
-    def __repr__(self):
-        from abjad.tools import systemtools
-
-        def format_mapping(name, value):
-            if not value:
-                return None
-            result = ['\t{}={{'.format(name)]
-            items = sorted(value.items())
-            if 1 < len(items):
-                for item in items[:-1]:
-                    result.append('\t\t{!r}: {!r},'.format(*item))
-            result.append('\t\t{!r}: {!r}'.format(*items[-1]))
-            result.append('\t\t}')
-            return result
-
-        def format_tuple(name, value):
-            if not value:
-                return None
-            result=['\t{}=('.format(name)]
-            items = [repr(x).splitlines() for x in value]
-            if 1 < len(items):
-                for item in items[:-1]:
-                    result.extend('\t\t' + x for x in item[:-1])
-                    result.append('\t\t' + item[-1] + ',')
-                result.extend('\t\t' + x for x in items[-1])
-            else:
-                result.extend('\t\t' + x for x in items[0][:-1])
-                result.append('\t\t' + items[0][-1] + ',')
-            result.append('\t\t)')
-            return result
-
-        def format_other(name, value):
-            if value is None:
-                return None
-            item = repr(value).splitlines()
-            result = ['\t{}={}'.format(name, item[0])]
-            result.extend('\t\t' + x for x in item[1:])
-            return result
-
-        attr_pieces = []
-        for name in \
-            systemtools.StorageFormatManager.get_keyword_argument_names(self):
-            value = getattr(self, name)
-            if isinstance(value, (list, tuple)):
-                attr_piece = format_tuple(name, value)
-            elif isinstance(value, dict):
-                attr_piece = format_mapping(name, value)
-            else:
-                attr_piece = format_other(name, value)
-            if attr_piece is not None:
-                attr_pieces.append(attr_piece)
-
-        if not attr_pieces:
-            return '{}()'.format(type(self).__name__)
-
-        result = ['{}('.format(type(self).__name__)]
-        if 1 < len(attr_pieces):
-            for attr_piece in attr_pieces[:-1]:
-                attr_piece[-1] += ','
-                result.extend(attr_piece)
-        result.extend(attr_pieces[-1])
-        result.append('\t)')
-        return '\n'.join(result)
+#    def __repr__(self):
+#        from abjad.tools import systemtools
+#
+#        def format_mapping(name, value):
+#            if not value:
+#                return None
+#            result = ['\t{}={{'.format(name)]
+#            items = sorted(value.items())
+#            if 1 < len(items):
+#                for item in items[:-1]:
+#                    result.append('\t\t{!r}: {!r},'.format(*item))
+#            result.append('\t\t{!r}: {!r}'.format(*items[-1]))
+#            result.append('\t\t}')
+#            return result
+#
+#        def format_tuple(name, value):
+#            if not value:
+#                return None
+#            result=['\t{}=('.format(name)]
+#            items = [repr(x).splitlines() for x in value]
+#            if 1 < len(items):
+#                for item in items[:-1]:
+#                    result.extend('\t\t' + x for x in item[:-1])
+#                    result.append('\t\t' + item[-1] + ',')
+#                result.extend('\t\t' + x for x in items[-1])
+#            else:
+#                result.extend('\t\t' + x for x in items[0][:-1])
+#                result.append('\t\t' + items[0][-1] + ',')
+#            result.append('\t\t)')
+#            return result
+#
+#        def format_other(name, value):
+#            if value is None:
+#                return None
+#            item = repr(value).splitlines()
+#            result = ['\t{}={}'.format(name, item[0])]
+#            result.extend('\t\t' + x for x in item[1:])
+#            return result
+#
+#        attr_pieces = []
+#        for name in \
+#            systemtools.StorageFormatManager.get_keyword_argument_names(self):
+#            value = getattr(self, name)
+#            if isinstance(value, (list, tuple)):
+#                attr_piece = format_tuple(name, value)
+#            elif isinstance(value, dict):
+#                attr_piece = format_mapping(name, value)
+#            else:
+#                attr_piece = format_other(name, value)
+#            if attr_piece is not None:
+#                attr_pieces.append(attr_piece)
+#
+#        if not attr_pieces:
+#            return '{}()'.format(type(self).__name__)
+#
+#        result = ['{}('.format(type(self).__name__)]
+#        if 1 < len(attr_pieces):
+#            for attr_piece in attr_pieces[:-1]:
+#                attr_piece[-1] += ','
+#                result.extend(attr_piece)
+#        result.extend(attr_pieces[-1])
+#        result.append('\t)')
+#        return '\n'.join(result)
 
     def __setstate__(self, state):
         for key, value in state.iteritems():
@@ -135,7 +135,6 @@ class TreeNode(AbjadObject):
                 setattr(node, name, False)
 
     def _set_parent(self, new_parent):
-
         name_dictionary = {}
         if hasattr(self, '_named_children'):
             for name, children in self._named_children.iteritems():
@@ -144,7 +143,6 @@ class TreeNode(AbjadObject):
             if self.name not in name_dictionary:
                 name_dictionary[self.name] = set([])
             name_dictionary[self.name].add(self)
-
         if self._parent is not None and name_dictionary:
             for parent in self.proper_parentage:
                 named_children = parent._named_children
@@ -153,12 +151,10 @@ class TreeNode(AbjadObject):
                         named_children[name].remove(node)
                     if not named_children[name]:
                         del named_children[name]
-
         if self._parent is not None:
             index = self._parent.index(self)
             self._parent._children.pop(index)
         self._parent = new_parent
-
         if new_parent is not None and name_dictionary:
             for parent in self.proper_parentage:
                 named_children = parent._named_children
@@ -167,7 +163,6 @@ class TreeNode(AbjadObject):
                         named_children[name].update(name_dictionary[name])
                     else:
                         named_children[name] = copy.copy(name_dictionary[name])
-
         self._mark_entire_tree_for_later_update()
 
     ### PRIVATE PROPERTIES ###
@@ -175,6 +170,10 @@ class TreeNode(AbjadObject):
     @property
     def _state_flag_names(self):
         return ()
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification
 
     ### PUBLIC PROPERTIES ###
 

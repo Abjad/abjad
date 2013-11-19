@@ -20,8 +20,7 @@ class QEventProxy(AbjadObject):
                     pitchtools.NamedPitch("c'"),
                     pitchtools.NamedPitch("cs'"),
                     pitchtools.NamedPitch("e'"),
-                    ),
-                attachments=(),
+                    )
                 ),
             durationtools.Offset(1, 2)
             )

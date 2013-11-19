@@ -147,15 +147,13 @@ class QuantizationJob(AbjadObject):
                     (
                         pitchtools.NamedPitch("c'"),
                         pitchtools.NamedPitch("cs'"),
-                        ),
-                    attachments=(),
+                        )
                     ),
                 durationtools.Offset(1, 4)
                 )
             quantizationtools.QEventProxy(
                 quantizationtools.SilentQEvent(
-                    durationtools.Offset(500, 1),
-                    attachments=(),
+                    durationtools.Offset(500, 1)
                     ),
                 durationtools.Offset(1, 2)
                 )
@@ -165,8 +163,7 @@ class QuantizationJob(AbjadObject):
                     (
                         pitchtools.NamedPitch("ef'"),
                         pitchtools.NamedPitch("g'"),
-                        ),
-                    attachments=(),
+                        )
                     ),
                 durationtools.Offset(3, 4)
                 )

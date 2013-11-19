@@ -8,7 +8,7 @@ class SilentQEvent(QEvent):
 
         >>> q_event = quantizationtools.SilentQEvent(1000)
         >>> q_event
-        SilentQEvent(Offset(1000, 1), attachments=())
+        SilentQEvent(Offset(1000, 1))
 
     Return ``SilentQEvent`` instance.
     '''
@@ -16,8 +16,7 @@ class SilentQEvent(QEvent):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_attachments', 
-        '_offset',
+        '_attachments',
         )
 
     ### INITIALIZER ###

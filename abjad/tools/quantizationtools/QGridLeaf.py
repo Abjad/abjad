@@ -26,14 +26,14 @@ class QGridLeaf(RhythmTreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
+    def __init__(self,
         preprolated_duration=1, q_event_proxies=None, is_divisible=True):
         from abjad.tools import quantizationtools
         RhythmTreeNode.__init__(self, preprolated_duration)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
-            assert all(isinstance(x, quantizationtools.QEventProxy) 
+            assert all(isinstance(x, quantizationtools.QEventProxy)
                 for x in q_event_proxies)
             self._q_event_proxies = list(q_event_proxies)
         self._is_divisible = bool(is_divisible)
@@ -57,17 +57,27 @@ class QGridLeaf(RhythmTreeNode):
         return False
 
     def __getnewargs__(self):
-       return (
-        self.preprolated_duration, 
-        tuple(self.q_event_proxies), 
-        self.is_divisible,
-        )
+        return (
+            self.preprolated_duration,
+            tuple(self.q_event_proxies),
+            self.is_divisible,
+            )
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keywords_ignored_when_false=(
+                'q_event_proxies',
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -78,7 +88,7 @@ class QGridLeaf(RhythmTreeNode):
             attributes={
                 label: str(self.preprolated_duration),
                 shape: 'box'
-            }
+                }
             )
         graph.append(node)
         return graph
@@ -86,7 +96,7 @@ class QGridLeaf(RhythmTreeNode):
     @apply
     def is_divisible():
         def fget(self):
-            r'''Flag for whether the node may be further divided 
+            r'''Flag for whether the node may be further divided
             under some search tree.
             '''
             return self._is_divisible
@@ -96,7 +106,7 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def preceding_q_event_proxies(self):
-        return [x for x in self._q_event_proxies 
+        return [x for x in self._q_event_proxies
             if x.offset < self.start_offset]
 
     @property
@@ -109,5 +119,5 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def succeeding_q_event_proxies(self):
-        return [x for x in self._q_event_proxies 
+        return [x for x in self._q_event_proxies
             if self.start_offset <= x.offset]

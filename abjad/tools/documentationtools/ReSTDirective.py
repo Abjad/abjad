@@ -7,7 +7,13 @@ class ReSTDirective(TreeContainer):
 
     ### INITIALIZER ###
 
-    def __init__(self, argument=None, children=None, name=None, options=None):
+    def __init__(
+        self,
+        argument=None,
+        children=None,
+        name=None,
+        options=None,
+        ):
         TreeContainer.__init__(self, children=children, name=name)
         assert isinstance(options, (dict, type(None)))
         self._argument = argument
@@ -49,6 +55,18 @@ class ReSTDirective(TreeContainer):
             result.append(option)
         result.extend(self._children_rest_format_contributions)
         return result
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keywords_ignored_when_false=(
+                'children',
+                'name',
+                'options',
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 

@@ -13,7 +13,7 @@ class ReSTInheritanceDiagram(ReSTDirective):
         ReSTInheritanceDiagram(
             argument='abjad.tools.spannertools.Beam.Beam',
             options={
-                'private-bases': True
+                'private-bases': True,
                 }
             )
 

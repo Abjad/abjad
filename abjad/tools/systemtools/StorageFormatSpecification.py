@@ -69,7 +69,7 @@ class StorageFormatSpecification(AbjadObject):
         state = {}
         for slot in self.__slots__:
             name = slot[1:]
-            state[name] = kwargs.get(name, getattr(self, name))
+            state[name] = kwargs.get(name, getattr(self, slot))
         return type(self)(**state)
 
     ### PUBLIC PROPERTIES ###
@@ -102,8 +102,8 @@ class StorageFormatSpecification(AbjadObject):
         if self._keywords_ignored_when_false is not None:
             names = list(names)
             for name in self._keywords_ignored_when_false:
-                result = getattr(self.instance, name)
-                if not result:
+                result = getattr(self.instance, name, True)
+                if not result and name in names:
                     names.remove(name)
             return tuple(names)
         return names

@@ -18,8 +18,7 @@ class PitchedQEvent(QEvent):
                 pitchtools.NamedPitch("c'"),
                 pitchtools.NamedPitch("cs'"),
                 pitchtools.NamedPitch("e'"),
-                ),
-            attachments=(),
+                )
             )
 
     '''
