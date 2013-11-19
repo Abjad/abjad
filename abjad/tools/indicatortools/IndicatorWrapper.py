@@ -3,13 +3,14 @@ from abjad.tools.abctools import AbjadObject
 
 
 class IndicatorWrapper(AbjadObject):
-    r'''An indicator expression.
+    r'''An indicator wrapper.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, indicator, scope=None):
+    def __init__(self, indicator, start_component, scope=None):
         self._indicator = indicator
+        self._start_component = start_component
         self._scope = scope
 
     ### SPECIAL METHODS ###
@@ -25,7 +26,7 @@ class IndicatorWrapper(AbjadObject):
 
     @property
     def indicator(self):
-        r'''Indicator of indicator expression.
+        r'''Indicator of indicator wrapper.
 
         Returns indicator.
         '''
@@ -33,8 +34,16 @@ class IndicatorWrapper(AbjadObject):
 
     @property
     def scope(self):
-        r'''Target context of indicator expression.
+        r'''Target context of indicator wrapper.
 
         Returns context.
         '''
         return self._scope
+
+    @property
+    def start_component(self):
+        r'''Start component of indicator wrapper.
+
+        Returns component.
+        '''
+        return self._start_component

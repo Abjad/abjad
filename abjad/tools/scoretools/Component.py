@@ -29,6 +29,7 @@ class Component(AbjadObject):
     __slots__ = (
         '_indicators',
         '_dependent_context_marks',
+        '_dependent_wrappers',
         '_is_forbidden_to_update',
         '_marks_are_current',
         '_offsets_are_current',
@@ -53,6 +54,7 @@ class Component(AbjadObject):
     def __init__(self):
         self._indicators = list()
         self._dependent_context_marks = list()
+        self._dependent_wrappers = list()
         self._is_forbidden_to_update = False
         self._marks_are_current = False
         self._start_context_marks = list()
@@ -170,6 +172,7 @@ class Component(AbjadObject):
             return indicators[0]
 
     def _get_indicators(self, indicator_prototypes=None):
+        from abjad.tools import indicatortools
         indicator_prototypes = indicator_prototypes or (object,)
         if not isinstance(indicator_prototypes, tuple):
             indicator_prototypes = (indicator_prototypes,)
@@ -187,6 +190,11 @@ class Component(AbjadObject):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):
                 matching_indicators.append(indicator)
+            elif isinstance(indicator, indicatortools.IndicatorWrapper):
+                if isinstance(indicator.indicator, prototype_classes):
+                    matching_indicators.append(indicator)
+                elif any(indicator.indicator == x for x in prototype_objects):
+                    matching_indicators.append(indicator)
         matching_indicators = tuple(matching_indicators)
         return matching_indicators
 
@@ -359,7 +367,8 @@ class Component(AbjadObject):
         self._update_now(marks=True)
         # gathering candidate marks
         candidate_context_marks = datastructuretools.SortedCollection(
-            key=lambda x: x._start_component._get_timespan().start_offset)
+            key=lambda x: x._start_component._get_timespan().start_offset
+            )
         for parent in self._get_parentage(include_self=True):
             parent_context_marks = parent._dependent_context_marks
             for context_mark in parent_context_marks:
@@ -375,6 +384,20 @@ class Component(AbjadObject):
             try:
                 start_offset = self._get_timespan().start_offset
                 return candidate_context_marks.find_le(start_offset)
+            except ValueError:
+                pass
+        candidate_wrappers = datastructuretools.SortedCollection(
+            key=lambda x: x.start_component._get_timespan().start_offset
+            )
+        for parent in self._get_parentage(include_self=True):
+            wrappers = parent._get_wrappers(context_mark_prototypes)
+            for wrapper in wrappers:
+                candidate_wrappers.insert(wrapper)
+        if candidate_wrappers:
+            try:
+                start_offset = self._get_timespan().start_offset
+                wrapper = candidate_wrappers.find_le(start_offset)
+                return wrapper.indicator
             except ValueError:
                 pass
 
@@ -621,12 +644,14 @@ class Component(AbjadObject):
     def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
-    def _get_wrappers(self):
+    def _get_wrappers(self, indicator_specifications=None):
         from abjad.tools import indicatortools
         result = []
+        indicator_specifications = indicator_specifications or (object,)
         for indicator in self._get_indicators():
             if isinstance(indicator, indicatortools.IndicatorWrapper):
-                result.append(indicator)
+                if isinstance(indicator.indicator, indicator_specifications):
+                    result.append(indicator)
         result = tuple(result)
         return result
 

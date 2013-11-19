@@ -26,7 +26,11 @@ def attach(indicator, component_expression, scope=None):
             assert issubclass(scope, scoretools.Context), repr(scope)
         else:
             assert isinstance(scope, scoretools.Context), repr(scope)
-        wrapper = indicatortools.IndicatorWrapper(indicator, scope)
+        wrapper = indicatortools.IndicatorWrapper(
+            indicator, 
+            component_expression, 
+            scope,
+            )
         indicator = wrapper
     elif not hasattr(indicator, '_attach') and hasattr(indicator, 'scope'):
         scope = scope or indicator.scope
@@ -34,7 +38,11 @@ def attach(indicator, component_expression, scope=None):
             assert issubclass(scope, scoretools.Context), repr(scope)
         else:
             assert isinstance(scope, scoretools.Context), repr(scope)
-        wrapper = indicatortools.IndicatorWrapper(indicator, scope)
+        wrapper = indicatortools.IndicatorWrapper(
+            indicator, 
+            component_expression, 
+            scope,
+            )
         indicator = wrapper
     elif scope is None and hasattr(indicator, '_attach'):
         pass
@@ -44,7 +52,11 @@ def attach(indicator, component_expression, scope=None):
             assert issubclass(scope, scoretools.Context), repr(scope)
         else:
             assert isinstance(scope, scoretools.Context), repr(scope)
-        wrapper = indicatortools.IndicatorWrapper(indicator, scope)
+        wrapper = indicatortools.IndicatorWrapper(
+            indicator, 
+            component_expression, 
+            scope,
+            )
         indicator = wrapper
 
     if hasattr(indicator, '_attach'):
