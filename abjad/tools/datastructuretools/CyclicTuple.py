@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import abctools
 
 
-class CyclicTuple(tuple):
+class CyclicTuple(abctools.AbjadObject, tuple):
     '''Abjad model of cyclic tuple:
 
     ::
@@ -36,18 +37,8 @@ class CyclicTuple(tuple):
 
     ### SPECIAL METHODS ###
 
-    def __format__(self, format_specification=''):
-        r'''Formats duration.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
-        return str(self)
+    def __eq__(self, expr):
+        return tuple.__eq__(self, expr)
 
     def __getitem__(self, expr):
         return tuple.__getitem__(self, expr % len(self))
@@ -57,20 +48,10 @@ class CyclicTuple(tuple):
         result = [self[n] for n in range(start_index, stop_index)]
         return tuple(result)
 
-    def __repr__(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
-
     def __str__(self):
         return '[%s]' % ', '.join([str(x) for x in self])
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification.new(
-            is_indented=False,
-            )
 
     @property
     def _storage_format_specification(self):

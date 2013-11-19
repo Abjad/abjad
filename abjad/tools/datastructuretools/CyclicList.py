@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import abctools
 
 
-class CyclicList(list):
+class CyclicList(abctools.AbjadObject, list):
     '''Abjad model of cyclic list:
 
     ::
@@ -36,6 +37,9 @@ class CyclicList(list):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, expr):
+        return list.__eq__(self, expr)
+    
     def __getitem__(self, expr):
         if len(self):
             return list.__getitem__(self, expr % len(self))
@@ -47,20 +51,10 @@ class CyclicList(list):
         result = [self[n] for n in range(start_index, stop_index)]
         return result
 
-    def __repr__(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
-
     def __str__(self):
         return '[%s]' % ', '.join([str(x) for x in self])
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification.new(
-            is_indented=False,
-            )
 
     @property
     def _storage_format_specification(self):
