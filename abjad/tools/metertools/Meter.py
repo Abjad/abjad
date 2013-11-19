@@ -311,9 +311,6 @@ class Meter(AbjadObject):
                 ).with_denominator(self.denominator)
             yield start_offset, stop_offset
 
-    def __repr__(self):
-        return '{}({!r})'.format(type(self).__name__, self.rtm_format)
-
     ### PRIVATE PROPERTIES ###
 
     @property
