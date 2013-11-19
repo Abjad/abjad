@@ -301,7 +301,7 @@ class StorageFormatManager(object):
                 else:
                     result.extend(keyword_argument_pieces)
                 if not as_storage_format:
-                    result[-1] = result[-1].rstrip(suffix)
+                    result[-1] = result[-1].rstrip(suffix) + infix
                 if specification.is_indented:
                     result.append('{})'.format(prefix))
                 else:
