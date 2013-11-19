@@ -162,12 +162,6 @@ class NamedPitch(Pitch):
     def __ne__(self, arg):
         return not self == arg
 
-    def __repr__(self):
-        return '{}({!r})'.format(
-            type(self).__name__,
-            self.pitch_name,
-            )
-
     def __str__(self):
         return self.pitch_name
 

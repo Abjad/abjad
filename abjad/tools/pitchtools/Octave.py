@@ -131,9 +131,6 @@ class Octave(AbjadObject):
         '''
         return self.octave_number
 
-    def __repr__(self):
-        return '{}({})'.format(type(self).__name__, self.octave_number)
-
     def __str__(self):
         r'''LilyPond octave tick representation of octave.
 
@@ -159,6 +156,19 @@ class Octave(AbjadObject):
         elif self.octave_number < 3:
             return ',' * abs(3 - self.octave_number)
         return ''
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.octave_number,
+                )
+            )
 
     ### PUBLIC METHODS ###
 

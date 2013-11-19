@@ -79,9 +79,6 @@ class NumberedPitch(Pitch):
     def __neg__(self):
         return type(self)(-abs(self))
 
-    def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, abs(self))
-
     def __str__(self):
         return '%s' % abs(self)
 

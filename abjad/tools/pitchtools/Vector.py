@@ -18,7 +18,7 @@ class Vector(TypedCounter):
 
     def __init__(self, tokens=None, item_class=None, custom_identifier=None):
         from abjad.tools import datastructuretools
-        from abjad.tools import pitchtools 
+        from abjad.tools import pitchtools
         if isinstance(tokens, str):
             tokens = tokens.split()
         elif isinstance(tokens, (
@@ -56,18 +56,8 @@ class Vector(TypedCounter):
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
-        parts = []
-        if self.item_class.__name__.startswith('Named'):
-            parts = ['{!r}: {}'.format(str(key), value) 
-                for key, value in self.iteritems()]
-        else:
-            parts = ['{}: {}'.format(key, value) 
-                for key, value in self.iteritems()]
-        return '{}({{{}}})'.format(type(self).__name__, ', '.join(parts))
-
     def __str__(self):
-        parts = ['{}: {}'.format(key, value) 
+        parts = ['{}: {}'.format(key, value)
             for key, value in self.iteritems()]
         return '<{}>'.format(', '.join(parts))
 
@@ -76,7 +66,7 @@ class Vector(TypedCounter):
     @abc.abstractproperty
     def _named_item_class(self):
         raise NotImplementedError
-    
+
     @abc.abstractproperty
     def _numbered_item_class(self):
         raise NotImplementedError
@@ -84,6 +74,19 @@ class Vector(TypedCounter):
     @abc.abstractproperty
     def _parent_item_class(self):
         raise NotImplementedError
+
+    @property
+    def _repr_specification(self):
+        tokens = {}
+        for key, value in self:
+            tokens[str(key)] = value
+        return self._storage_format_specification.new(
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                tokens,
+                ),
+            )
 
     ### PUBLIC METHODS ###
 

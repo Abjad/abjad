@@ -37,6 +37,21 @@ class IntervalSegment(Segment):
         from abjad.tools import pitchtools
         return pitchtools.Interval
 
+    @property
+    def _repr_specification(self):
+        tokens = []
+        if self.item_class.__name__.startswith('Named'):
+            tokens = [str(x) for x in self]
+        else:
+            tokens = [x.number for x in self]
+        return self._storage_format_specification.new(
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                tokens,
+                ),
+            )
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -48,7 +63,7 @@ class IntervalSegment(Segment):
             >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
             >>> pitchtools.IntervalSegment.from_selection(
             ...     staff, item_class=pitchtools.NumberedInterval)
-            IntervalSegment([+2, +2, +1, +2, +2, +2, +1])
+            IntervalSegment([2, 2, 1, 2, 2, 2, 1])
 
         Returns interval segment.
         '''

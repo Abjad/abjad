@@ -104,12 +104,6 @@ class NamedPitchClass(PitchClass):
     def __int__(self):
         return int(self.numbered_pitch_class)
 
-    def __repr__(self):
-        return '{}({!r})'.format(
-            type(self).__name__,
-            self.pitch_class_name,
-            )
-
     def __str__(self):
         return self.pitch_class_name
 
@@ -124,6 +118,19 @@ class NamedPitchClass(PitchClass):
         dic = pitchtools.NamedInversionEquivalentIntervalClass(
             mdi.quality_string, mdi.number)
         return dic
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self.pitch_class_name,
+                )
+            )
 
     ### PRIVATE METHODS ###
 
