@@ -621,6 +621,15 @@ class Component(AbjadObject):
     def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
+    def _get_wrappers(self):
+        from abjad.tools import indicatortools
+        result = []
+        for indicator in self._get_indicators():
+            if isinstance(indicator, indicatortools.IndicatorWrapper):
+                result.append(indicator)
+        result = tuple(result)
+        return result
+
     def _has_indicator(self, indicator_prototypes=None):
         indicators = self._get_indicators(indicator_prototypes=indicator_prototypes)
         return bool(indicators)
