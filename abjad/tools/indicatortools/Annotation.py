@@ -72,19 +72,24 @@ class Annotation(AbjadObject):
                     return True
         return False
 
-    def __repr__(self):
-        r'''Interpreter representation of annotation.
+    ### PRIVATE PROPERTIES ###
 
-        ::
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification.new(
+            is_indented=False,
+            )
 
-            >>> annotation
-            Annotation('special pitch', NamedPitch('ds'))
-
-        Returns string.
-        '''
-        result = '{}({!r}, {!r})'
-        result = result.format(type(self).__name__, self.name, self.value)
-        return result
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.name,
+                self.value
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 

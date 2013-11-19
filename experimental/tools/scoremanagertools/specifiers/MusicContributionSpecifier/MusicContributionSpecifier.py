@@ -43,7 +43,6 @@ class MusicContributionSpecifier(Specifier, TypedList):
                 ),
             )
 
-
     ### PUBLIC PROPERTIES ###
 
     @property

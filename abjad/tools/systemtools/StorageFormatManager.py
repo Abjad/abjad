@@ -51,7 +51,7 @@ class StorageFormatManager(object):
             result.extend(pieces)
         elif not as_storage_format and hasattr(
             value, '_repr_specification'):
-            specification = value._rep_format_specification
+            specification = value._repr_specification
             pieces = StorageFormatManager.get_format_pieces(
                 specification,
                 as_storage_format=False,
@@ -78,6 +78,11 @@ class StorageFormatManager(object):
                 for piece in pieces[:-1]:
                     result.append('{}{}'.format(prefix, piece))
                 result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
+            if not is_indented:
+                if isinstance(value, list) or 1 < len(value):
+                    result[-1] = result[-1].rstrip(suffix)
+                else:
+                    result[-1] = result[-1].rstrip()
             result.append('{}{}'.format(prefix, braces[1]))
         elif isinstance(value, dict):
             result.append('{{{}'.format(infix))
@@ -217,8 +222,7 @@ class StorageFormatManager(object):
         specification,
         as_storage_format=True,
         ):
-        if as_storage_format and \
-            specification.storage_format_pieces is not None:
+        if specification.storage_format_pieces is not None:
             return specification.storage_format_pieces
 
         result = []
@@ -237,7 +241,7 @@ class StorageFormatManager(object):
         for value in specification.positional_argument_values:
             pieces = StorageFormatManager.format_one_value(
                 value,
-                as_storage_format=True,
+                as_storage_format=as_storage_format,
                 is_indented=specification.is_indented,
                 )
             for piece in pieces[:-1]:
@@ -265,7 +269,7 @@ class StorageFormatManager(object):
                 continue
             pieces = StorageFormatManager.format_one_value(
                 value,
-                as_storage_format=True,
+                as_storage_format=as_storage_format,
                 is_indented=specification.is_indented,
                 )
             pieces[0] = '{}={}'.format(name, pieces[0])
@@ -294,6 +298,8 @@ class StorageFormatManager(object):
                     result[-1] = result[-1].rstrip(suffix) + infix
                 else:
                     result.extend(keyword_argument_pieces)
+                if not as_storage_format:
+                    result[-1] = result[-1].rstrip(suffix)
                 if specification.is_indented:
                     result.append('{})'.format(prefix))
                 else:

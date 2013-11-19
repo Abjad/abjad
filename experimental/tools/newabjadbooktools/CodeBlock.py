@@ -25,11 +25,7 @@ class CodeBlock(AbjadObject):
 
         >>> output_proxies = code_block.execute(console)
         >>> print output_proxies
-        [CodeOutputProxy((
-            '>>> message = "hello, world!"',
-            '>>> print message',
-            'hello, world!',
-            ))]
+        [CodeOutputProxy(('>>> message = "hello, world!"', '>>> print message', 'hello, world!'))]
 
     Multiple code block interpretations can be chained together by using a
     common InteractiveConsole instance:
@@ -46,21 +42,14 @@ class CodeBlock(AbjadObject):
     ::
 
         >>> code_block_one.execute(console)
-        [CodeOutputProxy((
-            '>>> message = "hello, "',
-            ))]
+        [CodeOutputProxy(('>>> message = "hello, "',))]
         >>> code_block_two.execute(console)
-        [CodeOutputProxy((
-            '>>> message += "world!"',
-            ))]
+        [CodeOutputProxy(('>>> message += "world!"',))]
         >>> code_block_three.execute(console)
-        [CodeOutputProxy((
-            '>>> print message',
-            'hello, world!',
-            ))]
+        [CodeOutputProxy(('>>> print message', 'hello, world!'))]
 
-    Code blocks intercept certain Abjad function calls and pull the 
-    output_proxies out as output proxies, to be dealt with by other 
+    Code blocks intercept certain Abjad function calls and pull the
+    output_proxies out as output proxies, to be dealt with by other
     processes.
 
     .. note:: We can push commands to the console directly, like the following
@@ -83,15 +72,9 @@ class CodeBlock(AbjadObject):
         >>> for x in output_proxies:
         ...     x
         ...
-        CodeOutputProxy((
-            '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")',
-            '>>> show(staff)',
-            ))
-        LilyPondOutputProxy()
-        CodeOutputProxy((
-            '>>> print len(staff)',
-            '4',
-            ))
+        CodeOutputProxy(('>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")', '>>> show(staff)'))
+        LilyPondOutputProxy('\\version "2.17.0"\n\\language "english"\n\n\\score {\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc4\n\t\td4\n\t\te4\n\t\tf4\n\t}\n}')
+        CodeOutputProxy(('>>> print len(staff)', '4'))
 
     Code blocks also support a number of optional keyword arguments that
     affect what commands are executed in the code block's console, and what
@@ -118,7 +101,7 @@ class CodeBlock(AbjadObject):
         >>> for x in output_proxies:
         ...     x
         ...
-        MIDIOutputProxy()
+        MIDIOutputProxy('\\version "2.17.0"\n\\language "english"\n\n\\score {\n\tdqf16..\n\t\\midi {}\n}')
 
     Returns code block instance.
     '''
@@ -250,7 +233,7 @@ class CodeBlock(AbjadObject):
                             console.push(command)
                             referent = console.locals[identifier]
                             del(console.locals[identifier])
-                                
+
                         asset_proxy_class = self.output_triggers[output_method]
                         asset_output_proxy = asset_proxy_class(referent)
                         self.output_proxies.append(result)
@@ -280,7 +263,7 @@ class CodeBlock(AbjadObject):
             result = result[:-5]
         if result == '>>> ':
             result = ''
-        if result: 
+        if result:
             self.output_proxies.append(result)
 
         if self.executed_lines:
@@ -298,7 +281,7 @@ class CodeBlock(AbjadObject):
                     for j, line in enumerate(lines):
                         if line.startswith(('>>> ', '... ')):
                             lines[j] = line[4:]
-                    self.output_proxies[i] = '\n'.join(lines) 
+                    self.output_proxies[i] = '\n'.join(lines)
 
         # Replace strings with CodeOutputProxy instances.
         for i, result in enumerate(self.output_proxies):
@@ -306,5 +289,4 @@ class CodeBlock(AbjadObject):
                 self.output_proxies[i] = newabjadbooktools.CodeOutputProxy(
                     result.splitlines())
 
-        
         return self.output_proxies

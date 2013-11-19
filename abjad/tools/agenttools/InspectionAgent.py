@@ -5,6 +5,15 @@ from abjad.tools import durationtools
 
 class InspectionAgent(object):
     r'''Inspect one component.
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> inspect(staff)
+            InspectionAgent({c'4, e'4, d'4, f'4})
+
     '''
 
     ### CLASS VARIABLES ###
@@ -23,13 +32,20 @@ class InspectionAgent(object):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Interpreter representation of attribute inspection agent.
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_repr_format(self)
 
-        Returns string.
-        '''
-        return '{}({!r})'.format(
-            type(self).__name__,
-            self._component
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self._component,
+                ),
             )
 
     ### PUBLIC METHODS ###

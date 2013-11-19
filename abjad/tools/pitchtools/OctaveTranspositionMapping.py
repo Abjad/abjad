@@ -74,14 +74,6 @@ class OctaveTranspositionMapping(TypedList):
         superclass = super(OctaveTranspositionMapping, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __repr__(self):
-        if self.custom_identifier:
-            return '{}([{}], custom_identifier={!r})'.format(
-                type(self).__name__, self._repr_contents_string, self.custom_identifier)
-        else:
-            return '{}([{}])'.format(
-                type(self).__name__, self._repr_contents_string)
-
     ### PRIVATE METHODS ###
 
     def _transpose_pitch(self, pitch):
@@ -116,8 +108,23 @@ class OctaveTranspositionMapping(TypedList):
         return '{}: {}'.format(name, contents_string)
 
     @property
-    def _repr_contents_string(self):
-        result = []
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        input_argument_tokens = []
         for mapping_component in self:
-            result.append(mapping_component._input_argument_token)
-        return ', '.join(result)
+            token = (
+                mapping_component.source_pitch_range.one_line_named_pitch_repr,
+                mapping_component.target_octave_start_pitch.pitch_number
+                )
+            input_argument_tokens.append(token)
+        keyword_argument_names = []
+        if self.custom_identifier is not None:
+            keyword_argument_names.append('custom_identifier')
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=(
+                input_argument_tokens,
+                ),
+            )

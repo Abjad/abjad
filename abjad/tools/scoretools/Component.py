@@ -120,6 +120,13 @@ class Component(AbjadObject):
         result = selectiontools.Selection(result)
         return result
 
+    def __repr__(self):
+        '''Interpreter representation of leaf.
+
+        Returns string.
+        '''
+        return systemtools.StorageFormatManager.get_repr_format(self)
+
     def __rmul__(self, n):
         r'''Copies component `n` times and detach spanners.
 
@@ -137,6 +144,15 @@ class Component(AbjadObject):
     def _lilypond_format(self):
         self._update_now(marks=True)
         return self._format_component()
+
+    @property
+    def _repr_specification(self):
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            body_text=repr(self._compact_representation),
+            positional_argument_values=(),
+            )
 
     ### PRIVATE METHODS ###
 

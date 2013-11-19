@@ -275,6 +275,12 @@ class Tempo(ContextMark):
         return self._lilypond_format.lstrip(r'\tempo ')
 
     @property
+    def _repr_specification(self):
+        return self._storage_format_specification.new(
+            is_indented=False,
+            )
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         positional_argument_values = []

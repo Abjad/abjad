@@ -120,13 +120,6 @@ class Container(Component):
         '''
         return len(self._music)
 
-    def __repr__(self):
-        r'''Interpreter representation of container.
-
-        Returns string.
-        '''
-        return self._compact_representation
-
     def __setitem__(self, i, expr):
         r'''Set container `i` equal to `expr`.
         Find spanners that dominate self[i] and children of self[i].
@@ -169,6 +162,19 @@ class Container(Component):
             for leaf in iterate(self).by_class(scoretools.Leaf):
                 duration += leaf._get_duration(in_seconds=True)
             return duration
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(),
+            storage_format_pieces=(
+                self._compact_representation,
+                ),
+            )
 
     @property
     def _storage_format_specification(self):

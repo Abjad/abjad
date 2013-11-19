@@ -17,42 +17,42 @@ class Accidental(AbjadObject):
     ### CLASS VARIABLES ###
 
     _abbreviation_to_name = {
-        'ss'  : 'double sharp',
-        'tqs' : 'three-quarters sharp',
-        's'   : 'sharp',
-        'qs'  : 'quarter-sharp',
-        ''    : 'natural',
-        '!'   : 'forced natural',
-        'qf'  : 'quarter-flat',
-        'f'   : 'flat',
-        'tqf' : 'three-quarters flat',
-        'ff'  : 'double flat',
-    }
+        'ss': 'double sharp',
+        'tqs': 'three-quarters sharp',
+        's': 'sharp',
+        'qs': 'quarter-sharp',
+        '': 'natural',
+        '!': 'forced natural',
+        'qf': 'quarter-flat',
+        'f': 'flat',
+        'tqf': 'three-quarters flat',
+        'ff': 'double flat',
+        }
 
     _abbreviation_to_semitones = {
-        'ff'  : -2,
-        'tqf' : -1.5,
-        'f'   : -1,
-        'qf'  : -0.5,
-        ''    : 0,
-        '!'   : 0,
-        'qs'  : 0.5,
-        's'   : 1,
-        'tqs' : 1.5,
-        'ss'  : 2,
-    }
+        'ff': -2,
+        'tqf': -1.5,
+        'f': -1,
+        'qf': -0.5,
+        '': 0,
+        '!': 0,
+        'qs': 0.5,
+        's': 1,
+        'tqs': 1.5,
+        'ss': 2,
+        }
 
     _abbreviation_to_symbolic_string = {
-        'ff'  : 'bb',
-        'tqf' : 'b~',
-        'f'   : 'b',
-        'qf'  : '~',
-        ''    : '',
-        '!'   : '!',
-        'qs'  : '+',
-        's'   : '#',
-        'tqs' : '#+',
-        'ss'  : '##',
+        'ff': 'bb',
+        'tqf': 'b~',
+        'f': 'b',
+        'qf': '~',
+        '': '',
+        '!': '!',
+        'qs': '+',
+        's': '#',
+        'tqs': '#+',
+        'ss': '##',
         }
 
     _alphabetic_accidental_regex_body = """
@@ -221,10 +221,6 @@ class Accidental(AbjadObject):
     def __nonzero__(self):
         return True
 
-    def __repr__(self):
-        return "%s('%s')" % (
-            type(self).__name__, self.abbreviation)
-
     def __str__(self):
         return self.abbreviation
 
@@ -248,6 +244,17 @@ class Accidental(AbjadObject):
     @property
     def _all_accidental_semitone_values(self):
         return self._semitones_to_abbreviation.keys()
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                self.abbreviation,
+                ),
+            )
 
     ### PUBLIC METHODS ###
 

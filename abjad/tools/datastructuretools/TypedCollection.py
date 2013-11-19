@@ -101,6 +101,23 @@ class TypedCollection(AbjadObject):
         return positional_argument_repr_string
 
     @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_names = list(
+            manager.get_signature_keyword_argument_names(
+                self))
+        if 'tokens' in keyword_argument_names:
+            keyword_argument_names.remove('tokens')
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=(
+                self._collection,
+                )
+            )
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager

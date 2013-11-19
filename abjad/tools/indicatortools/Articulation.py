@@ -251,6 +251,19 @@ class Articulation(AbjadObject):
     def _lilypond_format(self):
         return str(self)
 
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = [self.name]
+        if self.direction is not None:
+            positional_argument_values.append(self.direction)
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

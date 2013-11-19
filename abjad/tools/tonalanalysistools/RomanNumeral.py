@@ -21,6 +21,29 @@ class RomanNumeral(AbjadObject):
         '_suspension',
         )
 
+    _figured_bass_string_to_extent = {
+        '': 5, 
+        '6': 5, 
+        '6/4': 5,
+        '7': 7, 
+        '6/5': 7, 
+        '4/3': 7, 
+        '4/2': 7,
+        }
+
+    _figured_bass_string_to_inversion = {
+        '': 0, 
+        '6': 1, 
+        '6/4': 2,
+        '7': 0, 
+        '6/5': 1, 
+        '4/3': 2, 
+        '4/2': 3,
+        }
+
+    _symbolic_string_regex = re.compile(
+        r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(.*)')
+
     ### INITIALIZER ###
 
     def __init__(self, *args):
@@ -84,26 +107,6 @@ class RomanNumeral(AbjadObject):
     def _figured_bass_string(self):
         return self.inversion.extent_to_figured_bass_string(self.extent.number)
 
-    _figured_bass_string_to_extent = {
-        '': 5, 
-        '6': 5, 
-        '6/4': 5,
-        '7': 7, 
-        '6/5': 7, 
-        '4/3': 7, 
-        '4/2': 7,
-    }
-
-    _figured_bass_string_to_inversion = {
-        '': 0, 
-        '6': 1, 
-        '6/4': 2,
-        '7': 0, 
-        '6/5': 1, 
-        '4/3': 2, 
-        '4/2': 3,
-    }
-
     @property
     def _format_string(self):
         result = []
@@ -153,8 +156,15 @@ class RomanNumeral(AbjadObject):
             roman_numeral_string = roman_numeral_string.lower()
         return roman_numeral_string
 
-    _symbolic_string_regex = re.compile(
-        r'([#|b]*)([i|I|v|V]+)([M|m|o|@|+]?)(.*)')
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            storage_format_pieces=(
+                self._format_string,
+                ),
+            )
 
     ### PRIVATE METHODS ###
 

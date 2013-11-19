@@ -112,12 +112,12 @@ class IntervalSegment(Segment):
         ::
 
             >>> pitchtools.IntervalSegment([1, 2, -3, 1, -2, 1]).spread
-            NumberedInterval(+4.0)
+            NumberedInterval(4.0)
 
         ::
 
             >>> pitchtools.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
-            NumberedInterval(+5.0)
+            NumberedInterval(5.0)
 
         Returns numbered interval.
         '''

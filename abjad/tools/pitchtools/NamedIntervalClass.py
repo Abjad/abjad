@@ -14,6 +14,43 @@ class NamedIntervalClass(IntervalClass):
     Returns named interval-class.
     '''
 
+    ### CLASS VARIABLES ###
+
+    _acceptable_quality_strings = (
+        'perfect',
+        'major',
+        'minor',
+        'diminished',
+        'augmented',
+        )
+
+    _interval_number_to_interval_string = {
+        1: 'unison',
+        2: 'second',
+        3: 'third',
+        4: 'fourth',
+        5: 'fifth',
+        6: 'sixth',
+        7: 'seventh',
+        8: 'octave',
+        }
+
+    _quality_abbreviation_to_quality_string = {
+        'M': 'major',
+        'm': 'minor',
+        'P': 'perfect',
+        'aug': 'augmented',
+        'dim': 'diminished',
+        }
+
+    _quality_string_to_quality_abbreviation = {
+        'major': 'M',
+        'minor': 'm',
+        'perfect': 'P',
+        'augmented': 'aug',
+        'diminished': 'dim',
+        }
+
     ### INITIALIZER ###
 
     def __init__(self, *args):
@@ -47,7 +84,7 @@ class NamedIntervalClass(IntervalClass):
         if quality_string not in \
             NamedIntervalClass._acceptable_quality_strings:
             message = 'not acceptable quality string: {!r}.'
-            message =  message.format(quality_string)
+            message = message.format(quality_string)
             raise ValueError(message)
         if not isinstance(number, int):
             message = 'must be integer: {!r}.'.format(number)
@@ -93,30 +130,19 @@ class NamedIntervalClass(IntervalClass):
     def __ne__(self, arg):
         return not self == arg
 
-    def __repr__(self):
-        return '{}({!r})'.format(type(self).__name__, str(self))
-
     def __str__(self):
         return '{}{}{}'.format(
             self.direction_symbol,
-            self._quality_abbreviation, 
+            self._quality_abbreviation,
             abs(self.number),
             )
 
     ### PRIVATE PROPERTIES ###
 
-    _acceptable_quality_strings = (
-        'perfect', 
-        'major', 
-        'minor', 
-        'diminished', 
-        'augmented',
-        )
-
     @property
     def _format_string(self):
         return '{}{}'.format(
-            self.direction_symbol, 
+            self.direction_symbol,
             abs(self.number),
             )
 
@@ -128,33 +154,6 @@ class NamedIntervalClass(IntervalClass):
         strings.extend([self._quality_string, self._interval_string])
         return ' '.join(strings)
 
-    _interval_number_to_interval_string = {
-        1: 'unison', 
-        2: 'second',
-        3: 'third', 
-        4: 'fourth', 
-        5: 'fifth', 
-        6: 'sixth',
-        7: 'seventh', 
-        8: 'octave',
-        }
-
-    _quality_abbreviation_to_quality_string = {
-        'M': 'major', 
-        'm': 'minor', 
-        'P': 'perfect', 
-        'aug': 'augmented', 
-        'dim': 'diminished',
-        }
-
-    _quality_string_to_quality_abbreviation = {
-        'major': 'M', 
-        'minor': 'm', 
-        'perfect': 'P', 
-        'augmented': 'aug', 
-        'diminished': 'dim',
-        }
-
     @property
     def _interval_string(self):
         return self._interval_number_to_interval_string[abs(self.number)]
@@ -163,6 +162,16 @@ class NamedIntervalClass(IntervalClass):
     def _quality_abbreviation(self):
         return self._quality_string_to_quality_abbreviation[
             self._quality_string]
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                str(self),
+                ),
+            )
 
     ### PUBLIC METHODS ###
 

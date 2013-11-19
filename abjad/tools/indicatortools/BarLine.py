@@ -74,6 +74,18 @@ class BarLine(AbjadObject):
     def _lilypond_format(self):
         return r'\bar "{}"'.format(self.abbreviation)
 
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                self.abbreviation,
+                ),
+            )
+
     ## PUBLIC PROPERTIES ##
 
     @property

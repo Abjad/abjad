@@ -9,6 +9,15 @@ from abjad.tools.topleveltools import iterate
 
 class IterationAgent(object):
     r'''A wrapper around the Abjad score iterators.
+
+    ..  container:: example
+
+        ::
+
+            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> iterate(staff[2:])
+            IterationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+
     '''
 
     ### CLASS VARIABLES ###
@@ -25,21 +34,20 @@ class IterationAgent(object):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        '''Interpreter representation of score iteration agent.
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_repr_format(self)
 
-        ..  container:: example
+    ### PRIVATE PROPERTIES ###
 
-            ::
-
-                >>> staff = Staff("c'4 e'4 d'4 f'4")
-                >>> iterate(staff[2:])
-                IterationAgent(SliceSelection(Note("d'4"), Note("f'4")))
-
-        Returns string.
-        '''
-        return '{}({!r})'.format(
-            type(self).__name__,
-            self._client,
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(
+                self._client,
+                ),
             )
 
     ### PUBLIC METHODS ###

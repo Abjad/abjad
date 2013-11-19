@@ -85,7 +85,7 @@ class NumberedIntervalClass(IntervalClass):
             ...     NamedPitch(-2), 
             ...     NamedPitch(12),
             ...     )
-            NumberedIntervalClass(+2)
+            NumberedIntervalClass(2)
 
         Returns numbered interval-class.
         '''

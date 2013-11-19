@@ -89,6 +89,17 @@ class LilyPondComment(AbjadObject):
             self.contents_string)
         return r'%% %s' % command
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = [self.contents_string]
+        if self.format_slot is not None:
+            positional_argument_values.append(self.format_slot)
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=positional_argument_values,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

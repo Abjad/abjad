@@ -59,5 +59,18 @@ class Infinity(AbjadObject):
     def __lt__(self, expr):
         return self._value < expr
 
-    def __repr__(self):
-        return type(self).__name__
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            storage_format_pieces=(
+                type(self).__name__,
+                ),
+            )

@@ -298,6 +298,21 @@ class PitchRange(AbjadObject):
             return '('
 
     @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=(
+                'pitch_range_name',
+                'pitch_range_name_markup',
+                ),
+            positional_argument_values=(
+                self.one_line_named_pitch_repr,
+                ),
+            )
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(

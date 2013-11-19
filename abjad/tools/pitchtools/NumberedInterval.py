@@ -101,9 +101,6 @@ class NumberedInterval(Interval):
     def __neg__(self):
         return type(self)(-self._number)
 
-    def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
-
     def __str__(self):
         return self._format_string
 
@@ -132,7 +129,7 @@ class NumberedInterval(Interval):
             ...     NamedPitch(-2), 
             ...     NamedPitch(12),
             ...     )
-            NumberedInterval(+14)
+            NumberedInterval(14)
 
         Returns numbered interval.
         '''

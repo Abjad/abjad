@@ -15,7 +15,7 @@ class OutputProxy(AbjadObject):
         >>> staff = Staff("c'4-> \f d'4 ( e'4 f'4 )")
         >>> output_proxy = newabjadbooktools.LilyPondOutputProxy(staff)
         >>> print output_proxy
-        LilyPondOutputProxy()
+        LilyPondOutputProxy('\\version "2.17.0"\n\\language "english"\n\n\\score {\n\t\\new Staff {\n\t\tc\'4\n\t\td\'4 (\n\t\te\'4\n\t\tf\'4 )\n\t}\n}')
 
     ::
 

@@ -10,8 +10,8 @@ def instantiate_pitch_and_interval_test_collection():
         ...
         NumberedInversionEquivalentIntervalClass(1)
         NamedInversionEquivalentIntervalClass('+M2')
-        NumberedInterval(+1)
-        NumberedIntervalClass(+1)
+        NumberedInterval(1)
+        NumberedIntervalClass(1)
         NamedInterval('+M2')
         NamedIntervalClass('+M2')
         NamedPitch('c')

@@ -92,7 +92,7 @@ def test_optimization_targets_04():
     string = 'score_specification.interpret()'
     count = systemtools.IOManager.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < locale.atoi('2,750,000')
+    assert count < locale.atoi('3,000,000')
 
 
 def test_optimization_targets_05():
@@ -121,4 +121,4 @@ def test_optimization_targets_05():
     string = 'score_specification.interpret()'
     count = systemtools.IOManager.count_function_calls(string, globals(), locals(), fixed_point=False)
     score = score_specification.score_specification.interpreter.score
-    assert count < locale.atoi('2,000,000')
+    assert count < locale.atoi('2,500,000')

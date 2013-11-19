@@ -54,13 +54,6 @@ class Leaf(Component):
         '''
         return (self.written_duration,)
 
-    def __repr__(self):
-        '''Interpreter representation of leaf.
-
-        Returns string.
-        '''
-        return systemtools.StorageFormatManager.get_repr_format(self)
-
     def __str__(self):
         '''String representation of leaf.
 

@@ -112,11 +112,6 @@ class MarkupCommand(AbjadObject):
             return self._lilypond_format
         return str(self)
 
-    def __repr__(self):
-        result = [repr(self.command)]
-        result.extend([repr(x) for x in self.args])
-        return '%s(%s)' % (type(self).__name__, ', '.join(result))
-
     def __str__(self):
         return self._lilypond_format
 
@@ -125,6 +120,15 @@ class MarkupCommand(AbjadObject):
     @property
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            positional_argument_values=(self.command,) + self.args,
+            )
 
     @property
     def _storage_format_specification(self):

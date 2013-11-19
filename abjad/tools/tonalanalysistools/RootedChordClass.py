@@ -52,7 +52,7 @@ class RootedChordClass(PitchClassSet):
         9: 5,
         11: 6,
         13: 7,
-    }
+        }
 
     _extent_to_extent_name = {
         5: 'triad',
@@ -60,7 +60,7 @@ class RootedChordClass(PitchClassSet):
         9: 'ninth',
         11: 'eleventh',
         13: 'thirteenth',
-    }
+        }
 
     ### CONSTRUCTOR ###
 

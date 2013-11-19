@@ -15,9 +15,21 @@ class ChordExtent(AbjadObject):
         '_number',
         )
 
+    _acceptable_number = (
+        5,
+        7,
+        9,
+        )
+
     _default_positional_input_arguments = (
         7,
         )
+
+    _extent_number_to_extent_name = {
+        5: 'triad',
+        7: 'seventh',
+        9: 'ninth',
+        }
 
     ### INITIALIZER ###
 
@@ -42,25 +54,17 @@ class ChordExtent(AbjadObject):
     def __ne__(self, arg):
         return not self == arg
 
-    def __repr__(self):
-        return '{}({})'.format(
-            type(self).__name__,
-            self.number,
-            )
-
     ### PRIVATE PROPERTIES ###
 
-    _acceptable_number = (
-        5,
-        7,
-        9,
-        )
-
-    _extent_number_to_extent_name = {
-        5: 'triad', 
-        7: 'seventh', 
-        9: 'ninth',
-        }
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.number,
+                )
+            )
 
     ### PUBLIC PROPERTIES ###
 

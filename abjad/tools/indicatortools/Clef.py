@@ -7,6 +7,12 @@ class Clef(ContextMark):
 
     ::
 
+        >>> clef = Clef('treble')
+        >>> clef
+        Clef('treble')
+
+    ::
+
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> show(staff) # doctest: +SKIP
 
@@ -55,6 +61,20 @@ class Clef(ContextMark):
     '''
 
     ### CLASS VARIABLES ###
+
+    _clef_name_to_middle_c_position = {
+        'treble': -6,
+        'alto': 0,
+        'tenor': 2,
+        'bass': 6,
+        'french': -8,
+        'soprano': -4,
+        'mezzosoprano': -2,
+        'baritone': 4,
+        'varbaritone': 4,
+        'percussion': 0,
+        'tab': 0
+    }
 
     _default_positional_input_arguments = (
         repr('alto'),
@@ -177,35 +197,7 @@ class Clef(ContextMark):
         superclass = super(Clef, self)
         return superclass.__ne__(arg)
 
-    def __repr__(self):
-        r'''Interpreter representation of clef.
-
-        ::
-
-            >>> clef = Clef('treble')
-            >>> clef
-            Clef('treble')
-
-        Returns string.
-        '''
-        superclass = super(Clef, self)
-        return superclass.__repr__()
-
     ### PRIVATE PROPERTIES ###
-
-    _clef_name_to_middle_c_position = {
-        'treble': -6,
-        'alto': 0,
-        'tenor': 2,
-        'bass': 6,
-        'french': -8,
-        'soprano': -4,
-        'mezzosoprano': -2,
-        'baritone': 4,
-        'varbaritone': 4,
-        'percussion': 0,
-        'tab': 0
-    }
 
     @property
     def _contents_repr_string(self):
@@ -246,6 +238,24 @@ class Clef(ContextMark):
     @classmethod
     def _list_clef_names(cls):
         return list(sorted(cls._clef_name_to_middle_c_position))
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification.new(
+            is_indented=False,
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self.name,
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 
