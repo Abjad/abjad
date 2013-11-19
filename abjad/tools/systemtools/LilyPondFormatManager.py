@@ -100,12 +100,32 @@ class LilyPondFormatManager(object):
         up_markup, down_markup, neutral_markup = [], [], []
         context_marks = []
         wrappers = []
+        other_items = []
         # organize items attached to component
         for item in items:
             format_slot_subsection = None
             # skip nonprinting items like annotation
             if not hasattr(item, '_lilypond_format'):
                 continue
+            # store formattable context marks attached to component
+            if isinstance(item, indicatortools.ContextMark):
+                if manager._is_formattable_context_mark(item, component):
+                    context_marks.append(item)
+                continue
+            # store wrappers for later handling
+            if isinstance(item, indicatortools.IndicatorWrapper):
+                wrappers.append(item)
+                continue
+            # store markup for later handling
+            if isinstance(item, markuptools.Markup):
+                if item.direction is Up:
+                    up_markup.append(item)
+                elif item.direction is Down:
+                    down_markup.append(item)
+                elif item.direction in (Center, None):
+                    neutral_markup.append(item)
+                continue
+            # classify known indicators by subslot
             if isinstance(item, indicatortools.Articulation):
                 format_slot_subsection = 'articulations'
             elif isinstance(item, indicatortools.BarLine):
@@ -118,29 +138,12 @@ class LilyPondFormatManager(object):
                 format_slot_subsection = 'comments'
             elif isinstance(item, indicatortools.StemTremolo):
                 format_slot_subsection = 'stem_tremolos'
-            # store formattable context marks attached to component
-            elif isinstance(item, indicatortools.ContextMark):
-                if manager._is_formattable_context_mark(item, component):
-                    context_marks.append(item)
-                continue
-            # store wrappers for later handling
-            elif isinstance(item, indicatortools.IndicatorWrapper):
-                wrappers.append(item)
-                continue
-            # store markup for later handling
-            elif isinstance(item, markuptools.Markup):
-                if item.direction is Up:
-                    up_markup.append(item)
-                elif item.direction is Down:
-                    down_markup.append(item)
-                elif item.direction in (Center, None):
-                    neutral_markup.append(item)
-                continue
-            # otherwise the item is something else
+            # otherwise the item is something else;
+            # most likely key signature, time signature or
+            # something else that used to be a context mark
             else:
-                message = 'can not identify where to put item: {!r}.'
-                message = message.format(item)
-                raise Exception(message)
+                other_items.append(item)
+                continue
             format_slot = item._format_slot
             format_slot = bundle.get(format_slot)
             contributions = format_slot.get(format_slot_subsection)
