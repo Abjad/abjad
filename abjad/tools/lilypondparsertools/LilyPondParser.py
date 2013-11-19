@@ -108,9 +108,7 @@ class LilyPondParser(abctools.Parser):
     '''
 
     def __init__(self, default_language='english', debug=False):
-
         from abjad.tools import lilypondparsertools
-
         from abjad.ly.current_module import current_module
         from abjad.ly.language_pitch_names import language_pitch_names
         from abjad.ly.markup_functions import markup_functions
@@ -136,9 +134,7 @@ class LilyPondParser(abctools.Parser):
     ### SPECIAL METHODS ###
 
     def __call__(self, input_string):
-
         self._reset_parser_variables()
-
         if self._debug:
             result = self._parser._lilypond_patch_parse_debug(
                 input_string,
@@ -150,7 +146,6 @@ class LilyPondParser(abctools.Parser):
                 input_string,
                 lexer=self._lexer,
                 )
-
         if isinstance(result, scoretools.Container):
             self._apply_spanners(result)
         elif isinstance(result, lilypondfiletools.LilyPondFile):
@@ -160,7 +155,6 @@ class LilyPondParser(abctools.Parser):
                 elif isinstance(x, lilypondfiletools.ScoreBlock):
                     for y in x:
                         self._apply_spanners(y)
-
         return result
 
 
@@ -244,7 +238,6 @@ class LilyPondParser(abctools.Parser):
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, music):
-
         # get local reference to methods
         _get_span_events = self._get_span_events
         _span_event_name_to_spanner_class = self._span_event_name_to_spanner_class
@@ -478,31 +471,25 @@ class LilyPondParser(abctools.Parser):
     def _construct_sequential_music(self, music):
         # mark sorting could be rewritten into a single list, using tuplets,
         # with t[0] being 'forward' or 'backward' and t[1] being the mark, as
-        # this better preserves attachment order.  Not clear if we need it.
-
+        # this better preserves attachment order. Not clear if we need it.
         container = scoretools.Container()
         previous_leaf = None
         apply_forward = []
         apply_backward = []
-
-        # sort events into forward or backwards attaching, and attach them to
-        # the proper leaf
+        # sort events into forward or backwards attaching
+        # and attach them to the proper leaf
         for x in music:
+            #print x, 'X'
             if isinstance(x, scoretools.Component) \
                 and not isinstance(x, scoretools.GraceContainer):
                 for mark in apply_forward:
-                    if hasattr(mark, '_attach'):
-                        attach(mark, x)
+                    attach(mark, x)
                 if previous_leaf:
                     for mark in apply_backward:
-                        #if hasattr(mark, '_attach'):
-                        if True:
-                            attach(mark, previous_leaf)
+                        attach(mark, previous_leaf)
                 else:
                     for mark in apply_backward:
-                        if hasattr(mark, '_attach'):
-                            mark.format_slot = 'before'
-                            attach(mark, x)
+                        attach(mark, x)
                 apply_forward = []
                 apply_backward = []
                 previous_leaf = x
@@ -510,33 +497,23 @@ class LilyPondParser(abctools.Parser):
             else:
                 if isinstance(x, indicatortools.BarLine):
                     apply_backward.append(x)
-                elif isinstance(x, indicatortools.LilyPondCommand) and \
-                    x.name in ['breathe']:
+                elif isinstance(x, indicatortools.LilyPondCommand):
+                    if x.name in ('breathe',):
                         apply_backward.append(x)
                 else:
                     apply_forward.append(x)
-
-        # attach remaining events to last leaf, or to the container itself if
-        # there were no leaves
+        # attach remaining events to last leaf 
+        # or to the container itself if there were no leaves
         if previous_leaf:
             for mark in apply_forward:
-                if hasattr(mark, '_attach'):
-                    mark.format_slot = 'after'
-                    attach(mark, previous_leaf)
+                attach(mark, previous_leaf)
             for mark in apply_backward:
-                #if hasattr(mark, '_attach'):
-                if True:
-                    attach(mark, previous_leaf)
+                attach(mark, previous_leaf)
         else:
             for mark in apply_forward:
-                if hasattr(mark, '_attach'):
-                    mark.format_slot = 'opening'
-                    attach(mark, container)
+                attach(mark, container)
             for mark in apply_backward:
-                if hasattr(mark, '_attach'):
-                    mark.format_slot = 'opening'
-                    attach(mark, container)
-
+                attach(mark, container)
         return container
 
     def _construct_simultaneous_music(self, music):
@@ -630,8 +607,8 @@ class LilyPondParser(abctools.Parser):
                 indicatortools.Articulation,
                 indicatortools.BarLine,
                 indicatortools.LilyPondCommand,
-                markuptools.Markup,
                 indicatortools.StemTremolo,
+                markuptools.Markup,
                 )
             if hasattr(post_event, '_attach'):
                 attach(post_event, leaf)

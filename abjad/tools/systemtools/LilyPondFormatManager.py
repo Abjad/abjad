@@ -38,19 +38,30 @@ class LilyPondFormatManager(object):
         from abjad.tools import scoretools
         assert isinstance(context_mark, indicatortools.ContextMark), \
             repr(context_mark)
-        addenda = []
+        result = []
         context_mark_format = context_mark._lilypond_format
         if isinstance(context_mark_format, (tuple, list)):
-            addenda.extend(context_mark_format)
+            result.extend(context_mark_format)
         else:
-            addenda.append(context_mark_format)
+            result.append(context_mark_format)
         if context_mark._get_effective_context() is not None:
-            return addenda
+            return result
         if isinstance(context_mark, indicatortools.TimeSignature):
             if isinstance(context_mark._start_component, scoretools.Measure):
-                return addenda
-        addenda = [r'%%% {} %%%'.format(x) for x in addenda]
-        return addenda
+                return result
+        result = [r'%%% {} %%%'.format(x) for x in result]
+        return result
+
+    @staticmethod
+    def _get_wrapper_format_pieces(wrapper):
+        result = []
+        lilypond_format = wrapper.indicator._lilypond_format
+        if isinstance(lilypond_format, (tuple, list)):
+            result.extend(lilypond_format)
+        else:
+            result.append(lilypond_format)
+        # TODO: port more stuff forward here
+        return result
 
     @staticmethod
     def _is_formattable_context_mark(mark, component):
@@ -186,7 +197,7 @@ class LilyPondFormatManager(object):
                     continue
                 if manager._is_formattable_context_mark(context_mark, component):
                     context_marks.append(context_mark)
-        # handle context marks
+        # bundle context mark contributions
         for context_mark in context_marks:
             assert isinstance(context_mark, indicatortools.ContextMark)
             format_pieces = manager._get_context_mark_format_pieces(context_mark)
@@ -202,8 +213,13 @@ class LilyPondFormatManager(object):
                 if manager._is_formattable_wrapper(
                     wrapper, start_component, component):
                     wrappers.append(wrapper)
-        # TODO: insert wrapper handling code here
-        # handle markup
+        #print wrappers, 'ZZZ'
+        # bundle wrapper contributions
+        for wrapper in wrappers:
+            format_pieces = manager._get_wrapper_format_pieces(wrapper)
+            format_slot = wrapper.indicator._format_slot
+            bundle.get(format_slot).context_marks.extend(format_pieces)
+        # bundle markup contributions
         for markup_list in (up_markup, down_markup, neutral_markup):
             if not markup_list:
                 continue
