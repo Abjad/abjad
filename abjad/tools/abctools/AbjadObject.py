@@ -69,26 +69,6 @@ class AbjadObject(object):
 #            result.append(keyword_argument_repr_string)
 #        return ', '.join(result)
 
-#    @property
-#    def _keyword_argument_name_value_strings(self):
-#        from abjad.tools import systemtools
-#        result = []
-#        specification = self._storage_format_specification
-#        manager = systemtools.StorageFormatManager
-#        tmp = manager.get_tools_package_qualified_class_name
-#        for name in specification.keyword_argument_names:
-#            value = getattr(self, name)
-#            if value is not None:
-#                # if the value is a class like Note (which is unusual)
-#                if type(value) is abc.ABCMeta:
-#                    value = tmp(value)
-#                    string = '{}={}'.format(name, value)
-#                    result.append(string)
-#                elif not isinstance(value, types.MethodType):
-#                    string = '{}={!r}'.format(name, value)
-#                    result.append(string)
-#        return tuple(result)
-
     @property
     def _one_line_menuing_summary(self):
         return str(self)

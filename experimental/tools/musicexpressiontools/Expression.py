@@ -43,16 +43,6 @@ class Expression(AbjadObject):
         '''
         return hash(repr(self))
 
-    ### PRIVATE METHODS ###
-
-    @property
-    def _keyword_argument_name_value_strings(self):
-        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'callbacks=CallbackInventory([])' in result:
-            result = list(result)
-            result.remove('callbacks=CallbackInventory([])')
-        return tuple(result)
-
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
