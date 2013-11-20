@@ -22,5 +22,5 @@ def test_lilypondparsertools_LilyPondParser__marks__Clef_01():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    clefs = inspect(result[0]).get_context_marks(Clef)
+    clefs = inspect(result[0]).get_indicators(Clef)
     assert len(clefs) == 1

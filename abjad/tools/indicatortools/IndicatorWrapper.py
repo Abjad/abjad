@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 import types
 from abjad.tools.abctools import AbjadObject
 
@@ -14,7 +15,7 @@ class IndicatorWrapper(AbjadObject):
     def __init__(self, indicator, start_component, scope=None):
         from abjad.tools import scoretools
         assert not isinstance(indicator, type(self)), repr(indicator)
-        assert isinstance(start_component, scoretools.Component), repr(start_component)
+        assert isinstance(start_component, (scoretools.Component, type(None))), repr(start_component)
         assert scope is None or \
             (isinstance(scope, types.TypeType) and 
             issubclass(scope, scoretools.Component)) or \
@@ -26,6 +27,21 @@ class IndicatorWrapper(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __copy__(self):
+        r'''Copies indicator wrapper.
+
+        Note that indicator and scope are copied
+        but that start component is not copied.
+        This is to avoid start component reference problems.
+
+        Returns new indicator wrapper.
+        '''
+        return type(self)(
+            copy.copy(self.indicator),
+            None,
+            scope=self.scope,
+            )
+            
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
             if self.indicator == arg.indicator:
