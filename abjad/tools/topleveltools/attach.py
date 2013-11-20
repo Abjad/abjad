@@ -29,7 +29,6 @@ def attach(indicator, component_expression, scope=None):
             assert isinstance(scope, scoretools.Context)
         indicator._scope = scope
     elif scope is not None and not hasattr(indicator, '_attach'):
-        assert hasattr(indicator, 'scope')
         scope = scope or indicator.scope
         if isinstance(scope, types.TypeType):
             assert issubclass(scope, scoretools.Context), repr(scope)

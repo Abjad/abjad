@@ -174,7 +174,8 @@ def test_agenttools_InspectionAgent_get_mark_16():
     violin = instrumenttools.Violin()
     attach(violin, staff)
 
-    found_instrument_mark = inspect(staff).get_context_mark(instrumenttools.Instrument)
+    found_instrument_mark = inspect(staff).get_context_mark(
+        instrumenttools.Instrument)
 
     assert found_instrument_mark is violin
 
@@ -182,6 +183,7 @@ def test_agenttools_InspectionAgent_get_mark_16():
 def test_agenttools_InspectionAgent_get_mark_17():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    time_signature = inspect(measure).get_context_mark(TimeSignature)
+    wrapper = inspect(measure).get_indicator(TimeSignature)
+    time_signature = wrapper.indicator
 
     assert time_signature == TimeSignature((4, 8))

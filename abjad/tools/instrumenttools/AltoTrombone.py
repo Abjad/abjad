@@ -268,7 +268,7 @@ class AltoTrombone(Instrument):
                     >>> result = scoretools.make_empty_piano_score()
                     >>> score, tenor_staff, bass_staff = result
                     >>> detach(Clef, tenor_staff)
-                    (IndicatorWrapper(Clef('treble'), None, scope=Staff),)
+                    (Clef('treble'),)
                     >>> attach(Clef('tenor'), tenor_staff)
                     >>> note = Note("c'1")
                     >>> start_pitch = alto_trombone.pitch_range.start_pitch

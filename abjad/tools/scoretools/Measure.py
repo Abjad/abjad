@@ -87,8 +87,8 @@ class Measure(FixedDurationContainer):
         Returns string.
         '''
         class_name = type(self).__name__
-        forced_time_signature = self._get_context_mark(
-            indicatortools.TimeSignature)
+        wrapper = self._get_indicator(indicatortools.TimeSignature)
+        forced_time_signature = wrapper.indicator
         summary = self._summary
         length = len(self)
         if forced_time_signature and length:
@@ -173,7 +173,7 @@ class Measure(FixedDurationContainer):
         effective_time_signature = self.time_signature
         if effective_time_signature.has_non_power_of_two_denominator and \
             effective_time_signature.suppress:
-            message = 'Can not suppress time signature'
+            message = 'can not suppress time signature'
             message += ' with non-power of two denominator.'
             raise Exception(message)
         if effective_time_signature.duration < self._preprolated_duration:
@@ -200,7 +200,7 @@ class Measure(FixedDurationContainer):
     def _copy_with_marks_but_without_children_or_spanners(self):
         from abjad.tools import indicatortools
         new = type(self)(*self.__getnewargs__())
-        # only the following line differs from Conatainer
+        # only the following line differs from Container
         detach(indicatortools.TimeSignature, new)
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(override(self))
@@ -209,6 +209,9 @@ class Measure(FixedDurationContainer):
         for context_mark in self._get_context_marks():
             new_context_mark = copy.copy(context_mark)
             attach(new_context_mark, new)
+        for indicator in self._get_indicators():
+            new_indicator = copy.copy(indicator)
+            attach(new_indicator, new)
         new.is_simultaneous = self.is_simultaneous
         return new
 

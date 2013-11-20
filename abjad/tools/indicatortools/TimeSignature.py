@@ -1,13 +1,15 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.indicatortools.ContextMark import ContextMark
+#from abjad.tools.indicatortools.ContextMark import ContextMark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 # TODO: add more initializer examples.
 # TODO: add example of `suppress` keyword.
 # TODO: turn `suppress` into managed attribute.
-class TimeSignature(ContextMark):
+#class TimeSignature(ContextMark):
+class TimeSignature(AbjadObject):
     r'''A time signature.
 
     ::
@@ -52,7 +54,9 @@ class TimeSignature(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        ContextMark.__init__(self)
+        from abjad.tools import scoretools
+        #ContextMark.__init__(self)
+        self._default_scope = scoretools.Staff
         partial, suppress = None, None
         # initialize numerator and denominator from *args
         if len(args) == 1 and isinstance(args[0], type(self)):
@@ -134,8 +138,12 @@ class TimeSignature(ContextMark):
 
         Returns string.
         '''
-        superclass = super(TimeSignature, self)
-        return superclass.__format__(format_specification=format_specification)
+        from abjad.tools import systemtools
+        if format_specification in ('', 'storage'):
+            return systemtools.StorageFormatManager.get_storage_format(self)
+        elif format_specification == 'lilypond':
+            return self._lilypond_format
+        return str(self)
 
     def __ge__(self, arg):
         r'''True when duration of time signature is greater than or equal to
@@ -223,14 +231,14 @@ class TimeSignature(ContextMark):
                 ),
             )
 
-    ### PRIVATE METHODS ###
-
-    def _attach(self, start_component):
-        classes = (type(self), )
-        if start_component._has_context_mark(context_mark_prototypes=classes):
-            message = 'component already has context mark attached.'
-            raise ValueError(message)
-        self._bind_to_start_component(start_component)
+#    ### PRIVATE METHODS ###
+#
+#    def _attach(self, start_component):
+#        classes = (type(self), )
+#        if start_component._has_context_mark(context_mark_prototypes=classes):
+#            message = 'component already has context mark attached.'
+#            raise ValueError(message)
+#        self._bind_to_start_component(start_component)
 
     ### PUBLIC PROPERTIES ###
 

@@ -361,8 +361,9 @@ class Component(AbjadObject):
         # do special things for time signatures
         if context_mark_prototypes == indicatortools.TimeSignature:
             if isinstance(self, scoretools.Measure):
-                if self._has_context_mark(indicatortools.TimeSignature):
-                    return self._get_context_mark(indicatortools.TimeSignature)
+                if self._has_indicator(indicatortools.TimeSignature):
+                    wrapper = self._get_indicator(indicatortools.TimeSignature)
+                    return wrapper.indicator
         # updating marks of entire score tree if necessary
         self._update_now(marks=True)
         # gathering candidate marks
@@ -707,8 +708,10 @@ class Component(AbjadObject):
                 if durationtools.Duration(0) < candidate_new_parent_dur:
                     parent.target_duration = candidate_new_parent_dur
             elif isinstance(parent, scoretools.Measure):
-                parent_time_signature = parent._get_context_mark(
-                    indicatortools.TimeSignature)
+                #parent_time_signature = parent._get_context_mark(
+                #    indicatortools.TimeSignature)
+                wrapper = parent._get_indicator(indicatortools.TimeSignature)
+                parent_time_signature = wrapper.indicator
                 old_prolation = parent_time_signature.implied_prolation
                 naive_time_signature = (
                     parent_time_signature.duration - prolated_leaf_duration)
@@ -720,9 +723,10 @@ class Component(AbjadObject):
                     better_time_signature)
                 detach(indicatortools.TimeSignature, parent)
                 attach(better_time_signature, parent)
-                parent_time_signature = parent._get_context_mark(
-                    indicatortools.TimeSignature)
-                #new_denominator = parent_time_signature.denominator
+                #parent_time_signature = parent._get_context_mark(
+                #    indicatortools.TimeSignature)
+                wrapper = parent._get_indicator(indicatortools.TimeSignature)
+                parent_time_signature = wrapper.indicator
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation
                 for x in parent:

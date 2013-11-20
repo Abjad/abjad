@@ -31,7 +31,7 @@ def detach(indicator, component_expression):
                 elif hasattr(x, 'indicator') and \
                     isinstance(x.indicator, indicator):
                     x._detach()
-                    result.append(x)
+                    result.append(x.indicator)
             result = tuple(result)
             return result
     else:
@@ -51,7 +51,7 @@ def detach(indicator, component_expression):
                 # indicator is a wrapper
                 elif hasattr(x, 'indicator') and x.indicator == indicator:
                     x._detach()
-                    result.append(x)
+                    result.append(x.indicator)
             result = tuple(result)
             return result
     indicators = []

@@ -60,7 +60,7 @@ def test_scoretools_Component__has_mark_06():
     time_signature = TimeSignature((4, 8))
     attach(time_signature, staff[0])
 
-    assert staff[0]._has_context_mark(indicatortools.ContextMark)
+    assert staff[0]._has_indicator(TimeSignature)
     assert not staff[1]._has_context_mark(indicatortools.ContextMark)
     assert not staff[2]._has_context_mark(indicatortools.ContextMark)
     assert not staff[3]._has_context_mark(indicatortools.ContextMark)

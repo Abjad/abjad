@@ -121,8 +121,7 @@ class LilyPondFormatManager(object):
                 return True
         elif start_component is component:
             return True
-        else:
-            return False
+        return False
 
     @staticmethod
     def _populate_mark_format_contributions(component, bundle):
@@ -141,7 +140,10 @@ class LilyPondFormatManager(object):
             format_slot_subsection = None
             # store wrappers for later handling
             if isinstance(item, indicatortools.IndicatorWrapper):
-                wrappers.append(item)
+                #wrappers.append(item)
+                if manager._is_formattable_wrapper(
+                    item, item.start_component, component):
+                    wrappers.append(item)
                 continue
             # skip nonprinting items like annotation
             if not hasattr(item, '_lilypond_format'):
@@ -188,6 +190,7 @@ class LilyPondFormatManager(object):
             contributions.append(contribution)
             if format_slot_subsection == 'articulations':
                 contributions.sort()
+        #print component
         #print wrappers, 'WWW'
         # add formattable context marks attached to parents of component
         for parent in inspect(component).get_parentage(include_self=False):
@@ -389,6 +392,7 @@ class LilyPondFormatManager(object):
         manager._populate_grob_revert_format_contributions(component, bundle)
         bundle.alphabetize()
         bundle.make_immutable()
+        #print component, bundle.opening.context_marks
         return bundle
 
     @staticmethod

@@ -49,6 +49,20 @@ class IndicatorWrapper(AbjadObject):
                     return True
         return False
 
+    def __repr__(self):
+        '''Interpreter representation of indicator wrapper.
+
+        Returns string.
+        '''
+        result = '{}({!r}, {!s}, scope={!r})'
+        result = result.format(
+            type(self).__name__,
+            self.indicator,
+            self.start_component,
+            self.scope,
+            )
+        return result
+
     ### PRIVATE METHODS ###
 
     def _bind_correct_effective_context(self, correct_effective_context):
