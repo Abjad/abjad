@@ -354,19 +354,26 @@ class Component(AbjadObject):
             parentage = self._get_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
-    def _get_effective_context_mark(self, context_mark_prototypes=None):
+    def _get_effective_context_mark(
+        self, 
+        context_mark_prototypes=None,
+        unwrap=True,
+        ):
         from abjad.tools import indicatortools
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
         # do special things for time signatures
-        if context_mark_prototypes == indicatortools.TimeSignature:
+        if context_mark_prototypes == indicatortools.TimeSignature or \
+            context_mark_prototypes == (indicatortools.TimeSignature,):
             if isinstance(self, scoretools.Measure):
                 if self._has_indicator(indicatortools.TimeSignature):
                     wrapper = self._get_indicator(indicatortools.TimeSignature)
                     return wrapper.indicator
-        # updating marks of entire score tree if necessary
+                else:
+                    return
+        # update marks of entire score tree if necessary
         self._update_now(marks=True)
-        # gathering candidate marks
+        # gather candidate marks
         candidate_context_marks = datastructuretools.SortedCollection(
             key=lambda x: x._start_component._get_timespan().start_offset
             )
@@ -387,6 +394,7 @@ class Component(AbjadObject):
                 return candidate_context_marks.find_le(start_offset)
             except ValueError:
                 pass
+        # gather candidate wrappers
         candidate_wrappers = datastructuretools.SortedCollection(
             key=lambda x: x.start_component._get_timespan().start_offset
             )
@@ -396,11 +404,15 @@ class Component(AbjadObject):
                 if isinstance(wrapper.indicator, context_mark_prototypes):
                     candidate_wrappers.insert(wrapper)
         #print candidate_wrappers, 'CW'
+        # elect most recent candidate wrapper
         if candidate_wrappers:
             try:
                 start_offset = self._get_timespan().start_offset
                 wrapper = candidate_wrappers.find_le(start_offset)
-                return wrapper.indicator
+                if unwrap:
+                    return wrapper.indicator
+                else:
+                    return wrapper
             except ValueError:
                 pass
 

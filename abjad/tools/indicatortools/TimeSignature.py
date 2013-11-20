@@ -1,14 +1,12 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-#from abjad.tools.indicatortools.ContextMark import ContextMark
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 # TODO: add more initializer examples.
 # TODO: add example of `suppress` keyword.
 # TODO: turn `suppress` into managed attribute.
-#class TimeSignature(ContextMark):
 class TimeSignature(AbjadObject):
     r'''A time signature.
 
@@ -55,7 +53,6 @@ class TimeSignature(AbjadObject):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
-        #ContextMark.__init__(self)
         self._default_scope = scoretools.Staff
         partial, suppress = None, None
         # initialize numerator and denominator from *args

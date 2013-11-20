@@ -456,7 +456,7 @@ class Container(Component):
         for context_mark in expr_context_marks:
             context_mark._update_effective_context()
         for wrapper in expr_wrappers:
-            wrapper._update_effective_context
+            wrapper._update_effective_context()
 
     ### PUBLIC PROPERTIES ###
 

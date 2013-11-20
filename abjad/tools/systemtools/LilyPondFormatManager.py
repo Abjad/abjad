@@ -39,11 +39,11 @@ class LilyPondFormatManager(object):
         assert isinstance(context_mark, indicatortools.ContextMark), \
             repr(context_mark)
         result = []
-        context_mark_format = context_mark._lilypond_format
-        if isinstance(context_mark_format, (tuple, list)):
-            result.extend(context_mark_format)
+        lilypond_format = context_mark._lilypond_format
+        if isinstance(lilypond_format, (tuple, list)):
+            result.extend(lilypond_format)
         else:
-            result.append(context_mark_format)
+            result.append(lilypond_format)
         if context_mark._get_effective_context() is not None:
             return result
         if isinstance(context_mark, indicatortools.TimeSignature):
@@ -54,13 +54,21 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def _get_wrapper_format_pieces(wrapper):
+        from abjad.tools import indicatortools
+        from abjad.tools import scoretools
         result = []
         lilypond_format = wrapper.indicator._lilypond_format
         if isinstance(lilypond_format, (tuple, list)):
             result.extend(lilypond_format)
         else:
             result.append(lilypond_format)
-        # TODO: port more stuff forward here
+        ec = wrapper._get_effective_context()
+        if wrapper._get_effective_context() is not None:
+            return result
+        if isinstance(wrapper.indicator, indicatortools.TimeSignature):
+            if isinstance(wrapper.start_component, scoretools.Measure):
+                return result
+        result = [r'%%% {} %%%'.format(x) for x in result]
         return result
 
     @staticmethod

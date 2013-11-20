@@ -154,7 +154,9 @@ class Leaf(Component):
         for indicator in leaf._indicators:
             new_indicator = copy.copy(indicator)
             new_indicators.append(new_indicator)
-        self._indicators = new_indicators
+        #self._indicators = new_indicators
+        for new_indicator in new_indicators:
+            attach(new_indicator, self)
 
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Component._copy_with_marks_but_without_children_or_spanners(self)

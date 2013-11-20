@@ -36,11 +36,12 @@ class IndicatorWrapper(AbjadObject):
 
         Returns new indicator wrapper.
         '''
-        return type(self)(
+        new = type(self)(
             copy.copy(self.indicator),
             None,
             scope=self.scope,
             )
+        return new
             
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -66,11 +67,25 @@ class IndicatorWrapper(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _bind_correct_effective_context(self, correct_effective_context):
+        from abjad.tools import indicatortools
         self._unbind_effective_context()
         if correct_effective_context is not None:
             correct_effective_context._dependent_wrappers.append(self)
         self._effective_context = correct_effective_context
         self._update_effective_context()
+        if isinstance(self.indicator, indicatortools.Tempo):
+            correct_effective_context._update_later(offsets_in_seconds=True)
+
+    def _bind_to_start_component(self, start_component):
+        from abjad.tools import indicatortools
+        from abjad.tools import scoretools
+        assert isinstance(start_component, scoretools.Component)
+        self._unbind_start_component()
+        #start_component._start_context_marks.append(self)
+        self._start_component = start_component
+        self._update_effective_context()
+        if isinstance(self.indicator, indicatortools.Tempo):
+            self._start_component._update_later(offsets_in_seconds=True)
 
     def _detach(self):
         self._unbind_start_component()
@@ -97,6 +112,11 @@ class IndicatorWrapper(AbjadObject):
             message += ' context type, context name or none.'
             message = message.format(scope)
             raise TypeError(message)
+
+    def _get_effective_context(self):
+        if self.start_component is not None:
+            self.start_component._update_now(marks=True)
+        return self._effective_context
 
     def _unbind_effective_context(self):
         effective_context = self._effective_context
