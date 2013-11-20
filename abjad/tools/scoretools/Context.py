@@ -11,7 +11,9 @@ class Context(Container):
     ::
 
         >>> context = scoretools.Context(
-        ... name='MeterVoice', context_name='TimeSignatureContext')
+        ...     name='MeterVoice', 
+        ...     context_name='TimeSignatureContext',
+        ...     )
 
     ::
 
@@ -24,7 +26,6 @@ class Context(Container):
         \context TimeSignatureContext = "MeterVoice" {
         }
 
-    Returns context object.
     '''
 
     ### CLASS VARIABLES ###
@@ -61,11 +62,11 @@ class Context(Container):
             open_bracket_string, close_bracket_string = '{', '}'
         name = self.name
         if name is not None:
-            name = '-"%s"' % name
+            name = '-"{}"'.format(name)
         else:
             name = ''
-        result = '%s%s%s%s%s'
-        result %= (
+        result = '{}{}{}{}{}'
+        result = result.format(
             self.context_name,
             name,
             open_bracket_string,
@@ -119,9 +120,12 @@ class Context(Container):
 
     def _format_invocation(self):
         if self.name is not None:
-            return r'\context {} = "{}"'.format(self.context_name, self.name)
+            string = r'\context {} = "{}"'
+            string = string.format(self.context_name, self.name)
         else:
-            return r'\new {}'.format(self.context_name)
+            string = r'\new {}'
+            string = string.format(self.context_name)
+        return string
 
     def _format_open_brackets_slot(context, bundle):
         result = []
@@ -135,23 +139,36 @@ class Context(Container):
         settings = bundle.context_settings
         if engraver_removals or engraver_consists or overrides or settings:
             contributions = [context._format_invocation() + r' \with {']
-            result.append([('context_brackets', 'open'), contributions])
+            contributions = tuple(contributions)
+            identifier_pair = ('context_brackets', 'open')
+            result.append((identifier_pair, contributions))
             contributions = ['\t' + x for x in engraver_removals]
-            result.append(
-                [('engraver removals', 'engraver_removals'), contributions])
+            contributions = tuple(contributions)
+            identifier_pair = ('engraver removals', 'engraver_removals')
+            result.append((identifier_pair, contributions))
             contributions = ['\t' + x for x in engraver_consists]
-            result.append(
-                [('engraver consists', 'engraver_consists'), contributions])
+            contributions = tuple(contributions)
+            identifier_pair = ('engraver consists', 'engraver_consists')
+            result.append((identifier_pair, contributions))
             contributions = ['\t' + x for x in overrides]
-            result.append([('overrides', 'overrides'), contributions])
+            contributions = tuple(contributions)
+            identifier_pair = ('overrides', 'overrides')
+            result.append((identifier_pair, contributions))
             contributions = ['\t' + x for x in settings]
-            result.append([('settings', 'settings'), contributions])
-            contributions = ['} %s' % brackets_open[0]]
-            result.append([('context_brackets', 'open'), contributions])
+            contributions = tuple(contributions)
+            identifier_pair = ('settings', 'settings')
+            result.append((identifier_pair, contributions))
+            contributions = ['}} {}'.format(brackets_open[0])]
+            contributions = tuple(contributions)
+            identifier_pair = ('context_brackets', 'open')
+            result.append((identifier_pair, contributions))
         else:
-            contributions = [
-                context._format_invocation() + ' %s' % brackets_open[0]]
-            result.append([('context_brackets', 'open'), contributions])
+            contribution = context._format_invocation() 
+            contribution += ' {}'.format(brackets_open[0])
+            contributions = [contribution]
+            contributions = tuple(contributions)
+            identifier_pair = ('context_brackets', 'open')
+            result.append((identifier_pair, contributions))
         return tuple(result)
 
     def _format_opening_slot(context, bundle):
