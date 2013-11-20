@@ -23,8 +23,8 @@ def test_quantizationtools_Quantizer___call___01():
             \new Staff {
                 \new Voice {
                     {
-                        \time 4/4
                         \tempo 4=60
+                        \time 4/4
                         c'4 ~
                         c'8
                         r8 ~
@@ -64,8 +64,8 @@ def test_quantizationtools_Quantizer___call___02():
         r'''
         \new Voice {
             {
-                \time 4/4
                 %%% \tempo 4=60 %%%
+                \time 4/4
                 c'16
                 c'16 ~
                 c'8 ~

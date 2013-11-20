@@ -48,6 +48,9 @@ class LilyPondFormatBundle(AbjadObject):
         def stem_tremolos(self):
             return self._stem_tremolos
 
+        def alphabetize(self):
+            self._context_marks.sort()
+
         def get(self, identifier):
             return getattr(self, identifier) 
 
@@ -108,6 +111,16 @@ class LilyPondFormatBundle(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def alphabetize(self):
+        self.before.alphabetize()
+        self.after.alphabetize()
+        self.opening.alphabetize()
+        self.closing.alphabetize()
+        self.right.alphabetize()
+        self._context_settings.sort()
+        self._grob_overrides.sort()
+        self._grob_reverts.sort()
+        
     def get(self, identifier):
         return getattr(self, identifier)
 

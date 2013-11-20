@@ -387,6 +387,7 @@ class LilyPondFormatManager(object):
         manager._populate_context_setting_format_contributions(component, bundle)
         manager._populate_grob_override_format_contributions(component, bundle)
         manager._populate_grob_revert_format_contributions(component, bundle)
+        bundle.alphabetize()
         bundle.make_immutable()
         return bundle
 
