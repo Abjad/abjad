@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
+import types
 from abjad.tools.abctools import AbjadObject
 
 
+# TODO: change IndicatorWrapper.start_component to IndicatorWrapper.component
+#       do this after removing ContextMark from codebase
 class IndicatorWrapper(AbjadObject):
     r'''An indicator wrapper.
     '''
@@ -9,6 +12,13 @@ class IndicatorWrapper(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, indicator, start_component, scope=None):
+        from abjad.tools import scoretools
+        assert not isinstance(indicator, type(self)), repr(indicator)
+        assert isinstance(start_component, scoretools.Component), repr(start_component)
+        assert scope is None or \
+            (isinstance(scope, types.TypeType) and 
+            issubclass(scope, scoretools.Component)) or \
+            isinstance(scope, scoretools.Component), repr(scope)
         self._indicator = indicator
         self._start_component = start_component
         self._scope = scope
@@ -31,6 +41,11 @@ class IndicatorWrapper(AbjadObject):
             correct_effective_context._dependent_wrappers.append(self)
         self._effective_context = correct_effective_context
         self._update_effective_context()
+
+    def _detach(self):
+        self._unbind_start_component()
+        self._unbind_effective_context()
+        return self
 
     def _find_correct_effective_context(self):
         from abjad.tools import scoretools
@@ -70,6 +85,15 @@ class IndicatorWrapper(AbjadObject):
         correct_effective_context = self._find_correct_effective_context()
         if current_effective_context is not correct_effective_context:
             self._bind_correct_effective_context(correct_effective_context)
+
+    def _unbind_start_component(self):
+        start_component = self.start_component
+        if start_component is not None:
+            try:
+                start_component._indicators.remove(self)
+            except ValueError:
+                pass
+        self._start_component = None
 
     ### PUBLIC PROPERTIES ###
 

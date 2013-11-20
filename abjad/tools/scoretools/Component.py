@@ -683,6 +683,7 @@ class Component(AbjadObject):
         return component in temporal_successors
 
     def _move_marks(self, recipient_component):
+        from abjad.tools import indicatortools
         for context_mark in self._get_context_marks():
             attach(context_mark, recipient_component)
         for indicator in self._get_indicators():

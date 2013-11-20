@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
+#from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.indicatortools.ContextMark import ContextMark
 
 
 class Clef(ContextMark):
+#class Clef(AbjadObject):
     r'''A clef.
 
     ::
@@ -87,6 +89,7 @@ class Clef(ContextMark):
     def __init__(self, name):
         from abjad.tools import scoretools
         ContextMark.__init__(self)
+        self._default_scope = scoretools.Staff
         if isinstance(name, str):
             self._name = name
         elif isinstance(name, type(self)):

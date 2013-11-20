@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 import abc
+import copy
 from abjad.tools import systemtools
 from abjad.tools.scoretools.Container import Container
-import copy
 
 
 class Context(Container):
@@ -98,21 +98,23 @@ class Context(Container):
 
     def _format_closing_slot(context, bundle):
         result = []
-        result.append(['context marks', bundle.closing.context_marks])
-        result.append(['commands', bundle.closing.commands])
-        result.append(['comments', bundle.closing.comments])
+        result.append(('context marks', bundle.closing.context_marks))
+        result.append(('commands', bundle.closing.commands))
+        result.append(('comments', bundle.closing.comments))
         return context._format_slot_contributions_with_indent(result)
 
     def _format_engraver_consists(self):
         result = []
         for engraver in self.engraver_consists:
-            result.append(r'\consists {}'.format(engraver))
+            string = r'\consists {}'.format(engraver)
+            result.append(string)
         return result
 
     def _format_engraver_removals(self):
         result = []
         for engraver in self.engraver_removals:
-            result.append(r'\remove {}'.format(engraver))
+            string = r'\remove {}'.format(engraver)
+            result.append(string)
         return result
 
     def _format_invocation(self):
@@ -154,9 +156,9 @@ class Context(Container):
 
     def _format_opening_slot(context, bundle):
         result = []
-        result.append(['comments', bundle.opening.comments])
-        result.append(['context marks', bundle.opening.context_marks])
-        result.append(['commands', bundle.opening.commands])
+        result.append(('comments', bundle.opening.comments))
+        result.append(('context marks', bundle.opening.context_marks))
+        result.append(('commands', bundle.opening.commands))
         return context._format_slot_contributions_with_indent(result)
 
     ### PUBLIC PROPERTIES ###
@@ -164,7 +166,9 @@ class Context(Container):
     @apply
     def context_name():
         def fget(self):
-            r'''Read / write name of context as a string.
+            r'''Gets and sets context name of context.
+
+            Returns string.
             '''
             return self._context_name
         def fset(self, arg):
@@ -174,7 +178,8 @@ class Context(Container):
 
     @property
     def engraver_consists(self):
-        r'''Unordered set of LilyPond engravers to include in context definition.
+        r'''Unordered set of LilyPond engravers to include 
+        in context definition.
 
         Manage with add, update, other standard set commands:
 
@@ -277,12 +282,18 @@ class Context(Container):
 
     @property
     def is_semantic(self):
+        r'''True when context is semantic. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self.is_nonsemantic
 
     @apply
     def name():
         def fget(self):
-            r'''Read-write name of context. Must be string or none.
+            r'''Gets and sets name of context.
+
+            Returns string or none.
             '''
             return self._name
         def fset(self, arg):

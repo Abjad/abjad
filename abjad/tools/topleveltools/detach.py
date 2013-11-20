@@ -27,6 +27,11 @@ def detach(indicator, component_expression):
                 if isinstance(x, indicator):
                     component_expression._indicators.remove(x)
                     result.append(x)
+                # indicator is a wrapper
+                elif hasattr(x, 'indicator') and \
+                    isinstance(x.indicator, indicator):
+                    x._detach()
+                    result.append(x)
             result = tuple(result)
             return result
     else:
@@ -42,6 +47,10 @@ def detach(indicator, component_expression):
             for x in component_expression._indicators[:]:
                 if x == indicator:
                     component_expression._indicators.remove(x)
+                    result.append(x)
+                # indicator is a wrapper
+                elif hasattr(x, 'indicator') and x.indicator == indicator:
+                    x._detach()
                     result.append(x)
             result = tuple(result)
             return result

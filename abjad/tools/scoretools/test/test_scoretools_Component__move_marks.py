@@ -19,11 +19,11 @@ def test_scoretools_Component__move_marks_01():
         '''
         )
 
-    assert len(inspect(staff[0]).get_context_marks()) == 1
     assert len(inspect(staff[0]).get_indicators()) == 1
-    assert len(inspect(staff[1]).get_context_marks()) == 0
-    assert len(inspect(staff[2]).get_context_marks()) == 0
-    assert len(inspect(staff[3]).get_context_marks()) == 0
+    assert len(inspect(staff[0]).get_context_marks()) == 1
+    assert len(inspect(staff[1]).get_indicators()) == 0
+    assert len(inspect(staff[2]).get_indicators()) == 0
+    assert len(inspect(staff[3]).get_indicators()) == 0
     
     staff[0]._move_marks(staff[2])
 
@@ -40,8 +40,8 @@ def test_scoretools_Component__move_marks_01():
         '''
         )
 
-    assert len(inspect(staff[0]).get_context_marks()) == 0
-    assert len(inspect(staff[1]).get_context_marks()) == 0
-    assert len(inspect(staff[2]).get_context_marks()) == 1
+    assert len(inspect(staff[0]).get_indicators()) == 0
+    assert len(inspect(staff[1]).get_indicators()) == 0
     assert len(inspect(staff[2]).get_indicators()) == 1
-    assert len(inspect(staff[3]).get_context_marks()) == 0
+    assert len(inspect(staff[2]).get_context_marks()) == 1
+    assert len(inspect(staff[3]).get_indicators()) == 0
