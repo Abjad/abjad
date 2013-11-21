@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.indicatortools.ContextMark import ContextMark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class StaffChange(ContextMark):
+class StaffChange(AbjadObject):
     r'''A staff change.
 
     ::
@@ -13,28 +13,6 @@ class StaffChange(ContextMark):
         >>> lh_staff = Staff("s2")
         >>> lh_staff.name = 'LHStaff'
         >>> piano_staff.extend([rh_staff, lh_staff])
-
-    ..  doctest::
-
-        >>> print format(piano_staff)
-        \new PianoStaff <<
-            \context Staff = "RHStaff" {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            \context Staff = "LHStaff" {
-                s2
-            }
-        >>
-
-    ::
-
-        >>> show(piano_staff) # doctest: +SKIP
-
-    ::
-
         >>> staff_change = indicatortools.StaffChange(lh_staff)
         >>> attach(staff_change, rh_staff[2])
         >>> show(piano_staff) # doctest: +SKIP
@@ -65,7 +43,7 @@ class StaffChange(ContextMark):
 
     def __init__(self, staff=None):
         from abjad.tools import scoretools
-        ContextMark.__init__(self)
+        self._default_scope = scoretools.Staff
         if not isinstance(staff, (scoretools.Staff, type(None))):
             message = 'staff change input value {!r}'
             message += ' must be staff instance.'
@@ -83,8 +61,8 @@ class StaffChange(ContextMark):
         return type(self)(self.staff)
 
     def __eq__(self, arg):
-        r'''True when `arg` is a staff change with staff equal to staff change.
-        Otherwise false.
+        r'''True when `arg` is a staff change with a staff value equal 
+        to that of this staff change. Otherwise false.
 
         Returns boolean.
         '''
