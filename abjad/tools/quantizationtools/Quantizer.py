@@ -140,7 +140,10 @@ class Quantizer(AbjadObject):
 
     ::
 
-        >>> result = quantizer(q_event_sequence, q_schema=beatwise_q_schema)
+        >>> result = quantizer(
+        ...     q_event_sequence,
+        ...     q_schema=beatwise_q_schema,
+        ...     )
         >>> score = Score([Staff([result])])
         >>> print format(score)
         \new Score <<
