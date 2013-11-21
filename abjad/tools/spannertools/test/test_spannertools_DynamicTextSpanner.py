@@ -7,9 +7,9 @@ def test_spannertools_DynamicTextSpanner_01():
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, voice[:])
-    spanner = spannertools.DynamicTextSpanner(mark='f')
+    spanner = spannertools.DynamicTextSpanner(dynamic='f')
     attach(spanner, voice[:2])
-    spanner = spannertools.DynamicTextSpanner(mark='p')
+    spanner = spannertools.DynamicTextSpanner(dynamic='p')
     attach(spanner, voice[2:])
 
     assert systemtools.TestManager.compare(

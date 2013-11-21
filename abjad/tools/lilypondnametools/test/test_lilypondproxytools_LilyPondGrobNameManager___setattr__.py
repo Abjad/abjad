@@ -274,7 +274,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___12():
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, voice[:])
-    dynamic_text_spanner = spannertools.DynamicTextSpanner(mark='f')
+    dynamic_text_spanner = spannertools.DynamicTextSpanner(dynamic='f')
     attach(dynamic_text_spanner, voice[:])
     override(dynamic_text_spanner).dynamic_text.thickness = 3
 

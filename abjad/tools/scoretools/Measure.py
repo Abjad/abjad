@@ -196,7 +196,7 @@ class Measure(FixedDurationContainer):
     # essentially the same as container version of method;
     # the definition given here adds one line to remove
     # time signature immediately after instantiation
-    # because the mark-copying code will then provide time signature.
+    # because the indicator-copying code will then provide time signature.
     def _copy_with_marks_but_without_children_or_spanners(self):
         from abjad.tools import indicatortools
         new = type(self)(*self.__getnewargs__())
