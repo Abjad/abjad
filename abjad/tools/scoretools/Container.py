@@ -367,7 +367,7 @@ class Container(Component):
         withdraw_components_in_expr_from_crossing_spanners=True,
         ):
         r'''This method exists beacuse __setitem__ can not accept keywords.
-        Note that contextualize
+        Note that setting
         withdraw_components_in_expr_from_crossing_spanners=False
         constitutes a composer-unsafe use of this method.
         Only private methods should set this keyword.
@@ -376,13 +376,9 @@ class Container(Component):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
-        # cache context marks attached to expr
-        expr_context_marks = []
+        # cache wrappers attached to expr
         expr_wrappers = []
         for component in iterate(expr).by_class():
-            context_marks = component._get_context_marks(
-                indicatortools.ContextMark)
-            expr_context_marks.extend(context_marks)
             wrappers = component._get_wrappers()
             expr_wrappers.extend(wrappers)
         # item assignment
@@ -453,8 +449,6 @@ class Container(Component):
                 for component in reversed(expr):
                     spanner._insert(index, component)
                     component._spanners.add(spanner)
-        for context_mark in expr_context_marks:
-            context_mark._update_effective_context()
         for wrapper in expr_wrappers:
             wrapper._update_effective_context()
 
@@ -543,11 +537,11 @@ class Container(Component):
             '''
             return self._simultaneous
         def fset(self, expr):
-            from abjad.tools.scoretools.Context import Context
             from abjad.tools import scoretools
             assert isinstance(expr, bool), repr(expr)
             if expr == True:
-                assert all(isinstance(x, Context) for x in self._music)
+                assert all(
+                    isinstance(x, scoretools.Context) for x in self._music)
             self._simultaneous = expr
             self._update_later(offsets=True)
         return property(**locals())

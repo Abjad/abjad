@@ -551,7 +551,6 @@ class Leaf(Component):
         self._detach_grace_containers(kind='after')
         # adjust new leaf
         new_leaf._detach_grace_containers(kind='grace')
-        #detach(indicatortools.ContextMark, new_leaf)
         left_leaf_list = self._set_duration(preprolated_duration)
         right_preprolated_duration = \
             leaf_multiplied_duration - preprolated_duration
