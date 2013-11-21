@@ -64,43 +64,43 @@ class TrillSpanner(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def pitch():
-        def fget(self):
-            r'''Optional read / write pitch for pitched trills.
+    @property
+    def pitch(self):
+        r'''Optional read / write pitch for pitched trills.
 
-                ::
+            ::
 
-                    >>> t = Staff("c'8 d'8 e'8 f'8")
-                    >>> trill = spannertools.TrillSpanner()
-                    >>> attach(trill, t[:2])
-                    >>> trill.pitch = NamedPitch('cs', 4)
+                >>> t = Staff("c'8 d'8 e'8 f'8")
+                >>> trill = spannertools.TrillSpanner()
+                >>> attach(trill, t[:2])
+                >>> trill.pitch = NamedPitch('cs', 4)
 
-                ..  doctest::
+            ..  doctest::
 
-                    >>> print format(t)
-                    \new Staff {
-                        \pitchedTrill c'8 \startTrillSpan cs'
-                        d'8 \stopTrillSpan
-                        e'8
-                        f'8
-                    }
+                >>> print format(t)
+                \new Staff {
+                    \pitchedTrill c'8 \startTrillSpan cs'
+                    d'8 \stopTrillSpan
+                    e'8
+                    f'8
+                }
 
-            Set pitch.
-            '''
-            return self._pitch
-        def fset(self, expr):
-            if expr is None:
-                self._pitch = expr
-            else:
-                pitch = pitchtools.NamedPitch(expr)
-                self._pitch = pitch
-        return property(**locals())
+        Set pitch.
+        '''
+        return self._pitch
 
-    @apply
-    def written_pitch():
-        def fget(self):
-            return self.pitch
-        def fset(self, arg):
-            self.pitch = arg
-        return property(**locals())
+    @pitch.setter
+    def pitch(self, expr):
+        if expr is None:
+            self._pitch = expr
+        else:
+            pitch = pitchtools.NamedPitch(expr)
+            self._pitch = pitch
+
+    @property
+    def written_pitch(self):
+        return self.pitch
+
+    @written_pitch.setter
+    def written_pitch(self, arg):
+        self.pitch = arg

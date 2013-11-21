@@ -107,38 +107,38 @@ class MeasuredComplexBeam(ComplexBeam):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def span():
-        def fget(self):
-            r'''Get top-level beam count:
+    @property
+    def span(self):
+        r'''Get top-level beam count:
 
-            ::
+        ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((2, 16), "c'16 d'16"))
-                >>> staff.append(Measure((2, 16), "e'16 f'16"))
-                >>> beam = spannertools.MeasuredComplexBeam()
-                >>> attach(beam, staff.select_leaves())
-                >>> beam.span
-                1
+            >>> staff = Staff()
+            >>> staff.append(Measure((2, 16), "c'16 d'16"))
+            >>> staff.append(Measure((2, 16), "e'16 f'16"))
+            >>> beam = spannertools.MeasuredComplexBeam()
+            >>> attach(beam, staff.select_leaves())
+            >>> beam.span
+            1
 
-            Set top-level beam count:
+        Set top-level beam count:
 
-            ::
+        ::
 
-                >>> staff = Staff()
-                >>> staff.append(Measure((2, 16), "c'16 d'16"))
-                >>> staff.append(Measure((2, 16), "e'16 f'16"))
-                >>> beam = spannertools.MeasuredComplexBeam()
-                >>> attach(beam, staff.select_leaves())
-                >>> beam.span = 2
-                >>> beam.span
-                2
+            >>> staff = Staff()
+            >>> staff.append(Measure((2, 16), "c'16 d'16"))
+            >>> staff.append(Measure((2, 16), "e'16 f'16"))
+            >>> beam = spannertools.MeasuredComplexBeam()
+            >>> attach(beam, staff.select_leaves())
+            >>> beam.span = 2
+            >>> beam.span
+            2
 
-            Set nonnegative integer.
-            '''
-            return self._span
-        def fset(self, arg):
-            assert isinstance(arg, (int, type(None)))
-            self._span = arg
-        return property(**locals())
+        Set nonnegative integer.
+        '''
+        return self._span
+
+    @span.setter
+    def span(self, arg):
+        assert isinstance(arg, (int, type(None)))
+        self._span = arg

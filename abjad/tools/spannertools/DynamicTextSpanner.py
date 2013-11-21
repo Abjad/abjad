@@ -53,34 +53,34 @@ class DynamicTextSpanner(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def dynamic():
-        def fget(self):
-            r'''Get dynamic string:
+    @property
+    def dynamic(self):
+        r'''Get dynamic string:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.DynamicTextSpanner(dynamic='f')
-                >>> attach(spanner, staff[:])
-                >>> spanner.dynamic
-                'f'
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.DynamicTextSpanner(dynamic='f')
+            >>> attach(spanner, staff[:])
+            >>> spanner.dynamic
+            'f'
 
-            Set dynamic string:
+        Set dynamic string:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.DynamicTextSpanner(dynamic='f')
-                >>> attach(spanner, staff[:])
-                >>> spanner.dynamic = 'p'
-                >>> spanner.dynamic
-                'p'
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.DynamicTextSpanner(dynamic='f')
+            >>> attach(spanner, staff[:])
+            >>> spanner.dynamic = 'p'
+            >>> spanner.dynamic
+            'p'
 
-            Set string.
-            '''
-            return self._dynamic
-        def fset(self, arg):
-            assert isinstance(arg, str)
-            self._dynamic = arg
-        return property(**locals())
+        Set string.
+        '''
+        return self._dynamic
+
+    @dynamic.setter
+    def dynamic(self, arg):
+        assert isinstance(arg, str)
+        self._dynamic = arg

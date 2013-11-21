@@ -76,68 +76,68 @@ class PianoPedalSpanner(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def kind():
-        def fget(self):
-            r'''Get piano pedal spanner kind:
+    @property
+    def kind(self):
+        r'''Get piano pedal spanner kind:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner()
-                >>> attach(spanner, staff[:])
-                >>> spanner.kind
-                'sustain'
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.PianoPedalSpanner()
+            >>> attach(spanner, staff[:])
+            >>> spanner.kind
+            'sustain'
 
-            Set piano pedal spanner kind:
+        Set piano pedal spanner kind:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner()
-                >>> attach(spanner, staff[:])
-                >>> spanner.kind = 'sostenuto'
-                >>> spanner.kind
-                'sostenuto'
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.PianoPedalSpanner()
+            >>> attach(spanner, staff[:])
+            >>> spanner.kind = 'sostenuto'
+            >>> spanner.kind
+            'sostenuto'
 
-            Acceptable values ``'sustain'``, ``'sostenuto'``, ``'corda'``.
-            '''
-            return self._kind
-        def fset(self, arg):
-            if not arg in self._kinds.keys():
-                raise ValueError("Type must be in %s" % self._kinds.keys())
-            self._kind = arg
-        return property(**locals())
+        Acceptable values ``'sustain'``, ``'sostenuto'``, ``'corda'``.
+        '''
+        return self._kind
 
-    @apply
-    def style():
-        def fget(self):
-            r'''Get piano pedal spanner style:
+    @kind.setter
+    def kind(self, arg):
+        if not arg in self._kinds.keys():
+            raise ValueError("Type must be in %s" % self._kinds.keys())
+        self._kind = arg
 
-            ::
+    @property
+    def style(self):
+        r'''Get piano pedal spanner style:
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner()
-                >>> attach(spanner, staff[:])
-                >>> spanner.style
-                'mixed'
+        ::
 
-            Set piano pedal spanner style:
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.PianoPedalSpanner()
+            >>> attach(spanner, staff[:])
+            >>> spanner.style
+            'mixed'
 
-            ::
+        Set piano pedal spanner style:
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.PianoPedalSpanner()
-                >>> attach(spanner, staff[:])
-                >>> spanner.style = 'bracket'
-                >>> spanner.style
-                'bracket'
+        ::
 
-            Acceptable values ``'mixed'``, ``'bracket'``, ``'text'``.
-            '''
-            return self._style
-        def fset(self, arg):
-            if not arg in self._styles:
-                raise ValueError("Style must be in %s" % self._styles)
-            self._style = arg
-        return property(**locals())
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.PianoPedalSpanner()
+            >>> attach(spanner, staff[:])
+            >>> spanner.style = 'bracket'
+            >>> spanner.style
+            'bracket'
+
+        Acceptable values ``'mixed'``, ``'bracket'``, ``'text'``.
+        '''
+        return self._style
+
+    @style.setter
+    def style(self, arg):
+        if not arg in self._styles:
+            raise ValueError("Style must be in %s" % self._styles)
+        self._style = arg

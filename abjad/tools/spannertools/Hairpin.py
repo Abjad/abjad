@@ -193,145 +193,145 @@ class Hairpin(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def direction():
-        def fget(self):
-            return self._direction
-        def fset(self, arg):
-            self._direction = \
-                stringtools.arg_to_tridirectional_lilypond_symbol(arg)
-        return property(**locals())
+    @property
+    def direction(self):
+        return self._direction
 
-    @apply
-    def include_rests():
-        def fget(self):
-            r'''Get boolean hairpin rests contextualize:
+    @direction.setter
+    def direction(self, arg):
+        self._direction = \
+            stringtools.arg_to_tridirectional_lilypond_symbol(arg)
 
-            ::
+    @property
+    def include_rests(self):
+        r'''Get boolean hairpin rests contextualize:
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.Hairpin(
-                ...     descriptor='p < f',
-                ...     include_rests=True,
-                ...     )
-                >>> attach(hairpin, staff[:])
-                >>> hairpin.include_rests
-                True
+        ::
 
-            Set boolean hairpin rests contextualize:
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> hairpin = spannertools.Hairpin(
+            ...     descriptor='p < f',
+            ...     include_rests=True,
+            ...     )
+            >>> attach(hairpin, staff[:])
+            >>> hairpin.include_rests
+            True
 
-            ::
+        Set boolean hairpin rests contextualize:
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.Hairpin(
-                ...     descriptor='p < f',
-                ...     include_rests=True,
-                ...     )
-                >>> attach(hairpin, staff[:])
-                >>> hairpin.include_rests = False
-                >>> hairpin.include_rests
-                False
+        ::
 
-            Set boolean.
-            '''
-            return self._include_rests
-        def fset(self, arg):
-            self._include_rests = arg
-        return property(**locals())
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> hairpin = spannertools.Hairpin(
+            ...     descriptor='p < f',
+            ...     include_rests=True,
+            ...     )
+            >>> attach(hairpin, staff[:])
+            >>> hairpin.include_rests = False
+            >>> hairpin.include_rests
+            False
 
-    @apply
-    def shape_string():
-        def fget(self):
-            r'''Get hairpin shape string:
+        Set boolean.
+        '''
+        return self._include_rests
 
-            ::
+    @include_rests.setter
+    def include_rests(self, arg):
+        self._include_rests = arg
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> hairpin.shape_string
-                '<'
+    @property
+    def shape_string(self):
+        r'''Get hairpin shape string:
 
-            Set hairpin shape string:
+        ::
 
-            ::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+            >>> attach(hairpin, staff[:])
+            >>> hairpin.shape_string
+            '<'
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> hairpin.shape_string = '>'
-                >>> hairpin.shape_string
-                '>'
+        Set hairpin shape string:
 
-            Set string.
-            '''
-            return self._shape
-        def fset(self, arg):
-            assert arg in ('<', '>')
-            self._shape = arg
-        return property(**locals())
+        ::
 
-    @apply
-    def start_dynamic_string():
-        def fget(self):
-            r'''Get hairpin start dynamic string:
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+            >>> attach(hairpin, staff[:])
+            >>> hairpin.shape_string = '>'
+            >>> hairpin.shape_string
+            '>'
 
-            ::
+        Set string.
+        '''
+        return self._shape
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> hairpin.start_dynamic_string
-                'p'
+    @shape_string.setter
+    def shape_string(self, arg):
+        assert arg in ('<', '>')
+        self._shape = arg
 
-            Set hairpin start dynamic string:
+    @property
+    def start_dynamic_string(self):
+        r'''Get hairpin start dynamic string:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> hairpin.start_dynamic_string = 'mf'
-                >>> hairpin.start_dynamic_string
-                'mf'
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+            >>> attach(hairpin, staff[:])
+            >>> hairpin.start_dynamic_string
+            'p'
 
-            Set string.
-            '''
-            return self._start
-        def fset(self, arg):
-            self._start = arg
-        return property(**locals())
+        Set hairpin start dynamic string:
 
-    @apply
-    def stop_dynamic_string():
-        def fget(self):
-            r'''Get hairpin stop dynamic string:
+        ::
 
-            ::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+            >>> attach(hairpin, staff[:])
+            >>> hairpin.start_dynamic_string = 'mf'
+            >>> hairpin.start_dynamic_string
+            'mf'
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> hairpin.stop_dynamic_string
-                'f'
+        Set string.
+        '''
+        return self._start
 
-            Set hairpin stop dynamic string:
+    @start_dynamic_string.setter
+    def start_dynamic_string(self, arg):
+        self._start = arg
 
-            ::
+    @property
+    def stop_dynamic_string(self):
+        r'''Get hairpin stop dynamic string:
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, staff[:])
-                >>> hairpin.stop_dynamic_string = 'mf'
-                >>> hairpin.stop_dynamic_string
-                'mf'
+        ::
 
-            Set string.
-            '''
-            return self._stop
-        def fset(self, arg):
-            self._stop = arg
-        return property(**locals())
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+            >>> attach(hairpin, staff[:])
+            >>> hairpin.stop_dynamic_string
+            'f'
+
+        Set hairpin stop dynamic string:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+            >>> attach(hairpin, staff[:])
+            >>> hairpin.stop_dynamic_string = 'mf'
+            >>> hairpin.stop_dynamic_string
+            'mf'
+
+        Set string.
+        '''
+        return self._stop
+
+    @stop_dynamic_string.setter
+    def stop_dynamic_string(self, arg):
+        self._stop = arg
 
     ### PUBLIC METHODS ###
 

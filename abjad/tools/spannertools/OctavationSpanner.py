@@ -73,68 +73,68 @@ class OctavationSpanner(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def start():
-        def fget(self):
-            r'''Get octavation start:
+    @property
+    def start(self):
+        r'''Get octavation start:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.OctavationSpanner(start=1)
-                >>> attach(spanner, staff[:])
-                >>> spanner.start
-                1
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.OctavationSpanner(start=1)
+            >>> attach(spanner, staff[:])
+            >>> spanner.start
+            1
 
-            Set octavation start:
+        Set octavation start:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.OctavationSpanner(start=1)
-                >>> attach(spanner, staff[:])
-                >>> spanner.start
-                1
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.OctavationSpanner(start=1)
+            >>> attach(spanner, staff[:])
+            >>> spanner.start
+            1
 
-            Set integer.
-            '''
-            return self._start
-        def fset(self, arg):
-            assert isinstance(arg, (int, type(None)))
-            self._start = arg
-        return property(**locals())
+        Set integer.
+        '''
+        return self._start
 
-    @apply
-    def stop():
-        def fget(self):
-            r'''Get octavation stop:
+    @start.setter
+    def start(self, arg):
+        assert isinstance(arg, (int, type(None)))
+        self._start = arg
 
-            ::
+    @property
+    def stop(self):
+        r'''Get octavation stop:
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
-                >>> attach(spanner, staff[:])
-                >>> spanner.stop
-                1
+        ::
 
-            Set octavation stop:
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
+            >>> attach(spanner, staff[:])
+            >>> spanner.stop
+            1
 
-            ::
+        Set octavation stop:
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
-                >>> attach(spanner, staff[:])
-                >>> spanner.stop = 0
-                >>> spanner.stop
-                0
+        ::
 
-            Set integer.
-            '''
-            return self._stop
-        def fset(self, arg):
-            assert isinstance(arg, (int, type(None)))
-            self._stop = arg
-        return property(**locals())
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.OctavationSpanner(start=2, stop=1)
+            >>> attach(spanner, staff[:])
+            >>> spanner.stop = 0
+            >>> spanner.stop
+            0
+
+        Set integer.
+        '''
+        return self._stop
+
+    @stop.setter
+    def stop(self, arg):
+        assert isinstance(arg, (int, type(None)))
+        self._stop = arg
 
     ### PUBLIC METHODS ###
 

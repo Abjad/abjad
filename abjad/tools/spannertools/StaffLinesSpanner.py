@@ -85,40 +85,40 @@ class StaffLinesSpanner(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def lines():
-        def fget(self):
-            r'''Get staff lines spanner line count:
+    @property
+    def lines(self):
+        r'''Get staff lines spanner line count:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.StaffLinesSpanner(lines=1)
-                >>> attach(spanner, staff[:2])
-                >>> spanner.lines
-                1
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.StaffLinesSpanner(lines=1)
+            >>> attach(spanner, staff[:2])
+            >>> spanner.lines
+            1
 
-            Set staff lines spanner line count:
+        Set staff lines spanner line count:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> spanner = spannertools.StaffLinesSpanner(lines=1)
-                >>> attach(spanner, staff[:2])
-                >>> spanner.lines = 2
-                >>> spanner.lines
-                2
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.StaffLinesSpanner(lines=1)
+            >>> attach(spanner, staff[:2])
+            >>> spanner.lines = 2
+            >>> spanner.lines
+            2
 
-            Set integer.
-            '''
-            return self._lines
-        def fset(self, arg):
-            if isinstance(arg, int) and 0 < arg:
-                self._lines = arg
-            elif isinstance(arg, (tuple, list)) \
-                and all(isinstance(x, (int, float)) for x in arg):
-                self._lines = tuple(arg)
-            else:
-                raise ValueError('StaffLinesSpanner requires either an int, '
-                    'or a list/tuple of ints and/or floats.')
-        return property(**locals())
+        Set integer.
+        '''
+        return self._lines
+
+    @lines.setter
+    def lines(self, arg):
+        if isinstance(arg, int) and 0 < arg:
+            self._lines = arg
+        elif isinstance(arg, (tuple, list)) \
+            and all(isinstance(x, (int, float)) for x in arg):
+            self._lines = tuple(arg)
+        else:
+            raise ValueError('StaffLinesSpanner requires either an int, '
+                'or a list/tuple of ints and/or floats.')

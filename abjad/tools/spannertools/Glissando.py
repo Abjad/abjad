@@ -96,33 +96,33 @@ class Glissando(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def avoid_rests():
-        def fget(self):
-            r'''Gets and sets rest avoidance.
+    @property
+    def avoid_rests(self):
+        r'''Gets and sets rest avoidance.
 
-            ..  container:: example
+        ..  container:: example
 
-                Gets property:
+            Gets property:
 
-                ::
+            ::
 
-                    >>> glissando.avoid_rests
-                    True
+                >>> glissando.avoid_rests
+                True
 
-            ..  container:: example
+        ..  container:: example
 
-                Sets property:
+            Sets property:
 
-                ::
+            ::
 
-                    >>> glissando.avoid_rests = False
-                    >>> glissando.avoid_rests
-                    False
+                >>> glissando.avoid_rests = False
+                >>> glissando.avoid_rests
+                False
 
-            Returns boolean.
-            '''
-            return self._avoid_rests
-        def fset(self, expr):
-            self._avoid_rests = bool(expr)
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._avoid_rests
+
+    @avoid_rests.setter
+    def avoid_rests(self, expr):
+        self._avoid_rests = bool(expr)
