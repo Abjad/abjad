@@ -154,7 +154,7 @@ class LilyPondFormatManager(object):
         for wrapper in wrappers:
             format_pieces = manager._get_wrapper_format_pieces(wrapper)
             format_slot = wrapper.indicator._format_slot
-            bundle.get(format_slot).context_marks.extend(format_pieces)
+            bundle.get(format_slot).indicators.extend(format_pieces)
         # bundle markup contributions
         for markup_list in (up_markup, down_markup, neutral_markup):
             if not markup_list:

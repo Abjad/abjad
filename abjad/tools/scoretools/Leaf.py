@@ -169,7 +169,7 @@ class Leaf(Component):
     def _format_after_slot(leaf, bundle):
         result = []
         result.append(('spanners', bundle.after.spanners))
-        result.append(('context marks', bundle.after.context_marks))
+        result.append(('indicators', bundle.after.indicators))
         result.append(('commands', bundle.after.commands))
         result.append(('comments', bundle.after.comments))
         return result
@@ -194,7 +194,7 @@ class Leaf(Component):
         result.append(leaf._format_grace_body())
         result.append(('comments', bundle.before.comments))
         result.append(('commands', bundle.before.commands))
-        result.append(('context marks', bundle.before.context_marks))
+        result.append(('indicators', bundle.before.indicators))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
         result.append(('spanners', bundle.before.spanners))
@@ -208,7 +208,7 @@ class Leaf(Component):
         result.append(leaf._format_agrace_body())
         result.append(('spanners', bundle.closing.spanners))
         result.append(('commands', bundle.closing.commands))
-        result.append(('context marks', bundle.closing.context_marks))
+        result.append(('indicators', bundle.closing.indicators))
         result.append(('comments', bundle.closing.comments))
         return result
 
@@ -230,7 +230,7 @@ class Leaf(Component):
         result.extend(bundle.right.stem_tremolos)
         result.extend(bundle.right.articulations)
         result.extend(bundle.right.commands)
-        result.extend(bundle.right.context_marks)
+        result.extend(bundle.right.indicators)
         result.extend(bundle.right.spanners)
         result.extend(bundle.right.comments)
         result = [' '.join(result)]
@@ -272,7 +272,7 @@ class Leaf(Component):
     def _format_opening_slot(leaf, bundle):
         result = []
         result.append(('comments', bundle.opening.comments))
-        result.append(('context marks', bundle.opening.context_marks))
+        result.append(('indicators', bundle.opening.indicators))
         result.append(('commands', bundle.opening.commands))
         result.append(('spanners', bundle.opening.spanners))
         result.append(leaf._format_agrace_opening())

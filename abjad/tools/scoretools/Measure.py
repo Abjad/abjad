@@ -267,7 +267,7 @@ class Measure(FixedDurationContainer):
         result.append(('comments', bundle.opening.comments))
         result.append(('grob overrides', bundle.grob_overrides))
         result.append(('context settings', bundle.context_settings))
-        result.append(('context marks', bundle.opening.context_marks))
+        result.append(('indicators', bundle.opening.indicators))
         return self._format_slot_contributions_with_indent(result)
 
     @staticmethod
