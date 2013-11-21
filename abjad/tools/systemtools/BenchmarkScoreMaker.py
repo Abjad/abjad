@@ -114,7 +114,7 @@ class BenchmarkScoreMaker(AbjadObject):
             topleveltools.attach(dynamic, part[-1])
         return voice
 
-    def make_context_mark_score_01(self):
+    def make_score_with_indicators_01(self):
         r'''Make 200-note voice with dynamic on every 20th note:
 
         ::
@@ -142,7 +142,7 @@ class BenchmarkScoreMaker(AbjadObject):
             topleveltools.attach(dynamic, part[0])
         return staff
 
-    def make_context_mark_score_02(self):
+    def make_score_with_indicators_02(self):
         r'''Make 200-note staff with dynamic on every 4th note.
 
         ::
@@ -170,7 +170,7 @@ class BenchmarkScoreMaker(AbjadObject):
             topleveltools.attach(dynamic, part[0])
         return staff
 
-    def make_context_mark_score_03(self):
+    def make_score_with_indicators_03(self):
         r'''Make 200-note staff with dynamic on every note.
 
         ::

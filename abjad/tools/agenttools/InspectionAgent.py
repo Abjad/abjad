@@ -189,10 +189,10 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         prototype=None,
         ):
-        r'''Gets effective context mark of `context_mark_class`
-        that governs component.
+        r'''Gets effective indicator that matches `prototype`
+        and governs component.
 
-        Returns context mark or none.
+        Returns indicator or none.
         '''
         return self._component._get_effective_indicator(
             prototype=prototype,
