@@ -4,24 +4,22 @@ import types
 from abjad.tools.abctools import AbjadObject
 
 
-# TODO: change IndicatorWrapper.start_component to IndicatorWrapper.component
-#       do this after removing ContextMark from codebase
 class IndicatorWrapper(AbjadObject):
     r'''An indicator wrapper.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, indicator, start_component, scope=None):
+    def __init__(self, indicator, component, scope=None):
         from abjad.tools import scoretools
         assert not isinstance(indicator, type(self)), repr(indicator)
-        assert isinstance(start_component, (scoretools.Component, type(None))), repr(start_component)
+        assert isinstance(component, (scoretools.Component, type(None))), repr(component)
         assert scope is None or \
             (isinstance(scope, types.TypeType) and 
             issubclass(scope, scoretools.Component)) or \
             isinstance(scope, scoretools.Component), repr(scope)
         self._indicator = indicator
-        self._start_component = start_component
+        self._component = component
         self._scope = scope
         self._effective_context = None
 
@@ -59,7 +57,7 @@ class IndicatorWrapper(AbjadObject):
         result = result.format(
             type(self).__name__,
             self.indicator,
-            self.start_component,
+            self.component,
             self.scope,
             )
         return result
@@ -76,18 +74,18 @@ class IndicatorWrapper(AbjadObject):
         if isinstance(self.indicator, indicatortools.Tempo):
             correct_effective_context._update_later(offsets_in_seconds=True)
 
-    def _bind_to_start_component(self, start_component):
+    def _bind_to_component(self, component):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
-        assert isinstance(start_component, scoretools.Component)
-        self._unbind_start_component()
-        self._start_component = start_component
+        assert isinstance(component, scoretools.Component)
+        self._unbind_component()
+        self._component = component
         self._update_effective_context()
         if isinstance(self.indicator, indicatortools.Tempo):
-            self._start_component._update_later(offsets_in_seconds=True)
+            self._component._update_later(offsets_in_seconds=True)
 
     def _detach(self):
-        self._unbind_start_component()
+        self._unbind_component()
         self._unbind_effective_context()
         return self
 
@@ -98,12 +96,12 @@ class IndicatorWrapper(AbjadObject):
             return None
         elif isinstance(scope, type):
             scope_type = scope
-            for component in self.start_component._get_parentage():
+            for component in self.component._get_parentage():
                 if isinstance(component, scope_type):
                     return component
         elif isinstance(scope, str):
             scope_name = scope
-            for component in self.start_component._get_parentage():
+            for component in self.component._get_parentage():
                 if component.name == scope_name:
                     return component
         else:
@@ -113,8 +111,8 @@ class IndicatorWrapper(AbjadObject):
             raise TypeError(message)
 
     def _get_effective_context(self):
-        if self.start_component is not None:
-            self.start_component._update_now(marks=True)
+        if self.component is not None:
+            self.component._update_now(marks=True)
         return self._effective_context
 
     def _unbind_effective_context(self):
@@ -135,14 +133,14 @@ class IndicatorWrapper(AbjadObject):
         if current_effective_context is not correct_effective_context:
             self._bind_correct_effective_context(correct_effective_context)
 
-    def _unbind_start_component(self):
-        start_component = self.start_component
-        if start_component is not None:
+    def _unbind_component(self):
+        component = self.component
+        if component is not None:
             try:
-                start_component._indicators.remove(self)
+                component._indicators.remove(self)
             except ValueError:
                 pass
-        self._start_component = None
+        self._component = None
 
     ### PUBLIC PROPERTIES ###
 
@@ -163,9 +161,9 @@ class IndicatorWrapper(AbjadObject):
         return self._scope
 
     @property
-    def start_component(self):
+    def component(self):
         r'''Start component of indicator wrapper.
 
         Returns component.
         '''
-        return self._start_component
+        return self._component

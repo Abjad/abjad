@@ -353,7 +353,7 @@ class Component(AbjadObject):
         self._update_now(marks=True)
         # gather candidate wrappers
         candidate_wrappers = datastructuretools.SortedCollection(
-            key=lambda x: x.start_component._get_timespan().start_offset
+            key=lambda x: x.component._get_timespan().start_offset
             )
         for parent in self._get_parentage(include_self=True):
             wrappers = parent._dependent_wrappers

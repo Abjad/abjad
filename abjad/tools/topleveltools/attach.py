@@ -79,16 +79,16 @@ def attach(indicator, component_expression, scope=None):
             unwrap=False,
             )
         if effective_indicator is not None:
-            timespan = effective_indicator._start_component._get_timespan()
+            timespan = effective_indicator.component._get_timespan()
             mark_start_offset = timespan.start_offset
             timespan = component_expression._get_timespan()
-            start_component_start_offset = timespan.start_offset
-            if mark_start_offset == start_component_start_offset:
+            component_start_offset = timespan.start_offset
+            if mark_start_offset == component_start_offset:
                 message = 'effective indicator already attached'
                 message += ' to some component starting at same time.'
                 raise ValueError(message)
         if isinstance(indicator, indicatortools.IndicatorWrapper):
-            indicator._bind_to_start_component(component_expression)
+            indicator._bind_to_component(component_expression)
         component_expression._indicators.append(indicator)
     else:
         message = 'can not attach {!r} to {!r}.'

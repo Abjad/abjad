@@ -46,7 +46,7 @@ class LilyPondFormatManager(object):
         if wrapper._get_effective_context() is not None:
             return result
         if isinstance(wrapper.indicator, indicatortools.TimeSignature):
-            if isinstance(wrapper.start_component, scoretools.Measure):
+            if isinstance(wrapper.component, scoretools.Measure):
                 return result
         result = [r'%%% {} %%%'.format(x) for x in result]
         return result
@@ -96,9 +96,8 @@ class LilyPondFormatManager(object):
             format_slot_subsection = None
             # store wrappers for later handling
             if isinstance(item, indicatortools.IndicatorWrapper):
-                #wrappers.append(item)
                 if manager._is_formattable_wrapper(
-                    item, item.start_component, component):
+                    item, item.component, component):
                     wrappers.append(item)
                 continue
             # skip nonprinting items like annotation
@@ -145,9 +144,11 @@ class LilyPondFormatManager(object):
                 assert isinstance(wrapper, indicatortools.IndicatorWrapper)
                 if wrapper in wrappers:
                     continue
-                start_component = parent
+                #start_component = parent
+                #if manager._is_formattable_wrapper(
+                #    wrapper, start_component, component):
                 if manager._is_formattable_wrapper(
-                    wrapper, start_component, component):
+                    wrapper, wrapper.component, component):
                     wrappers.append(wrapper)
         #print wrappers, 'ZZZ'
         # bundle wrapper contributions
