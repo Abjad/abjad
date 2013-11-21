@@ -309,7 +309,7 @@ class Chord(Leaf):
         if self.written_pitch_indication_is_at_sounding_pitch:
             return self.written_pitches
         else:
-            instrument = self._get_effective_context_mark(
+            instrument = self._get_effective_indicator(
                 instrumenttools.Instrument)
             if not instrument:
                 message = 'effective instrument of note can not be determined.'

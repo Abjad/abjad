@@ -77,7 +77,7 @@ def attach(indicator, component_expression, scope=None):
             classes = (type(indicator),)
         #print classes, 'classes'
         effective_context_mark = \
-            component_expression._get_effective_context_mark(
+            component_expression._get_effective_indicator(
                 classes,
                 unwrap=False,
                 )

@@ -74,7 +74,7 @@ class ContextMark(AbjadObject):
         from abjad.tools import indicatortools
         classes = (type(self), )
         effective_context_mark = \
-            start_component._get_effective_context_mark(classes)
+            start_component._get_effective_indicator(classes)
         if effective_context_mark is not None:
             timespan = effective_context_mark._start_component._get_timespan()
             mark_start_offset = timespan.start_offset

@@ -28,7 +28,7 @@ def iterate_out_of_range_notes_and_chords(expr):
 
     component_classes = (scoretools.Note, scoretools.Chord)
     for note_or_chord in iterate(expr).by_class(component_classes):
-        instrument = note_or_chord._get_effective_context_mark(
+        instrument = note_or_chord._get_effective_indicator(
             instrumenttools.Instrument)
         if instrument is None:
             message = 'no instrument found.'

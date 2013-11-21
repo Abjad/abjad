@@ -354,7 +354,7 @@ class Component(AbjadObject):
             parentage = self._get_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
-    def _get_effective_context_mark(
+    def _get_effective_indicator(
         self, 
         context_mark_prototypes=None,
         unwrap=True,
@@ -419,7 +419,7 @@ class Component(AbjadObject):
     def _get_effective_staff(self):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
-        staff_change = self._get_effective_context_mark(
+        staff_change = self._get_effective_indicator(
             indicatortools.StaffChange)
         if staff_change is not None:
             effective_staff = staff_change.staff

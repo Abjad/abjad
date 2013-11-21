@@ -80,11 +80,11 @@ def notes_and_chords_are_on_expected_clefs(
     from abjad.tools import instrumenttools
     for note_or_chord in iterate(expr).by_class(
         (scoretools.Note, scoretools.Chord)):
-        instrument = note_or_chord._get_effective_context_mark(
+        instrument = note_or_chord._get_effective_indicator(
             instrumenttools.Instrument)
         if not instrument:
             return False
-        clef = note_or_chord._get_effective_context_mark(indicatortools.Clef)
+        clef = note_or_chord._get_effective_indicator(indicatortools.Clef)
         if not clef:
             return False
         if clef == indicatortools.Clef('percussion'):

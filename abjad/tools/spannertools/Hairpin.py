@@ -129,7 +129,7 @@ class Hairpin(Spanner):
                         )
                     result.append(string)
                 else:
-                    effective_dynamic = leaf._get_effective_context_mark(
+                    effective_dynamic = leaf._get_effective_indicator(
                         indicatortools.Dynamic)
                     if effective_dynamic is None:
                         result.append('\\!')
@@ -152,7 +152,7 @@ class Hairpin(Spanner):
                     result.append('%s\\%s' % (
                         direction_string, self.stop_dynamic_string))
                 else:
-                    effective_dynamic = leaf._get_effective_context_mark(
+                    effective_dynamic = leaf._get_effective_indicator(
                         indicatortools.Dynamic)
                     if effective_dynamic is None:
                         result.append('\\!')

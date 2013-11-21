@@ -249,7 +249,7 @@ class Note(Leaf):
             if self.written_pitch_indication_is_at_sounding_pitch:
                 return self.written_pitch
             else:
-                instrument = self._get_effective_context_mark(
+                instrument = self._get_effective_indicator(
                     instrumenttools.Instrument)
                 if not instrument:
                     message = 'effective instrument can not be determined.'
@@ -267,7 +267,7 @@ class Note(Leaf):
             if self.written_pitch_indication_is_at_sounding_pitch:
                 self.written_pitch = pitch
             else:
-                instrument = self._get_effective_context_mark(
+                instrument = self._get_effective_indicator(
                     instrumenttools.Instrument)
                 if not instrument:
                     message = 'effective instrument can not be determined.'

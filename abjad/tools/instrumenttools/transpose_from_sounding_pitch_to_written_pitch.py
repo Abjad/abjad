@@ -51,7 +51,7 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
         (scoretools.Note, scoretools.Chord)):
         if not note_or_chord.written_pitch_indication_is_at_sounding_pitch:
             continue
-        instrument = note_or_chord._get_effective_context_mark(
+        instrument = note_or_chord._get_effective_indicator(
             instrumenttools.Instrument)
         if not instrument:
             continue

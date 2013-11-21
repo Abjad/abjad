@@ -194,7 +194,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns context mark or none.
         '''
-        return self._component._get_effective_context_mark(
+        return self._component._get_effective_indicator(
             context_mark_prototypes=context_mark_prototypes,
             )
 
@@ -498,7 +498,7 @@ class InspectionAgent(abctools.AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import indicatortools
-        time_signature = self._component._get_effective_context_mark(
+        time_signature = self._component._get_effective_indicator(
             indicatortools.TimeSignature)
         if time_signature is None:
             time_signature_duration = durationtools.Duration(4, 4)
