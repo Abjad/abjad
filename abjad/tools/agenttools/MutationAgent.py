@@ -1764,7 +1764,7 @@ class MutationAgent(abctools.AbjadObject):
 
     # TODO: fix bug that unintentionally fractures ties.
     # TODO: add tests of tupletted notes and rests.
-    # TODO: add examples that show indicator and context mark handling.
+    # TODO: add examples that show indicator handling.
     # TODO: add example showing grace and after grace handling.
     def split(
         self,

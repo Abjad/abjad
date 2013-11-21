@@ -71,9 +71,10 @@ class UpdateManager(AbjadObject):
 
     @staticmethod
     def _update_all_indicators(component):
-        r'''Updating marks does not update offsets.
-        On the other hand, getting effective mark updates offsets
-        when at least one mark of appropriate type attaches to score.
+        r'''Updating indicators does not update offsets.
+        On the other hand, getting an effective indicator does update 
+        offsets when at least one indicator of the appropriate type 
+        attaches to score.
         '''
         components = UpdateManager._iterate_entire_score(component)
         for component in components:

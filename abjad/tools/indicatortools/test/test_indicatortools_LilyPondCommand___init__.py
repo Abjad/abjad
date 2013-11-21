@@ -64,7 +64,7 @@ def test_indicatortools_LilyPondCommand___init___03():
 
 
 def test_indicatortools_LilyPondCommand___init___04():
-    r'''Initialize LilyPondCommand from other LilyPond command mark.
+    r'''Initialize LilyPondCommand from other LilyPond command.
     '''
 
     command_1 = indicatortools.LilyPondCommand('break', 'closing')

@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_Tempo_quarters_per_minute_01():
-    r'''Maelzel metronome marking with integer-valued mark.
+    r'''Maelzel metronome marking with integer.
     '''
 
     tempomark = Tempo(Duration(3, 32), 52)
@@ -11,7 +11,7 @@ def test_indicatortools_Tempo_quarters_per_minute_01():
 
 
 def test_indicatortools_Tempo_quarters_per_minute_02():
-    r'''Maelzel metronome marking with float-valued mark.
+    r'''Maelzel metronome marking with float.
     '''
 
     tempomark = Tempo(Duration(3, 32), 52.5)

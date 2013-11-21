@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
-
 import inspect
 import pytest
-
 from abjad.tools import documentationtools
 
 

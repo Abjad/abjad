@@ -471,9 +471,9 @@ class LilyPondParser(abctools.Parser):
         return context
 
     def _construct_sequential_music(self, music):
-        # mark sorting could be rewritten into a single list, using tuplets,
-        # with t[0] being 'forward' or 'backward' and t[1] being the mark, as
-        # this better preserves attachment order. Not clear if we need it.
+        # indicator sorting could be rewritten into a single list, using tuplets,
+        # with t[0] being 'forward' or 'backward' and t[1] being the indicator
+        # as this better preserves attachment order. Not clear if we need it.
         container = scoretools.Container()
         previous_leaf = None
         apply_forward = []
@@ -481,17 +481,16 @@ class LilyPondParser(abctools.Parser):
         # sort events into forward or backwards attaching
         # and attach them to the proper leaf
         for x in music:
-            #print x, 'X'
             if isinstance(x, scoretools.Component) \
                 and not isinstance(x, scoretools.GraceContainer):
-                for mark in apply_forward:
-                    attach(mark, x)
+                for indicator in apply_forward:
+                    attach(indicator, x)
                 if previous_leaf:
-                    for mark in apply_backward:
-                        attach(mark, previous_leaf)
+                    for indicator in apply_backward:
+                        attach(indicator, previous_leaf)
                 else:
-                    for mark in apply_backward:
-                        attach(mark, x)
+                    for indicator in apply_backward:
+                        attach(indicator, x)
                 apply_forward = []
                 apply_backward = []
                 previous_leaf = x
@@ -507,15 +506,15 @@ class LilyPondParser(abctools.Parser):
         # attach remaining events to last leaf 
         # or to the container itself if there were no leaves
         if previous_leaf:
-            for mark in apply_forward:
-                attach(mark, previous_leaf)
-            for mark in apply_backward:
-                attach(mark, previous_leaf)
+            for indicator in apply_forward:
+                attach(indicator, previous_leaf)
+            for indicator in apply_backward:
+                attach(indicator, previous_leaf)
         else:
-            for mark in apply_forward:
-                attach(mark, container)
-            for mark in apply_backward:
-                attach(mark, container)
+            for indicator in apply_forward:
+                attach(indicator, container)
+            for indicator in apply_backward:
+                attach(indicator, container)
         return container
 
     def _construct_simultaneous_music(self, music):

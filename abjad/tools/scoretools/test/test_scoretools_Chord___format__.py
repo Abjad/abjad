@@ -14,7 +14,7 @@ def test_scoretools_Chord___format___01():
 
 
 def test_scoretools_Chord___format___02():
-    r'''Format chord with LilyPond command mark.
+    r'''Format chord with LilyPond command.
     '''
 
     chord = Chord("<d' ef' e'>4")
@@ -25,7 +25,7 @@ def test_scoretools_Chord___format___02():
 
 
 def test_scoretools_Chord___format___03():
-    r'''Format tweaked chord with LilyPond command mark.
+    r'''Format tweaked chord with LilyPond command.
     '''
 
     chord = Chord("<d' ef' e'>4")

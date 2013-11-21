@@ -42,7 +42,6 @@ class LilyPondFormatManager(object):
             result.extend(lilypond_format)
         else:
             result.append(lilypond_format)
-        ec = wrapper._get_effective_context()
         if wrapper._get_effective_context() is not None:
             return result
         if isinstance(wrapper.indicator, indicatortools.TimeSignature):
@@ -81,7 +80,7 @@ class LilyPondFormatManager(object):
         return False
 
     @staticmethod
-    def _populate_mark_format_contributions(component, bundle):
+    def _populate_indicator_format_contributions(component, bundle):
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools import systemtools
@@ -90,7 +89,6 @@ class LilyPondFormatManager(object):
         items = component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
         wrappers = []
-        other_items = []
         # organize items attached to component
         for item in items:
             format_slot_subsection = None
@@ -125,9 +123,6 @@ class LilyPondFormatManager(object):
                 format_slot_subsection = 'comments'
             elif isinstance(item, indicatortools.StemTremolo):
                 format_slot_subsection = 'stem_tremolos'
-            # otherwise the item is something else;
-            # most likely key signature, time signature or
-            # something else that used to be a context mark
             else:
                 message = 'do not know how to classify {!r}.'.format(item)
                 raise Exception(message)
@@ -319,9 +314,10 @@ class LilyPondFormatManager(object):
         from abjad.tools import systemtools
         manager = LilyPondFormatManager
         bundle = systemtools.LilyPondFormatBundle()
-        manager._populate_mark_format_contributions(component, bundle)
+        manager._populate_indicator_format_contributions(component, bundle)
         manager._populate_spanner_format_contributions(component, bundle)
-        manager._populate_context_setting_format_contributions(component, bundle)
+        manager._populate_context_setting_format_contributions(
+            component, bundle)
         manager._populate_grob_override_format_contributions(component, bundle)
         manager._populate_grob_revert_format_contributions(component, bundle)
         bundle.alphabetize()

@@ -50,7 +50,7 @@ class DynamicTextSpanner(Spanner):
     def _format_right_of_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):
-            result.append(r'\%s' % self.mark)
+            result.append(r'\{}'.format(self.mark))
         return result
 
     ### PUBLIC PROPERTIES ###

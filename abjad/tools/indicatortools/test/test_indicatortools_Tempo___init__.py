@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_indicatortools_Tempo___init___01():
-    r'''Initialize tempo with integer-valued mark.
+    r'''Initialize tempo with integer.
     '''
 
     tempo = Tempo(Duration(3, 32), 52)
@@ -11,7 +11,7 @@ def test_indicatortools_Tempo___init___01():
 
 
 def test_indicatortools_Tempo___init___02():
-    r'''Initialize tempo with float-valued mark.
+    r'''Initialize tempo with float.
     '''
 
     tempo = Tempo(Duration(3, 32), 52.5)
