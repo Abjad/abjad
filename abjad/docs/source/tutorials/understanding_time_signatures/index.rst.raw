@@ -45,14 +45,14 @@ in effect for either our staff or for the five notes it contains.
 We can use the inspector to see that this is the case:
 
 <abjad>
-print inspect(staff).get_effective_context_mark(indicatortools.TimeSignature)
+print inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
 </abjad>
 
 And:
 
 <abjad>
 for leaf in staff.select_leaves():
-    print inspect(leaf).get_effective_context_mark(
+    print inspect(leaf).get_effective_indicator(
         indicatortools.TimeSignature)
 </abjad>
 
@@ -61,7 +61,7 @@ this:
 
 <abjad>
 for component in iterationtools.iterate_components_in_expr(staff):
-    effective_time_signature = inspect(component).get_effective_context_mark(
+    effective_time_signature = inspect(component).get_effective_indicator(
         indicatortools.TimeSignature)
     print component, effective_time_signature
 </abjad>
@@ -167,7 +167,7 @@ And our staff has likewise transitioned from a state of having no effective
 time signature to a state of having an effective time signature:
 
 <abjad>
-inspect(staff).get_effective_context_mark(indicatortools.TimeSignature)
+inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
 </abjad>
 
 And what about the leaves inside our staff?
@@ -177,7 +177,7 @@ Indeed they do:
 
 <abjad>
 for leaf in staff.select_leaves():
-    effective_time_signature = inspect(leaf).get_effective_context_mark(
+    effective_time_signature = inspect(leaf).get_effective_indicator(
         indicatortools.TimeSignature)
     print leaf, effective_time_signature
 </abjad>
@@ -231,7 +231,7 @@ time_signature.start_component is None
 And also like so:
 
 <abjad>
-print inspect(staff).get_effective_context_mark(indicatortools.TimeSignature)
+print inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
 </abjad>
 
 Our time signature now knows nothing about our staff. And vice versa.
@@ -269,7 +269,7 @@ duple_time_signature.detach()
 ... confirm that our staff is now time signatureless ...
 
 <abjad>
-print inspect(staff).get_effective_context_mark(indicatortools.TimeSignature)
+print inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
 </abjad>
 
 <abjad>
@@ -291,7 +291,7 @@ time_signature.numerator = 2
 ... and check to make sure that everything is as it should be:
 
 <abjad>
-inspect(staff).get_effective_context_mark(indicatortools.TimeSignature)
+inspect(staff).get_effective_indicator(indicatortools.TimeSignature)
 time_signature.start_component
 </abjad>
 

@@ -54,7 +54,7 @@ def test_scoretools_Staff_time_signature_03():
     time_signature = TimeSignature((2, 4))
     attach(time_signature, staff)
     for x in staff:
-        assert inspect(x).get_effective_context_mark(TimeSignature) \
+        assert inspect(x).get_effective_indicator(TimeSignature) \
             == TimeSignature((2, 4))
 
 
@@ -67,5 +67,5 @@ def test_scoretools_Staff_time_signature_04():
     attach(time_signature, staff)
     detach(time_signature, staff)
     for leaf in staff:
-        assert inspect(leaf).get_effective_context_mark(
+        assert inspect(leaf).get_effective_indicator(
             TimeSignature) is None

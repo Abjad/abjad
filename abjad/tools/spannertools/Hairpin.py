@@ -133,7 +133,7 @@ class Hairpin(Spanner):
                         indicatortools.Dynamic)
                     if effective_dynamic is None:
                         result.append('\\!')
-                    elif effective_dynamic not in leaf._start_context_marks:
+                    elif effective_dynamic not in leaf._indicators:
                         found_match = False
                         for wrapper in \
                             leaf._get_wrappers(indicatortools.Dynamic):

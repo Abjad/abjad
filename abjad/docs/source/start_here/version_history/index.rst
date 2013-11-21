@@ -77,7 +77,7 @@ These are the methods available as part of the new inspection interface:
 - ``InspectionAgent.get_contents()``
 - ``InspectionAgent.get_descendants()``
 - ``InspectionAgent.get_duration()``
-- ``InspectionAgent.get_effective_context_mark()``
+- ``InspectionAgent.get_effective_indicator()``
 - ``InspectionAgent.get_effective_staff()``
 - ``InspectionAgent.get_grace_containers()``
 - ``InspectionAgent.get_leaf()``

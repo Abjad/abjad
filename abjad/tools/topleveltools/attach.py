@@ -70,20 +70,16 @@ def attach(indicator, component_expression, scope=None):
     if hasattr(indicator, '_attach'):
         indicator._attach(component_expression)
     elif hasattr(component_expression, '_indicators'):
-        #print 'flamingo'
         if isinstance(indicator, indicatortools.IndicatorWrapper):
             classes = (type(indicator.indicator),)
         else:
             classes = (type(indicator),)
-        #print classes, 'classes'
-        effective_context_mark = \
-            component_expression._get_effective_indicator(
-                classes,
-                unwrap=False,
-                )
-        #print effective_context_mark, 'ECM'
-        if effective_context_mark is not None:
-            timespan = effective_context_mark._start_component._get_timespan()
+        effective_indicator = component_expression._get_effective_indicator(
+            classes,
+            unwrap=False,
+            )
+        if effective_indicator is not None:
+            timespan = effective_indicator._start_component._get_timespan()
             mark_start_offset = timespan.start_offset
             timespan = component_expression._get_timespan()
             start_component_start_offset = timespan.start_offset

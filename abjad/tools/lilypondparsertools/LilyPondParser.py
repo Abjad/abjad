@@ -464,9 +464,10 @@ class LilyPondParser(abctools.Parser):
             component = music.pop(0)
             context.append(component)
 
-        context_marks = music._start_context_marks
-        for context_mark in context_marks:
-            attach(context_mark, context)
+        # TODO: port forward to music._indicators?
+#        context_marks = music._start_context_marks
+#        for context_mark in context_marks:
+#            attach(context_mark, context)
 
         return context
 

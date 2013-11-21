@@ -28,7 +28,6 @@ class Component(AbjadObject):
 
     __slots__ = (
         '_indicators',
-        '_dependent_context_marks',
         '_dependent_wrappers',
         '_is_forbidden_to_update',
         '_marks_are_current',
@@ -38,7 +37,6 @@ class Component(AbjadObject):
         '_parent',
         '_set',
         '_spanners',
-        '_start_context_marks',
         '_start_offset',
         '_start_offset_in_seconds',
         '_stop_offset',
@@ -53,11 +51,9 @@ class Component(AbjadObject):
     @abc.abstractmethod
     def __init__(self):
         self._indicators = list()
-        self._dependent_context_marks = list()
         self._dependent_wrappers = list()
         self._is_forbidden_to_update = False
         self._marks_are_current = False
-        self._start_context_marks = list()
         self._offsets_in_seconds_are_current = False
         self._offsets_are_current = False
         self._parent = None
@@ -340,17 +336,13 @@ class Component(AbjadObject):
             parentage = self._get_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
-    def _get_effective_indicator(
-        self, 
-        context_mark_prototypes=None,
-        unwrap=True,
-        ):
+    def _get_effective_indicator(self, prototype=None, unwrap=True):
         from abjad.tools import indicatortools
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
         # do special things for time signatures
-        if context_mark_prototypes == indicatortools.TimeSignature or \
-            context_mark_prototypes == (indicatortools.TimeSignature,):
+        if prototype == indicatortools.TimeSignature or \
+            prototype == (indicatortools.TimeSignature,):
             if isinstance(self, scoretools.Measure):
                 if self._has_indicator(indicatortools.TimeSignature):
                     wrapper = self._get_indicator(indicatortools.TimeSignature)
@@ -359,27 +351,6 @@ class Component(AbjadObject):
                     return
         # update marks of entire score tree if necessary
         self._update_now(marks=True)
-        # gather candidate marks
-        candidate_context_marks = datastructuretools.SortedCollection(
-            key=lambda x: x._start_component._get_timespan().start_offset
-            )
-        for parent in self._get_parentage(include_self=True):
-            parent_context_marks = parent._dependent_context_marks
-            for context_mark in parent_context_marks:
-                if isinstance(context_mark, context_mark_prototypes):
-                    if context_mark._get_effective_context() is not None:
-                        candidate_context_marks.insert(context_mark)
-                    elif isinstance(context_mark, indicatortools.TimeSignature):
-                        if isinstance(
-                            context_mark._start_component, scoretools.Measure):
-                            candidate_context_marks.insert(context_mark)
-        # elect most recent candidate context mark
-        if candidate_context_marks:
-            try:
-                start_offset = self._get_timespan().start_offset
-                return candidate_context_marks.find_le(start_offset)
-            except ValueError:
-                pass
         # gather candidate wrappers
         candidate_wrappers = datastructuretools.SortedCollection(
             key=lambda x: x.start_component._get_timespan().start_offset
@@ -387,7 +358,7 @@ class Component(AbjadObject):
         for parent in self._get_parentage(include_self=True):
             wrappers = parent._dependent_wrappers
             for wrapper in wrappers:
-                if isinstance(wrapper.indicator, context_mark_prototypes):
+                if isinstance(wrapper.indicator, prototype):
                     candidate_wrappers.insert(wrapper)
         #print candidate_wrappers, 'CW'
         # elect most recent candidate wrapper

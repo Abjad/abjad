@@ -28,9 +28,9 @@ class TimeSignature(AbjadObject):
             f'8
         }
 
-    Time signatures attach to the **staff context** by default.
+    Time signatures are scoped to the **staff** by default.
 
-    Attach time signatures to the **score context** like this:
+    Set the scope of time signatures to the **score** like this:
 
     ::
 
@@ -227,15 +227,6 @@ class TimeSignature(AbjadObject):
                 self.pair,
                 ),
             )
-
-#    ### PRIVATE METHODS ###
-#
-#    def _attach(self, start_component):
-#        classes = (type(self), )
-#        if start_component._has_context_mark(context_mark_prototypes=classes):
-#            message = 'component already has context mark attached.'
-#            raise ValueError(message)
-#        self._bind_to_start_component(start_component)
 
     ### PUBLIC PROPERTIES ###
 

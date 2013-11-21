@@ -54,7 +54,7 @@ Use the inspector to get the instrument currently in effect for a component:
 
 ::
 
-   >>> inspect(staff[1]).get_effective_context_mark(instrumenttools.Instrument)
+   >>> inspect(staff[1]).get_effective_indicator(instrumenttools.Instrument)
    Violin()(Staff{4})
 
 

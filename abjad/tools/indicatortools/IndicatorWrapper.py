@@ -81,7 +81,6 @@ class IndicatorWrapper(AbjadObject):
         from abjad.tools import scoretools
         assert isinstance(start_component, scoretools.Component)
         self._unbind_start_component()
-        #start_component._start_context_marks.append(self)
         self._start_component = start_component
         self._update_effective_context()
         if isinstance(self.indicator, indicatortools.Tempo):
