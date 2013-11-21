@@ -106,12 +106,11 @@ class Beam(Spanner):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def direction():
-        def fget(self):
-            return self._direction
-        def fset(self, arg):
-            self._direction = \
-                stringtools.arg_to_tridirectional_lilypond_symbol(arg)
-        return property(**locals())
+    @property
+    def direction(self):
+        return self._direction
 
+    @direction.setter
+    def direction(self, arg):
+        self._direction = \
+            stringtools.arg_to_tridirectional_lilypond_symbol(arg)

@@ -143,90 +143,90 @@ class DuratedComplexBeam(ComplexBeam):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def durations():
-        def fget(self):
-            r'''Get spanner leaf group durations:
+    @property
+    def durations(self):
+        r'''Get spanner leaf group durations:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'16 d'16 e'16 f'16")
-                >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations,
-                ...     )
-                >>> attach(beam, staff[:])
-                >>> beam.durations
-                [Duration(1, 8), Duration(1, 8)]
+            >>> staff = Staff("c'16 d'16 e'16 f'16")
+            >>> durations = [Duration(1, 8), Duration(1, 8)]
+            >>> beam = spannertools.DuratedComplexBeam(
+            ...     durations=durations,
+            ...     )
+            >>> attach(beam, staff[:])
+            >>> beam.durations
+            [Duration(1, 8), Duration(1, 8)]
 
-            Set spanner leaf group durations:
+        Set spanner leaf group durations:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'16 d'16 e'16 f'16")
-                >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations,
-                ...     )
-                >>> attach(beam, staff[:])
-                >>> beam.durations = [Duration(1, 4)]
-                >>> beam.durations
-                [Duration(1, 4)]
+            >>> staff = Staff("c'16 d'16 e'16 f'16")
+            >>> durations = [Duration(1, 8), Duration(1, 8)]
+            >>> beam = spannertools.DuratedComplexBeam(
+            ...     durations=durations,
+            ...     )
+            >>> attach(beam, staff[:])
+            >>> beam.durations = [Duration(1, 4)]
+            >>> beam.durations
+            [Duration(1, 4)]
 
-            Set iterable.
-            '''
-            return self._durations
-        def fset(self, arg):
-            if arg is None:
-                self._durations = None
-            elif isinstance(arg, list):
-                for i, d in enumerate(arg):
-                    if isinstance(d, tuple):
-                        arg[i] = durationtools.Duration(*d)
-                    else:
-                        arg[i] = durationtools.Duration(d)
-                self._durations = arg
-            else:
-                message = 'durations must be list of durations or none.'
-                raise ValueError(message)
-        return property(**locals())
+        Set iterable.
+        '''
+        return self._durations
 
-    @apply
-    def span():
-        def fget(self):
-            r'''Get top-level beam count:
+    @durations.setter
+    def durations(self, arg):
+        if arg is None:
+            self._durations = None
+        elif isinstance(arg, list):
+            for i, d in enumerate(arg):
+                if isinstance(d, tuple):
+                    arg[i] = durationtools.Duration(*d)
+                else:
+                    arg[i] = durationtools.Duration(d)
+            self._durations = arg
+        else:
+            message = 'durations must be list of durations or none.'
+            raise ValueError(message)
 
-            ::
+    @property
+    def span(self):
+        r'''Get top-level beam count:
 
-                >>> staff = Staff("c'16 d'16 e'16 f'16")
-                >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations, 
-                ...     span=1,
-                ...     )
-                >>> attach(beam, staff[:])
-                >>> beam.span
-                1
+        ::
 
-            Set top-level beam count:
+            >>> staff = Staff("c'16 d'16 e'16 f'16")
+            >>> durations = [Duration(1, 8), Duration(1, 8)]
+            >>> beam = spannertools.DuratedComplexBeam(
+            ...     durations=durations, 
+            ...     span=1,
+            ...     )
+            >>> attach(beam, staff[:])
+            >>> beam.span
+            1
 
-            ::
+        Set top-level beam count:
 
-                >>> staff = Staff("c'16 d'16 e'16 f'16")
-                >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = spannertools.DuratedComplexBeam(
-                ...     durations=durations, 
-                ...     span=1,
-                ...     )
-                >>> attach(beam, staff[:])
-                >>> beam.span = 2
-                >>> beam.span
-                2
+        ::
 
-            Set nonnegative integer.
-            '''
-            return self._span
-        def fset(self, arg):
-            assert isinstance(arg, (int, type(None)))
-            self._span = arg
-        return property(**locals())
+            >>> staff = Staff("c'16 d'16 e'16 f'16")
+            >>> durations = [Duration(1, 8), Duration(1, 8)]
+            >>> beam = spannertools.DuratedComplexBeam(
+            ...     durations=durations, 
+            ...     span=1,
+            ...     )
+            >>> attach(beam, staff[:])
+            >>> beam.span = 2
+            >>> beam.span
+            2
+
+        Set nonnegative integer.
+        '''
+        return self._span
+
+    @span.setter
+    def span(self, arg):
+        assert isinstance(arg, (int, type(None)))
+        self._span = arg

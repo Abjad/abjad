@@ -5,6 +5,7 @@ from abjad.tools import scoretools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
+
 class Accordion(Instrument):
     r'''An accordion.
 
