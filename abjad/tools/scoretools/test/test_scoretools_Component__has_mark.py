@@ -18,8 +18,8 @@ def test_scoretools_Component__has_mark_02():
     articulation = Articulation('staccato')
     attach(articulation, staff[0])
 
-    staff[0]._has_context_mark(Articulation)
-    assert not staff[1]._has_context_mark(Articulation)
+    assert staff[0]._has_indicator(Articulation)
+    assert not staff[1]._has_indicator(Articulation)
 
 
 def test_scoretools_Component__has_mark_03():
@@ -61,7 +61,7 @@ def test_scoretools_Component__has_mark_06():
     attach(time_signature, staff[0])
 
     assert staff[0]._has_indicator(TimeSignature)
-    assert not staff[1]._has_context_mark(indicatortools.ContextMark)
-    assert not staff[2]._has_context_mark(indicatortools.ContextMark)
-    assert not staff[3]._has_context_mark(indicatortools.ContextMark)
-    assert not staff._has_context_mark(indicatortools.ContextMark)
+    assert not staff[1]._has_indicator()
+    assert not staff[2]._has_indicator()
+    assert not staff[3]._has_indicator()
+    assert not staff._has_indicator()

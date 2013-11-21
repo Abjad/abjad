@@ -558,7 +558,7 @@ class LilyPondParser(abctools.Parser):
             'integer?':           lambda x: isinstance(x, int),
             'list?':              lambda x: isinstance(x, (list, tuple)),
             'ly:duration?':       lambda x: isinstance(x, lilypondparsertools.LilyPondDuration),
-            'ly:music?':          lambda x: isinstance(x, (scoretools.Component, indicatortools.ContextMark)),
+            'ly:music?':          lambda x: isinstance(x, scoretools.Component),
             'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedPitch),
             'markup?':            lambda x: isinstance(x, markuptools.MarkupCommand),
             'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
