@@ -504,11 +504,11 @@ class Leaf(Component):
         for middle_leaf in flattened_result[1:-1]:
             middle_leaf._detach_grace_containers(kind='grace')
             self._detach_grace_containers(kind='after')
-            detach(indicatortools.ContextMark, middle_leaf)
+            detach(object, middle_leaf)
         # adjust last leaf
         last_leaf = flattened_result[-1]
         last_leaf._detach_grace_containers(kind='grace')
-        detach(indicatortools.ContextMark, last_leaf)
+        detach(object, last_leaf)
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterate(flattened_result).by_class(
@@ -551,7 +551,7 @@ class Leaf(Component):
         self._detach_grace_containers(kind='after')
         # adjust new leaf
         new_leaf._detach_grace_containers(kind='grace')
-        detach(indicatortools.ContextMark, new_leaf)
+        #detach(indicatortools.ContextMark, new_leaf)
         left_leaf_list = self._set_duration(preprolated_duration)
         right_preprolated_duration = \
             leaf_multiplied_duration - preprolated_duration
