@@ -33,26 +33,6 @@ class LilyPondFormatManager(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _get_context_mark_format_pieces(context_mark):
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        assert isinstance(context_mark, indicatortools.ContextMark), \
-            repr(context_mark)
-        result = []
-        lilypond_format = context_mark._lilypond_format
-        if isinstance(lilypond_format, (tuple, list)):
-            result.extend(lilypond_format)
-        else:
-            result.append(lilypond_format)
-        if context_mark._get_effective_context() is not None:
-            return result
-        if isinstance(context_mark, indicatortools.TimeSignature):
-            if isinstance(context_mark._start_component, scoretools.Measure):
-                return result
-        result = [r'%%% {} %%%'.format(x) for x in result]
-        return result
-
-    @staticmethod
     def _get_wrapper_format_pieces(wrapper):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
@@ -70,37 +50,6 @@ class LilyPondFormatManager(object):
                 return result
         result = [r'%%% {} %%%'.format(x) for x in result]
         return result
-
-    @staticmethod
-    def _is_formattable_context_mark(mark, component):
-        from abjad.tools import scoretools
-        from abjad.tools import indicatortools
-        if mark._start_component is None:
-            return False
-        if isinstance(mark._start_component, scoretools.Measure):
-            if mark._start_component is component:
-                if not isinstance(mark, indicatortools.TimeSignature):
-                    return True
-                elif component.always_format_time_signature:
-                    return True
-                else:
-                    previous_measure = \
-                        scoretools.get_previous_measure_from_component(
-                            mark._start_component)
-                    if previous_measure is not None:
-                        previous_effective_time_signature = \
-                            previous_measure.time_signature
-                    else:
-                        previous_effective_time_signature = None
-                    if not mark == previous_effective_time_signature:
-                        return True
-        elif mark._format_slot == 'right':
-            if mark._start_component is component:
-                return True
-        elif mark._start_component is component:
-            return True
-        else:
-            return False
 
     @staticmethod
     def _is_formattable_wrapper(wrapper, start_component, component):
@@ -138,9 +87,8 @@ class LilyPondFormatManager(object):
         from abjad.tools import systemtools
         from abjad.tools.agenttools.InspectionAgent import inspect
         manager = LilyPondFormatManager
-        items = component._get_context_marks() + component._get_indicators()
+        items = component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
-        context_marks = []
         wrappers = []
         other_items = []
         # organize items attached to component
@@ -155,11 +103,6 @@ class LilyPondFormatManager(object):
                 continue
             # skip nonprinting items like annotation
             if not hasattr(item, '_lilypond_format'):
-                continue
-            # store formattable context marks attached to component
-            if isinstance(item, indicatortools.ContextMark):
-                if manager._is_formattable_context_mark(item, component):
-                    context_marks.append(item)
                 continue
             # store markup for later handling
             if isinstance(item, markuptools.Markup):
@@ -189,8 +132,6 @@ class LilyPondFormatManager(object):
             else:
                 message = 'do not know how to classify {!r}.'.format(item)
                 raise Exception(message)
-                #other_items.append(item)
-                #continue
             format_slot = item._format_slot
             format_slot = bundle.get(format_slot)
             contributions = format_slot.get(format_slot_subsection)
@@ -198,22 +139,6 @@ class LilyPondFormatManager(object):
             contributions.append(contribution)
             if format_slot_subsection == 'articulations':
                 contributions.sort()
-        #print component
-        #print wrappers, 'WWW'
-        # add formattable context marks attached to parents of component
-        for parent in inspect(component).get_parentage(include_self=False):
-            for context_mark in parent._start_context_marks:
-                assert isinstance(context_mark, indicatortools.ContextMark)
-                if context_mark in context_marks:
-                    continue
-                if manager._is_formattable_context_mark(context_mark, component):
-                    context_marks.append(context_mark)
-        # bundle context mark contributions
-        for context_mark in context_marks:
-            assert isinstance(context_mark, indicatortools.ContextMark)
-            format_pieces = manager._get_context_mark_format_pieces(context_mark)
-            format_slot = context_mark._format_slot
-            bundle.get(format_slot).context_marks.extend(format_pieces)
         # add formattable wrappers attached to parents of component
         for parent in inspect(component).get_parentage(include_self=False):
             for wrapper in parent._get_wrappers():
@@ -400,7 +325,6 @@ class LilyPondFormatManager(object):
         manager._populate_grob_revert_format_contributions(component, bundle)
         bundle.alphabetize()
         bundle.make_immutable()
-        #print component, bundle.opening.context_marks
         return bundle
 
     @staticmethod
@@ -620,9 +544,9 @@ class LilyPondFormatManager(object):
         result = ''
         for leaf in spanner.leaves:
             result += str(leaf)
-            result += '\tbefore: %s\n' % spanner._format_before_leaf(leaf)
-            result += '\t after: %s\n' % spanner._format_after_leaf(leaf)
-            result += '\t right: %s\n' % spanner._format_right_of_leaf(leaf)
+            result += '\tbefore: {}\n'.format(spanner._format_before_leaf(leaf))
+            result += '\t after: {}\n'.format(spanner._format_after_leaf(leaf))
+            result += '\t right: {}\n'.format(spanner._format_right_of_leaf(leaf))
             result += '\n'
         if result[-1] == '\n':
             result = result[:-1]
