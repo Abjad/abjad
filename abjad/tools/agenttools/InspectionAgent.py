@@ -336,35 +336,35 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._component._get_lineage()
 
-    def get_context_mark(
-        self,
-        context_mark_prototypes=None,
-        ):
-        r'''Gets exactly one context mark of `context_mark_prototypes`
-        attached to component.
+#    def get_context_mark(
+#        self,
+#        context_mark_prototypes=None,
+#        ):
+#        r'''Gets exactly one context mark of `context_mark_prototypes`
+#        attached to component.
+#
+#        Raises exception when no context mark of `context_mark_prototypes`
+#        is attached to component.
+#
+#        Returns context mark.
+#        '''
+#        return self._component._get_context_mark(
+#            context_mark_prototypes=context_mark_prototypes,
+#            )
 
-        Raises exception when no context mark of `context_mark_prototypes`
-        is attached to component.
-
-        Returns context mark.
-        '''
-        return self._component._get_context_mark(
-            context_mark_prototypes=context_mark_prototypes,
-            )
-
-    def get_context_marks(
-        self,
-        context_mark_prototypes=None,
-        ):
-        r'''Get all context marks of `context_mark_prototypes`
-        attached to component.
-
-        Returns tuple.
-        '''
-        result = self._component._get_context_marks(
-            context_mark_prototypes=context_mark_prototypes,
-            )
-        return result
+#    def get_context_marks(
+#        self,
+#        context_mark_prototypes=None,
+#        ):
+#        r'''Get all context marks of `context_mark_prototypes`
+#        attached to component.
+#
+#        Returns tuple.
+#        '''
+#        result = self._component._get_context_marks(
+#            context_mark_prototypes=context_mark_prototypes,
+#            )
+#        return result
 
     def get_markup(
         self,

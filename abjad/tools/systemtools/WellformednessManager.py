@@ -105,8 +105,7 @@ class WellformednessManager(AbjadObject):
         for hairpin in hairpins:
             if 2 < len(hairpin.leaves):
                 for leaf in hairpin.leaves[1:-1]:
-                    if leaf._get_context_marks(indicatortools.Dynamic) or \
-                        leaf._get_wrappers(indicatortools.Dynamic):
+                    if leaf._get_wrappers(indicatortools.Dynamic):
                         violators.append(hairpin)
                         bad += 1
                         break

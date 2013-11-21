@@ -218,9 +218,6 @@ class Component(AbjadObject):
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(contextualize(self))
-        for context_mark in self._get_context_marks():
-            new_context_mark = copy.copy(context_mark)
-            attach(new_context_mark, new)
         for indicator in self._get_indicators():
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)
@@ -232,17 +229,6 @@ class Component(AbjadObject):
         for grace_container in grace_containers:
             detach(grace_container, self)
         return grace_containers
-
-    def _detach_context_marks(
-        self,
-        context_mark_prototypes=None,
-        ):
-        marks = []
-        for context_mark in self._get_context_marks(
-            context_mark_prototypes=context_mark_prototypes):
-            context_mark.detach()
-            context_marks.append(context_mark)
-        return tuple(context_marks)
 
     def _detach_spanners(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
@@ -500,54 +486,6 @@ class Component(AbjadObject):
     def _get_lineage(self):
         return selectiontools.Lineage(self)
 
-    def _get_context_mark(self, context_mark_prototypes=None):
-        from abjad.tools import indicatortools
-        context_marks = self._get_context_marks(
-            context_mark_prototypes=context_mark_prototypes)
-        if not context_marks:
-            message = 'no context marks found.'
-            raise ValueError(message)
-        elif 1 < len(context_marks):
-            message = 'multiple context marks found.'
-            raise ValueError(message)
-        else:
-            context_mark = context_marks[0]
-        assert isinstance(context_mark, indicatortools.ContextMark), \
-            repr(context_mark)
-        return context_mark
-
-    def _get_context_marks(self, context_mark_prototypes=None):
-        from abjad.tools import indicatortools
-        context_mark_prototypes = context_mark_prototypes or \
-            (indicatortools.ContextMark,)
-        if not isinstance(context_mark_prototypes, tuple):
-            context_mark_prototypes = (context_mark_prototypes,)
-        context_mark_items = context_mark_prototypes[:]
-        context_mark_prototypes, context_mark_objects = [], []
-        for context_mark_item in context_mark_items:
-            if isinstance(context_mark_item, types.TypeType):
-                context_mark_prototypes.append(context_mark_item)
-            elif isinstance(context_mark_item, indicatortools.ContextMark):
-                context_mark_objects.append(context_mark_item)
-            else:
-                message = \
-                    'must be context mark class or context mark object: {!r}'
-                message = message.format(context_mark_item)
-        context_mark_prototypes = tuple(context_mark_prototypes)
-        context_mark_objects = tuple(context_mark_objects)
-        matching_context_marks = []
-        for context_mark in self._start_context_marks:
-            if isinstance(context_mark, context_mark_prototypes):
-                matching_context_marks.append(context_mark)
-            elif any(context_mark == x for x in context_mark_objects):
-                matching_context_marks.append(context_mark)
-        matching_context_marks = tuple(matching_context_marks)
-        assert all(
-            isinstance(x, indicatortools.ContextMark) 
-            for x in matching_context_marks), \
-            repr(matching_context_marks)
-        return tuple(matching_context_marks)
-
     def _get_markup(self, direction=None):
         from abjad.tools import markuptools
         markup = self._get_indicators(markuptools.Markup)
@@ -674,10 +612,6 @@ class Component(AbjadObject):
         indicators = self._get_indicators(indicator_prototypes=indicator_prototypes)
         return bool(indicators)
 
-    def _has_context_mark(self, context_mark_prototypes=None):
-        marks = self._get_context_marks(context_mark_prototypes=context_mark_prototypes)
-        return bool(marks)
-
     def _has_spanner(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
         return bool(spanners)
@@ -697,8 +631,6 @@ class Component(AbjadObject):
 
     def _move_marks(self, recipient_component):
         from abjad.tools import indicatortools
-        for context_mark in self._get_context_marks():
-            attach(context_mark, recipient_component)
         for indicator in self._get_indicators():
             detach(indicator, self)
             attach(indicator, recipient_component)
@@ -720,8 +652,6 @@ class Component(AbjadObject):
                 if durationtools.Duration(0) < candidate_new_parent_dur:
                     parent.target_duration = candidate_new_parent_dur
             elif isinstance(parent, scoretools.Measure):
-                #parent_time_signature = parent._get_context_mark(
-                #    indicatortools.TimeSignature)
                 wrapper = parent._get_indicator(indicatortools.TimeSignature)
                 parent_time_signature = wrapper.indicator
                 old_prolation = parent_time_signature.implied_prolation
@@ -735,8 +665,6 @@ class Component(AbjadObject):
                     better_time_signature)
                 detach(indicatortools.TimeSignature, parent)
                 attach(better_time_signature, parent)
-                #parent_time_signature = parent._get_context_mark(
-                #    indicatortools.TimeSignature)
                 wrapper = parent._get_indicator(indicatortools.TimeSignature)
                 parent_time_signature = wrapper.indicator
                 new_prolation = parent_time_signature.implied_prolation

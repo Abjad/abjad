@@ -206,9 +206,9 @@ class Measure(FixedDurationContainer):
             new._override = copy.copy(override(self))
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(contextualize(self))
-        for context_mark in self._get_context_marks():
-            new_context_mark = copy.copy(context_mark)
-            attach(new_context_mark, new)
+#        for context_mark in self._get_context_marks():
+#            new_context_mark = copy.copy(context_mark)
+#            attach(new_context_mark, new)
         for indicator in self._get_indicators():
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)

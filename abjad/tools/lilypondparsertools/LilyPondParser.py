@@ -293,9 +293,7 @@ class LilyPondParser(abctools.Parser):
                     raise Exception(message)
 
             # check for DynamicMarks, and terminate any hairpin
-            dm = leaf._get_context_marks(indicatortools.Dynamic)
-            wr = leaf._get_wrappers(indicatortools.Dynamic)
-            dynamics = dm + wr
+            dynamics = leaf._get_wrappers(indicatortools.Dynamic)
             if dynamics and spannertools.Hairpin in all_spanners and \
                 all_spanners[spannertools.Hairpin]:
                 all_spanners[spannertools.Hairpin][0].append(leaf)
