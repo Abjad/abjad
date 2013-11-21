@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_agenttools_InspectionAgent_get_mark_01():
@@ -155,7 +155,7 @@ def test_agenttools_InspectionAgent_get_mark_14():
 
     note = Note("c'8")
 
-    assert pytest.raises(Exception, 'inspect(note).get_context_mark()')
+    assert pytest.raises(Exception, 'inspect(note).get_indicator()')
 
 
 def test_agenttools_InspectionAgent_get_mark_15():
@@ -174,10 +174,9 @@ def test_agenttools_InspectionAgent_get_mark_16():
     violin = instrumenttools.Violin()
     attach(violin, staff)
 
-    found_instrument_mark = inspect(staff).get_context_mark(
-        instrumenttools.Instrument)
+    wrapper = inspect(staff).get_indicator(instrumenttools.Instrument)
 
-    assert found_instrument_mark is violin
+    assert wrapper.indicator is violin
 
 
 def test_agenttools_InspectionAgent_get_mark_17():

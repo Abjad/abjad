@@ -16,7 +16,7 @@ class QSchema(AbjadObject):
     search-tree, time-signature etc., effectively creating a template into
     which quantized rhythms can be "poured", without yet knowing what those
     rhythms might be, or even how much time the ultimate result will take.
-    Like Abjad's ``ContextMarks``, the settings made at any given time-step via
+    Like Abjad indicators the settings made at any given time-step via
     a ``QSchema`` instance are understood to persist until changed.
 
     All concrete ``QSchema`` subclasses strongly implement default values for

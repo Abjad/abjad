@@ -6,12 +6,10 @@ import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import schemetools
-#from abjad.tools.indicatortools.ContextMark import ContextMark
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 @functools.total_ordering
-#class Tempo(ContextMark):
 class Tempo(AbjadObject):
     r'''A tempo indication.
 
@@ -53,7 +51,6 @@ class Tempo(AbjadObject):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import scoretools
-        #ContextMark.__init__(self)
         self._default_scope = scoretools.Score
         if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
@@ -233,17 +230,6 @@ class Tempo(AbjadObject):
             new_tempo_indication = \
                 type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
-
-#    ### PRIVATE METHODS ###
-#
-##    def _bind_correct_effective_context(self, correct_effective_context):
-##        ContextMark._bind_correct_effective_context(
-##            self, correct_effective_context)
-##        correct_effective_context._update_later(offsets_in_seconds=True)
-#
-##    def _bind_to_start_component(self, start_component):
-##        ContextMark._bind_to_start_component(self, start_component)
-##        self._start_component._update_later(offsets_in_seconds=True)
 
     ### PRIVATE PROPERTIES ###
 

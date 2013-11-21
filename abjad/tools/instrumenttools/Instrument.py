@@ -5,7 +5,7 @@ from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
-from abjad.tools.indicatortools.ContextMark import ContextMark
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 # Note that instruments are the classes in the system that 
@@ -28,7 +28,7 @@ from abjad.tools.indicatortools.ContextMark import ContextMark
 # This is the meaning of the '_has_default_attribute_values' class attribute.
 # The impact this currently has in the system concerns the 
 # storage format of such objects.
-class Instrument(ContextMark):
+class Instrument(AbjadObject):
     '''A musical instrument.
     '''
 
@@ -47,7 +47,8 @@ class Instrument(ContextMark):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         ):
-        ContextMark.__init__(self)
+        from abjad.tools import scoretools
+        self._default_scope = scoretools.Staff
         self._default_instrument_name = instrument_name
         self._default_instrument_name_markup = instrument_name_markup
         self._default_short_instrument_name = short_instrument_name
@@ -147,13 +148,35 @@ class Instrument(ContextMark):
         return (
             )
 
+    # TODO: _scope_name needs to be taken from IndicatorWrapper!
+    #       should not be stored on instrument.
+    @property
+    def _lilypond_format(self):
+        result = []
+        line = r'\set {!s}.instrumentName = {!s}'
+        line = line.format(
+            self._scope_name, 
+            self.instrument_name_markup,
+            )
+        result.append(line)
+        line = r'\set {!s}.shortInstrumentName = {!s}'
+        line = line.format(
+            self._scope_name, 
+            self.short_instrument_name_markup,
+            )
+        result.append(line)
+        return result
+
     @property
     def _one_line_menuing_summary(self):
         return self.instrument_name
 
-#    @property
-#    def _scope_name(self):
-#        return self.scope.__name__
+    @property
+    def _scope_name(self):
+        if isinstance(self._default_scope, type):
+            return self._default_scope.__name__
+        else:
+            return type(self._default_scope).__name__
 
     @property
     def _storage_format_specification(self):
@@ -347,23 +370,6 @@ class Instrument(ContextMark):
                 self._instrument_name_markup = Markup(instrument_name_markup)
         return property(**locals())
 
-    @property
-    def _lilypond_format(self):
-        result = []
-        line = r'\set {!s}.instrumentName = {!s}'
-        line = line.format(
-            self._scope_name, 
-            self.instrument_name_markup,
-            )
-        result.append(line)
-        line = r'\set {!s}.shortInstrumentName = {!s}'
-        line = line.format(
-            self._scope_name, 
-            self.short_instrument_name_markup,
-            )
-        result.append(line)
-        return result
-
     @apply
     def pitch_range():
         def fget(self):
@@ -411,16 +417,17 @@ class Instrument(ContextMark):
                 self._short_instrument_name_markup = markup
             return self._short_instrument_name_markup
         def fset(self, short_instrument_name_markup):
-            from abjad.tools.markuptools import Markup
-            assert isinstance(short_instrument_name_markup, 
-                (str, type(Markup('')), type(None)))
+            from abjad.tools import markuptools
+            prototype = (str, type(markuptools.Markup('')), type(None))
+            assert isinstance(short_instrument_name_markup, prototype)
             if short_instrument_name_markup is None:
-                self._short_instrument_name_markup = \
-                    short_instrument_name_markup
+                markup = short_instrument_name_markup
+                self._short_instrument_name_markup = markup
             else:
-                self._short_instrument_name_markup = \
-                    Markup(short_instrument_name_markup)
+                markup = markuptools.Markup(short_instrument_name_markup)
+                self._short_instrument_name_markup = markup
         return property(**locals())
+
     @apply
     def sounding_pitch_of_written_middle_c():
         def fget(self):
