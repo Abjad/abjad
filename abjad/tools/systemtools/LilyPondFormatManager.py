@@ -87,12 +87,12 @@ class LilyPondFormatManager(object):
                 contributions.sort()
         # add formattable wrappers attached to parents of component
         for parent in inspect(component).get_parentage(include_self=False):
-            for wrapper in parent._get_wrappers():
-                assert isinstance(wrapper, indicatortools.IndicatorWrapper)
-                if wrapper in wrappers:
-                    continue
-                if wrapper._is_formattable_for_component(component):
-                    wrappers.append(wrapper)
+            for indicator in parent._get_indicators():
+                if isinstance(indicator, indicatortools.IndicatorWrapper):
+                    if indicator in wrappers:
+                        continue
+                    if indicator._is_formattable_for_component(component):
+                        wrappers.append(indicator)
         # bundle wrapper contributions
         for wrapper in wrappers:
             format_pieces = wrapper._get_format_pieces()

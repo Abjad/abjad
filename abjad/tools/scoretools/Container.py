@@ -376,11 +376,11 @@ class Container(Component):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
-        # cache wrappers attached to expr
-        expr_wrappers = []
+        # cache indicators attached to components in expr
+        expr_indicators = []
         for component in iterate(expr).by_class():
-            wrappers = component._get_wrappers()
-            expr_wrappers.extend(wrappers)
+            indicators = component._get_indicators()
+            expr_indicators.extend(indicators)
         # item assignment
         if isinstance(i, int):
             if isinstance(expr, str):
@@ -449,8 +449,9 @@ class Container(Component):
                 for component in reversed(expr):
                     spanner._insert(index, component)
                     component._spanners.add(spanner)
-        for wrapper in expr_wrappers:
-            wrapper._update_effective_context()
+        for indicator in expr_indicators:
+            if hasattr(indicator, '_update_effective_context'):
+                indicator._update_effective_context()
 
     ### PUBLIC PROPERTIES ###
 
