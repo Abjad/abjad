@@ -115,6 +115,50 @@ class IndicatorWrapper(AbjadObject):
             self.component._update_now(marks=True)
         return self._effective_context
 
+    def _get_format_pieces(self):
+        from abjad.tools import indicatortools
+        from abjad.tools import scoretools
+        result = []
+        lilypond_format = self.indicator._lilypond_format
+        if isinstance(lilypond_format, (tuple, list)):
+            result.extend(lilypond_format)
+        else:
+            result.append(lilypond_format)
+        if self._get_effective_context() is not None:
+            return result
+        if isinstance(self.indicator, indicatortools.TimeSignature):
+            if isinstance(self.component, scoretools.Measure):
+                return result
+        result = [r'%%% {} %%%'.format(x) for x in result]
+        return result
+
+    def _is_formattable_for_component(self, component):
+        from abjad.tools import scoretools
+        from abjad.tools import indicatortools
+        if isinstance(self.component, scoretools.Measure):
+            if self.component is component:
+                if not isinstance(self.indicator, indicatortools.TimeSignature):
+                    return True
+                elif component.always_format_time_signature:
+                    return True
+                else:
+                    previous_measure = \
+                        scoretools.get_previous_measure_from_component(
+                            self.component)
+                    if previous_measure is not None:
+                        previous_effective_time_signature = \
+                            previous_measure.time_signature
+                    else:
+                        previous_effective_time_signature = None
+                    if not self.indicator == previous_effective_time_signature:
+                        return True
+        elif self.indicator._format_slot == 'right':
+            if self.component is component:
+                return True
+        elif self.component is component:
+            return True
+        return False
+
     def _unbind_effective_context(self):
         effective_context = self._effective_context
         if effective_context is not None:

@@ -292,8 +292,8 @@ class LilyPondParser(abctools.Parser):
                     message = message.format(spanner_class.__name__, leaf)
                     raise Exception(message)
 
-            # check for DynamicMarks, and terminate any hairpin
-            dynamics = leaf._get_wrappers(indicatortools.Dynamic)
+            # check for dynamics and terminate any hairpin
+            dynamics = leaf._get_indicators(indicatortools.Dynamic)
             if dynamics and spannertools.Hairpin in all_spanners and \
                 all_spanners[spannertools.Hairpin]:
                 all_spanners[spannertools.Hairpin][0].append(leaf)

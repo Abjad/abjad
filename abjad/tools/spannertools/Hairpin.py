@@ -136,7 +136,7 @@ class Hairpin(Spanner):
                     elif effective_dynamic not in leaf._indicators:
                         found_match = False
                         for wrapper in \
-                            leaf._get_wrappers(indicatortools.Dynamic):
+                            leaf._get_indicators(indicatortools.Dynamic):
                             if wrapper.indicator == effective_dynamic:
                                 found_match = True
                         if not found_match:

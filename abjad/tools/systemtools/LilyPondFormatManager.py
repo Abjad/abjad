@@ -33,103 +33,55 @@ class LilyPondFormatManager(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _get_wrapper_format_pieces(wrapper):
-        from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        result = []
-        lilypond_format = wrapper.indicator._lilypond_format
-        if isinstance(lilypond_format, (tuple, list)):
-            result.extend(lilypond_format)
-        else:
-            result.append(lilypond_format)
-        if wrapper._get_effective_context() is not None:
-            return result
-        if isinstance(wrapper.indicator, indicatortools.TimeSignature):
-            if isinstance(wrapper.component, scoretools.Measure):
-                return result
-        result = [r'%%% {} %%%'.format(x) for x in result]
-        return result
-
-    @staticmethod
-    def _is_formattable_wrapper(wrapper, start_component, component):
-        from abjad.tools import scoretools
-        from abjad.tools import indicatortools
-        indicator = wrapper.indicator
-        if isinstance(start_component, scoretools.Measure):
-            if start_component is component:
-                if not isinstance(indicator, indicatortools.TimeSignature):
-                    return True
-                elif component.always_format_time_signature:
-                    return True
-                else:
-                    previous_measure = \
-                        scoretools.get_previous_measure_from_component(
-                            start_component)
-                    if previous_measure is not None:
-                        previous_effective_time_signature = \
-                            previous_measure.time_signature
-                    else:
-                        previous_effective_time_signature = None
-                    if not indicator == previous_effective_time_signature:
-                        return True
-        elif indicator._format_slot == 'right':
-            if start_component is component:
-                return True
-        elif start_component is component:
-            return True
-        return False
-
-    @staticmethod
     def _populate_indicator_format_contributions(component, bundle):
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools import systemtools
         from abjad.tools.agenttools.InspectionAgent import inspect
         manager = LilyPondFormatManager
-        items = component._get_indicators()
+        indicators = component._get_indicators()
         up_markup, down_markup, neutral_markup = [], [], []
         wrappers = []
-        # organize items attached to component
-        for item in items:
+        # organize indicators attached to component
+        for indicator in indicators:
             format_slot_subsection = None
             # store wrappers for later handling
-            if isinstance(item, indicatortools.IndicatorWrapper):
-                if manager._is_formattable_wrapper(
-                    item, item.component, component):
-                    wrappers.append(item)
+            if isinstance(indicator, indicatortools.IndicatorWrapper):
+                if indicator._is_formattable_for_component(component):
+                    wrappers.append(indicator)
                 continue
-            # skip nonprinting items like annotation
-            if not hasattr(item, '_lilypond_format'):
+            # skip nonprinting indicators like annotation
+            if not hasattr(indicator, '_lilypond_format'):
                 continue
             # store markup for later handling
-            if isinstance(item, markuptools.Markup):
-                if item.direction is Up:
-                    up_markup.append(item)
-                elif item.direction is Down:
-                    down_markup.append(item)
-                elif item.direction in (Center, None):
-                    neutral_markup.append(item)
+            if isinstance(indicator, markuptools.Markup):
+                if indicator.direction is Up:
+                    up_markup.append(indicator)
+                elif indicator.direction is Down:
+                    down_markup.append(indicator)
+                elif indicator.direction in (Center, None):
+                    neutral_markup.append(indicator)
                 continue
             # classify known indicators by subslot
-            if isinstance(item, indicatortools.Articulation):
+            if isinstance(indicator, indicatortools.Articulation):
                 format_slot_subsection = 'articulations'
-            elif isinstance(item, indicatortools.BarLine):
+            elif isinstance(indicator, indicatortools.BarLine):
                 format_slot_subsection = 'commands'
-            elif isinstance(item, indicatortools.BendAfter):
+            elif isinstance(indicator, indicatortools.BendAfter):
                 format_slot_subsection = 'articulations'
-            elif isinstance(item, indicatortools.LilyPondCommand):
+            elif isinstance(indicator, indicatortools.LilyPondCommand):
                 format_slot_subsection = 'commands'
-            elif isinstance(item, indicatortools.LilyPondComment):
+            elif isinstance(indicator, indicatortools.LilyPondComment):
                 format_slot_subsection = 'comments'
-            elif isinstance(item, indicatortools.StemTremolo):
+            elif isinstance(indicator, indicatortools.StemTremolo):
                 format_slot_subsection = 'stem_tremolos'
             else:
-                message = 'do not know how to classify {!r}.'.format(item)
+                message = 'do not know how to classify {!r}.'.format(indicator)
                 raise Exception(message)
-            format_slot = item._format_slot
+            format_slot = indicator._format_slot
             format_slot = bundle.get(format_slot)
             contributions = format_slot.get(format_slot_subsection)
-            contribution = item._lilypond_format
+            contribution = indicator._lilypond_format
             contributions.append(contribution)
             if format_slot_subsection == 'articulations':
                 contributions.sort()
@@ -139,16 +91,11 @@ class LilyPondFormatManager(object):
                 assert isinstance(wrapper, indicatortools.IndicatorWrapper)
                 if wrapper in wrappers:
                     continue
-                #start_component = parent
-                #if manager._is_formattable_wrapper(
-                #    wrapper, start_component, component):
-                if manager._is_formattable_wrapper(
-                    wrapper, wrapper.component, component):
+                if wrapper._is_formattable_for_component(component):
                     wrappers.append(wrapper)
-        #print wrappers, 'ZZZ'
         # bundle wrapper contributions
         for wrapper in wrappers:
-            format_pieces = manager._get_wrapper_format_pieces(wrapper)
+            format_pieces = wrapper._get_format_pieces()
             format_slot = wrapper.indicator._format_slot
             bundle.get(format_slot).indicators.extend(format_pieces)
         # bundle markup contributions
@@ -493,7 +440,8 @@ class LilyPondFormatManager(object):
 
         ::
 
-            >>> print systemtools.LilyPondFormatManager.report_component_format_contributions(staff[0])
+            >>> manager = systemtools.LilyPondFormatManager
+            >>> print manager.report_component_format_contributions(staff[0])
             slot 1:
                 grob overrides:
                     \once \override NoteHead #'color = #red
@@ -519,7 +467,8 @@ class LilyPondFormatManager(object):
 
         ::
 
-            >>> print systemtools.LilyPondFormatManager.report_spanner_format_contributions(spanner)
+            >>> manager = systemtools.LilyPondFormatManager
+            >>> print manager.report_spanner_format_contributions(spanner)
             c8  before: []
                 after: []
                 right: ['[']
@@ -541,9 +490,15 @@ class LilyPondFormatManager(object):
         result = ''
         for leaf in spanner.leaves:
             result += str(leaf)
-            result += '\tbefore: {}\n'.format(spanner._format_before_leaf(leaf))
-            result += '\t after: {}\n'.format(spanner._format_after_leaf(leaf))
-            result += '\t right: {}\n'.format(spanner._format_right_of_leaf(leaf))
+            string = '\tbefore: {}\n'
+            string = string.format(spanner._format_before_leaf(leaf))
+            result += string
+            string = '\t after: {}\n'
+            string = string.format(spanner._format_after_leaf(leaf))
+            result += string
+            string = '\t right: {}\n'
+            string = string.format(spanner._format_right_of_leaf(leaf))
+            result += string
             result += '\n'
         if result[-1] == '\n':
             result = result[:-1]
