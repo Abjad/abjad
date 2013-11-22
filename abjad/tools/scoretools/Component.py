@@ -226,8 +226,8 @@ class Component(AbjadObject):
             detach(grace_container, self)
         return grace_containers
 
-    def _detach_spanners(self, spanner_classes=None):
-        spanners = self._get_spanners(spanner_classes=spanner_classes)
+    def _detach_spanners(self, prototype=None):
+        spanners = self._get_spanners(prototype=prototype)
         for spanner in spanners:
             spanner.detach()
         return spanners
@@ -510,8 +510,8 @@ class Component(AbjadObject):
                     if 0 <= index + n:
                         return self._parent[index + n]
 
-    def _get_spanner(self, spanner_classes=None):
-        spanners = self._get_spanners(spanner_classes=spanner_classes)
+    def _get_spanner(self, prototype=None):
+        spanners = self._get_spanners(prototype=prototype)
         if not spanners:
             message = 'no spanner found.'
             raise MissingSpannerError(message)
@@ -521,26 +521,26 @@ class Component(AbjadObject):
             message = 'multiple spanners found.'
             raise ExtraSpannerError(message)
 
-    def _get_spanners(self, spanner_classes=None):
+    def _get_spanners(self, prototype=None):
         from abjad.tools import spannertools
-        spanner_classes = spanner_classes or (spannertools.Spanner,)
-        if not isinstance(spanner_classes, tuple):
-            spanner_classes = (spanner_classes, )
-        spanner_items = spanner_classes[:]
-        spanner_classes, spanner_objects = [], []
+        prototype = prototype or (spannertools.Spanner,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype, )
+        spanner_items = prototype[:]
+        prototype, spanner_objects = [], []
         for spanner_item in spanner_items:
             if isinstance(spanner_item, types.TypeType):
-                spanner_classes.append(spanner_item)
+                prototype.append(spanner_item)
             elif isinstance(spanner_item, spannertools.Spanner):
                 spanner_objects.append(spanner_item)
             else:
                 message = 'must be spanner class or spanner object: {!r}'
                 message = message.format(spanner_item)
-        spanner_classes = tuple(spanner_classes)
+        prototype = tuple(prototype)
         spanner_objects = tuple(spanner_objects)
         matching_spanners = set()
         for spanner in set(self._spanners):
-            if isinstance(spanner, spanner_classes):
+            if isinstance(spanner, prototype):
                 matching_spanners.add(spanner)
             elif any(spanner == x for x in spanner_objects):
                 matching_spanners.add(spanner)
@@ -583,8 +583,8 @@ class Component(AbjadObject):
         indicators = self._get_indicators(prototype=prototype)
         return bool(indicators)
 
-    def _has_spanner(self, spanner_classes=None):
-        spanners = self._get_spanners(spanner_classes=spanner_classes)
+    def _has_spanner(self, prototype=None):
+        spanners = self._get_spanners(prototype=prototype)
         return bool(spanners)
 
     def _is_immediate_temporal_successor_of(self, component):

@@ -201,7 +201,7 @@ class BurnishedRhythmMaker(RhythmMaker):
             written_durations, weights=weights, cyclic=True, overhang=True)
         counts = [len(part) for part in parts]
         parts = sequencetools.partition_sequence_by_counts(leaves, counts)
-        spanner_classes = (spannertools.Tie,)
+        prototype = (spannertools.Tie,)
         for part in parts:
             part = selectiontools.SliceSelection(part)
             tie_spanner = spannertools.Tie()
@@ -210,9 +210,9 @@ class BurnishedRhythmMaker(RhythmMaker):
             for component in part:
                 # TODO: make top-level detach() work here
                 for spanner in component._get_spanners(
-                    spanner_classes=spanner_classes):
+                    prototype=prototype):
                     spanner.detach()
-                #detach(spanner_classes, component)
+                #detach(prototype, component)
             tie_spanner.extend(part)
 
     def _burnish_division_part(self, division_part, token):

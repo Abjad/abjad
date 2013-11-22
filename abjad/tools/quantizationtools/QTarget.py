@@ -161,8 +161,8 @@ class QTarget(AbjadObject):
             leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
             leaves[i] = leaf_one
             if not leaf_two._get_indicators(indicatortools.Annotation):
-                spanner_classes = (spannertools.Tie, )
-                spanner = tuple(leaf_one._get_spanners(spanner_classes))[0]
+                prototype = (spannertools.Tie, )
+                spanner = tuple(leaf_one._get_spanners(prototype))[0]
                 leaf_two = self._copy_leaf_type_and_pitches(leaf_one, leaf_two)
                 leaves[i+1] = leaf_two
                 spanner.append(leaf_two)

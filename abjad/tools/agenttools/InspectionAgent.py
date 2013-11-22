@@ -370,30 +370,30 @@ class InspectionAgent(abctools.AbjadObject):
 
     def get_spanner(
         self,
-        spanner_classes=None,
+        prototype=None,
         ):
-        r'''Gets exactly one spanner of `spanner_classes` attached to
+        r'''Gets exactly one spanner of `prototype` attached to
         client.
 
-        Raises exception when no spanner of `spanner_classes` is attached
+        Raises exception when no spanner of `prototype` is attached
         to client.
 
         Returns spanner.
         '''
         return self._client._get_spanner(
-            spanner_classes=spanner_classes,
+            prototype=prototype,
             )
 
     def get_spanners(
         self,
-        spanner_classes=None,
+        prototype=None,
         ):
         r'''Gets spanners attached to client.
 
         Returns set.
         '''
         return self._client._get_spanners(
-            spanner_classes=spanner_classes,
+            prototype=prototype,
             )
 
     def get_tie_chain(self):

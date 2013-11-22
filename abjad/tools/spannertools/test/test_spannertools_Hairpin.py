@@ -180,8 +180,8 @@ def test_spannertools_Hairpin_07():
         )
     attach(hairpin, staff.select_leaves())
 
-    spanner_classes = Hairpin
-    spanner = inspect(staff[0]).get_spanner(spanner_classes=spanner_classes)
+    prototype = Hairpin
+    spanner = inspect(staff[0]).get_spanner(prototype=prototype)
     assert len(spanner.components) == len(staff)
 
     assert systemtools.TestManager.compare(

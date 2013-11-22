@@ -340,8 +340,8 @@ def test_scoretools_Leaf__split_by_duration_12():
     assert len(staff) == 2
     for leaf in staff.select_leaves():
         assert inspect(leaf).get_spanners() == set([tie])
-        spanner_classes = (spannertools.Tie,)
-        assert inspect(leaf).get_spanner(spanner_classes) is tie
+        prototype = (spannertools.Tie,)
+        assert inspect(leaf).get_spanner(prototype) is tie
 
     assert inspect(staff).is_well_formed()
 

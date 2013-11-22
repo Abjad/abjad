@@ -329,9 +329,9 @@ class Leaf(Component):
     def _get_tie_chain(self):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
-        spanner_classes = (spannertools.Tie,)
+        prototype = (spannertools.Tie,)
         for component in self._get_parentage():
-            tie_spanners = component._get_spanners(spanner_classes)
+            tie_spanners = component._get_spanners(prototype)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
                 return selectiontools.TieChain(music=tie_spanner.leaves)
@@ -463,15 +463,15 @@ class Leaf(Component):
             result.append(shard)
         flattened_result = sequencetools.flatten_sequence(result)
         flattened_result = selectiontools.SliceSelection(flattened_result)
-        spanner_classes = (spannertools.Tie,)
+        prototype = (spannertools.Tie,)
         parentage = self._get_parentage()
-        if parentage._get_spanners(spanner_classes=spanner_classes):
+        if parentage._get_spanners(prototype=prototype):
             selection = select(flattened_result)
             for component in selection:
                 # TODO: make top-level detach() work here
-                for spanner in component._get_spanners(spanner_classes):
+                for spanner in component._get_spanners(prototype):
                     spanner.detach()
-                #detach(spanner_classes, component)
+                #detach(prototype, component)
         # replace leaf with flattened result
         selection = selectiontools.SliceSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()

@@ -869,14 +869,14 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        spanner_classes = (spannertools.Tie,)
+        prototype = (spannertools.Tie,)
         nontrivial = bool(nontrivial)
         component_classes = scoretools.Leaf
         if pitched:
             component_classes = (scoretools.Chord, scoretools.Note)
         if not reverse:
             for leaf in self.by_class(component_classes):
-                tie_spanners = leaf._get_spanners(spanner_classes)
+                tie_spanners = leaf._get_spanners(prototype)
                 if not tie_spanners or \
                     tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
                     tie_chain = leaf._get_tie_chain()
@@ -884,7 +884,7 @@ class IterationAgent(abctools.AbjadObject):
                         yield tie_chain
         else:
             for leaf in self.by_class(component_classes, reverse=True):
-                tie_spanners = leaf._get_spanners(spanner_classes)
+                tie_spanners = leaf._get_spanners(prototype)
                 if not(tie_spanners) or \
                     tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
                     tie_chain = leaf._get_tie_chain()
@@ -1112,7 +1112,7 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         from abjad.tools import selectiontools
-        spanner_classes = (spannertools.Tie,)
+        prototype = (spannertools.Tie,)
         if isinstance(self._client, scoretools.Leaf):
             tie_chain = self._client._get_tie_chain()
             if len(tie_chain) == 1:
@@ -1128,7 +1128,7 @@ class IterationAgent(abctools.AbjadObject):
                 )):
             for component in self._client:
                 if isinstance(component, scoretools.Leaf):
-                    tie_spanners = component._get_spanners(spanner_classes)
+                    tie_spanners = component._get_spanners(prototype)
                     if not tie_spanners or \
                         tuple(tie_spanners)[0]._is_my_last_leaf(component):
                         yield component._get_tie_chain()

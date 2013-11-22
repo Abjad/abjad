@@ -145,9 +145,9 @@ class TieChain(ContiguousSelection):
         Returns tuple.
         '''
         from abjad.tools import spannertools
-        spanner_classes = (spannertools.Tie,)
+        prototype = (spannertools.Tie,)
         try:
-            tie_spanner = self[0]._get_spanner(spanner_classes=spanner_classes)
+            tie_spanner = self[0]._get_spanner(prototype=prototype)
             return tie_spanner.leaves
         except MissingSpannerError:
             assert self.is_trivial
@@ -175,10 +175,10 @@ class TieChain(ContiguousSelection):
         '''
         from abjad.tools import spannertools
         if 1 < len(self):
-            spanner_classes = (spannertools.Tie,)
+            prototype = (spannertools.Tie,)
             for component in self[0].parentage:
                 try:
-                    tie_spanner = component._get_spanner(spanner_classes)
+                    tie_spanner = component._get_spanner(prototype)
                     break
                 except MissingSpannerError:
                     pass

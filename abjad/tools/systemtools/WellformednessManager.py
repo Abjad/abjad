@@ -100,8 +100,8 @@ class WellformednessManager(AbjadObject):
         from abjad.tools import spannertools
         violators = []
         total, bad = 0, 0
-        spanner_classes = (spannertools.Hairpin,)
-        hairpins = self.expr._get_descendants()._get_spanners(spanner_classes)
+        prototype = (spannertools.Hairpin,)
+        hairpins = self.expr._get_descendants()._get_spanners(prototype)
         for hairpin in hairpins:
             if 2 < len(hairpin.leaves):
                 for leaf in hairpin.leaves[1:-1]:
@@ -151,10 +151,10 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         total = 0
-        spanner_classes = (spannertools.Tie,)
+        prototype = (spannertools.Tie,)
         for leaf in iterate(self.expr).by_class(scoretools.Note):
             total += 1
-            spanners = leaf._get_spanners(spanner_classes)
+            spanners = leaf._get_spanners(prototype)
             if spanners:
                 spanner = spanners.pop()
                 if not spanner._is_my_last_leaf(leaf):
@@ -223,10 +223,10 @@ class WellformednessManager(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools.topleveltools import iterate
         violators = []
-        spanner_classes = (spannertools.Beam,)
+        prototype = (spannertools.Beam,)
         all_beams = set()
         for leaf in iterate(self.expr).by_class(scoretools.Leaf):
-            beams = leaf._get_spanners(spanner_classes)
+            beams = leaf._get_spanners(prototype)
             all_beams.update(beams)
             if 1 < len(beams):
                 for beam in beams:
@@ -242,9 +242,9 @@ class WellformednessManager(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools.topleveltools import iterate
         violators = []
-        spanner_classes = (spannertools.Glissando,)
+        prototype = (spannertools.Glissando,)
         for leaf in iterate(self.expr).by_class(scoretools.Leaf):
-            glissandi = leaf._get_spanners(spanner_classes)
+            glissandi = leaf._get_spanners(prototype)
             if 1 < len(glissandi):
                 if len(glissandi) == 2:
                     common_leaves = set(glissandi[0].leaves) & \
@@ -260,7 +260,7 @@ class WellformednessManager(AbjadObject):
                 for glissando in glissandi:
                     if glissando not in violators:
                         violators.append(glissando)
-        total = self.expr._get_descendants()._get_spanners(spanner_classes)
+        total = self.expr._get_descendants()._get_spanners(prototype)
         total = len(total)
         return violators, total
 
@@ -271,14 +271,14 @@ class WellformednessManager(AbjadObject):
         from abjad.tools import spannertools
         from abjad.tools.topleveltools import iterate
         violators = []
-        spanner_classes = (spannertools.OctavationSpanner, )
+        prototype = (spannertools.OctavationSpanner, )
         for leaf in iterate(self.expr).by_class(scoretools.Leaf):
-            spanners = leaf._get_descendants()._get_spanners(spanner_classes)
+            spanners = leaf._get_descendants()._get_spanners(prototype)
             if 1 < len(spanners):
                 for spanner in spanners:
                     if spanner not in violators:
                         violators.append(spanner)
-        total = self.expr._get_descendants()._get_spanners(spanner_classes)
+        total = self.expr._get_descendants()._get_spanners(prototype)
         return violators, len(total)
 
     def check_short_hairpins(self):
@@ -287,8 +287,8 @@ class WellformednessManager(AbjadObject):
         from abjad.tools import spannertools
         violators = []
         total, bad = 0, 0
-        spanner_classes = (spannertools.Hairpin,)
-        hairpins = self.expr._get_descendants()._get_spanners(spanner_classes)
+        prototype = (spannertools.Hairpin,)
+        hairpins = self.expr._get_descendants()._get_spanners(prototype)
         for hairpin in hairpins:
             if len(hairpin.leaves) <= 1:
                 violators.append(hairpin)

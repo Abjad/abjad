@@ -63,15 +63,15 @@ class ContiguousSelection(Selection):
         assert isinstance(right_leaf, scoretools.Leaf), right_leaf
         left_tie_chain = left_leaf._get_tie_chain()
         right_tie_chain = right_leaf._get_tie_chain()
-        spanner_classes = (spannertools.Tie,)
+        prototype = (spannertools.Tie,)
         if left_tie_chain == right_tie_chain:
             return
         try:
-            left_tie_spanner = left_leaf._get_spanner(spanner_classes)
+            left_tie_spanner = left_leaf._get_spanner(prototype)
         except MissingSpannerError:
             left_tie_spanner = None
         try:
-            right_tie_spanner = right_leaf._get_spanner(spanner_classes)
+            right_tie_spanner = right_leaf._get_spanner(prototype)
         except MissingSpannerError:
             right_tie_spanner = None
         if left_tie_spanner is not None and right_tie_spanner is not None:

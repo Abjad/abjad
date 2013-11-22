@@ -342,8 +342,8 @@ class Selection(object):
                 if i == abs(n) - 1:
                     return x
 
-    def _get_spanner(self, spanner_classes=None):
-        spanners = self._get_spanners(spanner_classes=spanner_classes)
+    def _get_spanner(self, prototype=None):
+        spanners = self._get_spanners(prototype=prototype)
         if not spanners:
             message = 'no spanners found.'
             raise MissingSpannerError(message)
@@ -353,15 +353,15 @@ class Selection(object):
             message = 'multiple spanners found.'
             raise ExtraSpannerError(message)
 
-    def _get_spanners(self, spanner_classes=None):
+    def _get_spanners(self, prototype=None):
         from abjad.tools import spannertools
-        spanner_classes = spanner_classes or (spannertools.Spanner,)
-        if not isinstance(spanner_classes, tuple):
-            spanner_classes = (spanner_classes, )
-        assert isinstance(spanner_classes, tuple)
+        prototype = prototype or (spannertools.Spanner,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype, )
+        assert isinstance(prototype, tuple)
         result = set()
         for component in self:
-            spanners = component._get_spanners(spanner_classes)
+            spanners = component._get_spanners(prototype)
             result.update(spanners)
         return result
 
@@ -397,13 +397,13 @@ class Selection(object):
             for component in self
             )
 
-    def get_spanners(self, spanner_classes=None):
+    def get_spanners(self, prototype=None):
         r'''Gets spanners attached to any component in selection.
 
         Returns set.
         '''
         result = set()
         for component in self:
-            spanners = component._get_spanners(spanner_classes=spanner_classes)
+            spanners = component._get_spanners(prototype=prototype)
             result.update(spanners)
         return result
