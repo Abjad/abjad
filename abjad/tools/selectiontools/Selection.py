@@ -139,7 +139,7 @@ class Selection(object):
 
     @staticmethod
     def _all_are_components_in_same_logical_voice(
-        expr, component_classes=None, allow_orphans=True):
+        expr, prototype=None, allow_orphans=True):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
@@ -150,16 +150,16 @@ class Selection(object):
             )
         if not isinstance(expr, allowable_types):
             return False
-        component_classes = component_classes or (scoretools.Component,)
-        if not isinstance(component_classes, tuple):
-            component_classes = (component_classes, )
-        assert isinstance(component_classes, tuple)
+        prototype = prototype or (scoretools.Component,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype, )
+        assert isinstance(prototype, tuple)
         if len(expr) == 0:
             return True
         all_are_orphans_of_correct_type = True
         if allow_orphans:
             for component in expr:
-                if not isinstance(component, component_classes):
+                if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
                 if not component._get_parentage().is_orphan:
@@ -168,7 +168,7 @@ class Selection(object):
             if all_are_orphans_of_correct_type:
                 return True
         first = expr[0]
-        if not isinstance(first, component_classes):
+        if not isinstance(first, prototype):
             return False
         orphan_components = True
         if not first._get_parentage().is_orphan:
@@ -192,7 +192,7 @@ class Selection(object):
     
     @staticmethod
     def _all_are_contiguous_components_in_same_logical_voice(
-        expr, component_classes=None, allow_orphans=True):
+        expr, prototype=None, allow_orphans=True):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
@@ -203,16 +203,16 @@ class Selection(object):
             )
         if not isinstance(expr, allowable_types):
             return False
-        component_classes = component_classes or (scoretools.Component,)
-        if not isinstance(component_classes, tuple):
-            component_classes = (component_classes, )
-        assert isinstance(component_classes, tuple)
+        prototype = prototype or (scoretools.Component,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype, )
+        assert isinstance(prototype, tuple)
         if len(expr) == 0:
             return True
         all_are_orphans_of_correct_type = True
         if allow_orphans:
             for component in expr:
-                if not isinstance(component, component_classes):
+                if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
                 if not component._get_parentage().is_orphan:
@@ -224,7 +224,7 @@ class Selection(object):
             if any(x._get_parentage().is_orphan for x in expr):
                 return False
         first = expr[0]
-        if not isinstance(first, component_classes):
+        if not isinstance(first, prototype):
             return False
         first_parentage = first._get_parentage()
         first_logical_voice = first_parentage.logical_voice
@@ -235,7 +235,7 @@ class Selection(object):
             current_logical_voice = \
                 current_parentage.logical_voice
             # false if wrong type of component found
-            if not isinstance(current, component_classes):
+            if not isinstance(current, prototype):
                 return False
             # false if in different logical voices
             if current_logical_voice != first_logical_voice:
@@ -249,7 +249,7 @@ class Selection(object):
 
     @staticmethod
     def _all_are_contiguous_components_in_same_parent(
-        expr, component_classes=None, allow_orphans=True):
+        expr, prototype=None, allow_orphans=True):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         allowable_types = (
@@ -260,16 +260,16 @@ class Selection(object):
             )
         if not isinstance(expr, allowable_types):
             return False
-        component_classes = component_classes or (scoretools.Component, )
-        if not isinstance(component_classes, tuple):
-            component_classes = (component_classes, )
-        assert isinstance(component_classes, tuple)
+        prototype = prototype or (scoretools.Component, )
+        if not isinstance(prototype, tuple):
+            prototype = (prototype, )
+        assert isinstance(prototype, tuple)
         if len(expr) == 0:
             return True
         all_are_orphans_of_correct_type = True
         if allow_orphans:
             for component in expr:
-                if not isinstance(component, component_classes):
+                if not isinstance(component, prototype):
                     all_are_orphans_of_correct_type = False
                     break
                 if not component._get_parentage().is_orphan:
@@ -278,7 +278,7 @@ class Selection(object):
             if all_are_orphans_of_correct_type:
                 return True
         first = expr[0]
-        if not isinstance(first, component_classes):
+        if not isinstance(first, prototype):
             return False
         first_parent = first._parent
         if first_parent is None:
@@ -290,7 +290,7 @@ class Selection(object):
         strictly_contiguous = True
         previous = first
         for current in expr[1:]:
-            if not isinstance(current, component_classes):
+            if not isinstance(current, prototype):
                 return False
             if not current._get_parentage().is_orphan:
                 orphan_components = False
@@ -319,14 +319,14 @@ class Selection(object):
             music = (music, )
         return music
 
-    def _get_component(self, component_classes=None, n=0, recurse=True):
+    def _get_component(self, prototype=None, n=0, recurse=True):
         from abjad.tools import scoretools
-        component_classes = component_classes or (scoretools.Component,)
-        if not isinstance(component_classes, tuple):
-            component_classes = (component_classes,)
+        prototype = prototype or (scoretools.Component,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
         if 0 <= n:
             if recurse:
-                components = iterate(self).by_class(component_classes)
+                components = iterate(self).by_class(prototype)
             else:
                 components = self._music
             for i, x in enumerate(components):
@@ -335,7 +335,7 @@ class Selection(object):
         else:
             if recurse:
                 components = iterate(self).by_class(
-                    component_classes, reverse=True)
+                    prototype, reverse=True)
             else:
                 components = reversed(self._music)
             for i, x in enumerate(components):

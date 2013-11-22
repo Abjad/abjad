@@ -281,11 +281,11 @@ class Component(AbjadObject):
     def _format_opening_slot(self, bundle):
         pass
 
-    def _get_components(self, component_classes=None, include_self=True):
+    def _get_components(self, prototype=None, include_self=True):
         expr = self
         if include_self:
             expr = [self]
-        components = iterate(expr).by_class(component_classes)
+        components = iterate(expr).by_class(prototype)
         return selectiontools.Selection(components)
 
     def _get_contents(self, include_self=True):

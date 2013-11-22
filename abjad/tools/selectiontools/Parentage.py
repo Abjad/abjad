@@ -336,16 +336,16 @@ class Parentage(SimultaneousSelection):
 
     ### PUBLIC METHODS ###
 
-    def get_first(self, component_classes=None):
-        r'''Gets first instance of `component_classes` in parentage.
+    def get_first(self, prototype=None):
+        r'''Gets first instance of `prototype` in parentage.
 
         Returns component or none.
         '''
         from abjad.tools import scoretools
-        if component_classes is None:
-            component_classes = (scoretools.Component,)
-        if not isinstance(component_classes, tuple):
-            component_classes = (component_classes,)
+        if prototype is None:
+            prototype = (scoretools.Component,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
         for component in self:
-            if isinstance(component, component_classes):
+            if isinstance(component, prototype):
                 return component

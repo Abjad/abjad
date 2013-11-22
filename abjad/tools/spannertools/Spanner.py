@@ -289,8 +289,8 @@ class Spanner(AbjadObject):
         else:
             return False
 
-    def _is_my_first(self, leaf, component_classes):
-        for component in iterate(self).by_class(component_classes):
+    def _is_my_first(self, leaf, prototype):
+        for component in iterate(self).by_class(prototype):
             if component is leaf:
                 return True
             else:
@@ -303,9 +303,9 @@ class Spanner(AbjadObject):
         except IndexError:
             return False
 
-    def _is_my_last(self, leaf, component_classes):
+    def _is_my_last(self, leaf, prototype):
         for component in iterate(self).by_class(
-            component_classes,
+            prototype,
             reverse=True,
             ):
             if component is leaf:
@@ -320,9 +320,9 @@ class Spanner(AbjadObject):
         except IndexError:
             return False
 
-    def _is_my_only(self, leaf, component_classes):
+    def _is_my_only(self, leaf, prototype):
         i = None
-        components = iterate(self).by_class(component_classes)
+        components = iterate(self).by_class(prototype)
         for i, component in enumerate(components):
             if 0 < i:
                 return False

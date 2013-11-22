@@ -144,16 +144,16 @@ class InspectionAgent(abctools.AbjadObject):
 
     def get_components(
         self,
-        component_classes=None,
+        prototype=None,
         include_self=True,
         ):
-        r'''Gets all components of `component_classes`
+        r'''Gets all components of `prototype`
         in the descendants of client.
 
         Returns client selection.
         '''
         return self._client._get_components(
-            component_classes=component_classes,
+            prototype=prototype,
             include_self=include_self,
             )
 

@@ -50,7 +50,7 @@ class IterationAgent(abctools.AbjadObject):
 
     def by_class(
         self,
-        component_classes=None,
+        prototype=None,
         reverse=False,
         start=0,
         stop=None,
@@ -194,7 +194,7 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        component_classes = component_classes or scoretools.Component
+        prototype = prototype or scoretools.Component
         def component_iterator(expr, component_class, reverse=False):
             if isinstance(expr, component_class):
                 yield expr
@@ -237,13 +237,13 @@ class IterationAgent(abctools.AbjadObject):
         return subrange(
             component_iterator(
                 self._client,
-                component_classes,
+                prototype,
                 reverse=reverse),
             start,
             stop,
             )
 
-    def by_components_and_grace_containers(self, component_classes=None):
+    def by_components_and_grace_containers(self, prototype=None):
         r'''Iterate components of `component_class` forward in `expr`:
 
         ::
@@ -307,33 +307,33 @@ class IterationAgent(abctools.AbjadObject):
 
         Include grace leaves after main leaves.
         '''
-        component_classes = component_classes or scoretools.Leaf
+        prototype = prototype or scoretools.Leaf
         if hasattr(self._client, '_grace'):
             for m in self._client.grace:
                 for x in iterate(m).by_components_and_grace_containers(
-                    component_classes,
+                    prototype,
                     ):
                     yield x
-            if isinstance(self._client, component_classes):
+            if isinstance(self._client, prototype):
                 yield self._client
         if hasattr(self._client, '_after_grace'):
             for m in self._client.after_grace:
                 for x in iterate(m).by_components_and_grace_containers(
-                    component_classes,
+                    prototype,
                     ):
                     yield x
-        elif isinstance(self._client, component_classes):
+        elif isinstance(self._client, prototype):
             yield self._client
         if isinstance(self._client, (list, tuple)):
             for m in self._client:
                 for x in iterate(m).by_components_and_grace_containers(
-                    component_classes,
+                    prototype,
                     ):
                     yield x
         if hasattr(self._client, '_music'):
             for m in self._client._music:
                 for x in iterate(m).by_components_and_grace_containers(
-                    component_classes,
+                    prototype,
                     ):
                     yield x
 
@@ -869,22 +869,21 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        prototype = (spannertools.Tie,)
         nontrivial = bool(nontrivial)
-        component_classes = scoretools.Leaf
+        prototype = scoretools.Leaf
         if pitched:
-            component_classes = (scoretools.Chord, scoretools.Note)
+            prototype = (scoretools.Chord, scoretools.Note)
         if not reverse:
-            for leaf in self.by_class(component_classes):
-                tie_spanners = leaf._get_spanners(prototype)
+            for leaf in self.by_class(prototype):
+                tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not tie_spanners or \
                     tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
                     tie_chain = leaf._get_tie_chain()
                     if not nontrivial or not tie_chain.is_trivial:
                         yield tie_chain
         else:
-            for leaf in self.by_class(component_classes, reverse=True):
-                tie_spanners = leaf._get_spanners(prototype)
+            for leaf in self.by_class(prototype, reverse=True):
+                tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not(tie_spanners) or \
                     tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
                     tie_chain = leaf._get_tie_chain()

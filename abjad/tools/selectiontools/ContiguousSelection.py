@@ -156,7 +156,7 @@ class ContiguousSelection(Selection):
         from abjad.tools import selectiontools
         # check input
         assert self._all_are_contiguous_components_in_same_parent(
-            self, component_classes=(scoretools.Measure, ))
+            self, prototype=(scoretools.Measure, ))
         # return none on empty measures
         if len(self) == 0:
             return None
@@ -198,7 +198,7 @@ class ContiguousSelection(Selection):
     def _fuse_tuplets(self):
         from abjad.tools import scoretools
         assert self._all_are_contiguous_components_in_same_parent(
-            self, component_classes=(scoretools.Tuplet,))
+            self, prototype=(scoretools.Tuplet,))
         if len(self) == 0:
             return None
         first = self[0]
