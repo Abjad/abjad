@@ -39,17 +39,23 @@ class LilyPondFormatManager(object):
         from abjad.tools import systemtools
         from abjad.tools.agenttools.InspectionAgent import inspect
         manager = LilyPondFormatManager
-        indicators = component._get_indicators()
-        up_markup, down_markup, neutral_markup = [], [], []
+        indicators = component._get_indicators(unwrap=False)
+        up_markup = []
+        down_markup = []
+        neutral_markup = []
         wrappers = []
         # organize indicators attached to component
         for indicator in indicators:
             format_slot_subsection = None
             # store wrappers for later handling
-            if isinstance(indicator, indicatortools.IndicatorWrapper):
+            #if isinstance(indicator, indicatortools.IndicatorWrapper):
+            if indicator.scope is not None:
                 if indicator._is_formattable_for_component(component):
                     wrappers.append(indicator)
                 continue
+            
+            indicator = indicator.indicator
+
             # skip nonprinting indicators like annotation
             if not hasattr(indicator, '_lilypond_format'):
                 continue

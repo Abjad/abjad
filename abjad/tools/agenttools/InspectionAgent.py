@@ -78,6 +78,7 @@ class InspectionAgent(abctools.AbjadObject):
     def get_indicator(
         self,
         prototype=None,
+        unwrap=True,
         ):
         r'''Gets exactly one indicator matching `prototype` attached to
         client.
@@ -89,11 +90,13 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_indicator(
             prototype=prototype,
+            unwrap=unwrap,
             )
 
     def get_indicators(
         self,
         prototype=None,
+        unwrap=True,
         ):
         r'''Get all indicators matching `prototype` attached
         to client.
@@ -102,6 +105,7 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_indicators(
             prototype=prototype,
+            unwrap=unwrap,
             )
 
     def get_badly_formed_components(self):

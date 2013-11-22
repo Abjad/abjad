@@ -21,7 +21,6 @@ class IndicatorWrapper(AbjadObject):
 
     def __init__(self, indicator, component, scope=None):
         from abjad.tools import scoretools
-        assert hasattr(indicator, '_default_scope'), repr(indicator)
         assert not isinstance(indicator, type(self)), repr(indicator)
         if component is not None:
             assert isinstance(component, scoretools.Component)
@@ -154,6 +153,8 @@ class IndicatorWrapper(AbjadObject):
     def _is_formattable_for_component(self, component):
         from abjad.tools import scoretools
         from abjad.tools import indicatortools
+        if not hasattr(self.indicator, '_format_slot'):
+            return False
         if isinstance(self.component, scoretools.Measure):
             if self.component is component:
                 if not isinstance(
@@ -188,15 +189,6 @@ class IndicatorWrapper(AbjadObject):
                 pass
         self._effective_context = None
 
-    def _update_effective_context(self):
-        r'''This function is designed to be called by score components
-        during score update.
-        '''
-        current_effective_context = self._effective_context
-        correct_effective_context = self._find_correct_effective_context()
-        if current_effective_context is not correct_effective_context:
-            self._bind_correct_effective_context(correct_effective_context)
-
     def _unbind_component(self):
         component = self.component
         if component is not None:
@@ -205,6 +197,15 @@ class IndicatorWrapper(AbjadObject):
             except ValueError:
                 pass
         self._component = None
+
+    def _update_effective_context(self):
+        r'''This function is designed to be called by score components
+        during score update.
+        '''
+        current_effective_context = self._effective_context
+        correct_effective_context = self._find_correct_effective_context()
+        if current_effective_context is not correct_effective_context:
+            self._bind_correct_effective_context(correct_effective_context)
 
     def _warn_duplicate_indicator(self, component):
         prototype = type(self.indicator)

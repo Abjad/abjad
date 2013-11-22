@@ -154,8 +154,8 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_indicator(self, prototype=None):
-        indicators = self._get_indicators(prototype=prototype)
+    def _get_indicator(self, prototype=None, unwrap=True):
+        indicators = self._get_indicators(prototype=prototype, unwrap=unwrap)
         if not indicators:
             message = 'no attached indicators found matching {!r}.'
             message = message.format(prototype)
@@ -167,7 +167,7 @@ class Component(AbjadObject):
         else:
             return indicators[0]
 
-    def _get_indicators(self, prototype=None):
+    def _get_indicators(self, prototype=None, unwrap=True):
         from abjad.tools import indicatortools
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
@@ -191,6 +191,8 @@ class Component(AbjadObject):
                     matching_indicators.append(indicator)
                 elif any(indicator.indicator == x for x in prototype_objects):
                     matching_indicators.append(indicator)
+        if unwrap:
+            matching_indicators = [x.indicator for x in matching_indicators]
         matching_indicators = tuple(matching_indicators)
         return matching_indicators
 
@@ -345,8 +347,9 @@ class Component(AbjadObject):
             prototype == (indicatortools.TimeSignature,):
             if isinstance(self, scoretools.Measure):
                 if self._has_indicator(indicatortools.TimeSignature):
-                    wrapper = self._get_indicator(indicatortools.TimeSignature)
-                    return wrapper.indicator
+                    indicator = self._get_indicator(
+                        indicatortools.TimeSignature)
+                    return indicator
                 else:
                     return
         # update marks of entire score tree if necessary
@@ -612,8 +615,8 @@ class Component(AbjadObject):
                 if durationtools.Duration(0) < candidate_new_parent_dur:
                     parent.target_duration = candidate_new_parent_dur
             elif isinstance(parent, scoretools.Measure):
-                wrapper = parent._get_indicator(indicatortools.TimeSignature)
-                parent_time_signature = wrapper.indicator
+                indicator = parent._get_indicator(indicatortools.TimeSignature)
+                parent_time_signature = indicator
                 old_prolation = parent_time_signature.implied_prolation
                 naive_time_signature = (
                     parent_time_signature.duration - prolated_leaf_duration)
@@ -625,8 +628,8 @@ class Component(AbjadObject):
                     better_time_signature)
                 detach(indicatortools.TimeSignature, parent)
                 attach(better_time_signature, parent)
-                wrapper = parent._get_indicator(indicatortools.TimeSignature)
-                parent_time_signature = wrapper.indicator
+                indicator = parent._get_indicator(indicatortools.TimeSignature)
+                parent_time_signature = indicator
                 new_prolation = parent_time_signature.implied_prolation
                 adjusted_prolation = old_prolation / new_prolation
                 for x in parent:

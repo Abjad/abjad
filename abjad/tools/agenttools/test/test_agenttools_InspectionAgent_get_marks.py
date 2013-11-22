@@ -83,9 +83,9 @@ def test_agenttools_InspectionAgent_get_marks_03():
         '''
         )
 
-    wrappers = inspect(staff[0]).get_indicators()
-    assert dynamic == wrappers[0].indicator
-    assert len(wrappers) == 1
+    indicators = inspect(staff[0]).get_indicators()
+    assert dynamic == indicators[0]
+    assert len(indicators) == 1
 
 
 def test_agenttools_InspectionAgent_get_marks_04():
@@ -110,7 +110,7 @@ def test_agenttools_InspectionAgent_get_marks_04():
         )
 
     dynamics = inspect(staff[0]).get_indicators(Dynamic)
-    assert dynamic == dynamics[0].indicator
+    assert dynamic == dynamics[0]
     assert len(dynamics) == 1
 
 

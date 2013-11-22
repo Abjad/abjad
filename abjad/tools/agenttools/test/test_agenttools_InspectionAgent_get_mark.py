@@ -174,15 +174,14 @@ def test_agenttools_InspectionAgent_get_mark_16():
     violin = instrumenttools.Violin()
     attach(violin, staff)
 
-    wrapper = inspect(staff).get_indicator(instrumenttools.Instrument)
+    indicator = inspect(staff).get_indicator(instrumenttools.Instrument)
 
-    assert wrapper.indicator is violin
+    assert indicator is violin
 
 
 def test_agenttools_InspectionAgent_get_mark_17():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
-    wrapper = inspect(measure).get_indicator(TimeSignature)
-    time_signature = wrapper.indicator
+    indicator = inspect(measure).get_indicator(TimeSignature)
 
-    assert time_signature == TimeSignature((4, 8))
+    assert indicator == TimeSignature((4, 8))

@@ -78,8 +78,9 @@ class UpdateManager(AbjadObject):
         '''
         components = UpdateManager._iterate_entire_score(component)
         for component in components:
-            for indicator in component._get_indicators():
-                if hasattr(indicator, '_update_effective_context'):
+            for indicator in component._get_indicators(unwrap=False):
+                if indicator.scope is not None:
+                    assert hasattr(indicator, '_update_effective_context')
                     indicator._update_effective_context()
             component._marks_are_current = True
 

@@ -27,7 +27,6 @@ def attach(indicator, component_expression, scope=None):
         scope = scope or indicator.scope
         indicator._detach()
         indicator = indicator.indicator
-        assert hasattr(indicator, '_default_scope')
 
     if hasattr(indicator, '_default_scope'):
         scope = scope or indicator._default_scope
@@ -40,4 +39,9 @@ def attach(indicator, component_expression, scope=None):
         wrapper._bind_to_component(component)
     else:
         assert scope is None
-        component._indicators.append(indicator)
+        wrapper = indicatortools.IndicatorWrapper(
+            indicator, 
+            component,
+            scope,
+            )
+        wrapper._bind_to_component(component)

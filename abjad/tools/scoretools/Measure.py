@@ -87,8 +87,8 @@ class Measure(FixedDurationContainer):
         Returns string.
         '''
         class_name = type(self).__name__
-        wrapper = self._get_indicator(indicatortools.TimeSignature)
-        forced_time_signature = wrapper.indicator
+        indicator = self._get_indicator(indicatortools.TimeSignature)
+        forced_time_signature = indicator
         summary = self._summary
         length = len(self)
         if forced_time_signature and length:

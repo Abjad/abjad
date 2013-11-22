@@ -379,7 +379,7 @@ class Container(Component):
         # cache indicators attached to components in expr
         expr_indicators = []
         for component in iterate(expr).by_class():
-            indicators = component._get_indicators()
+            indicators = component._get_indicators(unwrap=False)
             expr_indicators.extend(indicators)
         # item assignment
         if isinstance(i, int):
