@@ -4,13 +4,17 @@ from abjad.tools import durationtools
 
 
 class InspectionAgent(abctools.AbjadObject):
-    r'''Inspect one component.
+    r'''A wrapper around the Abjad inspection methods.
 
     ..  container:: example
 
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
             >>> inspect(staff)
             InspectionAgent({c'4, e'4, d'4, f'4})
 
@@ -33,6 +37,10 @@ class InspectionAgent(abctools.AbjadObject):
 
     @property
     def component(self):
+        r'''Component of inspection agent.
+
+        Returns component.
+        '''
         return self._component
 
     ### PUBLIC METHODS ###

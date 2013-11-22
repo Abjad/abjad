@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import iterate
 
 
 class MutationAgent(abctools.AbjadObject):
-    r'''A wrapper around the Abjad score mutators.
+    r'''A wrapper around the Abjad mutation methods.
 
     ..  container:: example
 

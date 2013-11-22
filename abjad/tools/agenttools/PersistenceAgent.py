@@ -5,13 +5,17 @@ from abjad.tools import abctools
 
 
 class PersistenceAgent(abctools.AbjadObject):
-    r'''A wrapper around Abjad's object persistence mechanisms.
+    r'''A wrapper around the Abjad persistence methods.
 
     ..  container:: example
 
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
             >>> persist(staff)
             PersistenceAgent({c'4, e'4, d'4, f'4})
 

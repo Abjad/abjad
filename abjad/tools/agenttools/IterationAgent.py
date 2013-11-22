@@ -9,13 +9,17 @@ from abjad.tools.topleveltools import iterate
 
 
 class IterationAgent(abctools.AbjadObject):
-    r'''A wrapper around the Abjad score iterators.
+    r'''A wrapper around the Abjad iteration methods.
 
     ..  container:: example
 
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
             >>> iterate(staff[2:])
             IterationAgent(SliceSelection(Note("d'4"), Note("f'4")))
 
