@@ -9,8 +9,33 @@ class LilyPondFormatBundle(AbjadObject):
     format contributions generated on behalf of a single component.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ =  (
+        '_before',
+        '_after',
+        '_opening',
+        '_closing',
+        '_right',
+        '_context_settings',
+        '_grob_overrides',
+        '_grob_reverts',
+        )
+
+    ### INNER CLASS DEFINITION ###
+
     class SlotContributions(object):
         
+        __slots__ = (
+            '_articulations',
+            '_commands',
+            '_comments',
+            '_indicators',
+            '_markup',
+            '_spanners',
+            '_stem_tremolos',
+            )
+
         def __init__(self):
             self._articulations = []
             self._commands = []

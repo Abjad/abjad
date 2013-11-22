@@ -8,16 +8,28 @@ class IndicatorWrapper(AbjadObject):
     r'''An indicator wrapper.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_component',
+        '_effective_context',
+        '_indicator',
+        '_scope',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, indicator, component, scope=None):
         from abjad.tools import scoretools
+        assert hasattr(indicator, '_default_scope'), repr(indicator)
         assert not isinstance(indicator, type(self)), repr(indicator)
-        assert isinstance(component, (scoretools.Component, type(None))), repr(component)
-        assert scope is None or \
-            (isinstance(scope, types.TypeType) and 
-            issubclass(scope, scoretools.Component)) or \
-            isinstance(scope, scoretools.Component), repr(scope)
+        if component is not None:
+            assert isinstance(component, scoretools.Component)
+        if scope is not None:
+            if isinstance(scope, types.TypeType):
+                assert issubclass(scope, scoretools.Component)
+            else:
+                assert isinstance(scope, scoretools.Component)
         self._indicator = indicator
         self._component = component
         self._scope = scope

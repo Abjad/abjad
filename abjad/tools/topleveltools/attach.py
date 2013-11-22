@@ -20,53 +20,33 @@ def attach(indicator, component_expression, scope=None):
         indicator._attach(component_expression)
         return
 
+    component = component_expression
+    assert isinstance(component, scoretools.Component), repr(component)
+
     if isinstance(indicator, indicatortools.IndicatorWrapper):
         scope = scope or indicator.scope
-        if isinstance(scope, types.TypeType):
-            assert issubclass(scope, scoretools.Context), repr(scope)
-        else:
-            assert isinstance(scope, scoretools.Context), repr(scope)
         indicator._detach()
         indicator = indicator.indicator
-        wrapper = indicatortools.IndicatorWrapper(
-            indicator, 
-            component_expression, 
-            scope,
-            )
-        indicator = wrapper
-    elif hasattr(indicator, '_default_scope'):
+        assert hasattr(indicator, '_default_scope')
+
+    if hasattr(indicator, '_default_scope'):
         scope = scope or indicator._default_scope
-        if isinstance(scope, types.TypeType):
-            assert issubclass(scope, scoretools.Context), repr(scope)
-        else:
-            assert isinstance(scope, scoretools.Context), repr(scope)
+        assert scope is not None
         wrapper = indicatortools.IndicatorWrapper(
             indicator, 
-            component_expression, 
+            component,
             scope,
             )
-        indicator = wrapper
-
-    if isinstance(indicator, indicatortools.IndicatorWrapper):
-        assert hasattr(indicator.indicator, '_default_scope')
-
-    assert hasattr(component_expression, '_indicators')
-    prototype = (type(indicator),)
-    if isinstance(indicator, indicatortools.IndicatorWrapper):
-        prototype = (type(indicator.indicator),)
-    effective_indicator = component_expression._get_effective_indicator(
-        prototype,
-        unwrap=False,
-        )
-    if effective_indicator is not None:
-        timespan = effective_indicator.component._get_timespan()
-        mark_start_offset = timespan.start_offset
-        timespan = component_expression._get_timespan()
-        component_start_offset = timespan.start_offset
-        if mark_start_offset == component_start_offset:
-            message = 'effective indicator already attached'
-            message += ' to some component starting at same time.'
-            raise ValueError(message)
-    if isinstance(indicator, indicatortools.IndicatorWrapper):
-        indicator._bind_to_component(component_expression)
-    component_expression._indicators.append(indicator)
+        prototype = type(wrapper.indicator)
+        effective = component._get_effective_indicator(prototype, unwrap=False)
+        if effective is not None:
+            indicator_start = effective.component._get_timespan().start_offset
+            component_start = component._get_timespan().start_offset
+            if indicator_start == component_start:
+                message = 'effective indicator already attached.'
+                raise ValueError(message)
+        wrapper._bind_to_component(component)
+        component._indicators.append(wrapper)
+    else:
+        assert scope is None
+        component._indicators.append(indicator)
