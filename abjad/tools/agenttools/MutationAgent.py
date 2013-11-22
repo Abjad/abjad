@@ -37,6 +37,10 @@ class MutationAgent(abctools.AbjadObject):
 
     @property
     def client(self):
+        r'''Returns client of mutation agent.
+
+        Returns selection or component.
+        '''
         return self._client
 
     ### PUBLIC METHODS ###

@@ -23,25 +23,25 @@ class InspectionAgent(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_component',
+        '_client',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, component):
+    def __init__(self, client):
         from abjad.tools import scoretools
-        assert isinstance(component, scoretools.Component)
-        self._component = component
+        assert isinstance(client, scoretools.Component)
+        self._client = client
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def component(self):
-        r'''Component of inspection agent.
+    def client(self):
+        r'''Client of inspection agent.
 
         Returns component.
         '''
-        return self._component
+        return self._client
 
     ### PUBLIC METHODS ###
 
@@ -50,13 +50,13 @@ class InspectionAgent(abctools.AbjadObject):
         name,
         default=None,
         ):
-        r'''Gets value of annotation with `name` attached to component.
+        r'''Gets value of annotation with `name` attached to client.
 
         Returns `default` when no annotation with `name` is attached
-        to component.
+        to client.
 
         Raises exception when more than one annotation with `name`
-        is attached to component.
+        is attached to client.
         '''
         from abjad.tools import indicatortools
         annotations = self.get_indicators(indicatortools.Annotation)
@@ -80,14 +80,14 @@ class InspectionAgent(abctools.AbjadObject):
         indicator_prototypes=None,
         ):
         r'''Gets exactly one indicator matching `indicator_prototypes` attached to
-        component.
+        client.
 
         Raises exception when no indicator matching `indicator_prototypes` is attached
-        to component.
+        to client.
 
         Returns indicator.
         '''
-        return self._component._get_indicator(
+        return self._client._get_indicator(
             indicator_prototypes=indicator_prototypes,
             )
 
@@ -96,16 +96,16 @@ class InspectionAgent(abctools.AbjadObject):
         indicator_prototypes=None,
         ):
         r'''Get all indicators matching `indicator_prototypes` attached
-        to component.
+        to client.
 
         Returns tuple.
         '''
-        return self._component._get_indicators(
+        return self._client._get_indicators(
             indicator_prototypes=indicator_prototypes,
             )
 
     def get_badly_formed_components(self):
-        r'''Gets badly formed components in component.
+        r'''Gets badly formed components in client.
 
         ..  container:: example
 
@@ -136,7 +136,7 @@ class InspectionAgent(abctools.AbjadObject):
         Returns list.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.WellformednessManager(self._component)
+        manager = systemtools.WellformednessManager(self._client)
         violators = []
         for current_violators, total, check_name in manager():
             violators.extend(current_violators)
@@ -148,11 +148,11 @@ class InspectionAgent(abctools.AbjadObject):
         include_self=True,
         ):
         r'''Gets all components of `component_classes`
-        in the descendants of component.
+        in the descendants of client.
 
-        Returns component selection.
+        Returns client selection.
         '''
-        return self._component._get_components(
+        return self._client._get_components(
             component_classes=component_classes,
             include_self=include_self,
             )
@@ -161,11 +161,11 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         include_self=True,
         ):
-        r'''Gets contents of component.
+        r'''Gets contents of client.
 
         Returns sequential selection.
         '''
-        return self._component._get_contents(
+        return self._client._get_contents(
             include_self=include_self,
             )
 
@@ -173,11 +173,11 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         include_self=True,
         ):
-        r'''Gets descendants of component.
+        r'''Gets descendants of client.
 
         Returns descendants.
         '''
-        return self._component._get_descendants(
+        return self._client._get_descendants(
             include_self=include_self,
             )
 
@@ -185,11 +185,11 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         in_seconds=False,
         ):
-        r'''Gets duration of component.
+        r'''Gets duration of client.
 
         Returns duration.
         '''
-        return self._component._get_duration(
+        return self._client._get_duration(
             in_seconds=in_seconds,
             )
 
@@ -198,20 +198,20 @@ class InspectionAgent(abctools.AbjadObject):
         prototype=None,
         ):
         r'''Gets effective indicator that matches `prototype`
-        and governs component.
+        and governs client.
 
         Returns indicator or none.
         '''
-        return self._component._get_effective_indicator(
+        return self._client._get_effective_indicator(
             prototype=prototype,
             )
 
     def get_effective_staff(self):
-        r'''Gets effective staff of component.
+        r'''Gets effective staff of client.
 
         Returns staff or none.
         '''
-        return self._component._get_effective_staff()
+        return self._client._get_effective_staff()
 
     def get_grace_containers(
         self,
@@ -282,7 +282,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns tuple.
         '''
-        return self._component._get_grace_containers(
+        return self._client._get_grace_containers(
             kind=kind,
             )
 
@@ -333,26 +333,26 @@ class InspectionAgent(abctools.AbjadObject):
         Returns leaf or none.
         '''
         from abjad.tools import scoretools
-        if not isinstance(self._component, scoretools.Leaf):
+        if not isinstance(self._client, scoretools.Leaf):
             return None
-        return self._component._get_leaf(n=n)
+        return self._client._get_leaf(n=n)
 
     def get_lineage(self):
-        r'''Gets lineage of component.
+        r'''Gets lineage of client.
 
         Returns lineage.
         '''
-        return self._component._get_lineage()
+        return self._client._get_lineage()
 
     def get_markup(
         self,
         direction=None,
         ):
-        r'''Gets all markup attached to component.
+        r'''Gets all markup attached to client.
 
         Returns tuple.
         '''
-        return self._component._get_markup(
+        return self._client._get_markup(
             direction=direction,
             )
 
@@ -360,11 +360,11 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         include_self=True,
         ):
-        r'''Gets parentage of component.
+        r'''Gets parentage of client.
 
         Returns parentage.
         '''
-        return self._component._get_parentage(
+        return self._client._get_parentage(
             include_self=include_self,
             )
 
@@ -373,14 +373,14 @@ class InspectionAgent(abctools.AbjadObject):
         spanner_classes=None,
         ):
         r'''Gets exactly one spanner of `spanner_classes` attached to
-        component.
+        client.
 
         Raises exception when no spanner of `spanner_classes` is attached
-        to component.
+        to client.
 
         Returns spanner.
         '''
-        return self._component._get_spanner(
+        return self._client._get_spanner(
             spanner_classes=spanner_classes,
             )
 
@@ -388,11 +388,11 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         spanner_classes=None,
         ):
-        r'''Gets spanners attached to component.
+        r'''Gets spanners attached to client.
 
         Returns set.
         '''
-        return self._component._get_spanners(
+        return self._client._get_spanners(
             spanner_classes=spanner_classes,
             )
 
@@ -401,16 +401,16 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns tie chain.
         '''
-        return self._component._get_tie_chain()
+        return self._client._get_tie_chain()
 
     def get_timespan(self,
         in_seconds=False,
         ):
-        r'''Gets timespan of component.
+        r'''Gets timespan of client.
 
         Returns timespan.
         '''
-        return self._component._get_timespan(
+        return self._client._get_timespan(
             in_seconds=in_seconds,
             )
 
@@ -418,11 +418,11 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         governor=None,
         ):
-        r'''Gets vertical moment starting with component.
+        r'''Gets vertical moment starting with client.
 
         Returns vertical moment.
         '''
-        return self._component._get_vertical_moment(
+        return self._client._get_vertical_moment(
             governor=governor,
             )
 
@@ -434,12 +434,12 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns vertical moment.
         '''
-        return self._component._get_vertical_moment_at(
+        return self._client._get_vertical_moment_at(
             offset,
             )
 
     def is_bar_line_crossing(self):
-        r'''True when component crosses bar line.
+        r'''True when client crosses bar line.
         Otherwise false.
 
         ..  container:: example
@@ -476,7 +476,7 @@ class InspectionAgent(abctools.AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import indicatortools
-        time_signature = self._component._get_effective_indicator(
+        time_signature = self._client._get_effective_indicator(
             indicatortools.TimeSignature)
         if time_signature is None:
             time_signature_duration = durationtools.Duration(4, 4)
@@ -484,10 +484,10 @@ class InspectionAgent(abctools.AbjadObject):
             time_signature_duration = time_signature.duration
         partial = getattr(time_signature, 'partial', 0)
         partial = partial or 0
-        start_offset = self._component._get_timespan().start_offset
+        start_offset = self._client._get_timespan().start_offset
         shifted_start = start_offset - partial
         shifted_start %= time_signature_duration
-        stop_offset = self._component._get_duration() + shifted_start
+        stop_offset = self._client._get_duration() + shifted_start
         if time_signature_duration < stop_offset:
             return True
         return False
@@ -496,14 +496,14 @@ class InspectionAgent(abctools.AbjadObject):
         self,
         allow_empty_containers=True,
         ):
-        r'''True when component is well-formed.
+        r'''True when client is well-formed.
         Otherwise false.
 
         Returns false.
         '''
         from abjad.tools import systemtools
         manager = systemtools.WellformednessManager(
-            self._component,
+            self._client,
             allow_empty_containers=allow_empty_containers,
             )
         for violators, total, check_name in manager():
@@ -512,7 +512,7 @@ class InspectionAgent(abctools.AbjadObject):
         return True
 
     def report_modifications(self):
-        r'''Reports modifications of component.
+        r'''Reports modifications of client.
 
         ..  container:: example
 
@@ -558,28 +558,28 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         from abjad.tools import systemtools
-        component = self._component
+        client = self._client
         bundle = systemtools.LilyPondFormatManager.bundle_format_contributions(
-            component)
+            client)
         result = []
-        result.extend(component._get_format_contributions_for_slot(
+        result.extend(client._get_format_contributions_for_slot(
             'before', bundle))
-        result.extend(component._get_format_contributions_for_slot(
+        result.extend(client._get_format_contributions_for_slot(
             'open brackets', bundle))
-        result.extend(component._get_format_contributions_for_slot(
+        result.extend(client._get_format_contributions_for_slot(
             'opening', bundle))
-        result.append('\t%%%%%% %s components omitted %%%%%%' % len(component))
-        result.extend(component._get_format_contributions_for_slot(
+        result.append('\t%%%%%% %s components omitted %%%%%%' % len(client))
+        result.extend(client._get_format_contributions_for_slot(
             'closing', bundle))
-        result.extend(component._get_format_contributions_for_slot(
+        result.extend(client._get_format_contributions_for_slot(
             'close brackets', bundle))
-        result.extend(component._get_format_contributions_for_slot(
+        result.extend(client._get_format_contributions_for_slot(
             'after', bundle))
         result = '\n'.join(result)
         return result
 
     def tabulate_well_formedness_violations(self):
-        r'''Tabulates well-formedness violations in component.
+        r'''Tabulates well-formedness violations in client.
 
         ..  container:: example
 
@@ -627,7 +627,7 @@ class InspectionAgent(abctools.AbjadObject):
         Returns string.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.WellformednessManager(self._component)
+        manager = systemtools.WellformednessManager(self._client)
         triples = manager()
         strings = []
         for violators, total, check_name in triples:
@@ -639,9 +639,9 @@ class InspectionAgent(abctools.AbjadObject):
             strings.append(string)
         return '\n'.join(strings)
 
-def inspect(component):
-    r'''Inspect `component`.
+def inspect(client):
+    r'''Inspect `client`.
 
     Returns inspector.
     '''
-    return InspectionAgent(component)
+    return InspectionAgent(client)

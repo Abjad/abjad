@@ -36,6 +36,10 @@ class PersistenceAgent(abctools.AbjadObject):
 
     @property
     def client(self):
+        r'''Client of persistence agent.
+
+        Returns selection or component.
+        '''
         return self._client
 
     ### PUBLIC METHODS ###

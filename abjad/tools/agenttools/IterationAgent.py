@@ -40,6 +40,10 @@ class IterationAgent(abctools.AbjadObject):
 
     @property
     def client(self):
+        r'''Client of iteration agent.
+
+        Returns selection.
+        '''
         return self._client
 
     ### PUBLIC METHODS ###
