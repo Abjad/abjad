@@ -140,16 +140,16 @@ class TypedCollection(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def custom_identifier():
-        def fget(self):
-            r'''Read / write custom identifier of typed collection.
-            '''
-            return self._custom_identifier
-        def fset(self, _custom_identifier):
-            assert isinstance(_custom_identifier, (str, type(None)))
-            self._custom_identifier = _custom_identifier
-        return property(**locals())
+    @property
+    def custom_identifier(self):
+        r'''Read / write custom identifier of typed collection.
+        '''
+        return self._custom_identifier
+
+    @custom_identifier.setter
+    def custom_identifier(self, _custom_identifier):
+        assert isinstance(_custom_identifier, (str, type(None)))
+        self._custom_identifier = _custom_identifier
 
     @property
     def item_class(self):

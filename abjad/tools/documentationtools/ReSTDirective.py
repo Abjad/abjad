@@ -94,11 +94,11 @@ class ReSTDirective(TreeContainer):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def argument():
-        def fget(self):
-            return self._argument
-        def fset(self, arg):
-            assert isinstance(arg, (str, type(None)))
-            self._argument = arg
-        return property(**locals())
+    @property
+    def argument(self):
+        return self._argument
+
+    @argument.setter
+    def argument(self, arg):
+        assert isinstance(arg, (str, type(None)))
+        self._argument = arg

@@ -197,43 +197,43 @@ class LilyPondParser(abctools.Parser):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def default_language():
-        def fget(self):
-            r'''Read/write attribute to set parser's default pitch-name language:
+    @property
+    def default_language(self):
+        r'''Read/write attribute to set parser's default pitch-name language:
 
-            ::
+        ::
 
-                >>> parser = lilypondparsertools.LilyPondParser()
+            >>> parser = lilypondparsertools.LilyPondParser()
 
-            ::
+        ::
 
-                >>> parser.default_language
-                'english'
+            >>> parser.default_language
+            'english'
 
-            ::
+        ::
 
-                >>> parser('{ c df e fs }')
-                {c4, df4, e4, fs4}
+            >>> parser('{ c df e fs }')
+            {c4, df4, e4, fs4}
 
-            ::
+        ::
 
-                >>> parser.default_language = 'nederlands'
-                >>> parser.default_language
-                'nederlands'
+            >>> parser.default_language = 'nederlands'
+            >>> parser.default_language
+            'nederlands'
 
-            ::
+        ::
 
-                >>> parser('{ c des e fis }')
-                {c4, df4, e4, fs4}
+            >>> parser('{ c des e fis }')
+            {c4, df4, e4, fs4}
 
-            Returns string.
-            '''
-            return self._default_language
-        def fset(self, arg):
-            assert arg in self.available_languages
-            self._default_language = arg
-        return property(**locals())
+        Returns string.
+        '''
+        return self._default_language
+
+    @default_language.setter
+    def default_language(self, arg):
+        assert arg in self.available_languages
+        self._default_language = arg
 
     ### PRIVATE METHODS ###
 

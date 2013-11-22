@@ -139,47 +139,47 @@ class InstrumentationSpecifier(AbjadObject):
         else:
             return ''
 
-    @apply
-    def performers():
-        def fget(self):
-            r'''Read / write list of performers in score:
+    @property
+    def performers(self):
+        r'''Read / write list of performers in score:
 
-            ::
+        ::
 
-                >>> print format(instrumentation_specifier.performers)
-                instrumenttools.PerformerInventory(
-                    [
-                        instrumenttools.Performer(
-                            name='Flute',
-                            instruments=instrumenttools.InstrumentInventory(
-                                [
-                                    instrumenttools.Flute(),
-                                    instrumenttools.AltoFlute(),
-                                    ]
-                                ),
+            >>> print format(instrumentation_specifier.performers)
+            instrumenttools.PerformerInventory(
+                [
+                    instrumenttools.Performer(
+                        name='Flute',
+                        instruments=instrumenttools.InstrumentInventory(
+                            [
+                                instrumenttools.Flute(),
+                                instrumenttools.AltoFlute(),
+                                ]
                             ),
-                        instrumenttools.Performer(
-                            name='Guitar',
-                            instruments=instrumenttools.InstrumentInventory(
-                                [
-                                    instrumenttools.Guitar(),
-                                    ]
-                                ),
+                        ),
+                    instrumenttools.Performer(
+                        name='Guitar',
+                        instruments=instrumenttools.InstrumentInventory(
+                            [
+                                instrumenttools.Guitar(),
+                                ]
                             ),
-                        ]
-                    )
+                        ),
+                    ]
+                )
 
-            Returns performer inventory.
-            '''
-            return self._performers
-        def fset(self, performers):
-            from abjad.tools import instrumenttools
-            assert isinstance(performers, 
-                (list, datastructuretools.TypedList, type(None)))
-            if performers is None:
-                self._performers[:] = []
-            else:
-                assert all(isinstance(x, instrumenttools.Performer) 
-                    for x in performers)
-                self._performers[:] = list(performers[:])
-        return property(**locals())
+        Returns performer inventory.
+        '''
+        return self._performers
+
+    @performers.setter
+    def performers(self, performers):
+        from abjad.tools import instrumenttools
+        assert isinstance(performers, 
+            (list, datastructuretools.TypedList, type(None)))
+        if performers is None:
+            self._performers[:] = []
+        else:
+            assert all(isinstance(x, instrumenttools.Performer) 
+                for x in performers)
+            self._performers[:] = list(performers[:])

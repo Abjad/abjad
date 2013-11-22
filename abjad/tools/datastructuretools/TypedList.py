@@ -395,19 +395,19 @@ class TypedList(TypedCollection):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def keep_sorted():
-        def fget(self):
-            r'''Sorts collection on mutation if true.
-            '''
-            return self._keep_sorted
-        def fset(self, expr):
-            if not expr:
-                expr = None
-            else:
-                expr = True
-            self._keep_sorted = expr
-        return property(**locals())
+    @property
+    def keep_sorted(self):
+        r'''Sorts collection on mutation if true.
+        '''
+        return self._keep_sorted
+
+    @keep_sorted.setter
+    def keep_sorted(self, expr):
+        if not expr:
+            expr = None
+        else:
+            expr = True
+        self._keep_sorted = expr
 
 
 collections.MutableSequence.register(TypedList)

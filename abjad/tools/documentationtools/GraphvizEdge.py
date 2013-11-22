@@ -70,13 +70,13 @@ class GraphvizEdge(GraphvizObject):
     def head(self):
         return self._head
 
-    @apply
-    def is_directed():
-        def fget(self):
-            return self._is_directed
-        def fset(self, arg):
-            self._is_directed = bool(arg)
-        return property(**locals())
+    @property
+    def is_directed(self):
+        return self._is_directed
+
+    @is_directed.setter
+    def is_directed(self, arg):
+        self._is_directed = bool(arg)
 
     @property
     def tail(self):

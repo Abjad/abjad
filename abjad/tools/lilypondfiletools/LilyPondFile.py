@@ -205,89 +205,89 @@ class LilyPondFile(AbjadObject, list):
         
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def default_paper_size():
-        def fget(self):
-            r'''LilyPond default paper size.
-            '''
-            return self._default_paper_size
+    @property
+    def default_paper_size(self):
+        r'''LilyPond default paper size.
+        '''
+        return self._default_paper_size
 
-        def fset(self, args):
-            # #(set-default-paper-size "11x17" 'landscape)
-            assert args is None or len(args) == 2
-            self._default_paper_size = args
 
-        return property(**locals())
+    @default_paper_size.setter
+    def default_paper_size(self, args):
+        # #(set-default-paper-size "11x17" 'landscape)
+        assert args is None or len(args) == 2
+        self._default_paper_size = args
 
-    @apply
-    def file_initial_system_comments():
-        def fget(self):
-            r'''List of file-initial system comments.
-            '''
-            return self._file_initial_system_comments
 
-        def fset(self, arg):
-            if isinstance(arg, list):
-                self._file_initial_system_comments = arg
-            else:
-                raise TypeError
+    @property
+    def file_initial_system_comments(self):
+        r'''List of file-initial system comments.
+        '''
+        return self._file_initial_system_comments
 
-        return property(**locals())
 
-    @apply
-    def file_initial_system_includes():
-        def fget(self):
-            r'''List of file-initial system include commands.
-            '''
-            return self._file_initial_system_includes
+    @file_initial_system_comments.setter
+    def file_initial_system_comments(self, arg):
+        if isinstance(arg, list):
+            self._file_initial_system_comments = arg
+        else:
+            raise TypeError
 
-        def fset(self, arg):
-            if isinstance(arg, list):
-                self._file_initial_system_includes = arg
-            else:
-                raise TypeError
 
-        return property(**locals())
+    @property
+    def file_initial_system_includes(self):
+        r'''List of file-initial system include commands.
+        '''
+        return self._file_initial_system_includes
 
-    @apply
-    def file_initial_user_comments():
-        def fget(self):
-            r'''List of file-initial user comments.
-            '''
-            return self._file_initial_user_comments
 
-        def fset(self, arg):
-            if isinstance(arg, list):
-                self._file_initial_user_comments = arg
-            else:
-                raise TypeError
+    @file_initial_system_includes.setter
+    def file_initial_system_includes(self, arg):
+        if isinstance(arg, list):
+            self._file_initial_system_includes = arg
+        else:
+            raise TypeError
 
-        return property(**locals())
 
-    @apply
-    def file_initial_user_includes():
-        def fget(self):
-            r'''List of file-initial user include commands.
-            '''
-            return self._file_initial_user_includes
+    @property
+    def file_initial_user_comments(self):
+        r'''List of file-initial user comments.
+        '''
+        return self._file_initial_user_comments
 
-        def fset(self, arg):
-            if isinstance(arg, list):
-                self._file_initial_user_includes = arg
-            else:
-                raise TypeError
 
-        return property(**locals())
+    @file_initial_user_comments.setter
+    def file_initial_user_comments(self, arg):
+        if isinstance(arg, list):
+            self._file_initial_user_comments = arg
+        else:
+            raise TypeError
 
-    @apply
-    def global_staff_size():
-        def fget(self):
-            r'''LilyPond global staff size.
-            '''
-            return self._global_staff_size
 
-        def fset(self, arg):
-            assert isinstance(arg, (int, float, long, type(None)))
-            self._global_staff_size = arg
+    @property
+    def file_initial_user_includes(self):
+        r'''List of file-initial user include commands.
+        '''
+        return self._file_initial_user_includes
 
-        return property(**locals())
+
+    @file_initial_user_includes.setter
+    def file_initial_user_includes(self, arg):
+        if isinstance(arg, list):
+            self._file_initial_user_includes = arg
+        else:
+            raise TypeError
+
+
+    @property
+    def global_staff_size(self):
+        r'''LilyPond global staff size.
+        '''
+        return self._global_staff_size
+
+
+    @global_staff_size.setter
+    def global_staff_size(self, arg):
+        assert isinstance(arg, (int, float, long, type(None)))
+        self._global_staff_size = arg
+

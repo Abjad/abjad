@@ -256,13 +256,13 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             return '\n'.join(recurse(self, indent=0, prefix='digraph'))
         return '\n'.join(recurse(self, indent=0, prefix='graph'))
 
-    @apply
-    def is_digraph():
-        def fget(self):
-            return self._is_digraph
-        def fset(self, arg):
-            self._is_digraph = bool(arg)
-        return property(**locals())
+    @property
+    def is_digraph(self):
+        return self._is_digraph
+
+    @is_digraph.setter
+    def is_digraph(self, arg):
+        self._is_digraph = bool(arg)
 
     @property
     def node_attributes(self):

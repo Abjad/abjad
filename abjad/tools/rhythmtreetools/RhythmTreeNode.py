@@ -163,34 +163,34 @@ class RhythmTreeNode(TreeNode):
         result.append(node.preprolated_duration)
         return tuple(reversed(result))
 
-    @apply
-    def preprolated_duration():
-        def fget(self):
-            r'''The node's preprolated_duration in pulses:
+    @property
+    def preprolated_duration(self):
+        r'''The node's preprolated_duration in pulses:
 
-            ::
+        ::
 
-                >>> node = rhythmtreetools.RhythmTreeLeaf(
-                ...     preprolated_duration=1)
-                >>> node.preprolated_duration
-                Duration(1, 1)
+            >>> node = rhythmtreetools.RhythmTreeLeaf(
+            ...     preprolated_duration=1)
+            >>> node.preprolated_duration
+            Duration(1, 1)
 
-            ::
+        ::
 
-                >>> node.preprolated_duration = 2
-                >>> node.preprolated_duration
-                Duration(2, 1)
+            >>> node.preprolated_duration = 2
+            >>> node.preprolated_duration
+            Duration(2, 1)
 
-            Returns int.
-            '''
-            return self._duration
-        def fset(self, arg):
-            if not isinstance(arg, fractions.Fraction):
-                arg = durationtools.Duration(arg)
-            assert 0 < arg
-            self._duration = arg
-            self._mark_entire_tree_for_later_update()
-        return property(**locals())
+        Returns int.
+        '''
+        return self._duration
+
+    @preprolated_duration.setter
+    def preprolated_duration(self, arg):
+        if not isinstance(arg, fractions.Fraction):
+            arg = durationtools.Duration(arg)
+        assert 0 < arg
+        self._duration = arg
+        self._mark_entire_tree_for_later_update()
 
     @property
     def pretty_rtm_format(self):

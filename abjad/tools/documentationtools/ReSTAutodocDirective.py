@@ -51,19 +51,19 @@ class ReSTAutodocDirective(ReSTDirective):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def directive():
-        def fget(self):
-            return self._directive
-        def fset(self, arg):
-            assert arg in (
-                'autoattribute',
-                'autoclass',
-                'autodata',
-                'autoexception',
-                'autofunction',
-                'automethod',
-                'automodule',
-            )
-            self._directive = arg
-        return property(**locals())
+    @property
+    def directive(self):
+        return self._directive
+
+    @directive.setter
+    def directive(self, arg):
+        assert arg in (
+            'autoattribute',
+            'autoclass',
+            'autodata',
+            'autoexception',
+            'autofunction',
+            'automethod',
+            'automodule',
+        )
+        self._directive = arg

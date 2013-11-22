@@ -58,10 +58,10 @@ class GraphvizSubgraph(GraphvizGraph):
     def edges(self):
         return tuple(self._edges)
 
-    @apply
-    def is_cluster():
-        def fget(self):
-            return self._is_cluster
-        def fset(self, arg):
-            self._is_cluster = bool(arg)
-        return property(**locals())
+    @property
+    def is_cluster(self):
+        return self._is_cluster
+
+    @is_cluster.setter
+    def is_cluster(self, arg):
+        self._is_cluster = bool(arg)

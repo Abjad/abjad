@@ -41,13 +41,13 @@ class ReSTTOCItem(TreeNode):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def text():
-        def fget(self):
-            return self._text
-        def fset(self, arg):
-            assert isinstance(arg, str)
-            arg = arg.strip()
-            assert len(arg)
-            self._text = arg
-        return property(**locals())
+    @property
+    def text(self):
+        return self._text
+
+    @text.setter
+    def text(self, arg):
+        assert isinstance(arg, str)
+        arg = arg.strip()
+        assert len(arg)
+        self._text = arg

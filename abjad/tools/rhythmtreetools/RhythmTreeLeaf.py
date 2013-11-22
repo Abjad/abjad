@@ -118,26 +118,26 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def is_pitched():
-        def fget(self):
-            r'''True if leaf is pitched:
+    @property
+    def is_pitched(self):
+        r'''True if leaf is pitched:
 
-            ::
+        ::
 
-                >>> leaf = rhythmtreetools.RhythmTreeLeaf()
-                >>> leaf.is_pitched
-                True
+            >>> leaf = rhythmtreetools.RhythmTreeLeaf()
+            >>> leaf.is_pitched
+            True
 
-            ::
+        ::
 
-                >>> leaf.is_pitched = False
-                >>> leaf.is_pitched
-                False
+            >>> leaf.is_pitched = False
+            >>> leaf.is_pitched
+            False
 
-            Returns boolean.
-            '''
-            return self._is_pitched
-        def fset(self, arg):
-            self._is_pitched = bool(arg)
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_pitched
+
+    @is_pitched.setter
+    def is_pitched(self, arg):
+        self._is_pitched = bool(arg)

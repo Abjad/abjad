@@ -104,317 +104,317 @@ class AltoSaxophone(Instrument):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def allowable_clefs():
-        def fget(self):
-            r'''Gets and sets allowable clefs.
+    @property
+    def allowable_clefs(self):
+        r'''Gets and sets allowable clefs.
 
-            ..  container:: example
+        ..  container:: example
 
-                Gets property:
+            Gets property:
 
-                ::
+            ::
 
-                    >>> alto_sax.allowable_clefs
-                    ClefInventory([Clef('treble')])
+                >>> alto_sax.allowable_clefs
+                ClefInventory([Clef('treble')])
 
-                :: 
+            :: 
 
-                    >>> import copy
-                    >>> skips = []
-                    >>> for clef in alto_sax.allowable_clefs:
-                    ...     skip = scoretools.Skip((1, 8))
-                    ...     clef = copy.copy(clef)
-                    ...     attach(clef, skip)
-                    ...     skips.append(skip)
-                    >>> staff = Staff(skips)
-                    >>> override(staff).clef.full_size_change = True
-                    >>> override(staff).time_signature.stencil = False
-                    >>> show(staff) # doctest: +SKIP
+                >>> import copy
+                >>> skips = []
+                >>> for clef in alto_sax.allowable_clefs:
+                ...     skip = scoretools.Skip((1, 8))
+                ...     clef = copy.copy(clef)
+                ...     attach(clef, skip)
+                ...     skips.append(skip)
+                >>> staff = Staff(skips)
+                >>> override(staff).clef.full_size_change = True
+                >>> override(staff).time_signature.stencil = False
+                >>> show(staff) # doctest: +SKIP
 
-            ..  container:: example
+        ..  container:: example
 
-                Sets property:
+            Sets property:
 
-                ::
+            ::
 
-                    >>> alto_sax.allowable_clefs = ['treble', 'treble^8']
-                    >>> alto_sax.allowable_clefs
-                    ClefInventory([Clef('treble'), Clef('treble^8')])
+                >>> alto_sax.allowable_clefs = ['treble', 'treble^8']
+                >>> alto_sax.allowable_clefs
+                ClefInventory([Clef('treble'), Clef('treble^8')])
 
-            ..  container:: example
+        ..  container:: example
 
-                Restores default:
+            Restores default:
 
-                ::
+            ::
 
-                    >>> alto_sax.allowable_clefs = None
-                    >>> alto_sax.allowable_clefs
-                    ClefInventory([Clef('treble')])
+                >>> alto_sax.allowable_clefs = None
+                >>> alto_sax.allowable_clefs
+                ClefInventory([Clef('treble')])
 
-            Returns clef inventory.
-            '''
-            return Instrument.allowable_clefs.fget(self)
-        def fset(self, allowable_clefs):
-            return Instrument.allowable_clefs.fset(self, allowable_clefs)
-        return property(**locals())
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
 
-    @apply
-    def instrument_name():
-        def fget(self):
-            r'''Gets and sets instrument name.
+    @allowable_clefs.setter
+    def allowable_clefs(self, allowable_clefs):
+        return Instrument.allowable_clefs.fset(self, allowable_clefs)
 
-            ..  container:: example
+    @property
+    def instrument_name(self):
+        r'''Gets and sets instrument name.
 
-                Gets property:
+        ..  container:: example
 
-                ::
+            Gets property:
 
-                    >>> alto_sax.instrument_name
-                    'alto saxophone'
+            ::
 
-            ..  container:: example
+                >>> alto_sax.instrument_name
+                'alto saxophone'
 
-                Sets property:
+        ..  container:: example
 
-                ::
+            Sets property:
 
-                    >>> alto_sax.instrument_name = 'sassofono contralto'
-                    >>> alto_sax.instrument_name
-                    'sassofono contralto'
+            ::
 
-            ..  container:: example
+                >>> alto_sax.instrument_name = 'sassofono contralto'
+                >>> alto_sax.instrument_name
+                'sassofono contralto'
 
-                Restores default:
+        ..  container:: example
 
-                ::
+            Restores default:
 
-                    >>> alto_sax.instrument_name = None
-                    >>> alto_sax.instrument_name
-                    'alto saxophone'
+            ::
 
-            Returns string.
-            '''
-            return Instrument.instrument_name.fget(self)
-        def fset(self, foo):
-            Instrument.instrument_name.fset(self, foo)
-        return property(**locals())
+                >>> alto_sax.instrument_name = None
+                >>> alto_sax.instrument_name
+                'alto saxophone'
 
-    @apply
-    def instrument_name_markup():
-        def fget(self):
-            r'''Gets and sets instrument name markup.
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
 
-            ..  container:: example
+    @instrument_name.setter
+    def instrument_name(self, foo):
+        Instrument.instrument_name.fset(self, foo)
 
-                Gets property:
+    @property
+    def instrument_name_markup(self):
+        r'''Gets and sets instrument name markup.
 
-                ::
+        ..  container:: example
 
-                    >>> alto_sax.instrument_name_markup
-                    Markup(('Alto saxophone',))
+            Gets property:
 
-            ..  container:: example
+            ::
 
-                Sets property:
+                >>> alto_sax.instrument_name_markup
+                Markup(('Alto saxophone',))
 
-                ::
+        ..  container:: example
 
-                    >>> markup = markuptools.Markup('Sassofono contralto')
-                    >>> alto_sax.instrument_name_markup = markup
-                    >>> alto_sax.instrument_name_markup
-                    Markup(('Sassofono contralto',))
+            Sets property:
 
-            ..  container:: example
+            ::
 
-                Restores default:
+                >>> markup = markuptools.Markup('Sassofono contralto')
+                >>> alto_sax.instrument_name_markup = markup
+                >>> alto_sax.instrument_name_markup
+                Markup(('Sassofono contralto',))
 
-                ::
+        ..  container:: example
 
-                    >>> alto_sax.instrument_name_markup = None
-                    >>> alto_sax.instrument_name_markup
-                    Markup(('Alto saxophone',))
+            Restores default:
 
-            Returns markup.
-            '''
-            return Instrument.instrument_name_markup.fget(self)
-        def fset(self, markup):
-            return Instrument.instrument_name_markup.fset(self, markup)
-        return property(**locals())
+            ::
 
-    @apply
-    def pitch_range():
-        def fget(self):
-            r"""Gets and sets pitch range.
+                >>> alto_sax.instrument_name_markup = None
+                >>> alto_sax.instrument_name_markup
+                Markup(('Alto saxophone',))
 
-            ..  container:: example
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
 
-                Gets property:
+    @instrument_name_markup.setter
+    def instrument_name_markup(self, markup):
+        return Instrument.instrument_name_markup.fset(self, markup)
 
-                ::
+    @property
+    def pitch_range(self):
+        r"""Gets and sets pitch range.
 
-                    >>> alto_sax.pitch_range
-                    PitchRange('[C#3, A5]')
+        ..  container:: example
 
-                ::
+            Gets property:
 
-                    >>> chord = Chord("<c' d'>1")
-                    >>> start_pitch = alto_sax.pitch_range.start_pitch
-                    >>> chord.note_heads[0].written_pitch = start_pitch
-                    >>> stop_pitch = alto_sax.pitch_range.stop_pitch
-                    >>> chord.note_heads[1].written_pitch = stop_pitch
-                    >>> voice = Voice([chord])
-                    >>> staff = Staff([voice])
-                    >>> override(staff).time_signature.stencil = False
-                    >>> show(staff) # doctest: +SKIP
+            ::
 
-            ..  container:: example
+                >>> alto_sax.pitch_range
+                PitchRange('[C#3, A5]')
 
-                Sets property:
+            ::
 
-                ::
+                >>> chord = Chord("<c' d'>1")
+                >>> start_pitch = alto_sax.pitch_range.start_pitch
+                >>> chord.note_heads[0].written_pitch = start_pitch
+                >>> stop_pitch = alto_sax.pitch_range.stop_pitch
+                >>> chord.note_heads[1].written_pitch = stop_pitch
+                >>> voice = Voice([chord])
+                >>> staff = Staff([voice])
+                >>> override(staff).time_signature.stencil = False
+                >>> show(staff) # doctest: +SKIP
 
-                    >>> alto_sax.pitch_range = '[C#3, A6]'
-                    >>> alto_sax.pitch_range
-                    PitchRange('[C#3, A6]')
+        ..  container:: example
 
-            ..  container:: example
+            Sets property:
 
-                Restores default:
+            ::
 
-                ::
+                >>> alto_sax.pitch_range = '[C#3, A6]'
+                >>> alto_sax.pitch_range
+                PitchRange('[C#3, A6]')
 
-                    >>> alto_sax.pitch_range = None
-                    >>> alto_sax.pitch_range
-                    PitchRange('[C#3, A5]')
+        ..  container:: example
 
-            Returns pitch range.
-            """
-            return Instrument.pitch_range.fget(self)
-        def fset(self, pitch_range):
-            Instrument.pitch_range.fset(self, pitch_range)
-        return property(**locals())
+            Restores default:
 
-    @apply
-    def short_instrument_name():
-        def fget(self):
-            r'''Gets and sets short instrument name.
+            ::
 
-            ..  container:: example
+                >>> alto_sax.pitch_range = None
+                >>> alto_sax.pitch_range
+                PitchRange('[C#3, A5]')
 
-                Gets property:
+        Returns pitch range.
+        """
+        return Instrument.pitch_range.fget(self)
 
-                ::
+    @pitch_range.setter
+    def pitch_range(self, pitch_range):
+        Instrument.pitch_range.fset(self, pitch_range)
 
-                    >>> alto_sax.short_instrument_name
-                    'alt. sax.'
-    
-            ..  container:: example
+    @property
+    def short_instrument_name(self):
+        r'''Gets and sets short instrument name.
 
-                Sets property:
+        ..  container:: example
 
-                ::
+            Gets property:
 
-                    >>> alto_sax.short_instrument_name = 'sass. contr.'
-                    >>> alto_sax.short_instrument_name
-                    'sass. contr.'
+            ::
 
-            ..  container:: example
+                >>> alto_sax.short_instrument_name
+                'alt. sax.'
 
-                Restores default:
+        ..  container:: example
 
-                ::
+            Sets property:
 
-                    >>> alto_sax.short_instrument_name = None
-                    >>> alto_sax.short_instrument_name
-                    'alt. sax.'
+            ::
 
-            Returns string.
-            '''
-            return Instrument.short_instrument_name.fget(self)
-        def fset(self, name):
-            return Instrument.short_instrument_name.fset(self, name)
-        return property(**locals())
+                >>> alto_sax.short_instrument_name = 'sass. contr.'
+                >>> alto_sax.short_instrument_name
+                'sass. contr.'
 
-    @apply
-    def short_instrument_name_markup():
-        def fget(self):
-            r'''Gets and sets short instrument name markup.
+        ..  container:: example
 
-            ..  container:: example
+            Restores default:
 
-                Gets property:
+            ::
 
-                ::
+                >>> alto_sax.short_instrument_name = None
+                >>> alto_sax.short_instrument_name
+                'alt. sax.'
 
-                    >>> alto_sax.short_instrument_name_markup
-                    Markup(('Alt. sax.',))
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
 
-            ..  container:: example
+    @short_instrument_name.setter
+    def short_instrument_name(self, name):
+        return Instrument.short_instrument_name.fset(self, name)
 
-                Sets property:
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets and sets short instrument name markup.
 
-                ::
+        ..  container:: example
 
-                    >>> markup = markuptools.Markup('Sass. contr.')
-                    >>> alto_sax.short_instrument_name_markup = markup
-                    >>> alto_sax.short_instrument_name_markup
-                    Markup(('Sass. contr.',))
+            Gets property:
 
-            ..  container:: example
+            ::
 
-                Restores default:
+                >>> alto_sax.short_instrument_name_markup
+                Markup(('Alt. sax.',))
 
-                ::
+        ..  container:: example
 
-                    >>> alto_sax.short_instrument_name_markup = None
-                    >>> alto_sax.short_instrument_name_markup
-                    Markup(('Alt. sax.',))
+            Sets property:
 
-            Returns markup.
-            '''
-            return Instrument.short_instrument_name_markup.fget(self)
-        def fset(self, markup):
-            return Instrument.short_instrument_name_markup.fset(self, markup)
-        return property(**locals())
+            ::
 
-    @apply
-    def sounding_pitch_of_written_middle_c():
-        def fget(self):
-            r'''Gets and sets sounding pitch of written middle C.
+                >>> markup = markuptools.Markup('Sass. contr.')
+                >>> alto_sax.short_instrument_name_markup = markup
+                >>> alto_sax.short_instrument_name_markup
+                Markup(('Sass. contr.',))
 
-            ..  container:: example
+        ..  container:: example
 
-                Gets property:
+            Restores default:
 
-                ::
+            ::
 
-                    >>> alto_sax.sounding_pitch_of_written_middle_c
-                    NamedPitch('ef')
+                >>> alto_sax.short_instrument_name_markup = None
+                >>> alto_sax.short_instrument_name_markup
+                Markup(('Alt. sax.',))
 
-            ..  container:: example
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
 
-                Sets property:
+    @short_instrument_name_markup.setter
+    def short_instrument_name_markup(self, markup):
+        return Instrument.short_instrument_name_markup.fset(self, markup)
 
-                ::
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets and sets sounding pitch of written middle C.
 
-                    >>> alto_sax.sounding_pitch_of_written_middle_c = 'e'
-                    >>> alto_sax.sounding_pitch_of_written_middle_c
-                    NamedPitch('e')
+        ..  container:: example
 
-            ..  container:: example
+            Gets property:
 
-                Restores default:
+            ::
 
-                ::
+                >>> alto_sax.sounding_pitch_of_written_middle_c
+                NamedPitch('ef')
 
-                    >>> alto_sax.sounding_pitch_of_written_middle_c = None
-                    >>> alto_sax.sounding_pitch_of_written_middle_c
-                    NamedPitch('ef')
+        ..  container:: example
 
-            Returns named pitch.
-            '''
-            return Instrument.sounding_pitch_of_written_middle_c.fget(self)
-        def fset(self, pitch):
-            Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
-        return property(**locals())
+            Sets property:
+
+            ::
+
+                >>> alto_sax.sounding_pitch_of_written_middle_c = 'e'
+                >>> alto_sax.sounding_pitch_of_written_middle_c
+                NamedPitch('e')
+
+        ..  container:: example
+
+            Restores default:
+
+            ::
+
+                >>> alto_sax.sounding_pitch_of_written_middle_c = None
+                >>> alto_sax.sounding_pitch_of_written_middle_c
+                NamedPitch('ef')
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+
+    @sounding_pitch_of_written_middle_c.setter
+    def sounding_pitch_of_written_middle_c(self, pitch):
+        Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)

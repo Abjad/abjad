@@ -50,21 +50,21 @@ class ReSTParagraph(TreeNode):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def text():
-        def fget(self):
-            return self._text
-        def fset(self, arg):
-            assert isinstance(arg, str)
-            arg = arg.strip()
-            assert len(arg)
-            self._text = arg
-        return property(**locals())
+    @property
+    def text(self):
+        return self._text
 
-    @apply
-    def wrap():
-        def fget(self):
-            return self._wrap
-        def fset(self, arg):
-            self._wrap = bool(arg)
-        return property(**locals())
+    @text.setter
+    def text(self, arg):
+        assert isinstance(arg, str)
+        arg = arg.strip()
+        assert len(arg)
+        self._text = arg
+
+    @property
+    def wrap(self):
+        return self._wrap
+
+    @wrap.setter
+    def wrap(self, arg):
+        self._wrap = bool(arg)

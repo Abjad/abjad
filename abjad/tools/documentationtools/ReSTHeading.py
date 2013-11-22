@@ -56,27 +56,27 @@ class ReSTHeading(TreeNode):
             ('"', None),
         )
 
-    @apply
-    def level():
-        def fget(self):
-            return self._level
-        def fset(self, arg):
-            assert isinstance(arg, int) and \
-                0 <= arg < len(self.heading_characters)
-            self._level = arg
-        return property(**locals())
+    @property
+    def level(self):
+        return self._level
+
+    @level.setter
+    def level(self, arg):
+        assert isinstance(arg, int) and \
+            0 <= arg < len(self.heading_characters)
+        self._level = arg
 
     @property
     def rest_format(self):
         return '\n'.join(self._rest_format_contributions)
 
-    @apply
-    def text():
-        def fget(self):
-            return self._text
-        def fset(self, arg):
-            assert isinstance(arg, str)
-            arg = arg.strip()
-            assert len(arg)
-            self._text = arg
-        return property(**locals())
+    @property
+    def text(self):
+        return self._text
+
+    @text.setter
+    def text(self, arg):
+        assert isinstance(arg, str)
+        arg = arg.strip()
+        assert len(arg)
+        self._text = arg

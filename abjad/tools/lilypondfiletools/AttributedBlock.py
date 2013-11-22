@@ -117,13 +117,13 @@ class AttributedBlock(list, AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def is_formatted_when_empty():
-        def fget(self):
-            return self._is_formatted_when_empty
-        def fset(self, arg):
-            if isinstance(arg, bool):
-                self._is_formatted_when_empty = arg
-            else:
-                raise TypeError
-        return property(**locals())
+    @property
+    def is_formatted_when_empty(self):
+        return self._is_formatted_when_empty
+
+    @is_formatted_when_empty.setter
+    def is_formatted_when_empty(self, arg):
+        if isinstance(arg, bool):
+            self._is_formatted_when_empty = arg
+        else:
+            raise TypeError

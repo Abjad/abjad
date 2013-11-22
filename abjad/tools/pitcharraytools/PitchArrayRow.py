@@ -209,16 +209,16 @@ class PitchArrayRow(AbjadObject):
     def parent_array(self):
         return self._parent_array
 
-    @apply
-    def pitch_range():
-        def fget(self):
-            return self._pitch_range
-        def fset(self, arg):
-            if not isinstance(arg, pitchtools.PitchRange):
-                message = 'must be pitch range.'
-                raise TypeError(message)
-            self._pitch_range = arg
-        return property(**locals())
+    @property
+    def pitch_range(self):
+        return self._pitch_range
+
+    @pitch_range.setter
+    def pitch_range(self, arg):
+        if not isinstance(arg, pitchtools.PitchRange):
+            message = 'must be pitch range.'
+            raise TypeError(message)
+        self._pitch_range = arg
 
     @property
     def pitches(self):

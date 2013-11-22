@@ -283,19 +283,19 @@ class PitchArrayCell(AbjadObject):
     def parent_row(self):
         return self._parent_row
 
-    @apply
-    def pitches():
-        def fget(self):
-            for i, pitch in enumerate(self._pitches):
-                if not isinstance(pitch, NamedPitch):
-                    self._pitches[i] = NamedPitch(pitch)
-            return self._pitches
-        def fset(self, arg):
-            if not isinstance(arg, (list, tuple)):
-                message = 'must be list or tuple of pitches.'
-                raise TypeError(message)
-            self._pitches = arg
-        return property(**locals())
+    @property
+    def pitches(self):
+        for i, pitch in enumerate(self._pitches):
+            if not isinstance(pitch, NamedPitch):
+                self._pitches[i] = NamedPitch(pitch)
+        return self._pitches
+
+    @pitches.setter
+    def pitches(self, arg):
+        if not isinstance(arg, (list, tuple)):
+            message = 'must be list or tuple of pitches.'
+            raise TypeError(message)
+        self._pitches = arg
 
     @property
     def prev(self):

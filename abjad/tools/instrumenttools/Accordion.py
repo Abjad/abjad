@@ -128,351 +128,351 @@ class Accordion(Instrument):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def allowable_clefs():
-        def fget(self):
-            r'''Gets and sets allowable clefs.
+    @property
+    def allowable_clefs(self):
+        r'''Gets and sets allowable clefs.
 
-            ..  container:: example
+        ..  container:: example
 
-                Gets property:
+            Gets property:
 
-                ::
+            ::
 
-                    >>> accordion.allowable_clefs
-                    ClefInventory([Clef('treble'), Clef('bass')])
+                >>> accordion.allowable_clefs
+                ClefInventory([Clef('treble'), Clef('bass')])
 
-                ::
+            ::
 
-                    >>> show(accordion.allowable_clefs) # doctest: +SKIP
+                >>> show(accordion.allowable_clefs) # doctest: +SKIP
 
-            ..  container:: example
+        ..  container:: example
 
-                Sets property:
+            Sets property:
 
-                ::
+            ::
 
-                    >>> accordion.allowable_clefs = ['treble']
-                    >>> accordion.allowable_clefs
-                    ClefInventory([Clef('treble')])
+                >>> accordion.allowable_clefs = ['treble']
+                >>> accordion.allowable_clefs
+                ClefInventory([Clef('treble')])
 
-                ::
+            ::
 
-                    >>> show(accordion.allowable_clefs) # doctest: +SKIP
+                >>> show(accordion.allowable_clefs) # doctest: +SKIP
 
-            ..  container:: example
+        ..  container:: example
 
-                Restores default:
+            Restores default:
 
-                ::
+            ::
 
-                    >>> accordion.allowable_clefs = None
-                    >>> accordion.allowable_clefs
-                    ClefInventory([Clef('treble'), Clef('bass')])
+                >>> accordion.allowable_clefs = None
+                >>> accordion.allowable_clefs
+                ClefInventory([Clef('treble'), Clef('bass')])
 
-                ::
+            ::
 
-                    >>> show(accordion.allowable_clefs) # doctest: +SKIP
+                >>> show(accordion.allowable_clefs) # doctest: +SKIP
 
-            Returns clef inventory.
-            '''
-            return Instrument.allowable_clefs.fget(self)
-        def fset(self, allowable_clefs):
-            return Instrument.allowable_clefs.fset(self, allowable_clefs)
-        return property(**locals())
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
 
-    @apply
-    def instrument_name():
-        def fget(self):
-            r'''Gets and sets instrument name.
+    @allowable_clefs.setter
+    def allowable_clefs(self, allowable_clefs):
+        return Instrument.allowable_clefs.fset(self, allowable_clefs)
 
-            ..  container:: example
+    @property
+    def instrument_name(self):
+        r'''Gets and sets instrument name.
 
-                Gets property:
+        ..  container:: example
 
-                ::
+            Gets property:
 
-                    >>> accordion.instrument_name
-                    'accordion'
+            ::
 
-            ..  container:: example
+                >>> accordion.instrument_name
+                'accordion'
 
-                Sets property:
+        ..  container:: example
 
-                ::
+            Sets property:
 
-                    >>> accordion.instrument_name = 'fisarmonica'
-                    >>> accordion.instrument_name
-                    'fisarmonica'
+            ::
 
-            ..  container:: example
+                >>> accordion.instrument_name = 'fisarmonica'
+                >>> accordion.instrument_name
+                'fisarmonica'
 
-                Restores default:
+        ..  container:: example
 
-                ::
+            Restores default:
 
-                    >>> accordion.instrument_name = None
-                    >>> accordion.instrument_name
-                    'accordion'
+            ::
 
-            Returns string.
-            '''
-            return Instrument.instrument_name.fget(self)
-        def fset(self, foo):
-            Instrument.instrument_name.fset(self, foo)
-        return property(**locals())
+                >>> accordion.instrument_name = None
+                >>> accordion.instrument_name
+                'accordion'
 
-    @apply
-    def instrument_name_markup():
-        def fget(self):
-            r'''Gets and sets instrument name markup.
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
 
-            ..  container:: example
+    @instrument_name.setter
+    def instrument_name(self, foo):
+        Instrument.instrument_name.fset(self, foo)
 
-                Gets property:
+    @property
+    def instrument_name_markup(self):
+        r'''Gets and sets instrument name markup.
 
-                ::
+        ..  container:: example
 
-                    >>> accordion.instrument_name_markup
-                    Markup(('Accordion',))
+            Gets property:
 
-                ::
+            ::
 
-                    >>> show(accordion.instrument_name_markup) # doctest: +SKIP
+                >>> accordion.instrument_name_markup
+                Markup(('Accordion',))
 
-            ..  container:: example
+            ::
 
-                Sets property:
+                >>> show(accordion.instrument_name_markup) # doctest: +SKIP
 
-                ::
+        ..  container:: example
 
-                    >>> markup = markuptools.Markup('Fisarmonica')
-                    >>> accordion.instrument_name_markup = markup
-                    >>> accordion.instrument_name_markup
-                    Markup(('Fisarmonica',))
+            Sets property:
 
-                ::
+            ::
 
-                    >>> show(accordion.instrument_name_markup) # doctest: +SKIP
+                >>> markup = markuptools.Markup('Fisarmonica')
+                >>> accordion.instrument_name_markup = markup
+                >>> accordion.instrument_name_markup
+                Markup(('Fisarmonica',))
 
-            ..  container:: example
+            ::
 
-                Restores default:
+                >>> show(accordion.instrument_name_markup) # doctest: +SKIP
 
-                ::
+        ..  container:: example
 
-                    >>> accordion.instrument_name_markup = None
-                    >>> accordion.instrument_name_markup
-                    Markup(('Accordion',))
+            Restores default:
 
-                ::
+            ::
 
-                    >>> show(accordion.instrument_name_markup) # doctest: +SKIP
+                >>> accordion.instrument_name_markup = None
+                >>> accordion.instrument_name_markup
+                Markup(('Accordion',))
 
-            Returns markup.
-            '''
-            return Instrument.instrument_name_markup.fget(self)
-        def fset(self, markup):
-            return Instrument.instrument_name_markup.fset(self, markup)
-        return property(**locals())
+            ::
 
-    @apply
-    def pitch_range():
-        def fget(self):
-            r"""Gets and sets pitch range.
+                >>> show(accordion.instrument_name_markup) # doctest: +SKIP
 
-            ..  container:: example
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
 
-                Gets property:
+    @instrument_name_markup.setter
+    def instrument_name_markup(self, markup):
+        return Instrument.instrument_name_markup.fset(self, markup)
 
-                ::
+    @property
+    def pitch_range(self):
+        r"""Gets and sets pitch range.
 
-                    >>> accordion.pitch_range
-                    PitchRange('[E1, C8]')
+        ..  container:: example
 
-                ::
+            Gets property:
 
-                    >>> show(accordion.pitch_range) # doctest: +SKIP
+            ::
 
-            ..  container:: example
+                >>> accordion.pitch_range
+                PitchRange('[E1, C8]')
 
-                Sets property:
+            ::
 
-                ::
+                >>> show(accordion.pitch_range) # doctest: +SKIP
 
-                    >>> accordion.pitch_range = '[C2, C6]'
-                    >>> accordion.pitch_range
-                    PitchRange('[C2, C6]')
+        ..  container:: example
 
-                ::
+            Sets property:
 
-                    >>> show(accordion.pitch_range) # doctest: +SKIP
+            ::
 
-            ..  container:: example
+                >>> accordion.pitch_range = '[C2, C6]'
+                >>> accordion.pitch_range
+                PitchRange('[C2, C6]')
 
-                Restores default:
+            ::
 
-                ::
+                >>> show(accordion.pitch_range) # doctest: +SKIP
 
-                    >>> accordion.pitch_range = None
-                    >>> accordion.pitch_range
-                    PitchRange('[E1, C8]')
+        ..  container:: example
 
-                ::
+            Restores default:
 
-                    >>> show(accordion.pitch_range) # doctest: +SKIP
+            ::
 
-            Returns pitch range.
-            """
-            return Instrument.pitch_range.fget(self)
-        def fset(self, pitch_range):
-            Instrument.pitch_range.fset(self, pitch_range)
-        return property(**locals())
+                >>> accordion.pitch_range = None
+                >>> accordion.pitch_range
+                PitchRange('[E1, C8]')
 
-    @apply
-    def short_instrument_name():
-        def fget(self):
-            r'''Gets and sets short instrument name.
+            ::
 
-            ..  container:: example
+                >>> show(accordion.pitch_range) # doctest: +SKIP
 
-                Gets property:
+        Returns pitch range.
+        """
+        return Instrument.pitch_range.fget(self)
 
-                ::
+    @pitch_range.setter
+    def pitch_range(self, pitch_range):
+        Instrument.pitch_range.fset(self, pitch_range)
 
-                    >>> accordion.short_instrument_name
-                    'acc.'
+    @property
+    def short_instrument_name(self):
+        r'''Gets and sets short instrument name.
 
-            ..  container:: example
+        ..  container:: example
 
-                Sets property:
+            Gets property:
 
-                ::
+            ::
 
-                    >>> accordion.short_instrument_name = 'fis.'
-                    >>> accordion.short_instrument_name
-                    'fis.'
+                >>> accordion.short_instrument_name
+                'acc.'
 
-            ..  container:: example
+        ..  container:: example
 
-                Restores default:
+            Sets property:
 
-                ::
+            ::
 
-                    >>> accordion.short_instrument_name = None
-                    >>> accordion.short_instrument_name
-                    'acc.'
+                >>> accordion.short_instrument_name = 'fis.'
+                >>> accordion.short_instrument_name
+                'fis.'
 
-            Returns string.
-            '''
-            return Instrument.short_instrument_name.fget(self)
-        def fset(self, name):
-            return Instrument.short_instrument_name.fset(self, name)
-        return property(**locals())
+        ..  container:: example
 
-    @apply
-    def short_instrument_name_markup():
-        def fget(self):
-            r'''Gets and sets short instrument name markup.
+            Restores default:
 
-            ..  container:: example
+            ::
 
-                Gets property:
+                >>> accordion.short_instrument_name = None
+                >>> accordion.short_instrument_name
+                'acc.'
 
-                ::
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
 
-                    >>> accordion.short_instrument_name_markup
-                    Markup(('Acc.',))
+    @short_instrument_name.setter
+    def short_instrument_name(self, name):
+        return Instrument.short_instrument_name.fset(self, name)
 
-                ::
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets and sets short instrument name markup.
 
-                    >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
+        ..  container:: example
 
-            ..  container:: example
+            Gets property:
 
-                Sets property:
+            ::
 
-                ::
+                >>> accordion.short_instrument_name_markup
+                Markup(('Acc.',))
 
-                    >>> markup = markuptools.Markup('fis.')
-                    >>> accordion.short_instrument_name_markup = markup
-                    >>> accordion.short_instrument_name_markup
-                    Markup(('fis.',))
+            ::
 
-                ::
+                >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
 
-                    >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
+        ..  container:: example
 
-            ..  container:: example
+            Sets property:
 
-                Restores default:
+            ::
 
-                ::
+                >>> markup = markuptools.Markup('fis.')
+                >>> accordion.short_instrument_name_markup = markup
+                >>> accordion.short_instrument_name_markup
+                Markup(('fis.',))
 
-                    >>> accordion.short_instrument_name_markup = None
-                    >>> accordion.short_instrument_name_markup
-                    Markup(('Acc.',))
+            ::
 
-                ::
+                >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
 
-                    >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
+        ..  container:: example
 
-            Returns markup.
-            '''
-            return Instrument.short_instrument_name_markup.fget(self)
-        def fset(self, markup):
-            return Instrument.short_instrument_name_markup.fset(self, markup)
-        return property(**locals())
+            Restores default:
 
-    @apply
-    def sounding_pitch_of_written_middle_c():
-        def fget(self):
-            r'''Gets and sets sounding pitch of written middle C.
+            ::
 
-            ..  container:: example
+                >>> accordion.short_instrument_name_markup = None
+                >>> accordion.short_instrument_name_markup
+                Markup(('Acc.',))
 
-                Gets property:
+            ::
 
-                ::
+                >>> show(accordion.short_instrument_name_markup) # doctest: +SKIP
 
-                    >>> accordion.sounding_pitch_of_written_middle_c
-                    NamedPitch("c'")
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
 
-                ::
+    @short_instrument_name_markup.setter
+    def short_instrument_name_markup(self, markup):
+        return Instrument.short_instrument_name_markup.fset(self, markup)
 
-                    >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets and sets sounding pitch of written middle C.
 
-            ..  container:: example
+        ..  container:: example
 
-                Sets property:
+            Gets property:
 
-                ::
+            ::
 
-                    >>> accordion.sounding_pitch_of_written_middle_c = 'cs'
-                    >>> accordion.sounding_pitch_of_written_middle_c
-                    NamedPitch('cs')
+                >>> accordion.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
 
-                ::
+            ::
 
-                    >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
 
-            ..  container:: example
+        ..  container:: example
 
-                Restores default:
+            Sets property:
 
-                ::
+            ::
 
-                    >>> accordion.sounding_pitch_of_written_middle_c = None
-                    >>> accordion.sounding_pitch_of_written_middle_c
-                    NamedPitch("c'")
+                >>> accordion.sounding_pitch_of_written_middle_c = 'cs'
+                >>> accordion.sounding_pitch_of_written_middle_c
+                NamedPitch('cs')
 
-                ::
+            ::
 
-                    >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
 
-            Returns named pitch.
-            '''
-            return Instrument.sounding_pitch_of_written_middle_c.fget(self)
-        def fset(self, pitch):
-            Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
-        return property(**locals())
+        ..  container:: example
+
+            Restores default:
+
+            ::
+
+                >>> accordion.sounding_pitch_of_written_middle_c = None
+                >>> accordion.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(accordion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+
+    @sounding_pitch_of_written_middle_c.setter
+    def sounding_pitch_of_written_middle_c(self, pitch):
+        Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)

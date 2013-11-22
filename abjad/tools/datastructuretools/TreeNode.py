@@ -419,23 +419,23 @@ class TreeNode(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def name():
-        def fget(self):
-            return self._name
-        def fset(self, arg):
-            assert isinstance(arg, (str, type(None)))
-            old_name = self._name
-            for parent in self.proper_parentage:
-                named_children = parent._named_children
-                if old_name is not None:
-                    named_children[old_name].remove(self)
-                    if not named_children[old_name]:
-                        del named_children[old_name]
-                if arg is not None:
-                    if arg not in named_children:
-                        named_children[arg] = set([self])
-                    else:
-                        named_children[arg].add(self)
-            self._name = arg
-        return property(**locals())
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, arg):
+        assert isinstance(arg, (str, type(None)))
+        old_name = self._name
+        for parent in self.proper_parentage:
+            named_children = parent._named_children
+            if old_name is not None:
+                named_children[old_name].remove(self)
+                if not named_children[old_name]:
+                    del named_children[old_name]
+            if arg is not None:
+                if arg not in named_children:
+                    named_children[arg] = set([self])
+                else:
+                    named_children[arg].add(self)
+        self._name = arg

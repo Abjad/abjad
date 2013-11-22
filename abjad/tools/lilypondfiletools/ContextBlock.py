@@ -105,46 +105,46 @@ class ContextBlock(AttributedBlock):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def alias():
-        def fget(self):
-            r'''Read / write alias.
-            '''
-            return self._alias
-        def fset(self, alias):
-            assert isinstance(alias, (str, type(None)))
-            self._alias = alias
-        return property(**locals())
+    @property
+    def alias(self):
+        r'''Read / write alias.
+        '''
+        return self._alias
 
-    @apply
-    def context_name():
-        def fget(self):
-            r'''Read / write context name.
-            '''
-            return self._context_name
-        def fset(self, context_name):
-            assert isinstance(context_name, (str, type(None)))
-            self._context_name = context_name
-        return property(**locals())
+    @alias.setter
+    def alias(self, alias):
+        assert isinstance(alias, (str, type(None)))
+        self._alias = alias
 
-    @apply
-    def name():
-        def fget(self):
-            r'''Read / write name.
-            '''
-            return self._name
-        def fset(self, name):
-            assert isinstance(name, (str, type(None)))
-            self._name = name
-        return property(**locals())
+    @property
+    def context_name(self):
+        r'''Read / write context name.
+        '''
+        return self._context_name
 
-    @apply
-    def type():
-        def fget(self):
-            r'''Read / write type.
-            '''
-            return self._type
-        def fset(self, expr):
-            assert isinstance(expr, (str, type(None)))
-            self._type = expr
-        return property(**locals())
+    @context_name.setter
+    def context_name(self, context_name):
+        assert isinstance(context_name, (str, type(None)))
+        self._context_name = context_name
+
+    @property
+    def name(self):
+        r'''Read / write name.
+        '''
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        assert isinstance(name, (str, type(None)))
+        self._name = name
+
+    @property
+    def type(self):
+        r'''Read / write type.
+        '''
+        return self._type
+
+    @type.setter
+    def type(self, expr):
+        assert isinstance(expr, (str, type(None)))
+        self._type = expr

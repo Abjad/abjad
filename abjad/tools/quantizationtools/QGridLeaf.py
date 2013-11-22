@@ -93,16 +93,16 @@ class QGridLeaf(RhythmTreeNode):
         graph.append(node)
         return graph
 
-    @apply
-    def is_divisible():
-        def fget(self):
-            r'''Flag for whether the node may be further divided
-            under some search tree.
-            '''
-            return self._is_divisible
-        def fset(self, arg):
-            self._is_divisible = bool(arg)
-        return property(**locals())
+    @property
+    def is_divisible(self):
+        r'''Flag for whether the node may be further divided
+        under some search tree.
+        '''
+        return self._is_divisible
+
+    @is_divisible.setter
+    def is_divisible(self, arg):
+        self._is_divisible = bool(arg)
 
     @property
     def preceding_q_event_proxies(self):

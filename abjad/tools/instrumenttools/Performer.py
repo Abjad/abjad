@@ -190,32 +190,32 @@ class Performer(AbjadObject):
         '''
         return len(self.instruments)
 
-    @apply
-    def instruments():
-        def fget(self):
-            r'''List of instruments to be played by performer:
+    @property
+    def instruments(self):
+        r'''List of instruments to be played by performer:
 
-            ::
+        ::
 
-                >>> performer.instruments
-                InstrumentInventory([Flute(), Piccolo()])
+            >>> performer.instruments
+            InstrumentInventory([Flute(), Piccolo()])
 
-            Returns instrument inventory.
-            '''
-            return self._instruments
-        def fset(self, instruments):
-            from abjad.tools.instrumenttools.Instrument import Instrument
-            if instruments is None:
-                self._instruments[:] = []
-            elif isinstance(instruments,
-                (list, datastructuretools.TypedList)):
-                assert all(isinstance(x, Instrument) for x in instruments)
-                self._instruments[:] = instruments[:]
-            else:
-                message = 'instruments {!r} must be list or none.'
-                message = message.format(instruments)
-                raise TypeError(message)
-        return property(**locals())
+        Returns instrument inventory.
+        '''
+        return self._instruments
+
+    @instruments.setter
+    def instruments(self, instruments):
+        from abjad.tools.instrumenttools.Instrument import Instrument
+        if instruments is None:
+            self._instruments[:] = []
+        elif isinstance(instruments,
+            (list, datastructuretools.TypedList)):
+            assert all(isinstance(x, Instrument) for x in instruments)
+            self._instruments[:] = instruments[:]
+        else:
+            message = 'instruments {!r} must be list or none.'
+            message = message.format(instruments)
+            raise TypeError(message)
 
     @property
     def is_doubling(self):
@@ -271,23 +271,23 @@ class Performer(AbjadObject):
             if likely_instrument._is_primary_instrument:
                 return likely_instrument_class
 
-    @apply
-    def name():
-        def fget(self):
-            r'''Score name of performer:
+    @property
+    def name(self):
+        r'''Score name of performer:
 
-            ::
+        ::
 
-                >>> performer.name
-                'flutist'
+            >>> performer.name
+            'flutist'
 
-            Returns string.
-            '''
-            return self._name
-        def fset(self, name):
-            assert isinstance(name, (str, type(None)))
-            self._name = name
-        return property(**locals())
+        Returns string.
+        '''
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        assert isinstance(name, (str, type(None)))
+        self._name = name
 
     ### PUBLIC METHODS ###
 

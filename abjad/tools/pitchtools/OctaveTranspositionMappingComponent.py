@@ -133,37 +133,37 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def source_pitch_range():
-        def fget(self):
-            r'''Read / write source pitch range:
+    @property
+    def source_pitch_range(self):
+        r'''Read / write source pitch range:
 
-            ::
+        ::
 
-                >>> mc.source_pitch_range
-                PitchRange('[A0, C8]')
+            >>> mc.source_pitch_range
+            PitchRange('[A0, C8]')
 
-            Returns pitch range or none.
-            '''
-            return self._source_pitch_range
-        def fset(self, source_pitch_range):
-            self._source_pitch_range = PitchRange(source_pitch_range)
-        return property(**locals())
+        Returns pitch range or none.
+        '''
+        return self._source_pitch_range
 
-    @apply
-    def target_octave_start_pitch():
-        def fget(self):
-            r'''Read / write target octave start pitch:
+    @source_pitch_range.setter
+    def source_pitch_range(self, source_pitch_range):
+        self._source_pitch_range = PitchRange(source_pitch_range)
 
-            ::
+    @property
+    def target_octave_start_pitch(self):
+        r'''Read / write target octave start pitch:
 
-                >>> mc.target_octave_start_pitch
-                NumberedPitch(15)
+        ::
 
-            Returns numbered pitch or none.
-            '''
-            return self._target_octave_start_pitch
-        def fset(self, target_octave_start_pitch):
-            self._target_octave_start_pitch = NumberedPitch(
-                target_octave_start_pitch)
-        return property(**locals())
+            >>> mc.target_octave_start_pitch
+            NumberedPitch(15)
+
+        Returns numbered pitch or none.
+        '''
+        return self._target_octave_start_pitch
+
+    @target_octave_start_pitch.setter
+    def target_octave_start_pitch(self, target_octave_start_pitch):
+        self._target_octave_start_pitch = NumberedPitch(
+            target_octave_start_pitch)

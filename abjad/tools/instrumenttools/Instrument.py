@@ -312,134 +312,134 @@ class Instrument(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def allowable_clefs():
-        def fget(self):
-            r'''Gets and sets allowable clefs.
+    @property
+    def allowable_clefs(self):
+        r'''Gets and sets allowable clefs.
 
-            Returns clef inventory.
-            '''
-            if self._allowable_clefs is None:
-                clefs = self._default_allowable_clefs
-                clefs = indicatortools.ClefInventory(clefs)
-                self._allowable_clefs = clefs
-            return self._allowable_clefs
-        def fset(self, clefs):
-            if clefs is not None:
-                clefs = indicatortools.ClefInventory(clefs)
+        Returns clef inventory.
+        '''
+        if self._allowable_clefs is None:
+            clefs = self._default_allowable_clefs
+            clefs = indicatortools.ClefInventory(clefs)
             self._allowable_clefs = clefs
-        return property(**locals())
+        return self._allowable_clefs
 
-    @apply
-    def instrument_name():
-        def fget(self):
-            r'''Gets and sets instrument name.
+    @allowable_clefs.setter
+    def allowable_clefs(self, clefs):
+        if clefs is not None:
+            clefs = indicatortools.ClefInventory(clefs)
+        self._allowable_clefs = clefs
 
-            Returns string.
-            '''
-            if self._instrument_name is None:
-                return self._default_instrument_name
-            else:
-                return self._instrument_name
-        def fset(self, instrument_name):
-            assert isinstance(instrument_name, (str, type(None)))
-            self._instrument_name = instrument_name
-        return property(**locals())
+    @property
+    def instrument_name(self):
+        r'''Gets and sets instrument name.
 
-    @apply
-    def instrument_name_markup():
-        def fget(self):
-            r'''Gets and sets instrument name markup.
+        Returns string.
+        '''
+        if self._instrument_name is None:
+            return self._default_instrument_name
+        else:
+            return self._instrument_name
 
-            Returns markup.
-            '''
-            if self._instrument_name_markup is None:
-                if self._default_instrument_name_markup is None:
-                    self._make_default_name_markups()
-                markup = self._default_instrument_name_markup
-                markup = copy.copy(markup)
-                self._instrument_name_markup = markup
-            return self._instrument_name_markup
-        def fset(self, instrument_name_markup):
-            from abjad.tools.markuptools import Markup
-            assert isinstance(
-                instrument_name_markup, (str, type(Markup('')), type(None)))
-            if instrument_name_markup is None:
-                self._instrument_name_markup = instrument_name_markup
-            else:
-                self._instrument_name_markup = Markup(instrument_name_markup)
-        return property(**locals())
+    @instrument_name.setter
+    def instrument_name(self, instrument_name):
+        assert isinstance(instrument_name, (str, type(None)))
+        self._instrument_name = instrument_name
 
-    @apply
-    def pitch_range():
-        def fget(self):
-            r'''Gets and sets pitch range.
+    @property
+    def instrument_name_markup(self):
+        r'''Gets and sets instrument name markup.
 
-            Returns pitch range.
-            '''
-            if self._pitch_range is None:
-                return self._default_pitch_range
-            return self._pitch_range
-        def fset(self, pitch_range):
-            if pitch_range is not None:
-                pitch_range = pitchtools.PitchRange(pitch_range)
-            self._pitch_range = pitch_range
-        return property(**locals())
+        Returns markup.
+        '''
+        if self._instrument_name_markup is None:
+            if self._default_instrument_name_markup is None:
+                self._make_default_name_markups()
+            markup = self._default_instrument_name_markup
+            markup = copy.copy(markup)
+            self._instrument_name_markup = markup
+        return self._instrument_name_markup
 
-    @apply
-    def short_instrument_name():
-        def fget(self):
-            r'''Gets and sets short instrument name.
+    @instrument_name_markup.setter
+    def instrument_name_markup(self, instrument_name_markup):
+        from abjad.tools.markuptools import Markup
+        assert isinstance(
+            instrument_name_markup, (str, type(Markup('')), type(None)))
+        if instrument_name_markup is None:
+            self._instrument_name_markup = instrument_name_markup
+        else:
+            self._instrument_name_markup = Markup(instrument_name_markup)
 
-            Returns string.
-            '''
-            if self._short_instrument_name is None:
-                return self._default_short_instrument_name
-            else:
-                return self._short_instrument_name
-        def fset(self, short_instrument_name):
-            assert isinstance(short_instrument_name, (str, type(None)))
-            self._short_instrument_name = short_instrument_name
-        return property(**locals())
+    @property
+    def pitch_range(self):
+        r'''Gets and sets pitch range.
 
-    @apply
-    def short_instrument_name_markup():
-        def fget(self):
-            r'''Gets and sets short instrument name markup.
+        Returns pitch range.
+        '''
+        if self._pitch_range is None:
+            return self._default_pitch_range
+        return self._pitch_range
 
-            Returns markup.
-            '''
-            if self._short_instrument_name_markup is None:
-                if self._default_instrument_name_markup is None:
-                    self._make_default_name_markups()
-                markup = self._default_short_instrument_name_markup
-                markup = copy.copy(markup)
-                self._short_instrument_name_markup = markup
-            return self._short_instrument_name_markup
-        def fset(self, short_instrument_name_markup):
-            from abjad.tools import markuptools
-            prototype = (str, type(markuptools.Markup('')), type(None))
-            assert isinstance(short_instrument_name_markup, prototype)
-            if short_instrument_name_markup is None:
-                markup = short_instrument_name_markup
-                self._short_instrument_name_markup = markup
-            else:
-                markup = markuptools.Markup(short_instrument_name_markup)
-                self._short_instrument_name_markup = markup
-        return property(**locals())
+    @pitch_range.setter
+    def pitch_range(self, pitch_range):
+        if pitch_range is not None:
+            pitch_range = pitchtools.PitchRange(pitch_range)
+        self._pitch_range = pitch_range
 
-    @apply
-    def sounding_pitch_of_written_middle_c():
-        def fget(self):
-            r'''Gets and sets sounding pitch of written middle C.
+    @property
+    def short_instrument_name(self):
+        r'''Gets and sets short instrument name.
 
-            Returns named pitch.
-            '''
-            if self._sounding_pitch_of_written_middle_c is None:
-                return self._default_sounding_pitch_of_written_middle_c
-            return self._sounding_pitch_of_written_middle_c
-        def fset(self, pitch):
-            pitch = pitch or self._default_sounding_pitch_of_written_middle_c
-            pitch = pitchtools.NamedPitch(pitch)
-            self._sounding_pitch_of_written_middle_c = pitch
-        return property(**locals())
+        Returns string.
+        '''
+        if self._short_instrument_name is None:
+            return self._default_short_instrument_name
+        else:
+            return self._short_instrument_name
+
+    @short_instrument_name.setter
+    def short_instrument_name(self, short_instrument_name):
+        assert isinstance(short_instrument_name, (str, type(None)))
+        self._short_instrument_name = short_instrument_name
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets and sets short instrument name markup.
+
+        Returns markup.
+        '''
+        if self._short_instrument_name_markup is None:
+            if self._default_instrument_name_markup is None:
+                self._make_default_name_markups()
+            markup = self._default_short_instrument_name_markup
+            markup = copy.copy(markup)
+            self._short_instrument_name_markup = markup
+        return self._short_instrument_name_markup
+
+    @short_instrument_name_markup.setter
+    def short_instrument_name_markup(self, short_instrument_name_markup):
+        from abjad.tools import markuptools
+        prototype = (str, type(markuptools.Markup('')), type(None))
+        assert isinstance(short_instrument_name_markup, prototype)
+        if short_instrument_name_markup is None:
+            markup = short_instrument_name_markup
+            self._short_instrument_name_markup = markup
+        else:
+            markup = markuptools.Markup(short_instrument_name_markup)
+            self._short_instrument_name_markup = markup
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets and sets sounding pitch of written middle C.
+
+        Returns named pitch.
+        '''
+        if self._sounding_pitch_of_written_middle_c is None:
+            return self._default_sounding_pitch_of_written_middle_c
+        return self._sounding_pitch_of_written_middle_c
+
+    @sounding_pitch_of_written_middle_c.setter
+    def sounding_pitch_of_written_middle_c(self, pitch):
+        pitch = pitch or self._default_sounding_pitch_of_written_middle_c
+        pitch = pitchtools.NamedPitch(pitch)
+        self._sounding_pitch_of_written_middle_c = pitch

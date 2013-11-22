@@ -50,14 +50,14 @@ class PaperBlock(AttributedBlock):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def minimal_page_breaking():
-        def fget(self):
-            return self._minimal_page_breaking
-        def fset(self, expr):
-            if isinstance(expr, (bool, type(None))):
-                self._minimal_page_breaking = expr
-            else:
-                message = 'must be boolean or none.'
-                raise TypeError(message)
-        return property(**locals())
+    @property
+    def minimal_page_breaking(self):
+        return self._minimal_page_breaking
+
+    @minimal_page_breaking.setter
+    def minimal_page_breaking(self, expr):
+        if isinstance(expr, (bool, type(None))):
+            self._minimal_page_breaking = expr
+        else:
+            message = 'must be boolean or none.'
+            raise TypeError(message)
