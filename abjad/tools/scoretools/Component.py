@@ -154,26 +154,26 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_indicator(self, indicator_prototypes=None):
-        indicators = self._get_indicators(indicator_prototypes=indicator_prototypes)
+    def _get_indicator(self, prototype=None):
+        indicators = self._get_indicators(prototype=prototype)
         if not indicators:
             message = 'no attached indicators found matching {!r}.'
-            message = message.format(indicator_prototypes)
+            message = message.format(prototype)
             raise ValueError(message)
         elif 1 < len(indicators):
             message = 'multiple attached indicators found matching {!r}.'
-            message = message.format(indicator_prototypes)
+            message = message.format(prototype)
             raise ValueError(message)
         else:
             return indicators[0]
 
-    def _get_indicators(self, indicator_prototypes=None):
+    def _get_indicators(self, prototype=None):
         from abjad.tools import indicatortools
-        indicator_prototypes = indicator_prototypes or (object,)
-        if not isinstance(indicator_prototypes, tuple):
-            indicator_prototypes = (indicator_prototypes,)
+        prototype = prototype or (object,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
         prototype_objects, prototype_classes = [], []
-        for indicator_prototype in indicator_prototypes:
+        for indicator_prototype in prototype:
             if isinstance(indicator_prototype, types.TypeType):
                 prototype_classes.append(indicator_prototype)
             else:
@@ -579,8 +579,8 @@ class Component(AbjadObject):
         result = tuple(result)
         return result
 
-    def _has_indicator(self, indicator_prototypes=None):
-        indicators = self._get_indicators(indicator_prototypes=indicator_prototypes)
+    def _has_indicator(self, prototype=None):
+        indicators = self._get_indicators(prototype=prototype)
         return bool(indicators)
 
     def _has_spanner(self, spanner_classes=None):

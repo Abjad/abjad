@@ -77,31 +77,31 @@ class InspectionAgent(abctools.AbjadObject):
 
     def get_indicator(
         self,
-        indicator_prototypes=None,
+        prototype=None,
         ):
-        r'''Gets exactly one indicator matching `indicator_prototypes` attached to
+        r'''Gets exactly one indicator matching `prototype` attached to
         client.
 
-        Raises exception when no indicator matching `indicator_prototypes` is attached
+        Raises exception when no indicator matching `prototype` is attached
         to client.
 
         Returns indicator.
         '''
         return self._client._get_indicator(
-            indicator_prototypes=indicator_prototypes,
+            prototype=prototype,
             )
 
     def get_indicators(
         self,
-        indicator_prototypes=None,
+        prototype=None,
         ):
-        r'''Get all indicators matching `indicator_prototypes` attached
+        r'''Get all indicators matching `prototype` attached
         to client.
 
         Returns tuple.
         '''
         return self._client._get_indicators(
-            indicator_prototypes=indicator_prototypes,
+            prototype=prototype,
             )
 
     def get_badly_formed_components(self):
