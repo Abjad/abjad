@@ -54,6 +54,11 @@ class IndicatorWrapper(AbjadObject):
         return new
             
     def __eq__(self, arg):
+        r'''True when arg is an indicator wrapper with indicator and
+        scope equal to those of this indicator wrapper. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.indicator == arg.indicator:
                 if self.scope == arg.scope:
@@ -90,11 +95,13 @@ class IndicatorWrapper(AbjadObject):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
         assert isinstance(component, scoretools.Component)
+        self._warn_duplicate_indicator(component)
         self._unbind_component()
         self._component = component
         self._update_effective_context()
         if isinstance(self.indicator, indicatortools.Tempo):
             self._component._update_later(offsets_in_seconds=True)
+        component._indicators.append(self)
 
     def _detach(self):
         self._unbind_component()
@@ -149,7 +156,8 @@ class IndicatorWrapper(AbjadObject):
         from abjad.tools import indicatortools
         if isinstance(self.component, scoretools.Measure):
             if self.component is component:
-                if not isinstance(self.indicator, indicatortools.TimeSignature):
+                if not isinstance(
+                    self.indicator, indicatortools.TimeSignature):
                     return True
                 elif component.always_format_time_signature:
                     return True
@@ -198,7 +206,25 @@ class IndicatorWrapper(AbjadObject):
                 pass
         self._component = None
 
+    def _warn_duplicate_indicator(self, component):
+        prototype = type(self.indicator)
+        effective = component._get_effective_indicator(prototype, unwrap=False)
+        if effective is not None:
+            indicator_start = effective.component._get_timespan().start_offset
+            component_start = component._get_timespan().start_offset
+            if indicator_start == component_start:
+                message = 'effective indicator already attached.'
+                raise ValueError(message)
+
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def component(self):
+        r'''Start component of indicator wrapper.
+
+        Returns component.
+        '''
+        return self._component
 
     @property
     def indicator(self):
@@ -215,11 +241,3 @@ class IndicatorWrapper(AbjadObject):
         Returns context.
         '''
         return self._scope
-
-    @property
-    def component(self):
-        r'''Start component of indicator wrapper.
-
-        Returns component.
-        '''
-        return self._component

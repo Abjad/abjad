@@ -37,16 +37,7 @@ def attach(indicator, component_expression, scope=None):
             component,
             scope,
             )
-        prototype = type(wrapper.indicator)
-        effective = component._get_effective_indicator(prototype, unwrap=False)
-        if effective is not None:
-            indicator_start = effective.component._get_timespan().start_offset
-            component_start = component._get_timespan().start_offset
-            if indicator_start == component_start:
-                message = 'effective indicator already attached.'
-                raise ValueError(message)
         wrapper._bind_to_component(component)
-        component._indicators.append(wrapper)
     else:
         assert scope is None
         component._indicators.append(indicator)
