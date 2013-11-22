@@ -151,208 +151,208 @@ class Note(Leaf):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def note_head():
-        def fget(self):
-            r'''Gets and sets note head of note.
+    @property
+    def note_head(self):
+        r'''Gets and sets note head of note.
 
-            .. container:: example
+        .. container:: example
 
-                Gets note head:
+            Gets note head:
 
-                ::
+            ::
 
-                    >>> note = Note(13, (3, 16))
-                    >>> note.note_head
-                    NoteHead("cs''")
+                >>> note = Note(13, (3, 16))
+                >>> note.note_head
+                NoteHead("cs''")
 
-            ..  container:: example
+        ..  container:: example
 
-                Sets note head:
+            Sets note head:
 
-                ::
+            ::
 
-                    >>> note = Note(13, (3, 16))
-                    >>> note.note_head = 14
-                    >>> note
-                    Note("d''8.")
+                >>> note = Note(13, (3, 16))
+                >>> note.note_head = 14
+                >>> note
+                Note("d''8.")
 
-            Returns note head.
-            '''
-            return self._note_head
-        def fset(self, arg):
-            from abjad.tools.scoretools.NoteHead import NoteHead
-            if isinstance(arg, type(None)):
-                self._note_head = None
-            elif isinstance(arg, NoteHead):
-                self._note_head = arg
-            else:
-                note_head = NoteHead(client=self, written_pitch=arg)
-                self._note_head = note_head
-        return property(**locals())
+        Returns note head.
+        '''
+        return self._note_head
 
-    @apply
-    def sounding_pitch():
-        def fget(self):
-            r'''Gets and sets sounding pitch of note.
+    @note_head.setter
+    def note_head(self, arg):
+        from abjad.tools.scoretools.NoteHead import NoteHead
+        if isinstance(arg, type(None)):
+            self._note_head = None
+        elif isinstance(arg, NoteHead):
+            self._note_head = arg
+        else:
+            note_head = NoteHead(client=self, written_pitch=arg)
+            self._note_head = note_head
 
-            ..  container:: example
+    @property
+    def sounding_pitch(self):
+        r'''Gets and sets sounding pitch of note.
 
-                Gets sounding pitch of note:
+        ..  container:: example
 
-                ::
+            Gets sounding pitch of note:
 
-                    >>> staff = Staff("d''8 e''8 f''8 g''8")
-                    >>> piccolo = instrumenttools.Piccolo()
-                    >>> attach(piccolo, staff)
+            ::
 
-                ::
+                >>> staff = Staff("d''8 e''8 f''8 g''8")
+                >>> piccolo = instrumenttools.Piccolo()
+                >>> attach(piccolo, staff)
 
-                    >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
-                    ...     staff)
+            ::
 
-                ..  doctest::
+                >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
+                ...     staff)
 
-                    >>> print format(staff)
-                    \new Staff {
-                        \set Staff.instrumentName = \markup { Piccolo }
-                        \set Staff.shortInstrumentName = \markup { Picc. }
-                        d'8
-                        e'8
-                        f'8
-                        g'8
-                    }
-                    >>> staff[0].sounding_pitch
-                    NamedPitch("d''")
+            ..  doctest::
 
-            ..  container:: example
+                >>> print format(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Piccolo }
+                    \set Staff.shortInstrumentName = \markup { Picc. }
+                    d'8
+                    e'8
+                    f'8
+                    g'8
+                }
+                >>> staff[0].sounding_pitch
+                NamedPitch("d''")
 
-                Sets sounding pitch of note:
+        ..  container:: example
 
-                ::
+            Sets sounding pitch of note:
 
-                    >>> staff[0].sounding_pitch = "dqs''"
-                    >>> print format(staff)
-                    \new Staff {
-                        \set Staff.instrumentName = \markup { Piccolo }
-                        \set Staff.shortInstrumentName = \markup { Picc. }
-                        dqs'8
-                        e'8
-                        f'8
-                        g'8
-                    }
+            ::
 
-            Returns named pitch.
-            '''
-            from abjad.tools import instrumenttools
-            from abjad.tools import pitchtools
-            if self.written_pitch_indication_is_at_sounding_pitch:
-                return self.written_pitch
-            else:
-                instrument = self._get_effective_indicator(
-                    instrumenttools.Instrument)
-                if not instrument:
-                    message = 'effective instrument can not be determined.'
-                    raise Value(message)
-                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-                t_n = pitchtools.NamedPitch('C4') - sounding_pitch
-                sounding_pitch = \
-                    pitchtools.transpose_pitch_carrier_by_interval(
-                        self.written_pitch, t_n)
-                return sounding_pitch
-        def fset(self, arg):
-            from abjad.tools import instrumenttools
-            from abjad.tools import pitchtools
-            pitch = pitchtools.NamedPitch(arg)
-            if self.written_pitch_indication_is_at_sounding_pitch:
-                self.written_pitch = pitch
-            else:
-                instrument = self._get_effective_indicator(
-                    instrumenttools.Instrument)
-                if not instrument:
-                    message = 'effective instrument can not be determined.'
-                    raise ValueError(message)
-                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-                t_n = pitchtools.NamedPitch('C4') - sounding_pitch
-                t_n *= -1
-                self.written_pitch = \
-                    pitchtools.transpose_pitch_carrier_by_interval(
-                        pitch, t_n)
-        return property(**locals())
+                >>> staff[0].sounding_pitch = "dqs''"
+                >>> print format(staff)
+                \new Staff {
+                    \set Staff.instrumentName = \markup { Piccolo }
+                    \set Staff.shortInstrumentName = \markup { Picc. }
+                    dqs'8
+                    e'8
+                    f'8
+                    g'8
+                }
 
-    @apply
-    def written_duration():
-        def fget(self):
-            r'''Gets and sets written duration of note.
+        Returns named pitch.
+        '''
+        from abjad.tools import instrumenttools
+        from abjad.tools import pitchtools
+        if self.written_pitch_indication_is_at_sounding_pitch:
+            return self.written_pitch
+        else:
+            instrument = self._get_effective_indicator(
+                instrumenttools.Instrument)
+            if not instrument:
+                message = 'effective instrument can not be determined.'
+                raise Value(message)
+            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            t_n = pitchtools.NamedPitch('C4') - sounding_pitch
+            sounding_pitch = \
+                pitchtools.transpose_pitch_carrier_by_interval(
+                    self.written_pitch, t_n)
+            return sounding_pitch
 
-            ..  container:: example
+    @sounding_pitch.setter
+    def sounding_pitch(self, arg):
+        from abjad.tools import instrumenttools
+        from abjad.tools import pitchtools
+        pitch = pitchtools.NamedPitch(arg)
+        if self.written_pitch_indication_is_at_sounding_pitch:
+            self.written_pitch = pitch
+        else:
+            instrument = self._get_effective_indicator(
+                instrumenttools.Instrument)
+            if not instrument:
+                message = 'effective instrument can not be determined.'
+                raise ValueError(message)
+            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            t_n = pitchtools.NamedPitch('C4') - sounding_pitch
+            t_n *= -1
+            self.written_pitch = \
+                pitchtools.transpose_pitch_carrier_by_interval(
+                    pitch, t_n)
 
-                Gets written duration of note.
+    @property
+    def written_duration(self):
+        r'''Gets and sets written duration of note.
 
-                ::
+        ..  container:: example
 
-                    >>> note = Note("c'4")
-                    >>> note.written_duration
-                    Duration(1, 4)
+            Gets written duration of note.
 
-            ..  container:: example
+            ::
 
-                Sets written duration of note:
+                >>> note = Note("c'4")
+                >>> note.written_duration
+                Duration(1, 4)
 
-                ::
+        ..  container:: example
 
-                    >>> note.written_duration = Duration(1, 16)
-                    >>> note.written_duration
-                    Duration(1, 16)
+            Sets written duration of note:
 
-            Returns duration
-            '''
-            return Leaf.written_duration.fget(self)
-        def fset(self, expr):
-            return Leaf.written_duration.fset(self, expr)
-        return property(**locals())
+            ::
 
-    @apply
-    def written_pitch():
-        def fget(self):
-            r'''Gets and sets written pitch of note.
+                >>> note.written_duration = Duration(1, 16)
+                >>> note.written_duration
+                Duration(1, 16)
 
-            ..  container:: example
+        Returns duration
+        '''
+        return Leaf.written_duration.fget(self)
 
-                Gets written pitch of note.
+    @written_duration.setter
+    def written_duration(self, expr):
+        return Leaf.written_duration.fset(self, expr)
 
-                ::
+    @property
+    def written_pitch(self):
+        r'''Gets and sets written pitch of note.
 
-                    >>> note = Note(13, (3, 16))
-                    >>> note.written_pitch
-                    NamedPitch("cs''")
+        ..  container:: example
 
-            ..  container:: example
+            Gets written pitch of note.
 
-                Sets written pitch of note:
+            ::
 
-                ::
+                >>> note = Note(13, (3, 16))
+                >>> note.written_pitch
+                NamedPitch("cs''")
 
-                    >>> note = Note(13, (3, 16))
-                    >>> note.written_pitch = 14
-                    >>> note
-                    Note("d''8.")
+        ..  container:: example
 
-            Returns named pitch.
-            '''
+            Sets written pitch of note:
+
+            ::
+
+                >>> note = Note(13, (3, 16))
+                >>> note.written_pitch = 14
+                >>> note
+                Note("d''8.")
+
+        Returns named pitch.
+        '''
+        if self.note_head is not None:
+            if hasattr(self.note_head, 'written_pitch'):
+                return self._note_head.written_pitch
+
+    @written_pitch.setter
+    def written_pitch(self, arg):
+        from abjad.tools import pitchtools
+        from abjad.tools.scoretools.NoteHead import NoteHead
+        if arg is None:
             if self.note_head is not None:
-                if hasattr(self.note_head, 'written_pitch'):
-                    return self._note_head.written_pitch
-        def fset(self, arg):
-            from abjad.tools import pitchtools
-            from abjad.tools.scoretools.NoteHead import NoteHead
-            if arg is None:
-                if self.note_head is not None:
-                    self.note_head.written_pitch = None
+                self.note_head.written_pitch = None
+        else:
+            if self.note_head is None:
+                self.note_head = NoteHead(self, written_pitch=None)
             else:
-                if self.note_head is None:
-                    self.note_head = NoteHead(self, written_pitch=None)
-                else:
-                    pitch = pitchtools.NamedPitch(arg)
-                    self.note_head.written_pitch = pitch
-        return property(**locals())
+                pitch = pitchtools.NamedPitch(arg)
+                self.note_head.written_pitch = pitch

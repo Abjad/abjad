@@ -93,14 +93,14 @@ class FixedDurationContainer(Container):
         '''
         return self._preprolated_duration < self.target_duration
 
-    @apply
-    def target_duration():
-        def fget(self):
-            r'''Read / write target duration of fixed-duration container.
-            '''
-            return self._target_duration
-        def fset(self, target_duration):
-            target_duration = durationtools.Duration(target_duration)
-            assert 0 < target_duration
-            self._target_duration = target_duration
-        return property(**locals())
+    @property
+    def target_duration(self):
+        r'''Read / write target duration of fixed-duration container.
+        '''
+        return self._target_duration
+
+    @target_duration.setter
+    def target_duration(self, target_duration):
+        target_duration = durationtools.Duration(target_duration)
+        assert 0 < target_duration
+        self._target_duration = target_duration

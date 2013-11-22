@@ -325,59 +325,59 @@ class Measure(FixedDurationContainer):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def always_format_time_signature():
-        def fget(self):
-            '''Read / write flag to indicate whether time signature
-            should appear in LilyPond format even when not expected.
+    @property
+    def always_format_time_signature(self):
+        '''Read / write flag to indicate whether time signature
+        should appear in LilyPond format even when not expected.
 
-            Set to true when necessary to print the same signature repeatedly.
+        Set to true when necessary to print the same signature repeatedly.
 
-            Default to false.
+        Default to false.
 
-            Returns boolean.
-            '''
-            return self._always_format_time_signature
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._always_format_time_signature = expr
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._always_format_time_signature
 
-    @apply
-    def automatically_adjust_time_signature():
-        def fget(self):
-            '''Read / write flag to indicate whether time signature
-            should update automatically following contents-changing
-            operations:
+    @always_format_time_signature.setter
+    def always_format_time_signature(self, expr):
+        assert isinstance(expr, bool)
+        self._always_format_time_signature = expr
 
-            ::
+    @property
+    def automatically_adjust_time_signature(self):
+        '''Read / write flag to indicate whether time signature
+        should update automatically following contents-changing
+        operations:
 
-                >>> measure = Measure((3, 4), "c' d' e'")
+        ::
 
-            ::
+            >>> measure = Measure((3, 4), "c' d' e'")
 
-                >>> measure
-                Measure(3/4, [c'4, d'4, e'4])
+        ::
 
-            ::
+            >>> measure
+            Measure(3/4, [c'4, d'4, e'4])
 
-                >>> measure.automatically_adjust_time_signature = True
-                >>> measure.append('r')
+        ::
 
-            ::
+            >>> measure.automatically_adjust_time_signature = True
+            >>> measure.append('r')
 
-                >>> measure
-                Measure(4/4, [c'4, d'4, e'4, r4])
+        ::
 
-            Default to false.
+            >>> measure
+            Measure(4/4, [c'4, d'4, e'4, r4])
 
-            Returns boolean.
-            '''
-            return self._automatically_adjust_time_signature
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._automatically_adjust_time_signature = expr
-        return property(**locals())
+        Default to false.
+
+        Returns boolean.
+        '''
+        return self._automatically_adjust_time_signature
+
+    @automatically_adjust_time_signature.setter
+    def automatically_adjust_time_signature(self, expr):
+        assert isinstance(expr, bool)
+        self._automatically_adjust_time_signature = expr
 
     @property
     def has_non_power_of_two_denominator(self):

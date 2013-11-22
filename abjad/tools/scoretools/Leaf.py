@@ -615,53 +615,53 @@ class Leaf(Component):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def written_duration():
-        def fget(self):
-            '''Written duration of leaf.
+    @property
+    def written_duration(self):
+        '''Written duration of leaf.
 
-            Set to duration.
+        Set to duration.
 
-            Returns duration.
-            '''
-            return self._written_duration
-        def fset(self, expr):
-            rational = durationtools.Duration(expr)
-            if not rational.is_assignable:
-                message = 'not assignable duration: {!r}.'
-                message = message.format(rational)
-                raise AssignabilityError(message)
-            self._written_duration = rational
-        return property(**locals())
+        Returns duration.
+        '''
+        return self._written_duration
 
-    @apply
-    def written_pitch_indication_is_at_sounding_pitch():
-        def fget(self):
-            r'''Returns true when written pitch is at sounding pitch.
-            Returns false when written pitch is transposed.
-            '''
-            return self._written_pitch_indication_is_at_sounding_pitch
-        def fset(self, expr):
-            if not isinstance(expr, bool):
-                raise TypeError
-            self._written_pitch_indication_is_at_sounding_pitch = expr
-        return property(**locals())
+    @written_duration.setter
+    def written_duration(self, expr):
+        rational = durationtools.Duration(expr)
+        if not rational.is_assignable:
+            message = 'not assignable duration: {!r}.'
+            message = message.format(rational)
+            raise AssignabilityError(message)
+        self._written_duration = rational
 
-    @apply
-    def written_pitch_indication_is_nonsemantic():
-        def fget(self):
-            r'''Returns true when pitch is nonsemantic.
-            Returns false otherwise.
+    @property
+    def written_pitch_indication_is_at_sounding_pitch(self):
+        r'''Returns true when written pitch is at sounding pitch.
+        Returns false when written pitch is transposed.
+        '''
+        return self._written_pitch_indication_is_at_sounding_pitch
 
-            Set to true when using leaves only graphically.
+    @written_pitch_indication_is_at_sounding_pitch.setter
+    def written_pitch_indication_is_at_sounding_pitch(self, expr):
+        if not isinstance(expr, bool):
+            raise TypeError
+        self._written_pitch_indication_is_at_sounding_pitch = expr
 
-            Setting this value to true sets sounding pitch flag to false.
-            '''
-            return self._written_pitch_indication_is_nonsemantic
-        def fset(self, expr):
-            if not isinstance(expr, bool):
-                raise TypeError
-            self._written_pitch_indication_is_nonsemantic = expr
-            if expr is True:
-                self.written_pitch_indication_is_at_sounding_pitch = False
-        return property(**locals())
+    @property
+    def written_pitch_indication_is_nonsemantic(self):
+        r'''Returns true when pitch is nonsemantic.
+        Returns false otherwise.
+
+        Set to true when using leaves only graphically.
+
+        Setting this value to true sets sounding pitch flag to false.
+        '''
+        return self._written_pitch_indication_is_nonsemantic
+
+    @written_pitch_indication_is_nonsemantic.setter
+    def written_pitch_indication_is_nonsemantic(self, expr):
+        if not isinstance(expr, bool):
+            raise TypeError
+        self._written_pitch_indication_is_nonsemantic = expr
+        if expr is True:
+            self.written_pitch_indication_is_at_sounding_pitch = False

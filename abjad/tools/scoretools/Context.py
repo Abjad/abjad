@@ -180,18 +180,18 @@ class Context(Container):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def context_name():
-        def fget(self):
-            r'''Gets and sets context name of context.
+    @property
+    def context_name(self):
+        r'''Gets and sets context name of context.
 
-            Returns string.
-            '''
-            return self._context_name
-        def fset(self, arg):
-            assert isinstance(arg, str)
-            self._context_name = arg
-        return property(**locals())
+        Returns string.
+        '''
+        return self._context_name
+
+    @context_name.setter
+    def context_name(self, arg):
+        assert isinstance(arg, str)
+        self._context_name = arg
 
     @property
     def engraver_consists(self):
@@ -232,70 +232,70 @@ class Context(Container):
         '''
         return self._engraver_removals
 
-    @apply
-    def is_nonsemantic():
-        def fget(self):
-            r'''Gets and sets nonsemantic voice flag.
+    @property
+    def is_nonsemantic(self):
+        r'''Gets and sets nonsemantic voice flag.
 
-            ::
+        ::
 
-                >>> measures = \
-                ...     scoretools.make_measures_with_full_measure_spacer_skips(
-                ...     [(1, 8), (5, 16), (5, 16)])
-                >>> voice = Voice(measures)
-                >>> voice.name = 'HiddenTimeSignatureVoice'
+            >>> measures = \
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
+            ...     [(1, 8), (5, 16), (5, 16)])
+            >>> voice = Voice(measures)
+            >>> voice.name = 'HiddenTimeSignatureVoice'
 
-            ::
+        ::
 
-                >>> voice.is_nonsemantic = True
+            >>> voice.is_nonsemantic = True
 
-            ..  doctest::
+        ..  doctest::
 
-                >>> print format(voice)
-                \context Voice = "HiddenTimeSignatureVoice" {
-                    {
-                        \time 1/8
-                        s1 * 1/8
-                    }
-                    {
-                        \time 5/16
-                        s1 * 5/16
-                    }
-                    {
-                        s1 * 5/16
-                    }
+            >>> print format(voice)
+            \context Voice = "HiddenTimeSignatureVoice" {
+                {
+                    \time 1/8
+                    s1 * 1/8
                 }
+                {
+                    \time 5/16
+                    s1 * 5/16
+                }
+                {
+                    s1 * 5/16
+                }
+            }
 
-            ::
+        ::
 
-                >>> voice.is_nonsemantic
-                True
+            >>> voice.is_nonsemantic
+            True
 
-            Gets nonsemantic voice voice:
+        Gets nonsemantic voice voice:
 
-            ::
+        ::
 
-                >>> voice = Voice([])
+            >>> voice = Voice([])
 
-            ::
+        ::
 
-                >>> voice.is_nonsemantic
-                False
+            >>> voice.is_nonsemantic
+            False
 
-            Returns boolean.
+        Returns boolean.
 
-            The intent of this read / write attribute is to allow composers
-            to tag invisible voices used to house time signatures indications,
-            bar number directives or other pieces of score-global non-musical
-            information. Such nonsemantic voices can then be omitted from
-            voice interation and other functions.
-            '''
-            return self._is_nonsemantic
-        def fset(self, arg):
-            if not isinstance(arg, bool):
-                raise TypeError
-            self._is_nonsemantic = arg
-        return property(**locals())
+        The intent of this read / write attribute is to allow composers
+        to tag invisible voices used to house time signatures indications,
+        bar number directives or other pieces of score-global non-musical
+        information. Such nonsemantic voices can then be omitted from
+        voice interation and other functions.
+        '''
+        return self._is_nonsemantic
+
+    @is_nonsemantic.setter
+    def is_nonsemantic(self, arg):
+        if not isinstance(arg, bool):
+            raise TypeError
+        self._is_nonsemantic = arg
 
     @property
     def is_semantic(self):
@@ -305,27 +305,27 @@ class Context(Container):
         '''
         return not self.is_nonsemantic
 
-    @apply
-    def name():
-        def fget(self):
-            r'''Gets and sets name of context.
+    @property
+    def name(self):
+        r'''Gets and sets name of context.
 
-            Returns string or none.
-            '''
-            return self._name
-        def fset(self, arg):
-            assert isinstance(arg, (str, type(None)))
-            old_name = self._name
-            for parent in self._get_parentage(include_self=False):
-                named_children = parent._named_children
-                if old_name is not None:
-                    named_children[old_name].remove(self)
-                    if not named_children[old_name]:
-                        del named_children[old_name]
-                if arg is not None:
-                    if arg not in named_children:
-                        named_children[arg] = [self]
-                    else:
-                        named_children[arg].append(self)
-            self._name = arg
-        return property(**locals())
+        Returns string or none.
+        '''
+        return self._name
+
+    @name.setter
+    def name(self, arg):
+        assert isinstance(arg, (str, type(None)))
+        old_name = self._name
+        for parent in self._get_parentage(include_self=False):
+            named_children = parent._named_children
+            if old_name is not None:
+                named_children[old_name].remove(self)
+                if not named_children[old_name]:
+                    del named_children[old_name]
+            if arg is not None:
+                if arg not in named_children:
+                    named_children[arg] = [self]
+                else:
+                    named_children[arg].append(self)
+        self._name = arg

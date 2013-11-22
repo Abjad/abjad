@@ -454,97 +454,97 @@ class Container(Component):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def is_simultaneous():
-        def fget(self):
-            r'''Simultaneity status of container.
+    @property
+    def is_simultaneous(self):
+        r'''Simultaneity status of container.
 
-            ..  container:: example
+        ..  container:: example
 
-                **Example 1.** Get simultaneity status of container:
+            **Example 1.** Get simultaneity status of container:
 
-                ::
+            ::
 
-                    >>> container = Container()
-                    >>> container.append(Voice("c'8 d'8 e'8"))
-                    >>> container.append(Voice('g4.'))
-                    >>> show(container) # doctest: +SKIP
+                >>> container = Container()
+                >>> container.append(Voice("c'8 d'8 e'8"))
+                >>> container.append(Voice('g4.'))
+                >>> show(container) # doctest: +SKIP
 
-                ..  doctest::
+            ..  doctest::
 
-                    >>> print format(container)
-                    {
-                        \new Voice {
-                            c'8
-                            d'8
-                            e'8
-                        }
-                        \new Voice {
-                            g4.
-                        }
+                >>> print format(container)
+                {
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
                     }
-
-                ::
-
-                    >>> container.is_simultaneous
-                    False
-
-            ..  container:: example
-
-                **Example 2.** Set simultaneity status of container:
-
-                ::
-
-                    >>> container = Container()
-                    >>> container.append(Voice("c'8 d'8 e'8"))
-                    >>> container.append(Voice('g4.'))
-                    >>> show(container) # doctest: +SKIP
-
-                ..  doctest::
-
-                    >>> print format(container)
-                    {
-                        \new Voice {
-                            c'8
-                            d'8
-                            e'8
-                        }
-                        \new Voice {
-                            g4.
-                        }
+                    \new Voice {
+                        g4.
                     }
+                }
 
-                ::
+            ::
 
-                    >>> container.is_simultaneous = True
-                    >>> show(container) # doctest: +SKIP
+                >>> container.is_simultaneous
+                False
 
-                ..  doctest::
+        ..  container:: example
 
-                    >>> print format(container)
-                    <<
-                        \new Voice {
-                            c'8
-                            d'8
-                            e'8
-                        }
-                        \new Voice {
-                            g4.
-                        }
-                    >>
+            **Example 2.** Set simultaneity status of container:
 
-            Returns boolean.
-            '''
-            return self._simultaneous
-        def fset(self, expr):
-            from abjad.tools import scoretools
-            assert isinstance(expr, bool), repr(expr)
-            if expr == True:
-                assert all(
-                    isinstance(x, scoretools.Context) for x in self._music)
-            self._simultaneous = expr
-            self._update_later(offsets=True)
-        return property(**locals())
+            ::
+
+                >>> container = Container()
+                >>> container.append(Voice("c'8 d'8 e'8"))
+                >>> container.append(Voice('g4.'))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(container)
+                {
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \new Voice {
+                        g4.
+                    }
+                }
+
+            ::
+
+                >>> container.is_simultaneous = True
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print format(container)
+                <<
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \new Voice {
+                        g4.
+                    }
+                >>
+
+        Returns boolean.
+        '''
+        return self._simultaneous
+
+    @is_simultaneous.setter
+    def is_simultaneous(self, expr):
+        from abjad.tools import scoretools
+        assert isinstance(expr, bool), repr(expr)
+        if expr == True:
+            assert all(
+                isinstance(x, scoretools.Context) for x in self._music)
+        self._simultaneous = expr
+        self._update_later(offsets=True)
 
     ### PRIVATE METHODS ###
 

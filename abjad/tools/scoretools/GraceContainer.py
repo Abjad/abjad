@@ -154,48 +154,48 @@ class GraceContainer(Container):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def kind():
-        def fget(self):
-            r'''Gets `kind` of grace container.
+    @property
+    def kind(self):
+        r'''Gets `kind` of grace container.
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> scoretools.GraceContainer(
-                ...     [Note("cs'16")], kind = 'grace')(staff[1])
-                Note("d'8")
-                >>> grace_container = staff[1].grace
-                >>> grace_container.kind
-                'grace'
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> scoretools.GraceContainer(
+            ...     [Note("cs'16")], kind = 'grace')(staff[1])
+            Note("d'8")
+            >>> grace_container = staff[1].grace
+            >>> grace_container.kind
+            'grace'
 
-            Returns string.
+        Returns string.
 
-            Sets `kind` of grace container:
+        Sets `kind` of grace container:
 
-            ::
+        ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> scoretools.GraceContainer(
-                ...     [Note("cs'16")], kind = 'grace')(staff[1])
-                Note("d'8")
-                >>> grace_container = staff[1].grace
-                >>> grace_container.kind = 'acciaccatura'
-                >>> grace_container.kind
-                'acciaccatura'
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> scoretools.GraceContainer(
+            ...     [Note("cs'16")], kind = 'grace')(staff[1])
+            Note("d'8")
+            >>> grace_container = staff[1].grace
+            >>> grace_container.kind = 'acciaccatura'
+            >>> grace_container.kind
+            'acciaccatura'
 
-            Sets string.
+        Sets string.
 
-            Valid options include ``'after'``, ``'grace'``, 
-            ``'acciaccatura'``, ``'appoggiatura'``.
-            '''
-            return self._kind
-        def fset(self, arg):
-            assert arg in (
-                'after',
-                'grace',
-                'acciaccatura',
-                'appoggiatura',
-                )
-            self._kind = arg
-        return property(**locals())
+        Valid options include ``'after'``, ``'grace'``, 
+        ``'acciaccatura'``, ``'appoggiatura'``.
+        '''
+        return self._kind
+
+    @kind.setter
+    def kind(self, arg):
+        assert arg in (
+            'after',
+            'grace',
+            'acciaccatura',
+            'appoggiatura',
+            )
+        self._kind = arg

@@ -174,33 +174,33 @@ class NoteHead(AbjadObject):
     def client(self):
         return self._client
 
-    @apply
-    def is_cautionary():
-        def fget(self):
-            r'''Get cautionary accidental flag:
+    @property
+    def is_cautionary(self):
+        r'''Get cautionary accidental flag:
 
-            ::
+        ::
 
-                >>> note_head = scoretools.NoteHead("cs''")
-                >>> note_head.is_cautionary
-                False
+            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head.is_cautionary
+            False
 
-            Set cautionary accidental flag:
+        Set cautionary accidental flag:
 
-            ::
+        ::
 
-                >>> note_head = scoretools.NoteHead("cs''")
-                >>> note_head.is_cautionary = True
+            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head.is_cautionary = True
 
-            Returns boolean.
-            '''
-            return self._is_cautionary
-        def fset(self, arg):
-            self._is_cautionary = bool(arg)
-        return property(**locals())
+        Returns boolean.
+        '''
+        return self._is_cautionary
 
-    @apply
-    def is_forced():
+    @is_cautionary.setter
+    def is_cautionary(self, arg):
+        self._is_cautionary = bool(arg)
+
+    @property
+    def is_forced(self):
         r'''Get forced accidental flag:
 
         ::
@@ -218,11 +218,11 @@ class NoteHead(AbjadObject):
 
         Returns boolean.
         '''
-        def fget(self):
-            return self._is_forced
-        def fset(self, arg):
-            self._is_forced = bool(arg)
-        return property(**locals())
+        return self._is_forced
+
+    @is_forced.setter
+    def is_forced(self, arg):
+        self._is_forced = bool(arg)
 
     @property
     def named_pitch(self):
@@ -255,31 +255,31 @@ class NoteHead(AbjadObject):
             self._tweak = lilypondnametools.LilyPondNameManager()
         return self._tweak
 
-    @apply
-    def written_pitch():
-        def fget(self):
-            r'''Get named pitch of note head:
+    @property
+    def written_pitch(self):
+        r'''Get named pitch of note head:
 
-            ::
+        ::
 
-                >>> note_head = scoretools.NoteHead("cs''")
-                >>> note_head.written_pitch
-                NamedPitch("cs''")
+            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head.written_pitch
+            NamedPitch("cs''")
 
-            Set named pitch of note head:
+        Set named pitch of note head:
 
-            ::
+        ::
 
-                >>> note_head = scoretools.NoteHead("cs''")
-                >>> note_head.written_pitch = "d''"
-                >>> note_head.written_pitch
-                NamedPitch("d''")
+            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head.written_pitch = "d''"
+            >>> note_head.written_pitch
+            NamedPitch("d''")
 
-            Set pitch token.
-            '''
-            return self._written_pitch
-        def fset(self, arg):
-            from abjad.tools import pitchtools
-            written_pitch = pitchtools.NamedPitch(arg)
-            self._written_pitch = written_pitch
-        return property(**locals())
+        Set pitch token.
+        '''
+        return self._written_pitch
+
+    @written_pitch.setter
+    def written_pitch(self, arg):
+        from abjad.tools import pitchtools
+        written_pitch = pitchtools.NamedPitch(arg)
+        self._written_pitch = written_pitch

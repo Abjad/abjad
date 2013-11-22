@@ -185,90 +185,90 @@ class Chord(Leaf):
 
     ### PUBLIC PROPERTIES ###
 
-    @apply
-    def note_heads():
-        def fget(self):
-            r'''Note heads in chord.
+    @property
+    def note_heads(self):
+        r'''Note heads in chord.
 
-            ..  container:: example
+        ..  container:: example
 
-                **Example 1.** Get note heads in chord:
+            **Example 1.** Get note heads in chord:
 
-                ::
+            ::
 
-                    >>> chord = Chord("<g' c'' e''>4")
-                    >>> show(chord) # doctest: +SKIP
+                >>> chord = Chord("<g' c'' e''>4")
+                >>> show(chord) # doctest: +SKIP
 
-                ::
+            ::
 
-                    >>> print format(chord.note_heads)
-                    scoretools.NoteHeadInventory(
-                        [
-                            scoretools.NoteHead(
-                                written_pitch=pitchtools.NamedPitch("g'"),
-                                is_cautionary=False,
-                                is_forced=False,
-                                ),
-                            scoretools.NoteHead(
-                                written_pitch=pitchtools.NamedPitch("c''"),
-                                is_cautionary=False,
-                                is_forced=False,
-                                ),
-                            scoretools.NoteHead(
-                                written_pitch=pitchtools.NamedPitch("e''"),
-                                is_cautionary=False,
-                                is_forced=False,
-                                ),
-                            ]
-                        )
+                >>> print format(chord.note_heads)
+                scoretools.NoteHeadInventory(
+                    [
+                        scoretools.NoteHead(
+                            written_pitch=pitchtools.NamedPitch("g'"),
+                            is_cautionary=False,
+                            is_forced=False,
+                            ),
+                        scoretools.NoteHead(
+                            written_pitch=pitchtools.NamedPitch("c''"),
+                            is_cautionary=False,
+                            is_forced=False,
+                            ),
+                        scoretools.NoteHead(
+                            written_pitch=pitchtools.NamedPitch("e''"),
+                            is_cautionary=False,
+                            is_forced=False,
+                            ),
+                        ]
+                    )
 
-            ..  container:: example
+        ..  container:: example
 
-                **Example 2.** Set note heads with pitch names:
+            **Example 2.** Set note heads with pitch names:
 
-                ::
+            ::
 
-                    >>> chord = Chord("<g' c'' e''>4")
-                    >>> show(chord) # doctest: +SKIP
+                >>> chord = Chord("<g' c'' e''>4")
+                >>> show(chord) # doctest: +SKIP
 
-                ::
+            ::
 
-                    >>> chord.note_heads = "c' d' fs'"
-                    >>> show(chord) # doctest: +SKIP
+                >>> chord.note_heads = "c' d' fs'"
+                >>> show(chord) # doctest: +SKIP
 
-                ..  doctest::
+            ..  doctest::
 
-                    >>> print format(chord)
-                    <c' d' fs'>4
+                >>> print format(chord)
+                <c' d' fs'>4
 
-            ..  container:: example
+        ..  container:: example
 
-                **Example 3.** Set note heads with pitch numbers:
+            **Example 3.** Set note heads with pitch numbers:
 
-                    >>> chord = Chord("<g' c'' e''>4")
-                    >>> show(chord) # doctest: +SKIP
+                >>> chord = Chord("<g' c'' e''>4")
+                >>> show(chord) # doctest: +SKIP
 
-                ::
+            ::
 
-                    >>> chord.note_heads = [16, 17, 19]
-                    >>> show(chord) # doctest: +SKIP
+                >>> chord.note_heads = [16, 17, 19]
+                >>> show(chord) # doctest: +SKIP
 
-                ..  doctest::
+            ..  doctest::
 
-                    >>> print format(chord)
-                    <e'' f'' g''>4
+                >>> print format(chord)
+                <e'' f'' g''>4
 
-            Set note heads with any iterable.
+        Set note heads with any iterable.
 
-            Returns tuple.
-            '''
-            return self._note_heads
-        def fset(self, note_heads):
-            self._note_heads[:] = []
-            if isinstance(note_heads, str):
-                note_heads = note_heads.split()
-            self.note_heads.extend(note_heads)
-        return property(**locals())
+        Returns tuple.
+        '''
+        return self._note_heads
+
+    @note_heads.setter
+    def note_heads(self, note_heads):
+        self._note_heads[:] = []
+        if isinstance(note_heads, str):
+            note_heads = note_heads.split()
+        self.note_heads.extend(note_heads)
 
     @property
     def sounding_pitches(self):
@@ -321,93 +321,93 @@ class Chord(Leaf):
                 pitch, interval) for pitch in self.written_pitches]
             return tuple(sounding_pitches)
 
-    @apply
-    def written_duration():
-        def fget(self):
-            r'''Written duration of chord.
+    @property
+    def written_duration(self):
+        r'''Written duration of chord.
 
-            ..  container:: example
+        ..  container:: example
 
-                **Example 1.** Get written duration:
+            **Example 1.** Get written duration:
 
-                ::
+            ::
 
-                    >>> chord = Chord("<e' cs'' f''>4")
-                    >>> show(chord) # doctest: +SKIP
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
 
-                ::
+            ::
 
-                    >>> chord.written_duration
-                    Duration(1, 4)
+                >>> chord.written_duration
+                Duration(1, 4)
 
-            ..  container:: example
+        ..  container:: example
 
-                **Example 2.** Set written duration:
+            **Example 2.** Set written duration:
 
-                ::
+            ::
 
-                    >>> chord = Chord("<e' cs'' f''>4")
-                    >>> show(chord) # doctest: +SKIP
+                >>> chord = Chord("<e' cs'' f''>4")
+                >>> show(chord) # doctest: +SKIP
 
-                ::
+            ::
 
-                    >>> chord.written_duration = Duration(1, 16)
-                    >>> show(chord) # doctest: +SKIP
+                >>> chord.written_duration = Duration(1, 16)
+                >>> show(chord) # doctest: +SKIP
 
-            Set duration.
+        Set duration.
 
-            Returns duration.
-            '''
-            return Leaf.written_duration.fget(self)
-        def fset(self, expr):
-            Leaf.written_duration.fset(self, expr)
-        return property(**locals())
+        Returns duration.
+        '''
+        return Leaf.written_duration.fget(self)
 
-    @apply
-    def written_pitches():
-        def fget(self):
-            r'''Written pitches in chord.
+    @written_duration.setter
+    def written_duration(self, expr):
+        Leaf.written_duration.fset(self, expr)
 
-            ..  container:: example
+    @property
+    def written_pitches(self):
+        r'''Written pitches in chord.
 
-                **Example 1.** Get written pitches:
+        ..  container:: example
 
-                    >>> chord = Chord("<g' c'' e''>4")
-                    >>> show(chord) # doctest: +SKIP
+            **Example 1.** Get written pitches:
 
-                ::
+                >>> chord = Chord("<g' c'' e''>4")
+                >>> show(chord) # doctest: +SKIP
 
-                    >>> for written_pitch in chord.written_pitches:
-                    ...     written_pitch
-                    NamedPitch("g'")
-                    NamedPitch("c''")
-                    NamedPitch("e''")
+            ::
 
-            ..  container:: example
+                >>> for written_pitch in chord.written_pitches:
+                ...     written_pitch
+                NamedPitch("g'")
+                NamedPitch("c''")
+                NamedPitch("e''")
 
-                **Example 2.** Set written pitches with pitch names:
+        ..  container:: example
 
-                ::
+            **Example 2.** Set written pitches with pitch names:
 
-                    >>> chord = Chord("<e' g' c''>4")
-                    >>> show(chord) # doctest: +SKIP
+            ::
 
-                ::
+                >>> chord = Chord("<e' g' c''>4")
+                >>> show(chord) # doctest: +SKIP
 
-                    >>> chord.written_pitches = "f' b' d''"
-                    >>> show(chord) # doctest: +SKIP
+            ::
 
-                ..  doctest::
+                >>> chord.written_pitches = "f' b' d''"
+                >>> show(chord) # doctest: +SKIP
 
-                    >>> print format(chord)
-                    <f' b' d''>4
+            ..  doctest::
 
-            Set written pitches with any iterable.
+                >>> print format(chord)
+                <f' b' d''>4
 
-            Returns tuple.
-            '''
-            return tuple(note_head.written_pitch
-                for note_head in self.note_heads)
-        def fset(self, pitches):
-            self.note_heads = pitches
-        return property(**locals())
+        Set written pitches with any iterable.
+
+        Returns tuple.
+        '''
+        return tuple(note_head.written_pitch
+            for note_head in self.note_heads)
+
+    @written_pitches.setter
+    def written_pitches(self, pitches):
+        self.note_heads = pitches
