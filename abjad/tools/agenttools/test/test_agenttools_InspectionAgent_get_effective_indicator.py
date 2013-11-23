@@ -35,12 +35,10 @@ def test_agenttools_InspectionAgent_get_effective_indicator_03():
     attach(clef, staff[4])
     for i, note in enumerate(staff):
         if i in (0, 1, 2, 3):
-            clef = inspect(note).get_effective_indicator(
-                Clef)
+            clef = inspect(note).get_effective_indicator(Clef)
             assert clef is None
         else:
-            clef = inspect(note).get_effective_indicator(
-                Clef)
+            clef = inspect(note).get_effective_indicator(Clef)
             assert clef == Clef('bass')
 
 
@@ -177,16 +175,11 @@ def test_agenttools_InspectionAgent_get_effective_indicator_09():
         '''
         )
 
-    assert inspect(staff).get_effective_indicator(
-        Dynamic) is None
-    assert inspect(staff[0]).get_effective_indicator(
-        Dynamic) is None
-    assert inspect(staff[1]).get_effective_indicator(
-        Dynamic) is None
-    assert inspect(staff[2]).get_effective_indicator(
-        Dynamic) == Dynamic('f')
-    assert inspect(staff[3]).get_effective_indicator(
-        Dynamic) == Dynamic('f')
+    assert inspect(staff).get_effective_indicator(Dynamic) is None
+    assert inspect(staff[0]).get_effective_indicator(Dynamic) is None
+    assert inspect(staff[1]).get_effective_indicator(Dynamic) is None
+    assert inspect(staff[2]).get_effective_indicator(Dynamic) == Dynamic('f')
+    assert inspect(staff[3]).get_effective_indicator(Dynamic) == Dynamic('f')
 
 
 def test_agenttools_InspectionAgent_get_effective_indicator_10():
@@ -223,7 +216,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_10():
 
 
 def test_agenttools_InspectionAgent_get_effective_indicator_11():
-    r'''Apply key signature.
+    r'''Attach key signature.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -263,10 +256,10 @@ def test_agenttools_InspectionAgent_get_effective_indicator_13():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    tempo = Tempo(Duration(1, 8), 38)
-    attach(tempo, staff, scope=Staff)
-    tempo = Tempo(Duration(1, 8), 42)
-    attach(tempo, staff[2], scope=Staff)
+    tempo_1 = Tempo(Duration(1, 8), 38)
+    attach(tempo_1, staff, scope=Staff)
+    tempo_2 = Tempo(Duration(1, 8), 42)
+    attach(tempo_2, staff[2], scope=Staff)
 
     assert systemtools.TestManager.compare(
         staff,
@@ -284,14 +277,10 @@ def test_agenttools_InspectionAgent_get_effective_indicator_13():
 
     assert inspect(staff).is_well_formed()
 
-    assert inspect(staff[0]).get_effective_indicator(
-        Tempo) == Tempo(Duration(1, 8), 38)
-    assert inspect(staff[1]).get_effective_indicator(
-        Tempo) == Tempo(Duration(1, 8), 38)
-    assert inspect(staff[2]).get_effective_indicator(
-        Tempo) == Tempo(Duration(1, 8), 42)
-    assert inspect(staff[3]).get_effective_indicator(
-        Tempo) == Tempo(Duration(1, 8), 42)
+    assert inspect(staff[0]).get_effective_indicator(Tempo) == tempo_1
+    assert inspect(staff[1]).get_effective_indicator(Tempo) == tempo_1
+    assert inspect(staff[2]).get_effective_indicator(Tempo) == tempo_2
+    assert inspect(staff[3]).get_effective_indicator(Tempo) == tempo_2
 
 
 def test_agenttools_InspectionAgent_get_effective_indicator_14():
@@ -356,8 +345,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_17():
     staff = Staff("c'8 d'8 e'8 f'8")
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective_indicator(
-            TimeSignature)
+        time_signature = inspect(leaf).get_effective_indicator(TimeSignature)
         assert time_signature is None
 
 
@@ -383,8 +371,7 @@ def test_agenttools_InspectionAgent_get_effective_indicator_18():
         )
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective_indicator(
-            TimeSignature)
+        time_signature = inspect(leaf).get_effective_indicator(TimeSignature)
         assert time_signature == TimeSignature((2, 8))
 
 
@@ -410,6 +397,19 @@ def test_agenttools_InspectionAgent_get_effective_indicator_19():
         )
 
     for leaf in staff:
-        time_signature = inspect(leaf).get_effective_indicator(
-            TimeSignature)
+        time_signature = inspect(leaf).get_effective_indicator(TimeSignature)
         assert time_signature is None
+
+
+def test_agenttools_InspectionAgent_get_effective_indicator_20():
+    r'''Effective value of arbitrary object.
+    '''
+
+    staff = Staff("c'8 d'8 e'8 f'8")
+    attach('color', staff[1], scope=Staff)
+
+    assert inspect(staff).get_effective_indicator(str) is None
+    assert inspect(staff[0]).get_effective_indicator(str) is None
+    assert inspect(staff[1]).get_effective_indicator(str) == 'color'
+    assert inspect(staff[2]).get_effective_indicator(str) == 'color'
+    assert inspect(staff[3]).get_effective_indicator(str) == 'color'
