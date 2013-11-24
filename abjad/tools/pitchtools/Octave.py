@@ -57,8 +57,8 @@ class Octave(AbjadObject):
         elif isinstance(expr, str):
             match = self._octave_tick_regex.match(expr)
             if match is None:
-                raise Exception('Cannot instantiate octave from '
-                    '{!r}'.format(expr))
+                message = 'cannot instantiate octave: {!r}.'.format(expr)
+                raise Exception(message)
             group = match.group()
             if group == '':
                 octave_number = 3
@@ -71,8 +71,8 @@ class Octave(AbjadObject):
         elif isinstance(expr, type(self)):
             octave_number = expr.octave_number 
         else:
-            raise Exception('Cannot instantiate octave from '
-                '{!r}'.format(expr))
+            message = 'cannot instantiate octave: {!r}.'.format(expr)
+            raise Exception(message)
         self._octave_number = octave_number
 
     ### SPECIAL METHODS ###

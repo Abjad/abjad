@@ -256,7 +256,7 @@ class Spanner(AbjadObject):
     def _initialize_components(self, components):
         from abjad.tools import scoretools
         if components:
-            raise Exception('deprecated')
+            raise DeprecationWarning
         if isinstance(components, scoretools.Component):
             components = [components]
         elif not components:

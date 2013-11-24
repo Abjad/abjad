@@ -151,7 +151,8 @@ class AbjadBookProcessor(AbjadObject):
         for i, line in enumerate(lines):
             if line.startswith('<abjad>'):
                 if in_block:
-                    raise Exception('Extra opening tag at line {}.'.format(i))
+                    message = 'extra opening tag at line {}.'.format(i)
+                    raise Exception(message)
                 else:
                     in_block = True
                     block = [line]
@@ -172,7 +173,8 @@ class AbjadBookProcessor(AbjadObject):
                         )
                     blocks.append(code_block)
                 else:
-                    raise Exception('Extra closing tag at line {}'.format(i))
+                    message = 'extra closing tag at line {}'.format(i)
+                    raise Exception(message)
 
             elif in_block:
                 block.append(line)
@@ -198,7 +200,8 @@ class AbjadBookProcessor(AbjadObject):
                 blocks.append(code_block)
 
         if in_block:
-            raise Exception('Unterminated tag at EOF.')
+            message = 'unterminated tag at EOF.'
+            raise Exception(message)
 
         return tuple(blocks)
 

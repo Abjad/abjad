@@ -49,12 +49,20 @@ class RenameModulesScript(DeveloperScript):
         if codebase == 'mainline':
             return os.path.join(
                 abjad_configuration.abjad_directory_path,
-                'docs', 'source', 'api', 'tools')
+                'docs', 
+                'source', 
+                'api', 
+                'tools',
+                )
         elif codebase == 'experimental':
             return os.path.join(
                 abjad_configuration.abjad_experimental_directory_path,
-                'docs', 'source', 'tools')
-        raise Exception('Bad codebase name {!r}.'.format(codebase))
+                'docs', 
+                'source', 
+                'tools',
+                )
+        message = 'bad codebase name {!r}.'.format(codebase)
+        raise Exception(message)
 
     def _codebase_name_to_codebase_tools_path(self, codebase):
         from abjad import abjad_configuration
@@ -64,7 +72,8 @@ class RenameModulesScript(DeveloperScript):
         elif codebase == 'experimental':
             return os.path.join(
                 abjad_configuration.abjad_experimental_directory_path, 'tools')
-        raise Exception('Bad codebase name {!r}.'.format(codebase))
+        message = 'bad codebase name {!r}.'.format(codebase)
+        raise Exception(message)
 
     def _parse_tools_package_path(self, path):
         from abjad import abjad_configuration

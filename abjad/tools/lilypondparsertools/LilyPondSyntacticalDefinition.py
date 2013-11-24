@@ -499,12 +499,14 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
 #    def p_command_element__E_BRACKET_CLOSE(self, p):
 #        'command_element : E_BRACKET_CLOSE'
-#        raise Exception('Ligatures not supported.')
+#        message = 'ligatures not supported.'
+#        raise Exception(message)
 
 
 #    def p_command_element__E_BRACKET_OPEN(self, p):
 #        'command_element : E_BRACKET_OPEN'
-#        raise Exception('Ligatures not supported.')
+#        message = 'ligatures not supported.'
+#        raise Exception(message)
 
 
     def p_command_element__command_event(self, p):
@@ -517,7 +519,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
 #    def p_command_event__E_TILDE(self, p):
 #        'command_event : E_TILDE'
-#        raise Exception('Pes or Flexa events not supported.')
+#        message = 'pes and flexa events not supported.'
+#        raise Exception(message)
 
 
     def p_command_event__tempo_event(self, p):
@@ -3062,7 +3065,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
 #    def p_simple_element__DRUM_PITCH__optional_notemode_duration(self, p):
 #        'simple_element : DRUM_PITCH optional_notemode_duration'
-#        raise Exception('Drum pitches not supported.')
+#        message = 'drum pitches not supported.'
+#        raise Exception(message)
 
 
     def p_simple_element__RESTNAME__optional_notemode_duration(self, p):

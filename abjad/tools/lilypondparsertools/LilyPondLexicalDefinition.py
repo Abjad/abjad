@@ -349,7 +349,8 @@ class LilyPondLexicalDefinition(AbjadObject):
     # <incl,version,sourcefilename>\"[^"]*
     def t_version_341(self, t):
         r'"[^"]*'
-        raise Exception('End quote missing: %s' % t)
+        message = 'end quote missing: {!r}.'.format(t)
+        raise Exception(message)
 
     # lexer.ll:345
     # <chords,notes,figures>{RESTNAME}
@@ -838,7 +839,8 @@ class LilyPondLexicalDefinition(AbjadObject):
         # then, check for it in the "current_module" dictionary
         # which we've dumped out of LilyPond
         if identifier not in self.client._current_module:
-            raise Exception('Unknown escaped word "%s".' % t.value)
+            message = 'unknown escaped word: {!r}.'.format(t.value)
+            raise Exception(message)
 
         lookup = self.client._current_module[identifier]
 

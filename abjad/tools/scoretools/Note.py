@@ -12,8 +12,6 @@ class Note(Leaf):
 
     ..  container:: example
         
-        **Example.**
-
         ::
 
             >>> note = Note("cs''8.")

@@ -134,7 +134,8 @@ class ContiguousSelection(Selection):
         elif all(isinstance(x, scoretools.Measure) for x in self):
             return self._fuse_measures()
         else:
-            raise Exception('can not fuse.')
+            message = 'cannot fuse.'
+            raise Exception(message)
 
     def _fuse_leaves(self):
         from abjad.tools import scoretools

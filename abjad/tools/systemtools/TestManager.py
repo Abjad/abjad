@@ -38,7 +38,8 @@ class TestManager(object):
                         #staff_group_context_block = context_block
                         break
                 else:
-                    raise Exception('no staff group context block found.')
+                    message = 'no staff group context block found.'
+                    raise Exception(message)
                 spacing_vector = layouttools.make_spacing_vector(0, 0, 6, 0)
                 topleveltools.override(context_block
                     ).vertical_axis_group.staff_staff_spacing = spacing_vector

@@ -315,9 +315,11 @@ class LilyPondParser(abctools.Parser):
                     # and starting events are processed before ending ones
                     for event in starting_events:
                         if all_spanners[spanner_class]:
-                            raise Exception('Already have beam.')
+                            message = 'already have beam.'
+                            raise Exception(message)
                         if hasattr(event, 'direction'):
-                            all_spanners[spanner_class].append(spanner_class(direction=event.direction))
+                            all_spanners[spanner_class].append(
+                                spanner_class(direction=event.direction))
                         else:
                             all_spanners[spanner_class].append(spanner_class())
                     for _ in stopping_events:
@@ -344,23 +346,36 @@ class LilyPondParser(abctools.Parser):
                         if event.name == 'DecrescendoEvent':
                             shape = '>'
                         if hasattr(event, 'direction'):
-                            all_spanners[spanner_class].append(spanner_class([], shape, direction=event.direction))
+                            spanner = spanner_class(
+                                [], 
+                                shape, 
+                                direction=event.direction,
+                                )
+                            all_spanners[spanner_class].append(spanner)
                         else:
-                            all_spanners[spanner_class].append(spanner_class([], shape))
+                            spanner = spanner_class([], shape)
+                            all_spanners[spanner_class].append(spanner)
                     elif 1 < len(starting_events):
-                        raise Exception('Simultaneous dynamic-span events.')
+                        message = 'simultaneous dynamic span events.'
+                        raise Exception(message)
 
-                elif spanner_class in [spannertools.Slur, spannertools.PhrasingSlur,
-                    spannertools.TextSpanner, spannertools.TrillSpanner]:
-                    # These engravers process stop events before start events,
-                    # they must contain more than one leaf,
-                    # however, they can stop on a leaf and start on the same leaf.
+                elif spanner_class in [
+                    spannertools.Slur, 
+                    spannertools.PhrasingSlur,
+                    spannertools.TextSpanner, 
+                    spannertools.TrillSpanner,
+                    ]:
+                    # these engravers process stop events before start events,
+                    # they must contain more than one leaf, however,
+                    # yhey can stop on a leaf and start on the same leaf.
                     for _ in stopping_events:
                         if all_spanners[spanner_class]:
                             all_spanners[spanner_class][0].append(leaf)
                             all_spanners[spanner_class].pop()
                         else:
-                            raise Exception('Cannot end %s.' % spanner_class.__name__)
+                            message = 'cannot end {}.'
+                            message = message.format(spanner_class.__name__)
+                            raise Exception(message)
                     for event in starting_events:
                         if not all_spanners[spanner_class]:
                             if hasattr(event, 'direction') and hasattr(spanner_class, 'direction'):
@@ -368,7 +383,9 @@ class LilyPondParser(abctools.Parser):
                             else:
                                 all_spanners[spanner_class].append(spanner_class())
                         else:
-                            raise Exception('Already have %s.' % spanner_class.__name__)
+                            message = 'already have {}.'
+                            message = message.format(spanner_class.__name__)
+                            raise Exception(message)
 
                 elif spanner_class is spannertools.HorizontalBracketSpanner:
                     # Brackets can nest, meaning
@@ -385,9 +402,11 @@ class LilyPondParser(abctools.Parser):
                                     all_spanners[spanner_class][-1].append(leaf)
                                     all_spanners[spanner_class].pop()
                                 else:
-                                    raise Exception('Do not have that many brackets.')
+                                    message = 'do not have that many brackets.'
+                                    raise Exception(message)
                         else:
-                            raise Exception('Conflicting note group events.')
+                            message = 'conflicting note group events.'
+                            raise Exception(message)
 
             # append leaf to all tracked spanners,
             for spanner_class, instances in all_spanners.iteritems():
@@ -397,7 +416,8 @@ class LilyPondParser(abctools.Parser):
         # check for unterminated spanners
         for spanner_class, instances in all_spanners.iteritems():
             if instances:
-                raise Exception('Unterminated %s.' % spanner_class.__name__)
+                message = 'unterminated {}.'.fromat(spanner_class.__name__)
+                raise Exception(message)
 
     def _assign_variable(self, identifier, value):
         self._scope_stack[-1][identifier] = value
@@ -617,8 +637,6 @@ class LilyPondParser(abctools.Parser):
             elif isinstance(post_event, nonspanner_post_event_types):
                 attach(post_event, leaf)
             else:
-                #print post_event, 'debugging'
-                #raise Exception('debugging')
                 annotation = [
                     x for x in leaf._get_indicators(indicatortools.Annotation)
                     if x.name == 'spanners'
@@ -717,7 +735,8 @@ class LilyPondParser(abctools.Parser):
         }
         if name in spanners:
             return spanners[name]
-        raise Exception('Abjad cannot associate a spanner class with %s' % name)
+        message = 'cannot associate a spanner class with {}'.format(name)
+        raise Exception(message)
 
     def _test_scheme_predicate(self, predicate, value):
         from abjad.tools import lilypondparsertools
@@ -728,11 +747,12 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def _transpose_enharmonically(pitch_a, pitch_b, pitch_c):
-        r'''Transpose `pitch_c` by the distance between `pitch_b` and `pitch_a`.
+        r'''Transpose `pitch_c` by the distance between `pitch_b` 
+        and `pitch_a`.
 
         This function was reverse-engineered from LilyPond's source code.
 
-        Returns NamedPitch.
+        Returns named pitch.
         '''
         if not isinstance(pitch_a, pitchtools.NamedPitch):
             pitch_a = pitchtools.NamedPitch(pitch_a)

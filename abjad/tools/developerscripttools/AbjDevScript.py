@@ -33,7 +33,9 @@ class AbjDevScript(DeveloperScript):
             if isinstance(args, str):
                 args = args.split()
             elif not isinstance(args, (list, tuple)):
-                raise ValueError
+                message = 'must be str, list, tuple or none: {!r}.'
+                message = message.format(args)
+                raise ValueError(message)
             args = self.argument_parser.parse_known_args(args)
         self.process_args(args)
 
@@ -52,37 +54,50 @@ class AbjDevScript(DeveloperScript):
                     scripting_groups.append(instance.scripting_group)
                     entry = (instance.scripting_group, instance.alias)
                     if (instance.scripting_group,) in aliases:
-                        message = 'Alias conflict between scripting group'
+                        message = 'alias conflict between scripting group'
                         message += ' {!r} and {}'
-                        raise Exception(message.format(
+                        message = message.format(
                             instance.scripting_group, 
-                            aliases[(instance.scripting_group,)].__name__))
+                            aliases[(instance.scripting_group,)].__name__,
+                            )
+                        raise Exception(message)
                     if entry in aliases:
-                        message = 'Alias conflict between {} and {}'
-                        raise Exception(message.format(
-                            aliases[entry].__name__ and \
-                                developer_script_class.__name__))
+                        message = 'alias conflict between {} and {}'
+                        message = message.format(
+                            aliases[entry].__name__,
+                            developer_script_class.__name__,
+                            )
+                        raise Exception(message)
                     aliases[entry] = developer_script_class
 
                 else:
                     entry = (instance.alias,)
                     if entry in scripting_groups:
-                        message = 'Alias conflict between {}'
+                        message = 'alias conflict between {}'
                         message += ' and scripting group {!r}'
-                        raise Exception(message.format(
-                            developer_script_class.__name__, instance.alias))
+                        message = message.format(
+                            developer_script_class.__name__, 
+                            instance.alias,
+                            )
+                        raise Exception(message)
                     if entry in aliases:
-                        raise Exception('Alias conflict be {} and {}'.format(
-                            developer_script_class.__name__, aliases[entry]))
+                        message = 'alias conflict be {} and {}'
+                        message = message.format(
+                            developer_script_class.__name__, 
+                            aliases[entry],
+                            )
+                        raise Exception(message)
                     aliases[(instance.alias,)] = developer_script_class
 
             else:
                 if instance.program_name in scripting_groups:
                     message = 'Alias conflict between {}'
                     message += ' and scripting group {!r}'
-                    raise Exception(message.format(
+                    message = message.format(
                         developer_script_class.__name__, 
-                        instance.program_name))
+                        instance.program_name,
+                        )
+                    raise Exception(message)
                 aliases[(instance.program_name,)] = developer_script_class
 
         aliasdict = {}

@@ -1510,9 +1510,11 @@ class TimespanInventory(TypedList):
         if len(timespans) == 1:
             return timespans[0]
         elif 1 < len(timespans):
-            raise Exception('extra timespan error.')
+            message = 'extra timespan.'
+            raise Exception(message)
         else:
-            raise Exception('missing timespan error.')
+            message = 'missing timespan.'
+            raise Exception(message)
 
     def get_timespans_that_satisfy_time_relation(self, time_relation):
         r'''Get timespans that satisfy `time_relation`:

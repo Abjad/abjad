@@ -764,7 +764,8 @@ class Container(Component):
                     if start_offset < cross_offset < stop_offset:
                         duration_crossing_descendants.append(descendant)
         elif 1 < len(measures):
-            raise Exception('measures can not nest.')
+            message = 'measures cannot nest.'
+            raise Exception(message)
         # any duration-crossing leaf will be at end of list
         bottom = duration_crossing_descendants[-1]
         did_split_leaf = False

@@ -551,7 +551,8 @@ class ReducedLyParser(abctools.Parser):
                     # and starting events are processed before ending ones
                     for _ in starting:
                         if spanner_references[current_class] is not None:
-                            raise Exception('Already have beam.')
+                            message = 'already have beam.'
+                            raise Exception(message)
                         else:
                             spanner_references[current_class] = current_class()
                     for _ in stopping:
@@ -585,7 +586,8 @@ class ReducedLyParser(abctools.Parser):
         # check for unterminated spanners
         for current_class, instance in spanner_references.iteritems():
             if instance is not None:
-                raise Exception('Unterminated %s.' % current_class.__name__)
+                message = 'unterminated {}.'.format(current_class.__name__)
+                raise Exception(message)
 
     def _cleanup(self, parsed):
         container = scoretools.Container()

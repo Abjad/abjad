@@ -45,24 +45,6 @@ class InspectionAgent(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def has_effective_indicator(self, prototype=None):
-        r'''True when indicator that matches `prototype` is
-        in effect for client. Otherwise false.
-
-        Returns boolean.
-        '''
-        indicator = self.get_effective_indicator(prototype=prototype)
-        return bool(indicator)
-
-    def has_indicator(self, prototype=None):
-        r'''True when client has one or more
-        indicators that match `prototype`. Otherwise false.
-
-        Returns boolean.
-        '''
-        indicators = self.get_indicators(prototype=prototype)
-        return bool(indicators)
-
     def get_annotation(self, name, default=None):
         r'''Gets value of annotation with `name` attached to client.
 
@@ -455,6 +437,24 @@ class InspectionAgent(abctools.AbjadObject):
         return self._client._get_vertical_moment_at(
             offset,
             )
+
+    def has_effective_indicator(self, prototype=None):
+        r'''True when indicator that matches `prototype` is
+        in effect for client. Otherwise false.
+
+        Returns boolean.
+        '''
+        indicator = self.get_effective_indicator(prototype=prototype)
+        return bool(indicator)
+
+    def has_indicator(self, prototype=None):
+        r'''True when client has one or more
+        indicators that match `prototype`. Otherwise false.
+
+        Returns boolean.
+        '''
+        indicators = self.get_indicators(prototype=prototype)
+        return bool(indicators)
 
     def is_bar_line_crossing(self):
         r'''True when client crosses bar line.
