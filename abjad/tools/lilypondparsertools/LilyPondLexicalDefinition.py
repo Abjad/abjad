@@ -393,7 +393,7 @@ class LilyPondLexicalDefinition(AbjadObject):
         #print 'PREPARSE'
         try:
             scheme_parser(input_string)
-        except SchemeParserFinishedException:
+        except SchemeParserFinishedError:
             result = scheme_parser.result
             cursor_end = scheme_parser.cursor_end
             #print 'PARSED: {!r}'.format(input_string[:cursor_end])

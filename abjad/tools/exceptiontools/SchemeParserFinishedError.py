@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-class SchemeParserFinishedException(Exception):
+class SchemeParserFinishedError(Exception):
     r'''SchemeParser has finished parsing.
     '''
 

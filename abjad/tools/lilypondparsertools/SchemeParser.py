@@ -9,7 +9,7 @@ class SchemeParser(abctools.Parser):
     '''`SchemeParser` mimics how LilyPond's embedded Scheme parser behaves.
 
     It parses a single Scheme expression and then stops,
-    by raising a `SchemeParserFinishedException`.
+    by raising a `SchemeParserFinishedError`.
 
     The parsed expression and its exact length in characters
     are cached on the `SchemeParser` instance.
@@ -284,7 +284,7 @@ class SchemeParser(abctools.Parser):
         self.cursor_end = p.slice[0].cursor_end
         if self.debug:
             print 'PARSED {!r}'.format(self.lexer.lexdata[:self.cursor_end])
-        raise SchemeParserFinishedException
+        raise SchemeParserFinishedError
 
     ### definition ###
 
@@ -395,7 +395,7 @@ class SchemeParser(abctools.Parser):
             #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise SchemeParserFinishedException
+            raise SchemeParserFinishedError
 
     def p_constant__number(self, p):
         r'''constant : number
@@ -407,7 +407,7 @@ class SchemeParser(abctools.Parser):
             #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise SchemeParserFinishedException
+            raise SchemeParserFinishedError
 
     def p_constant__string(self, p):
         r'''constant : string
@@ -419,7 +419,7 @@ class SchemeParser(abctools.Parser):
             #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise SchemeParserFinishedException
+            raise SchemeParserFinishedError
 
     ### formals ###
 
