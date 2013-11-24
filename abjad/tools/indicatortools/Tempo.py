@@ -554,7 +554,7 @@ class Tempo(AbjadObject):
 
         ..  container:: example
 
-            **Example.** Consider the two tempo indications below. 
+            Consider the two tempo indications below. 
             
             ::
 

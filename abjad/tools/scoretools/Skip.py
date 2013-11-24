@@ -9,8 +9,6 @@ class Skip(Leaf):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> skip = scoretools.Skip((3, 16))

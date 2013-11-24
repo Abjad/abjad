@@ -13,8 +13,7 @@ class ResidueClass(BaseResidueClass):
 
     ..  container:: example
 
-        **Example.** From the opening of Xenakis's *Psappha* for solo 
-        percussion:
+        From the opening of Xenakis's *Psappha* for solo percussion:
 
         ::
 
@@ -46,7 +45,6 @@ class ResidueClass(BaseResidueClass):
                 [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
-    Returns residue class.
     '''
 
     ### CLASS VARIABLES ###
@@ -146,8 +144,6 @@ class ResidueClass(BaseResidueClass):
 
         ..  container:: example
 
-            **Example:**
-
             ::
 
                 >>> r = RC(3, 0)
@@ -178,8 +174,6 @@ class ResidueClass(BaseResidueClass):
         is taken as the max range and the min is assumed to be 0.
 
         ..  container:: example
-
-            **Example:**
 
             ::
 

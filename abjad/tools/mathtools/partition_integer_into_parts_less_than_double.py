@@ -6,8 +6,6 @@ def partition_integer_into_parts_less_than_double(n, m):
 
     ..  container:: example
 
-        **Example:**
-
         ::
 
             >>> for n in range(1, 24+1):

@@ -7,8 +7,6 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> measures = scoretools.make_measures_with_full_measure_spacer_skips(

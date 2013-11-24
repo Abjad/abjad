@@ -12,8 +12,6 @@ class Timespan(BoundedObject):
 
     ..  container:: example
 
-        **Example:**
-
         ::
 
                 >>> timespan_1 = timespantools.Timespan(0, 10)

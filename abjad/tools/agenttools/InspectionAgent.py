@@ -462,8 +462,6 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> staff = Staff("c'4 d'4 e'4")
@@ -534,7 +532,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example.** Report modifications of container in selection:
+            Report modifications of container in selection:
 
             ::
 

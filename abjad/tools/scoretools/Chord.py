@@ -12,8 +12,6 @@ class Chord(Leaf):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> chord = Chord("<e' cs'' f''>4")
@@ -275,8 +273,6 @@ class Chord(Leaf):
         r"""Sounding pitches in chord.
 
         ..  container:: example
-
-            **Example.**
 
             ::
 

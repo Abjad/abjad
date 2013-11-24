@@ -183,8 +183,6 @@ class Sieve(BaseResidueClass):
 
         ..  container::
 
-            **Example:**
-
             ::
 
                 >>> from abjad.tools.sievetools import ResidueClass
@@ -217,8 +215,6 @@ class Sieve(BaseResidueClass):
         is taken as the max range and min is assumed to be 0.
 
         ..  container:: example
-
-            **Example:**
 
             ::
 

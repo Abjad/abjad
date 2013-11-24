@@ -25,8 +25,6 @@ def timespan_2_contains_timespan_1_improperly(
 
     ..  container:: example
 
-        **Example:**
-
         ::
 
             >>> staff = Staff(r"c'8. \p \< fs'16 a'4 af'8 \f \> g'8 ~ g'16 f' e' ef' \p")

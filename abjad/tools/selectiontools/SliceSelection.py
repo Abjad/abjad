@@ -9,8 +9,6 @@ class SliceSelection(ContiguousSelection):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> staff = Staff("c'4 d'4 e'4 f'4")

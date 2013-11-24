@@ -25,8 +25,6 @@ def timespan_2_starts_during_timespan_1(
 
     ..  container:: example
 
-        **Example:**
-
         ::
 
             >>> staff_1 = Staff("c'4 d'4 e'4 f'4 g'2 c''2")

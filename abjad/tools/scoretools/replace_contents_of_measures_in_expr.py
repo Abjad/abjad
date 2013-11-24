@@ -9,8 +9,6 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips(

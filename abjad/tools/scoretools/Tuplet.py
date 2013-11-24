@@ -496,7 +496,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example.** Get tuplet invisibility status:
+            **Example 1.** Get tuplet invisibility status:
 
             ::
 
@@ -1640,7 +1640,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            **Example.** Set preferred denominator of tuplet to at least ``8``:
+            Set preferred denominator of tuplet to at least ``8``:
 
             ::
 
@@ -1695,8 +1695,6 @@ class Tuplet(Container):
         r'''Change tuplet to fixed-duration tuplet.
 
         ..  container:: example
-
-            **Example:**
 
             ::
 

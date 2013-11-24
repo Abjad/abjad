@@ -8,8 +8,6 @@ def requires(*tests):
 
     ..  container:: example
 
-        **Example:**
-
         ::
 
             >>> @systemtools.requires(

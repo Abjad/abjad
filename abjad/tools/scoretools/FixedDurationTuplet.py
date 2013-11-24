@@ -200,8 +200,6 @@ class FixedDurationTuplet(Tuplet):
 
         ..  container:: example
 
-            **Example:**
-
             ::
 
                 >>> tuplet = scoretools.FixedDurationTuplet((2, 8), [])

@@ -246,8 +246,7 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            **Example:** tertian chord with four pitch classes
-            qualifies as a seventh chord:
+            Tertian chord with four pitch classes qualifies as a seventh chord:
 
             ::
 
@@ -264,7 +263,7 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            **Example:** tertian chord with extent of seven
+            Tertian chord with extent of seven
             comprises four pitch-clases:
 
             ::
@@ -282,7 +281,7 @@ class RootedChordClass(PitchClassSet):
 
         ..  container:: example
 
-            **Example:** extent of seven is a seventh:
+            Extent of seven is a seventh:
 
             ::
 

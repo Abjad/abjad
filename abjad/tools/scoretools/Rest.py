@@ -11,8 +11,6 @@ class Rest(Leaf):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> rest = Rest('r8.')
