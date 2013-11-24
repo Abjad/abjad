@@ -28,15 +28,21 @@ class SyntaxNode(AbjadObject):
     def __getitem__(self, item):
         if isinstance(self.value, (list, tuple)):
             return self.value[item]
-        raise Exception
+        message = 'can not get: {!r}.'.format(item)
+        raise Exception(message)
 
     def __len__(self):
         if isinstance(self.value, (list, tuple)):
             return len(self.value)
-        raise Exception
+        message = 'value must be list or tuple.'
+        raise Exception(message)
 
     def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self.type, type(self.value))
+        return '{}({}, {})'.format(
+            type(self).__name__, 
+            self.type, 
+            type(self.value),
+            )
 
     def __str__(self):
         return '\n'.join(self._format(self))

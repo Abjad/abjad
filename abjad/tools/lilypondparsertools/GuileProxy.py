@@ -31,8 +31,9 @@ class GuileProxy(AbjadObject):
         if hasattr(self, function_name[1:]):
             result = getattr(self, function_name[1:])(*args)
             return result
-        message = "LilyPondParser can't emulate music function %s."
-        raise Exception(message % function_name)
+        message = 'LilyPondParser cannot emulate music function: {}.'
+        message = message.format(function_name)
+        raise Exception(message)
 
     ### FUNCTION EMULATORS ###
 

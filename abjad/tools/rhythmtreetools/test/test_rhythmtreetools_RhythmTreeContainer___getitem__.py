@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_rhythmtreetools_RhythmTreeContainer___getitem___01():
@@ -9,7 +9,8 @@ def test_rhythmtreetools_RhythmTreeContainer___getitem___01():
     leaf_b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
     leaf_c = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
 
-    container = rhythmtreetools.RhythmTreeContainer(preprolated_duration=1, children=[leaf_a, leaf_b, leaf_c])
+    container = rhythmtreetools.RhythmTreeContainer(
+        preprolated_duration=1, children=[leaf_a, leaf_b, leaf_c])
 
     assert container[0] is leaf_a
     assert container[1] is leaf_b

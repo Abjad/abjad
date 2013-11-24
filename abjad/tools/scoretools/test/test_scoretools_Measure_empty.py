@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_scoretools_Measure_empty_01():

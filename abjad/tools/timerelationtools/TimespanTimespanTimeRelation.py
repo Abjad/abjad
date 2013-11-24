@@ -483,4 +483,5 @@ class TimespanTimespanTimeRelation(TimeRelation):
             return start_index, stop_index
         elif 0 < len(result):
             message = 'inequality evaluates to disjunct range: {!r}.'
-            raise Exception(message.format(result))
+            message = message.format(result)
+            raise Exception(message)

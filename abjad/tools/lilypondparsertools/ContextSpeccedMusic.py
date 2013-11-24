@@ -31,8 +31,9 @@ class ContextSpeccedMusic(Music):
         if self.context_name in self.known_contexts:
             context = known_contexts[self.context_name]([])
         else:
-            message = 'context type %s not supported.'
-            raise Exception(message % self.context_name)
+            message = 'context type not supported: {}.'
+            message = message.format(self.context_name)
+            raise Exception(message)
 
         if self.optional_id is not None:
             context.name = self.optional_id
@@ -40,7 +41,8 @@ class ContextSpeccedMusic(Music):
         if self.optional_context_mod is not None:
             for x in self.optional_context_mod:
                 print x
-            pass # TODO: Implement context mods on contexts. #
+            # TODO: implement context modifications on contexts
+            pass
 
         if isinstance(self.music, lilypondparsertools.SimultaneousMusic):
             context.is_simultaneous = True

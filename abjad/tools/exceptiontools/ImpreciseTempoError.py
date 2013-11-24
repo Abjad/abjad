@@ -4,4 +4,5 @@
 class ImpreciseTempoError(Exception):
     r'''Tempo is imprecise.
     '''
+
     pass

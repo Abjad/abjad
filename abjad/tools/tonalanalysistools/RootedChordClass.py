@@ -181,13 +181,13 @@ class RootedChordClass(PitchClassSet):
             if inversion == 0:
                 return ''
             elif inversion == 1:
-                raise Exception(NotImplemented)
+                raise NotImplementedError
             elif inversion == 2:
-                raise Exception(NotImplemented)
+                raise NotImplementedError
             elif inversion == 3:
-                raise Exception(NotImplemented)
+                raise NotImplementedError
             elif inversion == 4:
-                raise Exception(NotImplemented)
+                raise NotImplementedError
 
     @property
     def inversion(self):

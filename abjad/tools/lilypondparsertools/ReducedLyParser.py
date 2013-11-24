@@ -533,8 +533,9 @@ class ReducedLyParser(abctools.Parser):
                 # and do not maintain a reference to them
                 if current_class is spannertools.Tie:
                     if next_leaf is first_leaf:
-                        message = 'unterminated %s at %s.'
-                        raise Exception(message % (current_class.__name__, leaf))
+                        message = 'unterminated {} at {}.'
+                        message = message.format(current_class.__name__, leaf)
+                        raise Exception(message)
                     previous_tie = [
                         x for x in leaf._get_spanners() 
                         if isinstance(x, spannertools.Tie)
@@ -569,14 +570,16 @@ class ReducedLyParser(abctools.Parser):
                             spanner_references[current_class].append(leaf)
                             spanner_references[current_class] = None
                         else:
-                            message = 'cannot end %s.'
-                            raise Exception(message % current_class.__name__)
+                            message = 'cannot end: {}.'
+                            message = message.format(current_class.__name)
+                            raise Exception(message)
                     for _ in starting:
                         if spanner_references[current_class] is None:
                             spanner_references[current_class] = current_class()
                         else:
-                            message = 'already have %s.'
-                            raise Exception(message % current_class.__name__)
+                            message = 'already have: {}.'
+                            message = message.format(current_class.__name)
+                            raise Exception(message)
 
             # append leaf to all tracked spanners,
             for current_class, instance in spanner_references.iteritems():

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_tonalanalysistools_RootedChordClass_extent_to_extent_name_01():

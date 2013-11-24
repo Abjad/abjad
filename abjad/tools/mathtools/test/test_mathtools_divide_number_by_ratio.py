@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import mathtools
 import pytest
+from abjad import *
 
 
 def test_mathtools_divide_number_by_ratio_01():
@@ -32,7 +31,8 @@ def test_mathtools_divide_number_by_ratio_03():
     r'''Raise type error on nonnumber.
     '''
 
-    assert pytest.raises(Exception, "mathtools.divide_number_by_ratio('foo', [1, 1, 3])")
+    statement = "mathtools.divide_number_by_ratio('foo', [1, 1, 3])"
+    assert pytest.raises(Exception, statement)
 
 
 def test_mathtools_divide_number_by_ratio_04():
