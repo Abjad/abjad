@@ -72,8 +72,9 @@ class NamedPitchClass(PitchClass):
         elif pitchtools.Pitch.is_pitch_carrier(expr):
             self._init_by_pitch_carrier(expr)
         else:
-            raise TypeError('Cannot instantiate {} from '
-                '{!r}.'.format(type(self).__name__, expr))
+            message = 'cannot instantiate {} from {!r}.'
+            message = message.format(type(self).__name__, expr)
+            raise TypeError(message)
 
     ### SPECIAL METHODS ###
 
@@ -109,7 +110,8 @@ class NamedPitchClass(PitchClass):
 
     def __sub__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be named pitch-class.' % arg)
+            message = 'must be named pitch-class: {!r}.'.format(arg)
+            raise TypeError(message)
         from abjad.tools import pitchtools
         pitch_1 = pitchtools.NamedPitch(self, 4)
         pitch_2 = pitchtools.NamedPitch(arg, 4)

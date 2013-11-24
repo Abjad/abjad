@@ -87,4 +87,5 @@ def partition_sequence_by_weights_exactly(
     if flattened_candidate == sequence[:len(flattened_candidate)]:
         return candidate
     else:
-        raise PartitionError('can not partition exactly.')
+        message = 'can not partition exactly.'
+        raise PartitionError(message)

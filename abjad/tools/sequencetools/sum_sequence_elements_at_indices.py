@@ -40,7 +40,8 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
     assert isinstance(overhang, bool)
 
     if not _check_sum_slices_at_specification(pairs):
-        raise ValueError('must be list of nonoverlapping pairs.')
+        message = 'must be list of nonoverlapping pairs: {!r}'.format(pairs)
+        raise ValueError(message)
 
     start_indices = set([pair[0] for pair in pairs])
     indices_affected = []
@@ -49,7 +50,8 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
 
     if period is not None:
         if not max(indices_affected) < period:
-            raise ValueError('affected indices must be less than period of repetition.')
+            message = 'affected indices must be less than period of repetition.'
+            raise ValueError(message)
     else:
         period = len(sequence)
 

@@ -188,7 +188,8 @@ class PitchClassSet(Set):
         from abjad.tools import pitchtools
         from abjad.tools import sequencetools
         if not len(self) == len(pitch_class_segment):
-            raise ValueError('set and segment must be of equal length.')
+            messaege = 'set and segment must be on equal length.'
+            raise ValueError(message)
         for pitch_classes in sequencetools.yield_all_permutations_of_sequence(
             tuple(self)):
             candidate_pitch_class_segment = \
@@ -198,7 +199,8 @@ class PitchClassSet(Set):
                 return candidate_pitch_class_segment
         message = 'named pitch-class set {} can not order by '
         message += 'named pitch-class segment {}.'
-        raise ValueError(message.format(self, pitch_class_segment))
+        message = message.format(self, pitch_class_semgent)
+        raise ValueError(message)
 
     def transpose(self, expr):
         r'''Transpose all pitch classes in self by `expr`.

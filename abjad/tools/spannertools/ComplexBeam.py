@@ -137,7 +137,8 @@ class ComplexBeam(Beam):
             left = leaf.written_duration.flag_count
             right = 0
         else:
-            raise ValueError('leaf must be first or last in spanner.')
+            message = 'leaf must be first or last in spanner.'
+            raise ValueError(message)
         return left, right
 
     def _get_left_right_for_interior_leaf(self, leaf):
@@ -196,7 +197,8 @@ class ComplexBeam(Beam):
             left = None
             right = None
         else:
-            raise ValueError("'lone' must be left, right, both.")
+            message = 'long must be left, right or both: {!r}.'.format(lone)
+            raise ValueError(message)
         return left, right
 
     ### PUBLIC PROPERTIES ###

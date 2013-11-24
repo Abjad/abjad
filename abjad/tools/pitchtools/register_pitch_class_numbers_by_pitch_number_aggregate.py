@@ -23,6 +23,6 @@ def register_pitch_class_numbers_by_pitch_number_aggregate(
     elif isinstance(pitch_class_numbers, int):
         result = [p for p in aggregate if p % 12 == pitch_class_numbers][0]
     else:
-        raise TypeError('"%s" must be pitch-class number or list of pitch-class numbers.' %
-            pitch_class_numbers)
+        message = 'must be pitch-class number or list of pitch-class numbers.'
+        raise TypeError(message)
     return result

@@ -60,7 +60,8 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
     current_cumulative_weight = cumulative_weights.pop(0)
     for n in sequence:
         if not isinstance(n, (int, long, float, fractions.Fraction)):
-            raise TypeError('must be number.')
+            message = 'must be number: {!r}.'.format(n)
+            raise TypeError(message)
         sublist.append(n)
         while current_cumulative_weight <= \
             mathtools.weight(sequencetools.flatten_sequence(result)):

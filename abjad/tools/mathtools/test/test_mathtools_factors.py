@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import mathtools
-from abjad.tools import mathtools
 import pytest
+from abjad import *
 
 
 def test_mathtools_factors_01():

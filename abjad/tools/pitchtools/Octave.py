@@ -185,10 +185,12 @@ class Octave(AbjadObject):
         '''
         from abjad.tools import pitchtools
         if not isinstance(pitch_name, str):
-            raise TypeError('pitch string must be string.')
+            message = 'must be string: {!r}.'.format(pitch_name)
+            raise TypeError(message)
         match = re.match('^([a-z]+)(\,*|\'*)$', pitch_name)
         if match is None:
-            raise TypeError('incorrect pitch string format.')
+            message = 'incorrect pitch string format.'
+            raise TypeError(message)
         name, tick_string = match.groups()
         return cls(tick_string)
 

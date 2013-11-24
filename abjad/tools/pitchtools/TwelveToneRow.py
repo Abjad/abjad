@@ -71,12 +71,19 @@ class TwelveToneRow(PitchClassSegment):
         numbers = [abs(pc) for pc in pitch_classes]
         numbers.sort()
         if not numbers == range(12):
-            raise ValueError('must contain all twelve pitch-classes.')
+            message = 'must contain all twelve pitch-classes: {!r}.'
+            message = message.format(pitch_classes)
+            raise ValueError(message)
 
     ### PUBLIC METHODS ###d
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
         raise NotImplementedError
 
     def new(self, tokens=None, custom_identifier=None):

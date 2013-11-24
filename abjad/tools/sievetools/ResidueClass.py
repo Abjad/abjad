@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+import functools
 from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 
+@functools.total_ordering
 class ResidueClass(BaseResidueClass):
     r'''Residue class (or congruence class).
 
@@ -62,7 +64,8 @@ class ResidueClass(BaseResidueClass):
         elif len(args) == 2:
             self._init_by_modulo_and_residue(*args)
         else:
-            raise ValueError('unknown init arguments.')
+            message = 'cannot intialize residue class: {!r}.'.format(args)
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 
@@ -73,30 +76,10 @@ class ResidueClass(BaseResidueClass):
         else:
             return False
 
-    def __ge__(self, expr):
-        if not isinstance(expr, ResidueClass):
-            raise TypeError('must be residue class.')
-        if self.modulo == expr.modulo:
-            return expr.residue <= self.residue
-        return expr.modulo <= self.modulo
-
-    def __gt__(self, expr):
-        if not isinstance(expr, ResidueClass):
-            raise TypeError('must be residue class.')
-        if self.modulo == expr.modulo:
-            return expr.residue < self.residue
-        return expr.modulo < self.modulo
-
-    def __le__(self, expr):
-        if not isinstance(expr, ResidueClass):
-            raise TypeError('must be residue class.')
-        if self.modulo == expr.modulo:
-            return self.residue <= expr.residue
-        return self.modulo <= expr.modulo
-
     def __lt__(self, expr):
         if not isinstance(expr, ResidueClass):
-            raise TypeError('must be residue class.')
+            message = 'must be residue class: {!r}.'.format(expr)
+            raise TypeError(message)
         if self.modulo == expr.modulo:
             return self.residue < expr.residue
         return self.modulo < expr.modulo
@@ -122,15 +105,18 @@ class ResidueClass(BaseResidueClass):
 
     def _init_by_modulo_and_residue(self, modulo, residue):
         if not 0 < modulo:
-            raise ValueError('modulo must be positive.')
+            message = 'modulo must be positive: {!r}.'.format(modulo)
+            raise ValueError(message)
         if not 0 <= residue < modulo:
-            raise ValueError('abs(residue) must be < modulo')
+            message = 'abs(residue) must be < modulo.'
+            raise ValueError(message)
         self._modulo = modulo
         self._residue = residue
 
     def _init_by_rc_instance(self, rc):
         if not isinstance(rc, ResidueClass):
-            raise TypeError('must be rc instance.')
+            message = 'must be residue class: {!r}.'.format(rc)
+            raise TypeError(message)
         self._modulo = rc.modulo
         self._residue = rc.residue
 

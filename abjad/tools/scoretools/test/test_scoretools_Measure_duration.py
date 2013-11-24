@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_scoretools_Measure_duration_01():
@@ -8,19 +8,6 @@ def test_scoretools_Measure_duration_01():
     '''
 
     measure = Measure((3, 8), "c'8 d'8 e'8")
-
-    r'''
-    {
-        \time 3/8
-        c'8
-        d'8
-        e'8
-    }
-    '''
-
-    assert measure._contents_duration == Duration(3, 8)
-    assert measure._preprolated_duration == Duration(3, 8)
-    assert inspect(measure).get_duration() == Duration(3, 8)
 
     assert systemtools.TestManager.compare(
         measure,
@@ -34,27 +21,17 @@ def test_scoretools_Measure_duration_01():
         '''
         )
 
+    assert measure._contents_duration == Duration(3, 8)
+    assert measure._preprolated_duration == Duration(3, 8)
+    assert inspect(measure).get_duration() == Duration(3, 8)
+
 
 def test_scoretools_Measure_duration_02():
-    r'''Properly filled measure without power-of-two time signature denominator.
+    r'''Properly filled measure without power-of-two time signature 
+    denominator.
     '''
 
     measure = Measure((3, 10), "c'8 d'8 e'8")
-
-    r'''
-    {
-        \time 3/10
-        \scaleDurations #'(4 . 5) {
-            c'8
-            d'8
-            e'8
-        }
-    }
-    '''
-
-    assert measure._contents_duration == Duration(3, 8)
-    assert measure._preprolated_duration == Duration(3, 10)
-    assert inspect(measure).get_duration() == Duration(3, 10)
 
     assert systemtools.TestManager.compare(
         measure,
@@ -70,6 +47,9 @@ def test_scoretools_Measure_duration_02():
         '''
         )
 
+    assert measure._contents_duration == Duration(3, 8)
+    assert measure._preprolated_duration == Duration(3, 10)
+    assert inspect(measure).get_duration() == Duration(3, 10)
 
 
 def test_scoretools_Measure_duration_03():

@@ -20,7 +20,8 @@ def make_multimeasure_rests(durations):
     for duration in durations:
         written_duration = durationtools.Duration(duration)
         if not written_duration.is_assignable:
-            raise AssignabilityError('multi-measure rest durations must be assignable.')
+            message = 'multimeasure rest durations must be assignable.'
+            raise AssignabilityError(message)
         multimeasure_rest = scoretools.MultimeasureRest(written_duration)
         multimeasure_rests.append(multimeasure_rest)
 

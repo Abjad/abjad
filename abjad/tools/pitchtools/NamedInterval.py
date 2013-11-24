@@ -158,7 +158,8 @@ class NamedInterval(Interval):
     def __sub__(self, arg):
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be named interval.' % arg)
+            message = 'must be named interval: {!r}.'.format(arg)
+            raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self - arg
         return pitchtools.NamedInterval.from_pitch_carriers(

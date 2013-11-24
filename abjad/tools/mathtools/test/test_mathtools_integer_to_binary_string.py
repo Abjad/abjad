@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import mathtools
 import pytest
+from abjad import *
 
 
 def test_mathtools_integer_to_binary_string_01():

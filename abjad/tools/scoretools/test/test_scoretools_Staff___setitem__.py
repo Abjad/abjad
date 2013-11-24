@@ -87,7 +87,8 @@ def test_scoretools_Staff___setitem___05():
 
     staff = Staff(Note("c'4") * 4)
 
-    assert raises(AssertionError, 'staff[0] = [Note(2, (1, 4)), Note(2, (1, 4))]')
+    statement = 'staff[0] = [Note(2, (1, 4)), Note(2, (1, 4))]'
+    assert raises(AssertionError, statement)
 
 
 def test_scoretools_Staff___setitem___06():
@@ -102,6 +103,7 @@ def test_scoretools_Staff___setitem___06():
 def test_scoretools_Staff___setitem___07():
     r'''Slice-assign notes.
     '''
+
     staff = Staff(Note(0, (1, 8)) * 8)
     staff[0:4] = Note(2, (1, 8)) * 4
     assert len(staff) == 8
@@ -115,6 +117,7 @@ def test_scoretools_Staff___setitem___07():
 def test_scoretools_Staff___setitem___08():
     r'''Slice-assign chords.
     '''
+
     staff = Staff(Note(0, (1, 8)) * 8)
     staff[0:4] = Chord([2, 3, 4], (1, 4)) * 4
     assert len(staff) == 8
@@ -128,8 +131,10 @@ def test_scoretools_Staff___setitem___08():
 def test_scoretools_Staff___setitem___09():
     r'''Slice-assign tuplets.
     '''
+
     staff = Staff(Note(0, (1, 8)) * 8)
-    staff[0:4] = scoretools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 2
+    staff[0:4] = scoretools.FixedDurationTuplet(
+        Duration(2, 8), Note(0, (1, 8)) * 3) * 2
     assert len(staff) == 6
     for i, x in enumerate(staff):
         if i in [0, 1]:
@@ -142,6 +147,7 @@ def test_scoretools_Staff___setitem___09():
 def test_scoretools_Staff___setitem___10():
     r'''Slice-assign measures.
     '''
+
     staff = Staff(Note(0, (1, 8)) * 8)
     staff[0:4] = Measure((2, 8), Note(0, (1, 8)) * 2) * 2
     assert len(staff) == 6

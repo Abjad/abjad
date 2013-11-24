@@ -105,7 +105,8 @@ def _partition_sequence_once_by_weights_at_most(
             try:
                 x = l_copy.pop(0)
             except IndexError:
-                raise PartitionError('too few elements in sequence.')
+                message = 'too few elements in sequence.'
+                raise PartitionError(message)
             current_weight = mathtools.weight(current_part)
             candidate_weight = current_weight + mathtools.weight([x])
             if candidate_weight < target_weight:
@@ -122,9 +123,11 @@ def _partition_sequence_once_by_weights_at_most(
                     l_copy.insert(0, x)
                     break
                 else:
-                    raise PartitionError('Elements in sequence too big.')
+                    message = 'elements in sequence too big.'
+                    raise PartitionError(message)
             else:
-                raise ValueError('candidate and target weights must compare.')
+                message = 'candidate and target weights must compare.'
+                raise ValueError(message)
 
     if overhang:
         left_over = current_part + l_copy
@@ -165,9 +168,11 @@ def _partition_sequence_cyclically_by_weights_at_most(
                 current_part = []
                 current_target_weight_index += 1
             else:
-                raise PartitionError('elements in sequence too big.')
+                message = 'elements in sequence too big.'
+                raise PartitionError(message)
         else:
-            raise ValueError('candidate and target rates must compare.')
+            message = 'candidate and target rates must compare.'
+            raise ValueError(message)
 
     if current_part:
         if overhang:

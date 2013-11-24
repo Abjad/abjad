@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import sequencetools
 import pytest
+from abjad import *
 
 
 def test_sequencetools_truncate_sequence_to_weight_01():
@@ -31,8 +30,10 @@ def test_sequencetools_truncate_sequence_to_weight_02():
 
 def test_sequencetools_truncate_sequence_to_weight_03():
     r'''Raise TypeError when l is not a list.
-        Raise ValueError on negative weight.'''
+    Raise ValueError on negative weight.
+    '''
 
-    assert pytest.raises(TypeError, "sequencetools.truncate_sequence_to_weight('foo', 1)")
-    assert pytest.raises(
-        ValueError, "sequencetools.truncate_sequence_to_weight([1, 2, 3], -1)")
+    statement = "sequencetools.truncate_sequence_to_weight('foo', 1)"
+    assert pytest.raises(TypeError, statement)
+    statement = "sequencetools.truncate_sequence_to_weight([1, 2, 3], -1)"
+    assert pytest.raises(ValueError, statement)

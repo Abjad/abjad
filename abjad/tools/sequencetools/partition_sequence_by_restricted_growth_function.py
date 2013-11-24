@@ -27,10 +27,13 @@ def partition_sequence_by_restricted_growth_function(
 
     if not sequencetools.is_restricted_growth_function(
         restricted_growth_function):
-        raise ValueError('must be restricted growth function.')
+        message = 'must be restricted growth function: {!r}.'
+        message = message.format(restricted_growth_function)
+        raise ValueError(message)
 
     if not len(sequence) == len(restricted_growth_function):
-        raise ValueError('lengths must be equal.')
+        message = 'lengths must be equal.'
+        raise ValueError(message)
 
     partition = []
     for part_index in range(max(restricted_growth_function)):

@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import sequencetools
 import pytest
+from abjad import *
 
 
 def test_sequencetools_get_sequence_period_of_rotation_01():
@@ -40,4 +39,5 @@ def test_sequencetools_get_sequence_period_of_rotation_05():
     r'''Empty iterable boundary case.
     '''
 
-    assert pytest.raises(ZeroDivisionError, 'sequencetools.get_sequence_period_of_rotation([], 1)')
+    statement = 'sequencetools.get_sequence_period_of_rotation([], 1)'
+    assert pytest.raises(ZeroDivisionError, statement)

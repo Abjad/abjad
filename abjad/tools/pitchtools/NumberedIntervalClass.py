@@ -46,7 +46,8 @@ class NumberedIntervalClass(IntervalClass):
                 number = abs_number % 12
             number *= sign
         else:
-            raise ValueError('must be number, interval or interval-class.')
+            message = 'must be number, interval or interval-class.'
+            raise ValueError(message)
         self._number = number
 
     ### SPECIAL METHODS ###

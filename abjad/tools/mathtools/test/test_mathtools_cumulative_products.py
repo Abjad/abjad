@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import mathtools
 import pytest
+from abjad import *
 
 
 def test_mathtools_cumulative_products_01():
@@ -17,7 +16,8 @@ def test_mathtools_cumulative_products_01():
 
 def test_mathtools_cumulative_products_02():
     r'''Raise TypeError when l is not a list.
-        Raise ValueError when l is empty.'''
+    Raise ValueError when l is empty.
+    '''
 
     assert pytest.raises(TypeError, "mathtools.cumulative_products('foo')")
     assert pytest.raises(ValueError, 'mathtools.cumulative_products([])')

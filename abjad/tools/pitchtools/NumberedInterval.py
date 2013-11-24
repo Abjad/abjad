@@ -13,7 +13,6 @@ class NumberedInterval(Interval):
         >>> numbered_interval
         NumberedInterval(-14)
 
-    Returns numbered interval.
     '''
 
     ### CLASS VARIABLES ###
@@ -31,7 +30,8 @@ class NumberedInterval(Interval):
         elif isinstance(arg, pitchtools.Interval):
             number = arg.semitones
         else:
-            raise TypeError('%s must be number or interval.' % arg)
+            message = 'must be number or interval: {!r}.'.format(arg)
+            raise TypeError(message)
         self._number = number
 
     ### SPECIAL METHODS ###
@@ -43,7 +43,9 @@ class NumberedInterval(Interval):
         if isinstance(arg, type(self)):
             number = self.number + arg.number
             return type(self)(number)
-        raise TypeError('must be %s.'% type(self))
+        message = 'must be {}: {!r}.'
+        message = message.format(type(self), arg)
+        raise TypeError(message)
 
     def __copy__(self):
         return type(self)(self.number)
@@ -59,18 +61,20 @@ class NumberedInterval(Interval):
 
     def __ge__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be numbered interval.' % arg)
+            message = 'must be numbered interval: {!r}.'.format(arg)
+            raise TypeError(message)
         if not self.direction_number == arg.direction_number:
-            raise ValueError(
-                'can only compare intervals of same direction.')
+            message = 'can only compare intervals of same direction.'
+            raise ValueError(message)
         return abs(self.number) >= abs(arg.number)
 
     def __gt__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be numbered interval.' % arg)
+            message = 'must be numbered interval: {!r}.'.format(arg)
+            raise TypeError(message)
         if not self.direction_number == arg.direction_number:
-            raise ValueError(
-                'can only compare intervals of same direction.')
+            message = 'can only compare intervals of same direction.'
+            raise ValueError(message)
         return abs(self.number) > abs(arg.number)
 
     def __hash__(self):
@@ -81,18 +85,20 @@ class NumberedInterval(Interval):
 
     def __le__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be numbered interval.' % arg)
+            message = 'must be numbered interval: {!r}.'.format(arg)
+            raise TypeError(message)
         if not self.direction_number == arg.direction_number:
-            raise ValueError(
-                'can only compare intervals of same direction.')
+            message = 'can only compare intervals of same direction.'
+            raise ValueError(message)
         return abs(self.number) <= abs(arg.number)
 
     def __lt__(self, arg):
         if not isinstance(arg, type(self)):
-            raise TypeError('%s must be numbered interval.' % arg)
+            message = 'must be numbered interval: {!r}.'.format(arg)
+            raise TypeError(message)
         if not self.direction_number == arg.direction_number:
-            raise ValueError(
-                'can only compare intervals of same direction.')
+            message = 'can only compare intervals of same direction.'
+            raise ValueError(message)
         return abs(self.number) < abs(arg.number)
 
     def __ne__(self, arg):
@@ -108,7 +114,9 @@ class NumberedInterval(Interval):
         if isinstance(arg, type(self)):
             number = self.number - arg.number
             return type(self)(number)
-        raise TypeError('must be %s' % type(self))
+        message = 'must be {}: {!r}.'
+        message = message.format(type(self), arg)
+        raise TypeError(message)
 
     ### PRIVATE PROPERTIES ###
 

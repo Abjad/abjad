@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import mathtools
 import pytest
+from abjad import *
 
 
 def test_mathtools_least_power_of_two_greater_equal_01():
     r'''Returns least integer power of two
-        greater than or equal to n.'''
+    greater than or equal to n.
+    '''
 
     assert mathtools.least_power_of_two_greater_equal(1) == 1
     assert mathtools.least_power_of_two_greater_equal(2) == 2
@@ -25,19 +25,21 @@ def test_mathtools_least_power_of_two_greater_equal_01():
 
 def test_mathtools_least_power_of_two_greater_equal_02():
     r'''Raise TypeError on nonnumeric n.
-        Raise ValueError on nonpositive n.'''
+    Raise ValueError on nonpositive n.
+    '''
 
-    assert pytest.raises(
-        TypeError, "mathtools.least_power_of_two_greater_equal('foo')")
-    assert pytest.raises(
-        ValueError, 'mathtools.least_power_of_two_greater_equal(0)')
-    assert pytest.raises(
-        ValueError, 'mathtools.least_power_of_two_greater_equal(-1)')
+    statement = "mathtools.least_power_of_two_greater_equal('foo')"
+    assert pytest.raises(TypeError, statement)
+    statement = 'mathtools.least_power_of_two_greater_equal(0)'
+    assert pytest.raises(ValueError, statement)
+    statement = 'mathtools.least_power_of_two_greater_equal(-1)'
+    assert pytest.raises(ValueError, statement)
 
 
 def test_mathtools_least_power_of_two_greater_equal_03():
     r'''Optional offset keyword allows for the next to greatest
-        integer power of two, etc.'''
+    integer power of two, etc.
+    '''
 
     assert mathtools.least_power_of_two_greater_equal(1, 1) == 2
     assert mathtools.least_power_of_two_greater_equal(2, 1) == 4

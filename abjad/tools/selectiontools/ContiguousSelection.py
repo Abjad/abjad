@@ -221,7 +221,8 @@ class ContiguousSelection(Selection):
         elif isinstance(first, scoretools.Tuplet):
             new_tuplet = scoretools.Tuplet(first_multiplier, [])
         else:
-            raise TypeError('unknown tuplet type.')
+            message = 'unknown tuplet type.'
+            raise TypeError(message)
         wrapped = False
         if self[0]._get_parentage().root is not \
             self[-1]._get_parentage().root:

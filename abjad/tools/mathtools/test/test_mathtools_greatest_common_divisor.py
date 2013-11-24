@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import mathtools
 import pytest
+from abjad import *
 
 
 def test_mathtools_greatest_common_divisor_01():

@@ -1,13 +1,12 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools.scoretools.Context import Context
 import pytest
+from abjad import *
 
 
 def test_scoretools_Context___setattr___01():
     r'''Slots constrain context attributes.
     '''
 
-    context = Context([])
+    context = scoretools.Context([])
 
     assert pytest.raises(AttributeError, "context.foo = 'bar'")

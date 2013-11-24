@@ -62,7 +62,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
         timespan = timespan or self.timespan
         offset = offset or self.offset
         if timespan is None or offset is None:
-            raise ValueError('time relation is not fully loaded.')
+            message = 'time relation is not fully loaded.'
+            raise ValueError(message)
         if not isinstance(timespan, timespantools.Timespan):
             timespan = timespantools.Timespan()._get_timespan(timespan)
         offset = durationtools.Offset(offset)

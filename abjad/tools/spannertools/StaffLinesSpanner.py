@@ -120,5 +120,5 @@ class StaffLinesSpanner(Spanner):
             and all(isinstance(x, (int, float)) for x in arg):
             self._lines = tuple(arg)
         else:
-            raise ValueError('StaffLinesSpanner requires either an int, '
-                'or a list/tuple of ints and/or floats.')
+            messsage = 'must be int or a sequence of ints: {!r}.'.format(arg)
+            raise ValueError(message)

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_sequencetools_repeat_sequence_to_length_01():
@@ -39,7 +39,8 @@ def test_sequencetools_repeat_sequence_to_length_05():
     r'''List must not be empty.
     '''
 
-    assert pytest.raises(ValueError, 'sequencetools.repeat_sequence_to_length([], 2)')
+    statement = 'sequencetools.repeat_sequence_to_length([], 2)'
+    assert pytest.raises(ValueError, statement)
 
 
 def test_sequencetools_repeat_sequence_to_length_06():

@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import sievetools
-from abjad.tools.sievetools.ResidueClass import ResidueClass
 import pytest
+from abjad.tools.sievetools.ResidueClass import ResidueClass
 
 
 RC = ResidueClass

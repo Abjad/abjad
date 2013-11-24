@@ -176,7 +176,8 @@ class RootlessChordClass(IntervalSegment):
                 pitchtools.NamedInterval('minor', 3), 
                 ]
         else:
-           raise ValueError('unaccpetable quality string.')
+            message = 'unaccpetable quality string.'
+            raise ValueError(message)
         intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
         
@@ -190,7 +191,8 @@ class RootlessChordClass(IntervalSegment):
                 pitchtools.NamedInterval('major', 9),
                 ]
         else:
-            raise ValueError('unacceptable quality string.')
+            message = 'unacceptable quality string.'
+            raise ValueError(message)
         intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
 
@@ -227,7 +229,8 @@ class RootlessChordClass(IntervalSegment):
                 pitchtools.NamedInterval('diminished', 7),
                 ]
         else:
-           raise ValueError('unaccpetable quality string.')
+           message = 'unaccpetable quality string.'
+           raise ValueError(message)
         intervals.insert(0, pitchtools.NamedInterval('perfect', 1))
         return intervals
 
@@ -320,7 +323,8 @@ class RootlessChordClass(IntervalSegment):
         elif self.rotation == -4:
             return 'fourth inversion'
         else:
-            raise ValueError('unknown chord position.')
+            message = 'unknown chord position: {!r}.'.format(self)
+            raise ValueError(message)
 
     @property
     def quality_string(self):

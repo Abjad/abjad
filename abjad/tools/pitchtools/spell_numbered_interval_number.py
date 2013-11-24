@@ -18,7 +18,8 @@ def spell_numbered_interval_number(
     from abjad.tools import pitchtools
 
     if not isinstance(numbered_interval_number, int):
-        raise TypeError('can not determine diatonic interval from float.')
+        message = 'can not determine diatonic interval from float.'
+        raise TypeError(message)
 
     direction_number = mathtools.sign(numbered_interval_number)
 

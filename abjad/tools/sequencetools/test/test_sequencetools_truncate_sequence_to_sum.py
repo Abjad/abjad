@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_sequencetools_truncate_sequence_to_sum_01():
@@ -9,23 +9,16 @@ def test_sequencetools_truncate_sequence_to_sum_01():
 
     sequence_2 = sequencetools.truncate_sequence_to_sum([2, 2, 2], 0)
 
-    #assert sequence_2 == [0]
     assert sequence_2 == []
     assert isinstance(sequence_2, list)
-
-
-#def test_sequencetools_truncate_sequence_to_sum_02():
-#   r'''truncate_to_sum can take a tuple.'''
-#   sequence_2 = sequencetools.truncate_sequence_to_sum((2, 2, 2), 0)
-#   assert sequence_2 == (0, )
-#   assert isinstance(sequence_2, tuple)
 
 
 def test_sequencetools_truncate_sequence_to_sum_03():
     r'''Raise TypeError when l is not a list.
     '''
 
-    assert pytest.raises(TypeError, "sequencetools.truncate_sequence_to_sum('foo')")
+    statement = "sequencetools.truncate_sequence_to_sum('foo')"
+    assert pytest.raises(TypeError, statement)
 
 
 def test_sequencetools_truncate_sequence_to_sum_04():

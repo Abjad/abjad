@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import mathtools
 import pytest
+from abjad import *
 
 
 def test_mathtools_cumulative_sums_zero_01():
@@ -13,13 +12,3 @@ def test_mathtools_cumulative_sums_zero_01():
     assert mathtools.cumulative_sums([0, 0, 0, 5]) == [0, 0, 0, 0, 5]
     assert mathtools.cumulative_sums([-10, 10, -10, 10]) == \
         [0, -10, 0, -10, 0]
-
-
-# Must allow generator input as l. #
-
-#def test_mathtools_cumulative_sums_zero_02():
-#   r'''Raise TypeError when l is neither tuple nor list.
-#      Raise ValueError when l is empty.'''
-#
-#   assert pytest.raises(TypeError, "mathtools.cumulative_sums('foo')")
-#   assert pytest.raises(ValueError, 'mathtools.cumulative_sums([])')

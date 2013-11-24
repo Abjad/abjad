@@ -363,8 +363,9 @@ class PitchRange(AbjadObject):
         match = self._symbolic_pitch_range_string_regex.match(
             symbolic_pitch_range_string)
         if match is None:
-            raise ValueError('Cannot instantiate pitch range from {!r}'.format(
-                symbolic_pitch_range_string))
+            message = 'cannot instantiate pitch range: {!r}'
+            message = message.format(symbolic_pitch_range_string)
+            raise ValueError(message)
         groups = match.groups()
         start_punctuation = groups[0]
         start_pitch_string = groups[1]

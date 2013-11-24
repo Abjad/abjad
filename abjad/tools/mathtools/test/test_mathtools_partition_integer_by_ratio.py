@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import mathtools
 import pytest
+from abjad import *
 
 
 def test_mathtools_partition_integer_by_ratio_01():
@@ -42,4 +41,5 @@ def test_mathtools_partition_integer_by_ratio_03():
     r'''Raise type error on noninteger n.
     '''
 
-    assert pytest.raises(TypeError, "mathtools.partition_integer_by_ratio('foo', [1, 1, 1])")
+    statement = "mathtools.partition_integer_by_ratio('foo', [1, 1, 1])"
+    assert pytest.raises(TypeError, statement)

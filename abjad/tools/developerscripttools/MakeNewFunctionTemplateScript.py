@@ -61,22 +61,25 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
     def process_args(self, args):
 
         if args.name.count('.') != 1:
-            print 'Error: {!r} not in tools_package.function format.'.format(
-                args.name)
+            message = 'Error: {!r} not in tools_package.function format.'
+            message = message.format(args.name)
+            print message
             return
 
         root = args.path
         tools_package_name, function_name = args.name.split('.')
 
         if tools_package_name not in self._get_tools_package_names(root):
-            print 'Error: {!r} is not a valid tools package.'.format(
-                tools_package_name)
+            message = 'Error: {!r} is not a valid tools package.'
+            message = message.format(tools_package_name)
+            print message
             return
 
         if function_name in self._get_function_names_in_tools_package(
             root, tools_package_name):
-            print 'Error: {!r} already exists in {!r}'.format(
-                function_name, tools_package_name)
+            message = 'Error: {!r} already exists in {!r}'
+            message = message.format(function_name, tools_package_name)
+            print message
             return
 
         package_path = os.path.join(root, tools_package_name)

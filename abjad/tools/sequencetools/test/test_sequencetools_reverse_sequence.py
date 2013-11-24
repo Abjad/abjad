@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import sequencetools
 import pytest
+from abjad import *
 
 
 def test_sequencetools_reverse_sequence_01():

@@ -88,7 +88,8 @@ def _partition_sequence_once_by_weights_at_least(
                     if current_part:
                         result.append(current_part)
                         break
-                raise PartitionError('too few elements in sequence.')
+                message = 'too few elements in sequence.'
+                raise PartitionError(message)
             current_part.append(x)
             if target_weight <= mathtools.weight(current_part):
                 result.append(current_part)

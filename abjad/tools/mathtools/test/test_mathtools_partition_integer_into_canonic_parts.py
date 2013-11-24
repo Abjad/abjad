@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_mathtools_partition_integer_into_canonic_parts_01():
@@ -61,4 +61,5 @@ def test_mathtools_partition_integer_into_canonic_parts_04():
 
 def test_mathtools_partition_integer_into_canonic_parts_05():
 
-    assert pytest.raises(TypeError, 'mathtools.partition_integer_into_canonic_parts(7.5)')
+    statement = 'mathtools.partition_integer_into_canonic_parts(7.5)'
+    assert pytest.raises(TypeError, statement)

@@ -94,4 +94,5 @@ def test_sequencetools_sum_sequence_elements_at_indices_06():
     '''
 
     sequence_1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-    assert pytest.raises(ValueError, 'sequencetools.sum_sequence_elements_at_indices(sequence_1, [(0, 99)], period=4)')
+    statement = 'sequencetools.sum_sequence_elements_at_indices(sequence_1, [(0, 99)], period=4)'
+    assert pytest.raises(ValueError, statement)

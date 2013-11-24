@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
-from abjad.tools import sequencetools
 import pytest
+from abjad import *
 
 
 def test_sequencetools_flatten_sequence_01():
@@ -29,8 +28,10 @@ def test_sequencetools_flatten_sequence_04():
 
 
 def test_sequencetools_flatten_sequence_05():
+
     l = [(1, 2), [3, (4, 5)]]
-    assert pytest.raises(AssertionError, 'sequencetools.flatten_sequence(l, classes=(tuple, ))')
+    statement = 'sequencetools.flatten_sequence(l, classes=(tuple, ))'
+    assert pytest.raises(AssertionError, statement)
 
 
 def test_sequencetools_flatten_sequence_06():

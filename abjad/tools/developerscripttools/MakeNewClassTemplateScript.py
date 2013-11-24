@@ -69,20 +69,20 @@ class MakeNewClassTemplateScript(DeveloperScript):
         from abjad import abjad_configuration
         if args.name.count('.') != 1:
             message = 'Error: {!r} not in tools_package.class_name format.'
-            print message.format(args.name)
-            raise SystemExit
+            message = message.format(args.name)
+            raise SystemExit(message)
         root_directory_path = args.path
         tools_package_name, class_name = args.name.split('.')
         if tools_package_name not in self._get_tools_package_names(
             root_directory_path):
-            print 'Error: {!r} is not a valid tools package.'.format(
-                tools_package_name)
-            raise SystemExit
+            message = '{!r} is not a valid tools package.'
+            message = message.format(tools_package_name)
+            raise SystemExit(message)
         if class_name in self._get_class_names_in_tools_package(
             root_directory_path, tools_package_name):
-            print 'Error: {!r} already exists in {!r}'.format(
-                class_name, tools_package_name)
-            raise SystemExit
+            message = '{!r} already exists in {!r}'
+            message = message.format(class_name, tools_package_name)
+            raise SystemExit(message)
         tools_package_directory_path = os.path.join(
             root_directory_path,
             tools_package_name,

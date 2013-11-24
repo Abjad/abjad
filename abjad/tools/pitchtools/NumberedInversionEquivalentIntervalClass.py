@@ -28,7 +28,8 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             _number = interval_class_token.number
         elif isinstance(interval_class_token, numbers.Number):
             if not 0 <= interval_class_token <= 6:
-                raise ValueError('must be between 0 and 6, inclusive.')
+                message = 'must be between 0 and 6, inclusive.'
+                raise ValueError(message)
             _number = interval_class_token
         elif hasattr(interval_class_token, 'semitones'):
             _number = interval_class_token.semitones
@@ -36,7 +37,8 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             if 6 < _number:
                 _number = 12 - _number
         else:
-            raise TypeError('must be interval-class instance or number.')
+            message = 'must be interval-class or number.'
+            raise TypeError(message)
         self._number = _number
 
     ### SPECIAL METHODS ###

@@ -165,35 +165,42 @@ class SortedCollection(object):
         i = bisect.bisect_left(self._keys, k)
         if i != len(self) and self._keys[i] == k:
             return self._items[i]
-        raise ValueError('No item found with key equal to: %r' % (k,))
+        message = 'no item found with key equal to: %r' % (k,)
+        raise ValueError(message)
 
     def find_le(self, k):
         'Returns last item with a key <= k.  Raise ValueError if not found.'
         i = bisect.bisect_right(self._keys, k)
         if i:
             return self._items[i-1]
-        raise ValueError('No item found with key at or below: %r' % (k,))
+        message = 'no item found with key at or below: %r' % (k,)
+        raise ValueError(message)
 
     def find_lt(self, k):
         'Returns last item with a key < k.  Raise ValueError if not found.'
         i = bisect.bisect_left(self._keys, k)
         if i:
             return self._items[i-1]
-        raise ValueError('No item found with key below: %r' % (k,))
+        message = 'no item found with key below: %r' % (k,)
+        raise ValueError(message)
 
     def find_ge(self, k):
-        'Returns first item with a key >= equal to k. Raise ValueError if not found'
+        r'''Returns first item with a key >= equal to k. Raise ValueError 
+        if not found.
+        '''
         i = bisect.bisect_left(self._keys, k)
         if i != len(self):
             return self._items[i]
-        raise ValueError('No item found with key at or above: %r' % (k,))
+        message = 'no item found with key at or above: %r' % (k,)
+        raise ValueError(message)
 
     def find_gt(self, k):
         'Returns first item with a key > k.  Raise ValueError if not found'
         i = bisect.bisect_right(self._keys, k)
         if i != len(self):
             return self._items[i]
-        raise ValueError('No item found with key above: %r' % (k,))
+        message = 'no item found with key above: %r' % (k,)
+        raise ValueError(message)
 
 
 # ---------------------------  Simple demo and tests  -------------------------

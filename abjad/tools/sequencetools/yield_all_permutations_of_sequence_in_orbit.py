@@ -2,7 +2,8 @@
 
 
 def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
-    '''Yield all permutations of `sequence` in orbit of `permutation` in lex order:
+    '''Yield all permutations of `sequence` in orbit of `permutation` 
+    in lex order:
 
     ::
 
@@ -16,7 +17,9 @@ def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
 
     if not sequencetools.is_permutation(permutation, len(sequence)):
         args = (str(permutation), len(sequence))
-        raise TypeError('"%s" must be permutation of length %s.' % args)
+        message = '{!r} must be permutation of length {}.'
+        message = message.format(permutation, len(sequence))
+        raise TypeError(message)
 
     # return identity first #
     next_permutation = sequencetools.permute_sequence(sequence, range(len(sequence)))

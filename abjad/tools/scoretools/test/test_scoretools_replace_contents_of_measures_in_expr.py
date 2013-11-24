@@ -153,7 +153,8 @@ def test_scoretools_replace_contents_of_measures_in_expr_03():
     note = Note("c'4")
     notes = [Note("c'8"), Note("d'8")]
 
-    assert pytest.raises(MissingMeasureError, 'scoretools.replace_contents_of_measures_in_expr(note, notes)')
+    statement = 'scoretools.replace_contents_of_measures_in_expr(note, notes)'
+    assert pytest.raises(MissingMeasureError, statement)
 
 
 def test_scoretools_replace_contents_of_measures_in_expr_04():
@@ -163,8 +164,8 @@ def test_scoretools_replace_contents_of_measures_in_expr_04():
     staff = Staff(scoretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16"), Note("g'16"), Note("a'16")]
 
-    assert pytest.raises(StopIteration,
-        'scoretools.replace_contents_of_measures_in_expr(staff, notes)')
+    statement = 'scoretools.replace_contents_of_measures_in_expr(staff, notes)'
+    assert pytest.raises(StopIteration, statement)
 
 
 def test_scoretools_replace_contents_of_measures_in_expr_05():
@@ -180,22 +181,6 @@ def test_scoretools_replace_contents_of_measures_in_expr_05():
     except StopIteration:
         pass
 
-    r'''
-    \new Staff {
-        {
-            \time 1/8
-            c'16
-            d'16
-        }
-        {
-            \time 1/8
-            e'16
-            f'16
-        }
-    }
-    '''
-
-    assert inspect(staff).is_well_formed()
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -213,6 +198,8 @@ def test_scoretools_replace_contents_of_measures_in_expr_05():
         }
         '''
         )
+
+    assert inspect(staff).is_well_formed()
 
 
 def test_scoretools_replace_contents_of_measures_in_expr_06():

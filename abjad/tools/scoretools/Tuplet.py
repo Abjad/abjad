@@ -1612,7 +1612,8 @@ class Tuplet(Container):
                     rests = scoretools.make_rests(duration)
                     return scoretools.Container(rests)
             else:
-                raise ValueError('no divide zero values.')
+                message = 'no divide zer values.'
+                raise ValueError(message)
         if 1 < len(ratio):
             exponent = int(
                 math.log(mathtools.weight(ratio), 2) - math.log(n, 2))
@@ -1620,7 +1621,8 @@ class Tuplet(Container):
             music = []
             for x in ratio:
                 if not x:
-                    raise ValueError('no divide zero values.')
+                    message = 'no divide zero values.'
+                    raise ValueError(message)
                 if 0 < x:
                     try:
                         note = scoretools.Note(0, (x, denominator))

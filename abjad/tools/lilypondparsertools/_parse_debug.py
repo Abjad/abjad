@@ -293,7 +293,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
             if self.lookahead.type != 'error':
                 sym = symstack[-1]
                 if sym.type == 'error':
-                    # Hmmm. Error is on top of stack, we'll just nuke input
+                    # Hmmm: error is on top of stack, we'll just nuke input
                     # symbol and continue
                     self.lookahead = None
                     continue

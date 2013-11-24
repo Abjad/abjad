@@ -30,5 +30,7 @@ def _transpose_pitch_carrier_into_pitch_range(pitch_carrier, pitch_range):
     while pitch_range < pitch_carrier:
         pitch_carrier = pitchtools.transpose_pitch_carrier_by_interval(pitch_carrier, -12)
     if pitch_carrier not in pitch_range:
-        raise ValueError('can not transpose pitch carrier %s into pitch range.' % pitch_carrier)
+        message = 'cannot transpose pitch carrier {} into pitch range.'
+        message = message.format(pitch_carrier)
+        raise ValueError(message)
     return pitch_carrier

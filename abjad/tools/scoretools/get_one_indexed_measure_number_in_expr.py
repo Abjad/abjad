@@ -40,7 +40,8 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
     # check input
     if measure_number < 1:
-        raise ValueError('measure numbers allow only positive integers.')
+        message = 'measure numbers allow only positive integers.'
+        raise ValueError(message)
 
     # calculate measure index
     measure_index = measure_number - 1

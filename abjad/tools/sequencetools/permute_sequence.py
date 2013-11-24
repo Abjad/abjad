@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.sequencetools.is_permutation import is_permutation
 import copy
+from abjad.tools.sequencetools.is_permutation import is_permutation
 
 
 def permute_sequence(sequence, permutation):
@@ -15,8 +15,9 @@ def permute_sequence(sequence, permutation):
     '''
 
     if not is_permutation(permutation, length=len(sequence)):
-        args = (str(permutation), len(sequence))
-        raise TypeError('"%s" must be permutation of length %s.' % args)
+        message = '{!r} must be permutation of length {}.'
+        message = message.format(permutation, len(sequence))
+        raise TypeError(message)
 
     result = []
     for index in permutation:

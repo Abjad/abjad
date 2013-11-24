@@ -60,7 +60,8 @@ class RomanNumeral(AbjadObject):
             scale_degree, quality, extent, inversion, suspension = \
                 self._init_with_suspension(*args)
         else:
-            raise ValueError('can not initialize tonal function.')
+            message = 'can not initialize tonal function: {!r}.'.format(args)
+            raise ValueError(message)
         self._scale_degree = scale_degree
         self._quality = quality
         self._extent = extent
@@ -231,7 +232,8 @@ class RomanNumeral(AbjadObject):
         if not suspension:
             suspension = tonalanalysistools.ChordSuspension()
         elif 1 < len(suspension):
-            raise NotImplementedError('no multiple suspensions yet.')
+            message = 'no multiple suspensions yet.'
+            raise NotImplementedError(message)
         else:
             suspension = tonalanalysistools.ChordSuspension(suspension[0])
         return scale_degree, quality, extent, inversion, suspension
