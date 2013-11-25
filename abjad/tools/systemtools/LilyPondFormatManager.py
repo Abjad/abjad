@@ -41,7 +41,10 @@ class LilyPondFormatManager(object):
         manager = LilyPondFormatManager
         expressions = []
         for parent in inspect(component).get_parentage(include_self=True):
-            expressions.extend(inspect(parent).get_indicators(unwrap=False))
+            result = inspect(parent).get_indicators(unwrap=False)
+            expressions.extend(result)
+            result = parent._get_spanner_indicators(unwrap=False)
+            expressions.extend(result)
         up_markup = []
         down_markup = []
         neutral_markup = []

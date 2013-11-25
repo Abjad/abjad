@@ -50,14 +50,14 @@ class Component(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self):
-        self._indicators = list()
-        self._dependent_expressions = list()
+        self._indicators = []
+        self._dependent_expressions = []
         self._is_forbidden_to_update = False
         self._indicators_are_current = False
         self._offsets_in_seconds_are_current = False
         self._offsets_are_current = False
         self._parent = None
-        self._spanners = set([])
+        self._spanners = set()
         self._start_offset = None
         self._start_offset_in_seconds = None
         self._stop_offset = None
@@ -157,48 +157,6 @@ class Component(AbjadObject):
             )
 
     ### PRIVATE METHODS ###
-
-    def _get_indicator(self, prototype=None, unwrap=True):
-        indicators = self._get_indicators(prototype=prototype, unwrap=unwrap)
-        if not indicators:
-            message = 'no attached indicators found matching {!r}.'
-            message = message.format(prototype)
-            raise ValueError(message)
-        elif 1 < len(indicators):
-            message = 'multiple attached indicators found matching {!r}.'
-            message = message.format(prototype)
-            raise ValueError(message)
-        else:
-            return indicators[0]
-
-    def _get_indicators(self, prototype=None, unwrap=True):
-        from abjad.tools import indicatortools
-        prototype = prototype or (object,)
-        if not isinstance(prototype, tuple):
-            prototype = (prototype,)
-        prototype_objects, prototype_classes = [], []
-        for indicator_prototype in prototype:
-            if isinstance(indicator_prototype, types.TypeType):
-                prototype_classes.append(indicator_prototype)
-            else:
-                prototype_objects.append(indicator_prototype)
-        prototype_objects = tuple(prototype_objects)
-        prototype_classes = tuple(prototype_classes)
-        matching_indicators = []
-        for indicator in self._indicators:
-            if isinstance(indicator, prototype_classes):
-                matching_indicators.append(indicator)
-            elif any(indicator == x for x in prototype_objects):
-                matching_indicators.append(indicator)
-            elif isinstance(indicator, indicatortools.IndicatorExpression):
-                if isinstance(indicator.indicator, prototype_classes):
-                    matching_indicators.append(indicator)
-                elif any(indicator.indicator == x for x in prototype_objects):
-                    matching_indicators.append(indicator)
-        if unwrap:
-            matching_indicators = [x.indicator for x in matching_indicators]
-        matching_indicators = tuple(matching_indicators)
-        return matching_indicators
 
     def _cache_named_children(self):
         name_dictionary = {}
@@ -463,6 +421,58 @@ class Component(AbjadObject):
             for i, component in enumerate(generator):
                 if i == n:
                     return component
+
+    def _get_indicator(self, prototype=None, unwrap=True):
+        indicators = self._get_indicators(prototype=prototype, unwrap=unwrap)
+        if not indicators:
+            message = 'no attached indicators found matching {!r}.'
+            message = message.format(prototype)
+            raise ValueError(message)
+        elif 1 < len(indicators):
+            message = 'multiple attached indicators found matching {!r}.'
+            message = message.format(prototype)
+            raise ValueError(message)
+        else:
+            return indicators[0]
+
+    def _get_indicators(self, prototype=None, unwrap=True):
+        from abjad.tools import indicatortools
+        prototype = prototype or (object,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
+        prototype_objects, prototype_classes = [], []
+        for indicator_prototype in prototype:
+            if isinstance(indicator_prototype, types.TypeType):
+                prototype_classes.append(indicator_prototype)
+            else:
+                prototype_objects.append(indicator_prototype)
+        prototype_objects = tuple(prototype_objects)
+        prototype_classes = tuple(prototype_classes)
+        matching_indicators = []
+        for indicator in self._indicators:
+            if isinstance(indicator, prototype_classes):
+                matching_indicators.append(indicator)
+            elif any(indicator == x for x in prototype_objects):
+                matching_indicators.append(indicator)
+            elif isinstance(indicator, indicatortools.IndicatorExpression):
+                if isinstance(indicator.indicator, prototype_classes):
+                    matching_indicators.append(indicator)
+                elif any(indicator.indicator == x for x in prototype_objects):
+                    matching_indicators.append(indicator)
+        if unwrap:
+            matching_indicators = [x.indicator for x in matching_indicators]
+        matching_indicators = tuple(matching_indicators)
+        return matching_indicators
+
+    def _get_spanner_indicators(self, prototype=None, unwrap=True):
+        matching_indicators = []
+        for spanner in self._get_spanners():
+            result = spanner._get_indicators(
+                prototype=prototype,
+                unwrap=unwrap,
+                )
+            matching_indicators.extend(result)
+        return matching_indicators
 
     def _get_lineage(self):
         return selectiontools.Lineage(self)

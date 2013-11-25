@@ -21,7 +21,9 @@ def attach(indicator, component_expression, scope=None):
         return
 
     component = component_expression
-    assert isinstance(component, scoretools.Component), repr(component)
+    #assert isinstance(component, scoretools.Component), repr(component)
+    prototype = (scoretools.Component, spannertools.Spanner)
+    assert isinstance(component, prototype), repr(component)
 
     if isinstance(indicator, indicatortools.IndicatorExpression):
         scope = scope or indicator.scope

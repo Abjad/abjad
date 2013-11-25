@@ -21,9 +21,12 @@ class IndicatorExpression(AbjadObject):
 
     def __init__(self, indicator, component, scope=None):
         from abjad.tools import scoretools
+        from abjad.tools import spannertools
         assert not isinstance(indicator, type(self)), repr(indicator)
         if component is not None:
-            assert isinstance(component, scoretools.Component)
+            #assert isinstance(component, scoretools.Component)
+            prototype = (scoretools.Component, spannertools.Spanner)
+            assert isinstance(component, prototype)
         if scope is not None:
             if isinstance(scope, types.TypeType):
                 assert issubclass(scope, scoretools.Component)
@@ -93,7 +96,7 @@ class IndicatorExpression(AbjadObject):
     def _bind_to_component(self, component):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
-        assert isinstance(component, scoretools.Component)
+        #assert isinstance(component, scoretools.Component)
         self._warn_duplicate_indicator(component)
         self._unbind_component()
         self._component = component
@@ -208,6 +211,9 @@ class IndicatorExpression(AbjadObject):
             self._bind_correct_effective_context(correct_effective_context)
 
     def _warn_duplicate_indicator(self, component):
+        from abjad.tools import spannertools
+        if isinstance(component, spannertools.Spanner):
+            return
         prototype = type(self.indicator)
         effective = component._get_effective_indicator(prototype, unwrap=False)
         if effective is not None and \
@@ -227,6 +233,12 @@ class IndicatorExpression(AbjadObject):
 
         Returns component.
         '''
+        from abjad.tools import spannertools
+        if isinstance(self._component, spannertools.Spanner):
+            if self._component:
+                return self._component[0]
+            else:
+                return
         return self._component
 
     @property

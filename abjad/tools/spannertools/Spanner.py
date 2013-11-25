@@ -1,6 +1,6 @@
 # -*-encoding: utf-8 -*-
-import abc
 import copy
+import types
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
@@ -20,13 +20,13 @@ class Spanner(AbjadObject):
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(self, components=None, overrides=None):
         overrides = overrides or {}
         self._components = []
         self._contiguity_constraint = 'logical voice'
         self._initialize_components(components)
         self._apply_overrides(overrides)
+        self._indicators = []
 
     ### SPECIAL METHODS ###
 
@@ -181,7 +181,6 @@ class Spanner(AbjadObject):
         result._unblock_all_components()
         return result
 
-    @abc.abstractmethod
     def _copy_keyword_args(self, new):
         raise NotImplemented
 
@@ -227,6 +226,35 @@ class Spanner(AbjadObject):
         self._block_all_components()
         spanner._block_all_components()
         return [(self, spanner, result)]
+
+    def _get_indicators(self, prototype=None, unwrap=True):
+        from abjad.tools import indicatortools
+        prototype = prototype or (object,)
+        if not isinstance(prototype, tuple):
+            prototype = (prototype,)
+        prototype_objects, prototype_classes = [], []
+        for indicator_prototype in prototype:
+            if isinstance(indicator_prototype, types.TypeType):
+                prototype_classes.append(indicator_prototype)
+            else:
+                prototype_objects.append(indicator_prototype)
+        prototype_objects = tuple(prototype_objects)
+        prototype_classes = tuple(prototype_classes)
+        matching_indicators = []
+        for indicator in self._indicators:
+            if isinstance(indicator, prototype_classes):
+                matching_indicators.append(indicator)
+            elif any(indicator == x for x in prototype_objects):
+                matching_indicators.append(indicator)
+            elif isinstance(indicator, indicatortools.IndicatorExpression):
+                if isinstance(indicator.indicator, prototype_classes):
+                    matching_indicators.append(indicator)
+                elif any(indicator.indicator == x for x in prototype_objects):
+                    matching_indicators.append(indicator)
+        if unwrap:
+            matching_indicators = [x.indicator for x in matching_indicators]
+        matching_indicators = tuple(matching_indicators)
+        return matching_indicators
 
     def _get_my_first_leaf(self):
         for leaf in iterate(self).by_class(scoretools.Leaf):
