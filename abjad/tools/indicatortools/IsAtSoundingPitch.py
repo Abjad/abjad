@@ -3,14 +3,13 @@ from abjad.tools.abctools import AbjadObject
 
 
 class IsAtSoundingPitch(AbjadObject):
-    r'''In C indicator.
+    r'''Is at sounding pitch indicator.
 
     ::
 
-        >>> in_c = indicatortools.IsAtSoundingPitch()
+        >>> indicator = indicatortools.IsAtSoundingPitch()
 
-    Attach to score or selection to denote music written in C
-    instead of at sounding pitch.
+    Attach to score selection to denote music written at sounding pitch.
     '''
 
     ### CLASS VARIABLES ###
