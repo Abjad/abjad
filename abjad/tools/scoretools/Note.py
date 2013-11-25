@@ -28,6 +28,7 @@ class Note(Leaf):
             }
 
 
+
     '''
 
     ### CLASS VARIABLES ###

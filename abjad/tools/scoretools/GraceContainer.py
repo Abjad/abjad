@@ -115,7 +115,7 @@ class GraceContainer(Container):
 
     @property
     def _lilypond_format(self):
-        self._update_now(marks=True)
+        self._update_now(indicators=True)
         return self._format_component()
 
     ### PRIVATE METHODS ###
@@ -123,8 +123,8 @@ class GraceContainer(Container):
     def _attach(self, leaf):
         return self(leaf)
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Container._copy_with_marks_but_without_children_or_spanners(self)
+    def _copy_with_indicators_but_without_children_or_spanners(self):
+        new = Container._copy_with_indicators_but_without_children_or_spanners(self)
         new.kind = self.kind
         return new
 

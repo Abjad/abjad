@@ -2733,7 +2733,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         'post_event_nofinger : script_dir direction_reqd_event'
-        # TODO: give marks, markup and spanners the same direction_string 
+        # TODO: give indicators, markup and spanners the same direction_string 
         #       functionality.
         # TODO: this is cheating; articulation direction should be given
         #       at initialization and not after (as is done here)

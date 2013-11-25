@@ -150,15 +150,14 @@ class Leaf(Component):
         for indicator in leaf._indicators:
             new_indicator = copy.copy(indicator)
             new_indicators.append(new_indicator)
-        #self._indicators = new_indicators
         for new_indicator in new_indicators:
             attach(new_indicator, self)
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Component._copy_with_marks_but_without_children_or_spanners(self)
+    def _copy_with_indicators_but_without_children_or_spanners(self):
+        new = Component._copy_with_indicators_but_without_children_or_spanners(self)
         for grace_container in self._get_grace_containers():
             new_grace_container = \
-                grace_container._copy_with_children_and_marks_but_without_spanners()
+                grace_container._copy_with_children_and_indicators_but_without_spanners()
             new_grace_container(new)
         return new
 

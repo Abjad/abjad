@@ -130,7 +130,7 @@ class IndicatorWrapper(AbjadObject):
 
     def _get_effective_context(self):
         if self.component is not None:
-            self.component._update_now(marks=True)
+            self.component._update_now(indicators=True)
         return self._effective_context
 
     def _get_format_pieces(self):

@@ -225,16 +225,16 @@ class Container(Component):
         self._set_item(slice(len(self), len(self)), [component],
             withdraw_components_in_expr_from_crossing_spanners=False)
 
-    def _copy_with_children_and_marks_but_without_spanners(self):
-        new = self._copy_with_marks_but_without_children_or_spanners()
+    def _copy_with_children_and_indicators_but_without_spanners(self):
+        new = self._copy_with_indicators_but_without_children_or_spanners()
         for component in self:
             new_component = \
-                component._copy_with_children_and_marks_but_without_spanners()
+                component._copy_with_children_and_indicators_but_without_spanners()
             new.append(new_component)
         return new
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Component._copy_with_marks_but_without_children_or_spanners(self)
+    def _copy_with_indicators_but_without_children_or_spanners(self):
+        new = Component._copy_with_indicators_but_without_children_or_spanners(self)
         new.is_simultaneous = self.is_simultaneous
         return new
 

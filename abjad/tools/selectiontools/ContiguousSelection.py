@@ -488,7 +488,7 @@ class ContiguousSelection(Selection):
         if n < 1:
             return []
         new_components = [
-            component._copy_with_children_and_marks_but_without_spanners()
+            component._copy_with_children_and_indicators_but_without_spanners()
             for component in self
             ]
         if include_enclosing_containers:

@@ -83,13 +83,13 @@ class Context(Container):
 
     @property
     def _lilypond_format(self):
-        self._update_now(marks=True)
+        self._update_now(indicators=True)
         return self._format_component()
 
     ### PRIVATE METHODS ###
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Container._copy_with_marks_but_without_children_or_spanners(self)
+    def _copy_with_indicators_but_without_children_or_spanners(self):
+        new = Container._copy_with_indicators_but_without_children_or_spanners(self)
         new._engraver_consists = copy.copy(self.engraver_consists)
         new._engraver_removals = copy.copy(self.engraver_removals)
         new.name = copy.copy(self.name)

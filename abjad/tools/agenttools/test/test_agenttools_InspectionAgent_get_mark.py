@@ -114,11 +114,12 @@ def test_agenttools_InspectionAgent_get_mark_10():
         '''
         )
 
-    marks = inspect(staff[0]).get_indicators(indicatortools.LilyPondCommand)
+    indicators = inspect(staff[0]).get_indicators(
+        indicatortools.LilyPondCommand)
 
-    assert command_1 in marks
-    assert command_2 in marks
-    assert len(marks) == 2
+    assert command_1 in indicators
+    assert command_2 in indicators
+    assert len(indicators) == 2
 
 
 def test_agenttools_InspectionAgent_get_mark_11():

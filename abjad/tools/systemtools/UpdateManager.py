@@ -2,7 +2,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class UpdateManager(AbjadObject):
-    '''Update start offset, stop offsets and marks everywhere in score.
+    '''Update start offset, stop offsets and indicators everywhere in score.
     '''
 
     ### PRIVATE METHODS ###
@@ -10,22 +10,22 @@ class UpdateManager(AbjadObject):
     @staticmethod
     def _get_score_tree_state_flags(component):
         offsets_are_current = True
-        marks_are_current = True
+        indicators_are_current = True
         offsets_in_seconds_are_current = True
         parentage = component._get_parentage()
         for component in parentage:
             if offsets_are_current:
                 if not component._offsets_are_current:
                     offsets_are_current = False
-            if marks_are_current:
-                if not component._marks_are_current:
-                    marks_are_current = False
+            if indicators_are_current:
+                if not component._indicators_are_current:
+                    indicators_are_current = False
             if offsets_in_seconds_are_current:
                 if not component._offsets_in_seconds_are_current:
                     offsets_in_seconds_are_current = False
         return (
             offsets_are_current,
-            marks_are_current,
+            indicators_are_current,
             offsets_in_seconds_are_current,
             )
 
@@ -82,11 +82,11 @@ class UpdateManager(AbjadObject):
                 if indicator.scope is not None:
                     assert hasattr(indicator, '_update_effective_context')
                     indicator._update_effective_context()
-            component._marks_are_current = True
+            component._indicators_are_current = True
 
     @staticmethod
     def _update_all_offsets(component):
-        r'''Updating offsets does not update marks.
+        r'''Updating offsets does not update indicators.
         Updating offsets does not update offsets in seconds.
         '''
         components = UpdateManager._iterate_entire_score(component)
@@ -143,13 +143,13 @@ class UpdateManager(AbjadObject):
         component,
         offsets=False,
         offsets_in_seconds=False,
-        marks=False,
+        indicators=False,
         ):
         if component._is_forbidden_to_update:
             return
         state_flags = UpdateManager._get_score_tree_state_flags(component)
         offsets_are_current = state_flags[0]
-        marks_are_current = state_flags[1]
+        indicators_are_current = state_flags[1]
         offsets_in_seconds_are_current = state_flags[2]
         if offsets and not offsets_are_current:
             UpdateManager._update_all_offsets(component)
@@ -157,6 +157,6 @@ class UpdateManager(AbjadObject):
                 component)
         if offsets_in_seconds and not offsets_in_seconds_are_current:
             UpdateManager._update_all_offsets_in_seconds(component)
-        if marks and not marks_are_current:
+        if indicators and not indicators_are_current:
             UpdateManager._update_all_indicators(component)
             UpdateManager._update_all_offsets_in_seconds(component)

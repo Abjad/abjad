@@ -154,7 +154,7 @@ class Tuplet(Container):
 
     @property
     def _lilypond_format(self):
-        self._update_now(marks=True)
+        self._update_now(indicators=True)
         return self._format_component()
 
     @property

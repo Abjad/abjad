@@ -24,7 +24,7 @@ def test_scoretools_Component__move_marks_01():
     assert len(inspect(staff[2]).get_indicators()) == 0
     assert len(inspect(staff[3]).get_indicators()) == 0
     
-    staff[0]._move_marks(staff[2])
+    staff[0]._move_indicators(staff[2])
 
     assert systemtools.TestManager.compare(
         staff,

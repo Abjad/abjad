@@ -29,8 +29,8 @@ class Component(AbjadObject):
     __slots__ = (
         '_indicators',
         '_dependent_wrappers',
+        '_indicators_are_current',
         '_is_forbidden_to_update',
-        '_marks_are_current',
         '_offsets_are_current',
         '_offsets_in_seconds_are_current',
         '_override',
@@ -53,7 +53,7 @@ class Component(AbjadObject):
         self._indicators = list()
         self._dependent_wrappers = list()
         self._is_forbidden_to_update = False
-        self._marks_are_current = False
+        self._indicators_are_current = False
         self._offsets_in_seconds_are_current = False
         self._offsets_are_current = False
         self._parent = None
@@ -67,12 +67,12 @@ class Component(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        r'''Copies component with marks but without children of component
+        r'''Copies component with indicators but without children of component
         or spanners attached to component.
 
         Returns new component.
         '''
-        return self._copy_with_marks_but_without_children_or_spanners()
+        return self._copy_with_indicators_but_without_children_or_spanners()
 
     def __format__(self, format_specification=''):
         r'''Formats component.
@@ -144,7 +144,7 @@ class Component(AbjadObject):
 
     @property
     def _lilypond_format(self):
-        self._update_now(marks=True)
+        self._update_now(indicators=True)
         return self._format_component()
 
     @property
@@ -211,10 +211,10 @@ class Component(AbjadObject):
             name_dictionary[self.name].append(self)
         return name_dictionary
 
-    def _copy_with_children_and_marks_but_without_spanners(self):
-        return self._copy_with_marks_but_without_children_or_spanners()
+    def _copy_with_children_and_indicators_but_without_spanners(self):
+        return self._copy_with_indicators_but_without_children_or_spanners()
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
+    def _copy_with_indicators_but_without_children_or_spanners(self):
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(override(self))
@@ -356,8 +356,8 @@ class Component(AbjadObject):
                     return indicator
                 else:
                     return
-        # update marks of entire score tree if necessary
-        self._update_now(marks=True)
+        # update indicators of entire score tree if necessary
+        self._update_now(indicators=True)
         # gather candidate wrappers
         candidate_wrappers = datastructuretools.SortedCollection(
             key=lambda x: x.component._get_timespan().start_offset
@@ -603,7 +603,7 @@ class Component(AbjadObject):
                 break
         return component in temporal_successors
 
-    def _move_marks(self, recipient_component):
+    def _move_indicators(self, recipient_component):
         from abjad.tools import indicatortools
         for indicator in self._get_indicators():
             detach(indicator, self)
@@ -779,12 +779,12 @@ class Component(AbjadObject):
         self,
         offsets=False,
         offsets_in_seconds=False,
-        marks=False,
+        indicators=False,
         ):
         from abjad.tools import systemtools
         return systemtools.UpdateManager._update_now(
             self,
             offsets=offsets,
             offsets_in_seconds=offsets_in_seconds,
-            marks=marks,
+            indicators=indicators,
             )

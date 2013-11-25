@@ -61,7 +61,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_02():
 
 
 def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
-    r'''Dynamic marks can terminate hairpins.
+    r'''Dynamics can terminate hairpins.
     '''
 
     target = Staff(scoretools.make_notes([0] * 3, [(1, 4)]))

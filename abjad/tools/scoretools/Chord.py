@@ -123,8 +123,8 @@ class Chord(Leaf):
                 return scoretools.Note(chord)
         return chord
 
-    def _copy_with_marks_but_without_children_or_spanners(self):
-        new = Leaf._copy_with_marks_but_without_children_or_spanners(self)
+    def _copy_with_indicators_but_without_children_or_spanners(self):
+        new = Leaf._copy_with_indicators_but_without_children_or_spanners(self)
         new.note_heads[:] = []
         for note_head in self.note_heads:
             new_note_head = copy.copy(note_head)

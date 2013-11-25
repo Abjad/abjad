@@ -3,7 +3,7 @@ import copy
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-# TODO: extend LilyPond command marks to attach to spanners.
+# TODO: extend to attach to spanners
 class LilyPondCommand(AbjadObject):
     r'''A LilyPond command.
 
