@@ -444,7 +444,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        return self._client._get_effective_indicator(prototype=prototype)
+        return self._client._has_effective_indicator(prototype=prototype)
 
     def has_indicator(self, prototype=None):
         r'''True when client has one or more

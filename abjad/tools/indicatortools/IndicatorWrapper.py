@@ -210,7 +210,9 @@ class IndicatorWrapper(AbjadObject):
     def _warn_duplicate_indicator(self, component):
         prototype = type(self.indicator)
         effective = component._get_effective_indicator(prototype, unwrap=False)
-        if effective is not None:
+        if effective is not None and \
+            effective.scope is not None and \
+            effective.indicator != self.indicator:
             indicator_start = effective.component._get_timespan().start_offset
             component_start = component._get_timespan().start_offset
             if indicator_start == component_start:

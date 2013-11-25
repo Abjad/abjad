@@ -182,14 +182,15 @@ def test_pitchtools_PitchRange___contains___14():
 
 
 def test_pitchtools_PitchRange___contains___15():
-    r'''Nonsemantic notes and chords are evaluated as in-range by definition.
+    r'''Unpitched notes and chords are evaluated as in-range by definition.
     '''
 
     staff = Staff("c'4 d'4 c4 d4")
     flute = instrumenttools.Flute()
     attach(flute, staff)
-    staff[2].written_pitch_indication_is_nonsemantic = True
-    staff[3].written_pitch_indication_is_nonsemantic = True
+    indicator = indicatortools.IsUnpitched()
+    attach(indicator, staff[2])
+    attach(indicator, staff[3])
     override(staff[2]).note_head.style = 'cross'
     override(staff[3]).note_head.style = 'cross'
 

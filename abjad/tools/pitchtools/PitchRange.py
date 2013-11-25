@@ -3,6 +3,7 @@ import collections
 import numbers
 import re
 from abjad.tools import datastructuretools
+from abjad.tools import indicatortools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitchtools.Pitch import Pitch
 
@@ -128,22 +129,19 @@ class PitchRange(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, arg):
-        from abjad.tools import scoretools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools.scoretools.Chord import Chord
-        from abjad.tools.scoretools.Note import Note
-        if getattr(arg, 'written_pitch_indication_is_nonsemantic', False):
+        if hasattr(arg, '_has_effective_indicator') and \
+            arg._has_effective_indicator(indicatortools.IsUnpitched):
             return True
         elif isinstance(arg, (int, long, float)):
             pitch = pitchtools.NamedPitch(arg)
             return self._contains_pitch(pitch)
         elif isinstance(arg, pitchtools.NamedPitch):
             return self._contains_pitch(arg)
-        elif isinstance(arg, Note):
+        elif isinstance(arg, scoretools.Note):
             return self._contains_pitch(arg.sounding_pitch)
-        elif isinstance(arg, Chord):
+        elif isinstance(arg, scoretools.Chord):
             return all(self._contains_pitch(x) for x in arg.sounding_pitches)
         elif isinstance(arg, (scoretools.Rest, scoretools.Skip)):
             return True

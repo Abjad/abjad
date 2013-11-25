@@ -78,7 +78,7 @@ class IOManager(object):
                 ...     "Note('c4')",
                 ...     globals(),
                 ...     )
-                9748
+                9744
 
         ..  container:: example
 
@@ -91,7 +91,7 @@ class IOManager(object):
                 ...     "Note(-12, (1, 4))",
                 ...     globals(),
                 ...     )
-                172
+                170
 
         Returns nonnegative integer.
         '''

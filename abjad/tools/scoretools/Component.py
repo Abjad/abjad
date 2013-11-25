@@ -96,6 +96,10 @@ class Component(AbjadObject):
         return ()
 
     def __illustrate__(self):
+        r'''Illustrates component.
+
+        Returns LilyPond file.
+        '''
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(self)
@@ -342,7 +346,7 @@ class Component(AbjadObject):
         from abjad.tools import indicatortools
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
-        # do special things for time signatures
+        # return time signature attached to measure regardless of scope
         if prototype == indicatortools.TimeSignature or \
             prototype == (indicatortools.TimeSignature,):
             if isinstance(self, scoretools.Measure):
@@ -359,7 +363,10 @@ class Component(AbjadObject):
             key=lambda x: x.component._get_timespan().start_offset
             )
         for parent in self._get_parentage(include_self=True):
-            wrappers = parent._dependent_wrappers
+            wrappers = parent._dependent_wrappers[:]
+            for wrapper in parent._indicators:
+                if wrapper.scope is None:
+                    wrappers.append(wrapper)
             for wrapper in wrappers:
                 if isinstance(wrapper.indicator, prototype):
                     candidate_wrappers.insert(wrapper)

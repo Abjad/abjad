@@ -27,7 +27,6 @@ class Leaf(Component):
         '_grace',
         '_leaf_index',
         '_written_duration',
-        '_written_pitch_indication_is_nonsemantic',
         'after_grace',
         'grace',
         )
@@ -41,7 +40,6 @@ class Leaf(Component):
         Component.__init__(self)
         self._leaf_index = None
         self.written_duration = durationtools.Duration(written_duration)
-        self.written_pitch_indication_is_nonsemantic = False
 
     ### SPECIAL METHODS ###
 
@@ -631,20 +629,3 @@ class Leaf(Component):
             message = message.format(rational)
             raise AssignabilityError(message)
         self._written_duration = rational
-
-    @property
-    def written_pitch_indication_is_nonsemantic(self):
-        r'''Returns true when pitch is nonsemantic.
-        Returns false otherwise.
-
-        Set to true when using leaves only graphically.
-
-        Setting this value to true sets sounding pitch flag to false.
-        '''
-        return self._written_pitch_indication_is_nonsemantic
-
-    @written_pitch_indication_is_nonsemantic.setter
-    def written_pitch_indication_is_nonsemantic(self, expr):
-        if not isinstance(expr, bool):
-            raise TypeError
-        self._written_pitch_indication_is_nonsemantic = expr
