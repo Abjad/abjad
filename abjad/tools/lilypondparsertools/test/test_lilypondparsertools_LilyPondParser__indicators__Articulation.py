@@ -4,7 +4,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Articulation_01():
+def test_lilypondparsertools_LilyPondParser__indicators__Articulation_01():
 
     target = Staff(scoretools.make_notes(["c''"], [(1, 4)] * 6 + [(1, 2)]))
     articulation = Articulation('marcato', Up)
@@ -47,7 +47,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_01():
         assert 1 == len(inspect(x).get_indicators(Articulation))
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Articulation_02():
+def test_lilypondparsertools_LilyPondParser__indicators__Articulation_02():
 
     target = Staff([Note("c'", (1, 4))])
     articulation = Articulation('marcato', Up)
@@ -81,7 +81,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Articulation_02():
     assert 7 == len(inspect(result[0]).get_indicators(Articulation))
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Articulation_03():
+def test_lilypondparsertools_LilyPondParser__indicators__Articulation_03():
 
     target = Container(scoretools.make_notes(
         ["c''", "c''", "b'", "c''"],

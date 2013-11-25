@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Markup_01():
+def test_lilypondparsertools_LilyPondParser__indicators__Markup_01():
 
     target = Staff([Note(0, 1)])
     markup = markuptools.Markup('hello!', Up)
@@ -27,7 +27,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_01():
     assert 1 == len(inspect(result[0]).get_markup())
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Markup_02():
+def test_lilypondparsertools_LilyPondParser__indicators__Markup_02():
 
     target = Staff([Note(0, (1, 4))])
     markup = markuptools.Markup(['X', 'Y', 'Z', 'a b c'], Down)
@@ -57,7 +57,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_02():
     assert 1 == len(inspect(result[0]).get_markup())
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Markup_03():
+def test_lilypondparsertools_LilyPondParser__indicators__Markup_03():
     r'''Articulations following markup block are (re)lexed correctly after
     returning to the "notes" lexical state after popping the "markup lexical state.
     '''
@@ -87,7 +87,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_03():
     assert 1 == len(inspect(result[0]).get_markup())
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Markup_04():
+def test_lilypondparsertools_LilyPondParser__indicators__Markup_04():
 
     command1 = markuptools.MarkupCommand('bold', ['A', 'B', 'C'])
     command2 = markuptools.MarkupCommand('italic', '123')
@@ -100,7 +100,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Markup_04():
     assert format(result, 'lilypond') == format(markup, 'lilypond')
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Markup_05():
+def test_lilypondparsertools_LilyPondParser__indicators__Markup_05():
 
     command = r'\markup { \char ##x03EE }'
     parser = LilyPondParser()

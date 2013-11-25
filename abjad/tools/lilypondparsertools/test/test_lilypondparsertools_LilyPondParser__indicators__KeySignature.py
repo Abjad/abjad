@@ -3,17 +3,18 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__marks__StemTremolo_01():
+def test_lilypondparsertools_LilyPondParser__indicators__KeySignature_01():
 
-    target = Staff([Note(0, 1)])
-    stem_tremolo = indicatortools.StemTremolo(4)
-    attach(stem_tremolo, target[0])
+    target = Staff([Note("fs'", 1)])
+    key_signature = KeySignature('g', 'major')
+    attach(key_signature, target[0])
 
     assert systemtools.TestManager.compare(
         target,
         r'''
         \new Staff {
-            c'1 :4
+            \key g \major
+            fs'1
         }
         '''
         )
@@ -21,5 +22,5 @@ def test_lilypondparsertools_LilyPondParser__marks__StemTremolo_01():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    stem_tremolos = inspect(result[0]).get_indicators(indicatortools.StemTremolo)
-    assert 1 == len(stem_tremolos)
+    key_signatures = inspect(result[0]).get_indicators(KeySignature)
+    assert len(key_signatures) == 1

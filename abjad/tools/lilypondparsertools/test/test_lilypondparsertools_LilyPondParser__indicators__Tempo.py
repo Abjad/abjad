@@ -4,7 +4,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Tempo_01():
+def test_lilypondparsertools_LilyPondParser__indicators__Tempo_01():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo("As fast as possible")
@@ -30,7 +30,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_01():
     assert len(tempos) == 1
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Tempo_02():
+def test_lilypondparsertools_LilyPondParser__indicators__Tempo_02():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo((1, 4), 60)
@@ -56,7 +56,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_02():
     assert len(tempos) == 1
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Tempo_03():
+def test_lilypondparsertools_LilyPondParser__indicators__Tempo_03():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo((1, 4), (59, 63))
@@ -82,7 +82,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_03():
     assert len(tempos) == 1
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Tempo_04():
+def test_lilypondparsertools_LilyPondParser__indicators__Tempo_04():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo(
@@ -112,7 +112,7 @@ def test_lilypondparsertools_LilyPondParser__marks__Tempo_04():
     assert len(tempos) == 1
 
 
-def test_lilypondparsertools_LilyPondParser__marks__Tempo_05():
+def test_lilypondparsertools_LilyPondParser__indicators__Tempo_05():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo(

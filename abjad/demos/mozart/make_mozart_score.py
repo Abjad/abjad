@@ -20,7 +20,7 @@ def make_mozart_score():
         treble_volta.append(treble)
         bass_volta.append(bass)
 
-    # add marks to the volta containers
+    # attach indicators to the volta containers
     command = indicatortools.LilyPondCommand(
         'repeat volta 2', 'before'
         )
@@ -30,7 +30,7 @@ def make_mozart_score():
         )
     attach(command, bass_volta)
 
-    # add the volta containers to our staves
+    # append the volta containers to our staves
     score['RH Voice'].append(treble_volta)
     score['LH Voice'].append(bass_volta)
 
@@ -42,7 +42,7 @@ def make_mozart_score():
         treble_alternative.append(treble)
         bass_alternative.append(bass)
 
-    # add marks to the alternative containers
+    # attach indicators to the alternative containers
     command = indicatortools.LilyPondCommand(
         'alternative', 'before'
         )
@@ -52,7 +52,7 @@ def make_mozart_score():
         )
     attach(command, bass_alternative)
 
-    # add the alternative containers to our staves
+    # append the alternative containers to our staves
     score['RH Voice'].append(treble_alternative)
     score['LH Voice'].append(bass_alternative)
 
@@ -62,7 +62,7 @@ def make_mozart_score():
         score['RH Voice'].append(treble)
         score['LH Voice'].append(bass)
 
-    # add marks
+    # attach indicators
     time_signature = indicatortools.TimeSignature((3, 8))
     attach(time_signature, score['RH Staff'])
     bar_line = indicatortools.BarLine('|.')
@@ -71,7 +71,7 @@ def make_mozart_score():
     attach(bar_line, score['LH Voice'][-1])
 
     # remove the old, default piano instrument attached to the piano staff
-    # and add a custom instrument mark
+    # and attach a custom instrument mark
     detach(instrumenttools.Instrument, score['Piano Staff'])
 
     klavier = instrumenttools.Piano(

@@ -4,7 +4,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_lilypondparsertools_LilyPondParser__marks__BarLine_01():
+def test_lilypondparsertools_LilyPondParser__indicators__BarLine_01():
 
     target = Staff(scoretools.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)]))
     bar_line = indicatortools.BarLine('|.')

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_scoretools_Component__move_marks_01():
+def test_scoretools_Component__move_indicators_01():
 
     staff = Staff(r'\clef "bass" c \staccato d e f')
 
