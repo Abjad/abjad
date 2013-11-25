@@ -13,7 +13,7 @@ def test_sequencetools_truncate_sequence_to_sum_01():
     assert isinstance(sequence_2, list)
 
 
-def test_sequencetools_truncate_sequence_to_sum_03():
+def test_sequencetools_truncate_sequence_to_sum_02():
     r'''Raise TypeError when l is not a list.
     '''
 
@@ -21,7 +21,7 @@ def test_sequencetools_truncate_sequence_to_sum_03():
     assert pytest.raises(TypeError, statement)
 
 
-def test_sequencetools_truncate_sequence_to_sum_04():
+def test_sequencetools_truncate_sequence_to_sum_03():
     r'''truncate_to_sum does work :-).
     '''
 
@@ -43,7 +43,7 @@ def test_sequencetools_truncate_sequence_to_sum_04():
 
 # ERRORS #
 
-def test_sequencetools_truncate_sequence_to_sum_05():
+def test_sequencetools_truncate_sequence_to_sum_04():
     r'''Raise ValueError on negative total.
     '''
 

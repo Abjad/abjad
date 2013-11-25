@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_scoretools_Chord_written_pitch_indication_is_nonsemantic_01():
@@ -16,7 +16,6 @@ def test_scoretools_Chord_written_pitch_indication_is_nonsemantic_02():
     chord.written_pitch_indication_is_nonsemantic = True
 
     assert chord.written_pitch_indication_is_nonsemantic
-    assert not chord.written_pitch_indication_is_at_sounding_pitch
 
 
 def test_scoretools_Chord_written_pitch_indication_is_nonsemantic_03():

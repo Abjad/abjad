@@ -16,7 +16,6 @@ def test_scoretools_Note_written_pitch_indication_is_nonsemantic_02():
     note.written_pitch_indication_is_nonsemantic = True
 
     assert note.written_pitch_indication_is_nonsemantic
-    assert not note.written_pitch_indication_is_at_sounding_pitch
 
 
 def test_scoretools_Note_written_pitch_indication_is_nonsemantic_03():
