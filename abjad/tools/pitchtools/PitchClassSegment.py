@@ -86,7 +86,7 @@ class PitchClassSegment(Segment):
             else:
                 number = int(number)
             numbers.append(number)
-        return self.new(tokens=numbers)
+        return self.__makenew__(tokens=numbers)
 
     @classmethod
     def from_selection(cls, selection, item_class=None, custom_identifier=None):
@@ -124,7 +124,7 @@ class PitchClassSegment(Segment):
         Emit new pitch-class segment.
         '''
         tokens = (pc.invert() for pc in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`, otherwise False.
@@ -139,7 +139,7 @@ class PitchClassSegment(Segment):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitch_classes = (x + difference for x in self)
-        new_pitch_classes = self.new(tokens=new_pitch_classes)
+        new_pitch_classes = self.__makenew__(tokens=new_pitch_classes)
         return expr == new_pitch_classes
 
     def make_notes(self, n=None, written_duration=None):
@@ -227,7 +227,7 @@ class PitchClassSegment(Segment):
         from abjad.tools import pitchtools
         tokens = (pitchtools.NumberedPitchClass(pc).multiply(n)
             for pc in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     def retrograde(self):
         r'''Retrograde of pitch-class segment:
@@ -241,7 +241,7 @@ class PitchClassSegment(Segment):
 
         Emit new pitch-class segment.
         '''
-        return self.new(tokens=reversed(self))
+        return self.__makenew__(tokens=reversed(self))
 
     def rotate(self, n):
         r'''Rotate pitch-class segment:
@@ -264,7 +264,7 @@ class PitchClassSegment(Segment):
         '''
         from abjad.tools import sequencetools
         tokens = sequencetools.rotate_sequence(self._collection, n)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     def transpose(self, expr):
         r'''Transpose pitch-class segment:
@@ -279,7 +279,7 @@ class PitchClassSegment(Segment):
         Emit new pitch-class segment.
         '''
         tokens = (pitch_class.transpose(expr) for pitch_class in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     ### PUBLIC PROPERTIES ###
 

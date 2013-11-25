@@ -63,6 +63,23 @@ class TypedCollection(AbjadObject):
     def __len__(self):
         return len(self._collection)
 
+    def __makenew__(
+        self, 
+        tokens=None, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        # allow for empty iterables
+        if tokens is None:
+            tokens = self._collection
+        item_class = item_class or self.item_class
+        custom_identifier = custom_identifier or self.custom_identifier
+        return type(self)(
+            tokens=tokens,
+            item_class=item_class,
+            custom_identifier=custom_identifier,
+            )
+
     def __ne__(self, expr):
         return not self.__eq__(expr)
 
@@ -122,20 +139,6 @@ class TypedCollection(AbjadObject):
             positional_argument_values=(
                 self._collection,
                 )
-            )
-
-    ### PUBLIC METHODS ###
-
-    def new(self, tokens=None, item_class=None, custom_identifier=None):
-        # Allow for empty iterables:
-        if tokens is None:
-            tokens = self._collection
-        item_class = item_class or self.item_class
-        custom_identifier = custom_identifier or self.custom_identifier
-        return type(self)(
-            tokens=tokens,
-            item_class=item_class,
-            custom_identifier=custom_identifier,
             )
 
     ### PUBLIC PROPERTIES ###

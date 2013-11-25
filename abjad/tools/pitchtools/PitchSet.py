@@ -98,7 +98,7 @@ class PitchSet(Set):
         Emit new pitch set.
         '''
         tokens = (pitch.invert(axis) for pitch in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`, otherwise False.
@@ -113,7 +113,7 @@ class PitchSet(Set):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        new_pitches = self.new(tokens=new_pitch)
+        new_pitches = self.__makenew__(tokens=new_pitch)
         return expr == new_pitches
 
     def transpose(self, expr):
@@ -122,7 +122,7 @@ class PitchSet(Set):
         from abjad.tools import pitchtools
         #interval = pitchtools.NumberedInterval(n)
         tokens = (pitch.transpose(expr) for pitch in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     ### PUBLIC PROPERTIES ###
 

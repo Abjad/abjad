@@ -31,6 +31,11 @@ class Documenter(abctools.Maker):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __makenew__(self, obj=None, prefix=None):
+        obj = obj or self.obj
+        prefix = prefix or self.prefix
+        return type(self)(obj=obj, prefix=prefix)
+
     ### PRIVATE METHODS ###
 
     def _shrink_module_name(self, module):
@@ -54,11 +59,6 @@ class Documenter(abctools.Maker):
             )
 
     ### PUBLIC METHODS ###
-
-    def new(self, obj=None, prefix=None):
-        obj = obj or self.obj
-        prefix = prefix or self.prefix
-        return type(self)(obj=obj, prefix=prefix)
 
     @staticmethod
     def write(file_path, restructured_text):

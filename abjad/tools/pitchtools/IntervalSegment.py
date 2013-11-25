@@ -77,7 +77,7 @@ class IntervalSegment(Segment):
             )
 
     def rotate(self, n):
-        return self.new(self[-n:] + self[:-n])
+        return self.__makenew__(self[-n:] + self[:-n])
 
     ### PUBLIC PROPERTIES ###
 

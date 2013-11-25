@@ -13,8 +13,7 @@ class Maker(AbjadObject):
     def __call__(self):
         raise NotImplemented
 
-    ### PUBLIC METHODS ###
-
-    @abc.abstractmethod
-    def new(self):
-        raise NotImplemented
+    # TODO: uncomment this after __makenew__ integration
+#    @abc.abstractmethod
+#    def __makenew__(self):
+#        raise NotImplemented

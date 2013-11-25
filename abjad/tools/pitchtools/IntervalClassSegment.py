@@ -104,7 +104,7 @@ class IntervalClassSegment(Segment):
         Returns boolean.
         '''
         from abjad.tools import pitchtools
-        inversion_equivalent_interval_class_segment = self.new(
+        inversion_equivalent_interval_class_segment = self.__makenew__(
             item_class=pitchtools.NamedInversionEquivalentIntervalClass,
             )
         for interval in inversion_equivalent_interval_class_segment:

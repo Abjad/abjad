@@ -26,10 +26,10 @@ class TypedTuple(TypedCollection):
     def __add__(self, expr):
         if isinstance(expr, type(self)):
             tokens = expr._collection
-            return self.new(tokens=self._collection[:] + tokens)
+            return self.__makenew__(tokens=self._collection[:] + tokens)
         elif isinstance(expr, type(self._collection)):
             tokens = expr[:]
-            return self.new(tokens=self._collection[:] + tokens)
+            return self.__makenew__(tokens=self._collection[:] + tokens)
         raise NotImplementedError
 
     def __contains__(self, token):
@@ -48,7 +48,7 @@ class TypedTuple(TypedCollection):
         return self._collection[i]
 
     def __getslice__(self, start, stop):
-        return self.new(tokens=self._collection[start:stop])
+        return self.__makenew__(tokens=self._collection[start:stop])
 
     def __hash__(self):
         return hash((
@@ -60,7 +60,7 @@ class TypedTuple(TypedCollection):
 
     def __mul__(self, expr):
         tokens = self._collection * expr
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     def __rmul__(self, expr):
         return self.__mul__(expr)

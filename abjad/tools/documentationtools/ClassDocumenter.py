@@ -32,7 +32,6 @@ class ClassDocumenter(Documenter):
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.is_abstract
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.methods
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.module_name
-            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.new
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.object
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.prefix
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.readonly_properties
@@ -42,6 +41,7 @@ class ClassDocumenter(Documenter):
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.write
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__call__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__eq__
+            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__makenew__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__ne__
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__repr__
         <BLANKLINE>
@@ -95,12 +95,6 @@ class ClassDocumenter(Documenter):
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.static_methods
         :noindex:
         <BLANKLINE>
-        Methods
-        -------
-        <BLANKLINE>
-        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.new
-        :noindex:
-        <BLANKLINE>
         Static methods
         --------------
         <BLANKLINE>
@@ -114,6 +108,9 @@ class ClassDocumenter(Documenter):
         :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__eq__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__makenew__
         :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__ne__

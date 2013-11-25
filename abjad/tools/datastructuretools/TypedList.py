@@ -31,7 +31,7 @@ class TypedList(TypedCollection):
 
     ::
 
-        >>> print format(object_collection.new(keep_sorted=True))
+        >>> print format(new(object_collection, keep_sorted=True))
         datastructuretools.TypedList(
             [
                 23,
@@ -149,6 +149,30 @@ class TypedList(TypedCollection):
         '''
         self.extend(expr)
         return self
+
+    def __makenew__(
+        self,
+        tokens=None,
+        item_class=None,
+        keep_sorted=None,
+        custom_identifier=None,
+        ):
+        r'''Makes new typed list.
+
+        Returns new typed list.
+        '''
+        # Allow for empty iterables:
+        if tokens is None:
+            tokens = self._collection
+        item_class = item_class or self.item_class
+        if keep_sorted is None:
+            keep_sorted = self.keep_sorted
+        custom_identifier = custom_identifier or self.custom_identifier
+        return type(self)(
+            tokens=tokens,
+            item_class=item_class,
+            custom_identifier=custom_identifier,
+            )
 
     def __reversed__(self):
         '''Aliases list.__reversed__().
@@ -322,30 +346,6 @@ class TypedList(TypedCollection):
         if self.keep_sorted:
             self.sort()
         return result
-
-    def new(
-        self,
-        tokens=None,
-        item_class=None,
-        keep_sorted=None,
-        custom_identifier=None,
-        ):
-        r'''Makes new typed list.
-
-        Returns new typed list.
-        '''
-        # Allow for empty iterables:
-        if tokens is None:
-            tokens = self._collection
-        item_class = item_class or self.item_class
-        if keep_sorted is None:
-            keep_sorted = self.keep_sorted
-        custom_identifier = custom_identifier or self.custom_identifier
-        return type(self)(
-            tokens=tokens,
-            item_class=item_class,
-            custom_identifier=custom_identifier,
-            )
 
     def pop(self, i=-1):
         r'''Aliases list.pop().

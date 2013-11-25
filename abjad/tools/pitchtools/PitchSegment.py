@@ -130,7 +130,7 @@ class PitchSegment(Segment):
         Emit new pitch segment.
         '''
         tokens = (pitch.invert(axis) for pitch in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`, otherwise False.
@@ -145,7 +145,7 @@ class PitchSegment(Segment):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        new_pitches = self.new(tokens=new_pitch)
+        new_pitches = self.__makenew__(tokens=new_pitch)
         return expr == new_pitches
 
     def make_notes(self, n=None, written_duration=None):
@@ -226,7 +226,7 @@ class PitchSegment(Segment):
 
         Emit new pitch segment.
         '''
-        return self.new(tokens=reversed(self))
+        return self.__makenew__(tokens=reversed(self))
 
     def rotate(self, n):
         r'''Rotate pitch segment:
@@ -255,7 +255,7 @@ class PitchSegment(Segment):
         '''
         from abjad.tools import sequencetools
         tokens = sequencetools.rotate_sequence(self._collection, n)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     def transpose(self, expr):
         r'''Transpose pitch segment by `expr`.
@@ -263,7 +263,7 @@ class PitchSegment(Segment):
         Emit new pitch segment.
         '''
         tokens = (pitch.transpose(expr) for pitch in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     ### PUBLIC PROPERTIES ###
 

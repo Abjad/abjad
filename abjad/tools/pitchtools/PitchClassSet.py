@@ -182,7 +182,7 @@ class PitchClassSet(Set):
         Returns numbered pitch-class set.
         '''
         tokens = (pitch_class.multiply(n) for pitch_class in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
 
     def order_by(self, pitch_class_segment):
         from abjad.tools import pitchtools
@@ -206,4 +206,4 @@ class PitchClassSet(Set):
         r'''Transpose all pitch classes in self by `expr`.
         '''
         tokens = (pitch_class + expr for pitch_class in self)
-        return self.new(tokens=tokens)
+        return self.__makenew__(tokens=tokens)
