@@ -37,7 +37,6 @@ class LilyPondFormatManager(object):
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
-        from abjad.tools import systemtools
         from abjad.tools.agenttools.InspectionAgent import inspect
         manager = LilyPondFormatManager
         expressions = []
@@ -109,11 +108,6 @@ class LilyPondFormatManager(object):
                 indicatortools.Articulation,
                 ):
                 format_slot_subsection = 'articulations'
-            elif isinstance(
-                nonscoped_expression.indicator, 
-                indicatortools.BarLine,
-                ):
-                format_slot_subsection = 'commands'
             elif isinstance(
                 nonscoped_expression.indicator, 
                 indicatortools.BendAfter,

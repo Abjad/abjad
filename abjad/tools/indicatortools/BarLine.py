@@ -34,16 +34,19 @@ class BarLine(AbjadObject):
 
     __slots__ = (
         '_abbreviation',
+        '_default_scope',
         '_format_slot',
         )
 
-    _format_slot = 'after'
+    _format_slot = 'closing'
 
     ### INITIALIZER ##
 
     def __init__(self, abbreviation='|'):
+        from abjad.tools import scoretools
         assert isinstance(abbreviation, str), repr(abbreviation)
         self._abbreviation = abbreviation
+        self._default_scope = scoretools.Staff
 
     ### SPECIAL METHODS ###
 
