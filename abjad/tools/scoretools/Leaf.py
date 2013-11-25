@@ -28,7 +28,6 @@ class Leaf(Component):
         '_leaf_index',
         '_written_duration',
         '_written_pitch_indication_is_nonsemantic',
-        '_written_pitch_indication_is_at_sounding_pitch',
         'after_grace',
         'grace',
         )
@@ -43,7 +42,6 @@ class Leaf(Component):
         self._leaf_index = None
         self.written_duration = durationtools.Duration(written_duration)
         self.written_pitch_indication_is_nonsemantic = False
-        self.written_pitch_indication_is_at_sounding_pitch = True
 
     ### SPECIAL METHODS ###
 
@@ -635,19 +633,6 @@ class Leaf(Component):
         self._written_duration = rational
 
     @property
-    def written_pitch_indication_is_at_sounding_pitch(self):
-        r'''Returns true when written pitch is at sounding pitch.
-        Returns false when written pitch is transposed.
-        '''
-        return self._written_pitch_indication_is_at_sounding_pitch
-
-    @written_pitch_indication_is_at_sounding_pitch.setter
-    def written_pitch_indication_is_at_sounding_pitch(self, expr):
-        if not isinstance(expr, bool):
-            raise TypeError
-        self._written_pitch_indication_is_at_sounding_pitch = expr
-
-    @property
     def written_pitch_indication_is_nonsemantic(self):
         r'''Returns true when pitch is nonsemantic.
         Returns false otherwise.
@@ -663,5 +648,3 @@ class Leaf(Component):
         if not isinstance(expr, bool):
             raise TypeError
         self._written_pitch_indication_is_nonsemantic = expr
-        if expr is True:
-            self.written_pitch_indication_is_at_sounding_pitch = False
