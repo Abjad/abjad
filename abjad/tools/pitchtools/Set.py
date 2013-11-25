@@ -79,7 +79,7 @@ class Set(TypedFrozenset):
             tokens = [str(x) for x in sorted(self)]
         else:
             tokens = sorted([abs(x) for x in self])
-        return self._storage_format_specification.new(
+        return self._storage_format_specification.__makenew__(
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(

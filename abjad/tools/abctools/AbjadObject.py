@@ -56,26 +56,13 @@ class AbjadObject(object):
 
     ### PRIVATE PROPERTIES ###
 
-#    @property
-#    def _contents_repr_string(self):
-#        result = []
-#        positional_argument_repr_string = \
-#            self._positional_argument_repr_string
-#        if positional_argument_repr_string:
-#            result.append(positional_argument_repr_string)
-#        keyword_argument_repr_string = ', '.join(
-#            self._keyword_argument_name_value_strings)
-#        if keyword_argument_repr_string:
-#            result.append(keyword_argument_repr_string)
-#        return ', '.join(result)
-
     @property
     def _one_line_menuing_summary(self):
         return str(self)
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification.new(
+        return self._storage_format_specification.__makenew__(
             is_indented=False,
             )
 

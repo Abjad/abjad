@@ -44,7 +44,7 @@ class IntervalSegment(Segment):
             tokens = [str(x) for x in self]
         else:
             tokens = [x.number for x in self]
-        return self._storage_format_specification.new(
+        return self._storage_format_specification.__makenew__(
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(

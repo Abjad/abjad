@@ -56,7 +56,7 @@ class QEvent(AbjadObject):
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification.new(
+        return self._storage_format_specification.__makenew__(
             is_indented=False,
             )
 

@@ -63,9 +63,9 @@ class StorageFormatSpecification(AbjadObject):
         else:
             self._tools_package_name = None
 
-    ### PUBLIC METHODS ###
+    ### SPECIAL METHODS ###
 
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         state = {}
         for slot in self.__slots__:
             name = slot[1:]

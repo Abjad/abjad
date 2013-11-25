@@ -40,13 +40,9 @@ class MusicSpecifier(Specifier, TypedList):
 
     ### PRIVATE PROPERTIES ###
 
-#    @property
-#    def _item_class(self):
-#        return MusicContributionSpecifer
-
     @property
     def _repr_specification(self):
-        return self._storage_format_specification.new(
+        return self._storage_format_specification.__makenew__(
             is_indented=False,
             )
 

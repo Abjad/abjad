@@ -73,7 +73,7 @@ class PitchClassSet(Set):
                 self, key=lambda x: x.pitch_class_number)]
         else:
             tokens = sorted([abs(x) for x in self])
-        return self._storage_format_specification.new(
+        return self._storage_format_specification.__makenew__(
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(

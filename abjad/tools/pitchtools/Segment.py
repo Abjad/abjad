@@ -75,7 +75,7 @@ class Segment(TypedTuple):
             tokens = [str(x) for x in self]
         else:
             tokens = [abs(x) for x in self]
-        return self._storage_format_specification.new(
+        return self._storage_format_specification.__makenew__(
             is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(
