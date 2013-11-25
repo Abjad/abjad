@@ -17,10 +17,10 @@ def test_agenttools_InspectionAgent_has_indicator_01():
 def test_agenttools_InspectionAgent_has_indicator_02():
 
     note = Note("c'4")
-    assert not inspect(note).has_indicator(indicatortools.InC)
+    assert not inspect(note).has_indicator(indicatortools.IsAtSoundingPitch)
 
-    attach(indicatortools.InC(), note)
-    assert inspect(note).has_indicator(indicatortools.InC)
+    attach(indicatortools.IsAtSoundingPitch(), note)
+    assert inspect(note).has_indicator(indicatortools.IsAtSoundingPitch)
 
 
 def test_agenttools_InspectionAgent_has_indicator_03():

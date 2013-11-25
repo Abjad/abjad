@@ -31,8 +31,6 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
 
     ::
 
-        >>> for leaf in staff.select_leaves():
-        ...   leaf.written_pitch_indication_is_at_sounding_pitch = False
         >>> instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
         >>> show(staff) # doctest: +SKIP
 
@@ -52,10 +50,8 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
     '''
     from abjad.tools import instrumenttools
 
-    for note_or_chord in iterate(expr).by_class(
-        (scoretools.Note, scoretools.Chord)):
-        if note_or_chord.written_pitch_indication_is_at_sounding_pitch:
-            continue
+    prototype = (scoretools.Note, scoretools.Chord)
+    for note_or_chord in iterate(expr).by_class(prototype):
         instrument = note_or_chord._get_effective_indicator(
             instrumenttools.Instrument)
         if not instrument:
@@ -63,11 +59,12 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
         sounding_pitch = instrument.sounding_pitch_of_written_middle_c
         t_n = pitchtools.NamedPitch('C4') - sounding_pitch
         if isinstance(note_or_chord, scoretools.Note):
-            note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_interval(
-                note_or_chord.written_pitch, t_n)
-            note_or_chord.written_pitch_indication_is_at_sounding_pitch = True
+            note_or_chord.written_pitch = \
+                pitchtools.transpose_pitch_carrier_by_interval(
+                    note_or_chord.written_pitch, t_n)
         elif isinstance(note_or_chord, scoretools.Chord):
-            pitches = [pitchtools.transpose_pitch_carrier_by_interval(pitch, t_n)
-                for pitch in note_or_chord.written_pitches]
+            pitches = [
+                pitchtools.transpose_pitch_carrier_by_interval(pitch, t_n)
+                for pitch in note_or_chord.written_pitches
+                ]
             note_or_chord.written_pitches = pitches
-            note_or_chord.written_pitch_indication_is_at_sounding_pitch = True

@@ -444,8 +444,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        indicator = self.get_effective_indicator(prototype=prototype)
-        return bool(indicator)
+        return self._client._get_effective_indicator(prototype=prototype)
 
     def has_indicator(self, prototype=None):
         r'''True when client has one or more
@@ -453,8 +452,7 @@ class InspectionAgent(abctools.AbjadObject):
 
         Returns boolean.
         '''
-        indicators = self.get_indicators(prototype=prototype)
-        return bool(indicators)
+        return self._client._has_indicator(prototype=prototype)
 
     def is_bar_line_crossing(self):
         r'''True when client crosses bar line.

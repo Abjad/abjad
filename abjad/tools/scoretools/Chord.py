@@ -2,6 +2,7 @@
 import copy
 import re
 from abjad.tools import durationtools
+from abjad.tools import indicatortools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -302,15 +303,15 @@ class Chord(Leaf):
         """
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
-        if self.written_pitch_indication_is_at_sounding_pitch:
+        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
             return self.written_pitches
         else:
             instrument = self._get_effective_indicator(
                 instrumenttools.Instrument)
-            if not instrument:
-                message = 'effective instrument of note can not be determined.'
-                raise ValueError(message)
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            if instrument:
+                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            else:
+                sounding_pitch = pitchtools.NamedPitch('C4')
             interval = pitchtools.NamedPitch('C4') - sounding_pitch
             sounding_pitches = [
                 pitchtools.transpose_pitch_carrier_by_interval(

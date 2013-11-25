@@ -15,6 +15,7 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
         >>> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
         >>> clarinet = instrumenttools.BFlatClarinet()
         >>> attach(clarinet, staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -31,6 +32,7 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
     ::
 
         >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -47,10 +49,8 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
     Returns none.
     '''
     from abjad.tools import instrumenttools
-    for note_or_chord in iterate(expr).by_class(
-        (scoretools.Note, scoretools.Chord)):
-        if not note_or_chord.written_pitch_indication_is_at_sounding_pitch:
-            continue
+    prototype = (scoretools.Note, scoretools.Chord)
+    for note_or_chord in iterate(expr).by_class(prototype):
         instrument = note_or_chord._get_effective_indicator(
             instrumenttools.Instrument)
         if not instrument:
@@ -59,11 +59,12 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
         t_n = pitchtools.NamedPitch('C4') - sounding_pitch
         t_n *= -1
         if isinstance(note_or_chord, scoretools.Note):
-            note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_interval(
-                note_or_chord.written_pitch, t_n)
-            note_or_chord.written_pitch_indication_is_at_sounding_pitch = False
+            note_or_chord.written_pitch = \
+                pitchtools.transpose_pitch_carrier_by_interval(
+                    note_or_chord.written_pitch, t_n)
         elif isinstance(note_or_chord, scoretools.Chord):
-            pitches = [pitchtools.transpose_pitch_carrier_by_interval(pitch, t_n)
-                for pitch in note_or_chord.written_pitches]
+            pitches = [
+                pitchtools.transpose_pitch_carrier_by_interval(pitch, t_n)
+                for pitch in note_or_chord.written_pitches
+                ]
             note_or_chord.written_pitches = pitches
-            note_or_chord.written_pitch_indication_is_at_sounding_pitch = False

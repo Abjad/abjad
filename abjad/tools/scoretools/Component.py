@@ -571,6 +571,10 @@ class Component(AbjadObject):
     def _get_vertical_moment_at(self, offset):
         return selectiontools.VerticalMoment(self, offset)
 
+    def _has_effective_indicator(self, prototype=None):
+        indicator = self._get_effective_indicator(prototype=prototype)
+        return bool(indicator)
+
     def _has_indicator(self, prototype=None):
         indicators = self._get_indicators(prototype=prototype)
         return bool(indicators)

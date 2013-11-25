@@ -2,6 +2,7 @@
 import copy
 import re
 from abjad.tools import durationtools
+from abjad.tools import indicatortools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
@@ -202,11 +203,9 @@ class Note(Leaf):
                 >>> staff = Staff("d''8 e''8 f''8 g''8")
                 >>> piccolo = instrumenttools.Piccolo()
                 >>> attach(piccolo, staff)
-
-            ::
-
                 >>> instrumenttools.transpose_from_sounding_pitch_to_written_pitch(
                 ...     staff)
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -243,15 +242,15 @@ class Note(Leaf):
         '''
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
-        if self.written_pitch_indication_is_at_sounding_pitch:
+        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
             return self.written_pitch
         else:
             instrument = self._get_effective_indicator(
                 instrumenttools.Instrument)
-            if not instrument:
-                message = 'effective instrument can not be determined.'
-                raise Value(message)
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            if instrument:
+                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            else:
+                sounding_pitch = pitchtools.NamedPitch('C4')
             t_n = pitchtools.NamedPitch('C4') - sounding_pitch
             sounding_pitch = \
                 pitchtools.transpose_pitch_carrier_by_interval(
@@ -263,15 +262,15 @@ class Note(Leaf):
         from abjad.tools import instrumenttools
         from abjad.tools import pitchtools
         pitch = pitchtools.NamedPitch(arg)
-        if self.written_pitch_indication_is_at_sounding_pitch:
+        if self._has_effective_indicator(indicatortools.IsAtSoundingPitch):
             self.written_pitch = pitch
         else:
             instrument = self._get_effective_indicator(
                 instrumenttools.Instrument)
-            if not instrument:
-                message = 'effective instrument can not be determined.'
-                raise ValueError(message)
-            sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            if instrument:
+                sounding_pitch = instrument.sounding_pitch_of_written_middle_c
+            else:
+                sounding_pitch = pitchtools.NamedPitch('C4')
             t_n = pitchtools.NamedPitch('C4') - sounding_pitch
             t_n *= -1
             self.written_pitch = \

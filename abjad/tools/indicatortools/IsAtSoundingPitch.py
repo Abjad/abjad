@@ -2,12 +2,12 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class InC(AbjadObject):
+class IsAtSoundingPitch(AbjadObject):
     r'''In C indicator.
 
     ::
 
-        >>> in_c = indicatortools.InC()
+        >>> in_c = indicatortools.IsAtSoundingPitch()
 
     Attach to score or selection to denote music written in C
     instead of at sounding pitch.

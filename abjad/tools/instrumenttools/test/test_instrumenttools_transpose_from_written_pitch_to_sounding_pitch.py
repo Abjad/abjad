@@ -9,15 +9,7 @@ def test_instrumenttools_transpose_from_written_pitch_to_sounding_pitch_01():
     attach(clarinet, staff)
     clarinet.instrument_name_markup = 'Clarinet in B-flat'
     clarinet.short_instrument_name_markup = 'Cl. B-flat'
-
-    for leaf in staff.select_leaves():
-        leaf.written_pitch_indication_is_at_sounding_pitch = False
-
     instrumenttools.transpose_from_written_pitch_to_sounding_pitch(staff)
-
-    for leaf in staff.select_leaves():
-        if isinstance(leaf, (Note, Chord)):
-            assert leaf.written_pitch_indication_is_at_sounding_pitch
 
     assert systemtools.TestManager.compare(
         staff,
