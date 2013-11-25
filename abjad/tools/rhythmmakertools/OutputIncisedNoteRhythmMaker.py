@@ -63,22 +63,12 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
         superclass = super(OutputIncisedNoteRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PRIVATE METHODS ###
-
-    def _make_middle_of_numeric_map_part(self, middle):
-        if 0 < middle:
-            return (middle, )
-        else:
-            return ()
-
-    ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new output-incised note rhythm-maker with `kwargs`.
 
         ::
 
-            >>> new_maker = maker.new(prefix_talea=[-7])
+            >>> new_maker = new(maker, prefix_talea=[-7])
 
         ::
 
@@ -115,7 +105,17 @@ class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):
 
         Returns new output-incised note rhythm-maker.
         '''
-        return OutputIncisedRhythmMaker.new(self, **kwargs)
+        return OutputIncisedRhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PRIVATE METHODS ###
+
+    def _make_middle_of_numeric_map_part(self, middle):
+        if 0 < middle:
+            return (middle, )
+        else:
+            return ()
+
+    ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses output-incised note rhythm-maker:

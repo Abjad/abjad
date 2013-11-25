@@ -10,7 +10,10 @@ def test_ScoreSpecification__set_dynamic_01():
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
-    rhythm = library.sixteenths.new(beam_cells_together=False)
+    rhythm = new(
+        library.sixteenths,
+        beam_cells_together=False,
+        )
     score_specification.set_rhythm(library.note_tokens, contexts=['Voice 1'])
     score_specification.select_leaves('Voice 1').set_dynamic('sfp')
     score = score_specification.interpret()

@@ -124,12 +124,12 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
     ### PUBLIC METHODS ###
 
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new talea rhythm-maker with `kwargs`.
 
         ::
 
-            >>> new_maker = maker.new(prolation_addenda=[1])
+            >>> new_maker = new(maker, prolation_addenda=[1])
 
         ::
 
@@ -162,7 +162,8 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
         Returns new talea rhythm-maker.
         '''
-        return DivisionBurnishedTaleaRhythmMaker.new(self, **kwargs)
+        return DivisionBurnishedTaleaRhythmMaker.__makenew__(
+            self, *args, **kwargs)
 
     def reverse(self):
         r'''Reverses talea rhythm-maker.

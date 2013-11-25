@@ -65,17 +65,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
         superclass = super(DivisionIncisedRestRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PRIVATE METHODS ###
-
-    def _make_middle_of_numeric_map_part(self, middle):
-        if 0 < middle:
-            return (-abs(middle), )
-        else:
-            return ()
-
-    ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new division-incised rest rhythm-maker with `kwargs`.
 
         ::
@@ -97,7 +87,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> new_maker = maker.new(suffix_lengths=[0])
+            >>> new_maker = new(maker, suffix_lengths=[0])
 
         ::
 
@@ -134,7 +124,17 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
 
         Returns new division-incised rest rhythm-maker.
         '''
-        return DivisionIncisedRhythmMaker.new(self, **kwargs)
+        return DivisionIncisedRhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PRIVATE METHODS ###
+
+    def _make_middle_of_numeric_map_part(self, middle):
+        if 0 < middle:
+            return (-abs(middle), )
+        else:
+            return ()
+
+    ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses division-incised rest rhythm-maker.

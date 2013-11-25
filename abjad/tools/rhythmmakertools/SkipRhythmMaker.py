@@ -74,14 +74,12 @@ class SkipRhythmMaker(RhythmMaker):
         superclass = super(SkipRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new skip rhythm-maker with `kwargs`.
 
         ::
 
-            >>> new_maker = maker.new()
+            >>> new_maker = new(maker)
 
         ::
 
@@ -106,7 +104,9 @@ class SkipRhythmMaker(RhythmMaker):
 
         Returns new skip rhythm-maker.
         '''
-        return RhythmMaker.new(self, **kwargs)
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses skip rhythm-maker.

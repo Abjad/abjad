@@ -72,29 +72,12 @@ class TupletMonadRhythmMaker(RhythmMaker):
         superclass = super(TupletMonadRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PRIVATE METHODS ###
-
-    def _make_monad(self, division):
-        numerator, talea_denominator = division
-        power_of_two_denominator = \
-            mathtools.greatest_power_of_two_less_equal(talea_denominator)
-        duration = fractions.Fraction(abs(numerator), talea_denominator)
-        power_of_two_duration = \
-            fractions.Fraction(abs(numerator), power_of_two_denominator)
-        power_of_two_division = (numerator, power_of_two_denominator)
-        tuplet_multiplier = duration / power_of_two_duration
-        leaves = scoretools.make_leaves([0], [power_of_two_division])
-        tuplet = scoretools.Tuplet(tuplet_multiplier, leaves)
-        return tuplet
-
-    ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new tuplet monad rhythm-maker with `kwargs`.
 
         ::
 
-            >>> new_maker = maker.new()
+            >>> new_maker = new(maker)
 
         ::
 
@@ -117,7 +100,24 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
         Returns new tuplet monad rhythm-maker.
         '''
-        return RhythmMaker.new(self, **kwargs)
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PRIVATE METHODS ###
+
+    def _make_monad(self, division):
+        numerator, talea_denominator = division
+        power_of_two_denominator = \
+            mathtools.greatest_power_of_two_less_equal(talea_denominator)
+        duration = fractions.Fraction(abs(numerator), talea_denominator)
+        power_of_two_duration = \
+            fractions.Fraction(abs(numerator), power_of_two_denominator)
+        power_of_two_division = (numerator, power_of_two_denominator)
+        tuplet_multiplier = duration / power_of_two_duration
+        leaves = scoretools.make_leaves([0], [power_of_two_division])
+        tuplet = scoretools.Tuplet(tuplet_multiplier, leaves)
+        return tuplet
+
+    ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses tuplet monad rhythm-maker.

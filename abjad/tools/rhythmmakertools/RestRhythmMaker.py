@@ -132,14 +132,12 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         superclass = super(RestRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new rest rhythm-maker with `kwargs`.
 
         ::
 
-            >>> new_maker = maker.new()
+            >>> new_maker = new(maker)
 
         ::
 
@@ -166,7 +164,10 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
         Returns new rest rhythm-maker.
         '''
-        return DivisionIncisedRestRhythmMaker.new(self, **kwargs)
+        return DivisionIncisedRestRhythmMaker.__makenew__(
+            self, *args, **kwargs)
+
+    ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses rest rhythm-maker.

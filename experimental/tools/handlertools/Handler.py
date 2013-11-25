@@ -35,6 +35,10 @@ class Handler(abctools.AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __makenew__(self, *args, **kwargs):
+        new = type(self)(*args, **kwargs)
+        return new
+
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -50,9 +54,3 @@ class Handler(abctools.AbjadObject):
                 last_keep_index = len(sequence) - i
                 break
         return sequence[first_keep_index:last_keep_index]
-
-    ### PUBLIC METHODS ###
-
-    def new(self, *args, **kwargs):
-        new = type(self)(*args, **kwargs)
-        return new

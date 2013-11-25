@@ -43,19 +43,7 @@ class Expression(AbjadObject):
         '''
         return hash(repr(self))
 
-    ### PUBLIC METHODS ###
-
-    @abc.abstractmethod
-    def evaluate(self):
-        r'''Evaluate expression.
-
-        Returns new expression when evaluable.
-
-        Returns none when nonevaluable.
-        '''
-        pass
-
-    def new(self, **kwargs):
+    def __makenew__(self, **kwargs):
         r'''Initialize new expression with `kwargs`.
         '''
         from abjad.tools import systemtools
@@ -80,3 +68,15 @@ class Expression(AbjadObject):
         result = type(
             self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
+
+    ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def evaluate(self):
+        r'''Evaluate expression.
+
+        Returns new expression when evaluable.
+
+        Returns none when nonevaluable.
+        '''
+        pass

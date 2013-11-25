@@ -135,14 +135,12 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         superclass = super(NoteRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new note rhythm-maker.
 
         ::
 
-            >>> new_maker = maker.new(decrease_durations_monotonically=False)
+            >>> new_maker = new(maker, decrease_durations_monotonically=False)
 
         ::
 
@@ -171,7 +169,10 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         Returns new note rhythm-maker.
         '''
-        return DivisionIncisedNoteRhythmMaker.new(self, **kwargs)
+        return DivisionIncisedNoteRhythmMaker.__makenew__(
+            self, *args, **kwargs)
+
+    ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses note rhythm-maker.

@@ -123,6 +123,42 @@ class EvenRunRhythmMaker(RhythmMaker):
         superclass = super(EvenRunRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
+    def __makenew__(self, *args, **kwargs):
+        r'''Creates new even-run rhythm-maker with `kwargs`.
+
+        ::
+
+            >>> new_maker = new(maker, denominator_multiplier_exponent=0)
+
+        ::
+
+            >>> print format(new_maker)
+            rhythmmakertools.EvenRunRhythmMaker(
+                denominator_multiplier_exponent=0,
+                beam_each_cell=True,
+                beam_cells_together=False,
+                )
+
+        ::
+
+            >>> divisions = [(4, 8), (3, 4), (2, 4)]
+            >>> lists = new_maker(divisions)
+            >>> music = sequencetools.flatten_sequence(lists)
+            >>> measures = \
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = scoretools.RhythmicStaff(measures)
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Returns new even-run rhythm-maker.
+        '''
+        return RhythmMaker.__makenew__(self, *args, **kwargs)
+
     ### PRIVATE METHODS ###
 
     def _make_container(self, division):
@@ -156,42 +192,6 @@ class EvenRunRhythmMaker(RhythmMaker):
         return self._denominator_multiplier_exponent
 
     ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
-        r'''Creates new even-run rhythm-maker with `kwargs`.
-
-        ::
-
-            >>> new_maker = maker.new(denominator_multiplier_exponent=0)
-
-        ::
-
-            >>> print format(new_maker)
-            rhythmmakertools.EvenRunRhythmMaker(
-                denominator_multiplier_exponent=0,
-                beam_each_cell=True,
-                beam_cells_together=False,
-                )
-
-        ::
-
-            >>> divisions = [(4, 8), (3, 4), (2, 4)]
-            >>> lists = new_maker(divisions)
-            >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = \
-            ...     scoretools.make_measures_with_full_measure_spacer_skips(
-            ...     divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        Returns new even-run rhythm-maker.
-        '''
-        return RhythmMaker.new(self, **kwargs)
 
     def reverse(self):
         r'''Reverses even-run rhythm-maker:

@@ -75,6 +75,53 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         superclass = super(OutputBurnishedTaleaRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
+    def __makenew__(self, *args, **kwargs):
+        r'''Creates new output-burnished talea rhythm-maker with `kwargs`.
+
+        ::
+
+            >>> new_maker = new(maker, secondary_divisions=[10])
+
+        ::
+
+            >>> print format(new_maker)
+            rhythmmakertools.OutputBurnishedTaleaRhythmMaker(
+                talea=[1, 2, 3],
+                talea_denominator=16,
+                prolation_addenda=[0, 2],
+                lefts=[-1],
+                middles=[0],
+                rights=[-1],
+                left_lengths=[1],
+                right_lengths=[1],
+                secondary_divisions=[10],
+                beam_each_cell=True,
+                beam_cells_together=False,
+                decrease_durations_monotonically=True,
+                tie_split_notes=False,
+                tie_rests=False,
+                )
+
+        ::
+
+            >>> divisions = [(3, 8), (4, 8)]
+            >>> music = new_maker(divisions)
+            >>> music = sequencetools.flatten_sequence(music)
+            >>> measures = \
+            ...     scoretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
+            >>> staff = scoretools.RhythmicStaff(measures)
+            >>> measures = scoretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Returns new output-burnished talea rhythm-maker.
+        '''
+        return BurnishedRhythmMaker.__makenew__(self, *args, **kwargs)
+
     ### PRIVATE METHODS ###
 
     def _burnish_division_parts(self, divisions, quintuplet):
@@ -150,53 +197,6 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         return burnished_divisions
 
     ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
-        r'''Creates new output-burnished talea rhythm-maker with `kwargs`.
-
-        ::
-
-            >>> new_maker = maker.new(secondary_divisions=[10])
-
-        ::
-
-            >>> print format(new_maker)
-            rhythmmakertools.OutputBurnishedTaleaRhythmMaker(
-                talea=[1, 2, 3],
-                talea_denominator=16,
-                prolation_addenda=[0, 2],
-                lefts=[-1],
-                middles=[0],
-                rights=[-1],
-                left_lengths=[1],
-                right_lengths=[1],
-                secondary_divisions=[10],
-                beam_each_cell=True,
-                beam_cells_together=False,
-                decrease_durations_monotonically=True,
-                tie_split_notes=False,
-                tie_rests=False,
-                )
-
-        ::
-
-            >>> divisions = [(3, 8), (4, 8)]
-            >>> music = new_maker(divisions)
-            >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = \
-            ...     scoretools.make_measures_with_full_measure_spacer_skips(
-            ...     divisions)
-            >>> staff = scoretools.RhythmicStaff(measures)
-            >>> measures = scoretools.replace_contents_of_measures_in_expr(
-            ...     staff, music)
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        Returns new output-burnished talea rhythm-maker.
-        '''
-        return BurnishedRhythmMaker.new(self, **kwargs)
 
     def reverse(self):
         r'''Reverses output-burnished talea rhythm-maker:

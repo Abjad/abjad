@@ -162,7 +162,7 @@ class RhythmMaker(Maker):
 
     ### PUBLIC METHODS ###
 
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new rhythm-maker with `kwargs`.
 
         ::
@@ -172,7 +172,7 @@ class RhythmMaker(Maker):
         ::
 
             >>> divisions = [(5, 16), (3, 8)]
-            >>> new_maker = maker.new(decrease_durations_monotonically=False)
+            >>> new_maker = new(maker, decrease_durations_monotonically=False)
             >>> leaf_lists = new_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
@@ -201,13 +201,13 @@ class RhythmMaker(Maker):
 
         Returns new rhythm-maker.
         '''
-        new = copy.deepcopy(self)
+        new_maker = copy.deepcopy(self)
         for key, value in kwargs.iteritems():
             try:
-                setattr(new, key, value)
+                setattr(new_maker, key, value)
             except AttributeError:
-                setattr(new, '_' + key, value)
-        return new
+                setattr(new_maker, '_' + key, value)
+        return new_maker
 
     def reverse(self):
         r'''Reverses rhythm-maker.

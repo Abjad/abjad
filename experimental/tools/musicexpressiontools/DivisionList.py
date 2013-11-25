@@ -259,6 +259,36 @@ class DivisionList(BoundedObject):
         '''
         return len(self.divisions)
 
+    def __makenew__(self, *args, **kwargs):
+        r'''Initialize new division list with ``kwargs``.
+
+        Returns newly constructed division list.
+        '''
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_dictionary = \
+            manager.get_keyword_argument_dictionary(self)
+        positional_argument_dictionary = \
+            manager.get_positional_argument_dictionary(self)
+        for key, value in kwargs.iteritems():
+            if key in positional_argument_dictionary:
+                positional_argument_dictionary[key] = value
+            elif key in keyword_argument_dictionary:
+                keyword_argument_dictionary[key] = value
+            else:
+                raise KeyError(key)
+        positional_argument_values = []
+        positional_argument_names = getattr(
+            self, '_positional_argument_names', None) or \
+            manager.get_positional_argument_names(self)
+        for positional_argument_name in positional_argument_names:
+            positional_argument_value = \
+                positional_argument_dictionary[positional_argument_name]
+            positional_argument_values.append(positional_argument_value)
+        result = type(
+            self)(*positional_argument_values, **keyword_argument_dictionary)
+        return result
+
     def __repr__(self):
         r'''Division list interpreter representation.
 
@@ -453,36 +483,6 @@ class DivisionList(BoundedObject):
 
     ### PUBLIC METHODS ###
 
-    def new(self, **kwargs):
-        r'''Initialize new division list with ``kwargs``.
-
-        Returns newly constructed division list.
-        '''
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_dictionary = \
-            manager.get_keyword_argument_dictionary(self)
-        positional_argument_dictionary = \
-            manager.get_positional_argument_dictionary(self)
-        for key, value in kwargs.iteritems():
-            if key in positional_argument_dictionary:
-                positional_argument_dictionary[key] = value
-            elif key in keyword_argument_dictionary:
-                keyword_argument_dictionary[key] = value
-            else:
-                raise KeyError(key)
-        positional_argument_values = []
-        positional_argument_names = getattr(
-            self, '_positional_argument_names', None) or \
-            manager.get_positional_argument_names(self)
-        for positional_argument_name in positional_argument_names:
-            positional_argument_value = \
-                positional_argument_dictionary[positional_argument_name]
-            positional_argument_values.append(positional_argument_value)
-        result = type(
-            self)(*positional_argument_values, **keyword_argument_dictionary)
-        return result
-
     def reflect(self):
         r'''Reflect division list about axis.
 
@@ -524,7 +524,7 @@ class DivisionList(BoundedObject):
 
         Emit newly constructed division list.
         '''
-        return self.new(divisions=reversed(self.divisions))
+        return self.__makenew__(divisions=reversed(self.divisions))
 
     def rotate(self, rotation):
         r'''Rotate division list by `rotation`.
@@ -568,4 +568,4 @@ class DivisionList(BoundedObject):
         Emit newly constructed division list.
         '''
         divisions = sequencetools.rotate_sequence(self.divisions, rotation)
-        return self.new(divisions=divisions)
+        return self.__makenew__(divisions=divisions)

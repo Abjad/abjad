@@ -12,7 +12,11 @@ def test_CounttimeComponentSelectExpression__time_relation_01():
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
     score_specification.set_divisions([(5, 16)], contexts=['Voice 2'])
     score_specification.set_rhythm(library.note_tokens, contexts=['Voice 1'])
-    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    rhythm = new(
+        library.sixteenths,
+        beam_cells_together=False, 
+        beam_each_cell=True,
+        )
     score_specification.set_rhythm(rhythm, contexts=['Voice 2'])
     division = score_specification.select_divisions('Voice 2')[1:2]
     division.timespan.select_leaves('Voice 2').set_leaf_color('blue')
@@ -36,7 +40,11 @@ def test_CounttimeComponentSelectExpression__time_relation_02():
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
     score_specification.set_divisions([(5, 16)], contexts=['Voice 2'])
     score_specification.set_rhythm(library.note_tokens, contexts=['Voice 1'])
-    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    rhythm = new(
+        library.sixteenths,
+        beam_cells_together=False, 
+        beam_each_cell=True,
+        )
     score_specification.set_rhythm(rhythm, contexts=['Voice 2'])
     division = score_specification.select_divisions('Voice 2')[1:2]
     division.timespan.select_leaves('Voice 2').set_leaf_color('blue')
@@ -60,7 +68,11 @@ def test_CounttimeComponentSelectExpression__time_relation_03():
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
     score_specification.set_divisions([(5, 16)], contexts=['Voice 2'])
     score_specification.set_rhythm(library.note_tokens, contexts=['Voice 1'])
-    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    rhythm = new(
+        library.sixteenths,
+        beam_cells_together=False, 
+        beam_each_cell=True,
+        )
     score_specification.set_rhythm(rhythm, contexts=['Voice 2'])
     division = score_specification.select_divisions('Voice 2')[1:2]
     division.timespan.select_leaves('Voice 2').set_leaf_color('blue')
@@ -84,7 +96,11 @@ def test_CounttimeComponentSelectExpression__time_relation_04():
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
     score_specification.set_divisions([(5, 16)], contexts=['Voice 2'])
     score_specification.set_rhythm(library.note_tokens, contexts=['Voice 1'])
-    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    rhythm = new(
+        library.sixteenths,
+        beam_cells_together=False, 
+        beam_each_cell=True,
+        )
     score_specification.set_rhythm(rhythm, contexts=['Voice 2'])
     division = score_specification.select_divisions('Voice 2')[1:2]
     division.timespan.select_leaves('Voice 2').set_leaf_color('blue')
@@ -108,7 +124,11 @@ def test_CounttimeComponentSelectExpression__time_relation_05():
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
     score_specification.set_divisions([(5, 16)], contexts=['Voice 2'])
     score_specification.set_rhythm(library.note_tokens, contexts=['Voice 1'])
-    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    rhythm = new(
+        library.sixteenths,
+        beam_cells_together=False, 
+        beam_each_cell=True,
+        )
     score_specification.set_rhythm(rhythm, contexts=['Voice 2'])
     division = score_specification.select_divisions('Voice 2')[1:2]
     division.timespan.select_leaves('Voice 2').set_leaf_color('blue')
@@ -132,7 +152,11 @@ def test_CounttimeComponentSelectExpression__time_relation_06():
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
     score_specification.set_divisions([(5, 16)], contexts=['Voice 2'])
     score_specification.set_rhythm(library.note_tokens, contexts=['Voice 1'])
-    rhythm = library.sixteenths.new(beam_cells_together=False, beam_each_cell=True)
+    rhythm = new(
+        library.sixteenths,
+        beam_cells_together=False, 
+        beam_each_cell=True,
+        )
     score_specification.set_rhythm(rhythm, contexts=['Voice 2'])
     division = score_specification.select_divisions('Voice 2')[1:2]
     division.timespan.select_leaves('Voice 2').set_leaf_color('blue')

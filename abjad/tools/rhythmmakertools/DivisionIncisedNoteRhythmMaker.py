@@ -153,22 +153,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         superclass = super(DivisionIncisedNoteRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PRIVATE METHODS ###
-
-    def _make_middle_of_numeric_map_part(self, middle):
-        if 0 < middle:
-            if self.body_ratio is not None:
-                shards = mathtools.divide_number_by_ratio(
-                    middle, self.body_ratio)
-                return tuple(shards)
-            else:
-                return (middle, )
-        else:
-            return ()
-
-    ### PUBLIC METHODS ###
-
-    def new(self, **kwargs):
+    def __makenew__(self, *args, **kwargs):
         r'''Creates new division-incised note rhythm-maker with `kwargs`.
 
         ::
@@ -191,7 +176,7 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         ::
 
-            >>> new_maker = maker.new(prefix_lengths=[1])
+            >>> new_maker = new(maker, prefix_lengths=[1])
 
         ::
 
@@ -229,7 +214,22 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
 
         Returns new division-incised note rhythm-maker.
         '''
-        return DivisionIncisedRhythmMaker.new(self, **kwargs)
+        return DivisionIncisedRhythmMaker.__makenew__(self, *args, **kwargs)
+
+    ### PRIVATE METHODS ###
+
+    def _make_middle_of_numeric_map_part(self, middle):
+        if 0 < middle:
+            if self.body_ratio is not None:
+                shards = mathtools.divide_number_by_ratio(
+                    middle, self.body_ratio)
+                return tuple(shards)
+            else:
+                return (middle, )
+        else:
+            return ()
+
+    ### PUBLIC METHODS ###
 
     def reverse(self):
         r'''Reverses division-incised note rhythm-maker.
