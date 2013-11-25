@@ -26,7 +26,7 @@ def detach(prototype, component_expression):
                 if isinstance(x, prototype):
                     component_expression._indicators.remove(x)
                     result.append(x)
-                # indicator is a wrapper
+                # indicator is a expression
                 elif hasattr(x, 'indicator') and \
                     isinstance(x.indicator, prototype):
                     x._detach()
@@ -45,7 +45,7 @@ def detach(prototype, component_expression):
                 if x == prototype:
                     component_expression._indicators.remove(x)
                     result.append(x)
-                # indicator is a wrapper
+                # indicator is a expression
                 elif hasattr(x, 'indicator') and x.indicator == prototype:
                     x._detach()
                     result.append(x.indicator)

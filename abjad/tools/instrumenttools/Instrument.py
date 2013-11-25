@@ -148,7 +148,7 @@ class Instrument(AbjadObject):
         return (
             )
 
-    # TODO: _scope_name needs to be taken from IndicatorWrapper!
+    # TODO: _scope_name needs to be taken from IndicatorExpression!
     #       should not be stored on instrument.
     @property
     def _lilypond_format(self):

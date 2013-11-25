@@ -43,15 +43,15 @@ class LilyPondFormatManager(object):
         up_markup = []
         down_markup = []
         neutral_markup = []
-        wrappers = []
+        expressions = []
         # organize indicators attached to component
         for indicator in indicators:
             format_slot_subsection = None
-            # store wrappers for later handling
-            #if isinstance(indicator, indicatortools.IndicatorWrapper):
+            # store expressions for later handling
+            #if isinstance(indicator, indicatortools.IndicatorExpression):
             if indicator.scope is not None:
                 if indicator._is_formattable_for_component(component):
-                    wrappers.append(indicator)
+                    expressions.append(indicator)
                 continue
             
             indicator = indicator.indicator
@@ -91,18 +91,18 @@ class LilyPondFormatManager(object):
             contributions.append(contribution)
             if format_slot_subsection == 'articulations':
                 contributions.sort()
-        # add formattable wrappers attached to parents of component
+        # add formattable expressions attached to parents of component
         for parent in inspect(component).get_parentage(include_self=False):
             for indicator in parent._get_indicators():
-                if isinstance(indicator, indicatortools.IndicatorWrapper):
-                    if indicator in wrappers:
+                if isinstance(indicator, indicatortools.IndicatorExpression):
+                    if indicator in expressions:
                         continue
                     if indicator._is_formattable_for_component(component):
-                        wrappers.append(indicator)
-        # bundle wrapper contributions
-        for wrapper in wrappers:
-            format_pieces = wrapper._get_format_pieces()
-            format_slot = wrapper.indicator._format_slot
+                        expressions.append(indicator)
+        # bundle expression contributions
+        for expression in expressions:
+            format_pieces = expression._get_format_pieces()
+            format_slot = expression.indicator._format_slot
             bundle.get(format_slot).indicators.extend(format_pieces)
         # bundle markup contributions
         for markup_list in (up_markup, down_markup, neutral_markup):

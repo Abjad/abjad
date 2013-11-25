@@ -4,8 +4,8 @@ import types
 from abjad.tools.abctools import AbjadObject
 
 
-class IndicatorWrapper(AbjadObject):
-    r'''An indicator wrapper.
+class IndicatorExpression(AbjadObject):
+    r'''An indicator expression.
     '''
 
     ### CLASS VARIABLES ###
@@ -37,13 +37,13 @@ class IndicatorWrapper(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self):
-        r'''Copies indicator wrapper.
+        r'''Copies indicator expression.
 
         Note that indicator and scope are copied
         but that start component is not copied.
         This is to avoid start component reference problems.
 
-        Returns new indicator wrapper.
+        Returns new indicator expression.
         '''
         new = type(self)(
             copy.copy(self.indicator),
@@ -53,8 +53,8 @@ class IndicatorWrapper(AbjadObject):
         return new
             
     def __eq__(self, arg):
-        r'''True when arg is an indicator wrapper with indicator and
-        scope equal to those of this indicator wrapper. Otherwise false.
+        r'''True when arg is an indicator expression with indicator and
+        scope equal to those of this indicator expression. Otherwise false.
 
         Returns boolean.
         '''
@@ -65,7 +65,7 @@ class IndicatorWrapper(AbjadObject):
         return False
 
     def __repr__(self):
-        '''Interpreter representation of indicator wrapper.
+        '''Interpreter representation of indicator expression.
 
         Returns string.
         '''
@@ -84,7 +84,7 @@ class IndicatorWrapper(AbjadObject):
         from abjad.tools import indicatortools
         self._unbind_effective_context()
         if correct_effective_context is not None:
-            correct_effective_context._dependent_wrappers.append(self)
+            correct_effective_context._dependent_expressions.append(self)
         self._effective_context = correct_effective_context
         self._update_effective_context()
         if isinstance(self.indicator, indicatortools.Tempo):
@@ -184,7 +184,7 @@ class IndicatorWrapper(AbjadObject):
         effective_context = self._effective_context
         if effective_context is not None:
             try:
-                effective_context._dependent_wrappers.remove(self)
+                effective_context._dependent_expressions.remove(self)
             except ValueError:
                 pass
         self._effective_context = None
@@ -223,7 +223,7 @@ class IndicatorWrapper(AbjadObject):
 
     @property
     def component(self):
-        r'''Start component of indicator wrapper.
+        r'''Start component of indicator expression.
 
         Returns component.
         '''
@@ -231,7 +231,7 @@ class IndicatorWrapper(AbjadObject):
 
     @property
     def indicator(self):
-        r'''Indicator of indicator wrapper.
+        r'''Indicator of indicator expression.
 
         Returns indicator.
         '''
@@ -239,7 +239,7 @@ class IndicatorWrapper(AbjadObject):
 
     @property
     def scope(self):
-        r'''Target context of indicator wrapper.
+        r'''Target context of indicator expression.
 
         Returns context.
         '''

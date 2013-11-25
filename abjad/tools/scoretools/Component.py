@@ -28,7 +28,7 @@ class Component(AbjadObject):
 
     __slots__ = (
         '_indicators',
-        '_dependent_wrappers',
+        '_dependent_expressions',
         '_indicators_are_current',
         '_is_forbidden_to_update',
         '_offsets_are_current',
@@ -51,7 +51,7 @@ class Component(AbjadObject):
     @abc.abstractmethod
     def __init__(self):
         self._indicators = list()
-        self._dependent_wrappers = list()
+        self._dependent_expressions = list()
         self._is_forbidden_to_update = False
         self._indicators_are_current = False
         self._offsets_in_seconds_are_current = False
@@ -190,7 +190,7 @@ class Component(AbjadObject):
                 matching_indicators.append(indicator)
             elif any(indicator == x for x in prototype_objects):
                 matching_indicators.append(indicator)
-            elif isinstance(indicator, indicatortools.IndicatorWrapper):
+            elif isinstance(indicator, indicatortools.IndicatorExpression):
                 if isinstance(indicator.indicator, prototype_classes):
                     matching_indicators.append(indicator)
                 elif any(indicator.indicator == x for x in prototype_objects):
@@ -358,28 +358,28 @@ class Component(AbjadObject):
                     return
         # update indicators of entire score tree if necessary
         self._update_now(indicators=True)
-        # gather candidate wrappers
-        candidate_wrappers = datastructuretools.SortedCollection(
+        # gather candidate expressions
+        candidate_expressions = datastructuretools.SortedCollection(
             key=lambda x: x.component._get_timespan().start_offset
             )
         for parent in self._get_parentage(include_self=True):
-            wrappers = parent._dependent_wrappers[:]
-            for wrapper in parent._indicators:
-                if wrapper.scope is None:
-                    wrappers.append(wrapper)
-            for wrapper in wrappers:
-                if isinstance(wrapper.indicator, prototype):
-                    candidate_wrappers.insert(wrapper)
-        #print candidate_wrappers, 'CW'
-        # elect most recent candidate wrapper
-        if candidate_wrappers:
+            expressions = parent._dependent_expressions[:]
+            for expression in parent._indicators:
+                if expression.scope is None:
+                    expressions.append(expression)
+            for expression in expressions:
+                if isinstance(expression.indicator, prototype):
+                    candidate_expressions.insert(expression)
+        #print candidate_expressions, 'CW'
+        # elect most recent candidate expression
+        if candidate_expressions:
             try:
                 start_offset = self._get_timespan().start_offset
-                wrapper = candidate_wrappers.find_le(start_offset)
+                expression = candidate_expressions.find_le(start_offset)
                 if unwrap:
-                    return wrapper.indicator
+                    return expression.indicator
                 else:
-                    return wrapper
+                    return expression
             except ValueError:
                 pass
 

@@ -23,7 +23,7 @@ def attach(indicator, component_expression, scope=None):
     component = component_expression
     assert isinstance(component, scoretools.Component), repr(component)
 
-    if isinstance(indicator, indicatortools.IndicatorWrapper):
+    if isinstance(indicator, indicatortools.IndicatorExpression):
         scope = scope or indicator.scope
         indicator._detach()
         indicator = indicator.indicator
@@ -31,9 +31,9 @@ def attach(indicator, component_expression, scope=None):
     if hasattr(indicator, '_default_scope'):
         scope = scope or indicator._default_scope
 
-    wrapper = indicatortools.IndicatorWrapper(
+    expression = indicatortools.IndicatorExpression(
         indicator, 
         component,
         scope,
         )
-    wrapper._bind_to_component(component)
+    expression._bind_to_component(component)
