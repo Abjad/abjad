@@ -3,8 +3,8 @@ import abc
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.SetExpression \
-    import SetExpression
+from abjad.tools.topleveltools import new
+from experimental.tools.musicexpressiontools.SetExpression import SetExpression
 
 
 class TimespanScopedSingleContextSetExpression(SetExpression):
@@ -76,7 +76,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         assert self._can_fuse(set_expression)
         stop_offset = self.target_timespan.stop_offset + \
             set_expression.target_timespan.duration
-        target_timespan = self.target_timespan.new(stop_offset=stop_offset)
+        target_timespan = new(self.target_timespan, stop_offset=stop_offset)
         result = self.new(target_timespan=target_timespan)
         return timespantools.TimespanInventory([result])
 

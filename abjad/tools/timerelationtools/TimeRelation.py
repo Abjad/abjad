@@ -54,7 +54,7 @@ class TimeRelation(AbjadObject):
 
     @abc.abstractmethod
     def __call__(self):
-        r'''Evaluate time relation:
+        r'''Evaluates time relation.
 
         ::
 
@@ -146,15 +146,15 @@ class TimeRelation(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def new(self, **kwargs):
-        r'''Initialize new time relation with keyword arguments optionally changed:
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes new time relation with optional `args` and `kwargs`.
 
         ::
 
             >>> time_relation = \
             ...     timerelationtools.timespan_2_stops_when_timespan_1_starts()
             >>> new_time_relation = \
-            ...     time_relation.new(timespan_1=timespantools.Timespan(0, 5))
+            ...     new(time_relation, timespan_1=timespantools.Timespan(0, 5))
 
         ::
 
@@ -184,7 +184,7 @@ class TimeRelation(AbjadObject):
                     ),
                 )
 
-        Returns newly constructed time relation.
+        Returns new time relation.
         '''
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager

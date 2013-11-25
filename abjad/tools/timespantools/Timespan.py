@@ -8,7 +8,7 @@ from abjad.tools.mathtools.BoundedObject import BoundedObject
 
 
 class Timespan(BoundedObject):
-    r'''A closed-open interval.
+    r'''A timespan.
 
     ..  container:: example
 
@@ -19,7 +19,9 @@ class Timespan(BoundedObject):
                 >>> timespan_3 = timespantools.Timespan(-2, 2)
                 >>> timespan_4 = timespantools.Timespan(10, 20)
 
-    Timespans are immutable and treated as value objects.
+    Timespans are closed-open intervals.
+
+    Timespans are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -44,7 +46,7 @@ class Timespan(BoundedObject):
     ### SPECIAL METHODS ###
 
     def __and__(self, expr):
-        r'''Logical AND of two timespans:
+        r'''Logical AND of two timespans.
 
             >>> timespan_1 = timespantools.Timespan(0, 10)
             >>> timespan_2 = timespantools.Timespan(5, 12)
@@ -93,7 +95,7 @@ class Timespan(BoundedObject):
         return timespantools.TimespanInventory([timespan])
 
     def __eq__(self, timespan):
-        r'''True when `timespan` is a timespan with equal offsets:
+        r'''True when `timespan` is a timespan with equal offsets.
 
         ::
 
@@ -135,7 +137,7 @@ class Timespan(BoundedObject):
 
     def __ge__(self, expr):
         r'''True when `expr` start offset is greater or equal
-        to timespan start offset:
+        to timespan start offset.
 
         ::
 
@@ -163,7 +165,7 @@ class Timespan(BoundedObject):
 
     def __gt__(self, expr):
         r'''True when `expr` start offset is greater than
-        timespan start offset:
+        timespan start offset.
 
         ::
 
@@ -191,7 +193,7 @@ class Timespan(BoundedObject):
 
     def __le__(self, expr):
         r'''True when `expr` start offset is less than or equal to
-        timespan start offset:
+        timespan start offset.
 
         ::
 
@@ -218,7 +220,7 @@ class Timespan(BoundedObject):
         return self.start_offset <= expr.start_offset
 
     def __len__(self):
-        r'''Defined equal to ``1`` for all timespans:
+        r'''Defined equal to ``1`` for all timespans.
 
         ::
 
@@ -230,7 +232,7 @@ class Timespan(BoundedObject):
         return 1
 
     def __lt__(self, expr):
-        r'''True when `expr` start offset is less than timespan start offset:
+        r'''True when `expr` start offset is less than timespan start offset.
 
         ::
 
@@ -256,8 +258,43 @@ class Timespan(BoundedObject):
             return False
         return self.start_offset < expr.start_offset
 
+    def __makenew__(self, *args, **kwargs):
+        r'''Makes  new timespan with `args` and `kwargs`.
+
+        ::
+
+            >>> new(timespan_1, stop_offset=Offset(9))
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 1))
+
+        Returns new timespan.
+        '''
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_dictionary = \
+            manager.get_keyword_argument_dictionary(self)
+        positional_argument_dictionary = \
+            manager.get_positional_argument_dictionary(self)
+        for key, value in kwargs.iteritems():
+            if key in positional_argument_dictionary:
+                positional_argument_dictionary[key] = value
+            elif key in keyword_argument_dictionary:
+                keyword_argument_dictionary[key] = value
+            else:
+                raise KeyError(key)
+        positional_argument_values = []
+        positional_argument_names = getattr(
+            self, '_positional_argument_names', None) or \
+            manager.get_positional_argument_names(self)
+        for positional_argument_name in positional_argument_names:
+            positional_argument_value = positional_argument_dictionary[
+                positional_argument_name]
+            positional_argument_values.append(positional_argument_value)
+        result = type(self)(
+            *positional_argument_values, **keyword_argument_dictionary)
+        return result
+
     def __ne__(self, timespan):
-        r'''True when `timespan` is not a timespan with equivalent offsets:
+        r'''True when `timespan` is not a timespan with equivalent offsets.
 
         ::
 
@@ -276,7 +313,7 @@ class Timespan(BoundedObject):
         return not self == timespan
 
     def __or__(self, expr):
-        r'''Logical OR of two timespans:
+        r'''Logical OR of two timespans.
 
         ::
 
@@ -387,7 +424,7 @@ class Timespan(BoundedObject):
         return timespantools.TimespanInventory([timespan])
 
     def __sub__(self, expr):
-        r'''Subtract `expr` from timespan:
+        r'''Subtract `expr` from timespan.
 
         ::
 
@@ -521,7 +558,7 @@ class Timespan(BoundedObject):
         return inventory
 
     def __xor__(self, expr):
-        r'''Logical AND of two timespans:
+        r'''Logical XOR of two timespans.
 
             >>> timespan_1 = timespantools.Timespan(0, 10)
             >>> timespan_2 = timespantools.Timespan(5, 12)
@@ -698,7 +735,7 @@ class Timespan(BoundedObject):
 
     @property
     def axis(self):
-        r'''Arithmetic mean of timespan start- and stop-offsets:
+        r'''Arithmetic mean of timespan start- and stop-offsets.
 
         ::
 
@@ -711,7 +748,7 @@ class Timespan(BoundedObject):
 
     @property
     def duration(self):
-        r'''Get timespan duration:
+        r'''Duration of timespan.
 
         ::
 
@@ -724,7 +761,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_closed(self):
-        r'''False for all timespans:
+        r'''False for all timespans.
 
         ::
 
@@ -737,7 +774,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_half_closed(self):
-        r'''True for all timespans:
+        r'''True for all timespans.
 
         ::
 
@@ -750,7 +787,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_half_open(self):
-        r'''True for all timespans:
+        r'''True for all timespans.
 
         ::
 
@@ -786,7 +823,7 @@ class Timespan(BoundedObject):
 
     @property
     def is_open(self):
-        r'''False for all timespans:
+        r'''False for all timespans.
 
         ::
 
@@ -836,7 +873,7 @@ class Timespan(BoundedObject):
 
     @property
     def offsets(self):
-        r'''Timespan offsets:
+        r'''Timespan offsets.
 
         ::
 
@@ -849,7 +886,7 @@ class Timespan(BoundedObject):
 
     @property
     def start_offset(self):
-        r'''Timespan start offset:
+        r'''Timespan start offset.
 
         ::
 
@@ -862,7 +899,7 @@ class Timespan(BoundedObject):
 
     @property
     def stop_offset(self):
-        r'''Timespan stop offset:
+        r'''Timespan stop offset.
 
         ::
 
@@ -949,7 +986,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def divide_by_ratio(self, ratio):
-        r'''Divide timespan by `ratio`:
+        r'''Divides timespan by `ratio`.
 
         ::
 
@@ -980,7 +1017,7 @@ class Timespan(BoundedObject):
         return tuple(result)
 
     def get_overlap_with_timespan(self, timespan):
-        '''Get duration of overlap with `timespan`:
+        '''Gets duration of overlap with `timespan`.
 
         ::
 
@@ -1151,41 +1188,6 @@ class Timespan(BoundedObject):
                 return True
         return False
 
-    def new(self, **kwargs):
-        r'''Create new timespan with `kwargs`:
-
-        ::
-
-            >>> timespan_1.new(stop_offset=Offset(9))
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 1))
-
-        Returns new timespan.
-        '''
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_dictionary = \
-            manager.get_keyword_argument_dictionary(self)
-        positional_argument_dictionary = \
-            manager.get_positional_argument_dictionary(self)
-        for key, value in kwargs.iteritems():
-            if key in positional_argument_dictionary:
-                positional_argument_dictionary[key] = value
-            elif key in keyword_argument_dictionary:
-                keyword_argument_dictionary[key] = value
-            else:
-                raise KeyError(key)
-        positional_argument_values = []
-        positional_argument_names = getattr(
-            self, '_positional_argument_names', None) or \
-            manager.get_positional_argument_names(self)
-        for positional_argument_name in positional_argument_names:
-            positional_argument_value = positional_argument_dictionary[
-                positional_argument_name]
-            positional_argument_values.append(positional_argument_value)
-        result = type(self)(
-            *positional_argument_values, **keyword_argument_dictionary)
-        return result
-
     def overlaps_all_of_timespan(self, timespan):
         r'''True when timespan overlaps all of `timespan`. Otherwise false:
 
@@ -1323,7 +1325,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def reflect(self, axis=None):
-        r'''Reverse timespan about `axis`.
+        r'''Reflects timespan about `axis`.
 
         ..  container:: example
 
@@ -1343,7 +1345,7 @@ class Timespan(BoundedObject):
                 >>> timespantools.Timespan(3, 6).reflect(axis=Offset(10))
                 Timespan(start_offset=Offset(14, 1), stop_offset=Offset(17, 1))
 
-        Emit newly constructed timespan.
+        Emits new timespan.
         '''
         if axis is None:
             axis = self.axis
@@ -1354,7 +1356,7 @@ class Timespan(BoundedObject):
         return self.set_offsets(new_start_offset, new_stop_offset)
 
     def round_offsets(self, multiplier, anchor=Left, must_be_well_formed=True):
-        '''Round timespan offsets to multiple of `multiplier`:
+        '''Rounds timespan offsets to multiple of `multiplier`.
 
         ::
 
@@ -1387,7 +1389,7 @@ class Timespan(BoundedObject):
             ...     )
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(0, 1))
 
-        Emit newly constructed timespan.
+        Emits new timespan.
         '''
         multiplier = abs(durationtools.Multiplier(multiplier))
         assert 0 < multiplier
@@ -1400,13 +1402,13 @@ class Timespan(BoundedObject):
                 new_stop_offset = new_stop_offset + multiplier
             else:
                 new_start_offset = new_start_offset - multiplier
-        return self.new(
+        return self.__makenew__(
             start_offset=new_start_offset,
             stop_offset=new_stop_offset,
             )
 
     def scale(self, multiplier, anchor=Left):
-        r'''Scale timespan by `multiplier`.
+        r'''Scales timespan by `multiplier`.
 
             >>> timespan = timespantools.Timespan(3, 6)
 
@@ -1428,7 +1430,7 @@ class Timespan(BoundedObject):
                 >>> timespan.scale(Multiplier(2), anchor=Right)
                 Timespan(start_offset=Offset(0, 1), stop_offset=Offset(6, 1))
 
-        Emit newly constructed timespan.
+        Emits new timespan.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         assert 0 < multiplier
@@ -1445,7 +1447,7 @@ class Timespan(BoundedObject):
         return result
 
     def set_duration(self, duration):
-        r'''Set timespan duration to `duration`:
+        r'''Sets timespan duration to `duration`.
 
         ::
 
@@ -1456,7 +1458,7 @@ class Timespan(BoundedObject):
             >>> timespan.set_duration(Duration(3, 5))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(11, 10))
 
-        Emit newly constructed timespan.
+        Emits new timespan.
         '''
         duration = durationtools.Duration(duration)
         new_stop_offset = self.start_offset + duration
@@ -1464,8 +1466,8 @@ class Timespan(BoundedObject):
         return result
 
     def set_offsets(self, start_offset=None, stop_offset=None):
-        r'''Set timespan start offset to `start_offset` and
-        stop offset to `stop_offset`:
+        r'''Sets timespan start offset to `start_offset` and
+        stop offset to `stop_offset`.
 
         ::
 
@@ -1476,21 +1478,21 @@ class Timespan(BoundedObject):
             >>> timespan.set_offsets(stop_offset=Offset(7, 8))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(7, 8))
 
-        Subtract negative `start_offset` from existing stop offset:
+        Subtracts negative `start_offset` from existing stop offset:
 
         ::
 
             >>> timespan.set_offsets(start_offset=Offset(-1, 2))
             Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 2))
 
-        Subtract negative `stop_offset` from existing stop offset:
+        Subtracts negative `stop_offset` from existing stop offset:
 
         ::
 
             >>> timespan.set_offsets(stop_offset=Offset(-1, 2))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
 
-        Emit newly constructed timespan.
+        Emits new timespan.
         '''
         if start_offset is not None and 0 <= start_offset:
             new_start_offset = start_offset
@@ -2114,7 +2116,7 @@ class Timespan(BoundedObject):
                 timespan, self)
 
     def stretch(self, multiplier, anchor=None):
-        r'''Stretch timespan by `multiplier` relative to `anchor`.
+        r'''Stretches timespan by `multiplier` relative to `anchor`.
 
         .. container:: example
 
@@ -2172,7 +2174,7 @@ class Timespan(BoundedObject):
         return type(self)(new_start_offset, new_stop_offset)
 
     def translate(self, translation=None):
-        r'''Translate timespan by `translation`.
+        r'''Translates timespan by `translation`.
 
             >>> timespan = timespantools.Timespan(5, 10)
 
@@ -2181,7 +2183,7 @@ class Timespan(BoundedObject):
             >>> timespan.translate(2)
             Timespan(start_offset=Offset(7, 1), stop_offset=Offset(12, 1))
 
-        Emit newly constructed timespan.
+        Emits new timespan.
         '''
         return self.translate_offsets(translation, translation)
 
@@ -2190,7 +2192,7 @@ class Timespan(BoundedObject):
         start_offset_translation=None,
         stop_offset_translation=None,
         ):
-        r'''Translate timespan start offset by `start_offset_translation` and
+        r'''Translates timespan start offset by `start_offset_translation` and
         stop offset by `stop_offset_translation`:
 
         ::
@@ -2203,7 +2205,7 @@ class Timespan(BoundedObject):
             ...     start_offset_translation=Duration(-1, 8))
             Timespan(start_offset=Offset(3, 8), stop_offset=Offset(3, 2))
 
-        Emit newly constructed timespan.
+        Emits new timespan.
         '''
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0

@@ -72,6 +72,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import parse
 from abjad.tools.topleveltools import play
