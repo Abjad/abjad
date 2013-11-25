@@ -435,10 +435,10 @@ class PayloadTree(AbjadObject):
         Returns tuple of one or more nodes.
         '''
         result = [self]
-        cur = self.parent
-        while cur is not None:
-            result.append(cur)
-            cur = cur.parent
+        current = self.parent
+        while current is not None:
+            result.append(current)
+            current = current.parent
         return tuple(result)
 
     @property
@@ -458,7 +458,6 @@ class PayloadTree(AbjadObject):
         Returns nonnegative integer.
         '''
         if self.parent is not None:
-            #return self.parent._children.index(self)
             return self.parent.index(self)
         else:
             return None

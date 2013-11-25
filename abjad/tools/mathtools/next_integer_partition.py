@@ -73,16 +73,16 @@ def _validate_input(integer_partition):
     (8, 1, 2, 2) is not.
 
     '''
-    prev = None
-    for cur in integer_partition:
-        if not isinstance(cur, int):
+    previous = None
+    for current in integer_partition:
+        if not isinstance(current, int):
             message = 'must be integer.'
             raise TypeError(message)
-        if not 0 < cur:
+        if not 0 < current:
             message = 'must be positive.'
             raise ValueError(message)
-        if prev is not None:
-            if not cur <= prev:
+        if previous is not None:
+            if not current <= previous:
                 message = 'parts must decrease monotonically.'
                 raise ValueError(message)
 

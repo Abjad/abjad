@@ -55,12 +55,12 @@ def is_monotonically_increasing_sequence(expr):
     '''
 
     try:
-        prev = None
-        for cur in expr:
-            if prev is not None:
-                if not prev <= cur:
+        previous = None
+        for current in expr:
+            if previous is not None:
+                if not previous <= current:
                     return False
-            prev = cur
+            previous = current
         return True
 
     except TypeError:

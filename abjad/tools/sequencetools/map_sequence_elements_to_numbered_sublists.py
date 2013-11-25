@@ -27,13 +27,13 @@ def map_sequence_elements_to_numbered_sublists(sequence):
         raise ValueError
 
     result = []
-    cur = 1
+    current = 1
 
     for length in sequence:
         abs_length = abs(length)
-        part = range(cur, cur + abs_length)
+        part = range(current, current + abs_length)
         part = [mathtools.sign(length) * x for x in part]
         result.append(part)
-        cur += abs_length
+        current += abs_length
 
     return result

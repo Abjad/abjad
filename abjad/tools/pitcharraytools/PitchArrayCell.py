@@ -61,7 +61,7 @@ class PitchArrayCell(AbjadObject):
 
     ::
 
-        >>> cell.prev
+        >>> cell.previous
         PitchArrayCell(x1)
 
     ::
@@ -298,7 +298,7 @@ class PitchArrayCell(AbjadObject):
         self._pitches = arg
 
     @property
-    def prev(self):
+    def previous(self):
         if self.parent_row is not None:
             if self.is_first_in_row:
                 message = 'cell is first in row.'

@@ -12,9 +12,9 @@ def iterate_sequence_pairwise_strict(sequence):
     Returns pair generator.
     '''
 
-    prev = None
+    previous = None
     for x in sequence:
-        cur = x
-        if prev is not None:
-            yield prev, cur
-        prev = cur
+        current = x
+        if previous is not None:
+            yield previous, current
+        previous = current

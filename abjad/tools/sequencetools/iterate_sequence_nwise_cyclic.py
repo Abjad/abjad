@@ -34,12 +34,12 @@ def iterate_sequence_nwise_cyclic(sequence, n):
             yield tuple(element_buffer[-n:])
 
     len_sequence = len(element_buffer)
-    cur = len_sequence - n + 1
+    current = len_sequence - n + 1
     while True:
         output = []
         for local_offset in range(n):
-            index = (cur + local_offset) % len_sequence
+            index = (current + local_offset) % len_sequence
             output.append(element_buffer[index])
         yield tuple(output)
-        cur += 1
-        cur %= len_sequence
+        current += 1
+        current %= len_sequence

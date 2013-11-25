@@ -26,8 +26,8 @@ def cumulative_signed_weights(sequence):
 
     for x in sequence:
         try:
-            next_element = abs(prev) + abs(x)
-            previous_sign = mathtools.sign(prev)
+            next_element = abs(previous) + abs(x)
+            previous_sign = mathtools.sign(previous)
         except NameError:
             next_element = abs(x)
             previous_sign = 0
@@ -37,6 +37,6 @@ def cumulative_signed_weights(sequence):
         elif sign_x == 0:
             next_element *= previous_sign
         result.append(next_element)
-        prev = next_element
+        previous = next_element
 
     return result

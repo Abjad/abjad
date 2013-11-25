@@ -12,7 +12,7 @@ def test_pitcharraytools_PitchArrayCell_previous_01():
     [      ] [] []
     '''
 
-    assert array[0][1].prev is array[0][0]
+    assert array[0][1].previous is array[0][0]
 
 
 def test_pitcharraytools_PitchArrayCell_previous_02():
@@ -24,11 +24,11 @@ def test_pitcharraytools_PitchArrayCell_previous_02():
     [      ] [] []
     '''
 
-    assert pytest.raises(IndexError, 'array[0][0].prev')
+    assert pytest.raises(IndexError, 'array[0][0].previous')
 
 
 def test_pitcharraytools_PitchArrayCell_previous_03():
 
     cell = pitcharraytools.PitchArrayCell([NamedPitch(1)])
 
-    assert pytest.raises(IndexError, 'cell.prev')
+    assert pytest.raises(IndexError, 'cell.previous')

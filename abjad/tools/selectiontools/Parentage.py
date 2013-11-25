@@ -286,11 +286,11 @@ class Parentage(SimultaneousSelection):
         Returns tuple of zero or more nonnegative integers.
         '''
         result = []
-        cur = self[0]
+        current = self[0]
         for parent in self[1:]:
-            index = parent.index(cur)
+            index = parent.index(current)
             result.insert(0, index)
-            cur = parent
+            current = parent
         result = tuple(result)
         return result
 

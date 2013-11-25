@@ -318,7 +318,7 @@ class VerticalMoment(SimultaneousSelection):
 
     @property
     def previous_vertical_moment(self):
-        r'''Reference to prev vertical moment backward in time.
+        r'''Reference to previous vertical moment backward in time.
         '''
         from abjad.tools import scoretools
         from abjad.tools import scoretools

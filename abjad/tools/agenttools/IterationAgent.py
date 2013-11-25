@@ -1350,7 +1350,7 @@ class IterationAgent(abctools.AbjadObject):
                     return None, None
 
         def _previous_node_depth_first(component, total=0):
-            r'''If client has unvisited music, return prev unvisited node in
+            r'''If client has unvisited music, return previous unvisited node in
             client's music.
 
             If client has no univisited music and has a parent, return client's
