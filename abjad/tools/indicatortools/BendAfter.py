@@ -55,9 +55,9 @@ class BendAfter(AbjadObject):
 
         Returns boolean.
         '''
-        assert isinstance(expr, type(self))
-        if self.bend_amount == expr.bend_amount:
-            return True
+        if isinstance(expr, type(self)):
+            if self.bend_amount == expr.bend_amount:
+                return True
         return False
 
     def __str__(self):

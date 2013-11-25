@@ -36,10 +36,13 @@ class LilyPondFormatManager(object):
     def _populate_indicator_format_contributions(component, bundle):
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
+        from abjad.tools import scoretools
         from abjad.tools import systemtools
         from abjad.tools.agenttools.InspectionAgent import inspect
         manager = LilyPondFormatManager
-        expressions = component._get_indicators(unwrap=False)
+        expressions = []
+        for parent in inspect(component).get_parentage(include_self=True):
+            expressions.extend(inspect(parent).get_indicators(unwrap=False))
         up_markup = []
         down_markup = []
         neutral_markup = []
@@ -49,6 +52,12 @@ class LilyPondFormatManager(object):
         for expression in expressions:
             # skip nonprinting indicators like annotation
             if not hasattr(expression.indicator, '_lilypond_format'):
+                pass
+            # skip comments and commands unless attached directly to us
+            elif expression.scope is None and \
+                hasattr(expression.indicator, '_format_leaf_children') and \
+                not getattr(expression.indicator, '_format_leaf_children') and\
+                expression.component is not component:
                 pass
             # store markup
             elif isinstance(expression.indicator, markuptools.Markup):
@@ -89,14 +98,6 @@ class LilyPondFormatManager(object):
                     format_pieces = markup_list[0]._get_format_pieces()
                     bundle.right.markup[:] = format_pieces
         # handle scoped expressions
-        for parent in inspect(component).get_parentage(include_self=False):
-            for indicator in parent._get_indicators():
-                if isinstance(indicator, indicatortools.IndicatorExpression):
-                    if indicator in scoped_expressions:
-                        raise Exception
-                        continue
-                    if indicator._is_formattable_for_component(component):
-                        scoped_expressions.append(indicator)
         for scoped_expression in scoped_expressions:
             format_pieces = scoped_expression._get_format_pieces()
             format_slot = scoped_expression.indicator._format_slot

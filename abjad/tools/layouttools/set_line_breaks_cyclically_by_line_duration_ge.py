@@ -7,7 +7,6 @@ def set_line_breaks_cyclically_by_line_duration_ge(
     expr,
     line_duration,
     line_break_class=None,
-    adjust_eol=False,
     add_empty_bars=False,
     ):
     r'''Iterate `line_break_class` instances in `expr` and 
@@ -81,10 +80,6 @@ def set_line_breaks_cyclically_by_line_duration_ge(
         }
 
     When ``line_break_class=None`` set `line_break_class` to measure.
-
-    Set `adjust_eol` to ``True`` to include a magic Scheme incantation
-    to move end-of-line LilyPond TimeSignature and BarLine grobs to
-    the right.
     '''
     from abjad.tools import layouttools
 
@@ -96,6 +91,5 @@ def set_line_breaks_cyclically_by_line_duration_ge(
         line_duration,
         line_break_class,
         'prolated',
-        adjust_eol=adjust_eol,
         add_empty_bars=add_empty_bars,
         )
