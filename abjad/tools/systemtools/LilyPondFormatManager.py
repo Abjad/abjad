@@ -39,72 +39,33 @@ class LilyPondFormatManager(object):
         from abjad.tools import systemtools
         from abjad.tools.agenttools.InspectionAgent import inspect
         manager = LilyPondFormatManager
-        indicators = component._get_indicators(unwrap=False)
+        expressions = component._get_indicators(unwrap=False)
         up_markup = []
         down_markup = []
         neutral_markup = []
-        expressions = []
-        # organize indicators attached to component
-        for indicator in indicators:
-            format_slot_subsection = None
-            # store expressions for later handling
-            #if isinstance(indicator, indicatortools.IndicatorExpression):
-            if indicator.scope is not None:
-                if indicator._is_formattable_for_component(component):
-                    expressions.append(indicator)
-                continue
-            
-            indicator = indicator.indicator
-
-            # skip nonprinting indicators like annotation
-            if not hasattr(indicator, '_lilypond_format'):
-                continue
-            # store markup for later handling
-            if isinstance(indicator, markuptools.Markup):
-                if indicator.direction is Up:
-                    up_markup.append(indicator)
-                elif indicator.direction is Down:
-                    down_markup.append(indicator)
-                elif indicator.direction in (Center, None):
-                    neutral_markup.append(indicator)
-                continue
-            # classify known indicators by subslot
-            if isinstance(indicator, indicatortools.Articulation):
-                format_slot_subsection = 'articulations'
-            elif isinstance(indicator, indicatortools.BarLine):
-                format_slot_subsection = 'commands'
-            elif isinstance(indicator, indicatortools.BendAfter):
-                format_slot_subsection = 'articulations'
-            elif isinstance(indicator, indicatortools.LilyPondCommand):
-                format_slot_subsection = 'commands'
-            elif isinstance(indicator, indicatortools.LilyPondComment):
-                format_slot_subsection = 'comments'
-            elif isinstance(indicator, indicatortools.StemTremolo):
-                format_slot_subsection = 'stem_tremolos'
-            else:
-                message = 'do not know how to classify {!r}.'.format(indicator)
-                raise Exception(message)
-            format_slot = indicator._format_slot
-            format_slot = bundle.get(format_slot)
-            contributions = format_slot.get(format_slot_subsection)
-            contribution = indicator._lilypond_format
-            contributions.append(contribution)
-            if format_slot_subsection == 'articulations':
-                contributions.sort()
-        # add formattable expressions attached to parents of component
-        for parent in inspect(component).get_parentage(include_self=False):
-            for indicator in parent._get_indicators():
-                if isinstance(indicator, indicatortools.IndicatorExpression):
-                    if indicator in expressions:
-                        continue
-                    if indicator._is_formattable_for_component(component):
-                        expressions.append(indicator)
-        # bundle expression contributions
+        scoped_expressions = []
+        nonscoped_expressions = []
+        # classify expressions attached to component
         for expression in expressions:
-            format_pieces = expression._get_format_pieces()
-            format_slot = expression.indicator._format_slot
-            bundle.get(format_slot).indicators.extend(format_pieces)
-        # bundle markup contributions
+            # skip nonprinting indicators like annotation
+            if not hasattr(expression.indicator, '_lilypond_format'):
+                pass
+            # store markup
+            elif isinstance(expression.indicator, markuptools.Markup):
+                if expression.indicator.direction is Up:
+                    up_markup.append(expression.indicator)
+                elif expression.indicator.direction is Down:
+                    down_markup.append(expression.indicator)
+                elif expression.indicator.direction in (Center, None):
+                    neutral_markup.append(expression.indicator)
+            # store scoped expressions
+            elif expression.scope is not None:
+                if expression._is_formattable_for_component(component):
+                    scoped_expressions.append(expression)
+            # store nonscoped expressions
+            else:
+                nonscoped_expressions.append(expression)
+        # handle markup
         for markup_list in (up_markup, down_markup, neutral_markup):
             if not markup_list:
                 continue
@@ -127,6 +88,60 @@ class LilyPondFormatManager(object):
                 else:
                     format_pieces = markup_list[0]._get_format_pieces()
                     bundle.right.markup[:] = format_pieces
+        # handle scoped expressions
+        for parent in inspect(component).get_parentage(include_self=False):
+            for indicator in parent._get_indicators():
+                if isinstance(indicator, indicatortools.IndicatorExpression):
+                    if indicator in scoped_expressions:
+                        raise Exception
+                        continue
+                    if indicator._is_formattable_for_component(component):
+                        scoped_expressions.append(indicator)
+        for scoped_expression in scoped_expressions:
+            format_pieces = scoped_expression._get_format_pieces()
+            format_slot = scoped_expression.indicator._format_slot
+            bundle.get(format_slot).indicators.extend(format_pieces)
+        # handle nonscoped expressions
+        for nonscoped_expression in nonscoped_expressions:
+            if isinstance(
+                nonscoped_expression.indicator, 
+                indicatortools.Articulation,
+                ):
+                format_slot_subsection = 'articulations'
+            elif isinstance(
+                nonscoped_expression.indicator, 
+                indicatortools.BarLine,
+                ):
+                format_slot_subsection = 'commands'
+            elif isinstance(
+                nonscoped_expression.indicator, 
+                indicatortools.BendAfter,
+                ):
+                format_slot_subsection = 'articulations'
+            elif isinstance(
+                nonscoped_expression.indicator, 
+                indicatortools.LilyPondCommand,
+                ):
+                format_slot_subsection = 'commands'
+            elif isinstance(
+                nonscoped_expression.indicator, 
+                indicatortools.LilyPondComment,
+                ):
+                format_slot_subsection = 'comments'
+            elif isinstance(
+                nonscoped_expression.indicator, 
+                indicatortools.StemTremolo,
+                ):
+                format_slot_subsection = 'stem_tremolos'
+            else:
+                message = 'do not know how to classify {!r}.'
+                message = message.format(nonscoped_expression.indicator)
+                raise Exception(message)
+            format_slot = nonscoped_expression.indicator._format_slot
+            format_slot = bundle.get(format_slot)
+            contributions = format_slot.get(format_slot_subsection)
+            contribution = nonscoped_expression.indicator._lilypond_format
+            contributions.append(contribution)
 
     @staticmethod
     def _populate_context_setting_format_contributions(component, bundle):

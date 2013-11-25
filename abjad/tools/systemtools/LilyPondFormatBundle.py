@@ -80,7 +80,7 @@ class LilyPondFormatBundle(AbjadObject):
             return getattr(self, identifier) 
 
         def make_immutable(self):
-            self._articulations = tuple(self.articulations)
+            self._articulations = tuple(sorted(self.articulations))
             self._commands = tuple(self.commands)
             self._comments = tuple(self.comments)
             self._indicators = tuple(self.indicators)
