@@ -11,15 +11,15 @@ def fix_test_case_block_comments():
     # TODO: extend to check for r""" too
     open_comment_re = re.compile(r"(\s*)(r''')(.+)")
     close_comment_re = re.compile(r"(\s*)([}|>]+)(.*)(''')")
-    for path, subdirectories, files in os.walk('.'):
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
         test_modules = []
-        for f in files:
-            if f.startswith('test_') and f.endswith('.py'):
-                test_modules.append(f)
+        for file_name in file_names:
+            if file_name.startswith('test_') and file_name.endswith('.py'):
+                test_modules.append(file_name)
         total_test_modules += len(test_modules)
         for test_module in test_modules:
             total_test_modules += 1
-            full_module_name = os.path.join(path, test_module)
+            full_module_name = os.path.join(directory_path, test_module)
             contained_broken_comment = False
             fp = file(full_module_name, 'r')
             new_lines = []
@@ -41,8 +41,10 @@ def fix_test_case_block_comments():
                     new_lines.append(new_line)
                 elif close_match:
                     groups = close_match.groups()
-                    whitespace, close_bracket, chord_duration, close_quote = groups
-                    new_line = whitespace + close_bracket + chord_duration + '\n'
+                    whitespace, close_bracket, chord_duration, close_quote = \
+                        groups
+                    new_line = \
+                        whitespace + close_bracket + chord_duration + '\n'
                     new_lines.append(new_line)
                     new_line = whitespace + close_quote + '\n'
                     new_lines.append(new_line)
@@ -57,9 +59,9 @@ def fix_test_case_block_comments():
                 fp.write(new_file_string)
                 fp.close()
 
-    print 'total test modules:       {}'.format(total_test_modules)
-    print 'total fixed test modules: {}'.format(total_broken_modules)
-    print 'total fixed comments:     {}'.format(total_broken_comments)
+    print 'Total test modules:       {}'.format(total_test_modules)
+    print 'Total fixed test modules: {}'.format(total_broken_modules)
+    print 'Total fixed comments:     {}'.format(total_broken_comments)
 
 
 if __name__ == '__main__':

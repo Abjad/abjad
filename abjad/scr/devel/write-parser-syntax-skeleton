@@ -29,9 +29,7 @@ if __name__ == '__main__':
     if len(sys.argv) < 4:
         print usage( )
         sys.exit(2)
-
     parser_output_path = sys.argv[1]
     parser_tab_hh_path = sys.argv[2]
     skeleton_path = sys.argv[3]
-
     write(parser_output_path, parser_tab_hh_path, skeleton_path)

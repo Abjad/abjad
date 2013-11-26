@@ -4,29 +4,33 @@ from abjad.tools import systemtools
 
 
 def remove_source_file_terminal_blank_lines():
-    total_source_files_with_blank_lines = 0
+    total_source_file_names_with_blank_lines = 0
     total_blank_lines = 0
-    for path, subdirectories, files in os.walk('.'):
-        for f in files:
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
+        for file_name in file_names:
             found_import_as_statement = False
-            if f.endswith(('.py', '.ly', '.raw', '.rst')):
-                full_file_name = os.path.join(path, f)
-                file_pointer = file(full_file_name, 'r')
+            if file_name.endswith(('.py', '.ly', '.raw', '.rst')):
+                file_path = os.path.join(directory_path, file_name)
+                file_pointer = file(file_path, 'r')
                 lines = file_pointer.readlines()
                 file_pointer.close()
                 if lines:
                     if lines[-1] == '\n':
-                        total_source_files_with_blank_lines += 1
+                        total_source_file_names_with_blank_lines += 1
                         for line in reversed(lines[:]):
                             if line == '\n':
                                 total_blank_lines += 1
                                 lines.pop(-1)
                             else:
                                 break
-                        file_pointer = file(full_file_name, 'w')
+                        file_pointer = file(file_path, 'w')
                         file_pointer.write(''.join(lines))
-    print 'Total source files with terminal blank lines: {}'.format(total_source_files_with_blank_lines)
-    print 'Total source file-terminal blank lines:       {}'.format(total_blank_lines)
+
+    total = total_source_file_names_with_blank_lines
+    print 'Total source file_names with terminal blank lines: {}'.format(total)
+
+    total = total_blank_lines
+    print 'Total source file-terminal blank lines:       {}'.format(total)
     print
 
 
