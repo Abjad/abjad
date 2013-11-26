@@ -10,24 +10,25 @@ from abjad.tools import systemtools
 def find_public_helpers_without_docstrings():
     total_undocumented_helpers = 0
     total_without_close_quote = 0
-    for path, subdirectories, files in os.walk('.'):
-        for f in files:
-            if f.endswith('.py') and not f.startswith('test'):
-                if not f.startswith('_'):
-                    p, q = find_undocumented_helpers_in_file(path, f)
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
+        for file_name in file_names:
+            if file_name.endswith('.py') and not file_name.startswith('test'):
+                if not file_name.startswith('_'):
+                    p, q = find_undocumented_helpers_in_file(
+                        directory_path, file_name)
                     total_undocumented_helpers += p
                     total_without_close_quote += q
     print
-    print 'Total undocumented helpers: %s' % total_undocumented_helpers
-    print 'Total without close quoute: %s' % total_without_close_quote
+    print 'Total undocumented helpers: {}'.format(total_undocumented_helpers)
+    print 'Total without close quoute: {}'.format(total_without_close_quote)
     print
 
 
-def find_undocumented_helpers_in_file(path, f):
-    full_file_name = os.path.join(path, f)
-    module = path.split(os.path.sep)[-1]
-    function = f[:-3]
-    full_function = '%s.%s' % (module, function)
+def find_undocumented_helpers_in_file(directory_path, file_name):
+    full_file_name = os.path.join(directory_path, file_name)
+    module = directory_path.split(os.path.sep)[-1]
+    function = file_name[:-3]
+    full_function = '{}.{}'.format(module, function)
     fp = file(full_file_name, 'r')
     next_line_should_be_docstring = False
     after_close_parenthesis_should_be_docstring = False
@@ -39,7 +40,7 @@ def find_undocumented_helpers_in_file(path, f):
             if line.startswith(("   r'''", "   '''", '   r"""', '   """')):
                 pass
             else:
-                print 'No docstring: %s' % full_function
+                print 'No docstring: {}'.format(full_function)
                 total_undocumented += 1
             next_line_should_be_docstring = False
             after_close_parenthesis_should_be_docstring = False
@@ -56,7 +57,7 @@ def find_undocumented_helpers_in_file(path, f):
         elif waiting_for_close_quote:
             if "'''" in line or '"""' in line:
                 if not line in ("   '''\n", '   """\n'):
-                    print 'No isolated close quote: %s' % full_function
+                    print 'No isolated close quote: {}'.format(full_function)
                     total_without_close_quote += 1
                 waiting_for_close_quote = False
     return total_undocumented, total_without_close_quote
@@ -64,5 +65,6 @@ def find_undocumented_helpers_in_file(path, f):
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    print "Needs to be rewritten entirely to inspect docstrings on live code objects."
+    print 'Rewrite to inspect docstrings on live code objects.'
+    print
     #find_public_helpers_without_docstrings()

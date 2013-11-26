@@ -5,20 +5,27 @@ from abjad.tools import systemtools
 
 
 def list_private_modules():
-    tools_path = os.path.join(abjad_configuration.abjad_directory_path, 'tools')
+    tools_path = os.path.join(
+        abjad_configuration.abjad_directory_path, 
+        'tools',
+        )
     private_module_names = []
-    for path, subdirectories, files in os.walk(tools_path):
-        for f in files:
-            if f.endswith('.py'):
-                if not f == '__init__.py':
-                    if f.startswith('_'):
-                        if f[1].islower():
-                            full_name = os.path.join(path, f)
+    for directory_path, subdirectory_names, file_names in os.walk(tools_path):
+        for file_name in file_names:
+            if file_name.endswith('.py'):
+                if not file_name == '__init__.py':
+                    if file_name.startswith('_'):
+                        if file_name[1].islower():
+                            full_name = os.path.join(
+                                directory_path, 
+                                file_name,
+                                )
                             private_module_names.append(full_name)
     total_private = len(private_module_names)
     for x in private_module_names:
         print x
-    print 'Total private module names: %s' % total_private
+    print
+    print 'Total private module names: {}'.format(total_private)
     print
 
 
