@@ -56,4 +56,3 @@ Pitches
         :numbered:
 
         named_pitches/index
-

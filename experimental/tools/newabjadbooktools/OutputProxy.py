@@ -90,5 +90,3 @@ class OutputProxy(AbjadObject):
     @abc.abstractmethod
     def handle_rest_document_environment(self, document_handler):
         raise NotImplemented
-
-

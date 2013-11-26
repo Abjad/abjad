@@ -148,4 +148,3 @@ Now we can change every D4 to a rest like this:
    >>> show(staff)
 
 .. image:: images/index-4.png
-

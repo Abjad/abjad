@@ -159,4 +159,3 @@ Let's adjust the overall size of our output, and put everything together:
 lilypond_file = make_lilypond_file(Duration(1, 4), 11, 6)
 show(lilypond_file)
 </abjad>
-

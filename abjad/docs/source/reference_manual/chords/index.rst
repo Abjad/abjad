@@ -178,4 +178,3 @@ into it chord in any of the ways described above:
    >>> show(chord)
 
 .. image:: images/index-10.png
-

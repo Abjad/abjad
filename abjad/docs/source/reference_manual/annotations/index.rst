@@ -140,4 +140,3 @@ Use the inspector to the get the value of an annotation in a single call:
 
    >>> inspect(note).get_annotation('is inner voice')
    True
-

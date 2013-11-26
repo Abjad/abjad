@@ -89,4 +89,3 @@ Delete grob overrides you no longer want:
    >>> show(staff)
 
 .. image:: images/index-4.png
-

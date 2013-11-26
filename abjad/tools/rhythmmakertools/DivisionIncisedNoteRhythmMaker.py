@@ -311,4 +311,3 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         Returns division-incised note rhythm-maker.
         '''
         return DivisionIncisedRhythmMaker.reverse(self)
-

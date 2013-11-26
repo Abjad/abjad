@@ -139,4 +139,3 @@ class SearchTree(AbjadObject):
         Returns dictionary.
         '''
         return copy.deepcopy(self._definition)
-

@@ -137,4 +137,3 @@ markup of any instrument:
 
    >>> flute.short_instrument_name_markup
    Markup(('Fl.',))
-

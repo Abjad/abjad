@@ -61,4 +61,3 @@ class Piano(Instrument):
             indicatortools.Clef('treble'), indicatortools.Clef('bass')]
         self._copy_default_starting_clefs_to_default_allowable_clefs()
         self._default_pitch_range = pitchtools.PitchRange(-39, 48)
-

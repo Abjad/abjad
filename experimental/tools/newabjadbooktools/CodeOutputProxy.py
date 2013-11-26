@@ -121,4 +121,3 @@ class CodeOutputProxy(OutputProxy):
         for line in self.payload:
             result.append('\t{}'.format(line))
         return result
-

@@ -294,4 +294,3 @@ But do not appear in notational output:
    >>> show(score)
 
 .. image:: images/index-6.png
-

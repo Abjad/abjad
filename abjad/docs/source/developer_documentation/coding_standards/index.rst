@@ -534,4 +534,3 @@ Prefer new-style string formatting to old-style string interpolation. Use
 ``'string {} content'.format(expr)`` instead of ``'string %s content' % expr``.
 
 Prefer list comprehensions to ``filter()``, ``map()`` and ``apply()``.
-

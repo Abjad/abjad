@@ -300,4 +300,3 @@ The final result:
    >>> show(score)
 
 .. image:: images/index-4.png
-

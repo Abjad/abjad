@@ -94,4 +94,3 @@ class GraphvizOutputProxy(ImageOutputProxy):
             self,
             document_handler,
             )
-

@@ -290,4 +290,3 @@ class LilyPondFile(AbjadObject, list):
     def global_staff_size(self, arg):
         assert isinstance(arg, (int, float, long, type(None)))
         self._global_staff_size = arg
-
