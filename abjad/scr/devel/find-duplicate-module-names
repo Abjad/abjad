@@ -1,12 +1,15 @@
 #! /usr/bin/env python
-
 import os
 from abjad.tools import systemtools
 
 
-def _find_all_duplicate_module_names():
-    all_file_names, all_directory_paths = [], []
-    unique_file_names, duplicate_file_names = [], []
+def find_all_duplicate_module_names():
+
+    all_file_names = []
+    all_directory_paths = []
+    unique_file_names = []
+    duplicate_file_names = []
+
     expected_duplicate_file_names = (
         'conf.py',
         'illustration_builder.py',
@@ -15,10 +18,12 @@ def _find_all_duplicate_module_names():
         'output_material.py',
         'segment_01.py',
         'segment_02.py',
+        'select.py',
         'tags.py', 
         'Voice.py',
         )
-    for directory_path, dir_names, file_names in os.walk('.'):
+
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
         for file_name in file_names:
             if file_name.endswith('.py'):
                 if not file_name.startswith('test_') and \
@@ -30,21 +35,29 @@ def _find_all_duplicate_module_names():
                         if file_name not in unique_file_names:
                             unique_file_names.append(file_name)
                         else:
-                            second_full_path = os.path.join(directory_path, file_name)
+                            second_full_path = os.path.join(
+                                directory_path, 
+                                file_name,
+                                )
                             index = all_file_names.index(file_name)
-                            duplicate_directory_path = all_directory_paths[index]
-                            first_full_path = os.path.join(duplicate_directory_path, file_name)
+                            duplicate_directory_path = \
+                                all_directory_paths[index]
+                            first_full_path = os.path.join(
+                                duplicate_directory_path, 
+                                file_name,
+                                )
                             duplicate_file_names.append(first_full_path)
                             duplicate_file_names.append(second_full_path)
-    print 'Total nontest module names:          {}'.format(len(all_file_names))
-    print 'Unique nontest module names:         {}'.format(len(unique_file_names))
-    print ''
-    print 'Duplicate nontest module names:      {}'.format(len(duplicate_file_names))
+
+    print 'Total nontest modules:     {}'.format(len(all_file_names))
+    print 'Unique nontest modules:    {}'.format(len(unique_file_names))
+    print
+    print 'Duplicate nontest module:  {}'.format(len(duplicate_file_names))
     for duplicate_file_name in duplicate_file_names:
         print duplicate_file_name
-    print ''
+    print
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    _find_all_duplicate_module_names()
+    find_all_duplicate_module_names()
