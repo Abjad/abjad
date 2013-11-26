@@ -110,6 +110,15 @@ class ScoreManager(ScoreManagerObject):
         hidden_section.append(('write cache', 'wc'))
         return menu
 
+    def _make_repository_menu(self):
+        menu = self.session.io_manager.make_menu(where=self._where)
+        command_section = menu.make_command_section()
+        command_section.append(('add', 'add'))
+        command_section.append(('commit', 'ci'))
+        command_section.append(('status', 'st'))
+        command_section.append(('update', 'up'))
+        return menu
+
     def _make_score_selection_menu(self):
         if self.session.is_first_run:
             if hasattr(self, 'start_menu_entries'):
@@ -125,15 +134,6 @@ class ScoreManager(ScoreManagerObject):
         menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         asset_section.menu_entries = menu_entries
-        return menu
-
-    def _make_repository_menu(self):
-        menu = self.session.io_manager.make_menu(where=self._where)
-        command_section = menu.make_command_section()
-        command_section.append(('add', 'add'))
-        command_section.append(('commit', 'ci'))
-        command_section.append(('status', 'st'))
-        command_section.append(('update', 'up'))
         return menu
 
     def _run(
@@ -278,16 +278,21 @@ class ScoreManager(ScoreManagerObject):
     def interactively_make_new_score(self):
         self.score_package_wrangler.interactively_make_asset(rollback=True)
 
+    def interactively_run_tests_on_all_user_scores(self, prompt=True):
+        command = 'pytest {}'.format(
+            self.configuration.user_score_packages_directory_path)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in proc.stdout.readlines()]
+        if lines:
+            self.session.io_manager.display(
+                lines, capitalize_first_character=False)
+        line = 'tests complete.'
+        self.session.io_manager.proceed(line, is_interactive=prompt)
+
     def manage_materials(self):
         self.material_package_wrangler._run(
             rollback=True, 
             head=self.configuration.built_in_material_packages_package_path,
-            )
-
-    def manage_stylesheets(self):
-        self.stylesheet_file_wrangler._run(
-            rollback=True, 
-            head='scoremanagertools.stylesheets',
             )
 
     def manage_repository(self, clear=True):
@@ -307,19 +312,14 @@ class ScoreManager(ScoreManagerObject):
             self.session.pop_breadcrumb()
         self.session.pop_breadcrumb()
 
+    def manage_stylesheets(self):
+        self.stylesheet_file_wrangler._run(
+            rollback=True, 
+            head='scoremanagertools.stylesheets',
+            )
+
     def profile_visible_scores(self):
         self.score_package_wrangler.profile_visible_assets()
-
-    def interactively_run_tests_on_all_user_scores(self, prompt=True):
-        command = 'pytest {}'.format(
-            self.configuration.user_score_packages_directory_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in proc.stdout.readlines()]
-        if lines:
-            self.session.io_manager.display(
-                lines, capitalize_first_character=False)
-        line = 'tests complete.'
-        self.session.io_manager.proceed(line, is_interactive=prompt)
 
     def write_cache(self):
         cache_file_path = os.path.join(

@@ -56,17 +56,17 @@ class FileManager(FilesystemAssetManager):
         elif result == 'user entered lone return':
             self.interactively_edit()
 
-    def _is_editable(self):
-        if self.filesystem_path.endswith(('.tex', '.py')):
-            return True
-        return False
-
     def _interpret_in_external_process(self):
         command = 'python {}'.format(self.filesystem_path)
         result = systemtools.IOManager.spawn_subprocess(command)
         if result != 0:
             self.session.io_manager.display('')
             self.session.io_manager.proceed()
+
+    def _is_editable(self):
+        if self.filesystem_path.endswith(('.tex', '.py')):
+            return True
+        return False
 
     def _make_empty_asset(self, is_interactive=False):
         if not os.path.exists(self.filesystem_path):
@@ -144,17 +144,6 @@ class FileManager(FilesystemAssetManager):
         '''
         systemtools.IOManager.open_file(self.filesystem_path)
 
-    def interactively_view(self):
-        r'''Interactively views file.
-
-        Returns none.
-        '''
-        if self.filesystem_path.endswith('.pdf'):
-            command = 'open {}'.format(self.filesystem_path)
-        else:
-            command = 'vim -R {}'.format(self.filesystem_path)
-        systemtools.IOManager.spawn_subprocess(command)
-
     def interactively_typeset_tex_file(self, prompt=True):
         r'''Interactively typesets TeX file.
 
@@ -177,6 +166,17 @@ class FileManager(FilesystemAssetManager):
         command = 'rm {}/*.log'.format(output_directory)
         systemtools.IOManager.spawn_subprocess(command)
         self.session.io_manager.proceed('', is_interactive=prompt)
+
+    def interactively_view(self):
+        r'''Interactively views file.
+
+        Returns none.
+        '''
+        if self.filesystem_path.endswith('.pdf'):
+            command = 'open {}'.format(self.filesystem_path)
+        else:
+            command = 'vim -R {}'.format(self.filesystem_path)
+        systemtools.IOManager.spawn_subprocess(command)
 
     ### UI MANIFEST ###
 

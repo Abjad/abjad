@@ -55,10 +55,6 @@ class DocumentHandler(AbjadObject):
         return result
 
     @property
-    def source_to_code_block_mapping(self):
-        return self._code_blocks
-
-    @property
     def console(self):
         r'''Interactive console.
         '''
@@ -85,6 +81,10 @@ class DocumentHandler(AbjadObject):
     def output_directory_path(self):
         return self._output_directory_path
    
+    @property
+    def source_to_code_block_mapping(self):
+        return self._code_blocks
+
     ### PUBLIC METHODS ###
 
     def create_code_block(self,

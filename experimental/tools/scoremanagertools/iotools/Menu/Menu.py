@@ -163,6 +163,29 @@ class Menu(ScoreManagerObject):
         result.extend(self._make_section_lines())
         return result
 
+    def _make_section(
+        self, 
+        is_hidden=False, 
+        is_numbered=False, 
+        is_ranged=False, 
+        display_prepopulated_values=False,
+        menu_entries=None,
+        return_value_attribute='display_string',
+        ):
+        from experimental import scoremanagertools
+        assert not (is_numbered and self._has_numbered_section)
+        assert not (is_ranged and self._has_ranged_section)
+        menu_section = scoremanagertools.iotools.MenuSection(
+            is_hidden=is_hidden,
+            is_numbered=is_numbered,
+            is_ranged=is_ranged,
+            display_prepopulated_values=display_prepopulated_values,
+            return_value_attribute=return_value_attribute,
+            )
+        menu_section.menu_entries = menu_entries
+        self.menu_sections.append(menu_section)
+        return menu_section
+
     def _make_section_lines(self):
         menu_lines = []
         for menu_section in self.menu_sections:
@@ -451,29 +474,6 @@ class Menu(ScoreManagerObject):
             return_value_attribute='number',
             )
         return numbered_section
-
-    def _make_section(
-        self, 
-        is_hidden=False, 
-        is_numbered=False, 
-        is_ranged=False, 
-        display_prepopulated_values=False,
-        menu_entries=None,
-        return_value_attribute='display_string',
-        ):
-        from experimental import scoremanagertools
-        assert not (is_numbered and self._has_numbered_section)
-        assert not (is_ranged and self._has_ranged_section)
-        menu_section = scoremanagertools.iotools.MenuSection(
-            is_hidden=is_hidden,
-            is_numbered=is_numbered,
-            is_ranged=is_ranged,
-            display_prepopulated_values=display_prepopulated_values,
-            return_value_attribute=return_value_attribute,
-            )
-        menu_section.menu_entries = menu_entries
-        self.menu_sections.append(menu_section)
-        return menu_section
 
     def toggle_menu_commands(self):
         if self.session.nonnumbered_menu_sections_are_hidden:

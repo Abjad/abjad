@@ -53,11 +53,6 @@ class FilesystemAssetManager(ScoreManagerObject):
         return stringtools.pluralize_string(self._generic_class_name)
 
     @property
-    def _space_delimited_lowercase_name(self):
-        if self.filesystem_path:
-            return os.path.basename(self.filesystem_path)
-
-    @property
     def _repository_add_command(self):
         if self.filesystem_path:
             if self._is_in_svn_parent_directory():
@@ -67,16 +62,12 @@ class FilesystemAssetManager(ScoreManagerObject):
             command = command.format(self.filesystem_path)
             return command
 
+    @property
+    def _space_delimited_lowercase_name(self):
+        if self.filesystem_path:
+            return os.path.basename(self.filesystem_path)
+
     ### PRIVATE METHODS ###
-
-    def _initialize_file_name_getter(self):
-        getter = self.session.io_manager.make_getter()
-        getter.append_snake_case_file_name('new name')
-        return getter
-
-    def _is_in_svn_parent_directory(self):
-        directory_path = os.path.dirname(self.filesystem_path)
-        return '.svn' in os.listdir(directory_path)
 
     def _get_score_package_directory_name(self):
         line = self.filesystem_path
@@ -90,6 +81,15 @@ class FilesystemAssetManager(ScoreManagerObject):
             )
         line = line.lstrip(os.path.sep)
         return line
+
+    def _initialize_file_name_getter(self):
+        getter = self.session.io_manager.make_getter()
+        getter.append_snake_case_file_name('new name')
+        return getter
+
+    def _is_in_svn_parent_directory(self):
+        directory_path = os.path.dirname(self.filesystem_path)
+        return '.svn' in os.listdir(directory_path)
 
     def _is_versioned(self):
         if self.filesystem_path is None:

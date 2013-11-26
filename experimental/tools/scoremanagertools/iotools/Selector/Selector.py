@@ -39,6 +39,16 @@ class Selector(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_metadata_from_directory_path(self, directory_path, tag_name):
+        metadata_module_name = os.path.join(directory_path, '__metadata__.py')
+        if os.path.isfile(metadata_module_name):
+            metadata_module = open(metadata_module_name, 'r')
+            metadata_module_string = metadata_module.read()
+            metadata_module.close()
+            exec(metadata_module_string)
+            result = locals().get('tags') or OrderedDict([])
+            return result.get(tag_name)
+
     def _make_main_menu(self, head=None):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         menu_section = main_menu._make_section(
@@ -100,16 +110,6 @@ class Selector(ScoreManagerObject):
             expr,
             )
 
-    def _get_metadata_from_directory_path(self, directory_path, tag_name):
-        metadata_module_name = os.path.join(directory_path, '__metadata__.py')
-        if os.path.isfile(metadata_module_name):
-            metadata_module = open(metadata_module_name, 'r')
-            metadata_module_string = metadata_module.read()
-            metadata_module.close()
-            exec(metadata_module_string)
-            result = locals().get('tags') or OrderedDict([])
-            return result.get(tag_name)
-
     def list_items(self):
         result = []
         return result
@@ -120,22 +120,22 @@ class Selector(ScoreManagerObject):
     ### REAL PUBLIC METHODS ###
 
     @staticmethod
-    def make_articulation_handler_selector(
-        session=None,
-        ):
-        selector = Selector.make_material_package_selector(
-            session=session,
-            generic_output_name='articulation handler',
-            )
-        return selector
-
-    @staticmethod
     def make_articulation_handler_class_name_selector(
         session=None, 
         ):
         selector = Selector.make_handler_class_name_selector(
             session=session,
             forbidden_directory_entries=['ArticulationHandler'],
+            )
+        return selector
+
+    @staticmethod
+    def make_articulation_handler_selector(
+        session=None,
+        ):
+        selector = Selector.make_material_package_selector(
+            session=session,
+            generic_output_name='articulation handler',
             )
         return selector
 

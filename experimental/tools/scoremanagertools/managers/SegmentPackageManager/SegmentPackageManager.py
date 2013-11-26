@@ -34,12 +34,6 @@ class SegmentPackageManager(PackageManager):
     def _get_asset_definition_module_file_path(self):
         return os.path.join(self.filesystem_path, 'definition.py')
 
-    def _get_output_lilypond_file_path(self):
-        return os.path.join(self.filesystem_path, 'output.ly')
-        
-    def _get_output_pdf_file_path(self):
-        return os.path.join(self.filesystem_path, 'output.pdf')
-
     def _get_last_version_number(self):
         versions_directory_path = self._get_versions_directory_path()
         file_names = sorted(os.listdir(versions_directory_path))
@@ -52,6 +46,12 @@ class SegmentPackageManager(PackageManager):
         version_number = int(version_string)
         return version_number
 
+    def _get_output_lilypond_file_path(self):
+        return os.path.join(self.filesystem_path, 'output.ly')
+        
+    def _get_output_pdf_file_path(self):
+        return os.path.join(self.filesystem_path, 'output.pdf')
+
     def _get_versions_directory_path(self):
         return os.path.join(self.filesystem_path, 'versions')
         
@@ -61,6 +61,41 @@ class SegmentPackageManager(PackageManager):
         elif result == 'user entered lone return':
             self.interactively_edit_asset_definition_module()
 
+    def _interactively_view_versioned_file(self, extension):
+        assert extension in ('.ly', '.pdf', '.py')
+        getter = self.session.io_manager.make_getter(where=self._where)
+        last_version_number = self._get_last_version_number()
+        if last_version_number is None:
+            message = 'versions directory empty.'
+            self.session.io_manager.proceed(message)
+            return
+        prompt = 'version number (0-{})'
+        prompt = prompt.format(last_version_number)
+        getter.append_integer(prompt)
+        version_number = getter._run(clear_terminal=False)
+        if self.session.backtrack():
+            return
+        if last_version_number < version_number or \
+            (version_number < 0 and last_version_number < abs(version_number)):
+            message = "version {} doesn't exist yet."
+            message = message.format(version_number)
+            self.session.io_manager.proceed(['', message])
+        if version_number < 0:
+            version_number = last_version_number + version_number + 1
+        version_string = str(version_number).zfill(4)
+        file_name = '{}{}'.format(version_string, extension)
+        file_path = os.path.join(
+            self.filesystem_path,
+            'versions',
+            file_name,
+            )
+        if os.path.isfile(file_path):
+            if extension in ('.ly', '.py'):
+                command = 'vim -R {}'.format(file_path)
+            elif extension == '.pdf':
+                command = 'open {}'.format(file_path)
+            systemtools.IOManager.spawn_subprocess(command)
+        
     def _make_main_menu(self):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         hidden_section = main_menu.make_command_section(is_hidden=True)
@@ -108,13 +143,6 @@ class SegmentPackageManager(PackageManager):
         return os.path.join(self.filesystem_path, 'definition.py')
 
     @property
-    def segment_definition_module_packagesystem_path(self):
-        return '.'.join([
-            self.package_path,
-            'definition',
-            ])
-
-    @property
     def segment_definition_module_manager(self):
         from experimental.tools import scoremanagertools
         manager = scoremanagertools.managers.FileManager(
@@ -122,6 +150,13 @@ class SegmentPackageManager(PackageManager):
             session=self.session,
             )
         return manager
+
+    @property
+    def segment_definition_module_packagesystem_path(self):
+        return '.'.join([
+            self.package_path,
+            'definition',
+            ])
 
     ### PUBLIC METHODS ###
 
@@ -283,41 +318,6 @@ class SegmentPackageManager(PackageManager):
             command = 'vim -R {}'.format(output_lilypond_file_path)
             systemtools.IOManager.spawn_subprocess(command)
 
-    def _interactively_view_versioned_file(self, extension):
-        assert extension in ('.ly', '.pdf', '.py')
-        getter = self.session.io_manager.make_getter(where=self._where)
-        last_version_number = self._get_last_version_number()
-        if last_version_number is None:
-            message = 'versions directory empty.'
-            self.session.io_manager.proceed(message)
-            return
-        prompt = 'version number (0-{})'
-        prompt = prompt.format(last_version_number)
-        getter.append_integer(prompt)
-        version_number = getter._run(clear_terminal=False)
-        if self.session.backtrack():
-            return
-        if last_version_number < version_number or \
-            (version_number < 0 and last_version_number < abs(version_number)):
-            message = "version {} doesn't exist yet."
-            message = message.format(version_number)
-            self.session.io_manager.proceed(['', message])
-        if version_number < 0:
-            version_number = last_version_number + version_number + 1
-        version_string = str(version_number).zfill(4)
-        file_name = '{}{}'.format(version_string, extension)
-        file_path = os.path.join(
-            self.filesystem_path,
-            'versions',
-            file_name,
-            )
-        if os.path.isfile(file_path):
-            if extension in ('.ly', '.py'):
-                command = 'vim -R {}'.format(file_path)
-            elif extension == '.pdf':
-                command = 'open {}'.format(file_path)
-            systemtools.IOManager.spawn_subprocess(command)
-        
     def interactively_view_versioned_output_ly(self):
         r'''Interactively views output LilyPond file.
 

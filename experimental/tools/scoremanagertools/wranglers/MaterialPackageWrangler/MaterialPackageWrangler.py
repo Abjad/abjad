@@ -232,6 +232,46 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head,
             )
 
+    def list_asset_managers(
+        self, 
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Example. List built-in material package managers:
+
+        ::
+
+            >>> for x in wrangler.list_asset_managers(
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
+            ...     x
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/black_music_specifier')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/green_music_specifier')
+            MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_directives')
+            DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_forte')
+            ArticulationHandlerMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_marcati')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/red_notes')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/red_numbers')
+            SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_sargasso_measures')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/sargasso_multipliers')
+            TempoInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/materials/tempo_inventory')
+
+        Returns list.
+        '''
+        superclass = super(MaterialPackageWrangler, self)
+        return superclass.list_asset_managers(
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
+            head=head,
+            )
+
     def list_asset_names(
         self,
         in_built_in_asset_library=True, 
@@ -304,46 +344,6 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageWrangler, self)
         return superclass.list_asset_packagesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head,
-            )
-
-    def list_asset_managers(
-        self, 
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Example. List built-in material package managers:
-
-        ::
-
-            >>> for x in wrangler.list_asset_managers(
-            ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
-            ...     x
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/black_music_specifier')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/green_music_specifier')
-            MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_directives')
-            DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_forte')
-            ArticulationHandlerMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_marcati')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/red_notes')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/red_numbers')
-            SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_sargasso_measures')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackages/sargasso_multipliers')
-            TempoInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/materials/tempo_inventory')
-
-        Returns list.
-        '''
-        superclass = super(MaterialPackageWrangler, self)
-        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

@@ -51,9 +51,6 @@ class ImageOutputProxy(AssetOutputProxy):
     def handle_png_image_format(self, document_handler):
         pass
 
-    def handle_svg_image_format(self, document_handler):
-        pass
-
     @abc.abstractmethod
     def handle_rest_document_environment(self, document_handler):
         result = []
@@ -61,6 +58,9 @@ class ImageOutputProxy(AssetOutputProxy):
             self.get_asset_output_relative_file_path(document_handler))
         result.append(directive)
         return result
+
+    def handle_svg_image_format(self, document_handler):
+        pass
 
     def write_asset_to_disk(self, document_handler):
         from experimental.tools import newabjadbooktools

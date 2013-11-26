@@ -333,16 +333,6 @@ class MaterialPackageManager(PackageManager):
             return '.'.join([self.package_path, 'illustration_builder'])
 
     @property
-    def illustration_ly_file_name(self):
-        if self.should_have_illustration_ly:
-            return os.path.join(self.filesystem_path, 'illustration.ly')
-
-    @property
-    def illustration_ly_file_name(self):
-        if self.should_have_illustration_pdf:
-            return os.path.join(self.filesystem_path, 'illustration.ly')
-
-    @property
     def illustration_ly_file_manager(self):
         from experimental.tools import scoremanagertools
         file_path = os.path.join(self.filesystem_path, 'illustration.ly')
@@ -353,9 +343,14 @@ class MaterialPackageManager(PackageManager):
         return manager
 
     @property
-    def illustration_pdf_file_name(self):
-        if self.should_have_illustration_pdf:
-            return os.path.join(self.filesystem_path, 'illustration.pdf')
+    def illustration_ly_file_name(self):
+        if self.should_have_illustration_ly:
+            return os.path.join(self.filesystem_path, 'illustration.ly')
+
+#    @property
+#    def illustration_ly_file_name(self):
+#        if self.should_have_illustration_pdf:
+#            return os.path.join(self.filesystem_path, 'illustration.ly')
 
     @property
     def illustration_pdf_file_manager(self):
@@ -366,6 +361,11 @@ class MaterialPackageManager(PackageManager):
             session=self.session,
             )
         return manager
+
+    @property
+    def illustration_pdf_file_name(self):
+        if self.should_have_illustration_pdf:
+            return os.path.join(self.filesystem_path, 'illustration.pdf')
 
     @property
     def illustration_with_stylesheet(self):
@@ -532,11 +532,6 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
-    def output_material_module_path(self):
-        if self.should_have_output_material_module:
-            return '{}.output_material'.format(self.package_path)
-
-    @property
     def output_material_module_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.FileManager(
@@ -544,6 +539,11 @@ class MaterialPackageManager(PackageManager):
             self.output_material_module_file_path,
             session=self.session,
             )
+
+    @property
+    def output_material_module_path(self):
+        if self.should_have_output_material_module:
+            return '{}.output_material'.format(self.package_path)
 
     @property
     def should_have_illustration(self):
@@ -585,14 +585,6 @@ class MaterialPackageManager(PackageManager):
         return self.material_package_name.replace('_', ' ')
 
     @property
-    def stylesheet_file_name_on_disk(self):
-        if self.has_illustration_ly:
-            for line in self.illustration_ly_file_manager.read_lines():
-                if line.startswith(r'\include') and 'stylesheets' in line:
-                    file_name = line.split()[-1].replace('"', '')
-                    return file_name
-
-    @property
     def stylesheet_file_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.FileManager(
@@ -601,14 +593,17 @@ class MaterialPackageManager(PackageManager):
             )
 
     @property
+    def stylesheet_file_name_on_disk(self):
+        if self.has_illustration_ly:
+            for line in self.illustration_ly_file_manager.read_lines():
+                if line.startswith(r'\include') and 'stylesheets' in line:
+                    file_name = line.split()[-1].replace('"', '')
+                    return file_name
+
+    @property
     def user_input_module_file_path(self):
         if self.should_have_user_input_module:
             return os.path.join(self.filesystem_path, 'user_input.py')
-
-    @property
-    def user_input_module_packagesystem_path(self):
-        if self.should_have_user_input_module:
-            return '.'.join([self.package_path, 'user_input'])
 
     @property
     def user_input_module_manager(self):
@@ -623,6 +618,11 @@ class MaterialPackageManager(PackageManager):
                 self.user_input_module_file_path,
                 session=self.session,
                 )
+
+    @property
+    def user_input_module_packagesystem_path(self):
+        if self.should_have_user_input_module:
+            return '.'.join([self.package_path, 'user_input'])
 
     ### PUBLIC METHODS ###
 
@@ -911,6 +911,11 @@ class MaterialPackageManager(PackageManager):
             'PDF written to disk.',
             is_interactive=prompt)
 
+    def write_metadata_to_disk(self):
+        self._add_metadata('is_material_package', True)
+        if hasattr(self, 'generic_output_name'):
+            self._add_metadata('generic_output_name', self.generic_output_name)
+
     def write_output_material_to_disk(
         self,
         output_material_module_import_statements=None,
@@ -980,11 +985,6 @@ class MaterialPackageManager(PackageManager):
                 file_pointer.write('')
             self.material_definition_module_manager._write_stub_to_disk(
                 self.is_data_only, is_interactive=True)
-
-    def write_metadata_to_disk(self):
-        self._add_metadata('is_material_package', True)
-        if hasattr(self, 'generic_output_name'):
-            self._add_metadata('generic_output_name', self.generic_output_name)
 
     ### UI MANIFEST ###
 

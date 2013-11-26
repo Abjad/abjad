@@ -82,9 +82,6 @@ class ScorePackageWrangler(PackageWrangler):
     def _handle_main_menu_result(self):
         self.session.io_manager.print_not_yet_implemented()
 
-    def _make_main_menu(self):
-        self.session.io_manager.print_not_yet_implemented()
-
     def _make_asset_menu_entries(self, head=None):
         menuing_pairs = \
             self.list_visible_asset_package_path_and_score_title_pairs()
@@ -92,6 +89,9 @@ class ScorePackageWrangler(PackageWrangler):
         menuing_pairs.sort(key=lambda x: tmp(x[1]))
         menuing_entries = [(x[1], None, None, x[0]) for x in menuing_pairs]
         return menuing_entries
+
+    def _make_main_menu(self):
+        self.session.io_manager.print_not_yet_implemented()
 
     ### PUBLIC METHODS ###
 
@@ -174,6 +174,40 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             )
 
+    def list_asset_managers(
+        self,
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Example. List built-in score package managers:
+
+        ::
+
+            >>> for x in wrangler.list_asset_managers(
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False,
+            ...     ):
+            ...     x
+            ScorePackageManager('.../scorepackages/blue_example_score')
+            ScorePackageManager('.../scorepackages/green_example_score')
+            ScorePackageManager('.../scorepackages/red_example_score')
+
+        Returns list.
+        '''
+        superclass = super(ScorePackageWrangler, self)
+        return superclass.list_asset_managers(
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
+            head=head,
+            )
+
     def list_asset_names(
         self,
         in_built_in_asset_library=True, 
@@ -233,40 +267,6 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         superclass = super(ScorePackageWrangler, self)
         return superclass.list_asset_packagesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head,
-            )
-
-    def list_asset_managers(
-        self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Example. List built-in score package managers:
-
-        ::
-
-            >>> for x in wrangler.list_asset_managers(
-            ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False,
-            ...     ):
-            ...     x
-            ScorePackageManager('.../scorepackages/blue_example_score')
-            ScorePackageManager('.../scorepackages/green_example_score')
-            ScorePackageManager('.../scorepackages/red_example_score')
-
-        Returns list.
-        '''
-        superclass = super(ScorePackageWrangler, self)
-        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -338,6 +338,50 @@ class ScorePackageWrangler(PackageWrangler):
             head=head,
             ):
             result.append(visible_asset_manager.filesystem_path)
+        return result
+
+    def list_visible_asset_managers(
+        self,
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True,
+        head=None,
+        ):
+        r'''Lists visible asset managers.
+
+        Example. List visible score package managers:
+
+        ::
+
+            >>> for x in wrangler.list_visible_asset_managers(
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False,
+            ...     ):
+            ...     x
+            ScorePackageManager('.../scorepackages/blue_example_score')
+            ScorePackageManager('.../scorepackages/green_example_score')
+            ScorePackageManager('.../scorepackages/red_example_score')
+
+        Returns list.
+        '''
+        result = []
+        scores_to_show = self.session.scores_to_show
+        for asset_manager in PackageWrangler.list_asset_managers(
+            self,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
+            head=head,
+            ):
+            is_mothballed = asset_manager._get_metadata('is_mothballed')
+            if scores_to_show == 'all':
+                result.append(asset_manager)
+            elif scores_to_show == 'active' and not is_mothballed:
+                result.append(asset_manager)
+            elif scores_to_show == 'mothballed' and is_mothballed:
+                result.append(asset_manager)
         return result
 
     def list_visible_asset_package_path_and_score_title_pairs(
@@ -431,50 +475,6 @@ class ScorePackageWrangler(PackageWrangler):
             ):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)
-        return result
-
-    def list_visible_asset_managers(
-        self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True,
-        head=None,
-        ):
-        r'''Lists visible asset managers.
-
-        Example. List visible score package managers:
-
-        ::
-
-            >>> for x in wrangler.list_visible_asset_managers(
-            ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False,
-            ...     ):
-            ...     x
-            ScorePackageManager('.../scorepackages/blue_example_score')
-            ScorePackageManager('.../scorepackages/green_example_score')
-            ScorePackageManager('.../scorepackages/red_example_score')
-
-        Returns list.
-        '''
-        result = []
-        scores_to_show = self.session.scores_to_show
-        for asset_manager in PackageWrangler.list_asset_managers(
-            self,
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head,
-            ):
-            is_mothballed = asset_manager._get_metadata('is_mothballed')
-            if scores_to_show == 'all':
-                result.append(asset_manager)
-            elif scores_to_show == 'active' and not is_mothballed:
-                result.append(asset_manager)
-            elif scores_to_show == 'mothballed' and is_mothballed:
-                result.append(asset_manager)
         return result
 
     def profile_visible_assets(self):

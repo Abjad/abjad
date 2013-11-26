@@ -113,6 +113,14 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         '''
         return self._fresh
 
+    @property
+    def scope_name(self):
+        r'''Set expression context name.
+
+        Returns string.
+        '''
+        return self._scope_name
+
     # TODO: remove and use self.timespan.start_offset instead
     @property
     def start_offset(self):
@@ -134,14 +142,6 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         Returns offset.
         '''
         return self.target_timespan.stop_offset
-
-    @property
-    def scope_name(self):
-        r'''Set expression context name.
-
-        Returns string.
-        '''
-        return self._scope_name
 
     ### PUBLIC METHODS ###
 

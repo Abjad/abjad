@@ -36,6 +36,29 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     ### SPECIAL METHODS ###
 
+    def __format__(self, format_specification=''):
+        r'''Formats segment specification interface.
+
+        Set `format_specification` to `''` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ::
+
+            >>> print format(red_segment)
+            musicexpressiontools.SegmentSpecificationInterface(
+                musicexpressiontools.ScoreSpecification(
+                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                        staff_count=4,
+                        )
+                    ),
+                'red'
+                )
+
+        Returns string.
+        '''
+        superclass = super(SegmentSpecificationInterface, self)
+        return superclass.__format__(format_specification=format_specification)
+
     def __repr__(self):
         r'''Segment specification interface interpreter representation.
 
@@ -103,29 +126,6 @@ class SegmentSpecificationInterface(SpecificationInterface):
         Returns string.
         '''
         return self.segment_name
-
-    def __format__(self, format_specification=''):
-        r'''Formats segment specification interface.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        ::
-
-            >>> print format(red_segment)
-            musicexpressiontools.SegmentSpecificationInterface(
-                musicexpressiontools.ScoreSpecification(
-                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                        staff_count=4,
-                        )
-                    ),
-                'red'
-                )
-
-        Returns string.
-        '''
-        superclass = super(SegmentSpecificationInterface, self)
-        return superclass.__format__(format_specification=format_specification)
 
     @property
     def timespan(self):

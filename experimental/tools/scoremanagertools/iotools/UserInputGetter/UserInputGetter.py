@@ -229,10 +229,6 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             self._number_prompts = expr
         return property(**locals())
 
-    @property
-    def prompts(self):
-        return self._prompts
-
     @apply
     def prompt_character():
         def fget(self):
@@ -241,3 +237,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             assert isinstance(expr, str)
             self._prompt_character = expr
         return property(**locals())
+
+    @property
+    def prompts(self):
+        return self._prompts

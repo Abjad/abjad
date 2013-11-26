@@ -79,6 +79,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 package_path, session=self.session)
         return material_package_manager
 
+    def _make_asset_menu_entries(self, head=None):
+        names = self.list_asset_names(head=head)
+        paths = self.list_asset_packagesystem_paths(head=head)
+        assert len(names) == len(paths)
+        return sequencetools.zip_sequences_cyclically(
+            names, [None], [None], paths)
+
     def _make_main_menu(self, head=None):
         main_menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
@@ -87,13 +94,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         command_section = main_menu.make_command_section()
         command_section.append(('new material package maker', 'new'))
         return main_menu
-
-    def _make_asset_menu_entries(self, head=None):
-        names = self.list_asset_names(head=head)
-        paths = self.list_asset_packagesystem_paths(head=head)
-        assert len(names) == len(paths)
-        return sequencetools.zip_sequences_cyclically(
-            names, [None], [None], paths)
 
     ### PUBLIC METHODS ###
 
@@ -156,6 +156,45 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageMakerWrangler, self)
         return superclass.list_asset_filesystem_paths(
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
+            head=head,
+            )
+
+    def list_asset_managers(
+        self,
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Example. List built-in material package maker managers:
+
+        ::
+
+            >>> for x in wrangler.list_asset_managers(
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
+            ...     x
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
+            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/TempoInventoryMaterialPackageMaker')
+
+        Returns list.
+        '''
+        superclass = super(MaterialPackageMakerWrangler, self)
+        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -234,45 +273,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         '''
         superclass = super(MaterialPackageMakerWrangler, self)
         return superclass.list_asset_packagesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head,
-            )
-
-    def list_asset_managers(
-        self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Example. List built-in material package maker managers:
-
-        ::
-
-            >>> for x in wrangler.list_asset_managers(
-            ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
-            ...     x
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
-            MaterialPackageManager('.../tools/scoremanagertools/materialpackagemakers/TempoInventoryMaterialPackageMaker')
-
-        Returns list.
-        '''
-        superclass = super(MaterialPackageMakerWrangler, self)
-        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

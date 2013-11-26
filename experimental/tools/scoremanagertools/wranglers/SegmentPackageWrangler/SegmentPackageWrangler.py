@@ -110,30 +110,6 @@ class SegmentPackageWrangler(PackageWrangler):
         self.interactively_view_asset_pdfs()
         self.session.io_manager.proceed()
 
-    def interactively_view_asset_pdfs(
-        self,
-        pending_user_input=None,
-        ):
-        self.session.io_manager.assign_user_input(pending_user_input)
-        parts = (self.session.current_score_directory_path,)
-        parts += self.score_package_asset_storehouse_path_infix_parts
-        segments_directory_path = os.path.join(*parts)
-        output_pdf_file_paths = []
-        for directory_entry in sorted(os.listdir(segments_directory_path)):
-            if not directory_entry[0].isalpha():
-                continue
-            segment_package_name = directory_entry
-            output_pdf_file_path = os.path.join(
-                segments_directory_path,
-                segment_package_name,
-                'output.pdf',
-                )
-            if os.path.isfile(output_pdf_file_path):
-                output_pdf_file_paths.append(output_pdf_file_path)
-        command = ' '.join(output_pdf_file_paths)
-        command = 'open ' + command
-        systemtools.IOManager.spawn_subprocess(command)
-
     def interactively_version_all_assets(
         self,
         pending_user_input=None,
@@ -167,6 +143,30 @@ class SegmentPackageWrangler(PackageWrangler):
         self.session.io_manager.display('')
         self.session.io_manager.proceed()
 
+    def interactively_view_asset_pdfs(
+        self,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
+        parts = (self.session.current_score_directory_path,)
+        parts += self.score_package_asset_storehouse_path_infix_parts
+        segments_directory_path = os.path.join(*parts)
+        output_pdf_file_paths = []
+        for directory_entry in sorted(os.listdir(segments_directory_path)):
+            if not directory_entry[0].isalpha():
+                continue
+            segment_package_name = directory_entry
+            output_pdf_file_path = os.path.join(
+                segments_directory_path,
+                segment_package_name,
+                'output.pdf',
+                )
+            if os.path.isfile(output_pdf_file_path):
+                output_pdf_file_paths.append(output_pdf_file_path)
+        command = ' '.join(output_pdf_file_paths)
+        command = 'open ' + command
+        systemtools.IOManager.spawn_subprocess(command)
+
     def list_asset_filesystem_paths(
         self,
         in_built_in_asset_library=True, 
@@ -196,6 +196,52 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_filesystem_paths(
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
+            head=head,
+            )
+
+    def list_asset_managers(
+        self,
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Example 1. List built-in segment package managers:
+
+        ::
+
+            >>> for x in wrangler.list_asset_managers(
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
+            ...     x
+            SegmentPackageManager('.../blue_example_score/segments/segment_01')
+            SegmentPackageManager('.../blue_example_score/segments/segment_02')
+            SegmentPackageManager('.../red_example_score/segments/segment_01')
+            SegmentPackageManager('.../red_example_score/segments/segment_02')
+            SegmentPackageManager('.../red_example_score/segments/segment_03')
+
+        Example 2. List red example score segment package managers:
+
+        ::
+
+            >>> head = 'experimental.tools.scoremanagertools.scorepackages.red_example_score'
+            >>> for x in wrangler.list_asset_managers(head=head):
+            ...     x
+            SegmentPackageManager('.../red_example_score/segments/segment_01')
+            SegmentPackageManager('.../red_example_score/segments/segment_02')
+            SegmentPackageManager('.../red_example_score/segments/segment_03')
+
+        Returns list.
+        '''
+        superclass = super(SegmentPackageWrangler, self)
+        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
@@ -276,52 +322,6 @@ class SegmentPackageWrangler(PackageWrangler):
         '''
         superclass = super(SegmentPackageWrangler, self)
         return superclass.list_asset_packagesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head,
-            )
-
-    def list_asset_managers(
-        self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Example 1. List built-in segment package managers:
-
-        ::
-
-            >>> for x in wrangler.list_asset_managers(
-            ...     in_user_asset_library=False, 
-            ...     in_user_score_packages=False):
-            ...     x
-            SegmentPackageManager('.../blue_example_score/segments/segment_01')
-            SegmentPackageManager('.../blue_example_score/segments/segment_02')
-            SegmentPackageManager('.../red_example_score/segments/segment_01')
-            SegmentPackageManager('.../red_example_score/segments/segment_02')
-            SegmentPackageManager('.../red_example_score/segments/segment_03')
-
-        Example 2. List red example score segment package managers:
-
-        ::
-
-            >>> head = 'experimental.tools.scoremanagertools.scorepackages.red_example_score'
-            >>> for x in wrangler.list_asset_managers(head=head):
-            ...     x
-            SegmentPackageManager('.../red_example_score/segments/segment_01')
-            SegmentPackageManager('.../red_example_score/segments/segment_02')
-            SegmentPackageManager('.../red_example_score/segments/segment_03')
-
-        Returns list.
-        '''
-        superclass = super(SegmentPackageWrangler, self)
-        return superclass.list_asset_managers(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

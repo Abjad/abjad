@@ -39,20 +39,6 @@ class PromptMakerMixin(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def append_menu_section_range(
-        self, 
-        spaced_attribute_name, 
-        target_menu_section, 
-        default_value=None):
-        help_template = 'value for {!r} must be argument range.'
-        self._make_prompt(
-            spaced_attribute_name, 
-            validation_function=predicates.is_list, 
-            help_template=help_template,
-            target_menu_section=target_menu_section,
-            default_value=default_value,
-            )
-
     def append_articulation(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r}'
@@ -362,6 +348,20 @@ class PromptMakerMixin(AbjadObject):
             spaced_attribute_name, 
             validation_function=function,
             help_template=help_template, 
+            default_value=default_value,
+            )
+
+    def append_menu_section_range(
+        self, 
+        spaced_attribute_name, 
+        target_menu_section, 
+        default_value=None):
+        help_template = 'value for {!r} must be argument range.'
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=predicates.is_list, 
+            help_template=help_template,
+            target_menu_section=target_menu_section,
             default_value=default_value,
             )
 

@@ -255,23 +255,6 @@ class Session(abctools.AbjadObject):
                     self.snake_case_current_score_name)
 
     @property
-    def current_score_package_path(self):
-        r'''Session current score package path.
-
-        .. note:: add example.
-
-        Returns string.
-        '''
-        if self.snake_case_current_score_name:
-            if self.snake_case_current_score_name in \
-                self.cache_of_built_in_score_names:
-                return '.'.join([
-                    self.configuration.built_in_score_packages_package_path,
-                    self.snake_case_current_score_name])
-            else:
-                return self.snake_case_current_score_name
-
-    @property
     def current_score_package_manager(self):
         r'''Session current score package manager.
 
@@ -297,6 +280,23 @@ class Session(abctools.AbjadObject):
             return ScorePackageManager(
                 packagesystem_path=self.current_score_package_path,
                 session=self)
+
+    @property
+    def current_score_package_path(self):
+        r'''Session current score package path.
+
+        .. note:: add example.
+
+        Returns string.
+        '''
+        if self.snake_case_current_score_name:
+            if self.snake_case_current_score_name in \
+                self.cache_of_built_in_score_names:
+                return '.'.join([
+                    self.configuration.built_in_score_packages_package_path,
+                    self.snake_case_current_score_name])
+            else:
+                return self.snake_case_current_score_name
 
     @property
     def current_segments_directory_path(self):
@@ -411,6 +411,19 @@ class Session(abctools.AbjadObject):
         Returns IO manager.
         '''
         return self._io_manager
+
+    @property
+    def io_transcript(self):
+        r'''Session IO transcript.
+
+        ::
+
+            >>> session.io_transcript
+            IOTranscript()
+
+        Returns IO transcript.
+        '''
+        return self._transcript
 
     @apply
     def is_autoadding():
@@ -618,19 +631,6 @@ class Session(abctools.AbjadObject):
             assert isinstance(transcribe_next_command, bool)
             self._transcribe_next_command = transcribe_next_command
         return property(**locals())
-
-    @property
-    def io_transcript(self):
-        r'''Session IO transcript.
-
-        ::
-
-            >>> session.io_transcript
-            IOTranscript()
-
-        Returns IO transcript.
-        '''
-        return self._transcript
 
     @apply
     def use_current_user_input_values_as_default():

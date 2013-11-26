@@ -48,6 +48,11 @@ class PackageManager(DirectoryManager):
             result.append((display_string, None, tags[key], key))
         return result
 
+    def _remove_metadata(self, tag_name):
+        tags = self._get_metadatas()
+        del(tags[tag_name])
+        self.metadata_module_manager.write_metadata_to_disk(tags)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -64,11 +69,6 @@ class PackageManager(DirectoryManager):
         return __import__(self.package_path, fromlist=['*'])
 
     @property
-    def initializer_file_name(self):
-        if self.filesystem_path is not None:
-            return os.path.join(self.filesystem_path, '__init__.py')
-
-    @property
     def initializer_file_manager(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.managers.FileManager(
@@ -77,9 +77,9 @@ class PackageManager(DirectoryManager):
             )
 
     @property
-    def metadata_module_name(self):
-        file_path = os.path.join(self.filesystem_path, '__metadata__.py')
-        return file_path
+    def initializer_file_name(self):
+        if self.filesystem_path is not None:
+            return os.path.join(self.filesystem_path, '__init__.py')
 
     @property
     def metadata_module_manager(self):
@@ -90,6 +90,11 @@ class PackageManager(DirectoryManager):
             metadata_module.close()
         return scoremanagertools.managers.MetadataModuleManager(
             self.metadata_module_name, session=self.session)
+
+    @property
+    def metadata_module_name(self):
+        file_path = os.path.join(self.filesystem_path, '__metadata__.py')
+        return file_path
 
     @property
     def package_path(self):
@@ -290,11 +295,6 @@ class PackageManager(DirectoryManager):
         '''
         self._remove()
         self.session.is_backtracking_locally = True
-
-    def _remove_metadata(self, tag_name):
-        tags = self._get_metadatas()
-        del(tags[tag_name])
-        self.metadata_module_manager.write_metadata_to_disk(tags)
 
     def run_first_time(self, **kwargs):
         self._run(**kwargs)

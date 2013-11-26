@@ -273,6 +273,40 @@ class StylesheetFileWrangler(FileWrangler):
             head=head,
             )
 
+    def list_asset_managers(
+        self, 
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Example. List built-in stylesheet managers:
+
+        ::
+
+            >>> for x in wrangler.list_asset_managers(
+            ...     in_user_asset_library=False, 
+            ...    in_user_score_packages=False):
+            ...     x
+            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
+            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
+            FileManager('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
+            FileManager('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ly')
+
+        Returns list.
+        '''
+        superclass = super(StylesheetFileWrangler, self)
+        return superclass.list_asset_managers(
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
+            head=head,
+            )
+
     def list_asset_names(
         self, 
         in_built_in_asset_library=True, 
@@ -308,40 +342,6 @@ class StylesheetFileWrangler(FileWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head,
             include_extension=include_extension,
-            )
-
-    def list_asset_managers(
-        self, 
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Example. List built-in stylesheet managers:
-
-        ::
-
-            >>> for x in wrangler.list_asset_managers(
-            ...     in_user_asset_library=False, 
-            ...    in_user_score_packages=False):
-            ...     x
-            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
-            FileManager('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
-            FileManager('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
-            FileManager('.../tools/scoremanagertools/scorepackages/red_example_score/stylesheets/red-example-score-stylesheet.ly')
-
-        Returns list.
-        '''
-        superclass = super(StylesheetFileWrangler, self)
-        return superclass.list_asset_managers(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head,
             )
 
     def list_asset_storehouse_filesystem_paths(

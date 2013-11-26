@@ -35,6 +35,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             return self.asset_storehouse_packagesystem_path_in_built_in_asset_library
 
     @property
+    def _temporary_asset_manager(self):
+        return self._initialize_asset_manager(
+            self._temporary_asset_package_path)
+
+    @property
     def _temporary_asset_package_path(self):
         if self._current_storehouse_packagesystem_path:
             return '.'.join([
@@ -42,11 +47,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 self._temporary_asset_name])
         else:
             return self._temporary_asset_name
-
-    @property
-    def _temporary_asset_manager(self):
-        return self._initialize_asset_manager(
-            self._temporary_asset_package_path)
 
     ### PRIVATE METHODS ###
 
@@ -160,6 +160,30 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         self.session.restore_breadcrumbs(cache=cache)
         return result
 
+    def list_asset_managers(
+        self,
+        in_built_in_asset_library=True,
+        in_user_asset_library=True,
+        in_built_in_score_packages=True,
+        in_user_score_packages=True,
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Returns list.
+        '''
+        result = []
+        for package_path in self.list_asset_packagesystem_paths(
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
+            head=head,
+            ):
+            asset_manager = self._initialize_asset_manager(package_path)
+            result.append(asset_manager)
+        return result
+
     def list_asset_packagesystem_paths(
         self,
         in_built_in_asset_library=True,
@@ -183,30 +207,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 self.configuration.filesystem_path_to_packagesystem_path(
                     filesystem_path)
             result.append(packagesystem_path)
-        return result
-
-    def list_asset_managers(
-        self,
-        in_built_in_asset_library=True,
-        in_user_asset_library=True,
-        in_built_in_score_packages=True,
-        in_user_score_packages=True,
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Returns list.
-        '''
-        result = []
-        for package_path in self.list_asset_packagesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head,
-            ):
-            asset_manager = self._initialize_asset_manager(package_path)
-            result.append(asset_manager)
         return result
 
     def list_asset_storehouse_packagesystem_paths(

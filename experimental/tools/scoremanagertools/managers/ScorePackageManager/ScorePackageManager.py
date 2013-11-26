@@ -467,20 +467,38 @@ class ScorePackageManager(PackageManager):
                 return
             self.session.is_backtracking_locally = True
 
+    def interactively_view_instrumentation_module(self):
+        #return self.instrumentation_module_manager.interactively_view()
+        return self.instrumentation_module_manager.interactively_edit()
+
     def interactively_view_score(self, pending_user_input=None):
         self.build_directory_manager._interactively_open_file_ending_with(
             'score.pdf',
             )
-
-    def interactively_view_instrumentation_module(self):
-        #return self.instrumentation_module_manager.interactively_view()
-        return self.instrumentation_module_manager.interactively_edit()
 
     def manage_build_directory(self):
         self.build_directory_manager._run()
 
     def manage_materials(self):
         self.material_package_wrangler._run(head=self.package_path)
+
+    def manage_repository(self, clear=True, cache=False):
+        self.session.cache_breadcrumbs(cache=cache)
+        while True:
+            self.session.push_breadcrumb('repository commands')
+            menu = self._make_repository_menu()
+            result = menu._run(clear=clear)
+            if self.session.backtrack():
+                break
+            elif not result:
+                self.session.pop_breadcrumb()
+                continue
+            self._handle_repository_menu_result(result)
+            if self.session.backtrack():
+                break
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def manage_score_templates(self):
         self.score_template_directory_manager._run()
@@ -510,24 +528,6 @@ class ScorePackageManager(PackageManager):
 
     def manage_stylesheets(self):
         self.stylesheet_wrangler._run(head=self.package_path)
-
-    def manage_repository(self, clear=True, cache=False):
-        self.session.cache_breadcrumbs(cache=cache)
-        while True:
-            self.session.push_breadcrumb('repository commands')
-            menu = self._make_repository_menu()
-            result = menu._run(clear=clear)
-            if self.session.backtrack():
-                break
-            elif not result:
-                self.session.pop_breadcrumb()
-                continue
-            self._handle_repository_menu_result(result)
-            if self.session.backtrack():
-                break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
 
     ### UI MANIFEST ###
 

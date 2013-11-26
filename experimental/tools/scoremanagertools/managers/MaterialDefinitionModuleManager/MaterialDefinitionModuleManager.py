@@ -14,6 +14,16 @@ class MaterialDefinitionModuleManager(FileManager):
         if self.filesystem_path:
             return os.path.dirname(self.filesystem_path)
 
+    ### PRIVATE METHODS ###
+
+    def _write_stub_to_disk(self, is_data_only, is_interactive=True):
+        if is_data_only:
+            self.write_stub_data_material_definition_to_disk()
+        else:
+            self.write_stub_music_material_definition_to_disk()
+        message = 'stub material definition written to disk.'
+        self.session.io_manager.proceed(message, is_interactive=is_interactive)
+
     ### PUBLIC METHODS ###
 
     def interactively_edit(self):
@@ -48,11 +58,3 @@ class MaterialDefinitionModuleManager(FileManager):
         file_pointer = file(self.filesystem_path, 'w')
         file_pointer.write(lines)
         file_pointer.close()
-
-    def _write_stub_to_disk(self, is_data_only, is_interactive=True):
-        if is_data_only:
-            self.write_stub_data_material_definition_to_disk()
-        else:
-            self.write_stub_music_material_definition_to_disk()
-        message = 'stub material definition written to disk.'
-        self.session.io_manager.proceed(message, is_interactive=is_interactive)

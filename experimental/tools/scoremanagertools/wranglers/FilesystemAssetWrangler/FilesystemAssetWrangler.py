@@ -52,14 +52,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             self._current_storehouse_filesystem_path, 
             self._temporary_asset_name)
 
-    @abc.abstractproperty
-    def _temporary_asset_name(self):
-        pass
-
     @property
     def _temporary_asset_manager(self):
         return self._initialize_asset_manager(
             self._temporary_asset_filesystem_path)
+
+    @abc.abstractproperty
+    def _temporary_asset_name(self):
+        pass
 
     ### PRIVATE METHODS ###
 
@@ -227,16 +227,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
-    def interactively_make_asset(
-        self,
-        pending_user_input=None,
-        ):
-        r'''Interactively makes asset.
-
-        Returns none.
-        '''
-        pass
+    def interactively_list_directory(self):
+        manager = self._get_current_package_manager()
+        manager.interactively_list_directory()
 
     def interactively_list_views(
         self,
@@ -263,6 +256,17 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         lines.append('')
         self.session.io_manager.display(lines)
         self.session.io_manager.proceed()
+
+    @abc.abstractmethod
+    def interactively_make_asset(
+        self,
+        pending_user_input=None,
+        ):
+        r'''Interactively makes asset.
+
+        Returns none.
+        '''
+        pass
 
     def interactively_make_view(
         self,
@@ -293,28 +297,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self.session.io_manager.display('')
         view = self.session.io_manager.make_view(tokens, custom_identifier=view_name)
         self.write_view_to_disk(view)
-
-    def interactively_select_view(
-        self,
-        pending_user_input=None,
-        ):
-        self.session.io_manager.assign_user_input(pending_user_input)
-        view_inventory = self._read_view_inventory_from_disk()
-        if view_inventory is None:
-            message = 'no views found.'
-            self.session.io_manager.proceed(message)
-            return
-        lines = []
-        view_names = [x.name for x in view_inventory]
-        selector = self.session.io_manager.make_selector(where=self._where)
-        selector.explicit_breadcrumb = 'select view'
-        selector.items = view_names
-        with self.backtracking:
-            view_name = selector._run()
-        if self.session.backtrack():
-            return
-        manager = self._get_current_package_manager()
-        manager._add_metadata('view_name', view_name)
 
     # TODO: write test
     def interactively_remove_assets(
@@ -439,6 +421,28 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self.session.restore_breadcrumbs(cache=cache)
         return result
 
+    def interactively_select_view(
+        self,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(pending_user_input)
+        view_inventory = self._read_view_inventory_from_disk()
+        if view_inventory is None:
+            message = 'no views found.'
+            self.session.io_manager.proceed(message)
+            return
+        lines = []
+        view_names = [x.name for x in view_inventory]
+        selector = self.session.io_manager.make_selector(where=self._where)
+        selector.explicit_breadcrumb = 'select view'
+        selector.items = view_names
+        with self.backtracking:
+            view_name = selector._run()
+        if self.session.backtrack():
+            return
+        manager = self._get_current_package_manager()
+        manager._add_metadata('view_name', view_name)
+
     def interactively_view_initializer(self):
         manager = self._get_current_package_manager()
         manager.interactively_view_initializer()
@@ -493,6 +497,31 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                             result.append(filesystem_path)
         return result
 
+    def list_asset_managers(
+        self,
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None,
+        ):
+        r'''Lists asset managers.
+
+        Returns list.
+        '''
+        if hasattr(self, 'list_visible_asset_managers'):
+            return self.list_visible_asset_managers(head=head)
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
+            head=head):
+            asset_manager = self._initialize_asset_manager(filesystem_path)
+            result.append(asset_manager)
+        return result
+
     def list_asset_names(
         self,
         in_built_in_asset_library=True, 
@@ -520,31 +549,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(
                     self._filesystem_path_to_space_delimited_lowercase_name(
                         filesystem_path))
-        return result
-
-    def list_asset_managers(
-        self,
-        in_built_in_asset_library=True, 
-        in_user_asset_library=True,
-        in_built_in_score_packages=True, 
-        in_user_score_packages=True, 
-        head=None,
-        ):
-        r'''Lists asset managers.
-
-        Returns list.
-        '''
-        if hasattr(self, 'list_visible_asset_managers'):
-            return self.list_visible_asset_managers(head=head)
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library,
-            in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head):
-            asset_manager = self._initialize_asset_manager(filesystem_path)
-            result.append(asset_manager)
         return result
 
     def list_asset_storehouse_filesystem_paths(
@@ -599,10 +603,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             self._current_storehouse_filesystem_path, asset_name)
         asset_manager = self._initialize_asset_manager(asset_filesystem_path)
         asset_manager._write_stub_to_disk()
-
-    def interactively_list_directory(self):
-        manager = self._get_current_package_manager()
-        manager.interactively_list_directory()
 
     def write_view_to_disk(self, new_view, prompt=True):
         view_inventory = self._read_view_inventory_from_disk()
