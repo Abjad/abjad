@@ -1,0 +1,50 @@
+#! /usr/bin/env python
+import os
+from abjad.tools import systemtools
+
+
+def find_initializers():
+
+    initializer_file_paths = []
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
+        if 'docs' in directory_path:
+            continue
+        for file_name in file_names:
+            if file_name == '__init__.py':
+                directory_name = os.path.basename(directory_path)
+                initializer_file_path = os.path.join(directory_path, file_name)
+                initializer_file_paths.append(initializer_file_path)
+    total_initializer_count = len(initializer_file_paths)
+    print 'Total initializers:        {}'.format(total_initializer_count)
+
+    autoloading_initializer_count = 0
+    manual_initializer_count = 0
+    manual_initializer_file_paths = []
+    for initializer_file_path in initializer_file_paths:
+        found_autoloading_statement = False
+        for line in file(initializer_file_path, 'r').readlines():
+            if 'import_structured_package' in line:
+                found_autoloading_statement = True
+                break
+        if found_autoloading_statement:
+            autoloading_initializer_count += 1
+        else:
+            manual_initializer_count += 1
+            manual_initializer_file_paths.append(initializer_file_path)
+
+    print 'Autoloading initializers:  {}'.format(autoloading_initializer_count)
+    print 'Manual initializers:       {}'.format(manual_initializer_count)
+    print
+    if manual_initializer_file_paths:
+        print 'Printing manual initializers ...'
+        print
+        for initializer_file_path in manual_initializer_file_paths:
+            print initializer_file_path
+
+
+if __name__ == '__main__':
+    systemtools.IOManager.clear_terminal()
+    print 'Finding initializers ...'
+    print
+    find_initializers()
+    print
