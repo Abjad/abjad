@@ -570,7 +570,7 @@ class ReducedLyParser(abctools.Parser):
                             spanner_references[current_class].append(leaf)
                             spanner_references[current_class] = None
                         else:
-                            message = 'cannot end: {}.'
+                            message = 'can not end: {}.'
                             message = message.format(current_class.__name)
                             raise Exception(message)
                     for _ in starting:

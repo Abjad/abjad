@@ -199,7 +199,7 @@ class AbjadConfiguration(Configuration):
             lilypond = proc.stdout.readline()
             lilypond = lilypond.strip('\r').strip('\n').strip()
             if lilypond == '':
-                message = 'cannot find LilyPond under Windows.'
+                message = 'can not find LilyPond under Windows.'
                 raise SystemError(message)
         else:
             lilypond = abjad_configuration['lilypond_path']

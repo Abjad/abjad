@@ -22,7 +22,11 @@ for abjad_class in crawler():
         qualified_class_name = '.'.join(
             abjad_class.__module__.split('.')[-2:]
             )
-    arguments = getattr(abjad_class, '_default_mandatory_input_arguments', [])
+    arguments = getattr(
+        abjad_class, 
+        '_default_positional_input_arguments', 
+        [],
+        )
     arguments = [str(x) for x in arguments]
     if arguments:
         arguments = ', '.join(arguments)

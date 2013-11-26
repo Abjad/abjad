@@ -40,7 +40,7 @@ class TreeContainer(TreeNode):
         elif isinstance(children, (list, tuple)):
             self.extend(children)
         else:
-            message = 'cannot instantiate {} with {!r}.'
+            message = 'can not instantiate {} with {!r}.'
             message = message.format(type(self), children)
             raise ValueError(message)
 

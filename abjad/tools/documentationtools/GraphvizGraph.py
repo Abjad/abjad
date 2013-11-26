@@ -211,7 +211,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 tail_parentage.pop()
                 head_parentage.pop()
             if last_parent is None:
-                message = 'last parent cannot be none.'
+                message = 'last parent can not be none.'
                 raise Exception(message)
             if last_parent not in edge_parents:
                 edge_parents[last_parent] = []

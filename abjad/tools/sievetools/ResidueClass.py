@@ -62,7 +62,7 @@ class ResidueClass(BaseResidueClass):
         elif len(args) == 2:
             self._init_by_modulo_and_residue(*args)
         else:
-            message = 'cannot intialize residue class: {!r}.'.format(args)
+            message = 'can not intialize residue class: {!r}.'.format(args)
             raise ValueError(message)
 
     ### SPECIAL METHODS ###

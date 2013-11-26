@@ -87,7 +87,7 @@ divide the final `tie chain` of the resulting tuplet into yet another ratio:
 
 
 A `tie chain` is a selection of notes or chords connected by ties. It lets us
-talk about a notated rhythm of ``5/16``, for example, which cannot be expressed
+talk about a notated rhythm of ``5/16``, for example, which can not be expressed
 with only a single leaf.
 
 Note how we can divide a tuplet whose outer proportions are ``3/5``, where

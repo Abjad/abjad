@@ -113,7 +113,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         elif isinstance(children, (list, str, tuple)):
             self.extend(children)
         else:
-            message = 'cannot instantiate {} with {!r}.'
+            message = 'can not instantiate {} with {!r}.'
             raise ValueError(message.format(type(self), children))
 
     ### SPECIAL METHODS ###

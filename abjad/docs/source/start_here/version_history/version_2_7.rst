@@ -208,7 +208,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
   In addition to its new read/write "textual_indication" attribute, Tempo
   now also exposes a read-only "is_imprecise" property, which returns True if
-  the mark cannot be expressed simply as duration=units_per_minute.  Arithmetic
+  the mark can not be expressed simply as duration=units_per_minute.  Arithmetic
   operations on TempoMarks will now raise ImpreciseTempoErrors if any mark
   involved is imprecise.
 

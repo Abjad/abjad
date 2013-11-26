@@ -84,7 +84,7 @@ def test_scoretools_Container_is_simultaneous_04():
 
 def test_scoretools_Container_is_simultaneous_05():
     r'''simultaneous containers must contain only Contexts.
-    It cannot take leaves.
+    It can not take leaves.
     '''
 
     container = Container(scoretools.make_repeated_notes(4))
@@ -93,7 +93,7 @@ def test_scoretools_Container_is_simultaneous_05():
 
 def test_scoretools_Container_is_simultaneous_06():
     r'''simultaneous containers must contain only Contexts.
-    It cannot take Containers.
+    It can not take Containers.
     '''
 
     container = Container(Container(scoretools.make_repeated_notes(4)) * 2)

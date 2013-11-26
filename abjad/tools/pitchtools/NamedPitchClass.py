@@ -72,7 +72,7 @@ class NamedPitchClass(PitchClass):
         elif pitchtools.Pitch.is_pitch_carrier(expr):
             self._init_by_pitch_carrier(expr)
         else:
-            message = 'cannot instantiate {} from {!r}.'
+            message = 'can not instantiate {} from {!r}.'
             message = message.format(type(self).__name__, expr)
             raise TypeError(message)
 

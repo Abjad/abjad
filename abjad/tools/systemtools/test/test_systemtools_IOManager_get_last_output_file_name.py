@@ -18,6 +18,6 @@ def test_systemtools_IOManager_get_last_output_file_name_01():
         elif last_output_file_name.endswith('.midi'):
             assert len(last_output_file_name) == 9
         else:
-            message = 'cannot pasre last output file name: {!r}.'
+            message = 'can not pasre last output file name: {!r}.'
             message = message.format(last_output_file_name)
             raise Exception(message)

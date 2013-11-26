@@ -46,7 +46,7 @@ class Domain(AbjadObject):
             assert 0 < int(args[1])
             domain = tuple([tuple(args[0]) for _ in range(args[1])])
         else:
-            message = "cannot instantiate %s from %s."
+            message = "can not instantiate %s from %s."
             raise Exception(message % (type(self).__name__, args))
         object.__setattr__(self, '_domain', domain)
 

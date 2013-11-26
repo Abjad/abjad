@@ -134,7 +134,7 @@ class ContiguousSelection(Selection):
         elif all(isinstance(x, scoretools.Measure) for x in self):
             return self._fuse_measures()
         else:
-            message = 'cannot fuse.'
+            message = 'can not fuse.'
             raise Exception(message)
 
     def _fuse_leaves(self):

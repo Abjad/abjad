@@ -373,7 +373,7 @@ class LilyPondParser(abctools.Parser):
                             all_spanners[spanner_class][0].append(leaf)
                             all_spanners[spanner_class].pop()
                         else:
-                            message = 'cannot end {}.'
+                            message = 'can not end {}.'
                             message = message.format(spanner_class.__name__)
                             raise Exception(message)
                     for event in starting_events:
@@ -390,8 +390,8 @@ class LilyPondParser(abctools.Parser):
                 elif spanner_class is spannertools.HorizontalBracketSpanner:
                     # Brackets can nest, meaning
                     # multiple brackets can begin or end on a leaf
-                    # but cannot both begin and end on the same leaf
-                    # and therefore a bracket cannot cover a single leaf
+                    # but can not both begin and end on the same leaf
+                    # and therefore a bracket can not cover a single leaf
                     has_starting_events = bool(len(starting_events))
                     for _ in starting_events:
                         all_spanners[spanner_class].append(spanner_class())
@@ -735,7 +735,7 @@ class LilyPondParser(abctools.Parser):
         }
         if name in spanners:
             return spanners[name]
-        message = 'cannot associate a spanner class with {}'.format(name)
+        message = 'can not associate a spanner class with {}'.format(name)
         raise Exception(message)
 
     def _test_scheme_predicate(self, predicate, value):

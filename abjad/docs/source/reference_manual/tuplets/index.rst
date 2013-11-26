@@ -298,7 +298,7 @@ Override attributes of the LilyPond tuplet number grob like this:
 
 
 We'll place the tuplet into a Staff object, so that LilyPond does not complain
-about the overrides we've applied, which lexically cannot appear in a
+about the overrides we've applied, which lexically can not appear in a
 ``\score`` block.
 
 ::

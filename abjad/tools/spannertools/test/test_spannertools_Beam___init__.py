@@ -421,7 +421,7 @@ def test_spannertools_Beam___init___14():
 
 
 def test_spannertools_Beam___init___15():
-    r'''Beams cannot cross voice boundaries.
+    r'''Beams can not cross voice boundaries.
     '''
 
     staff = Staff([
