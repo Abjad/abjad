@@ -7,6 +7,11 @@ class ContextManager(AbjadObject):
     r'''An abstract context manager class.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
     ### INTIALIZER ###
 
     @abc.abstractmethod

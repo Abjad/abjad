@@ -15,6 +15,12 @@ class NumberedIntervalClass(IntervalClass):
     Returns numbered interval-class.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_number',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, token):

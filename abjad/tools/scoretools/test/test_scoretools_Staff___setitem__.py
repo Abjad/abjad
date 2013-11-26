@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import pytest
 from abjad import *
 
 
@@ -87,7 +88,7 @@ def test_scoretools_Staff___setitem___05():
     staff = Staff(Note("c'4") * 4)
 
     statement = 'staff[0] = [Note(2, (1, 4)), Note(2, (1, 4))]'
-    assert raises(AssertionError, statement)
+    assert pytest.raises(AssertionError, statement)
 
 
 def test_scoretools_Staff___setitem___06():
@@ -96,7 +97,7 @@ def test_scoretools_Staff___setitem___06():
 
     staff = Staff(Note("c'4") * 4)
 
-    assert raises(Exception, 'staff[0:2] = Note(2, (1, 4))')
+    assert pytest.raises(Exception, 'staff[0:2] = Note(2, (1, 4))')
 
 
 def test_scoretools_Staff___setitem___07():

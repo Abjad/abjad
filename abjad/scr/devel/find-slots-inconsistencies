@@ -10,13 +10,16 @@ from abjad.tools.documentationtools import InheritanceGraph
 
 def shorten_class_name(abjad_class):
     parts = abjad_class.__module__.split('.')[2:]
-    return '%s.%s' % (parts[0], parts[1])
+    return '{}.{}'.format(parts[0], parts[1])
 
 
 def find_inconsistencies():
     tools_path = os.path.abspath('.')
     abjad_classes = ClassCrawler(tools_path)()
-    graph = InheritanceGraph(addresses=abjad_classes, root_addresses=[AbjadObject])
+    graph = InheritanceGraph(
+        addresses=abjad_classes, 
+        root_addresses=[AbjadObject],
+        )
     bad_arcs = []
     for parent, children in graph.parent_children_mapping.iteritems():
         parent_attrs = inspect.classify_class_attrs(parent)
@@ -29,14 +32,22 @@ def find_inconsistencies():
             if child_slots_def == child and parent_slots_def != parent:
                 bad_arcs.append((parent, child))
     if bad_arcs:
-        print '%d bad __slots__ relationships found:' % len(bad_arcs)
-        for parent, child in sorted(bad_arcs, key=lambda x: (x[0].__module__, x[1].__module__)):
-            print '\t%s -> %s' % (shorten_class_name(parent), shorten_class_name(child))
+        print '%d bad slots relationships found:' % len(bad_arcs)
+        generator = sorted(
+            bad_arcs, 
+            key=lambda x: (x[0].__module__, x[1].__module__)
+            )
+        for parent, child in generator:
+            print '\t{} -> {}'.format(
+                shorten_class_name(parent), 
+                shorten_class_name(child),
+                )
     else:
-        print 'No bad __slots__ relationships found.'
+        print 'No bad slots relationships found.'
     return graph
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
     graph = find_inconsistencies()
+    print
