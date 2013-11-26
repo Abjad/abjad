@@ -66,10 +66,11 @@ class TonalAnalysisAgent(abctools.AbjadObject):
     @staticmethod
     def _analyze_chord(expr):
         from abjad.tools import tonalanalysistools
-        from abjad.tools.tonalanalysistools import RootlessChordClass as RCC
         pitches = pitchtools.PitchSegment.from_selection(expr)
         npcset = pitchtools.PitchClassSet(
-            pitches, item_class=pitchtools.NamedPitchClass)
+            pitches, 
+            item_class=pitchtools.NamedPitchClass,
+            )
         ordered_npcs = []
         letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
         for letter in letters:
@@ -85,13 +86,13 @@ class TonalAnalysisAgent(abctools.AbjadObject):
                     tokens=mathtools.difference_series(ordered_npcs),
                     item_class=pitchtools.NamedInversionEquivalentIntervalClass,
                     )
-                #ordered_npcs.inversion_equivalent_named_interval_class_segment
             if segment.is_tertian:
                 break
         else:
             return None
         root = ordered_npcs[0]
-        rootless_chord_class = RCC.from_interval_class_segment(segment)
+        class_ = tonalanalysistools.RootlessChordClass
+        rootless_chord_class = class_.from_interval_class_segment(segment)
         bass = min(pitches).named_pitch_class
         inversion = ordered_npcs.index(bass)
         return tonalanalysistools.RootedChordClass(

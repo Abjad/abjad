@@ -2,18 +2,34 @@
 import os
 
 
-def find_filenames_with_forbidden_characters():
-   forbidden_characters = (' ', )
-   for dirpath, dirnames, filenames in os.walk('.'):
-      for filename in filenames:
-         if 'svn' not in dirpath and 'svn' not in filename:
-            for forbidden_character in forbidden_characters:
-               if forbidden_character in filename:
-                  full_filename = os.path.join(dirpath, filename)
-                  print full_filename
+def find_file_names_with_forbidden_characters():
+    forbidden_characters = (' ', )
+    total_files = 0
+    total_bad_files = 0
+    bad_file_names = []
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
+        for file_name in file_names:
+            if 'svn' not in directory_path and 'svn' not in file_name:
+                total_files += 1
+                for forbidden_character in forbidden_characters:
+                    if forbidden_character in file_name:
+                        full_file_name = os.path.join(
+                            directory_path, 
+                            file_name,
+                            )
+                        bad_file_names.append(full_file_name)
+                        break
+
+    print 'Total file names:    {}'.format(total_files)
+    print 'Bad file names:      {}'.format(total_bad_files)
+    print
+    if bad_file_names:
+        print 'Printing bad file names ...'
+        for bad_file_name in bad_file_names:
+            print bad_file_name
+        print
 
 
 if __name__ == '__main__':
-   os.system('clear')
-   find_filenames_with_forbidden_characters()
-   print
+    os.system('clear')
+    find_file_names_with_forbidden_characters()

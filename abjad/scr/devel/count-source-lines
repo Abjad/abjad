@@ -34,21 +34,23 @@ def count_source_lines():
 
 def report(source_module_names, source_lines, test_module_names, test_lines):
 
-    print 'source_module_names: {}'.format(source_module_names)
-    print 'test_module_names:   {}'.format(test_module_names)
+    print 'source modules:      {}'.format(source_module_names)
+    print 'test modules:        {}'.format(test_module_names)
 
     print
-    print 'source_lines:   {}'.format(source_lines)
-    print 'test_lines:     {}'.format(test_lines)
+    print 'source lines:        {}'.format(source_lines)
+    print 'test lines:          {}'.format(test_lines)
 
     print
-    print 'total lines:    {}'.format(source_lines + test_lines)
+    print 'total lines:         {}'.format(source_lines + test_lines)
+    print
 
     try:
         ratio = test_lines / float(source_lines)
     except ZeroDivisionError:
         ratio = 1
     ratio = round(ratio, 1)
+
     print 'test-to-source ratio is {} : 1'.format(ratio)
     print
 

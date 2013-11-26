@@ -6,26 +6,31 @@ from abjad.tools import systemtools
 def find_import_as_statements():
     total_modules_with_import_as_statements = 0
     total_import_as_statements = 0
-    for path, subdirectories, files in os.walk('.'):
-        for f in files:
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
+        for file_name in file_names:
             found_import_as_statement = False
-            if f.endswith('.py') and not f == 'autodoc.py' and \
-                not f == '_write_parser_syntax_skeleton.py':
-                full_file_name = os.path.join(path, f)
-                fp = file(full_file_name, 'r')
-                for line in fp:
+            if file_name.endswith('.py') and \
+                not file_name == 'autodoc.py' and \
+                not file_name == '_write_parser_syntax_skeleton.py':
+                file_path = os.path.join(directory_path, file_name)
+                file_pointer = file(file_path, 'r')
+                for line in file_pointer:
                     if 'import' in line and ' as ' in line and \
                         not 'command =' in line:
                         if not found_import_as_statement:
-                            print full_file_name
+                            print file_path
                             found_import_as_statement = True
                             total_modules_with_import_as_statements += 1
                         print line.strip()
                         total_import_as_statements += 1
             if found_import_as_statement:
                 print
-    print 'Modules with import-as statements:   {}'.format(total_modules_with_import_as_statements)
-    print 'Total import-as statements:          {}'.format(total_import_as_statements)
+
+    total = total_modules_with_import_as_statements
+    print 'Modules with import-as statements:   {}'.format(total)
+
+    total = total_import_as_statements
+    print 'Total import-as statements:          {}'.format(total)
 
 
 if __name__ == '__main__':

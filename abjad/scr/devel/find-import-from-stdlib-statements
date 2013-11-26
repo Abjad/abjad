@@ -12,9 +12,12 @@ def find_local_import_statements():
             for f in files:
                 if f.endswith('.py') and not f == '__init__.py':
                     full_file_name = os.path.join(path, f)
-                    result = find_local_import_statements_in_file(full_file_name)
+                    result = find_local_import_statements_in_file(
+                        full_file_name)
                     total_local_import_statements += result
-    print 'Total local import statements: %s' % total_local_import_statements
+
+    total = total_local_import_statements
+    print 'Total local import statements: {}'.format(total)
     print
 
 
@@ -23,12 +26,13 @@ def find_local_import_statements_in_file(full_file_name):
     file_parts = full_file_name.split(os.path.sep)
     module = file_parts[-2]
     function = file_parts[-1]
-    shorter_module_name = '%s%s%s' % (module, os.path.sep, function)
+    shorter_module_name = '{}{}{}'.format(module, os.path.sep, function)
     fp = file(full_file_name, 'r')
     for line in fp.readlines():
         if line.startswith('from') and \
             not line.startswith('from experimental import *') and \
-            not line.startswith('from make_illustration_from_output_material') and \
+            not line.startswith(
+                'from make_illustration_from_output_material') and \
             not line.startswith('from _'):
             line_parts = line.split()
             module_name = line_parts[1]

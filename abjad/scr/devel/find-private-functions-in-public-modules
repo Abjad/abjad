@@ -1,0 +1,36 @@
+#! /usr/bin/env python
+import os
+from abjad import abjad_configuration
+from abjad.tools import systemtools
+
+
+def find_misnamed_private_modules():
+    offending_definition_lines = []
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
+        for file_name in file_names:
+            if file_name.endswith('.py'):
+                if not file_name.startswith(('test', '_')):
+                    full_name = os.path.join(directory_path, file_name)
+                    for line in file(full_name, 'r').readlines():
+                        if line.startswith('def '):
+                            if line.startswith('def _'):
+                                function_name = \
+                                    ' '.join(line.strip().split()[1:])[:-1]
+                                function_name = function_name.split('(')[0]
+                                module_name = file_name[:-3]
+                                if function_name[1:] == module_name:
+                                    medium_name = os.sep.join(
+                                        full_name.split(os.sep)[-2:])
+                                    token = '{} in {}'.format(
+                                        function_name, medium_name)
+                                    offending_definition_lines.append(token)
+    print
+    total = len(offending_definition_lines)
+    print 'Total private functions defined in public modules: {}'.format(total)
+    print
+
+
+if __name__ == '__main__':
+    systemtools.IOManager.clear_terminal()
+    print 'Finding misnamed private modules ...'
+    find_misnamed_private_modules()

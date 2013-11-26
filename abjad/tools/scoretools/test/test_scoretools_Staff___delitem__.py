@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-from pytest import raises
 
 
 def test_scoretools_Staff___delitem___01():

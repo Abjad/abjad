@@ -18,7 +18,8 @@ def find_lower_camel_case_modules():
     if lower_camel_case_modules:
         print
         print lower_camel_case_modules
-        print 'Total lower camel case modules: %s' % len(lower_camel_case_modules)
+        total = len(lower_camel_case_modules)
+        print 'Total lower camel case modules: {}'.format(total)
     else:
         print 'No lower camel case modules found.'
     print
