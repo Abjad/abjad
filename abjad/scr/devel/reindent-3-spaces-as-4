@@ -5,9 +5,9 @@ from abjad.tools import mathtools
 
 
 def reindent_3_spaces_as_4():
-    reindented = [ ]
-    indented = [ ]
-    skipped = [ ]
+    reindented = []
+    indented = []
+    skipped = []
     for path, subdirectories, files in os.walk('.'):
         for file in files:
             if not file.startswith('__') and (file.endswith('.py') or file.endswith('.rst.raw')):
@@ -37,7 +37,7 @@ def strip_trailing_whitespace(file, path):
 
 
 def find_indent_gcd(file, path):
-    indents = [ ]
+    indents = []
     file_path = os.path.join(path, file)
     f = open(file_path, 'r')
     lines = f.read().split('\n')
@@ -54,7 +54,7 @@ def find_indent_gcd(file, path):
 
 
 def find_inconsistent_indents(file, path):
-    inconsistencies = [ ]
+    inconsistencies = []
     file_path = os.path.join(path, file)
     f = open(file_path, 'r')
     lines = f.read().split('\n')

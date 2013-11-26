@@ -5,7 +5,7 @@ from abjad.tools.lilypondparsertools._write_parser_syntax_skeleton \
 
 
 def usage( ):
-    result = [ ]
+    result = []
     result.append('')
     result.append('Usage:')
     result.append('')

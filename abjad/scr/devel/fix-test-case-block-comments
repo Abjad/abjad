@@ -12,7 +12,7 @@ def fix_test_case_block_comments():
     open_comment_re = re.compile(r"(\s*)(r''')(.+)")
     close_comment_re = re.compile(r"(\s*)([}|>]+)(.*)(''')")
     for path, subdirectories, files in os.walk('.'):
-        test_modules = [ ]
+        test_modules = []
         for f in files:
             if f.startswith('test_') and f.endswith('.py'):
                 test_modules.append(f)
@@ -22,9 +22,9 @@ def fix_test_case_block_comments():
             full_module_name = os.path.join(path, test_module)
             contained_broken_comment = False
             fp = file(full_module_name, 'r')
-            new_lines = [ ]
+            new_lines = []
             lines = fp.readlines()
-            new_lines = [ ]
+            new_lines = []
             previous_line = ''
             for line in lines:
                 open_match = open_comment_re.match(line)

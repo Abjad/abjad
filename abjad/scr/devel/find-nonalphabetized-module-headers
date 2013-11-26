@@ -5,15 +5,16 @@ from abjad.tools import systemtools
 
 def main():
     total_nonalphabetized_module_headers = 0
-    for path, subdirectories, files in os.walk('.'):
-        for f in files:
-            if f.endswith('.py'):
-                full_file_name = os.path.join(path, f)
-                fp = file(full_file_name, 'r')
-                header_lines = [ ]
-                for i, line in enumerate(fp):
+    for directory_path, subdirectory_names, file_names in os.walk('.'):
+        for file_name in file_names:
+            if file_name.endswith('.py'):
+                full_file_name = os.path.join(directory_path, file_name)
+                file_pointer = file(full_file_name, 'r')
+                header_lines = []
+                for i, line in enumerate(file_pointer):
                     if i == 0 and \
-                        not line.startswith('from') and not line.startswith('import'):
+                        not line.startswith('from') and \
+                        not line.startswith('import'):
                         break
                     elif line.startswith('from') or line.startswith('import'):
                         header_lines.append(line)
@@ -33,9 +34,11 @@ def main():
                     if header_lines != sorted_header_lines:
                         total_nonalphabetized_module_headers += 1
                         print '### NONALPHABETIZED HEADER ###\n'
-                        print.join(header_lines)
-                        print.join(sorted_header_lines)
-    print 'Total nonalphabetized headers: %s' % total_nonalphabetized_module_headers
+                        print '\n'.join(header_lines)
+                        print '\n'.join(sorted_header_lines)
+
+    total = total_nonalphabetized_module_headers
+    print 'Total nonalphabetized headers: {}'.format(total)
     print
 
 
@@ -44,5 +47,5 @@ if __name__ == '__main__':
     #print 'Finding nonalphabetized module headers ...'
     #print
     #main()
-    print 'This script needs to be ported forward to the new module header standard.'
+    print 'This script needs to be ported to the new module header standard.'
     print

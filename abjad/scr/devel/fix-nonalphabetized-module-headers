@@ -11,7 +11,7 @@ def main():
                 full_file_name = os.path.join(path, f)
                 fp = file(full_file_name, 'r')
                 just_found_end_of_header, found_end_of_header = False, False
-                header_lines, module_lines = [ ], [ ]
+                header_lines, module_lines = [], []
                 for i, line in enumerate(fp):
                     if not found_end_of_header:
                         if i == 0 and not line.startswith('from') and not line.startswith('import'):
@@ -31,7 +31,7 @@ def main():
                             if header_lines != sorted_header_lines:
                                 total_nonalphabetized_module_headers += 1
                             module_lines.extend(sorted_header_lines)
-                            header_lines = [ ]
+                            header_lines = []
                         module_lines.append(line)
                         just_found_end_of_header = False
                 if header_lines:

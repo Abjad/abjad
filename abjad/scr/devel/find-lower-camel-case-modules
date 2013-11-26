@@ -6,7 +6,7 @@ from abjad.tools import systemtools
 
 
 def find_lower_camel_case_modules():
-    lower_camel_case_modules = [ ]
+    lower_camel_case_modules = []
     lower_camel_case_pattern = re.compile(r'[a-z]+[A-Z]+.*')
     for path, subdirectories, file_names in os.walk('.'):
         for file_name in file_names:
