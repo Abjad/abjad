@@ -99,6 +99,18 @@ class TestManager(object):
             del stack
 
     @staticmethod
+    def read_test_output(full_file_name, current_function_name):
+        r'''Read test output.
+        '''
+        segment_ly_file_name = '{}.ly'.format(current_function_name)
+        directory_name = os.path.dirname(full_file_name)
+        segment_ly_path_name = os.path.join(
+            directory_name,
+            segment_ly_file_name,
+            )
+        return file(segment_ly_path_name, 'r').read()
+
+    @staticmethod
     def test_function_name_to_title_lines(test_function_name):
         from abjad.tools import sequencetools
         title_lines = []
@@ -137,18 +149,6 @@ class TestManager(object):
             title = '{}{}{}'.format(title_words, space, test_number)
             title_lines.append(title)
         return title_lines
-
-    @staticmethod
-    def read_test_output(full_file_name, current_function_name):
-        r'''Read test output.
-        '''
-        segment_ly_file_name = '{}.ly'.format(current_function_name)
-        directory_name = os.path.dirname(full_file_name)
-        segment_ly_path_name = os.path.join(
-            directory_name,
-            segment_ly_file_name,
-            )
-        return file(segment_ly_path_name, 'r').read()
 
     @staticmethod
     def write_test_output(

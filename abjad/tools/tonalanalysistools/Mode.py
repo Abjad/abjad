@@ -102,9 +102,9 @@ class Mode(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def named_interval_segment(self):
-        return self._named_interval_segment
-
-    @property
     def mode_name(self):
         return self._mode_name
+
+    @property
+    def named_interval_segment(self):
+        return self._named_interval_segment

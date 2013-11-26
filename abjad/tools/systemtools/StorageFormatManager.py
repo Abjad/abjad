@@ -112,114 +112,6 @@ class StorageFormatManager(object):
         return result
 
     @staticmethod
-    def get_indentation_strings(is_indented):
-        prefix, infix, suffix = '', '', ', '
-        if is_indented:
-            prefix, infix, suffix = '    ', '\n', ',\n'
-        return prefix, infix, suffix
-
-    @staticmethod
-    def get_input_argument_values(object_):
-        return StorageFormatManager.get_positional_argument_values(object_) + \
-            StorageFormatManager.get_keyword_argument_values(object_)
-
-    @staticmethod
-    def get_keyword_argument_dictionary(object_):
-        names = StorageFormatManager.get_keyword_argument_names(object_)
-        values = StorageFormatManager.get_keyword_argument_values(object_)
-        assert len(names) == len(values)
-        result = dict(zip(names, values))
-        return result
-
-    @staticmethod
-    def get_keyword_argument_names(object_):
-        return StorageFormatManager.get_signature_keyword_argument_names(
-            object_)
-
-    @staticmethod
-    def get_keyword_argument_values(object_):
-        result = []
-        for name in StorageFormatManager.get_keyword_argument_names(object_):
-            result.append(getattr(object_, name))
-        return tuple(result)
-
-    @staticmethod
-    def get_positional_argument_dictionary(object_):
-        names = StorageFormatManager.get_positional_argument_names(object_)
-        values = StorageFormatManager.get_positional_argument_values(object_)
-        assert len(names) == len(values)
-        result = dict(zip(names, values))
-        return result
-
-    @staticmethod
-    def get_positional_argument_names(object_):
-        return StorageFormatManager.get_signature_positional_argument_names(
-            object_)
-
-    @staticmethod
-    def get_positional_argument_values(object_):
-        names = StorageFormatManager.get_positional_argument_names(object_)
-        result = []
-        for name in names:
-            result.append(getattr(object_, name))
-        return tuple(result)
-
-    @staticmethod
-    def get_signature_keyword_argument_names(object_):
-        if hasattr(object_.__init__, '__func__'):
-            initializer = object_.__init__.__func__
-            if initializer.func_defaults:
-                keyword_argument_count = len(initializer.func_defaults)
-                initializer_code = initializer.func_code
-                positional_argument_count = (
-                    initializer_code.co_argcount - keyword_argument_count - 1)
-                start_index = 1 + positional_argument_count
-                stop_index = start_index + keyword_argument_count
-                return initializer_code.co_varnames[start_index:stop_index]
-            else:
-                return ()
-        return ()
-
-    @staticmethod
-    def get_signature_positional_argument_names(object_):
-        if hasattr(object_.__init__, '__func__'):
-            initializer = object_.__init__.__func__
-            if initializer.func_defaults:
-                keyword_argument_count = len(initializer.func_defaults)
-            else:
-                keyword_argument_count = 0
-            initializer_code = initializer.func_code
-            positional_argument_count = (
-                initializer_code.co_argcount - keyword_argument_count - 1)
-            start_index, stop_index = 1, 1 + positional_argument_count
-            return initializer_code.co_varnames[start_index:stop_index]
-        return ()
-
-    @staticmethod
-    def get_repr_format(
-        object_,
-        ):
-        assert '_repr_specification' in dir(object_)
-        specification = object_._repr_specification
-        pieces = StorageFormatManager.get_format_pieces(
-            specification,
-            as_storage_format=False,
-            )
-        return ''.join(pieces)
-
-    @staticmethod
-    def get_storage_format(
-        object_,
-        ):
-        assert '_storage_format_specification' in dir(object_)
-        specification = object_._storage_format_specification
-        pieces = StorageFormatManager.get_format_pieces(
-            specification,
-            as_storage_format=True,
-            )
-        return ''.join(pieces)
-
-    @staticmethod
     def get_format_pieces(
         specification,
         as_storage_format=True,
@@ -313,6 +205,114 @@ class StorageFormatManager(object):
         if not specification.is_indented:
             return (''.join(result),)
         return tuple(result)
+
+    @staticmethod
+    def get_indentation_strings(is_indented):
+        prefix, infix, suffix = '', '', ', '
+        if is_indented:
+            prefix, infix, suffix = '    ', '\n', ',\n'
+        return prefix, infix, suffix
+
+    @staticmethod
+    def get_input_argument_values(object_):
+        return StorageFormatManager.get_positional_argument_values(object_) + \
+            StorageFormatManager.get_keyword_argument_values(object_)
+
+    @staticmethod
+    def get_keyword_argument_dictionary(object_):
+        names = StorageFormatManager.get_keyword_argument_names(object_)
+        values = StorageFormatManager.get_keyword_argument_values(object_)
+        assert len(names) == len(values)
+        result = dict(zip(names, values))
+        return result
+
+    @staticmethod
+    def get_keyword_argument_names(object_):
+        return StorageFormatManager.get_signature_keyword_argument_names(
+            object_)
+
+    @staticmethod
+    def get_keyword_argument_values(object_):
+        result = []
+        for name in StorageFormatManager.get_keyword_argument_names(object_):
+            result.append(getattr(object_, name))
+        return tuple(result)
+
+    @staticmethod
+    def get_positional_argument_dictionary(object_):
+        names = StorageFormatManager.get_positional_argument_names(object_)
+        values = StorageFormatManager.get_positional_argument_values(object_)
+        assert len(names) == len(values)
+        result = dict(zip(names, values))
+        return result
+
+    @staticmethod
+    def get_positional_argument_names(object_):
+        return StorageFormatManager.get_signature_positional_argument_names(
+            object_)
+
+    @staticmethod
+    def get_positional_argument_values(object_):
+        names = StorageFormatManager.get_positional_argument_names(object_)
+        result = []
+        for name in names:
+            result.append(getattr(object_, name))
+        return tuple(result)
+
+    @staticmethod
+    def get_repr_format(
+        object_,
+        ):
+        assert '_repr_specification' in dir(object_)
+        specification = object_._repr_specification
+        pieces = StorageFormatManager.get_format_pieces(
+            specification,
+            as_storage_format=False,
+            )
+        return ''.join(pieces)
+
+    @staticmethod
+    def get_signature_keyword_argument_names(object_):
+        if hasattr(object_.__init__, '__func__'):
+            initializer = object_.__init__.__func__
+            if initializer.func_defaults:
+                keyword_argument_count = len(initializer.func_defaults)
+                initializer_code = initializer.func_code
+                positional_argument_count = (
+                    initializer_code.co_argcount - keyword_argument_count - 1)
+                start_index = 1 + positional_argument_count
+                stop_index = start_index + keyword_argument_count
+                return initializer_code.co_varnames[start_index:stop_index]
+            else:
+                return ()
+        return ()
+
+    @staticmethod
+    def get_signature_positional_argument_names(object_):
+        if hasattr(object_.__init__, '__func__'):
+            initializer = object_.__init__.__func__
+            if initializer.func_defaults:
+                keyword_argument_count = len(initializer.func_defaults)
+            else:
+                keyword_argument_count = 0
+            initializer_code = initializer.func_code
+            positional_argument_count = (
+                initializer_code.co_argcount - keyword_argument_count - 1)
+            start_index, stop_index = 1, 1 + positional_argument_count
+            return initializer_code.co_varnames[start_index:stop_index]
+        return ()
+
+    @staticmethod
+    def get_storage_format(
+        object_,
+        ):
+        assert '_storage_format_specification' in dir(object_)
+        specification = object_._storage_format_specification
+        pieces = StorageFormatManager.get_format_pieces(
+            specification,
+            as_storage_format=True,
+            )
+        return ''.join(pieces)
 
     @staticmethod
     def get_tools_package_name(object_):

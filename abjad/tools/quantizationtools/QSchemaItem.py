@@ -37,12 +37,6 @@ class QSchemaItem(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    @abc.abstractmethod
-    def __getnewargs__(self):
-        r'''Returns self as a plain tuple. Used by copy and pickle.
-        '''
-        raise NotImplementedError
-
     def __format__(self, format_specification=''):
         r'''Formats q schema item.
 
@@ -55,6 +49,12 @@ class QSchemaItem(AbjadObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
+
+    @abc.abstractmethod
+    def __getnewargs__(self):
+        r'''Returns self as a plain tuple. Used by copy and pickle.
+        '''
+        raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 

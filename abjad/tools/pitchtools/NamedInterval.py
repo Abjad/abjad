@@ -262,13 +262,6 @@ class NamedInterval(Interval):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def named_interval_class(self):
-        from abjad.tools import pitchtools
-        quality_string, number = self._quality_string, self.number
-        return pitchtools.NamedInversionEquivalentIntervalClass(
-            quality_string, number)
-
-    @property
     def direction_number(self):
         if self.quality_string == 'perfect' and abs(self.number) == 1:
             return 0
@@ -291,6 +284,13 @@ class NamedInterval(Interval):
     @property
     def interval_string(self):
         return self._interval_string
+
+    @property
+    def named_interval_class(self):
+        from abjad.tools import pitchtools
+        quality_string, number = self._quality_string, self.number
+        return pitchtools.NamedInversionEquivalentIntervalClass(
+            quality_string, number)
 
     @property
     def number(self):

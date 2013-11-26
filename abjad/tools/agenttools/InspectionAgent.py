@@ -71,39 +71,6 @@ class InspectionAgent(abctools.AbjadObject):
         annotation_value = with_correct_name[0].value
         return annotation_value
 
-    def get_indicator(
-        self,
-        prototype=None,
-        unwrap=True,
-        ):
-        r'''Gets exactly one indicator matching `prototype` attached to
-        client.
-
-        Raises exception when no indicator matching `prototype` is attached
-        to client.
-
-        Returns indicator.
-        '''
-        return self._client._get_indicator(
-            prototype=prototype,
-            unwrap=unwrap,
-            )
-
-    def get_indicators(
-        self,
-        prototype=None,
-        unwrap=True,
-        ):
-        r'''Get all indicators matching `prototype` attached
-        to client.
-
-        Returns tuple.
-        '''
-        return self._client._get_indicators(
-            prototype=prototype,
-            unwrap=unwrap,
-            )
-
     def get_badly_formed_components(self):
         r'''Gets badly formed components in client.
 
@@ -284,6 +251,39 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_grace_containers(
             kind=kind,
+            )
+
+    def get_indicator(
+        self,
+        prototype=None,
+        unwrap=True,
+        ):
+        r'''Gets exactly one indicator matching `prototype` attached to
+        client.
+
+        Raises exception when no indicator matching `prototype` is attached
+        to client.
+
+        Returns indicator.
+        '''
+        return self._client._get_indicator(
+            prototype=prototype,
+            unwrap=unwrap,
+            )
+
+    def get_indicators(
+        self,
+        prototype=None,
+        unwrap=True,
+        ):
+        r'''Get all indicators matching `prototype` attached
+        to client.
+
+        Returns tuple.
+        '''
+        return self._client._get_indicators(
+            prototype=prototype,
+            unwrap=unwrap,
             )
 
     def get_leaf(self, n=0):

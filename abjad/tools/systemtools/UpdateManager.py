@@ -42,6 +42,21 @@ class UpdateManager(AbjadObject):
         return components
 
     @staticmethod
+    def _update_all_indicators(component):
+        r'''Updating indicators does not update offsets.
+        On the other hand, getting an effective indicator does update 
+        offsets when at least one indicator of the appropriate type 
+        attaches to score.
+        '''
+        components = UpdateManager._iterate_entire_score(component)
+        for component in components:
+            for indicator in component._get_indicators(unwrap=False):
+                if indicator.scope is not None:
+                    assert hasattr(indicator, '_update_effective_context')
+                    indicator._update_effective_context()
+            component._indicators_are_current = True
+
+    @staticmethod
     def _update_all_leaf_indices_and_measure_numbers(component):
         r'''Call only when updating offsets.
         No separate state flags exist for leaf indices or measure numbers.
@@ -68,21 +83,6 @@ class UpdateManager(AbjadObject):
                 iterate(score_root).by_class(scoretools.Measure)):
                 measure_number = measure_index + 1
                 measure._measure_number = measure_number
-
-    @staticmethod
-    def _update_all_indicators(component):
-        r'''Updating indicators does not update offsets.
-        On the other hand, getting an effective indicator does update 
-        offsets when at least one indicator of the appropriate type 
-        attaches to score.
-        '''
-        components = UpdateManager._iterate_entire_score(component)
-        for component in components:
-            for indicator in component._get_indicators(unwrap=False):
-                if indicator.scope is not None:
-                    assert hasattr(indicator, '_update_effective_context')
-                    indicator._update_effective_context()
-            component._indicators_are_current = True
 
     @staticmethod
     def _update_all_offsets(component):

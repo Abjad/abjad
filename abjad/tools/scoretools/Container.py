@@ -164,6 +164,10 @@ class Container(Component):
             return duration
 
     @property
+    def _preprolated_duration(self):
+        return self._contents_duration
+
+    @property
     def _repr_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
@@ -175,6 +179,19 @@ class Container(Component):
                 self._compact_representation,
                 ),
             )
+
+    @property
+    def _space_delimited_summary(self):
+        if 0 < len(self):
+            result = []
+            for x in self._music:
+                if hasattr(x, '_compact_representation_with_tie'):
+                    result.append(x._compact_representation_with_tie)
+                else:
+                    result.append(str(x))
+            return ' '.join(result)
+        else:
+            return ''
 
     @property
     def _storage_format_specification(self):
@@ -192,23 +209,6 @@ class Container(Component):
             keyword_argument_names=(),
             positional_argument_values=positional_argument_values,
             )
-
-    @property
-    def _preprolated_duration(self):
-        return self._contents_duration
-
-    @property
-    def _space_delimited_summary(self):
-        if 0 < len(self):
-            result = []
-            for x in self._music:
-                if hasattr(x, '_compact_representation_with_tie'):
-                    result.append(x._compact_representation_with_tie)
-                else:
-                    result.append(str(x))
-            return ' '.join(result)
-        else:
-            return ''
 
     @property
     def _summary(self):

@@ -168,12 +168,12 @@ class TreeNode(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _state_flag_names(self):
-        return ()
-
-    @property
     def _repr_specification(self):
         return self._storage_format_specification
+
+    @property
+    def _state_flag_names(self):
+        return ()
 
     ### PUBLIC PROPERTIES ###
 

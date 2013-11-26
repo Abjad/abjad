@@ -464,16 +464,6 @@ class Component(AbjadObject):
         matching_indicators = tuple(matching_indicators)
         return matching_indicators
 
-    def _get_spanner_indicators(self, prototype=None, unwrap=True):
-        matching_indicators = []
-        for spanner in self._get_spanners():
-            result = spanner._get_indicators(
-                prototype=prototype,
-                unwrap=unwrap,
-                )
-            matching_indicators.extend(result)
-        return matching_indicators
-
     def _get_lineage(self):
         return selectiontools.Lineage(self)
 
@@ -540,6 +530,16 @@ class Component(AbjadObject):
         else:
             message = 'multiple spanners found.'
             raise ExtraSpannerError(message)
+
+    def _get_spanner_indicators(self, prototype=None, unwrap=True):
+        matching_indicators = []
+        for spanner in self._get_spanners():
+            result = spanner._get_indicators(
+                prototype=prototype,
+                unwrap=unwrap,
+                )
+            matching_indicators.extend(result)
+        return matching_indicators
 
     def _get_spanners(self, prototype=None):
         from abjad.tools import spannertools

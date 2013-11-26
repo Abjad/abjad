@@ -98,19 +98,6 @@ class Scale(PitchClassSegment):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def named_interval_class_segment(self):
-        dics = []
-        for left, right in \
-            sequencetools.iterate_sequence_pairwise_wrapped(self):
-            dic = left - right
-            dics.append(dic)
-        dicg = pitchtools.IntervalClassSegment(
-            tokens=dics,
-            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
-            )
-        return dicg
-
-    @property
     def dominant(self):
         return self[4]
 
@@ -125,6 +112,19 @@ class Scale(PitchClassSegment):
     @property
     def mediant(self):
         return self[2]
+
+    @property
+    def named_interval_class_segment(self):
+        dics = []
+        for left, right in \
+            sequencetools.iterate_sequence_pairwise_wrapped(self):
+            dic = left - right
+            dics.append(dic)
+        dicg = pitchtools.IntervalClassSegment(
+            tokens=dics,
+            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+            )
+        return dicg
 
     @property
     def subdominant(self):

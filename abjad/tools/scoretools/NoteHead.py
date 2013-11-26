@@ -125,23 +125,6 @@ class NoteHead(AbjadObject):
         return keyword_argument_names
 
     @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
-        if 'client' in keyword_argument_names:
-            keyword_argument_names.remove('client')
-        if 'tweak_pairs' in keyword_argument_names:
-            keyword_argument_names.remove('tweak_pairs')
-        keyword_argument_names = tuple(keyword_argument_names)
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            )
-
-    @property
     def _lilypond_format(self):
         from abjad.tools import systemtools
         from abjad.tools import scoretools
@@ -167,6 +150,23 @@ class NoteHead(AbjadObject):
         result = '\n'.join(result)
         # return formatted note head
         return result
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        keyword_argument_names = \
+            manager.get_signature_keyword_argument_names(self)
+        keyword_argument_names = list(keyword_argument_names)
+        if 'client' in keyword_argument_names:
+            keyword_argument_names.remove('client')
+        if 'tweak_pairs' in keyword_argument_names:
+            keyword_argument_names.remove('tweak_pairs')
+        keyword_argument_names = tuple(keyword_argument_names)
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            )
 
     ### PUBLIC PROPERTIES ###
 

@@ -183,15 +183,6 @@ class IndicatorExpression(AbjadObject):
             return True
         return False
 
-    def _unbind_effective_context(self):
-        effective_context = self._effective_context
-        if effective_context is not None:
-            try:
-                effective_context._dependent_expressions.remove(self)
-            except ValueError:
-                pass
-        self._effective_context = None
-
     def _unbind_component(self):
         component = self.component
         if component is not None:
@@ -200,6 +191,15 @@ class IndicatorExpression(AbjadObject):
             except ValueError:
                 pass
         self._component = None
+
+    def _unbind_effective_context(self):
+        effective_context = self._effective_context
+        if effective_context is not None:
+            try:
+                effective_context._dependent_expressions.remove(self)
+            except ValueError:
+                pass
+        self._effective_context = None
 
     def _update_effective_context(self):
         r'''This function is designed to be called by score components

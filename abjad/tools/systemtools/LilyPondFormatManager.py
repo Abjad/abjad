@@ -33,6 +33,60 @@ class LilyPondFormatManager(object):
     ### PRIVATE METHODS ###
 
     @staticmethod
+    def _populate_context_setting_format_contributions(component, bundle):
+        result = []
+        from abjad.tools.topleveltools import contextualize
+        from abjad.tools import scoretools
+        manager = LilyPondFormatManager
+        if isinstance(component, (scoretools.Leaf, scoretools.Measure)):
+            for name, value in vars(contextualize(component)).iteritems():
+                # if we've found a leaf context namespace
+                if name.startswith('_'):
+                    for x, y in vars(value).iteritems():
+                        if not x.startswith('_'):
+                            string = \
+                                manager.format_lilypond_context_setting_inline(
+                                x, y, name)
+                            result.append(string)
+                # otherwise we've found a default leaf context setting
+                else:
+                    # parse default context setting
+                    string = manager.format_lilypond_context_setting_inline(
+                        name, value)
+                    result.append(string)
+        else:
+            for name, value in vars(contextualize(component)).iteritems():
+                string = manager.format_lilypond_context_setting_in_with_block(
+                    name, value)
+                result.append(string)
+        result.sort()
+        bundle.context_settings[:] = result
+
+    @staticmethod
+    def _populate_grob_override_format_contributions(component, bundle):
+        from abjad.tools import scoretools
+        from abjad.tools.topleveltools.override import override
+        result = []
+        is_once = isinstance(component, scoretools.Leaf)
+        contributions = override(component)._list_format_contributions(
+            'override', 
+            is_once=is_once,
+            )
+        for string in result[:]:
+            if 'NoteHead' in string and 'pitch' in string:
+                contributions.remove(string)
+        bundle.grob_overrides[:] = contributions
+
+    @staticmethod
+    def _populate_grob_revert_format_contributions(component, bundle):
+        from abjad.tools import scoretools
+        from abjad.tools.topleveltools.override import override
+        if not isinstance(component, scoretools.Leaf):
+            manager = override(component)
+            contributions = manager._list_format_contributions('revert')
+            bundle.grob_reverts[:] = contributions
+
+    @staticmethod
     def _populate_indicator_format_contributions(component, bundle):
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
@@ -140,60 +194,6 @@ class LilyPondFormatManager(object):
             contributions = format_slot.get(format_slot_subsection)
             contribution = nonscoped_expression.indicator._lilypond_format
             contributions.append(contribution)
-
-    @staticmethod
-    def _populate_context_setting_format_contributions(component, bundle):
-        result = []
-        from abjad.tools.topleveltools import contextualize
-        from abjad.tools import scoretools
-        manager = LilyPondFormatManager
-        if isinstance(component, (scoretools.Leaf, scoretools.Measure)):
-            for name, value in vars(contextualize(component)).iteritems():
-                # if we've found a leaf context namespace
-                if name.startswith('_'):
-                    for x, y in vars(value).iteritems():
-                        if not x.startswith('_'):
-                            string = \
-                                manager.format_lilypond_context_setting_inline(
-                                x, y, name)
-                            result.append(string)
-                # otherwise we've found a default leaf context setting
-                else:
-                    # parse default context setting
-                    string = manager.format_lilypond_context_setting_inline(
-                        name, value)
-                    result.append(string)
-        else:
-            for name, value in vars(contextualize(component)).iteritems():
-                string = manager.format_lilypond_context_setting_in_with_block(
-                    name, value)
-                result.append(string)
-        result.sort()
-        bundle.context_settings[:] = result
-
-    @staticmethod
-    def _populate_grob_override_format_contributions(component, bundle):
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools.override import override
-        result = []
-        is_once = isinstance(component, scoretools.Leaf)
-        contributions = override(component)._list_format_contributions(
-            'override', 
-            is_once=is_once,
-            )
-        for string in result[:]:
-            if 'NoteHead' in string and 'pitch' in string:
-                contributions.remove(string)
-        bundle.grob_overrides[:] = contributions
-
-    @staticmethod
-    def _populate_grob_revert_format_contributions(component, bundle):
-        from abjad.tools import scoretools
-        from abjad.tools.topleveltools.override import override
-        if not isinstance(component, scoretools.Leaf):
-            manager = override(component)
-            contributions = manager._list_format_contributions('revert')
-            bundle.grob_reverts[:] = contributions
 
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):

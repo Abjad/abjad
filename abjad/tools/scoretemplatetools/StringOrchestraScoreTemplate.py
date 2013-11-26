@@ -261,12 +261,12 @@ class StringOrchestraScoreTemplate(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def contrabass_count(self):
-        return self._contrabass_count
-
-    @property
     def cello_count(self):
         return self._cello_count
+
+    @property
+    def contrabass_count(self):
+        return self._contrabass_count
 
     @property
     def viola_count(self):

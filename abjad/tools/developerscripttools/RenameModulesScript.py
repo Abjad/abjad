@@ -75,37 +75,6 @@ class RenameModulesScript(DeveloperScript):
         message = 'bad codebase name {!r}.'.format(codebase)
         raise Exception(message)
 
-    def _parse_tools_package_path(self, path):
-        from abjad import abjad_configuration
-        if '.' not in path:
-            raise SystemExit
-        tools_package_name, module_name = path.split('.')
-        mainline_tools_directory = os.path.join(
-            abjad_configuration.abjad_directory_path,
-            'tools',
-            )
-        for directory_name in os.listdir(mainline_tools_directory):
-            directory_path = os.path.join(
-                mainline_tools_directory, directory_name)
-            if not os.path.isdir(directory_path):
-                continue
-            elif directory_name != tools_package_name:
-                continue
-            return 'mainline', tools_package_name, module_name
-        experimental_tools_directory = os.path.join(
-            abjad_configuration.abjad_experimental_directory_path,
-            'tools',
-            )
-        for directory_name in os.listdir(mainline_tools_directory):
-            directory_path = os.path.join(
-                experimental_tools_directory, directory_name)
-            if not os.path.isdir(directory_path):
-                continue
-            elif directory_name != tools_package_name:
-                continue
-            return 'experimental', tools_package_name, module_name
-        raise SystemExit
-
     def _confirm_name_changes(self,
         old_codebase,
         old_tools_package_name,
@@ -156,6 +125,37 @@ class RenameModulesScript(DeveloperScript):
                 if not x.startswith(('_', '.')):
                     names.append(x)
         return tuple(sorted(names))
+
+    def _parse_tools_package_path(self, path):
+        from abjad import abjad_configuration
+        if '.' not in path:
+            raise SystemExit
+        tools_package_name, module_name = path.split('.')
+        mainline_tools_directory = os.path.join(
+            abjad_configuration.abjad_directory_path,
+            'tools',
+            )
+        for directory_name in os.listdir(mainline_tools_directory):
+            directory_path = os.path.join(
+                mainline_tools_directory, directory_name)
+            if not os.path.isdir(directory_path):
+                continue
+            elif directory_name != tools_package_name:
+                continue
+            return 'mainline', tools_package_name, module_name
+        experimental_tools_directory = os.path.join(
+            abjad_configuration.abjad_experimental_directory_path,
+            'tools',
+            )
+        for directory_name in os.listdir(mainline_tools_directory):
+            directory_path = os.path.join(
+                experimental_tools_directory, directory_name)
+            if not os.path.isdir(directory_path):
+                continue
+            elif directory_name != tools_package_name:
+                continue
+            return 'experimental', tools_package_name, module_name
+        raise SystemExit
 
     def _rename_old_api_page(self,
         old_codebase,

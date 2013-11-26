@@ -72,6 +72,8 @@ class SortedCollection(object):
 
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, iterable=(), key=None):
         self._given_key = key
         key = (lambda x: x) if key is None else key
@@ -80,15 +82,17 @@ class SortedCollection(object):
         self._items = [item for k, item in decorated]
         self._key = key
 
+    ### PRIVATE METHODS ###
+
+    def _delkey(self):
+        self._setkey(None)
+
     def _getkey(self):
         return self._key
 
     def _setkey(self, key):
         if key is not self._key:
             self.__init__(self._items, key=key)
-
-    def _delkey(self):
-        self._setkey(None)
 
     key = property(_getkey, _setkey, _delkey, 'key function')
 
@@ -98,8 +102,13 @@ class SortedCollection(object):
     def copy(self):
         return type(self)(self, self._key)
 
-    def __len__(self):
-        return len(self._items)
+    ### SPECIAL METHODS ###
+
+    def __contains__(self, item):
+        k = self._key(item)
+        i = bisect.bisect_left(self._keys, k)
+        j = bisect.bisect_right(self._keys, k)
+        return item in self._items[i:j]
 
     def __getitem__(self, i):
         return self._items[i]
@@ -107,8 +116,11 @@ class SortedCollection(object):
     def __iter__(self):
         return iter(self._items)
 
-    def __reversed__(self):
-        return reversed(self._items)
+    def __len__(self):
+        return len(self._items)
+
+    def __reduce__(self):
+        return type(self), (self._items, self._given_key)
 
     def __repr__(self):
         return '%s(%r, key=%s)' % (
@@ -117,21 +129,10 @@ class SortedCollection(object):
             getattr(self._given_key, '__name__', repr(self._given_key))
         )
 
-    def __reduce__(self):
-        return type(self), (self._items, self._given_key)
+    def __reversed__(self):
+        return reversed(self._items)
 
-    def __contains__(self, item):
-        k = self._key(item)
-        i = bisect.bisect_left(self._keys, k)
-        j = bisect.bisect_right(self._keys, k)
-        return item in self._items[i:j]
-
-    def index(self, item):
-        'Find the position of an item.  Raise ValueError if not found.'
-        k = self._key(item)
-        i = bisect.bisect_left(self._keys, k)
-        j = bisect.bisect_right(self._keys, k)
-        return self._items[i:j].index(item) + i
+    ### PUBLIC METHODS ###
 
     def count(self, item):
         'Returns number of occurrences of item'
@@ -139,6 +140,55 @@ class SortedCollection(object):
         i = bisect.bisect_left(self._keys, k)
         j = bisect.bisect_right(self._keys, k)
         return self._items[i:j].count(item)
+
+    def find(self, k):
+        'Returns first item with a key == k.  Raise ValueError if not found.'
+        i = bisect.bisect_left(self._keys, k)
+        if i != len(self) and self._keys[i] == k:
+            return self._items[i]
+        message = 'no item found with key equal to: %r' % (k,)
+        raise ValueError(message)
+
+    def find_ge(self, k):
+        r'''Returns first item with a key >= equal to k. Raise ValueError 
+        if not found.
+        '''
+        i = bisect.bisect_left(self._keys, k)
+        if i != len(self):
+            return self._items[i]
+        message = 'no item found with key at or above: %r' % (k,)
+        raise ValueError(message)
+
+    def find_gt(self, k):
+        'Returns first item with a key > k.  Raise ValueError if not found'
+        i = bisect.bisect_right(self._keys, k)
+        if i != len(self):
+            return self._items[i]
+        message = 'no item found with key above: %r' % (k,)
+        raise ValueError(message)
+
+    def find_le(self, k):
+        'Returns last item with a key <= k.  Raise ValueError if not found.'
+        i = bisect.bisect_right(self._keys, k)
+        if i:
+            return self._items[i-1]
+        message = 'no item found with key at or below: %r' % (k,)
+        raise ValueError(message)
+
+    def find_lt(self, k):
+        'Returns last item with a key < k.  Raise ValueError if not found.'
+        i = bisect.bisect_left(self._keys, k)
+        if i:
+            return self._items[i-1]
+        message = 'no item found with key below: %r' % (k,)
+        raise ValueError(message)
+
+    def index(self, item):
+        'Find the position of an item.  Raise ValueError if not found.'
+        k = self._key(item)
+        i = bisect.bisect_left(self._keys, k)
+        j = bisect.bisect_right(self._keys, k)
+        return self._items[i:j].index(item) + i
 
     def insert(self, item):
         'Insert a new item.  If equal keys are found, add to the left'
@@ -160,70 +210,30 @@ class SortedCollection(object):
         del self._keys[i]
         del self._items[i]
 
-    def find(self, k):
-        'Returns first item with a key == k.  Raise ValueError if not found.'
-        i = bisect.bisect_left(self._keys, k)
-        if i != len(self) and self._keys[i] == k:
-            return self._items[i]
-        message = 'no item found with key equal to: %r' % (k,)
-        raise ValueError(message)
-
-    def find_le(self, k):
-        'Returns last item with a key <= k.  Raise ValueError if not found.'
-        i = bisect.bisect_right(self._keys, k)
-        if i:
-            return self._items[i-1]
-        message = 'no item found with key at or below: %r' % (k,)
-        raise ValueError(message)
-
-    def find_lt(self, k):
-        'Returns last item with a key < k.  Raise ValueError if not found.'
-        i = bisect.bisect_left(self._keys, k)
-        if i:
-            return self._items[i-1]
-        message = 'no item found with key below: %r' % (k,)
-        raise ValueError(message)
-
-    def find_ge(self, k):
-        r'''Returns first item with a key >= equal to k. Raise ValueError 
-        if not found.
-        '''
-        i = bisect.bisect_left(self._keys, k)
-        if i != len(self):
-            return self._items[i]
-        message = 'no item found with key at or above: %r' % (k,)
-        raise ValueError(message)
-
-    def find_gt(self, k):
-        'Returns first item with a key > k.  Raise ValueError if not found'
-        i = bisect.bisect_right(self._keys, k)
-        if i != len(self):
-            return self._items[i]
-        message = 'no item found with key above: %r' % (k,)
-        raise ValueError(message)
 
 
-# ---------------------------  Simple demo and tests  -------------------------
+### --------------------------  Simple demo and tests  ------------------ ###
+
 if __name__ == '__main__':
-
-    def ve2no(f, *args):
-        'Convert ValueError result to -1'
-        try:
-            return f(*args)
-        except ValueError:
-            return -1
-
-    def slow_index(seq, k):
-        'Location of match or -1 if not found'
-        for i, item in enumerate(seq):
-            if item == k:
-                return i
-        return -1
 
     def slow_find(seq, k):
         'First item with a key equal to k. -1 if not found'
         for item in seq:
             if item == k:
+                return item
+        return -1
+
+    def slow_find_ge(seq, k):
+        'First item with a key-value greater-than or equal to k.'
+        for item in seq:
+            if item >= k:
+                return item
+        return -1
+
+    def slow_find_gt(seq, k):
+        'First item with a key-value greater-than or equal to k.'
+        for item in seq:
+            if item > k:
                 return item
         return -1
 
@@ -241,19 +251,19 @@ if __name__ == '__main__':
                 return item
         return -1
 
-    def slow_find_ge(seq, k):
-        'First item with a key-value greater-than or equal to k.'
-        for item in seq:
-            if item >= k:
-                return item
+    def slow_index(seq, k):
+        'Location of match or -1 if not found'
+        for i, item in enumerate(seq):
+            if item == k:
+                return i
         return -1
 
-    def slow_find_gt(seq, k):
-        'First item with a key-value greater-than or equal to k.'
-        for item in seq:
-            if item > k:
-                return item
-        return -1
+    def ve2no(f, *args):
+        'Convert ValueError result to -1'
+        try:
+            return f(*args)
+        except ValueError:
+            return -1
 
     from random import choice
     pool = [1.5, 2, 2.0, 3, 3.0, 3.5, 4, 4.0, 4.5]

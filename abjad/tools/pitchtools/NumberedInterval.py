@@ -158,19 +158,6 @@ class NumberedInterval(Interval):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def numbered_interval_number(self):
-        r'''Interval number:
-
-        ::
-
-            >>> pitchtools.NumberedInterval(-14).numbered_interval_number
-            -14
-
-        Returns integer or float.
-        '''
-        return self._number
-
-    @property
     def direction_number(self):
         r'''Numeric sign:
 
@@ -185,6 +172,19 @@ class NumberedInterval(Interval):
 
     @property
     def number(self):
+        return self._number
+
+    @property
+    def numbered_interval_number(self):
+        r'''Interval number:
+
+        ::
+
+            >>> pitchtools.NumberedInterval(-14).numbered_interval_number
+            -14
+
+        Returns integer or float.
+        '''
         return self._number
 
     @property

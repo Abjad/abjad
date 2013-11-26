@@ -76,15 +76,6 @@ class Glissando(Spanner):
     def _copy_keyword_args(self, new):
         pass
 
-    def _format_right_of_leaf(self, leaf):
-        r'''Spanner contribution to right of leaf.
-        '''
-        result = []
-        if not self._is_my_last_leaf(leaf) and \
-            isinstance(leaf, (scoretools.Chord, scoretools.Note)):
-            result.append(r'\glissando')
-        return result
-
     def _format_before_leaf(self, leaf):
         result = []
         if self.avoid_rests:
@@ -92,6 +83,15 @@ class Glissando(Spanner):
                 result.append(
                     r"\once \override NoteColumn #'glissando-skip = ##t")
                 result.append(r"\once \override Rest #'transparent = ##t")
+        return result
+
+    def _format_right_of_leaf(self, leaf):
+        r'''Spanner contribution to right of leaf.
+        '''
+        result = []
+        if not self._is_my_last_leaf(leaf) and \
+            isinstance(leaf, (scoretools.Chord, scoretools.Note)):
+            result.append(r'\glissando')
         return result
 
     ### PUBLIC PROPERTIES ###

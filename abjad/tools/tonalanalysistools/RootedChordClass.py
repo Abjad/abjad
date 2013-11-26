@@ -153,6 +153,10 @@ class RootedChordClass(PitchClassSet):
         return len(self)
 
     @property
+    def chord_quality(self):
+        return self._chord_quality
+
+    @property
     def extent(self):
         from abjad.tools import tonalanalysistools
         extent = self.cardinality_to_extent(self.cardinality)
@@ -213,10 +217,6 @@ class RootedChordClass(PitchClassSet):
             inv += r' \column {{ {} }}'.format(' '.join(inversion.split('/')))
             markup += inv
         return markuptools.Markup(markup, Down)
-
-    @property
-    def chord_quality(self):
-        return self._chord_quality
 
     @property
     def quality_pair(self):

@@ -246,6 +246,10 @@ class Accidental(AbjadObject):
         return self._semitones_to_abbreviation.keys()
 
     @property
+    def _lilypond_format(self):
+        return self._abbreviation
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
@@ -296,10 +300,6 @@ class Accidental(AbjadObject):
         if not isinstance(expr, str):
             return False
         return bool(Accidental._symbolic_string_regex.match(expr))
-
-    @property
-    def _lilypond_format(self):
-        return self._abbreviation
 
     ### PUBLIC PROPERTIES ###
 

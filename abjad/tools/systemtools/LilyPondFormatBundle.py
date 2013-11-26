@@ -103,24 +103,20 @@ class LilyPondFormatBundle(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def before(self):
-        return self._before
-
-    @property
     def after(self):
         return self._after
 
     @property
-    def opening(self):
-        return self._opening
+    def before(self):
+        return self._before
 
     @property
     def closing(self):
         return self._closing
 
     @property
-    def right(self):
-        return self._right
+    def context_settings(self):
+        return self._context_settings
 
     @property
     def grob_overrides(self):
@@ -131,8 +127,12 @@ class LilyPondFormatBundle(AbjadObject):
         return self._grob_reverts
 
     @property
-    def context_settings(self):
-        return self._context_settings
+    def opening(self):
+        return self._opening
+
+    @property
+    def right(self):
+        return self._right
 
     ### PUBLIC METHODS ###
 
