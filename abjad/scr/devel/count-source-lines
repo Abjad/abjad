@@ -1,59 +1,58 @@
 #! /usr/bin/env python
-
 import os
 import subprocess
 from abjad.tools import systemtools
 
 
-def _count_source_lines():
-
+def count_source_lines():
     source_lines = 0
-    source_modules = 0
+    source_module_names = 0
     test_lines = 0
-    test_modules = 0
-
-    for root, dirs, files  in os.walk('.'):
-
-        if '.svn' in dirs:
-            dirs.remove('.svn')
-
-        modules = [x for x in files if x.endswith('.py')]
-        for module in modules:
-            command = 'cat {} | wc -l'.format(os.path.join(root, module))
+    test_module_names = 0
+    for directory_path, directory_names, file_names  in os.walk('.'):
+        if '.svn' in directory_names:
+            directory_names.remove('.svn')
+        module_names = [x for x in file_names if x.endswith('.py')]
+        for module in module_names:
+            module_path = os.path.join(directory_path, module)
+            command = "cat {} | sed '/^\s*$/d' | wc -l".format(module_path)
             process = subprocess.Popen(
                 command,
                 shell=True,
                 stdout=subprocess.PIPE,
                 )
-            out, err = process.communicate()
+            out, error = process.communicate()
             lines = int(out.partition('\n')[0])
             if module.startswith('test_'):
                 test_lines += lines
-                test_modules += 1
+                test_module_names += 1
             else:
                 source_lines += lines
-                source_modules += 1
+                source_module_names += 1
+    return source_module_names, source_lines, test_module_names, test_lines
 
-    return source_modules, source_lines, test_modules, test_lines
 
-def _report(source_modules, source_lines, test_modules, test_lines):
+def report(source_module_names, source_lines, test_module_names, test_lines):
 
-    print 'source_modules: %s' % source_modules
-    print 'test_modules:   %s' % test_modules
-
-    print ''
-    print 'source_lines:   %s' % source_lines
-    print 'test_lines:     %s' % test_lines
+    print 'source_module_names: {}'.format(source_module_names)
+    print 'test_module_names:   {}'.format(test_module_names)
 
     print ''
-    print 'total lines:    %s' % (source_lines + test_lines)
+    print 'source_lines:   {}'.format(source_lines)
+    print 'test_lines:     {}'.format(test_lines)
+
+    print ''
+    print 'total lines:    {}'.format(source_lines + test_lines)
+
     try:
         ratio = test_lines / float(source_lines)
     except ZeroDivisionError:
         ratio = 1
-    print 'test-to-source ratio is %s : 1' % round(ratio, 1)
+    ratio = round(ratio, 1)
+    print 'test-to-source ratio is {} : 1'.format(ratio)
     print ''
+
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    _report(*_count_source_lines())
+    report(*count_source_lines())
