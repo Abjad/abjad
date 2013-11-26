@@ -1,11 +1,10 @@
 #! /usr/bin/env python
-
 from abjad import abjad_configuration
 from abjad.tools import systemtools
 import os
 
 
-def _list_private_modules():
+def list_private_modules():
     tools_path = os.path.join(abjad_configuration.abjad_directory_path, 'tools')
     private_module_names = [ ]
     for path, subdirectories, files in os.walk(tools_path):
@@ -20,9 +19,9 @@ def _list_private_modules():
     for x in private_module_names:
         print x
     print 'Total private module names: %s' % total_private
-    print ''
+    print
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    _list_private_modules()
+    list_private_modules()

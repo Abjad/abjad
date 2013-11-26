@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-
 import os
 import pprint
 import re
@@ -21,7 +20,7 @@ file_name_blacklist = (
 class_definition_pattern = re.compile(r'\s*class\s+(\w+)')
 function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
 
-def _find_multifunction_modules():
+def find_multifunction_modules():
     multifunction_modules = []
     for parent_directory_path, subdirectory_names, file_names in os.walk('.'):
 
@@ -45,9 +44,9 @@ def _find_multifunction_modules():
     total = len(multifunction_modules)
     if 0 < total:
         pprint.pprint(multifunction_modules)
-        print ''
+        print
     print 'Total modules with multiple public functions defined: %s' % total
-    print ''
+    print
 
 
 def _has_multiple_public_function_definitions(path, file_name):
@@ -70,4 +69,4 @@ def _has_multiple_public_function_definitions(path, file_name):
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    _find_multifunction_modules()
+    find_multifunction_modules()

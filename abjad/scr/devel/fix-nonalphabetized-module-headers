@@ -1,10 +1,9 @@
 #! /usr/bin/env python
-
 import os
 from abjad import abjad_configuration
 
 
-def _main():
+def main():
     total_nonalphabetized_module_headers = 0
     for path, subdirectories, files in os.walk('.'):
         for f in files:
@@ -43,13 +42,13 @@ def _main():
                 fp.write(''.join(module_lines))
                 fp.close()
     print 'Total nonalphabetized headers fixed: %s' % total_nonalphabetized_module_headers
-    print ''
+    print
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
     #print 'Fixing nonalphabetized module headers ...'
-    #print ''
-    #_main()
+    #print
+    #main()
     print 'This scripts needs to be ported forward to the new module header standard.'
-    print ''
+    print

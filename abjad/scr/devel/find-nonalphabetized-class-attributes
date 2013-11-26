@@ -1,7 +1,7 @@
 #! /usr/bin/env python
-
 from abjad.tools import systemtools
 import os
+
 
 directory_name_blacklist = (
     'docs',
@@ -14,7 +14,7 @@ file_name_blacklist = (
     'SchemeParser.py',
     )
 
-def _main():
+def main():
     total_modules_examined = 0
     nonalphabetized_module_names = []
 
@@ -75,11 +75,11 @@ def _main():
     print 'Total modules with nonalphabetized attributes: {}'.format(
         len(nonalphabetized_module_names))
     print 'Total modules examined: {}'.format(total_modules_examined)
-    print ''
+    print
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
     print 'Finding classes with nonalphabetized attributes ...'
-    print ''
-    _main()
+    print
+    main()

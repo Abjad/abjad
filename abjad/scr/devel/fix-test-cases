@@ -1,10 +1,9 @@
 #! /usr/bin/env python
-
 import os
 from abjad.tools import systemtools
 
 
-def _fix_test_case_names():
+def fix_test_case_names():
     total_test_modules = 0
     total_test_cases = 0
     total_nonmatching_names = 0
@@ -69,7 +68,7 @@ def _process_test_module_name_fixes(test_module, path):
                     new_lines.append(new_line)
                 else:
                     new_lines.append(line)
-                print ''
+                print
             else:
                 new_lines.append(line)
         else:
@@ -81,7 +80,7 @@ def _process_test_module_name_fixes(test_module, path):
     return test_cases_in_current_module, total_nonmatching_names_in_current_module
 
 
-def _fix_test_case_numbers():
+def fix_test_case_numbers():
     total_test_modules = 0
     total_test_cases = 0
     total_misnumbered_cases = 0
@@ -137,7 +136,7 @@ def _process_test_module_number_fixes(test_module, path):
                     new_lines.append(new_line)
                 else:
                     new_lines.append(line)
-                print ''
+                print
             else:
                 new_lines.append(line)
             current_case_number += 1
@@ -152,7 +151,7 @@ def _process_test_module_number_fixes(test_module, path):
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    _fix_test_case_names()
-    print ''
-    _fix_test_case_numbers()
-    print ''
+    fix_test_case_names()
+    print
+    fix_test_case_numbers()
+    print

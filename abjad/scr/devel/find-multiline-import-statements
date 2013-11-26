@@ -1,12 +1,11 @@
 #! /usr/bin/env python
-
 from abjad import abjad_configuration
 from abjad.tools import systemtools
 import os
 import pprint
 
 
-def _find_multiline_import_statements():
+def find_multiline_import_statements():
     total_multiline_import_statements = 0
     for path, subdirectories, files in os.walk(abjad_configuration.abjad_directory_path):
         for f in files:
@@ -29,16 +28,16 @@ def _find_multiline_import_statements():
                             print constituent_lines
                             within_multiline_import, constituent_lines = False, [ ]
             if found_import_statement_in_file:
-                print ''
+                print
     print 'Total multiline import statements: %s' % total_multiline_import_statements
-    print ''
+    print
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
     #print 'Finding multiline import statements ...'
-    #print ''
-    #_find_multiline_import_statements()
+    #print
+    #find_multiline_import_statements()
     print 'Coding standards now allow multiline import statements.'
     print 'So running this script is no longer recommended.'
-    print ''
+    print

@@ -1,11 +1,10 @@
 #! /usr/bin/env python
-
 import os
 import re
 from abjad.tools import systemtools
 
 
-def _fix_test_case_block_comments():
+def fix_test_case_block_comments():
     total_test_modules = 0
     total_broken_modules = 0
     total_broken_comments = 0
@@ -65,5 +64,5 @@ def _fix_test_case_block_comments():
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    _fix_test_case_block_comments()
-    print ''
+    fix_test_case_block_comments()
+    print

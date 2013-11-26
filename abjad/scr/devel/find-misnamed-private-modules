@@ -1,11 +1,10 @@
 #! /usr/bin/env python
-
 import os
 from abjad import abjad_configuration
 from abjad.tools import systemtools
 
 
-def _find_misnamed_private_modules():
+def find_misnamed_private_modules():
     offending_definition_lines = []
     for path, subdirectories, files in os.walk('.'):
         for f in files:
@@ -22,13 +21,13 @@ def _find_misnamed_private_modules():
                                     medium_name = os.sep.join(full_name.split(os.sep)[-2:])
                                     token = '%s in %s' % (function_name, medium_name)
                                     offending_definition_lines.append(token)
-    print ''
+    print
     total_offending_definitions = len(offending_definition_lines)
     print 'Total functions defined as private in public modules: %s' % total_offending_definitions
-    print ''
+    print
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
     print 'Finding misnamed private modules ...'
-    _find_misnamed_private_modules()
+    find_misnamed_private_modules()

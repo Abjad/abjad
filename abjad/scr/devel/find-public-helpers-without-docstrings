@@ -1,29 +1,29 @@
 #! /usr/bin/env python
-
 import os
 from abjad import abjad_configuration
 from abjad.tools import systemtools
 
 
-# TODO: Needs to be rewritten entirely to inspect docstrings on live code objects.
+# TODO: needs to be rewritten entirely to inspect 
+#       docstrings on live code objects.
 
-def _find_public_helpers_without_docstrings():
+def find_public_helpers_without_docstrings():
     total_undocumented_helpers = 0
     total_without_close_quote = 0
     for path, subdirectories, files in os.walk('.'):
         for f in files:
             if f.endswith('.py') and not f.startswith('test'):
                 if not f.startswith('_'):
-                    p, q = _find_undocumented_helpers_in_file(path, f)
+                    p, q = find_undocumented_helpers_in_file(path, f)
                     total_undocumented_helpers += p
                     total_without_close_quote += q
-    print ''
+    print
     print 'Total undocumented helpers: %s' % total_undocumented_helpers
     print 'Total without close quoute: %s' % total_without_close_quote
-    print ''
+    print
 
 
-def _find_undocumented_helpers_in_file(path, f):
+def find_undocumented_helpers_in_file(path, f):
     full_file_name = os.path.join(path, f)
     module = path.split(os.path.sep)[-1]
     function = f[:-3]
@@ -65,4 +65,4 @@ def _find_undocumented_helpers_in_file(path, f):
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
     print "Needs to be rewritten entirely to inspect docstrings on live code objects."
-    #_find_public_helpers_without_docstrings()
+    #find_public_helpers_without_docstrings()

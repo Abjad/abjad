@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-
 from abjad.tools import systemtools
 import os
 
@@ -39,8 +38,8 @@ def _conjoin_multiline_import_statements():
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
     #print 'Conjoining multiline import statements ...'
-    #print ''
+    #print
     #_conjoin_multiline_import_statements()
     print 'Coding standards now allow for multiline import statements.'
     print 'So running this script is no longer recommended.'
-    print ''
+    print

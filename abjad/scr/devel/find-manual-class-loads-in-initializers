@@ -1,11 +1,10 @@
 #! /usr/bin/env python
-
 import os
 from abjad import abjad_configuration
 from abjad.tools import systemtools
 
 
-def _find_initializers():
+def find_initializers():
     initializers = [ ]
     for path, subdirectories, files in os.walk('.'):
         for f in files:
@@ -23,10 +22,10 @@ def _find_initializers():
     for x in sorted(inits_with_manual_imports):
         print x
     print 'Total initializers with manual imports: %s' % len(inits_with_manual_imports)
-    print ''
+    print
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
     print 'Finding manual class loads in initializers ...'
-    _find_initializers()
+    find_initializers()

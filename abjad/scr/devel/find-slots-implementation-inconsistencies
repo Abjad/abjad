@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-
 import inspect
 import os
 from abjad import abjad_configuration
@@ -9,12 +8,12 @@ from abjad.tools.documentationtools import ClassCrawler
 from abjad.tools.documentationtools import InheritanceGraph
 
 
-def _shorten_class_name(abjad_class):
+def shorten_class_name(abjad_class):
     parts = abjad_class.__module__.split('.')[2:]
     return '%s.%s' % (parts[0], parts[1])
 
 
-def _find_inconsistencies():
+def find_inconsistencies():
     tools_path = os.path.abspath('.')
     abjad_classes = ClassCrawler(tools_path)()
     graph = InheritanceGraph(addresses=abjad_classes, root_addresses=[AbjadObject])
@@ -32,7 +31,7 @@ def _find_inconsistencies():
     if bad_arcs:
         print '%d bad __slots__ relationships found:' % len(bad_arcs)
         for parent, child in sorted(bad_arcs, key=lambda x: (x[0].__module__, x[1].__module__)):
-            print '\t%s -> %s' % (_shorten_class_name(parent), _shorten_class_name(child))
+            print '\t%s -> %s' % (shorten_class_name(parent), shorten_class_name(child))
     else:
         print 'No bad __slots__ relationships found.'
     return graph
@@ -40,4 +39,4 @@ def _find_inconsistencies():
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    graph = _find_inconsistencies()
+    graph = find_inconsistencies()

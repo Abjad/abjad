@@ -1,31 +1,30 @@
 #! /usr/bin/env python
-
 import os
 from abjad.tools import systemtools
 from abjad.tools import mathtools
 
 
-def _reindent_3_spaces_as_4():
+def reindent_3_spaces_as_4():
     reindented = [ ]
     indented = [ ]
     skipped = [ ]
     for path, subdirectories, files in os.walk('.'):
         for file in files:
             if not file.startswith('__') and (file.endswith('.py') or file.endswith('.rst.raw')):
-                _strip_trailing_whitespace(file, path)
-                gcd = _find_indent_gcd(file, path)
+                strip_trailing_whitespace(file, path)
+                gcd = find_indent_gcd(file, path)
                 if gcd == 1:
-                    inconsistencies = _find_inconsistent_indents(file, path)
+                    inconsistencies = find_inconsistent_indents(file, path)
                     skipped.append((os.path.join(path, file), inconsistencies))
                 elif gcd == 4:
                     indented.append(os.path.join(path, file))
                 elif gcd == 3:
-                    _reindent(file, path)
+                    reindent(file, path)
                     reindented.append(os.path.join(path, file))
     _print_results(reindented, indented, skipped)
 
 
-def _strip_trailing_whitespace(file, path):
+def strip_trailing_whitespace(file, path):
     file_path = os.path.join(path, file)
     f = open(file_path, 'r')
     lines = f.read().split('\n')
@@ -37,7 +36,7 @@ def _strip_trailing_whitespace(file, path):
     f.close()
 
 
-def _find_indent_gcd(file, path):
+def find_indent_gcd(file, path):
     indents = [ ]
     file_path = os.path.join(path, file)
     f = open(file_path, 'r')
@@ -54,7 +53,7 @@ def _find_indent_gcd(file, path):
         return 4 # nothing indented, so ignore
 
 
-def _find_inconsistent_indents(file, path):
+def find_inconsistent_indents(file, path):
     inconsistencies = [ ]
     file_path = os.path.join(path, file)
     f = open(file_path, 'r')
@@ -69,7 +68,7 @@ def _find_inconsistent_indents(file, path):
     return inconsistencies
 
 
-def _reindent(file, path):
+def reindent(file, path):
     file_path = os.path.join(path, file)
     f = open(file_path, 'r')
     lines = f.read().split('\n')
@@ -104,5 +103,5 @@ def _print_results(reindented, indented, skipped):
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    _reindent_3_spaces_as_4()
-    print ''
+    reindent_3_spaces_as_4()
+    print

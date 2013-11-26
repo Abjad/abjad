@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-
 import os
 from abjad.tools.lilypondparsertools._write_parser_syntax_skeleton \
     import _write_parser_syntax_skeleton
 
 
-def _usage( ):
+def usage( ):
     result = [ ]
     result.append('')
     result.append('Usage:')
@@ -19,7 +18,7 @@ def _usage( ):
     return result
 
 
-def _write(parser_output_path, parser_tab_hh_path, skeleton_path):
+def write(parser_output_path, parser_tab_hh_path, skeleton_path):
     assert os.path.exists(parser_output_path)
     assert os.path.exists(parser_tab_hh_path)
     _write_parser_syntax_skeleton(skeleton_path, parser_output_path, parser_tab_hh_path)
@@ -28,11 +27,11 @@ def _write(parser_output_path, parser_tab_hh_path, skeleton_path):
 if __name__ == '__main__':
     import sys
     if len(sys.argv) < 4:
-        print _usage( )
+        print usage( )
         sys.exit(2)
 
     parser_output_path = sys.argv[1]
     parser_tab_hh_path = sys.argv[2]
     skeleton_path = sys.argv[3]
 
-    _write(parser_output_path, parser_tab_hh_path, skeleton_path)
+    write(parser_output_path, parser_tab_hh_path, skeleton_path)
