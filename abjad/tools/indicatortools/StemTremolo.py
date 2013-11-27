@@ -35,9 +35,11 @@ class StemTremolo(AbjadObject):
             tremolo_flags = args[0].tremolo_flags
         elif len(args) == 1 and not isinstance(args[0], type(self)):
             tremolo_flags = args[0]
+        elif len(args) == 0:
+            tremolo_flags = 16
         else:
-            message = 'can not initialize stem tremolo: {!r}.'
-            message = message.format(args)
+            message = 'can not initialize {}: {!r}.'
+            message = message.format(type(self).__name__, args)
             raise ValueError(message)
         if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
             message = 'must be nonnegative integer power of 2: {!r}.'

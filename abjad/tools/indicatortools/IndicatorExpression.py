@@ -19,7 +19,7 @@ class IndicatorExpression(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, indicator, component, scope=None):
+    def __init__(self, indicator=None, component=None, scope=None):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         assert not isinstance(indicator, type(self)), repr(indicator)

@@ -50,9 +50,12 @@ class LilyPondComment(AbjadObject):
         elif len(args) == 2 and not isinstance(args[0], type(self)):
             contents_string = args[0]
             format_slot = args[1]
+        elif len(args) == 0:
+            contents_string = 'foo'
+            format_slot = None
         else:
-            message = 'can not initialize LilyPond comment from {!r}.'
-            message = message.format(args)
+            message = 'can not initialize {} from {!r}.'
+            message = message.format(type(self).__name__, args)
             raise ValueError(message)
         format_slot = format_slot or 'before'
         self._contents_string = contents_string

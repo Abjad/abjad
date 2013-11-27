@@ -71,9 +71,12 @@ class LilyPondCommand(AbjadObject):
         elif len(args) == 2 and not isinstance(args[0], type(self)):
             name = args[0]
             format_slot = args[1]
+        elif len(args) == 0:
+            name = 'foo'
+            format_slot = None
         else:
-            message = 'can not initialize LilyPond command from {!r}.'
-            message = message.format(args)
+            message = 'can not initialize {} from {!r}.'
+            message = message.format(type(self).__name__, args)
             raise ValueError(message)
         format_slot = format_slot or 'opening'
         assert format_slot in self._valid_format_slots, repr(format_slot)
