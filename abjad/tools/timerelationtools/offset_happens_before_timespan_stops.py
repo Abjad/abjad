@@ -14,12 +14,12 @@ def offset_happens_before_timespan_stops(
         >>> relation = timerelationtools.offset_happens_before_timespan_stops()
         >>> print format(relation)
         timerelationtools.OffsetTimespanTimeRelation(
-            timerelationtools.CompoundInequality(
+            inequality=timerelationtools.CompoundInequality(
                 [
                     timerelationtools.SimpleInequality('offset < timespan.stop'),
                     ],
                 logical_operator='and',
-                )
+                ),
             )
 
     Returns time relation or boolean.

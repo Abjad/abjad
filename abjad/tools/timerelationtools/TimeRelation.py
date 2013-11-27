@@ -6,46 +6,17 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class TimeRelation(AbjadObject):
     r'''A time relation.
 
-    ::
-
-        >>> timespan_1 = timespantools.Timespan(0, 10)
-        >>> timespan_2 = timespantools.Timespan(5, 15)
-        >>> time_relation = \
-        ...     timerelationtools.timespan_2_starts_during_timespan_1(
-        ...     timespan_1=timespan_1,
-        ...     timespan_2=timespan_2,
-        ...     hold=True,
-        ...     )
-
-
-    ::
-
-        >>> print format(time_relation)
-        timerelationtools.TimespanTimespanTimeRelation(
-            timerelationtools.CompoundInequality(
-                [
-                    timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                    timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
-                    ],
-                logical_operator='and',
-                ),
-            timespan_1=timespantools.Timespan(
-                start_offset=durationtools.Offset(0, 1),
-                stop_offset=durationtools.Offset(10, 1),
-                ),
-            timespan_2=timespantools.Timespan(
-                start_offset=durationtools.Offset(5, 1),
-                stop_offset=durationtools.Offset(15, 1),
-                ),
-            )
-
     Time relations are immutable.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality):
+    def __init__(self, inequality=None):
         from abjad.tools import timerelationtools
+        default_inequality = timerelationtools.CompoundInequality([
+            'timespan_1.start_offset < timespan_2.start_offset',
+            ])
+        inequality = inequality or default_inequality
         assert isinstance(
             inequality, timerelationtools.CompoundInequality), repr(inequality)
         self._inequality = inequality
@@ -55,11 +26,6 @@ class TimeRelation(AbjadObject):
     @abc.abstractmethod
     def __call__(self):
         r'''Evaluates time relation.
-
-        ::
-
-            >>> time_relation()
-            True
 
         Returns boolean.
         '''
@@ -77,30 +43,6 @@ class TimeRelation(AbjadObject):
     def __format__(self, format_specification=''):
         r'''Formats time relation.
 
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        ::
-
-            >>> print format(time_relation)
-            timerelationtools.TimespanTimespanTimeRelation(
-                timerelationtools.CompoundInequality(
-                    [
-                        timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
-                        timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),
-                        ],
-                    logical_operator='and',
-                    ),
-                timespan_1=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(10, 1),
-                    ),
-                timespan_2=timespantools.Timespan(
-                    start_offset=durationtools.Offset(5, 1),
-                    stop_offset=durationtools.Offset(15, 1),
-                    ),
-                )
-
         Returns string.
         '''
         from abjad.tools import systemtools
@@ -113,6 +55,8 @@ class TimeRelation(AbjadObject):
     @property
     def inequality(self):
         r'''Time relation inequality.
+
+        Return ineqality.
         '''
         return self._inequality
 
@@ -120,11 +64,6 @@ class TimeRelation(AbjadObject):
     def is_fully_loaded(self):
         r'''True when both time relation terms are not none.
         Otherwise false:
-
-        ::
-
-            >>> time_relation.is_fully_loaded
-            True
 
         Returns boolean.
         '''
@@ -135,11 +74,6 @@ class TimeRelation(AbjadObject):
         r'''True when both time relation terms are none.
         Otherwise false:
 
-        ::
-
-            >>> time_relation.is_fully_unloaded
-            False
-
         Returns boolean.
         '''
         pass
@@ -148,41 +82,6 @@ class TimeRelation(AbjadObject):
 
     def __makenew__(self, *args, **kwargs):
         r'''Makes new time relation with optional `args` and `kwargs`.
-
-        ::
-
-            >>> time_relation = \
-            ...     timerelationtools.timespan_2_stops_when_timespan_1_starts()
-            >>> new_time_relation = \
-            ...     new(time_relation, timespan_1=timespantools.Timespan(0, 5))
-
-        ::
-
-            >>> print format(time_relation)
-            timerelationtools.TimespanTimespanTimeRelation(
-                timerelationtools.CompoundInequality(
-                    [
-                        timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset'),
-                        ],
-                    logical_operator='and',
-                    )
-                )
-
-        ::
-
-            >>> print format(new_time_relation)
-            timerelationtools.TimespanTimespanTimeRelation(
-                timerelationtools.CompoundInequality(
-                    [
-                        timerelationtools.SimpleInequality('timespan_2.stop_offset == timespan_1.start_offset'),
-                        ],
-                    logical_operator='and',
-                    ),
-                timespan_1=timespantools.Timespan(
-                    start_offset=durationtools.Offset(0, 1),
-                    stop_offset=durationtools.Offset(5, 1),
-                    ),
-                )
 
         Returns new time relation.
         '''

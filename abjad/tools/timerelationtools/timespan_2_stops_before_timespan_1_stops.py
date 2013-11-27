@@ -14,12 +14,12 @@ def timespan_2_stops_before_timespan_1_stops(
         >>> time_relation = timerelationtools.timespan_2_stops_before_timespan_1_stops()
         >>> print format(time_relation)
         timerelationtools.TimespanTimespanTimeRelation(
-            timerelationtools.CompoundInequality(
+            inequality=timerelationtools.CompoundInequality(
                 [
                     timerelationtools.SimpleInequality('timespan_2.stop_offset < timespan_1.stop_offset'),
                     ],
                 logical_operator='and',
-                )
+                ),
             )
 
     Returns time relation or boolean.

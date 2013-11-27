@@ -147,8 +147,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality, timespan_1=None, timespan_2=None):
-        TimeRelation.__init__(self, inequality)
+    def __init__(self, inequality=None, timespan_1=None, timespan_2=None):
+        from abjad.tools import timerelationtools
+        TimeRelation.__init__(self, inequality=inequality)
         self._timespan_1 = timespan_1
         self._timespan_2 = timespan_2
 
@@ -179,7 +180,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
                 >>> print format(time_relation)
                 timerelationtools.TimespanTimespanTimeRelation(
-                    timerelationtools.CompoundInequality(
+                    inequality=timerelationtools.CompoundInequality(
                         [
                             timerelationtools.SimpleInequality('timespan_1.start_offset <= timespan_2.start_offset'),
                             timerelationtools.SimpleInequality('timespan_2.start_offset < timespan_1.stop_offset'),

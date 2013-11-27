@@ -64,7 +64,9 @@ class SimpleInequality(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, template):
+    def __init__(self, template=None):
+        template = template or \
+            'timespan_1.start_offset < timespan_2.start_offset'
         assert template in self.templates, repr(template)
         self._template = template
 
@@ -88,9 +90,13 @@ class SimpleInequality(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values = []
+        positional_argument_values.append(self.template)
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###

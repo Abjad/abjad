@@ -9,13 +9,13 @@ def offset_happens_during_timespan(timespan=None, offset=None, hold=False):
         >>> relation = timerelationtools.offset_happens_during_timespan()
         >>> print format(relation)
         timerelationtools.OffsetTimespanTimeRelation(
-            timerelationtools.CompoundInequality(
+            inequality=timerelationtools.CompoundInequality(
                 [
                     timerelationtools.SimpleInequality('timespan.start <= offset'),
                     timerelationtools.SimpleInequality('offset < timespan.stop'),
                     ],
                 logical_operator='and',
-                )
+                ),
             )
 
     Returns time relation or boolean.

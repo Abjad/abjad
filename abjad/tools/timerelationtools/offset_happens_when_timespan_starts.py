@@ -14,12 +14,12 @@ def offset_happens_when_timespan_starts(
         >>> relation = timerelationtools.offset_happens_when_timespan_starts()
         >>> print format(relation)
         timerelationtools.OffsetTimespanTimeRelation(
-            timerelationtools.CompoundInequality(
+            inequality=timerelationtools.CompoundInequality(
                 [
                     timerelationtools.SimpleInequality('offset == timespan.start'),
                     ],
                 logical_operator='and',
-                )
+                ),
             )
 
     Returns time relation or boolean.

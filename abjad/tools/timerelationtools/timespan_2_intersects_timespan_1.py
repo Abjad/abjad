@@ -14,7 +14,7 @@ def timespan_2_intersects_timespan_1(
         >>> relation = timerelationtools.timespan_2_intersects_timespan_1()
         >>> print format(relation)
         timerelationtools.TimespanTimespanTimeRelation(
-            timerelationtools.CompoundInequality(
+            inequality=timerelationtools.CompoundInequality(
                 [
                     timerelationtools.CompoundInequality(
                         [
@@ -32,7 +32,7 @@ def timespan_2_intersects_timespan_1(
                         ),
                     ],
                 logical_operator='or',
-                )
+                ),
             )
 
     Returns time relation or boolean.
