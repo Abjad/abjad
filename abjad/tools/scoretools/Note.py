@@ -38,10 +38,6 @@ class Note(Leaf):
         '_pitch',
         )
 
-    _default_positional_input_arguments = (
-        repr("c'4"),
-        )
-
     _repr_is_evaluable = True
 
     ### INITIALIZER ###
@@ -49,7 +45,7 @@ class Note(Leaf):
     def __init__(self, *args):
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
-        assert len(args) in (1, 2)
+        assert len(args) in (0, 1, 2)
         if len(args) == 1 and isinstance(args[0], str):
             string = '{{ {} }}'.format(args[0])
             parsed = lilypondparsertools.LilyPondParser()(string)
@@ -61,25 +57,28 @@ class Note(Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
             if hasattr(leaf, 'written_pitch'):
-                pitch = leaf.written_pitch
+                written_pitch = leaf.written_pitch
                 is_cautionary = leaf.note_head.is_cautionary
                 is_forced = leaf.note_head.is_forced
             elif hasattr(leaf, 'written_pitches') and \
                 0 < len(leaf.written_pitches):
-                pitch = leaf.written_pitches[0]
+                written_pitch = leaf.written_pitches[0]
                 is_cautionary = leaf.note_heads[0].is_cautionary
                 is_forced = leaf.note_heads[0].is_forced
             else:
-                pitch = None
+                written_pitch = None
         elif len(args) == 2:
-            pitch, written_duration = args
+            written_pitch, written_duration = args
+        elif len(args) == 0:
+            written_pitch = 'C4'
+            written_duration = durationtools.Duration(1, 4)
         else:
             message = 'can not initialize note from {!r}.'
             raise ValueError(message.format(args))
         Leaf.__init__(self, written_duration)
-        if pitch is not None:
+        if written_pitch is not None:
             self.note_head = scoretools.NoteHead(
-                written_pitch=pitch,
+                written_pitch=written_pitch,
                 is_cautionary=is_cautionary,
                 is_forced=is_forced
                 )
