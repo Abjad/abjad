@@ -64,8 +64,9 @@ class RootedChordClass(PitchClassSet):
 
     ### CONSTRUCTOR ###
 
-    def __init__(self, root, *args):
+    def __init__(self, root=None, *args):
         from abjad.tools import tonalanalysistools
+        root = root or 'c'
         root = pitchtools.NamedPitchClass(root)
         chord_quality = tonalanalysistools.RootlessChordClass(*args)
         npcs = []

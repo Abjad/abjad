@@ -65,7 +65,12 @@ class RootlessChordClass(IntervalSegment):
 
     ### INITIALIZER ###
 
-    def __init__(self, quality_string, extent='triad', inversion='root'):
+    def __init__(
+        self, 
+        quality_string='major', 
+        extent='triad', 
+        inversion='root',
+        ):
         if extent in ('triad', 5):
             intervals = self._init_triad(quality_string)
         elif extent in ('seventh', 7):

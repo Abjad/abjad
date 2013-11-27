@@ -95,8 +95,9 @@ class Tuplet(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, multiplier, music=None):
+    def __init__(self, multiplier=None, music=None):
         Container.__init__(self, music)
+        multiplier = multiplier or durationtools.Multiplier(2, 3)
         self.multiplier = multiplier
         self._force_fraction = None
         self._is_invisible = None

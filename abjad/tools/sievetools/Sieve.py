@@ -21,29 +21,19 @@ class Sieve(BaseResidueClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, rcs, logical_operator='or'):
-        # init from other rc expression
-        if isinstance(rcs, Sieve):
+    def __init__(self, rcs=None, logical_operator='or'):
+        from abjad.tools import sievetools
+        if isinstance(rcs, type(self)):
             self._rcs = rcs.rcs[:]
             self._logical_operator = rcs.logical_operator
-        # init from rcs and logical operator
+        elif rcs is None:
+            rcs = [sievetools.ResidueClass()]
+            self._rcs = rcs
+            self._logical_operator = logical_operator
         else:
             self._rcs = rcs[:]
             self._logical_operator = logical_operator
-        # sort rcs
         self._sort_rcs()
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.rcs,
-                ),
-            )
 
     ### PRIVATE METHODS ###
 
@@ -67,7 +57,7 @@ class Sieve(BaseResidueClass):
         sieve = Sieve(residue_classes, logical_operator='or')
         return sieve
 
-    # TB: _get_congruent_bases() might implement more cleanly
+    # _get_congruent_bases() might implement more cleanly
     # if the min and max parameters behaved more like the
     # start and stop parameters passed to slice() objects in
     # list slicing.
@@ -148,7 +138,7 @@ class Sieve(BaseResidueClass):
             >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
             >>> print format(sieve) 
             sievetools.Sieve(
-                [
+                rcs=[
                     sievetools.ResidueClass(6, 0),
                     sievetools.ResidueClass(6, 4),
                     sievetools.ResidueClass(6, 5),
@@ -234,7 +224,7 @@ class Sieve(BaseResidueClass):
         elif self.logical_operator == 'and':
             return self._get_congruent_bases(minimum, maximum, operator.iand)
 
-    # TB: the +1 adjustment is necessary here because of
+    # the +1 adjustment is necessary here because of
     # self._process_min_max_attribute() demands min strictly less than max;
     # that is, self.get_congruent_bases(0, 0) raises an exception;
     # so we work around this with self.get_congruent_bases(-1, 1) instead.

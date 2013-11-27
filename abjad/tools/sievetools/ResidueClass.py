@@ -58,9 +58,11 @@ class ResidueClass(BaseResidueClass):
 
     def __init__(self, *args):
         if len(args) == 1:
-            self._init_by_rc_instance(*args)
+            self._initialize_by_rc_instance(*args)
         elif len(args) == 2:
-            self._init_by_modulo_and_residue(*args)
+            self._initialize_by_modulo_and_residue(*args)
+        elif len(args) == 0:
+            self._initialize_by_modulo_and_residue(1, 0)
         else:
             message = 'can not intialize residue class: {!r}.'.format(args)
             raise ValueError(message)
@@ -69,10 +71,10 @@ class ResidueClass(BaseResidueClass):
 
     def __eq__(self, exp):
         if isinstance(exp, ResidueClass):
-            return (self.modulo == exp.modulo) and \
-                (self.residue == exp.residue)
-        else:
-            return False
+            if self.modulo == exp.modulo:
+                if self.residue == exp.residue:
+                    return True
+        return False
 
     def __lt__(self, expr):
         if not isinstance(expr, ResidueClass):
@@ -101,7 +103,7 @@ class ResidueClass(BaseResidueClass):
 
     ### PRIVATE METHODS ###
 
-    def _init_by_modulo_and_residue(self, modulo, residue):
+    def _initialize_by_modulo_and_residue(self, modulo, residue):
         if not 0 < modulo:
             message = 'modulo must be positive: {!r}.'.format(modulo)
             raise ValueError(message)
@@ -111,7 +113,7 @@ class ResidueClass(BaseResidueClass):
         self._modulo = modulo
         self._residue = residue
 
-    def _init_by_rc_instance(self, rc):
+    def _initialize_by_rc_instance(self, rc):
         if not isinstance(rc, ResidueClass):
             message = 'must be residue class: {!r}.'.format(rc)
             raise TypeError(message)

@@ -10,11 +10,7 @@ class FixedDurationContainer(Container):
 
         >>> container = scoretools.FixedDurationContainer(
         ...     (3, 8), "c'8 d'8 e'8")
-
-    ::
-
-        >>> container
-        FixedDurationContainer(Duration(3, 8), [Note("c'8"), Note("d'8"), Note("e'8")])
+        >>> show(container) # doctest: +SKIP
 
     ..  doctest::
 
@@ -40,8 +36,9 @@ class FixedDurationContainer(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, target_duration, music=None, **kwargs):
+    def __init__(self, target_duration=None, music=None, **kwargs):
         Container.__init__(self, music=music, **kwargs)
+        target_duration = target_duration or durationtools.Duration(1, 4)
         target_duration = durationtools.Duration(target_duration)
         assert 0 < target_duration
         self._target_duration = target_duration
@@ -49,8 +46,13 @@ class FixedDurationContainer(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({!r}, {})'.format(
-            type(self).__name__, self.target_duration, list(self[:]))
+        result = '{}({!r}, {})'
+        result = result.format(
+            type(self).__name__, 
+            self.target_duration, 
+            list(self[:]),
+            )
+        return result
 
     ### PRIVATE METHODS ###
 
