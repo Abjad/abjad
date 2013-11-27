@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import copy
+import numbers
 from abjad.tools import durationtools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import attach
@@ -32,31 +33,25 @@ class Rest(Leaf):
     __slots__ = (
         )
 
-    _default_positional_input_arguments = (
-        repr('r4'),
-        )
-
     ### INITIALIZER ###
 
-    def __init__(self, arg):
+    def __init__(self, written_duration=None):
         from abjad.tools import lilypondparsertools
-        if isinstance(arg, str):
-            string = '{{ {} }}'.format(arg)
+        original_input = written_duration
+        if isinstance(written_duration, str):
+            string = '{{ {} }}'.format(written_duration)
             parsed = lilypondparsertools.LilyPondParser()(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            arg = parsed[0]
-        if isinstance(arg, Leaf):
-            leaf = arg
-            written_duration = leaf.written_duration
-        elif not isinstance(arg, str):
-            written_duration = arg
+            written_duration = parsed[0]
+        if isinstance(written_duration, Leaf):
+            written_duration = written_duration.written_duration
+        elif written_duration is None:
+            written_duration = durationtools.Duration(1, 4)
         else:
-            message = 'can not initialize rest from {!r}.'
-            message = message.format(arg)
-            raise ValueError(message)
+            written_duration = durationtools.Duration(written_duration)
         Leaf.__init__(self, written_duration)
-        if isinstance(arg, Leaf):
-            self._copy_override_and_set_from_leaf(arg)
+        if isinstance(original_input, Leaf):
+            self._copy_override_and_set_from_leaf(original_input)
 
     ### PRIVATE PROPERTIES ###
 
