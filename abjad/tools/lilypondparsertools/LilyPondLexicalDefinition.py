@@ -15,7 +15,7 @@ class LilyPondLexicalDefinition(AbjadObject):
     Used internally by ``LilyPondParser``.
     '''
 
-    def __init__(self, client):
+    def __init__(self, client=None):
         self.client = client
 
     states = (

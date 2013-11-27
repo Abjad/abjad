@@ -22,7 +22,7 @@ class GuileProxy(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client):
+    def __init__(self, client=None):
         self.client = client
 
     ### SPECIAL METHODS ###

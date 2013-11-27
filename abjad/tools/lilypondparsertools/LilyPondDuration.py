@@ -19,6 +19,6 @@ class LilyPondDuration(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, duration, multiplier=None):
+    def __init__(self, duration=None, multiplier=None):
         self.duration = duration
         self.multiplier = multiplier

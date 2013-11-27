@@ -12,7 +12,7 @@ class LilyPondEvent(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name, **kwargs):
+    def __init__(self, name=None, **kwargs):
         self.name = name
         for k, v in kwargs.iteritems():
             if k != 'name':
@@ -21,7 +21,7 @@ class LilyPondEvent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
+        return '{}({})'.format(type(self).__name__, self._format_string)
 
     ### PRIVATE PROPERTIES ###
 
@@ -31,5 +31,5 @@ class LilyPondEvent(AbjadObject):
         for key in self.__dict__:
             if key == 'name':
                 continue
-            result += ', %s = %r' % (key, getattr(self, key))
+            result += ', {} = {!r}'.format(key, getattr(self, key))
         return result

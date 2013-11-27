@@ -19,7 +19,7 @@ class SyntaxNode(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, type, value=None):
+    def __init__(self, type=None, value=None):
         self.type = type
         self.value = value
 

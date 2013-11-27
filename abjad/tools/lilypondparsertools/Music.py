@@ -15,7 +15,7 @@ class Music(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, music):
+    def __init__(self, music=None):
         self.music = music
 
     ### PUBLIC METHODS ###

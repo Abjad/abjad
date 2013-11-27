@@ -19,6 +19,6 @@ class LilyPondFraction(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, numerator, denominator):
+    def __init__(self, numerator=0, denominator=1):
         self.numerator = numerator
         self.denominator = denominator

@@ -45,9 +45,12 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client):
+    def __init__(self, client=None):
         self.client = client
-        self.tokens = self.client._lexdef.tokens
+        if client is not None:
+            self.tokens = self.client._lexdef.tokens
+        else:
+            self.tokens = []
 
     ### SYNTACTICAL RULES (ALPHABETICAL) ###
 
