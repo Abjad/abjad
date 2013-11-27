@@ -11,7 +11,6 @@ class NamedIntervalClass(IntervalClass):
         >>> pitchtools.NamedIntervalClass('-M9')
         NamedIntervalClass('-M2')
 
-    Returns named interval-class.
     '''
 
     ### CLASS VARIABLES ###
@@ -56,18 +55,19 @@ class NamedIntervalClass(IntervalClass):
     def __init__(self, *args):
         from abjad.tools import pitchtools
         from abjad.tools import sequencetools
-        if len(args) == 1 and\
+        if len(args) == 1 and \
             isinstance(args[0], (pitchtools.NamedInterval,
                 pitchtools.NamedIntervalClass)):
             quality_string = args[0]._quality_string
             number = args[0].number
         elif len(args) == 1 and isinstance(args[0], str):
-            match = pitchtools.Interval._interval_name_abbreviation_regex.match(
+            match = \
+                pitchtools.Interval._interval_name_abbreviation_regex.match(
                 args[0])
             if match is None:
-                raise ValueError(
-                    '{!r} does not have the form of an abbreviation.'.format(
-                    args[0]))
+                message = '{!r} does not have the form of an abbreviation.'
+                message = message.format(args[0])
+                raise ValueError(message)
             direction_string, quality_abbreviation, number_string = \
                 match.groups()
             quality_string = \
@@ -78,6 +78,9 @@ class NamedIntervalClass(IntervalClass):
             quality_string, number = args[0]
         elif len(args) == 2:
             quality_string, number = args
+        elif len(args) == 0:
+            quality_string = 'perfect'
+            number = 1
         else:
             message = 'bad input: {!r}.'.format(args)
             raise TypeError(message)

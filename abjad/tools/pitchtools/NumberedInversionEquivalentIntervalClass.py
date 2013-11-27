@@ -11,7 +11,6 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         >>> pitchtools.NumberedInversionEquivalentIntervalClass(1)
         NumberedInversionEquivalentIntervalClass(1)
 
-    Returns numbered inversion-equivalent interval-class.
     '''
 
     ### CLASS VARIABLES ###
@@ -22,24 +21,27 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, interval_class_token):
+    def __init__(self, interval_class_token=None):
         from abjad.tools import pitchtools
         if isinstance(interval_class_token, type(self)):
-            _number = interval_class_token.number
+            number = interval_class_token.number
         elif isinstance(interval_class_token, numbers.Number):
             if not 0 <= interval_class_token <= 6:
                 message = 'must be between 0 and 6, inclusive.'
                 raise ValueError(message)
-            _number = interval_class_token
+            number = interval_class_token
         elif hasattr(interval_class_token, 'semitones'):
-            _number = interval_class_token.semitones
-            _number %= 12
-            if 6 < _number:
-                _number = 12 - _number
+            number = interval_class_token.semitones
+            number %= 12
+            if 6 < number:
+                number = 12 - number
+        elif interval_class_token is None:
+            number = 0
         else:
-            message = 'must be interval-class or number.'
+            message = 'can not initialize {}: {!r}.'
+            message = message.format(type(self).__name__, interval_class_token)
             raise TypeError(message)
-        self._number = _number
+        self._number = number
 
     ### SPECIAL METHODS ###
 
@@ -72,10 +74,12 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values = (
+            self.number,
+            )
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            positional_argument_values=(
-                self.number,
-                )
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
             )

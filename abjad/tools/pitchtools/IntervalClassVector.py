@@ -25,7 +25,6 @@ class IntervalClassVector(Vector):
         6 6
         1 12
 
-    Returns interval-class vector.
     '''
 
     ### INITIALIZER ###

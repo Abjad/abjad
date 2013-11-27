@@ -93,6 +93,11 @@ class PitchRange(AbjadObject):
         elif len(args) == 1 and isinstance(args[0], collections.Sequence):
             start, stop = args[0]
             type(self).__init__(self, start, stop)
+        elif len(args) == 0:
+            start_pitch = pitchtools.NamedPitch('A0')
+            stop_pitch = pitchtools.NamedPitch('C8')
+            self._start = (start_pitch, 'inclusive')
+            self._stop = (stop_pitch, 'inclusive')
         else:
             assert len(args) == 2, repr(args)
             start, stop = args

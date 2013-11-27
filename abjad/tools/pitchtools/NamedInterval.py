@@ -12,7 +12,6 @@ class NamedInterval(Interval):
         >>> pitchtools.NamedInterval('+M9')
         NamedInterval('+M9')
 
-    Returns named interval
     '''
 
     ### CLASS VARIABLES ##
@@ -60,8 +59,12 @@ class NamedInterval(Interval):
             number = int(direction_string + number_string)
         elif len(args) == 2:
             quality_string, number = args
+        elif len(args) == 0:
+            quality_string = 'perfect'
+            number = 1
         else:
-            message = 'bad input: {!r}'.format(args)
+            message = 'can not initialize {}: {!r}'
+            message = message.format(type(self).__init__, args)
             raise ValueError(message)
         self._quality_string = quality_string
         self._number = number

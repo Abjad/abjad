@@ -23,14 +23,17 @@ class NumberedInterval(Interval):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg):
+    def __init__(self, arg=None):
         from abjad.tools import pitchtools
         if isinstance(arg, (int, float, long)):
             number = arg
         elif isinstance(arg, pitchtools.Interval):
             number = arg.semitones
+        elif arg is None:
+            number = 0
         else:
-            message = 'must be number or interval: {!r}.'.format(arg)
+            message = 'can not initialize {}: {!r}.'
+            message = message.format(type(self).__name__, arg)
             raise TypeError(message)
         self._number = number
 
@@ -123,6 +126,18 @@ class NumberedInterval(Interval):
     @property
     def _format_string(self):
         return '%s%s' % (self._direction_symbol, abs(self.number))
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self.number,
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PUBLIC METHODS ###
 

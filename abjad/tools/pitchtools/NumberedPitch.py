@@ -29,12 +29,14 @@ class NumberedPitch(Pitch):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr):
+    def __init__(self, expr=None):
         from abjad.tools import pitchtools
         if hasattr(expr, 'pitch_number'):
             pitch_number = expr.pitch_number
         elif Pitch.is_pitch_number(expr):
             pitch_number = expr
+        elif expr is None:
+            pitch_number = 0
         else:
             pitch_number = pitchtools.NamedPitch(expr).pitch_number
         self._pitch_number = mathtools.integer_equivalent_number_to_integer(
@@ -80,7 +82,7 @@ class NumberedPitch(Pitch):
         return type(self)(-abs(self))
 
     def __str__(self):
-        return '%s' % abs(self)
+        return str(abs(self))
 
     def __sub__(self, arg):
         from abjad.tools import pitchtools
@@ -101,12 +103,14 @@ class NumberedPitch(Pitch):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values=(
+            self.pitch_number,
+            )
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            positional_argument_values=(
-                self.pitch_number,
-                )
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PUBLIC METHODS ###

@@ -23,7 +23,7 @@ class NumberedIntervalClass(IntervalClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, token):
+    def __init__(self, token=None):
         from abjad.tools import pitchtools
         if isinstance(token, numbers.Number):
             sign = mathtools.sign(token)
@@ -51,8 +51,11 @@ class NumberedIntervalClass(IntervalClass):
             else:
                 number = abs_number % 12
             number *= sign
+        elif token is None:
+            number = 0
         else:
-            message = 'must be number, interval or interval-class.'
+            message = 'can not initialize {}: {!r}.'
+            message = message.format(type(self).__name__, token)
             raise ValueError(message)
         self._number = number
 
@@ -78,6 +81,18 @@ class NumberedIntervalClass(IntervalClass):
     @property
     def _format_string(self):
         return '%s%s' % (self.direction_symbol, abs(self.number))
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self.number,
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PUBLIC METHODS ###
 

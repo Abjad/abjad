@@ -121,6 +121,7 @@ class TypedCounter(TypedCollection):
                     items[item] = 0
                 items[item] += count
             return items
+        items = []
         if tokens is not None:
             if isinstance(tokens, collections.Mapping):
                 items = _coerce_mapping(tokens)

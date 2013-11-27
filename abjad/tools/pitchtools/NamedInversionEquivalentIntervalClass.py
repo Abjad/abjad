@@ -19,23 +19,25 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     def __init__(self, *args):
         from abjad.tools import pitchtools
         if len(args) == 1 and isinstance(args[0], type(self)):
-            self._init_by_self_reference(args[0])
+            self._initialize_by_self_reference(args[0])
         elif len(args) == 1 and isinstance(args[0], str):
-            self._init_by_string(args[0])
+            self._initialize_by_string(args[0])
         elif len(args) == 1 and isinstance(args[0],
             pitchtools.NamedIntervalClass): 
-            self._init_by_string(str(args[0]))
+            self._initialize_by_string(str(args[0]))
         elif len(args) == 1 and isinstance(args[0],
             pitchtools.NamedInterval):
             interval_class = pitchtools.NamedIntervalClass(args[0])
-            self._init_by_string(str(interval_class))
+            self._initialize_by_string(str(interval_class))
         elif len(args) == 1 and isinstance(args[0], tuple):
-            self._init_by_quality_string_and_number(*args[0])
+            self._initialize_by_quality_string_and_number(*args[0])
         elif len(args) == 2:
-            self._init_by_quality_string_and_number(*args)
+            self._initialize_by_quality_string_and_number(*args)
+        elif len(args) == 0:
+            self._initialize_by_string('P1')
         else:
-            message = 'can not initialize diatonic interval-class: {!r}.'
-            message = message.format(args)
+            message = 'can not initialize {}: {!r}.'
+            message = message.format(type(self).__name__, args)
             raise ValueError(message)
 
     ### SPECIAL METHODS ###
@@ -52,7 +54,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     ### PRIVATE METHODS ###
 
-    def _init_by_quality_string_and_number(self, quality_string, number):
+    def _initialize_by_quality_string_and_number(self, quality_string, number):
         if number == 0:
             message = 'named interval can not equal zero.'
             raise ValueError(message)
@@ -73,12 +75,12 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         self._quality_string = quality_string
         self._number = number
 
-    def _init_by_self_reference(self, reference):
+    def _initialize_by_self_reference(self, reference):
         quality_string = reference.quality_string
         number = reference.number
-        self._init_by_quality_string_and_number(quality_string, number)
+        self._initialize_by_quality_string_and_number(quality_string, number)
 
-    def _init_by_string(self, string):
+    def _initialize_by_string(self, string):
         from abjad.tools import pitchtools
         match = pitchtools.Interval._interval_name_abbreviation_regex.match(string)
         if match is None:
@@ -90,7 +92,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         quality_string = self._quality_abbreviation_to_quality_string[
             quality_abbreviation]
         number = int(number_string)
-        self._init_by_quality_string_and_number(quality_string, number)
+        self._initialize_by_quality_string_and_number(quality_string, number)
 
     def _invert_quality_string(self, quality_string):
         inversions = {

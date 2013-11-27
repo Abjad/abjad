@@ -41,7 +41,6 @@ class NamedPitchClass(PitchClass):
         >>> pitchtools.NamedPitchClass(Note("a'8."))
         NamedPitchClass('a')
 
-    Returns named pitch-class.
     '''
 
     ### CLASS VARIABLES ###
@@ -53,24 +52,26 @@ class NamedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr):
+    def __init__(self, expr=None):
         from abjad.tools import pitchtools
         if isinstance(expr, type(self)):
-            self._init_by_named_pitch_class(expr)
+            self._initialize_by_named_pitch_class(expr)
         elif isinstance(expr, pitchtools.NamedPitch):
-            self._init_by_named_pitch(expr)
+            self._initialize_by_named_pitch(expr)
         elif pitchtools.Pitch.is_pitch_class_octave_number_string(expr):
-            self._init_by_pitch_class_octave_number_string(expr)
+            self._initialize_by_pitch_class_octave_number_string(expr)
         elif pitchtools.Pitch.is_pitch_name(expr):
-            self._init_by_pitch_name(expr)
+            self._initialize_by_pitch_name(expr)
         elif isinstance(expr, (
             numbers.Number,
             pitchtools.NumberedPitch,
             pitchtools.NumberedPitchClass,
             )):
-            self._init_by_number(float(expr))
+            self._initialize_by_number(float(expr))
         elif pitchtools.Pitch.is_pitch_carrier(expr):
-            self._init_by_pitch_carrier(expr)
+            self._initialize_by_pitch_carrier(expr)
+        elif expr is None:
+            self._initialize_by_number(0)
         else:
             message = 'can not instantiate {} from {!r}.'
             message = message.format(type(self).__name__, expr)
@@ -126,39 +127,41 @@ class NamedPitchClass(PitchClass):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values = (
+            self.pitch_class_name,
+            )
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            positional_argument_values=(
-                self.pitch_class_name,
-                )
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###
 
-    def _init_by_named_pitch(self, expr):
+    def _initialize_by_named_pitch(self, expr):
         self._alteration_in_semitones = expr.alteration_in_semitones
         self._diatonic_pitch_class_number = expr.diatonic_pitch_class_number
 
-    def _init_by_named_pitch_class(self, expr):
+    def _initialize_by_named_pitch_class(self, expr):
         self._alteration_in_semitones = expr.alteration_in_semitones
         self._diatonic_pitch_class_number = expr.diatonic_pitch_class_number
 
-    def _init_by_number(self, expr):
+    def _initialize_by_number(self, expr):
         from abjad.tools import pitchtools
         pitch_class_number = float(expr) % 12
         numbered_pitch_class = pitchtools.NumberedPitchClass(
             pitch_class_number)
         pitch_class_name = numbered_pitch_class.pitch_class_name
-        self._init_by_pitch_name(pitch_class_name)
+        self._initialize_by_pitch_name(pitch_class_name)
 
-    def _init_by_pitch_carrier(self, expr):
+    def _initialize_by_pitch_carrier(self, expr):
         from abjad.tools import pitchtools
         named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
             expr)
-        self._init_by_named_pitch(named_pitch)
+        self._initialize_by_named_pitch(named_pitch)
 
-    def _init_by_pitch_class_octave_number_string(self, expr):
+    def _initialize_by_pitch_class_octave_number_string(self, expr):
         from abjad.tools import pitchtools
         groups = pitchtools.Pitch._pitch_class_octave_number_regex.match(
             expr).groups()
@@ -171,7 +174,7 @@ class NamedPitchClass(PitchClass):
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]
 
-    def _init_by_pitch_name(self, expr):
+    def _initialize_by_pitch_name(self, expr):
         from abjad.tools import pitchtools
         match = pitchtools.Pitch._pitch_name_regex.match(expr.lower())
         if match is None:

@@ -42,7 +42,6 @@ class NumberedPitchClass(PitchClass):
         >>> pitchtools.NumberedPitchClass(Note("a'8."))
         NumberedPitchClass(9)
 
-    Returns numbered pitch-class.
     '''
 
     ### CLASS VARIABLES ###
@@ -53,24 +52,23 @@ class NumberedPitchClass(PitchClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr):
+    def __init__(self, expr=None):
         from abjad.tools import pitchtools
-        if isinstance(expr, (
-            numbers.Number,
-            pitchtools.NumberedPitch,
-            type(self),
-            )):
-            self._init_by_number(float(expr))
+        prototype = (numbers.Number, pitchtools.NumberedPitch, type(self))
+        if isinstance(expr, prototype):
+            self._initialize_by_number(float(expr))
         elif isinstance(expr, pitchtools.NamedPitch):
-            self._init_by_named_pitch(expr)
+            self._initialize_by_named_pitch(expr)
         elif isinstance(expr, pitchtools.NamedPitchClass):
-            self._init_by_named_pitch_class(expr)
+            self._initialize_by_named_pitch_class(expr)
         elif isinstance(expr, str):
-            self._init_by_string(expr)
+            self._initialize_by_string(expr)
         elif pitchtools.Pitch.is_pitch_carrier(expr):
-            self._init_by_pitch_carrier(expr)
+            self._initialize_by_pitch_carrier(expr)
+        elif expr is None:
+            self._initialize_by_number(0)
         else:
-            message = 'can not instantiate {} from ' '{!r}.'
+            message = 'can not instantiate {}: {!r}.'
             message = message.format(type(self).__name__, expr)
             raise TypeError(message)
 
@@ -127,37 +125,39 @@ class NumberedPitchClass(PitchClass):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values = (
+            self.pitch_class_number,
+            )
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            positional_argument_values=(
-                self.pitch_class_number,
-                )
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###
 
-    def _init_by_named_pitch(self, expr):
+    def _initialize_by_named_pitch(self, expr):
         self._pitch_class_number = expr.pitch_class_number
 
-    def _init_by_named_pitch_class(self, expr):
+    def _initialize_by_named_pitch_class(self, expr):
         self._pitch_class_number = expr.pitch_class_number
 
-    def _init_by_number(self, expr):
+    def _initialize_by_number(self, expr):
         self._pitch_class_number = \
             mathtools.integer_equivalent_number_to_integer(
                 round((float(expr) % 12) * 2) / 2)
 
-    def _init_by_pitch_carrier(self, expr):
+    def _initialize_by_pitch_carrier(self, expr):
         from abjad.tools import pitchtools
         named_pitch = pitchtools.get_named_pitch_from_pitch_carrier(
             expr)
-        self._init_by_named_pitch(named_pitch)
+        self._initialize_by_named_pitch(named_pitch)
 
-    def _init_by_string(self, expr):
+    def _initialize_by_string(self, expr):
         from abjad.tools import pitchtools
         named_pitch_class = pitchtools.NamedPitchClass(expr)
-        self._init_by_named_pitch_class(named_pitch_class)
+        self._initialize_by_named_pitch_class(named_pitch_class)
 
     ### PUBLIC METHODS ###
 
