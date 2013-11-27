@@ -86,8 +86,11 @@ class CyclicMatrix(Matrix):
         elif 'columns' in kwargs:
             assert not args
             rows, columns = self._init_from_columns(kwargs['columns'])
+        elif len(args) == 0:
+            rows, columns = self._init_from_rows([[0],[0]])
         else:
-            message = 'can not initialize matrix.'
+            message = 'can not initialize {}: {!r}.'
+            message = message(type(self).__name__, args)
             raise ValueError(message)
         self._rows = rows
         self._columns = columns

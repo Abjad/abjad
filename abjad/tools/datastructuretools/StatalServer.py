@@ -10,7 +10,6 @@ class StatalServer(AbjadObject):
 
     def __init__(self, cyclic_tree=None):
         from abjad.tools import datastructuretools
-        assert cyclic_tree is not None, repr(cyclic_tree)
         self._cyclic_tree = datastructuretools.CyclicPayloadTree(cyclic_tree)
 
     ### SPECIAL METHODS ###

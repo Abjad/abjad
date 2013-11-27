@@ -15,7 +15,6 @@ class StatalServerCursor(AbjadObject):
         reverse=False,
         ):
         from abjad.tools import datastructuretools
-        assert isinstance(statal_server, datastructuretools.StatalServer)
         assert isinstance(position, (tuple, type(None))), repr(position)
         assert isinstance(reverse, type(True)), repr(reverse)
         position = position or ()

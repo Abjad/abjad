@@ -74,7 +74,14 @@ class OrdinalConstant(AbjadObject):
 
     ### CONSTRUCTOR ###
 
-    def __new__(cls, dimension, value, representation):
+    def __new__(
+        cls, 
+        dimension=None, 
+        value=0, 
+        representation=None,
+        ):
+        dimension = dimension or ''
+        representation = representation or ''
         assert isinstance(dimension, str), repr(dimension)
         assert isinstance(representation, str), repr(representation)
         self = object.__new__(cls)

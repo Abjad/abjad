@@ -108,7 +108,7 @@ class PayloadTree(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr):
+    def __init__(self, expr=None):
         if isinstance(expr, type(self)):
             expr = expr.to_nested_lists()
         self._children = self._initialize_children_list()
@@ -316,11 +316,13 @@ class PayloadTree(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values = (
+            self._input_argument,
+            )
         return systemtools.StorageFormatSpecification(
             self,
-            positional_argument_values=(
-                self._input_argument,
-                ),
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###
