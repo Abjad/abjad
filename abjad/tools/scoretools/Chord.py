@@ -37,7 +37,7 @@ class Chord(Leaf):
     def __init__(self, *args):
         from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
-        assert len(args) in (1, 2)
+        assert len(args) in (0, 1, 2)
         self._note_heads = scoretools.NoteHeadInventory(
             client=self,
             )
@@ -67,6 +67,9 @@ class Chord(Leaf):
                 written_pitches = [x for x in written_pitches.split() if x]
             elif isinstance(written_pitches, type(self)):
                 written_pitches = written_pitches.written_pitches
+        elif len(args) == 0:
+            written_pitches = [0, 4, 7]
+            written_duration = durationtools.Duration(1, 4)
         else:
             message = 'can not initialize chord from {!r}.'
             message = message.format(args)

@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 @functools.total_ordering
 class NoteHead(AbjadObject):
-    r'''Abjad model of a note head:
+    r'''A note head.
 
     ::
 
@@ -39,11 +39,13 @@ class NoteHead(AbjadObject):
         assert isinstance(client, (type(None), scoretools.Leaf))
         self._client = client
         if isinstance(written_pitch, type(self)):
-            expr = written_pitch
-            written_pitch = expr.written_pitch
-            is_cautionary = expr.is_cautionary
-            is_forced = expr.is_forced
-            tweak_pairs = expr.tweak._get_attribute_pairs()
+            note_head = written_pitch
+            written_pitch = note_head.written_pitch
+            is_cautionary = note_head.is_cautionary
+            is_forced = note_head.is_forced
+            tweak_pairs = note_head.tweak._get_attribute_pairs()
+        elif written_pitch is None:
+            written_pitch = 0
         self.written_pitch = written_pitch
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
