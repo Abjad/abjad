@@ -128,7 +128,9 @@ class Meter(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg, decrease_durations_monotonically=True):
+    def __init__(self, arg=None, decrease_durations_monotonically=True):
+
+        arg = arg or (4, 4)
 
         def recurse(
             node, factors, denominator, decrease_durations_monotonically):
@@ -234,7 +236,7 @@ class Meter(AbjadObject):
                 )
 
         else:
-            message = "Can't initialize {} from {!r}."
+            message = 'can not initialize {}: {!r}.'
             message = message.format(type(self).__name__, arg)
             raise ValueError(message)
 

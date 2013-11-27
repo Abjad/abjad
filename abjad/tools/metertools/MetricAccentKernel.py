@@ -43,9 +43,10 @@ class MetricAccentKernel(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, kernel):
+    def __init__(self, kernel=None):
+        kernel = kernel or {}
         assert isinstance(kernel, dict)
-        assert 1 < len(kernel)
+        #assert 1 < len(kernel)
         for key, value in kernel.iteritems():
             assert isinstance(key, durationtools.Offset)
             assert isinstance(value, durationtools.Multiplier)
@@ -73,6 +74,18 @@ class MetricAccentKernel(AbjadObject):
     @property
     def _repr_specification(self):
         return self._storage_format_specification
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self.kernel,
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PUBLIC PROPERTIES ###
 

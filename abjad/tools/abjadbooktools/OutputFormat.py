@@ -19,7 +19,8 @@ class OutputFormat(abctools.AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, 
+    def __init__(
+        self, 
         code_block_opening, 
         code_block_closing, 
         code_indent, 

@@ -3,7 +3,7 @@ from abjad.tools import abctools
 
 
 class LilyPondDimension(abctools.AbjadObject):
-    r'''Abjad model of page dimensions in LilyPond:
+    r'''A LilyPond page dimension.
 
     ::
 
@@ -14,7 +14,6 @@ class LilyPondDimension(abctools.AbjadObject):
         >>> print format(dimension)
         2.0\in
 
-    Returns LilyPondDimension instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -26,7 +25,7 @@ class LilyPondDimension(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, value, unit):
+    def __init__(self, value=0, unit='cm'):
         assert 0 <= value
         assert unit in ('cm', 'in', 'mm')
         self._value = float(value)
@@ -35,9 +34,9 @@ class LilyPondDimension(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Get format.
+        r'''Formats LilyPond dimension.
 
-        Return string.
+        Returns string.
         '''
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format

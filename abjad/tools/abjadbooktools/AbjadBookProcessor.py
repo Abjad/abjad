@@ -13,15 +13,19 @@ class AbjadBookProcessor(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        directory, 
-        lines, 
-        output_format, 
+    def __init__(
+        self, 
+        directory=None, 
+        lines=None, 
+        output_format=None, 
         skip_rendering=False,
         image_prefix='image', 
         verbose=False,
         ):
         from abjad.tools import abjadbooktools
+        directory = directory = '.'
+        lines = lines or []
+        output_format = output_format or abjadbooktools.HTMLOutputFormat()
         assert isinstance(output_format, abjadbooktools.OutputFormat)
         self._current_code_line = 0
         self._total_code_lines = 0

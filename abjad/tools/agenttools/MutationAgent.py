@@ -18,7 +18,7 @@ class MutationAgent(abctools.AbjadObject):
         ::
 
             >>> mutate(staff[2:])
-            MutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+            MutationAgent(client=SliceSelection(Note("d'4"), Note("f'4")))
 
     '''
 
@@ -30,7 +30,7 @@ class MutationAgent(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client):
+    def __init__(self, client=None):
         self._client = client
 
     ### PUBLIC PROPERTIES ###

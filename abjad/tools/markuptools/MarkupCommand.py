@@ -82,7 +82,10 @@ class MarkupCommand(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, command, *args):
+    def __init__(self, command=None, *args):
+        if command is None:
+            command = 'draw-circle'
+            assert len(args) == 0
         assert isinstance(command, str) \
             and len(command) and command.find(' ') == -1
         self._command = command
@@ -124,9 +127,11 @@ class MarkupCommand(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values = (self.command,) + self.args
         return systemtools.StorageFormatSpecification(
             self,
-            positional_argument_values=(self.command,) + self.args,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PRIVATE METHODS ###

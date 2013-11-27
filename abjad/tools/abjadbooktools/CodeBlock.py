@@ -19,8 +19,15 @@ class CodeBlock(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, lines, starting_line_number, ending_line_number,
-        hide=False, strip_prompt=False):
+    def __init__(
+        self, 
+        lines=None, 
+        starting_line_number=0, 
+        ending_line_number=1,
+        hide=False, 
+        strip_prompt=False,
+        ):
+        lines = lines or []
         assert starting_line_number <= ending_line_number
         self._lines = tuple(lines)
         self._starting_line_number = starting_line_number
@@ -31,8 +38,15 @@ class CodeBlock(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, processor, pipe, image_count=0, directory=None,
-        image_prefix='image', verbose=False):
+    def __call__(
+        self, 
+        processor, 
+        pipe, 
+        image_count=0, 
+        directory=None,
+        image_prefix='image', 
+        verbose=False,
+        ):
 
         assert isinstance(pipe, documentationtools.Pipe)
 

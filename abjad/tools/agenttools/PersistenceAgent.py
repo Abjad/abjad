@@ -17,7 +17,7 @@ class PersistenceAgent(abctools.AbjadObject):
         ::
 
             >>> persist(staff)
-            PersistenceAgent({c'4, e'4, d'4, f'4})
+            PersistenceAgent(client={c'4, e'4, d'4, f'4})
 
     '''
 
@@ -29,7 +29,7 @@ class PersistenceAgent(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client):
+    def __init__(self, client=None):
         self._client = client
 
     ### PRIVATE PROPERTIES ###

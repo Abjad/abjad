@@ -219,11 +219,12 @@ class NamedInterval(Interval):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values = (
+            str(self),
+            )
         return systemtools.StorageFormatSpecification(
             self,
-            positional_argument_values=(
-                str(self),
-                ),
+            positional_argument_values=positional_argument_values,
             )
 
     ### PUBLIC METHODS ###

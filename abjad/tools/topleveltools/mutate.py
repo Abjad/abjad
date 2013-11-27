@@ -15,7 +15,7 @@ def mutate(expr):
 
             >>> notes = staff[-2:]
             >>> mutate(notes)
-            MutationAgent(SliceSelection(Note("d'4"), Note("f'4")))
+            MutationAgent(client=SliceSelection(Note("d'4"), Note("f'4")))
 
     Returns score mutation agent.
     '''

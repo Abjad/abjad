@@ -16,7 +16,7 @@ class InspectionAgent(abctools.AbjadObject):
         ::
 
             >>> inspect(staff)
-            InspectionAgent({c'4, e'4, d'4, f'4})
+            InspectionAgent(client={c'4, e'4, d'4, f'4})
 
     '''
 
@@ -28,9 +28,9 @@ class InspectionAgent(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, client):
+    def __init__(self, client=None):
         from abjad.tools import scoretools
-        assert isinstance(client, scoretools.Component)
+        assert isinstance(client, (scoretools.Component, type(None)))
         self._client = client
 
     ### PUBLIC PROPERTIES ###
