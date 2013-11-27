@@ -3,12 +3,11 @@ import copy
 import inspect
 import pytest
 from abjad import *
-pytest.skip()
 
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('class_', classes)
-def test_copy_01(class_):
+def test___copy___01(class_):
     r'''All objects with a storage format can copy.
     '''
 

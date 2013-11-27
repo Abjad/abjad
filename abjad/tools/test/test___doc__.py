@@ -14,7 +14,7 @@ pytest.skip()
 
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('obj', classes)
-def test_docstrings_01(obj):
+def test___doc___01(obj):
     r'''All classes have a docstring. All class methods have a docstring.
     '''
 
@@ -30,7 +30,7 @@ def test_docstrings_01(obj):
 
 functions = documentationtools.list_all_abjad_functions()
 @pytest.mark.parametrize('obj', functions)
-def test_docstrings_02(obj):
+def test___doc___02(obj):
     r'''All functions have a docstring.
     '''
 
