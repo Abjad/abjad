@@ -30,9 +30,12 @@ class SchemePair(Scheme):
             args = args[0][:]
         elif len(args) == 2:
             args = args
+        elif len(args) == 0:
+            args = (0, 1)
         else:
-            message = 'can not initialize Scheme pair from {!r}.'
-            raise TypeError(message.format(args))
+            message = 'can not initialize {}: {!r}.'
+            message = message.format(type(self).__name__, args)
+            raise TypeError(message)
         Scheme.__init__(self, *args, **kwargs)
 
     ### SPECIAL METHODS ###

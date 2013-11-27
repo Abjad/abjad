@@ -97,6 +97,9 @@ class Markup(AbjadObject):
         from abjad.tools import markuptools
         if not argument:
             contents = None
+        # WARNING: running the LilyPondParser here on a regular basis
+        #          by setting (for example) argument='' in the intializer
+        #          slows performance of the entire system by up to 25%!
         elif isinstance(argument, str):
             to_parse = r'\markup {{ {} }}'.format(argument)
             parsed = lilypondparsertools.LilyPondParser()(to_parse)

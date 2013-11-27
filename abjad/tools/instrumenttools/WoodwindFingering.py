@@ -16,7 +16,7 @@ class WoodwindFingering(AbjadObject):
         >>> left_hand = ('R', 'thumb')
         >>> right_hand = ('e',)
         >>> woodwind_fingering = instrumenttools.WoodwindFingering(
-        ...     'clarinet',
+        ...     instrument_name='clarinet',
         ...     center_column=center_column,
         ...     left_hand=left_hand,
         ...     right_hand=right_hand,
@@ -26,7 +26,7 @@ class WoodwindFingering(AbjadObject):
 
         >>> print format(woodwind_fingering, 'storage')
         instrumenttools.WoodwindFingering(
-            'clarinet',
+            instrument_name='clarinet',
             center_column=('one', 'two', 'three', 'five'),
             left_hand=('R', 'thumb'),
             right_hand=('e',),
@@ -40,7 +40,7 @@ class WoodwindFingering(AbjadObject):
         ...     woodwind_fingering)
         >>> print format(woodwind_fingering_2)
         instrumenttools.WoodwindFingering(
-            'clarinet',
+            instrument_name='clarinet',
             center_column=('one', 'two', 'three', 'five'),
             left_hand=('R', 'thumb'),
             right_hand=('e',),
@@ -104,14 +104,14 @@ class WoodwindFingering(AbjadObject):
         >>> for name in instrument_names:
         ...    instrumenttools.WoodwindFingering(name)
         ...
-        WoodwindFingering('piccolo', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering('flute', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering('oboe', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering('clarinet', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering('bass-clarinet', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering('saxophone', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering('bassoon', center_column=(), left_hand=(), right_hand=())
-        WoodwindFingering('contrabassoon', center_column=(), left_hand=(), right_hand=())
+        WoodwindFingering(instrument_name='piccolo', center_column=(), left_hand=(), right_hand=())
+        WoodwindFingering(instrument_name='flute', center_column=(), left_hand=(), right_hand=())
+        WoodwindFingering(instrument_name='oboe', center_column=(), left_hand=(), right_hand=())
+        WoodwindFingering(instrument_name='clarinet', center_column=(), left_hand=(), right_hand=())
+        WoodwindFingering(instrument_name='bass-clarinet', center_column=(), left_hand=(), right_hand=())
+        WoodwindFingering(instrument_name='saxophone', center_column=(), left_hand=(), right_hand=())
+        WoodwindFingering(instrument_name='bassoon', center_column=(), left_hand=(), right_hand=())
+        WoodwindFingering(instrument_name='contrabassoon', center_column=(), left_hand=(), right_hand=())
 
     An override displays diagrams symbolically instead of graphically:
 
@@ -189,15 +189,21 @@ class WoodwindFingering(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
-        arg, center_column=None, left_hand=None, right_hand=None):
+    def __init__(
+        self,
+        instrument_name=None, 
+        center_column=None, 
+        left_hand=None, 
+        right_hand=None,
+        ):
         assert isinstance(center_column, (type(None), list, tuple))
         assert isinstance(left_hand, (type(None), list, tuple))
         assert isinstance(right_hand, (type(None), list, tuple))
-        #initialize from a string and up to three lists:
-        if isinstance(arg, str):
-            assert arg in self._valid_instrument_names
-            self._instrument_name = arg
+        # initialize from a string and up to three lists
+        instrument_name = instrument_name or 'flute'
+        if isinstance(instrument_name, str):
+            assert instrument_name in self._valid_instrument_names
+            self._instrument_name = instrument_name
             if center_column is None:
                 self._center_column = ()
             else:
@@ -210,12 +216,12 @@ class WoodwindFingering(AbjadObject):
                 self._right_hand = ()
             else:
                 self._right_hand = tuple(right_hand)
-        #initialize from a WoodwindDiagram with up to three overriding lists:
-        elif isinstance(arg, type(self)):
-            self._instrument_name = arg.instrument_name
-            self._center_column = arg.center_column
-            self._left_hand = arg.left_hand
-            self._right_hand = arg.right_hand
+        # initialize from WoodwindDiagram with up to three overriding lists
+        elif isinstance(instrument_name, type(self)):
+            self._instrument_name = instrument_name.instrument_name
+            self._center_column = instrument_name.center_column
+            self._left_hand = instrument_name.left_hand
+            self._right_hand = instrument_name.right_hand
             if center_column is not None:
                 self._center_column = tuple(center_column)
             if left_hand is not None:
@@ -256,23 +262,6 @@ class WoodwindFingering(AbjadObject):
         return str(self)
 
     ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(self.instrument_name,),
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(self.instrument_name,),
-            )
 
     @property
     def _valid_instrument_names(self):

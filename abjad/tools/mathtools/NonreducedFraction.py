@@ -100,9 +100,12 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         elif sequencetools.is_integer_pair(args):
             numerator = args[0]
             denominator = args[1]
+        elif len(args) == 0:
+            numerator = 0
+            denominator = 1
         else:
-            message = 'can not initialize NonreducedFraction from {!r}.'
-            message = message.format(args)
+            message = 'can not initialize {}: {!r}.'
+            message = message.format(type(self).__name__, args)
             raise ValueError(message)
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)

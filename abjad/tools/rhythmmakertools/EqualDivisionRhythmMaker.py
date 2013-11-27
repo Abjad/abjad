@@ -36,15 +36,11 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
-    ### CLASS VARIABLES ###
-
-    _default_positional_input_arguments = ()
-
     ### INITIALIZER ###
 
     def __init__(
         self,
-        leaf_count=None,
+        leaf_count=1,
         is_diminution=True,
         beam_each_cell=True,
         beam_cells_together=False,

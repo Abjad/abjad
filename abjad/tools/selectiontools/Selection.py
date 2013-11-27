@@ -13,10 +13,6 @@ class Selection(object):
         '_music',
         )
 
-    _default_positional_input_arguments = (
-        [],
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, music=None):

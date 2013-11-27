@@ -62,13 +62,14 @@ class Lineage(SimultaneousSelection):
 
     ### INITIALIZER ###
 
-    def __init__(self, component):
+    def __init__(self, component=None):
         from abjad.tools import scoretools
-        assert isinstance(component, scoretools.Component)
+        assert isinstance(component, (scoretools.Component, type(None)))
         music = []
-        music.extend(reversed(component._get_parentage(include_self=False)))
-        music.append(component)
-        music.extend(component._get_descendants(include_self=False))
+        if component is not None:
+            music.extend(reversed(component._get_parentage(include_self=False)))
+            music.append(component)
+            music.extend(component._get_descendants(include_self=False))
         SimultaneousSelection.__init__(self, music)
         self._component = component
 

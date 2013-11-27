@@ -23,7 +23,7 @@ class StorageFormatSpecification(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self,
-        instance,
+        instance=None,
         body_text=None,
         is_bracketted=False,
         is_indented=True,
@@ -129,5 +129,6 @@ class StorageFormatSpecification(AbjadObject):
         from abjad.tools import systemtools
         if self._tools_package_name is not None:
             return self._tools_package_name
-        return systemtools.StorageFormatManager.get_tools_package_name(
-            self.instance)
+        if self.instance is not None:
+            return systemtools.StorageFormatManager.get_tools_package_name(
+                self.instance)

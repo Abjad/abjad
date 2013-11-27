@@ -8,7 +8,7 @@ class WellformednessManager(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr, allow_empty_containers=True):
+    def __init__(self, expr=None, allow_empty_containers=True):
         self.expr = expr
         self.allow_empty_containers = allow_empty_containers
 
@@ -19,6 +19,8 @@ class WellformednessManager(AbjadObject):
 
         Returns something.
         '''
+        if self.expr is None:
+            return
         check_names = [x for x in dir(self) if x.startswith('check_')]
         triples = []
         for current_check_name in sorted(check_names):

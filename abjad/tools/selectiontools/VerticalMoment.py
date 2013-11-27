@@ -62,6 +62,8 @@ class VerticalMoment(SimultaneousSelection):
 
     def __init__(self, expr=None, offset=None):
         if expr is None:
+            self._offset = offset
+            self._components = ()
             return
         governors, components = self._from_expr_and_offset(expr, offset)
         offset = durationtools.Offset(offset)
@@ -99,11 +101,19 @@ class VerticalMoment(SimultaneousSelection):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%s, <<%s>>)' % (
+        r'''Interpreter representation of vertical moment.
+
+        Returns string.
+        '''
+        if not self.components:
+            return '{}()'.format(type(self).__name__)
+        result = '{}({}, <<{}>>)'
+        result = result.format(
             type(self).__name__,
-            self.offset,
+            str(self.offset),
             len(self.leaves),
             )
+        return result
 
     ### PRIVATE PROPERTIES ###
 

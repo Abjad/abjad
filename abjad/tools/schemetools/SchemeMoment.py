@@ -32,9 +32,12 @@ class SchemeMoment(Scheme):
         elif len(args) == 2 and \
             isinstance(args[0], int) and isinstance(args[1], int):
             args = durationtools.Duration(args)
+        elif len(args) == 0:
+            args = durationtools.Duration((1, 4))
         else:
-            message = 'can not intialize scheme moment from "{}".'
-            raise TypeError(message.format(args))
+            message = 'can not intialize {}: {!r}.'
+            message = message.format(type(self).__name__, args)
+            raise TypeError(message)
         Scheme.__init__(self, args, **kwargs)
 
     ### SPECIAL METHODS ###
