@@ -33,6 +33,8 @@ class NonreducedRatio(AbjadObject, tuple):
     def __new__(cls, *args):
         if len(args) == 1 and isinstance(args[0], (list, tuple)):
             args = args[0]
+        elif len(args) == 0:
+            args = (1, 1)
         assert args, repr(args)
         assert all(x != 0 for x in args), repr(args)
         self = tuple.__new__(cls, args)

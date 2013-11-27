@@ -50,8 +50,9 @@ class Octave(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr):
+    def __init__(self, octave_number=None):
         from abjad.tools import pitchtools
+        expr = octave_number
         if isinstance(expr, numbers.Number):
             octave_number = int(expr)
         elif isinstance(expr, str):
@@ -70,8 +71,11 @@ class Octave(AbjadObject):
             octave_number = expr.octave_number 
         elif isinstance(expr, type(self)):
             octave_number = expr.octave_number 
+        elif expr is None:
+            octave_number = 4
         else:
-            message = 'can not instantiate octave: {!r}.'.format(expr)
+            message = 'can not instantiate {}: {!r}.'
+            message = message.format(type(self), expr)
             raise Exception(message)
         self._octave_number = octave_number
 
@@ -165,65 +169,11 @@ class Octave(AbjadObject):
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
+            keyword_argument_names=(),
             positional_argument_values=(
                 self.octave_number,
                 )
             )
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_pitch_name(cls, pitch_name):
-        '''Change `pitch_name` to octave.
-
-        ::
-
-            >>> pitchtools.Octave.from_pitch_name('cs')
-            Octave(3)
-
-        Returns integer.
-        '''
-        from abjad.tools import pitchtools
-        if not isinstance(pitch_name, str):
-            message = 'must be string: {!r}.'.format(pitch_name)
-            raise TypeError(message)
-        match = re.match('^([a-z]+)(\,*|\'*)$', pitch_name)
-        if match is None:
-            message = 'incorrect pitch string format.'
-            raise TypeError(message)
-        name, tick_string = match.groups()
-        return cls(tick_string)
-
-    @classmethod
-    def from_pitch_number(cls, pitch_number):
-        r'''Change `pitch_number` to octave.
-
-        ::
-
-            >>> pitchtools.Octave.from_pitch_number(13)
-            Octave(5)
-
-        Returns octave.
-        '''
-        octave_number = int(math.floor(pitch_number / 12)) + 4
-        return cls(octave_number)
-
-    @classmethod
-    def is_octave_tick_string(cls, expr):
-        '''True when `expr` is an octave tick string, otherwise false.
-
-        ::
-
-            >>> pitchtools.Octave.is_octave_tick_string(',,,')
-            True
-
-        The regex ``^,+|'+|$`` underlies this predicate.
-
-        Returns boolean.
-        '''
-        if not isinstance(expr, str):
-            return False
-        return bool(cls._octave_tick_regex.match(expr))
 
     ### PUBLIC PROPERTIES ###
 
@@ -303,3 +253,58 @@ class Octave(AbjadObject):
                 self.octave_number,
                 self.octave_number + 1,
                 ))
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_name(cls, pitch_name):
+        '''Change `pitch_name` to octave.
+
+        ::
+
+            >>> pitchtools.Octave.from_pitch_name('cs')
+            Octave(3)
+
+        Returns integer.
+        '''
+        from abjad.tools import pitchtools
+        if not isinstance(pitch_name, str):
+            message = 'must be string: {!r}.'.format(pitch_name)
+            raise TypeError(message)
+        match = re.match('^([a-z]+)(\,*|\'*)$', pitch_name)
+        if match is None:
+            message = 'incorrect pitch string format.'
+            raise TypeError(message)
+        name, tick_string = match.groups()
+        return cls(tick_string)
+
+    @classmethod
+    def from_pitch_number(cls, pitch_number):
+        r'''Change `pitch_number` to octave.
+
+        ::
+
+            >>> pitchtools.Octave.from_pitch_number(13)
+            Octave(5)
+
+        Returns octave.
+        '''
+        octave_number = int(math.floor(pitch_number / 12)) + 4
+        return cls(octave_number)
+
+    @classmethod
+    def is_octave_tick_string(cls, expr):
+        '''True when `expr` is an octave tick string, otherwise false.
+
+        ::
+
+            >>> pitchtools.Octave.is_octave_tick_string(',,,')
+            True
+
+        The regex ``^,+|'+|$`` underlies this predicate.
+
+        Returns boolean.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(cls._octave_tick_regex.match(expr))

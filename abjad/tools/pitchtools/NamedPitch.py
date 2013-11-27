@@ -33,7 +33,8 @@ class NamedPitch(Pitch):
 
     def __init__(self, *args):
         from abjad.tools import pitchtools
-        if isinstance(args[0], collections.Iterable) and \
+        if args and \
+            isinstance(args[0], collections.Iterable) and \
             not isinstance(args[0], basestring) and \
             len(args) == 1:
             args = args[0]
@@ -71,11 +72,13 @@ class NamedPitch(Pitch):
                 else:
                     raise TypeError
             else:
-                message = 'can not initialize {} from {!r}.'
+                message = 'can not initialize {}: {!r}.'
                 message = message.format(type(self).__name__, args)
                 raise ValueError(message)
+        elif len(args) == 0:
+            self._init_by_pitch_class_name_and_octave_number('c', 4)
         else:
-            message = 'can not initialize {} from {!r}.'
+            message = 'can not initialize {}: {!r}.'
             message = message.format(type(self).__name__, args)
             raise ValueError(message)
 

@@ -1,13 +1,22 @@
 # -*- encoding: utf-8 -*-
 from abjad import *
-import pytest
 
 
 def test_pitchtools_NamedPitch___init___01():
+    r'''Initializes named pitch from empty input.
+    '''
+
+    pitch = NamedPitch()
+
+    assert pitch == NamedPitch('C4')
+
+
+def test_pitchtools_NamedPitch___init___02():
     r'''Initialize by name and octave.
     '''
 
     pitch = NamedPitch('df', 5)
+
     assert format(pitch) == "df''"
     assert pitchtools.NamedPitchClass(pitch) == pitchtools.NamedPitchClass('df')
     assert pitch.octave_number == 5
@@ -15,7 +24,7 @@ def test_pitchtools_NamedPitch___init___01():
         pitchtools.NumberedPitchClass(1)
 
 
-def test_pitchtools_NamedPitch___init___02():
+def test_pitchtools_NamedPitch___init___03():
 
     npc = pitchtools.NamedPitchClass('cs')
     octave_number = 5
@@ -23,11 +32,12 @@ def test_pitchtools_NamedPitch___init___02():
     assert pitch == NamedPitch('cs', 5)
 
 
-def test_pitchtools_NamedPitch___init___03():
+def test_pitchtools_NamedPitch___init___04():
     r'''Initialize by number.
     '''
 
     pitch = NamedPitch(13)
+
     assert format(pitch) == "cs''"
     assert pitchtools.NamedPitchClass(pitch) == pitchtools.NamedPitchClass('cs')
     assert pitch.octave_number == 5
@@ -35,7 +45,7 @@ def test_pitchtools_NamedPitch___init___03():
         pitchtools.NumberedPitchClass(1)
 
 
-def test_pitchtools_NamedPitch___init___04():
+def test_pitchtools_NamedPitch___init___05():
     r'''Initialize by number and diatonic_pitch_class_name.
     '''
 
@@ -49,7 +59,7 @@ def test_pitchtools_NamedPitch___init___04():
         pitchtools.NumberedPitchClass(1)
 
 
-def test_pitchtools_NamedPitch___init___05():
+def test_pitchtools_NamedPitch___init___06():
     r'''Initialize by pair.
     '''
 
@@ -63,7 +73,7 @@ def test_pitchtools_NamedPitch___init___05():
         pitchtools.NumberedPitchClass(1)
 
 
-def test_pitchtools_NamedPitch___init___06():
+def test_pitchtools_NamedPitch___init___07():
 
     assert NamedPitch("cs'''") == NamedPitch('cs', 6)
     assert NamedPitch("cs''") == NamedPitch('cs', 5)
@@ -74,7 +84,7 @@ def test_pitchtools_NamedPitch___init___06():
     assert NamedPitch('cs,,,') == NamedPitch('cs', 0)
 
 
-def test_pitchtools_NamedPitch___init___07():
+def test_pitchtools_NamedPitch___init___08():
     r'''Initialize by reference.
     '''
 
@@ -89,7 +99,7 @@ def test_pitchtools_NamedPitch___init___07():
         pitchtools.NumberedPitchClass(1)
 
 
-def test_pitchtools_NamedPitch___init___08():
+def test_pitchtools_NamedPitch___init___09():
     r'''Initialize by pitch-class / octave number string.
     '''
 
@@ -97,10 +107,3 @@ def test_pitchtools_NamedPitch___init___08():
     assert NamedPitch('C#2') == NamedPitch('cs,')
     assert NamedPitch('D~4') == NamedPitch("dqf'")
     assert NamedPitch('A0') == NamedPitch('a,,,')
-
-
-def test_pitchtools_NamedPitch___init___09():
-    r'''Empty pitches now allowed.
-    '''
-
-    assert pytest.raises(Exception, 'NamedPitch()')
