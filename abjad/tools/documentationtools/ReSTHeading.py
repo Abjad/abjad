@@ -26,7 +26,7 @@ class ReSTHeading(TreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, level=0, name=None, text=''):
+    def __init__(self, level=0, name=None, text='foo'):
         TreeNode.__init__(self, name=name)
         self.level = level
         self.text = text

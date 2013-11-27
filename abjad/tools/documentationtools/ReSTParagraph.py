@@ -28,7 +28,7 @@ class ReSTParagraph(TreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, name=None, text='', wrap=True):
+    def __init__(self, name=None, text='foo', wrap=True):
         TreeNode.__init__(self, name=name)
         self.text = text
         self.wrap = wrap

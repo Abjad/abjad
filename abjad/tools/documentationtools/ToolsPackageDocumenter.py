@@ -10,11 +10,14 @@ class ToolsPackageDocumenter(Documenter):
 
     ### INITIALIZER ###
 
-    def __init__(self,
-        obj,
+    def __init__(
+        self,
+        obj=None,
         ignored_directory_names=(),
         prefix='abjad.tools.',
         ):
+        if obj is None:
+            return
         assert isinstance(obj, types.ModuleType)
         Documenter.__init__(self, obj, prefix=prefix)
         self._ignored_directory_names = ignored_directory_names

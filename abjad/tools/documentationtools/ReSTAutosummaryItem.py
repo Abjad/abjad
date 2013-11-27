@@ -24,7 +24,7 @@ class ReSTAutosummaryItem(TreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, name=None, text=None):
+    def __init__(self, name=None, text='foo'):
         TreeNode.__init__(self, name)
         self.text = text
 

@@ -18,8 +18,9 @@ class ClassCrawler(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        code_root, 
+    def __init__(
+        self, 
+        code_root='.', 
         include_private_objects=False, 
         root_package_name=None,
         ):

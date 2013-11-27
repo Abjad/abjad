@@ -103,9 +103,6 @@ class InheritanceGraph(AbjadObject):
         '_use_groups',
         )
 
-    # TODO: what default should this take?
-    #_default_positional_input_arguments = ()
-
     ### INITIALIZER ###
 
     def __init__(self,

@@ -139,8 +139,11 @@ class ClassDocumenter(Documenter):
 
     ### INITIALIZER ###
 
-    def __init__(self, obj, prefix='abjad.tools.'):
-        assert isinstance(obj, type)
+    def __init__(self, obj=None, prefix='abjad.tools.'):
+        if obj is None:
+            self._object = None
+            return
+        #assert isinstance(obj, type)
         Documenter.__init__(self, obj, prefix)
 
         class_methods = []
@@ -266,6 +269,20 @@ class ClassDocumenter(Documenter):
             'automethod',
             ))
         return document.rest_format
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self._object
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PRIVATE METHODS ###
 
