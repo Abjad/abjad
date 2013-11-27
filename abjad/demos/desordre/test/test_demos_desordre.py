@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
+import os
 from abjad import abjad_configuration
 from abjad.demos import desordre
-import os
 
 
 def test_demos_desordre_01():

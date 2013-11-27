@@ -1,9 +1,13 @@
 # -*- encoding: utf-8 -*-
 import random
-from abjad.demos.mozart.make_mozart_measure_corpus import make_mozart_measure_corpus
+from abjad.demos.mozart.make_mozart_measure_corpus \
+    import make_mozart_measure_corpus
 
 
 def choose_mozart_measures():
+    r'''Chooses Mozart measures.
+    '''
+
     measure_corpus = make_mozart_measure_corpus()
     chosen_measures = []
     for i, choices in enumerate(measure_corpus):

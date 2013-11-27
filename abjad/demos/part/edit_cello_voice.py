@@ -3,6 +3,8 @@ from abjad import *
 
 
 def edit_cello_voice(score, durated_reservoir):
+    r'''Edits cello voice.
+    '''
 
     voice = score['Cello Voice']
     descents = durated_reservoir['Cello']

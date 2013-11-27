@@ -3,6 +3,8 @@ from abjad import *
 
 
 def edit_viola_voice(score, durated_reservoir):
+    r'''Edits viola voice.
+    '''
 
     voice = score['Viola Voice']
     descents = durated_reservoir['Viola']

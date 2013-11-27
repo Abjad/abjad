@@ -4,6 +4,9 @@ from abjad.demos.mozart.make_mozart_score import make_mozart_score
 
 
 def make_mozart_lilypond_file():
+    r'''Makes Mozart LilyPond file.
+    '''
+
     score = make_mozart_score()
     lily = lilypondfiletools.make_basic_lilypond_file(score)
     title = markuptools.Markup(r'\bold \sans "Ein Musikalisches Wuerfelspiel"')

@@ -18,6 +18,8 @@ from abjad.demos.part.edit_bass_voice import edit_bass_voice
 
 
 def add_string_music_to_score(score):
+    r'''Adds string music to score.
+    '''
 
     # generate some pitch and rhythm information
     pitch_contour_reservoir = create_pitch_contour_reservoir()

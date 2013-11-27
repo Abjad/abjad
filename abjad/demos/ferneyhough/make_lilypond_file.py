@@ -6,6 +6,9 @@ from abjad.demos.ferneyhough.make_score import make_score
 
 
 def make_lilypond_file(tuplet_duration, row_count, column_count):
+    r'''Makes LilyPond file.
+    '''
+
     score = make_score(tuplet_duration, row_count, column_count)
     configure_score(score)
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)

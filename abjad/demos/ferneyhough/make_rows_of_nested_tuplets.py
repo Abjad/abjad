@@ -1,8 +1,12 @@
 # -*- encoding: utf-8 -*-
-from abjad.demos.ferneyhough.make_row_of_nested_tuplets import make_row_of_nested_tuplets
+from abjad.demos.ferneyhough.make_row_of_nested_tuplets \
+    import make_row_of_nested_tuplets
 
 
 def make_rows_of_nested_tuplets(tuplet_duration, row_count, column_count):
+    r'''Makes rows of nested tuplets.
+    '''
+
     assert 0 < row_count
     rows_of_nested_tuplets = []
     for n in range(row_count):

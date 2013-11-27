@@ -4,7 +4,7 @@ from abjad.demos.desordre.make_desordre_cell import make_desordre_cell
 
 
 def make_desordre_measure(pitches):
-    '''Constructs a measure composed of *Désordre cells*.
+    '''Makes a measure composed of *Désordre cells*.
 
     `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
 

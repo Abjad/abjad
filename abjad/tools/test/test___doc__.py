@@ -5,11 +5,10 @@ from abjad.tools import documentationtools
 
 
 ignored_names = (
+    '__dict__',
     '__init__',
     '__weakref__',
     )
-
-pytest.skip()
 
 
 classes = documentationtools.list_all_abjad_classes()
@@ -17,6 +16,7 @@ classes = documentationtools.list_all_abjad_classes()
 def test___doc___01(obj):
     r'''All classes have a docstring. All class methods have a docstring.
     '''
+    pytest.skip()
 
     assert obj.__doc__ is not None
     for attr in inspect.classify_class_attrs(obj):
@@ -25,7 +25,7 @@ def test___doc___01(obj):
         elif attr.defining_class is not obj:
             continue
         if attr.name[0].isalpha() or attr.name.startswith('__'):
-            assert getattr(obj, attr.name).__doc__ is not None
+            assert getattr(obj, attr.name).__doc__ is not None, repr(attr.name)
 
 
 functions = documentationtools.list_all_abjad_functions()

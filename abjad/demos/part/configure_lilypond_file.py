@@ -3,6 +3,8 @@ from abjad import *
 
 
 def configure_lilypond_file(lilypond_file):
+    r'''Configures LilyPond file.
+    '''
 
     lilypond_file.global_staff_size = 8
 

@@ -3,6 +3,8 @@ from abjad import *
 
 
 def apply_page_breaks(score):
+    r'''Applies page breaks to score.
+    '''
 
     bell_voice = score['Bell Voice']
 

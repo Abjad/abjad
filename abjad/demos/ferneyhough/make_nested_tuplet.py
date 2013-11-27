@@ -7,6 +7,9 @@ def make_nested_tuplet(
     outer_tuplet_proportions,
     inner_tuplet_subdivision_count,
     ):
+    r'''Makes nested tuplet.
+    '''
+
     outer_tuplet = Tuplet.from_duration_and_ratio(
         tuplet_duration, outer_tuplet_proportions)
     inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]

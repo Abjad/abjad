@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import pitchtools
-from abjad.tools import tonalanalysistools
+from abjad import *
 
 
 def create_pitch_contour_reservoir():
+    r'''Creates pitch contour reservoir.
+    '''
 
     scale = tonalanalysistools.Scale('a', 'minor')
     pitch_ranges = {

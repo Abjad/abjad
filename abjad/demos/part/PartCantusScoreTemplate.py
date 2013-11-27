@@ -3,10 +3,16 @@ from abjad import *
 
 
 class PartCantusScoreTemplate(abctools.AbjadObject):
+    r'''Pärt Cantus score template.
+    '''
 
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        '''Calls score template.
+
+        Returns LilyPond file.
+        '''
 
         # make bell voice and staff
         bell_voice = scoretools.Voice(name='Bell Voice')

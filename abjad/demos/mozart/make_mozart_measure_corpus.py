@@ -1,5 +1,10 @@
 # -*- encoding: utf-8 -*-
+
+
 def make_mozart_measure_corpus():
+    r'''Makes Mozart measure corpus.
+    '''
+
     return [
         [
             {'b': 'c4 r8', 't': "e''8 c''8 g'8"},

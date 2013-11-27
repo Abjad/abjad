@@ -5,6 +5,8 @@ from abjad.tools import scoretools
 
 
 def add_bell_music_to_score(score):
+    r'''Adds bell music to score.
+    '''
 
     bell_voice = score['Bell Voice']
 

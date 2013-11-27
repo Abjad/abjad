@@ -3,6 +3,8 @@ from abjad import *
 
 
 def apply_dynamics(score):
+    r'''Applies dynamics to score.
+    '''
 
     voice = score['Bell Voice']
     dynamic = indicatortools.Dynamic('ppp')

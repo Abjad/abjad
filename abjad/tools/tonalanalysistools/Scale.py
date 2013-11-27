@@ -62,6 +62,10 @@ class Scale(PitchClassSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        r'''Interpreter representation of scale.
+
+        Returns string.
+        '''
         return '{}({})'.format(self._capital_name, self._format_string)
 
     ### PRIVATE PROPERTIES ###
@@ -74,7 +78,8 @@ class Scale(PitchClassSegment):
 
     ### PRIVATE METHODS ###
 
-    def _set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(self, expr):
+    def _set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
+        self, expr):
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import tonalanalysistools
@@ -99,22 +104,42 @@ class Scale(PitchClassSegment):
 
     @property
     def dominant(self):
+        r'''Dominant of scale.
+
+        Return pitch-class.
+        '''
         return self[4]
 
     @property
     def key_signature(self):
+        r'''Key signature of scale.
+
+        Returns key signature.
+        '''
         return self._key_signature
 
     @property
     def leading_tone(self):
+        r'''Leading tone of scale.
+
+        Returns pitch-class.
+        '''
         return self[-1]
 
     @property
     def mediant(self):
+        r'''Mediant of scale.
+
+        Returns pitch-class.
+        '''
         return self[2]
 
     @property
     def named_interval_class_segment(self):
+        r'''Named interval class segment of scale.
+
+        Returns interval-class segment.
+        '''
         dics = []
         for left, right in \
             sequencetools.iterate_sequence_pairwise_wrapped(self):
@@ -128,23 +153,43 @@ class Scale(PitchClassSegment):
 
     @property
     def subdominant(self):
+        r'''Subdominant of scale.
+
+        Returns pitch-class.
+        '''
         return self[3]
 
     @property
     def submediant(self):
+        r'''Submediate of scale.
+
+        Returns pitch-class.
+        '''
         return self[5]
 
     @property
     def superdominant(self):
+        r'''Superdominant of scale.
+
+        Returns pitch-class.
+        '''
         return self[1]
 
     @property
     def tonic(self):
+        r'''Tonic of scale.
+
+        Returns pitch-class.
+        '''
         return self[0]
 
     ### PUBLIC METHODS ###
 
     def create_named_pitch_set_in_pitch_range(self, pitch_range):
+        r'''Creates named pitch-set in `pitch_range`.
+
+        Returns pitch-set.
+        '''
         if not isinstance(pitch_range, pitchtools.PitchRange):
             pitch_range = pitchtools.PitchRange(
                 float(pitchtools.NamedPitch(pitch_range[0])),
@@ -167,10 +212,14 @@ class Scale(PitchClassSegment):
 
     @classmethod
     def from_selection(cls, selection, item_class=None, name=None):
+        r'''Make scale from `selection`.
+
+        Returns new scale.
+        '''
         raise NotImplementedError
 
     def make_notes(self, n, written_duration=None):
-        r'''Make first `n` notes in ascending diatonic scale.
+        r'''Makes first `n` notes in ascending diatonic scale
         according to `key_signature`.
 
         Set `written_duration` equal to `written_duration` or ``1/8``:
@@ -290,6 +339,10 @@ class Scale(PitchClassSegment):
         return score
 
     def named_pitch_class_to_scale_degree(self, *args):
+        r'''Changes named pitch-class to scale degree.
+
+        Returns scale degree.
+        '''
         from abjad.tools import tonalanalysistools
         foreign_pitch_class = pitchtools.NamedPitchClass(*args)
         letter = foreign_pitch_class.diatonic_pitch_class_name
@@ -305,6 +358,10 @@ class Scale(PitchClassSegment):
         return tonalanalysistools.ScaleDegree(accidental, scale_degree_number)
 
     def scale_degree_to_named_pitch_class(self, *args):
+        r'''Changes scale degree to named pitch-class.
+
+        Returns named pitch-class.
+        '''
         from abjad.tools import tonalanalysistools
         scale_degree = tonalanalysistools.ScaleDegree(*args)
         scale_index = scale_degree.number - 1

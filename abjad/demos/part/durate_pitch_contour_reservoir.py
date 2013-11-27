@@ -1,12 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad import Duration
-from abjad import Multiplier
-from abjad.tools import durationtools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
+from abjad import *
 
 
 def durate_pitch_contour_reservoir(pitch_contour_reservoir):
+    r'''Durates pitch contour reservoir.
+    '''
 
     instrument_names = [
         'First Violin',

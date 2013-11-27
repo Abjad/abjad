@@ -14,6 +14,8 @@ from abjad.demos.part.configure_score import configure_score
 
 
 def make_part_lilypond_file():
+    r'''Makes Pärt LilyPond file.
+    '''
 
     score_template = PartCantusScoreTemplate()
     score = score_template()

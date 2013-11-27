@@ -3,6 +3,8 @@ from abjad import *
 
 
 def apply_rehearsal_marks(score):
+    r'''Applies rehearsal marks to score.
+    '''
 
     bell_voice = score['Bell Voice']
 

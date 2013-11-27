@@ -5,6 +5,8 @@ from abjad.demos.mozart.make_mozart_measure import make_mozart_measure
 
 
 def make_mozart_score():
+    r'''Makes Mozart score.
+    '''
 
     score_template = templatetools.TwoStaffPianoScoreTemplate()
     score = score_template()

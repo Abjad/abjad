@@ -3,6 +3,8 @@ from abjad import *
 
 
 def apply_expressive_marks(score):
+    r'''Applies expressive marks to score.
+    '''
 
     voice = score['First Violin Voice']
     markup = markuptools.Markup(
