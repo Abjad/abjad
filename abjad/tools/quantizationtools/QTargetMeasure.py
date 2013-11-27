@@ -92,7 +92,8 @@ class QTargetMeasure(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
+    def __init__(
+        self, 
         offset_in_ms=None, 
         search_tree=None, 
         time_signature=None,
@@ -102,13 +103,16 @@ class QTargetMeasure(AbjadObject):
 
         from abjad.tools import quantizationtools
 
+        offset_in_ms = offset_in_ms or 0
         offset_in_ms = durationtools.Offset(offset_in_ms)
 
         if search_tree is None:
             search_tree = quantizationtools.UnweightedSearchTree()
         assert isinstance(search_tree, quantizationtools.SearchTree)
+        tempo = tempo or indicatortools.Tempo((1, 4), 60)
         tempo = indicatortools.Tempo(tempo)
         assert not tempo.is_imprecise
+        time_signature = time_signature or (4, 4)
         time_signature = indicatortools.TimeSignature(time_signature)
         use_full_measure = bool(use_full_measure)
 

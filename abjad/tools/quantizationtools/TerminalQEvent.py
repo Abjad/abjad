@@ -8,7 +8,7 @@ class TerminalQEvent(QEvent):
         >>> q_event = quantizationtools.TerminalQEvent(1000)
         >>> print format(q_event)
         quantizationtools.TerminalQEvent(
-            durationtools.Offset(1000, 1)
+            offset=durationtools.Offset(1000, 1),
             )
 
     Carries no significance outside the context of a ``QEventSequence``.
@@ -24,8 +24,8 @@ class TerminalQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset):
-        QEvent.__init__(self, offset)
+    def __init__(self, offset=0):
+        QEvent.__init__(self, offset=offset)
 
     ### SPECIAL METHODS ###
 

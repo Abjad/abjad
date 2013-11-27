@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadObject
 
 class QEventProxy(AbjadObject):
     r'''Proxies a `QEvent`, mapping that QEvent's offset with the range of 
-    its beatspan to the range 0-1:
+    its beatspan to the range 0-1.
 
     ::
 
@@ -14,22 +14,20 @@ class QEventProxy(AbjadObject):
         >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
         >>> print format(proxy, 'storage')
         quantizationtools.QEventProxy(
-            quantizationtools.PitchedQEvent(
-                durationtools.Offset(130, 1),
-                (
+            q_event=quantizationtools.PitchedQEvent(
+                offset=durationtools.Offset(130, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
                     pitchtools.NamedPitch("cs'"),
                     pitchtools.NamedPitch("e'"),
-                    )
+                    ),
                 ),
-            durationtools.Offset(1, 2)
+            offset=durationtools.Offset(1, 2),
             )
 
     Not composer-safe.
 
     Used internally by ``Quantizer``.
-
-    Returns `QEventProxy` instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -54,8 +52,13 @@ class QEventProxy(AbjadObject):
             assert isinstance(q_event, quantizationtools.QEvent)
             assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
+        elif len(args) == 0:
+            q_event = None
+            offset = durationtools.Offset(0)
         else:
-            raise ValueError
+            message = 'can not initialize {}: {!r}.'
+            message = message.format(type(self).__name__, args)
+            raise ValueError(message)
         self._q_event = q_event
         self._offset = offset
 
@@ -102,12 +105,13 @@ class QEventProxy(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        keyword_argument_names = (
+            'q_event',
+            'offset',
+            )
         return systemtools.StorageFormatSpecification(
             self,
-            positional_argument_values=(
-                self.q_event,
-                self.offset,
-                )
+            keyword_argument_names=keyword_argument_names,
             )
 
     ### PUBLIC PROPERTIES ###

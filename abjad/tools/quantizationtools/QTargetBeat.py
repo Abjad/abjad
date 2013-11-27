@@ -70,12 +70,15 @@ class QTargetBeat(AbjadObject):
         ):
         from abjad.tools import quantizationtools
 
+        beatspan = beatspan or durationtools.Duration(0)
         beatspan = durationtools.Duration(beatspan)
+        offset_in_ms = offset_in_ms or durationtools.Duration(0)
         offset_in_ms = durationtools.Offset(offset_in_ms)
 
         if search_tree is None:
             search_tree = quantizationtools.UnweightedSearchTree()
         assert isinstance(search_tree, quantizationtools.SearchTree)
+        tempo = tempo or indicatortools.Tempo(durationtools.Duration(1, 4), 60)
         tempo = indicatortools.Tempo(tempo)
         assert not tempo.is_imprecise
 

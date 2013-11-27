@@ -26,7 +26,7 @@ class QEvent(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, offset, index=None):
+    def __init__(self, offset=0, index=None):
         offset = durationtools.Offset(offset)
         self._offset = offset
         self._index = index

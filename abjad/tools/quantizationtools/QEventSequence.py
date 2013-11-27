@@ -40,34 +40,33 @@ class QEventSequence(AbjadObject):
         ...     print format(q_event, 'storage')
         ...
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(0, 1),
-            (
+            offset=durationtools.Offset(0, 1),
+            pitches=(
                 pitchtools.NamedPitch("c'"),
-                )
+                ),
             )
         quantizationtools.SilentQEvent(
-            durationtools.Offset(1000, 1)
+            offset=durationtools.Offset(1000, 1),
             )
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(1500, 1),
-            (
+            offset=durationtools.Offset(1500, 1),
+            pitches=(
                 pitchtools.NamedPitch("c'"),
-                )
+                ),
             )
         quantizationtools.SilentQEvent(
-            durationtools.Offset(2750, 1)
+            offset=durationtools.Offset(2750, 1),
             )
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(3250, 1),
-            (
+            offset=durationtools.Offset(3250, 1),
+            pitches=(
                 pitchtools.NamedPitch("c'"),
-                )
+                ),
             )
         quantizationtools.TerminalQEvent(
-            durationtools.Offset(4000, 1)
+            offset=durationtools.Offset(4000, 1),
             )
 
-    Returns q-event sequence.
     '''
 
     ### CLASS VARIABLES ###
@@ -78,20 +77,25 @@ class QEventSequence(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, sequence):
+    def __init__(self, sequence=None):
         from abjad.tools import quantizationtools
         q_event_classes = (
             quantizationtools.PitchedQEvent,
             quantizationtools.SilentQEvent,
             )
-        assert 1 < len(sequence)
-        assert all(isinstance(q_event, q_event_classes)
-            for q_event in sequence[:-1])
-        assert isinstance(sequence[-1], quantizationtools.TerminalQEvent)
-        assert sequencetools.is_monotonically_increasing_sequence(
-            x.offset for x in sequence)
-        assert 0 <= sequence[0].offset
-        self._sequence = tuple(sequence)
+        #sequence = sequence or []
+        if sequence is None:
+            self._sequence = ()
+            return
+        else:
+            assert 1 < len(sequence)
+            assert all(isinstance(q_event, q_event_classes)
+                for q_event in sequence[:-1])
+            assert isinstance(sequence[-1], quantizationtools.TerminalQEvent)
+            assert sequencetools.is_monotonically_increasing_sequence(
+                x.offset for x in sequence)
+            assert 0 <= sequence[0].offset
+            self._sequence = tuple(sequence)
 
     ### SPECIAL METHODS ###
 
@@ -114,31 +118,31 @@ class QEventSequence(AbjadObject):
             quantizationtools.QEventSequence(
                 (
                     quantizationtools.PitchedQEvent(
-                        durationtools.Offset(0, 1),
-                        (
+                        offset=durationtools.Offset(0, 1),
+                        pitches=(
                             pitchtools.NamedPitch("c'"),
-                            )
+                            ),
                         ),
                     quantizationtools.SilentQEvent(
-                        durationtools.Offset(1000, 1)
+                        offset=durationtools.Offset(1000, 1),
                         ),
                     quantizationtools.PitchedQEvent(
-                        durationtools.Offset(1500, 1),
-                        (
+                        offset=durationtools.Offset(1500, 1),
+                        pitches=(
                             pitchtools.NamedPitch("c'"),
-                            )
+                            ),
                         ),
                     quantizationtools.SilentQEvent(
-                        durationtools.Offset(2750, 1)
+                        offset=durationtools.Offset(2750, 1),
                         ),
                     quantizationtools.PitchedQEvent(
-                        durationtools.Offset(3250, 1),
-                        (
+                        offset=durationtools.Offset(3250, 1),
+                        pitches=(
                             pitchtools.NamedPitch("c'"),
-                            )
+                            ),
                         ),
                     quantizationtools.TerminalQEvent(
-                        durationtools.Offset(4000, 1)
+                        offset=durationtools.Offset(4000, 1),
                         ),
                     )
                 )
@@ -159,6 +163,20 @@ class QEventSequence(AbjadObject):
 
     def __len__(self):
         return len(self._sequence)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        positional_argument_values = (
+            self.sequence,
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -185,31 +203,31 @@ class QEventSequence(AbjadObject):
             ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(0, 1),
-                (
+                offset=durationtools.Offset(0, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(1000, 1)
+                offset=durationtools.Offset(1000, 1),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(1500, 1),
-                (
+                offset=durationtools.Offset(1500, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(2750, 1)
+                offset=durationtools.Offset(2750, 1),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(3250, 1),
-                (
+                offset=durationtools.Offset(3250, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.TerminalQEvent(
-                durationtools.Offset(4000, 1)
+                offset=durationtools.Offset(4000, 1),
                 )
 
         Returns tuple.
@@ -239,31 +257,31 @@ class QEventSequence(AbjadObject):
             ...     print format(q_event, 'storage')
             ...
             quantizationtools.SilentQEvent(
-                durationtools.Offset(0, 1)
+                offset=durationtools.Offset(0, 1),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(250, 1),
-                (
+                offset=durationtools.Offset(250, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(750, 1)
+                offset=durationtools.Offset(750, 1),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(1750, 1),
-                (
+                offset=durationtools.Offset(1750, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(3000, 1)
+                offset=durationtools.Offset(3000, 1),
                 )
             quantizationtools.TerminalQEvent(
-                durationtools.Offset(4000, 1)
+                offset=durationtools.Offset(4000, 1),
                 )
 
-        Return ``QEventSequence`` instance.
+        Returns ``QEventSequence`` instance.
         '''
         from abjad.tools import quantizationtools
         if fuse_silences:
@@ -306,40 +324,40 @@ class QEventSequence(AbjadObject):
             ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(0, 1),
-                (
+                offset=durationtools.Offset(0, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(250, 1),
-                (
+                offset=durationtools.Offset(250, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(750, 1),
-                (
+                offset=durationtools.Offset(750, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(1750, 1),
-                (
+                offset=durationtools.Offset(1750, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(3000, 1),
-                (
+                offset=durationtools.Offset(3000, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.TerminalQEvent(
-                durationtools.Offset(4000, 1)
+                offset=durationtools.Offset(4000, 1),
                 )
 
-        Return ``QEventSequence`` instance.
+        Returns ``QEventSequence`` instance.
         '''
         from abjad.tools import quantizationtools
         q_events = [quantizationtools.PitchedQEvent(x, [0])
@@ -370,35 +388,35 @@ class QEventSequence(AbjadObject):
             ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(0, 1),
-                (
+                offset=durationtools.Offset(0, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(250, 1)
+                offset=durationtools.Offset(250, 1),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(750, 1),
-                (
+                offset=durationtools.Offset(750, 1),
+                pitches=(
                     pitchtools.NamedPitch("d'"),
                     pitchtools.NamedPitch("ef'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(1750, 1)
+                offset=durationtools.Offset(1750, 1),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(3000, 1),
-                (
+                offset=durationtools.Offset(3000, 1),
+                pitches=(
                     pitchtools.NamedPitch("cs'"),
-                    )
+                    ),
                 )
             quantizationtools.TerminalQEvent(
-                durationtools.Offset(4000, 1)
+                offset=durationtools.Offset(4000, 1),
                 )
 
-        Return ``QEventSequence`` instance.
+        Returns ``QEventSequence`` instance.
         '''
         from abjad.tools import quantizationtools
         assert isinstance(pairs, collections.Iterable)
@@ -460,28 +478,28 @@ class QEventSequence(AbjadObject):
             ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(0, 1),
-                (
+                offset=durationtools.Offset(0, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(10000, 29)
+                offset=durationtools.Offset(10000, 29),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(17500, 29),
-                (
+                offset=durationtools.Offset(17500, 29),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(20000, 29)
+                offset=durationtools.Offset(20000, 29),
                 )
             quantizationtools.TerminalQEvent(
-                durationtools.Offset(40000, 29)
+                offset=durationtools.Offset(40000, 29),
                 )
 
-        Return ``QEventSequence`` instance.
+        Returns ``QEventSequence`` instance.
         '''
         from abjad.tools import quantizationtools
         durations = [durationtools.Duration(x) for x in durations]
@@ -528,29 +546,29 @@ class QEventSequence(AbjadObject):
             ...     print format(q_event, 'storage')
             ...
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(0, 1),
-                (
+                offset=durationtools.Offset(0, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(2500, 3),
-                (
+                offset=durationtools.Offset(2500, 3),
+                pitches=(
                     pitchtools.NamedPitch("d'"),
                     pitchtools.NamedPitch("fs'"),
-                    )
+                    ),
                 )
             quantizationtools.SilentQEvent(
-                durationtools.Offset(4375, 3)
+                offset=durationtools.Offset(4375, 3),
                 )
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(5000, 3),
-                (
+                offset=durationtools.Offset(5000, 3),
+                pitches=(
                     pitchtools.NamedPitch("gqs'"),
-                    )
+                    ),
                 )
             quantizationtools.TerminalQEvent(
-                durationtools.Offset(10000, 3)
+                offset=durationtools.Offset(10000, 3),
                 )
 
         If ``tempo`` is ``None``, all leaves in ``leaves`` must

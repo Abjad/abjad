@@ -59,19 +59,35 @@ class QuantizationJob(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, job_id, search_tree, q_event_proxies, q_grids=None):
+    def __init__(
+        self, 
+        job_id=1, 
+        search_tree=None, 
+        q_event_proxies=None, 
+        q_grids=None,
+        ):
         from abjad.tools import quantizationtools
 
+        search_tree = search_tree or \
+            quantizationtools.UnweightedSearchTree()
+
+        q_event_proxies = q_event_proxies or []
+
         assert isinstance(search_tree, quantizationtools.SearchTree)
-        assert all(isinstance(x, quantizationtools.QEventProxy) 
-            for x in q_event_proxies)
+        assert all(
+            isinstance(x, quantizationtools.QEventProxy) 
+            for x in q_event_proxies
+            )
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)
         if q_grids is None:
             self._q_grids = ()
         else:
-            assert all(isinstance(x, quantizationtools.QGrid) for x in q_grids)
+            assert all(
+                isinstance(x, quantizationtools.QGrid) 
+                for x in q_grids
+                )
             self._q_grids = tuple(q_grids)
 
     ### SPECIAL METHODS ###
@@ -142,30 +158,30 @@ class QuantizationJob(AbjadObject):
             ...     print format(q_event_proxy, 'storage')
             ...
             quantizationtools.QEventProxy(
-                quantizationtools.PitchedQEvent(
-                    durationtools.Offset(250, 1),
-                    (
+                q_event=quantizationtools.PitchedQEvent(
+                    offset=durationtools.Offset(250, 1),
+                    pitches=(
                         pitchtools.NamedPitch("c'"),
                         pitchtools.NamedPitch("cs'"),
-                        )
+                        ),
                     ),
-                durationtools.Offset(1, 4)
+                offset=durationtools.Offset(1, 4),
                 )
             quantizationtools.QEventProxy(
-                quantizationtools.SilentQEvent(
-                    durationtools.Offset(500, 1)
+                q_event=quantizationtools.SilentQEvent(
+                    offset=durationtools.Offset(500, 1),
                     ),
-                durationtools.Offset(1, 2)
+                offset=durationtools.Offset(1, 2),
                 )
             quantizationtools.QEventProxy(
-                quantizationtools.PitchedQEvent(
-                    durationtools.Offset(750, 1),
-                    (
+                q_event=quantizationtools.PitchedQEvent(
+                    offset=durationtools.Offset(750, 1),
+                    pitches=(
                         pitchtools.NamedPitch("ef'"),
                         pitchtools.NamedPitch("g'"),
-                        )
+                        ),
                     ),
-                durationtools.Offset(3, 4)
+                offset=durationtools.Offset(3, 4),
                 )
 
         Returns tuple.

@@ -56,13 +56,13 @@ class QGrid(AbjadObject):
         ...     print format(q_event_proxy, 'storage')
         ...
         quantizationtools.QEventProxy(
-            quantizationtools.PitchedQEvent(
-                durationtools.Offset(250, 1),
-                (
+            q_event=quantizationtools.PitchedQEvent(
+                offset=durationtools.Offset(250, 1),
+                pitches=(
                     pitchtools.NamedPitch("c'"),
-                    )
+                    ),
                 ),
-            durationtools.Offset(1, 4)
+            offset=durationtools.Offset(1, 4),
             )
 
     ::
@@ -71,23 +71,24 @@ class QGrid(AbjadObject):
         ...     print format(q_event_proxy, 'storage')
         ...
         quantizationtools.QEventProxy(
-            quantizationtools.PitchedQEvent(
-                durationtools.Offset(750, 1),
-                (
+            q_event=quantizationtools.PitchedQEvent(
+                offset=durationtools.Offset(750, 1),
+                pitches=(
                     pitchtools.NamedPitch("cs'"),
-                    )
+                    ),
                 ),
-            durationtools.Offset(3, 4)
+            offset=durationtools.Offset(3, 4),
             )
 
     Used internally by the ``Quantizer``.
-
-    Return ``QGrid`` instance.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_next_downbeat', '_root_node')
+    __slots__ = (
+        '_next_downbeat', 
+        '_root_node',
+        )
 
     ### INITIALIZATION ###
 

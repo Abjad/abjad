@@ -13,12 +13,12 @@ class PitchedQEvent(QEvent):
         >>> q_event = quantizationtools.PitchedQEvent(1000, pitches)
         >>> print format(q_event, 'storage')
         quantizationtools.PitchedQEvent(
-            durationtools.Offset(1000, 1),
-            (
+            offset=durationtools.Offset(1000, 1),
+            pitches=(
                 pitchtools.NamedPitch("c'"),
                 pitchtools.NamedPitch("cs'"),
                 pitchtools.NamedPitch("e'"),
-                )
+                ),
             )
 
     '''
@@ -34,8 +34,9 @@ class PitchedQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset, pitches, attachments=None, index=None):
-        QEvent.__init__(self, offset, index=index)
+    def __init__(self, offset=0, pitches=None, attachments=None, index=None):
+        QEvent.__init__(self, offset=offset, index=index)
+        pitches = pitches or []
         pitches = tuple([pitchtools.NamedPitch(x) for x in pitches])
         if attachments is None:
             attachments = ()

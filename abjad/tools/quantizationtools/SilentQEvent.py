@@ -4,13 +4,12 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 
 class SilentQEvent(QEvent):
     r'''A ``QEvent`` which indicates the onset of a period of silence
-    in a ``QEventSequence``:
+    in a ``QEventSequence``.
 
         >>> q_event = quantizationtools.SilentQEvent(1000)
         >>> q_event
-        SilentQEvent(Offset(1000, 1))
+        SilentQEvent(offset=Offset(1000, 1))
 
-    Return ``SilentQEvent`` instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -21,8 +20,8 @@ class SilentQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset, attachments=None, index=None):
-        QEvent.__init__(self, offset, index=index)
+    def __init__(self, offset=0, attachments=None, index=None):
+        QEvent.__init__(self, offset=offset, index=index)
         if attachments is None:
             attachments = ()
         else:

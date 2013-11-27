@@ -10,14 +10,14 @@ class ParallelJobHandlerWorker(multiprocessing.Process, AbjadObject):
     Not composer-safe.
 
     Used internally by ``ParallelJobHandler``.
-
-    Return ``ParallelJobHandlerWorker`` instance.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, job_queue, result_queue):
+    def __init__(self, job_queue=None, result_queue=None):
         multiprocessing.Process.__init__(self)
+        job_queue = job_queue or ()
+        result_queue = result_queue or ()
         self.job_queue = job_queue
         self.result_queue = result_queue
 
