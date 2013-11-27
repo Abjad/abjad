@@ -8,7 +8,7 @@ def test_SegmentSpecification__select_beats_01():
     Set blue segment divisions to blue segment beats.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_rhythm(library.sixteenths)
     red_segment = score_specification.append_segment(name='red')
@@ -30,7 +30,7 @@ def test_SegmentSpecification__select_beats_02():
     r'''Set both segments' divisions to red segment beats.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_rhythm(library.sixteenths)
     red_segment = score_specification.append_segment(name='red')
@@ -51,7 +51,7 @@ def test_SegmentSpecification__select_beats_03():
     r'''Set both segments' divisions to blue segment beats.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
@@ -72,7 +72,7 @@ def test_SegmentSpecification__select_beats_04():
     r'''Single-integer positive beat getitem index.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_rhythm(library.sixteenths)
     red_segment = score_specification.append_segment(name='red')
@@ -96,7 +96,7 @@ def test_SegmentSpecification__select_beats_05():
     r'''Single-integer negative beat getitem index.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_rhythm(library.sixteenths)
     red_segment = score_specification.append_segment(name='red')
@@ -120,7 +120,7 @@ def test_SegmentSpecification__select_beats_06():
     r'''Select beats that start during explicit timespan.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     rhythm = new(
         library.sixteenths,
@@ -147,7 +147,7 @@ def test_SegmentSpecification__select_beats_07():
     r'''Select beats that stop during explicit timespan.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     rhythm = new(
         library.sixteenths,

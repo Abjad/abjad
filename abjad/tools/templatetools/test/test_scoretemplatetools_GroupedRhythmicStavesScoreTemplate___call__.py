@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_scoretemplatetools_GroupedRhythmicStavesScoreTemplate___call___01():
+def test_templatetools_GroupedRhythmicStavesScoreTemplate___call___01():
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score = template()
 
     assert systemtools.TestManager.compare(
@@ -34,9 +34,9 @@ def test_scoretemplatetools_GroupedRhythmicStavesScoreTemplate___call___01():
         )
 
 
-def test_scoretemplatetools_GroupedRhythmicStavesScoreTemplate___call___02():
+def test_templatetools_GroupedRhythmicStavesScoreTemplate___call___02():
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
     score = template()
 
     assert systemtools.TestManager.compare(

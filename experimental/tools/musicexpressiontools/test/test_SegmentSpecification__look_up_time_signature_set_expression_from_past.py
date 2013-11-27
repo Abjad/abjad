@@ -6,7 +6,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
     r'''From-past time signature set expression lookup expression.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
@@ -25,7 +25,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
     r'''From-past time signature set expression lookup expression with reverse callback.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
@@ -45,7 +45,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
     r'''From-past time signature set expression lookup expression with reverse callback.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
@@ -65,7 +65,7 @@ def test_SegmentSpecification__look_up_time_signature_set_expression_from_past_0
     r'''From-past time signature set expression lookup expression with reverse callbacks.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])

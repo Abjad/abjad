@@ -6,7 +6,7 @@ def test_ScoreSpecification__set_articulation_01():
     r'''Set articulations from list of strings.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -27,7 +27,7 @@ def test_ScoreSpecification__set_articulation_02():
     r'''Set from articulation abbreviation.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -48,7 +48,7 @@ def test_ScoreSpecification__set_articulation_03():
     r'''Set from articulation name.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -69,7 +69,7 @@ def test_ScoreSpecification__set_articulation_04():
     r'''Set from articulation.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])

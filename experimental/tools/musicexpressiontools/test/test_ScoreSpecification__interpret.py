@@ -7,7 +7,7 @@ def test_ScoreSpecification__interpret_01():
     r'''Empty score specification interprets.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     score = score_specification.interpret()
@@ -32,7 +32,7 @@ def test_ScoreSpecification__interpret_02():
     r'''Empty score specification with empty segment specification interprets.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification_1 = musicexpressiontools.ScoreSpecification(score_template)
 
     score_1 = score_specification_1.interpret()
@@ -48,7 +48,7 @@ def test_ScoreSpecification__interpret_03():
     r'''Time signatures only.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')

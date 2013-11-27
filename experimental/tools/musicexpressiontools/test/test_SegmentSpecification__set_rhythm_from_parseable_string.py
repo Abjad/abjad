@@ -5,7 +5,7 @@ import pytest
 
 def test_SegmentSpecification__set_rhythm_from_parseable_string_01():
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 8), (3, 8)])
@@ -21,7 +21,7 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_02():
     r'''Reflect material.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')

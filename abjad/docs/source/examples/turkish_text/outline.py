@@ -135,7 +135,7 @@ def make_lilypond_file(input_text, base_duration=Duration(1, 16)):
     first_phrase = find_first_phrase(input_text)
     word_analyses = analyze_phrase(first_phrase)
     upper_music, lower_music = make_music_for_word_analyses(word_analyses, base_duration)
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=2)
     score = score_template()
     staff_1 = scoretools.get_first_component_in_expr_with_name(score, 'Staff 1')
     staff_2 = scoretools.get_first_component_in_expr_with_name(score, 'Staff 2')

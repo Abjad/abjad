@@ -6,7 +6,7 @@ def test_CounttimeComponentSelectExpression__time_relation_01():
     r'''Red starts during blue.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -34,7 +34,7 @@ def test_CounttimeComponentSelectExpression__time_relation_02():
     r'''Red stops during blue.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -62,7 +62,7 @@ def test_CounttimeComponentSelectExpression__time_relation_03():
     r'''Red intersects blue.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -90,7 +90,7 @@ def test_CounttimeComponentSelectExpression__time_relation_04():
     r'''Red overlaps start of blue.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -118,7 +118,7 @@ def test_CounttimeComponentSelectExpression__time_relation_05():
     r'''Red overlaps stop of blue.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -146,7 +146,7 @@ def test_CounttimeComponentSelectExpression__time_relation_06():
     r'''Red trisects blue.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])

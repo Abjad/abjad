@@ -6,7 +6,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_01():
     r'''Rhythm select expression between voices.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -25,7 +25,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_02():
     r'''Rhythm select expression between voices with reverse callback.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -45,7 +45,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_03():
     r'''Rhythm select expression between voices with reverse callback.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -65,7 +65,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_04():
     r'''Rhythm select expression between voices with reverse callbacks.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -86,7 +86,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_05():
     r'''Rhythm select expression between voices with multiple in-voice application.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -108,7 +108,7 @@ def test_SegmentSpecification__select_rhythm_between_voices_06():
     r'''Voice 2 rhythms interpret incorrectly.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])

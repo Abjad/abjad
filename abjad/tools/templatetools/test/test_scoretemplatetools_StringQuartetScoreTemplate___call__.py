@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_scoretemplatetools_StringQuartetScoreTemplate___call___01():
+def test_templatetools_StringQuartetScoreTemplate___call___01():
 
-    template = scoretemplatetools.StringQuartetScoreTemplate()
+    template = templatetools.StringQuartetScoreTemplate()
     score = template()
 
     r'''

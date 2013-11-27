@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_scoretemplatetools_TwoStaffPianoScoreTemplate___call___01():
+def test_templatetools_TwoStaffPianoScoreTemplate___call___01():
 
-    template = scoretemplatetools.TwoStaffPianoScoreTemplate()
+    template = templatetools.TwoStaffPianoScoreTemplate()
     score = template()
 
     r'''

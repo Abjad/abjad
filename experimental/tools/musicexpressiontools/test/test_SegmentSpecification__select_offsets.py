@@ -6,7 +6,7 @@ def test_SegmentSpecification__select_offsets_01():
     r'''Explicit offsets.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
@@ -25,7 +25,7 @@ def test_SegmentSpecification__select_offsets_02():
     r'''Implicit start-offset.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
@@ -44,7 +44,7 @@ def test_SegmentSpecification__select_offsets_03():
     r'''Implicit stop-offset.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
@@ -63,7 +63,7 @@ def test_SegmentSpecification__select_offsets_04():
     r'''Implicit start- and stop-offsets.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
@@ -82,7 +82,7 @@ def test_SegmentSpecification__select_offsets_05():
     r'''Negative start-offset.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
@@ -101,7 +101,7 @@ def test_SegmentSpecification__select_offsets_06():
     r'''Negative stop-offset.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
@@ -120,7 +120,7 @@ def test_SegmentSpecification__select_offsets_07():
     r'''Negative start and stop-offsets.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])

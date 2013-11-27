@@ -4,7 +4,7 @@ from experimental import *
 
 def test_SegmentSpecification__set_rhythm_with_rotation_expression_01():
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')

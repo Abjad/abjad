@@ -14,7 +14,7 @@ class StringOrchestraScoreTemplate(AbjadObject):
 
     ::
 
-        >>> template = scoretemplatetools.StringOrchestraScoreTemplate(
+        >>> template = templatetools.StringOrchestraScoreTemplate(
         ...     violin_count=6,
         ...     viola_count=4,
         ...     cello_count=3,

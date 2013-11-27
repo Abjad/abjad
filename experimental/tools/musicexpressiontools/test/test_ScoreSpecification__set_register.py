@@ -6,7 +6,7 @@ def test_ScoreSpecification__set_register_01():
     r'''Transpose pitches from aggregate 0.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(1, 16)])
@@ -25,7 +25,7 @@ def test_ScoreSpecification__set_register_02():
     r'''Transpose pitches from aggregate 1.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(1, 16)])

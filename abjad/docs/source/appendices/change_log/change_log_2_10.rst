@@ -794,15 +794,15 @@ Changes to the ``rhythmtreetools`` package:
 
     lilypondparsertools.parse_reduced_ly_syntax()
 
-Chnages to the ``scoretemplatetools`` package:
+Chnages to the ``templatetools`` package:
 
 - Renamed::
 
-    scoretemplatetools.GroupedRhythmcStavesScoreTemplate.n
+    templatetools.GroupedRhythmcStavesScoreTemplate.n
 
   ::
 
-    scoretemplatetools.GroupedRhythmcStavesScoreTemplate.staff_count
+    templatetools.GroupedRhythmcStavesScoreTemplate.staff_count
 
 Changes to the ``scoretools`` package:
 

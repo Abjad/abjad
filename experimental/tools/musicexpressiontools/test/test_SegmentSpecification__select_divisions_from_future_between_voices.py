@@ -6,7 +6,7 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_01():
     r'''From-future division select expression between voices.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
@@ -29,7 +29,7 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_02():
     r'''From-future division select expression between voices with reverse callback.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
@@ -52,7 +52,7 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_03():
     r'''From-future division select expression between voices with reverse callback.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
@@ -75,7 +75,7 @@ def test_SegmentSpecification__select_divisions_from_future_between_voices_04():
     r'''From-future division select expression between voices with reverse callbacks.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')

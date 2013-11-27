@@ -6,7 +6,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_01():
     r'''Rhythm and divisions carve out same partial time signature select expression.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
@@ -24,7 +24,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_02():
     r'''Incomplete rhythm and division select expressions overlap.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
@@ -43,7 +43,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_03():
     r'''Several different types of select expression.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])

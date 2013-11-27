@@ -4,7 +4,7 @@ from experimental import *
 
 def test_SegmentSelectExpression__divide_by_ratio_01():
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
@@ -21,7 +21,7 @@ def test_SegmentSelectExpression__divide_by_ratio_01():
 
 def test_SegmentSelectExpression__divide_by_ratio_02():
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
@@ -40,7 +40,7 @@ def test_SegmentSelectExpression__divide_by_ratio_03():
     r'''One-segment score.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
@@ -58,7 +58,7 @@ def test_SegmentSelectExpression__divide_by_ratio_04():
     r'''Two-segment score.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')

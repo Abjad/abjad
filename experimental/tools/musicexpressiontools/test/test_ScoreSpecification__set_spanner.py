@@ -6,7 +6,7 @@ def test_ScoreSpecification__set_spanner_01():
     r'''Set spanner on divisions' leaves.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -32,7 +32,7 @@ def test_ScoreSpecification__set_spanner_02():
     r'''Use spanner to set grob overrides and subsequent reverts.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])

@@ -17,7 +17,7 @@ def test_multiple_segment_quartet_01():
     Tests for truncated divisions in 1 & 2 at the end of blue.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
@@ -44,7 +44,7 @@ def test_multiple_segment_quartet_02():
     Tests for spanning divisions in 1 & 2 and also in 3 & 4.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
@@ -71,7 +71,7 @@ def test_multiple_segment_quartet_03():
     Voices 3 & 4 set divisions according to ratio of segment duration.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -99,7 +99,7 @@ def test_multiple_segment_quartet_04():
     r'''F1 divisions truncated in F1. F2, F3, F4 divisions with rotation.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])

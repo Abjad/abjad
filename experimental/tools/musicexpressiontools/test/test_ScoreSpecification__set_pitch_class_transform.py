@@ -6,7 +6,7 @@ def test_ScoreSpecification__set_pitch_class_transform_01():
     r'''Transpose second half up a semitone.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -32,7 +32,7 @@ def test_ScoreSpecification__set_pitch_class_transform_02():
     r'''Transpose second half by nothing (but drop into octave above middle C).
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -58,7 +58,7 @@ def test_ScoreSpecification__set_pitch_class_transform_03():
     r'''Invert second half.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -84,7 +84,7 @@ def test_ScoreSpecification__set_pitch_class_transform_04():
     r'''Invert second half and then transpose up 1 semitone.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -110,7 +110,7 @@ def test_ScoreSpecification__set_pitch_class_transform_05():
     r'''Tranpose second half up 1 semitone and then invert.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -136,7 +136,7 @@ def test_ScoreSpecification__set_pitch_class_transform_06():
     r'''Multiply second half by 7.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -162,7 +162,7 @@ def test_ScoreSpecification__set_pitch_class_transform_07():
     r'''Invert second half twice.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -188,7 +188,7 @@ def test_ScoreSpecification__set_pitch_class_transform_08():
     r'''Transpose second half up by 1 semitone and then up by 3 semitones.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])

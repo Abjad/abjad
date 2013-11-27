@@ -6,7 +6,7 @@ def test_ScoreSpecification__set_aggregate_01():
     r'''Register according to example aggregate 0.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])
@@ -28,7 +28,7 @@ def test_ScoreSpecification__set_aggregate_02():
     r'''Register according to example aggregate 1.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])

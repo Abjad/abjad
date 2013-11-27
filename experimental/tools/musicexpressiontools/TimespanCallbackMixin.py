@@ -17,7 +17,7 @@ class TimespanCallbackMixin(CallbackMixin):
     ::
 
         >>> score_template = \
-        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     templatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=4)
         >>> score_specification = \
         ...     musicexpressiontools.ScoreSpecificationInterface(

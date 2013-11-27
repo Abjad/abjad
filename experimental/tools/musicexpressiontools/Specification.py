@@ -183,7 +183,7 @@ class Specification(AbjadObject):
         Root context sorts first and voice contexts sort last.
 
             >>> template = \
-            ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+            ...     templatetools.GroupedRhythmicStavesScoreTemplate(
             ...     staff_count=2)
             >>> score_specification = \
             ...     musicexpressiontools.ScoreSpecificationInterface(template)
@@ -217,7 +217,7 @@ class Specification(AbjadObject):
         Nonscore contexts evaluate to greater than ``0``.
 
             >>> template = \
-            ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+            ...     templatetools.GroupedRhythmicStavesScoreTemplate(
             ...     staff_count=2)
             >>> score_specification = \
             ...     musicexpressiontools.ScoreSpecificationInterface(

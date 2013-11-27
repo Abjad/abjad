@@ -6,7 +6,7 @@ from abjad.demos.mozart.make_mozart_measure import make_mozart_measure
 
 def make_mozart_score():
 
-    score_template = scoretemplatetools.TwoStaffPianoScoreTemplate()
+    score_template = templatetools.TwoStaffPianoScoreTemplate()
     score = score_template()
 
     # select the measures to use

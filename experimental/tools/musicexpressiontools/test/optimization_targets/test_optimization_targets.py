@@ -10,7 +10,7 @@ def test_optimization_targets_01():
     2.12 (r9746) 1,307,616 function calls.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -34,7 +34,7 @@ def test_optimization_targets_02():
     2.12 (r9746) 1,341,529 function calls.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -59,7 +59,7 @@ def test_optimization_targets_03():
     2.12 (r9746) 1,425,846 function calls.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -87,7 +87,7 @@ def test_optimization_targets_04():
     2.12 (r9746) 2,479,921 function calls.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -120,7 +120,7 @@ def test_optimization_targets_05():
     2.12 (r9753) 1,848,278 function calls.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(50 * [(3, 8)])
     score_specification.set_divisions([(3, 16)])

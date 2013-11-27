@@ -8,7 +8,7 @@ def test_SegmentSpecification__set_time_signatures_corner_cases_01():
     Interpreter ignores all but the last.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 8)])

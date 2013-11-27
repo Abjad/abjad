@@ -6,7 +6,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_01():
     r'''Second select expression equals first.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
@@ -24,7 +24,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_02():
     r'''Second select expression delays the first.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
@@ -43,7 +43,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_03():
     r'''Second select expression curtails the first.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
@@ -62,7 +62,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_04():
     r'''First select expression properly contains the second.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(2, 8)])
@@ -81,7 +81,7 @@ def test_single_segment_solo__overlapping_rhythm_select_expressions_05():
     r'''With rhythm select expression.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8), (3, 8)])

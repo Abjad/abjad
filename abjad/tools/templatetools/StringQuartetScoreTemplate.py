@@ -14,7 +14,7 @@ class StringQuartetScoreTemplate(AbjadObject):
 
     ::
 
-        >>> template = scoretemplatetools.StringQuartetScoreTemplate()
+        >>> template = templatetools.StringQuartetScoreTemplate()
         >>> score = template()
 
     ::

@@ -541,7 +541,7 @@ Now let's take a look at the code that puts our score together:
 
    def make_mozart_score():
    
-       score_template = scoretemplatetools.TwoStaffPianoScoreTemplate()
+       score_template = templatetools.TwoStaffPianoScoreTemplate()
        score = score_template()
    
        # select the measures to use

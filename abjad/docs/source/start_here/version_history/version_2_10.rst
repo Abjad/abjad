@@ -15,7 +15,7 @@ The following packages now load by default when you start Abjad::
     'introspectiontools', 'systemtools', 'iterationtools', 'labeltools', 'layouttools', 'scoretools', 
     'lilypondfiletools', 'indicatortools', 'markuptools', 'mathtools', 'scoretools', 'scoretools', '
     'systemtools', 'pitcharraytools', 'pitchtools', 'scoretools', 'rhythmtreetools', 'schemetools', 
-    'scoretemplatetools', 'scoretools', 'sequencetools', 'sievetools', 'scoretools', 'spannertools', 
+    'templatetools', 'scoretools', 'sequencetools', 'sievetools', 'scoretools', 'spannertools', 
     'scoretools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools', 'metertools', 
     'rhythmmakertools', 'tonalanalysistools', 'scoretools', 'verticalitytools', 'scoretools']
 
@@ -43,7 +43,7 @@ Markup objects now parse input string input on initialization::
 
 You can now use context names to reference named contexts attached to any container:: 
 
-    >>> template = scoretemplatetools.StringQuartetScoreTemplate()
+    >>> template = templatetools.StringQuartetScoreTemplate()
     >>> score = template()
 
 ::
@@ -218,7 +218,7 @@ New Scheme tools are available.
 
 New score-template tools are available::
 
-    scoretemplatetools.GroupedStavesScoreTemplate
+    templatetools.GroupedStavesScoreTemplate
 
 New sequence tools are available:
 

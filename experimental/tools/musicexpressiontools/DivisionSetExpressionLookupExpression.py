@@ -13,7 +13,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
     ::
 
         >>> score_template = \
-        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     templatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=1)
         >>> score_specification = \
         ...     musicexpressiontools.ScoreSpecificationInterface(

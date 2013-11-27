@@ -6,7 +6,7 @@ def test_CounttimeComponentSelectExpression__set_spanner_01():
     r'''Set crescendo spanner.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_rhythm(library.note_tokens)

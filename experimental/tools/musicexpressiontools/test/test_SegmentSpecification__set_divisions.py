@@ -6,7 +6,7 @@ def test_SegmentSpecification__set_divisions_01():
     r'''Set divisions from time signatures.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')

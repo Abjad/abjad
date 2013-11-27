@@ -6,7 +6,7 @@ def test_MeasureSelectExpression__callbacks_01():
     r'''Measures __getitem__().
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
@@ -25,7 +25,7 @@ def test_MeasureSelectExpression__callbacks_02():
     r'''Partition measures by ratio of counts.
     '''
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
@@ -44,7 +44,7 @@ def test_MeasureSelectExpression__callbacks_03():
     r'''Partition measures by ratio of durations.
     '''
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
@@ -63,7 +63,7 @@ def test_MeasureSelectExpression__callbacks_04():
     r'''Repeat measures to length.
     '''
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
@@ -83,7 +83,7 @@ def test_MeasureSelectExpression__callbacks_05():
     r'''Repeat measures to duration.
     '''
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
@@ -103,7 +103,7 @@ def test_MeasureSelectExpression__callbacks_06():
     r'''Reflect measures.
     '''
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
@@ -123,7 +123,7 @@ def test_MeasureSelectExpression__callbacks_07():
     r'''Rotate measures.
     '''
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
@@ -143,7 +143,7 @@ def test_MeasureSelectExpression__callbacks_08():
     r'''Logical AND of measures and timespan.
     '''
 
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])

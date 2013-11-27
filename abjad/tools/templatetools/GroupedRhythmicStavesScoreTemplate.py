@@ -13,7 +13,7 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
     
     ::
 
-            >>> from abjad.tools.scoretemplatetools import *
+            >>> from abjad.tools.templatetools import *
             >>> template_class = GroupedRhythmicStavesScoreTemplate
 
     ..  container:: example

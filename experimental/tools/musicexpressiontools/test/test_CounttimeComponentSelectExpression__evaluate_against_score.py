@@ -6,7 +6,7 @@ def test_CounttimeComponentSelectExpression__evaluate_against_score_01():
     r'''Score-evaluate counttime component select expression anchored to division select expression.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])

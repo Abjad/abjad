@@ -205,20 +205,20 @@ Added new ``decoratortools`` package.
 
 - This will help in the construction of function- and class-population tools.
 
-Added new ``scoretemplatetools`` package.
+Added new ``templatetools`` package.
 
 - This version of the package implements the following classes::
 
-    scoretemplatetools.StringQuartetScoreTemplate
-    scoretemplatetools.TwoStaffPianoScoreTemplate
+    templatetools.StringQuartetScoreTemplate
+    templatetools.TwoStaffPianoScoreTemplate
 
 - Example::
 
-    >>> from abjad.tools import scoretemplatetools
+    >>> from abjad.tools import templatetools
 
   ::
 
-    >>> template = scoretemplatetools.StringQuartetScoreTemplate()
+    >>> template = templatetools.StringQuartetScoreTemplate()
     >>> score = template()
 
   ::

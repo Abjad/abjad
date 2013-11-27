@@ -55,7 +55,7 @@ def test_scoretools_Container___getitem___05():
     r'''Get one named component in subtree rooted at container.
     '''
 
-    template = scoretemplatetools.StringQuartetScoreTemplate()
+    template = templatetools.StringQuartetScoreTemplate()
     score = template()
 
     assert score['First Violin Staff'].name == 'First Violin Staff'
@@ -66,7 +66,7 @@ def test_scoretools_Container___getitem___06():
     r'''Bad name raises exception.
     '''
 
-    template = scoretemplatetools.StringQuartetScoreTemplate()
+    template = templatetools.StringQuartetScoreTemplate()
     score = template()
 
     assert pytest.raises(Exception, "score['Foo']")
@@ -76,7 +76,7 @@ def test_scoretools_Container___getitem___07():
     r'''Duplicate named contexts raise exception.
     '''
 
-    template = scoretemplatetools.StringQuartetScoreTemplate()
+    template = templatetools.StringQuartetScoreTemplate()
     score = template()
 
     assert score['First Violin Voice'].name == 'First Violin Voice'

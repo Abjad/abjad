@@ -217,7 +217,7 @@ Clef now understands octavation suffixes such as _8, _15, ^8 and ^15.
 It takes these suffixes into account when determining its middle-C position.
 
 A new ``StringOrchestraScoreTemplate`` is now available in the
-``scoretemplatetools`` package.
+``templatetools`` package.
 
 
 

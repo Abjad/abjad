@@ -6,7 +6,7 @@ def test_CounttimeComponentSelectExpression__callbacks_01():
     r'''Slice leaves.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
@@ -26,7 +26,7 @@ def test_CounttimeComponentSelectExpression__callbacks_02():
     r'''Partition rhythm by ratio.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
@@ -46,7 +46,7 @@ def test_CounttimeComponentSelectExpression__callbacks_03():
     r'''Partition rhythm by ratio of durations.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
@@ -66,7 +66,7 @@ def test_CounttimeComponentSelectExpression__callbacks_04():
     r'''Repeat to duration.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
@@ -86,7 +86,7 @@ def test_CounttimeComponentSelectExpression__callbacks_05():
     r'''Repeat to length.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
@@ -106,7 +106,7 @@ def test_CounttimeComponentSelectExpression__callbacks_06():
     r'''Reflect rhythm.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
@@ -126,7 +126,7 @@ def test_CounttimeComponentSelectExpression__callbacks_07():
     r'''Rotate rhythm by count.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
@@ -146,7 +146,7 @@ def test_CounttimeComponentSelectExpression__callbacks_08():
     r'''Rotate rhythm by duration.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
@@ -166,7 +166,7 @@ def test_CounttimeComponentSelectExpression__callbacks_09():
     r'''Logical AND of rhythm and timespan.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])

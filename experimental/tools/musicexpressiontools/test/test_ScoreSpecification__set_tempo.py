@@ -6,7 +6,7 @@ def test_ScoreSpecification__set_tempo_01():
     r'''Set tempo on first and second half of leaves.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])

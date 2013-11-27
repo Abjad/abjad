@@ -7,7 +7,7 @@ def test_ScoreSpecification__set_pitch_01():
     r'''Read from server over all leaves in voice.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -30,7 +30,7 @@ def test_ScoreSpecification__set_pitch_02():
     r'''Read from server over contiguous leaves in one voice.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -53,7 +53,7 @@ def test_ScoreSpecification__set_pitch_03():
     r'''Read from server over discontiguous leaves in same voice.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -73,7 +73,7 @@ def test_ScoreSpecification__set_pitch_04():
     r'''Read from server over discontiguous leaves in different voices.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -99,7 +99,7 @@ def test_ScoreSpecification__set_pitch_05():
     Earlier pitch assignments are simply overwritten by later pitch assignments.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -125,7 +125,7 @@ def test_ScoreSpecification__set_pitch_06():
     Voice 1 before voice 2.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -150,7 +150,7 @@ def test_ScoreSpecification__set_pitch_07():
     Voice 2 before voice 1.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -174,7 +174,7 @@ def test_ScoreSpecification__set_pitch_08():
     r'''Two cursors open against the same server.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -199,7 +199,7 @@ def test_ScoreSpecification__set_pitch_09():
     r'''One cursor read three times.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -224,7 +224,7 @@ def test_ScoreSpecification__set_pitch_10():
     r'''One cursor initialized from the position of another.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -249,7 +249,7 @@ def test_ScoreSpecification__set_pitch_11():
     r'''Copied cursor preserves state.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=2)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -274,7 +274,7 @@ def test_ScoreSpecification__set_pitch_12():
     r'''Reverse cursor.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -297,7 +297,7 @@ def test_ScoreSpecification__set_pitch_13():
     r'''Limit to first 4 nodes at level -1.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -320,7 +320,7 @@ def test_ScoreSpecification__set_pitch_14():
     r'''Limit to first 4 nodes after position (2, 0) at level -1.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -343,7 +343,7 @@ def test_ScoreSpecification__set_pitch_15():
     r'''Limit to first 2 nodes at level -2.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])
@@ -366,7 +366,7 @@ def test_ScoreSpecification__set_pitch_16():
     r'''Limit to first 2 nodes after (2, ) at level -2.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(6 * [(2, 8)])
     score_specification.set_divisions([(3, 16)])

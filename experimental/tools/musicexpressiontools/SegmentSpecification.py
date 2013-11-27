@@ -10,7 +10,7 @@ class SegmentSpecification(Specification):
     ::
 
         >>> template = \
-        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     templatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=2)
         >>> score_specification = \
         ...     musicexpressiontools.ScoreSpecificationInterface(
@@ -68,7 +68,7 @@ class SegmentSpecification(Specification):
 
             >>> print format(red_segment)
             musicexpressiontools.SegmentSpecification(
-                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                templatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=2,
                     ),
                 'red'

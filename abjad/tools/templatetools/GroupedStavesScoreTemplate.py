@@ -13,7 +13,7 @@ class GroupedStavesScoreTemplate(AbjadObject):
 
     ::
 
-        >>> template_class = scoretemplatetools.GroupedStavesScoreTemplate
+        >>> template_class = templatetools.GroupedStavesScoreTemplate
         >>> template = template_class(staff_count=4)
 
     '''

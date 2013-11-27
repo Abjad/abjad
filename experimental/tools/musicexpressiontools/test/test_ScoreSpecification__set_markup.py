@@ -6,7 +6,7 @@ def test_ScoreSpecification__set_markup_01():
     r'''Set markup.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(1, 4)], contexts=['Voice 1'])
@@ -24,7 +24,7 @@ def test_ScoreSpecification__set_markup_02():
     r'''Set markup from string.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(1, 4)], contexts=['Voice 1'])

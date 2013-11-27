@@ -6,7 +6,7 @@ def test_multiple_segment_solo__reset_division_select_expressions_01():
     r'''Reset persistent select expressions.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(3, 16)])
@@ -28,7 +28,7 @@ def test_multiple_segment_solo__reset_division_select_expressions_02():
     r'''Reset nonpersistent select expressions.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(3, 16)])

@@ -13,7 +13,7 @@ class ScoreSpecification(Specification):
     ::
 
         >>> template = \
-        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     templatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=2)
         >>> score_specification = \
         ...     musicexpressiontools.ScoreSpecificationInterface(template)
@@ -78,7 +78,7 @@ class ScoreSpecification(Specification):
 
             >>> print format(score_specification)
             musicexpressiontools.ScoreSpecification(
-                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                templatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=2,
                     )
                 )

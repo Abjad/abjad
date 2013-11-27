@@ -6,7 +6,7 @@ def test_ScoreSpecification__set_dynamic_01():
     r'''Reiterated dynamic from string.
     '''
 
-    score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     score_specification.set_time_signatures(5 * [(2, 8)])
     score_specification.set_divisions([(3, 16)], contexts=['Voice 1'])

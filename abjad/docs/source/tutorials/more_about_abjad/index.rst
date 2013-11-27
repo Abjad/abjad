@@ -26,7 +26,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     'lilypondparsertools', 'lilypondnametools', 'indicatortools', 'markuptools',
     'mathtools', 'scoretools', 'scoretools', 'systemtools', 'p',
     'pitcharraytools', 'pitchtools', 'play', 'scoretools', 'rhythmtreetools',
-    'schemetools', 'scoretemplatetools', 'scoretools', 'sequencetools', 'show',
+    'schemetools', 'templatetools', 'scoretools', 'sequencetools', 'show',
     'sievetools', 'scoretools', 'spannertools', 'scoretools', 'stringtools',
     'tempotools', 'tietools', 'timeintervaltools', 'metertools',
     'rhythmmakertools', 'tonalanalysistools', 'scoretools',

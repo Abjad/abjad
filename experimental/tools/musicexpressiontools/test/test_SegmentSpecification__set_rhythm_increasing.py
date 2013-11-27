@@ -8,7 +8,7 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     Necessitates set expression decreasing=False on rhythm maker.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')

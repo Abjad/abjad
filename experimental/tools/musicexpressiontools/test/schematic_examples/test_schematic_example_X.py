@@ -14,7 +14,7 @@ def test_schematic_example_X_01():
     Second segment exactly equal to first segment with hard break between.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')
@@ -44,7 +44,7 @@ def test_schematic_example_X_02():
     Segment 2 continues segment 1.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')
@@ -79,7 +79,7 @@ def test_schematic_example_X_03():
     Second segment equal to first segment flipped about the y axis in all respects.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
 
     red_segment = score_specification.append_segment(name='red')
@@ -143,7 +143,7 @@ def test_schematic_example_X_04():
     Segment 2 otherwise equal to segment 1 flipped about the y axis.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
@@ -192,7 +192,7 @@ def test_schematic_example_X_05():
     Staves repeat rhythm exactly until cut off at end of score.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -227,7 +227,7 @@ def test_schematic_example_X_06():
     Second segment staves repeat reversed first segment rhythms until cut off at end of score.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -271,7 +271,7 @@ def test_schematic_example_X_07():
     Second segment equal to slice of first segment from start offset of F1 leaf 5.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
@@ -321,7 +321,7 @@ def test_schematic_example_X_08():
     F4 continues as before.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
@@ -361,7 +361,7 @@ def test_schematic_example_X_09():
     More description goes here.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])

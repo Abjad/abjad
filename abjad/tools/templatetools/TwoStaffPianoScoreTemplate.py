@@ -14,7 +14,7 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
 
     ::
 
-        >>> template = scoretemplatetools.TwoStaffPianoScoreTemplate()
+        >>> template = templatetools.TwoStaffPianoScoreTemplate()
         >>> score = template()
 
     ::

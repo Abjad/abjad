@@ -6,7 +6,7 @@ def test_IterablePayloadExpression__callbacks_01():
     r'''Slice payload expression.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -26,7 +26,7 @@ def test_IterablePayloadExpression__callbacks_02():
     r'''Partition payload expression elements by ratio.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -46,7 +46,7 @@ def test_IterablePayloadExpression__callbacks_03():
     r'''Partition payload expression elements by ratio of durations.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -66,7 +66,7 @@ def test_IterablePayloadExpression__callbacks_04():
     r'''Repeat divisions to truncating duration.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -86,7 +86,7 @@ def test_IterablePayloadExpression__callbacks_05():
     r'''Repeat divisions to extended duration.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -106,7 +106,7 @@ def test_IterablePayloadExpression__callbacks_06():
     r'''Repeat divisions to truncating length.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -126,7 +126,7 @@ def test_IterablePayloadExpression__callbacks_07():
     r'''Repeat divisions to extended length.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -146,7 +146,7 @@ def test_IterablePayloadExpression__callbacks_08():
     r'''Reflect divisions.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -166,7 +166,7 @@ def test_IterablePayloadExpression__callbacks_09():
     r'''Rotate divisions.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
@@ -186,7 +186,7 @@ def test_IterablePayloadExpression__callbacks_10():
     r'''Logical AND of divisions and timespan.
     '''
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = templatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
     material_manager = musicexpressiontools.MaterialManager()
     red_segment = score_specification.append_segment(name='red')
