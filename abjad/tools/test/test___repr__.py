@@ -3,6 +3,10 @@ import pytest
 from abjad.tools import documentationtools
 
 
-@pytest.mark.parametrize('klass', documentationtools.list_all_abjad_classes())
-def test___repr___01(klass):
-    assert '__repr__' in dir(klass)
+classes = documentationtools.list_all_abjad_classes()
+@pytest.mark.parametrize('class_', classes)
+def test___repr___01(class_):
+    r'''All classes have an interpreter representation.
+    '''
+
+    assert '__repr__' in dir(class_)

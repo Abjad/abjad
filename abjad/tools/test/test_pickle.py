@@ -3,15 +3,15 @@ import inspect
 import pickle
 import pytest
 from abjad.tools import documentationtools
-pytest.skip()
 
 
-@pytest.mark.parametrize('klass', documentationtools.list_all_abjad_classes())
-def test_pickle_01(klass):
-    r'''All class with storage format are pickable.
+classes = documentationtools.list_all_abjad_classes()
+@pytest.mark.parametrize('class_', classes)
+def test_pickle_01(class_):
+    r'''All storage-formattable classes are pickable.
     '''
 
-    if '_storage_format' in dir(klass) and not inspect.isabstract(klass):
-        instance_one = klass()
+    if '_storage_format' in dir(class_) and not inspect.isabstract(class_):
+        instance_one = class_()
         instance_two = pickle.loads(pickle.dumps(instance_one))
         assert instance_one == instance_two

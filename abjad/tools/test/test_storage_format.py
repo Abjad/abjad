@@ -3,15 +3,15 @@ import inspect
 import pickle
 import pytest
 from abjad.tools import documentationtools
-pytest.skip()
 
 
-@pytest.mark.parametrize('klass', documentationtools.list_all_abjad_classes())
-def test_storage_format_01(klass):
-    r'''All class with storage format have evaluable storage format.
+classes = documentationtools.list_all_abjad_classes()
+@pytest.mark.parametrize('class_', classes)
+def test_storage_format_01(class_):
+    r'''All storage-formattable classes have evaluable storage format.
     '''
 
-    if '_storage_format' in dir(klass) and not inspect.isabstract(klass):
-        instance_one = klass()
+    if '_storage_format' in dir(class_) and not inspect.isabstract(class_):
+        instance_one = class_()
         instance_two = eval(format(instance_one, 'storage'))
         assert instance_one == instance_two

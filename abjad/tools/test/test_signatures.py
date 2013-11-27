@@ -21,8 +21,11 @@ valid_types = (
     )
 
 
-@pytest.mark.parametrize('obj', documentationtools.list_all_abjad_classes())
+# TODO: write docstring describing test
+classes = documentationtools.list_all_abjad_classes()
+@pytest.mark.parametrize('obj', classes)
 def test_signatures_01(obj):
+
     for attr in inspect.classify_class_attrs(obj):
         if attr.defining_class is not obj:
             continue
@@ -40,8 +43,11 @@ def test_signatures_01(obj):
                 assert all(isinstance(x, valid_types) for x in value)
 
 
-@pytest.mark.parametrize('obj', documentationtools.list_all_abjad_functions())
+# TODO: write docstring describing test
+functions = documentationtools.list_all_abjad_functions()
+@pytest.mark.parametrize('obj', functions)
 def test_signatures_02(obj):
+
     argument_specification = inspect.getargspec(obj)
     keyword_argument_names = argument_specification.args[1:]
     keyword_argument_values = argument_specification.defaults
