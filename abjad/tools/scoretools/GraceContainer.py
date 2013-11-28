@@ -105,10 +105,8 @@ class GraceContainer(Container):
             raise TypeError(message)
         if self.kind == 'after':
             arg._after_grace = self
-            arg.after_grace = self
         else:
             arg._grace = self
-            arg.grace = self
         self._carrier = arg
         return arg
 
@@ -141,10 +139,8 @@ class GraceContainer(Container):
             carrier = self._carrier
             if self.kind == 'after':
                 delattr(carrier, '_after_grace')
-                delattr(carrier, 'after_grace')
             else:
                 delattr(carrier, '_grace')
-                delattr(carrier, 'grace')
             self._carrier = None
             self[:] = []
         return self

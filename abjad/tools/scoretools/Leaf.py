@@ -20,26 +20,14 @@ class Leaf(Component):
 
     ### CLASS VARIABLES ##
 
-    # TODO: see if _grace and _after_grace can be removed
-    #       or grace and after_grace; should only need one set of attrs
     __slots__ = (
         '_after_grace',
         '_grace',
         '_leaf_index',
         '_written_duration',
-        'after_grace',
-        'grace',
         )
 
     _is_counttime_component = True
-
-#    @property
-#    def grace(self):
-#        return self._grace
-#
-#    @property
-#    def after_grace(self):
-#        return self._after_grace
 
     ### INITIALIZER ###
 
@@ -618,6 +606,22 @@ class Leaf(Component):
         return tuplet
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def after_grace(self):
+        r'''After grace container attaching to leaf.
+
+        Returns grace container or none.
+        '''
+        return self._after_grace
+
+    @property
+    def grace(self):
+        r'''Grace container attaching to leaf.
+
+        Returns grace container or none.
+        '''
+        return self._grace
 
     @property
     def written_duration(self):
