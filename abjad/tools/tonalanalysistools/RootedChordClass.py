@@ -22,8 +22,7 @@ class RootedChordClass(PitchClassSet):
 
         ::
 
-            >>> tonalanalysistools.RootedChordClass('g', 'dominant', 7)
-            GDominantSeventhInRootPosition
+            >>> chord_class = tonalanalysistools.RootedChordClass('g', 'dominant', 7)
 
     Note that notions like a G dominant seventh represent an entire class of
     chords because there are many different spacings and registrations of a G
@@ -87,6 +86,12 @@ class RootedChordClass(PitchClassSet):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a rooted chord-class with root, chord quality
+        and inversion equal to those of this rooted chord-class. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.root == arg.root:
                 if self.chord_quality == arg.chord_quality:
@@ -95,9 +100,17 @@ class RootedChordClass(PitchClassSet):
         return False
 
     def __ne__(self, arg):
+        r'''True when rooted chord-class does not equal `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __repr__(self):
+        r'''Interpreter representation of rooted chord-class.
+
+        Returns string.
+        '''
         root = str(self.root).title()
         quality = self.chord_quality._title_case_name
         return root + quality
@@ -147,24 +160,69 @@ class RootedChordClass(PitchClassSet):
 
     @property
     def bass(self):
+        r'''Bass of rooted chord-class.
+
+        ::
+
+            >>> chord_class.bass
+            NamedPitchClass('g')
+
+        Returns named pitch-class.
+        '''
         return self._bass
 
     @property
     def cardinality(self):
+        r'''Cardinality of rooted chord-class.
+
+        ::
+
+            >>> chord_class.cardinality
+            4
+
+        Returns nonnegative integer.
+        '''
         return len(self)
 
     @property
     def chord_quality(self):
+        r'''Chord quality of rooted chord-class.
+
+        ::
+
+            >>> chord_class.chord_quality
+            DominantSeventhInRootPosition('P1', '+M3', '+P5', '+m7')
+
+        Returns chord quality.
+        '''
         return self._chord_quality
 
     @property
     def extent(self):
+        r'''Extent of rooted chord-class.
+
+        ::
+
+            >>> chord_class.extent
+            ChordExtent(7)
+
+        Returns chord extent.
+        '''
         from abjad.tools import tonalanalysistools
         extent = self.cardinality_to_extent(self.cardinality)
         return tonalanalysistools.ChordExtent(extent)
 
     @property
     def figured_bass(self):
+        r'''Figured bass of rooted chord-class.
+
+        ::
+
+            >>> chord_class.figured_bass
+            '7'
+
+        Returns string.
+        '''
         extent, inversion = self.extent, self.inversion
         if extent.number == 5:
             if inversion == 0:
@@ -196,10 +254,27 @@ class RootedChordClass(PitchClassSet):
 
     @property
     def inversion(self):
+        r'''Inversion of rooted chord-class.
+
+        ::
+
+            >>> chord_class.inversion
+            0
+
+        Returns nonnegative integer.
+        '''
         return self._chord_quality.inversion
 
     @property
     def markup(self):
+        r'''Markup of rooted chord-class.
+
+        ::
+
+            >>> show(chord_class.markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
         markup = [self._markup_root, self._markup_symbol, self.figured_bass]
         markup = ''.join(markup)
         markup = r'\fontsize #1 {} \hspace #-0.5'.format(self._markup_root)
@@ -221,15 +296,42 @@ class RootedChordClass(PitchClassSet):
 
     @property
     def quality_pair(self):
+        r'''Quality pair of rooted chord-class.
+
+        ::
+
+            >>> chord_class.quality_pair
+            ('dominant', 'seventh')
+
+        Returns pair.
+        '''
         chord_quality = self.chord_quality
         return chord_quality.quality_string, chord_quality.extent_name
 
     @property
     def root(self):
+        r'''Root of rooted chord-class.
+
+        ::
+
+            >>> chord_class.root
+            NamedPitchClass('g')
+
+        Returns
+        '''
         return self._root
 
     @property
     def root_string(self):
+        r'''Root string of rooted chord-class.
+
+        ::
+
+            >>> chord_class.root_string
+            'G'
+
+        Returns string.
+        '''
         capitalized_qualities = ('major', 'dominant', 'augmented')
         symbolic_name = self.root.pitch_class_label
         letter, accidental = symbolic_name[0], symbolic_name[1:]
@@ -294,4 +396,10 @@ class RootedChordClass(PitchClassSet):
         return RootedChordClass._extent_to_extent_name[extent]
 
     def transpose(self):
+        r'''Transpose rooted chord-class.
+
+        Not yet implemented.
+
+        Will return new rooted chord-class.
+        '''
         raise NotImplementedError

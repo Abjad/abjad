@@ -1,15 +1,18 @@
 # -*- encoding: utf-8 -*-
 import abc
+import functools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
 
 
+@functools.total_ordering
 class NamedInterval(Interval):
     '''A named interval.
 
     ::
 
-        >>> pitchtools.NamedInterval('+M9')
+        >>> interval = pitchtools.NamedInterval('+M9')
+        >>> interval
         NamedInterval('+M9')
 
     '''
@@ -72,12 +75,30 @@ class NamedInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        r'''Absolute value of named interval.
+
+        ::
+
+            >>> abs(interval)
+            NamedInterval('+M9')
+
+        Returns named interval.
+        '''
         return type(self)(self.quality_string, abs(self.number))
 
     def __add__(self, arg):
+        r'''Adds `arg` to named interval.
+
+        ::
+
+            >>> interval + pitchtools.NamedInterval('M2')
+            NamedInterval('+M10')
+
+        Returns new named interval.
+        '''
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
-            message = '{} must be named interval.'.format(arg)
+            message = 'must be named interval: {!r}.'.format(arg)
             raise TypeError(message)
         dummy_pitch = pitchtools.NamedPitch(0)
         new_pitch = dummy_pitch + self + arg
@@ -85,9 +106,36 @@ class NamedInterval(Interval):
             dummy_pitch, new_pitch)
 
     def __copy__(self, *args):
+        r'''Copies named interval.
+
+        ::
+
+            >>> import copy
+            >>> copy.copy(interval)
+            NamedInterval('+M9')
+
+        Returns new named interval.
+        '''
         return type(self)(self.quality_string, self.number)
 
     def __eq__(self, arg):
+        r'''True when `arg` is a named interval with a quality string and
+        number equal to this named interval.
+
+        ::
+
+            >>> interval == pitchtools.NamedInterval('+M9')
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> interval == pitchtools.NamedInterval('-M9')
+            False
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.quality_string == arg.quality_string:
                 if self.number == arg.number:
@@ -95,40 +143,72 @@ class NamedInterval(Interval):
         return False
 
     def __float__(self):
+        r'''Changes number of named interval to a float.
+
+        ::
+
+            >>> float(interval)
+            9.0
+
+        Returns float.
+        '''
         return float(self._number)
 
-    def __ge__(self, arg):
-        if not isinstance(arg, type(self)):
-            raise TypeError
-        if self.number == arg.number:
-            return self.semitones >= arg.semitones
-        return self.number >= arg.number
-
-    def __gt__(self, arg):
-        if not isinstance(arg, type(self)):
-            raise TypeError
-        if self.number == arg.number:
-            return self.semitones > arg.semitones
-        return self.number > arg.number
-
     def __int__(self):
+        r'''Returns number of named interval.
+
+        ::
+
+            >>> int(interval)
+            9
+
+        Returns integer.
+        '''
         return self._number
 
-    def __le__(self, arg):
-        if not isinstance(arg, type(self)):
-            raise TypeError
-        if self.number == arg.number:
-            return self.semitones <= arg.semitones
-        return self.number <= arg.number
-
     def __lt__(self, arg):
-        if not isinstance(arg, type(self)):
-            raise TypeError
-        if self.number == arg.number:
-            return self.semitones < arg.semitones
-        return self.number < arg.number
+        r'''True when `arg` is a named interval with a number greater than that
+        of this named interval.
+        
+        ::
+
+            >>> interval < pitchtools.NamedInterval('+M10')
+            True
+
+        Also true when `arg` is a named interval with a
+        number equal to this named interval and with semitones greater than
+        this named interval:
+
+        ::
+
+            >>> pitchtools.NamedInterval('+m9') < interval
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> interval < pitchtools.NamedInterval('+M2')
+            False
+
+        Returns boolean.
+        '''
+        if isinstance(arg, type(self)):
+            if self.number == arg.number:
+                return self.semitones < arg.semitones
+            return self.number < arg.number
+        return False
 
     def __mul__(self, arg):
+        r'''Multiplies named interval by `arg`.
+
+        ::
+
+            >>> 3 * interval
+            NamedInterval('+aug25')
+
+        Returns new named interval.
+        '''
         from abjad.tools import pitchtools
         if not isinstance(arg, (int, long)):
             message = 'must be integer: {!r}.'.format(arg)
@@ -143,15 +223,47 @@ class NamedInterval(Interval):
         return result
 
     def __ne__(self, arg):
+        r'''True when `arg` does not equal this named interval. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __neg__(self):
+        r'''Negates named interval.
+
+        ::
+
+            >>> -interval
+            NamedInterval('-M9')
+
+        Returns new named interval.
+        '''
         return type(self)(self.quality_string, -self.number)
 
     def __rmul__(self, arg):
+        r'''Multiplies `arg` by named interval.
+
+        ::
+
+            >>> interval * 3
+            NamedInterval('+aug25')
+
+        Returns new named interval.
+        '''
         return self * arg
 
     def __str__(self):
+        r'''String representation of named interval.
+
+        ::
+
+            >>> str(interval)
+            '+M9'
+
+        Returns string.
+        '''
         return '{}{}{}'.format(
             self._direction_symbol,
             self._quality_abbreviation,
@@ -159,6 +271,15 @@ class NamedInterval(Interval):
             )
 
     def __sub__(self, arg):
+        r'''Subtracts `arg` from named interval.
+
+        ::
+
+            >>> interval - pitchtools.NamedInterval('+M2')
+            NamedInterval('+P8')
+
+        Returns new named interval.
+        '''
         from abjad.tools import pitchtools
         if not isinstance(arg, type(self)):
             message = 'must be named interval: {!r}.'.format(arg)
@@ -249,8 +370,6 @@ class NamedInterval(Interval):
         pitch_2 = pitchtools.get_named_pitch_from_pitch_carrier(pitch_carrier_2)
         degree_1 = pitch_1.diatonic_pitch_number
         degree_2 = pitch_2.diatonic_pitch_number
-        #degree_1 = abs(pitch_1.numbered_diatonic_pitch)
-        #degree_2 = abs(pitch_2.numbered_diatonic_pitch)
         named_interval_number = abs(degree_1 - degree_2) + 1
         numbered_interval_number = abs(abs(pitchtools.NumberedPitch(pitch_1))
             - abs(pitchtools.NumberedPitch(pitch_2)))
@@ -267,6 +386,15 @@ class NamedInterval(Interval):
 
     @property
     def direction_number(self):
+        r'''Direction number of named interval.
+
+        ::
+
+            >>> interval.direction_number
+            1
+
+        Returns ``-1``, ``0`` or ``1``.
+        '''
         if self.quality_string == 'perfect' and abs(self.number) == 1:
             return 0
         else:
@@ -274,6 +402,15 @@ class NamedInterval(Interval):
 
     @property
     def direction_string(self):
+        r'''Direction string of named interval.
+
+        ::
+
+            >>> interval.direction_string
+            'ascending'
+
+        Returns ``'ascending'``, ``'descending'`` or none.
+        '''
         if self.direction_number == -1:
             return 'descending'
         elif self.direction_number == 0:
@@ -283,14 +420,41 @@ class NamedInterval(Interval):
 
     @property
     def interval_class(self):
+        r'''Interval class of named interval.
+
+        ::
+
+            >>> interval.interval_class
+            2
+
+        Returns nonnegative integer.
+        '''
         return ((abs(self.number) - 1) % 7) + 1
 
     @property
     def interval_string(self):
+        r'''Interval string of named interval.
+
+        ::
+
+            >>> interval.interval_string
+            'ninth'
+
+        Returns string.
+        '''
         return self._interval_string
 
     @property
     def named_interval_class(self):
+        r'''Named interval class of named interval.
+
+        ::
+
+            >>> interval.named_interval_class
+            NamedInversionEquivalentIntervalClass('+M2')
+
+        Returns named inversion-equivalent interval-class.
+        '''
         from abjad.tools import pitchtools
         quality_string, number = self._quality_string, self.number
         return pitchtools.NamedInversionEquivalentIntervalClass(
@@ -298,14 +462,41 @@ class NamedInterval(Interval):
 
     @property
     def number(self):
+        r'''Number of named interval.
+
+        ::
+
+            >>> interval.number
+            9
+
+        Returns nonnegative number.
+        '''
         return self._number
 
     @property
     def quality_string(self):
+        r'''Quality string of named interval.
+
+        ::
+
+            >>> interval.quality_string
+            'major'
+
+        Returns string.
+        '''
         return self._quality_string
 
     @property
     def semitones(self):
+        r'''Semitones of named interval.
+
+        ::
+
+            >>> interval.semitones
+            14
+
+        Returns number.
+        '''
         from abjad.tools import pitchtools
         result = 0
         interval_class_number_to_semitones = {
@@ -345,6 +536,15 @@ class NamedInterval(Interval):
 
     @property
     def staff_spaces(self):
+        r'''Staff spaces of named interval.
+
+        ::
+
+            >>> interval.staff_spaces
+            8
+
+        Returns nonnegative integer.
+        '''
         if self.direction_string == 'descending':
             return self.number + 1
         elif self.direction_string is None:

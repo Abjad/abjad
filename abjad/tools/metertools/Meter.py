@@ -249,6 +249,11 @@ class Meter(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a meter with an rtm format equal to that of
+        this meter. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self.rtm_format == expr.rtm_format:
                 return True
@@ -274,7 +279,7 @@ class Meter(AbjadObject):
         return str(self)
 
     def __iter__(self):
-        r'''Iterate meter:
+        r'''Iterates meter.
 
         ::
 
@@ -294,7 +299,7 @@ class Meter(AbjadObject):
             (NonreducedFraction(3, 4), NonreducedFraction(5, 4))
             (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
 
-        Yield pairs.
+        Yields pairs.
         '''
         def recurse(node):
             result = []
@@ -803,7 +808,10 @@ class Meter(AbjadObject):
         return selected_hierarchies
 
     def generate_offset_kernel_to_denominator(
-        self, denominator, normalize=True):
+        self, 
+        denominator, 
+        normalize=True,
+        ):
         r'''Generate a dictionary of all offsets in a meter up
         to `denominator`, where the keys are the offsets and the values
         are the normalized weights of those offsets:

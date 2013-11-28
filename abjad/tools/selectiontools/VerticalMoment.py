@@ -78,6 +78,11 @@ class VerticalMoment(SimultaneousSelection):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a vertical moment with the same components as
+        this vertical moment. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, VerticalMoment):
             if len(self) == len(expr):
                 for c, d in zip(self.components, expr.components):
@@ -88,6 +93,10 @@ class VerticalMoment(SimultaneousSelection):
         return False
 
     def __hash__(self):
+        r'''Hases vertical moment.
+
+        Returns integer.
+        '''
         result = []
         result.append(str(self.offset))
         result.extend([str(id(x)) for x in self.governors])
@@ -95,9 +104,20 @@ class VerticalMoment(SimultaneousSelection):
         return hash(repr(result))
 
     def __len__(self):
+        r'''Length of vertical moment.
+
+        Defined equal to the number of components in vertical moment.
+
+        Returns nonnegative integer.
+        '''
         return len(self.components)
 
     def __ne__(self, expr):
+        r'''True when `expr` does not equal this vertical moment. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         return not self == expr
 
     def __repr__(self):
@@ -149,12 +169,12 @@ class VerticalMoment(SimultaneousSelection):
         from abjad.tools import selectiontools
         offset = durationtools.Offset(offset)
         governors = []
-        message = 'must be Abjad component or tuple of Abjad components.'
+        prototype = (list, tuple, selectiontools.SimultaneousSelection)
+        message = 'must be component or of Abjad components: {!r}.'
+        message = message.format(expr)
         if isinstance(expr, scoretools.Component):
             governors.append(expr)
-        #elif isinstance(expr, (list, tuple, selectiontools.SliceSelection)):
-        elif isinstance(
-            expr, (list, tuple, selectiontools.SimultaneousSelection)):
+        elif isinstance(expr, prototype):
             for x in expr:
                 if isinstance(x, scoretools.Component):
                     governors.append(x)

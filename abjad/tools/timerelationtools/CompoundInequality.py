@@ -98,8 +98,17 @@ class CompoundInequality(TypedList):
 
     ### PUBLIC METHODS ###
 
-    def evaluate(self, timespan_1_start_offset, timespan_1_stop_offset,
-        timespan_2_start_offset, timespan_2_stop_offset):
+    def evaluate(
+        self, 
+        timespan_1_start_offset, 
+        timespan_1_stop_offset,
+        timespan_2_start_offset, 
+        timespan_2_stop_offset,
+        ):
+        r'''Evalutes compound inequality.
+
+        Returns boolean.
+        '''
         from abjad.tools import timerelationtools
         truth_values = []
         for inequality in self:
@@ -121,11 +130,21 @@ class CompoundInequality(TypedList):
         elif self.logical_operator == 'xor':
             truth_value = bool(len([x for x in truth_values if x]) == 1)
         else:
-            raise ValueError(self.logical_operator)
+            message = 'unknown logical operator: {!r}.'
+            message = message.format(self.logical_operator)
+            raise ValueError(message)
         return truth_value
 
     def evaluate_offset_inequality(
-        self, timespan_start, timespan_stop, offset):
+        self, 
+        timespan_start, 
+        timespan_stop, 
+        offset,
+        ):
+        r'''Evalutes offset inequality.
+
+        Returns boolean.
+        '''
         from abjad.tools import timerelationtools
         truth_values = []
         for inequality in self:
@@ -138,7 +157,9 @@ class CompoundInequality(TypedList):
                     timespan_start, timespan_stop, offset)
                 truth_values.append(truth_value)
             else:
-                raise TypeError(inequality)
+                message = 'unknown inequality: {!r}.'
+                message = message.format(inequality)
+                raise TypeError(message)
         assert truth_values, repr(truth_values)
         if self.logical_operator == 'and':
             truth_value = all(truth_values)
@@ -147,11 +168,19 @@ class CompoundInequality(TypedList):
         elif self.logical_operator == 'xor':
             truth_value = bool(len([x for x in truth_values if x]) == 1)
         else:
-            raise ValueError(self.logical_operator)
+            message = 'unknown logical operator: {!r}.'
+            message = message.format(self.logical_operator)
+            raise ValueError(message)
         return truth_value
 
     def get_offset_indices(
-        self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
+        self, 
+        timespan_1, 
+        timespan_2_start_offsets, 
+        timespan_2_stop_offsets,
+        ):
+        r'''Gets offset indices of compound inequality.
+        '''
         from abjad.tools import timerelationtools
         from abjad.tools import timespantools
         timespans = timespantools.TimespanInventory()
@@ -171,7 +200,9 @@ class CompoundInequality(TypedList):
                 timespan = timespantools.Timespan(*offset_indices)
                 timespans.append(timespan)
             else:
-                raise TypeError(element)
+                message = 'unknown inequality: {!r}.'
+                message = message(element)
+                raise TypeError(message)
         if self.logical_operator == 'and':
             result = timespans.compute_logical_and()
         elif self.logical_operator == 'or':
@@ -180,5 +211,7 @@ class CompoundInequality(TypedList):
         elif self.logical_operator == 'xor':
             result = timespans.compute_logical_xor()
         else:
-            raise ValueError(self.logical_operator)
+            message = 'unknown logical operator: {!r}.'
+            message = mesage.format(self.logical_operator)
+            raise ValueError(message)
         return result

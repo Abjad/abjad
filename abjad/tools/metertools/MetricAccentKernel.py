@@ -56,6 +56,10 @@ class MetricAccentKernel(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls metrical accent kernal on `expr`.
+
+        Returns float.
+        '''
         offset_count = self.count_offsets_in_expr(expr)
         response = 0.
         for offset, count in offset_count.iteritems():
@@ -64,6 +68,11 @@ class MetricAccentKernel(AbjadObject):
         return float(response)
 
     def __eq__(self, expr):
+        r'''True when `expr` is a metrical accent kernal with a kernal equal to
+        that of this metrical accent kernel. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self._kernel == expr._kernel:
                 return True

@@ -66,6 +66,8 @@ class QSchema(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, duration):
+        r'''Calls QSchema on `duration`.
+        '''
         target_items = []
         idx, current_offset = 0, 0
         while current_offset < duration:
@@ -91,6 +93,8 @@ class QSchema(AbjadObject):
         return str(self)
 
     def __getitem__(self, i):
+        r'''Gets item `i` in QSchema.
+        '''
         assert isinstance(i, int) and 0 <= i
         result = {}
         for field in self._lookups:
@@ -106,6 +110,22 @@ class QSchema(AbjadObject):
                     key = keys[idx - 1]
                 result[field] = self._lookups[field][key]
         return result
+
+    ### PRIVATE METHODS ###
+
+    def _create_lookups(self):
+        from abjad.tools import systemtools
+        fields = systemtools.StorageFormatManager.get_keyword_argument_names(
+            self.item_class)
+        lookups = {}
+        for field in fields:
+            lookups[field] = {0: getattr(self, field)}
+            for position, item in self.items.iteritems():
+                value = getattr(item, field)
+                if value is not None:
+                    lookups[field][position] = value
+            lookups[field] = dict(lookups[field])
+        return dict(lookups)
 
     ### PUBLIC PROPERTIES ###
 
@@ -144,19 +164,3 @@ class QSchema(AbjadObject):
         r'''The default tempo.
         '''
         return self._tempo
-
-    ### PRIVATE METHODS ###
-
-    def _create_lookups(self):
-        from abjad.tools import systemtools
-        fields = systemtools.StorageFormatManager.get_keyword_argument_names(
-            self.item_class)
-        lookups = {}
-        for field in fields:
-            lookups[field] = {0: getattr(self, field)}
-            for position, item in self.items.iteritems():
-                value = getattr(item, field)
-                if value is not None:
-                    lookups[field][position] = value
-            lookups[field] = dict(lookups[field])
-        return dict(lookups)

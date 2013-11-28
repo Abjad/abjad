@@ -69,22 +69,37 @@ class ResidueClass(BaseResidueClass):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, exp):
-        if isinstance(exp, ResidueClass):
-            if self.modulo == exp.modulo:
-                if self.residue == exp.residue:
+    def __eq__(self, expr):
+        r'''True when `expr` is a residue class with module and residue equal
+        to those of this residue class. Otherwise false.
+
+        Returns boolean.
+        '''
+        if isinstance(expr, ResidueClass):
+            if self.modulo == expr.modulo:
+                if self.residue == expr.residue:
                     return True
         return False
 
     def __lt__(self, expr):
-        if not isinstance(expr, ResidueClass):
-            message = 'must be residue class: {!r}.'.format(expr)
-            raise TypeError(message)
-        if self.modulo == expr.modulo:
-            return self.residue < expr.residue
-        return self.modulo < expr.modulo
+        r'''True when `expr` is a residue class with module greater than that
+        of this residue class. Also true when `expr` is a residue class with
+        modulo equal to that of this residue class and with residue greater
+        than that of this residue class. Otherwise false.
+
+        Returns boolean.
+        '''
+        if isinstance(expr, ResidueClass):
+            if self.modulo == expr.modulo:
+                return self.residue < expr.residue
+            return self.modulo < expr.modulo
 
     def __ne__(self, expr):
+        r'''True when `expr` is not equal to this residue class. Otherwise
+        false.
+
+        Return boolean.
+        '''
         return not self == expr
 
     ### PRIVATE PROPERTIES ###

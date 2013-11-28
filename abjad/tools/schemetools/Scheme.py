@@ -82,6 +82,11 @@ class Scheme(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a scheme object with a value equal to that of
+        this scheme object. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self._value == expr._value:
                 return True
@@ -116,9 +121,17 @@ class Scheme(AbjadObject):
         return str(self)
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self._value,)
 
     def __str__(self):
+        r'''String representation of scheme object.
+
+        Returns string.
+        '''
         if self._quoting is not None:
             return self._quoting + self._formatted_value
         return self._formatted_value
@@ -209,4 +222,8 @@ class Scheme(AbjadObject):
 
     @property
     def force_quotes(self):
+        r'''True when quotes should be forced in output. Otherwise false.
+
+        Returns boolean.
+        '''
         return self._force_quotes
