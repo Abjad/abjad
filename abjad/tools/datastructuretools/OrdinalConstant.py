@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+import functools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
+@functools.total_ordering
 class OrdinalConstant(AbjadObject):
     r'''Ordinal constant.
 
@@ -93,6 +95,11 @@ class OrdinalConstant(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is an ordinal constant with dimension and value
+        equal to those of this ordinal constant. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if self._dimension == expr._dimension:
                 return self._value == expr._value
@@ -111,26 +118,23 @@ class OrdinalConstant(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    def __ge__(self, expr):
-        self._check_comparator(expr)
-        return self._value >= expr._value
-
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (
             self._dimension,
             self._value,
             self._representation,
             )
 
-    def __gt__(self, expr):
-        self._check_comparator(expr)
-        return self._value > expr._value
-
-    def __le__(self, expr):
-        self._check_comparator(expr)
-        return self._value <= expr._value
-
     def __lt__(self, expr):
+        r'''True when `expr` is an ordinal with value greater than that of this
+        ordinal constant. Otherwise false.
+
+        Returns boolean.
+        '''
         self._check_comparator(expr)
         return self._value < expr._value
 

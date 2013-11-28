@@ -6,6 +6,8 @@ from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
 
 class ClassCrawler(abctools.AbjadObject):
+    r'''Class crawler.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -36,6 +38,10 @@ class ClassCrawler(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        r'''Calls class crawler.
+
+        Returns tuple of classes.
+        '''
         objects = []
         for module in self.module_crawler:
             name = module.__name__.split('.')[-1]
@@ -52,16 +58,24 @@ class ClassCrawler(abctools.AbjadObject):
 
     @property
     def code_root(self):
+        r'''Code root of class crawler.
+        '''
         return self._code_root
 
     @property
     def include_private_objects(self):
+        r'''Include private objects.
+        '''
         return self._include_private_objects
 
     @property
     def module_crawler(self):
+        r'''Module crawler.
+        '''
         return self._module_crawler
 
     @property
     def root_package_name(self):
+        r'''Root package name.
+        '''
         return self._root_package_name

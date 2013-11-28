@@ -41,6 +41,10 @@ class NamedPitchClass(PitchClass):
         >>> pitchtools.NamedPitchClass(Note("a'8."))
         NamedPitchClass('a')
 
+    ::
+
+        >>> pitch_class = pitchtools.NamedPitchClass('cs')
+
     '''
 
     ### CLASS VARIABLES ###
@@ -80,6 +84,15 @@ class NamedPitchClass(PitchClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        r'''Absolute value of named pitch-class.
+
+        ::
+
+            >>> abs(pitch_class)
+            1
+
+        Returns nonnegative number.
+        '''
         return abs(self.numbered_pitch_class)
 
     def __add__(self, named_interval):

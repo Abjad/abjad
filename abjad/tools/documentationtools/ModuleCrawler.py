@@ -55,6 +55,10 @@ class ModuleCrawler(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __iter__(self):
+        r'''Iterates module crawler.
+
+        Returns generator.
+        '''
         assert os.path.exists(self.code_root)
 
         if not os.path.exists(os.path.join(self.code_root, '__init__.py')):
@@ -100,16 +104,32 @@ class ModuleCrawler(AbjadObject):
 
     @property
     def code_root(self):
+        r'''Code root of module crawler.
+
+        Returns string.
+        '''
         return self._code_root
 
     @property
     def ignored_directory_names(self):
+        r'''Ignored directory names of module crawler.
+
+        Returns tuple.
+        '''
         return self._ignored_directory_names
 
     @property
     def root_package_name(self):
+        r'''Root package name of module crawler.
+
+        Returns string.
+        '''
         return self._root_package_name
 
     @property
     def visit_private_modules(self):
+        r'''Visit private modules.
+
+        Returns boolean.
+        '''
         return self._visit_private_modules

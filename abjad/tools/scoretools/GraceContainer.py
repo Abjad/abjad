@@ -93,10 +93,14 @@ class GraceContainer(Container):
     ### SPECIAL METHODS ###
 
     def __call__(self, arg):
+        r'''Attaches grace container to `arg`.
+
+        Returns `arg`.
+        '''
         from abjad.tools import scoretools
         if not isinstance(arg, scoretools.Leaf):
             message = 'object to which grace container attaches'
-            message += ' must be leaf: "%s".'
+            message += ' must be leaf: {!r}.'
             message = message.format(arg)
             raise TypeError(message)
         if self.kind == 'after':
@@ -109,6 +113,10 @@ class GraceContainer(Container):
         return arg
 
     def __repr__(self):
+        r'''Interpreter representation of grace container.
+
+        Returns string.
+        '''
         return '{}({})'.format(type(self).__name__, self._summary)
 
     ### PRIVATE PROPERTIES ###

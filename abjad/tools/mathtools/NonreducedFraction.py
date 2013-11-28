@@ -4,28 +4,28 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class NonreducedFraction(AbjadObject, fractions.Fraction):
-    r'''Initialize with an integer numerator and integer denominator:
+    r'''Initializes with an integer numerator and integer denominator:
 
     ::
 
         >>> mathtools.NonreducedFraction(3, 6)
         NonreducedFraction(3, 6)
 
-    Initialize with only an integer denominator:
+    Initializes with only an integer denominator:
 
     ::
 
         >>> mathtools.NonreducedFraction(3)
         NonreducedFraction(3, 1)
 
-    Initialize with an integer pair:
+    Initializes with an integer pair:
 
     ::
 
         >>> mathtools.NonreducedFraction((3, 6))
         NonreducedFraction(3, 6)
 
-    Initialize with an integer singleton:
+    Initializes with an integer singleton:
 
     ::
 
@@ -355,6 +355,15 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self._fraction_with_denominator(fraction, max(denominators))
 
     def __repr__(self):
+        r'''Interpreter representation of nonreduced fraction.
+
+        ::
+
+            >>> mathtools.NonreducedFraction(3, 6)
+            NonreducedFraction(3, 6)
+
+        Returns string.
+        '''
         return '{}({}, {})'.format(
             type(self).__name__,
             self.numerator,

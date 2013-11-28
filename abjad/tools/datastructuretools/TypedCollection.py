@@ -28,6 +28,11 @@ class TypedCollection(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, token):
+        r'''True when typed collection container `token`.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         try:
             item = self._item_callable(token)
         except ValueError:
@@ -35,6 +40,11 @@ class TypedCollection(AbjadObject):
         return self._collection.__contains__(item)
 
     def __eq__(self, expr):
+        r'''True when `expr` is a typed collection with items that compare
+        equal to those of this typed collection. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             return self._collection == expr._collection
         elif isinstance(expr, type(self._collection)):
@@ -55,12 +65,24 @@ class TypedCollection(AbjadObject):
         return str(self)
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self._collection, self.item_class, self.custom_identifier)
 
     def __iter__(self):
+        r'''Iterates typed collection.
+
+        Returns generator.
+        '''
         return self._collection.__iter__()
 
     def __len__(self):
+        r'''Length of typed collection.
+
+        Returns nonnegative integer.
+        '''
         return len(self._collection)
 
     def __makenew__(
@@ -69,6 +91,10 @@ class TypedCollection(AbjadObject):
         item_class=None, 
         custom_identifier=None,
         ):
+        r'''Makes new typed collection with optional new values.
+
+        Returns new typed collection.
+        '''
         # allow for empty iterables
         if tokens is None:
             tokens = self._collection
@@ -81,6 +107,11 @@ class TypedCollection(AbjadObject):
             )
 
     def __ne__(self, expr):
+        r'''True when `expr` is not a typed collection with items equal to this
+        typed collection. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self.__eq__(expr)
 
     ### PRIVATE METHODS ###

@@ -6,7 +6,9 @@ from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
 
 class FunctionCrawler(abctools.AbjadObject):
-
+    r'''Function crawler.
+    '''
+    
     ### CLASS VARIABLES ###
 
     __slots__ = (
@@ -36,6 +38,10 @@ class FunctionCrawler(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        r'''Calls function crawler.
+
+        Returns tuplet of functions.
+        '''
         objects = []
         for module in self.module_crawler:
             name = module.__name__.split('.')[-1]
@@ -52,16 +58,24 @@ class FunctionCrawler(abctools.AbjadObject):
 
     @property
     def code_root(self):
+        r'''Code root of function crawler.
+        '''
         return self._code_root
 
     @property
     def include_private_objects(self):
+        r'''Include private objets.
+        '''
         return self._include_private_objects
 
     @property
     def module_crawler(self):
+        r'''Module crawler.
+        '''
         return self._module_crawler
 
     @property
     def root_package_name(self):
+        r'''Root package name.
+        '''
         return self._root_package_name

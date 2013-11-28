@@ -66,6 +66,10 @@ class StorageFormatSpecification(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __makenew__(self, *args, **kwargs):
+        r'''Makes new storage format specification with optional `kwargs`.
+
+        Returns new storage format specification.
+        '''
         state = {}
         for slot in self.__slots__:
             name = slot[1:]
@@ -76,22 +80,43 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def body_text(self):
+        r'''Body text of storage specification.
+
+        Returns string.
+        '''
         return self._body_text
 
     @property
     def instance(self):
+        r'''Instance of storage specification.
+
+        Returns string.
+        '''
         return self._instance
 
     @property
     def is_bracketted(self):
+        r'''True when storage specification is bracketted.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         return self._is_bracketted
 
     @property
     def is_indented(self):
+        r'''True when storage format is indented. Otherwise false.
+
+        Returns boolean.
+        '''
         return self._is_indented
 
     @property
     def keyword_argument_names(self):
+        r'''Keyword argument names of storage format.
+
+        Returns tuple.
+        '''
         from abjad.tools import systemtools
         if self._keyword_argument_names is not None:
             names = self._keyword_argument_names
@@ -110,10 +135,18 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def keywords_ignored_when_false(self):
+        r'''Keywords ignored when false.
+
+        Returns tuple.
+        '''
         return self._keywords_ignored_when_false
 
     @property
     def positional_argument_values(self):
+        r'''Positional argument values.
+
+        Returns tuple.
+        '''
         from abjad.tools import systemtools
         if self._positional_argument_values is not None:
             return self._positional_argument_values
@@ -122,10 +155,18 @@ class StorageFormatSpecification(AbjadObject):
 
     @property
     def storage_format_pieces(self):
+        r'''Storage format pieces.
+
+        Returns tuple.
+        '''
         return self._storage_format_pieces
 
     @property
     def tools_package_name(self):
+        r'''Tools package name of storage format.
+
+        Returns string.
+        '''
         from abjad.tools import systemtools
         if self._tools_package_name is not None:
             return self._tools_package_name

@@ -33,6 +33,14 @@ class Leaf(Component):
 
     _is_counttime_component = True
 
+#    @property
+#    def grace(self):
+#        return self._grace
+#
+#    @property
+#    def after_grace(self):
+#        return self._after_grace
+
     ### INITIALIZER ###
 
     @abc.abstractmethod

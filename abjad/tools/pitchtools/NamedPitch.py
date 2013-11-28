@@ -11,6 +11,7 @@ class NamedPitch(Pitch):
     ::
 
         >>> named_pitch = NamedPitch("cs''")
+        >>> pitch = NamedPitch(13)
         >>> named_pitch
         NamedPitch("cs''")
 
@@ -18,7 +19,6 @@ class NamedPitch(Pitch):
 
         >>> show(named_pitch) # doctest: +SKIP
 
-    Returns named pitch.
     '''
 
     ### CLASS VARIABLES ###
@@ -85,6 +85,15 @@ class NamedPitch(Pitch):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        r'''Absolute value of named pitch.
+
+        ::
+
+            >>> abs(pitch)
+            13
+
+        Returns nonnegative number.
+        '''
         return abs(self.pitch_number)
 
     def __add__(self, interval):

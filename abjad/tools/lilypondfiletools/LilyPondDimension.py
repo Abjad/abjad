@@ -48,16 +48,24 @@ class LilyPondDimension(abctools.AbjadObject):
     def _format_pieces(self):
         return [r'{}\{}'.format(self.value, self.unit)]
 
-    ### PUBLIC PROPERTIES ###
-
     @property
     def _lilypond_format(self):
         return '\n'.join(self._format_pieces)
 
+    ### PUBLIC PROPERTIES ###
+
     @property
     def unit(self):
+        r'''Unit of LilyPond dimension.
+
+        Returns string.
+        '''
         return self._unit
 
     @property
     def value(self):
+        r'''Value of LilyPond dimension.
+
+        Returns float.
+        '''
         return self._value

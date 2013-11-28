@@ -5,6 +5,8 @@ from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 
 class Sieve(BaseResidueClass):
+    r'''A Xenakis sieve.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -125,7 +127,7 @@ class Sieve(BaseResidueClass):
 
     @staticmethod
     def from_cycle_tokens(*cycle_tokens):
-        '''Make Xenakis sieve from `cycle_tokens`:
+        '''Makes Xenakis sieve from `cycle_tokens`.
 
         ::
 
@@ -179,10 +181,10 @@ class Sieve(BaseResidueClass):
 
             ::
 
-                >>> e = ResidueClass(3, 0) | ResidueClass(2, 0)
-                >>> e.get_boolean_train(6)
+                >>> sieve = ResidueClass(3, 0) | ResidueClass(2, 0)
+                >>> sieve.get_boolean_train(6)
                 [1, 0, 1, 1, 1, 0]
-                >>> e.get_congruent_bases(-6, 6)
+                >>> sieve.get_congruent_bases(-6, 6)
                 [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
         Returns list.
@@ -208,10 +210,10 @@ class Sieve(BaseResidueClass):
 
             ::
 
-                >>> e = ResidueClass(3, 0) | ResidueClass(2, 0)
-                >>> e.get_congruent_bases(6)
+                >>> sieve = ResidueClass(3, 0) | ResidueClass(2, 0)
+                >>> sieve.get_congruent_bases(6)
                 [0, 2, 3, 4, 6]
-                >>> e.get_congruent_bases(-6, 6)
+                >>> sieve.get_congruent_bases(-6, 6)
                 [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
         Returns list.
@@ -229,5 +231,25 @@ class Sieve(BaseResidueClass):
     # that is, self.get_congruent_bases(0, 0) raises an exception;
     # so we work around this with self.get_congruent_bases(-1, 1) instead.
     def is_congruent_base(self, integer):
+        r'''True when `integer` is congruent to base in sieve.
+        Otherwise false.
+
+            ::
+
+                >>> sieve = ResidueClass(3, 0) | ResidueClass(2, 0)
+                >>> sieve.get_congruent_bases(6)
+                [0, 2, 3, 4, 6]
+                >>> sieve.is_congruent_base(12)
+                True
+
+        Otherwise false:
+
+            ::
+
+                >>> sieve.is_congruent_base(13)
+                False
+
+        Returns boolean.
+        '''
         tmp_min, tmp_max = -(abs(integer) + 1), abs(integer) + 1
         return integer in self.get_congruent_bases(tmp_min, tmp_max)

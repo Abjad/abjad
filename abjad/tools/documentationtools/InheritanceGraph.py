@@ -299,18 +299,26 @@ class InheritanceGraph(AbjadObject):
 
     @property
     def addresses(self):
+        r'''Addresses of inheritance graph.
+        '''
         return self._addresses
 
     @property
     def child_parents_mapping(self):
+        r'''Child / parent mapping of inheritance graph.
+        '''
         return self._child_parents_mapping
 
     @property
     def graphviz_format(self):
+        r'''GraphViz format of inheritance graph.
+        '''
         return self.graphviz_graph.graphviz_format
 
     @property
     def graphviz_graph(self):
+        r'''GraphViz graph of inheritance graph.
+        '''
         from abjad.tools import documentationtools
 
         # TODO: change nested helper to private static method
@@ -452,44 +460,66 @@ class InheritanceGraph(AbjadObject):
 
     @property
     def immediate_classes(self):
+        r'''Immediate classes of inheritance graph.
+        '''
         return self._immediate_classes
 
     @property
     def lineage_addresses(self):
+        r'''Lineage addresses of inheritance graph.
+        '''
         return self._lineage_addresses
 
     @property
     def lineage_classes(self):
+        r'''Lineage classes of inheritance graph.
+        '''
         return self._lineage_classes
 
     @property
     def lineage_distance_mapping(self):
+        r'''Lineage distance mapping of inheritance graph.
+        '''
         return self._lineage_distance_mapping
 
     @property
     def lineage_prune_distance(self):
+        r'''Lineage prune distance of inheritance graph.
+        '''
         return self._lineage_prune_distance
 
     @property
     def parent_children_mapping(self):
+        r'''Parent / children mapping of inheritancee graph.
+        '''
         return self._parent_children_mapping
 
     @property
     def recurse_into_submodules(self):
+        r'''Recurse into submodules.
+        '''
         return self._recurse_into_submodules
 
     @property
     def root_addresses(self):
+        r'''Root addresses of inheritance graph.
+        '''
         return self._root_addresses
 
     @property
     def root_classes(self):
+        r'''Root classes of inheritance graph.
+        '''
         return self._root_classes
 
     @property
     def use_clusters(self):
+        r'''Use clusters.
+        '''
         return self._use_clusters
 
     @property
     def use_groups(self):
+        r'''Use groups.
+        '''
         return self._use_groups
