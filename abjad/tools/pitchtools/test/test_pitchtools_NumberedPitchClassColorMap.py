@@ -34,8 +34,8 @@ def test_pitchtools_NumberedPitchClassColorMap_01():
         [0, 11, 32, 41], 
         [15, 25, 42, 43],
         ]
-    assert pcm.twelve_tone_complete
-    assert not pcm.twenty_four_tone_complete
+    assert pcm.is_twelve_tone_complete
+    assert not pcm.is_twenty_four_tone_complete
 
 
 def test_pitchtools_NumberedPitchClassColorMap_02():

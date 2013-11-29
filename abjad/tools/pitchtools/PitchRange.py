@@ -134,6 +134,10 @@ class PitchRange(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, arg):
+        r'''True when pitch range contains `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         if hasattr(arg, '_has_effective_indicator') and \
@@ -164,6 +168,11 @@ class PitchRange(AbjadObject):
         return False
 
     def __eq__(self, arg):
+        r'''True when `arg` is a pitch range with start and stop equal to those
+        of this pitch range. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self._start == arg._start:
                 if self._stop == arg._stop:
@@ -184,6 +193,11 @@ class PitchRange(AbjadObject):
         return str(self)
 
     def __ge__(self, arg):
+        r'''True when start pitch of pitch range is greater than or equal to
+        `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         from abjad.tools import pitchtools
         try:
             pitch = pitchtools.NamedPitch(arg)
@@ -194,6 +208,11 @@ class PitchRange(AbjadObject):
             return False
 
     def __gt__(self, arg):
+        r'''True when start pitch of pitch range is greater than `arg`.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         from abjad.tools import pitchtools
         try:
             pitch = pitchtools.NamedPitch(arg)
@@ -204,6 +223,14 @@ class PitchRange(AbjadObject):
             return False
 
     def __illustrate__(self):
+        r'''Illustrates pitch range.
+
+        ::
+
+            >>> show(pitch_range) # doctest: +SKIP
+
+        Returns LilyPond file.
+        '''
         from abjad.tools import durationtools
         from abjad.tools import lilypondfiletools
         from abjad.tools import indicatortools
@@ -246,6 +273,11 @@ class PitchRange(AbjadObject):
         return lilypond_file
 
     def __le__(self, arg):
+        r'''True when stop pitch of pitch-range is less than or equal to `arg`.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         from abjad.tools import pitchtools
         try:
             pitch = pitchtools.NamedPitch(arg)
@@ -256,6 +288,11 @@ class PitchRange(AbjadObject):
             return False
 
     def __lt__(self, arg):
+        r'''True when stop pitch of pitch-range is less than `arg`. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         from abjad.tools import pitchtools
         try:
             pitch = pitchtools.NamedPitch(arg)
@@ -266,6 +303,10 @@ class PitchRange(AbjadObject):
             return False
 
     def __ne__(self, arg):
+        r'''True when pitch range does not equal `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     ### PRIVATE CLASS VARIABLES ###
@@ -408,7 +449,7 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_named_pitch_repr(self):
-        r'''One-line named pitch repr of pitch of range:
+        r'''One-line named pitch representation of pitch range.
 
         ::
 
@@ -430,8 +471,7 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_numbered_pitch_repr(self):
-        r'''One-line numbered pitch repr
-        of pitch of range:
+        r'''One-line numbered pitch representation of pitch range.
 
         ::
 
@@ -449,9 +489,10 @@ class PitchRange(AbjadObject):
         result = ''.join(result)
         return result
 
+    # TODO: change to custom_identifier
     @property
     def pitch_range_name(self):
-        r'''Name of pitch range:
+        r'''Name of pitch range.
 
         ::
 
@@ -461,10 +502,11 @@ class PitchRange(AbjadObject):
         Returns string or none.
         '''
         return self._pitch_range_name
-
+            
+    # TODO: change to custom_identifier_markup
     @property
     def pitch_range_name_markup(self):
-        r'''Markup of pitch range name:
+        r'''Pitch range name markup.
 
         ::
 
@@ -484,7 +526,7 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch(self):
-        r'''Start pitch of range:
+        r'''Start pitch of pitch range.
 
         ::
 
@@ -499,7 +541,7 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch_is_included_in_range(self):
-        r'''Boolean true when start pitch is included in range.
+        r'''True when start pitch is included in range.
         Otherwise false:
 
         ::
@@ -515,7 +557,7 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch(self):
-        r"""Stop pitch of range:
+        r"""Stop pitch of pitch range.
 
         ::
 
@@ -530,7 +572,7 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        r'''Boolean true when stop pitch is included in range.
+        r'''True when stop pitch is included in range.
         Otherwise false:
 
         ::

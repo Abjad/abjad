@@ -5,7 +5,7 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 
 class PitchedQEvent(QEvent):
     r'''A ``QEvent`` which indicates the onset of a period of pitched material
-    in a ``QEventSequence``:
+    in a ``QEventSequence``.
 
     ::
 
@@ -48,6 +48,12 @@ class PitchedQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a pitched q-event with offset, pitches,
+        attachments and index equal to those of this pitched q-event. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr) and \
             self.offset == expr.offset and \
             self.pitches == expr.pitches and \
@@ -60,8 +66,12 @@ class PitchedQEvent(QEvent):
 
     @property
     def attachments(self):
+        r'''Attachments of pitched q-event.
+        '''
         return self._attachments
 
     @property
     def pitches(self):
+        r'''Pitches of pitched q-event.
+        '''
         return self._pitches

@@ -10,7 +10,8 @@ class NoteHead(AbjadObject):
 
     ::
 
-        >>> scoretools.NoteHead(13)
+        >>> note_head = scoretools.NoteHead(13)
+        >>> note_head
         NoteHead("cs''")
 
     Note heads are immutable.
@@ -28,7 +29,8 @@ class NoteHead(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         written_pitch=None,
         client=None,
         is_cautionary=False,
@@ -56,15 +58,30 @@ class NoteHead(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies note-head.
+
+        ::
+
+            >>> import copy
+            >>> copy.copy(note_head)
+            NoteHead("cs''")
+
+        Returns new note-head.
+        '''
         return type(self)(*self.__getnewargs__())
 
     def __eq__(self, expr):
+        r'''True when `expr` is a note-head with written pitch equal to that of
+        this note-head. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             return self.written_pitch == expr.written_pitch
         return self.written_pitch == expr
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats note-head.
 
         Returns string.
         '''
@@ -73,6 +90,10 @@ class NoteHead(AbjadObject):
         return str(self)
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         args = (
             self.written_pitch,
             None,
@@ -83,6 +104,11 @@ class NoteHead(AbjadObject):
         return args
 
     def __lt__(self, expr):
+        r'''True when `expr` is a note-head with written pitch greater than
+        that of this note-head. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             return self.written_pitch < expr.written_pitch
         try:
@@ -92,12 +118,30 @@ class NoteHead(AbjadObject):
         return self.written_pitch < expr.written_pitch
 
     def __repr__(self):
+        r'''Interpreter representation of note-head.
+
+        ::
+
+            >>> note_head
+            NoteHead("cs''")
+
+        Returns string.
+        '''
         args = [repr(self._format_string)]
         args.extend(self.tweak._get_attribute_pairs())
         args = ', '.join([str(x) for x in args])
-        return '%s(%s)' % (type(self).__name__, args)
+        return '{}({})'.format(type(self).__name__, args)
 
     def __str__(self):
+        r'''String representation of note-head.
+
+        ::
+
+            >>> str(note_head)
+            "cs''"
+
+        Returns string.
+        '''
         return self._format_string
 
     ### PRIVATE PROPERTIES ###
@@ -117,7 +161,8 @@ class NoteHead(AbjadObject):
     def _keyword_argument_names(self):
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager
-        keyword_argument_names = manager.get_signature_keyword_argument_names(self)
+        keyword_argument_names = \
+            manager.get_signature_keyword_argument_names(self)
         keyword_argument_names = list(keyword_argument_names)
         if 'client' in keyword_argument_names:
             keyword_argument_names.remove('client')
@@ -174,11 +219,22 @@ class NoteHead(AbjadObject):
 
     @property
     def client(self):
+        r'''Client of note-head.
+
+        ::
+
+            >>> note_head.client is None
+            True
+
+        Returns note, chord or none.
+        '''
         return self._client
 
     @property
     def is_cautionary(self):
-        r'''Get cautionary accidental flag:
+        r'''Gets and sets cautionary accidental flag.
+
+        Gets cautionary accidental flag:
 
         ::
 
@@ -186,7 +242,7 @@ class NoteHead(AbjadObject):
             >>> note_head.is_cautionary
             False
 
-        Set cautionary accidental flag:
+        Sets cautionary accidental flag:
 
         ::
 
@@ -203,7 +259,9 @@ class NoteHead(AbjadObject):
 
     @property
     def is_forced(self):
-        r'''Get forced accidental flag:
+        r'''Gets and sets forced accidental flag.
+
+        Gets forced accidental flag:
 
         ::
 
@@ -211,7 +269,7 @@ class NoteHead(AbjadObject):
             >>> note_head.is_forced
             False
 
-        Set forced accidental flag:
+        Sets forced accidental flag:
 
         ::
 
@@ -228,7 +286,7 @@ class NoteHead(AbjadObject):
 
     @property
     def named_pitch(self):
-        r'''Named pitch equal to note head:
+        r'''Named pitch of note-head.
 
         ::
 
@@ -242,7 +300,7 @@ class NoteHead(AbjadObject):
 
     @property
     def tweak(self):
-        r'''LilyPond tweak reservoir:
+        r'''LilyPond tweak reservoir of note-head.
 
         ::
 
@@ -259,7 +317,9 @@ class NoteHead(AbjadObject):
 
     @property
     def written_pitch(self):
-        r'''Get named pitch of note head:
+        r'''Gets and sets written pitch of note-head.
+
+        Gets written pitch of note-head:
 
         ::
 
@@ -267,7 +327,7 @@ class NoteHead(AbjadObject):
             >>> note_head.written_pitch
             NamedPitch("cs''")
 
-        Set named pitch of note head:
+        Sets written pitch of note-head:
 
         ::
 
@@ -276,7 +336,7 @@ class NoteHead(AbjadObject):
             >>> note_head.written_pitch
             NamedPitch("d''")
 
-        Set pitch token.
+        Returns named pitch.
         '''
         return self._written_pitch
 

@@ -96,6 +96,15 @@ class NamedPitchClass(PitchClass):
         return abs(self.numbered_pitch_class)
 
     def __add__(self, named_interval):
+        r'''Adds `named_interval` to named pitch-class.
+
+        ::
+
+            >>> pitch_class + pitchtools.NamedInterval('+M9')
+            NamedPitchClass('ds')
+
+        Return new named pitch-class.
+        '''
         from abjad.tools import pitchtools
         dummy = pitchtools.NamedPitch(
             self.pitch_class_name, 4)
@@ -105,24 +114,85 @@ class NamedPitchClass(PitchClass):
         return type(self)(new)
 
     def __copy__(self, *args):
+        r'''Copies named pitch-class.
+
+        ::
+
+            >>> import copy
+            >>> copy.copy(pitch_class)
+            NamedPitchClass('cs')
+
+        Returns new named pitch-class.
+        '''
         return type(self)(self)
 
     def __eq__(self, expr):
+        r'''True when `expr` can be coerced to a named pitch-class with 
+        pitch-class name equal to that of this named pitch-class.
+
+        ::
+
+            >>> pitch_class == 'cs'
+            True
+
+        Otherwise false:
+
+            >>> pitch_class == 'ds'
+            False
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             return self.pitch_class_name == \
                 expr.pitch_class_name
         return self.pitch_class_name == expr
 
     def __float__(self):
+        r'''Changes named pitch-class to a float.
+
+        ::
+
+            >>> float(pitch_class)
+            1.0
+
+        Returns float.
+        '''
         return float(self.numbered_pitch_class)
 
     def __int__(self):
+        r'''Changes named pitch-class to an integer.
+
+        ::
+
+            >>> int(pitch_class)
+            1
+
+        Returns nonnegative integer.
+        '''
         return int(self.numbered_pitch_class)
 
     def __str__(self):
+        r'''String representation of named pitch-class.
+
+        ::
+
+            >>> str(pitch_class)
+            'cs'
+
+        Returns string.
+        '''
         return self.pitch_class_name
 
     def __sub__(self, arg):
+        r'''Subtracts `arg` from named pitch-class.
+
+        ::
+
+            >>> pitch_class - pitchtools.NamedPitchClass('g')
+            NamedInversionEquivalentIntervalClass('+aug4')
+
+        Returns named inversion-equivalent interval-class.
+        '''
         if not isinstance(arg, type(self)):
             message = 'must be named pitch-class: {!r}.'.format(arg)
             raise TypeError(message)
@@ -204,14 +274,14 @@ class NamedPitchClass(PitchClass):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental):
-        r'''Applies `accidental`.
+        r'''Applies `accidental` to named pitch-class.
 
         ::
 
             >>> pitchtools.NamedPitchClass('cs').apply_accidental('qs')
             NamedPitchClass('ctqs')
 
-        Emits new named pitch-class.
+        Returns new named pitch-class.
         '''
         from abjad.tools import pitchtools
         accidental = pitchtools.Accidental(accidental)
@@ -220,35 +290,34 @@ class NamedPitchClass(PitchClass):
         return type(self)(new_name)
 
     def invert(self):
-        r'''Invert pitch-class.
+        r'''Inverts named pitch-class.
 
         Not yet implemented.
         '''
         raise NotImplementedError
 
     def multiply(self, n=1):
-        r'''Multiply pitch-class number by `n`:
+        r'''Multiplies named pitch-class by `n`.
 
         ::
 
             >>> pitchtools.NamedPitchClass('cs').multiply(3)
             NamedPitchClass('ef')
 
-        Emit new named pitch-class.
+        Returns new named pitch-class.
         '''
         return type(self)(self.pitch_class_number * n)
 
     def transpose(self, n):
-        r'''Transpose named pitch-class by
-        `named_interval`:
+        r'''Transposes named pitch-class by named interval `n`.
 
         ::
 
-            >>> pitchtools.NamedPitchClass('cs').transpose(
-            ...     pitchtools.NamedInterval('major', 2))
+            >>> named_interval = pitchtools.NamedInterval('major', 2)
+            >>> pitchtools.NamedPitchClass('cs').transpose(named_interval)
             NamedPitchClass('ds')
 
-        Emit new named pitch-class.
+        Returns new named pitch-class.
         '''
         from abjad.tools import pitchtools
         named_interval = pitchtools.NamedInterval(n)
@@ -262,7 +331,7 @@ class NamedPitchClass(PitchClass):
 
     @property
     def accidental(self):
-        r'''Accidental.
+        r'''Accidental of named pitch-class.
 
         ::
 
@@ -276,7 +345,7 @@ class NamedPitchClass(PitchClass):
 
     @property
     def alteration_in_semitones(self):
-        r'''Alteration in semitones.
+        r'''Alteration of named pitch-class in semitones.
 
         ::
 
@@ -289,7 +358,7 @@ class NamedPitchClass(PitchClass):
 
     @property
     def diatonic_pitch_class_name(self):
-        r'''Diatonic pitch-class name.
+        r'''Diatonic pitch-class name of named interval.
 
         ::
 
@@ -303,7 +372,7 @@ class NamedPitchClass(PitchClass):
 
     @property
     def diatonic_pitch_class_number(self):
-        r'''Diatonic pitch-class number.
+        r'''Diatonic pitch-class number of named pitch-class.
 
         ::
 
@@ -323,13 +392,13 @@ class NamedPitchClass(PitchClass):
             >>> pitchtools.NamedPitchClass('cs').named_pitch_class
             NamedPitchClass('cs')
 
-        Returns named pitch-class.
+        Returns new named pitch-class.
         '''
         return type(self)(self)
 
     @property
     def numbered_pitch_class(self):
-        r'''Numbered pitch-class.
+        r'''Numbered pitch-class corresponding to named pitch-class.
 
         ::
 
@@ -343,7 +412,7 @@ class NamedPitchClass(PitchClass):
 
     @property
     def pitch_class_label(self):
-        r'''Pitch-class label.
+        r'''Pitch-class label of named pitch-class.
 
         ::
 
@@ -359,7 +428,7 @@ class NamedPitchClass(PitchClass):
 
     @property
     def pitch_class_name(self):
-        r'''Pitch-class name.
+        r'''Pitch-class name of named pitch-class.
 
         ::
 
@@ -377,7 +446,7 @@ class NamedPitchClass(PitchClass):
 
     @property
     def pitch_class_number(self):
-        r'''Pitch-class number.
+        r'''Pitch-class number of named pitch-class.
 
         ::
 
@@ -386,6 +455,7 @@ class NamedPitchClass(PitchClass):
 
         Returns integer or float.
         '''
-        return (self._diatonic_pitch_class_number_to_pitch_class_number[
-            self._diatonic_pitch_class_number] +
-            self._alteration_in_semitones) % 12
+        return (
+            self._diatonic_pitch_class_number_to_pitch_class_number[
+                self._diatonic_pitch_class_number] +
+                self._alteration_in_semitones) % 12

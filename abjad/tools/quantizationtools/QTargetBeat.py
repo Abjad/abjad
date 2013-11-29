@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QTargetBeat(AbjadObject):
-    r'''Representation of a single "beat" in a quantization target:
+    r'''Representation of a single "beat" in a quantization target.
 
     ::
 
@@ -41,9 +41,7 @@ class QTargetBeat(AbjadObject):
 
     Not composer-safe.
 
-    Used internally by quantizationtools.Quantizer.
-
-    Return ``QTargetBeat`` instance.
+    Used internally by ``Quantizer``.
     '''
 
     ### CLASS VARIABLES ###
@@ -62,7 +60,8 @@ class QTargetBeat(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         beatspan=None,
         offset_in_ms=None,
         search_tree=None,
@@ -97,6 +96,10 @@ class QTargetBeat(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, job_id):
+        r'''Calls q-target beat.
+
+        Returns quantization job.
+        '''
         from abjad.tools import quantizationtools
         if not self.q_events:
             return None
@@ -130,14 +133,14 @@ class QTargetBeat(AbjadObject):
 
     @property
     def beatspan(self):
-        r'''The beatspan of the ``QTargetBeat``:
+        r'''Beatspan of q-target beat.
 
         ::
 
             >>> q_target_beat.beatspan
             Duration(1, 8)
 
-        Returns Duration.
+        Returns duration.
         '''
         return self._beatspan
 
@@ -155,28 +158,28 @@ class QTargetBeat(AbjadObject):
 
     @property
     def duration_in_ms(self):
-        r'''The duration in milliseconds of the ``QTargetBeat``:
+        r'''Duration in milliseconds of the q-targeg beat.
 
         ::
 
             >>> q_target_beat.duration_in_ms
             Duration(3750, 7)
 
-        Returns Duration instance.
+        Returns duration.
         '''
         from abjad.tools import quantizationtools
         return self.tempo.duration_to_milliseconds(self.beatspan)
 
     @property
     def offset_in_ms(self):
-        r'''The offset in milliseconds of the ``QTargetBeat``:
+        r'''Offset in milliseconds of q-target beat.
 
         ::
 
             >>> q_target_beat.offset_in_ms
             Offset(1500, 1)
 
-        Returns Offset instance.
+        Returns offset.
         '''
         return self._offset_in_ms
 
@@ -196,7 +199,7 @@ class QTargetBeat(AbjadObject):
 
         Used internally by the ``Quantizer``.
 
-        Return ``QGrid`` instance.
+        Returns ``QGrid`` instance.
         '''
         return self._q_grid
 
@@ -212,26 +215,26 @@ class QTargetBeat(AbjadObject):
 
     @property
     def search_tree(self):
-        r'''The search tree of the ``QTargetBeat``:
+        r'''Search tree of q-target beat.
 
         ::
 
             >>> q_target_beat.search_tree
             UnweightedSearchTree(definition={3: None})
 
-        Return ``SearchTree`` instance.
+        Returns search tree.
         '''
         return self._search_tree
 
     @property
     def tempo(self):
-        r'''The tempo of the ``QTargetBeat``:
+        r'''Tempo of q-target beat.
 
         ::
 
             >>> q_target_beat.tempo
             Tempo(Duration(1, 4), 56)
 
-        Return ``Tempo`` instance.
+        Returns tempo.
         '''
         return self._tempo
