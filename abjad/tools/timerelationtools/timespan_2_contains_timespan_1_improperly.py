@@ -28,7 +28,7 @@ def timespan_2_contains_timespan_1_improperly(
         ::
 
             >>> staff = Staff(r"c'8. \p \< fs'16 a'4 af'8 \f \> g'8 ~ g'16 f' e' ef' \p")
-            >>> timespan_1 = timespantools.Timespan(Offset(1, 4), Offset(3, 8))
+            >>> timespan_1 = timerelationtools.Timespan(Offset(1, 4), Offset(3, 8))
             >>> show(staff) # doctest: +SKIP
 
         ::

@@ -39,7 +39,7 @@ def timespan_2_starts_during_timespan_1(
 
         ::
 
-            >>> timespan_1 = timespantools.Timespan(Offset(1, 4), Offset(5, 4))
+            >>> timespan_1 = timerelationtools.Timespan(Offset(1, 4), Offset(5, 4))
             >>> time_relation = \
             ...     timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)

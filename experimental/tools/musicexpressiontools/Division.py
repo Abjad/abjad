@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools import timespantools
+from abjad.tools import timerelationtools
 from abjad.tools.mathtools.BoundedObject import BoundedObject
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 
@@ -161,7 +161,7 @@ class Division(NonreducedFraction, BoundedObject):
 
     # TODO: maybe keep only _get_timespan?
     def _get_timespan(self):
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
+        return timerelationtools.Timespan(self.start_offset, self.stop_offset)
 
     ### PUBLIC PROPERTIES ###
 
@@ -208,7 +208,7 @@ class Division(NonreducedFraction, BoundedObject):
 
         .. note:: Deprecated. Use get_timespan() instead.
         '''
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
+        return timerelationtools.Timespan(self.start_offset, self.stop_offset)
 
     ### PUBLIC METHODS ###
 
@@ -217,7 +217,7 @@ class Division(NonreducedFraction, BoundedObject):
 
         Returns timespan.
         '''
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
+        return timerelationtools.Timespan(self.start_offset, self.stop_offset)
 
     @staticmethod
     def parse_interval_range_string(interval_range_string):

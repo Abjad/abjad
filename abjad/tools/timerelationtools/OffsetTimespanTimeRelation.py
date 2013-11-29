@@ -10,7 +10,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
     ::
 
         >>> offset = Offset(5)
-        >>> timespan = timespantools.Timespan(0, 10)
+        >>> timespan = timerelationtools.Timespan(0, 10)
         >>> time_relation = timerelationtools.offset_happens_during_timespan(
         ...     offset=offset, 
         ...     timespan=timespan, 
@@ -28,7 +28,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
                     ],
                 logical_operator='and',
                 ),
-            timespan=timespantools.Timespan(
+            timespan=timerelationtools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(10, 1),
                 ),
@@ -58,14 +58,14 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
         Otherwise returns boolean.
         '''
-        from abjad.tools import timespantools
+        from abjad.tools import timerelationtools
         timespan = timespan or self.timespan
         offset = offset or self.offset
         if timespan is None or offset is None:
             message = 'time relation is not fully loaded.'
             raise ValueError(message)
-        if not isinstance(timespan, timespantools.Timespan):
-            timespan = timespantools.Timespan()._get_timespan(timespan)
+        if not isinstance(timespan, timerelationtools.Timespan):
+            timespan = timerelationtools.Timespan()._get_timespan(timespan)
         offset = durationtools.Offset(offset)
         truth_value = self.inequality.evaluate_offset_inequality(
             timespan.start_offset, timespan.stop_offset, offset)
@@ -118,7 +118,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
                         ],
                     logical_operator='and',
                     ),
-                timespan=timespantools.Timespan(
+                timespan=timerelationtools.Timespan(
                     start_offset=durationtools.Offset(0, 1),
                     stop_offset=durationtools.Offset(10, 1),
                     ),

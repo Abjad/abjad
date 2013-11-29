@@ -160,7 +160,7 @@ def test_DivisionSelectExpression__callbacks_08():
     red_segment.set_rhythm(library.sixteenths)
     blue_segment = score_specification.append_segment(name='blue')
     red_divisions = red_segment.select_divisions('Voice 1')
-    timespan = timespantools.Timespan(Offset(1, 16), Offset(9, 16))
+    timespan = timerelationtools.Timespan(Offset(1, 16), Offset(9, 16))
     red_divisions = red_divisions & timespan
     blue_segment.set_divisions(red_divisions)
     score = score_specification.interpret()

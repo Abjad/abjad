@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import sequencetools
-from abjad.tools import timespantools
-from abjad.tools.timespantools.TimespanInventory import TimespanInventory
+from abjad.tools import timerelationtools
+from abjad.tools.timerelationtools.TimespanInventory import TimespanInventory
 
 
 class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
@@ -35,12 +35,12 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
             for set_expression_to_remove in set_expressions_to_remove:
                 cooked_set_expressions.remove(set_expression_to_remove)
             for set_expression_to_curtail in set_expressions_to_curtail:
-                timespan = timespantools.Timespan(
+                timespan = timerelationtools.Timespan(
                     set_expression_to_curtail.target_timespan.start_offset,
                     raw_set_expression.target_timespan.start_offset)
                 set_expression_to_curtail._target_timespan = timespan
             for set_expression_to_delay in set_expressions_to_delay:
-                timespan = timespantools.Timespan(
+                timespan = timerelationtools.Timespan(
                     raw_set_expression.target_timespan.stop_offset,
                     set_expression_to_delay.target_timespan.stop_offset)
                 set_expression_to_delay._target_timespan = timespan
@@ -53,11 +53,11 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
                 left_set_expression = set_expression_to_split
                 middle_set_expression = raw_set_expression
                 right_set_expression = copy.deepcopy(left_set_expression)
-                timespan = timespantools.Timespan(
+                timespan = timerelationtools.Timespan(
                     left_set_expression.target_timespan.start_offset,
                     middle_set_expression.target_timespan.start_offset)
                 left_set_expression._target_timespan = timespan
-                timespan = timespantools.Timespan(
+                timespan = timerelationtools.Timespan(
                     middle_set_expression.target_timespan.stop_offset,
                     right_set_expression.target_timespan.stop_offset)
                 right_set_expression._target_timespan = timespan
@@ -90,7 +90,7 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
                 attribute, timespan, voice_name)
             self[:] = [set_expression]
             return self
-        timespans = timespantools.TimespanInventory([
+        timespans = timerelationtools.TimespanInventory([
             expr.target_timespan for expr in self])
         timespans.append(score_specification.timespan)
         missing_region_timespans = timespans.compute_logical_xor()

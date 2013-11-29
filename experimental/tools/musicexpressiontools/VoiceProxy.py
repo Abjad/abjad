@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import timespantools
+from abjad.tools import timerelationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -18,7 +18,7 @@ class VoiceProxy(AbjadObject):
             musicexpressiontools.AttributeDictionary()
         for attribute in self._payload_expressions_by_attribute:
             self._payload_expressions_by_attribute[attribute] = \
-                timespantools.TimespanInventory()
+                timerelationtools.TimespanInventory()
         self._voice_division_list = None
 
     ### PUBLIC PROPERTIES ###

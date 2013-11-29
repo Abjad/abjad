@@ -4,7 +4,7 @@ import types
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import timespantools
+from abjad.tools import timerelationtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import contextualize
 from abjad.tools.topleveltools import iterate
@@ -571,7 +571,7 @@ class Spanner(AbjadObject):
                 self[-1]._get_timespan(in_seconds=in_seconds).stop_offset
         else:
             stop_offset = Duration(0)
-        return timespantools.Timespan(
+        return timerelationtools.Timespan(
             start_offset=start_offset, stop_offset=stop_offset)
 
     def index(self, component):

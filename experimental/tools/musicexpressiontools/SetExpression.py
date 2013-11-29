@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
-from abjad.tools import timespantools
+from abjad.tools import timerelationtools
 from experimental.tools.musicexpressiontools.Expression import Expression
 
 
@@ -25,7 +25,7 @@ class SetExpression(Expression):
         assert isinstance(attribute, str)
         assert isinstance(source_expression, musicexpressiontools.Expression)
         assert isinstance(target_timespan, 
-            (timespantools.Timespan, musicexpressiontools.TimespanExpression,
+            (timerelationtools.Timespan, musicexpressiontools.TimespanExpression,
             str, type(None)))
         self._attribute = attribute
         self._source_expression = source_expression

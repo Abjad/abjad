@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import timespantools
+from abjad.tools import timerelationtools
 from experimental.tools.musicexpressiontools.AnchoredExpression \
     import AnchoredExpression
 from experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin \
@@ -59,7 +59,7 @@ class TimespanExpression(
         result = self._evaluate_anchor_timespan()
         if result is None:
             return
-        elif isinstance(result, timespantools.Timespan):
+        elif isinstance(result, timerelationtools.Timespan):
             timespan = self._apply_callbacks(result)
             expression = \
                 musicexpressiontools.IterablePayloadExpression([timespan])

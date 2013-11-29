@@ -30,8 +30,8 @@ def timespan_2_happens_during_timespan_1(
 
         ::
 
-            >>> timespan_1 = timespantools.Timespan(Offset(1, 2), Offset(3, 2))
-            >>> timespan_2 = timespantools.Timespan(Offset(7, 8), Offset(8, 8))
+            >>> timespan_1 = timerelationtools.Timespan(Offset(1, 2), Offset(3, 2))
+            >>> timespan_2 = timerelationtools.Timespan(Offset(7, 8), Offset(8, 8))
             >>> timerelationtools.timespan_2_happens_during_timespan_1(
             ...     timespan_1=timespan_1, 
             ...     timespan_2=timespan_2,

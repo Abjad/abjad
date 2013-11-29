@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
-from abjad.tools import timespantools
+from abjad.tools import timerelationtools
 from experimental.tools.musicexpressiontools.AnchoredExpression \
     import AnchoredExpression
 from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin \
@@ -48,7 +48,7 @@ class SetExpressionLookupExpression(
     ### PRIVATE METHODS ###
 
     def _get_timespan_delimited_single_context_set_expressions(self, attribute):
-        result = timespantools.TimespanInventory()
+        result = timerelationtools.TimespanInventory()
         for context_proxy in \
             self.score_specification.single_context_set_expressions_by_context.itervalues():
             expressions = \

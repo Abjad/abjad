@@ -146,7 +146,7 @@ def test_BeatSelectExpression__callbacks_08():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 4), (3, 8), (3, 4)])
     beats = red_segment.select_beats('Voice 1')
-    timespan = timespantools.Timespan(Offset(2, 8), Offset(6, 8))
+    timespan = timerelationtools.Timespan(Offset(2, 8), Offset(6, 8))
     beats = beats & timespan
     red_segment.set_divisions(beats)
     red_segment.set_rhythm(library.sixteenths)

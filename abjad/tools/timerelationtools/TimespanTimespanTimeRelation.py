@@ -165,8 +165,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> timespan_1 = timespantools.Timespan(5, 15)
-                >>> timespan_2 = timespantools.Timespan(10, 20)
+                >>> timespan_1 = timerelationtools.Timespan(5, 15)
+                >>> timespan_2 = timerelationtools.Timespan(10, 20)
 
             ::
 
@@ -187,11 +187,11 @@ class TimespanTimespanTimeRelation(TimeRelation):
                             ],
                         logical_operator='and',
                         ),
-                    timespan_1=timespantools.Timespan(
+                    timespan_1=timerelationtools.Timespan(
                         start_offset=durationtools.Offset(5, 1),
                         stop_offset=durationtools.Offset(15, 1),
                         ),
-                    timespan_2=timespantools.Timespan(
+                    timespan_2=timerelationtools.Timespan(
                         start_offset=durationtools.Offset(10, 1),
                         stop_offset=durationtools.Offset(20, 1),
                         ),
@@ -208,7 +208,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> new_timespan_1 = timespantools.Timespan(0, 10)
+                >>> new_timespan_1 = timerelationtools.Timespan(0, 10)
 
             ::
 
@@ -226,7 +226,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> new_timespan_2 = timespantools.Timespan(2, 12)
+                >>> new_timespan_2 = timerelationtools.Timespan(2, 12)
 
             ::
 
@@ -255,16 +255,16 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Otherwise return boolean.
         '''
-        from abjad.tools import timespantools
+        from abjad.tools import timerelationtools
         timespan_1 = timespan_1 or self.timespan_1
         timespan_2 = timespan_2 or self.timespan_2
         if timespan_1 is None or timespan_2 is None:
             message = 'time relation is not fully loaded: {!r}.'
             raise ValueError(message.format(self))
-        if not isinstance(timespan_1, timespantools.Timespan):
-            timespan_1 = timespantools.Timespan()._get_timespan(timespan_1)
-        if not isinstance(timespan_2, timespantools.Timespan):
-            timespan_2 = timespantools.Timespan()._get_timespan(timespan_2)
+        if not isinstance(timespan_1, timerelationtools.Timespan):
+            timespan_1 = timerelationtools.Timespan()._get_timespan(timespan_1)
+        if not isinstance(timespan_2, timerelationtools.Timespan):
+            timespan_2 = timerelationtools.Timespan()._get_timespan(timespan_2)
         truth_value = self.inequality.evaluate(
             timespan_1.start_offset, timespan_1.stop_offset,
             timespan_2.start_offset, timespan_2.stop_offset)
@@ -275,7 +275,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespan = timespantools.Timespan(0, 10)
+            >>> timespan = timerelationtools.Timespan(0, 10)
             >>> time_relation_1 = \
             ...     timerelationtools.timespan_2_starts_during_timespan_1()
             >>> time_relation_2 = \
@@ -309,8 +309,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespan_1 = timespantools.Timespan(0, 10)
-            >>> timespan_2 = timespantools.Timespan(5, 15)
+            >>> timespan_1 = timerelationtools.Timespan(0, 10)
+            >>> timespan_2 = timerelationtools.Timespan(5, 15)
             >>> time_relation = \
             ...     timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1,
@@ -374,7 +374,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             >>> voice = Voice(
             ...     [Note(i % 36, Duration(1, 4)) for i in range(200)])
-            >>> timespan_1 = timespantools.Timespan(20, 22)
+            >>> timespan_1 = timerelationtools.Timespan(20, 22)
             >>> time_relation = \
             ...     timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
@@ -443,7 +443,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+                >>> timespan_1 = timerelationtools.Timespan(Offset(0), Offset(3, 16))
                 >>> time_relation = \
                 ...     timerelationtools.timespan_2_starts_during_timespan_1(
                 ...     timespan_1=timespan_1)
@@ -457,7 +457,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
             ::
 
-                >>> timespan_1 = timespantools.Timespan(Offset(0), Offset(3, 16))
+                >>> timespan_1 = timerelationtools.Timespan(Offset(0), Offset(3, 16))
                 >>> time_relation = \
                 ...     timerelationtools.timespan_2_starts_after_timespan_1_stops(
                 ...     timespan_1=timespan_1)
@@ -467,7 +467,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Returns nonnegative integer pair.
         '''
         from abjad.tools import timerelationtools
-        from abjad.tools import timespantools
+        from abjad.tools import timerelationtools
 
         result = self.inequality.get_offset_indices(
             self.timespan_1,

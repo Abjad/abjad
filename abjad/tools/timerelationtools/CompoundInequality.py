@@ -182,8 +182,8 @@ class CompoundInequality(TypedList):
         r'''Gets offset indices of compound inequality.
         '''
         from abjad.tools import timerelationtools
-        from abjad.tools import timespantools
-        timespans = timespantools.TimespanInventory()
+        from abjad.tools import timerelationtools
+        timespans = timerelationtools.TimespanInventory()
         for element in self:
             # TODO: compress the following two branches
             if isinstance(element, type(self)):
@@ -197,7 +197,7 @@ class CompoundInequality(TypedList):
                     timespan_1,
                     timespan_2_start_offsets,
                     timespan_2_stop_offsets)
-                timespan = timespantools.Timespan(*offset_indices)
+                timespan = timerelationtools.Timespan(*offset_indices)
                 timespans.append(timespan)
             else:
                 message = 'unknown inequality: {!r}.'

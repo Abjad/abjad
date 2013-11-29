@@ -3,7 +3,7 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import timerelationtools
-from abjad.tools import timespantools
+from abjad.tools import timerelationtools
 from abjad.tools.agenttools import inspect
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin \
     import CounttimeComponentSelectExpressionSetMethodMixin
@@ -167,7 +167,7 @@ class CounttimeComponentSelectExpression(
         rhythm_payload_expressions = \
             copy.deepcopy(rhythm_payload_expressions)
         rhythm_payload_expressions = \
-            timespantools.TimespanInventory(rhythm_payload_expressions)
+            timerelationtools.TimespanInventory(rhythm_payload_expressions)
         rhythm_payload_expressions.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_payload_expressions &= anchor_timespan
