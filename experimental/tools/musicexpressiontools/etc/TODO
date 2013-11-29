@@ -1,14 +1,14 @@
 1.  Author comprehensive time-relation tests for select_leaves().
 
 2.  Add these eight functions:
-        timerelationtools.timespan_2_starts_no_earlier_than_timespan_1_starts()
-        timerelationtools.timespan_2_starts_no_earlier_than_timespan_1_stops()
-        timerelationtools.timespan_2_starts_no_later_than_timespan_1_starts()
-        timerelationtools.timespan_2_starts_no_later_than_timespan_1_stops()
-        timerelationtools.timespan_2_stops_no_earlier_than_timespan_1_starts()
-        timerelationtools.timespan_2_stops_no_earlier_than_timespan_1_stops()
-        timerelationtools.timespan_2_stops_no_later_than_timespan_1_starts()
-        timerelationtools.timespan_2_stop_no_later_than_timespan_1_stops()
+        timespantools.timespan_2_starts_no_earlier_than_timespan_1_starts()
+        timespantools.timespan_2_starts_no_earlier_than_timespan_1_stops()
+        timespantools.timespan_2_starts_no_later_than_timespan_1_starts()
+        timespantools.timespan_2_starts_no_later_than_timespan_1_stops()
+        timespantools.timespan_2_stops_no_earlier_than_timespan_1_starts()
+        timespantools.timespan_2_stops_no_earlier_than_timespan_1_stops()
+        timespantools.timespan_2_stops_no_later_than_timespan_1_starts()
+        timespantools.timespan_2_stop_no_later_than_timespan_1_stops()
 
 3.  Integrate MetricalHierarhcy in BeatSelectExpression.
 

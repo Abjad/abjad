@@ -192,7 +192,7 @@ def test_IterablePayloadExpression__callbacks_10():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(3, 8)])
     divisions = material_manager.register_material([(1, 16), (2, 16), (3, 16), (4, 16)])
-    timespan = timerelationtools.Timespan(Offset(2, 16), Offset(10, 16))
+    timespan = timespantools.Timespan(Offset(2, 16), Offset(10, 16))
     divisions = divisions & timespan
     red_segment.set_divisions(divisions)
     red_segment.set_rhythm(library.sixteenths)

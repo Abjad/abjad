@@ -137,10 +137,10 @@ class PersistenceAgent(abctools.AbjadObject):
 
         ::
 
-            >>> inventory = timerelationtools.TimespanInventory([
-            ...     timerelationtools.Timespan(0, 1),
-            ...     timerelationtools.Timespan(2, 4),
-            ...     timerelationtools.Timespan(6, 8),
+            >>> inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 1),
+            ...     timespantools.Timespan(2, 4),
+            ...     timespantools.Timespan(6, 8),
             ...     ])
             >>> persist(inventory).as_module( # doctest: +SKIP
             ...     '~/example.py', 'inventory')

@@ -28,10 +28,10 @@ def test_scoretools_Tuplet_get_timespan_01():
         )
 
     assert inspect(staff).get_timespan(in_seconds=True) == \
-        timerelationtools.Timespan(0, 4)
+        timespantools.Timespan(0, 4)
     assert inspect(staff[0]).get_timespan(in_seconds=True) == \
-        timerelationtools.Timespan(0, 1)
+        timespantools.Timespan(0, 1)
     assert inspect(staff[1]).get_timespan(in_seconds=True) == \
-        timerelationtools.Timespan(1, 2)
+        timespantools.Timespan(1, 2)
     assert inspect(staff[-1]).get_timespan(in_seconds=True) == \
-        timerelationtools.Timespan(2, 4)
+        timespantools.Timespan(2, 4)

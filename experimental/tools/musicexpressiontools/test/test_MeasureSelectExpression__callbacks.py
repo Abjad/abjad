@@ -149,7 +149,7 @@ def test_MeasureSelectExpression__callbacks_08():
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)])
     red_segment.set_rhythm(library.sixteenths)
     red_measures = red_segment.select_measures('Voice 1')
-    timespan = timerelationtools.Timespan(Offset(0, 16), Offset(15, 16))
+    timespan = timespantools.Timespan(Offset(0, 16), Offset(15, 16))
     red_measures &= timespan
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(red_measures)

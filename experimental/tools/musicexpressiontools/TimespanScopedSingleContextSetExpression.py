@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 import abc
 from abjad.tools import durationtools
-from abjad.tools import timerelationtools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
+from abjad.tools import timespantools
 from abjad.tools.topleveltools import new
 from experimental.tools.musicexpressiontools.SetExpression import SetExpression
 
@@ -78,7 +78,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
             set_expression.target_timespan.duration
         target_timespan = new(self.target_timespan, stop_offset=stop_offset)
         result = self.__makenew__(target_timespan=target_timespan)
-        return timerelationtools.TimespanInventory([result])
+        return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
         r'''Subtract `timespan` from timespan-delimited single-context 

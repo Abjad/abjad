@@ -73,12 +73,12 @@ class StartPositionedDivisionPayloadExpression(
             >>> payload = [(6, 8), (6, 8), (3, 4)]
             >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression & timerelationtools.Timespan(0, Offset(1, 8))
+            >>> result = expression & timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -102,12 +102,12 @@ class StartPositionedDivisionPayloadExpression(
             >>> payload = [(6, 8), (6, 8), (3, 4)]
             >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression & timerelationtools.Timespan(Offset(17, 8), 100)
+            >>> result = expression & timespantools.Timespan(Offset(17, 8), 100)
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -131,12 +131,12 @@ class StartPositionedDivisionPayloadExpression(
             >>> payload = [(6, 8), (6, 8), (3, 4)]
             >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression & timerelationtools.Timespan(Offset(1, 8), Offset(17, 8))
+            >>> result = expression & timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -168,12 +168,12 @@ class StartPositionedDivisionPayloadExpression(
             >>> payload = [(6, 8), (6, 8), (3, 4)]
             >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression & timerelationtools.Timespan(100, 200)
+            >>> result = expression & timespantools.Timespan(100, 200)
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 []
                 )
 
@@ -272,7 +272,7 @@ class StartPositionedDivisionPayloadExpression(
 
             >>> expression_1 = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     2 * [(3, 16)], Offset(0))
-            >>> timespan = timerelationtools.Timespan(Offset(6, 16))
+            >>> timespan = timespantools.Timespan(Offset(6, 16))
             >>> expression_2 = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     2 * [(2, 16)], Offset(6, 16))
 
@@ -288,7 +288,7 @@ class StartPositionedDivisionPayloadExpression(
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -332,12 +332,12 @@ class StartPositionedDivisionPayloadExpression(
             >>> payload = [(6, 8), (6, 8), (3, 4)]
             >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression - timerelationtools.Timespan(0, Offset(1, 8))
+            >>> result = expression - timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -369,12 +369,12 @@ class StartPositionedDivisionPayloadExpression(
             >>> payload = [(6, 8), (6, 8), (3, 4)]
             >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression - timerelationtools.Timespan(Offset(17, 8), 100)
+            >>> result = expression - timespantools.Timespan(Offset(17, 8), 100)
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -406,12 +406,12 @@ class StartPositionedDivisionPayloadExpression(
             >>> payload = [(6, 8), (6, 8), (3, 4)]
             >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression - timerelationtools.Timespan(Offset(1, 8), Offset(17, 8))
+            >>> result = expression - timespantools.Timespan(Offset(1, 8), Offset(17, 8))
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -447,12 +447,12 @@ class StartPositionedDivisionPayloadExpression(
             >>> payload = [(6, 8), (6, 8), (3, 4)]
             >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression - timerelationtools.Timespan(100, 200)
+            >>> result = expression - timespantools.Timespan(100, 200)
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(

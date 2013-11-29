@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import timerelationtools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
+from abjad.tools import timespantools
 from experimental.tools.musicexpressiontools.RhythmRegionExpression \
     import RhythmRegionExpression
 

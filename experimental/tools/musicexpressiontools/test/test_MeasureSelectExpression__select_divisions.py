@@ -13,7 +13,7 @@ def test_MeasureSelectExpression__select_divisions_01():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
     measures = red_segment.select_measures('Voice 1')[1:3]
-    time_relation = timerelationtools.timespan_2_stops_during_timespan_1()
+    time_relation = timespantools.timespan_2_stops_during_timespan_1()
     divisions = measures.select_divisions('Voice 1', time_relation=time_relation)
     divisions.timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()

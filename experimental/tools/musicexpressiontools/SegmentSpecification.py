@@ -120,7 +120,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> print format(red_segment.fresh_single_context_set_expressions)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.SingleContextTimeSignatureSetExpression(
                         source_expression=musicexpressiontools.IterablePayloadExpression(

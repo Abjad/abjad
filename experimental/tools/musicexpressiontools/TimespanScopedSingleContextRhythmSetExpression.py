@@ -43,14 +43,14 @@ class TimespanScopedSingleContextRhythmSetExpression(
             >>> source_expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     "{ c'16 [ c'8 ] }", start_offset=0)
-            >>> timespan = timerelationtools.Timespan(0, 20)
+            >>> timespan = timespantools.Timespan(0, 20)
             >>> timespan_delimited_single_context_rhythm_set_expression = \
             ...     musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
             ...     source_expression, timespan, 'Voice 1')
 
         ::
 
-            >>> result = timespan_delimited_single_context_rhythm_set_expression - timerelationtools.Timespan(5, 15)
+            >>> result = timespan_delimited_single_context_rhythm_set_expression - timespantools.Timespan(5, 15)
 
         ::
 
@@ -64,7 +64,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                                 ),
                             start_offset=durationtools.Offset(0, 1),
                             ),
-                        target_timespan=timerelationtools.Timespan(
+                        target_timespan=timespantools.Timespan(
                             start_offset=durationtools.Offset(0, 1),
                             stop_offset=durationtools.Offset(5, 1),
                             ),
@@ -77,7 +77,7 @@ class TimespanScopedSingleContextRhythmSetExpression(
                                 ),
                             start_offset=durationtools.Offset(0, 1),
                             ),
-                        target_timespan=timerelationtools.Timespan(
+                        target_timespan=timespantools.Timespan(
                             start_offset=durationtools.Offset(15, 1),
                             stop_offset=durationtools.Offset(20, 1),
                             ),

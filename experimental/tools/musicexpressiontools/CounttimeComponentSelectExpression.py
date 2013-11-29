@@ -2,8 +2,8 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import scoretools
-from abjad.tools import timerelationtools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
+from abjad.tools import timespantools
 from abjad.tools.agenttools import inspect
 from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin \
     import CounttimeComponentSelectExpressionSetMethodMixin
@@ -160,14 +160,14 @@ class CounttimeComponentSelectExpression(
         # TODO: will this have to be optimized with bisect?
         rhythm_payload_expressions = \
             rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
-            timerelationtools.timespan_2_intersects_timespan_1(
+            timespantools.timespan_2_intersects_timespan_1(
             timespan_1=anchor_timespan))
         if not rhythm_payload_expressions:
             return
         rhythm_payload_expressions = \
             copy.deepcopy(rhythm_payload_expressions)
         rhythm_payload_expressions = \
-            timerelationtools.TimespanInventory(rhythm_payload_expressions)
+            timespantools.TimespanInventory(rhythm_payload_expressions)
         rhythm_payload_expressions.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_payload_expressions &= anchor_timespan

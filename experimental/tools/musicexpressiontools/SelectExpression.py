@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from abjad.tools.topleveltools import new
 from experimental.tools.musicexpressiontools.AnchoredExpression \
     import AnchoredExpression
@@ -34,7 +34,7 @@ class SelectExpression(
         callbacks=None,
         ):
         assert isinstance(voice_name, (str, type(None)))
-        prototype = (timerelationtools.TimeRelation, type(None))
+        prototype = (timespantools.TimeRelation, type(None))
         assert isinstance(time_relation, prototype)
         assert time_relation is None or time_relation.is_fully_unloaded
         AnchoredExpression.__init__(self, anchor=anchor)
@@ -50,7 +50,7 @@ class SelectExpression(
     def _get_time_relation(self, anchor_timespan):
         if self.time_relation is None:
             time_relation = \
-                timerelationtools.timespan_2_starts_during_timespan_1(
+                timespantools.timespan_2_starts_during_timespan_1(
                     timespan_1=anchor_timespan)
         else:
             time_relation = new(self.time_relation, timespan_1=anchor_timespan)

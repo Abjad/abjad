@@ -7,7 +7,7 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.agenttools import inspect
@@ -58,13 +58,13 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression & timerelationtools.Timespan(
+            >>> result = expression & timespantools.Timespan(
             ...     Offset(-1, 8), Offset(3, 8))
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
@@ -83,13 +83,13 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression & timerelationtools.Timespan(
+            >>> result = expression & timespantools.Timespan(
             ...     Offset(1, 8), Offset(5, 8))
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
@@ -106,12 +106,12 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
             >>> expression = musicexpressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = expression & timerelationtools.Timespan(Offset(1, 8), Offset(3, 8))
+            >>> result = expression & timespantools.Timespan(Offset(1, 8), Offset(3, 8))
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
@@ -128,12 +128,12 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
             >>> payload = [Container("c'8 d'8 e'8 f'8")]
             >>> expression = musicexpressiontools.StartPositionedRhythmPayloadExpression(payload, Offset(0))
-            >>> result = expression & timerelationtools.Timespan(100, 200)
+            >>> result = expression & timespantools.Timespan(100, 200)
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 []
                 )
 
@@ -185,7 +185,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         leaves = self.payload.select_leaves().__getitem__(expr)
         start_offset = leaves[0]._get_timespan().start_offset
         stop_offset = leaves[-1]._get_timespan().stop_offset
-        timespan = timerelationtools.Timespan(start_offset, stop_offset)
+        timespan = timespantools.Timespan(start_offset, stop_offset)
         timespan = timespan.translate(self.start_offset)
         result = self & timespan
         assert len(result) == 1, repr(result)
@@ -240,7 +240,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
@@ -291,12 +291,12 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression - timerelationtools.Timespan(0, Offset(1, 8))
+            >>> result = expression - timespantools.Timespan(0, Offset(1, 8))
 
         ::
 
                 >>> print format(result)
-                timerelationtools.TimespanInventory(
+                timespantools.TimespanInventory(
                     [
                         musicexpressiontools.StartPositionedRhythmPayloadExpression(
                             payload=scoretools.Container(
@@ -315,12 +315,12 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression - timerelationtools.Timespan(Offset(3, 8), 100)
+            >>> result = expression - timespantools.Timespan(Offset(3, 8), 100)
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
@@ -339,13 +339,13 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression - timerelationtools.Timespan(
+            >>> result = expression - timespantools.Timespan(
             ...     Offset(1, 8), Offset(3, 8))
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
@@ -370,12 +370,12 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             >>> expression = \
             ...     musicexpressiontools.StartPositionedRhythmPayloadExpression(
             ...     payload, Offset(0))
-            >>> result = expression - timerelationtools.Timespan(100, 200)
+            >>> result = expression - timespantools.Timespan(100, 200)
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(
@@ -696,7 +696,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
             return self.repeat_to_stop_offset(stop_offset)
         elif duration < self.timespan.duration:
             stop_offset = self.start_offset + duration
-            timespan = timerelationtools.Timespan(self.start_offset, stop_offset)
+            timespan = timespantools.Timespan(self.start_offset, stop_offset)
             result = self & timespan
             assert len(result) == 1, repr(result)
             result = result[0]

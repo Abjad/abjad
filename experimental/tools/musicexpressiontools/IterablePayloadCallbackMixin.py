@@ -2,7 +2,7 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from experimental.tools.musicexpressiontools.CallbackMixin \
 	import CallbackMixin
 
@@ -18,7 +18,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
 
         Returns copy of expression with callback.
         '''
-        assert isinstance(timespan, timerelationtools.Timespan), repr(timespan)
+        assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         callback = 'result = self._and__(payload_expression, {!r})'
         callback = callback.format(timespan)
         return self._copy_and_append_callback(callback)
@@ -38,7 +38,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         from experimental.tools import musicexpressiontools
         assert hasattr(payload_expression, '__and__')
         result = payload_expression & timespan
-        assert isinstance(result, timerelationtools.TimespanInventory)
+        assert isinstance(result, timespantools.TimespanInventory)
         assert len(result) == 1, repr(result)
         result = result[0]
         return result
@@ -54,7 +54,7 @@ class IterablePayloadCallbackMixin(CallbackMixin):
             'Offset': durationtools.Offset,
             'Ratio': mathtools.Ratio,
             'RotationExpression': musicexpressiontools.RotationExpression,
-            'Timespan': timerelationtools.Timespan,
+            'Timespan': timespantools.Timespan,
             'callback_cache': callback_cache,
             'payload_expression': payload_expression,
             'self': self,

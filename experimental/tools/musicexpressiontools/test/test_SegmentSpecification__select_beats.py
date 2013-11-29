@@ -161,7 +161,7 @@ def test_SegmentSpecification__select_beats_07():
     red_segment.set_divisions(red_beats)
     timespan = red_segment.timespan
     timespan = timespan.set_offsets(Offset(1, 16), Offset(5, 16))
-    time_relation = timerelationtools.timespan_2_stops_during_timespan_1()
+    time_relation = timespantools.timespan_2_stops_during_timespan_1()
     beats = timespan.select_beats('Voice 1', time_relation=time_relation)
     beats.select_leaves('Voice 1').set_leaf_color('red')
     score = score_specification.interpret()

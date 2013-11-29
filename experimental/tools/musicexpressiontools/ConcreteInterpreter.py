@@ -114,7 +114,7 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification._stop_offset = \
                 durationtools.Offset(score_duration)
             score_timespan = \
-                timerelationtools.Timespan(score_start_offset, score_stop_offset)
+                timespantools.Timespan(score_start_offset, score_stop_offset)
             self.score_specification._timespan = score_timespan
         else:
             segment_durations = [
@@ -128,7 +128,7 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification._stop_offset = \
                 durationtools.Offset(score_duration)
             score_timespan = \
-                timerelationtools.Timespan(score_start_offset, score_stop_offset)
+                timespantools.Timespan(score_start_offset, score_stop_offset)
             self.score_specification._timespan = score_timespan
             segment_offset_pairs = \
                 mathtools.cumulative_sums_pairwise(segment_durations)
@@ -141,7 +141,7 @@ class ConcreteInterpreter(Interpreter):
                 start_offset, stop_offset = segment_offset_pair
                 segment_specification._start_offset = start_offset
                 segment_specification._stop_offset = stop_offset
-                timespan = timerelationtools.Timespan(start_offset, stop_offset)
+                timespan = timespantools.Timespan(start_offset, stop_offset)
                 segment_specification._timespan = timespan
 
     def interpret_additional_parameters(self):

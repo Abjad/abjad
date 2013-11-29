@@ -6,8 +6,8 @@ from abjad.tools import scoretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools import timerelationtools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
+from abjad.tools import timespantools
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import select
 from experimental.tools.musicexpressiontools.IterablePayloadExpression \
@@ -38,14 +38,14 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         Operates in place and returns timespan inventory.
         '''
         if timespan.contains_timespan_improperly(self):
-            result = timerelationtools.TimespanInventory([self])
+            result = timespantools.TimespanInventory([self])
         elif timespan.delays_timespan(self):
             split_offset = durationtools.Offset(timespan.stop_offset)
             duration_to_keep = split_offset - self.start_offset
             result = self._split_payload_at_offsets([duration_to_keep])
             trimmed_payload = result[0]
             self._payload = trimmed_payload
-            result = timerelationtools.TimespanInventory([self])
+            result = timespantools.TimespanInventory([self])
         elif timespan.curtails_timespan(self):
             split_offset = durationtools.Offset(timespan.start_offset)
             duration_to_trim = split_offset - self.start_offset
@@ -53,24 +53,24 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             trimmed_payload = result[-1]
             self._payload = trimmed_payload
             self._start_offset = split_offset
-            result = timerelationtools.TimespanInventory([self])
+            result = timespantools.TimespanInventory([self])
         elif timespan.trisects_timespan(self):
             split_offsets = []
             split_offsets.append(timespan.start_offset - self.start_offset)
             split_offsets.append(timespan.duration)
             result = self._split_payload_at_offsets(split_offsets)
             middle_payload = result[1]
-            middle_timespan = timerelationtools.Timespan(*timespan.offsets)
+            middle_timespan = timespantools.Timespan(*timespan.offsets)
             middle_payload_expression = type(self)(
                 payload=[],
                 start_offset=middle_timespan.start_offset,
                 voice_name=self.voice_name,
                 )
             middle_payload_expression._payload = middle_payload
-            result = timerelationtools.TimespanInventory(
+            result = timespantools.TimespanInventory(
                 [middle_payload_expression])
         else:
-            result = timerelationtools.TimespanInventory()
+            result = timespantools.TimespanInventory()
         return result
 
     def __getitem__(self, expr):
@@ -142,7 +142,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             voice_name=self.voice_name,
             )
         result._payload = payload
-        return timerelationtools.TimespanInventory([result])
+        return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
         r'''Subtract `timespan` from start-positioned payload expression.
@@ -156,7 +156,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             trimmed_payload = result[-1]
             self._payload = trimmed_payload
             self._start_offset = split_offset
-            result = timerelationtools.TimespanInventory([self])
+            result = timespantools.TimespanInventory([self])
         elif timespan.curtails_timespan(self):
             split_offset = durationtools.Offset(timespan.start_offset)
             duration_to_trim = self.stop_offset - split_offset
@@ -168,7 +168,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             result = self._split_payload_at_offsets([duration_to_keep])
             trimmed_payload = result[0]
             self._payload = trimmed_payload
-            result = timerelationtools.TimespanInventory([self])
+            result = timespantools.TimespanInventory([self])
         elif timespan.trisects_timespan(self):
             split_offsets = []
             split_offsets.append(timespan.start_offset - self.start_offset)
@@ -176,14 +176,14 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             result = self._split_payload_at_offsets(split_offsets)
             left_payload = result[0]
             right_payload = result[-1]
-            left_timespan = timerelationtools.Timespan(self.start_offset)
+            left_timespan = timespantools.Timespan(self.start_offset)
             left_payload_expression = type(self)(
                 payload=[],
                 start_offset=left_timespan.start_offset,
                 voice_name=self.voice_name,
                 )
             left_payload_expression._payload = left_payload
-            right_timespan = timerelationtools.Timespan(timespan.stop_offset)
+            right_timespan = timespantools.Timespan(timespan.stop_offset)
             right_payload_expression = type(self)(
                 payload=[],
                 start_offset=right_timespan.start_offset,
@@ -192,9 +192,9 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             right_payload_expression._payload = right_payload
             payload_expressions = \
                 [left_payload_expression, right_payload_expression]
-            result = timerelationtools.TimespanInventory(payload_expressions)
+            result = timespantools.TimespanInventory(payload_expressions)
         else:
-            result = timerelationtools.TimespanInventory([self])
+            result = timespantools.TimespanInventory([self])
         return result
 
     ### PRIVATE PROPERTIES ###
@@ -301,7 +301,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
         Returns timespan.
         '''
-        return timerelationtools.Timespan(self.start_offset, self._stop_offset)
+        return timespantools.Timespan(self.start_offset, self._stop_offset)
 
     @property
     def voice_name(self):
@@ -360,7 +360,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         payload_expressions = \
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
-            timespan = timerelationtools.Timespan(start_offset)
+            timespan = timespantools.Timespan(start_offset)
             payload_expression = type(self)(
                 [],
                 start_offset=timespan.start_offset,
@@ -394,7 +394,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         payload_expressions = \
             musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
-            timespan = timerelationtools.Timespan(start_offset)
+            timespan = timespantools.Timespan(start_offset)
             payload_expression = type(self)(
                 [],
                 start_offset=timespan.start_offset,

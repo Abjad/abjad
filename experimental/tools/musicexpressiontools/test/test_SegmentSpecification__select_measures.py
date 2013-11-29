@@ -170,7 +170,7 @@ def test_SegmentSpecification__select_measures_09():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8), (5, 8)])
     left_half = red_segment.timespan.divide_by_ratio((1, 1))[0]
-    time_relation = timerelationtools.timespan_2_stops_during_timespan_1()
+    time_relation = timespantools.timespan_2_stops_during_timespan_1()
     left_measures = left_half.select_measures('Voice 1', time_relation=time_relation)
     left_measures.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()
@@ -190,7 +190,7 @@ def test_SegmentSpecification__select_measures_10():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8), (5, 8)])
     left_half = red_segment.timespan.divide_by_ratio((1, 1))[0]
-    time_relation = timerelationtools.timespan_2_overlaps_stop_of_timespan_1()
+    time_relation = timespantools.timespan_2_overlaps_stop_of_timespan_1()
     left_measures = left_half.select_measures('Voice 1', time_relation=time_relation)
     left_measures.timespan.set_rhythm(library.eighths)
     score = score_specification.interpret()

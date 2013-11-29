@@ -63,13 +63,13 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> timespan = timerelationtools.Timespan((1, 16), (5, 16))
+            >>> timespan = timespantools.Timespan((1, 16), (5, 16))
             >>> result = payload_expression & timespan
 
         ::
 
             >>> print format(result)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.IterablePayloadExpression(
                         payload=(

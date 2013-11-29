@@ -164,9 +164,9 @@ class MetricAccentKernel(AbjadObject):
 
             ::
 
-                >>> a = timerelationtools.Timespan(0, 10)
-                >>> b = timerelationtools.Timespan(5, 15)
-                >>> c = timerelationtools.Timespan(15, 20)
+                >>> a = timespantools.Timespan(0, 10)
+                >>> b = timespantools.Timespan(5, 15)
+                >>> c = timespantools.Timespan(15, 20)
 
             ::
 

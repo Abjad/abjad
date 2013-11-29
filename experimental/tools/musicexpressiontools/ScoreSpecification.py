@@ -53,7 +53,7 @@ class ScoreSpecification(Specification):
         self._postrhythm_set_expressions = \
             musicexpressiontools.ExpressionInventory()
         self._multiple_context_set_expressions = \
-            timerelationtools.TimespanInventory()
+            timespantools.TimespanInventory()
         self._next_lexical_rank = 0
         self._region_expressions_by_attribute = \
             musicexpressiontools.AttributeDictionary()
@@ -62,7 +62,7 @@ class ScoreSpecification(Specification):
         self._segment_specification_class = \
             musicexpressiontools.SegmentSpecification
         self._single_context_time_signature_set_expressions = \
-            timerelationtools.TimespanInventory()
+            timespantools.TimespanInventory()
         self._voice_data_structures_by_voice = \
             musicexpressiontools.VoiceDictionary(score_template())
 
@@ -153,7 +153,7 @@ class ScoreSpecification(Specification):
         ::
 
             >>> print format(score_specification.fresh_single_context_set_expressions)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 []
                 )
 
@@ -181,7 +181,7 @@ class ScoreSpecification(Specification):
         ::
 
             >>> print format(score_specification.multiple_context_set_expressions)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.MultipleContextSetExpression(
                         attribute='time_signatures',
@@ -265,7 +265,7 @@ class ScoreSpecification(Specification):
             ...     score_specification.region_expressions_by_attribute.itervalues():
             ...     if timespan_inventory:
             ...         print format(timespan_inventory)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.LiteralDivisionRegionExpression(
                         source_expression=(
@@ -297,7 +297,7 @@ class ScoreSpecification(Specification):
                         ),
                     ]
                 )
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.RhythmMakerRhythmRegionExpression(
                         source_expression=rhythmmakertools.TaleaRhythmMaker(
@@ -512,7 +512,7 @@ class ScoreSpecification(Specification):
         ::
 
             >>> print format(score_specification.single_context_time_signature_set_expressions)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.SingleContextTimeSignatureSetExpression(
                         source_expression=musicexpressiontools.IterablePayloadExpression(
@@ -619,7 +619,7 @@ class ScoreSpecification(Specification):
             ...         voice_proxy.payload_expressions_by_attribute.itervalues():
             ...         if timespan_inventory:
             ...             print format(timespan_inventory)
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -661,7 +661,7 @@ class ScoreSpecification(Specification):
                         ),
                     ]
                 )
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(),
@@ -670,7 +670,7 @@ class ScoreSpecification(Specification):
                         ),
                     ]
                 )
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedDivisionPayloadExpression(
                         payload=musicexpressiontools.DivisionList(
@@ -712,7 +712,7 @@ class ScoreSpecification(Specification):
                         ),
                     ]
                 )
-            timerelationtools.TimespanInventory(
+            timespantools.TimespanInventory(
                 [
                     musicexpressiontools.StartPositionedRhythmPayloadExpression(
                         payload=scoretools.Container(),
@@ -802,7 +802,7 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> timespan = timerelationtools.Timespan((0, 4), (5, 4))
+            >>> timespan = timespantools.Timespan((0, 4), (5, 4))
             >>> score_specification.get_time_signature_slice(timespan)
             [(2, 8), (3, 8), (4, 8), (2, 16)]
 

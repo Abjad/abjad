@@ -7,7 +7,7 @@ from abjad.tools import systemtools
 from abjad.tools import lilypondnametools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import contextualize
 from abjad.tools.topleveltools import detach
@@ -62,7 +62,7 @@ class Component(AbjadObject):
         self._start_offset_in_seconds = None
         self._stop_offset = None
         self._stop_offset_in_seconds = None
-        self._timespan = timerelationtools.Timespan()
+        self._timespan = timespantools.Timespan()
 
     ### SPECIAL METHODS ###
 
@@ -571,7 +571,7 @@ class Component(AbjadObject):
             self._update_now(offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
                 raise MissingTempoError
-            return timerelationtools.Timespan(
+            return timespantools.Timespan(
                 start_offset=self._start_offset_in_seconds,
                 stop_offset=self._stop_offset_in_seconds,
                 )

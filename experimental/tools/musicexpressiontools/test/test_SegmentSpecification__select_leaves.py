@@ -122,7 +122,7 @@ def test_SegmentSpecification__select_leaves_06():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.note_tokens)
     measure = red_segment.select_measures('Voice 1')[1]
-    time_relation = timerelationtools.timespan_2_stops_during_timespan_1()
+    time_relation = timespantools.timespan_2_stops_during_timespan_1()
     measure.select_leaves('Voice 1', time_relation=time_relation).set_leaf_color('red')
     score = score_specification.interpret()
 
@@ -142,7 +142,7 @@ def test_SegmentSpecification__select_leaves_07():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.note_tokens)
     measure = red_segment.select_measures('Voice 1')[1]
-    time_relation = timerelationtools.timespan_2_intersects_timespan_1()
+    time_relation = timespantools.timespan_2_intersects_timespan_1()
     measure.select_leaves('Voice 1', time_relation=time_relation).set_leaf_color('red')
     score = score_specification.interpret()
 

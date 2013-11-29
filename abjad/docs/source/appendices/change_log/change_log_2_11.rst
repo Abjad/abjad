@@ -315,7 +315,7 @@ The functions are these::
     tabulate_well_formedness_violations_in_expr()
 
 Removed two ``scoretools`` functions.
-Use ``timerelationtools`` instead.
+Use ``timespantools`` instead.
 The functions are these::
 
     scoretools.number_is_between_start_and_stop_offsets_of_component()

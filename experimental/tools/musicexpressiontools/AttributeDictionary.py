@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
 from abjad.tools import datastructuretools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
     import AttributeNameEnumeration
@@ -20,7 +20,7 @@ class AttributeDictionary(AbjadObject, collections.OrderedDict):
     def __init__(self):
         collections.OrderedDict.__init__(self)
         for attribute in self.attributes:
-            self[attribute] = timerelationtools.TimespanInventory()
+            self[attribute] = timespantools.TimespanInventory()
         assert 'time_signatures' in self
 
     ### SPECIAL METHODS ###

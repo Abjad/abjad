@@ -535,55 +535,55 @@ Refer to the ``SearchTree`` API entry for information on controlling the
 rhythmic complexity of ``Quantizer`` output.
 
 
-The ``timerelationtools`` package
+The ``timespantools`` package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A new ``timerelationtools`` package is now available.
+A new ``timespantools`` package is now available.
 
-The ``timerelationtools`` package features seven functions for using natural
+The ``timespantools`` package features seven functions for using natural
 language to compare the in-time position on an offset relative to a reference
 timespan::
 
-    timerelationtools.offset_happens_after_timespan_starts()
-    timerelationtools.offset_happens_after_timespan_stops()
-    timerelationtools.offset_happens_before_timespan_starts()
-    timerelationtools.offset_happens_before_timespan_stops()
-    timerelationtools.offset_happens_during_timespan()
-    timerelationtools.offset_happens_when_timespan_starts()
-    timerelationtools.offset_happens_when_timespan_stops()
+    timespantools.offset_happens_after_timespan_starts()
+    timespantools.offset_happens_after_timespan_stops()
+    timespantools.offset_happens_before_timespan_starts()
+    timespantools.offset_happens_before_timespan_stops()
+    timespantools.offset_happens_during_timespan()
+    timespantools.offset_happens_when_timespan_starts()
+    timespantools.offset_happens_when_timespan_stops()
 
-The ``timerelationtools`` package contains ``26`` functions for using natural
+The ``timespantools`` package contains ``26`` functions for using natural
 language to compare the in-time position of one timespan relative to another::
 
-    timerelationtools.timespan_2_contains_timespan_1_improperly()
-    timerelationtools.timespan_2_curtails_timespan_1()
-    timerelationtools.timespan_2_delays_timespan_1()
-    timerelationtools.timespan_2_happens_during_timespan_1()
-    timerelationtools.timespan_2_intersects_timespan_1()
-    timerelationtools.timespan_2_is_congruent_to_timespan_1()
-    timerelationtools.timespan_2_overlaps_all_of_timespan_1()
-    timerelationtools.timespan_2_overlaps_only_start_of_timespan_1()
-    timerelationtools.timespan_2_overlaps_only_stop_of_timespan_1()
-    timerelationtools.timespan_2_overlaps_start_of_timespan_1()
-    timerelationtools.timespan_2_overlaps_stop_of_timespan_1()
-    timerelationtools.timespan_2_starts_after_timespan_1_starts()
-    timerelationtools.timespan_2_starts_after_timespan_1_stops()
-    timerelationtools.timespan_2_starts_before_timespan_1_starts()
-    timerelationtools.timespan_2_starts_before_timespan_1_stops()
-    timerelationtools.timespan_2_starts_during_timespan_1()
-    timerelationtools.timespan_2_starts_when_timespan_1_starts()
-    timerelationtools.timespan_2_starts_when_timespan_1_stops()
-    timerelationtools.timespan_2_stops_after_timespan_1_starts()
-    timerelationtools.timespan_2_stops_after_timespan_1_stops()
-    timerelationtools.timespan_2_stops_before_timespan_1_starts()
-    timerelationtools.timespan_2_stops_before_timespan_1_stops()
-    timerelationtools.timespan_2_stops_during_timespan_1()
-    timerelationtools.timespan_2_stops_when_timespan_1_starts()
-    timerelationtools.timespan_2_stops_when_timespan_1_stops()
-    timerelationtools.timespan_2_trisects_timespan_1()
+    timespantools.timespan_2_contains_timespan_1_improperly()
+    timespantools.timespan_2_curtails_timespan_1()
+    timespantools.timespan_2_delays_timespan_1()
+    timespantools.timespan_2_happens_during_timespan_1()
+    timespantools.timespan_2_intersects_timespan_1()
+    timespantools.timespan_2_is_congruent_to_timespan_1()
+    timespantools.timespan_2_overlaps_all_of_timespan_1()
+    timespantools.timespan_2_overlaps_only_start_of_timespan_1()
+    timespantools.timespan_2_overlaps_only_stop_of_timespan_1()
+    timespantools.timespan_2_overlaps_start_of_timespan_1()
+    timespantools.timespan_2_overlaps_stop_of_timespan_1()
+    timespantools.timespan_2_starts_after_timespan_1_starts()
+    timespantools.timespan_2_starts_after_timespan_1_stops()
+    timespantools.timespan_2_starts_before_timespan_1_starts()
+    timespantools.timespan_2_starts_before_timespan_1_stops()
+    timespantools.timespan_2_starts_during_timespan_1()
+    timespantools.timespan_2_starts_when_timespan_1_starts()
+    timespantools.timespan_2_starts_when_timespan_1_stops()
+    timespantools.timespan_2_stops_after_timespan_1_starts()
+    timespantools.timespan_2_stops_after_timespan_1_stops()
+    timespantools.timespan_2_stops_before_timespan_1_starts()
+    timespantools.timespan_2_stops_before_timespan_1_stops()
+    timespantools.timespan_2_stops_during_timespan_1()
+    timespantools.timespan_2_stops_when_timespan_1_starts()
+    timespantools.timespan_2_stops_when_timespan_1_stops()
+    timespantools.timespan_2_trisects_timespan_1()
 
 Here's an example of some of the natural language comparison functions
-available in the ``timerelationtools`` package::
+available in the ``timespantools`` package::
 
     >>> staff_1 = Staff(r"\times 2/3 { c'4 d'4 e'4 } \times 2/3 { f'4 g'4 a'4 }")
     >>> staff_2 = Staff("c'2. d'4")
@@ -618,49 +618,49 @@ available in the ``timerelationtools`` package::
 
 ::
 
-    >>> timerelationtools.timespan_2_happens_during_timespan_1(
+    >>> timespantools.timespan_2_happens_during_timespan_1(
     ... timespan_1=last_tuplet, timespan_2=long_note)
     False
 
 ::
 
-    >>> timerelationtools.timespan_2_intersects_timespan_1(
+    >>> timespantools.timespan_2_intersects_timespan_1(
     ... timespan_1=last_tuplet, timespan_2=long_note)
     True
 
 ::
 
-    >>> timerelationtools.timespan_2_is_congruent_to_timespan_1(
+    >>> timespantools.timespan_2_is_congruent_to_timespan_1(
     ... timespan_1=last_tuplet, timespan_2=long_note)
     False
 
 ::
 
-    >>> timerelationtools.timespan_2_overlaps_all_of_timespan_1(
+    >>> timespantools.timespan_2_overlaps_all_of_timespan_1(
     ... timespan_1=last_tuplet, timespan_2=long_note)
     False
 
 ::
 
-    >>> timerelationtools.timespan_2_overlaps_start_of_timespan_1(
+    >>> timespantools.timespan_2_overlaps_start_of_timespan_1(
     ... timespan_1=last_tuplet, timespan_2=long_note)
     True
 
 ::
 
-    >>> timerelationtools.timespan_2_overlaps_stop_of_timespan_1(
+    >>> timespantools.timespan_2_overlaps_stop_of_timespan_1(
     ... timespan_1=last_tuplet, timespan_2=long_note)
     False
 
 ::
 
-    >>> timerelationtools.timespan_2_starts_after_timespan_1_starts(
+    >>> timespantools.timespan_2_starts_after_timespan_1_starts(
     ... timespan_1=last_tuplet, timespan_2=long_note)
     False
 
 ::
 
-    >>> timerelationtools.timespan_2_starts_after_timespan_1_stops(
+    >>> timespantools.timespan_2_starts_after_timespan_1_stops(
     ... timespan_1=last_tuplet, timespan_2=long_note)
     False
 

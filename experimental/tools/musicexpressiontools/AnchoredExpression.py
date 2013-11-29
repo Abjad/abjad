@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import datastructuretools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from experimental.tools.musicexpressiontools.Expression import Expression
 
 
@@ -65,7 +65,7 @@ class AnchoredExpression(Expression):
                     new_result.append(expression.get_timespan())
                 elif hasattr(expression, 'timespan'):
                     new_result.append(expression.timespan)
-                elif isinstance(expression.payload[0], timerelationtools.Timespan):
+                elif isinstance(expression.payload[0], timespantools.Timespan):
                     new_result.append(expression.payload[0])
                 else:
                     raise TypeError(expression)
@@ -74,7 +74,7 @@ class AnchoredExpression(Expression):
             return result.get_timespan()
         elif hasattr(result, 'timespan'):
             return result.timespan
-        elif isinstance(result.payload[0], timerelationtools.Timespan):
+        elif isinstance(result.payload[0], timespantools.Timespan):
             return result.payload[0]
         else:
             raise TypeError(result)

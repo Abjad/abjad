@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import timerelationtools
-from abjad.tools import timerelationtools
+from abjad.tools import timespantools
+from abjad.tools import timespantools
 from experimental.tools.musicexpressiontools.SetExpressionLookupExpression \
     import SetExpressionLookupExpression
 
@@ -75,7 +75,7 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
         timespan_inventory = \
             self._get_timespan_delimited_single_context_set_expressions(
                 self.attribute)
-        time_relation = timerelationtools.offset_happens_during_timespan(
+        time_relation = timespantools.offset_happens_during_timespan(
             offset=offset)
         candidate_set_expressions = \
             timespan_inventory.get_timespans_that_satisfy_time_relation(

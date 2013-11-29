@@ -530,12 +530,12 @@ class ContiguousSelection(Selection):
 
         Returns timespan.
         '''
-        from abjad.tools import timerelationtools
+        from abjad.tools import timespantools
         if in_seconds:
             raise NotImplementedError
         start_offset = min(x._get_timespan().start_offset for x in self)
         stop_offset = max(x._get_timespan().stop_offset for x in self)
-        return timerelationtools.Timespan(start_offset, stop_offset)
+        return timespantools.Timespan(start_offset, stop_offset)
 
     def group_by(self, predicate):
         '''Groups components in contiguous selection by `predicate`.
