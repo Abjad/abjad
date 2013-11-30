@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_01():
+def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
@@ -50,7 +50,7 @@ def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_01():
     assert inspect(staff).is_well_formed()
 
 
-def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_02():
+def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 
@@ -84,7 +84,7 @@ def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_02():
     assert len(result) == 1
 
 
-def test_selectiontools_TieChain__fuse_leaves_by_immediate_parent_03():
+def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_03():
     r'''Fuse leaves in tie chain with same immediate parent.
     '''
 

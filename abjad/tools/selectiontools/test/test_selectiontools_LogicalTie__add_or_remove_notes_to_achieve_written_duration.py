@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_selectiontools_TieChain__add_or_remove_notes_to_achieve_written_duration_01():
+def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_01():
     r'''Change trivial tie chain to nontrivial tie chain.
     '''
 
@@ -29,7 +29,7 @@ def test_selectiontools_TieChain__add_or_remove_notes_to_achieve_written_duratio
         )
 
 
-def test_selectiontools_TieChain__add_or_remove_notes_to_achieve_written_duration_02():
+def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_02():
     r'''Change nontrivial tie chain to trivial tie chain.
     '''
 

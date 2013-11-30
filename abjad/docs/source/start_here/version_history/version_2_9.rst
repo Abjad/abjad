@@ -332,15 +332,15 @@ Regularized measure modification behavior.
 
 New functionality is available for working with ties.
 
-- Added a ``TieChain`` class to the ``tietools`` package.
-  Tie chains now return as a custom ``TieChain`` object instead of tuple:: 
+- Added a ``LogicalTie`` class to the ``tietools`` package.
+  Tie chains now return as a custom ``LogicalTie`` object instead of tuple:: 
 
     >>> staff = Staff("c' d' e' ~ e'")
 
   ::
 
     >>> tietools.get_tie_chain(staff[2])
-    TieChain((Note("e'4"), Note("e'4")))
+    LogicalTie((Note("e'4"), Note("e'4")))
 
 
   Reimplemented tie chain duration attributes as explicit class attributes.
@@ -353,12 +353,12 @@ New functionality is available for working with ties.
 
   Use these read-only properties instead::
 
-    TieChain.preprolated_duration
-    TieChain.prolated_duration
-    TieChain.get_duration(in_seconds=True)
-    TieChain.written_duration
+    LogicalTie.preprolated_duration
+    LogicalTie.prolated_duration
+    LogicalTie.get_duration(in_seconds=True)
+    LogicalTie.written_duration
 
-  The ``TieChain`` class inherits from the new ``SliceSelection`` abstract base class.
+  The ``LogicalTie`` class inherits from the new ``SliceSelection`` abstract base class.
 
   Added new ``tietools`` functions:: 
 
@@ -367,15 +367,15 @@ New functionality is available for working with ties.
     tietools.iterate_nontrivial_tie_chains_forward_in_expr()
     tietools.iterate_nontrivial_tie_chains_backward_in_expr()
 
-  Removed ``tietools.is_tie_chain(expr)``.  Use ``isinstance(expr, selectiontools.TieChain)`` instead.
+  Removed ``tietools.is_tie_chain(expr)``.  Use ``isinstance(expr, selectiontools.LogicalTie)`` instead.
 
-  Removed ``tietools.get_leaves_in_tie_chain()``. Use ``TieChain.leaves`` instead.
+  Removed ``tietools.get_leaves_in_tie_chain()``. Use ``LogicalTie.leaves`` instead.
 
   Removed ``tietools.group_leaves_in_tie_chain_by_immediate_parents()``.
-  Use ``TieChain.leaves_grouped_by_immediate_parents instead``.
+  Use ``LogicalTie.leaves_grouped_by_immediate_parents instead``.
 
   Removed ``tietools.is_tie_chain_with_all_leaves_in_same_parent()``.
-  Use ``TieChain.all_leaves_are_in_same_parent`` instead.
+  Use ``LogicalTie.all_leaves_are_in_same_parent`` instead.
 
 
 Added a new ``stringtools`` package.

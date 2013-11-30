@@ -828,10 +828,10 @@ class IterationAgent(abctools.AbjadObject):
             >>> for x in iterate(staff).by_tie_chain():
             ...     x
             ...
-            TieChain(Note("c'4"), Note("c'16"))
-            TieChain(Note("d'8"),)
-            TieChain(Note("e'8"),)
-            TieChain(Note("f'4"), Note("f'16"))
+            LogicalTie(Note("c'4"), Note("c'16"))
+            LogicalTie(Note("d'8"),)
+            LogicalTie(Note("e'8"),)
+            LogicalTie(Note("f'4"), Note("f'16"))
 
         Iterate tie chains backward in `expr`:
 
@@ -840,10 +840,10 @@ class IterationAgent(abctools.AbjadObject):
             >>> for x in iterate(staff).by_tie_chain(reverse=True):
             ...     x
             ...
-            TieChain(Note("f'4"), Note("f'16"))
-            TieChain(Note("e'8"),)
-            TieChain(Note("d'8"),)
-            TieChain(Note("c'4"), Note("c'16"))
+            LogicalTie(Note("f'4"), Note("f'16"))
+            LogicalTie(Note("e'8"),)
+            LogicalTie(Note("d'8"),)
+            LogicalTie(Note("c'4"), Note("c'16"))
 
         Iterate pitched tie chains in `expr`:
 
@@ -852,10 +852,10 @@ class IterationAgent(abctools.AbjadObject):
             >>> for x in iterate(staff).by_tie_chain(pitched=True):
             ...     x
             ...
-            TieChain(Note("c'4"), Note("c'16"))
-            TieChain(Note("d'8"),)
-            TieChain(Note("e'8"),)
-            TieChain(Note("f'4"), Note("f'16"))
+            LogicalTie(Note("c'4"), Note("c'16"))
+            LogicalTie(Note("d'8"),)
+            LogicalTie(Note("e'8"),)
+            LogicalTie(Note("f'4"), Note("f'16"))
 
         Iterate nontrivial tie chains in `expr`:
 
@@ -864,8 +864,8 @@ class IterationAgent(abctools.AbjadObject):
             >>> for x in iterate(staff).by_tie_chain(nontrivial=True):
             ...     x
             ...
-            TieChain(Note("c'4"), Note("c'16"))
-            TieChain(Note("f'4"), Note("f'16"))
+            LogicalTie(Note("c'4"), Note("c'16"))
+            LogicalTie(Note("f'4"), Note("f'16"))
 
         Returns generator.
         '''
@@ -1100,11 +1100,11 @@ class IterationAgent(abctools.AbjadObject):
             >>> for x in iterate(staff).by_topmost_tie_chains_and_components():
             ...     x
             ...
-            TieChain(Note("c'8"), Note("c'32"))
-            TieChain(Note("d'8"), Note("d'32"))
+            LogicalTie(Note("c'8"), Note("c'32"))
+            LogicalTie(Note("d'8"), Note("d'32"))
             Tuplet((2, 3), "e'8 f'8 g'8")
-            TieChain(Note("a'8"), Note("a'32"))
-            TieChain(Note("b'8"), Note("b'32"))
+            LogicalTie(Note("a'8"), Note("a'32"))
+            LogicalTie(Note("b'8"), Note("b'32"))
 
         Raise tie chain error on overlapping tie chains.
 

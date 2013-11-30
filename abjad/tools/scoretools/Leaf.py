@@ -326,12 +326,12 @@ class Leaf(Component):
             tie_spanners = component._get_spanners(prototype)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
-                return selectiontools.TieChain(music=tie_spanner.leaves)
+                return selectiontools.LogicalTie(music=tie_spanner.leaves)
             elif 1 < len(tie_spanners):
                 message = 'multiple tie spanners found.'
                 raise ExtraSpannerError(message)
         else:
-            return selectiontools.TieChain(music=self)
+            return selectiontools.LogicalTie(music=self)
 
     def _process_contribution_packet(self, contribution_packet):
         result = ''

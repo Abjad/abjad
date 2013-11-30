@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_selectiontools_TieChain_all_leaves_are_in_same_parent_01():
+def test_selectiontools_LogicalTie_all_leaves_are_in_same_parent_01():
 
 
     staff = scoretools.make_repeated_notes(4)
@@ -12,7 +12,7 @@ def test_selectiontools_TieChain_all_leaves_are_in_same_parent_01():
     assert inspect(staff[0]).get_tie_chain().all_leaves_are_in_same_parent
 
 
-def test_selectiontools_TieChain_all_leaves_are_in_same_parent_02():
+def test_selectiontools_LogicalTie_all_leaves_are_in_same_parent_02():
 
     staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
     tie = spannertools.Tie()
@@ -41,7 +41,7 @@ def test_selectiontools_TieChain_all_leaves_are_in_same_parent_02():
     assert inspect(staff.select_leaves()[3]).get_tie_chain().all_leaves_are_in_same_parent
 
 
-def test_selectiontools_TieChain_all_leaves_are_in_same_parent_03():
+def test_selectiontools_LogicalTie_all_leaves_are_in_same_parent_03():
 
     staff = Staff(r"\times 2/3 { c'8 c'8 c'8 ~ } \times 2/3 { c'8 c'8 c'8 }")
 

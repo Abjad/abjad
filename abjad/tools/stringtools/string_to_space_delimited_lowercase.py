@@ -6,8 +6,8 @@ def string_to_space_delimited_lowercase(string):
 
     ::
 
-        >>> stringtools.string_to_space_delimited_lowercase('TieChain')
-        'tie chain'
+        >>> stringtools.string_to_space_delimited_lowercase('LogicalTie')
+        'logical tie'
 
     Change underscore-delimited `string` to space-delimited lowercase:
 

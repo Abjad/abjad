@@ -9,7 +9,7 @@ from abjad.tools.selectiontools.ContiguousSelection \
     import ContiguousSelection
 
 
-class TieChain(ContiguousSelection):
+class LogicalTie(ContiguousSelection):
     r'''All the notes in a tie chain.
 
     ..  container:: example
@@ -22,7 +22,7 @@ class TieChain(ContiguousSelection):
         ::
 
             >>> inspect(staff[2]).get_tie_chain()
-            TieChain(Note("e'4"), Note("e'4"))
+            LogicalTie(Note("e'4"), Note("e'4"))
 
     '''
 

@@ -29,12 +29,12 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                 if tempos:
                     if current_sub_chain:
                         current_sub_chain = \
-                            selectiontools.TieChain(current_sub_chain)
+                            selectiontools.LogicalTie(current_sub_chain)
                         sub_chains.append(current_sub_chain)
                     current_sub_chain = []
                 current_sub_chain.append(leaf)
             if current_sub_chain:
-                current_sub_chain = selectiontools.TieChain(current_sub_chain)
+                current_sub_chain = selectiontools.LogicalTie(current_sub_chain)
                 sub_chains.append(current_sub_chain)
             for sub_chain in sub_chains:
                 sub_chain._fuse_leaves_by_immediate_parent()

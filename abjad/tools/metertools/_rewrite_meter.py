@@ -94,7 +94,7 @@ def _rewrite_meter(
                 #print ''
                 shards = mutate(tie_chain[:]).split([split_offset])
                 tie_chains = \
-                    [selectiontools.TieChain(shard) for shard in shards]
+                    [selectiontools.LogicalTie(shard) for shard in shards]
                 for tie_chain in tie_chains:
                     recurse(tie_chain, depth=depth)
             else:
@@ -121,7 +121,7 @@ def _rewrite_meter(
             #print ''
             shards = mutate(tie_chain[:]).split([split_offset])
             tie_chains = \
-                [selectiontools.TieChain(shard) for shard in shards]
+                [selectiontools.LogicalTie(shard) for shard in shards]
             for tie_chain in tie_chains:
                 recurse(tie_chain, depth=depth)
 
@@ -161,7 +161,7 @@ def _rewrite_meter(
     # Cache results of iterator, as we'll be mutating the underlying collection.
     items = tuple(_iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(components))
     for item in items:
-        if isinstance(item, selectiontools.TieChain):
+        if isinstance(item, selectiontools.LogicalTie):
             #print 'RECURSING:', item
             recurse(item, depth=0)
         else:
@@ -244,37 +244,37 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         ...     staff[0]): x
         ...
-        TieChain(Note("c'4"),)
-        TieChain(Note("d'4"),)
+        LogicalTie(Note("c'4"),)
+        LogicalTie(Note("d'4"),)
 
     ::
 
         >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         ...     staff[1]): x
         ...
-        TieChain(Note("d'8."),)
-        TieChain(Rest('r16'), Rest('r8.'))
-        TieChain(Note("e'16"),)
+        LogicalTie(Note("d'8."),)
+        LogicalTie(Rest('r16'), Rest('r8.'))
+        LogicalTie(Note("e'16"),)
         Tuplet((2, 3), "e'8 e'8 f'8")
-        TieChain(Note("f'4"),)
+        LogicalTie(Note("f'4"),)
 
     ::
 
         >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         ...     staff[2]): x
         ...
-        TieChain(Note("f'8"),)
-        TieChain(Note("g'8"), Note("g'4"))
-        TieChain(Note("a'4"), Note("a'8"))
-        TieChain(Note("b'8"),)
+        LogicalTie(Note("f'8"),)
+        LogicalTie(Note("g'8"), Note("g'4"))
+        LogicalTie(Note("a'4"), Note("a'8"))
+        LogicalTie(Note("b'8"),)
 
     ::
 
         >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         ...     staff[3]): x
         ...
-        TieChain(Note("b'4"),)
-        TieChain(Note("c''4"),)
+        LogicalTie(Note("b'4"),)
+        LogicalTie(Note("c''4"),)
 
     Returns generator.
     '''
@@ -297,7 +297,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
             elif current_leaf_group_is_silent or \
                 this_tie_spanner is None or \
                 last_tie_spanner != this_tie_spanner:
-                yield selectiontools.TieChain(current_leaf_group)
+                yield selectiontools.LogicalTie(current_leaf_group)
                 current_leaf_group = []
             current_leaf_group_is_silent = False
             current_leaf_group.append(x)
@@ -306,14 +306,14 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
             if current_leaf_group is None:
                 current_leaf_group = []
             elif not current_leaf_group_is_silent:
-                yield selectiontools.TieChain(current_leaf_group)
+                yield selectiontools.LogicalTie(current_leaf_group)
                 current_leaf_group = []
             current_leaf_group_is_silent = True
             current_leaf_group.append(x)
             last_tie_spanner = None
         elif isinstance(x, scoretools.Container):
             if current_leaf_group is not None:
-                yield selectiontools.TieChain(current_leaf_group)
+                yield selectiontools.LogicalTie(current_leaf_group)
                 current_leaf_group = None
                 last_tie_spanner = None
             yield x
@@ -322,4 +322,4 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
             message = 'unhandled component: {!r}.'.format(x)
             raise Exception(message)
     if current_leaf_group is not None:
-        yield selectiontools.TieChain(current_leaf_group)
+        yield selectiontools.LogicalTie(current_leaf_group)

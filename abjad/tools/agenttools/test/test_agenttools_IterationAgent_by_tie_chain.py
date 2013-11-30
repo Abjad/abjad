@@ -26,8 +26,8 @@ def test_agenttools_IterationAgent_by_tie_chain_01():
 
     chains = list(iterate(staff).by_tie_chain(reverse=True))
 
-    assert chains[0] == selectiontools.TieChain((staff[2], staff[3]))
-    assert chains[1] == selectiontools.TieChain((staff[0], staff[1]))
+    assert chains[0] == selectiontools.LogicalTie((staff[2], staff[3]))
+    assert chains[1] == selectiontools.LogicalTie((staff[0], staff[1]))
 
 
 def test_agenttools_IterationAgent_by_tie_chain_02():
@@ -38,10 +38,10 @@ def test_agenttools_IterationAgent_by_tie_chain_02():
 
     chains = list(iterate(staff).by_tie_chain(reverse=True))
 
-    assert chains[0] == selectiontools.TieChain(staff[3])
-    assert chains[1] == selectiontools.TieChain(staff[2])
-    assert chains[2] == selectiontools.TieChain(staff[1])
-    assert chains[3] == selectiontools.TieChain(staff[0])
+    assert chains[0] == selectiontools.LogicalTie(staff[3])
+    assert chains[1] == selectiontools.LogicalTie(staff[2])
+    assert chains[2] == selectiontools.LogicalTie(staff[1])
+    assert chains[3] == selectiontools.LogicalTie(staff[0])
 
 
 def test_agenttools_IterationAgent_by_tie_chain_03():
@@ -56,8 +56,8 @@ def test_agenttools_IterationAgent_by_tie_chain_03():
 
     chains = list(iterate(staff).by_tie_chain())
 
-    assert chains[0] == selectiontools.TieChain((staff[0], staff[1]))
-    assert chains[1] == selectiontools.TieChain((staff[2], staff[3]))
+    assert chains[0] == selectiontools.LogicalTie((staff[0], staff[1]))
+    assert chains[1] == selectiontools.LogicalTie((staff[2], staff[3]))
 
 
 def test_agenttools_IterationAgent_by_tie_chain_04():
@@ -77,10 +77,10 @@ def test_agenttools_IterationAgent_by_tie_chain_04():
 
     chains = list(iterate(staff).by_tie_chain())
 
-    assert chains[0] == selectiontools.TieChain(staff[0])
-    assert chains[1] == selectiontools.TieChain(staff[1])
-    assert chains[2] == selectiontools.TieChain(staff[2])
-    assert chains[3] == selectiontools.TieChain(staff[3])
+    assert chains[0] == selectiontools.LogicalTie(staff[0])
+    assert chains[1] == selectiontools.LogicalTie(staff[1])
+    assert chains[2] == selectiontools.LogicalTie(staff[2])
+    assert chains[3] == selectiontools.LogicalTie(staff[3])
 
 
 def test_agenttools_IterationAgent_by_tie_chain_05():
@@ -111,8 +111,8 @@ def test_agenttools_IterationAgent_by_tie_chain_07():
     tie_chains = list(iterate(staff).by_tie_chain(
         pitched=True, reverse=True))
 
-    assert tie_chains[0] == selectiontools.TieChain(staff[3:5])
-    assert tie_chains[1] == selectiontools.TieChain(staff[:2])
+    assert tie_chains[0] == selectiontools.LogicalTie(staff[3:5])
+    assert tie_chains[1] == selectiontools.LogicalTie(staff[:2])
 
 
 def test_agenttools_IterationAgent_by_tie_chain_08():
@@ -121,5 +121,5 @@ def test_agenttools_IterationAgent_by_tie_chain_08():
 
     tie_chains = list(iterate(staff).by_tie_chain(pitched=True))
 
-    assert tie_chains[0] == selectiontools.TieChain(staff[:2])
-    assert tie_chains[1] == selectiontools.TieChain(staff[3:5])
+    assert tie_chains[0] == selectiontools.LogicalTie(staff[:2])
+    assert tie_chains[1] == selectiontools.LogicalTie(staff[3:5])
