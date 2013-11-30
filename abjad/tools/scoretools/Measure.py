@@ -59,7 +59,7 @@ class Measure(FixedDurationContainer):
 
     # TODO: remove in favor of scoretools.fuse_measures()
     def __add__(self, arg):
-        r'''Add two measures together in-score or outside-of-score.
+        r'''Adds two measures together in-score or outside-of-score.
 
         Interface to ``scoretools.fuse_measures()``.
         '''
@@ -71,7 +71,29 @@ class Measure(FixedDurationContainer):
         return new
 
     def __delitem__(self, i):
-        r'''Container item deletion with optional time signature adjustment.
+        r'''Deletes `i` from measure.
+
+        ::
+
+            >>> measure = Measure((4, 8), "c'8 d'8 e'8")
+            >>> measure.automatically_adjust_time_signature = True
+            >>> show(measure) # doctest: +SKIP
+
+        ::
+
+            >>> del(measure[1])
+            >>> show(measure) # doctest: +SKIP
+
+        ..  doctest:: 
+
+            {
+                \time 3/8
+                c'8
+                e'8
+                f'8
+            }
+
+        Returns none.
         '''
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
@@ -79,11 +101,20 @@ class Measure(FixedDurationContainer):
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns pair.
+        '''
         time_signature = self.time_signature
         return (time_signature.pair, )
 
     def __repr__(self):
         r'''Interpreter representation of measure.
+
+        ::
+
+            >>> measure
+            Measure(2/8, [c'8, e'8])
 
         Returns string.
         '''
@@ -93,20 +124,41 @@ class Measure(FixedDurationContainer):
         summary = self._summary
         length = len(self)
         if forced_time_signature and length:
-            return '%s(%s, [%s])' % (
-                class_name, forced_time_signature, summary)
+            result = '{}({!s}, [{}])'
+            result = result.format(class_name, forced_time_signature, summary)
+            return result
         elif forced_time_signature:
-            return '%s(%s)' % (class_name, forced_time_signature)
+            return '{}({!s})'.format(class_name, forced_time_signature)
         elif length:
-            return '%s([%s])' % (class_name, summary)
+            return '{}([{}])'.format(class_name, summary)
         else:
-            return '%s()' % class_name
+            return '{}()'.format(class_name)
 
     def __setitem__(self, i, expr):
-        r'''Container setitem logic with optional time signature adjustment.
+        r'''Sets container item `i` to `expr`.
 
-        Measure setitem logic now adjusts time signatue automatically
-        when ``adjust_time_signature_automatically`` is true.
+        ::
+
+            >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+            >>> measure.automatically_adjust_time_signature = True
+            >>> show(measure) # doctest: +SKIP
+
+        ::
+
+            >>> measure[1] = Note("ds'8.")
+            >>> show(measure) # doctest: +SKIP
+
+        ..  doctest::
+
+            {
+                \time 9/16
+                c'8
+                ds'8.
+                e'8
+                f'8
+            }
+
+        Returns none.
         '''
         old_time_signature = self.time_signature
         old_denominator = getattr(old_time_signature, 'denominator', None)
@@ -114,7 +166,15 @@ class Measure(FixedDurationContainer):
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __str__(self):
-        r'''String form of measure with pipes for single string display.
+        r'''String representation of measure.
+
+        ::
+
+            >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+            >>> str(measure)
+            "|4/8 c'8 d'8 e'8 f'8|"
+
+        Returns string.
         '''
         forced_time_signature = self.time_signature
         summary = self._space_delimited_summary
@@ -150,7 +210,8 @@ class Measure(FixedDurationContainer):
         time_signature = self.time_signature
         pair = (time_signature.numerator, time_signature.denominator)
         contents_string = ' '.join([str(x) for x in self])
-        result = '%s(%s, %r)' % (type(self).__name__, pair, contents_string)
+        result = '{}({}, {!r})'
+        result = result.format(type(self).__name__, pair, contents_string)
         return result
 
     @property
@@ -246,15 +307,16 @@ class Measure(FixedDurationContainer):
 
     def _format_content_pieces(self):
         result = []
-        # the class name test here functions to exclude scaleDurations
-        # from anonymous and dynamic measures
-        # TODO: subclass this prooperly on anonymous and dynamic measures
         if self.has_non_power_of_two_denominator and type(self) is Measure:
-            result.append("\t\\scaleDurations #'(%s . %s) {" % (
+            string = "\t\\scaleDurations #'({} . {}) {{"
+            string = string.format(
                 self.implied_prolation.numerator,
-                self.implied_prolation.denominator))
-            result.extend(['\t' + x
-                for x in FixedDurationContainer._format_content_pieces(self)])
+                self.implied_prolation.denominator,
+                )
+            result.append(string)
+            pieces = FixedDurationContainer._format_content_pieces(self)
+            pieces = ['\t' + x for x in pieces]
+            result.extend(pieces)
             result.append('\t}')
         else:
             result.extend(FixedDurationContainer._format_content_pieces(self))
@@ -328,12 +390,17 @@ class Measure(FixedDurationContainer):
 
     @property
     def always_format_time_signature(self):
-        '''Read / write flag to indicate whether time signature
+        '''Gets and sets flag to indicate whether time signature
         should appear in LilyPond format even when not expected.
+
+        ::
+
+            >>> measure.always_format_time_signature
+            False
 
         Set to true when necessary to print the same signature repeatedly.
 
-        Default to false.
+        Defaults to false.
 
         Returns boolean.
         '''
@@ -346,30 +413,21 @@ class Measure(FixedDurationContainer):
 
     @property
     def automatically_adjust_time_signature(self):
-        '''Read / write flag to indicate whether time signature
-        should update automatically following contents-changing
-        operations:
+        '''Gets and sets flag to indicate whether time signature
+        should update automatically following mutation.
 
         ::
 
             >>> measure = Measure((3, 4), "c' d' e'")
-
-        ::
-
-            >>> measure
-            Measure(3/4, [c'4, d'4, e'4])
+            >>> show(measure) # doctest: +SKIP
 
         ::
 
             >>> measure.automatically_adjust_time_signature = True
             >>> measure.append('r')
+            >>> show(measure) # doctest: +SKIP
 
-        ::
-
-            >>> measure
-            Measure(4/4, [c'4, d'4, e'4, r4])
-
-        Default to false.
+        Defaults to false.
 
         Returns boolean.
         '''
@@ -383,7 +441,7 @@ class Measure(FixedDurationContainer):
     @property
     def has_non_power_of_two_denominator(self):
         r'''True when measure time signature denominator
-        is not an integer power of 2:
+        is not an integer power of 2.
 
         ::
 
@@ -407,7 +465,7 @@ class Measure(FixedDurationContainer):
     @property
     def has_power_of_two_denominator(self):
         r'''True when measure time signature denominator
-        is an integer power of 2:
+        is an integer power of 2.
 
         ::
 
@@ -429,7 +487,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def implied_prolation(self):
-        r'''Implied prolation of measure time signature:
+        r'''Implied prolation of measure time signature.
 
         ::
 
@@ -447,7 +505,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_full(self):
-        r'''True when duration equals time signature duration:
+        r'''True when measure duration equals time signature duration.
 
         ::
 
@@ -466,7 +524,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_misfilled(self):
-        '''True when measure is either underfull or overfull:
+        '''True when measure is either underfull or overfull.
 
         ::
 
@@ -504,7 +562,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_overfull(self):
-        '''True when duration is greater than time signature duration:
+        '''True when measure duration is greater than time signature duration.
 
         ::
 
@@ -523,7 +581,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def is_underfull(self):
-        '''True when duration is less than time signature duration:
+        '''True when measure duration is less than time signature duration.
 
         ::
 
@@ -542,7 +600,7 @@ class Measure(FixedDurationContainer):
 
     @property
     def measure_number(self):
-        r'''1-indexed measure number:
+        r'''1-indexed measure number.
 
         ::
 
@@ -584,8 +642,13 @@ class Measure(FixedDurationContainer):
 
     @property
     def target_duration(self):
-        r'''Target duration of measure always equal to duration
+        r'''Target duration of measure is always equal to duration
         of effective time signature.
+
+        ::
+
+            >>> measure.target_duration
+            Duration(3, 4)
 
         Returns duration.
         '''
@@ -594,6 +657,11 @@ class Measure(FixedDurationContainer):
     @property
     def time_signature(self):
         r'''Effective time signature of measure.
+
+        ::
+            
+            >>> measure.time_signature
+            TimeSignature((3, 4))
 
         Returns time signature or none.
         '''
@@ -605,7 +673,7 @@ class Measure(FixedDurationContainer):
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
     def scale_and_adjust_time_signature(self, multiplier=None):
-        r'''Scales `measure` by `multiplier` and adjusts time signature:
+        r'''Scales `measure` by `multiplier` and adjusts time signature.
 
         ..  container:: example
 
