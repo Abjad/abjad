@@ -71,12 +71,12 @@ class Matrix(AbjadObject):
     def __init__(self, *args, **kwargs):
         if len(args) == 1:
             assert not kwargs
-            rows, columns = self._init_from_rows(args[0])
+            rows, columns = self._initialize_from_rows(args[0])
         elif 'columns' in kwargs:
             assert not args
-            rows, columns = self._init_from_columns(kwargs['columns'])
+            rows, columns = self._initialize_from_columns(kwargs['columns'])
         elif len(args) == 0:
-            rows, columns = self._init_from_rows([[0], [0]])
+            rows, columns = self._initialize_from_rows([[0], [0]])
         else:
             message = 'can not initialize {}: {!r}.'
             message = message(type(self).__name__, args)
@@ -96,7 +96,7 @@ class Matrix(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _init_from_columns(self, columns):
+    def _initialize_from_columns(self, columns):
         columns = tuple([tuple(column) for column in columns])
         assert len(set([len(column) for column in columns])) in (0, 1)
         rows = []
@@ -106,7 +106,7 @@ class Matrix(AbjadObject):
         rows = tuple(rows)
         return rows, columns
 
-    def _init_from_rows(self, rows):
+    def _initialize_from_rows(self, rows):
         rows = tuple([tuple(row) for row in rows])
         assert len(set([len(row) for row in rows])) in (0, 1)
         columns = []

@@ -29,9 +29,9 @@ class ChordSuspension(AbjadObject):
 
     def __init__(self, *args):
         if len(args) == 0:
-            start, stop = self._init_empty()
+            start, stop = self._initialize_empty()
         elif len(args) == 1 and args[0] in (None, ''):
-            start, stop = self._init_empty()
+            start, stop = self._initialize_empty()
         elif len(args) == 1 and isinstance(args[0], type(self)):
             start, stop = self._initialize_by_reference(*args)
         elif len(args) == 1 and isinstance(args[0], str):
@@ -116,7 +116,7 @@ class ChordSuspension(AbjadObject):
         stop = tonalanalysistools.ScaleDegree(stop)
         return start, stop
 
-    def _init_empty(self):
+    def _initialize_empty(self):
         return None, None
 
     ### PUBLIC PROPERTIES ###

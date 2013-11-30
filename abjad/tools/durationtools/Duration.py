@@ -149,7 +149,7 @@ class Duration(AbjadObject, fractions.Fraction):
                 cls, int(args[0][0]), int(args[0][1]))
         elif len(args) == 1 and \
             isinstance(args[0], str) and not '/' in args[0]:
-            result = Duration._init_from_lilypond_duration_string(args[0])
+            result = Duration._initialize_from_lilypond_duration_string(args[0])
             self = fractions.Fraction.__new__(cls, result)
         elif sequencetools.all_are_integer_equivalent_numbers(args):
             self = fractions.Fraction.__new__(cls, *[int(x) for x in args])
@@ -442,7 +442,7 @@ class Duration(AbjadObject, fractions.Fraction):
         return result
 
     @staticmethod
-    def _init_from_lilypond_duration_string(duration_string):
+    def _initialize_from_lilypond_duration_string(duration_string):
         numeric_body_strings = [str(2 ** n) for n in range(8)]
         other_body_strings = [r'\\breve', r'\\longa', r'\\maxima']
         body_strings = numeric_body_strings + other_body_strings
@@ -951,7 +951,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns duration.
         '''
-        fraction = Duration._init_from_lilypond_duration_string(
+        fraction = Duration._initialize_from_lilypond_duration_string(
             lilypond_duration_string)
         return Duration(fraction)
 

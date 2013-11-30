@@ -89,7 +89,7 @@ class PitchRange(AbjadObject):
             stop = (args[0].stop_pitch, boundedness)
             self._stop = stop
         elif len(args) == 1 and isinstance(args[0], str):
-            self._init_by_symbolic_pitch_range_string(*args)
+            self._initialize_by_symbolic_pitch_range_string(*args)
         elif len(args) == 1 and isinstance(args[0], collections.Sequence):
             start, stop = args[0]
             type(self).__init__(self, start, stop)
@@ -402,7 +402,7 @@ class PitchRange(AbjadObject):
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
 
-    def _init_by_symbolic_pitch_range_string(self, symbolic_pitch_range_string):
+    def _initialize_by_symbolic_pitch_range_string(self, symbolic_pitch_range_string):
         from abjad.tools import pitchtools
         match = self._symbolic_pitch_range_string_regex.match(
             symbolic_pitch_range_string)

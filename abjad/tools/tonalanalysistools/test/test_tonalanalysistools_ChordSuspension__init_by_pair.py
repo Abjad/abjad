@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import tonalanalysistools
 
 
-def test_tonalanalysistools_ChordSuspension__init_by_pair_01():
+def test_tonalanalysistools_ChordSuspension__initialize_by_pair_01():
 
     chord_suspension = tonalanalysistools.ChordSuspension((4, 3))
 

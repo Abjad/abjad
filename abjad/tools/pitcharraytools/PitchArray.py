@@ -23,10 +23,10 @@ class PitchArray(AbjadObject):
         self._columns = []
         if len(args) == 1:
             if isinstance(args[0], (tuple, list)):
-                self._init_by_cell_token_lists(*args)
+                self._initialize_by_cell_token_lists(*args)
         elif len(args) == 2:
             if all(isinstance(arg, int) for arg in args):
-                self._init_by_counts(*args)
+                self._initialize_by_counts(*args)
 
     ### SPECIAL METHODS ###
 
@@ -173,7 +173,7 @@ class PitchArray(AbjadObject):
         offsets.sort()
         return list(mathtools.difference_series(offsets))
 
-    def _init_by_cell_token_lists(self, cell_token_lists):
+    def _initialize_by_cell_token_lists(self, cell_token_lists):
         for cell_token_list in cell_token_lists:
             row = PitchArrayRow([])
             for cell_token in cell_token_list:
@@ -181,7 +181,7 @@ class PitchArray(AbjadObject):
                 row.append(cell)
             self.append_row(row)
 
-    def _init_by_counts(self, row_count, column_count):
+    def _initialize_by_counts(self, row_count, column_count):
         for i in range(row_count):
             row = PitchArrayRow([])
             for j in range(column_count):

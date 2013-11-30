@@ -26,6 +26,6 @@ Profile code with ``profile_expr()`` in the ``systemtools`` package:
      75/11    0.000    0.000    0.001    0.000 {issubclass}
          1    0.000    0.000    0.001    0.001 Leaf.py:36(__init__)
         85    0.000    0.000    0.001    0.000 _weakrefset.py:58(__iter__)
-         1    0.000    0.000    0.000    0.000 NamedPitch.py:232(_init_by_pitch_number)
+         1    0.000    0.000    0.000    0.000 NamedPitch.py:232(_initialize_by_pitch_number)
 
 These results show 1242 function calls to create a note.

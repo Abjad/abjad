@@ -72,13 +72,13 @@ class RootlessChordClass(IntervalSegment):
         inversion='root',
         ):
         if extent in ('triad', 5):
-            intervals = self._init_triad(quality_string)
+            intervals = self._initialize_triad(quality_string)
         elif extent in ('seventh', 7):
-            intervals = self._init_seventh(quality_string)
+            intervals = self._initialize_seventh(quality_string)
         elif extent in ('ninth', 9):
-            intervals = self._init_ninth(quality_string)
+            intervals = self._initialize_ninth(quality_string)
         elif extent in ('augmented sixth', 6):
-            intervals = self._init_augmented_sixth(quality_string)
+            intervals = self._initialize_augmented_sixth(quality_string)
         else:
             message = 'unknown chord quality arguments.'
             raise ValueError(message)
@@ -155,7 +155,7 @@ class RootlessChordClass(IntervalSegment):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _init_augmented_sixth(quality_string):
+    def _initialize_augmented_sixth(quality_string):
         if quality_string == 'French':
             intervals = [
                 pitchtools.NamedInterval('major', 3),
@@ -187,7 +187,7 @@ class RootlessChordClass(IntervalSegment):
         return intervals
         
     @staticmethod
-    def _init_ninth(quality_string):
+    def _initialize_ninth(quality_string):
         if quality_string == 'dominant':
             intervals = [
                 pitchtools.NamedInterval('major', 3),
@@ -202,7 +202,7 @@ class RootlessChordClass(IntervalSegment):
         return intervals
 
     @staticmethod
-    def _init_seventh(quality_string):
+    def _initialize_seventh(quality_string):
         if quality_string == 'dominant':
             intervals = [
                 pitchtools.NamedInterval('major', 3),
@@ -240,7 +240,7 @@ class RootlessChordClass(IntervalSegment):
         return intervals
 
     @staticmethod
-    def _init_triad(quality_string):
+    def _initialize_triad(quality_string):
         if quality_string == 'major':
             intervals = [
                 pitchtools.NamedInterval('major', 3),

@@ -2,14 +2,14 @@
 from abjad import *
 
 
-def test_tonalanalysistools_ScaleDegree__init_by_number_01():
+def test_tonalanalysistools_ScaleDegree__initialize_by_number_01():
 
     degree = tonalanalysistools.ScaleDegree(2)
     assert degree.accidental == pitchtools.Accidental('')
     assert degree.number == 2
 
 
-def test_tonalanalysistools_ScaleDegree__init_by_number_02():
+def test_tonalanalysistools_ScaleDegree__initialize_by_number_02():
     r'''Initialize from other scale degreeinstance.
     '''
 

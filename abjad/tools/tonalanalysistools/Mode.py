@@ -33,7 +33,7 @@ class Mode(AbjadObject):
         else:
             message = 'must be mode or mode name: {!r}.'.format(arg)
             raise TypeError(message)
-        mdi_segment = self._init_with_mode_name(mode_name)
+        mdi_segment = self._initialize_with_mode_name(mode_name)
         self._named_interval_segment = mdi_segment
         self._mode_name = mode_name
 
@@ -67,7 +67,7 @@ class Mode(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _init_with_mode_name(self, mode_name):
+    def _initialize_with_mode_name(self, mode_name):
         mdi_segment = []
         m2 = pitchtools.NamedInterval('minor', 2)
         M2 = pitchtools.NamedInterval('major', 2)

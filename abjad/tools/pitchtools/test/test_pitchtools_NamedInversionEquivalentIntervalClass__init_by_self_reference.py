@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_self_reference_01():
+def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_self_reference_01():
 
     dic_1 = pitchtools.NamedInversionEquivalentIntervalClass('major', 2)
     dic_2 = pitchtools.NamedInversionEquivalentIntervalClass(dic_1)

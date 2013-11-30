@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import tonalanalysistools
 
 
-def test_tonalanalysistools_RomanNumeral__init_by_symbolic_string_01():
+def test_tonalanalysistools_RomanNumeral__initialize_by_symbolic_string_01():
 
     tonal_function = tonalanalysistools.RomanNumeral('bII')
     correct = tonalanalysistools.RomanNumeral(('flat', 2), 'major', 5, 0)
@@ -18,7 +18,7 @@ def test_tonalanalysistools_RomanNumeral__init_by_symbolic_string_01():
     assert tonal_function == correct
 
 
-def test_tonalanalysistools_RomanNumeral__init_by_symbolic_string_02():
+def test_tonalanalysistools_RomanNumeral__initialize_by_symbolic_string_02():
 
     tonal_function = tonalanalysistools.RomanNumeral('V7')
     correct = tonalanalysistools.RomanNumeral(5, 'dominant', 7, 0)
@@ -37,7 +37,7 @@ def test_tonalanalysistools_RomanNumeral__init_by_symbolic_string_02():
     assert tonal_function == correct
 
 
-def test_tonalanalysistools_RomanNumeral__init_by_symbolic_string_03():
+def test_tonalanalysistools_RomanNumeral__initialize_by_symbolic_string_03():
 
     tonal_function = tonalanalysistools.RomanNumeral('V7/4-3')
     correct = tonalanalysistools.RomanNumeral(5, 'dominant', 7, 0, (4, 3))
@@ -48,7 +48,7 @@ def test_tonalanalysistools_RomanNumeral__init_by_symbolic_string_03():
     assert tonal_function == correct
 
 
-def test_tonalanalysistools_RomanNumeral__init_by_symbolic_string_04():
+def test_tonalanalysistools_RomanNumeral__initialize_by_symbolic_string_04():
 
     tonal_function = tonalanalysistools.RomanNumeral('vi6/5')
     correct = tonalanalysistools.RomanNumeral(6, 'minor', 7, 1)

@@ -82,12 +82,12 @@ class CyclicMatrix(Matrix):
     def __init__(self, *args, **kwargs):
         if len(args) == 1:
             assert not kwargs
-            rows, columns = self._init_from_rows(args[0])
+            rows, columns = self._initialize_from_rows(args[0])
         elif 'columns' in kwargs:
             assert not args
-            rows, columns = self._init_from_columns(kwargs['columns'])
+            rows, columns = self._initialize_from_columns(kwargs['columns'])
         elif len(args) == 0:
-            rows, columns = self._init_from_rows([[0],[0]])
+            rows, columns = self._initialize_from_rows([[0],[0]])
         else:
             message = 'can not initialize {}: {!r}.'
             message = message(type(self).__name__, args)
@@ -107,7 +107,7 @@ class CyclicMatrix(Matrix):
 
     ### PRIVATE METHODS ###
 
-    def _init_from_columns(self, columns):
+    def _initialize_from_columns(self, columns):
         columns = CyclicTuple([CyclicTuple(column) for column in columns])
         rows = []
         for row_index in range(len(columns[0])):
@@ -116,7 +116,7 @@ class CyclicMatrix(Matrix):
         rows = CyclicTuple(rows)
         return rows, columns
 
-    def _init_from_rows(self, rows):
+    def _initialize_from_rows(self, rows):
         rows = CyclicTuple([CyclicTuple(row) for row in rows])
         columns = []
         for column_index in range(len(rows[0])):
