@@ -26,8 +26,12 @@ class PayloadTree(AbjadObject):
 
     ::
 
-        >>> tree.children
-        (PayloadTree([0, 1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7]))
+        >>> for x in tree.children:
+        ...     x
+        PayloadTree([0, 1])
+        PayloadTree([2, 3])
+        PayloadTree([4, 5])
+        PayloadTree([6, 7])
 
     ::
 
@@ -125,7 +129,7 @@ class PayloadTree(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        r'''True when tree contains `expr`:
+        r'''True when payload tree contains `expr`.
 
         ::
 
@@ -148,7 +152,7 @@ class PayloadTree(AbjadObject):
 
     def __eq__(self, expr):
         r'''True when `expr` is the same type as tree
-        and when the payload of all subtrees are equal:
+        and when the payload of all subtrees are equal.
 
         ::
 
@@ -225,7 +229,7 @@ class PayloadTree(AbjadObject):
         return str(self)
 
     def __getitem__(self, expr):
-        r'''Get item from tree:
+        r'''Gets `expr` from payload tree.
 
         ::
 
@@ -237,7 +241,7 @@ class PayloadTree(AbjadObject):
             >>> tree[-1]
             PayloadTree([6, 7])
 
-        Get slice from tree:
+        Gets slice from payload tree:
 
         ::
 
@@ -249,7 +253,7 @@ class PayloadTree(AbjadObject):
         return self._children[expr]
 
     def __len__(self):
-        r'''Returns the number of children in tree:
+        r'''Number of children in payload tree.
 
         ::
 
@@ -266,7 +270,7 @@ class PayloadTree(AbjadObject):
         return len(self._children)
 
     def __repr__(self):
-        r'''Interpreter representation of tree:
+        r'''Interpreter representation of payload tree.
 
         ::
 
@@ -280,10 +284,10 @@ class PayloadTree(AbjadObject):
 
         Returns string.
         '''
-        return '%s(%s)' % (type(self).__name__, self)
+        return '{}({!s})'.format(type(self).__name__, self)
 
     def __str__(self):
-        r'''String representation of tree:
+        r'''String representation of payload tree.
 
         ::
 
@@ -298,8 +302,9 @@ class PayloadTree(AbjadObject):
         Returns string.
         '''
         if self.payload is None:
-            return '[%s]' % ', '.join(
-                [str(x) for x in self._noncyclic_children])
+            return '[{}]'.format(
+                ', '.join([str(x) for x in self._noncyclic_children])
+                )
         else:
             return repr(self.payload)
 
@@ -343,7 +348,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def children(self):
-        r'''Children of node:
+        r'''Children of payload tree.
 
         ::
 
@@ -361,7 +366,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def depth(self):
-        r'''Depth of subtree:
+        r'''Depth of payload tree.
 
         ::
 
@@ -382,11 +387,61 @@ class PayloadTree(AbjadObject):
 
     @property
     def graphviz_format(self):
+        r'''GraphViz format of payload tree.
+
+        ::
+
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = datastructuretools.PayloadTree(sequence)
+            >>> print tree.graphviz_format
+            digraph G {
+                node_0 [label="",
+                    shape=circle];
+                node_1 [label="",
+                    shape=circle];
+                node_2 [label=0,
+                    shape=box];
+                node_3 [label=1,
+                    shape=box];
+                node_4 [label="",
+                    shape=circle];
+                node_5 [label=2,
+                    shape=box];
+                node_6 [label=3,
+                    shape=box];
+                node_7 [label="",
+                    shape=circle];
+                node_8 [label=4,
+                    shape=box];
+                node_9 [label=5,
+                    shape=box];
+                node_10 [label="",
+                    shape=circle];
+                node_11 [label=6,
+                    shape=box];
+                node_12 [label=7,
+                    shape=box];
+                node_0 -> node_1;
+                node_0 -> node_10;
+                node_0 -> node_4;
+                node_0 -> node_7;
+                node_1 -> node_2;
+                node_1 -> node_3;
+                node_10 -> node_11;
+                node_10 -> node_12;
+                node_4 -> node_5;
+                node_4 -> node_6;
+                node_7 -> node_8;
+                node_7 -> node_9;
+            }
+            
+        Returns string.
+        '''
         return self.graphviz_graph.graphviz_format
 
     @property
     def graphviz_graph(self):
-        r'''The GraphvizGraph representation of the PayloadTree:
+        r'''The GraphvizGraph representation of payload tree.
 
         ::
 
@@ -422,7 +477,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def improper_parentage(self):
-        r'''Improper parentage of node:
+        r'''Improper parentage of payload tree.
 
         ::
 
@@ -445,7 +500,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def index_in_parent(self):
-        r'''Index of node in parent of node:
+        r'''Index of node in parent of node.
 
         ::
 
@@ -466,7 +521,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def level(self):
-        r'''Level of node:
+        r'''Level of node.
 
         ::
 
@@ -484,7 +539,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def manifest_payload(self):
-        r'''Manifest payload of tree:
+        r'''Manifest payload of payload tree.
 
         ::
 
@@ -515,7 +570,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def negative_level(self):
-        r'''Negative level of node:
+        r'''Negative level of node.
 
         ::
 
@@ -533,7 +588,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def payload(self):
-        r'''Payload of node:
+        r'''Payload of node.
 
         ::
 
@@ -563,7 +618,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def position(self):
-        r'''Position of node relative to root:
+        r'''Position of node relative to root.
 
         ::
 
@@ -586,7 +641,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def proper_parentage(self):
-        r'''Proper parentage of node:
+        r'''Proper parentage of node.
 
         ::
 
@@ -605,7 +660,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def root(self):
-        r'''Root of tree:
+        r'''Root of payload tree.
 
         ::
 
@@ -623,7 +678,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def width(self):
-        r'''Number of leaves in subtree:
+        r'''Number of leaves in payload tree.
 
         ::
 
@@ -701,84 +756,84 @@ class PayloadTree(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get_manifest_payload_of_next_n_nodes_at_level(self, n, level):
-        r'''Get manifest payload of next `n` nodes at `level` from node.
+        r'''Gets manifest payload of next `n` nodes at `level` from node.
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = datastructuretools.PayloadTree(sequence)
 
-        Get manifest paylaod of next 4 nodes at level 2:
+        Gets manifest paylaod of next 4 nodes at level 2:
 
         ::
 
             >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(4, 2)
             [1, 2, 3, 4]
 
-        Get manifest paylaod of next 3 nodes at level 1:
+        Gets manifest paylaod of next 3 nodes at level 1:
 
         ::
 
             >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(3, 1)
             [1, 2, 3, 4, 5]
 
-        Get manifest paylaod of next node at level 0:
+        Gets manifest paylaod of next node at level 0:
 
         ::
 
             >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(1, 0)
             [1, 2, 3, 4, 5, 6, 7]
 
-        Get manifest paylaod of next 4 nodes at level -1:
+        Gets manifest paylaod of next 4 nodes at level -1:
 
         ::
 
             >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(4, -1)
             [1, 2, 3, 4]
 
-        Get manifest paylaod of next 3 nodes at level -2:
+        Gets manifest paylaod of next 3 nodes at level -2:
 
         ::
 
             >>> tree[0][0].get_manifest_payload_of_next_n_nodes_at_level(3, -2)
             [1, 2, 3, 4, 5]
 
-        Get manifest paylaod of previous 4 nodes at level 2:
+        Gets manifest paylaod of previous 4 nodes at level 2:
 
         ::
 
             >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-4, 2)
             [6, 5, 4, 3]
 
-        Get manifest paylaod of previous 3 nodes at level 1:
+        Gets manifest paylaod of previous 3 nodes at level 1:
 
         ::
 
             >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-3, 1)
             [6, 5, 4, 3, 2]
 
-        Get manifest paylaod of previous node at level 0:
+        Gets manifest paylaod of previous node at level 0:
 
         ::
 
             >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-1, 0)
             [6, 5, 4, 3, 2, 1, 0]
 
-        Get manifest paylaod of previous 4 nodes at level -1:
+        Gets manifest paylaod of previous 4 nodes at level -1:
 
         ::
 
             >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-4, -1)
             [6, 5, 4, 3]
 
-        Get manifest paylaod of previous 3 nodes at level -2:
+        Gets manifest paylaod of previous 3 nodes at level -2:
 
         ::
 
             >>> tree[-1][-1].get_manifest_payload_of_next_n_nodes_at_level(-3, -2)
             [6, 5, 4, 3, 2]
 
-        Trim first node if necessary.
+        Trims first node if necessary.
 
         Returns list of arbitrary values.
         '''
@@ -792,49 +847,49 @@ class PayloadTree(AbjadObject):
         return result
 
     def get_next_n_complete_nodes_at_level(self, n, level):
-        r'''Get next `n` complete nodes at `level` from node.
+        r'''Gets next `n` complete nodes at `level` from node.
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = datastructuretools.PayloadTree(sequence)
 
-        Get next 4 nodes at level 2:
+        Gets next 4 nodes at level 2:
 
         ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(4, 2)
             [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
-        Get next 3 nodes at level 1:
+        Gets next 3 nodes at level 1:
 
         ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(3, 1)
             [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7])]
 
-        Get next 4 nodes at level -1:
+        Gets next 4 nodes at level -1:
 
         ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(4, -1)
             [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
-        Get next 3 nodes at level -2:
+        Gets next 3 nodes at level -2:
 
         ::
 
             >>> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
             [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5]), PayloadTree([6, 7])]
 
-        Get previous 4 nodes at level 2:
+        Gets previous 4 nodes at level 2:
 
         ::
 
             >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, 2)
             [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
-        Get previous 3 nodes at level 1:
+        Gets previous 3 nodes at level 1:
 
         ::
 
@@ -842,21 +897,21 @@ class PayloadTree(AbjadObject):
             [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3]), PayloadTree([0, 1])]
 
 
-        Get previous 4 nodes at level -1:
+        Gets previous 4 nodes at level -1:
 
         ::
 
             >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-4, -1)
             [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
-        Get previous 3 nodes at level -2:
+        Gets previous 3 nodes at level -2:
 
         ::
 
             >>> tree[-1][-1].get_next_n_complete_nodes_at_level(-3, -2)
             [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3]), PayloadTree([0, 1])]
 
-        Trim first node if necessary.
+        Trims first node if necessary.
 
         Returns list of nodes.
         '''
@@ -864,84 +919,84 @@ class PayloadTree(AbjadObject):
             n, level, nodes_must_be_complete=True)
 
     def get_next_n_nodes_at_level(self, n, level):
-        r'''Get next `n` nodes at `level` from node.
+        r'''Gets next `n` nodes at `level` from node.
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = datastructuretools.PayloadTree(sequence)
 
-        Get next 4 nodes at level 2:
+        Gets next 4 nodes at level 2:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(4, 2)
             [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
-        Get next 3 nodes at level 1:
+        Gets next 3 nodes at level 1:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(3, 1)
             [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5])]
 
-        Get next node at level 0:
+        Gets next node at level 0:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(1, 0)
             [PayloadTree([[1], [2, 3], [4, 5], [6, 7]])]
 
-        Get next 4 nodes at level -1:
+        Gets next 4 nodes at level -1:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(4, -1)
             [PayloadTree(1), PayloadTree(2), PayloadTree(3), PayloadTree(4)]
 
-        Get next 3 nodes at level -2:
+        Gets next 3 nodes at level -2:
 
         ::
 
             >>> tree[0][0].get_next_n_nodes_at_level(3, -2)
             [PayloadTree([1]), PayloadTree([2, 3]), PayloadTree([4, 5])]
 
-        Get previous 4 nodes at level 2:
+        Gets previous 4 nodes at level 2:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-4, 2)
             [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
-        Get previous 3 nodes at level 1:
+        Gets previous 3 nodes at level 1:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-3, 1)
             [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3])]
 
-        Get previous node at level 0:
+        Gets previous node at level 0:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-1, 0)
             [PayloadTree([[0, 1], [2, 3], [4, 5], [6]])]
 
-        Get previous 4 nodes at level -1:
+        Gets previous 4 nodes at level -1:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-4, -1)
             [PayloadTree(6), PayloadTree(5), PayloadTree(4), PayloadTree(3)]
 
-        Get previous 3 nodes at level -2:
+        Gets previous 3 nodes at level -2:
 
         ::
 
             >>> tree[-1][-1].get_next_n_nodes_at_level(-3, -2)
             [PayloadTree([6]), PayloadTree([4, 5]), PayloadTree([2, 3])]
 
-        Trim first node if necessary.
+        Trims first node if necessary.
 
         Returns list of nodes.
         '''
@@ -949,7 +1004,7 @@ class PayloadTree(AbjadObject):
             n, level, nodes_must_be_complete=False)
 
     def get_node_at_position(self, position):
-        r'''Get node at `position`:
+        r'''Gets node at `position`.
 
         ::
 
@@ -969,8 +1024,8 @@ class PayloadTree(AbjadObject):
         return result
 
     def get_position_of_descendant(self, descendant):
-        r'''Get position of `descendent` relative to node 
-        rather than relative to root:
+        r'''Gets position of `descendent` relative to node 
+        rather than relative to root.
 
         ::
 
@@ -990,7 +1045,7 @@ class PayloadTree(AbjadObject):
             return descendant.position[len(self.position):]
 
     def index(self, node):
-        r'''Index of `node`:
+        r'''Index of `node`.
 
         ::
 
@@ -1017,7 +1072,7 @@ class PayloadTree(AbjadObject):
         raise ValueError(message)
 
     def is_at_level(self, level):
-        r'''True when node is at `level` in containing tree:
+        r'''True when node is at `level` in containing tree.
 
         ::
 
@@ -1029,7 +1084,7 @@ class PayloadTree(AbjadObject):
             >>> tree[1][1].is_at_level(-1)
             True
 
-        False otherwise:
+        Otherwise false:
 
         ::
 
@@ -1047,7 +1102,7 @@ class PayloadTree(AbjadObject):
             return False
 
     def iterate_at_level(self, level, reverse=False):
-        r'''Iterate tree at `level`:
+        r'''Iterates tree at `level`.
 
         ::
 
@@ -1181,7 +1236,7 @@ class PayloadTree(AbjadObject):
                     yield x
 
     def iterate_depth_first(self, reverse=False):
-        r'''Iterate tree depth-first:
+        r'''Iterates tree depth-first.
 
         ..  container:: example
 
@@ -1243,11 +1298,11 @@ class PayloadTree(AbjadObject):
                 yield y
 
     def iterate_payload(self, reverse=False):
-        r'''Iterate tree payload:
+        r'''Iterates payload of tree.
 
         ..  container:: example
 
-            **Example 1.** Iterate payload from left to right:
+            **Example 1.** Iterates payload from left to right:
 
             ::
 
@@ -1270,7 +1325,7 @@ class PayloadTree(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Iterate payload from right to left:
+            **Example 2.** Iterates payload from right to left:
 
             ::
 
@@ -1297,7 +1352,7 @@ class PayloadTree(AbjadObject):
             yield leaf_node.payload
 
     def remove_node(self, node):
-        r'''Remove `node` from tree:
+        r'''Removes `node` from tree.
 
         ::
 
@@ -1319,7 +1374,7 @@ class PayloadTree(AbjadObject):
         node.parent = None
 
     def remove_to_root(self, reverse=False):
-        r'''Remove node and all nodes left of node to root:
+        r'''Removes node and all nodes left of node to root.
 
         ::
 
@@ -1346,7 +1401,7 @@ class PayloadTree(AbjadObject):
             >>> tree
             PayloadTree([[4, 5], [6, 7]])
 
-        Modify in-place to root.
+        Modifies in-place to root.
 
         Returns none.
         '''
@@ -1379,7 +1434,7 @@ class PayloadTree(AbjadObject):
                         sibling.parent.remove_node(sibling)
 
     def to_nested_lists(self):
-        r'''Change tree to nested lists:
+        r'''Changes tree to nested lists.
 
         ::
 

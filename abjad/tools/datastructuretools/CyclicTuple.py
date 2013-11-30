@@ -3,7 +3,7 @@ from abjad.tools import abctools
 
 
 class CyclicTuple(abctools.AbjadObject, tuple):
-    '''Abjad model of cyclic tuple:
+    '''A cylic tuple.
 
     ::
 
@@ -38,18 +38,39 @@ class CyclicTuple(abctools.AbjadObject, tuple):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a tuple with items equal to those of this
+        cyclic tuple. Otherwise false.
+
+        Returns boolean.
+        '''
         return tuple.__eq__(self, expr)
 
-    def __getitem__(self, expr):
-        return tuple.__getitem__(self, expr % len(self))
+    def __getitem__(self, i):
+        r'''Gets `i` from cyclic tuple.
+
+        Raises index error when `i` can not be found in cyclic tuple.
+
+        Returns item.
+        '''
+        i = i % len(self)
+        return tuple.__getitem__(self, i)
 
     def __getslice__(self, start_index, stop_index):
+        r'''Gets slice of items from `start_index` to `stop_index` in cyclic
+        tuple.
+
+        Returns tuple.
+        '''
         result = []
         result = [self[n] for n in range(start_index, stop_index)]
         return tuple(result)
 
     def __str__(self):
-        return '[%s]' % ', '.join([str(x) for x in self])
+        r'''String representation of cyclic tuple.
+
+        Returns string.
+        '''
+        return '[{!s}]' % ', '.join([str(x) for x in self])
 
     ### PRIVATE PROPERTIES ###
 

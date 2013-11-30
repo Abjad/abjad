@@ -97,32 +97,64 @@ class SortedCollection(object):
     key = property(_getkey, _setkey, _delkey, 'key function')
 
     def clear(self):
+        r'''Clears sorted collection.
+
+        Returns none.
+        '''
         self.__init__([], self._key)
 
     def copy(self):
+        r'''Copies sorted collection.
+
+        Returns new sorted collection.
+        '''
         return type(self)(self, self._key)
 
     ### SPECIAL METHODS ###
 
     def __contains__(self, item):
+        r'''True when sorted collection contains `item`. Otherwise false.
+
+        Returns boolean.
+        '''
         k = self._key(item)
         i = bisect.bisect_left(self._keys, k)
         j = bisect.bisect_right(self._keys, k)
         return item in self._items[i:j]
 
     def __getitem__(self, i):
+        r'''Gets `i` in sorted collection.
+
+        Returns item.
+        '''
         return self._items[i]
 
     def __iter__(self):
+        r'''Iterates sorted collection.
+
+        Yields items.
+        '''
         return iter(self._items)
 
     def __len__(self):
+        r'''Length of sorted collection.
+
+        Defined equal to number of items in collection.
+
+        Returns nonnegatie integer.
+        '''
         return len(self._items)
 
     def __reduce__(self):
+        r'''Reduces sorted collection.
+        '''
         return type(self), (self._items, self._given_key)
 
     def __repr__(self):
+        r'''Interpreter reprsentation of sorted collection.
+
+        Returns string.
+        '''
         return '%s(%r, key=%s)' % (
             type(self).__name__,
             self._items,
@@ -130,6 +162,10 @@ class SortedCollection(object):
         )
 
     def __reversed__(self):
+        r'''Reverses sorted collection.
+
+        Yields items.
+        '''
         return reversed(self._items)
 
     ### PUBLIC METHODS ###

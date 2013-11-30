@@ -5,14 +5,14 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class NonreducedRatio(AbjadObject, tuple):
     '''Nonreduced ratio of one or more nonzero integers.
 
-    Initialize from one or more nonzero integers:
+    Initializes from one or more nonzero integers:
 
     ::
 
         >>> mathtools.NonreducedRatio(2, 4, 2)
         NonreducedRatio(2, 4, 2)
 
-    Or initialize from a tuple or list:
+    Initializes from a tuple or list:
 
     ::
 
@@ -20,7 +20,7 @@ class NonreducedRatio(AbjadObject, tuple):
         >>> ratio
         NonreducedRatio(2, 4, 2)
 
-    Use a tuple to return ratio integers.
+    Uses a tuple to return ratio integers.
 
         >>> tuple(ratio)
         (2, 4, 2)
@@ -43,6 +43,11 @@ class NonreducedRatio(AbjadObject, tuple):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a nonreduced ratio with numerator and
+        denominator equal to those of this nonreduced ratio. Otherwise false.
+
+        Returns boolean.
+        '''
         expr = type(self)(expr)
         return tuple(self) == tuple(expr)
 

@@ -4,46 +4,17 @@ from abjad.tools.datastructuretools.Matrix import Matrix
 
 
 class CyclicMatrix(Matrix):
-    '''Abjad model of cyclic matrix.
+    '''A cyclic matrix.
 
-    Initialize from rows:
-
-    ::
-
-        >>> cyclic_matrix = datastructuretools.CyclicMatrix(
-        ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+    Initializes from rows:
 
     ::
 
-        >>> cyclic_matrix
-        CyclicMatrix(3x4)
-
-    ::
-
-        >>> cyclic_matrix[2]
-        CyclicTuple([20, 21, 22, 23])
-
-    ::
-
-        >>> cyclic_matrix[2][2]
-        22
-
-    ::
-
-        >>> cyclic_matrix[99]
-        CyclicTuple([0, 1, 2, 3])
-
-    ::
-
-        >>> cyclic_matrix[99][99]
-        3
-
-    Initialize from columns:
-
-    ::
-
-        >>> cyclic_matrix = datastructuretools.CyclicMatrix(
-        ...     columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+        >>> cyclic_matrix = datastructuretools.CyclicMatrix([
+        ...     [0, 1, 2, 3], 
+        ...     [10, 11, 12, 13],
+        ...     [20, 21, 22, 23],
+        ...     ])
 
     ::
 
@@ -70,7 +41,43 @@ class CyclicMatrix(Matrix):
         >>> cyclic_matrix[99][99]
         3
 
-    CyclicMatrix implements only item retrieval in this revision.
+    Initializes from columns:
+
+    ::
+
+        >>> cyclic_matrix = datastructuretools.CyclicMatrix(columns=[
+        ...     [0, 10, 20],
+        ...     [1, 11, 21],
+        ...     [2, 12, 22],
+        ...     [3, 13, 23],
+        ...     ])
+
+    ::
+
+        >>> cyclic_matrix
+        CyclicMatrix(3x4)
+
+    ::
+
+        >>> cyclic_matrix[2]
+        CyclicTuple([20, 21, 22, 23])
+
+    ::
+
+        >>> cyclic_matrix[2][2]
+        22
+
+    ::
+
+        >>> cyclic_matrix[99]
+        CyclicTuple([0, 1, 2, 3])
+
+    ::
+
+        >>> cyclic_matrix[99][99]
+        3
+
+    Only item retrieval is currently implemented.
 
     Concatenation and division remain to be implemented.
 
@@ -99,11 +106,23 @@ class CyclicMatrix(Matrix):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, expr):
-        return self.rows[expr]
+    def __getitem__(self, i):
+        r'''Gets row `i` from cyclic matrix.
+
+        Returns row.
+        '''
+        return self.rows[i]
 
     def __repr__(self):
-        return '%s(%sx%s)' % (type(self).__name__, self._n_rows, self._n_columns)
+        r'''Interpreter representation of cyclic matrix.
+
+        Returns string.
+        '''
+        return '{}({}x{})'.format(
+            type(self).__name__, 
+            self._n_rows, 
+            self._n_columns,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -129,12 +148,15 @@ class CyclicMatrix(Matrix):
 
     @property
     def columns(self):
-        r'''Columns:
+        r'''Columns of cyclic matrix.
 
         ::
 
-            >>> cyclic_matrix = datastructuretools.CyclicMatrix(
-            ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> cyclic_matrix = datastructuretools.CyclicMatrix([
+            ...     [0, 1, 2, 3], 
+            ...     [10, 11, 12, 13],
+            ...     [20, 21, 22, 23],
+            ...     ])
 
         ::
 
@@ -162,12 +184,15 @@ class CyclicMatrix(Matrix):
 
     @property
     def rows(self):
-        r'''Rows:
+        r'''Rows of cyclic matrix.
 
         ::
 
-            >>> cyclic_matrix = datastructuretools.CyclicMatrix(
-            ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> cyclic_matrix = datastructuretools.CyclicMatrix([
+            ...     [0, 1, 2, 3],
+            ...     [10, 11, 12, 13],
+            ...     [20, 21, 22, 23],
+            ...     ])
 
         ::
 

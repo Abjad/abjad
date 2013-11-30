@@ -85,6 +85,19 @@ class CyclicPayloadTree(PayloadTree):
         return str(self)
 
     def __iter__(self):
+        r'''Iterates cyclic payload tree.
+
+        ::
+
+            >>> for x in cyclic_tree:
+            ...     x
+            CyclicPayloadTree([0, 1])
+            CyclicPayloadTree([2, 3])
+            CyclicPayloadTree([4, 5])
+            CyclicPayloadTree([6, 7])
+
+        Yields cyclic payload tree nodes.
+        '''
         return self._noncyclic_children.__iter__()
 
     ### PRVATE METHODS ###
@@ -95,21 +108,25 @@ class CyclicPayloadTree(PayloadTree):
     ### PUBLIC METHODS ###
 
     def get_next_n_nodes_at_level(self, n, level):
-        r'''Get next `n` nodes at `level`:
+        r'''Gets next `n` nodes of cyclic payload tree at `level`.
 
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> tree = datastructuretools.CyclicPayloadTree(sequence)
 
-        Get next 4 nodes at level 2:
+        Gets next 4 nodes at level 2:
 
         ::
 
-            >>> tree[0][0].get_next_n_nodes_at_level(4, 2)
-            [CyclicPayloadTree(1), CyclicPayloadTree(2), CyclicPayloadTree(3), CyclicPayloadTree(4)]
+            >>> for x in tree[0][0].get_next_n_nodes_at_level(4, 2):
+            ...     x
+            CyclicPayloadTree(1)
+            CyclicPayloadTree(2)
+            CyclicPayloadTree(3)
+            CyclicPayloadTree(4)
 
-        Get next 10 nodes at level 2:
+        Gets next 10 nodes at level 2:
 
         ::
 
@@ -128,14 +145,18 @@ class CyclicPayloadTree(PayloadTree):
 
         ### PREVIOUS MNODES ###
 
-        Get previous 4 nodes at level 2:
+        Gets previous 4 nodes at level 2:
 
         ::
 
-            >>> tree[0][0].get_next_n_nodes_at_level(-4, 2)
-            [CyclicPayloadTree(7), CyclicPayloadTree(6), CyclicPayloadTree(5), CyclicPayloadTree(4)]
+            >>> for x in tree[0][0].get_next_n_nodes_at_level(-4, 2):
+            ...     x
+            CyclicPayloadTree(7)
+            CyclicPayloadTree(6)
+            CyclicPayloadTree(5)
+            CyclicPayloadTree(4)
 
-        Get previous 10 nodes at level 2:
+        Gets previous 10 nodes at level 2:
 
         ::
 
@@ -157,7 +178,7 @@ class CyclicPayloadTree(PayloadTree):
         return PayloadTree.get_next_n_nodes_at_level(self, n, level)
 
     def get_node_at_position(self, position):
-        r'''Get node at `position`:
+        r'''Gets cyclic payload tree node at `position`.
 
         ::
 
@@ -189,14 +210,14 @@ class CyclicPayloadTree(PayloadTree):
         return PayloadTree.get_node_at_position(self, position)
 
     def iterate_forever_depth_first(self, reverse=False):
-        r'''Iterate tree depth first.
+        r'''Iterate cyclic payload tree tree depth first.
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
             >>> cyclic_tree = datastructuretools.CyclicPayloadTree(sequence)
 
         ..  container:: example
         
-            **Example 1.** Iterate from left to right:
+            **Example 1.** Iterates from left to right:
 
             ::
 
@@ -226,7 +247,7 @@ class CyclicPayloadTree(PayloadTree):
 
         ..  container:: example
 
-            **Example 2.** Iterate from right to left:
+            **Example 2.** Iterates from right to left:
 
             ::
 
@@ -255,7 +276,7 @@ class CyclicPayloadTree(PayloadTree):
                 CyclicPayloadTree(5)
                 CyclicPayloadTree(4)
 
-        Returns node generator.
+        Yields cyclic payload tree nodes.
         '''
         while True:
             for node in PayloadTree.iterate_depth_first(self, reverse=reverse):

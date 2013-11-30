@@ -3,9 +3,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Matrix(AbjadObject):
-    '''Abjad model of matrix.
+    '''A matrix.
 
-    Initialize from rows:
+    Initializes from rows:
 
     ::
 
@@ -32,7 +32,7 @@ class Matrix(AbjadObject):
         >>> matrix[2][0]
         20
 
-    Initialize from columns:
+    Initializes from columns:
 
     ::
 
@@ -59,7 +59,7 @@ class Matrix(AbjadObject):
         >>> matrix[2][0]
         20
 
-    Matrix implements only item retrieval in this revision.
+    Matrix currently implements only item retrieval.
 
     Concatenation and division remain to be implemented.
 
@@ -88,11 +88,33 @@ class Matrix(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __getitem__(self, expr):
-        return self.rows[expr]
+    def __getitem__(self, i):
+        r'''Gets row `i` from matrix.
+
+        ::
+
+            >>> matrix[1]
+            (10, 11, 12, 13)
+
+        Returns row.
+        '''
+        return self.rows[i]
 
     def __repr__(self):
-        return '%s(%sx%s)' % (type(self).__name__, self._n_rows, self._n_columns)
+        r'''Interpreter representation of matrix.
+
+        ::
+
+            >>> matrix
+            Matrix(3x4)
+
+        Returns string.
+        '''
+        return '{}({}x{})'.format(
+            type(self).__name__, 
+            self._n_rows, 
+            self._n_columns,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -120,12 +142,15 @@ class Matrix(AbjadObject):
 
     @property
     def columns(self):
-        r'''Columns:
+        r'''Columns of matrix.
 
         ::
 
             >>> matrix = datastructuretools.Matrix(
-            ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            ...     [[0, 1, 2, 3], 
+            ...     [10, 11, 12, 13], 
+            ...     [20, 21, 22, 23],
+            ...     ])
 
         ::
 
@@ -138,12 +163,15 @@ class Matrix(AbjadObject):
 
     @property
     def rows(self):
-        r'''Rows:
+        r'''Rows of matrix.
 
         ::
 
             >>> matrix = datastructuretools.Matrix(
-            ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            ...     [[0, 1, 2, 3], 
+            ...     [10, 11, 12, 13], 
+            ...     [20, 21, 22, 23],
+            ...     ])
 
         ::
 

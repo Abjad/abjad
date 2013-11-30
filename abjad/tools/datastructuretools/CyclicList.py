@@ -3,7 +3,7 @@ from abjad.tools import abctools
 
 
 class CyclicList(abctools.AbjadObject, list):
-    '''Abjad model of cyclic list:
+    '''A cyclic list.
 
     ::
 
@@ -38,21 +38,41 @@ class CyclicList(abctools.AbjadObject, list):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` has items equal to those of this cyclic list.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         return list.__eq__(self, expr)
     
-    def __getitem__(self, expr):
+    def __getitem__(self, i):
+        r'''Gets `i` from cyclic list.
+
+        Raise index error when `i` can not be found in cyclic list.
+
+        Returns item.
+        '''
         if len(self):
-            return list.__getitem__(self, expr % len(self))
+            i = i % len(self)
+            return list.__getitem__(self, i)
         else:
             raise IndexError
 
     def __getslice__(self, start_index, stop_index):
+        r'''Gets items in cyclic list from `start_index` to `stop_index`.
+
+        Returns list.
+        '''
         result = []
         result = [self[n] for n in range(start_index, stop_index)]
         return result
 
     def __str__(self):
-        return '[%s]' % ', '.join([str(x) for x in self])
+        r'''String representation of cyclic list.
+
+        Returns string.
+        '''
+        return '[{!s}]' % ', '.join([str(x) for x in self])
 
     ### PRIVATE PROPERTIES ###
 
