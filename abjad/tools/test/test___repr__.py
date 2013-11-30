@@ -10,3 +10,6 @@ def test___repr___01(class_):
     '''
 
     assert '__repr__' in dir(class_)
+    #instance = class_()
+    #string = repr(instance)
+    #assert isinstance(string, str)

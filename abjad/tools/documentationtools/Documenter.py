@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import abc
 import os
-from abjad.tools import abctools
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Documenter(abctools.Maker):
+class Documenter(AbjadObject):
     r'''Documenter is an abstract base class for documentation classes.
     '''
 

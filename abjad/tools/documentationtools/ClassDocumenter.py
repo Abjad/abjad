@@ -50,8 +50,6 @@ class ClassDocumenter(Documenter):
         <BLANKLINE>
         - :py:class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter>`
         <BLANKLINE>
-        - :py:class:`abctools.Maker <abjad.tools.abctools.Maker.Maker>`
-        <BLANKLINE>
         - :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject>`
         <BLANKLINE>
         - :py:class:`__builtin__.object <object>`

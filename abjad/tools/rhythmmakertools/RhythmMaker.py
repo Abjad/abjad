@@ -6,10 +6,10 @@ from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import scoretools
-from abjad.tools.abctools.Maker import Maker
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class RhythmMaker(Maker):
+class RhythmMaker(AbjadObject):
     '''Rhythm maker abstract base class.
     '''
 
