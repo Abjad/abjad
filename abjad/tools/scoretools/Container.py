@@ -357,7 +357,7 @@ class Container(Component):
         return spanners_receipt
 
     def _scale_contents(self, multiplier):
-        for expr in iterate(self[:]).by_topmost_tie_chains_and_components():
+        for expr in iterate(self[:]).by_topmost_logical_ties_and_components():
             expr._scale(multiplier)
 
     def _set_item(
@@ -833,13 +833,13 @@ class Container(Component):
                 fracture_spanners=fracture_spanners,
                 )
             previous = right
-        # NOTE: If tie chain here is convenience, then fusing is good.
-        #       If tie chain here is user-given, then fusing is less good.
-        #       Maybe later model difference between user tie chains and not.
-        left_tie_chain = leaf_left_of_split._get_tie_chain()
-        right_tie_chain = leaf_right_of_split._get_tie_chain()
-        left_tie_chain._fuse_leaves_by_immediate_parent()
-        right_tie_chain._fuse_leaves_by_immediate_parent()
+        # NOTE: If logical tie here is convenience, then fusing is good.
+        #       If logical tie here is user-given, then fusing is less good.
+        #       Maybe later model difference between user logical ties and not.
+        left_logical_tie = leaf_left_of_split._get_logical_tie()
+        right_logical_tie = leaf_right_of_split._get_logical_tie()
+        left_logical_tie._fuse_leaves_by_immediate_parent()
+        right_logical_tie._fuse_leaves_by_immediate_parent()
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
             if tie_split_notes and \

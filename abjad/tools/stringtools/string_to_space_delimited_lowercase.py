@@ -13,15 +13,15 @@ def string_to_space_delimited_lowercase(string):
 
     ::
 
-        >>> stringtools.string_to_space_delimited_lowercase('tie_chain')
-        'tie chain'
+        >>> stringtools.string_to_space_delimited_lowercase('logical_tie')
+        'logical tie'
 
     Returns space-delimited string unchanged:
 
     ::
 
-        >>> stringtools.string_to_space_delimited_lowercase('tie chain')
-        'tie chain'
+        >>> stringtools.string_to_space_delimited_lowercase('logical tie')
+        'logical tie'
 
     Returns empty `string` unchanged:
 

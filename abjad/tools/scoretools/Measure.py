@@ -351,14 +351,16 @@ class Measure(FixedDurationContainer):
         from abjad.tools import selectiontools
         from abjad.tools import sequencetools
         assert all(isinstance(x, scoretools.Component) for x in components)
-        chain_duration_numerators = []
-        for expr in iterate(components).by_topmost_tie_chains_and_components():
+        logical_tie_duration_numerators = []
+        for expr in \
+            iterate(components).by_topmost_logical_ties_and_components():
             if isinstance(expr, selectiontools.LogicalTie):
-                chain_duration = expr._preprolated_duration
-                chain_duration_numerators.append(chain_duration.numerator)
+                logical_tie_duration = expr._preprolated_duration
+                logical_tie_duration_numerators.append(
+                    logical_tie_duration.numerator)
         if len(sequencetools.truncate_runs_in_sequence(
-            chain_duration_numerators)) == 1:
-            numerator = chain_duration_numerators[0]
+            logical_tie_duration_numerators)) == 1:
+            numerator = logical_tie_duration_numerators[0]
             denominator = mathtools.greatest_power_of_two_less_equal(numerator)
             likely_multiplier = durationtools.Multiplier(
                 numerator, denominator)

@@ -247,15 +247,15 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
-    tietools.label_tie_chains_in_expr_with_tie_chain_duration()
-    tietools.label_tie_chains_in_expr_with_tie_chain_durations()
-    tietools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+    tietools.label_logical_ties_in_expr_with_logical_tie_duration()
+    tietools.label_logical_ties_in_expr_with_logical_tie_durations()
+    tietools.label_logical_ties_in_expr_with_written_logical_tie_duration()
 
   ::
 
-    labeltools.label_tie_chains_in_expr_with_tie_chain_duration()
-    labeltools.label_tie_chains_in_expr_with_tie_chain_durations()
-    labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+    labeltools.label_logical_ties_in_expr_with_logical_tie_duration()
+    labeltools.label_logical_ties_in_expr_with_logical_tie_durations()
+    labeltools.label_logical_ties_in_expr_with_written_logical_tie_duration()
 
 - Renamed::
 
@@ -281,13 +281,13 @@ Renamed all functions that contained ``big_endian``::
 
     durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs()
     scoretools.fuse_leaves_big_endian()
-    scoretools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian()
+    scoretools.fuse_leaves_in_logical_tie_by_immediate_parent_big_endian()
 
 ::
 
     durationtools.duration_token_to_assignable_duration_pairs()
     scoretools.fuse_leaves()
-    scoretools.fuse_leaves_in_tie_chain_by_immediate_parent()
+    scoretools.fuse_leaves_in_logical_tie_by_immediate_parent()
 
 Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
@@ -766,7 +766,7 @@ Changes to the ``pitchtools`` package:
 
   ::
 
-    pitchtools.set_ascending_named_pitches_on_tie_chains_in_expr()
+    pitchtools.set_ascending_named_pitches_on_logical_ties_in_expr()
 
 - Renamed::
 
@@ -774,7 +774,7 @@ Changes to the ``pitchtools`` package:
 
   ::
 
-    pitchtools.set_ascending_diatonic_pitches_on_tie_chains_in_expr()
+    pitchtools.set_ascending_diatonic_pitches_on_logical_ties_in_expr()
 
 - Renamed::
 
@@ -893,29 +893,29 @@ Changes to the ``tietools`` package:
 
 - Renamed::
 
-    tietools.tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots()
-    tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots()
-    tietools.tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots()
-    tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots()
+    tietools.logical_tie_to_augmented_tuplet_with_proportions_and_avoid_dots()
+    tietools.logical_tie_to_augmented_tuplet_with_proportions_and_encourage_dots()
+    tietools.logical_tie_to_diminished_tuplet_with_proportions_and_avoid_dots()
+    tietools.logical_tie_to_diminished_tuplet_with_proportions_and_encourage_dots()
 
   ::
 
-    tietools.tie_chain_to_tuplet_with_ratio()
+    tietools.logical_tie_to_tuplet_with_ratio()
 
 - Renamed::
 
-    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
-    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
-    tietools.iterate_pitched_tie_chains_forward_in_expr()
-    tietools.iterate_pitched_tie_chains_backward_in_expr()
-    tietools.iterate_tie_chains_forward_in_expr()
-    tietools.iterate_tie_chains_backward_in_expr()
+    tietools.iterate_nontrivial_logical_ties_forward_in_expr()
+    tietools.iterate_nontrivial_logical_ties_backward_in_expr()
+    tietools.iterate_pitched_logical_ties_forward_in_expr()
+    tietools.iterate_pitched_logical_ties_backward_in_expr()
+    tietools.iterate_logical_ties_forward_in_expr()
+    tietools.iterate_logical_ties_backward_in_expr()
 
   ::
 
-    iterationtools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
-    iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
-    iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_nontrivial_logical_ties_in_expr(reverse=[True, False])
+    iterationtools.iterate_pitched_logical_ties_in_expr(reverse=[True, False])
+    iterationtools.iterate_logical_ties_in_expr(reverse=[True, False])
 
 Changes to the ``scoretools`` package:
 

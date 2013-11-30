@@ -79,7 +79,7 @@ def test_scoretools_make_leaves_05():
 
     leaves = scoretools.make_leaves([None], [(5, 32), (5, 32)])
     assert len(leaves) == 4
-    assert all(len(inspect(x).get_tie_chain()) == 1 for x in leaves)
+    assert all(len(inspect(x).get_logical_tie()) == 1 for x in leaves)
 
 
 def test_scoretools_make_leaves_06():

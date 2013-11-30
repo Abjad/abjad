@@ -200,7 +200,7 @@ class Quantizer(AbjadObject):
           classes.
 
         * ``attack_point_optimizer``: an ``AttackPointOptimizer`` instance 
-          controls whether and how tie chains are re-notated.  
+          controls whether and how logical ties are re-notated.  
           Options currently include ``MeasurewiseAttackPointOptimizer``, 
           ``NaiveAttackPointOptimizer`` and ``NullAttackPointOptimizer``.
 

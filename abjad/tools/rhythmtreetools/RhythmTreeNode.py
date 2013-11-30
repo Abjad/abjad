@@ -110,7 +110,7 @@ class RhythmTreeNode(TreeNode):
 
         The first item in the sequence is the preprolated_duration of 
         the root node, and subsequent items are pairs of the 
-        preprolated duration of the next node in the parentage chain and 
+        preprolated duration of the next node in the parentage and 
         the total preprolated_duration of that node and its siblings:
 
 

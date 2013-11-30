@@ -278,8 +278,8 @@ def test_scoretools_Leaf__split_by_duration_09():
     assert isinstance(halves[1][0], Note)
     assert halves[0][0].written_duration == Duration(1, 8)
     assert halves[1][0].written_duration == Duration(1, 8)
-    assert len(inspect(halves[0][0]).get_tie_chain()) == 1
-    assert len(inspect(halves[1][0]).get_tie_chain()) == 1
+    assert len(inspect(halves[0][0]).get_logical_tie()) == 1
+    assert len(inspect(halves[1][0]).get_logical_tie()) == 1
 
 
 def test_scoretools_Leaf__split_by_duration_10():
@@ -323,9 +323,9 @@ def test_scoretools_Leaf__split_by_duration_11():
     assert halves[0][0].written_duration == Duration(4, 32)
     assert halves[0][1].written_duration == Duration(1, 32)
     assert halves[1][0].written_duration == Duration(3, 32)
-    assert len(inspect(halves[0][0]).get_tie_chain()) == 2
-    assert len(inspect(halves[0][1]).get_tie_chain()) == 2
-    assert len(inspect(halves[1][0]).get_tie_chain()) == 1
+    assert len(inspect(halves[0][0]).get_logical_tie()) == 2
+    assert len(inspect(halves[0][1]).get_logical_tie()) == 2
+    assert len(inspect(halves[1][0]).get_logical_tie()) == 1
 
 
 def test_scoretools_Leaf__split_by_duration_12():

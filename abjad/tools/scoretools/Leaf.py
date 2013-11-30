@@ -318,7 +318,7 @@ class Leaf(Component):
         self._update_now(offsets=True)
         return self._leaf_index
 
-    def _get_tie_chain(self):
+    def _get_logical_tie(self):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         prototype = (spannertools.Tie,)

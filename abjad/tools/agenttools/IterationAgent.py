@@ -797,13 +797,13 @@ class IterationAgent(abctools.AbjadObject):
             if not voice.is_nonsemantic:
                 yield voice
 
-    def by_tie_chain(
+    def by_logical_tie(
         self,
         nontrivial=False,
         pitched=False,
         reverse=False,
         ):
-        r'''Iterate tie chains forward in `expr`:
+        r'''Iterate logical ties forward in `expr`:
 
         ::
 
@@ -825,7 +825,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-            >>> for x in iterate(staff).by_tie_chain():
+            >>> for x in iterate(staff).by_logical_tie():
             ...     x
             ...
             LogicalTie(Note("c'4"), Note("c'16"))
@@ -833,11 +833,11 @@ class IterationAgent(abctools.AbjadObject):
             LogicalTie(Note("e'8"),)
             LogicalTie(Note("f'4"), Note("f'16"))
 
-        Iterate tie chains backward in `expr`:
+        Iterate logical ties backward in `expr`:
 
         ::
 
-            >>> for x in iterate(staff).by_tie_chain(reverse=True):
+            >>> for x in iterate(staff).by_logical_tie(reverse=True):
             ...     x
             ...
             LogicalTie(Note("f'4"), Note("f'16"))
@@ -845,11 +845,11 @@ class IterationAgent(abctools.AbjadObject):
             LogicalTie(Note("d'8"),)
             LogicalTie(Note("c'4"), Note("c'16"))
 
-        Iterate pitched tie chains in `expr`:
+        Iterate pitched logical ties in `expr`:
 
         ::
 
-            >>> for x in iterate(staff).by_tie_chain(pitched=True):
+            >>> for x in iterate(staff).by_logical_tie(pitched=True):
             ...     x
             ...
             LogicalTie(Note("c'4"), Note("c'16"))
@@ -857,11 +857,11 @@ class IterationAgent(abctools.AbjadObject):
             LogicalTie(Note("e'8"),)
             LogicalTie(Note("f'4"), Note("f'16"))
 
-        Iterate nontrivial tie chains in `expr`:
+        Iterate nontrivial logical ties in `expr`:
 
         ::
 
-            >>> for x in iterate(staff).by_tie_chain(nontrivial=True):
+            >>> for x in iterate(staff).by_logical_tie(nontrivial=True):
             ...     x
             ...
             LogicalTie(Note("c'4"), Note("c'16"))
@@ -878,17 +878,17 @@ class IterationAgent(abctools.AbjadObject):
                 tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not tie_spanners or \
                     tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
-                    tie_chain = leaf._get_tie_chain()
-                    if not nontrivial or not tie_chain.is_trivial:
-                        yield tie_chain
+                    logical_tie = leaf._get_logical_tie()
+                    if not nontrivial or not logical_tie.is_trivial:
+                        yield logical_tie
         else:
             for leaf in self.by_class(prototype, reverse=True):
                 tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not(tie_spanners) or \
                     tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
-                    tie_chain = leaf._get_tie_chain()
-                    if not nontrivial or not tie_chain.is_trivial:
-                        yield tie_chain
+                    logical_tie = leaf._get_logical_tie()
+                    if not nontrivial or not logical_tie.is_trivial:
+                        yield logical_tie
 
     def by_timeline(
         self,
@@ -1067,8 +1067,8 @@ class IterationAgent(abctools.AbjadObject):
                 yield component
                 yielded_expr = True
 
-    def by_topmost_tie_chains_and_components(self):
-        r'''Iterate topmost tie chains and components forward in `expr`:
+    def by_topmost_logical_ties_and_components(self):
+        r'''Iterate topmost logical ties and components forward in `expr`:
 
         ::
 
@@ -1097,7 +1097,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ::
 
-            >>> for x in iterate(staff).by_topmost_tie_chains_and_components():
+            >>> for x in iterate(staff).by_topmost_logical_ties_and_components():
             ...     x
             ...
             LogicalTie(Note("c'8"), Note("c'32"))
@@ -1106,18 +1106,18 @@ class IterationAgent(abctools.AbjadObject):
             LogicalTie(Note("a'8"), Note("a'32"))
             LogicalTie(Note("b'8"), Note("b'32"))
 
-        Raise tie chain error on overlapping tie chains.
+        Raise logical tie error on overlapping logical ties.
 
         Returns generator.
         '''
         from abjad.tools import selectiontools
         prototype = (spannertools.Tie,)
         if isinstance(self._client, scoretools.Leaf):
-            tie_chain = self._client._get_tie_chain()
-            if len(tie_chain) == 1:
-                yield tie_chain
+            logical_tie = self._client._get_logical_tie()
+            if len(logical_tie) == 1:
+                yield logical_tie
             else:
-                message = 'can not have only one leaf in tie chain.'
+                message = 'can not have only one leaf in logical tie.'
                 raise ValueError(message)
         elif isinstance(
             self._client, (
@@ -1130,7 +1130,7 @@ class IterationAgent(abctools.AbjadObject):
                     tie_spanners = component._get_spanners(prototype)
                     if not tie_spanners or \
                         tuple(tie_spanners)[0]._is_my_last_leaf(component):
-                        yield component._get_tie_chain()
+                        yield component._get_logical_tie()
                 elif isinstance(component, scoretools.Container):
                     yield component
         else:

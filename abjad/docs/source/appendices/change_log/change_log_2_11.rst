@@ -252,8 +252,8 @@ The new name is ``scoretools.yield_components_grouped_by_duration()``.
 Renamed ``labeltools.label_leaves_in_expr_with_prolated_leaf_duration()``.
 The new name is ``labeltools.label_leaves_in_expr_with_leaf_duration()``.
 
-Renamed ``labeltools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()``.
-The new name is ``labeltools.label_tie_chains_in_expr_with_tie_chain_duration()``.
+Renamed ``labeltools.label_logical_ties_in_expr_with_prolated_logical_tie_duration()``.
+The new name is ``labeltools.label_logical_ties_in_expr_with_logical_tie_duration()``.
 
 Renamed ``scoretools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang()``.
 The new name is ``scoretools.fuse_tied_leaves_in_components_once_by_durations_without_overhang()``.
@@ -305,7 +305,7 @@ Changed ``diminution`` keyword to ``is_diminution`` in three functions::
 
     scoretools.leaf_to_tuplet_with_proportions()
     scoretools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
-    tietools.tie_chain_to_tuplet_with_proportions()
+    tietools.logical_tie_to_tuplet_with_proportions()
 
 Moved three functions from ``scoretools`` to ``wellformednesstools``.
 The functions are these::
@@ -330,14 +330,14 @@ Renamed ``tied=True`` keyword in four functions::
 
 Renamed the four ratio-related API functions::
 
-    tietools.tie_chain_to_tuplet_with_proportions()
+    tietools.logical_tie_to_tuplet_with_proportions()
     scoretools.leaf_to_tuplet_with_proportions()
     scoretools.make_tuplet_from_duration_and_proportions()
     scoretools.make_tuplet_from_proportions_and_pair()
 
 ::
 
-    tietools.tie_chain_to_tuplet_with_ratio()
+    tietools.logical_tie_to_tuplet_with_ratio()
     scoretools.leaf_to_tuplet_with_ratio()
     Tuplet.from_duration_and_ratio()
     scoretools.from_ratio_and_nonreduced_fraction()

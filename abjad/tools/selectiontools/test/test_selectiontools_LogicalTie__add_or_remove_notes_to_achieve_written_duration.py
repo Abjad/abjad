@@ -3,12 +3,12 @@ from abjad import *
 
 
 def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_01():
-    r'''Change trivial tie chain to nontrivial tie chain.
+    r'''Change trivial logical tie to nontrivial logical tie.
     '''
 
     staff = Staff("c'8 [ ]")
-    tie_chain = inspect(staff[0]).get_tie_chain()
-    tie_chain._add_or_remove_notes_to_achieve_written_duration(Duration(5, 32))
+    logical_tie = inspect(staff[0]).get_logical_tie()
+    logical_tie._add_or_remove_notes_to_achieve_written_duration(Duration(5, 32))
 
     r'''
     \new Staff {
@@ -30,12 +30,12 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
 
 
 def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_duration_02():
-    r'''Change nontrivial tie chain to trivial tie chain.
+    r'''Change nontrivial logical tie to trivial logical tie.
     '''
 
     staff = Staff("c'8 [ ~ c'32 ]")
-    tie_chain = inspect(staff[0]).get_tie_chain()
-    tie_chain._add_or_remove_notes_to_achieve_written_duration(Duration(1, 8))
+    logical_tie = inspect(staff[0]).get_logical_tie()
+    logical_tie._add_or_remove_notes_to_achieve_written_duration(Duration(1, 8))
 
     r'''
     \new Staff {

@@ -116,8 +116,8 @@ class Note(Leaf):
 
     @property
     def _compact_representation_with_tie(self):
-        tie_chain = self._get_tie_chain()
-        if 1 < len(tie_chain) and not self is tie_chain[-1]:
+        logical_tie = self._get_logical_tie()
+        if 1 < len(logical_tie) and not self is logical_tie[-1]:
             return '{} ~'.format(self._body[0])
         else:
             return self._body[0]

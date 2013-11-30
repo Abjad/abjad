@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
-    r'''Fuse leaves in tie chain with same immediate parent.
+    r'''Fuse leaves in logical tie with same immediate parent.
     '''
 
     staff = Staff(Measure((2, 8), scoretools.make_repeated_notes(2)) * 2)
@@ -27,8 +27,8 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     }
     '''
 
-    tie_chain = inspect(staff.select_leaves()[1]).get_tie_chain()
-    result = tie_chain._fuse_leaves_by_immediate_parent()
+    logical_tie = inspect(staff.select_leaves()[1]).get_logical_tie()
+    result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert systemtools.TestManager.compare(
         staff,
@@ -51,7 +51,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
 
 
 def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
-    r'''Fuse leaves in tie chain with same immediate parent.
+    r'''Fuse leaves in logical tie with same immediate parent.
     '''
 
     staff = Staff(scoretools.make_repeated_notes(4))
@@ -68,8 +68,8 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
     }
     '''
 
-    tie_chain = inspect(staff.select_leaves()[1]).get_tie_chain()
-    result = tie_chain._fuse_leaves_by_immediate_parent()
+    logical_tie = inspect(staff.select_leaves()[1]).get_logical_tie()
+    result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert systemtools.TestManager.compare(
         staff,
@@ -85,11 +85,11 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
 
 
 def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_03():
-    r'''Fuse leaves in tie chain with same immediate parent.
+    r'''Fuse leaves in logical tie with same immediate parent.
     '''
 
     note = Note("c'4")
-    tie_chain = inspect(note).get_tie_chain()
-    result = tie_chain._fuse_leaves_by_immediate_parent()
+    logical_tie = inspect(note).get_logical_tie()
+    result = logical_tie._fuse_leaves_by_immediate_parent()
     assert len(result) == 1
     assert inspect(note).is_well_formed()

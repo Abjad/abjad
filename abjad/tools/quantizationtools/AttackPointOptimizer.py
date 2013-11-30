@@ -8,8 +8,8 @@ class AttackPointOptimizer(AbjadObject):
     attack-point optimizer classes inherit.
 
     Attack-point optimizers may alter the number, order, and individual 
-    durations of leaves in a tie chain, but may not alter the overall 
-    duration of that tie chain.
+    durations of leaves in a logical tie, but may not alter the overall 
+    duration of that logical tie.
 
     They effectively "clean up" notation, post-quantization.
     '''

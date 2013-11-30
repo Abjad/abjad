@@ -61,10 +61,10 @@ class ContiguousSelection(Selection):
         left_leaf, right_leaf = self
         assert isinstance(left_leaf, scoretools.Leaf), left_leaf
         assert isinstance(right_leaf, scoretools.Leaf), right_leaf
-        left_tie_chain = left_leaf._get_tie_chain()
-        right_tie_chain = right_leaf._get_tie_chain()
+        left_logical_tie = left_leaf._get_logical_tie()
+        right_logical_tie = right_leaf._get_logical_tie()
         prototype = (spannertools.Tie,)
-        if left_tie_chain == right_tie_chain:
+        if left_logical_tie == right_logical_tie:
             return
         try:
             left_tie_spanner = left_leaf._get_spanner(prototype)
@@ -180,7 +180,7 @@ class ContiguousSelection(Selection):
             )
         music = []
         for measure in self:
-            # scale before reassignment to prevent tie chain scale drama
+            # scale before reassignment to prevent logical tie scale drama
             signature = measure.time_signature
             prolation = signature.implied_prolation
             multiplier = prolation / new_time_signature.implied_prolation

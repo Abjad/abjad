@@ -58,10 +58,10 @@ class MeasurewiseQTarget(QTarget):
                 attach(tempo, measure)
             voice.append(measure)
 
-        # apply tie chains, pitches, grace containers
+        # apply logical ties, pitches, grace containers
         self._notate_leaves_pairwise(voice, grace_handler)
 
-        # partition tiechains in each measure
+        # partition logical ties in each measure
         for measure in voice:
             attack_point_optimizer(measure)
 

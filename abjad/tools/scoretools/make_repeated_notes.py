@@ -10,7 +10,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
         >>> scoretools.make_repeated_notes(4)
         Selection(Note("c'8"), Note("c'8"), Note("c'8"), Note("c'8"))
 
-    Make `count` repeated tie chains with tied `duration`:
+    Make `count` repeated logical ties with tied `duration`:
 
     ::
 

@@ -88,7 +88,7 @@ These are the methods available as part of the new inspection interface:
 - ``InspectionAgent.get_parentage()``
 - ``InspectionAgent.get_spanner()``
 - ``InspectionAgent.get_spanners()``
-- ``InspectionAgent.get_tie_chain()``
+- ``InspectionAgent.get_logical_tie()``
 - ``InspectionAgent.get_timespan()``
 - ``InspectionAgent.get_vertical_moment()``
 - ``InspectionAgent.get_vertical_moment_at()``

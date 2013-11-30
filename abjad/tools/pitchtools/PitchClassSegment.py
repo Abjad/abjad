@@ -204,10 +204,10 @@ class PitchClassSegment(Segment):
         n = n or len(self)
         written_duration = written_duration or durationtools.Duration(1, 8)
         result = scoretools.make_notes([0] * n, [written_duration])
-        for i, tie_chain in enumerate(iterate(result).by_tie_chain()):
+        for i, logical_tie in enumerate(iterate(result).by_logical_tie()):
             pitch_class = pitchtools.NamedPitchClass(self[i % len(self)])
             pitch = pitchtools.NamedPitch(pitch_class, 4)
-            for note in tie_chain:
+            for note in logical_tie:
                 note.written_pitch = pitch
         return result
 

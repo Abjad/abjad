@@ -32,104 +32,104 @@ def _rewrite_meter(
             offset_inventory.append(tuple(new_offsets))
         return offset_inventory[depth]
 
-    def is_acceptable_tie_chain(tie_chain_duration,
-        tie_chain_starts_in_offsets,
-        tie_chain_stops_in_offsets):
+    def is_acceptable_logical_tie(logical_tie_duration,
+        logical_tie_starts_in_offsets,
+        logical_tie_stops_in_offsets):
         #print '\tTESTING ACCEPTABILITY'
-        if not tie_chain_duration.is_assignable:
+        if not logical_tie_duration.is_assignable:
             return False
         if maximum_dot_count is not None and \
-            maximum_dot_count < tie_chain_duration.dot_count:
+            maximum_dot_count < logical_tie_duration.dot_count:
             return False
-        if not tie_chain_starts_in_offsets and not tie_chain_stops_in_offsets:
+        if not logical_tie_starts_in_offsets and not logical_tie_stops_in_offsets:
             return False
         return True
 
-    def is_boundary_crossing_tie_chain(
-        tie_chain_start_offset, tie_chain_stop_offset):
+    def is_boundary_crossing_logical_tie(
+        logical_tie_start_offset, logical_tie_stop_offset):
         #print '\tTESTING BOUNDARY CROSSINGS'
         if boundary_depth is None:
             return False
-        if not any(tie_chain_start_offset < x < tie_chain_stop_offset 
+        if not any(logical_tie_start_offset < x < logical_tie_stop_offset 
             for x in boundary_offsets):
             return False
-        if tie_chain_start_offset in boundary_offsets and \
-            tie_chain_stop_offset in boundary_offsets:
+        if logical_tie_start_offset in boundary_offsets and \
+            logical_tie_stop_offset in boundary_offsets:
             return False
         return True
 
-    def recurse(tie_chain, depth=0):
+    def recurse(logical_tie, depth=0):
         offsets = get_offsets_at_depth(depth)
         #print 'DEPTH:', depth
 
-        tie_chain_duration = tie_chain._preprolated_duration
-        tie_chain_start_offset = tie_chain.get_timespan().start_offset
-        tie_chain_stop_offset = tie_chain.get_timespan().stop_offset
-        tie_chain_starts_in_offsets = tie_chain_start_offset in offsets
-        tie_chain_stops_in_offsets = tie_chain_stop_offset in offsets
+        logical_tie_duration = logical_tie._preprolated_duration
+        logical_tie_start_offset = logical_tie.get_timespan().start_offset
+        logical_tie_stop_offset = logical_tie.get_timespan().stop_offset
+        logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
+        logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
 
-        if not is_acceptable_tie_chain(
-            tie_chain_duration,
-            tie_chain_starts_in_offsets,
-            tie_chain_stops_in_offsets):
+        if not is_acceptable_logical_tie(
+            logical_tie_duration,
+            logical_tie_starts_in_offsets,
+            logical_tie_stops_in_offsets):
 
-            #print 'UNACCEPTABLE:', tie_chain, tie_chain_start_offset, tie_chain_stop_offset
+            #print 'UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
             #print '\t', ' '.join([str(x) for x in offsets])
             split_offset = None
             offsets = get_offsets_at_depth(depth)
 
-            # If the tie chain's start aligns, take the latest possible offset.
-            if tie_chain_starts_in_offsets:
+            # If the logical tie's start aligns, take the latest possible offset.
+            if logical_tie_starts_in_offsets:
                 offsets = reversed(offsets)
 
             for offset in offsets:
-                if tie_chain_start_offset < offset < tie_chain_stop_offset:
+                if logical_tie_start_offset < offset < logical_tie_stop_offset:
                     split_offset = offset
                     break
 
             #print '\tABS:', split_offset
             if split_offset is not None:
-                split_offset -= tie_chain_start_offset
+                split_offset -= logical_tie_start_offset
                 #print '\tREL:', split_offset
                 #print ''
-                shards = mutate(tie_chain[:]).split([split_offset])
-                tie_chains = \
+                shards = mutate(logical_tie[:]).split([split_offset])
+                logical_ties = \
                     [selectiontools.LogicalTie(shard) for shard in shards]
-                for tie_chain in tie_chains:
-                    recurse(tie_chain, depth=depth)
+                for logical_tie in logical_ties:
+                    recurse(logical_tie, depth=depth)
             else:
                 #print ''
-                recurse(tie_chain, depth=depth+1)
+                recurse(logical_tie, depth=depth+1)
 
-        elif is_boundary_crossing_tie_chain(
-            tie_chain_start_offset,
-            tie_chain_stop_offset):
+        elif is_boundary_crossing_logical_tie(
+            logical_tie_start_offset,
+            logical_tie_stop_offset):
 
-            #print 'BOUNDARY CROSSING', tie_chain, tie_chain_start_offset, tie_chain_stop_offset
+            #print 'BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
             offsets = boundary_offsets
-            if tie_chain_start_offset in boundary_offsets:
+            if logical_tie_start_offset in boundary_offsets:
                 offsets = reversed(boundary_offsets)
             split_offset = None
             for offset in offsets:
-                if tie_chain_start_offset < offset < tie_chain_stop_offset:
+                if logical_tie_start_offset < offset < logical_tie_stop_offset:
                     split_offset = offset
                     break
             assert split_offset is not None
             #print '\tABS:', split_offset
-            split_offset -= tie_chain_start_offset
+            split_offset -= logical_tie_start_offset
             #print '\tREL:', split_offset
             #print ''
-            shards = mutate(tie_chain[:]).split([split_offset])
-            tie_chains = \
+            shards = mutate(logical_tie[:]).split([split_offset])
+            logical_ties = \
                 [selectiontools.LogicalTie(shard) for shard in shards]
-            for tie_chain in tie_chains:
-                recurse(tie_chain, depth=depth)
+            for logical_tie in logical_ties:
+                recurse(logical_tie, depth=depth)
 
         else:
-            #print 'ACCEPTABLE:', tie_chain, tie_chain_start_offset, tie_chain_stop_offset
+            #print 'ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
             #print '\t', ' '.join([str(x) for x in offsets])
             #print ''
-            tie_chain[:]._fuse()
+            logical_tie[:]._fuse()
 
     # Validate arguments.
     assert Selection._all_are_contiguous_components_in_same_logical_voice(
@@ -159,7 +159,7 @@ def _rewrite_meter(
         boundary_offsets = offset_inventory[boundary_depth]
 
     # Cache results of iterator, as we'll be mutating the underlying collection.
-    items = tuple(_iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(components))
+    items = tuple(_iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(components))
     for item in items:
         if isinstance(item, selectiontools.LogicalTie):
             #print 'RECURSING:', item
@@ -184,9 +184,9 @@ def _rewrite_meter(
                 )
    
 
-def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+def _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
     expr):
-    r'''Iterate topmost masked tie chains, rest groups and containers in
+    r'''Iterate topmost masked logical ties, rest groups and containers in
     `expr`, masked by `expr`:
 
     ::
@@ -237,11 +237,11 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
     ::
 
         >>> from abjad.tools.metertools._rewrite_meter \
-        ...     import _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr
+        ...     import _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr
 
     ::
 
-        >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+        >>> for x in _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
         ...     staff[0]): x
         ...
         LogicalTie(Note("c'4"),)
@@ -249,7 +249,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     ::
 
-        >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+        >>> for x in _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
         ...     staff[1]): x
         ...
         LogicalTie(Note("d'8."),)
@@ -260,7 +260,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     ::
 
-        >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+        >>> for x in _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
         ...     staff[2]): x
         ...
         LogicalTie(Note("f'8"),)
@@ -270,7 +270,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     ::
 
-        >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+        >>> for x in _iterate_topmost_masked_logical_ties_rest_groups_and_containers_in_expr(
         ...     staff[3]): x
         ...
         LogicalTie(Note("b'4"),)

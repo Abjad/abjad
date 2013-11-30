@@ -41,7 +41,7 @@ The transforms
 --------------
 
 Next we'll show how to divide a quarter note into various ratios, and then
-divide the final `tie chain` of the resulting tuplet into yet another ratio:
+divide the final `logical tie` of the resulting tuplet into yet another ratio:
 
 ::
 
@@ -54,8 +54,8 @@ divide the final `tie chain` of the resulting tuplet into yet another ratio:
            tuplet_duration, outer_tuplet_proportions)
        inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
        last_leaf = outer_tuplet.select_leaves()[-1]
-       right_tie_chain = inspect(last_leaf).get_tie_chain()
-       right_tie_chain.to_tuplet(inner_tuplet_proportions)
+       right_logical_tie = inspect(last_leaf).get_logical_tie()
+       right_logical_tie.to_tuplet(inner_tuplet_proportions)
        return outer_tuplet
 
 
@@ -86,12 +86,12 @@ divide the final `tie chain` of the resulting tuplet into yet another ratio:
 .. image:: images/index-3.png
 
 
-A `tie chain` is a selection of notes or chords connected by ties. It lets us
+A `logical tie` is a selection of notes or chords connected by ties. It lets us
 talk about a notated rhythm of ``5/16``, for example, which can not be expressed
 with only a single leaf.
 
 Note how we can divide a tuplet whose outer proportions are ``3/5``, where
-the second `tie chain` requires two notes to express the ``5/16`` duration:
+the second `logical tie` requires two notes to express the ``5/16`` duration:
 
 ::
 
@@ -124,7 +124,7 @@ We'll set the duration of each tuplet equal to a quarter note:
    >>> duration = Fraction(1, 4)
 
 
-And then we make one row of rhythms, with the last `tie chain` increasingly
+And then we make one row of rhythms, with the last `logical tie` increasingly
 subdivided:
 
 ::

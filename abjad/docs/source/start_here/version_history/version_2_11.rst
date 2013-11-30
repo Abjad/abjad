@@ -117,7 +117,7 @@ Rewriting rhythms according to a different metric hierarchy
 A new ``rewrite_meter()`` function is now available in the
 ``metertools`` package.
 
-The function rewrites the contents of tie chains to match a meter.
+The function rewrites the contents of logical ties to match a meter.
 
 Example 1. Rewrite the contents of a measure in a staff using the default
 meter for that measure's time signature:

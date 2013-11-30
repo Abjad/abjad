@@ -57,10 +57,10 @@ class BeatwiseQTarget(QTarget):
                 attach(tempo, attachment_target)
             voice.extend(components)
 
-        # apply tie chains, pitches, grace containers
+        # apply logical ties, pitches, grace containers
         self._notate_leaves_pairwise(voice, grace_handler)
 
-        # partition tie chains in voice
+        # partition logical ties in voice
         attack_point_optimizer(voice)
 
         return voice

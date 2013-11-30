@@ -396,12 +396,12 @@ class InspectionAgent(abctools.AbjadObject):
             prototype=prototype,
             )
 
-    def get_tie_chain(self):
-        r'''Gets tie chain that governs leaf.
+    def get_logical_tie(self):
+        r'''Gets logical tie that governs leaf.
 
-        Returns tie chain.
+        Returns logical tie.
         '''
-        return self._client._get_tie_chain()
+        return self._client._get_logical_tie()
 
     def get_timespan(self,
         in_seconds=False,

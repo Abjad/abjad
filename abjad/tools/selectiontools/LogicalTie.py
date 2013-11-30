@@ -10,7 +10,7 @@ from abjad.tools.selectiontools.ContiguousSelection \
 
 
 class LogicalTie(ContiguousSelection):
-    r'''All the notes in a tie chain.
+    r'''All the notes in a logical tie.
 
     ..  container:: example
 
@@ -21,7 +21,7 @@ class LogicalTie(ContiguousSelection):
 
         ::
 
-            >>> inspect(staff[2]).get_tie_chain()
+            >>> inspect(staff[2]).get_logical_tie()
             LogicalTie(Note("e'4"), Note("e'4"))
 
     '''
@@ -79,13 +79,13 @@ class LogicalTie(ContiguousSelection):
             durations = scoretools.make_notes(0, new_written_duration)
             assert isinstance(durations[0], scoretools.Tuplet)
             fmtuplet = durations[0]
-            new_chain_written = \
-                fmtuplet[0]._get_tie_chain()._preprolated_duration
+            new_logical_tie_written = \
+                fmtuplet[0]._get_logical_tie()._preprolated_duration
             self._add_or_remove_notes_to_achieve_written_duration(
-                new_chain_written)
+                new_logical_tie_written)
             multiplier = fmtuplet.multiplier
             scoretools.Tuplet(multiplier, self.leaves)
-        return self[0]._get_tie_chain()
+        return self[0]._get_logical_tie()
 
     def _fuse_leaves_by_immediate_parent(self):
         from abjad.tools import scoretools
@@ -104,7 +104,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def all_leaves_are_in_same_parent(self):
-        r'''True when all leaves in tie chain are in same parent.
+        r'''True when all leaves in logical tie are in same parent.
 
         Returns boolean.
         '''
@@ -113,7 +113,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def head(self):
-        r'''Reference to element ``0`` in tie chain.
+        r'''Reference to element ``0`` in logical tie.
 
         Returns component.
         '''
@@ -122,7 +122,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def is_pitched(self):
-        r'''True when tie chain head is a note or chord.
+        r'''True when logical tie head is a note or chord.
 
         Returns boolean.
         '''
@@ -132,7 +132,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def is_trivial(self):
-        r'''True when length of tie chain is less than or equal to ``1``.
+        r'''True when length of logical tie is less than or equal to ``1``.
 
         Returns boolean.
         '''
@@ -140,7 +140,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def leaves(self):
-        r'''Leaves in tie chain.
+        r'''Leaves in logical tie.
 
         Returns tuple.
         '''
@@ -155,7 +155,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def leaves_grouped_by_immediate_parents(self):
-        r'''Leaves in tie chain grouped by immediate parents of leaves.
+        r'''Leaves in logical tie grouped by immediate parents of leaves.
 
         Returns list of lists.
         '''
@@ -169,7 +169,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def tie_spanner(self):
-        r'''Tie spanner governing tie chain.
+        r'''Tie spanner governing logical tie.
 
         Returns tie spanner.
         '''
@@ -186,7 +186,7 @@ class LogicalTie(ContiguousSelection):
 
     @property
     def written_duration(self):
-        r'''Sum of written duration of all components in tie chain.
+        r'''Sum of written duration of all components in logical tie.
 
         Returns duration.
         '''
@@ -200,11 +200,11 @@ class LogicalTie(ContiguousSelection):
         dotted=False,
         is_diminution=True,
         ):
-        r'''Change tie chain to tuplet.
+        r'''Change logical tie to tuplet.
 
         ..  container:: example
 
-            **Example 1.** Change tie chain to diminished tuplet:
+            **Example 1.** Change logical tie to diminished tuplet:
 
             ::
 
@@ -233,8 +233,8 @@ class LogicalTie(ContiguousSelection):
 
             ::
 
-                >>> tie_chain = inspect(staff[0]).get_tie_chain()
-                >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=True)
+                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=True)
                 FixedDurationTuplet((3, 16), "c'8 c'16 c'16 c'16")
 
             ..  doctest::
@@ -260,7 +260,7 @@ class LogicalTie(ContiguousSelection):
 
         ..  container:: example
 
-            **Example 2.** Change tie chain to augmented tuplet:
+            **Example 2.** Change logical tie to augmented tuplet:
 
             ::
 
@@ -289,8 +289,8 @@ class LogicalTie(ContiguousSelection):
 
             ::
 
-                >>> tie_chain = inspect(staff[0]).get_tie_chain()
-                >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=False)
+                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie.to_tuplet([2, 1, 1, 1], is_diminution=False)
                 FixedDurationTuplet((3, 16), "c'16 c'32 c'32 c'32")
 
             ..  doctest::
@@ -363,7 +363,7 @@ class LogicalTie(ContiguousSelection):
         # make tuplet
         tuplet = scoretools.FixedDurationTuplet(target_duration, notes)
 
-        # replace tie chain with tuplet
+        # replace logical tie with tuplet
         mutate(self).replace(tuplet)
 
         # untie tuplet

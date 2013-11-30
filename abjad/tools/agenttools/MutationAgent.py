@@ -517,7 +517,7 @@ class MutationAgent(abctools.AbjadObject):
         boundary_depth=None,
         maximum_dot_count=None,
         ):
-        r'''Rewrite the contents of tie chains in an expression to match
+        r'''Rewrite the contents of logical ties in an expression to match
         a meter.
 
         ..  container:: example
@@ -812,8 +812,8 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Split tie chains at different depths of the
-            `Meter`, if those tie chains cross any offsets at that
+            **Example 4.** Split logical ties at different depths of the
+            `Meter`, if those logical ties cross any offsets at that
             depth, but do not also both begin and end at any of those offsets.
 
             Consider the default meter for `9/8`:
@@ -877,7 +877,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> show(measure) # doctest: +SKIP
 
-            With a `boundary_depth` of `1`, tie chains which cross any offsets
+            With a `boundary_depth` of `1`, logical ties which cross any offsets
             created by nodes with a depth of `1` in this Meter's rhythm
             tree - i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also
             begin and end at any of those offsets, will be split:
@@ -907,7 +907,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> show(measure) # doctest: +SKIP
 
             For this `9/8` meter, and this input notation, A `boundary_depth`
-            of `2` causes no change, as all tie chains already align to
+            of `2` causes no change, as all logical ties already align to
             multiples of `1/8`:
 
             ::
@@ -1322,7 +1322,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1b.** Scale nontrivial tie chain
+            **Example 1b.** Scale nontrivial logical tie
             by dot-generating `multiplier`:
 
             ::
@@ -1344,8 +1344,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> tie_chain = inspect(staff[0]).get_tie_chain()
-                >>> tie_chain = mutate(tie_chain).scale(Multiplier(3, 2))
+                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = mutate(logical_tie).scale(Multiplier(3, 2))
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1418,7 +1418,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2b.** Scale nontrivial tie chain
+            **Example 2b.** Scale nontrivial logical tie
             by tie-generating `multiplier`:
 
             ::
@@ -1440,8 +1440,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> tie_chain = inspect(staff[0]).get_tie_chain()
-                >>> tie_chain = mutate(tie_chain).scale(Multiplier(5, 4))
+                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = mutate(logical_tie).scale(Multiplier(5, 4))
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -1520,7 +1520,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3b.** Scale trivial tie chain
+            **Example 3b.** Scale trivial logical tie
             by tuplet-generating multiplier:
 
             ::
@@ -1537,8 +1537,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> tie_chain = inspect(staff[0]).get_tie_chain()
-                >>> tie_chain = mutate(tie_chain).scale(Multiplier(4, 3))
+                >>> logical_tie = inspect(staff[0]).get_logical_tie()
+                >>> logical_tie = mutate(logical_tie).scale(Multiplier(4, 3))
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::

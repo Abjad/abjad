@@ -2,8 +2,8 @@
 from abjad import *
 
 
-def test_agenttools_IterationAgent_by_tie_chain_01():
-    r'''Yield successive tie chains.
+def test_agenttools_IterationAgent_by_logical_tie_01():
+    r'''Yield successive logical ties.
     '''
 
     staff = Staff(scoretools.make_repeated_notes(4))
@@ -24,28 +24,28 @@ def test_agenttools_IterationAgent_by_tie_chain_01():
         '''
         )
 
-    chains = list(iterate(staff).by_tie_chain(reverse=True))
+    logical_ties = list(iterate(staff).by_logical_tie(reverse=True))
 
-    assert chains[0] == selectiontools.LogicalTie((staff[2], staff[3]))
-    assert chains[1] == selectiontools.LogicalTie((staff[0], staff[1]))
+    assert logical_ties[0] == selectiontools.LogicalTie((staff[2], staff[3]))
+    assert logical_ties[1] == selectiontools.LogicalTie((staff[0], staff[1]))
 
 
-def test_agenttools_IterationAgent_by_tie_chain_02():
-    r'''Yield successive tie chains.
+def test_agenttools_IterationAgent_by_logical_tie_02():
+    r'''Yield successive logical ties.
     '''
 
     staff = Staff(scoretools.make_repeated_notes(4))
 
-    chains = list(iterate(staff).by_tie_chain(reverse=True))
+    logical_ties = list(iterate(staff).by_logical_tie(reverse=True))
 
-    assert chains[0] == selectiontools.LogicalTie(staff[3])
-    assert chains[1] == selectiontools.LogicalTie(staff[2])
-    assert chains[2] == selectiontools.LogicalTie(staff[1])
-    assert chains[3] == selectiontools.LogicalTie(staff[0])
+    assert logical_ties[0] == selectiontools.LogicalTie(staff[3])
+    assert logical_ties[1] == selectiontools.LogicalTie(staff[2])
+    assert logical_ties[2] == selectiontools.LogicalTie(staff[1])
+    assert logical_ties[3] == selectiontools.LogicalTie(staff[0])
 
 
-def test_agenttools_IterationAgent_by_tie_chain_03():
-    r'''Yield successive tie chains.
+def test_agenttools_IterationAgent_by_logical_tie_03():
+    r'''Yield successive logical ties.
     '''
 
     staff = Staff(scoretools.make_repeated_notes(4))
@@ -54,14 +54,14 @@ def test_agenttools_IterationAgent_by_tie_chain_03():
     tie = spannertools.Tie()
     attach(tie, staff[2:])
 
-    chains = list(iterate(staff).by_tie_chain())
+    logical_ties = list(iterate(staff).by_logical_tie())
 
-    assert chains[0] == selectiontools.LogicalTie((staff[0], staff[1]))
-    assert chains[1] == selectiontools.LogicalTie((staff[2], staff[3]))
+    assert logical_ties[0] == selectiontools.LogicalTie((staff[0], staff[1]))
+    assert logical_ties[1] == selectiontools.LogicalTie((staff[2], staff[3]))
 
 
-def test_agenttools_IterationAgent_by_tie_chain_04():
-    r'''Yield successive tie chains.
+def test_agenttools_IterationAgent_by_logical_tie_04():
+    r'''Yield successive logical ties.
     '''
 
     staff = Staff(scoretools.make_repeated_notes(4))
@@ -75,51 +75,51 @@ def test_agenttools_IterationAgent_by_tie_chain_04():
     }
     '''
 
-    chains = list(iterate(staff).by_tie_chain())
+    logical_ties = list(iterate(staff).by_logical_tie())
 
-    assert chains[0] == selectiontools.LogicalTie(staff[0])
-    assert chains[1] == selectiontools.LogicalTie(staff[1])
-    assert chains[2] == selectiontools.LogicalTie(staff[2])
-    assert chains[3] == selectiontools.LogicalTie(staff[3])
+    assert logical_ties[0] == selectiontools.LogicalTie(staff[0])
+    assert logical_ties[1] == selectiontools.LogicalTie(staff[1])
+    assert logical_ties[2] == selectiontools.LogicalTie(staff[2])
+    assert logical_ties[3] == selectiontools.LogicalTie(staff[3])
 
 
-def test_agenttools_IterationAgent_by_tie_chain_05():
+def test_agenttools_IterationAgent_by_logical_tie_05():
 
     staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
 
-    tie_chains = list(iterate(staff).by_tie_chain(
+    logical_ties = list(iterate(staff).by_logical_tie(
         nontrivial=True, reverse=True))
 
-    assert tie_chains[0].leaves == staff.select_leaves()[-2:]
-    assert tie_chains[1].leaves == staff.select_leaves()[:2]
+    assert logical_ties[0].leaves == staff.select_leaves()[-2:]
+    assert logical_ties[1].leaves == staff.select_leaves()[:2]
 
 
-def test_agenttools_IterationAgent_by_tie_chain_06():
+def test_agenttools_IterationAgent_by_logical_tie_06():
 
     staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
 
-    tie_chains = list(iterate(staff).by_tie_chain(nontrivial=True))
+    logical_ties = list(iterate(staff).by_logical_tie(nontrivial=True))
 
-    assert tie_chains[0].leaves == staff.select_leaves()[:2]
-    assert tie_chains[1].leaves == staff.select_leaves()[-2:]
+    assert logical_ties[0].leaves == staff.select_leaves()[:2]
+    assert logical_ties[1].leaves == staff.select_leaves()[-2:]
 
 
-def test_agenttools_IterationAgent_by_tie_chain_07():
+def test_agenttools_IterationAgent_by_logical_tie_07():
 
     staff = Staff('c ~ c r d ~ d r')
 
-    tie_chains = list(iterate(staff).by_tie_chain(
+    logical_ties = list(iterate(staff).by_logical_tie(
         pitched=True, reverse=True))
 
-    assert tie_chains[0] == selectiontools.LogicalTie(staff[3:5])
-    assert tie_chains[1] == selectiontools.LogicalTie(staff[:2])
+    assert logical_ties[0] == selectiontools.LogicalTie(staff[3:5])
+    assert logical_ties[1] == selectiontools.LogicalTie(staff[:2])
 
 
-def test_agenttools_IterationAgent_by_tie_chain_08():
+def test_agenttools_IterationAgent_by_logical_tie_08():
 
     staff = Staff('c ~ c r d ~ d r')
 
-    tie_chains = list(iterate(staff).by_tie_chain(pitched=True))
+    logical_ties = list(iterate(staff).by_logical_tie(pitched=True))
 
-    assert tie_chains[0] == selectiontools.LogicalTie(staff[:2])
-    assert tie_chains[1] == selectiontools.LogicalTie(staff[3:5])
+    assert logical_ties[0] == selectiontools.LogicalTie(staff[:2])
+    assert logical_ties[1] == selectiontools.LogicalTie(staff[3:5])

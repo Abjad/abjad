@@ -339,17 +339,17 @@ New functionality is available for working with ties.
 
   ::
 
-    >>> tietools.get_tie_chain(staff[2])
+    >>> tietools.get_logical_tie(staff[2])
     LogicalTie((Note("e'4"), Note("e'4")))
 
 
-  Reimplemented tie chain duration attributes as explicit class attributes.
+  Reimplemented logical tie duration attributes as explicit class attributes.
   The following four functions have been removed::
 
-    tietools.get_preprolated_tie_chain_duration()
-    tietools.get_prolated_tie_chain_duration()
-    tietools.get_tie_chain_duration_in_seconds()
-    tietools.get_written_tie_chain_duration()
+    tietools.get_preprolated_logical_tie_duration()
+    tietools.get_prolated_logical_tie_duration()
+    tietools.get_logical_tie_duration_in_seconds()
+    tietools.get_written_logical_tie_duration()
 
   Use these read-only properties instead::
 
@@ -362,19 +362,19 @@ New functionality is available for working with ties.
 
   Added new ``tietools`` functions:: 
 
-    tietools.iterate_pitched_tie_chains_forward_in_expr()
-    tietools.iterate_pitched_tie_chains_backward_in_expr()
-    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
-    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
+    tietools.iterate_pitched_logical_ties_forward_in_expr()
+    tietools.iterate_pitched_logical_ties_backward_in_expr()
+    tietools.iterate_nontrivial_logical_ties_forward_in_expr()
+    tietools.iterate_nontrivial_logical_ties_backward_in_expr()
 
-  Removed ``tietools.is_tie_chain(expr)``.  Use ``isinstance(expr, selectiontools.LogicalTie)`` instead.
+  Removed ``tietools.is_logical_tie(expr)``.  Use ``isinstance(expr, selectiontools.LogicalTie)`` instead.
 
-  Removed ``tietools.get_leaves_in_tie_chain()``. Use ``LogicalTie.leaves`` instead.
+  Removed ``tietools.get_leaves_in_logical_tie()``. Use ``LogicalTie.leaves`` instead.
 
-  Removed ``tietools.group_leaves_in_tie_chain_by_immediate_parents()``.
+  Removed ``tietools.group_leaves_in_logical_tie_by_immediate_parents()``.
   Use ``LogicalTie.leaves_grouped_by_immediate_parents instead``.
 
-  Removed ``tietools.is_tie_chain_with_all_leaves_in_same_parent()``.
+  Removed ``tietools.is_logical_tie_with_all_leaves_in_same_parent()``.
   Use ``LogicalTie.all_leaves_are_in_same_parent`` instead.
 
 
@@ -792,19 +792,19 @@ Changes to end-user functionality:
 
 - Changed::
 
-    tietools.get_tie_chains_in_expr()
+    tietools.get_logical_ties_in_expr()
 
   ::
 
-    tietools.get_nontrivial_tie_chains_masked_by_components()
+    tietools.get_nontrivial_logical_ties_masked_by_components()
 
 - Changed::
 
-    tietools.remove_all_leaves_in_tie_chain_except_first()
+    tietools.remove_all_leaves_in_logical_tie_except_first()
 
   ::
 
-    tietools.remove_nonfirst_leaves_in_tie_chain()
+    tietools.remove_nonfirst_leaves_in_logical_tie()
 
 - Changed::
 

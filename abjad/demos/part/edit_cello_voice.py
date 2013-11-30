@@ -9,8 +9,8 @@ def edit_cello_voice(score, durated_reservoir):
     voice = score['Cello Voice']
     descents = durated_reservoir['Cello']
 
-    tie_chain = inspect(voice[-1]).get_tie_chain()
-    for leaf in tie_chain.leaves:
+    logical_tie = inspect(voice[-1]).get_logical_tie()
+    for leaf in logical_tie.leaves:
         parent = leaf._get_parentage().parent
         index = parent.index(leaf)
         parent[index] = scoretools.Chord(['e,', 'a,'], leaf.written_duration)
