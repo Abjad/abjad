@@ -118,11 +118,13 @@ class Tuplet(Container):
 
         Returns string.
         '''
-        return '%s(%s, [%s])' % (
+        result = '{}({}, {!r})'
+        result = result.format(
             type(self).__name__,
-            self.multiplier,
-            self._summary,
+            self.multiplier.pair,
+            self._string_summary,
             )
+        return result
 
     def __str__(self):
         '''String representation of tuplet.
@@ -130,14 +132,14 @@ class Tuplet(Container):
         Returns string.
         '''
         if 0 < len(self):
-            return '{%s %s %s %s}' % (
+            return '{{} {} {} {}}'.format(
                 self._signifier,
                 self._ratio_string,
                 self._summary,
                 self._signifier,
                 )
         else:
-            return '{%s %s %s}' % (
+            return '{{} {} {}}'.format(
                 self._signifier,
                 self.multiplier,
                 self._signifier,
@@ -186,6 +188,13 @@ class Tuplet(Container):
             return ratio_string
         else:
             return None
+
+    @property
+    def _string_summary(self):
+        if 0 < len(self):
+            return ' '.join([str(x) for x in self._music])
+        else:
+            return ''
 
     @property
     def _summary(self):
@@ -1705,7 +1714,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet
-                Tuplet(2/3, [c'8, d'8, e'8])
+                Tuplet((2, 3), "c'8 d'8 e'8")
 
             ::
 
@@ -1715,7 +1724,7 @@ class Tuplet(Container):
             ::
 
                 >>> new_tuplet
-                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+                FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
 
         Returns new tuplet.
         '''

@@ -32,7 +32,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
     ::
 
         >>> scoretools.make_repeated_notes(3, (1, 12))
-        Selection(Tuplet(2/3, [c'8, c'8, c'8]),)
+        Selection(Tuplet((2, 3), "c'8 c'8 c'8"),)
 
     Set pitch of all notes created to middle C.
 

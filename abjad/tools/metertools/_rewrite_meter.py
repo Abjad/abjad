@@ -255,7 +255,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
         TieChain(Note("d'8."),)
         TieChain(Rest('r16'), Rest('r8.'))
         TieChain(Note("e'16"),)
-        Tuplet(2/3, [e'8, e'8, f'8])
+        Tuplet((2, 3), "e'8 e'8 f'8")
         TieChain(Note("f'4"),)
 
     ::

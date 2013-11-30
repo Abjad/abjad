@@ -9,7 +9,7 @@ def parse_rtm_syntax(rtm):
 
         >>> rtm = '(1 (1 (1 (1 1)) 1))'
         >>> rhythmtreetools.parse_rtm_syntax(rtm)
-        FixedDurationTuplet(1/4, [c'8, c'16, c'16, c'8])
+        FixedDurationTuplet((1, 4), "c'8 c'16 c'16 c'8")
 
     Also supports fractional durations:
 
@@ -17,7 +17,7 @@ def parse_rtm_syntax(rtm):
 
         >>> rtm = '(3/4 (1 1/2 (4/3 (1 -1/2 1))))'
         >>> rhythmtreetools.parse_rtm_syntax(rtm)
-        FixedDurationTuplet(3/16, [c'8, c'16, {@ 15:8 c'8, r16, c'8 @}])
+        FixedDurationTuplet((3, 16), "c'8 c'16 {@ 15:8 c'8, r16, c'8 @}")
         >>> print format(_)
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 9/17 {

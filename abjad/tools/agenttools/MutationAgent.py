@@ -240,7 +240,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> tuplets = staff[:]
                 >>> mutate(tuplets).fuse()
-                FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
+                FixedDurationTuplet((3, 8), "c'8 d'8 e'8 c'16 d'16 e'16")
                 >>> show(staff) #doctest: +SKIP
 
             ..  doctest::

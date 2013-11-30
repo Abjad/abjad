@@ -31,7 +31,7 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     ::
 
         >>> scoretools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
-        Selection(Note("c'16"), Tuplet(2/3, [c'8]), Note("c'8"))
+        Selection(Note("c'16"), Tuplet((2, 3), "c'8"), Note("c'8"))
 
     Set ``decrease_durations_monotonically=True`` to express tied values 
     in decreasing duration:

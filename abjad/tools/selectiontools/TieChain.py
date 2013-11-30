@@ -235,7 +235,7 @@ class TieChain(ContiguousSelection):
 
                 >>> tie_chain = inspect(staff[0]).get_tie_chain()
                 >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=True)
-                FixedDurationTuplet(3/16, [c'8, c'16, c'16, c'16])
+                FixedDurationTuplet((3, 16), "c'8 c'16 c'16 c'16")
 
             ..  doctest::
 
@@ -291,7 +291,7 @@ class TieChain(ContiguousSelection):
 
                 >>> tie_chain = inspect(staff[0]).get_tie_chain()
                 >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=False)
-                FixedDurationTuplet(3/16, [c'16, c'32, c'32, c'32])
+                FixedDurationTuplet((3, 16), "c'16 c'32 c'32 c'32")
 
             ..  doctest::
 

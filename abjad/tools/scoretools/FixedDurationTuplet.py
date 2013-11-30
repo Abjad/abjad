@@ -72,8 +72,13 @@ class FixedDurationTuplet(Tuplet):
 
         Returns string.
         '''
-        return '%s(%s, [%s])' % (
-            type(self).__name__, self.target_duration, self._summary)
+        result = '{}({}, {!r})'
+        result = result.format(
+            type(self).__name__, 
+            self.target_duration.pair, 
+            self._string_summary,
+            )
+        return result
 
     def __str__(self):
         '''String representation of fixed-duration tuplet.
@@ -209,7 +214,7 @@ class FixedDurationTuplet(Tuplet):
             ::
 
                 >>> tuplet
-                FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+                FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
 
             ::
 
@@ -219,7 +224,7 @@ class FixedDurationTuplet(Tuplet):
             ::
 
                 >>> new_tuplet
-                Tuplet(2/3, [c'8, d'8, e'8])
+                Tuplet((2, 3), "c'8 d'8 e'8")
 
         Returns new tuplet.
         '''
@@ -246,13 +251,13 @@ class FixedDurationTuplet(Tuplet):
             >>> tuplet = scoretools.FixedDurationTuplet(
             ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> tuplet
-            FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+            FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
 
         ::
 
             >>> tuplet.trim(2)
             >>> tuplet
-            FixedDurationTuplet(1/6, [c'8, d'8])
+            FixedDurationTuplet((1, 6), "c'8 d'8")
 
         Preserve fixed-duration tuplet multiplier.
 

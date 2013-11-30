@@ -1102,7 +1102,7 @@ class IterationAgent(abctools.AbjadObject):
             ...
             TieChain(Note("c'8"), Note("c'32"))
             TieChain(Note("d'8"), Note("d'32"))
-            Tuplet(2/3, [e'8, f'8, g'8])
+            Tuplet((2, 3), "e'8 f'8 g'8")
             TieChain(Note("a'8"), Note("a'32"))
             TieChain(Note("b'8"), Note("b'32"))
 

@@ -8,15 +8,6 @@ def test_scoretools_make_repeated_notes_01():
 
     voice = Voice(scoretools.make_repeated_notes(2, (5, 16)))
 
-    r'''
-    \new Voice {
-        c'4 ~
-        c'16
-        c'4 ~
-        c'16
-    }
-    '''
-
     assert systemtools.TestManager.compare(
         voice,
         r'''

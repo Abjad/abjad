@@ -83,7 +83,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     ::
 
         >>> container((1, 4))
-        [FixedDurationTuplet(1/4, [c'8, {@ 5:4 c'8., c'8 @}])]
+        [FixedDurationTuplet((1, 4), "c'8 {@ 5:4 c'8., c'8 @}")]
 
     ..  doctest::
 
@@ -194,7 +194,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         ::
 
             >>> tree((1, 4))
-            [FixedDurationTuplet(1/4, [c'16, {@ 3:2 c'16, c'16, c'16 @}, c'8])]
+            [FixedDurationTuplet((1, 4), "c'16 {@ 3:2 c'16, c'16, c'16 @} c'8")]
 
         Returns sequence of components.
         '''
