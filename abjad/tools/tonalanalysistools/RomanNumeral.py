@@ -74,6 +74,12 @@ class RomanNumeral(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a roman numeral with scale degree, quality,
+        extent, inversion and suspension equal to those of this roman numeral.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.scale_degree == arg.scale_degree:
                 if self.quality == arg.quality:
@@ -84,9 +90,17 @@ class RomanNumeral(AbjadObject):
         return False
 
     def __ne__(self, arg):
+        r'''True when roman numeral does not equal `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __repr__(self):
+        r'''Interpreter representation of `arg`.
+
+        Returns string.
+        '''
         return self._format_string
 
     ### PRIVATE PROPERTIES ###
@@ -253,6 +267,10 @@ class RomanNumeral(AbjadObject):
 
     @property
     def bass_scale_degree(self):
+        r'''Base scale degree of roman numeral.
+
+        Returns scale degree.
+        '''
         from abjad.tools import tonalanalysistools
         root_scale_degree = self.root_scale_degree.number
         bass_scale_degree = root_scale_degree - 1
@@ -264,10 +282,18 @@ class RomanNumeral(AbjadObject):
 
     @property
     def extent(self):
+        r'''Extend of roman numeral.
+
+        Returns extent.
+        '''
         return self._extent
 
     @property
     def figured_bass_string(self):
+        r'''Figured bass string of roman numeral.
+
+        Returns string.
+        '''
         digits = self._figured_bass_digits
         if self.suspension.is_empty:
             return '/'.join([str(x) for x in digits])
@@ -285,33 +311,61 @@ class RomanNumeral(AbjadObject):
 
     @property
     def inversion(self):
+        r'''Inversion of roman numeral.
+        
+        Returns nonnegative integer.
+        '''
         return self._inversion
 
     @property
     def markup(self):
+        r'''Markup of roman numeral.
+
+        Returns markup.
+        '''
         symbolic_string = self.symbolic_string
         symbolic_string = symbolic_string.replace('#', r'\sharp ')
         return markuptools.Markup(symbolic_string, Down)
 
     @property
     def quality(self):
+        r'''Quality of roman numeral.
+
+        Returns chord quality.
+        '''
         return self._quality
 
     @property
     def root_scale_degree(self):
+        r'''Root scale degree.
+
+        Returns scale degree.
+        '''
         return self._scale_degree
 
-    # TODO: deprecate scale_degree in favor of root_scale_degree #
+    # TODO: deprecate scale_degree in favor of root_scale_degree
     @property
     def scale_degree(self):
+        r'''Scale degree of roman numeral.
+
+        Returns scale degree.
+        '''
         return self._scale_degree
 
     @property
     def suspension(self):
+        r'''Suspension of roman numeral.
+
+        Returns suspension.
+        '''
         return self._suspension
 
     @property
     def symbolic_string(self):
+        r'''Symbolic string of roman numeral.
+
+        Returns string.
+        '''
         result = ''
         result += self.scale_degree.accidental.symbolic_string
         result += self._roman_numeral_string

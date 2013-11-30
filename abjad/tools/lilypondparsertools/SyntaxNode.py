@@ -26,18 +26,30 @@ class SyntaxNode(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, item):
+        r'''Gets `item` from syntax node.
+
+        Returns item.
+        '''
         if isinstance(self.value, (list, tuple)):
             return self.value[item]
         message = 'can not get: {!r}.'.format(item)
         raise Exception(message)
 
     def __len__(self):
+        r'''Length of syntax node.
+
+        Returns nonnegative integer.
+        '''
         if isinstance(self.value, (list, tuple)):
             return len(self.value)
         message = 'value must be list or tuple.'
         raise Exception(message)
 
     def __repr__(self):
+        r'''Interpreter representation of syntax node.
+
+        Returns string.
+        '''
         return '{}({}, {})'.format(
             type(self).__name__, 
             self.type, 
@@ -45,8 +57,13 @@ class SyntaxNode(AbjadObject):
             )
 
     def __str__(self):
+        r'''String representation of syntax node.
+
+        Returns string.
+        '''
         return '\n'.join(self._format(self))
 
+    ### PRIVATE METHODS ###
 
     def _format(self, obj, indent=0):
         space = '.  ' * indent

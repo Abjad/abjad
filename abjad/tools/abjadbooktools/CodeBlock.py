@@ -5,6 +5,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class CodeBlock(AbjadObject):
+    r'''A code block.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -47,6 +49,10 @@ class CodeBlock(AbjadObject):
         image_prefix='image', 
         verbose=False,
         ):
+        r'''Calls code block.
+
+        Returns image count.
+        '''
 
         assert isinstance(pipe, documentationtools.Pipe)
 
@@ -165,6 +171,12 @@ class CodeBlock(AbjadObject):
         return image_count
 
     def __eq__(self, expr):
+        r'''True when `expr` is a code block with lines, starting line number,
+        ending line number, hide and strip prompt boolean equal to those of
+        this code block. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr) and \
             self.lines == expr.lines and \
             self.starting_line_number == expr.starting_line_number and \
@@ -178,31 +190,45 @@ class CodeBlock(AbjadObject):
 
     @property
     def ending_line_number(self):
+        r'''Ending line number of code block.
+        '''
         return self._ending_line_number
 
     @property
     def hide(self):
+        r'''True when code block should hide.
+        '''
         return self._hide
 
     @property
     def lines(self):
+        r'''Lines of code block.
+        '''
         return self._lines
 
     @property
     def processed_results(self):
+        r'''Processed results of code block.
+        '''
         return self._processed_results
 
     @property
     def starting_line_number(self):
+        r'''Starting line number of code block.
+        '''
         return self._starting_line_number
 
     @property
     def strip_prompt(self):
+        r'''True when code block should strip prompt.
+        '''
         return self._strip_prompt
 
     ### PUBLIC METHODS ###
 
     def read(self, pipe):
+        r'''Reads `pipe`.
+        '''
         # Guarantee we make it to the next prompt.
         # Exceptions sometimes take longer than expected.
         result = pipe.read_wait().replace('\t', '    ').split('\n')

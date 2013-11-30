@@ -40,17 +40,34 @@ class Mode(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a mode with mode name equal to that of this
+        mode. Otherwise false.
+
+        Returns boolean.
+        '''
         if not isinstance(arg, type(self)):
             return False
         return self.mode_name == arg.mode_name
 
     def __len__(self):
+        r'''Length of mode.
+
+        Returns nonnegative integer.
+        '''
         return len(self.named_interval_segment)
 
     def __ne__(self, arg):
+        r'''True when `arg` does not equal mode. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __str__(self):
+        r'''String representation of mode.
+
+        Returns string.
+        '''
         return self.mode_name
 
     ### PRIVATE PROPERTIES ###
@@ -103,8 +120,16 @@ class Mode(AbjadObject):
 
     @property
     def mode_name(self):
+        r'''Mode name.
+
+        Returns string.
+        '''
         return self._mode_name
 
     @property
     def named_interval_segment(self):
+        r'''Named interval segment of mode.
+
+        Returns named interval segment.
+        '''
         return self._named_interval_segment

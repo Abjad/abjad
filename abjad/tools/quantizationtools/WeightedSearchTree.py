@@ -26,9 +26,10 @@ class WeightedSearchTree(SearchTree):
 
         * ``divisors`` controls the sum of the parts of the ratio a node
           may be divided into,
-        * ``max_depth`` controls how many levels of tuplet nesting are permitted, and
-        * ``max_divisions`` controls the maximum permitted length of the weights in
-          the ratio.
+        * ``max_depth`` controls how many levels of tuplet nesting 
+          are permitted, and
+        * ``max_divisions`` controls the maximum permitted length of the 
+          weights in the ratio.
 
     Thus, the default ``WeightedSearchTree`` permits the following ratios:
 
@@ -51,7 +52,6 @@ class WeightedSearchTree(SearchTree):
         (2, 5)
         (1, 6)
 
-    Return ``WeightedSearchTree`` instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -76,10 +76,16 @@ class WeightedSearchTree(SearchTree):
 
     @property
     def all_compositions(self):
+        r'''All compositions of weighted search tree.
+        '''
         return self._all_compositions
 
     @property
     def default_definition(self):
+        r'''Default definition of weighted search tree.
+
+        Returns dictionary.
+        '''
         return {
             'divisors': (2, 3, 5, 7),
             'max_depth': 3,

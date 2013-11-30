@@ -9,6 +9,16 @@ ignored_names = (
     '__init__',
     '__new__',
     '__weakref__',
+    'context_name',
+    'denominator',
+    'duration',
+    'multiplier',
+    'music',
+    'numerator',
+    'optional_id',
+    'optional_context_mod',
+    'type',
+    'value',
     )
 
 

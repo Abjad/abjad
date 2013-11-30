@@ -52,6 +52,15 @@ class Context(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        r'''Interpreter representation of context.
+
+        ::
+
+            >>> context
+            TimeSignatureContext-"MeterVoice"{}
+
+        Returns string.
+        '''
         if 0 < len(self):
             summary = str(len(self))
         else:

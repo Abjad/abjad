@@ -11,6 +11,10 @@ class StorageFormatManager(object):
 
     @staticmethod
     def compare(object_one, object_two):
+        r'''Compares `object_one` to `object_two`.
+
+        Returns boolean.
+        '''
         if type(object_one) is not type(object_two):
             return False
         if StorageFormatManager.get_positional_argument_values(object_one) != \
@@ -27,6 +31,10 @@ class StorageFormatManager(object):
         as_storage_format=True,
         is_indented=True,
         ):
+        r'''Formats one value.
+
+        Returns list.
+        '''
         result = []
         prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
             is_indented)
@@ -116,6 +124,8 @@ class StorageFormatManager(object):
         specification,
         as_storage_format=True,
         ):
+        r'''Gets format pieces.
+        '''
         if specification.storage_format_pieces is not None:
             return specification.storage_format_pieces
 
@@ -208,6 +218,8 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_indentation_strings(is_indented):
+        r'''Gets indentation strings.
+        '''
         prefix, infix, suffix = '', '', ', '
         if is_indented:
             prefix, infix, suffix = '    ', '\n', ',\n'
@@ -215,11 +227,15 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_input_argument_values(object_):
+        r'''Gets input argument values.
+        '''
         return StorageFormatManager.get_positional_argument_values(object_) + \
             StorageFormatManager.get_keyword_argument_values(object_)
 
     @staticmethod
     def get_keyword_argument_dictionary(object_):
+        r'''Gets keyword argument dictionary.
+        '''
         names = StorageFormatManager.get_keyword_argument_names(object_)
         values = StorageFormatManager.get_keyword_argument_values(object_)
         assert len(names) == len(values)
@@ -228,11 +244,15 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_keyword_argument_names(object_):
+        r'''Gets keyword argument names.
+        '''
         return StorageFormatManager.get_signature_keyword_argument_names(
             object_)
 
     @staticmethod
     def get_keyword_argument_values(object_):
+        r'''Gets keyword argument values.
+        '''
         result = []
         for name in StorageFormatManager.get_keyword_argument_names(object_):
             result.append(getattr(object_, name))
@@ -240,6 +260,8 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_positional_argument_dictionary(object_):
+        r'''Gets positional argument dictionary.
+        '''
         names = StorageFormatManager.get_positional_argument_names(object_)
         values = StorageFormatManager.get_positional_argument_values(object_)
         assert len(names) == len(values)
@@ -248,11 +270,15 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_positional_argument_names(object_):
+        r'''Gets positional argument names.
+        '''
         return StorageFormatManager.get_signature_positional_argument_names(
             object_)
 
     @staticmethod
     def get_positional_argument_values(object_):
+        r'''Gets positional argument values.
+        '''
         names = StorageFormatManager.get_positional_argument_names(object_)
         result = []
         for name in names:
@@ -263,6 +289,8 @@ class StorageFormatManager(object):
     def get_repr_format(
         object_,
         ):
+        r'''Gets interpreter representation format.
+        '''
         assert '_repr_specification' in dir(object_)
         specification = object_._repr_specification
         pieces = StorageFormatManager.get_format_pieces(
@@ -273,6 +301,8 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_signature_keyword_argument_names(object_):
+        r'''Gets signature keyword argument names.
+        '''
         if hasattr(object_.__init__, '__func__'):
             initializer = object_.__init__.__func__
             if initializer.func_defaults:
@@ -289,6 +319,8 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_signature_positional_argument_names(object_):
+        r'''Gets signature positional argument names.
+        '''
         if hasattr(object_.__init__, '__func__'):
             initializer = object_.__init__.__func__
             if initializer.func_defaults:
@@ -306,6 +338,8 @@ class StorageFormatManager(object):
     def get_storage_format(
         object_,
         ):
+        r'''Gets storage format.
+        '''
         assert '_storage_format_specification' in dir(object_)
         specification = object_._storage_format_specification
         pieces = StorageFormatManager.get_format_pieces(
@@ -316,7 +350,7 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_tools_package_name(object_):
-        r'''Gets tools-package name of `object_`:
+        r'''Gets tools-package name of `object_`.
 
         ::
 
@@ -335,7 +369,7 @@ class StorageFormatManager(object):
 
     @staticmethod
     def get_tools_package_qualified_class_name(object_):
-        r'''Gets tools-package qualified class name of `object_`:
+        r'''Gets tools-package qualified class name of `object_`.
 
         ::
 
@@ -359,6 +393,10 @@ class StorageFormatManager(object):
 
     @staticmethod
     def is_instance(object_):
+        r'''True when `object_` is instance. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(object_, types.TypeType):
             return False
         elif type(object_) is object_.__class__:

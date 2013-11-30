@@ -11,9 +11,14 @@ class Maker(AbjadObject):
 
     @abc.abstractmethod
     def __call__(self):
+        r'''Calls maker.
+        '''
         raise NotImplemented
 
-    # TODO: uncomment this after __makenew__ integration
-#    @abc.abstractmethod
-#    def __makenew__(self):
-#        raise NotImplemented
+    @abc.abstractmethod
+    def __makenew__(self):
+        r'''Makes new maker.
+
+        Returns new maker.
+        '''
+        raise NotImplemented

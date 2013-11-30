@@ -64,7 +64,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
+    def __init__(
+        self, 
         search_tree=None, 
         tempo=None,
         time_signature=None,
@@ -84,6 +85,10 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return tuple(
             self.search_tree,
             self.tempo,

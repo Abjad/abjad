@@ -93,6 +93,10 @@ class QuantizationJob(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        r'''Calls quantization job.
+
+        Returns none.
+        '''
         from abjad.tools import quantizationtools
         q_grid = quantizationtools.QGrid()
         q_grid.fit_q_events(self.q_event_proxies)
@@ -105,6 +109,12 @@ class QuantizationJob(AbjadObject):
         self._q_grids = tuple(old_q_grids)
 
     def __eq__(self, expr):
+        r'''True when `expr` is a quantization job with job ID, search tree,
+        q-event proxies and q-grids equal to those of this quantization job.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self.job_id == expr.job_id:
                 if self.search_tree == expr.search_tree:
@@ -114,10 +124,22 @@ class QuantizationJob(AbjadObject):
         return False
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (
-            self.job_id, self.search_tree, self.q_event_proxies, self.q_grids)
+            self.job_id, 
+            self.search_tree, 
+            self.q_event_proxies, 
+            self.q_grids,
+            )
 
     def __getstate__(self):
+        r'''Gets state.
+
+        Returns dictionary.
+        '''
         return {
             '_job_id': self.job_id,
             '_q_event_proxies': self.q_event_proxies,
@@ -126,6 +148,10 @@ class QuantizationJob(AbjadObject):
         }
 
     def __setstate__(self, state):
+        r'''Sets state.
+
+        Returns none.
+        '''
         for key, value in state.iteritems():
             setattr(self, key, value)
 
@@ -133,7 +159,7 @@ class QuantizationJob(AbjadObject):
 
     @property
     def job_id(self):
-        r'''The job id of the ``QuantizationJob``:
+        r'''The job id of the ``QuantizationJob``.
 
         ::
 
@@ -150,7 +176,7 @@ class QuantizationJob(AbjadObject):
     @property
     def q_event_proxies(self):
         r'''The ``QEventProxies`` the ``QuantizationJob`` was instantiated 
-        with:
+        with.
 
         ::
 
@@ -190,7 +216,7 @@ class QuantizationJob(AbjadObject):
 
     @property
     def q_grids(self):
-        r'''The generated ``QGrids``:
+        r'''The generated ``QGrids``.
 
         ::
 
@@ -208,7 +234,7 @@ class QuantizationJob(AbjadObject):
 
     @property
     def search_tree(self):
-        r'''The search tree the ``QuantizationJob`` was instantiated with:
+        r'''The search tree the ``QuantizationJob`` was instantiated with.
 
         ::
 

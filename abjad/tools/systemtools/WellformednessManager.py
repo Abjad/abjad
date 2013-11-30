@@ -36,6 +36,10 @@ class WellformednessManager(AbjadObject):
     ### PUBLIC METHODS ###
 
     def check_beamed_quarter_notes(self):
+        r'''Checks to make sure there are no beamed quarter notes.
+
+        Returns violators and total.
+        '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools.topleveltools import iterate
@@ -58,6 +62,8 @@ class WellformednessManager(AbjadObject):
         logical-voice-contiguous. But a few special spanners (like Tempo) 
         do not make such a demand. The check here consults the experimental 
         `_contiguity_constraint`.
+
+        Returns violators and total.
         '''
         from abjad.tools.selectiontools import Selection
         violators = []
@@ -71,6 +77,10 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_duplicate_ids(self):
+        r'''Checks to make sure there are no components with duplicated IDs.
+
+        Returns violators and total.
+        '''
         from abjad.tools import sequencetools
         from abjad.tools.topleveltools import iterate
         violators = []
@@ -86,6 +96,10 @@ class WellformednessManager(AbjadObject):
 
 
     def check_empty_containers(self):
+        r'''Checks to make sure there are no empty containers in score.
+
+        Returns violators and total.
+        '''
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
         violators = []
@@ -98,6 +112,11 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_intermarked_hairpins(self):
+        r'''Checks to make sure there are no hairpins in score with intervening
+        dynamic marks.
+
+        Returns violators and total.
+        '''
         from abjad.tools import indicatortools
         from abjad.tools import spannertools
         violators = []
@@ -115,6 +134,10 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_misdurated_measures(self):
+        r'''Checks to make sure there are no misdurated measures in score.
+
+        Returns violators and total.
+        '''
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
         violators = []
@@ -129,8 +152,10 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_misfilled_measures(self):
-        r'''Check that time signature duration equals measure contents
+        r'''Checks that time signature duration equals measure contents
         duration for every measure.
+
+        Returns violators and total.
         '''
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
@@ -144,9 +169,9 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_mispitched_ties(self):
-        r'''Check for mispitched notes.
-        Do not check tied rests or skips.
-        Implement chord-checking later.
+        r'''Checks for mispitched notes. Does not check tied rests or skips.
+
+        Returns violators and total.
         '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
@@ -168,6 +193,10 @@ class WellformednessManager(AbjadObject):
 
 
     def check_misrepresented_flags(self):
+        r'''Checks to make sure there are no misrepresented flags in score.
+
+        Returns violators and total.
+        '''
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
         from abjad.tools.topleveltools import contextualize
@@ -191,7 +220,10 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_missing_parents(self):
-        r'''Each node except the root needs a parent.
+        r'''Checks to make sure there are no components in score with missing
+        parent.
+
+        Returns violators and total.
         '''
         from abjad.tools.topleveltools import iterate
         violators = []
@@ -205,7 +237,9 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_nested_measures(self):
-        r'''Do we have any nested measures?
+        r'''Checks to make sure there are no nested measures in score.
+
+        Returns violators and total.
         '''
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
@@ -219,7 +253,9 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_overlapping_beams(self):
-        r'''Beams must not overlap.
+        r'''Checks to make sure there are no overlapping beams in score.
+
+        Returns violators and total.
         '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
@@ -238,7 +274,9 @@ class WellformednessManager(AbjadObject):
         return violators, total
         
     def check_overlapping_glissandi(self):
-        r'''Glissandi must not overlap. Dove-tailed glissandi are OK.
+        r'''Checks to make sure there are no overlapping glissandi in score.
+
+        Returns violators and total.
         '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
@@ -267,7 +305,10 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_overlapping_octavation_spanners(self):
-        r'''Octavation spanners must not overlap.
+        r'''Checks to make sure there are no overlapping octavation spanners in
+        score.
+
+        Returns violators and total.
         '''
         from abjad.tools import scoretools
         from abjad.tools import spannertools
@@ -284,7 +325,9 @@ class WellformednessManager(AbjadObject):
         return violators, len(total)
 
     def check_short_hairpins(self):
-        r'''Hairpins must span at least two leaves.
+        r'''Checks to make sure that hairpins span at least two leaves.
+
+        Returns violators and total.
         '''
         from abjad.tools import spannertools
         violators = []

@@ -8,9 +8,11 @@ class TestManager(object):
 
     @staticmethod
     def apply_additional_layout(lilypond_file):
-        r'''Configure multiple-voice rhythmic staves in `lilypond_file`.
+        r'''Configures multiple-voice rhythmic staves in `lilypond_file`.
 
-        Operates in place and returns none.
+        Operates in place.
+        
+        Returns none.
         '''
         from abjad.tools import layouttools
         from abjad.tools import scoretools
@@ -47,6 +49,12 @@ class TestManager(object):
 
     @staticmethod
     def compare(string_1, string_2):
+        r'''Compares `string_1` to `string_2`.
+
+        Massage newlines.
+
+        Returns boolean.
+        '''
         if not isinstance(string_1, str):
             string_1 = format(string_1)
         split_lines = string_2.split('\n')
@@ -68,7 +76,7 @@ class TestManager(object):
 
     @staticmethod
     def get_current_function_name():
-        r'''Get current function name:
+        r'''Gets current function name.
 
         ::
 
@@ -100,7 +108,9 @@ class TestManager(object):
 
     @staticmethod
     def read_test_output(full_file_name, current_function_name):
-        r'''Read test output.
+        r'''Reads test output.
+
+        Returns list.
         '''
         segment_ly_file_name = '{}.ly'.format(current_function_name)
         directory_name = os.path.dirname(full_file_name)
@@ -112,6 +122,10 @@ class TestManager(object):
 
     @staticmethod
     def test_function_name_to_title_lines(test_function_name):
+        r'''Changes `test_function_name` to title lines.
+
+        Returns list.
+        '''
         from abjad.tools import sequencetools
         title_lines = []
         test_function_name = test_function_name[5:]
@@ -160,7 +174,9 @@ class TestManager(object):
         go=False,
         render_pdf=False,
         ):
-        r'''Write test output.
+        r'''Writes test output.
+
+        Returns none.
         '''
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
@@ -202,10 +218,6 @@ class TestManager(object):
             file_name = '{}.pdf'.format(test_function_name)
             pdf_path_name = os.path.join(parent_directory_name, file_name)
             topleveltools.persist(lilypond_file).as_pdf(pdf_path_name)
-#            systemtools.IOManager.write_expr_to_pdf(
-#                lilypond_file,
-#                pdf_path_name,
-#                )
         if cache_ly:
             file_name = '{}.ly'.format(test_function_name)
             ly_path_name = os.path.join(parent_directory_name, file_name)

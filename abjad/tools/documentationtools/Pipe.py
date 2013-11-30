@@ -43,14 +43,20 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
 
     @property
     def arguments(self):
+        r'''Arguments of pipe.
+        '''
         return self._arguments
 
     @property
     def executable(self):
+        r'''Executable of pipe.
+        '''
         return self._executable
 
     @property
     def timeout(self):
+        r'''Timeout of pipe.
+        '''
         return self._timeout
 
     ### PRIVATE METHODS ###
@@ -67,13 +73,13 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
     ### PUBLIC METHODS ###
 
     def close(self):
-        r'''Close the pipe.
+        r'''Closes pipe.
         '''
         self.terminate()
         self.wait()
 
     def read(self):
-        r'''Read from the pipe.
+        r'''Reads from pipe.
         '''
         c = self._readbyte()
         string = ""
@@ -83,8 +89,8 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         return string
 
     def read_wait(self, seconds=0.01):
-        r'''Try to read from the pipe.  Wait `seconds` 
-        if nothing comes out, and repeat.
+        r'''Tries to read from pipe.  Wait `seconds` 
+        if nothing comes out and the repeats.
 
         Should be used with caution, as this may loop forever.
         '''
@@ -95,7 +101,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
             time.sleep(seconds)
 
     def write(self, data):
-        r'''Write `data` into the pipe.
+        r'''Writes `data` into pipe.
         '''
         poll = select.poll()
         poll.register(self.stdin.fileno(), select.POLLOUT)
@@ -106,6 +112,6 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
                 self.stdin.write(data)
 
     def write_line(self, data):
-        r'''Write `data` into the pipe, terminated by a newline.
+        r'''Write `data` into pipe. Then writes newline to pipe.
         '''
         self.write('%s\n' % data)

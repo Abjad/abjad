@@ -65,6 +65,11 @@ class QEventProxy(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a q-event proxy with offset and q-event equal
+        to those of this q-event proxy. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self.offset == expr.offset:
                 if self.q_event == expr.q_event:
@@ -85,9 +90,15 @@ class QEventProxy(AbjadObject):
         return str(self)
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self.q_event, self.offset)
 
     def __getstate__(self):
+        r'''Gets state.
+        '''
         state = {}
         for current_class in inspect.getmro(type(self)):
             if hasattr(current_class, '__slots__'):
@@ -97,6 +108,8 @@ class QEventProxy(AbjadObject):
         return state
 
     def __setstate__(self, state):
+        r'''Sets state.
+        '''
         for key, value in state.iteritems():
             setattr(self, key, value)
 
@@ -118,12 +131,18 @@ class QEventProxy(AbjadObject):
 
     @property
     def index(self):
+        r'''Index of q-event proxy.
+        '''
         return self._q_event.index
 
     @property
     def offset(self):
+        r'''Offset of q-event proxy.
+        '''
         return self._offset
 
     @property
     def q_event(self):
+        r'''Q-event of q-event proxy.
+        '''
         return self._q_event

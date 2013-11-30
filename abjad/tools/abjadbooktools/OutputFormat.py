@@ -5,6 +5,8 @@ from abjad.tools import abctools
 
 
 class OutputFormat(abctools.AbjadObject):
+    r'''Output format.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -36,6 +38,8 @@ class OutputFormat(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, code_block, image_dict):
+        r'''Calls output format with `code_block` and `image_dict`.
+        '''
 
         reformatted = []
         for result in code_block.processed_results:
@@ -89,20 +93,30 @@ class OutputFormat(abctools.AbjadObject):
 
     @property
     def code_block_closing(self):
+        r'''Code block closing.
+        '''
         return self._code_block_closing
 
     @property
     def code_block_opening(self):
+        r'''Code block opening.
+        '''
         return self._code_block_opening
 
     @property
     def code_indent(self):
+        r'''Code indent.
+        '''
         return self._code_indent
 
     @property
     def image_block(self):
+        r'''Image block.
+        '''
         return self._image_block
 
     @property
     def image_format(self):
+        r'''Image format.
+        '''
         return self._image_format

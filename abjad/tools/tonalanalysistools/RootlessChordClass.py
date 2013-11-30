@@ -95,6 +95,10 @@ class RootlessChordClass(IntervalSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        r'''Interpreter representation of rootless chord-class.
+
+        Returns string.
+        '''
         parts = []
         if self.item_class.__name__.startswith('Named'):
             parts = [repr(str(x)) for x in self]
@@ -296,15 +300,25 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def cardinality(self):
+        r'''Cardinality of rootless chord-class.
+
+        Returns nonnegative integer.
+        '''
         return len(self)
 
     @property
     def extent(self):
+        r'''Extent of rootless chord-class.
+
+        Returns nonnegative integer.
+        '''
         from abjad.tools import tonalanalysistools
         return tonalanalysistools.RootedChordClass.cardinality_to_extent(self.cardinality)
 
     @property
     def extent_name(self):
+        r'''Extent name of rootless chord class.
+        '''
         from abjad.tools import tonalanalysistools
         if self._quality_string.lower() in \
             self._acceptable_augmented_sixth_qualities:
@@ -313,10 +327,18 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def inversion(self):
+        r'''Inversion of rootless chord-class.
+
+        Returns nonnegative integer.
+        '''
         return abs(self.rotation)
 
     @property
     def position(self):
+        r'''Position of rootless chord-class.
+
+        Returns string.
+        '''
         if self.rotation == 0:
             return 'root position'
         elif self.rotation == -1:
@@ -333,16 +355,28 @@ class RootlessChordClass(IntervalSegment):
 
     @property
     def quality_string(self):
+        r'''Quality string of rootless chord class.
+
+        Returns string.
+        '''
         return self._quality_string
 
     @property
     def rotation(self):
+        r'''Rotation of rootless chord-class.
+
+        Returns nonnegative integer.
+        '''
         return self._rotation
 
     ### PUBLIC METHODS ###
 
     @staticmethod
     def from_interval_class_segment(segment):
+        r'''Makes new rootless chord-class from `segment`.
+
+        Returns new rootless chord-class.
+        '''
         quality, extent = \
             RootlessChordClass._segment_to_quality_and_extent[str(segment)]
         return RootlessChordClass(quality, extent=extent)

@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class MarkupCommand(AbjadObject):
-    r'''Abjad model of a LilyPond markup command:
+    r'''A LilyPond markup command.
 
     ::
 
@@ -37,14 +37,9 @@ class MarkupCommand(AbjadObject):
     ::
 
         >>> note = Note("c'4")
-
-    ::
-
         >>> markup = markuptools.Markup(combine)
-
-    ::
-
         >>> attach(markup, note)
+        >>> show(note) # doctest: +SKIP
 
     ..  doctest::
 
@@ -65,10 +60,6 @@ class MarkupCommand(AbjadObject):
                         #0.1
                         ##f
                 }
-
-    ::
-
-        >>> show(note) # doctest: +SKIP
 
     Markup commands are immutable.
     '''
@@ -94,6 +85,11 @@ class MarkupCommand(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a markup command with command and args equal to
+        those of this markup command. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.command == expr.command:
                 if self.args == expr.args:
@@ -116,6 +112,10 @@ class MarkupCommand(AbjadObject):
         return str(self)
 
     def __str__(self):
+        r'''String representation of markup command.
+
+        Returns string.
+        '''
         return self._lilypond_format
 
     ### PRIVATE PROPERTIES ###
@@ -174,12 +174,17 @@ class MarkupCommand(AbjadObject):
 
     @property
     def args(self):
-        r'''Tuple of markup command arguments.
+        r'''Markup command arguments.
+
+        Returns tuple.
         '''
         return self._args
 
+    # TODO: change to MarkupCommand.name
     @property
     def command(self):
-        r'''String of markup command command-name.
+        r'''Markup command name.
+
+        Returns string.
         '''
         return self._command

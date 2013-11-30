@@ -22,8 +22,12 @@ class ContextManager(AbjadObject):
 
     @abc.abstractmethod
     def __enter__(self):
+        r'''Enters context manager.
+        '''
         raise NotImplemented
 
     @abc.abstractmethod
     def __exit__(self, exc_type, exc_value, traceback):
+        r'''Exits context manager.
+        '''
         raise NotImplemented

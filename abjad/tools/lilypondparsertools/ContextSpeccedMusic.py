@@ -38,6 +38,10 @@ class ContextSpeccedMusic(Music):
     ### PUBLIC METHODS ###
 
     def construct(self):
+        r'''Constructs context.
+
+        Returns context.
+        '''
         if self.context_name in self.known_contexts:
             context = known_contexts[self.context_name]([])
         else:
@@ -64,6 +68,10 @@ class ContextSpeccedMusic(Music):
 
     @property
     def known_contexts(self):
+        r'''Known contexts.
+
+        Returns dictionary.
+        '''
         return {
             'ChoirStaff': scoretools.StaffGroup,
             'GrandStaff': scoretools.GrandStaff,

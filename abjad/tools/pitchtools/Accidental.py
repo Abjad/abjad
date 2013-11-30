@@ -184,6 +184,10 @@ class Accidental(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, arg):
+        r'''Adds `arg` to accidental.
+
+        Returns new accidental.
+        '''
         if not isinstance(arg, type(self)):
             message = 'can only add accidental to other accidental.'
             raise TypeError(message)
@@ -191,40 +195,88 @@ class Accidental(AbjadObject):
         return type(self)(semitones)
 
     def __eq__(self, arg):
+        r'''True when `arg` is an accidental with an abbreviation equal to that
+        of this accidental. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
-            if self.abbreviation == \
-                arg.abbreviation:
+            if self.abbreviation == arg.abbreviation:
                 return True
         return False
 
     def __ge__(self, arg):
+        r'''True when `arg` is an accidental with semitones less than or equal
+        to those of this accidental. Otherwise false.
+
+        Returns boolean.
+        '''
         return self.semitones >= arg.semitones
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self.abbreviation,)
 
     def __gt__(self, arg):
+        r'''True when `arg` is an accidental with semitones less than 
+        those of this accidental. Otherwise false.
+
+        Returns boolean.
+        '''
         return self.semitones > arg.semitones
 
     def __le__(self, arg):
+        r'''True when `arg` is an accidental with semitones greater than or
+        equal to those of this accidental. Otherwise false.
+
+        Returns boolean.
+        '''
         return self.semitones <= arg.semitones
 
     def __lt__(self, arg):
+        r'''True when `arg` is an accidental with semitones greater than those
+        of this accidental. Otherwise false.
+
+        Returns boolean.
+        '''
         return self.semitones < arg.semitones
 
     def __ne__(self, arg):
+        r'''True when accidental does not equal `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __neg__(self):
+        r'''Negates accidental.
+
+        Returns new accidental.
+        '''
         return type(self)(-self.semitones)
 
     def __nonzero__(self):
+        r'''Defined equal to true.
+
+        Returns true.
+        '''
         return True
 
     def __str__(self):
+        r'''String representation of accidental.
+
+        Returns string.
+        '''
         return self.abbreviation
 
     def __sub__(self, arg):
+        r'''Subtracts `arg` from accidental.
+
+        Returns new accidental.
+        '''
         if not isinstance(arg, type(self)):
             message = 'can only subtract accidental from other accidental.'
             raise TypeError(message)
@@ -305,7 +357,7 @@ class Accidental(AbjadObject):
 
     @property
     def abbreviation(self):
-        r'''Alphabetic string:
+        r'''Abbreviation of accidental.
 
         ::
 
@@ -334,7 +386,7 @@ class Accidental(AbjadObject):
 
     @property
     def name(self):
-        r'''Name of accidental:
+        r'''Name of accidental.
 
         ::
 
@@ -348,7 +400,7 @@ class Accidental(AbjadObject):
 
     @property
     def semitones(self):
-        r'''Semitones of accidental:
+        r'''Semitones of accidental.
 
         ::
 
@@ -362,7 +414,7 @@ class Accidental(AbjadObject):
 
     @property
     def symbolic_string(self):
-        r'''Symbolic string of accidental:
+        r'''Symbolic string of accidental.
 
         ::
 
