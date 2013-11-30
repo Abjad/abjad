@@ -110,6 +110,8 @@ class QGrid(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, beatspan):
+        r'''Calls q-grid.
+        '''
         result = self.root_node(beatspan)
         result_leaves = []
         for x in result:
@@ -127,13 +129,26 @@ class QGrid(AbjadObject):
         return result
 
     def __copy__(self, *args):
+        r'''Copies q-grid.
+
+        Returns new q-grid.
+        '''
         return self.__deepcopy__(None)
 
     def __deepcopy__(self, memo):
+        r'''Deepcopies q-grid.
+
+        Returns new q-grid.
+        '''
         root_node, next_downbeat = self.__getnewargs__()
         return type(self)(copy.copy(root_node), copy.copy(next_downbeat))
 
     def __eq__(self, expr):
+        r'''True if `expr` is a q-grid with root node and next downbeat equal
+        to those of this q-grid. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self.root_node == expr.root_node:
                 if self.next_downbeat == expr.next_downbeat:
@@ -154,15 +169,27 @@ class QGrid(AbjadObject):
         return str(self)
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self.root_node, self.next_downbeat)
 
     def __getstate__(self):
+        r'''Gets state.
+
+        Returns dictionary.
+        '''
         return {
             '_next_downbeat': self.next_downbeat,
             '_root_node': self.root_node,
         }
 
     def __setstate__(self, state):
+        r'''Sets `state`.
+
+        Returns none.
+        '''
         self._next_downbeat = state['_next_downbeat']
         self._root_node = state['_root_node']
 
@@ -291,7 +318,8 @@ class QGrid(AbjadObject):
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)
             leaf.parent[index] = container
-        else: # otherwise, our root node is just a QGridLeaf
+        # otherwise, our root node if just a QGridLeaf
+        else:
             self._root_node = container
         return leaf.q_event_proxies
 
@@ -301,7 +329,8 @@ class QGrid(AbjadObject):
         ``QGridContainers`` containing ``QGridLeaves`` with durations
         equal to their respective subdivision-ratios.
 
-        Returns the ``QEventProxies`` attached to thus subdivided ``QGridLeaf``.
+        Returns the ``QEventProxies`` attached to thus subdivided 
+        ``QGridLeaf``.
         '''
         pairs = sorted(dict(pairs).items())
         leaf_indices = [pair[0] for pair in pairs]
