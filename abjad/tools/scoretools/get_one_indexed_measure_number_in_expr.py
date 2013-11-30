@@ -32,7 +32,7 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
     ::
 
         >>> scoretools.get_one_indexed_measure_number_in_expr(staff, 3)
-        Measure(2/8, [g'8, a'8])
+        Measure((2, 8), "g'8 a'8")
 
     Note that measures number from ``1``.
     '''

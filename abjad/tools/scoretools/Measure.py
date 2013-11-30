@@ -17,7 +17,7 @@ class Measure(FixedDurationContainer):
 
     ..  container:: example
 
-        >>> measure = Measure((4, 8), "c'8 d' e' f'")
+        >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
         >>> show(measure) # doctest: +SKIP
 
     ..  doctest::
@@ -75,7 +75,7 @@ class Measure(FixedDurationContainer):
 
         ::
 
-            >>> measure = Measure((4, 8), "c'8 d'8 e'8")
+            >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
             >>> measure.automatically_adjust_time_signature = True
             >>> show(measure) # doctest: +SKIP
 
@@ -113,24 +113,29 @@ class Measure(FixedDurationContainer):
 
         ::
 
+            >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+            >>> show(measure) # doctest: +SKIP
+
+        ::
+
             >>> measure
-            Measure(2/8, [c'8, e'8])
+            Measure((3, 8), "c'8 d'8 e'8")
 
         Returns string.
         '''
         class_name = type(self).__name__
         indicator = self._get_indicator(indicatortools.TimeSignature)
         forced_time_signature = indicator
-        summary = self._summary
-        length = len(self)
-        if forced_time_signature and length:
-            result = '{}({!s}, [{}])'
+        forced_time_signature = forced_time_signature.pair
+        # TODO: remove self._summary
+        #summary = self._summary
+        summary = self._string_summary
+        if forced_time_signature and len(self):
+            result = '{}({!s}, {!r})'
             result = result.format(class_name, forced_time_signature, summary)
             return result
         elif forced_time_signature:
             return '{}({!s})'.format(class_name, forced_time_signature)
-        elif length:
-            return '{}([{}])'.format(class_name, summary)
         else:
             return '{}()'.format(class_name)
 
@@ -218,6 +223,12 @@ class Measure(FixedDurationContainer):
     def _preprolated_duration(self):
         time_signature = self.time_signature
         return time_signature.implied_prolation * self._contents_duration
+
+    @property
+    def _string_summary(self):
+        result = [str(x) for x in self]
+        result = ' '.join(result)
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -446,6 +457,10 @@ class Measure(FixedDurationContainer):
         ::
 
             >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+            >>> show(measure) # doctest: +SKIP
+
+        ::
+
             >>> measure.has_non_power_of_two_denominator
             True
 
@@ -454,6 +469,10 @@ class Measure(FixedDurationContainer):
         ::
 
             >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+            >>> show(measure) # doctest: +SKIP
+
+        ::
+
             >>> measure.has_non_power_of_two_denominator
             False
 
@@ -470,6 +489,10 @@ class Measure(FixedDurationContainer):
         ::
 
             >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+            >>> show(measure) # doctest: +SKIP
+
+        ::
+
             >>> measure.has_power_of_two_denominator
             True
 
@@ -478,6 +501,10 @@ class Measure(FixedDurationContainer):
         ::
 
             >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+            >>> show(measure) # doctest: +SKIP
+
+        ::
+
             >>> measure.has_power_of_two_denominator
             False
 
@@ -492,6 +519,7 @@ class Measure(FixedDurationContainer):
         ::
 
             >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
+            >>> show(measure) # doctest: +SKIP
 
         ::
 
@@ -510,6 +538,7 @@ class Measure(FixedDurationContainer):
         ::
 
             >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+            >>> show(measure) # doctest: +SKIP
 
         ::
 
@@ -528,15 +557,7 @@ class Measure(FixedDurationContainer):
 
         ::
 
-            >>> measure = Measure((3, 4), "c' d' e' f'")
-
-        ::
-
-            >>> measure
-            Measure(3/4, [c'4, d'4, e'4, f'4])
-
-        ::
-
+            >>> measure = Measure((3, 4), "c'4 d'4 e'4 f'4")
             >>> measure.is_misfilled
             True
 
@@ -545,11 +566,7 @@ class Measure(FixedDurationContainer):
         ::
 
             >>> measure = Measure((3, 4), "c' d' e'")
-
-        ::
-
-            >>> measure
-            Measure(3/4, [c'4, d'4, e'4])
+            >>> show(measure) # doctest: +SKIP
 
         ::
 
@@ -607,6 +624,7 @@ class Measure(FixedDurationContainer):
             >>> staff = Staff()
             >>> staff.append(Measure((3, 4), "c' d' e'"))
             >>> staff.append(Measure((2, 4), "f' g'"))
+            >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
@@ -647,6 +665,7 @@ class Measure(FixedDurationContainer):
 
         ::
 
+            >>> measure = Measure((3, 4), "c'4 d'4 e'4")
             >>> measure.target_duration
             Duration(3, 4)
 

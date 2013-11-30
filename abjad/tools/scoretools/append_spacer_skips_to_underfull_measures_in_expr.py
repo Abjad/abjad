@@ -24,7 +24,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
     ::
 
         >>> scoretools.append_spacer_skips_to_underfull_measures_in_expr(staff)
-        [Measure(4/8, [c'8, d'8, e'8, s1 * 1/8]), Measure(5/8, [c'8, d'8, e'8, s1 * 1/4])]
+        [Measure((4, 8), "c'8 d'8 e'8 s1 * 1/8"), Measure((5, 8), "c'8 d'8 e'8 s1 * 1/4")]
 
     ..  doctest::
 

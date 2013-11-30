@@ -13,7 +13,7 @@ def get_next_measure_from_component(component):
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
         >>> scoretools.get_next_measure_from_component(staff)
-        Measure(2/8, [c'8, d'8])
+        Measure((2, 8), "c'8 d'8")
 
     When `component` is voice, staff or other sequential context,
     and when `component` contains no measure,
@@ -35,7 +35,7 @@ def get_next_measure_from_component(component):
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
         >>> scoretools.get_previous_measure_from_component(staff[-1])
-        Measure(2/8, [c'8, d'8])
+        Measure((2, 8), "c'8 d'8")
 
     When `component` is a leaf and there is a measure in the parentage
     of `component`, return the measure in the parentage of `component`.
@@ -44,7 +44,7 @@ def get_next_measure_from_component(component):
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
         >>> scoretools.get_previous_measure_from_component(staff.select_leaves()[0])
-        Measure(2/8, [c'8, d'8])
+        Measure((2, 8), "c'8 d'8")
 
     When `component` is a leaf and there is no measure in the parentage
     of `component`, raise missing measure error.

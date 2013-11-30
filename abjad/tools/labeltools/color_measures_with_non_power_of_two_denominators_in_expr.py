@@ -3,14 +3,18 @@ from abjad.tools import scoretools
 from abjad.tools.topleveltools import iterate
 
 
-def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red'):
-    r'''Color measures with non-power-of-two denominators in `expr` with `color`:
+def color_measures_with_non_power_of_two_denominators_in_expr(
+    expr, 
+    color='red',
+    ):
+    r'''Colors measures with non-power-of-two denominators in `expr` 
+    with `color`.
 
     ::
 
         >>> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
         >>> scoretools.scale_measure_denominator_and_adjust_measure_contents(staff[1], 3)
-        Measure(3/12, [c'8., d'8.])
+        Measure((3, 12), "c'8. d'8.")
 
     ..  doctest::
 
@@ -37,7 +41,7 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
     ::
 
         >>> labeltools.color_measures_with_non_power_of_two_denominators_in_expr(staff, 'red')
-        [Measure(3/12, [c'8., d'8.])]
+        [Measure((3, 12), "c'8. d'8.")]
 
     ..  doctest::
 

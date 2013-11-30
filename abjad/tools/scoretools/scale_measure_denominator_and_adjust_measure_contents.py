@@ -31,7 +31,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
 
             >>> scoretools.scale_measure_denominator_and_adjust_measure_contents(
             ...     measure, 3)
-            Measure(3/12, [c'8., d'8.])
+            Measure((3, 12), "c'8. d'8.")
             >>> show(measure) # doctest: +SKIP
 
         ..  doctest::

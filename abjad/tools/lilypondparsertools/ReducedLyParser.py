@@ -117,8 +117,8 @@ class ReducedLyParser(abctools.Parser):
         >>> result = parser(string)
         >>> for x in result: x
         ...
-        Measure(4/4, [c'4, c'4, c'4, c'4])
-        Measure(3/8, [c'8, c'8, c'8])
+        Measure((4, 4), "c'4 c'4 c'4 c'4")
+        Measure((3, 8), "c'8 c'8 c'8")
 
     Finally, understands ties, slurs and beams:
 

@@ -302,7 +302,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> measures = staff[:]
                 >>> mutate(measures).fuse()
-                Measure(2/4, [c'8, d'8, e'8, f'8])
+                Measure((2, 4), "c'8 d'8 e'8 f'8")
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
