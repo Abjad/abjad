@@ -15,18 +15,20 @@ class SchemeParser(abctools.Parser):
     are cached on the `SchemeParser` instance.
 
     It is intended to be used only in conjunction with `LilyPondParser`.
-
-    Returns `SchemeParser` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def lexer_rules_object(self):
+        r'''Lexer rules object of Scheme parser.
+        '''
         return self
 
     @property
     def parser_rules_object(self):
+        r'''Parser rules object of Scheme parser.
+        '''
         return self
 
     ### PRIVATE METHODS ###

@@ -3,6 +3,8 @@ from abjad.tools.abjadbooktools.OutputFormat import OutputFormat
 
 
 class ReSTOutputFormat(OutputFormat):
+    r'''ReST output format.
+    '''
 
     ### INITIALIZER ###
 

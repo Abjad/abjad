@@ -22,4 +22,6 @@ class Music(AbjadObject):
 
     @abc.abstractmethod
     def construct(self):
+        r'''Please document.
+        '''
         raise NotImplemented

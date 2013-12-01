@@ -18,7 +18,7 @@ from abjad.tools.topleveltools import detach
 
 
 class ReducedLyParser(abctools.Parser):
-    r'''Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax:
+    r'''Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax.
 
         >>> parser = lilypondparsertools.ReducedLyParser()
 
@@ -134,7 +134,6 @@ class ReducedLyParser(abctools.Parser):
             f16 ]
         }
 
-    Return `ReducedLyParser` instance.
     '''
 
     ### INITIALIZER ###
@@ -500,10 +499,14 @@ class ReducedLyParser(abctools.Parser):
 
     @property
     def lexer_rules_object(self):
+        r'''Lexer rules object of reduced ly parser.
+        '''
         return self
 
     @property
     def parser_rules_object(self):
+        r'''Parser rules object of reduced ly parser.
+        '''
         return self
 
     ### PRIVATE METHODS ###

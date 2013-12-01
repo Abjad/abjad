@@ -26,6 +26,8 @@ class RhythmTreeNode(TreeNode):
 
     @abc.abstractmethod
     def __call__(self, pulse_duration):
+        r'''Calls rhythm tree node on `pulse_duration`.
+        '''
         raise NotImplemented
 
     ### PRIVATE METHODS ###
@@ -97,10 +99,14 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def graphviz_format(self):
+        r'''Graphviz format of rhythm tree node.
+        '''
         return self.graphviz_graph.graphviz_format
 
     @abc.abstractproperty
     def graphviz_graph(self):
+        r'''Graphviz graph of rhythm tree node.
+        '''
         raise NotImplemented
 
     @property
@@ -215,10 +221,18 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def prolation(self):
+        r'''Prolation of rhythm tree node.
+
+        Returns multiplier.
+        '''
         return mathtools.cumulative_products(self.prolations)[-1]
 
     @property
     def prolations(self):
+        r'''Prolations of rhythm tree node.
+
+        Returns tuple.
+        '''
         prolations = [durationtools.Multiplier(1)]
         improper_parentage = self.improper_parentage
         for child, parent in \
@@ -244,7 +258,7 @@ class RhythmTreeNode(TreeNode):
 
     @property
     def start_offset(self):
-        r'''The starting offset of a node in a rhythm-tree relative the root:
+        r'''The starting offset of a node in a rhythm-tree relative the root.
 
         ::
 

@@ -21,6 +21,10 @@ class LilyPondEvent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        r'''Interpreter representation of LilyPond event.
+
+        Returns string.
+        '''
         return '{}({})'.format(type(self).__name__, self._format_string)
 
     ### PRIVATE PROPERTIES ###

@@ -6,7 +6,7 @@ from abjad.tools.abctools import Parser
 
 
 class RhythmTreeParser(Parser):
-    r'''Parses RTM-style rhythm syntax:
+    r'''Parses RTM-style rhythm syntax.
 
     ::
 

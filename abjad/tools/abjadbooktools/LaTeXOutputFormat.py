@@ -3,6 +3,8 @@ from abjad.tools.abjadbooktools.OutputFormat import OutputFormat
 
 
 class LaTeXOutputFormat(OutputFormat):
+    r'''LaTeX output format.
+    '''
 
     ### INITIALIZER ###
 

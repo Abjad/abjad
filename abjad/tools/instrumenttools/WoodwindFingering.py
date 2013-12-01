@@ -7,7 +7,7 @@ from abjad.tools.abctools import AbjadObject
 class WoodwindFingering(AbjadObject):
     r'''A woodwind fingering.
 
-    Initialize from a valid instrument name and up to three keyword
+    Initializes from a valid instrument name and up to three keyword
     lists or tuples:
 
     ::
@@ -32,7 +32,7 @@ class WoodwindFingering(AbjadObject):
             right_hand=('e',),
             )
 
-    Initialize a WoodwindFingering from another WoodwindFingering:
+    Initializes a WoodwindFingering from another WoodwindFingering:
 
     ::
 
@@ -46,7 +46,7 @@ class WoodwindFingering(AbjadObject):
             right_hand=('e',),
             )
 
-    Call a WoodwindFingering to create a woodwind diagram MarkupCommand:
+    Calls a WoodwindFingering to create a woodwind diagram MarkupCommand:
 
     ::
 
@@ -73,7 +73,7 @@ class WoodwindFingering(AbjadObject):
                 )
             )
 
-    Attach the MarkupCommand to score components, such as a chord
+    Attaches the MarkupCommand to score components, such as a chord
     representing a multiphonic sound:
 
     ::
@@ -93,7 +93,7 @@ class WoodwindFingering(AbjadObject):
                     #'((cc . (one two three five)) (lh . (R thumb)) (rh . (e)))
                 }
 
-    Initialize fingerings for eight different woodwind instruments:
+    Initializes fingerings for eight different woodwind instruments:
 
     ::
 
@@ -232,6 +232,10 @@ class WoodwindFingering(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        '''Calls woodwind fingering.
+
+        Returns markup command.
+        '''
         key_groups_as_scheme = []
         cc_scheme_pair = schemetools.SchemePair('cc', self._center_column)
         key_groups_as_scheme.append(cc_scheme_pair)

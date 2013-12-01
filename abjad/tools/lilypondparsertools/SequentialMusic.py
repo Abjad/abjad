@@ -11,6 +11,10 @@ class SequentialMusic(Music):
     ### PUBLIC METHODS ###
 
     def construct(self):
+        r'''Constructs sequential music.
+
+        Returns Abjad container.
+        '''
         from abjad.tools import lilypondparsertools
         container = scoretools.Container([])
         for x in self.music:

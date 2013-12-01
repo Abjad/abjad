@@ -7,7 +7,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class Hairpin(Spanner):
-    r'''A dynamic hairpin spanner.
+    r'''A hairpin.
 
     ..  container:: example
 
@@ -195,6 +195,10 @@ class Hairpin(Spanner):
 
     @property
     def direction(self):
+        r'''Gets and sets direction of hairpin.
+
+        Returns up or down.
+        '''
         return self._direction
 
     @direction.setter
@@ -204,7 +208,7 @@ class Hairpin(Spanner):
 
     @property
     def include_rests(self):
-        r'''Get boolean hairpin rests contextualize:
+        r'''Gets and sets boolean setting to include rests in hairpin.
 
         ::
 
@@ -217,7 +221,7 @@ class Hairpin(Spanner):
             >>> hairpin.include_rests
             True
 
-        Set boolean hairpin rests contextualize:
+        Sets include-rests setting:
 
         ::
 
@@ -231,7 +235,7 @@ class Hairpin(Spanner):
             >>> hairpin.include_rests
             False
 
-        Set boolean.
+        Returns boolean.
         '''
         return self._include_rests
 
@@ -241,7 +245,9 @@ class Hairpin(Spanner):
 
     @property
     def shape_string(self):
-        r'''Get hairpin shape string:
+        r'''Gets and sets hairpin shape string.
+
+        Gets hairpin shape string:
 
         ::
 
@@ -251,7 +257,7 @@ class Hairpin(Spanner):
             >>> hairpin.shape_string
             '<'
 
-        Set hairpin shape string:
+        Sets hairpin shape string:
 
         ::
 
@@ -262,7 +268,7 @@ class Hairpin(Spanner):
             >>> hairpin.shape_string
             '>'
 
-        Set string.
+        Returns string.
         '''
         return self._shape
 
@@ -273,7 +279,9 @@ class Hairpin(Spanner):
 
     @property
     def start_dynamic_string(self):
-        r'''Get hairpin start dynamic string:
+        r'''Gets and sets start dynamic string of hairpin.
+
+        Gets start dynamic string of hairpin:
 
         ::
 
@@ -283,7 +291,7 @@ class Hairpin(Spanner):
             >>> hairpin.start_dynamic_string
             'p'
 
-        Set hairpin start dynamic string:
+        Sets start dynamic string of hairpin:
 
         ::
 
@@ -294,7 +302,7 @@ class Hairpin(Spanner):
             >>> hairpin.start_dynamic_string
             'mf'
 
-        Set string.
+        Returns string.
         '''
         return self._start
 
@@ -304,7 +312,9 @@ class Hairpin(Spanner):
 
     @property
     def stop_dynamic_string(self):
-        r'''Get hairpin stop dynamic string:
+        r'''Gets and sets stop dynamic string of hairpin.
+
+        Gets stop dynamic string of hairpin:
 
         ::
 
@@ -314,7 +324,7 @@ class Hairpin(Spanner):
             >>> hairpin.stop_dynamic_string
             'f'
 
-        Set hairpin stop dynamic string:
+        Sets stop dynamic string of hairpin:
 
         ::
 
@@ -325,7 +335,7 @@ class Hairpin(Spanner):
             >>> hairpin.stop_dynamic_string
             'mf'
 
-        Set string.
+        Returns string.
         '''
         return self._stop
 

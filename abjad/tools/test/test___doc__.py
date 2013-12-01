@@ -17,8 +17,17 @@ ignored_names = (
     'numerator',
     'optional_id',
     'optional_context_mod',
+    'push_signature',
     'type',
     'value',
+    )
+
+ignored_classes = (
+    'LilyPondLexicalDefinition',
+    'LilyPondSyntacticalDefinition',
+    'ReducedLyParser',
+    'RhythmTreeParser',
+    'SchemeParser',
     )
 
 
@@ -29,6 +38,8 @@ ignored_names = (
 #    '''
 #
 #    assert obj.__doc__ is not None
+#    if obj.__name__ in ignored_classes:
+#        return
 #    for attr in inspect.classify_class_attrs(obj):
 #        if attr.name in ignored_names:
 #            continue

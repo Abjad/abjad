@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class Beam(Spanner):
-    r'''A beam spanner.
+    r'''A beam.
 
     ::
 
@@ -108,6 +108,10 @@ class Beam(Spanner):
 
     @property
     def direction(self):
+        r'''Gets and sets direction of beam.
+
+        Returns up or down.
+        '''
         return self._direction
 
     @direction.setter

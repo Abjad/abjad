@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.NamedPitch import NamedPitch
 
 
 class PitchArrayCell(AbjadObject):
-    '''One cell in a pitch array. ::
+    '''One cell in a pitch array.
+
+    ::
 
         >>> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
         >>> print array
@@ -79,7 +81,6 @@ class PitchArrayCell(AbjadObject):
         >>> cell.width
         2
 
-    Returns pitch array cell.
     '''
 
     ### INTIALIZER ###
@@ -94,10 +95,20 @@ class PitchArrayCell(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (
-            type(self).__name__, self._format_pitch_width_string)
+        r'''Interpreter representation of pitch array cell.
+
+        Returns string.
+        '''
+        return '{}({})'.format(
+            type(self).__name__, 
+            self._format_pitch_width_string,
+            )
 
     def __str__(self):
+        r'''String representation of pitch array cell.
+
+        Returns string.
+        '''
         return self._format_string
 
     ### PRIVATE PROPERTIES ###
@@ -221,6 +232,8 @@ class PitchArrayCell(AbjadObject):
     @property
     def column_indices(self):
         r'''Tuple of one or more nonnegative integer indices.
+
+        Returns tuple.
         '''
         parent_row = self.parent_row
         if parent_row is not None:
@@ -238,10 +251,18 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def indices(self):
+        r'''Indices of pitch array cell.
+
+        Returns pair.
+        '''
         return self.row_index, self.column_indices
 
     @property
     def is_first_in_row(self):
+        r'''True when pitch array cell is first in row. Otherwise false.
+
+        Returns boolean.
+        '''
         if self.parent_row is not None:
             if self.column_indices[0] == 0:
                 return True
@@ -249,6 +270,10 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def is_last_in_row(self):
+        r'''True when pitch array cell is last in row. Otherwise false.
+
+        Returns boolean.
+        '''
         if self.parent_row is not None:
             if self.column_indices[-1] == self.parent_row.width - 1:
                 return True
@@ -256,6 +281,10 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def next(self):
+        r'''Gets next pitch array cell in row after this pitch array cell.
+
+        Returns pitch array cell.
+        '''
         if self.parent_row is not None:
             if self.is_last_in_row:
                 message = 'cell is last in row.'
@@ -266,6 +295,10 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def parent_array(self):
+        r'''Gets pitch array that houses pitch array cell.
+
+        Return pitch array.
+        '''
         parent_row = self.parent_row
         if parent_row is not None:
             return parent_row.parent_array
@@ -273,6 +306,10 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def parent_column(self):
+        r'''Gets column that houses pitch array cell.
+
+        Returns pitch array column.
+        '''
         parent_array = self.parent_array
         if parent_array is not None:
             start_column_index = self.column_indices[0]
@@ -281,10 +318,18 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def parent_row(self):
+        r'''Gets pitch array rown that houses pitch array cell.
+
+        Returns pitch array row.
+        '''
         return self._parent_row
 
     @property
     def pitches(self):
+        r'''Gets and sets pitches of pitch array cell.
+
+        Returns list.
+        '''
         for i, pitch in enumerate(self._pitches):
             if not isinstance(pitch, NamedPitch):
                 self._pitches[i] = NamedPitch(pitch)
@@ -299,6 +344,10 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def previous(self):
+        r'''Gets pitch array cell in row prior to this pitch array cell.
+
+        Returns pitch arracy cell.
+        '''
         if self.parent_row is not None:
             if self.is_first_in_row:
                 message = 'cell is first in row.'
@@ -309,6 +358,10 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def row_index(self):
+        r'''Row index of pitch array cell.
+
+        Returns nonnegative integer or none.
+        '''
         parent_row = self.parent_row
         if parent_row is not None:
             return parent_row.row_index
@@ -316,6 +369,8 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def token(self):
+        r'''Token of pitch array cell.
+        '''
         if not self.pitches:
             return self.width
         elif len(self.pitches) == 1:
@@ -344,15 +399,29 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def weight(self):
+        r'''Weight of pitch array cell.
+
+        Defined equal to number of pitches in pitch array cell.
+
+        Returns nonnegative integer.
+        '''
         return len(self.pitches)
 
     @property
     def width(self):
+        r'''Width of pitch array cell.
+
+        Returns positive integer.
+        '''
         return self._width
 
     ### PUBLIC METHODS ###
 
     def matches_cell(self, arg):
+        r'''True when pitch array cell matches `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, PitchArrayCell):
             if self.pitches == arg.pitches:
                 if self.width == arg.width:

@@ -23,7 +23,6 @@ class TrillSpanner(Spanner):
             f'8 \stopTrillSpan
         }
 
-    Overrides LilyPond TrillSpanner grob.
     '''
 
     ### INITIALIZER ###
@@ -66,7 +65,7 @@ class TrillSpanner(Spanner):
 
     @property
     def pitch(self):
-        r'''Optional read / write pitch for pitched trills.
+        r'''Gets and sets optional pitch of trill spanner.
 
             ::
 
@@ -85,7 +84,7 @@ class TrillSpanner(Spanner):
                     f'8
                 }
 
-        Set pitch.
+        Returns pitch or none.
         '''
         return self._pitch
 
@@ -99,6 +98,10 @@ class TrillSpanner(Spanner):
 
     @property
     def written_pitch(self):
+        r'''Gets and sets written pitch of trill spanner.
+
+        Returns pitch.
+        '''
         return self.pitch
 
     @written_pitch.setter

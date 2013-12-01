@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class Slur(Spanner):
-    r'''A slur spanner.
+    r'''A slur.
 
     ::
 
@@ -63,6 +63,10 @@ class Slur(Spanner):
 
     @property
     def direction(self):
+        r'''Gets and sets direction of slur.
+
+        Returns up, down or none.
+        '''
         return self._direction
 
     @direction.setter

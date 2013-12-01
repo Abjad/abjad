@@ -7,7 +7,7 @@ from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 
 
 class RhythmTreeLeaf(RhythmTreeNode):
-    r'''A leaf node in a rhythm tree:
+    r'''A leaf node in a rhythm tree.
 
     ::
 
@@ -35,7 +35,6 @@ class RhythmTreeLeaf(RhythmTreeNode):
         ...     preprolated_duration=7, is_pitched=False)((1, 16))
         Selection(Rest('r4..'),)
 
-    Return `RhythmTreeLeaf`.
     '''
 
     ### INITIALIZER ###
@@ -73,6 +72,12 @@ class RhythmTreeLeaf(RhythmTreeNode):
         return scoretools.make_rests(total_duration)
 
     def __eq__(self, expr):
+        r'''True when `expr` is a rhythm tree leaf with preprolated duration
+        and pitch boolean equal to those of this rhythm tree leaf. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self.preprolated_duration == expr.preprolated_duration:
                 if self.is_pitched == expr.is_pitched:
@@ -89,6 +94,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     @property
     def graphviz_graph(self):
+        r'''Graphviz graph of rhythm tree leaf.
+        '''
         graph = documentationtools.GraphvizGraph(name='G')
         node = documentationtools.GraphvizNode(
             attributes={
@@ -101,7 +108,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     @property
     def rtm_format(self):
-        r'''The node's RTM format:
+        r'''RTM format of rhythm tree leaf.
 
         ::
 
@@ -120,7 +127,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     @property
     def is_pitched(self):
-        r'''True if leaf is pitched:
+        r'''Gets and sets boolean equal to  true if leaf is pitched. 
+        Otherwise false.
 
         ::
 

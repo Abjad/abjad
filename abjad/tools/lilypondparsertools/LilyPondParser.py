@@ -29,7 +29,7 @@ ply.yacc.LRParser._lilypond_patch_parse_debug = _parse_debug
 
 
 class LilyPondParser(abctools.Parser):
-    r'''Parses a subset of LilyPond input syntax:
+    r'''Parses a subset of LilyPond input syntax.
 
     ::
 
@@ -134,6 +134,10 @@ class LilyPondParser(abctools.Parser):
     ### SPECIAL METHODS ###
 
     def __call__(self, input_string):
+        r'''Calls LilyPond parser on `input_string`.
+
+        Returns Abjad components.
+        '''
         self._reset_parser_variables()
         if self._debug:
             result = self._parser._lilypond_patch_parse_debug(
@@ -162,7 +166,7 @@ class LilyPondParser(abctools.Parser):
 
     @property
     def available_languages(self):
-        r'''Tuple of pitch-name languages supported by LilyPondParser:
+        r'''Tuple of pitch-name languages supported by LilyPondParser.
 
         ::
 
@@ -189,17 +193,21 @@ class LilyPondParser(abctools.Parser):
 
     @property
     def lexer_rules_object(self):
+        r'''Lexer rules object of LilyPond parser.
+        '''
         return self._lexdef
 
     @property
     def parser_rules_object(self):
+        r'''Parser rules object of LilyPond parser.
+        '''
         return self._syndef
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def default_language(self):
-        r'''Read/write attribute to set parser's default pitch-name language:
+        r'''Gets and sets default language of parser.
 
         ::
 
@@ -824,7 +832,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def list_known_contexts():
-        r'''List all LilyPond contexts recognized by ``LilyPondParser``:
+        r'''Lists all LilyPond contexts recognized by LilyPond parser.
 
         ::
 
@@ -870,7 +878,7 @@ class LilyPondParser(abctools.Parser):
         
     @staticmethod
     def list_known_grobs():
-        r'''List all LilyPond grobs recognized by ``LilyPondParser``:
+        r'''Lists all LilyPond grobs recognized by LilyPond parser.
 
         ::
 
@@ -1051,7 +1059,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def list_known_markup_functions():
-        r'''List all markup functions recognized by ``LilyPondParser``:
+        r'''Lists all markup functions recognized by LilyPond parser.
 
         ::
 
@@ -1210,7 +1218,7 @@ class LilyPondParser(abctools.Parser):
 
     @staticmethod
     def list_known_music_functions():
-        r'''List all music functions recognized by ``LilyPondParser``:
+        r'''Lists all music functions recognized by LilyPond parser.
 
         ::
 
@@ -1252,7 +1260,7 @@ class LilyPondParser(abctools.Parser):
 
     @classmethod
     def register_markup_function(cls, name, signature):
-        r'''Register a custom markup function globally with LilyPondParser:
+        r'''Registers a custom markup function globally with LilyPondParser.
 
         ::
 
@@ -1271,7 +1279,7 @@ class LilyPondParser(abctools.Parser):
         understood by LilyPond.  Consult LilyPond's documentation for a complete
         list of all understood type-predicates.
 
-        Returns None
+        Returns none.
         '''
 
         from abjad.ly.markup_functions import markup_functions

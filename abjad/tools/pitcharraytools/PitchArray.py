@@ -13,7 +13,7 @@ from abjad.tools.pitchtools.NamedPitch import NamedPitch
 
 
 class PitchArray(AbjadObject):
-    r'''Two-dimensional array of pitches.
+    r'''A two-dimensional array of pitches.
     '''
 
     ### INITIALIZER ###
@@ -31,6 +31,10 @@ class PitchArray(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, arg):
+        r'''Concatenates `arg` to pitch array.
+
+        Returns new pitch array.
+        '''
         if not isinstance(arg, PitchArray):
             message = 'must be pitch array.'
             raise TypeError(message)
@@ -44,6 +48,10 @@ class PitchArray(AbjadObject):
         return new_array
 
     def __contains__(self, arg):
+        r'''True when pitch array contains `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, PitchArrayRow):
             return arg in self.rows
         elif isinstance(arg, PitchArrayColumn):
@@ -60,9 +68,18 @@ class PitchArray(AbjadObject):
             raise ValueError(message)
 
     def __copy__(self):
+        r'''Copies pitch array.
+
+        Returns new pitch array.
+        '''
         return PitchArray(self.cell_tokens_by_row)
 
     def __eq__(self, arg):
+        r'''True when `arg` is a pitch aarray with contents equal to that of
+        this pitch array. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, PitchArray):
             for self_row, arg_row in zip(self.rows, arg.rows):
                 if not self_row == arg_row:
@@ -71,10 +88,14 @@ class PitchArray(AbjadObject):
         return False
 
     def __getitem__(self, arg):
+        r'''Gets row `arg` from pitch array.
+
+        Returns pitch array row.
+        '''
         return self.rows[arg]
 
     def __iadd__(self, arg):
-        r'''Add `arg` in place to self:
+        r'''Adds `arg` to pitch array in place.
 
             >>> array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
             >>> print array_1
@@ -109,7 +130,7 @@ class PitchArray(AbjadObject):
             [ ] [     ] [ ] [     ] [         ] [ ] [ ]
             [     ] [ ] [ ] [         ] [     ] [ ] [ ]
 
-        Returns self.
+        Returns pitch array.
         '''
         if not isinstance(arg, PitchArray):
             message = 'must be pitch array.'
@@ -119,15 +140,27 @@ class PitchArray(AbjadObject):
         return self
 
     def __ne__(self, arg):
+        r'''True when pitch array does not equal `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __repr__(self):
+        r'''Intepreter representation of pitch array.
+
+        Returns string.
+        '''
         rows = self.rows
         rows = [repr(row) for row in rows]
         rows = ', '.join(rows)
-        return '%s(%s)' % (type(self).__name__, rows)
+        return '{}({})'.format(type(self).__name__, rows)
 
     def __setitem__(self, i, arg):
+        r'''Sets pitch array row `i` to `arg`.
+
+        Retunrs none.
+        '''
         if isinstance(i, int):
             if not isinstance(arg, PitchArrayRow):
                 message = 'can assign only pitch array row to pitch array.'
@@ -140,6 +173,10 @@ class PitchArray(AbjadObject):
             raise ValueError(message)
 
     def __str__(self):
+        r'''String representation of pitch array.
+
+        Returns string.
+        '''
         return self._two_by_two_format_string
 
     ### PRIVATE PROPERTIES ###
@@ -196,14 +233,26 @@ class PitchArray(AbjadObject):
 
     @property
     def cell_tokens_by_row(self):
+        r'''Cells tokens of pitch array by row.
+
+        Returns tuple.
+        '''
         return tuple([row.cell_tokens for row in self.rows])
 
     @property
     def cell_widths_by_row(self):
+        r'''Cell widths of pitch array by row.
+
+        Returns tuple.
+        '''
         return tuple([row.cell_widths for row in self.rows])
 
     @property
     def cells(self):
+        r'''Cells of pitch array.
+
+        Returns set.
+        '''
         cells = set([])
         for row in self.rows:
             cells.update(row.cells)
@@ -211,6 +260,10 @@ class PitchArray(AbjadObject):
 
     @property
     def columns(self):
+        r'''Columns of pitch array.
+
+        Returns tuple.
+        '''
         columns = []
         rows = self.rows
         for i, cells in enumerate(
@@ -223,14 +276,28 @@ class PitchArray(AbjadObject):
 
     @property
     def depth(self):
+        r'''Depth of pitch array.
+
+        Defined equal to number of pitch array rows in pitch array.
+
+        Returns nonnegative integer.
+        '''
         return len(self.rows)
 
     @property
     def dimensions(self):
+        r'''Dimensions of pitch array.
+
+        Returns pair.
+        '''
         return self.depth, self.width
 
     @property
     def has_voice_crossing(self):
+        r'''True when pitch array has voice crossing. Otherwise false.
+
+        Returns boolean.
+        '''
         for column in self.columns:
             if column.has_voice_crossing:
                 return True
@@ -238,14 +305,26 @@ class PitchArray(AbjadObject):
 
     @property
     def is_rectangular(self):
+        r'''True when no rows in pitch array are defective. Otherwise false.
+
+        Returns boolean.
+        '''
         return all(not row.is_defective for row in self.rows)
 
     @property
     def pitches(self):
+        r'''Pitches in pitch array.
+
+        Returns tuple.
+        '''
         return sequencetools.flatten_sequence(self.pitches_by_row)
 
     @property
     def pitches_by_row(self):
+        r'''Pitches in pitch array by row.
+
+        Returns tuple.
+        '''
         pitches = []
         for row in self.rows:
             pitches.append(row.pitches)
@@ -253,14 +332,28 @@ class PitchArray(AbjadObject):
 
     @property
     def rows(self):
+        r'''Rows in pitch array.
+
+        Returns tuple.
+        '''
         return tuple(self._rows)
 
     @property
     def size(self):
+        r'''Size of pitch array.
+
+        Defined equal to the product of depth and width.
+
+        Returns nonnegative integer.
+        '''
         return self.depth * self.width
 
     @property
     def voice_crossing_count(self):
+        r'''Voice crossing count.
+
+        Returns nonnegative integer.
+        '''
         count = 0
         for column in self.columns:
             if column.has_voice_crossing:
@@ -269,10 +362,22 @@ class PitchArray(AbjadObject):
 
     @property
     def weight(self):
+        r'''Weight of pitch array.
+
+        Defined equal to the sum of the weight of the rows in pitch array.
+
+        Returns nonnegative integer.
+        '''
         return sum([row.weight for row in self.rows])
 
     @property
     def width(self):
+        r'''Width of pitch array.
+
+        Defined equal to the width of the widest row in pitch array.
+
+        Returns nonnegative integer.
+        '''
         try:
             return max([row.width for row in self.rows])
         except ValueError:
@@ -281,6 +386,10 @@ class PitchArray(AbjadObject):
     ### PUBLIC METHODS ###
 
     def append_column(self, column):
+        r'''Append `column` to pitch array.
+
+        Returns none.
+        '''
         if not isinstance(column, PitchArrayColumn):
             message = 'must be column.'
             raise TypeError(message)
@@ -293,6 +402,10 @@ class PitchArray(AbjadObject):
             row.append(cell)
 
     def append_row(self, row):
+        r'''Appends `row` to pitch array.
+
+        Returns none.
+        '''
         if not isinstance(row, PitchArrayRow):
             message = 'must be row.'
             raise TypeError(message)
@@ -300,10 +413,18 @@ class PitchArray(AbjadObject):
         self._rows.append(row)
 
     def apply_pitches_by_row(self, pitch_lists):
+        r'''Applies `pitch_lists` to pitch array by row.
+
+        Returns none.
+        '''
         for row, pitch_list in zip(self.rows, pitch_lists):
             row.apply_pitches(pitch_list)
 
     def copy_subarray(self, upper_left_pair, lower_right_pair):
+        r'''Copies subarray of pitch array.
+
+        Returns new pitch array.
+        '''
         if not isinstance(upper_left_pair, tuple):
             raise TypeError
         if not isinstance(lower_right_pair, tuple):
@@ -326,11 +447,11 @@ class PitchArray(AbjadObject):
 
     @staticmethod
     def from_score(score, populate=True):
-        r'''Make pitch array from `score`.
+        r'''Makes pitch array from `score`.
 
         ..  container:: example
 
-            **Example 1.** Make empty pitch array from score:
+            **Example 1.** Makes empty pitch array from score:
 
             ::
 
@@ -388,7 +509,7 @@ class PitchArray(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Make populated pitch array from `score`:
+            **Example 2.** Makes populated pitch array from `score`:
 
             ::
 
@@ -482,11 +603,16 @@ class PitchArray(AbjadObject):
         return pitch_array
 
     def has_spanning_cell_over_index(self, index):
+        r'''True when pitch array has one or more spanning cells over `index`.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         rows = self.rows
         return any(row.has_spanning_cell_over_index(index) for row in rows)
 
     def list_nonspanning_subarrays(self):
-        r'''List nonspanning subarrays of pitch array:
+        r'''Lists nonspanning subarrays of pitch array.
 
         ::
 
@@ -543,6 +669,10 @@ class PitchArray(AbjadObject):
         return subarrays
 
     def pad_to_depth(self, depth):
+        r'''Pads pitch array to `depth`.
+
+        Returns none.
+        '''
         self_depth = self.depth
         if depth < self_depth:
             message = 'pad depth must be not less than array depth.'
@@ -555,6 +685,10 @@ class PitchArray(AbjadObject):
             self.append_row(row)
 
     def pad_to_width(self, width):
+        r'''Pads pitch array to `width`.
+
+        Returns none.
+        '''
         self_width = self.width
         if width < self_width:
             message = 'pad width must not be less than array width.'
@@ -563,6 +697,10 @@ class PitchArray(AbjadObject):
             row.pad_to_width(width)
 
     def pop_column(self, column_index):
+        r'''Pops column `column_index` from pitch array.
+
+        Returns pitch array column.
+        '''
         column = self.columns[column_index]
         column._parent_array = None
         for cell in column.cells:
@@ -570,11 +708,19 @@ class PitchArray(AbjadObject):
         return column
 
     def pop_row(self, row_index=-1):
+        r'''Pops row `row_index` from pitch array.
+
+        Returns pitch array row.
+        '''
         row = self._rows.pop(row_index)
         row._parent_array = None
         return row
 
     def remove_row(self, row):
+        r'''Removes `row` from pitch array.
+
+        Returns none.
+        '''
         if row not in self.rows:
             message = 'row not in array.'
             raise ValueError(message)
@@ -582,10 +728,10 @@ class PitchArray(AbjadObject):
         row._parent_array = None
 
     def to_measures(self, cell_duration_denominator=8):
-        r'''Change pitch array  to measures with time signatures
+        r'''Changes pitch array  to measures with time signatures
         with numerators equal to row width and denominators
         equal to `cell_duration_denominator` for each row
-        in pitch array:
+        in pitch array.
 
         ::
 

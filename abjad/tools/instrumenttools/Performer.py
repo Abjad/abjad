@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Performer(AbjadObject):
-    r'''A instrumental or vocal performer.
+    r'''A performer.
 
     ::
 
@@ -43,6 +43,11 @@ class Performer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a performer with name and instruments equal to
+        those of this performer. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.name == expr.name:
                 if self.instruments == expr.instruments:
@@ -63,6 +68,10 @@ class Performer(AbjadObject):
         return str(self)
 
     def __hash__(self):
+        r'''Hashes performer.
+
+        Returns string.
+        '''
         return hash((type(self).__name__, self.name, tuple(self.instruments)))
 
     ### PRIVATE PROPERTIES ###
@@ -131,7 +140,7 @@ class Performer(AbjadObject):
 
     @staticmethod
     def list_primary_performer_names():
-        r'''List performer names:
+        r'''List primary performer names.
 
         ::
 
@@ -181,7 +190,7 @@ class Performer(AbjadObject):
 
     @property
     def instrument_count(self):
-        r'''Number of instruments to be played by performer:
+        r'''Number of instruments to be played by performer.
 
             >>> performer.instrument_count
             2
@@ -192,7 +201,7 @@ class Performer(AbjadObject):
 
     @property
     def instruments(self):
-        r'''List of instruments to be played by performer:
+        r'''Gets and sets instruments to be played by performer.
 
         ::
 
@@ -219,7 +228,8 @@ class Performer(AbjadObject):
 
     @property
     def is_doubling(self):
-        r'''Is performer to play more than one instrument?
+        r'''True when performer is to play more than one instrument. Otherwise
+        false.
 
         ::
             >>> performer.is_doubling
@@ -231,7 +241,7 @@ class Performer(AbjadObject):
 
     @property
     def likely_instruments_based_on_performer_name(self):
-        r'''Likely instruments based on performer name:
+        r'''Likely instruments based on performer name.
 
         ::
 
@@ -256,7 +266,7 @@ class Performer(AbjadObject):
 
     @property
     def most_likely_instrument_based_on_performer_name(self):
-        r'''Most likely instrument based on performer name:
+        r'''Most likely instrument based on performer name.
 
         ::
 
@@ -273,7 +283,7 @@ class Performer(AbjadObject):
 
     @property
     def name(self):
-        r'''Score name of performer:
+        r'''Gets and sets score name of performer.
 
         ::
 
@@ -292,7 +302,7 @@ class Performer(AbjadObject):
     ### PUBLIC METHODS ###
 
     def make_performer_name_instrument_dictionary(self):
-        r'''Make performer name / instrument dictionary:
+        r'''Makes performer name / instrument dictionary.
 
         ::
 

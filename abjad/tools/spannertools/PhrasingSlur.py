@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class PhrasingSlur(Spanner):
-    r'''A phrasing slur spanner.
+    r'''A phrasing slur.
 
     ::
 
@@ -62,6 +62,10 @@ class PhrasingSlur(Spanner):
 
     @property
     def direction(self):
+        r'''Gets and sets direction of phrasing slur.
+
+        Returns up or down.
+        '''
         return self._direction
 
     @direction.setter

@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class InstrumentationSpecifier(AbjadObject):
-    r'''Abjad model of score instrumentation:
+    r'''Instrumentation specifier for an entire score.
 
     ::
 
@@ -60,6 +60,11 @@ class InstrumentationSpecifier(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is an instrumentation specifier with performers
+        equal to those of instrumentation specifier. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.performers == expr.performers:
                 return True
@@ -82,7 +87,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def instrument_count(self):
-        r'''Number of instruments in score:
+        r'''Number of instruments in score.
 
         ::
 
@@ -95,7 +100,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def instruments(self):
-        r'''List of instruments derived from performers:
+        r'''List of instruments derived from performers.
 
         ::
 
@@ -111,7 +116,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def performer_count(self):
-        r'''Number of performers in score:
+        r'''Number of performers in score.
 
         ::
 
@@ -124,7 +129,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def performer_name_string(self):
-        r'''String of performer names:
+        r'''String of performer names.
 
         ::
 

@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class Tie(Spanner):
-    r'''A tie spanner.
+    r'''A tie.
 
     ::
 
@@ -60,6 +60,10 @@ class Tie(Spanner):
 
     @property
     def direction(self):
+        r'''Gets and sets direction of tie.
+
+        Returns up, down or none.
+        '''
         return self._direction
 
     @direction.setter
