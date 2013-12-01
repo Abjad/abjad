@@ -387,7 +387,7 @@ class PayloadTree(AbjadObject):
 
     @property
     def graphviz_format(self):
-        r'''GraphViz format of payload tree.
+        r'''Graphviz format of payload tree.
 
         ::
 

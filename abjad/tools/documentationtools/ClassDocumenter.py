@@ -4,7 +4,7 @@ from abjad.tools.documentationtools.Documenter import Documenter
 
 
 class ClassDocumenter(Documenter):
-    r'''Generates an ReST API entry for a given class:
+    r'''Generates an ReST API entry for a given class.
 
     ::
 
@@ -198,7 +198,9 @@ class ClassDocumenter(Documenter):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        r'''Generate documentation.
+        r'''Calls class documenter.
+
+        Generates documentation.
 
         Returns string.
         '''
@@ -367,36 +369,56 @@ class ClassDocumenter(Documenter):
 
     @property
     def class_methods(self):
+        r'''Class methods.
+        '''
         return self._class_methods
 
     @property
     def data(self):
+        r'''Data.
+        '''
         return self._data
 
     @property
     def inherited_attributes(self):
+        r'''Inherited attributes.
+        '''
         return self._inherited_attributes
 
     @property
     def is_abstract(self):
+        r'''True when class is abstract. Otherwise false.
+
+        Returns boolean.
+        '''
         return inspect.isabstract(self.object)
 
     @property
     def methods(self):
+        r'''Methods of class.
+        '''
         return self._methods
 
     @property
     def readonly_properties(self):
+        r'''Read-only properties of class.
+        '''
         return self._readonly_properties
 
     @property
     def readwrite_properties(self):
+        r'''Read / write properties of class.
+        '''
         return self._readwrite_properties
 
     @property
     def special_methods(self):
+        r'''Special methods of class.
+        '''
         return self._special_methods
 
     @property
     def static_methods(self):
+        r'''Static methods of class.
+        '''
         return self._static_methods

@@ -32,6 +32,10 @@ class Documenter(AbjadObject):
         return str(self)
 
     def __makenew__(self, obj=None, prefix=None):
+        r'''Makes new documenter.
+
+        Returns new documenter.
+        '''
         obj = obj or self.obj
         prefix = prefix or self.prefix
         return type(self)(obj=obj, prefix=prefix)
@@ -62,6 +66,10 @@ class Documenter(AbjadObject):
 
     @staticmethod
     def write(file_path, restructured_text):
+        r'''Writes `restructed_text` to `file_path`.
+
+        Returns none.
+        '''
         should_write = True
         if os.path.exists(file_path):
             with open(file_path, 'r') as f:
@@ -76,12 +84,20 @@ class Documenter(AbjadObject):
 
     @property
     def module_name(self):
+        r'''Module name of documenter.
+
+        Returns string.
+        '''
         return '{}.{}'.format(self._object.__module__, self._object.__name__)
 
     @property
     def object(self):
+        r'''Object of documenter.
+        '''
         return self._object
 
     @property
     def prefix(self):
+        r'''Prefix of documenter.
+        '''
         return self._prefix

@@ -6,7 +6,7 @@ from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
 class GraphvizGraph(TreeContainer, GraphvizObject):
-    r'''Abjad model of a Graphviz graph:
+    r'''A Graphviz graph.
 
     ::
 
@@ -153,12 +153,12 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             node_0_1 -> node_1;
         }
 
-    Returns GraphvizGraph instance.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         attributes=None,
         children=None,
         edge_attributes=None,
@@ -186,16 +186,26 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     @property
     def canonical_name(self):
+        r'''Canonical name of Graphviz graph.
+
+        Returns string.
+        '''
         if self.name is not None:
             return self.name
         return 'Graph'
 
     @property
     def edge_attributes(self):
+        r'''Edge attributes of Graphviz graph.
+        '''
         return self._edge_attributes
 
     @property
     def graphviz_format(self):
+        r'''Graphviz format of Graphviz graph.
+
+        Returns string.
+        '''
         edges = set([])
         for node in self.nodes[1:]:
             edges.update(node._edges)
@@ -259,6 +269,10 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     @property
     def is_digraph(self):
+        r'''True when Graphviz graph is a digraph. Otherwise false.
+
+        Returns boolean.
+        '''
         return self._is_digraph
 
     @is_digraph.setter
@@ -267,10 +281,16 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     @property
     def node_attributes(self):
+        r'''Node attributes of Graphviz graph.
+        '''
         return self._node_attributes
 
     @property
     def unflattened_graphviz_format(self):
+        r'''Unflattened Graphviz format of Graphviz graph.
+
+        Returns list.
+        '''
         from abjad.tools import systemtools
         assert systemtools.IOManager.find_executable(
             'unflatten'), 'Cannot find `unflatten` command-line tool.'

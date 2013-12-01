@@ -9,11 +9,20 @@ class LilyPondNameManager(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a LilyPond name manager with attribute pairs
+        equal to those of this LilyPond name manager. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             return self._get_attribute_pairs() == arg._get_attribute_pairs()
         return False
 
     def __repr__(self):
+        r'''Interpreter representation of LilyPond name manager.
+
+        Returns string.
+        '''
         body_string = ''
         strings = self._get_skeleton_strings()
         if strings:

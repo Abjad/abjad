@@ -63,4 +63,6 @@ class GraphvizObject(AbjadObject):
 
     @property
     def attributes(self):
+        r'''Attributes of Graphviz object.
+        '''
         return self._attributes

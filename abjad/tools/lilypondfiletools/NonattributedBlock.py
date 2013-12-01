@@ -16,7 +16,7 @@ class NonattributedBlock(list, AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats nonattributed block.
 
         Returns string.
         '''
@@ -25,10 +25,14 @@ class NonattributedBlock(list, AbjadObject):
         return str(self)
 
     def __repr__(self):
+        r'''Interpreter representation of nonattributed block.
+
+        Returns string.
+        '''
         if not len(self):
-            return '%s()' % type(self).__name__
+            return '{}()'.format(type(self).__name__)
         else:
-            return '%s(%s)' % (type(self).__name__, len(self))
+            return '{}({})'.format(type(self).__name__, len(self))
 
     ### PRIVATE PROPERTIES ###
 
@@ -56,6 +60,11 @@ class NonattributedBlock(list, AbjadObject):
 
     @property
     def is_formatted_when_empty(self):
+        r'''True when nonattributed block is formatted when empty. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         return self._is_formatted_when_empty
 
     @is_formatted_when_empty.setter

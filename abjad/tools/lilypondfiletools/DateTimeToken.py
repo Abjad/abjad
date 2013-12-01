@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
 import time
+from abjad.tools.abctools import AbjadObject
 
 
 class DateTimeToken(AbjadObject):
-    '''Date time token:
+    '''Date / time token.
 
     ::
 
@@ -13,11 +13,6 @@ class DateTimeToken(AbjadObject):
 
     Returns date / time token.
     '''
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        pass
 
     ### SPECIAL METHODS ###
 
@@ -31,7 +26,11 @@ class DateTimeToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._lilypond_format)
+        r'''Interpreter representation of date / time token.
+
+        Returns string.
+        '''
+        return '{}({})'.format(type(self).__name__, self._lilypond_format)
 
     ### PRIVATE PROPERTIES ###
 

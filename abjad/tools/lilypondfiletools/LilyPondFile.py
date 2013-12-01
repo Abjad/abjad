@@ -8,7 +8,7 @@ from abjad.tools.lilypondfiletools.LilyPondVersionToken \
 
 
 class LilyPondFile(AbjadObject, list):
-    r'''Abjad model of LilyPond input file.
+    r'''A LilyPond input file.
 
     ::
 
@@ -73,6 +73,7 @@ class LilyPondFile(AbjadObject, list):
             e'8
             f'8
         }
+
     '''
 
     def __init__(self):
@@ -90,7 +91,7 @@ class LilyPondFile(AbjadObject, list):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Gets format.
+        r'''Formats LilyPond file.
 
         Returns string.
         '''
@@ -99,9 +100,17 @@ class LilyPondFile(AbjadObject, list):
         return str(self)
 
     def __illustrate__(self):
+        r'''Illustrates LilyPond file.
+
+        Returns LilyPond file unchanged.
+        '''
         return self
 
     def __repr__(self):
+        r'''Interpreter representation of LilyPond file.
+
+        Returns string.
+        '''
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
             return '%s(%s)' % (type(self).__name__, self.score_block[0])
         else:

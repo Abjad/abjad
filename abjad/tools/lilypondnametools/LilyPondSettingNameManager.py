@@ -5,7 +5,7 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 
 
 class LilyPondSettingNameManager(LilyPondNameManager):
-    '''LilyPond setting manager.
+    '''LilyPond setting name manager.
     '''
 
     ### CLASS VARIABLES ###
@@ -15,6 +15,10 @@ class LilyPondSettingNameManager(LilyPondNameManager):
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
+        r'''Gets setting `name` from LilyPond setting name manager.
+
+        Returns string.
+        '''
         from abjad import ly
         from abjad.tools import lilypondnametools
         camel_name = stringtools.snake_case_to_upper_camel_case(name)

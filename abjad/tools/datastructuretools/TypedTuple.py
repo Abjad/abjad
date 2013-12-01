@@ -4,10 +4,13 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
 class TypedTuple(TypedCollection):
+    r'''A typed tuple.
+    '''
 
     ### CLASS VARIABLES ### 
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -24,6 +27,10 @@ class TypedTuple(TypedCollection):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
+        r'''Adds typed tuple to `expr`.
+
+        Returns new typed tuple.
+        '''
         if isinstance(expr, type(self)):
             tokens = expr._collection
             return self.__makenew__(tokens=self._collection[:] + tokens)
@@ -35,6 +42,8 @@ class TypedTuple(TypedCollection):
     def __contains__(self, token):
         r'''Change `token` to item and return true if item exists in
         collection.
+
+        Returns none.
         '''
         try:
             item = self._item_callable(token)
@@ -43,14 +52,24 @@ class TypedTuple(TypedCollection):
         return self._collection.__contains__(item)
 
     def __getitem__(self, i):
-        '''Aliases tuple.__getitem__().
+        '''Gets `i` from type tuple.
+
+        Returns item.
         '''
         return self._collection[i]
 
     def __getslice__(self, start, stop):
+        r'''Gets slice from `start` to `stop` in typed tuple.
+
+        Returns new typed tuple.
+        '''
         return self.__makenew__(tokens=self._collection[start:stop])
 
     def __hash__(self):
+        r'''Hashes typed tuple.
+
+        Returns integer.
+        '''
         return hash((
             type(self), 
             self._collection,
@@ -59,22 +78,34 @@ class TypedTuple(TypedCollection):
             ))
 
     def __mul__(self, expr):
+        r'''Multiplies typed tuple by `expr`.
+
+        Returns new typed tuple.
+        '''
         tokens = self._collection * expr
         return self.__makenew__(tokens=tokens)
 
     def __rmul__(self, expr):
+        r'''Multiplies `expr` by typed tuple.
+
+        Returns new typed tuple.
+        '''
         return self.__mul__(expr)
 
     ### PUBLIC METHODS ###
 
     def count(self, token):
-        r'''Change `token` to item and return count in collection.
+        r'''Changes `token` to item.
+        
+        Returns count in collection.
         '''
         item = self._item_callable(token)
         return self._collection.count(item)
 
     def index(self, token):
-        r'''Change `token` to item and return index in collection.
+        r'''Changes `token` to item.
+        
+        Returns index in collection.
         '''
         item = self._item_callable(token)
         return self._collection.index(item)

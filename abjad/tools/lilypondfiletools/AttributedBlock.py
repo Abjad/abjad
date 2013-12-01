@@ -25,10 +25,17 @@ class AttributedBlock(list, AbjadObject):
         return str(self)
 
     def __repr__(self):
+        r'''Interpreter representation of attributed block.
+
+        Returns string.
+        '''
         if not len(self._user_attributes):
-            return '%s()' % type(self).__name__
+            return '{}()'.format(type(self).__name__)
         else:
-            return '%s(%s)' % (type(self).__name__, len(self._user_attributes))
+            return '{}({})'.format(
+                type(self).__name__, 
+                len(self._user_attributes),
+                )
 
     ### PRIVATE PROPERTIES ###
 
@@ -119,6 +126,11 @@ class AttributedBlock(list, AbjadObject):
 
     @property
     def is_formatted_when_empty(self):
+        r'''True when attributed block is formatted when empty. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         return self._is_formatted_when_empty
 
     @is_formatted_when_empty.setter

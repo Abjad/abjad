@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondVersionToken(AbjadObject):
-    r'''LilyPond version token:
+    r'''LilyPond version token.
     
     ::
 
@@ -29,7 +29,7 @@ class LilyPondVersionToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Get format.
+        r'''Formats LiliPond version token.
 
         Return string.
         '''
@@ -38,6 +38,10 @@ class LilyPondVersionToken(AbjadObject):
         return str(self)
 
     def __repr__(self):
+        r'''Interpreter representation of LilyPond version token.
+
+        Returns string.
+        '''
         return '{}({})'.format(type(self).__name__, format(self))
 
     ### PRIVATE PROPERTIES ###
@@ -50,6 +54,10 @@ class LilyPondVersionToken(AbjadObject):
 
     @property
     def version(self):
+        r'''Version of LilyPond version token.
+
+        Returns string.
+        '''
         from abjad import abjad_configuration
         if self._version is None:
             return abjad_configuration.get_lilypond_version_string()

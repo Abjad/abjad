@@ -8,7 +8,8 @@ class GraphvizSubgraph(GraphvizGraph):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         attributes=None,
         children=None,
         edge_attributes=None,
@@ -45,6 +46,10 @@ class GraphvizSubgraph(GraphvizGraph):
 
     @property
     def canonical_name(self):
+        r'''Canonical name of Graphviz subgraph.
+
+        Returns string.
+        '''
         if self.name is not None:
             if self.is_cluster:
                 return 'cluster_' + self.name
@@ -56,10 +61,18 @@ class GraphvizSubgraph(GraphvizGraph):
 
     @property
     def edges(self):
+        r'''Edges of Graphviz subgraph.
+        
+        Returns tuple.
+        '''
         return tuple(self._edges)
 
     @property
     def is_cluster(self):
+        r'''True when Graphviz subgraph is a cluster. Otherwise false.
+
+        Returns boolean.
+        '''
         return self._is_cluster
 
     @is_cluster.setter

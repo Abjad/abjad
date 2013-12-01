@@ -356,39 +356,57 @@ class Duration(AbjadObject, fractions.Fraction):
         return type(self)(fractions.Fraction.__rdiv__(self, *args))
 
     def __rdivmod__(self, *args):
+        r'''Documentation required.
+        '''
         return type(self)(fractions.Fraction.__rdivmod__(self, *args))
 
     def __reduce__(self):
+        r'''Documentation required.
+        '''
         return type(self), (self.numerator, self.denominator)
 
     def __reduce_ex__(self, protocol):
+        r'''Documentation required.
+        '''
         return type(self), (self.numerator, self.denominator)
 
     def __rmod__(self, *args):
+        r'''Documentation required.
+        '''
         return type(self)(fractions.Fraction.__rmod__(self, *args))
 
     def __rmul__(self, *args):
         r'''Multiplies `args` by duration.
 
-        Returns duration.
+        Returns new duration.
         '''
         return type(self)(fractions.Fraction.__rmul__(self, *args))
 
     def __rpow__(self, *args):
         r'''Raises `args` to the power of duration.
+
+        Returns new duration.
         '''
         return type(self)(fractions.Fraction.__rpow__(self, *args))
 
     def __rsub__(self, *args):
         r'''Subtracts duration from `args`.
+
+        Returns new duration.
         '''
         return type(self)(fractions.Fraction.__rsub__(self, *args))
 
     def __rtruediv__(self, *args):
+        r'''Documentation required.
+
+        Returns new duration.
+        '''
         return type(self)(fractions.Fraction.__rtruediv__(self, *args))
 
     def __sub__(self, *args):
         r'''Subtracts `args` from duration.
+
+        Returns new duration.
         '''
         if len(args) == 1 and \
             isinstance(args[0], mathtools.NonreducedFraction):
@@ -397,6 +415,8 @@ class Duration(AbjadObject, fractions.Fraction):
             return type(self)(fractions.Fraction.__sub__(self, *args))
 
     def __truediv__(self, *args):
+        r'''Documentation required.
+        '''
         return type(self)(fractions.Fraction.__truediv__(self, *args))
 
     ### PRIVATE PROPERTIES ###

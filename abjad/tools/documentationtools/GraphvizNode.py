@@ -4,6 +4,8 @@ from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
 class GraphvizNode(TreeNode, GraphvizObject):
+    r'''A Graphviz node.
+    '''
 
     ### INITIALIZER ###
 
@@ -28,10 +30,18 @@ class GraphvizNode(TreeNode, GraphvizObject):
 
     @property
     def canonical_name(self):
+        r'''Canonical name of Graphviz node.
+
+        Returns string.
+        '''
         if self.name is not None:
             return self.name
         return 'node_' + '_'.join(str(x) for x in self.graph_order)
 
     @property
     def edges(self):
+        r'''Edges of Graphviz node.
+
+        Returns tuple.
+        '''
         return tuple(self._edges)

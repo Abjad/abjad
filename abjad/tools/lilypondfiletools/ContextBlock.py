@@ -6,7 +6,7 @@ from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 
 class ContextBlock(AttributedBlock):
-    r'''Abjad model of LilyPond input file context block:
+    r'''A LilyPond input file context block.
 
     ::
 
@@ -36,7 +36,6 @@ class ContextBlock(AttributedBlock):
             proportionalNotationDuration = #(ly:make-moment 1 45)
         }
 
-    Returns context block.
     '''
 
     ### INITIALIZER ###
@@ -59,6 +58,7 @@ class ContextBlock(AttributedBlock):
         from abjad.tools import systemtools
         result = []
         result.append('%s {' % self._escaped_name)
+        manager = systemtools.LilyPondFormatManager
         # CAUTION: source context name must come before type to allow 
         # context redefinition.
         # TODO: rename self.context_name to self.source_context_name
@@ -82,7 +82,8 @@ class ContextBlock(AttributedBlock):
         setting_contributions = []
         for key, value in contextualize(self)._get_attribute_tuples():
             setting_contribution = \
-                systemtools.LilyPondFormatManager.format_lilypond_context_setting_in_with_block(key, value)
+                manager.format_lilypond_context_setting_in_with_block(
+                    key, value)
             setting_contributions.append(setting_contribution)
         for setting_contribution in sorted(setting_contributions):
             result.append('\t' + setting_contribution)
@@ -93,14 +94,26 @@ class ContextBlock(AttributedBlock):
 
     @property
     def accepts(self):
+        r'''Context accepts commands.
+
+        Returns sets.
+        '''
         return self._accepts
 
     @property
     def engraver_consists(self):
+        r'''Engraver consists commands.
+
+        Returns set.
+        '''
         return self._engraver_consists
 
     @property
     def engraver_removals(self):
+        r'''Engraver removal commands.
+
+        Returns set.
+        '''
         return self._engraver_removals
 
     ### PUBLIC PROPERTIES ###

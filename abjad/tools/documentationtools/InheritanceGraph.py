@@ -311,13 +311,13 @@ class InheritanceGraph(AbjadObject):
 
     @property
     def graphviz_format(self):
-        r'''GraphViz format of inheritance graph.
+        r'''Graphviz format of inheritance graph.
         '''
         return self.graphviz_graph.graphviz_format
 
     @property
     def graphviz_graph(self):
-        r'''GraphViz graph of inheritance graph.
+        r'''Graphviz graph of inheritance graph.
         '''
         from abjad.tools import documentationtools
 

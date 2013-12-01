@@ -6,7 +6,7 @@ from abjad.tools import abctools
 
 
 class AbjadAPIGenerator(abctools.AbjadObject):
-    r'''Creates Abjad's API ReST:
+    r'''Generates theAbjad API restructed text.
 
         * writes ReST pages for individual classes and functions
         * writes the API index ReST
@@ -14,7 +14,6 @@ class AbjadAPIGenerator(abctools.AbjadObject):
           and unstable
         * handles ignoring private tools packages
 
-    Returns `AbjadAPIGenerator` instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -41,10 +40,14 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, verbose=False):
+        r'''Calls Abjad API generator.
+
+        Returns none.
+        '''
         from abjad.tools import documentationtools
 
         if verbose:
-            print 'Now writing ReStructured Text files ...'
+            print 'Now writing restructured text files ...'
             print
 
         ignored_directory_names = [
@@ -198,6 +201,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     @property
     def package_prefix(self):
+        r'''Package prefix.
+        '''
         return ('abjad.tools.', 'abjad.demos.')
 
     @property
@@ -226,8 +231,16 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     @property
     def root_package(self):
+        r'''Root package.
+
+        Returns ``'abjad'``.
+        '''
         return 'abjad'
 
     @property
     def tools_package_path_index(self):
+        r'''Tools package path index.
+
+        Returns ``2``.
+        '''
         return 2

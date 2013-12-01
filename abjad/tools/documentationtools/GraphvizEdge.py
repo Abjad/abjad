@@ -17,6 +17,10 @@ class GraphvizEdge(GraphvizObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, *args):
+        r'''Calls Graphviz edge.
+
+        Returns Graphviz edge.
+        '''
         from abjad.tools import documentationtools
         if args:
             assert len(args) == 2
@@ -68,10 +72,16 @@ class GraphvizEdge(GraphvizObject):
 
     @property
     def head(self):
+        r'''Head of Graphviz edge.
+        '''
         return self._head
 
     @property
     def is_directed(self):
+        r'''True when Graphviz edge is directed. Otherwise false.
+        
+        Returns boolean.
+        '''
         return self._is_directed
 
     @is_directed.setter
@@ -80,4 +90,6 @@ class GraphvizEdge(GraphvizObject):
 
     @property
     def tail(self):
+        r'''Tail of Graphviz edge.
+        '''
         return self._tail

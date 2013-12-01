@@ -5,7 +5,7 @@ from abjad.tools.lilypondnametools.LilyPondNameManager \
 
 
 class LilyPondGrobNameManager(LilyPondNameManager):
-    '''LilyPond grob manager.
+    '''LilyPond grob name manager.
     '''
 
     ### CLASS VARIABLES ###
@@ -15,6 +15,10 @@ class LilyPondGrobNameManager(LilyPondNameManager):
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
+        r'''Gets attribute `name` from LilyPond grob name manager.
+
+        Returns string.
+        '''
         from abjad import ly
         from abjad.tools import lilypondnametools
         camel_name = stringtools.snake_case_to_upper_camel_case(name)
@@ -47,6 +51,10 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                 raise AttributeError(message)
 
     def __setattr__(self, attribute_name, value):
+        r'''Sets attribute `attribute_name` of grob name manager to `value`.
+
+        Returns none.
+        '''
         # make sure attribute name is valid grob name before setting value
         attribute_value = getattr(self, attribute_name)
         object.__setattr__(self, attribute_name, value)
