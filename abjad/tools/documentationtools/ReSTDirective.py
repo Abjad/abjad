@@ -4,6 +4,8 @@ from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 
 
 class ReSTDirective(TreeContainer):
+    r'''A ReST directive.
+    '''
 
     ### INITIALIZER ###
 
@@ -70,12 +72,27 @@ class ReSTDirective(TreeContainer):
 
     ### PUBLIC PROPERTIES ###
 
+    @property
+    def argument(self):
+        r'''Gets and sets argument of ReST directive.
+        '''
+        return self._argument
+
+    @argument.setter
+    def argument(self, arg):
+        assert isinstance(arg, (str, type(None)))
+        self._argument = arg
+
     @abc.abstractproperty
     def directive(self):
+        r'''Gets and sets directive of ReST directive.
+        '''
         raise NotImplemented
 
     @property
     def node_class(self):
+        r'''Node class of ReST directive.
+        '''
         from abjad.tools import documentationtools
         return (
             documentationtools.ReSTDirective,
@@ -86,19 +103,12 @@ class ReSTDirective(TreeContainer):
 
     @property
     def options(self):
+        r'''Options of ReST directive.
+        '''
         return self._options
 
     @property
     def rest_format(self):
+        r'''ReST format of ReST directive.
+        '''
         return '\n'.join(self._rest_format_contributions)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def argument(self):
-        return self._argument
-
-    @argument.setter
-    def argument(self, arg):
-        assert isinstance(arg, (str, type(None)))
-        self._argument = arg

@@ -4,17 +4,11 @@ from abjad import *
 
 def test_lilypondfiletools_PaperBlock_minimal_page_breaking_01():
 
-    pb = lilypondfiletools.PaperBlock()
-    pb.minimal_page_breaking = True
-
-    r'''
-    \paper {
-        #(define page-breaking ly:minimal-breaking)
-    }
-    '''
+    paper_block = lilypondfiletools.PaperBlock()
+    paper_block.minimal_page_breaking = True
 
     assert systemtools.TestManager.compare(
-        pb,
+        paper_block,
         r'''
         \paper {
             #(define page-breaking ly:minimal-breaking)

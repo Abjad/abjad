@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 import types
+from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 
 class PaperBlock(AttributedBlock):
-    r'''Abjad model of LilyPond input file paper block:
+    r'''A LilyPond input file paper block:
 
     ::
 
@@ -28,7 +28,6 @@ class PaperBlock(AttributedBlock):
             print-page-number = ##t
         }
 
-    Returns paper block.
     '''
 
     ### INITIALIZER ###
@@ -52,6 +51,10 @@ class PaperBlock(AttributedBlock):
 
     @property
     def minimal_page_breaking(self):
+        r'''Gets and sets minimal page-breaking flag on paper block.
+
+        Returns boolean.
+        '''
         return self._minimal_page_breaking
 
     @minimal_page_breaking.setter

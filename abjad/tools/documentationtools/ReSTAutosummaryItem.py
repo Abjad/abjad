@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTAutosummaryItem(TreeNode):
-    r'''An ReST Autosummary item:
+    r'''A ReST autosummary item.
 
     ::
 
@@ -19,7 +19,6 @@ class ReSTAutosummaryItem(TreeNode):
         >>> print item.rest_format
         abjad.tools.scoretools.Note
 
-    Return `ReSTAutosummaryItem` instance.
     '''
 
     ### INITIALIZER ###
@@ -38,12 +37,14 @@ class ReSTAutosummaryItem(TreeNode):
 
     @property
     def rest_format(self):
+        r'''ReST format of ReST autosummary item.
+        '''
         return '\n'.join(self._rest_format_contributions)
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def text(self):
+        r'''Text of ReST autosummary item.
+        '''
         return self._text
 
     @text.setter

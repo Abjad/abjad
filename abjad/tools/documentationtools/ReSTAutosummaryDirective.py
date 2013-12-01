@@ -4,7 +4,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTAutosummaryDirective(ReSTDirective):
-    r'''An ReST AutosummaryTree directive:
+    r'''A ReST Autosummary directive.
 
     ::
 
@@ -36,12 +36,15 @@ class ReSTAutosummaryDirective(ReSTDirective):
            bar.Bar
            baz.Baz
 
-    Return `ReSTAutosummaryDirective` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __setitem__(self, i, expr):
+        r'''Sets item `i` to `expr`.
+
+        Returns none.
+        '''
         from abjad.tools import documentationtools
         newexpr = []
         for x in expr:
@@ -69,10 +72,16 @@ class ReSTAutosummaryDirective(ReSTDirective):
 
     @property
     def directive(self):
+        r'''Directive of ReST autosummary diretive.
+
+        Returns ``'autosummary'``.
+        '''
         return 'autosummary'
 
     @property
     def node_class(self):
+        r'''Node class of ReST autosummary directive.
+        '''
         from abjad.tools import documentationtools
         return (
             documentationtools.ReSTAutosummaryItem,

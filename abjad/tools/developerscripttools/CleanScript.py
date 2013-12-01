@@ -6,42 +6,65 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class CleanScript(DirectoryScript):
-    r'''Remove *.pyc, *.swp files and __pycache__ and tmp* directories 
-    recursively in a path:
+    r'''Removes *.pyc, *.swp files and __pycache__ and tmp* directories 
+    recursively in a path.
 
     ..  shell::
 
         ajv clean --help
 
-    Return `CleanScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'clean'``.
+        '''
         return 'clean'
 
     @property
     def long_description(self):
+        r'''Long description of scrip.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting groupt of script.
+
+        Returns none.
+        '''
         return None
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'Clean *.pyc, *.swp, __pycache__ and tmp* files' + \
             ' and folders from PATH.'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
         if not args.pyc and not args.pycache and \
             not args.swp and not args.tmp:
             args.pyc, args.pycache, args.swp, args.tmp = True, True, True, True
@@ -85,6 +108,10 @@ class CleanScript(DirectoryScript):
                 dirs.remove(dir)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
         parser.add_argument('path',
             default=os.getcwd(),
             help='directory tree to be recursed over',

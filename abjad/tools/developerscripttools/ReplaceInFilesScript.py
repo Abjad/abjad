@@ -6,7 +6,7 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class ReplaceInFilesScript(DirectoryScript):
-    r'''Replace text in files recursively:
+    r'''Replaces text in files recursively.
 
     ..  shell::
 
@@ -19,29 +19,48 @@ class ReplaceInFilesScript(DirectoryScript):
 
         abjad$ ajv replace text . foo bar -F *.txt -F *.rst -F *.htm
 
-    Return `ReplaceInFilesScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'replace'``.
+        '''
         return 'replace'
 
     @property
     def long_description(self):
+        r'''Long description of script.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns none.
+        '''
         return None
 
     @property
     def short_description(self):
+        r'''Short description.
+
+        Returns string.
+        '''
         return 'Replace text.'
 
     @property
     def skipped_directories(self):
+        r'''Skipped directories.
+
+        Returns list.
+        '''
         return [
             '.svn',
             '.git',
@@ -50,6 +69,10 @@ class ReplaceInFilesScript(DirectoryScript):
 
     @property
     def skipped_files(self):
+        r'''Skipped files.
+
+        Returns list.
+        '''
         return [
             __file__,
             self.program_name,
@@ -72,6 +95,10 @@ class ReplaceInFilesScript(DirectoryScript):
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PRIVATE METHODS ###
@@ -192,12 +219,13 @@ class ReplaceInFilesScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
 
+        Returns none.
+        '''
         print 'Replacing {!r} with {!r} ...'.format(args.old, args.new)
-
         skipped_dirs_patterns = self.skipped_directories + args.without_dirs
         skipped_files_patterns = self.skipped_files + args.without_files
-
         if args.regex or (not args.regex and args.whole_words_only):
             args.old = self._get_regex_search_callable(args)
             index, length = args.old('', 0)
@@ -207,13 +235,10 @@ class ReplaceInFilesScript(DirectoryScript):
                 raise ValueError(message)
         else:
             args.old = self._get_naive_search_callable(args)
-
         changed_file_count = 0
         changed_line_count = 0
         changed_item_count = 0
-
         for root, dirs, files in os.walk(args.path):
-
             dirs_to_remove = []
             for dir in dirs:
                 for pattern in skipped_dirs_patterns:
@@ -222,7 +247,6 @@ class ReplaceInFilesScript(DirectoryScript):
                         break
             for dir in dirs_to_remove:
                 dirs.remove(dir)
-
             for file in sorted(files):
                 valid = True
                 for pattern in skipped_files_patterns:
@@ -231,62 +255,55 @@ class ReplaceInFilesScript(DirectoryScript):
                         break
                 if not valid:
                     continue
-
                 changed_lines, changed_items = self._process_file(
                     args, os.path.join(root, file))
                 if changed_lines:
                     changed_file_count += 1
                     changed_line_count += changed_lines
                     changed_item_count += changed_items
-
         print ''
         print '\tReplaced {} instances over {} lines in {} files.'.format(
             changed_item_count, changed_line_count, changed_file_count)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
 
+        Returns none.
+        '''
         parser.add_argument('path',
             default=os.getcwd(),
             help='directory tree to be recursed over',
             nargs='?',
             type=self._validate_path,
             )
-
         parser.add_argument('old',
             help='old text',
             )
-
         parser.add_argument('new',
             help='new text',
             )
-
         parser.add_argument('--verbose',
             action='store_true',
             help='print replacement info even when --force flag is set.',
             )
-
         parser.add_argument('-Y', '--force',
             action='store_true',
             help='force "yes" to every replacement'
             )
-
         parser.add_argument('-R', '--regex',
             action='store_true',
             help='treat "old" as a regular expression',
             )
-
         parser.add_argument('-W', '--whole-words-only',
             action='store_true',
             help='''match only whole words, similar to grep's "-w" flag''',
             )
-
         parser.add_argument('-F', '--without-files',
             action='append',
             default=[],
             help='Exclude files matching pattern(s)',
             metavar='PATTERN',
             )
-
         parser.add_argument('-D', '--without-dirs',
             action='append',
             default=[],

@@ -7,15 +7,25 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class AbjadBookScript(DeveloperScript):
+    r'''abjad book script.
+    '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of Abjad book script.
+
+        Returns ``'book'``.
+        '''
         return 'book'
 
     @property
     def long_description(self):
+        r'''Long description of Abjad book script.
+
+        Returns string.
+        '''
         return r'''DESCRIPTION
 
     abjad-book processes Abjad snippets embedded in HTML, LaTeX, or ReST
@@ -137,6 +147,10 @@ EXAMPLES
 
     @property
     def output_formats(self):
+        r'''Output formats of Abjad book script.
+
+        Returns dictionary.
+        '''
         from abjad.tools import abjadbooktools
         return {
             'htm': abjadbooktools.HTMLOutputFormat,
@@ -147,15 +161,27 @@ EXAMPLES
 
     @property
     def short_description(self):
+        r'''Short description of Abjad book script.
+
+        Returns string.
+        '''
         return 'Preprocess HTML, LaTeX or ReST source with Abjad.'
 
     @property
     def version(self):
+        r'''Version of Abjad book script.
+
+        Returns float.
+        '''
         return 2.0
 
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
         from abjad.tools import developerscripttools
         for filename in self._collect_filenames(args):
             self._process_filename(args, filename)
@@ -168,6 +194,10 @@ EXAMPLES
             developerscripttools.BuildApiScript()(flags)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
         parser.add_argument('path',
             default=os.getcwd(),
             help='directory tree to be recursed over',

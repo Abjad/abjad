@@ -3,7 +3,7 @@ from abjad.tools.pitchtools.Set import Set
 
 
 class PitchSet(Set):
-    r'''A pitch segment.
+    r'''A pitch set.
 
     ::
 
@@ -23,12 +23,12 @@ class PitchSet(Set):
         >>> named_pitch_set
         PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
 
-    Returns pitch segment.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### PRIVATE METHODS ###
 
@@ -71,8 +71,13 @@ class PitchSet(Set):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
-        r'''Initialize pitch set from component selection:
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes pitch set from `selection`.
 
         ::
 
@@ -93,7 +98,7 @@ class PitchSet(Set):
             )
 
     def invert(self, axis):
-        r'''Invert pitch set around `axis`.
+        r'''Inverts pitch set about `axis`.
 
         Returns new pitch set.
         '''
@@ -101,7 +106,8 @@ class PitchSet(Set):
         return self.__makenew__(tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
-        r'''True if equivalent under transposition to `expr`. Otherwise False.
+        r'''True if pitch set is equivalent to `expr` under transposition.
+        Otherwise false.
         
         Returns boolean.
         '''
@@ -117,10 +123,11 @@ class PitchSet(Set):
         return expr == new_pitches
 
     def transpose(self, expr):
-        r'''Transpose all pitches in self by `expr`.
+        r'''Transposes all pitches in pitch set by `expr`.
+
+        Returns new pitch set.
         '''
         from abjad.tools import pitchtools
-        #interval = pitchtools.NumberedInterval(n)
         tokens = (pitch.transpose(expr) for pitch in self)
         return self.__makenew__(tokens=tokens)
 
@@ -128,6 +135,10 @@ class PitchSet(Set):
 
     @property
     def duplicate_pitch_classes(self):
+        r'''Duplicate pitch-classes in pitch set.
+
+        Returns pitch-class set.
+        '''
         from abjad.tools import pitchtools
         pitch_classes = []
         duplicate_pitch_classes = []
@@ -143,6 +154,10 @@ class PitchSet(Set):
 
     @property
     def is_pitch_class_unique(self):
+        r'''True when pitch set is pitch-class-unique. Otherwise false.
+
+        Returns boolean.
+        '''
         from abjad.tools import pitchtools
         numbered_pitch_class_set = pitchtools.PitchClassSet(
             self, item_class=pitchtools.NumberedPitchClass)

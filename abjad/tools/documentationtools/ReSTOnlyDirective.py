@@ -3,7 +3,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTOnlyDirective(ReSTDirective):
-    r'''An ReST `only` directive:
+    r'''A ReST `only` directive.
 
     ::
 
@@ -33,7 +33,6 @@ class ReSTOnlyDirective(ReSTDirective):
            A LaTeX-Only Heading
            --------------------
 
-    Return `ReSTOnlyDirective` instance.
     '''
 
     ### INITIALIZER ###
@@ -50,4 +49,6 @@ class ReSTOnlyDirective(ReSTDirective):
 
     @property
     def directive(self):
+        r'''Returns ``'only'``.
+        '''
         return 'only'

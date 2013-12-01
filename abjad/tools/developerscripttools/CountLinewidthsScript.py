@@ -7,40 +7,63 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class CountLinewidthsScript(DirectoryScript):
-    r'''Tabulate the linewidths of modules in a path:
+    r'''Counts linewidths of modules in a path.
 
     ..  shell::
 
         ajv count linewidths --help
 
-    Return `CountLinewidthsScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'linewidths'``.
+        '''
         return 'linewidths'
 
     @property
     def long_description(self):
+        r'''Long description of script.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns ``'count'``.
+        '''
         return 'count'
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'Count maximum line-width of all modules in PATH.'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
 
         #print args
 
@@ -119,75 +142,65 @@ class CountLinewidthsScript(DirectoryScript):
             print '{}\t{}'.format(pair[1], pair[0])
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
 
+        Returns none.
+        '''
         parser.add_argument('path',
             type=self._validate_path,
             help='directory tree to be recursed over'
             )
-
         parser.add_argument('-l', '--limit',
             help='limit output to last N items',
             metavar='N',
             type=int,
             )
-
         parser.add_argument('-o', '--order-by',
             choices='wm',
             help='order by line width [w] or module name [m]',
             metavar='w|m',
             type=str,
             )
-
         mode_group = parser.add_mutually_exclusive_group()
-
         mode_group.add_argument('-C', '--code',
             action='store_const',
             const='code',
             dest='mode',
             help='count linewidths of all code in module',
             )
-
         mode_group.add_argument('-D', '--docstrings',
             action='store_const',
             const='docstrings',
             dest='mode',
             help='count linewidths of all docstrings in module',
             )
-
         sort_group = parser.add_mutually_exclusive_group()
-
         sort_group.add_argument('-a', '--ascending',
             action='store_const',
             const='ascending',
             dest='sort',
             help='sort results ascending',
             )
-
         sort_group.add_argument('-d', '--descending',
             action='store_const',
             const='descending',
             dest='sort',
             help='sort results descending',
             )
-
         thresh_group = parser.add_mutually_exclusive_group()
-
         thresh_group.add_argument('-gt', '--greater-than',
             help='line widths greater than N',
             metavar='N',
             type=int,
             )
-
         thresh_group.add_argument('-lt', '--less-than',
             help='line widths less than N',
             metavar='N',
             type=int,
             )
-
         thresh_group.add_argument('-eq', '--equal-to',
             help='line widths equal to N',
             metavar='N',
             type=int,
             )
-
         parser.set_defaults(mode='docstrings', order_by='w', sort='ascending')

@@ -7,40 +7,63 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class RunDoctestsScript(DirectoryScript):
-    r'''Run doctests on all Python files in current directory recursively:
+    r'''Runs doctests on all Python files in current directory recursively.
 
     ..  shell::
 
         ajv doctest --help
 
-    Return `RunDoctestsScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'doctest'``.
+        '''
         return 'doctest'
 
     @property
     def long_description(self):
+        r'''Long description of  script.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns none.
+        '''
         return None
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'Run doctests on all modules in current path.'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PUBLIC PROPERTIES ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
         import doctest
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
@@ -109,6 +132,10 @@ class RunDoctestsScript(DirectoryScript):
             )
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
         parser.add_argument('path',
             default=os.getcwd(),
             help='directory tree to be recursed over',

@@ -10,6 +10,8 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class AbjadBookProcessor(AbjadObject):
+    r'''Abjad book processor.
+    '''
 
     ### INITIALIZER ###
 
@@ -39,6 +41,8 @@ class AbjadBookProcessor(AbjadObject):
     ### SPECIAL METHOD ###
 
     def __call__(self, verbose=True):
+        r'''Calls Abjad book processor.
+        '''
 
         # Verify input, and extract code blocks
         code_blocks = self._extract_code_blocks(self.lines)
@@ -78,26 +82,38 @@ class AbjadBookProcessor(AbjadObject):
 
     @property
     def directory(self):
+        r'''Directory.
+        '''
         return self._directory
 
     @property
     def image_prefix(self):
+        r'''Image prefix.
+        '''
         return self._image_prefix
 
     @property
     def lines(self):
+        r'''Lines.
+        '''
         return self._lines
 
     @property
     def output_format(self):
+        r'''Output format.
+        '''
         return self._output_format
 
     @property
     def skip_rendering(self):
+        r'''Skip rendering.
+        '''
         return self._skip_rendering
 
     @property
     def verbose(self):
+        r'''Verbose.
+        '''
         return self._verbose
 
     ### PRIVATE METHODS ###
@@ -343,6 +359,10 @@ class AbjadBookProcessor(AbjadObject):
     ### PUBLIC METHODS ###
 
     def update_status(self, line):
+        r'''Updates status.
+
+        Returns none.
+        '''
         self._current_code_line += 1
         percentage = float(self._current_code_line) / self._total_code_lines
         message = '[{:4.0%}] {}'.format(percentage, line)

@@ -7,42 +7,65 @@ from abjad.tools.developerscripttools.CleanScript import CleanScript
 
 
 class AbjGrepScript(DirectoryScript):
-    r'''Run `grep` against a path, ignoring `svn` and docs-related files:
+    r'''Runs `grep` against a path, ignoring `svn` and docs-related files.
 
     ..  shell::
 
         ajv grep --help
 
-    Return `AbjGrepScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'grep'``.
+        '''
         return 'grep'
 
     @property
     def long_description(self):
+        r'''Long description of script.
+
+        Returns string.
+        '''
         return '''\
 If no PATH flag is specified, the current directory will be searched.
     '''
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns none.
+        '''
         return None
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'grep PATTERN in PATH'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
 
         systemtools.IOManager.clear_terminal()
         if args.whole_words_only:
@@ -54,6 +77,10 @@ If no PATH flag is specified, the current directory will be searched.
         systemtools.IOManager.spawn_subprocess(command)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
 
         from abjad import abjad_configuration
 

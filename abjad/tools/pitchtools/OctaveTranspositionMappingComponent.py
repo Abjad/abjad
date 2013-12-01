@@ -14,10 +14,10 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         >>> mc
         OctaveTranspositionMappingComponent('[A0, C8]', 15)
 
-    Initialize from input parameters separately, from a pair, from
+    Initializes from input parameters separately, from a pair, from
     a string or from another mapping component.
 
-    Model
+    Models
     ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
     input part. (See the docs for that function.)
 
@@ -60,6 +60,12 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a an octave transposition mapping component
+        with source pitch range and target octave start pitch equal to those of
+        this octave transposition mapping component. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.source_pitch_range == expr.source_pitch_range:
                 if self.target_octave_start_pitch == \
@@ -68,7 +74,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         return False
 
     def __format__(self, format_specification=''):
-        r'''Formats component.
+        r'''Formats mapping component.
 
         Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
 
@@ -80,6 +86,11 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         return str(self)
 
     def __ne__(self, expr):
+        r'''True when octave transposition mapping component does not equal 
+        `expr`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == expr
 
     ### PRIVATE PROPERTIES ###

@@ -60,39 +60,77 @@ class NumberedPitch(Pitch):
         semitones = abs(self) + abs(arg)
         return type(self)(semitones)
 
-    def __eq__(self, expr):
-        if isinstance(expr, type(self)):
-            return self._pitch_number == expr._pitch_number
-        return self._pitch_number == expr
+    def __eq__(self, arg):
+        r'''True when `arg` is a numbered pitch with pitch number equal to that
+        of this numbered pitch. Otherwise false.
+
+        Returns boolean.
+        '''
+        if isinstance(arg, type(self)):
+            return self._pitch_number == arg._pitch_number
+        return self._pitch_number == arg
 
     def __float__(self):
+        r'''Changes numbered pitch to float.
+
+        Returns float.
+        '''
         return float(self._pitch_number)
 
     def __getnewargs__(self):
+        r'''Gets new arugments.
+
+        Returns tuple.
+        '''
         return (self._pitch_number, )
 
     def __hash__(self):
+        r'''Hashes numbered pitch.
+
+        Returns integer.
+        '''
         return hash(repr(self))
 
     def __int__(self):
+        r'''Changes numbered pitch to integer.
+
+        Returns integer.
+        '''
         return self._pitch_number
 
-    def __lt__(self, expr):
-        if isinstance(expr, type(self)):
-            return self._pitch_number < expr._pitch_number
+    def __lt__(self, arg):
+        r'''True when `arg` is a numbered pitch with pitch number greater than
+        that of this numbered pitch. Otherwise false.
+
+        Returns boolean.
+        '''
+        if isinstance(arg, type(self)):
+            return self._pitch_number < arg._pitch_number
         try:
-            expr = type(self)(expr)
+            arg = type(self)(arg)
         except (ValueError, TypeError):
             return False
-        return self._pitch_number < expr._pitch_number
+        return self._pitch_number < arg._pitch_number
 
     def __neg__(self):
+        r'''Negates numbered pitch.
+
+        Returns new numbered pitch.
+        '''
         return type(self)(-abs(self))
 
     def __str__(self):
+        r'''String representation of numbered pitch.
+
+        Returns string.
+        '''
         return str(abs(self))
 
     def __sub__(self, arg):
+        r'''Subtracts `arg` from numbered pitch.
+
+        Returns numbered interval.
+        '''
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
             return pitchtools.NumberedInterval.from_pitch_carriers(
@@ -124,7 +162,7 @@ class NumberedPitch(Pitch):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
-        r'''Apply `accidental`.
+        r'''Applies `accidental` to numbered pitch.
 
         ::
 
@@ -139,14 +177,15 @@ class NumberedPitch(Pitch):
         return type(self)(semitones)
 
     def invert(self, axis=None):
-        r'''Invert around `axis`.
+        r'''Inverts numberd pitch around `axis`.
 
         Not yet implemented.
         '''
         raise NotImplementedError
     
     def multiply(self, n=1):
-        r'''Multiply pitch-class by `n`, maintaining octave.
+        r'''Multiplies pitch-class of numbered pitch by `n` and maintains
+        octave.
         
         ::
 
@@ -160,7 +199,7 @@ class NumberedPitch(Pitch):
         return type(self)(pitch_class_number + octave_floor)
 
     def transpose(self, n=0):
-        r'''Tranpose by `n` semitones.
+        r'''Tranposes numbered pitch by `n` semitones.
 
         ::
 
@@ -176,7 +215,7 @@ class NumberedPitch(Pitch):
 
     @property
     def accidental(self):
-        r'''Accidental.
+        r'''Accidental of numbered pitch.
 
         ::
 
@@ -190,7 +229,7 @@ class NumberedPitch(Pitch):
 
     @property
     def alteration_in_semitones(self):
-        r'''Alteration in semitones.
+        r'''Alteration of numbered pitch in semitones.
 
         ::
 
@@ -203,7 +242,7 @@ class NumberedPitch(Pitch):
 
     @property
     def diatonic_pitch_class_name(self):
-        r'''Diatonic pitch-class name.
+        r'''Diatonic pitch-class name corresponding to numbered pitch.
 
         ::
 
@@ -216,7 +255,7 @@ class NumberedPitch(Pitch):
 
     @property
     def diatonic_pitch_class_number(self):
-        r'''Diatonic pitch-class number.
+        r'''Diatonic pitch-class number of numbered pitch.
 
         ::
 
@@ -229,7 +268,7 @@ class NumberedPitch(Pitch):
 
     @property
     def diatonic_pitch_name(self):
-        r'''Diatonic pitch name.
+        r'''Diatonic pitch name of numbered pitch.
 
         ::
 
@@ -245,7 +284,7 @@ class NumberedPitch(Pitch):
 
     @property
     def diatonic_pitch_number(self):
-        r'''Diatonic pitch-class number.
+        r'''Diatonic pitch-class number corresponding to numbered pitch.
 
         ::
 
@@ -260,7 +299,7 @@ class NumberedPitch(Pitch):
 
     @property
     def named_pitch(self):
-        r'''Named pitch.
+        r'''Named pitch corresponding to numbered pitch.
 
         ::
 
@@ -274,7 +313,7 @@ class NumberedPitch(Pitch):
 
     @property
     def named_pitch_class(self):
-        r'''Named pitch-class.
+        r'''Named pitch-class corresponding to numbered pitch.
 
         ::
 
@@ -295,13 +334,13 @@ class NumberedPitch(Pitch):
             >>> pitchtools.NumberedPitch(13).numbered_pitch
             NumberedPitch(13)
 
-        Returns numbered pitch.
+        Returns new numbered pitch.
         '''
         return type(self)(self)
 
     @property
     def numbered_pitch_class(self):
-        r'''Numbered pitch-class.
+        r'''Numbered pitch-class corresponding to numbered pitch.
 
         ::
 
@@ -315,7 +354,7 @@ class NumberedPitch(Pitch):
 
     @property
     def octave(self):
-        r'''Octave indication.
+        r'''Octave of numbered pitch.
 
         ::
 
@@ -329,7 +368,7 @@ class NumberedPitch(Pitch):
 
     @property
     def octave_number(self):
-        r'''Octave number.
+        r'''Octave number of numbered pitch.
 
         ::
 
@@ -342,7 +381,7 @@ class NumberedPitch(Pitch):
 
     @property
     def pitch_class_name(self):
-        r'''Pitch-class name.
+        r'''Pitch-class name of numbered pitch.
 
         ::
 
@@ -355,7 +394,7 @@ class NumberedPitch(Pitch):
 
     @property
     def pitch_class_number(self):
-        r'''Pitch-class number.
+        r'''Pitch-class number of numbered pitch.
 
         ::
 
@@ -368,7 +407,7 @@ class NumberedPitch(Pitch):
 
     @property
     def pitch_class_octave_label(self):
-        r'''Pitch-class / octave label.
+        r'''Pitch-class / octave label of numbered pitch.
 
         ::
 
@@ -385,7 +424,7 @@ class NumberedPitch(Pitch):
 
     @property
     def pitch_name(self):
-        r'''Pitch name.
+        r'''Pitch name corresponding to numbered pitch.
 
         ::
 
@@ -401,13 +440,13 @@ class NumberedPitch(Pitch):
 
     @property
     def pitch_number(self):
-        r'''Pitch-class number.
+        r'''Pitch number of numbered pitch.
 
         ::
 
             >>> pitchtools.NumberedPitch(13).pitch_number
             13
 
-        Returns integer or float.
+        Returns number.
         '''
         return self._pitch_number

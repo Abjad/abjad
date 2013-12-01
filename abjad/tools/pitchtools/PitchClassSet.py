@@ -23,7 +23,6 @@ class PitchClassSet(Set):
         >>> named_pitch_class_set
         PitchClassSet(['c', 'd', 'ef', 'bqs'])
 
-    Returns pitch-class set.
     '''
 
     ### CLASS VARIABLES ###
@@ -33,6 +32,10 @@ class PitchClassSet(Set):
     ### SPECIAL METHODS ###
 
     def __hash__(self):
+        r'''Hashes pitch-class set.
+
+        Returns integer.
+        '''
         return hash(repr(self))
 
     ### PRIVATE METHODS ###
@@ -84,8 +87,13 @@ class PitchClassSet(Set):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
-        r'''Initialize pitch-class set from component selection:
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes pitch-class set from `selection`.
 
         ::
 
@@ -106,7 +114,7 @@ class PitchClassSet(Set):
             )
 
     def invert(self):
-        r'''Invert numbered pitch-class set:
+        r'''Inverts pitch-class set.
 
         ::
 
@@ -120,7 +128,7 @@ class PitchClassSet(Set):
         return type(self)([pc.invert() for pc in self])
 
     def is_transposed_subset(self, pcset):
-        r'''True when self is transposed subset of `pcset`.
+        r'''True when pitch-class set is transposed subset of `pcset`.
         Otherwise false:
 
         ::
@@ -145,7 +153,7 @@ class PitchClassSet(Set):
         return False
 
     def is_transposed_superset(self, pcset):
-        r'''True when self is transposed superset of `pcset`.
+        r'''True when pitch-class set is transposed superset of `pcset`.
         Otherwise false:
 
         ::
@@ -170,7 +178,7 @@ class PitchClassSet(Set):
         return False
 
     def multiply(self, n):
-        r'''Multiply pitch-class set by `n`:
+        r'''Multiplies pitch-class set by `n`.
 
         ::
 
@@ -179,12 +187,16 @@ class PitchClassSet(Set):
             ...     ).multiply(5)
             PitchClassSet([2, 4.5, 6, 11])
 
-        Returns numbered pitch-class set.
+        Returns new pitch-class set.
         '''
         tokens = (pitch_class.multiply(n) for pitch_class in self)
         return self.__makenew__(tokens=tokens)
 
     def order_by(self, pitch_class_segment):
+        r'''Orders pitch-class set by `pitch_class_segment`.
+
+        Returns pitch-class segment.
+        '''
         from abjad.tools import pitchtools
         from abjad.tools import sequencetools
         if not len(self) == len(pitch_class_segment):
@@ -203,7 +215,9 @@ class PitchClassSet(Set):
         raise ValueError(message)
 
     def transpose(self, expr):
-        r'''Transpose all pitch classes in self by `expr`.
+        r'''Transposes all pitch-classes in pitch-class set by `expr`.
+
+        Returns new pitch-class set.
         '''
         tokens = (pitch_class + expr for pitch_class in self)
         return self.__makenew__(tokens=tokens)

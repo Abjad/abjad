@@ -5,35 +5,54 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class MakeNewClassTemplateScript(DeveloperScript):
-    r'''Create class stubs, complete with test subdirectory:
+    r'''Creates class stubs and test subdirectory.
 
     ..  shell::
 
         ajv new class --help
 
-    Return `MakeNewClassTemplateScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'class'``.
+        '''
         return 'class'
 
     @property
     def long_description(self):
+        r'''Long description of script.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns ``'new'``.
+        '''
         return 'new'
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'Make a new class template file.'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PRIVATE METHODS ###
@@ -66,6 +85,10 @@ class MakeNewClassTemplateScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
         from abjad import abjad_configuration
         if args.name.count('.') != 1:
             message = 'Error: {!r} not in tools_package.class_name format.'
@@ -104,15 +127,16 @@ class MakeNewClassTemplateScript(DeveloperScript):
             f.write(module_text)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
 
         from abjad import abjad_configuration
-
         parser.add_argument('name',
             help='tools package qualified class name'
             )
-
         path_group = parser.add_mutually_exclusive_group(required=True)
-
         path_group.add_argument('-X', '--experimental',
             action='store_const',
             const=os.path.join(
@@ -121,7 +145,6 @@ class MakeNewClassTemplateScript(DeveloperScript):
             dest='path',
             help='use the Abjad experimental tools path',
             )
-
         path_group.add_argument('-M', '--mainline',
             action='store_const',
             const=os.path.join(

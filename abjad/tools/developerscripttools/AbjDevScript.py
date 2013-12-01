@@ -21,12 +21,13 @@ class AbjDevScript(DeveloperScript):
 
         ajv api --help
 
-    Return `AbjDevScript` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __call__(self, args=None):
+        r'''Calls script.
+        '''
         if args is None:
             args = self.argument_parser.parse_known_args()
         else:
@@ -43,6 +44,8 @@ class AbjDevScript(DeveloperScript):
 
     @property
     def developer_script_aliases(self):
+        r'''Developer script aliases.
+        '''
         scripting_groups = []
         aliases = {}
         for developer_script_class in self.developer_script_classes:
@@ -114,6 +117,8 @@ class AbjDevScript(DeveloperScript):
 
     @property
     def developer_script_classes(self):
+        r'''Developer scripts classes.
+        '''
         from abjad.tools import developerscripttools
         classes = developerscripttools.get_developer_script_classes()
         classes.remove(type(self))
@@ -121,6 +126,8 @@ class AbjDevScript(DeveloperScript):
 
     @property
     def developer_script_program_names(self):
+        r'''Developer script program names.
+        '''
         program_names = {}
         for developer_script_class in self.developer_script_classes:
             instance = developer_script_class()
@@ -129,19 +136,27 @@ class AbjDevScript(DeveloperScript):
 
     @property
     def long_description(self):
+        r'''Long description.
+        '''
         return None
 
     @property
     def short_description(self):
+        r'''Short description.
+        '''
         return 'Entry-point to Abjad developer scripts catalog.'
 
     @property
     def version(self):
+        r'''Version.
+        '''
         return 1.0
 
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+        '''
         args, unknown_args = args
 
         if args.subparser_name == 'help':
@@ -195,6 +210,8 @@ class AbjDevScript(DeveloperScript):
             instance(unknown_args)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+        '''
 
         subparsers = parser.add_subparsers(
             dest='subparser_name',

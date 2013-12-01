@@ -4,7 +4,9 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTLineageDirective(ReSTDirective):
-    r'''An ReST Abjad lineage diagram directive:
+    r'''A ReST lineage directive.
+
+    Digrams inheritance of Abjad classes.
 
     ::
 
@@ -18,7 +20,6 @@ class ReSTLineageDirective(ReSTDirective):
         >>> print _.rest_format
         .. abjad-lineage:: abjad.tools.spannertools.Beam.Beam
 
-    Return `ReSTLineageDirective` instance.
     '''
 
     ### INITIALIZER ###
@@ -38,4 +39,6 @@ class ReSTLineageDirective(ReSTDirective):
 
     @property
     def directive(self):
+        r'''Returns ``'abjad-lineage'``.
+        '''
         return 'abjad-lineage'

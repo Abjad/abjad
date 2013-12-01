@@ -43,6 +43,10 @@ class TwelveToneRow(PitchClassSegment):
     ### SPECIAL METHODS ###
 
     def __getslice__(self, start, stop):
+        r'''Gets items from `start` to `stop` in twelve-tone row.
+
+        Returns pitch-class segment.
+        '''
         from abjad.tools import pitchtools
         tokens = self._collection[start:stop]
         return PitchClassSegment(
@@ -52,6 +56,11 @@ class TwelveToneRow(PitchClassSegment):
             )
 
     def __makenew__(self, tokens=None, custom_identifier=None):
+        r'''Makes new twelve-tone row with optional `tokens` and
+        `custom_identifier`.
+
+        Returns new twelve-tone row.
+        '''
         from abjad.tools import pitchtools
         # allow for empty iterables:
         if tokens is None:
@@ -63,9 +72,17 @@ class TwelveToneRow(PitchClassSegment):
             )
 
     def __mul__(self, expr):
+        r'''Multiplies twelve-tone row by `expr`.
+
+        Returns pitch-class segment.
+        '''
         return PitchClassSegment(self) * expr
 
     def __rmul__(self, expr):
+        r'''Multiplies `expr` by twelve-tone row.
+
+        Returns pitch-class segment.
+        '''
         return PitchClassSegment(self) * expr
 
     ### PRIVATE PROPERTIES ###
@@ -94,4 +111,8 @@ class TwelveToneRow(PitchClassSegment):
         item_class=None, 
         custom_identifier=None,
         ):
+        r'''Makes twelve-tone row from `selection`.
+
+        Returns twelve-tone row.
+        '''
         raise NotImplementedError

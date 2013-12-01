@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTHorizontalRule(TreeNode):
-    r'''An ReST horizontal rule:
+    r'''A ReST horizontal rule.
 
     ::
 
@@ -16,7 +16,6 @@ class ReSTHorizontalRule(TreeNode):
         >>> print rule.rest_format
         --------
 
-    Return `ReSTHorizontalRule` instance.
     '''
 
     ### PRIVATE PROPERTIES ###
@@ -29,4 +28,8 @@ class ReSTHorizontalRule(TreeNode):
 
     @property
     def rest_format(self):
+        r'''ReST format of ReSt horizontal rule.
+
+        Returns text.
+        '''
         return '\n'.join(self._rest_format_contributions)

@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTParagraph(TreeNode):
-    r'''An ReST paragraph:
+    r'''A ReST paragraph.
 
     ::
 
@@ -22,8 +22,6 @@ class ReSTParagraph(TreeNode):
         blah blah blah
 
     Handles automatic linewrapping.
-
-    Return `ReSTParagraph` instance.
     '''
 
     ### INITIALIZER ###
@@ -46,12 +44,18 @@ class ReSTParagraph(TreeNode):
 
     @property
     def rest_format(self):
-        return '\n'.join(self._rest_format_contributions)
+        r'''ReST format of ReST paragraph.
 
-    ### PUBLIC PROPERTIES ###
+        Returns string.
+        '''
+        return '\n'.join(self._rest_format_contributions)
 
     @property
     def text(self):
+        r'''Gets and sets text of ReST paragraph.
+
+        Returns string.
+        '''
         return self._text
 
     @text.setter
@@ -63,6 +67,10 @@ class ReSTParagraph(TreeNode):
 
     @property
     def wrap(self):
+        r'''Gets and sets wrap flag of ReST paragraph.
+
+        Returns boolean.
+        '''
         return self._wrap
 
     @wrap.setter

@@ -31,6 +31,10 @@ class PitchVector(Vector):
         item_class=None, 
         custom_identifier=None,
         ):
+        r'''Makes pitch vector from `selection`.
+
+        Returns pitch vector.
+        '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         return cls(

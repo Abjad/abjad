@@ -8,7 +8,7 @@ from abjad.tools.developerscripttools.ReplaceInFilesScript \
 
 
 class RenameModulesScript(DeveloperScript):
-    r'''Rename classes and functions.
+    r'''Renames classes and functions.
 
     Handle renaming the module and package, as well as any tests,
     documentation or mentions of the class throughout the Abjad codebase:
@@ -17,29 +17,48 @@ class RenameModulesScript(DeveloperScript):
 
         ajv rename --help
 
-    Return `RenameModulesScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'rename'``.
+        '''
         return 'rename'
 
     @property
     def long_description(self):
+        r'''Long description of script.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns none.
+        '''
         return None
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'Rename public modules.'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PRIVATE METHODS ###
@@ -291,6 +310,10 @@ class RenameModulesScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
         systemtools.IOManager.clear_terminal()
         # Handle source path:
         old_codebase, old_tools_package_name, old_module_name = \
@@ -332,6 +355,10 @@ class RenameModulesScript(DeveloperScript):
         raise SystemExit
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
         parser.add_argument(
             'source',
             help='toolspackage path of source module',

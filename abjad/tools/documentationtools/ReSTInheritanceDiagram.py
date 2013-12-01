@@ -4,7 +4,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTInheritanceDiagram(ReSTDirective):
-    r'''An ReST inheritance diagram directive:
+    r'''A ReST inheritance diagram directive.
 
     ::
 
@@ -23,7 +23,6 @@ class ReSTInheritanceDiagram(ReSTDirective):
         .. inheritance-diagram:: abjad.tools.spannertools.Beam.Beam
            :private-bases:
 
-    Return `ReSTInheritanceDiagram` instance.
     '''
 
     ### INITIALIZER ###
@@ -46,4 +45,8 @@ class ReSTInheritanceDiagram(ReSTDirective):
 
     @property
     def directive(self):
+        r'''Directive of ReSt inheritance diagram.
+
+        Returns ``'inheritance-diagram'``.
+        '''
         return 'inheritance-diagram'

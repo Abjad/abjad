@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTTOCItem(TreeNode):
-    r'''An ReST TOC item:
+    r'''A ReST TOC item.
 
     ::
 
@@ -18,7 +18,6 @@ class ReSTTOCItem(TreeNode):
         >>> print item.rest_format
         api/index
 
-    Return `ReSTTOCItem` instance.
     '''
 
     ### INITIALIZER ###
@@ -37,12 +36,18 @@ class ReSTTOCItem(TreeNode):
 
     @property
     def rest_format(self):
-        return '\n'.join(self._rest_format_contributions)
+        r'''ReST format of ReST TOC item.
 
-    ### PUBLIC PROPERTIES ###
+        Returns string.
+        '''
+        return '\n'.join(self._rest_format_contributions)
 
     @property
     def text(self):
+        r'''Gets and sets text of ReST TOC item.
+
+        Returns string.
+        '''
         return self._text
 
     @text.setter

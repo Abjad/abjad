@@ -7,35 +7,54 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class BuildApiScript(DeveloperScript):
-    r'''Build the Abjad APIs:
+    r'''Builds the Abjad APIs.
 
     ..  shell::
 
         ajv api --help
 
-    Return `BuildApiScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'api'``.
+        '''
         return 'api'
 
     @property
     def long_description(self):
+        r'''Long description of script.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns none.
+        '''
         return None
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'Build the Abjad APIs.'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PRIVATE METHODS ###
@@ -136,6 +155,10 @@ class BuildApiScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
         from abjad import abjad_configuration
         format = args.format
         clean = args.clean
@@ -166,29 +189,28 @@ class BuildApiScript(DeveloperScript):
                 webbrowser.open(path)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
 
+        Returns none.
+        '''
         parser.add_argument('-M', '--mainline',
             action='store_true',
             help='build the mainline API'
             )
-
         parser.add_argument('-X', '--experimental',
             action='store_true',
             help='build the experimental API'
             )
-
         parser.add_argument('-C', '--clean',
             action='store_true',
             dest='clean',
             help='run "make clean" before building the api',
             )
-
         parser.add_argument('-O', '--open',
             action='store_true',
             dest='openinbrowser',
             help='open the docs in a web browser after building',
             )
-
         parser.add_argument('--format',
             choices=(
                 'coverage',
@@ -200,5 +222,4 @@ class BuildApiScript(DeveloperScript):
             help='Sphinx builder to use',
             metavar='FORMAT',
             )
-
         parser.set_defaults(format='html')

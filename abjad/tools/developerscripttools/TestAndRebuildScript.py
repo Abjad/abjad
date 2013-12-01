@@ -6,33 +6,56 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class TestAndRebuildScript(DeveloperScript):
+    r'''Tests codebase and rebuilds docs.
+    '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'re'``.
+        '''
         return 're'
 
     @property
     def long_description(self):
+        r'''Long description of script.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns none.
+        '''
         return None
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'Run pytest -x, doctest -x and then rebuild the API.'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PUBLIC PROPERTIES ###
 
     def get_terminal_width(self):
-        r"""Borrowed from the py lib."""
+        r'''Borrowed from the py lib.
+        ''' 
         try:
             import termios, fcntl, struct
             call = fcntl.ioctl(0, termios.TIOCGWINSZ,
@@ -47,6 +70,10 @@ class TestAndRebuildScript(DeveloperScript):
         return terminal_width
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
         systemtools.IOManager.clear_terminal()
         if not self.run_doctest(args):
             print
@@ -55,10 +82,14 @@ class TestAndRebuildScript(DeveloperScript):
                 self.rebuild_docs(args)
 
     def rebuild_docs(self, args):
+        r'''Rebuilds docs.
+        '''
         from abjad.tools import developerscripttools
         developerscripttools.BuildApiScript()(['-X', '-M'])
 
     def run_doctest(self, args):
+        r'''Runs doctest.
+        '''
         import doctest
 
         start_message = ' doctest session starts '
@@ -112,9 +143,15 @@ class TestAndRebuildScript(DeveloperScript):
         return False
 
     def run_pytest(self, args):
+        r'''Runs pytest.
+        '''
         import pytest
         options = ['-x', '-rf', '.']
         return pytest.main(options)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
         pass

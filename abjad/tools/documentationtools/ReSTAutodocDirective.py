@@ -4,7 +4,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTAutodocDirective(ReSTDirective):
-    r'''An ReST autodoc directive:
+    r'''A ReST autodoc directive.
 
     ::
 
@@ -28,7 +28,6 @@ class ReSTAutodocDirective(ReSTDirective):
         .. autoclass:: abjad.tools.spannertools.Beam.Beam
            :noindex:
 
-    Return `ReSTAutodocDirective` instance.
     '''
 
     ### INITIALIZER ###
@@ -54,6 +53,8 @@ class ReSTAutodocDirective(ReSTDirective):
 
     @property
     def directive(self):
+        r'''Gets and set directive of ReST autodoc directive.
+        '''
         return self._directive
 
     @directive.setter

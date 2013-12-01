@@ -4,7 +4,7 @@ from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
 class ReSTTOCDirective(ReSTDirective):
-    r'''An ReST TOCTree directive:
+    r'''A ReST TOC directive.
 
     ::
 
@@ -44,12 +44,15 @@ class ReSTTOCDirective(ReSTDirective):
            bar/index
            baz/index
 
-    Return `ReSTTOCDirective` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __setitem__(self, i, expr):
+        r'''Sets `i` to `expr`.
+
+        Returns none.
+        '''
         from abjad.tools import documentationtools
         newexpr = []
         for x in expr:
@@ -77,10 +80,14 @@ class ReSTTOCDirective(ReSTDirective):
 
     @property
     def directive(self):
+        r'''Returns ``'toctree'``.
+        '''
         return 'toctree'
 
     @property
     def node_class(self):
+        r'''Node class of ReST TOC directive.
+        '''
         from abjad.tools import documentationtools
         return (
             documentationtools.ReSTTOCItem,

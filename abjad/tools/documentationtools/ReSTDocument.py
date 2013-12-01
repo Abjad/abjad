@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 
 
 class ReSTDocument(TreeContainer):
-    r'''An ReST document tree:
+    r'''A ReST document tree.
 
     ::
 
@@ -67,7 +67,6 @@ class ReSTDocument(TreeContainer):
            bar/baz
            quux
 
-    Return `ReSTDocument` instance.
     '''
 
     ### PRIVATE PROPERTIES ###
@@ -84,6 +83,8 @@ class ReSTDocument(TreeContainer):
 
     @property
     def node_class(self):
+        r'''Node class of ReST document.
+        '''
         from abjad.tools import documentationtools
         return (
             documentationtools.ReSTDirective,
@@ -94,4 +95,6 @@ class ReSTDocument(TreeContainer):
 
     @property
     def rest_format(self):
+        r'''ReST format of ReST document.
+        '''
         return '\n'.join(self._rest_format_contributions)

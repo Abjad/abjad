@@ -33,7 +33,6 @@ class PitchSegment(Segment):
 
         >>> show(named_pitch_segment) # doctest: +SKIP
 
-    Returns pitch segment.
     '''
 
     ### CLASS VARIABLES ###
@@ -47,6 +46,18 @@ class PitchSegment(Segment):
     ### SPECIAL METHODS ###
 
     def __illustrate__(self):
+        r'''Illustrates pitch segment.
+
+        ::
+
+            >>> named_pitch_segment = pitchtools.PitchSegment(
+            ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
+            ...     item_class=NamedPitch,
+            ...     )
+            >>> show(named_pitch_segment) # doctest: +SKIP
+
+        Returns LilyPond file.
+        '''
         from abjad.tools import durationtools
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
@@ -87,8 +98,13 @@ class PitchSegment(Segment):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
-        r'''Initialize pitch segment from component selection:
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes pitch segment from `selection`.
 
         ::
 
@@ -125,7 +141,7 @@ class PitchSegment(Segment):
             )
 
     def invert(self, axis):
-        r'''Invert pitch segment around `axis`.
+        r'''Inverts pitch segment about `axis`.
 
         Returns new pitch segment.
         '''
@@ -133,7 +149,8 @@ class PitchSegment(Segment):
         return self.__makenew__(tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
-        r'''True if equivalent under transposition to `expr`. Otherwise False.
+        r'''True if pitch segment is equivalent to `expr` under transposition.
+        Otherwise false.
 
         Returns boolean.
         '''
@@ -149,7 +166,7 @@ class PitchSegment(Segment):
         return expr == new_pitches
 
     def make_notes(self, n=None, written_duration=None):
-        r'''Make first `n` notes in pitch class segment.
+        r'''Makes first `n` notes in pitch segment.
 
         Set `n` equal to `n` or length of segment.
 
@@ -173,7 +190,7 @@ class PitchSegment(Segment):
                 g'8
             }
 
-        Allow nonassignable `written_duration`:
+        Allows nonassignable `written_duration`:
 
         ::
 
@@ -212,7 +229,7 @@ class PitchSegment(Segment):
         return result
 
     def retrograde(self):
-        r'''Retrograde of pitch segment:
+        r'''Retrograde of pitch segment.
 
         ::
 
@@ -229,7 +246,7 @@ class PitchSegment(Segment):
         return self.__makenew__(tokens=reversed(self))
 
     def rotate(self, n):
-        r'''Rotate pitch segment:
+        r'''Rotates pitch segment.
 
         ::
 
@@ -258,7 +275,7 @@ class PitchSegment(Segment):
         return self.__makenew__(tokens=tokens)
 
     def transpose(self, expr):
-        r'''Transpose pitch segment by `expr`.
+        r'''Transposes pitch segment by `expr`.
 
         Returns new pitch segment.
         '''
@@ -269,7 +286,7 @@ class PitchSegment(Segment):
 
     @property
     def has_duplicates(self):
-        r'''True if segment contains duplicate items:
+        r'''True if pitch segment has duplicate items. Otherwise false.
 
         ::
 
@@ -294,10 +311,18 @@ class PitchSegment(Segment):
 
     @property
     def inflection_point_count(self):
+        r'''Inflection point count of pitch segment.
+
+        Returns nonnegative integer.
+        '''
         return len(self.local_minima) + len(self.local_maxima)
 
     @property
     def local_maxima(self):
+        r'''Local maxima of pitch segment.
+
+        Returns tuple.
+        '''
         result = []
         if 3 <= len(self):
             for i in range(1, len(self) - 1):
@@ -308,6 +333,10 @@ class PitchSegment(Segment):
 
     @property
     def local_minima(self):
+        r'''Local minima of pitch segment.
+
+        Returns tuple.
+        '''
         result = []
         if 3 <= len(self):
             for i in range(1, len(self) - 1):

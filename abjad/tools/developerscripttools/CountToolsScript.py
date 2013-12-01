@@ -7,40 +7,63 @@ from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class CountToolsScript(DirectoryScript):
-    r'''Count public and private functions and classes in a path:
+    r'''Counts public and private functions and classes in a path.
 
     ..  shell::
 
         ajv count tools --help
 
-    Return `CountToolsScript` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
+        r'''Alias of script.
+
+        Returns ``'tools'``.
+        '''
         return 'tools'
 
     @property
     def long_description(self):
+        r'''Long description of script.
+
+        Returns string or none.
+        '''
         return None
 
     @property
     def scripting_group(self):
+        r'''Scripting group of script.
+
+        Returns ``'count'``.
+        '''
         return 'count'
 
     @property
     def short_description(self):
+        r'''Short description of script.
+
+        Returns string.
+        '''
         return 'Count tools in PATH.'
 
     @property
     def version(self):
+        r'''Version of script.
+
+        Returns float.
+        '''
         return 1.0
 
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
 
         private_classes = []
         private_functions = []
@@ -87,6 +110,10 @@ class CountToolsScript(DirectoryScript):
                 print '\t\t{}'.format(name)
 
     def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
         parser.add_argument('path',
             type=self._validate_path,
             help='directory tree to be recursed over'

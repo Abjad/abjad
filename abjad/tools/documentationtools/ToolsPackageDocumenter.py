@@ -26,7 +26,9 @@ class ToolsPackageDocumenter(Documenter):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        r'''Generate documentation:
+        r'''Calls tools package documenter.
+        
+        Generates documentation:
 
         ::
 
@@ -39,9 +41,6 @@ class ToolsPackageDocumenter(Documenter):
         '''
         from abjad.tools import documentationtools
         document = documentationtools.ReSTDocument()
-#        document.append(documentationtools.ReSTParagraph(
-#            text=':orphan:',
-#            ))
         document.append(documentationtools.ReSTHeading(
             level=2,
             text=self._shrink_module_name(self.module_name)
@@ -132,7 +131,7 @@ class ToolsPackageDocumenter(Documenter):
     ### PUBLIC METHODS ###
 
     def create_api_toc_section(self):
-        r'''Generate a TOC section to be included in the master API index:
+        r'''Creates a TOC section to be included in the master API index.
 
         ::
 
@@ -212,30 +211,46 @@ class ToolsPackageDocumenter(Documenter):
 
     @property
     def abstract_class_documenters(self):
+        r'''Abstract class documenters.
+        '''
         return self._abstract_class_documenters
 
     @property
     def all_documenters(self):
+        r'''All documenters.
+        '''
         return self.abstract_class_documenters + \
             self.concrete_class_documenters + \
             self.function_documenters
 
     @property
     def concrete_class_documenters(self):
+        r'''Concrete class documenters.
+        '''
         return self._concrete_class_documenters
 
     @property
     def documentation_section(self):
+        r'''Documentation section.
+        '''
         return self._documentation_section
 
     @property
     def function_documenters(self):
+        r'''Function documenters.
+        '''
         return self._function_documenters
 
     @property
     def ignored_directory_names(self):
+        r'''Ignored directory names.
+        '''
         return self._ignored_directory_names
 
     @property
     def module_name(self):
+        r'''Module name.
+
+        Returns string.
+        '''
         return self.object.__name__

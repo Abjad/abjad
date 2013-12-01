@@ -25,7 +25,16 @@ class PitchClassVector(Vector):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes pitch-class vector from `selection`.
+
+        Returns pitch-class vector.
+        '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         return cls(

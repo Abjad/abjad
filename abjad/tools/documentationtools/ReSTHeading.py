@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class ReSTHeading(TreeNode):
-    r'''An ReST Heading:
+    r'''A ReST heading.
 
     ::
 
@@ -21,7 +21,6 @@ class ReSTHeading(TreeNode):
         Section A
         =========
 
-    Return `ReSTHeading` instance.
     '''
 
     ### INITIALIZER ###
@@ -47,6 +46,8 @@ class ReSTHeading(TreeNode):
 
     @property
     def heading_characters(self):
+        r'''Heading characters of ReST heading.
+        '''
         return (
             ('#', '#'),
             ('*', '*'),
@@ -58,6 +59,8 @@ class ReSTHeading(TreeNode):
 
     @property
     def level(self):
+        r'''Gets and sets level of ReST heading.
+        '''
         return self._level
 
     @level.setter
@@ -68,10 +71,18 @@ class ReSTHeading(TreeNode):
 
     @property
     def rest_format(self):
+        r'''ReST format of ReST heading.
+
+        Returns string.
+        '''
         return '\n'.join(self._rest_format_contributions)
 
     @property
     def text(self):
+        r'''Gets and sets text of ReST heading.
+
+        Returns string.
+        '''
         return self._text
 
     @text.setter

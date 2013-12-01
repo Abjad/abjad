@@ -7,7 +7,7 @@ from abjad.tools import stringtools
 
 
 class DeveloperScript(abctools.AbjadObject):
-    r'''Abjad object-oriented model of a developer script.
+    r'''Object-oriented model of a developer script.
 
     `DeveloperScript` is the abstract parent from which concrete developer
     scripts inherit.
@@ -36,6 +36,10 @@ class DeveloperScript(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, args=None):
+        r'''Calls developer script.
+
+        Returns none.
+        '''
         if args is None:
             args = self.argument_parser.parse_args()
         else:
@@ -63,6 +67,10 @@ class DeveloperScript(abctools.AbjadObject):
 
     @property
     def colors(self):
+        r'''Colors.
+
+        Returns dictionary.
+        '''
         return {
             'BLUE': '\033[94m',
             'RED': '\033[91m',
@@ -72,14 +80,20 @@ class DeveloperScript(abctools.AbjadObject):
 
     @property
     def formatted_help(self):
+        r'''Formatted help of developer script.
+        '''
         return self._argument_parser.format_help()
 
     @property
     def formatted_usage(self):
+        r'''Formatted usage of developer script.
+        '''
         return self._argument_parser.format_usage()
 
     @property
     def formatted_version(self):
+        r'''Formatted version of developer script.
+        '''
         return self._argument_parser.format_version()
 
     @abc.abstractproperty
@@ -98,13 +112,13 @@ class DeveloperScript(abctools.AbjadObject):
 
     @property
     def scripting_group(self):
-        r'''The script's scripting subcommand group.
+        r'''Scripting subcommand group of script.
         '''
         return None
 
     @abc.abstractproperty
     def short_description(self):
-        r'''The short description of the script, printed before arguments
+        r'''Short description of the script, printed before arguments
         explanations.
 
         Also used as a summary in other contexts.
@@ -113,7 +127,7 @@ class DeveloperScript(abctools.AbjadObject):
 
     @abc.abstractproperty
     def version(self):
-        r'''The version number of the script.
+        r'''Version number of developer script.
         '''
         raise NotImplemented
 
@@ -121,8 +135,12 @@ class DeveloperScript(abctools.AbjadObject):
 
     @abc.abstractmethod
     def process_args(self, args):
+        r'''Processes `args`.
+        '''
         pass
 
     @abc.abstractmethod
     def setup_argument_parser(self):
+        r'''Sets up argument parser.
+        '''
         pass
