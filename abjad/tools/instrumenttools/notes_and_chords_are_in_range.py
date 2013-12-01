@@ -20,7 +20,7 @@ def notes_and_chords_are_in_range(expr):
         >>> instrumenttools.notes_and_chords_are_in_range(staff)
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

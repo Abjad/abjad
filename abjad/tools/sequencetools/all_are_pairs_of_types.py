@@ -18,7 +18,7 @@ def all_are_pairs_of_types(expr, first_type, second_type):
         >>> sequencetools.all_are_pairs_of_types([], float, str)
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

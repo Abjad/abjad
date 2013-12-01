@@ -18,7 +18,7 @@ def test_sequencetools_all_are_nonnegative_integer_powers_of_two_02():
 
 
 def test_sequencetools_all_are_nonnegative_integer_powers_of_two_03():
-    r'''False otherwise.
+    r'''Otherwise false.
     '''
 
     assert not sequencetools.all_are_nonnegative_integer_powers_of_two([3])

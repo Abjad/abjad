@@ -21,7 +21,7 @@ def test_sequencetools_all_are_equal_02():
 
 
 def test_sequencetools_all_are_equal_03():
-    r'''False otherwise.
+    r'''Otherwise false.
     '''
 
     assert not sequencetools.all_are_equal([-1, -1, -1, -1, 99])

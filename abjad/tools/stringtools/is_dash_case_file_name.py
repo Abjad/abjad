@@ -20,7 +20,7 @@ def is_dash_case_file_name(expr):
         >>> stringtools.is_dash_case_file_name('foo-bar')
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

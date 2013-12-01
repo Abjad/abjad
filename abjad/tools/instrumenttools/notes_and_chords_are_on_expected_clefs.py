@@ -23,7 +23,7 @@ def notes_and_chords_are_on_expected_clefs(
         >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

@@ -12,7 +12,7 @@ def is_upper_camel_case_string(expr):
         >>> stringtools.is_upper_camel_case_string('FooBar')
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

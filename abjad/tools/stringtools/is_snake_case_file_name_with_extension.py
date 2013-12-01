@@ -21,7 +21,7 @@ def is_snake_case_file_name_with_extension(expr):
         >>> stringtools.is_snake_case_file_name_with_extension('foo_bar.blah')
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

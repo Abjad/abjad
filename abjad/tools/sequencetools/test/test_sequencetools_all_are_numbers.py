@@ -18,7 +18,7 @@ def test_sequencetools_all_are_numbers_02():
 
 
 def test_sequencetools_all_are_numbers_03():
-    r'''False otherwise.
+    r'''Otherwise false.
     '''
 
     assert not sequencetools.all_are_numbers([1, 2, NamedPitch(3)])

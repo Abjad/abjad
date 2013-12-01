@@ -16,18 +16,34 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_closed(self):
+        r'''True when left closed and right closed. Otherwise false.
+
+        Returns boolean.
+        '''
         return self.is_left_closed and self.is_right_closed
 
     @property
     def is_half_closed(self):
+        r'''True when left closed xor right closed.
+
+        Returns boolean.
+        '''
         return not self.is_left_closed == self.is_right_closed
 
     @property
     def is_half_open(self):
+        r'''True when left and right open are not the same. Otherwise false.
+
+        Return boolean.
+        '''
         return not self.is_left_open == self.is_right_open
 
     @property
     def is_left_closed(self):
+        r'''True when left closed. Otherwise false.
+
+        Returns boolean.
+        '''
         return self._is_left_closed
 
     @is_left_closed.setter
@@ -37,6 +53,10 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_left_open(self):
+        r'''True when left open. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self.is_left_closed
 
     @is_left_open.setter
@@ -46,10 +66,18 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_open(self):
+        r'''True when left or right open. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self.is_left_closed and not self.is_right_closed
 
     @property
     def is_right_closed(self):
+        r'''True when right closed. Otherwise false.
+
+        Returns boolean.
+        '''
         return self._is_right_closed
 
     @is_right_closed.setter
@@ -59,6 +87,10 @@ class BoundedObject(AbjadObject):
 
     @property
     def is_right_open(self):
+        r'''True when right open. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self.is_right_closed
 
     @is_right_open.setter

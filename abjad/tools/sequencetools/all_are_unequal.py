@@ -16,7 +16,7 @@ def all_are_unequal(expr):
         >>> sequencetools.all_are_unequal([])
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

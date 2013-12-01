@@ -16,7 +16,7 @@ def all_are_pairs(expr):
         >>> sequencetools.all_are_pairs([])
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

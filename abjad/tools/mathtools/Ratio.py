@@ -5,14 +5,14 @@ from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 class Ratio(NonreducedRatio):
     '''Ratio of one or more nonzero integers.
 
-    Initialize from one or more nonzero integers:
+    Initializes from one or more nonzero integers:
 
     ::
 
         >>> mathtools.Ratio(2, 4, 2)
         Ratio(1, 2, 1)
 
-    Or initialize from a tuple or list:
+    Initializes from a tuple or list:
 
     ::
 
@@ -20,7 +20,7 @@ class Ratio(NonreducedRatio):
         >>> ratio
         Ratio(1, 2, 1)
 
-    Use a tuple to return ratio integers.
+    Uses a tuple to return ratio integers.
 
         >>> tuple(ratio)
         (1, 2, 1)
@@ -47,5 +47,9 @@ class Ratio(NonreducedRatio):
     ### SPECIAL METHODS ###
 
     def __str__(self):
+        r'''String representation of ratio.
+
+        Returns string.
+        '''
         terms = (str(x) for x in self)
         return ':'.join(terms)

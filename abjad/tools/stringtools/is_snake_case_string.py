@@ -13,7 +13,7 @@ def is_snake_case_string(expr):
         >>> stringtools.is_snake_case_string('foo_bar')
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

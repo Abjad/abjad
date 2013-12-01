@@ -372,7 +372,7 @@ class Accidental(AbjadObject):
     @property
     def is_adjusted(self):
         r'''True for all accidentals equal to a nonzero number of semitones.
-        False otherwise:
+        Otherwise false:
 
         ::
 

@@ -121,7 +121,7 @@ class PitchClassSet(Set):
 
     def is_transposed_subset(self, pcset):
         r'''True when self is transposed subset of `pcset`.
-        False otherwise:
+        Otherwise false:
 
         ::
 
@@ -146,7 +146,7 @@ class PitchClassSet(Set):
 
     def is_transposed_superset(self, pcset):
         r'''True when self is transposed superset of `pcset`.
-        False otherwise:
+        Otherwise false:
 
         ::
 

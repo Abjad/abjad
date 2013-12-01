@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class TreeContainer(TreeNode):
-    r'''An inner node in a generalized tree data-structure:
+    r'''An inner node in a generalized tree data-structure.
 
     ::
 
@@ -22,7 +22,6 @@ class TreeContainer(TreeNode):
                 )
             )
 
-    Return `TreeContainer` instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -47,7 +46,7 @@ class TreeContainer(TreeNode):
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        r'''True if expr is in container, otherwise False:
+        r'''True if expr is in container. Otherwise false:
 
         ::
 
@@ -74,8 +73,7 @@ class TreeContainer(TreeNode):
         return False
 
     def __delitem__(self, i):
-        r'''Find node at index or slice `i` in container and detach 
-        from parentage:
+        r'''Deletes node `i` in tree container.
 
         ::
 
@@ -117,7 +115,8 @@ class TreeContainer(TreeNode):
         self._mark_entire_tree_for_later_update()
 
     def __eq__(self, expr):
-        r'''True if type, duration and children are equivalent, otherwise False.
+        r'''True if `expr` is a tree container with type, duration and 
+        children equal to this tree container. Otherwise false.
 
         Returns boolean.
         '''
@@ -127,7 +126,7 @@ class TreeContainer(TreeNode):
         return False
 
     def __getitem__(self, i):
-        r'''Returns node at index `i` in container:
+        r'''Gets node `i` in tree container.
 
         ::
 
@@ -200,6 +199,10 @@ class TreeContainer(TreeNode):
         raise ValueError, repr(i)
 
     def __iter__(self):
+        r'''Iterates tree container.
+        
+        Yields children of tree container.
+        '''
         for child in self._children:
             yield child
 
@@ -209,7 +212,7 @@ class TreeContainer(TreeNode):
         return len(self._children)
 
     def __setitem__(self, i, expr):
-        r'''Set `expr` in self at nonnegative integer index `i`, or set `expr` 
+        r'''Sets `expr` in self at nonnegative integer index `i`, or set `expr` 
         in self at slice i. Replace contents of `self[i]` with `expr`.
         Attach parentage to contents of `expr`, and detach parentage 
         of any replaced nodes:
@@ -251,7 +254,7 @@ class TreeContainer(TreeNode):
             >>> a.children == (c,)
             True
 
-        Return `None`.
+        Returns none.
         '''
         proper_parentage = self.proper_parentage
 
@@ -303,7 +306,7 @@ class TreeContainer(TreeNode):
 
     @property
     def children(self):
-        r'''The children of a `TreeContainer` instance:
+        r'''Children of tree container.
 
         ::
 
@@ -333,13 +336,13 @@ class TreeContainer(TreeNode):
             >>> e.children == ()
             True
 
-        Returns tuple of `TreeNode` instances.
+        Returns tuple of tree nodes.
         '''
         return tuple(self._children)
 
     @property
     def leaves(self):
-        r'''The leaves of a `TreeContainer` instance:
+        r'''Leaves of tree container.
 
         ::
 
@@ -381,8 +384,8 @@ class TreeContainer(TreeNode):
 
     @property
     def nodes(self):
-        r'''The collection of `TreeNodes` produced by iterating a node
-        depth-first:
+        r'''The collection of tree nodes produced by iterating tree container
+        depth-first.
 
         ::
 
@@ -443,7 +446,7 @@ class TreeContainer(TreeNode):
     ### PUBLIC METHODS ###
 
     def append(self, node):
-        r'''Append `node` to container:
+        r'''Appends `node` to tree container.
 
         ::
 
@@ -477,7 +480,7 @@ class TreeContainer(TreeNode):
                     )
                 )
 
-        Return `None`.
+        Returns none.
         '''
         self.__setitem__(
             slice(len(self), len(self)),
@@ -485,7 +488,7 @@ class TreeContainer(TreeNode):
             )
 
     def extend(self, expr):
-        r'''Extend `expr` against container:
+        r'''Extendes `expr` against tree container.
 
         ::
 
@@ -509,16 +512,15 @@ class TreeContainer(TreeNode):
                     )
                 )
 
-        Return `None`.
+        Returns none.
         '''
         self.__setitem__(
             slice(len(self), len(self)),
-            #nodes.__getitem__(slice(0, len(nodes)))
             expr
             )
 
     def index(self, node):
-        r'''Index `node` in container:
+        r'''Indexes `node` in tree container.
 
         ::
 
@@ -550,7 +552,7 @@ class TreeContainer(TreeNode):
             raise ValueError(message)
 
     def insert(self, i, node):
-        r'''Insert `node` in container at index `i`:
+        r'''Insert `node` in tree container at index `i`.
 
         ::
 
@@ -597,7 +599,7 @@ class TreeContainer(TreeNode):
             )
 
     def pop(self, i=-1):
-        r'''Pop node at index `i` from container:
+        r'''Pops node `i` from tree container.
 
         ::
 
@@ -644,7 +646,7 @@ class TreeContainer(TreeNode):
         return node
 
     def remove(self, node):
-        r'''Remove `node` from container:
+        r'''Remove `node` from tree container.
 
         ::
 
@@ -679,7 +681,7 @@ class TreeContainer(TreeNode):
                     )
                 )
 
-        Return `None`.
+        Returns none.
         '''
         i = self.index(node)
         del(self[i])

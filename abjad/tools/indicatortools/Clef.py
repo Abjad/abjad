@@ -174,7 +174,7 @@ class Clef(AbjadObject):
 
     def __ne__(self, arg):
         r'''True when clef of `arg` does not equal clef name of clef.
-        False otherwise.
+        Otherwise false.
 
         ::
 

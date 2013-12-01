@@ -18,7 +18,7 @@ def all_are_nonnegative_integer_powers_of_two(expr):
         >>> sequencetools.all_are_nonnegative_integer_powers_of_two([])
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

@@ -306,7 +306,7 @@ class Spanner(AbjadObject):
     def _is_exterior_leaf(self, leaf):
         r'''True if leaf is first or last in spanner.
         True if next leaf or previous leaf is none.
-        False otherwise.
+        Otherwise false.
         '''
         if self._is_my_first_leaf(leaf):
             return True

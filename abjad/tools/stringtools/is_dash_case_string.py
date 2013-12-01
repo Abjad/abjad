@@ -13,7 +13,7 @@ def is_dash_case_string(expr):
         >>> stringtools.is_dash_case_string('foo-bar')
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

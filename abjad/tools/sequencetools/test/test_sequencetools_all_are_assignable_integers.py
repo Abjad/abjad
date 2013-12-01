@@ -18,7 +18,7 @@ def test_sequencetools_all_are_assignable_integers_02():
 
 
 def test_sequencetools_all_are_assignable_integers_03():
-    r'''False otherwise.
+    r'''Otherwise false.
     '''
 
     assert not sequencetools.all_are_assignable_integers([0, 1, 2, 4, 5])

@@ -12,7 +12,7 @@ def is_space_delimited_lowercase_string(expr):
         >>> stringtools.is_space_delimited_lowercase_string('foo bar')
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

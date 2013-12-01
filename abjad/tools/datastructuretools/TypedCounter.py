@@ -60,6 +60,10 @@ class TypedCounter(TypedCollection):
     '''
 
     def __add__(self, expr):
+        r'''Adds typed counter to `expr`.
+
+        Returns new typed counter.
+        '''
         if not isinstance(expr, type(self)) \
             or not self.item_class == expr.item_class:
             return NotImplemented
@@ -68,6 +72,10 @@ class TypedCounter(TypedCollection):
         return result
 
     def __and__(self, expr):
+        r'''Logical AND of typed counter and `expr`.
+
+        Returns new typed counter.
+        '''
         if not isinstance(expr, type(self)) \
             or not self.item_class == expr.item_class:
             return NotImplemented
@@ -76,18 +84,34 @@ class TypedCounter(TypedCollection):
         return result
 
     def __delitem__(self, token):
+        r'''Deletes `token` from typed counter.
+
+        Returns none.
+        '''
         item = self._item_callable(token)
         if item in self._collection:
             dict.__delitem__(self._collection, item)
 
     def __getitem__(self, token):
+        r'''Gets `token` from typed counter.
+
+        Returns item.
+        '''
         item = self._item_callable(token)
         return self._collection[item]
 
     def __missing__(self, token):
+        r'''Returns zero.
+
+        Returns zero.
+        '''
         return 0
 
     def __or__(self, expr):
+        r'''Logical OR of typed counter and `expr`.
+
+        Returns new typed counter.
+        '''
         if not isinstance(expr, type(self)) \
             or not self.item_class == expr.item_class:
             return NotImplemented
@@ -96,13 +120,25 @@ class TypedCounter(TypedCollection):
         return result
 
     def __reduce__(self):
+        r'''Reduces typed counter.
+
+        Returns new typed counter.
+        '''
         return type(self), (dict(self._collection),)
 
     def __setitem__(self, token, value):
+        r'''Sets typed counter `token` to `value`.
+
+        Returns none.
+        '''
         item = self._item_callable(token)
         self._collection.__setitem__(item, value)
 
     def __sub__(self, expr):
+        r'''Subtracts `expr` from typed counter.
+
+        Returns new typed counter.
+        '''
         if not isinstance(expr, type(self)) \
             or not self.item_class == expr.item_class:
             return NotImplemented
@@ -143,56 +179,100 @@ class TypedCounter(TypedCollection):
     '''
 
     def clear(self):
+        r'''Clears typed counter.
+
+        Returns none.
+        '''
         self._collection.clear()
 
     def copy(self):
+        r'''Copies typed counter.
+
+        Returns new typed counter.
+        '''
         return type(self)(self)
 
     def elements(self):
-            return self._collection.elements()
+        r'''Elements in typed counter.
+        '''
+        return self._collection.elements()
 
     @classmethod
     def fromkeys(cls, iterable, v=None):
+        r'''Makes new typed counter from `iterable`.
+
+        Not yet impelemented.
+
+        Will return new typed counter.
+        '''
         message = '{}.fromkeys() is undefined. Use {}(iterable) instead.'
         message = message.format(cls.__name__, cls.__name__)
         raise NotImplementedError(message)
 
     def items(self):
+        r'''Items in typed counter.
+
+        Returns tuple.
+        '''
         return self._collection.items()
 
     def iteritems(self):
+        r'''Iterates items in typed counter.
+        
+        Yields items.
+        '''
         return self._collection.iteritems()
 
     def iterkeys(self):
+        r'''Iterates keys in typed counter.
+        '''
         return self._collection.iterkeys()
 
     def itervalues(self):
+        r'''Iterates values in typed counter.
+        '''
         return self._collection.itervalues()
 
     def keys(self):
+        r'''Keys in typed counter.
+        '''
         return self._collection.keys()
 
     def most_common(self, n=None):
+        r'''Please document.
+        '''
         return self._collection(n=n)
 
     def subtract(self, iterable=None, **kwargs):
+        r'''Stracts `iterable` from typed counter.
+        '''
         items, itemdict = self._coerce_arguments(iterable, **kwargs)
         self._collection.subtract(items, **itemdict)
 
     def update(self, iterable=None, **kwargs):
+        r'''Updates typed counter with `iterable`.
+        '''
         items, itemdict = self._coerce_arguments(iterable, **kwargs)
         self._collection.update(items, **itemdict)
 
     def values(self):
+        r'''Values of typed counter.
+        '''
         return self._collection.values()
 
     def viewitems(self):
+        r'''Please document.
+        '''
         return self._collection.viewitems()
 
     def viewkeys(self):
+        r'''Please document.
+        '''
         return self._collection.viewkeys()
 
     def viewvalues(self):
+        r'''Please document.
+        '''
         return self._collection.viewvalues()
 
 

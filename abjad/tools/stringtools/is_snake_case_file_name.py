@@ -20,7 +20,7 @@ def is_snake_case_file_name(expr):
         >>> stringtools.is_snake_case_file_name('foo_bar')
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

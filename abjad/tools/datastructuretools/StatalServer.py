@@ -15,7 +15,9 @@ class StatalServer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, position=None, reverse=False):
-        r'''Returns statal server cursor.
+        r'''Calls statal server.
+        
+        Returns statal server cursor.
         '''
         from abjad.tools import datastructuretools
         cursor = datastructuretools.StatalServerCursor(
@@ -26,6 +28,11 @@ class StatalServer(AbjadObject):
         return cursor
 
     def __eq__(self, expr):
+        r'''True when `expr` is a statal server with cyclic tree equal to that
+        of this statal server. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.cyclic_tree == expr.cyclic_tree:
                 return True

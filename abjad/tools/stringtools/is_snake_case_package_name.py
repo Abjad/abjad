@@ -20,7 +20,7 @@ def is_snake_case_package_name(expr):
         >>> stringtools.is_snake_case_package_name('foo.bar.blah_package')
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

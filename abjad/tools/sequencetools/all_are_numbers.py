@@ -17,7 +17,7 @@ def all_are_numbers(expr):
         >>> sequencetools.all_are_numbers([])
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

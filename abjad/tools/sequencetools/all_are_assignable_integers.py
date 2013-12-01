@@ -17,7 +17,7 @@ def all_are_assignable_integers(expr):
         >>> sequencetools.all_are_assignable_integers([])
         True
 
-    False otherwise:
+    Otherwise false:
 
     ::
 

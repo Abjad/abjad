@@ -20,6 +20,10 @@ class TreeNode(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
+        r'''Copies tree node.
+
+        Returns new tree node.
+        '''
         return type(self)(
             *[copy.deepcopy(x) for x in self.__getnewargs__()]
             )
@@ -28,16 +32,28 @@ class TreeNode(AbjadObject):
     __deepcopy__ = __copy__
 
     def __eq__(self, expr):
+        r'''True when `expr` is a tree node. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             return True
         return False
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.get_input_argument_values(
             self)
 
     def __getstate__(self):
+        r'''Gets state.
+
+        Returns dictionary.
+        '''
         state = {}
         class_dir = set(dir(type(self)))
         self_dir = set(x for x in dir(self) if x.startswith('_') and
@@ -47,73 +63,17 @@ class TreeNode(AbjadObject):
         return state
 
     def __ne__(self, expr):
+        r'''True when tree node does not equal `expr`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self.__eq__(expr)
 
-#    def __repr__(self):
-#        from abjad.tools import systemtools
-#
-#        def format_mapping(name, value):
-#            if not value:
-#                return None
-#            result = ['\t{}={{'.format(name)]
-#            items = sorted(value.items())
-#            if 1 < len(items):
-#                for item in items[:-1]:
-#                    result.append('\t\t{!r}: {!r},'.format(*item))
-#            result.append('\t\t{!r}: {!r}'.format(*items[-1]))
-#            result.append('\t\t}')
-#            return result
-#
-#        def format_tuple(name, value):
-#            if not value:
-#                return None
-#            result=['\t{}=('.format(name)]
-#            items = [repr(x).splitlines() for x in value]
-#            if 1 < len(items):
-#                for item in items[:-1]:
-#                    result.extend('\t\t' + x for x in item[:-1])
-#                    result.append('\t\t' + item[-1] + ',')
-#                result.extend('\t\t' + x for x in items[-1])
-#            else:
-#                result.extend('\t\t' + x for x in items[0][:-1])
-#                result.append('\t\t' + items[0][-1] + ',')
-#            result.append('\t\t)')
-#            return result
-#
-#        def format_other(name, value):
-#            if value is None:
-#                return None
-#            item = repr(value).splitlines()
-#            result = ['\t{}={}'.format(name, item[0])]
-#            result.extend('\t\t' + x for x in item[1:])
-#            return result
-#
-#        attr_pieces = []
-#        for name in \
-#            systemtools.StorageFormatManager.get_keyword_argument_names(self):
-#            value = getattr(self, name)
-#            if isinstance(value, (list, tuple)):
-#                attr_piece = format_tuple(name, value)
-#            elif isinstance(value, dict):
-#                attr_piece = format_mapping(name, value)
-#            else:
-#                attr_piece = format_other(name, value)
-#            if attr_piece is not None:
-#                attr_pieces.append(attr_piece)
-#
-#        if not attr_pieces:
-#            return '{}()'.format(type(self).__name__)
-#
-#        result = ['{}('.format(type(self).__name__)]
-#        if 1 < len(attr_pieces):
-#            for attr_piece in attr_pieces[:-1]:
-#                attr_piece[-1] += ','
-#                result.extend(attr_piece)
-#        result.extend(attr_pieces[-1])
-#        result.append('\t)')
-#        return '\n'.join(result)
-
     def __setstate__(self, state):
+        r'''Sets `state`.
+
+        Returns none.
+        '''
         for key, value in state.iteritems():
             setattr(self, key, value)
 
@@ -179,7 +139,7 @@ class TreeNode(AbjadObject):
 
     @property
     def depth(self):
-        r'''The depth of a node in a rhythm-tree structure:
+        r'''The depth of a node in a rhythm-tree structure.
 
         ::
 
@@ -216,7 +176,7 @@ class TreeNode(AbjadObject):
     @property
     def depthwise_inventory(self):
         r'''A dictionary of all nodes in a rhythm-tree, organized by their
-        depth relative the root node:
+        depth relative the root node.
 
         ::
 
@@ -268,6 +228,10 @@ class TreeNode(AbjadObject):
 
     @property
     def graph_order(self):
+        r'''Graph order of tree node.
+        
+        Returns tuple.
+        '''
         order = []
         for parent, child in sequencetools.iterate_sequence_pairwise_strict(
             reversed(self.improper_parentage)):
@@ -278,7 +242,7 @@ class TreeNode(AbjadObject):
     def improper_parentage(self):
         r'''The improper parentage of a node in a rhythm-tree, being the
         sequence of node beginning with itself and ending with the root node
-        of the tree:
+        of the tree.
 
         ::
 
@@ -306,7 +270,7 @@ class TreeNode(AbjadObject):
             >>> c.improper_parentage == (c, b, a)
             True
 
-        Returns tuple of `TreeNode` instances.
+        Returns tuple of tree nodes.
         '''
         node = self
         parentage = [node]
@@ -317,7 +281,7 @@ class TreeNode(AbjadObject):
 
     @property
     def parent(self):
-        r'''The node's parent node:
+        r'''Parent of tree node.
 
         ::
 
@@ -345,7 +309,7 @@ class TreeNode(AbjadObject):
             >>> c.parent is b
             True
 
-        Return `TreeNode` instance.
+        Returns tree node.
         '''
         return self._parent
 
@@ -353,7 +317,7 @@ class TreeNode(AbjadObject):
     def proper_parentage(self):
         r'''The proper parentage of a node in a rhythm-tree, being the
         sequence of node beginning with the node's immediate parent and
-        ending with the root node of the tree:
+        ending with the root node of the tree.
 
         ::
 
@@ -381,14 +345,14 @@ class TreeNode(AbjadObject):
             >>> c.proper_parentage == (b, a)
             True
 
-        Returns tuple of `TreeNode` instances.
+        Returns tuple of tree nodes.
         '''
         return self.improper_parentage[1:]
 
     @property
     def root(self):
         r'''The root node of the tree: that node in the tree which has
-        no parent:
+        no parent.
 
         ::
 
@@ -410,7 +374,7 @@ class TreeNode(AbjadObject):
             >>> c.root is a
             True
 
-        Return `TreeNode` instance.
+        Returns tree node.
         '''
         node = self
         while node.parent is not None:
@@ -421,6 +385,10 @@ class TreeNode(AbjadObject):
 
     @property
     def name(self):
+        r'''Named of tree node.
+        
+        Returns string.
+        '''
         return self._name
 
     @name.setter
