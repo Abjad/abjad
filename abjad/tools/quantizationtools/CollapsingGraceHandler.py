@@ -5,13 +5,13 @@ from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 class CollapsingGraceHandler(GraceHandler):
     r'''A GraceHandler which collapses pitch information into a single Chord,
     rather than creating a GraceContainer.
-
-    Return ``CollapsingGraceHandler`` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
+        r'''Calls collapsing grace handler.
+        '''
         from abjad.tools import quantizationtools
         pitches = []
         for q_event in q_events:

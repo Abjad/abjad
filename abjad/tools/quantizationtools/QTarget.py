@@ -46,6 +46,8 @@ class QTarget(AbjadObject):
         attack_point_optimizer=None,
         attach_tempos=True
         ):
+        r'''Calls q-target.
+        '''
 
         from abjad.tools import quantizationtools
 
@@ -114,19 +116,29 @@ class QTarget(AbjadObject):
 
     @abc.abstractproperty
     def beats(self):
+        r'''Beats of q-target.
+        '''
         raise NotImplemented
 
     @property
     def duration_in_ms(self):
+        r'''Duration of q-target in milliseconds.
+
+        Returns duration.
+        '''
         last_item = self._items[-1]
         return last_item.offset_in_ms + last_item.duration_in_ms
 
     @abc.abstractproperty
     def item_class(self):
+        r'''Item class of q-target.
+        '''
         raise NotImplemented
 
     @property
     def items(self):
+        r'''Items of q-target.
+        '''
         return self._items
 
     ### PRIVATE METHODS ###

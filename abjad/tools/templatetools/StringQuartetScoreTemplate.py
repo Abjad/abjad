@@ -78,6 +78,10 @@ class StringQuartetScoreTemplate(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        r'''Calls string quartet score template.
+
+        Returns score.
+        '''
 
         # make first violin voice and staff
         first_violin_voice = scoretools.Voice(name='First Violin Voice')

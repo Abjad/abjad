@@ -31,6 +31,11 @@ class SilentQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a silent q-event with offset, attachments and
+        index equal to those of this silent q-event. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr) and \
             self._offset == expr._offset and \
             self._attachments == expr._attachments and \
@@ -42,4 +47,6 @@ class SilentQEvent(QEvent):
 
     @property
     def attachments(self):
+        r'''Attachments of silen q-event.
+        '''
         return self._attachments

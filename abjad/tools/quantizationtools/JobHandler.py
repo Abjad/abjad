@@ -19,4 +19,6 @@ class JobHandler(AbjadObject):
 
     @abc.abstractmethod
     def __call__(self, jobs):
+        r'''Calls job handler.
+        '''
         raise NotImplemented

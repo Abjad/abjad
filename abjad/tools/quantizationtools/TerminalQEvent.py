@@ -12,8 +12,6 @@ class TerminalQEvent(QEvent):
             )
 
     Carries no significance outside the context of a ``QEventSequence``.
-
-    Return ``TerminalQEvent`` instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -30,6 +28,11 @@ class TerminalQEvent(QEvent):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        r'''True when `expr` is a terminal q-event with offset equal to that of
+        this terminal q-event. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr) and \
             self.offset == expr.offset:
             return True

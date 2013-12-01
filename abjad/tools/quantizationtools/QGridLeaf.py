@@ -5,7 +5,7 @@ from abjad.tools.rhythmtreetools import RhythmTreeNode
 
 
 class QGridLeaf(RhythmTreeNode):
-    r'''A leaf in a ``QGrid`` structure:
+    r'''A leaf in a ``QGrid`` structure.
 
     ::
 
@@ -20,8 +20,6 @@ class QGridLeaf(RhythmTreeNode):
             )
 
     Used internally by ``QGrid``.
-
-    Return ``QGridLeaf`` instance.
     '''
 
     ### INITIALIZER ###
@@ -41,14 +39,28 @@ class QGridLeaf(RhythmTreeNode):
     ### SPECIAL METHODS ###
 
     def __call__(self, pulse_duration):
+        r'''Calls q-grid leaf.
+
+        Returns selection of notes.
+        '''
         pulse_duration = durationtools.Duration(pulse_duration)
         total_duration = pulse_duration * self.preprolated_duration
         return scoretools.make_notes(0, total_duration)
 
     def __deepcopy__(self, memo):
+        r'''Deepcopies q-grid leaf.
+
+        Returns new q-grid leaf.
+        '''
         return type(self)(*self.__getnewargs__())
 
     def __eq__(self, expr):
+        r'''True when `expr` is a q-grid leaf with preprolated duration,
+        q-event proxies and divisibility flag equal to those of this q-grid
+        leaf. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self.preprolated_duration == expr.preprolated_duration:
                 if self.q_event_proxies == expr.q_event_proxies:
@@ -57,6 +69,10 @@ class QGridLeaf(RhythmTreeNode):
         return False
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (
             self.preprolated_duration,
             tuple(self.q_event_proxies),
@@ -83,6 +99,10 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def graphviz_graph(self):
+        r'''Graphviz graph of q-grid leaf.
+
+        Returns Graphviz graph.
+        '''
         graph = documentationtools.GraphvizGraph(name='G')
         node = documentationtools.GraphvizNode(
             attributes={
@@ -106,18 +126,30 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def preceding_q_event_proxies(self):
+        r'''Preceding q-event proxies of q-grid leaf.
+
+        Returns list.
+        '''
         return [x for x in self._q_event_proxies
             if x.offset < self.start_offset]
 
     @property
     def q_event_proxies(self):
+        r'''Q-event proxies of q-grid leaf.
+        '''
         return self._q_event_proxies
 
     @property
     def rtm_format(self):
+        r'''RTM format of q-grid leaf.
+        '''
         return str(self.preprolated_duration)
 
     @property
     def succeeding_q_event_proxies(self):
+        r'''Succeeding q-event proxies of q-grid leaf.
+
+        Returns list.
+        '''
         return [x for x in self._q_event_proxies
             if self.start_offset <= x.offset]

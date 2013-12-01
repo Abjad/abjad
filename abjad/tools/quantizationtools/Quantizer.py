@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 class Quantizer(AbjadObject):
     r'''``Quantizer`` quantizes sequences of attack-points, encapsulated by
-    ``QEventSequences``, into score trees:
+    ``QEventSequences``, into score trees.
 
     ::
 
@@ -208,8 +208,6 @@ class Quantizer(AbjadObject):
     ``MeasurewiseQSchema`` for more information on controlling the 
     ``Quantizer``'s output, and to the reference on ``SearchTree`` for 
     information on controlling the rhythmic complexity of that same output.
-
-    Return ``Quantizer`` instance.
     '''
 
     ### INITIALIZER ###
@@ -228,6 +226,10 @@ class Quantizer(AbjadObject):
         attack_point_optimizer=None,
         attach_tempos=True,
         ):
+        r'''Calls quantizer.
+
+        Returns Abjad components.
+        '''
         from abjad.tools import quantizationtools
 
         q_event_sequence = quantizationtools.QEventSequence(q_event_sequence)

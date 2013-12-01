@@ -7,15 +7,14 @@ class DiscardingGraceHandler(GraceHandler):
     ``QEvent`` attached to an offset.
 
     Does not create ``GraceContainers``.
-
-    Return ``DiscardingGraceHandler`` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
+        r'''Calls idscarind grace handler.
+        '''
         from abjad.tools import quantizationtools
-
         q_event = q_events[-1]
         if isinstance(q_event, quantizationtools.PitchedQEvent):
             return q_event.pitches, None

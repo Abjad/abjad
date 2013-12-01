@@ -39,8 +39,9 @@ class SearchTree(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_grid):
+        r'''Calls search tree.
+        '''
         from abjad.tools import quantizationtools
-
         assert isinstance(q_grid, quantizationtools.QGrid)
         new_q_grids = []
         commands = self._generate_all_subdivision_commands(q_grid)
@@ -52,15 +53,28 @@ class SearchTree(AbjadObject):
         return new_q_grids
 
     def __eq__(self, expr):
+        r'''True when `expr` is a search tree with definition equal to that of
+        this search tree. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self.definition == expr.definition:
                 return True
         return False
 
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self.definition,)
 
     def __getstate__(self):
+        r'''Gets state of search tree.
+
+        Returns dictionary.
+        '''
         state = {}
         for current_class in inspect.getmro(type(self)):
             if hasattr(current_class, '__slots__'):
@@ -70,6 +84,10 @@ class SearchTree(AbjadObject):
         return state
 
     def __setstate__(self, state):
+        r'''Sets `state` of search tree.
+
+        Returns none.
+        '''
         for key, value in state.iteritems():
             setattr(self, key, value)
 

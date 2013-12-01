@@ -12,8 +12,9 @@ class ParallelJobHandler(JobHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, jobs):
+        r'''Calls parallel job handler.
+        '''
         from abjad.tools import quantizationtools
-
         finished_jobs = []
         job_queue = multiprocessing.JoinableQueue()
         result_queue = multiprocessing.Queue()

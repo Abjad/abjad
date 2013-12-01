@@ -100,9 +100,17 @@ class QEventSequence(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
+        r'''True when q-event sequence contains `expr`. Otherwise false.
+
+        Returns boolean.
+        '''
         return expr in self._sequence
 
     def __eq__(self, expr):
+        r'''True when q-event sequence equals `expr`. Otherwise false.
+
+        Returns boolean.
+        '''
         if type(self) == type(expr):
             if self.sequence == expr.sequence:
                 return True
@@ -155,13 +163,25 @@ class QEventSequence(AbjadObject):
         return str(self)
 
     def __getitem__(self, expr):
+        r'''Gets `expr` from q-event sequence.
+
+        Returns item.
+        '''
         return self._sequence[expr]
 
     def __iter__(self):
+        r'''Iterates q-event sequence.
+
+        Yields items.
+        '''
         for x in self._sequence:
             yield x
 
     def __len__(self):
+        r'''Length of q-event sequence.
+
+        Returns nonnegative integer.
+        '''
         return len(self._sequence)
 
     ### PRIVATE PROPERTIES ###
@@ -182,7 +202,7 @@ class QEventSequence(AbjadObject):
 
     @property
     def duration_in_ms(self):
-        r'''The total duration in milliseconds of the ``QEventSequence``:
+        r'''Duration in milliseconds of the ``QEventSequence``:
 
         ::
 
@@ -195,7 +215,7 @@ class QEventSequence(AbjadObject):
 
     @property
     def sequence(self):
-        r'''The sequence of q-events:
+        r'''Sequence of q-events.
 
         ::
 

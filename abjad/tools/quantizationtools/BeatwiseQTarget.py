@@ -13,18 +13,20 @@ class BeatwiseQTarget(QTarget):
     Not composer-safe.
 
     Used internally by ``Quantizer``.
-
-    Return ``BeatwiseQTarget`` instance.
     '''
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def beats(self):
+        r'''Beats of beatwise q-target.
+        '''
         return tuple(self.items)
 
     @property
     def item_class(self):
+        r'''Item class of beatwise q-target.
+        '''
         from abjad.tools import quantizationtools
         return quantizationtools.QTargetBeat
 

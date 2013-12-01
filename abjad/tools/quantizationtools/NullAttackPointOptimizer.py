@@ -6,11 +6,11 @@ from abjad.tools.quantizationtools.AttackPointOptimizer \
 class NullAttackPointOptimizer(AttackPointOptimizer):
     r'''Concrete ``AttackPointOptimizer`` subclass which performs
     no attack point optimization.
-
-    Return ``NullAttackPointOptimizer`` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls null attack-point optimizer.
+        '''
         pass

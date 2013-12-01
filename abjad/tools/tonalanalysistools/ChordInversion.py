@@ -63,12 +63,21 @@ class ChordInversion(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a chord inversion with number equal to that of
+        this chord inversion. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
                 return True
         return False
 
     def __ne__(self, arg):
+        r'''True when chord inversion does not equal `arg`. Otherise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     ### PRIVATE PROPERTIES ###
@@ -87,14 +96,26 @@ class ChordInversion(AbjadObject):
 
     @property
     def name(self):
+        r'''Name of chord inversion.
+
+        Returns string.
+        '''
         return self._inversion_number_to_inversion_name[self.number]
 
     @property
     def number(self):
+        r'''Number of chord inversion.
+
+        Returns nonnegative integer.
+        '''
         return self._number
 
     @property
     def title(self):
+        r'''Title of chord inversion.
+
+        Returns string.
+        '''
         name = self._inversion_number_to_inversion_name[self.number]
         if name == 'root position':
             return 'RootPosition'
@@ -103,6 +124,10 @@ class ChordInversion(AbjadObject):
     ### PUBLIC METHODS ###
 
     def extent_to_figured_bass_string(self, extent):
+        r'''Changes `extent` to figured bass string.
+
+        Returns string.
+        '''
         if extent == 5:
             return self._triadic_inversion_to_figured_bass_string[self.number]
         elif extent == 7:

@@ -23,6 +23,10 @@ class Heuristic(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_target_beats):
+        r'''Calls heuristic.
+
+        Returns none.
+        '''
         from abjad.tools import quantizationtools
         assert len(q_target_beats)
         assert all(isinstance(x, quantizationtools.QTargetBeat) 

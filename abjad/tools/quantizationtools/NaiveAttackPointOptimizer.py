@@ -14,13 +14,15 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
 
     ``TieChains`` will be partitioned into sub-``TieChains`` if
     leaves are found with ``TempoMarks`` attached.
-
-    Return ``NaiveAttackPointOptimizer`` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls naive attack-point optimizer.
+
+        Returns none.
+        '''
         for logical_tie in iterate(expr).by_logical_tie(reverse=True):
             sub_logical_ties = []
             current_sub_logical_tie = []

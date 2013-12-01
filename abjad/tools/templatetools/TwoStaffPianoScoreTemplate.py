@@ -60,6 +60,10 @@ class TwoStaffPianoScoreTemplate(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        r'''Calls two-staff piano score template.
+
+        Returns score.
+        '''
 
         # make RH voice and staff
         rh_voice = scoretools.Voice(name='RH Voice')

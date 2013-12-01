@@ -12,13 +12,15 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
     signature of that expression.
 
     Only acts on Measure instances.
-
-    Return ``MeasurewiseAttackPointOptimizer`` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Calls measurewise attack-point optimizer.
+
+        Returns none.
+        '''
         from abjad.tools import quantizationtools
         assert isinstance(expr, scoretools.Measure)
         meter = metertools.Meter(expr)

@@ -32,4 +32,6 @@ class GraceHandler(AbjadObject):
 
     @abc.abstractmethod
     def __call__(self, q_events):
+        r'''Calls grace handler.
+        '''
         raise NotImplemented

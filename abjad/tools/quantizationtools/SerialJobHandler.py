@@ -9,6 +9,10 @@ class SerialJobHandler(JobHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, jobs):
+        r'''Calls serial job handler.
+
+        Returns `jobs`.
+        '''
         for job in jobs:
             job()
         return jobs

@@ -15,8 +15,6 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     When called, it returns pitch information of final ``QEvent``, and the
     generated ``GraceContainer``, if any.
-
-    Return ``ConcatenatingGraceHandler`` instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -37,6 +35,8 @@ class ConcatenatingGraceHandler(GraceHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
+        r'''Calls concatenating grace handler.
+        '''
         from abjad.tools import quantizationtools
 
         grace_events, final_event = q_events[:-1], q_events[-1]
@@ -68,4 +68,8 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     @property
     def grace_duration(self):
+        r'''Grace duration of concantenating grace handler.
+
+        Returns duration.
+        '''
         return self._grace_duration

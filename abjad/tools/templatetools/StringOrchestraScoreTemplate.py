@@ -170,6 +170,10 @@ class StringOrchestraScoreTemplate(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        r'''Calls string orchestra template.
+
+        Returns score.
+        '''
 
         string_orchestra_score = scoretools.Score(
             name='String Orchestra Score',
@@ -262,16 +266,32 @@ class StringOrchestraScoreTemplate(AbjadObject):
 
     @property
     def cello_count(self):
+        r'''Number of cellos in string orchestra.
+
+        Returns nonnegative integer.
+        '''
         return self._cello_count
 
     @property
     def contrabass_count(self):
+        r'''Number of contrabasses in string orchestra.
+
+        Returns nonnegative integer.
+        '''
         return self._contrabass_count
 
     @property
     def viola_count(self):
+        r'''Number of violas in string orcestra.
+
+        Returns nonnegative integer.
+        '''
         return self._viola_count
 
     @property
     def violin_count(self):
+        r'''Number of violins in string orchestra.
+
+        Returns nonnegative integer.
+        '''
         return self._violin_count

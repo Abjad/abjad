@@ -46,15 +46,28 @@ class ChordQuality(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a chord quality with quality string equal to
+        that of this chord quality. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.quality_string == arg.quality_string:
                 return True
         return False
 
     def __ne__(self, arg):
+        r'''True when chord quality does not equal `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __repr__(self):
+        r'''Interpreter representation of chord quality.
+
+        Returns string.
+        '''
         return '{}({})'.format(type(self).__name__, self.quality_string)
 
     ### PRIVATE PROPERTIES ###
@@ -73,8 +86,16 @@ class ChordQuality(AbjadObject):
 
     @property
     def is_uppercase(self):
+        r'''True when chord quality is uppercase. Otherwise false.
+
+        Returns boolean.
+        '''
         return self.quality_string in self._uppercase_quality_strings
 
     @property
     def quality_string(self):
+        r'''Quality string of chord quality.
+
+        Returns string.
+        '''
         return self._quality_string

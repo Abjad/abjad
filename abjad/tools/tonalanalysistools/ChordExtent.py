@@ -46,12 +46,21 @@ class ChordExtent(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a chord extent with number equal to that of this
+        chord extent. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
                 return True
         return False
 
     def __ne__(self, arg):
+        r'''True when chord extent does not equal `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     ### PRIVATE PROPERTIES ###
@@ -70,8 +79,16 @@ class ChordExtent(AbjadObject):
 
     @property
     def name(self):
+        r'''Name of chord extent.
+
+        Returns string.
+        '''
         return self._extent_number_to_extent_name[self.number]
 
     @property
     def number(self):
+        r'''Number of chord extent.
+
+        Returns nonnegative integer.
+        '''
         return self._number
