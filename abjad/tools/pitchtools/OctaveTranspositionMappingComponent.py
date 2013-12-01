@@ -135,7 +135,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     @property
     def source_pitch_range(self):
-        r'''Read / write source pitch range:
+        r'''Gets and sets source pitch range of mapping component.
 
         ::
 
@@ -152,7 +152,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     @property
     def target_octave_start_pitch(self):
-        r'''Read / write target octave start pitch:
+        r'''Gets and sets target octave start pitch of mapping component.
 
         ::
 

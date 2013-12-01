@@ -66,7 +66,7 @@ class PitchClassSegment(Segment):
             >>> pitch_class_segment.alpha()
             PitchClassSegment([11, 11.5, 7, 6, 11.5, 6])
 
-        Emit new pitch-class segment.
+        Returns new pitch-class segment.
         '''
         from abjad.tools import mathtools
         numbers = []
@@ -121,13 +121,13 @@ class PitchClassSegment(Segment):
             >>> pitch_class_segment.invert()
             PitchClassSegment([2, 1.5, 6, 5, 1.5, 5])
 
-        Emit new pitch-class segment.
+        Returns new pitch-class segment.
         '''
         tokens = (pc.invert() for pc in self)
         return self.__makenew__(tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
-        r'''True if equivalent under transposition to `expr`, otherwise False.
+        r'''True if equivalent under transposition to `expr`. Otherwise False.
         
         Returns boolean.
         '''
@@ -222,7 +222,7 @@ class PitchClassSegment(Segment):
             >>> pitch_class_segment.multiply(5)
             PitchClassSegment([2, 4.5, 6, 11, 4.5, 11])
 
-        Emit new pitch-class segment.
+        Returns new pitch-class segment.
         '''
         from abjad.tools import pitchtools
         tokens = (pitchtools.NumberedPitchClass(pc).multiply(n)
@@ -239,7 +239,7 @@ class PitchClassSegment(Segment):
             ...     ).retrograde()
             PitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
 
-        Emit new pitch-class segment.
+        Returns new pitch-class segment.
         '''
         return self.__makenew__(tokens=reversed(self))
 
@@ -260,7 +260,7 @@ class PitchClassSegment(Segment):
             ...     ).rotate(-2)
             PitchClassSegment(['bqs', 'd', 'c', 'ef'])
 
-        Emit new pitch-class segment.
+        Returns new pitch-class segment.
         '''
         from abjad.tools import sequencetools
         tokens = sequencetools.rotate_sequence(self._collection, n)
@@ -276,7 +276,7 @@ class PitchClassSegment(Segment):
             ...     ).transpose(10)
             PitchClassSegment([8, 8.5, 4, 5, 8.5, 5])
 
-        Emit new pitch-class segment.
+        Returns new pitch-class segment.
         '''
         tokens = (pitch_class.transpose(expr) for pitch_class in self)
         return self.__makenew__(tokens=tokens)

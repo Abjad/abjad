@@ -7,12 +7,13 @@ from abjad.tools.datastructuretools import TypedCounter
 
 
 class Vector(TypedCounter):
-    '''Music theoretic vector base class.
+    '''Music-theoretic vector base class.
     '''
 
     ### CLASS VARIABLES ##
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -57,6 +58,10 @@ class Vector(TypedCounter):
     ### SPECIAL METHODS ###
 
     def __str__(self):
+        r'''String representation of vector.
+
+        Returns string.
+        '''
         parts = ['{}: {}'.format(key, value)
             for key, value in self.iteritems()]
         return '<{}>'.format(', '.join(parts))
@@ -91,5 +96,14 @@ class Vector(TypedCounter):
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes vector from `selection`.
+
+        Returns vector.
+        '''
         raise NotImplementedError

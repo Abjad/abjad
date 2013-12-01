@@ -407,7 +407,7 @@ class ClassDocumenter(Documenter):
 
     @property
     def readwrite_properties(self):
-        r'''Read / write properties of class.
+        r'''The read / write properties of class.
         '''
         return self._readwrite_properties
 

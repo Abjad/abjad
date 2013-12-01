@@ -22,9 +22,9 @@ class ContiguousSelection(Selection):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        '''Add `expr` to slice selection.
+        '''Adds `expr` to selection.
 
-        Returns new slice selection.
+        Returns new selection.
         '''
         from abjad.tools import selectiontools
         assert isinstance(expr, (Selection, list, tuple))
@@ -38,9 +38,9 @@ class ContiguousSelection(Selection):
             return selectiontools.Selection(music)
 
     def __radd__(self, expr):
-        '''Add slice selection to `expr`.
+        '''Adds selection to `expr`.
 
-        Returns new slice selection.
+        Returns new selection.
         '''
         assert isinstance(expr, (type(self), list, tuple))
         if isinstance(expr, type(self)):
@@ -656,6 +656,11 @@ class ContiguousSelection(Selection):
         in_seconds=False,
         overhang=False,
         ):
+        r'''Partitions components in selection by `durations` exactly.
+
+
+        Returns list of selections.
+        '''
         return self.partition_by_durations(
             durations,
             cyclic=cyclic,
@@ -671,6 +676,11 @@ class ContiguousSelection(Selection):
         in_seconds=False,
         overhang=False,
         ):
+        r'''Partitions components in selection by values of durations not
+        greater than those in `durations`.
+
+        Returns list of selections.
+        '''
         return self.partition_by_durations(
             durations,
             cyclic=cyclic,
@@ -686,6 +696,11 @@ class ContiguousSelection(Selection):
         in_seconds=False,
         overhang=False,
         ):
+        r'''Partitions components in selection by values of durations not less
+        than those in `durations`.
+
+        Returns list of selections.
+        '''
         return self.partition_by_durations(
             durations,
             cyclic=cyclic,

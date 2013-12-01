@@ -82,7 +82,7 @@ class Octave(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, other):
-        r'''True if `other` is octave with same octave number, otherwise False.
+        r'''True if `other` is octave with same octave number. Otherwise False.
 
         ::
 
@@ -121,10 +121,14 @@ class Octave(AbjadObject):
         return float(self.octave_number)
 
     def __hash__(self):
+        r'''Hashes octave.
+
+        Returns integer.
+        '''
         return hash(repr(self))
 
     def __int__(self):
-        r'''Cast octave as integer.
+        r'''Changes octave to integer.
 
         ::
 
@@ -136,7 +140,9 @@ class Octave(AbjadObject):
         return self.octave_number
 
     def __str__(self):
-        r'''LilyPond octave tick representation of octave.
+        r'''String representation of octave.
+
+        Defined equal to LilyPond octave / tick representation of octave.
 
         ::
 
@@ -258,7 +264,7 @@ class Octave(AbjadObject):
 
     @classmethod
     def from_pitch_name(cls, pitch_name):
-        '''Change `pitch_name` to octave.
+        '''Makes octave from `pitch_name`.
 
         ::
 
@@ -280,7 +286,7 @@ class Octave(AbjadObject):
 
     @classmethod
     def from_pitch_number(cls, pitch_number):
-        r'''Change `pitch_number` to octave.
+        r'''Makes octave from `pitch_number`.
 
         ::
 
@@ -294,7 +300,7 @@ class Octave(AbjadObject):
 
     @classmethod
     def is_octave_tick_string(cls, expr):
-        '''True when `expr` is an octave tick string, otherwise false.
+        '''True when `expr` is an octave tick string. Otherwise false.
 
         ::
 

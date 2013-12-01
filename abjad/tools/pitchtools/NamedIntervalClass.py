@@ -111,9 +111,19 @@ class NamedIntervalClass(IntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        r'''Absolute value of named interval-class.
+
+        Returns new named interval-class.
+        '''
         return type(self)(abs(self._number))
 
     def __eq__(self, arg):
+        r'''True when `arg` is a named interval-class with direction number,
+        quality string and number equal to those of this named interval-class.
+        Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.direction_number == arg.direction_number:
                 if self._quality_string == arg._quality_string:
@@ -122,18 +132,39 @@ class NamedIntervalClass(IntervalClass):
         return False
 
     def __float__(self):
+        r'''Changes named interval-class to float.
+
+        Returns float.
+        '''
         return float(self._number)
 
     def __hash__(self):
+        r'''Hashes named interval-class.
+
+        Returns integer.
+        '''
         return hash(repr(self))
 
     def __int__(self):
+        r'''Changes named interval-class to integer.
+
+        Returns integer.
+        '''
         return self._number
 
     def __ne__(self, arg):
+        r'''True when named interval-class does not equal `arg`. Otherwise
+        false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __str__(self):
+        r'''String representation of named interval-class.
+
+        Returns string.
+        '''
         return '{}{}{}'.format(
             self.direction_symbol,
             self._quality_abbreviation,
@@ -180,8 +211,8 @@ class NamedIntervalClass(IntervalClass):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate named interval-class from `pitch_carrier_1` to
-        `pitch_carrier_2`:
+        '''Makes named interval-class from `pitch_carrier_1` and
+        `pitch_carrier_2`.
 
         ::
 
@@ -202,6 +233,10 @@ class NamedIntervalClass(IntervalClass):
 
     @property
     def direction_number(self):
+        r'''Direction number of named interval-class.
+
+        Returns -1, 0 or 1.
+        '''
         if self.number < 1:
             return -1
         elif self.number == 1:
@@ -211,6 +246,10 @@ class NamedIntervalClass(IntervalClass):
 
     @property
     def direction_symbol(self):
+        r'''Direction symbol of named interval-class.
+
+        Returns string.
+        '''
         if self.number < 1:
             return '-'
         elif self.number == 1:
@@ -220,6 +259,10 @@ class NamedIntervalClass(IntervalClass):
 
     @property
     def direction_word(self):
+        r'''Direction word of named interval-class.
+
+        Returns string.
+        '''
         if self.number < 1:
             return 'descending'
         elif self.number == 1:
@@ -229,4 +272,8 @@ class NamedIntervalClass(IntervalClass):
 
     @property
     def quality_string(self):
+        r'''Quality string of named interval-class.
+
+        Returns string.
+        '''
         return self._quality_string

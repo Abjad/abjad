@@ -46,6 +46,10 @@ class FixedDurationContainer(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        r'''Interpreter representation of fixed-duration container.
+
+        Returns string.
+        '''
         result = '{}({!r}, {})'
         result = result.format(
             type(self).__name__, 
@@ -73,31 +77,45 @@ class FixedDurationContainer(Container):
 
     @property
     def is_full(self):
-        r'''True when preprolated duration equals target duration.
+        r'''True when preprolated duration equals target duration. Otherwise
+        false.
+
+        Returns boolean.
         '''
         return self._preprolated_duration == self.target_duration
 
     @property
     def is_misfilled(self):
         r'''True when preprolated duration does not equal target duration.
+        Otherwise false.
+
+        Returns boolean.
         '''
         return not self.is_full
 
     @property
     def is_overfull(self):
         r'''True when preprolated duration is greater than target duration.
+        Otherwise false.
+
+        Returns boolean.
         '''
         return self.target_duration < self._preprolated_duration
 
     @property
     def is_underfull(self):
         r'''True when preprolated duration is less than target duration.
+        Otherwise false.
+
+        Returns boolean.
         '''
         return self._preprolated_duration < self.target_duration
 
     @property
     def target_duration(self):
-        r'''Read / write target duration of fixed-duration container.
+        r'''Gets and sets target duration of fixed-duration container.
+
+        Returns duration.
         '''
         return self._target_duration
 

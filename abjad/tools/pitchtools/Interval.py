@@ -47,9 +47,18 @@ class Interval(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        r'''Absolute value of interval.
+
+        Returns new interval.
+        '''
         return type(self)(abs(self.number))
 
     def __eq__(self, arg):
+        r'''True when `arg` is an interval with number and direction direction
+        equal to those of this interval. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if arg.number == self.number:
                 if arg.direction_number == self.direction_number:
@@ -57,23 +66,47 @@ class Interval(AbjadObject):
         return False
 
     def __float__(self):
-        raise NotImplementedError(
-            'float needs to be implemented on %s.' % type(self))
+        r'''Change interval to float.
+
+        Returns float.
+        '''
+        message = 'float needs to be implemented on {}.'.format(type(self))
+        raise NotImplementedError(message)
 
     def __hash__(self):
+        r'''Hashes interval.
+
+        Returns integer.
+        '''
         return hash(repr(self))
 
     def __int__(self):
-        raise NotImplementedError(
-            'int needs to be implemented on %s.' % type(self))
+        r'''Change interval to integer.
+
+        Returns integer.
+        '''
+        message = 'int needs to be implemented on {}.'.format(type(self))
+        raise NotImplementedError(message)
 
     def __ne__(self, arg):
+        r'''True when interval does not equal `arg`.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     def __neg__(self):
+        r'''Negates interval.
+
+        Returns interval.
+        '''
         pass
 
     def __str__(self):
+        r'''String representation of interval.
+
+        Returns string.
+        '''
         return str(self.number)
 
     ### PRIVATE PROPERTIES ###
@@ -146,26 +179,46 @@ class Interval(AbjadObject):
 
     @property
     def cents(self):
+        r'''Cents of interval.
+
+        Returns nonnegative number.
+        '''
         return 100 * self.semitones
 
     @property
     def direction_number(self):
+        r'''Direction number of interval.
+
+        Returns -1, 0 or 1.
+        '''
         return self._direction_number
 
     @property
     def direction_string(self):
+        r'''Direction string of interval.
+
+        Returns string.
+        '''
         return self._direction_string
 
     # TODO: remove
     @property
     def interval_class(self):
+        r'''Interval class of interval.
+        '''
         pass
 
     # TODO: remove
     @property
     def number(self):
+        r'''Number of interval.
+        '''
         return self._number
 
     @property
     def semitones(self):
+        r'''Semitones equating to interval.
+
+        Return nonnegative number.
+        '''
         pass

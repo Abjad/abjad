@@ -42,6 +42,14 @@ class ClefInventory(TypedList):
     ### SPECIAL METHODS ###
 
     def __illustrate__(self):
+        r'''Illustrates clef inventory.
+
+        ::
+
+            >>> show(inventory) # doctest: +SKIP
+
+        Returns LilyPond file.
+        '''
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import scoretools

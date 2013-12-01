@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SimpleInequality(AbjadObject):
-    '''A simple time-relation inequality.
+    '''A simple inequality.
 
         >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
         >>> simple_inequality = timespantools.SimpleInequality(template)
@@ -102,7 +102,7 @@ class SimpleInequality(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _find_index_ge(self, a, x):
-        r'''Find index of leftmost item greater than or equal to x.
+        r'''Finds index of leftmost item greater than or equal to x.
         '''
         i = bisect.bisect_left(a, x)
         if i != len(a):
@@ -110,7 +110,7 @@ class SimpleInequality(AbjadObject):
         raise ValueError
 
     def _find_index_gt(self, a, x):
-        r'''Find index of leftmost value greater than x.
+        r'''Finds index of leftmost value greater than x.
         '''
         i = bisect.bisect_right(a, x)
         if i != len(a):
@@ -118,7 +118,7 @@ class SimpleInequality(AbjadObject):
         raise ValueError
 
     def _find_index_le(self, a, x):
-        r'''Find index of rightmost value less than or equal to x.
+        r'''Finds index of rightmost value less than or equal to x.
         '''
         i = bisect.bisect_right(a, x)
         if i:
@@ -126,7 +126,7 @@ class SimpleInequality(AbjadObject):
         raise ValueError
 
     def _find_index_lt(self, a, x):
-        r'''Find index of rightmost value less than x.
+        r'''Finds index of rightmost value less than x.
         '''
         i = bisect.bisect_left(a, x)
         if i:
@@ -134,7 +134,7 @@ class SimpleInequality(AbjadObject):
         raise ValueError
 
     def _index(self, a, x):
-        r'''Find index of leftmost value exactly equal to x.
+        r'''Finds index of leftmost value exactly equal to x.
         '''
         i = bisect.bisect_left(a, x)
         if i != len(a) and a[i] == x:
@@ -145,7 +145,7 @@ class SimpleInequality(AbjadObject):
 
     @property
     def template(self):
-        r'''Simple inequality template.
+        r'''Template of simple inequality.
 
             >>> simple_inequality.template
             'timespan_2.start_offset < timespan_1.start_offset'
@@ -156,8 +156,17 @@ class SimpleInequality(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def evaluate(self, timespan_1_start_offset, timespan_1_stop_offset,
-        timespan_2_start_offset, timespan_2_stop_offset):
+    def evaluate(
+        self, 
+        timespan_1_start_offset, 
+        timespan_1_stop_offset,
+        timespan_2_start_offset, 
+        timespan_2_stop_offset,
+        ):
+        r'''Evalutes simple inequality.
+
+        Returns boolean.
+        '''
         template = self.template
         template = template.replace(
             'timespan_1.start_offset', repr(timespan_1_start_offset))
@@ -171,7 +180,15 @@ class SimpleInequality(AbjadObject):
         return truth_value
 
     def evaluate_offset_inequality(
-        self, timespan_start, timespan_stop, offset):
+        self, 
+        timespan_start, 
+        timespan_stop, 
+        offset,
+        ):
+        r'''Evalutes offset inequality.
+
+        Returns boolean.
+        '''
         template = self.template
         template = template.replace('timespan.start', repr(timespan_start))
         template = template.replace('timespan.stop', repr(timespan_stop))
@@ -180,8 +197,12 @@ class SimpleInequality(AbjadObject):
         return truth_value
 
     def get_offset_indices(
-        self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
-        r'''Change simple inequality to offset indices.
+        self, 
+        timespan_1, 
+        timespan_2_start_offsets, 
+        timespan_2_stop_offsets,
+        ):
+        r'''Gets offset indices of simple inequality.
 
         .. todo:: add example.
 

@@ -37,7 +37,7 @@ ignored_names = (
 #        if attr.name[0].isalpha() or attr.name.startswith('__'):
 #            message = '{}.{}'.format(obj.__name__, attr.name)
 #            assert getattr(obj, attr.name).__doc__ is not None, message
-#
+
 
 functions = documentationtools.list_all_abjad_functions()
 @pytest.mark.parametrize('obj', functions)

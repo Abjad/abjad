@@ -46,28 +46,52 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        r'''Absolute value of numbered inversion-equivalent interval-class.
+
+        Returns new numbered inversion-equivalent interval-class.
+        '''
         return type(self)(abs(self.number))
 
     def __copy__(self):
+        r'''Copies numbered inversion-equivalent interval-class.
+
+        Returns new numbered inversion-equivalent interval-class.
+        '''
         return type(self)(self.number)
 
     def __eq__(self, arg):
+        r'''True when `arg` is a numbered inversion-equivalent interval-class
+        with number equal to that of this numbered inversion-equivalent
+        interval-class. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
                 return True
         return False
 
     def __hash__(self):
+        r'''Hashes numbered inversion-equivalent interval-class.
+
+        Returns integer.
+        '''
         return hash(repr(self))
 
-    def __ne__(self, arg):
-        return not self == arg
-
     def __neg__(self):
+        r'''Negates numbered inversion-equivalent interval-class.
+
+        Returns new numbered inversion-equivalent interval-class.
+        '''
         return type(self)(self.number)
 
     def __str__(self):
-        return '%s' % self.number
+        r'''String representation of numbered inversion-equivalent
+        interval-class.
+
+        Returns string.
+        '''
+        return str(self.number)
 
     ### PRIVATE PROPERTIES ###
 

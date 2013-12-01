@@ -189,21 +189,33 @@ class PitchClass(AbjadObject):
         return str(self)
 
     def __hash__(self):
+        r'''Hases pitch-class.
+
+        Returns integer.
+        '''
         return hash(repr(self))
 
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
     def apply_accidental(self, accidental=None):
+        r'''Applies `accidental` to pitch-class.
+
+        Returns new pitch-class.
+        '''
         raise NotImplementedError
 
     @abc.abstractmethod
     def invert(self, axis=None):
+        r'''Inverts pitch-class about `axis`.
+
+        Returns new pitch-class.
+        '''
         raise NotImplementedError
 
     @staticmethod
     def is_diatonic_pitch_class_name(expr):
-        '''True when `expr` is a diatonic pitch-class name, otherwise false.
+        '''True when `expr` is a diatonic pitch-class name. Otherwise false.
 
         ::
 
@@ -220,7 +232,7 @@ class PitchClass(AbjadObject):
 
     @staticmethod
     def is_diatonic_pitch_class_number(expr):
-        '''True when `expr` is a diatonic pitch-class number, otherwise false.
+        '''True when `expr` is a diatonic pitch-class number. Otherwise false.
 
         ::
 
@@ -243,7 +255,7 @@ class PitchClass(AbjadObject):
 
     @staticmethod
     def is_pitch_class_name(expr):
-        '''True when `expr` is a pitch-class name, otherwise false.
+        '''True when `expr` is a pitch-class name. Otherwise false.
 
         ::
 
@@ -261,7 +273,7 @@ class PitchClass(AbjadObject):
 
     @staticmethod
     def is_pitch_class_number(expr):
-        '''True `expr` is a pitch-class number, otherwise false.
+        '''True `expr` is a pitch-class number. Otherwise false.
 
         ::
 
@@ -278,27 +290,31 @@ class PitchClass(AbjadObject):
 
     @abc.abstractmethod
     def multiply(self, n=1):
+        r'''Multiplies pitch-class by `n`.
+
+        Returns new pitch-class.
+        '''
         raise NotImplementedError
 
     @abc.abstractmethod
     def transpose(self, expr):
+        r'''Transposes pitch-class by `n`'.
+
+        Returns new pitch-class.
+        '''
         raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def accidental(self):
-        r'''Accidental.'''
+        r'''Accidental of pitch-class.
+        '''
         raise NotImplementedError
 
     @property
     def accidental_spelling(self):
-        r'''Accidental spelling.
-
-        ::
-
-            >>> NamedPitch("c").accidental_spelling
-            'mixed'
+        r'''Accidental spelling of pitch-class.
 
         Returns string.
         '''
@@ -307,40 +323,48 @@ class PitchClass(AbjadObject):
 
     @abc.abstractproperty
     def alteration_in_semitones(self):
-        r'''Alteration in semitones.'''
+        r'''Alteration of pitch-class in semitones.
+        '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def diatonic_pitch_class_name(self):
-        r'''Diatonic pitch-class name.'''
+        r'''Diatonic pitch-class name corresponding to pitch-class.
+        '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def diatonic_pitch_class_number(self):
-        r'''Diatonic pitch-class number.'''
+        r'''Diatonic pitch-class number corresponding to pitch-class.
+        '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def named_pitch_class(self):
-        r'''Named pitch-class.'''
+        r'''Named pitch-class corresponding to pitch-class.
+        '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def numbered_pitch_class(self):
-        r'''Numbered pitch-class.'''
+        r'''Numbered pitch-class corresponding to pitch-class.
+        '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def pitch_class_label(self):
-        r'''Pitch-class label.'''
+        r'''Pitch-class label of pitch-class.
+        '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def pitch_class_name(self):
-        r'''Pitch-class name.'''
+        r'''Pitch-class name of pitch-class.
+        '''
         raise NotImplementedError
 
     @abc.abstractproperty
     def pitch_class_number(self):
-        r'''Pitch-class number.'''
+        r'''Pitch-class number of pitch-class.
+        '''
         raise NotImplementedError

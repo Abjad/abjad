@@ -12,7 +12,6 @@ class NumberedIntervalClass(IntervalClass):
         >>> pitchtools.NumberedIntervalClass(-14)
         NumberedIntervalClass(-2)
 
-    Returns numbered interval-class.
     '''
 
     ### CLASS VARIABLES ###
@@ -62,25 +61,42 @@ class NumberedIntervalClass(IntervalClass):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        r'''Absolute value of numbered interval-class.
+
+        Returns new numbered interval-class.
+        '''
         return type(self)(abs(self._number))
 
     def __eq__(self, arg):
+        r'''True when `arg` is a numbered interval-class with number equal to
+        that of this numbered interval-class. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
                 return True
         return False
 
     def __float__(self):
+        r'''Changes numbered interval-class to float.
+
+        Returns float.
+        '''
         return float(self._number)
 
     def __int__(self):
+        r'''Changes numbered interval-class to integer.
+
+        Returns integer.
+        '''
         return self._number
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
-        return '%s%s' % (self.direction_symbol, abs(self.number))
+        return '{}{}'.format(self.direction_symbol, abs(self.number))
 
     @property
     def _storage_format_specification(self):
@@ -98,8 +114,8 @@ class NumberedIntervalClass(IntervalClass):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate numbered interval-class from `pitch_carrier_1` to
-        `pitch_carrier_2`:
+        '''Makes numbered interval-class from `pitch_carrier_1` and
+        `pitch_carrier_2`.
 
         ::
 
@@ -122,6 +138,10 @@ class NumberedIntervalClass(IntervalClass):
 
     @property
     def direction_number(self):
+        r'''Direction number of numbered interval-class.
+
+        Returns -1, 0 or 1.
+        '''
         if self.number < 1:
             return -1
         elif self.number == 1:
@@ -131,6 +151,10 @@ class NumberedIntervalClass(IntervalClass):
 
     @property
     def direction_symbol(self):
+        r'''Direction symbol of numbered interval class.
+
+        Returns string.
+        '''
         if self.number < 1:
             return '-'
         else:
@@ -138,6 +162,10 @@ class NumberedIntervalClass(IntervalClass):
 
     @property
     def direction_word(self):
+        r'''Direction word of numbered interval-class.
+
+        Returns string.
+        '''
         if self.number < 1:
             return 'descending'
         elif self.number == 1:

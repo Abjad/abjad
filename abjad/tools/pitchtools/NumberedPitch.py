@@ -18,7 +18,6 @@ class NumberedPitch(Pitch):
 
         >>> show(numbered_pitch) # doctest: +SKIP
 
-    Returns numbered pitch.
     '''
 
     ### CLASS VARIABLES ###
@@ -44,10 +43,19 @@ class NumberedPitch(Pitch):
 
     ### SPECIAL METHODS ###
 
+    # TODO: should this return number or new numbered pitch instance?
     def __abs__(self):
+        r'''Absolute value of numbered pitch.
+
+        Returns pitch number.
+        '''
         return self._pitch_number
 
     def __add__(self, arg):
+        r'''Adds `arg` to numberd pitch.
+
+        Returns new numbered pitch.
+        '''
         arg = type(self)(arg)
         semitones = abs(self) + abs(arg)
         return type(self)(semitones)
@@ -123,7 +131,7 @@ class NumberedPitch(Pitch):
             >>> pitchtools.NumberedPitch(13).apply_accidental('flat')
             NumberedPitch(12)
 
-        Emit new numbered pitch.
+        Returns new numbered pitch.
         '''
         from abjad.tools.pitchtools.Accidental import Accidental
         accidental = Accidental(accidental)
@@ -145,7 +153,7 @@ class NumberedPitch(Pitch):
             >>> pitchtools.NumberedPitch(14).multiply(3)
             NumberedPitch(18)
 
-        Emit new numbered pitch.
+        Returns new numbered pitch.
         '''
         pitch_class_number = (self.pitch_class_number * n) % 12
         octave_floor = (self.octave_number - 4) * 12
@@ -159,7 +167,7 @@ class NumberedPitch(Pitch):
             >>> pitchtools.NumberedPitch(13).transpose(1)
             NumberedPitch(14)
 
-        Emit new numbered pitch.
+        Returns new numbered pitch.
         '''
         semitones = abs(self) + n
         return type(self)(semitones)

@@ -120,7 +120,9 @@ class ContextBlock(AttributedBlock):
 
     @property
     def alias(self):
-        r'''Read / write alias.
+        r'''Gets and sets alias of context block.
+
+        Returns string or none.
         '''
         return self._alias
 
@@ -131,7 +133,9 @@ class ContextBlock(AttributedBlock):
 
     @property
     def context_name(self):
-        r'''Read / write context name.
+        r'''Gets and sets context name of context block.
+
+        Returns string or none.
         '''
         return self._context_name
 
@@ -142,7 +146,9 @@ class ContextBlock(AttributedBlock):
 
     @property
     def name(self):
-        r'''Read / write name.
+        r'''Gets and sets name of context block.
+
+        Returns string or none.
         '''
         return self._name
 
@@ -153,7 +159,9 @@ class ContextBlock(AttributedBlock):
 
     @property
     def type(self):
-        r'''Read / write type.
+        r'''Gets and sets LilyPond type of context block.
+
+        Returns string or none.
         '''
         return self._type
 

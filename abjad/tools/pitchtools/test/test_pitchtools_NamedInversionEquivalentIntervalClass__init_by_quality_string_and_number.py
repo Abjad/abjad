@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality_string_and_number_01():
+def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_01():
     r'''Initializeunison.
     '''
 
@@ -14,7 +14,7 @@ def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('diminished', -1)) == 'dim1'
 
 
-def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality_string_and_number_02():
+def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_02():
     r'''Initialize usual cases.
     '''
 
@@ -26,7 +26,7 @@ def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('augmented', 4)) == '+aug4'
 
 
-def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality_string_and_number_03():
+def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_03():
     r'''Initialize inverted cases less than one octave.
     '''
 
@@ -38,7 +38,7 @@ def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('diminished', 5)) == '+aug4'
 
 
-def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality_string_and_number_04():
+def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_04():
     r'''Initialize noninverted cases greater than one octave.
     '''
 
@@ -50,7 +50,7 @@ def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality
     assert str(pitchtools.NamedInversionEquivalentIntervalClass('augmented', 11)) == '+aug4'
 
 
-def test_pitchtools_NamedInversionEquivalentIntervalClass__initialize_by_quality_string_and_number_05():
+def test_pitchtools_NamedInversionEquivalentIntervalClass__init_by_quality_string_and_number_05():
     r'''Initialize inverted cases greater than one octave.
     '''
 

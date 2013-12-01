@@ -13,12 +13,12 @@ class IntervalSegment(Segment):
         >>> pitchtools.IntervalSegment(intervals)
         IntervalSegment(['+m2', '+M10', '-aug4', '+P5'])
 
-    Returns interval segment.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### PRIVATE PROPERTIES ###
 
@@ -55,8 +55,13 @@ class IntervalSegment(Segment):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
-        r'''Initialize interval segment from component selection:
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes interval segment from component `selection`.
 
         ::
 
@@ -77,13 +82,17 @@ class IntervalSegment(Segment):
             )
 
     def rotate(self, n):
+        r'''Rotates interval segment by `n`.
+
+        Returns new interval segment.
+        '''
         return self.__makenew__(self[-n:] + self[:-n])
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def has_duplicates(self):
-        r'''True if segment contains duplicate items:
+        r'''True if segment has duplicate items. Otherwise false.
 
         ::
 
@@ -106,7 +115,9 @@ class IntervalSegment(Segment):
 
     @property
     def slope(self):
-        r'''The slope of a interval segment is the sum of its
+        r'''Slope of interval segment.
+        
+        The slope of a interval segment is the sum of its
         intervals divided by its length:
 
         ::
@@ -121,8 +132,10 @@ class IntervalSegment(Segment):
 
     @property
     def spread(self):
-        r'''The maximum interval spanned by any combination of
-        the intervals within a numbered interval segment:
+        r'''Spread of interval segment.
+        
+        The maximum interval spanned by any combination of
+        the intervals within a numbered interval segment.
 
         ::
 

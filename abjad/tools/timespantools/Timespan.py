@@ -1355,7 +1355,7 @@ class Timespan(BoundedObject):
                 >>> timespantools.Timespan(3, 6).reflect(axis=Offset(10))
                 Timespan(start_offset=Offset(14, 1), stop_offset=Offset(17, 1))
 
-        Emits new timespan.
+        Returns new timespan.
         '''
         if axis is None:
             axis = self.axis
@@ -1399,7 +1399,7 @@ class Timespan(BoundedObject):
             ...     )
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(0, 1))
 
-        Emits new timespan.
+        Returns new timespan.
         '''
         multiplier = abs(durationtools.Multiplier(multiplier))
         assert 0 < multiplier
@@ -1440,7 +1440,7 @@ class Timespan(BoundedObject):
                 >>> timespan.scale(Multiplier(2), anchor=Right)
                 Timespan(start_offset=Offset(0, 1), stop_offset=Offset(6, 1))
 
-        Emits new timespan.
+        Returns new timespan.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         assert 0 < multiplier
@@ -1468,7 +1468,7 @@ class Timespan(BoundedObject):
             >>> timespan.set_duration(Duration(3, 5))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(11, 10))
 
-        Emits new timespan.
+        Returns new timespan.
         '''
         duration = durationtools.Duration(duration)
         new_stop_offset = self.start_offset + duration
@@ -1502,7 +1502,7 @@ class Timespan(BoundedObject):
             >>> timespan.set_offsets(stop_offset=Offset(-1, 2))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
 
-        Emits new timespan.
+        Returns new timespan.
         '''
         if start_offset is not None and 0 <= start_offset:
             new_start_offset = start_offset
@@ -2207,7 +2207,7 @@ class Timespan(BoundedObject):
             >>> timespan.translate(2)
             Timespan(start_offset=Offset(7, 1), stop_offset=Offset(12, 1))
 
-        Emits new timespan.
+        Returns new timespan.
         '''
         return self.translate_offsets(translation, translation)
 
@@ -2229,7 +2229,7 @@ class Timespan(BoundedObject):
             ...     start_offset_translation=Duration(-1, 8))
             Timespan(start_offset=Offset(3, 8), stop_offset=Offset(3, 2))
 
-        Emits new timespan.
+        Returns new timespan.
         '''
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0

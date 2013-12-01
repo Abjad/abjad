@@ -176,7 +176,9 @@ class TypedCollection(AbjadObject):
 
     @property
     def custom_identifier(self):
-        r'''Read / write custom identifier of typed collection.
+        r'''Gets and sets custom identifier of typed collection.
+
+        Returns string or none.
         '''
         return self._custom_identifier
 

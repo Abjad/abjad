@@ -15,7 +15,12 @@ class Segment(TypedTuple):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, item_class=None, custom_identifier=None):
+    def __init__(
+        self, 
+        tokens=None, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
         from abjad.tools import datastructuretools
         from abjad.tools import pitchtools 
         if isinstance(tokens, str):
@@ -51,6 +56,10 @@ class Segment(TypedTuple):
     ### SPECIAL METHODS ###
 
     def __str__(self):
+        r'''String representation of segment.
+
+        Returns string.
+        '''
         parts = [str(x) for x in self]
         return '<{}>'.format(', '.join(parts))
         
@@ -86,11 +95,24 @@ class Segment(TypedTuple):
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes segment from `selection`.
+
+        Returns new segment.
+        '''
         raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def has_duplicates(self):
+        r'''True when segment has duplicates. Otherwise false.
+
+        Returns boolean.
+        '''
         raise NotImplementedError 

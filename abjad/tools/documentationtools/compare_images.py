@@ -8,9 +8,9 @@ def compare_images(image_one, image_two):
     r'''Compare `image_one` against `image_two` using ImageMagick's `compare`
     commandline tool.
 
-    Return `True` if images are the same, otherwise `False`.
+    Returns true if images are the same. Otherwise false.
 
-    If `compare` is not available, return `False`.
+    Returns false if `compare` is not available.
     '''
     import tempfile
     from abjad.tools import systemtools

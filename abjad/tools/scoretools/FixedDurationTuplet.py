@@ -159,7 +159,7 @@ class FixedDurationTuplet(Tuplet):
 
     @property
     def target_duration(self):
-        r'''Read / write target duration of fixed-duration tuplet:
+        r'''Gets and sets target duration of fixed-duration tuplet.
 
         ::
 
@@ -234,6 +234,25 @@ class FixedDurationTuplet(Tuplet):
         return new_tuplet
 
     def toggle_prolation(self):
+        r'''Toggles prolation of fixed-duration tuplet.
+
+        ::
+
+            >>> tuplet = scoretools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+            >>> show(tuplet) # doctest: +SKIP
+
+        ::
+
+            >>> tuplet.toggle_prolation()
+            >>> show(tuplet) # doctest: +SKIP
+
+        ::
+
+            >>> tuplet.toggle_prolation()
+            >>> show(tuplet) # doctest: +SKIP
+
+        Returns none.
+        '''
         if self.is_diminution:
             while self.is_diminution:
                 for leaf in self.select_leaves():

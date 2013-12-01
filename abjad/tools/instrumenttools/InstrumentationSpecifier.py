@@ -141,7 +141,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def performers(self):
-        r'''Read / write list of performers in score:
+        r'''Gets and sets list of performers in score.
 
         ::
 

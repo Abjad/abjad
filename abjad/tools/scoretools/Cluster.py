@@ -8,11 +8,7 @@ class Cluster(Container):
     ::
 
         >>> cluster = scoretools.Cluster("c'8 <d' g'>8 b'8")
-
-    ::
-
-        >>> cluster
-        Cluster(c'8, <d' g'>8, b'8)
+        >>> show(cluster) # doctest: +SKIP
 
     ..  doctest::
 
@@ -25,9 +21,9 @@ class Cluster(Container):
 
     ::
 
-        >>> show(cluster) # doctest: +SKIP
+        >>> cluster
+        Cluster(c'8, <d' g'>8, b'8)
 
-    Returns cluster object.
     '''
 
     ### CLASS VARIABLES ###
@@ -46,7 +42,16 @@ class Cluster(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._summary)
+        r'''Interpreter representation of cluster.
+
+        ::
+
+            >>> cluster
+            Cluster(c'8, <d' g'>8, b'8)
+
+        Returns string.
+        '''
+        return '{}({})'.format(type(self).__name__, self._summary)
 
     ### PRIVATE METHODS ###
 

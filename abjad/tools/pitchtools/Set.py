@@ -50,6 +50,10 @@ class Set(TypedFrozenset):
     ### SPECIAL METHODS ###
 
     def __str__(self):
+        r'''String representation of set.
+
+        Returns string.
+        '''
         parts = [str(x) for x in self]
         return '<{}>'.format(', '.join(parts))
 
@@ -90,5 +94,14 @@ class Set(TypedFrozenset):
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes set from `selection`.
+
+        Returns set.
+        '''
         raise NotImplementedError

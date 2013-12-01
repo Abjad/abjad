@@ -43,6 +43,12 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a named inversion-equivalent interval-class with
+        quality string and number equal to those of this named
+        inversion-equivalent interval-class. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.quality_string == arg.quality_string:
                 if self.number == arg.number:
@@ -50,6 +56,11 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         return False
 
     def __ne__(self, arg):
+        r'''True when named inversion-equivalent interval-class does not equal
+        `arg`. Otherwise false.
+
+        Returns boolean.
+        '''
         return not self == arg
 
     ### PRIVATE METHODS ###
@@ -114,8 +125,8 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate named inversion-equivalent interval-class from 
-        `pitch_carrier_1` to `pitch_carrier_2`:
+        '''Makes named inversion-equivalent interval-class from 
+        `pitch_carrier_1` and `pitch_carrier_2`.
 
         ::
 

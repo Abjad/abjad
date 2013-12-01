@@ -95,13 +95,13 @@ class PitchSet(Set):
     def invert(self, axis):
         r'''Invert pitch set around `axis`.
 
-        Emit new pitch set.
+        Returns new pitch set.
         '''
         tokens = (pitch.invert(axis) for pitch in self)
         return self.__makenew__(tokens=tokens)
 
     def is_equivalent_under_transposition(self, expr):
-        r'''True if equivalent under transposition to `expr`, otherwise False.
+        r'''True if equivalent under transposition to `expr`. Otherwise False.
         
         Returns boolean.
         '''

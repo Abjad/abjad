@@ -41,7 +41,6 @@ class IntervalVector(Vector):
         +9 2
         +10 1
 
-    Returns pitch segment.
     '''
 
     ### INITIALIZER ###
@@ -87,7 +86,16 @@ class IntervalVector(Vector):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, custom_identifier=None):
+    def from_selection(
+        cls, 
+        selection, 
+        item_class=None, 
+        custom_identifier=None,
+        ):
+        r'''Makes interval vector from `selection`.
+
+        Returns interval vector.
+        '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         return cls(

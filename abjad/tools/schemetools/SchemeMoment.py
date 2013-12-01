@@ -1,18 +1,20 @@
 # -*- encoding: utf-8 -*-
+import functools
 from abjad.tools import durationtools
 from abjad.tools.schemetools.Scheme import Scheme
 
 
+@functools.total_ordering
 class SchemeMoment(Scheme):
-    r'''Abjad model of LilyPond moment:
+    r'''A LilyPond scheme moment.
+
+    Initializes with two integers:
 
     ::
 
-        >>> schemetools.SchemeMoment(1, 68)
+        >>> moment = schemetools.SchemeMoment(1, 68)
+        >>> moment
         SchemeMoment(1, 68)
-
-    Initialize scheme moments with a single fraction,
-    two integers or another scheme moment.
 
     Scheme moments are immutable.
     '''
@@ -43,47 +45,62 @@ class SchemeMoment(Scheme):
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
+        r'''True when `arg` is a scheme moment with the same value as that of
+        this scheme moment.
+
+        ::
+
+            >>> moment == schemetools.SchemeMoment(1, 68)
+            True
+
+        Otherwise false.
+
+            >>> moment == schemetools.SchemeMoment(1, 54)
+            False
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self._value == arg._value:
                 return True
         return False
 
-    def __ge__(self, arg):
-        if isinstance(arg, type(self)):
-            if self._value >= arg._value:
-                return True
-        return False
-
     def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
         return (self._value,)
 
-    def __gt__(self, arg):
-        if isinstance(arg, type(self)):
-            if self._value > arg._value:
-                return True
-        return False
-
-    def __le__(self, arg):
-        if isinstance(arg, type(self)):
-            if self._value <= arg._value:
-                return True
-        return False
-
     def __lt__(self, arg):
+        r'''True when `arg` is a scheme moment with value greater than that of
+        this scheme moment.
+
+        ::
+
+            >>> moment < schemetools.SchemeMoment(1, 32)
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> moment < schemetools.SchemeMoment(1, 78)
+            False
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self._value < arg._value:
                 return True
         return False
-
-    def __ne__(self, arg):
-        return not self == arg
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_value(self):
         numerator, denominator = self._value.numerator, self._value.denominator
-        return '(ly:make-moment %s %s)' % (numerator, denominator)
+        return '(ly:make-moment {} {})'.format(numerator, denominator)
 
     @property
     def _storage_format_specification(self):
@@ -100,7 +117,7 @@ class SchemeMoment(Scheme):
 
     @property
     def duration(self):
-        r'''Duration of scheme moment:
+        r'''Duration of scheme moment.
 
         ::
 

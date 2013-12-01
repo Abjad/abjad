@@ -1,9 +1,11 @@
 # -*- encoding: utf-8 -*-
 import abc
+import functools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
 
 
+@functools.total_ordering
 class NumberedInterval(Interval):
     '''A numbered interval.
 
@@ -40,9 +42,17 @@ class NumberedInterval(Interval):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
+        r'''Absolute value of numbered interval.
+
+        Returns new numbered interval.
+        '''
         return type(self)(abs(self._number))
 
     def __add__(self, arg):
+        r'''Adds `arg` to numbered interval.
+
+        Returns new numbered interval.
+        '''
         if isinstance(arg, type(self)):
             number = self.number + arg.number
             return type(self)(number)
@@ -51,51 +61,51 @@ class NumberedInterval(Interval):
         raise TypeError(message)
 
     def __copy__(self):
+        r'''Copies numbered interval.
+
+        Returns new numbered interval.
+        '''
         return type(self)(self.number)
 
     def __eq__(self, arg):
+        r'''True when `arg` is a numbered interval with number equal to that of
+        this numbered interval. Otherwise false.
+
+        Returns boolean.
+        '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
                 return True
         return False
 
     def __float__(self):
+        r'''Changes numbered interval to float.
+
+        Returns float.
+        '''
         return float(self._number)
 
-    def __ge__(self, arg):
-        if not isinstance(arg, type(self)):
-            message = 'must be numbered interval: {!r}.'.format(arg)
-            raise TypeError(message)
-        if not self.direction_number == arg.direction_number:
-            message = 'can only compare intervals of same direction.'
-            raise ValueError(message)
-        return abs(self.number) >= abs(arg.number)
-
-    def __gt__(self, arg):
-        if not isinstance(arg, type(self)):
-            message = 'must be numbered interval: {!r}.'.format(arg)
-            raise TypeError(message)
-        if not self.direction_number == arg.direction_number:
-            message = 'can only compare intervals of same direction.'
-            raise ValueError(message)
-        return abs(self.number) > abs(arg.number)
-
     def __hash__(self):
+        r'''Hashes numbered interval.
+
+        Returns integer.
+        '''
         return hash(repr(self))
 
     def __int__(self):
+        r'''Changes numbered interval to integer.
+
+        Returns integer.
+        '''
         return int(self._number)
 
-    def __le__(self, arg):
-        if not isinstance(arg, type(self)):
-            message = 'must be numbered interval: {!r}.'.format(arg)
-            raise TypeError(message)
-        if not self.direction_number == arg.direction_number:
-            message = 'can only compare intervals of same direction.'
-            raise ValueError(message)
-        return abs(self.number) <= abs(arg.number)
-
     def __lt__(self, arg):
+        r'''True when `arg` is a numbered interval with same direction number
+        as this numbered interval and with number greater than that of this
+        numbered interval. Otherwise false.
+
+        Returns boolean.
+        '''
         if not isinstance(arg, type(self)):
             message = 'must be numbered interval: {!r}.'.format(arg)
             raise TypeError(message)
@@ -104,16 +114,25 @@ class NumberedInterval(Interval):
             raise ValueError(message)
         return abs(self.number) < abs(arg.number)
 
-    def __ne__(self, arg):
-        return not self == arg
-
     def __neg__(self):
+        r'''Negates numbered interval.
+
+        Returns new numbered interval.
+        '''
         return type(self)(-self._number)
 
     def __str__(self):
+        r'''String representation of numbered interval.
+
+        Returns string.
+        '''
         return self._format_string
 
     def __sub__(self, arg):
+        r'''Subtracts `arg` from numbered interval.
+
+        Returns new numbered interval.
+        '''
         if isinstance(arg, type(self)):
             number = self.number - arg.number
             return type(self)(number)
@@ -125,7 +144,7 @@ class NumberedInterval(Interval):
 
     @property
     def _format_string(self):
-        return '%s%s' % (self._direction_symbol, abs(self.number))
+        return '{}{}'.format(self._direction_symbol, abs(self.number))
 
     @property
     def _storage_format_specification(self):
@@ -143,8 +162,8 @@ class NumberedInterval(Interval):
 
     @classmethod
     def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate numbered interval from `pitch_carrier_1` to
-        `pitch_carrier_2`:
+        '''Makes numbered interval from `pitch_carrier_1` and
+        `pitch_carrier_2`.
 
         ::
 
@@ -174,7 +193,7 @@ class NumberedInterval(Interval):
 
     @property
     def direction_number(self):
-        r'''Numeric sign:
+        r'''Direction sign of numbered interval.
 
         ::
 
@@ -187,11 +206,15 @@ class NumberedInterval(Interval):
 
     @property
     def number(self):
+        r'''Number of numbered interval.
+
+        Returns number.
+        '''
         return self._number
 
     @property
     def numbered_interval_number(self):
-        r'''Interval number:
+        r'''Number of numbered interval.
 
         ::
 
@@ -204,4 +227,8 @@ class NumberedInterval(Interval):
 
     @property
     def semitones(self):
+        r'''Semitones corresponding to numbered interval.
+
+        Returns nonnegative number.
+        '''
         return self.number

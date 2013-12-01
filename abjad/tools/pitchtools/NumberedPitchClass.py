@@ -169,7 +169,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(1).apply_accidental('flat')
             NumberedPitchClass(0)
 
-        Emit new numbered pitch-class.
+        Returns new numbered pitch-class.
         '''
         from abjad.tools import pitchtools
         accidental = pitchtools.Accidental(accidental)
@@ -179,7 +179,7 @@ class NumberedPitchClass(PitchClass):
     def invert(self):
         r'''Invert pitch-class.
 
-        Emit new numbered pitch-class.
+        Returns new numbered pitch-class.
         '''
         return type(self)(12 - abs(self))
 
@@ -191,14 +191,14 @@ class NumberedPitchClass(PitchClass):
             >>> pitchtools.NumberedPitchClass(11).multiply(3)
             NumberedPitchClass(9)
 
-        Emit new numbered pitch-class.
+        Returns new numbered pitch-class.
         '''
         return type(self)(self.pitch_class_number * n)
 
     def transpose(self, n):
         r'''Transpose pitch-class by n.
 
-        Emit new numbered pitch-class.
+        Returns new numbered pitch-class.
         '''
         return type(self)(abs(self) + n)
 

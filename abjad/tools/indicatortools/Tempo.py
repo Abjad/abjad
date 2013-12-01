@@ -35,7 +35,7 @@ class Tempo(AbjadObject):
             }
         >>
 
-    Tempo indications attach to the **score context** by default.
+    Tempo indications are scoped to the **score context** by default.
     '''
 
     ### CLASS VARIABLES ###
@@ -177,8 +177,6 @@ class Tempo(AbjadObject):
 
         Returns string.
         '''
-        #superclass = super(Tempo, self)
-        #return superclass.__format__(format_specification=format_specification)
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager.get_storage_format(self)
@@ -187,28 +185,72 @@ class Tempo(AbjadObject):
         return str(self)
 
     def __lt__(self, arg):
+        r'''True when `arg` is a tempo with quarters per minute greater than
+        that of this tempo. Otherwise false.
+
+        Returns boolean.
+        '''
         assert isinstance(arg, type(self)), repr(arg)
         return self.quarters_per_minute < arg.quarters_per_minute
 
     def __mul__(self, multiplier):
         r'''Multiplies tempo by `multiplier`.
 
+        ::
+
+            >>> tempo = Tempo(Duration(1, 4), 84)
+            >>> tempo * 2
+            Tempo(Duration(1, 4), 168)
+
         Returns new tempo.
         '''
-        if isinstance(multiplier, (int, float, durationtools.Duration)):
-            if self.is_imprecise:
-                raise ImpreciseTempoError
-            new_units_per_minute = multiplier * self.units_per_minute
-            new_duration = durationtools.Duration(self.duration)
-            new_tempo_indication = \
-                type(self)(new_duration, new_units_per_minute)
-            return new_tempo_indication
+        if not isinstance(multiplier, (int, float, durationtools.Duration)):
+            return
+        if self.is_imprecise:
+            raise ImpreciseTempoError
+        new_units_per_minute = multiplier * self.units_per_minute
+        new_duration = durationtools.Duration(self.duration)
+        new_tempo = type(self)(new_duration, new_units_per_minute)
+        return new_tempo
 
     def __str__(self):
+        r'''String representation of tempo.
+
+        ::
+
+            >>> str(tempo)
+            '4=84'
+
+        Returns string.
+        '''
         return self._equation or self.textual_indication
+
+    def __rmul__(self, multiplier):
+        r'''Multiplies `multiplier` by tempo.
+
+        ::
+
+            >>> tempo = Tempo(Duration(1, 4), 84)
+            >>> 2 * tempo
+            Tempo(Duration(1, 4), 168)
+
+        Returns new tempo.
+        '''
+        if not isinstance(multiplier, (int, float, durationtools.Duration)):
+            return
+        if self.is_imprecise:
+            raise ImpreciseTempoError
+        new_units_per_minute = multiplier * self.units_per_minute
+        new_duration = durationtools.Duration(self.duration)
+        new_tempo = type(self)(new_duration, new_units_per_minute)
+        return new_tempo
 
     def __sub__(self, expr):
         r'''Subtracts `expr` from tempo.
+
+        ::
+
+            >>> tempo - 20
 
         Returns new tempo.
         '''
@@ -242,11 +284,12 @@ class Tempo(AbjadObject):
         if self.duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
-            return '%s=%s-%s' % (
+            return '{}={}-{}'.format(
                 self._dotted, 
                 self.units_per_minute[0], 
-                self.units_per_minute[1])
-        return '%s=%s' % (self._dotted, self.units_per_minute)
+                self.units_per_minute[1],
+                )
+        return '{}={}'.format(self._dotted, self.units_per_minute)
 
     @property
     def _lilypond_format(self):
@@ -308,7 +351,7 @@ class Tempo(AbjadObject):
 
     @property
     def is_imprecise(self):
-        r'''True if tempo is entirely textual, or if tempo's
+        r'''True if tempo is entirely textual or if tempo's
         units_per_minute is a range.
 
         ::
@@ -323,6 +366,13 @@ class Tempo(AbjadObject):
             True
             >>> Tempo(Duration(1, 4), (35, 50)).is_imprecise
             True
+
+        Otherwise false:
+
+        ::
+
+            >>> Tempo(Duration(1, 4), 60).is_imprecise
+            False
 
         Returns boolean.
         '''
