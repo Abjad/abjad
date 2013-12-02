@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import inspect
-import pickle
 import pytest
+import abjad
 from abjad.tools import documentationtools
 
 
@@ -11,7 +11,8 @@ def test_storage_format_01(class_):
     r'''All storage-formattable classes have evaluable storage format.
     '''
 
-    if '_storage_format' in dir(class_) and not inspect.isabstract(class_):
+    if '_storage_format_specification' in dir(class_) and \
+        not inspect.isabstract(class_):
         instance_one = class_()
-        instance_two = eval(format(instance_one, 'storage'))
+        instance_two = eval(format(instance_one, 'storage'), abjad.__dict__)
         assert instance_one == instance_two

@@ -10,5 +10,6 @@ def test___init___01(class_):
     r'''All storage-formattable concrete classes initialize from empty input.
     '''
 
-    if '_storage_format' in dir(class_) and not inspect.isabstract(class_):
+    if '_storage_format_specification' in dir(class_) and \
+        not inspect.isabstract(class_):
         instance = class_()

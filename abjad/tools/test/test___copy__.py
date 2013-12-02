@@ -11,7 +11,8 @@ def test___copy___01(class_):
     r'''All objects with a storage format can copy.
     '''
 
-    if '_storage_format' in dir(class_) and not inspect.isabstract(class_):
+    if '_storage_format_specification' in dir(class_) and \
+        not inspect.isabstract(class_):
         instance_one = class_()
         instance_two = copy.copy(instance_one)
         assert instance_one == instance_two
