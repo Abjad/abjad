@@ -44,7 +44,6 @@ Attachments
         instruments/index
         lilypond_commands/index
         lilypond_comments/index
-        spanners/index
 
 
 Pitches

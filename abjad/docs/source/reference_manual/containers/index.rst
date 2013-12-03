@@ -309,10 +309,10 @@ Set ``is_simultaneous`` by hand as necessary:
    >>> voice_2 = Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 \fermata")
    >>> staff = Staff([voice_1, voice_2])
    >>> staff.is_simultaneous = True
-   >>> indicatortools.LilyPondCommand('voiceOne')(voice_1)
-   LilyPondCommand('voiceOne')(Voice{8})
-   >>> indicatortools.LilyPondCommand('voiceTwo')(voice_2)
-   LilyPondCommand('voiceTwo')(Voice{9})
+   >>> command = indicatortools.LilyPondCommand('voiceOne')
+   >>> attach(command, voice_1)
+   >>> command = indicatortools.LilyPondCommand('voiceTwo')
+   >>> attach(command, voice_2)
    >>> show(staff)
 
 .. image:: images/index-11.png
@@ -320,63 +320,3 @@ Set ``is_simultaneous`` by hand as necessary:
 
 The staff in the example above is set to simultaneous after initialization 
 to create a type of polyphonic staff.
-
-
-Overriding containers
----------------------
-
-The symbols below are black with fixed thickness and predetermined spacing:
-
-::
-
-   >>> staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
-   >>> slur_1 = spannertools.Slur(staff[:2])
-   >>> slur_2 = spannertools.Slur(staff[2:4])
-   >>> slur_3 = spannertools.Slur(staff[4:6])
-
-
-::
-
-   >>> show(staff)
-
-.. image:: images/index-12.png
-
-
-But you can override LilyPond grobs to change the look of Abjad containers:
-
-::
-
-   >>> staff.override.staff_symbol.color = 'blue'
-   >>> show(staff)
-
-.. image:: images/index-13.png
-
-
-
-Overriding containers' contents
--------------------------------
-
-You can override LilyPond grobs to change the look of containers' 
-contents, too:
-
-::
-
-   >>> staff.override.note_head.color = 'red'
-   >>> staff.override.stem.color = 'red'
-   >>> show(staff)
-
-.. image:: images/index-14.png
-
-
-
-Removing container overrides
-----------------------------
-
-Delete grob overrides you no longer want:
-
-::
-
-   >>> del(staff.override.staff_symbol)
-   >>> show(staff)
-
-.. image:: images/index-15.png

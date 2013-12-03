@@ -70,36 +70,3 @@ Set the written duration of notes like this:
 note.written_duration = Duration(3, 16)
 show(note)
 </abjad>
-
-
-Overriding notes
-----------------
-
-The notes below are black with fixed thickness and predetermined spacing:
-
-<abjad>
-staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
-slur_1 = spannertools.Slur(staff[:2])
-slur_2 = spannertools.Slur(staff[2:4])
-slur_3 = spannertools.Slur(staff[4:6])
-show(staff)
-</abjad>
-
-You can override LilyPond grobs to change the way notes look:
-
-<abjad>
-staff[-1].override.note_head.color = 'red'
-staff[-1].override.stem.color = 'red'
-show(staff)
-</abjad>
-
-
-Removing note overrides
------------------------
-
-Delete grob overrides you no longer want like this:
-
-<abjad>
-del(staff[-1].override.stem)
-show(staff)
-</abjad>
