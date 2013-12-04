@@ -89,13 +89,6 @@ class Spanner(AbjadObject):
             raise TypeError
         return repr(self) < repr(expr)
 
-    def __repr__(self):
-        r'''Interpreter representation of spanner.
-
-        Returns string.
-        '''
-        return '{}({})'.format(type(self).__name__, self._compact_summary)
-
     ### PRIVATE PROPERTIES ###
 
     @property

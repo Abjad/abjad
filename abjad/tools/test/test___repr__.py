@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
+import inspect
 import pytest
 from abjad.tools import documentationtools
-pytest.skip()
+#pytest.skip()
 
 
 classes = documentationtools.list_all_abjad_classes()
@@ -13,4 +14,4 @@ def test___repr___01(class_):
     assert '__repr__' in dir(class_)
     if '_repr_specification' in dir(class_) and not inspect.isabstract(class_):
         instance = class_()
-        string = repr(instance_)
+        string = repr(instance)
