@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+import collections
+import types
 
 
-def list_all_abjad_functions():
+def list_all_abjad_functions(modules=None):
     r'''Lists all public functions defined in Abjad.
 
     ::
@@ -11,9 +13,21 @@ def list_all_abjad_functions():
     '''
     from abjad import abjad_configuration
     from abjad.tools import documentationtools
-    function_documenter = documentationtools.FunctionCrawler(
-        abjad_configuration.abjad_directory_path,
-        root_package_name='abjad',
-        )
-    all_functions = tuple(function_documenter())
-    return all_functions
+    all_functions = set()
+    paths = []
+    if modules is None:
+        paths.append(abjad_configuration.abjad_directory_path)
+    elif isinstance(modules, types.ModuleType):
+        paths.append(modules.__path__)
+    elif isinstance(modules, collections.Iterable):
+        for module in modules:
+            if isinstance(module, types.ModuleType):
+                paths.append(module.__path__)
+    for path in paths:
+        function_documenter = documentationtools.FunctionCrawler(
+            path,
+            root_package_name='abjad',
+            )
+        for x in function_documenter():
+            all_functions.add(x)
+    return list(all_functions)
