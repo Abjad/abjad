@@ -32,10 +32,28 @@ class BFlatClarinet(Instrument):
 
     ### INITIALIZER ###
 
-    def __init__(self, **kwargs):
-        Instrument.__init__(self, **kwargs)
-        self._default_instrument_name = 'clarinet in B-flat'
-        self.default_performer_abbreviation = 'cl.'
+    def __init__(
+        self,
+        instrument_name='clarinet in B-flat',
+        short_instrument_name='cl. in B-flat',
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c='bf',
+        ):
+        pitch_range = pitch_range or pitchtools.PitchRange(-10, 34)
+        Instrument.__init__(
+            self,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
+            instrument_name_markup=instrument_name_markup,
+            short_instrument_name_markup=short_instrument_name_markup,
+            allowable_clefs=allowable_clefs,
+            pitch_range=pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                sounding_pitch_of_written_middle_c,
+            )
         self._default_performer_names.extend([
             'wind player',
             'reed player',
@@ -43,13 +61,11 @@ class BFlatClarinet(Instrument):
             'clarinettist',
             'clarinetist',
             ])
-        self._default_short_instrument_name = 'cl. in B-flat'
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch('bf')
-        self._starting_clefs = [indicatortools.Clef('treble')]
-        self._default_pitch_range = pitchtools.PitchRange(-10, 34)
+        self._starting_clefs = indicatortools.ClefInventory(['treble'])
         self._is_primary_instrument = True
         self._copy_default_starting_clefs_to_default_allowable_clefs()
+
+        self.default_performer_abbreviation = 'cl.'
 
     ### PUBLIC METHODS ###
 

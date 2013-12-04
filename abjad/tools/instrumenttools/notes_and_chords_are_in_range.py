@@ -41,7 +41,7 @@ def notes_and_chords_are_in_range(expr):
         (scoretools.Note, scoretools.Chord)):
         instrument = note_or_chord._get_effective_indicator(
             instrumenttools.Instrument)
-        if note_or_chord not in instrument._default_pitch_range:
+        if note_or_chord not in instrument.pitch_range:
             return False
     else:
         return True

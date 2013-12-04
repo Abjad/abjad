@@ -34,10 +34,10 @@ class InstrumentationSpecifier(AbjadObject):
                             [
                                 instrumenttools.Flute(
                                     instrument_name='flute',
+                                    short_instrument_name='fl.',
                                     instrument_name_markup=markuptools.Markup(
                                         ('Flute',)
                                         ),
-                                    short_instrument_name='fl.',
                                     short_instrument_name_markup=markuptools.Markup(
                                         ('Fl.',)
                                         ),
@@ -55,10 +55,10 @@ class InstrumentationSpecifier(AbjadObject):
                                     ),
                                 instrumenttools.AltoFlute(
                                     instrument_name='alto flute',
+                                    short_instrument_name='alt. fl.',
                                     instrument_name_markup=markuptools.Markup(
                                         ('Alto flute',)
                                         ),
-                                    short_instrument_name='alt. fl.',
                                     short_instrument_name_markup=markuptools.Markup(
                                         ('Alt. fl.',)
                                         ),
@@ -83,10 +83,10 @@ class InstrumentationSpecifier(AbjadObject):
                             [
                                 instrumenttools.Guitar(
                                     instrument_name='guitar',
+                                    short_instrument_name='gt.',
                                     instrument_name_markup=markuptools.Markup(
                                         ('Guitar',)
                                         ),
-                                    short_instrument_name='gt.',
                                     short_instrument_name_markup=markuptools.Markup(
                                         ('Gt.',)
                                         ),
@@ -108,9 +108,6 @@ class InstrumentationSpecifier(AbjadObject):
                     ]
                 ),
             )
-
-
-
 
     Returns instrumentation specifier.
     '''
@@ -222,10 +219,10 @@ class InstrumentationSpecifier(AbjadObject):
                             [
                                 instrumenttools.Flute(
                                     instrument_name='flute',
+                                    short_instrument_name='fl.',
                                     instrument_name_markup=markuptools.Markup(
                                         ('Flute',)
                                         ),
-                                    short_instrument_name='fl.',
                                     short_instrument_name_markup=markuptools.Markup(
                                         ('Fl.',)
                                         ),
@@ -243,10 +240,10 @@ class InstrumentationSpecifier(AbjadObject):
                                     ),
                                 instrumenttools.AltoFlute(
                                     instrument_name='alto flute',
+                                    short_instrument_name='alt. fl.',
                                     instrument_name_markup=markuptools.Markup(
                                         ('Alto flute',)
                                         ),
-                                    short_instrument_name='alt. fl.',
                                     short_instrument_name_markup=markuptools.Markup(
                                         ('Alt. fl.',)
                                         ),
@@ -271,10 +268,10 @@ class InstrumentationSpecifier(AbjadObject):
                             [
                                 instrumenttools.Guitar(
                                     instrument_name='guitar',
+                                    short_instrument_name='gt.',
                                     instrument_name_markup=markuptools.Markup(
                                         ('Guitar',)
                                         ),
-                                    short_instrument_name='gt.',
                                     short_instrument_name_markup=markuptools.Markup(
                                         ('Gt.',)
                                         ),

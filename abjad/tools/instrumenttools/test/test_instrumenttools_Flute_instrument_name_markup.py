@@ -9,7 +9,7 @@ def test_instrumenttools_Flute_instrument_name_markup_01():
 
     flute = instrumenttools.Flute(instrument_name='foo')
     assert flute.instrument_name == 'foo'
-    assert flute.instrument_name_markup == markuptools.Markup('Flute')
+    assert flute.instrument_name_markup == markuptools.Markup('Foo')
 
     foo_markup = markuptools.Markup('foo')
 

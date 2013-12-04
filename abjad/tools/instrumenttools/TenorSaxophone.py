@@ -30,22 +30,37 @@ class TenorSaxophone(Instrument):
     The tenor saxophone targets staff context by default.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
-    def __init__(self, **kwargs):
-        Instrument.__init__(self, **kwargs)
-        self._default_instrument_name = 'tenor saxophone'
+    def __init__(
+        self,
+        instrument_name='tenor saxophone',
+        short_instrument_name='ten. sax.',
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c='bf,',
+        ):
+        pitch_range = pitch_range or pitchtools.PitchRange(-16, 16)
+        Instrument.__init__(
+            self,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
+            instrument_name_markup=instrument_name_markup,
+            short_instrument_name_markup=short_instrument_name_markup,
+            allowable_clefs=allowable_clefs,
+            pitch_range=pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                sounding_pitch_of_written_middle_c,
+            )
         self._default_performer_names.extend([
             'wind player',
             'reed player',
             'single reed player',
             'saxophonist',
             ])
-        self._default_short_instrument_name = 'ten. sax.'
-        self._is_primary_instrument = False
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch('bf,')
-        self._starting_clefs = [indicatortools.Clef('treble')]
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
-        self._default_pitch_range = pitchtools.PitchRange(-16, 16)
-        #self._make_default_name_markups()

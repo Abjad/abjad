@@ -67,37 +67,37 @@ def test_datastructuretools_TypedList___format___03():
     assert systemtools.TestManager.compare(
         format(inventory),
         r'''
-        datastructuretools.TypedList(
-            [
-                'foo',
-                instrumenttools.Flute(
-                    instrument_name='flute',
-                    instrument_name_markup=markuptools.Markup(
-                        ('Flute',)
-                        ),
-                    short_instrument_name='fl.',
-                    short_instrument_name_markup=markuptools.Markup(
-                        ('Fl.',)
-                        ),
-                    allowable_clefs=indicatortools.ClefInventory(
-                        [
-                            indicatortools.Clef(
-                                'treble'
-                                ),
-                            ]
-                        ),
-                    pitch_range=pitchtools.PitchRange(
-                        '[C4, D7]'
-                        ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+    datastructuretools.TypedList(
+        [
+            'foo',
+            instrumenttools.Flute(
+                instrument_name='flute',
+                short_instrument_name='fl.',
+                instrument_name_markup=markuptools.Markup(
+                    ('Flute',)
                     ),
-                'bar',
-                pitchtools.PitchRange(
-                    '[A0, C8]'
+                short_instrument_name_markup=markuptools.Markup(
+                    ('Fl.',)
                     ),
-                'blah',
-                ]
-            )
+                allowable_clefs=indicatortools.ClefInventory(
+                    [
+                        indicatortools.Clef(
+                            'treble'
+                            ),
+                        ]
+                    ),
+                pitch_range=pitchtools.PitchRange(
+                    '[C4, D7]'
+                    ),
+                sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                ),
+            'bar',
+            pitchtools.PitchRange(
+                '[A0, C8]'
+                ),
+            'blah',
+            ]
+        )
         '''
         )
 
@@ -123,10 +123,10 @@ def test_datastructuretools_TypedList___format___04():
                 'foo',
                 instrumenttools.Flute(
                     instrument_name='flute',
+                    short_instrument_name='fl.',
                     instrument_name_markup=markuptools.Markup(
                         ('Flute',)
                         ),
-                    short_instrument_name='fl.',
                     short_instrument_name_markup=markuptools.Markup(
                         ('Fl.',)
                         ),
