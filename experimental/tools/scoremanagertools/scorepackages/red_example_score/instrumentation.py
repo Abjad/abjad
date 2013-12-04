@@ -9,7 +9,30 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                 name='hornist',
                 instruments=instrumenttools.InstrumentInventory(
                     [
-                        instrumenttools.FrenchHorn(),
+                        instrumenttools.FrenchHorn(
+                            instrument_name='horn',
+                            instrument_name_markup=markuptools.Markup(
+                                ('Horn',)
+                                ),
+                            short_instrument_name='hn.',
+                            short_instrument_name_markup=markuptools.Markup(
+                                ('Hn.',)
+                                ),
+                            allowable_clefs=indicatortools.ClefInventory(
+                                [
+                                    indicatortools.Clef(
+                                        'treble'
+                                        ),
+                                    indicatortools.Clef(
+                                        'bass'
+                                        ),
+                                    ]
+                                ),
+                            pitch_range=pitchtools.PitchRange(
+                                '[B1, F5]'
+                                ),
+                            sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('f'),
+                            ),
                         ]
                     ),
                 ),
@@ -17,7 +40,27 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                 name='trombonist',
                 instruments=instrumenttools.InstrumentInventory(
                     [
-                        instrumenttools.TenorTrombone(),
+                        instrumenttools.TenorTrombone(
+                            instrument_name='tenor trombone',
+                            instrument_name_markup=markuptools.Markup(
+                                ('Tenor trombone',)
+                                ),
+                            short_instrument_name='ten. trb.',
+                            short_instrument_name_markup=markuptools.Markup(
+                                ('Ten. trb.',)
+                                ),
+                            allowable_clefs=indicatortools.ClefInventory(
+                                [
+                                    indicatortools.Clef(
+                                        'treble'
+                                        ),
+                                    ]
+                                ),
+                            pitch_range=pitchtools.PitchRange(
+                                '[E2, Eb5]'
+                                ),
+                            sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                            ),
                         ]
                     ),
                 ),
@@ -25,7 +68,27 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                 name='violinist',
                 instruments=instrumenttools.InstrumentInventory(
                     [
-                        instrumenttools.Violin(),
+                        instrumenttools.Violin(
+                            instrument_name='violin',
+                            instrument_name_markup=markuptools.Markup(
+                                ('Violin',)
+                                ),
+                            short_instrument_name='vn.',
+                            short_instrument_name_markup=markuptools.Markup(
+                                ('Vn.',)
+                                ),
+                            allowable_clefs=indicatortools.ClefInventory(
+                                [
+                                    indicatortools.Clef(
+                                        'treble'
+                                        ),
+                                    ]
+                                ),
+                            pitch_range=pitchtools.PitchRange(
+                                '[G3, G7]'
+                                ),
+                            sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                            ),
                         ]
                     ),
                 ),
@@ -33,7 +96,33 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                 name='cellist',
                 instruments=instrumenttools.InstrumentInventory(
                     [
-                        instrumenttools.Cello(),
+                        instrumenttools.Cello(
+                            instrument_name='cello',
+                            instrument_name_markup=markuptools.Markup(
+                                ('Cello',)
+                                ),
+                            short_instrument_name='vc.',
+                            short_instrument_name_markup=markuptools.Markup(
+                                ('Vc.',)
+                                ),
+                            allowable_clefs=indicatortools.ClefInventory(
+                                [
+                                    indicatortools.Clef(
+                                        'bass'
+                                        ),
+                                    indicatortools.Clef(
+                                        'tenor'
+                                        ),
+                                    indicatortools.Clef(
+                                        'treble'
+                                        ),
+                                    ]
+                                ),
+                            pitch_range=pitchtools.PitchRange(
+                                '[C2, G5]'
+                                ),
+                            sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                            ),
                         ]
                     ),
                 ),
@@ -41,7 +130,27 @@ instrumentation=instrumenttools.InstrumentationSpecifier(
                 name='pianist',
                 instruments=instrumenttools.InstrumentInventory(
                     [
-                        instrumenttools.Piano(),
+                        instrumenttools.Piano(
+                            instrument_name='piano',
+                            instrument_name_markup=markuptools.Markup(
+                                ('Piano',)
+                                ),
+                            short_instrument_name='pf.',
+                            short_instrument_name_markup=markuptools.Markup(
+                                ('Pf.',)
+                                ),
+                            allowable_clefs=indicatortools.ClefInventory(
+                                [
+                                    indicatortools.Clef(
+                                        'treble'
+                                        ),
+                                    ]
+                                ),
+                            pitch_range=pitchtools.PitchRange(
+                                '[A0, C8]'
+                                ),
+                            sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                            ),
                         ]
                     ),
                 ),

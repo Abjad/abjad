@@ -20,8 +20,48 @@ class Performer(AbjadObject):
             name='flutist',
             instruments=instrumenttools.InstrumentInventory(
                 [
-                    instrumenttools.Flute(),
-                    instrumenttools.Piccolo(),
+                    instrumenttools.Flute(
+                        instrument_name='flute',
+                        instrument_name_markup=markuptools.Markup(
+                            ('Flute',)
+                            ),
+                        short_instrument_name='fl.',
+                        short_instrument_name_markup=markuptools.Markup(
+                            ('Fl.',)
+                            ),
+                        allowable_clefs=indicatortools.ClefInventory(
+                            [
+                                indicatortools.Clef(
+                                    'treble'
+                                    ),
+                                ]
+                            ),
+                        pitch_range=pitchtools.PitchRange(
+                            '[C4, D7]'
+                            ),
+                        sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                        ),
+                    instrumenttools.Piccolo(
+                        instrument_name='piccolo',
+                        instrument_name_markup=markuptools.Markup(
+                            ('Piccolo',)
+                            ),
+                        short_instrument_name='picc.',
+                        short_instrument_name_markup=markuptools.Markup(
+                            ('Picc.',)
+                            ),
+                        allowable_clefs=indicatortools.ClefInventory(
+                            [
+                                indicatortools.Clef(
+                                    'treble'
+                                    ),
+                                ]
+                            ),
+                        pitch_range=pitchtools.PitchRange(
+                            '[D5, C8]'
+                            ),
+                        sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''"),
+                        ),
                     ]
                 ),
             )
@@ -205,8 +245,10 @@ class Performer(AbjadObject):
 
         ::
 
-            >>> performer.instruments
-            InstrumentInventory([Flute(), Piccolo()])
+            >>> for instrument in performer.instruments:
+            ...     instrument
+            Flute()
+            Piccolo()
 
         Returns instrument inventory.
         '''

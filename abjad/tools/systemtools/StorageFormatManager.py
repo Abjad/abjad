@@ -154,21 +154,7 @@ class StorageFormatManager(object):
 
         keyword_argument_pieces = []
         for name in specification.keyword_argument_names:
-            if getattr(
-                specification.instance,
-                '_has_default_attribute_values',
-                False,
-                ):
-                value = getattr(specification.instance, name)
-                default_keyword_argument_name = '_default_{}'.format(name)
-                default_value = getattr(
-                    specification.instance,
-                    default_keyword_argument_name,
-                    )
-                if value == default_value:
-                    value = None
-            else:
-                value = getattr(specification.instance, name)
+            value = getattr(specification.instance, name)
             if value is None or isinstance(value, types.MethodType):
                 continue
             pieces = StorageFormatManager.format_one_value(

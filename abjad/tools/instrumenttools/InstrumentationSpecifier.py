@@ -32,8 +32,48 @@ class InstrumentationSpecifier(AbjadObject):
                         name='Flute',
                         instruments=instrumenttools.InstrumentInventory(
                             [
-                                instrumenttools.Flute(),
-                                instrumenttools.AltoFlute(),
+                                instrumenttools.Flute(
+                                    instrument_name='flute',
+                                    instrument_name_markup=markuptools.Markup(
+                                        ('Flute',)
+                                        ),
+                                    short_instrument_name='fl.',
+                                    short_instrument_name_markup=markuptools.Markup(
+                                        ('Fl.',)
+                                        ),
+                                    allowable_clefs=indicatortools.ClefInventory(
+                                        [
+                                            indicatortools.Clef(
+                                                'treble'
+                                                ),
+                                            ]
+                                        ),
+                                    pitch_range=pitchtools.PitchRange(
+                                        '[C4, D7]'
+                                        ),
+                                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                                    ),
+                                instrumenttools.AltoFlute(
+                                    instrument_name='alto flute',
+                                    instrument_name_markup=markuptools.Markup(
+                                        ('Alto flute',)
+                                        ),
+                                    short_instrument_name='alt. fl.',
+                                    short_instrument_name_markup=markuptools.Markup(
+                                        ('Alt. fl.',)
+                                        ),
+                                    allowable_clefs=indicatortools.ClefInventory(
+                                        [
+                                            indicatortools.Clef(
+                                                'treble'
+                                                ),
+                                            ]
+                                        ),
+                                    pitch_range=pitchtools.PitchRange(
+                                        '[G3, G6]'
+                                        ),
+                                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('g'),
+                                    ),
                                 ]
                             ),
                         ),
@@ -41,13 +81,36 @@ class InstrumentationSpecifier(AbjadObject):
                         name='Guitar',
                         instruments=instrumenttools.InstrumentInventory(
                             [
-                                instrumenttools.Guitar(),
+                                instrumenttools.Guitar(
+                                    instrument_name='guitar',
+                                    instrument_name_markup=markuptools.Markup(
+                                        ('Guitar',)
+                                        ),
+                                    short_instrument_name='gt.',
+                                    short_instrument_name_markup=markuptools.Markup(
+                                        ('Gt.',)
+                                        ),
+                                    allowable_clefs=indicatortools.ClefInventory(
+                                        [
+                                            indicatortools.Clef(
+                                                'treble'
+                                                ),
+                                            ]
+                                        ),
+                                    pitch_range=pitchtools.PitchRange(
+                                        '[E2, E5]'
+                                        ),
+                                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('c'),
+                                    ),
                                 ]
                             ),
                         ),
                     ]
                 ),
             )
+
+
+
 
     Returns instrumentation specifier.
     '''
@@ -157,8 +220,48 @@ class InstrumentationSpecifier(AbjadObject):
                         name='Flute',
                         instruments=instrumenttools.InstrumentInventory(
                             [
-                                instrumenttools.Flute(),
-                                instrumenttools.AltoFlute(),
+                                instrumenttools.Flute(
+                                    instrument_name='flute',
+                                    instrument_name_markup=markuptools.Markup(
+                                        ('Flute',)
+                                        ),
+                                    short_instrument_name='fl.',
+                                    short_instrument_name_markup=markuptools.Markup(
+                                        ('Fl.',)
+                                        ),
+                                    allowable_clefs=indicatortools.ClefInventory(
+                                        [
+                                            indicatortools.Clef(
+                                                'treble'
+                                                ),
+                                            ]
+                                        ),
+                                    pitch_range=pitchtools.PitchRange(
+                                        '[C4, D7]'
+                                        ),
+                                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                                    ),
+                                instrumenttools.AltoFlute(
+                                    instrument_name='alto flute',
+                                    instrument_name_markup=markuptools.Markup(
+                                        ('Alto flute',)
+                                        ),
+                                    short_instrument_name='alt. fl.',
+                                    short_instrument_name_markup=markuptools.Markup(
+                                        ('Alt. fl.',)
+                                        ),
+                                    allowable_clefs=indicatortools.ClefInventory(
+                                        [
+                                            indicatortools.Clef(
+                                                'treble'
+                                                ),
+                                            ]
+                                        ),
+                                    pitch_range=pitchtools.PitchRange(
+                                        '[G3, G6]'
+                                        ),
+                                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('g'),
+                                    ),
                                 ]
                             ),
                         ),
@@ -166,7 +269,27 @@ class InstrumentationSpecifier(AbjadObject):
                         name='Guitar',
                         instruments=instrumenttools.InstrumentInventory(
                             [
-                                instrumenttools.Guitar(),
+                                instrumenttools.Guitar(
+                                    instrument_name='guitar',
+                                    instrument_name_markup=markuptools.Markup(
+                                        ('Guitar',)
+                                        ),
+                                    short_instrument_name='gt.',
+                                    short_instrument_name_markup=markuptools.Markup(
+                                        ('Gt.',)
+                                        ),
+                                    allowable_clefs=indicatortools.ClefInventory(
+                                        [
+                                            indicatortools.Clef(
+                                                'treble'
+                                                ),
+                                            ]
+                                        ),
+                                    pitch_range=pitchtools.PitchRange(
+                                        '[E2, E5]'
+                                        ),
+                                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch('c'),
+                                    ),
                                 ]
                             ),
                         ),

@@ -8,26 +8,6 @@ from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-# Note that instruments are the classes in the system that 
-# implement default attribute values.
-#
-# That means that three things are true.
-#
-# First, all instruments come supplied with a default name and 
-# a default short instrument name.
-#
-# Second, all instruments allow users to override both instrument name 
-# and short instrument name.
-#
-# Third, all instruments 'remember' default values 
-# when such values are overridden.
-#
-# When all three of these things are the case we talk about a class 
-# implementing default attribute values.
-#
-# This is the meaning of the '_has_default_attribute_values' class attribute.
-# The impact this currently has in the system concerns the 
-# storage format of such objects.
 class Instrument(AbjadObject):
     '''A musical instrument.
     '''
@@ -35,8 +15,6 @@ class Instrument(AbjadObject):
     ### CLASS VARIABLES ###
 
     _format_slot = 'opening'
-
-    _has_default_attribute_values = True
 
     ### INITIALIZER ###
 
@@ -46,6 +24,9 @@ class Instrument(AbjadObject):
         short_instrument_name=None,
         instrument_name_markup=None,
         short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c=None,
         ):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
@@ -118,30 +99,37 @@ class Instrument(AbjadObject):
             self.short_instrument_name,
             ))
 
+    def __repr__(self):
+        r'''Interpreter representation of instrument.
+
+        Returns string.
+        '''
+        return '{}()'.format(type(self).__name__)
+
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _contents_repr_string(self):
-        result = []
-        for name in (
-            'instrument_name',
-            'instrument_name_markup',
-            'short_instrument_name',
-            'short_instrument_name_markup',
-            'allowable_clefs',
-            'pitch_range',
-            'sounding_pitch_of_written_middle_c',
-            ):
-            value = getattr(self, name)
-            default_keyword_argument_name = '_default_{}'.format(name)
-            default_value = getattr(self, default_keyword_argument_name, None)
-            if value == default_value:
-                value = None
-            if value is not None:
-                string = '{}={!r}'.format(name, value)
-                result.append(string)
-        result = ', '.join(result)
-        return result
+#    @property
+#    def _contents_repr_string(self):
+#        result = []
+#        for name in (
+#            'instrument_name',
+#            'instrument_name_markup',
+#            'short_instrument_name',
+#            'short_instrument_name_markup',
+#            'allowable_clefs',
+#            'pitch_range',
+#            'sounding_pitch_of_written_middle_c',
+#            ):
+#            value = getattr(self, name)
+#            default_keyword_argument_name = '_default_{}'.format(name)
+#            default_value = getattr(self, default_keyword_argument_name, None)
+#            if value == default_value:
+#                value = None
+#            if value is not None:
+#                string = '{}={!r}'.format(name, value)
+#                result.append(string)
+#        result = ', '.join(result)
+#        return result
 
     @property
     def _keyword_argument_names(self):

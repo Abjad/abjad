@@ -77,7 +77,30 @@ class Accordion(Instrument):
 
                 >>> accordion = instrumenttools.Accordion()
                 >>> print format(accordion)
-                instrumenttools.Accordion()
+                instrumenttools.Accordion(
+                    instrument_name='accordion',
+                    instrument_name_markup=markuptools.Markup(
+                        ('Accordion',)
+                        ),
+                    short_instrument_name='acc.',
+                    short_instrument_name_markup=markuptools.Markup(
+                        ('Acc.',)
+                        ),
+                    allowable_clefs=indicatortools.ClefInventory(
+                        [
+                            indicatortools.Clef(
+                                'treble'
+                                ),
+                            indicatortools.Clef(
+                                'bass'
+                                ),
+                            ]
+                        ),
+                    pitch_range=pitchtools.PitchRange(
+                        '[E1, C8]'
+                        ),
+                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
+                    )
 
         ..  container:: example
 
