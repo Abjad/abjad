@@ -252,6 +252,11 @@ class PayloadTree(AbjadObject):
         '''
         return self._children[expr]
 
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return vars(self)
+
     def __len__(self):
         r'''Number of children in payload tree.
 

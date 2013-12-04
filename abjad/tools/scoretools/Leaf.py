@@ -21,8 +21,6 @@ class Leaf(Component):
     ### CLASS VARIABLES ##
 
     __slots__ = (
-        '_after_grace',
-        '_grace',
         '_leaf_index',
         '_written_duration',
         )
@@ -135,7 +133,6 @@ class Leaf(Component):
                 ),
             )
 
-
     ### PRIVATE METHODS ###
 
     def _copy_override_and_set_from_leaf(self, leaf):
@@ -166,20 +163,20 @@ class Leaf(Component):
         result.append(('comments', bundle.after.comments))
         return result
 
-    def _format_agrace_body(leaf):
+    def _format_after_grace_body(leaf):
         result = []
-        if hasattr(leaf, '_after_grace'):
+        if leaf._after_grace is not None:
             after_grace = leaf.after_grace
             if len(after_grace):
                 result.append(format(after_grace))
-        return ['agrace body', result]
+        return ['after grace body', result]
 
-    def _format_agrace_opening(leaf):
+    def _format_after_grace_opening(leaf):
         result = []
-        if hasattr(leaf, '_after_grace'):
+        if leaf._after_grace is not None:
             if len(leaf.after_grace):
                 result.append(r'\afterGrace')
-        return ['agrace opening', result]
+        return ['after grace opening', result]
 
     def _format_before_slot(leaf, bundle):
         result = []
@@ -197,7 +194,7 @@ class Leaf(Component):
 
     def _format_closing_slot(leaf, bundle):
         result = []
-        result.append(leaf._format_agrace_body())
+        result.append(leaf._format_after_grace_body())
         result.append(('spanners', bundle.closing.spanners))
         result.append(('commands', bundle.closing.commands))
         result.append(('indicators', bundle.closing.indicators))
@@ -211,7 +208,7 @@ class Leaf(Component):
 
     def _format_grace_body(leaf):
         result = []
-        if hasattr(leaf, '_grace'):
+        if leaf._grace is not None:
             grace = leaf.grace
             if len(grace):
                 result.append(format(grace))
@@ -267,7 +264,7 @@ class Leaf(Component):
         result.append(('indicators', bundle.opening.indicators))
         result.append(('commands', bundle.opening.commands))
         result.append(('spanners', bundle.opening.spanners))
-        result.append(leaf._format_agrace_opening())
+        result.append(leaf._format_after_grace_opening())
         return result
 
     def _get_leaf(self, n=0):

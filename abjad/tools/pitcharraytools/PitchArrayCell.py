@@ -94,6 +94,11 @@ class PitchArrayCell(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return vars(self)
+
     def __repr__(self):
         r'''Interpreter representation of pitch array cell.
 

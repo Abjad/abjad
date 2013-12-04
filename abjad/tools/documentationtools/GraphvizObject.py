@@ -14,6 +14,13 @@ class GraphvizObject(AbjadObject):
     def __init__(self, attributes=None):
         self._verify_attributes(attributes, '_attributes')
 
+    ### SPECIAL METHODS ###
+
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return vars(self)
+
     ### PRIVATE METHODS ###
 
     def _format_attribute(self, name, value):

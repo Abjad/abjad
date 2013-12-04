@@ -34,8 +34,7 @@ class Note(Leaf):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_note_head', 
-        '_pitch',
+        '_note_head',
         )
 
     _repr_is_evaluable = True

@@ -39,14 +39,16 @@ class LilyPondFormatManager(object):
         from abjad.tools import scoretools
         manager = LilyPondFormatManager
         if isinstance(component, (scoretools.Leaf, scoretools.Measure)):
-            for name, value in vars(contextualize(component)).iteritems():
+            contextualizer = contextualize(component)
+            variables = vars(contextualizer)
+            for name, value in variables.iteritems():
                 # if we've found a leaf context namespace
                 if name.startswith('_'):
                     for x, y in vars(value).iteritems():
                         if not x.startswith('_'):
                             string = \
                                 manager.format_lilypond_context_setting_inline(
-                                x, y, name)
+                                    x, y, name)
                             result.append(string)
                 # otherwise we've found a default leaf context setting
                 else:
@@ -69,7 +71,7 @@ class LilyPondFormatManager(object):
         result = []
         is_once = isinstance(component, scoretools.Leaf)
         contributions = override(component)._list_format_contributions(
-            'override', 
+            'override',
             is_once=is_once,
             )
         for string in result[:]:
@@ -161,27 +163,27 @@ class LilyPondFormatManager(object):
         # handle nonscoped expressions
         for nonscoped_expression in nonscoped_expressions:
             if isinstance(
-                nonscoped_expression.indicator, 
+                nonscoped_expression.indicator,
                 indicatortools.Articulation,
                 ):
                 format_slot_subsection = 'articulations'
             elif isinstance(
-                nonscoped_expression.indicator, 
+                nonscoped_expression.indicator,
                 indicatortools.BendAfter,
                 ):
                 format_slot_subsection = 'articulations'
             elif isinstance(
-                nonscoped_expression.indicator, 
+                nonscoped_expression.indicator,
                 indicatortools.LilyPondCommand,
                 ):
                 format_slot_subsection = 'commands'
             elif isinstance(
-                nonscoped_expression.indicator, 
+                nonscoped_expression.indicator,
                 indicatortools.LilyPondComment,
                 ):
                 format_slot_subsection = 'comments'
             elif isinstance(
-                nonscoped_expression.indicator, 
+                nonscoped_expression.indicator,
                 indicatortools.StemTremolo,
                 ):
                 format_slot_subsection = 'stem_tremolos'
@@ -206,7 +208,7 @@ class LilyPondFormatManager(object):
             'closing': [],
             'opening': [],
             'right': [],
-        }
+            }
         if isinstance(component, scoretools.Container):
             before_contributions = result['before']
             after_contributions = result['after']
@@ -219,7 +221,7 @@ class LilyPondFormatManager(object):
             # override contributions (in before slot)
             if spanner._is_my_first_leaf(component):
                 contributions = override(spanner)._list_format_contributions(
-                    'override', 
+                    'override',
                     is_once=False,
                     )
                 for contribution in contributions:
@@ -353,7 +355,7 @@ class LilyPondFormatManager(object):
 
     @staticmethod
     def format_lilypond_value(expr):
-        r'''Formats LilyPond `expr` according to Scheme formatting 
+        r'''Formats LilyPond `expr` according to Scheme formatting
         conventions.
 
         Returns string.

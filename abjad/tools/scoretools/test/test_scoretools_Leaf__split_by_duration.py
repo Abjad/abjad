@@ -448,8 +448,8 @@ def test_scoretools_Leaf__split_by_duration_18():
     halves = note._split_by_duration(Duration(5, 32))
 
     assert len(halves) == 2
-    assert not hasattr(halves[0][0], 'after_grace')
-    assert not hasattr(halves[0][1], 'after_grace')
+    assert getattr(halves[0][0], 'after_grace', None) is None
+    assert getattr(halves[0][1], 'after_grace', None) is None
     assert len(halves[1]) == 1
     assert len(halves[1][0].after_grace) == 1
 
@@ -466,4 +466,4 @@ def test_scoretools_Leaf__split_by_duration_19():
     assert len(halves[0]) == 1
     assert len(halves[1]) == 1
     assert len(halves[0][0].grace) == 1
-    assert not hasattr(halves[1][0], 'grace')
+    assert not hasattr(halves[1][0], 'grace') is None

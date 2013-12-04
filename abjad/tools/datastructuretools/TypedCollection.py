@@ -11,8 +11,8 @@ class TypedCollection(AbjadObject):
 
     __slots__ = (
         '_collection',
-        '_item_class',
         '_custom_identifier',
+        '_item_class',
         )
 
     ### INITIALIZER ###
@@ -23,7 +23,7 @@ class TypedCollection(AbjadObject):
         self._item_class = item_class
         if isinstance(tokens, type(self)):
             custom_identifier = tokens.custom_identifier or custom_identifier
-        self.custom_identifier = custom_identifier
+        self._custom_identifier = custom_identifier
 
     ### SPECIAL METHODS ###
 
@@ -155,6 +155,7 @@ class TypedCollection(AbjadObject):
                 self._collection,
                 )
             )
+
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
@@ -183,9 +184,9 @@ class TypedCollection(AbjadObject):
         return self._custom_identifier
 
     @custom_identifier.setter
-    def custom_identifier(self, _custom_identifier):
-        assert isinstance(_custom_identifier, (str, type(None)))
-        self._custom_identifier = _custom_identifier
+    def custom_identifier(self, custom_identifier):
+        assert isinstance(custom_identifier, (str, type(None)))
+        self._custom_identifier = custom_identifier
 
     @property
     def item_class(self):

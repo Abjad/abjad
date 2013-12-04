@@ -29,7 +29,6 @@ class Chord(Leaf):
 
     __slots__ = (
         '_note_heads',
-        '_written_pitches',
         )
 
     ### INITIALIZER ###

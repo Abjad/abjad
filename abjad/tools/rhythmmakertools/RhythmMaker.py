@@ -78,6 +78,11 @@ class RhythmMaker(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return vars(self)
+
     ### PRIVATE METHODS ###
 
     # TODO: make static

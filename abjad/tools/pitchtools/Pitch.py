@@ -14,8 +14,6 @@ class Pitch(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_pitch_class',
-        '_octave_indication',
         )
 
     _diatonic_pitch_name_regex_body = '''

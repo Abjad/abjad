@@ -39,6 +39,10 @@ class ClefInventory(TypedList):
     Clef inventories implement the list interface and are mutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### SPECIAL METHODS ###
 
     def __illustrate__(self):

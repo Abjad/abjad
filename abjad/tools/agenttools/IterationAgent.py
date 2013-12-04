@@ -308,7 +308,7 @@ class IterationAgent(abctools.AbjadObject):
         Include grace leaves after main leaves.
         '''
         prototype = prototype or scoretools.Leaf
-        if hasattr(self._client, '_grace'):
+        if self._client._grace is not None:
             for m in self._client.grace:
                 for x in iterate(m).by_components_and_grace_containers(
                     prototype,
@@ -316,7 +316,7 @@ class IterationAgent(abctools.AbjadObject):
                     yield x
             if isinstance(self._client, prototype):
                 yield self._client
-        if hasattr(self._client, '_after_grace'):
+        if self._client._after_grace is not None:
             for m in self._client.after_grace:
                 for x in iterate(m).by_components_and_grace_containers(
                     prototype,

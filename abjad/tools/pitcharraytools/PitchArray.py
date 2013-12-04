@@ -94,6 +94,11 @@ class PitchArray(AbjadObject):
         '''
         return self.rows[arg]
 
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return vars(self)
+
     def __iadd__(self, arg):
         r'''Adds `arg` to pitch array in place.
 

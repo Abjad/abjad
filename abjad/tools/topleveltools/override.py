@@ -5,7 +5,7 @@ def override(expr):
     '''
     from abjad.tools import lilypondnametools
 
-    if not hasattr(expr, '_override'):
+    if getattr(expr, '_override', None) is None:
         plug_in = lilypondnametools.LilyPondGrobNameManager()
         expr._override = plug_in
 

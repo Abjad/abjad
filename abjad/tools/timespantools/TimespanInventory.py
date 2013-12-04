@@ -92,6 +92,10 @@ class TimespanInventory(TypedList):
     Operations on timespan currently work in place.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):

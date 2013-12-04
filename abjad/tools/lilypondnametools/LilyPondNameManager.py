@@ -18,6 +18,12 @@ class LilyPondNameManager(AbjadObject):
             return self._get_attribute_pairs() == arg._get_attribute_pairs()
         return False
 
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        import copy
+        return copy.deepcopy(vars(self))
+
     def __repr__(self):
         r'''Interpreter representation of LilyPond name manager.
 
@@ -30,6 +36,12 @@ class LilyPondNameManager(AbjadObject):
             strings = [x.replace(prefix, '') for x in strings]
             body_string = ', '.join(strings)
         return '{}({})'.format(type(self).__name__, body_string)
+
+    def __setstate__(self, state):
+        r'''Sets object state.
+        '''
+        for key, value in state.iteritems():
+            self.__dict__[key] = value
 
     ### PRIVATE METHODS ###
 

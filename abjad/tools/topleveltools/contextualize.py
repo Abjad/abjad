@@ -5,7 +5,8 @@ def contextualize(expr):
     '''
     from abjad.tools import lilypondnametools
 
-    if not hasattr(expr, '_set'):
+    if getattr(expr, '_set', None) is None:
+    #if not hasattr(expr, '_set'):
         manager = lilypondnametools.LilyPondSettingNameManager()
         expr._set = manager
 

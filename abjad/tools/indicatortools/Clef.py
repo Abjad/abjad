@@ -62,6 +62,12 @@ class Clef(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_default_scope',
+        '_middle_c_position',
+        '_name',
+        )
+
     _clef_name_to_middle_c_position = {
         'treble': -6,
         'alto': 0,
@@ -74,7 +80,7 @@ class Clef(AbjadObject):
         'varbaritone': 4,
         'percussion': 0,
         'tab': 0
-    }
+        }
 
     _default_positional_input_arguments = (
         repr('alto'),

@@ -68,6 +68,11 @@ class PitchArrayColumn(AbjadObject):
         '''
         return self.cells[arg]
 
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return vars(self)
+
     def __ne__(self, arg):
         r'''True when pitch array column does not equal `arg`. Otherwise false.
 

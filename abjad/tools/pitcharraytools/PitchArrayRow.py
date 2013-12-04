@@ -139,6 +139,11 @@ class PitchArrayRow(AbjadObject):
             message = 'must be int or slice.'
             raise ValueError(message)
 
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return vars(self)
+
     def __iadd__(self, arg):
         r'''Adds `arg` to pitch array row in place.
 

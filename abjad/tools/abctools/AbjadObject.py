@@ -37,6 +37,17 @@ class AbjadObject(object):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        if hasattr(self, '__dict__'):
+            return vars(self)
+        state = {}
+        for class_ in type(self).__mro__:
+            for slot in getattr(class_, '__slots__', ()):
+                state[slot] = getattr(self, slot, None)
+        return state
+
     def __ne__(self, expr):
         r'''True when ID of `expr` does not equal ID of Abjad object.
 
@@ -51,6 +62,12 @@ class AbjadObject(object):
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.get_repr_format(self)
+
+    def __setstate__(self, state):
+        r'''Sets object state.
+        '''
+        for key, value in state.iteritems():
+            setattr(self, key, value)
 
     ### PRIVATE PROPERTIES ###
 

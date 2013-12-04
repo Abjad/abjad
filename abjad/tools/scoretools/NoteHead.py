@@ -40,6 +40,7 @@ class NoteHead(AbjadObject):
         from abjad.tools import scoretools
         assert isinstance(client, (type(None), scoretools.Leaf))
         self._client = client
+        self._tweak = None
         if isinstance(written_pitch, type(self)):
             note_head = written_pitch
             written_pitch = note_head.written_pitch
@@ -311,7 +312,7 @@ class NoteHead(AbjadObject):
         Returns LilyPond tweak reservoir.
         '''
         from abjad.tools import lilypondnametools
-        if not hasattr(self, '_tweak'):
+        if self._tweak is None:
             self._tweak = lilypondnametools.LilyPondNameManager()
         return self._tweak
 

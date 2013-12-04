@@ -27,8 +27,10 @@ class Component(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_indicators',
+        '_after_grace',
         '_dependent_expressions',
+        '_grace',
+        '_indicators',
         '_indicators_are_current',
         '_is_forbidden_to_update',
         '_offsets_are_current',
@@ -50,13 +52,17 @@ class Component(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self):
-        self._indicators = []
+        self._after_grace = None
         self._dependent_expressions = []
-        self._is_forbidden_to_update = False
+        self._grace = None
+        self._indicators = []
         self._indicators_are_current = False
-        self._offsets_in_seconds_are_current = False
+        self._is_forbidden_to_update = False
         self._offsets_are_current = False
+        self._offsets_in_seconds_are_current = False
+        self._override = None
         self._parent = None
+        self._set = None
         self._spanners = set()
         self._start_offset = None
         self._start_offset_in_seconds = None
@@ -372,7 +378,7 @@ class Component(AbjadObject):
             'after',
             )
         if isinstance(slot_identifier, int):
-            assert slot_identifier in range(1, 7+1)
+            assert slot_identifier in range(1, 7 + 1)
             slot_index = slot_number - 1
             slot_name = slot_names[slot_index]
         elif isinstance(slot_identifier, str):
@@ -387,19 +393,21 @@ class Component(AbjadObject):
     def _get_grace_containers(self, kind=None):
         from abjad.tools import scoretools
         result = []
-        if kind in (None, 'grace') and hasattr(self, '_grace'):
+        if kind in (None, 'grace') and \
+            getattr(self, '_grace', None) is not None:
             result.append(self._grace)
-        if kind in (None, 'after') and hasattr(self, '_after_grace'):
+        if kind in (None, 'after') and \
+            getattr(self, '_after_grace', None) is not None:
             result.append(self._after_grace)
         elif kind == scoretools.GraceContainer:
-            if hasattr(self, '_grace'):
+            if self._grace is not None:
                 result.append(self._grace)
-            if hasattr(self, '_after_grace'):
+            if self._after_grace is not None:
                 result.append(self._after_grace)
         elif isinstance(kind, scoretools.GraceContainer):
-            if hasattr(self, '_grace'):
+            if self._grace is not None:
                 result.append(self._grace)
-            if hasattr(self, '_after_grace'):
+            if self._after_grace is not None:
                 result.append(self._after_grace)
         return tuple(result)
 

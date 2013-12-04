@@ -27,6 +27,7 @@ class Spanner(AbjadObject):
         self._initialize_components(components)
         self._apply_overrides(overrides)
         self._indicators = []
+        self._set = None
 
     ### SPECIAL METHODS ###
 
@@ -70,6 +71,11 @@ class Spanner(AbjadObject):
         Returns empty tuple.
         '''
         return ()
+
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return vars(self)
 
     def __len__(self):
         r'''Length of spanner.
