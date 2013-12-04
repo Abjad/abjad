@@ -18,11 +18,11 @@ def list_all_abjad_classes(modules=None):
     if modules is None:
         paths.append(abjad_configuration.abjad_directory_path)
     elif isinstance(modules, types.ModuleType):
-        paths.append(modules.__path__)
+        paths.extend(modules.__path__)
     elif isinstance(modules, collections.Iterable):
         for module in modules:
             if isinstance(module, types.ModuleType):
-                paths.append(module.__path__)
+                paths.extend(module.__path__)
     for path in paths:
         class_documenter = documentationtools.ClassCrawler(
             path,

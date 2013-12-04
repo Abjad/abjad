@@ -131,8 +131,8 @@ class Spanner(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        keyword_argument_names = \
-            systemtools.StorageFormatManager.get_keyword_argument_names(self)
+        keyword_argument_names = list(
+            systemtools.StorageFormatManager.get_keyword_argument_names(self))
         if 'overrides' in keyword_argument_names:
             keyword_argument_names.remove('overrides')
         return systemtools.StorageFormatSpecification(
