@@ -8,12 +8,12 @@ from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 class FunctionCrawler(abctools.AbjadObject):
     r'''Function crawler.
     '''
-    
+
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_code_root', 
-        '_include_private_objects', 
+        '_code_root',
+        '_include_private_objects',
         '_module_crawler',
         '_root_package_name',
         )
@@ -21,9 +21,9 @@ class FunctionCrawler(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        code_root='.', 
-        include_private_objects=False, 
+        self,
+        code_root=None,
+        include_private_objects=False,
         root_package_name=None,
         ):
         self._module_crawler = ModuleCrawler(
