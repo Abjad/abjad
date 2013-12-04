@@ -13,26 +13,28 @@ class ModuleCrawler(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_code_root', 
-        '_ignored_directory_names', 
+        '_code_root',
+        '_ignored_directory_names',
         '_root_package_name',
         '_visit_private_modules',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        code_root='.',
+    def __init__(self,
+        code_root=None,
         ignored_directory_names=(
             '__pycache__',
             '.git',
             '.svn',
-            'test', 
+            'test',
             ),
         root_package_name=None,
         visit_private_modules=False,
         ):
-
+        from abjad import abjad_configuration
+        if code_root is None:
+            code_root = abjad_configuration.abjad_directory_path
         assert os.path.exists(code_root)
         if not os.path.exists(os.path.join(code_root, '__init__.py')):
             message = '{} is not a Python package directory.'
