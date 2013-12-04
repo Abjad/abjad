@@ -30,20 +30,36 @@ class Trumpet(Instrument):
     The trumpet targets staff context by default.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
-    def __init__(self, **kwargs):
-        Instrument.__init__(self, **kwargs)
-        self._default_instrument_name = 'trumpet'
+    def __init__(
+        self,
+        instrument_name='trumpet',
+        short_instrument_name='tp.',
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c=None,
+        ):
+        pitch_range = pitch_range or pitchtools.PitchRange(-6, 26)
+        Instrument.__init__(
+            self,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
+            instrument_name_markup=instrument_name_markup,
+            short_instrument_name_markup=short_instrument_name_markup,
+            allowable_clefs=allowable_clefs,
+            pitch_range=pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                sounding_pitch_of_written_middle_c,
+            )
         self._default_performer_names.extend([
             'brass player',
             'trumpeter',
             ])
-        self._default_short_instrument_name = 'tp.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch("c'")
-        self._starting_clefs = [indicatortools.Clef('treble')]
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
-        self._default_pitch_range = pitchtools.PitchRange(-6, 26)
-        #self._make_default_name_markups()

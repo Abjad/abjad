@@ -16,6 +16,21 @@ class Instrument(AbjadObject):
 
     _format_slot = 'opening'
 
+    # TODO: change _default_performer_names to just _performer_names
+    __slots__ = (
+        '_allowable_clefs',
+        '_default_performer_names',
+        '_default_scope',
+        '_instrument_name',
+        '_instrument_name_markup',
+        '_is_primary_instrument',
+        '_pitch_range',
+        '_short_instrument_name',
+        '_short_instrument_name_markup',
+        '_sounding_pitch_of_written_middle_c',
+        '_starting_clefs',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -30,25 +45,30 @@ class Instrument(AbjadObject):
         ):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
-        self._default_instrument_name = instrument_name
-        self._default_instrument_name_markup = instrument_name_markup
-        self._default_short_instrument_name = short_instrument_name
-        self._default_short_instrument_name_markup = \
-            short_instrument_name_markup
-        self.instrument_name = instrument_name
-        self.instrument_name_markup = instrument_name_markup
-        self.short_instrument_name = short_instrument_name
-        self.short_instrument_name_markup = short_instrument_name_markup
-        pitch = pitchtools.NamedPitch("c'")
-        clefs = indicatortools.ClefInventory(['treble'])
-        self._default_allowable_clefs = copy.deepcopy(clefs)
+
+        self._instrument_name = instrument_name
+        self._instrument_name_markup = instrument_name_markup
+        self._short_instrument_name = short_instrument_name
+        self._short_instrument_name_markup = short_instrument_name_markup
+
+        sounding_pitch_of_written_middle_c = \
+            sounding_pitch_of_written_middle_c or pitchtools.NamedPitch("c'")
+        sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedPitch(sounding_pitch_of_written_middle_c)
+
+        allowable_clefs = allowable_clefs or ['treble']
+        allowable_clefs = indicatortools.ClefInventory(allowable_clefs)
+
         self._default_performer_names = ['instrumentalist']
-        self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_starting_clefs = copy.deepcopy(clefs)
-        self._allowable_clefs = None
+
+        self._allowable_clefs = allowable_clefs
+
+        pitch_range = pitchtools.PitchRange(pitch_range)
+        self._pitch_range = pitch_range
+        self._sounding_pitch_of_written_middle_c = \
+            sounding_pitch_of_written_middle_c
+
         self._is_primary_instrument = False
-        self._pitch_range = None
-        self._sounding_pitch_of_written_middle_c = None
         self._starting_clefs = None
 
     ### SPECIAL METHODS ###
@@ -59,20 +79,35 @@ class Instrument(AbjadObject):
         Returns new instrument.
         '''
         return type(self)(
-            instrument_name_markup=self.instrument_name_markup, 
+            instrument_name=self.instrument_name,
+            short_instrument_name=self.short_instrument_name,
+            instrument_name_markup=self.instrument_name_markup,
             short_instrument_name_markup=self.short_instrument_name_markup,
+            allowable_clefs=self.allowable_clefs,
+            pitch_range=self.pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                self.sounding_pitch_of_written_middle_c,
             )
 
     def __eq__(self, arg):
-        r'''True when instrument equals `arg`.
-        Otherwise false.
+        r'''True when `arg` is an instrument with instrument name, short
+        instrument name, instrument name markup, short instrument name markup,
+        allowable clefs, pitch range and sounding pitch all equal to those of
+        this instrument. Otherwise false.
 
         Returns boolean.
         '''
         if isinstance(arg, type(self)):
-            if self.instrument_name == arg.instrument_name:
-                if self.short_instrument_name == arg.short_instrument_name:
-                    return True
+            if self.instrument_name == arg.instrument_name and \
+                self.short_instrument_name == arg.short_instrument_name:
+                #self.instrument_name_markup == arg.instrument_name_markup and \
+                #self.short_instrument_name_markup == \
+                #    arg.short_instrument_name_markup and \
+                #self.allowable_clefs == arg.allowable_clefs and \
+                #self.pitch_range == arg.pitch_range and \
+                #self.sounding_pitch_of_written_middle_c == \
+                #    arg.sounding_pitch_of_written_middle_c:
+                return True
         return False
 
     def __format__(self, format_specification=''):
@@ -97,6 +132,11 @@ class Instrument(AbjadObject):
             type(self).__name__,
             self.instrument_name, 
             self.short_instrument_name,
+            #self.instrument_name_markup,
+            #self.short_instrument_name_markup,
+            #self.allowable_clefs,
+            #self.pitch_range,
+            #self.sounding_pitch_of_written_middle_c,
             ))
 
     def __repr__(self):
@@ -131,10 +171,10 @@ class Instrument(AbjadObject):
 #        result = ', '.join(result)
 #        return result
 
-    @property
-    def _keyword_argument_names(self):
-        return (
-            )
+#    @property
+#    def _keyword_argument_names(self):
+#        return (
+#            )
 
     # TODO: _scope_name needs to be taken from IndicatorExpression!
     #       should not be stored on instrument.
@@ -166,28 +206,30 @@ class Instrument(AbjadObject):
         else:
             return type(self._default_scope).__name__
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(
-                'instrument_name',
-                'instrument_name_markup',
-                'short_instrument_name',
-                'short_instrument_name_markup',
-                'allowable_clefs',
-                'pitch_range',
-                'sounding_pitch_of_written_middle_c',
-                ),
-            )
+#    @property
+#    def _storage_format_specification(self):
+#        from abjad.tools import systemtools
+#        return systemtools.StorageFormatSpecification(
+#            self,
+#            keyword_argument_names=(
+#                'instrument_name',
+#                'instrument_name_markup',
+#                'short_instrument_name',
+#                'short_instrument_name_markup',
+#                'allowable_clefs',
+#                'pitch_range',
+#                'sounding_pitch_of_written_middle_c',
+#                ),
+#            )
 
     ### PRIVATE METHODS ###
 
     def _copy_default_starting_clefs_to_default_allowable_clefs(self):
-        clefs = self._default_starting_clefs
+        #clefs = self._default_starting_clefs
+        clefs = self._starting_clefs
         clefs = indicatortools.ClefInventory(clefs)
-        self._default_allowable_clefs = clefs
+        #self._default_allowable_clefs = clefs
+        self._allowable_clefs = clefs
 
     def _get_default_performer_name(self):
         if self._default_performer_names is None:
@@ -215,17 +257,6 @@ class Instrument(AbjadObject):
             ...
             'accordion'
             'alto flute'
-            'alto saxophone'
-            'alto trombone'
-            'baritone saxophone'
-            'baritone voice'
-            'bass clarinet'
-            'bass flute'
-            'bass saxophone'
-            'bass trombone'
-            'bass voice'
-            'bassoon'
-            'cello'
             ...
 
         Returns list.
@@ -233,6 +264,7 @@ class Instrument(AbjadObject):
         instrument_names = []
         for instrument_class in cls._list_instruments():
             instrument = instrument_class()
+            assert instrument.instrument_name is not None, repr(instrument)
             instrument_names.append(instrument.instrument_name)
         instrument_names.sort(key=lambda x: x.lower())
         return instrument_names
@@ -288,15 +320,19 @@ class Instrument(AbjadObject):
                 secondary_instruments.append(instrument_class)
         return secondary_instruments
 
-    def _make_default_name_markups(self):
-        string = self._default_instrument_name
+    def _initialize_default_name_markups(self):
+        #string = self._default_instrument_name
+        string = self.instrument_name
         string = stringtools.capitalize_string_start(string)
         markup = markuptools.Markup(string)
-        self._default_instrument_name_markup = markup
-        string = self._default_short_instrument_name
+        #self._default_instrument_name_markup = markup
+        self._instrument_name_markup = markup
+        #string = self._default_short_instrument_name
+        string = self.short_instrument_name
         string = stringtools.capitalize_string_start(string)
         markup = markuptools.Markup(string)
-        self._default_short_instrument_name_markup = markup
+        #self._default_short_instrument_name_markup = markup
+        self._short_instrument_name_markup = markup
 
     ### PUBLIC PROPERTIES ###
 
@@ -307,16 +343,8 @@ class Instrument(AbjadObject):
         Returns clef inventory.
         '''
         if self._allowable_clefs is None:
-            clefs = self._default_allowable_clefs
-            clefs = indicatortools.ClefInventory(clefs)
-            self._allowable_clefs = clefs
+            self._allowable_clefs = indicatortools.ClefInventory('treble')
         return self._allowable_clefs
-
-    @allowable_clefs.setter
-    def allowable_clefs(self, clefs):
-        if clefs is not None:
-            clefs = indicatortools.ClefInventory(clefs)
-        self._allowable_clefs = clefs
 
     @property
     def instrument_name(self):
@@ -324,15 +352,7 @@ class Instrument(AbjadObject):
 
         Returns string.
         '''
-        if self._instrument_name is None:
-            return self._default_instrument_name
-        else:
-            return self._instrument_name
-
-    @instrument_name.setter
-    def instrument_name(self, instrument_name):
-        assert isinstance(instrument_name, (str, type(None)))
-        self._instrument_name = instrument_name
+        return self._instrument_name
 
     @property
     def instrument_name_markup(self):
@@ -341,22 +361,8 @@ class Instrument(AbjadObject):
         Returns markup.
         '''
         if self._instrument_name_markup is None:
-            if self._default_instrument_name_markup is None:
-                self._make_default_name_markups()
-            markup = self._default_instrument_name_markup
-            markup = copy.copy(markup)
-            self._instrument_name_markup = markup
+            self._initialize_default_name_markups()
         return self._instrument_name_markup
-
-    @instrument_name_markup.setter
-    def instrument_name_markup(self, instrument_name_markup):
-        from abjad.tools.markuptools import Markup
-        assert isinstance(
-            instrument_name_markup, (str, type(Markup('')), type(None)))
-        if instrument_name_markup is None:
-            self._instrument_name_markup = instrument_name_markup
-        else:
-            self._instrument_name_markup = Markup(instrument_name_markup)
 
     @property
     def pitch_range(self):
@@ -367,12 +373,6 @@ class Instrument(AbjadObject):
         if self._pitch_range is None:
             return self._default_pitch_range
         return self._pitch_range
-
-    @pitch_range.setter
-    def pitch_range(self, pitch_range):
-        if pitch_range is not None:
-            pitch_range = pitchtools.PitchRange(pitch_range)
-        self._pitch_range = pitch_range
 
     @property
     def short_instrument_name(self):
@@ -385,11 +385,6 @@ class Instrument(AbjadObject):
         else:
             return self._short_instrument_name
 
-    @short_instrument_name.setter
-    def short_instrument_name(self, short_instrument_name):
-        assert isinstance(short_instrument_name, (str, type(None)))
-        self._short_instrument_name = short_instrument_name
-
     @property
     def short_instrument_name_markup(self):
         r'''Gets and sets short instrument name markup.
@@ -397,24 +392,8 @@ class Instrument(AbjadObject):
         Returns markup.
         '''
         if self._short_instrument_name_markup is None:
-            if self._default_instrument_name_markup is None:
-                self._make_default_name_markups()
-            markup = self._default_short_instrument_name_markup
-            markup = copy.copy(markup)
-            self._short_instrument_name_markup = markup
+            self._initialize_default_name_markups()
         return self._short_instrument_name_markup
-
-    @short_instrument_name_markup.setter
-    def short_instrument_name_markup(self, short_instrument_name_markup):
-        from abjad.tools import markuptools
-        prototype = (str, type(markuptools.Markup('')), type(None))
-        assert isinstance(short_instrument_name_markup, prototype)
-        if short_instrument_name_markup is None:
-            markup = short_instrument_name_markup
-            self._short_instrument_name_markup = markup
-        else:
-            markup = markuptools.Markup(short_instrument_name_markup)
-            self._short_instrument_name_markup = markup
 
     @property
     def sounding_pitch_of_written_middle_c(self):
@@ -422,12 +401,4 @@ class Instrument(AbjadObject):
 
         Returns named pitch.
         '''
-        if self._sounding_pitch_of_written_middle_c is None:
-            return self._default_sounding_pitch_of_written_middle_c
         return self._sounding_pitch_of_written_middle_c
-
-    @sounding_pitch_of_written_middle_c.setter
-    def sounding_pitch_of_written_middle_c(self, pitch):
-        pitch = pitch or self._default_sounding_pitch_of_written_middle_c
-        pitch = pitchtools.NamedPitch(pitch)
-        self._sounding_pitch_of_written_middle_c = pitch

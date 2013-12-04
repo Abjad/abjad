@@ -22,10 +22,10 @@ class Performer(AbjadObject):
                 [
                     instrumenttools.Flute(
                         instrument_name='flute',
+                        short_instrument_name='fl.',
                         instrument_name_markup=markuptools.Markup(
                             ('Flute',)
                             ),
-                        short_instrument_name='fl.',
                         short_instrument_name_markup=markuptools.Markup(
                             ('Fl.',)
                             ),
@@ -43,10 +43,10 @@ class Performer(AbjadObject):
                         ),
                     instrumenttools.Piccolo(
                         instrument_name='piccolo',
+                        short_instrument_name='picc.',
                         instrument_name_markup=markuptools.Markup(
                             ('Piccolo',)
                             ),
-                        short_instrument_name='picc.',
                         short_instrument_name_markup=markuptools.Markup(
                             ('Picc.',)
                             ),
@@ -199,14 +199,13 @@ class Performer(AbjadObject):
             ('guitarist', 'gt.')
             ('harpist', 'hp.')
             ('harpsichordist', 'hpschd.')
-            ('hornist', 'hn.')
             ('mezzo-soprano', 'ms.')
             ('oboist', 'ob.')
             ('pianist', 'pf.')
             ('saxophonist', 'alt. sax.')
             ('soprano', 'sop.')
             ('tenor', 'ten.')
-            ('trombonist', 'trb.')
+            ('trombonist', 'ten. trb.')
             ('trumpeter', 'tp.')
             ('tubist', 'tb.')
             ('violinist', 'vn.')
@@ -223,7 +222,7 @@ class Performer(AbjadObject):
                 performer_abbreviation = getattr(
                     instrument, 'default_performer_abbreviation', None)
                 performer_abbreviation = performer_abbreviation or \
-                    instrument._default_short_instrument_name
+                    instrument.short_instrument_name
                 performer_names.add((performer_name, performer_abbreviation))
         return list(sorted(performer_names))
     ### PUBLIC PROPERTIES ###

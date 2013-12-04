@@ -24,5 +24,5 @@ def default_instrument_name_to_instrument_class(default_instrument_name):
 
     for instrument_class in instrumenttools.Instrument._list_instruments():
         instrument = instrument_class()
-        if instrument._default_instrument_name == default_instrument_name:
+        if instrument.instrument_name == default_instrument_name:
             return instrument_class

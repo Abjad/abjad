@@ -19,8 +19,8 @@ class SopranoVoice(Instrument):
 
         >>> print format(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { Soprano voice }
-            \set Staff.shortInstrumentName = \markup { Soprano }
+            \set Staff.instrumentName = \markup { Soprano }
+            \set Staff.shortInstrumentName = \markup { Sop. }
             c''8
             d''8
             e''8
@@ -32,21 +32,36 @@ class SopranoVoice(Instrument):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = ()
+
     default_performer_abbreviation = 'sop.'
 
     ### INITIALIZER ###
 
-    def __init__(self, **kwargs):
-        Instrument.__init__(self, **kwargs)
-        self._default_instrument_name = 'soprano voice'
+    def __init__(
+        self,
+        instrument_name='soprano',
+        short_instrument_name='sop.',
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c=None,
+        ):
+        pitch_range = pitch_range = pitchtools.PitchRange('[C4, E6]')
+        Instrument.__init__(
+            self,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
+            instrument_name_markup=instrument_name_markup,
+            short_instrument_name_markup=short_instrument_name_markup,
+            allowable_clefs=allowable_clefs,
+            pitch_range=pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                sounding_pitch_of_written_middle_c,
+            )
         self._default_performer_names.extend([
             'vocalist',
             'soprano'
             ])
-        self._default_short_instrument_name = 'soprano'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch("c'")
-        self._starting_clefs = [indicatortools.Clef('treble')]
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
-        self._default_pitch_range = pitchtools.PitchRange(('C4', 'E6'))

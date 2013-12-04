@@ -33,5 +33,5 @@ def iterate_out_of_range_notes_and_chords(expr):
         if instrument is None:
             message = 'no instrument found.'
             raise ValueError(message)
-        if note_or_chord not in instrument._default_pitch_range:
+        if note_or_chord not in instrument.pitch_range:
             yield note_or_chord

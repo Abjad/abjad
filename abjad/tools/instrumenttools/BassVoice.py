@@ -18,7 +18,7 @@ class BassVoice(Instrument):
 
         >>> print format(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { Bass voice }
+            \set Staff.instrumentName = \markup { Bass }
             \set Staff.shortInstrumentName = \markup { Bass }
             c8
             d8
@@ -33,19 +33,38 @@ class BassVoice(Instrument):
     The bass voice targets staff context by default.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
-    def __init__(self, **kwargs):
-        Instrument.__init__(self, **kwargs)
-        self._default_instrument_name = 'bass voice'
+    def __init__(
+        self,
+        instrument_name='bass',
+        short_instrument_name='bass',
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c=None,
+        ):
+        allowable_clefs = indicatortools.ClefInventory(['bass'])
+        pitch_range = pitch_range = pitchtools.PitchRange('[E2, F4]')
+        Instrument.__init__(
+            self,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
+            instrument_name_markup=instrument_name_markup,
+            short_instrument_name_markup=short_instrument_name_markup,
+            allowable_clefs=allowable_clefs,
+            pitch_range=pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                sounding_pitch_of_written_middle_c,
+            )
         self._default_performer_names.extend([
             'vocalist',
             'bass',
             ])
-        self._default_short_instrument_name = 'bass'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = \
-            pitchtools.NamedPitch("c'")
-        self._starting_clefs = [indicatortools.Clef('bass')]
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
-        self._default_pitch_range = pitchtools.PitchRange(('E2', 'F4'))
+        self._starting_clefs = indicatortools.ClefInventory(['bass'])

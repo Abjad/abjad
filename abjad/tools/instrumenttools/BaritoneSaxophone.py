@@ -31,25 +31,40 @@ class BaritoneSaxophone(Instrument):
     The baritone saxophone targets staff context by default.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
-    def __init__(self, **kwargs):
-        Instrument.__init__(self, **kwargs)
-        pitch = pitchtools.NamedPitch('ef,')
-        self._default_instrument_name = 'baritone saxophone'
+    def __init__(
+        self,
+        instrument_name='baritone saxophone',
+        short_instrument_name='bar. sax.',
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c='ef,',
+        ):
+        pitch_range = pitch_range or pitchtools.PitchRange(-24, 8)
+        Instrument.__init__(
+            self,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
+            instrument_name_markup=instrument_name_markup,
+            short_instrument_name_markup=short_instrument_name_markup,
+            allowable_clefs=allowable_clefs,
+            pitch_range=pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                sounding_pitch_of_written_middle_c,
+            )
         self._default_performer_names.extend([
             'wind player',
             'reed player',
             'single reed player',
             'saxophonist',
             ])
-        self._default_short_instrument_name = 'bar. sax.'
-        self._default_sounding_pitch_of_written_middle_c = pitch
-        self._default_starting_clefs = indicatortools.ClefInventory([
-            indicatortools.Clef('treble'),
-            ])
-        self._default_pitch_range = pitchtools.PitchRange(-24, 8)
-        self._is_primary_instrument = False
         self._copy_default_starting_clefs_to_default_allowable_clefs()
 
 #    ### PUBLIC PROPERTIES ###

@@ -32,18 +32,34 @@ class AltoFlute(Instrument):
 
     ### INITIALIZER ###
 
-    def __init__(self, **kwargs):
-        Instrument.__init__(self, **kwargs)
-        pitch = pitchtools.NamedPitch('g')
-        self._default_instrument_name = 'alto flute'
+    def __init__(
+        self,
+        instrument_name='alto flute',
+        short_instrument_name='alt. fl.',
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c='g',
+        ):
+        pitch_range = pitch_range or pitchtools.PitchRange(-5, 31)
+        Instrument.__init__(
+            self,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
+            instrument_name_markup=instrument_name_markup,
+            short_instrument_name_markup=short_instrument_name_markup,
+            allowable_clefs=allowable_clefs,
+            pitch_range=pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                sounding_pitch_of_written_middle_c,
+            )
         self._default_performer_names.extend([
             'wind player',
             'flautist',
             'flutist',
             ])
-        self._default_pitch_range = pitchtools.PitchRange(-5, 31)
-        self._default_short_instrument_name = 'alt. fl.'
-        self._default_sounding_pitch_of_written_middle_c = pitch
+        self._starting_clefs = indicatortools.ClefInventory(['treble'])
 
 #    ### SPECIAL METHODS ###
 #
