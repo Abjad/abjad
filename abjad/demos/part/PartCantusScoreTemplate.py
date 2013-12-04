@@ -19,7 +19,11 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         bell_staff = scoretools.Staff([bell_voice], name='Bell Staff')
         clef = indicatortools.Clef('treble')
         attach(clef, bell_staff)
-        bells = instrumenttools.Instrument('Campana in La', 'Camp.')
+        bells = instrumenttools.Instrument(
+            instrument_name='Campana in La', 
+            short_instrument_name='Camp.',
+            pitch_range='[C4, C6]',
+            )
         attach(bells, bell_staff)
         tempo = indicatortools.Tempo((1, 4), (112, 120))
         attach(tempo, bell_staff)
