@@ -7,13 +7,10 @@ class InstrumentInventory(TypedList):
 
     ::
 
-        >>> inventory = instrumenttools.InstrumentInventory(
-        ...     [instrumenttools.Flute(), instrumenttools.Guitar()])
-
-    ::
-
-        >>> inventory
-        InstrumentInventory([Flute(), Guitar()])
+        >>> inventory = instrumenttools.InstrumentInventory([
+        ...     instrumenttools.Flute(), 
+        ...     instrumenttools.Guitar()
+        ...     ])
 
     Instrument inventories implement list interface and are mutable.
     '''
@@ -30,3 +27,17 @@ class InstrumentInventory(TypedList):
         '''
         superclass = super(InstrumentInventory, self)
         return superclass.__format__(format_specification=format_specification)
+
+    def __repr__(self):
+        r'''Interpreter representation of instrument inventory.
+
+        ::
+
+            >>> inventory
+            InstrumentInventory([Flute(), Guitar()])
+
+        Returns string.
+        '''
+        contents = [repr(x) for x in self]
+        contents = ', '.join(contents)
+        return '{}([{}])'.format(type(self).__name__, contents)

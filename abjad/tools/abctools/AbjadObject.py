@@ -11,8 +11,6 @@ class AbjadObject(object):
 
     ### CLASS VARIABLES ###
 
-    _has_default_attribute_values = False
-
     __metaclass__ = abc.ABCMeta
 
     __slots__ = ()
