@@ -15,4 +15,6 @@ def test_pickle_01(class_):
         not inspect.isabstract(class_):
         instance_one = class_()
         instance_two = pickle.loads(pickle.dumps(instance_one))
-        assert instance_one == instance_two
+        instance_one_format = format(instance_one, 'storage')
+        instance_two_format = format(instance_two, 'storage')
+        assert instance_one_format == instance_two_format

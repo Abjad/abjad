@@ -2,7 +2,7 @@
 import copy
 import inspect
 import pytest
-from abjad import *
+from abjad.tools import documentationtools
 
 
 classes = documentationtools.list_all_abjad_classes()
@@ -15,4 +15,7 @@ def test___copy___01(class_):
         not inspect.isabstract(class_):
         instance_one = class_()
         instance_two = copy.copy(instance_one)
-        assert instance_one == instance_two
+        instance_one_format = format(instance_one, 'storage')
+        instance_two_format = format(instance_two, 'storage')
+        assert instance_one_format == instance_two_format
+        #assert instance_one == instance_two

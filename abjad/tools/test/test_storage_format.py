@@ -2,6 +2,7 @@
 import inspect
 import pytest
 import abjad
+from abjad import demos
 from abjad.tools import documentationtools
 
 
@@ -13,6 +14,10 @@ def test_storage_format_01(class_):
 
     if '_storage_format_specification' in dir(class_) and \
         not inspect.isabstract(class_):
+        environment = abjad.__dict__.copy()
+        environment.update(demos.__dict__)
         instance_one = class_()
-        instance_two = eval(format(instance_one, 'storage'), abjad.__dict__)
-        assert instance_one == instance_two
+        instance_one_format = format(instance_one, 'storage')
+        instance_two = eval(instance_one_format, environment)
+        instance_two_format = format(instance_two, 'storage')
+        assert instance_one_format == instance_two_format

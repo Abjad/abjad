@@ -53,13 +53,29 @@ class TonalAnalysisAgent(abctools.AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_client',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, selection=None):
+    def __init__(self, client=None):
         from abjad.tools import selectiontools
-        if not isinstance(selection, selectiontools.Selection):
-            selection = selectiontools.Selection(selection)
-        self._selection = selection
+        if not isinstance(client, selectiontools.Selection):
+            client = selectiontools.Selection(client)
+        self._client = client
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Returns client of mutation agent.
+
+        Returns selection or component.
+        '''
+        return self._client
 
     ### PRIVATE METHODS ###
 
@@ -272,7 +288,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns list with elements each equal to chord class or none.
         '''
         result = []
-        for component in self._selection:
+        for component in self._client:
             chord_class = self._analyze_chord(component)
             result.append(chord_class)
         return result
@@ -301,7 +317,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns list with elements each equal to chord class or none.
         '''
         result = []
-        for component in self._selection:
+        for component in self._client:
             chord_class = self._analyze_incomplete_chord(component)
             result.append(chord_class)
         return result
@@ -325,7 +341,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns list with elements each equal to tonal function or none.
         '''
         result = []
-        for component in self._selection:
+        for component in self._client:
             tonal_function = self._analyze_incomplete_tonal_function(
                 component, key_signature)
             result.append(tonal_function)
@@ -348,7 +364,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns list of boolean values.
         '''
         result = []
-        for component in self._selection:
+        for component in self._client:
             tonal_function = self._is_neighbor_note(component)
             result.append(tonal_function)
         return result
@@ -369,7 +385,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns list of boolean values.
         '''
         result = []
-        for component in self._selection:
+        for component in self._client:
             tonal_function = self._is_passing_tone(component)
             result.append(tonal_function)
         return result
@@ -391,7 +407,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         Returns list with elements each equal to tonal function or none.
         '''
         result = []
-        for component in self._selection:
+        for component in self._client:
             tonal_function = self._analyze_tonal_function(
                 component, key_signature)
             result.append(tonal_function)
@@ -418,7 +434,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         direction_string = None
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
-            iterate(self._selection).by_class(scoretools.Note)):
+            iterate(self._client).by_class(scoretools.Note)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -450,7 +466,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
-            iterate(self._selection).by_class(scoretools.Note)):
+            iterate(self._client).by_class(scoretools.Note)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -488,7 +504,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
-            iterate(self._selection).by_class(scoretools.Note)):
+            iterate(self._client).by_class(scoretools.Note)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
@@ -518,7 +534,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         for left, right in sequencetools.iterate_sequence_pairwise_strict(
-            iterate(self._selection).by_class(scoretools.Note)):
+            iterate(self._client).by_class(scoretools.Note)):
             try:
                 assert not (left.written_pitch == right.written_pitch)
                 hdi = pitchtools.NamedInterval.from_pitch_carriers(
