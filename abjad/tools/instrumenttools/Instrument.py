@@ -24,6 +24,9 @@ class Instrument(AbjadObject):
         short_instrument_name=None,
         instrument_name_markup=None,
         short_instrument_name_markup=None,
+        allowable_clefs=None,
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c=None,
         ):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
@@ -105,28 +108,28 @@ class Instrument(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _contents_repr_string(self):
-        result = []
-        for name in (
-            'instrument_name',
-            'instrument_name_markup',
-            'short_instrument_name',
-            'short_instrument_name_markup',
-            'allowable_clefs',
-            'pitch_range',
-            'sounding_pitch_of_written_middle_c',
-            ):
-            value = getattr(self, name)
-            default_keyword_argument_name = '_default_{}'.format(name)
-            default_value = getattr(self, default_keyword_argument_name, None)
-            if value == default_value:
-                value = None
-            if value is not None:
-                string = '{}={!r}'.format(name, value)
-                result.append(string)
-        result = ', '.join(result)
-        return result
+#    @property
+#    def _contents_repr_string(self):
+#        result = []
+#        for name in (
+#            'instrument_name',
+#            'instrument_name_markup',
+#            'short_instrument_name',
+#            'short_instrument_name_markup',
+#            'allowable_clefs',
+#            'pitch_range',
+#            'sounding_pitch_of_written_middle_c',
+#            ):
+#            value = getattr(self, name)
+#            default_keyword_argument_name = '_default_{}'.format(name)
+#            default_value = getattr(self, default_keyword_argument_name, None)
+#            if value == default_value:
+#                value = None
+#            if value is not None:
+#                string = '{}={!r}'.format(name, value)
+#                result.append(string)
+#        result = ', '.join(result)
+#        return result
 
     @property
     def _keyword_argument_names(self):
