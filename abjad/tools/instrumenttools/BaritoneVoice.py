@@ -53,27 +53,27 @@ class BaritoneVoice(Instrument):
         self._is_primary_instrument = True
         self._copy_default_starting_clefs_to_default_allowable_clefs()
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def sounding_pitch_of_written_middle_c(self):
-        r'''Gets and sets sounding pitch of written middle C.
-
-        ::
-
-            >>> baritone_voice.sounding_pitch_of_written_middle_c
-            NamedPitch("c'")
-
-        ::
-
-            >>> baritone_voice.sounding_pitch_of_written_middle_c = 'g'
-            >>> baritone_voice.sounding_pitch_of_written_middle_c
-            NamedPitch('g')
-
-        Returns named pitch.
-        '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
-
-    @sounding_pitch_of_written_middle_c.setter
-    def sounding_pitch_of_written_middle_c(self, pitch):
-        Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
+#    ### PUBLIC PROPERTIES ###
+#
+#    @property
+#    def sounding_pitch_of_written_middle_c(self):
+#        r'''Gets and sets sounding pitch of written middle C.
+#
+#        ::
+#
+#            >>> baritone_voice.sounding_pitch_of_written_middle_c
+#            NamedPitch("c'")
+#
+#        ::
+#
+#            >>> baritone_voice.sounding_pitch_of_written_middle_c = 'g'
+#            >>> baritone_voice.sounding_pitch_of_written_middle_c
+#            NamedPitch('g')
+#
+#        Returns named pitch.
+#        '''
+#        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+#
+#    @sounding_pitch_of_written_middle_c.setter
+#    def sounding_pitch_of_written_middle_c(self, pitch):
+#        Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)

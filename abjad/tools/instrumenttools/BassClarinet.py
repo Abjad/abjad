@@ -56,33 +56,33 @@ class BassClarinet(Instrument):
             ])
         self._is_primary_instrument = False
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def sounding_pitch_of_written_middle_c(self):
-        r'''Gets and sets sounding pitch of written middle C.
-
-        ::
-
-            >>> bass_clarinet.sounding_pitch_of_written_middle_c
-            NamedPitch('bf,')
-
-        ::
-
-            >>> bass_clarinet.sounding_pitch_of_written_middle_c = 'b,'
-            >>> bass_clarinet.sounding_pitch_of_written_middle_c
-            NamedPitch('b,')
-
-        :: 
-
-            >>> bass_clarinet.sounding_pitch_of_written_middle_c = None
-            >>> bass_clarinet.sounding_pitch_of_written_middle_c
-            NamedPitch('bf,')
-
-        Returns named pitch.
-        '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
-
-    @sounding_pitch_of_written_middle_c.setter
-    def sounding_pitch_of_written_middle_c(self, pitch):
-        Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
+#    ### PUBLIC PROPERTIES ###
+#
+#    @property
+#    def sounding_pitch_of_written_middle_c(self):
+#        r'''Gets and sets sounding pitch of written middle C.
+#
+#        ::
+#
+#            >>> bass_clarinet.sounding_pitch_of_written_middle_c
+#            NamedPitch('bf,')
+#
+#        ::
+#
+#            >>> bass_clarinet.sounding_pitch_of_written_middle_c = 'b,'
+#            >>> bass_clarinet.sounding_pitch_of_written_middle_c
+#            NamedPitch('b,')
+#
+#        :: 
+#
+#            >>> bass_clarinet.sounding_pitch_of_written_middle_c = None
+#            >>> bass_clarinet.sounding_pitch_of_written_middle_c
+#            NamedPitch('bf,')
+#
+#        Returns named pitch.
+#        '''
+#        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+#
+#    @sounding_pitch_of_written_middle_c.setter
+#    def sounding_pitch_of_written_middle_c(self, pitch):
+#        Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)

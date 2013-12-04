@@ -46,34 +46,34 @@ class BassFlute(Instrument):
         self._default_sounding_pitch_of_written_middle_c = pitch
         self._is_primary_instrument = False
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def sounding_pitch_of_written_middle_c(self):
-        r'''Gets and sets sounding pitch of written middle C.
-
-        ::
-
-            >>> bass_flute.sounding_pitch_of_written_middle_c
-            NamedPitch('c')
-
-        ::
-
-            >>> bass_flute.sounding_pitch_of_written_middle_c = 'cs'
-            >>> bass_flute.sounding_pitch_of_written_middle_c
-            NamedPitch('cs')
-
-        ::
-
-            >>> bass_flute.sounding_pitch_of_written_middle_c = None
-            >>> bass_flute.sounding_pitch_of_written_middle_c
-            NamedPitch('c')
-
-        Returns named pitch.
-        '''
-        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
-
-    @sounding_pitch_of_written_middle_c.setter
-    def sounding_pitch_of_written_middle_c(self, pitch):
-        return Instrument.sounding_pitch_of_written_middle_c.fset(
-            self, pitch)
+#    ### PUBLIC PROPERTIES ###
+#
+#    @property
+#    def sounding_pitch_of_written_middle_c(self):
+#        r'''Gets and sets sounding pitch of written middle C.
+#
+#        ::
+#
+#            >>> bass_flute.sounding_pitch_of_written_middle_c
+#            NamedPitch('c')
+#
+#        ::
+#
+#            >>> bass_flute.sounding_pitch_of_written_middle_c = 'cs'
+#            >>> bass_flute.sounding_pitch_of_written_middle_c
+#            NamedPitch('cs')
+#
+#        ::
+#
+#            >>> bass_flute.sounding_pitch_of_written_middle_c = None
+#            >>> bass_flute.sounding_pitch_of_written_middle_c
+#            NamedPitch('c')
+#
+#        Returns named pitch.
+#        '''
+#        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
+#
+#    @sounding_pitch_of_written_middle_c.setter
+#    def sounding_pitch_of_written_middle_c(self, pitch):
+#        return Instrument.sounding_pitch_of_written_middle_c.fset(
+#            self, pitch)
