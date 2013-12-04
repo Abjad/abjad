@@ -124,6 +124,30 @@ class Spanner(AbjadObject):
         return sum([component._preprolated_duration for component in self])
 
     @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=(),
+            positional_argument_values=(
+                self._compact_summary,
+                )
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        keyword_argument_names = \
+            systemtools.StorageFormatManager.get_keyword_argument_names(self)
+        if 'overrides' in keyword_argument_names:
+            keyword_argument_names.remove('overrides')
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            )
+
+    @property
     def _summary(self):
         if 0 < len(self):
             return ', '.join([str(x) for x in self])
