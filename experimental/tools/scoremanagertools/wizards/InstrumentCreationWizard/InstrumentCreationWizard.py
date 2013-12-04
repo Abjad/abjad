@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import instrumenttools
+from abjad.tools.topleveltools import new
 from experimental.tools.scoremanagertools import iotools
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
@@ -53,7 +54,7 @@ class InstrumentCreationWizard(Wizard):
         for instrument_name in instrument_names:
             instrument = \
                 self.change_instrument_name_to_instrument(instrument_name)
-            self.name_untuned_percussion(instrument)
+            instrument = self.name_untuned_percussion(instrument)
             instruments.append(instrument)
         if self.is_ranged:
             result = instruments[:]
@@ -83,5 +84,9 @@ class InstrumentCreationWizard(Wizard):
                 instrument_name = selector._run()
             if self.session.backtrack():
                 return
-            instrument.instrument_name = instrument_name
-            instrument.short_instrument_name = instrument_name
+            instrument = new(
+                instrument,
+                instrument_name=instrument_name,
+                short_instrument_name=instrument_name,
+                )
+        return instrument

@@ -64,4 +64,5 @@ class FrenchHorn(Instrument):
             'brass player',
             'hornist',
             ])
+        self._is_primary_instrument = True
         self._starting_clefs = indicatortools.ClefInventory(['treble', 'bass'])
