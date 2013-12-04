@@ -21,11 +21,11 @@ class FunctionDocumenter(Documenter):
 
     ### INITIALIZER ###
 
-    def __init__(self, obj=None, prefix='abjad.tools.'):
-        if isinstance(obj, types.FunctionType):
-            if obj.__name__ == 'wrapper':
-                obj = obj.func_closure[1].cell_contents
-        Documenter.__init__(self, obj, prefix)
+    def __init__(self, object_=None, prefix='abjad.tools.'):
+        if isinstance(object_, types.FunctionType):
+            if object_.__name__ == 'wrapper':
+                object_ = object_.func_closure[1].cell_contents
+        Documenter.__init__(self, object_, prefix)
 
     ### SPECIAL METHODS ###
 
@@ -37,8 +37,8 @@ class FunctionDocumenter(Documenter):
         from abjad.tools import documentationtools
         document = documentationtools.ReSTDocument()
         stripped_function_name = self._shrink_module_name(
-            self.object.__module__)
-        parts = self.object.__module__.split('.')
+            self.object_.__module__)
+        parts = self.object_.__module__.split('.')
         tools_package_path = '.'.join(parts[:3])
         tools_package_name, sep, function_name = \
             stripped_function_name.partition('.')

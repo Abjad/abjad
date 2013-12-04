@@ -21,7 +21,7 @@ def make_dynamic_spanner_below_with_nib_at_right(
 
         >>> spannertools.make_dynamic_spanner_below_with_nib_at_right(
         ...     'mp', staff[:])
-        TextSpanner(c'8, d'8, e'8, f'8)
+        TextSpanner("c'8, d'8, e'8, f'8")
 
     ..  doctest::
 

@@ -32,7 +32,7 @@ class ClassDocumenter(Documenter):
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.is_abstract
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.methods
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.module_name
-            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.object
+            ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.object_
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.prefix
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.readonly_properties
             ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.readwrite_properties
@@ -58,64 +58,64 @@ class ClassDocumenter(Documenter):
         --------------------
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.class_methods
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.data
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.inherited_attributes
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.is_abstract
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.methods
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.module_name
-        :noindex:
+           :noindex:
         <BLANKLINE>
-        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.object
-        :noindex:
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.object_
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.prefix
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.readonly_properties
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.readwrite_properties
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.special_methods
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.static_methods
-        :noindex:
+           :noindex:
         <BLANKLINE>
         Static methods
         --------------
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.write
-        :noindex:
+           :noindex:
         <BLANKLINE>
         Special methods
         ---------------
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__call__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__eq__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__makenew__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__ne__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__repr__
-        :noindex:
+           :noindex:
         <BLANKLINE>
 
     Returns ``ClassDocumenter`` instance.
@@ -137,12 +137,11 @@ class ClassDocumenter(Documenter):
 
     ### INITIALIZER ###
 
-    def __init__(self, obj=None, prefix='abjad.tools.'):
-        if obj is None:
-            self._object = None
-            return
-        #assert isinstance(obj, type)
-        Documenter.__init__(self, obj, prefix)
+    def __init__(self, object_=None, prefix='abjad.tools.'):
+        if object_ is None:
+            object_ = type(None)
+        assert isinstance(object_, type)
+        Documenter.__init__(self, object_, prefix)
 
         class_methods = []
         data = []
@@ -153,7 +152,7 @@ class ClassDocumenter(Documenter):
         special_methods = []
         static_methods = []
 
-        attrs = inspect.classify_class_attrs(self._object)
+        attrs = inspect.classify_class_attrs(self.object_)
         for attr in attrs:
             if attr.defining_class is object:
                 continue
@@ -183,7 +182,7 @@ class ClassDocumenter(Documenter):
                 else:
                     readwrite_properties.append(attr)
             elif attr.kind == 'data' and not attr.name.startswith('_') \
-                and attr.name not in getattr(self.object, '__slots__', ()):
+                and attr.name not in getattr(self.object_, '__slots__', ()):
                 data.append(attr)
 
         self._class_methods = tuple(sorted(class_methods))
@@ -206,8 +205,8 @@ class ClassDocumenter(Documenter):
         '''
         from abjad.tools import documentationtools
 
-        stripped_class_name = self._shrink_module_name(self.object.__module__)
-        parts = self.object.__module__.split('.')
+        stripped_class_name = self._shrink_module_name(self.object_.__module__)
+        parts = self.object_.__module__.split('.')
         tools_package_path = '.'.join(parts[:3])
         tools_package_name, sep, class_name = stripped_class_name.partition('.')
         banner = '{}.{}'.format(tools_package_name, class_name)
@@ -276,7 +275,7 @@ class ClassDocumenter(Documenter):
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         positional_argument_values = (
-            self._object
+            self.object_
             )
         return systemtools.StorageFormatSpecification(
             self,
@@ -287,7 +286,7 @@ class ClassDocumenter(Documenter):
     ### PRIVATE METHODS ###
 
     def _attribute_is_inherited(self, attr):
-        if attr.defining_class is not self._object:
+        if attr.defining_class is not self.object_:
             return True
         return False
 
@@ -346,7 +345,7 @@ class ClassDocumenter(Documenter):
             level=3,
             text='Bases',
             ))
-        mro = inspect.getmro(self.object)[1:]
+        mro = inspect.getmro(self.object_)[1:]
         for cls in mro:
             packagesystem_path = '.'.join((cls.__module__, cls.__name__))
             stripped_packagesystem_path = self._shrink_module_name(
@@ -391,7 +390,7 @@ class ClassDocumenter(Documenter):
 
         Returns boolean.
         '''
-        return inspect.isabstract(self.object)
+        return inspect.isabstract(self.object_)
 
     @property
     def methods(self):
