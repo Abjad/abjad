@@ -65,7 +65,6 @@ class BaritoneSaxophone(Instrument):
             'single reed player',
             'saxophonist',
             ])
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
 
 #    ### PUBLIC PROPERTIES ###
 #

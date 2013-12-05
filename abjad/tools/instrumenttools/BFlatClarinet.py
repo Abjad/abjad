@@ -61,9 +61,7 @@ class BFlatClarinet(Instrument):
             'clarinettist',
             'clarinetist',
             ])
-        self._starting_clefs = indicatortools.ClefInventory(['treble'])
         self._is_primary_instrument = True
-        self._copy_default_starting_clefs_to_default_allowable_clefs()
 
         self.default_performer_abbreviation = 'cl.'
 

@@ -90,10 +90,8 @@ class Instrument(AbjadObject):
             )
 
     def __eq__(self, arg):
-        r'''True when `arg` is an instrument with instrument name, short
-        instrument name, instrument name markup, short instrument name markup,
-        allowable clefs, pitch range and sounding pitch all equal to those of
-        this instrument. Otherwise false.
+        r'''True when `arg` is an instrument with instrument name and short
+        instrument name equal to those of this instrument. Otherwise false.
 
         Returns boolean.
         '''
@@ -126,6 +124,8 @@ class Instrument(AbjadObject):
     def __hash__(self):
         '''Hash value of instrument.
 
+        Computed on type, instrument name and short instrument name.
+
         Returns integer.
         '''
         return hash((
@@ -149,7 +149,7 @@ class Instrument(AbjadObject):
         pitch_range=None,
         sounding_pitch_of_written_middle_c=None,
         ):
-        r'''Makes new instrument with optional keyword arguments.
+        r'''Makes new instrument.
 
         Returns new instrument.
         '''
@@ -186,34 +186,6 @@ class Instrument(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-#    @property
-#    def _contents_repr_string(self):
-#        result = []
-#        for name in (
-#            'instrument_name',
-#            'instrument_name_markup',
-#            'short_instrument_name',
-#            'short_instrument_name_markup',
-#            'allowable_clefs',
-#            'pitch_range',
-#            'sounding_pitch_of_written_middle_c',
-#            ):
-#            value = getattr(self, name)
-#            default_keyword_argument_name = '_default_{}'.format(name)
-#            default_value = getattr(self, default_keyword_argument_name, None)
-#            if value == default_value:
-#                value = None
-#            if value is not None:
-#                string = '{}={!r}'.format(name, value)
-#                result.append(string)
-#        result = ', '.join(result)
-#        return result
-
-#    @property
-#    def _keyword_argument_names(self):
-#        return (
-#            )
-
     # TODO: _scope_name needs to be taken from IndicatorExpression!
     #       should not be stored on instrument.
     @property
@@ -244,30 +216,7 @@ class Instrument(AbjadObject):
         else:
             return type(self._default_scope).__name__
 
-#    @property
-#    def _storage_format_specification(self):
-#        from abjad.tools import systemtools
-#        return systemtools.StorageFormatSpecification(
-#            self,
-#            keyword_argument_names=(
-#                'instrument_name',
-#                'instrument_name_markup',
-#                'short_instrument_name',
-#                'short_instrument_name_markup',
-#                'allowable_clefs',
-#                'pitch_range',
-#                'sounding_pitch_of_written_middle_c',
-#                ),
-#            )
-
     ### PRIVATE METHODS ###
-
-    def _copy_default_starting_clefs_to_default_allowable_clefs(self):
-        #clefs = self._default_starting_clefs
-        clefs = self._starting_clefs
-        clefs = indicatortools.ClefInventory(clefs)
-        #self._default_allowable_clefs = clefs
-        self._allowable_clefs = clefs
 
     def _get_default_performer_name(self):
         if self._performer_names is None:
@@ -359,24 +308,20 @@ class Instrument(AbjadObject):
         return secondary_instruments
 
     def _initialize_default_name_markups(self):
-        #string = self._default_instrument_name
         string = self.instrument_name
         string = stringtools.capitalize_string_start(string)
         markup = markuptools.Markup(string)
-        #self._default_instrument_name_markup = markup
         self._instrument_name_markup = markup
-        #string = self._default_short_instrument_name
         string = self.short_instrument_name
         string = stringtools.capitalize_string_start(string)
         markup = markuptools.Markup(string)
-        #self._default_short_instrument_name_markup = markup
         self._short_instrument_name_markup = markup
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def allowable_clefs(self):
-        r'''Gets and sets allowable clefs.
+        r'''Gets allowable clefs of instrument.
 
         Returns clef inventory.
         '''
@@ -386,7 +331,7 @@ class Instrument(AbjadObject):
 
     @property
     def instrument_name(self):
-        r'''Gets and sets instrument name.
+        r'''Gets instrument name.
 
         Returns string.
         '''
@@ -394,7 +339,7 @@ class Instrument(AbjadObject):
 
     @property
     def instrument_name_markup(self):
-        r'''Gets and sets instrument name markup.
+        r'''Gets instrument name markup.
 
         Returns markup.
         '''
@@ -407,7 +352,7 @@ class Instrument(AbjadObject):
 
     @property
     def pitch_range(self):
-        r'''Gets and sets pitch range.
+        r'''Gets pitch range of instrument.
 
         Returns pitch range.
         '''
@@ -417,7 +362,7 @@ class Instrument(AbjadObject):
 
     @property
     def short_instrument_name(self):
-        r'''Gets and sets short instrument name.
+        r'''Gets short instrument name.
 
         Returns string.
         '''
@@ -428,7 +373,7 @@ class Instrument(AbjadObject):
 
     @property
     def short_instrument_name_markup(self):
-        r'''Gets and sets short instrument name markup.
+        r'''Gets short instrument name markup.
 
         Returns markup.
         '''
@@ -442,7 +387,7 @@ class Instrument(AbjadObject):
 
     @property
     def sounding_pitch_of_written_middle_c(self):
-        r'''Gets and sets sounding pitch of written middle C.
+        r'''Gets sounding pitch of written middle C.
 
         Returns named pitch.
         '''

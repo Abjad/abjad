@@ -49,7 +49,7 @@ class AbjadObject(object):
         return state
 
     def __ne__(self, expr):
-        r'''True when ID of `expr` does not equal ID of Abjad object.
+        r'''True when Abjad object does not equal `expr`.
 
         Returns boolean.
         '''
