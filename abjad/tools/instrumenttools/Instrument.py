@@ -16,10 +16,9 @@ class Instrument(AbjadObject):
 
     _format_slot = 'opening'
 
-    # TODO: change _default_performer_names to just _performer_names
     __slots__ = (
         '_allowable_clefs',
-        '_default_performer_names',
+        '_performer_names',
         '_default_scope',
         '_instrument_name',
         '_instrument_name_markup',
@@ -59,7 +58,7 @@ class Instrument(AbjadObject):
         allowable_clefs = allowable_clefs or ['treble']
         allowable_clefs = indicatortools.ClefInventory(allowable_clefs)
 
-        self._default_performer_names = ['instrumentalist']
+        self._performer_names = ['instrumentalist']
 
         self._allowable_clefs = allowable_clefs
 
@@ -271,18 +270,18 @@ class Instrument(AbjadObject):
         self._allowable_clefs = clefs
 
     def _get_default_performer_name(self):
-        if self._default_performer_names is None:
+        if self._performer_names is None:
             performer_name = '{} player'.format(self._default_instrument_name)
             return performer_name
         else:
-            return self._default_performer_names[-1]
+            return self._performer_names[-1]
 
     def _get_performer_names(self):
-        if self._default_performer_names is None:
+        if self._performer_names is None:
             performer_name = '{} player'.format(self._default_instrument_name)
             return [performer_name]
         else:
-            return self._default_performer_names[:]
+            return self._performer_names[:]
 
     @classmethod
     def _list_instrument_names(cls):

@@ -65,7 +65,7 @@ class BassTrombone(Instrument):
             sounding_pitch_of_written_middle_c=\
                 sounding_pitch_of_written_middle_c,
             )
-        self._default_performer_names.extend([
+        self._performer_names.extend([
             'brass player',
             'trombonist',
             ])

@@ -71,7 +71,7 @@ class Piano(Instrument):
                 sounding_pitch_of_written_middle_c,
             )
         self._default_scope = scoretools.PianoStaff
-        self._default_performer_names.extend([
+        self._performer_names.extend([
             'keyboardist',
             'pianist',
             ])
