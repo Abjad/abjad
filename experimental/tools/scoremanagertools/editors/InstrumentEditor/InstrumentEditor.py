@@ -18,17 +18,50 @@ class InstrumentEditor(InteractiveEditor):
 
     target_manifest = TargetManifest(
         Instrument,
-        ('instrument_name', 'in', getters.get_string),
-        ('instrument_name_markup', 'im', getters.get_markup),
-        ('short_instrument_name',  'sn', getters.get_string),
-        ('short_instrument_name_markup', 'sm', getters.get_markup),
+        (
+            'instrument_name', 
+            'instrument name', 
+            'in', 
+            getters.get_string, 
+            False,
+            ),
+        (
+            'instrument_name_markup', 
+            'instrument name markup',
+            'im', 
+            getters.get_markup,
+            False,
+            ),
+        (
+            'short_instrument_name', 
+            'short instrument name',
+            'sn', 
+            getters.get_string,
+            False,
+            ),
+        (
+            'short_instrument_name_markup', 
+            'short instrument name markup',
+            'sm', 
+            getters.get_markup,
+            False,
+            ),
         (
             'pitch_range', 
+            'pitch range',
             'range', 
             'rg', 
             getters.get_symbolic_pitch_range_string,
+            False,
             ),
-        ('allowable_clefs', 'clefs', 'cf', ClefInventoryEditor),
+        (
+            'allowable_clefs', 
+            'allowable clefs',
+            'clefs', 
+            'cf', 
+            ClefInventoryEditor,
+            False,
+            ),
         )
 
     ### PRIVATE METHODS ###

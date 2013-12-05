@@ -34,9 +34,10 @@ def test_InstrumentEditor_base_states_03():
     r'''Start-up values with target.
     '''
 
-    accordion = instrumenttools.Accordion()
-    accordion.instrument_name = 'accordion I'
-    accordion.short_instrument_name = 'acc. I'
+    accordion = instrumenttools.Accordion(
+        instrument_name='accordion I',
+        short_instrument_name='acc. I',
+        )
     editor = scoremanagertools.editors.InstrumentEditor(target=accordion)
     assert isinstance(editor.session, scoremanagertools.scoremanager.Session)
     assert editor.target is accordion

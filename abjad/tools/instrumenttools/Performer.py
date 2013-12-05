@@ -199,6 +199,7 @@ class Performer(AbjadObject):
             ('guitarist', 'gt.')
             ('harpist', 'hp.')
             ('harpsichordist', 'hpschd.')
+            ('hornist', 'hn.')
             ('mezzo-soprano', 'ms.')
             ('oboist', 'ob.')
             ('pianist', 'pf.')

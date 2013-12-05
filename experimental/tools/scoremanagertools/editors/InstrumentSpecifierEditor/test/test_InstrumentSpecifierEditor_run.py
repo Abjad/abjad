@@ -17,20 +17,20 @@ def test_InstrumentSpecifierEditor_run_01():
         specifiers.InstrumentSpecifier(
             instrument=instrumenttools.FrenchHorn(
                 instrument_name='horn',
+                short_instrument_name='hn.',
                 instrument_name_markup=markuptools.Markup(
                     ('Horn',)
                     ),
-                short_instrument_name='hn.',
                 short_instrument_name_markup=markuptools.Markup(
                     ('Hn.',)
                     ),
                 allowable_clefs=indicatortools.ClefInventory(
                     [
                         indicatortools.Clef(
-                            'treble'
+                            'bass'
                             ),
                         indicatortools.Clef(
-                            'bass'
+                            'treble'
                             ),
                         ]
                     ),
@@ -58,17 +58,17 @@ def test_InstrumentSpecifierEditor_run_02():
         specifiers.InstrumentSpecifier(
             instrument=instrumenttools.UntunedPercussion(
                 instrument_name='rattle',
+                short_instrument_name='rattle',
                 instrument_name_markup=markuptools.Markup(
                     ('Untuned percussion',)
                     ),
-                short_instrument_name='rattle',
                 short_instrument_name_markup=markuptools.Markup(
                     ('Perc.',)
                     ),
                 allowable_clefs=indicatortools.ClefInventory(
                     [
                         indicatortools.Clef(
-                            'treble'
+                            'percussion'
                             ),
                         ]
                     ),

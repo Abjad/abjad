@@ -321,8 +321,7 @@ class InteractiveEditor(ScoreManagerObject):
             self.target_manifest.menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
-    def set_target_attribute(self, 
-        attribute_name, attribute_value):
+    def set_target_attribute(self, attribute_name, attribute_value):
         if self.target is not None:
             if not self.session.is_complete:
                 # if the attribute is read / write

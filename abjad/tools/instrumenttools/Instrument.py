@@ -396,6 +396,9 @@ class Instrument(AbjadObject):
         '''
         if self._instrument_name_markup is None:
             self._initialize_default_name_markups()
+        if not isinstance(self._instrument_name_markup, markuptools.Markup):
+            markup = markuptools.Markup(self._instrument_name_markup)
+            self._instrument_name_markup = markup
         return self._instrument_name_markup
 
     @property
@@ -427,6 +430,10 @@ class Instrument(AbjadObject):
         '''
         if self._short_instrument_name_markup is None:
             self._initialize_default_name_markups()
+        if not isinstance(
+            self._short_instrument_name_markup, markuptools.Markup):
+            markup = markuptools.Markup(self._short_instrument_name_markup)
+            self._short_instrument_name_markup = markup
         return self._short_instrument_name_markup
 
     @property
