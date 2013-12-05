@@ -35,7 +35,6 @@ class BarLine(AbjadObject):
     __slots__ = (
         '_abbreviation',
         '_default_scope',
-        '_format_slot',
         )
 
     _format_slot = 'closing'

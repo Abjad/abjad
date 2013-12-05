@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import inspect
 import pytest
+import abjad
 from abjad.tools import *
 pytest.skip()
 
@@ -13,4 +14,8 @@ def test___init___01(class_):
 
     if '_storage_format_specification' in dir(class_) and \
         not inspect.isabstract(class_):
-        instance = class_()
+        if hasattr(class_, '_default_positional_input_arguments'):
+            args = class_._default_positional_input_arguments
+            instance = class_(*args)
+        else:
+            instance = class_()

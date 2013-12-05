@@ -19,7 +19,13 @@ class DeveloperScript(abctools.AbjadObject):
     to share functionality.
     '''
 
-    ### CLASS INITIALIZER ###
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_argument_parser',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self):
         parser = self._argument_parser = argparse.ArgumentParser(
@@ -49,6 +55,11 @@ class DeveloperScript(abctools.AbjadObject):
                 raise ValueError
             args = self.argument_parser.parse_args(args)
         self.process_args(args)
+
+    def __getstate__(self):
+        r'''Gets object state.
+        '''
+        return {}
 
     ### PUBLIC PROPERTIES ###
 

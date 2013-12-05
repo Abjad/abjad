@@ -107,6 +107,8 @@ class LilyPondParser(abctools.Parser):
     Returns LilyPondParser instance.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, default_language='english', debug=False):
         from abjad.tools import lilypondparsertools
         from abjad.ly.current_module import current_module

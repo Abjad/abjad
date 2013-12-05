@@ -2,6 +2,7 @@
 import copy
 import inspect
 import pytest
+import abjad
 from abjad.tools import documentationtools
 pytest.skip()
 
@@ -14,7 +15,11 @@ def test___copy___01(class_):
 
     if '_storage_format_specification' in dir(class_) and \
         not inspect.isabstract(class_):
-        instance_one = class_()
+        if hasattr(class_, '_default_positional_input_arguments'):
+            args = class_._default_positional_input_arguments
+            instance_one = class_(*args)
+        else:
+            instance_one = class_()
         instance_two = copy.copy(instance_one)
         instance_one_format = format(instance_one, 'storage')
         instance_two_format = format(instance_two, 'storage')
