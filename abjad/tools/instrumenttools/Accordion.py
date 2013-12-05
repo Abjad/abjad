@@ -71,10 +71,6 @@ class Accordion(Instrument):
             'keyboardist',
             'accordionist',
             ])
-        self._starting_clefs = indicatortools.ClefInventory([
-            indicatortools.Clef('treble'),
-            indicatortools.Clef('bass'),
-            ])
         self._is_primary_instrument = True
 
     ### SPECIAL METHODS ###

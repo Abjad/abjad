@@ -18,11 +18,11 @@ class Instrument(AbjadObject):
 
     __slots__ = (
         '_allowable_clefs',
-        '_performer_names',
         '_default_scope',
         '_instrument_name',
         '_instrument_name_markup',
         '_is_primary_instrument',
+        '_performer_names',
         '_pitch_range',
         '_short_instrument_name',
         '_short_instrument_name_markup',
@@ -43,33 +43,26 @@ class Instrument(AbjadObject):
         sounding_pitch_of_written_middle_c=None,
         ):
         from abjad.tools import scoretools
-        self._default_scope = scoretools.Staff
-
         self._instrument_name = instrument_name
         self._instrument_name_markup = instrument_name_markup
         self._short_instrument_name = short_instrument_name
         self._short_instrument_name_markup = short_instrument_name_markup
-
+        allowable_clefs = allowable_clefs or ['treble']
+        allowable_clefs = indicatortools.ClefInventory(allowable_clefs)
+        self._allowable_clefs = allowable_clefs
+        pitch_range = pitch_range or pitchtools.PitchRange('[A0, C8]')
+        pitch_range = pitchtools.PitchRange(pitch_range)
+        self._pitch_range = pitch_range
         sounding_pitch_of_written_middle_c = \
             sounding_pitch_of_written_middle_c or pitchtools.NamedPitch("c'")
         sounding_pitch_of_written_middle_c = \
             pitchtools.NamedPitch(sounding_pitch_of_written_middle_c)
-
-        allowable_clefs = allowable_clefs or ['treble']
-        allowable_clefs = indicatortools.ClefInventory(allowable_clefs)
-
-        self._performer_names = ['instrumentalist']
-
-        self._allowable_clefs = allowable_clefs
-
-        pitch_range = pitch_range or pitchtools.PitchRange('[A0, C8]')
-        pitch_range = pitchtools.PitchRange(pitch_range)
-        self._pitch_range = pitch_range
         self._sounding_pitch_of_written_middle_c = \
             sounding_pitch_of_written_middle_c
-
+        self._default_scope = scoretools.Staff
         self._is_primary_instrument = False
-        self._starting_clefs = None
+        self._performer_names = ['instrumentalist']
+        self._starting_clefs = copy.copy(allowable_clefs)
 
     ### SPECIAL METHODS ###
 
