@@ -5,7 +5,6 @@ from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-# TODO: extend class definition to allow for custom target context in repr
 class Piano(Instrument):
     r'''A piano.
 
@@ -51,14 +50,11 @@ class Piano(Instrument):
         short_instrument_name='pf.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        allowable_clefs=None,
-        pitch_range=None,
+        allowable_clefs=('treble', 'bass'),
+        pitch_range='[A0, C8]',
         sounding_pitch_of_written_middle_c=None,
         ):
         from abjad.tools import scoretools
-        allowable_clefs = allowable_clefs or indicatortools.ClefInventory(
-            ['treble', 'bass'])
-        pitch_range = pitch_range or pitchtools.PitchRange('[A0, C8]')
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -76,4 +72,130 @@ class Piano(Instrument):
             'pianist',
             ])
         self._is_primary_instrument = True
-        self._starting_clefs = indicatortools.ClefInventory(['treble', 'bass'])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets piano's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> piano.allowable_clefs
+                ClefInventory([Clef('treble'), Clef('bass')])
+
+            ::
+
+                >>> show(piano.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets piano's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> piano.instrument_name
+                'piano'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets piano's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> piano.instrument_name_markup
+                Markup(('Piano',))
+
+            ::
+
+                >>> show(piano.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets piano's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> piano.pitch_range
+                PitchRange('[A0, C8]')
+
+            ::
+
+                >>> show(piano.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets piano's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> piano.short_instrument_name
+                'pf.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets piano's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> piano.short_instrument_name_markup
+                Markup(('Pf.',))
+
+            ::
+
+                >>> show(piano.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of piano's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> piano.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(piano.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)

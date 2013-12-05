@@ -11,8 +11,8 @@ class MezzoSopranoVoice(Instrument):
     ::
 
         >>> staff = Staff("c''4 d''4 e''4 fs''4")
-        >>> mezzosoprano = instrumenttools.MezzoSopranoVoice()
-        >>> attach(mezzosoprano, staff)
+        >>> mezzo_soprano = instrumenttools.MezzoSopranoVoice()
+        >>> attach(mezzo_soprano, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -44,10 +44,9 @@ class MezzoSopranoVoice(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range=None,
+        pitch_range='[A3, C6]',
         sounding_pitch_of_written_middle_c=None,
         ):
-        pitch_range = pitch_range or pitchtools.PitchRange('[A3, C6]')
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -64,3 +63,130 @@ class MezzoSopranoVoice(Instrument):
             'mezzo-soprano',
             ])
         self._is_primary_instrument = True
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets mezzo-soprano's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> mezzo_soprano.allowable_clefs
+                ClefInventory([Clef('treble')])
+
+            ::
+
+                >>> show(mezzo_soprano.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets mezzo-soprano's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> mezzo_soprano.instrument_name
+                'mezzo-soprano'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets mezzo-soprano's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> mezzo_soprano.instrument_name_markup
+                Markup(('Mezzo-soprano',))
+
+            ::
+
+                >>> show(mezzo_soprano.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets mezzo-soprano's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> mezzo_soprano.pitch_range
+                PitchRange('[A3, C6]')
+
+            ::
+
+                >>> show(mezzo_soprano.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets mezzo-soprano's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> mezzo_soprano.short_instrument_name
+                'mezz.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets mezzo-soprano's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> mezzo_soprano.short_instrument_name_markup
+                Markup(('Mezz.',))
+
+            ::
+
+                >>> show(mezzo_soprano.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of mezzo-soprano's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> mezzo_soprano.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(mezzo_soprano.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)

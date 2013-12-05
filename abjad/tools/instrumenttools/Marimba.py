@@ -41,13 +41,10 @@ class Marimba(Instrument):
         short_instrument_name='mb.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        allowable_clefs=None,
-        pitch_range=None,
+        allowable_clefs=('treble', 'bass'),
+        pitch_range='[F2, C7]',
         sounding_pitch_of_written_middle_c=None,
         ):
-        allowable_clef = allowable_clefs or indicatortools.ClefInventory([
-            'treble', 'bass'])
-        pitch_range = pitch_range or pitchtools.PitchRange(-19, 36)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -62,4 +59,130 @@ class Marimba(Instrument):
         self._performer_names.extend([
             'percussionist',
             ])
-        self._starting_clefs = indicatortools.ClefInventory(['treble', 'bass'])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets marimba's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> marimba.allowable_clefs
+                ClefInventory([Clef('treble'), Clef('bass')])
+
+            ::
+
+                >>> show(marimba.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets marimba's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> marimba.instrument_name
+                'marimba'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets marimba's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> marimba.instrument_name_markup
+                Markup(('Marimba',))
+
+            ::
+
+                >>> show(marimba.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets marimba's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> marimba.pitch_range
+                PitchRange('[F2, C7]')
+
+            ::
+
+                >>> show(marimba.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets marimba's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> marimba.short_instrument_name
+                'mb.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets marimba's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> marimba.short_instrument_name_markup
+                Markup(('Mb.',))
+
+            ::
+
+                >>> show(marimba.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of marimba's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> marimba.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(marimba.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
