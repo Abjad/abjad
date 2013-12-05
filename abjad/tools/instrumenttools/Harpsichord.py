@@ -50,14 +50,11 @@ class Harpsichord(Instrument):
         short_instrument_name='hpschd.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        allowable_clefs=None,
-        pitch_range=None,
+        allowable_clefs=('treble', 'bass'),
+        pitch_range='[C2, C7]',
         sounding_pitch_of_written_middle_c=None,
         ):
         from abjad.tools import scoretools
-        allowable_clefs = allowable_clefs or indicatortools.ClefInventory(
-            ['treble', 'bass'])
-        pitch_range = pitch_range or pitchtools.PitchRange(-24, 36)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -75,4 +72,130 @@ class Harpsichord(Instrument):
             'harpsichordist'
             ])
         self._is_primary_instrument = True
-        self._starting_clefs = indicatortools.ClefInventory(['treble', 'bass'])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets harpsichord's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> harpsichord.allowable_clefs
+                ClefInventory([Clef('treble'), Clef('bass')])
+
+            ::
+
+                >>> show(harpsichord.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets harpsichord's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> harpsichord.instrument_name
+                'harpsichord'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets harpsichord's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> harpsichord.instrument_name_markup
+                Markup(('Harpsichord',))
+
+            ::
+
+                >>> show(harpsichord.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets harpsichord's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> harpsichord.pitch_range
+                PitchRange('[C2, C7]')
+
+            ::
+
+                >>> show(harpsichord.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets harpsichord's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> harpsichord.short_instrument_name
+                'hpschd.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets harpsichord's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> harpsichord.short_instrument_name_markup
+                Markup(('Hpschd.',))
+
+            ::
+
+                >>> show(harpsichord.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of harpsichord's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> harpsichord.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(harpsichord.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
