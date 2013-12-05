@@ -10,7 +10,7 @@ class AltoFlute(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> alto_flute = instrumenttools.AltoFlute()
         >>> attach(alto_flute, staff)
         >>> show(staff) # doctest: +SKIP
@@ -24,10 +24,14 @@ class AltoFlute(Instrument):
             c'4
             d'4
             e'4
-            f'4
+            fs'4
         }
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -39,7 +43,7 @@ class AltoFlute(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range='[G3, G6]',
-        sounding_pitch_of_written_middle_c='g',
+        sounding_pitch_of_written_middle_c='G3',
         ):
         Instrument.__init__(
             self,

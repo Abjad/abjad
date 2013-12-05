@@ -10,7 +10,7 @@ class Bassoon(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> clef = Clef('bass')
         >>> attach(clef, staff)
         >>> bassoon = instrumenttools.Bassoon()
@@ -24,13 +24,12 @@ class Bassoon(Instrument):
             \clef "bass"
             \set Staff.instrumentName = \markup { Bassoon }
             \set Staff.shortInstrumentName = \markup { Bsn. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The bassoon targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

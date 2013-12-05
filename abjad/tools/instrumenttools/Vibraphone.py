@@ -10,7 +10,7 @@ class Vibraphone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> vibraphone = instrumenttools.Vibraphone()
         >>> attach(vibraphone, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class Vibraphone(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Vibraphone }
             \set Staff.shortInstrumentName = \markup { Vibr. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The vibraphone targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

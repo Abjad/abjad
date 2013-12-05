@@ -10,7 +10,7 @@ class Piccolo(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> piccolo = instrumenttools.Piccolo()
         >>> attach(piccolo, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class Piccolo(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Piccolo }
             \set Staff.shortInstrumentName = \markup { Picc. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The piccolo targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

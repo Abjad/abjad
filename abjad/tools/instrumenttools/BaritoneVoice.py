@@ -10,7 +10,7 @@ class BaritoneVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c8 d8 e8 f8")
+        >>> staff = Staff("c4 d4 e4 fs4")
         >>> show(staff) # doctest: +SKIP
         >>> baritone_voice = instrumenttools.BaritoneVoice()
         >>> attach(baritone_voice, staff)
@@ -22,21 +22,19 @@ class BaritoneVoice(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Baritone }
             \set Staff.shortInstrumentName = \markup { Bar. }
-            c8
-            d8
-            e8
-            f8
+            c4
+            d4
+            e4
+            fs4
         }
 
-    The baritone voice targets staff context by default.
     '''
     
     ### CLASS VARIABLES ###
 
     __slots__ = ()
     
-    # TODO: what is this? Shouldn't this be removed?
-    default_performer_abbreviation = 'bar.'
+    performer_abbreviation = 'bar.'
 
     ### INITIALIZER ###
 

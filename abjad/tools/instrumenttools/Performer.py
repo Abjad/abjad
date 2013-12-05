@@ -221,7 +221,7 @@ class Performer(AbjadObject):
             if instrument._is_primary_instrument:
                 performer_name = instrument._get_default_performer_name()
                 performer_abbreviation = getattr(
-                    instrument, 'default_performer_abbreviation', None)
+                    instrument, 'performer_abbreviation', None)
                 performer_abbreviation = performer_abbreviation or \
                     instrument.short_instrument_name
                 performer_names.add((performer_name, performer_abbreviation))

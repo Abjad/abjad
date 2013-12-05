@@ -10,7 +10,7 @@ class Glockenspiel(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> glockenspiel = instrumenttools.Glockenspiel()
         >>> attach(glockenspiel, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class Glockenspiel(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Glockenspiel }
             \set Staff.shortInstrumentName = \markup { Gkspl. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The glockenspiel targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

@@ -10,7 +10,7 @@ class Trumpet(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> trumpet = instrumenttools.Trumpet()
         >>> attach(trumpet, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class Trumpet(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Trumpet }
             \set Staff.shortInstrumentName = \markup { Tp. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The trumpet targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

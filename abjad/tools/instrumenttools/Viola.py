@@ -10,7 +10,7 @@ class Viola(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> clef = Clef('alto')
         >>> attach(clef, staff)
         >>> viola = instrumenttools.Viola()
@@ -24,13 +24,12 @@ class Viola(Instrument):
             \clef "alto"
             \set Staff.instrumentName = \markup { Viola }
             \set Staff.shortInstrumentName = \markup { Va. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The viola targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

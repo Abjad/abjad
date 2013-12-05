@@ -2,7 +2,6 @@
 from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools import scoretools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -11,12 +10,9 @@ class Harpsichord(Instrument):
 
     ::
 
-        >>> upper_staff = Staff("c'8 d'8 e'8 f'8")
-        >>> lower_staff = Staff("c'4 b4")
+        >>> upper_staff = Staff("c'4 d'4 e'4 f'4")
+        >>> lower_staff = Staff("c'2 b2")
         >>> piano_staff = scoretools.PianoStaff([upper_staff, lower_staff])
-
-    ::
-
         >>> harpsichord = instrumenttools.Harpsichord()
         >>> attach(harpsichord, piano_staff)
         >>> show(piano_staff) # doctest: +SKIP
@@ -28,14 +24,14 @@ class Harpsichord(Instrument):
             \set PianoStaff.instrumentName = \markup { Harpsichord }
             \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
             \new Staff {
-                c'8
-                d'8
-                e'8
-                f'8
+                c'4
+                d'4
+                e'4
+                f'4
             }
             \new Staff {
-                c'4
-                b4
+                c'2
+                b2
             }
         >>
 
@@ -58,6 +54,7 @@ class Harpsichord(Instrument):
         pitch_range=None,
         sounding_pitch_of_written_middle_c=None,
         ):
+        from abjad.tools import scoretools
         allowable_clefs = allowable_clefs or indicatortools.ClefInventory(
             ['treble', 'bass'])
         pitch_range = pitch_range or pitchtools.PitchRange(-24, 36)

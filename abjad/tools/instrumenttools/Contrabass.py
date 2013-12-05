@@ -10,7 +10,7 @@ class Contrabass(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> clef = Clef('bass')
         >>> attach(clef, staff)
         >>> contrabass = instrumenttools.Contrabass()
@@ -24,13 +24,12 @@ class Contrabass(Instrument):
             \clef "bass"
             \set Staff.instrumentName = \markup { Contrabass }
             \set Staff.shortInstrumentName = \markup { Vb. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The contrabass targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

@@ -10,7 +10,7 @@ class ClarinetInA(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> clarinet = instrumenttools.ClarinetInA()
         >>> attach(clarinet, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class ClarinetInA(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in A }
             \set Staff.shortInstrumentName = \markup { Cl. A \natural }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The clarinet in A targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

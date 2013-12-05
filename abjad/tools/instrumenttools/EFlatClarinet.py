@@ -10,7 +10,7 @@ class EFlatClarinet(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> clarinet = instrumenttools.EFlatClarinet()
         >>> attach(clarinet, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class EFlatClarinet(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in E-flat }
             \set Staff.shortInstrumentName = \markup { Cl. E-flat }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The E-flat clarinet targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

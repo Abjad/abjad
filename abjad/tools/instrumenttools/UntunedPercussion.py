@@ -10,7 +10,7 @@ class UntunedPercussion(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> percussion = instrumenttools.UntunedPercussion()
         >>> attach(percussion, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class UntunedPercussion(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Untuned percussion }
             \set Staff.shortInstrumentName = \markup { Perc. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    Untuned percussion targets the staff context by default.
     '''
 
     ### CLASS VARIABLES ###

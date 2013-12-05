@@ -10,7 +10,7 @@ class ContrabassSaxophone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> sax = instrumenttools.ContrabassSaxophone()
         >>> attach(sax, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,16 +21,17 @@ class ContrabassSaxophone(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Contrabass saxophone }
             \set Staff.shortInstrumentName = \markup { Cbass. sax. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The contrabass saxophone is pitched in E-flat.
-
-    The contrabass saxophone targets staff context by default.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 

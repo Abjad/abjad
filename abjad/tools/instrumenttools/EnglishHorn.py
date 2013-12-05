@@ -10,7 +10,7 @@ class EnglishHorn(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> english_horn = instrumenttools.EnglishHorn()
         >>> attach(english_horn, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class EnglishHorn(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { English horn }
             \set Staff.shortInstrumentName = \markup { Eng. hn. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The English horn targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

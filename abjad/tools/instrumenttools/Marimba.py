@@ -10,7 +10,7 @@ class Marimba(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> marimba = instrumenttools.Marimba()
         >>> attach(marimba, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class Marimba(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Marimba }
             \set Staff.shortInstrumentName = \markup { Mb. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The marimba targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

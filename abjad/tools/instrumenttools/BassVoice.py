@@ -10,9 +10,10 @@ class BassVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c8 d8 e8 f8")
+        >>> staff = Staff("c4 d4 e4 fs4")
         >>> bass = instrumenttools.BassVoice()
         >>> attach(bass, staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -20,17 +21,12 @@ class BassVoice(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Bass }
             \set Staff.shortInstrumentName = \markup { Bass }
-            c8
-            d8
-            e8
-            f8
+            c4
+            d4
+            e4
+            fs4
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    The bass voice targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

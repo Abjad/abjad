@@ -10,7 +10,7 @@ class BassClarinet(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> show(staff) # doctest: +SKIP
         >>> bass_clarinet = instrumenttools.BassClarinet()
         >>> attach(bass_clarinet, staff)
@@ -22,13 +22,12 @@ class BassClarinet(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Bass clarinet }
             \set Staff.shortInstrumentName = \markup { Bass cl. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The bass clarinet targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

@@ -10,7 +10,7 @@ class AltoSaxophone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> alto_saxophone = instrumenttools.AltoSaxophone()
         >>> attach(alto_saxophone, staff)
         >>> show(staff) # doctest: +SKIP
@@ -24,10 +24,14 @@ class AltoSaxophone(Instrument):
             c'4
             d'4
             e'4
-            f'4
+            fs'4
         }
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -39,7 +43,7 @@ class AltoSaxophone(Instrument):
         short_instrument_name_markup=None,
         allowable_clefs=None,
         pitch_range='[Db3, A5]', 
-        sounding_pitch_of_written_middle_c='ef',
+        sounding_pitch_of_written_middle_c='Eb3',
         ):
         Instrument.__init__(
             self,
@@ -69,8 +73,6 @@ class AltoSaxophone(Instrument):
         Interprets `''` equal to `'storage'`.
 
         ..  container:: example
-
-            Without customization:
 
             ::
 

@@ -10,7 +10,7 @@ class Violin(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,10 +21,10 @@ class Violin(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Violin }
             \set Staff.shortInstrumentName = \markup { Vn. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
     '''

@@ -10,7 +10,7 @@ class BaritoneSaxophone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> show(staff) # doctest: +SKIP
         >>> baritone_sax = instrumenttools.BaritoneSaxophone()
         >>> attach(baritone_sax, staff)
@@ -22,13 +22,12 @@ class BaritoneSaxophone(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Baritone saxophone }
             \set Staff.shortInstrumentName = \markup { Bar. sax. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The baritone saxophone targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

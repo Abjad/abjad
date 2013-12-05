@@ -10,7 +10,7 @@ class SopranoSaxophone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> sax = instrumenttools.SopranoSaxophone()
         >>> attach(sax, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,15 +21,12 @@ class SopranoSaxophone(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Soprano saxophone }
             \set Staff.shortInstrumentName = \markup { Sop. sax. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The soprano saxophone is pitched in B-flat.
-
-    The soprano saxophone targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

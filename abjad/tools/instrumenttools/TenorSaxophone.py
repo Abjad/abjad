@@ -10,7 +10,7 @@ class TenorSaxophone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> sax = instrumenttools.TenorSaxophone()
         >>> attach(sax, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,13 +21,12 @@ class TenorSaxophone(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Tenor saxophone }
             \set Staff.shortInstrumentName = \markup { Ten. sax. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The tenor saxophone targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

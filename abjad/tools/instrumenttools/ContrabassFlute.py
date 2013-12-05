@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
@@ -9,7 +10,7 @@ class ContrabassFlute(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> contrabass_flute = instrumenttools.ContrabassFlute()
         >>> attach(contrabass_flute, staff)
         >>> show(staff) # doctest: +SKIP
@@ -20,13 +21,12 @@ class ContrabassFlute(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Contrabass flute }
             \set Staff.shortInstrumentName = \markup { Cbass. fl. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The contrabass flute targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

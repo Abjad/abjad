@@ -10,7 +10,7 @@ class ContraltoVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> contralto = instrumenttools.ContraltoVoice()
         >>> attach(contralto, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,20 +21,19 @@ class ContraltoVoice(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Contralto }
             \set Staff.shortInstrumentName = \markup { Contralto }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The contralto voice targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = ()
 
-    default_performer_abbreviation = 'contr.'
+    performer_abbreviation = 'contr.'
 
     ### INITIALIZER ###
 

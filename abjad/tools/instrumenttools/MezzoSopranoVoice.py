@@ -10,7 +10,7 @@ class MezzoSopranoVoice(Instrument):
 
     ::
 
-        >>> staff = Staff("c''8 d''8 e''8 f''8")
+        >>> staff = Staff("c''4 d''4 e''4 fs''4")
         >>> mezzosoprano = instrumenttools.MezzoSopranoVoice()
         >>> attach(mezzosoprano, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,20 +21,19 @@ class MezzoSopranoVoice(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Mezzo-soprano }
             \set Staff.shortInstrumentName = \markup { Mezz. }
-            c''8
-            d''8
-            e''8
-            f''8
+            c''4
+            d''4
+            e''4
+            fs''4
         }
 
-    The mezzo-soprano voice targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = ()
 
-    default_performer_abbreviation = 'ms.'
+    performer_abbreviation = 'ms.'
 
     ### INITIALIZER ###
 

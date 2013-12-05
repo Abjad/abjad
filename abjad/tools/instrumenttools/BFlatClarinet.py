@@ -10,7 +10,7 @@ class BFlatClarinet(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> clarinet = instrumenttools.BFlatClarinet()
         >>> attach(clarinet, staff)
         >>> show(staff) # doctest: +SKIP
@@ -21,14 +21,19 @@ class BFlatClarinet(Instrument):
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in B-flat }
             \set Staff.shortInstrumentName = \markup { Cl. in B-flat }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    The B-flat clarinet targets staff context by default.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
+    performer_abbreviation = 'cl.'
 
     ### INITIALIZER ###
 
@@ -39,10 +44,9 @@ class BFlatClarinet(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range=None,
-        sounding_pitch_of_written_middle_c='bf',
+        pitch_range='[D3, Bb6]',
+        sounding_pitch_of_written_middle_c='Bb3',
         ):
-        pitch_range = pitch_range or pitchtools.PitchRange(-10, 34)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -62,8 +66,6 @@ class BFlatClarinet(Instrument):
             'clarinetist',
             ])
         self._is_primary_instrument = True
-
-        self.default_performer_abbreviation = 'cl.'
 
     ### PUBLIC METHODS ###
 

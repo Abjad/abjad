@@ -10,11 +10,12 @@ class BassTrombone(Instrument):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'4 d'4 e'4 fs'4")
         >>> clef = Clef('bass')
         >>> attach(clef, staff)
         >>> trombone = instrumenttools.BassTrombone()
         >>> attach(trombone, staff)
+        >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
@@ -23,17 +24,12 @@ class BassTrombone(Instrument):
             \clef "bass"
             \set Staff.instrumentName = \markup { Bass trombone }
             \set Staff.shortInstrumentName = \markup { Bass trb. }
-            c'8
-            d'8
-            e'8
-            f'8
+            c'4
+            d'4
+            e'4
+            fs'4
         }
 
-    ::
-
-        >>> show(staff) # doctest: +SKIP
-
-    The tenor trombone targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###

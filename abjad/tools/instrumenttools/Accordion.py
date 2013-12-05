@@ -5,15 +5,14 @@ from abjad.tools import scoretools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-
 class Accordion(Instrument):
     r'''An accordion.
 
     ::
 
         >>> piano_staff = scoretools.PianoStaff()
-        >>> piano_staff.append(Staff("c'8 d'8 e'8 f'8"))
-        >>> piano_staff.append(Staff("c'4 b4"))
+        >>> piano_staff.append(Staff("c'4 d'4 e'4 f'4"))
+        >>> piano_staff.append(Staff("c'2 b2"))
         >>> accordion = instrumenttools.Accordion()
         >>> attach(accordion, piano_staff)
         >>> show(piano_staff) # doctest: +SKIP
@@ -25,14 +24,14 @@ class Accordion(Instrument):
             \set PianoStaff.instrumentName = \markup { Accordion }
             \set PianoStaff.shortInstrumentName = \markup { Acc. }
             \new Staff {
-                c'8
-                d'8
-                e'8
-                f'8
+                c'4
+                d'4
+                e'4
+                f'4
             }
             \new Staff {
-                c'4
-                b4
+                c'2
+                b2
             }
         >>
 
