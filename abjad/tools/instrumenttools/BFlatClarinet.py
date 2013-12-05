@@ -67,7 +67,7 @@ class BFlatClarinet(Instrument):
             ])
         self._is_primary_instrument = True
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
     def _get_performer_names(self):
         r'''Get performer names:
@@ -86,3 +86,130 @@ class BFlatClarinet(Instrument):
         Returns list.
         '''
         return super(BFlatClarinet, self)._get_performer_names()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets clarinet in B-flat's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> clarinet.allowable_clefs
+                ClefInventory([Clef('treble')])
+
+            ::
+
+                >>> show(clarinet.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets clarinet in B-flat's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> clarinet.instrument_name
+                'clarinet in B-flat'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets clarinet in B-flat's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> clarinet.instrument_name_markup
+                Markup(('Clarinet in B-flat',))
+
+            ::
+
+                >>> show(clarinet.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets clarinet in B-flat's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> clarinet.pitch_range
+                PitchRange('[D3, Bb6]')
+
+            ::
+
+                >>> show(clarinet.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets clarinet in B-flat's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> clarinet.short_instrument_name
+                'cl. in B-flat'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets clarinet in B-flat's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> clarinet.short_instrument_name_markup
+                Markup(('Cl. in B-flat',))
+
+            ::
+
+                >>> show(clarinet.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of clarinet in B-flat's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> clarinet.sounding_pitch_of_written_middle_c
+                NamedPitch('bf')
+
+            ::
+
+                >>> show(clarinet.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
