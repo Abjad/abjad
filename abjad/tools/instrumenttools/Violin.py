@@ -11,7 +11,6 @@ class Violin(Instrument):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> show(staff) # doctest: +SKIP
         >>> violin = instrumenttools.Violin()
         >>> attach(violin, staff)
         >>> show(staff) # doctest: +SKIP
@@ -28,7 +27,6 @@ class Violin(Instrument):
             f'8
         }
 
-    The violin targets staff context by default.
     '''
 
     ### CLASS VARIABLES ###
