@@ -241,8 +241,6 @@ class PitchRange(AbjadObject):
         from abjad.tools.topleveltools import attach
         from abjad.tools.topleveltools import iterate
         from abjad.tools.topleveltools import override
-        result = scoretools.make_empty_piano_score()
-        score, treble_staff, bass_staff = result
         start_pitch_clef = pitchtools.suggest_clef_for_named_pitches(
             self.start_pitch)
         stop_pitch_clef = pitchtools.suggest_clef_for_named_pitches(
@@ -252,12 +250,20 @@ class PitchRange(AbjadObject):
         glissando = spannertools.Glissando()
         if start_pitch_clef == stop_pitch_clef:
             if start_pitch_clef == indicatortools.Clef('bass'):
+                bass_staff = scoretools.Staff()
+                attach(indicatortools.Clef('bass'), bass_staff)
                 bass_staff.extend([start_note, stop_note])
                 attach(glissando, bass_staff.select_leaves())
+                score = scoretools.Score([bass_staff])
             else:
+                treble_staff = scoretools.Staff()
+                attach(indicatortools.Clef('treble'), treble_staff)
                 treble_staff.extend([start_note, stop_note])
                 attach(glissando, treble_staff.select_leaves())
+                score = scoretools.Score([treble_staff])
         else:
+            result = scoretools.make_empty_piano_score()
+            score, treble_staff, bass_staff = result
             bass_staff.extend([start_note, stop_note])
             treble_staff.extend(scoretools.Skip(1) * 2)
             attach(glissando, bass_staff.select_leaves())
