@@ -44,12 +44,10 @@ class Contrabassoon(Instrument):
         short_instrument_name='contrabsn.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        allowable_clefs=None,
-        pitch_range=None,
-        sounding_pitch_of_written_middle_c='c',
+        allowable_clefs=('bass',),
+        pitch_range='[Bb0, Bb4]',
+        sounding_pitch_of_written_middle_c='C3',
         ):
-        allowable_clefs = indicatortools.ClefInventory(['bass'])
-        pitch_range = pitch_range or pitchtools.PitchRange(-38, -2)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -67,4 +65,130 @@ class Contrabassoon(Instrument):
             'double reed player',
             'bassoonist',
             ])
-        self._starting_clefs = indicatortools.ClefInventory(['bass'])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets contrabassoon's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabassoon.allowable_clefs
+                ClefInventory([Clef('bass')])
+
+            ::
+
+                >>> show(contrabassoon.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets contrabassoon's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabassoon.instrument_name
+                'contrabassoon'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets contrabassoon's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabassoon.instrument_name_markup
+                Markup(('Contrabassoon',))
+
+            ::
+
+                >>> show(contrabassoon.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets contrabassoon's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabassoon.pitch_range
+                PitchRange('[Bb0, Bb4]')
+
+            ::
+
+                >>> show(contrabassoon.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets contrabassoon's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabassoon.short_instrument_name
+                'contrabsn.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets contrabassoon's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabassoon.short_instrument_name_markup
+                Markup(('Contrabsn.',))
+
+            ::
+
+                >>> show(contrabassoon.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of contrabassoon's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabassoon.sounding_pitch_of_written_middle_c
+                NamedPitch('c')
+
+            ::
+
+                >>> show(contrabassoon.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)

@@ -11,8 +11,8 @@ class ContrabassSaxophone(Instrument):
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> sax = instrumenttools.ContrabassSaxophone()
-        >>> attach(sax, staff)
+        >>> contrabass_saxophone = instrumenttools.ContrabassSaxophone()
+        >>> attach(contrabass_saxophone, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -42,10 +42,9 @@ class ContrabassSaxophone(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range=None,
-        sounding_pitch_of_written_middle_c='ef,,',
+        pitch_range='[C1, Ab3]',
+        sounding_pitch_of_written_middle_c='Eb1',
         ):
-        pitch_range = pitch_range or pitchtools.PitchRange(-36, -4)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -63,3 +62,130 @@ class ContrabassSaxophone(Instrument):
             'single reed player',
             'saxophonist',
             ])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets contrabass saxophone's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabass_saxophone.allowable_clefs
+                ClefInventory([Clef('treble')])
+
+            ::
+
+                >>> show(contrabass_saxophone.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets contrabass saxophone's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabass_saxophone.instrument_name
+                'contrabass saxophone'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets contrabass saxophone's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabass_saxophone.instrument_name_markup
+                Markup(('Contrabass saxophone',))
+
+            ::
+
+                >>> show(contrabass_saxophone.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets contrabass saxophone's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabass_saxophone.pitch_range
+                PitchRange('[C1, Ab3]')
+
+            ::
+
+                >>> show(contrabass_saxophone.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets contrabass saxophone's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabass_saxophone.short_instrument_name
+                'cbass. sax.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets contrabass saxophone's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabass_saxophone.short_instrument_name_markup
+                Markup(('Cbass. sax.',))
+
+            ::
+
+                >>> show(contrabass_saxophone.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of contrabass_saxophone's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> contrabass_saxophone.sounding_pitch_of_written_middle_c
+                NamedPitch('ef,,')
+
+            ::
+
+                >>> show(contrabass_saxophone.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)

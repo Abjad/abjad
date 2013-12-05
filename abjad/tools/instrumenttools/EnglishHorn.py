@@ -42,10 +42,9 @@ class EnglishHorn(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range=None,
-        sounding_pitch_of_written_middle_c='f',
+        pitch_range='[E3, C6]',
+        sounding_pitch_of_written_middle_c='F3',
         ):
-        pitch_range = pitch_range or pitchtools.PitchRange(-8, 24)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -63,3 +62,130 @@ class EnglishHorn(Instrument):
             'double reed player',
             'oboist',
             ])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets English horn's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> english_horn.allowable_clefs
+                ClefInventory([Clef('treble')])
+
+            ::
+
+                >>> show(english_horn.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets English horn's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> english_horn.instrument_name
+                'English horn'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets English horn's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> english_horn.instrument_name_markup
+                Markup(('English horn',))
+
+            ::
+
+                >>> show(english_horn.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets English horn's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> english_horn.pitch_range
+                PitchRange('[E3, C6]')
+
+            ::
+
+                >>> show(english_horn.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets English horn's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> english_horn.short_instrument_name
+                'Eng. hn.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets English horn's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> english_horn.short_instrument_name_markup
+                Markup(('Eng. hn.',))
+
+            ::
+
+                >>> show(english_horn.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of English horn's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> english_horn.sounding_pitch_of_written_middle_c
+                NamedPitch('f')
+
+            ::
+
+                >>> show(english_horn.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
