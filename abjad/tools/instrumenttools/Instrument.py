@@ -63,6 +63,7 @@ class Instrument(AbjadObject):
 
         self._allowable_clefs = allowable_clefs
 
+        pitch_range = pitch_range or pitchtools.PitchRange('[A0, C8]')
         pitch_range = pitchtools.PitchRange(pitch_range)
         self._pitch_range = pitch_range
         self._sounding_pitch_of_written_middle_c = \
@@ -149,6 +150,10 @@ class Instrument(AbjadObject):
         pitch_range=None,
         sounding_pitch_of_written_middle_c=None,
         ):
+        r'''Makes new instrument with optional keyword arguments.
+
+        Returns new instrument.
+        '''
         instrument_name = instrument_name or self.instrument_name
         short_instrument_name = short_instrument_name or \
             self._short_instrument_name
