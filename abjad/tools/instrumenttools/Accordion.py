@@ -51,13 +51,10 @@ class Accordion(Instrument):
         short_instrument_name='acc.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        allowable_clefs=['treble', 'bass'],
+        allowable_clefs=('treble', 'bass'),
         pitch_range='[E1, C8]',
         sounding_pitch_of_written_middle_c=None,
         ):
-#        allowable_clefs = allowable_clefs or indicatortools.ClefInventory([
-#            'treble', 'bass'])
-#        pitch_range = pitch_range or pitchtools.PitchRange(-32, 48)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,

@@ -41,11 +41,9 @@ class ClassDocumenter(Documenter):
               ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.write
               ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__call__
               ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__eq__
-              ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__getstate__
               ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__makenew__
               ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__ne__
               ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__repr__
-              ~abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__setstate__
         <BLANKLINE>
         Bases
         -----
@@ -110,9 +108,6 @@ class ClassDocumenter(Documenter):
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__eq__
            :noindex:
         <BLANKLINE>
-        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__getstate__
-           :noindex:
-        <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__makenew__
            :noindex:
         <BLANKLINE>
@@ -122,11 +117,7 @@ class ClassDocumenter(Documenter):
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__repr__
            :noindex:
         <BLANKLINE>
-        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.__setstate__
-           :noindex:
-        <BLANKLINE>
 
-    Returns ``ClassDocumenter`` instance.
     '''
 
     ### CLASS VARIABLES ###
@@ -134,9 +125,11 @@ class ClassDocumenter(Documenter):
     _ignored_special_methods = (
         '__getattribute__',
         '__getnewargs__',
+        '__getstate__',
         '__init__',
         '__reduce__',
         '__reduce_ex__',
+        '__setstate__',
         '__sizeof__',
         '__subclasshook__',
         'fromkeys',

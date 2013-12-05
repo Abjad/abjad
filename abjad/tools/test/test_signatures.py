@@ -7,6 +7,8 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
+# only immutable types are allowed;
+# lists and other mutables are not allowed as initializer keyword values
 valid_types = (
     bool,
     float,
@@ -21,10 +23,11 @@ valid_types = (
     )
 
 
-# TODO: write docstring describing test
 classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('obj', classes)
 def test_signatures_01(obj):
+    r'''Make sure class initializer keyword argument values are immutable.
+    '''
 
     for attr in inspect.classify_class_attrs(obj):
         if attr.defining_class is not obj:
@@ -43,10 +46,11 @@ def test_signatures_01(obj):
                 assert all(isinstance(x, valid_types) for x in value)
 
 
-# TODO: write docstring describing test
 functions = documentationtools.list_all_abjad_functions()
 @pytest.mark.parametrize('obj', functions)
 def test_signatures_02(obj):
+    r'''Make sure function keyword argument values are immutable.
+    '''
 
     argument_specification = inspect.getargspec(obj)
     keyword_argument_names = argument_specification.args[1:]
