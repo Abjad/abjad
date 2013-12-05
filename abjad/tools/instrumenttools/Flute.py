@@ -42,10 +42,9 @@ class Flute(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range=None,
+        pitch_range='[C4, D7]',
         sounding_pitch_of_written_middle_c=None,
         ):
-        pitch_range = pitch_range = pitchtools.PitchRange(0, 38)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -63,3 +62,130 @@ class Flute(Instrument):
             'flutist',
             ])
         self._is_primary_instrument = True
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets flute's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> flute.allowable_clefs
+                ClefInventory([Clef('treble')])
+
+            ::
+
+                >>> show(flute.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets flute's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> flute.instrument_name
+                'flute'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets flute's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> flute.instrument_name_markup
+                Markup(('Flute',))
+
+            ::
+
+                >>> show(flute.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets flute's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> flute.pitch_range
+                PitchRange('[C4, D7]')
+
+            ::
+
+                >>> show(flute.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets flute's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> flute.short_instrument_name
+                'fl.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets flute's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> flute.short_instrument_name_markup
+                Markup(('Fl.',))
+
+            ::
+
+                >>> show(flute.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of flute's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> flute.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(flute.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
