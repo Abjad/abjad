@@ -11,7 +11,6 @@ class BassClarinet(Instrument):
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> show(staff) # doctest: +SKIP
         >>> bass_clarinet = instrumenttools.BassClarinet()
         >>> attach(bass_clarinet, staff)
         >>> show(staff) # doctest: +SKIP
@@ -42,12 +41,10 @@ class BassClarinet(Instrument):
         short_instrument_name='bass cl.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        allowable_clefs=None,
-        pitch_range=None,
-        sounding_pitch_of_written_middle_c='bf,',
+        allowable_clefs=('treble', 'bass'),
+        pitch_range='[Bb1, G5]',
+        sounding_pitch_of_written_middle_c='Bb2',
         ):
-        pitch_range = pitch_range = pitchtools.PitchRange(-26, 19)
-        allowable_clefs = indicatortools.ClefInventory(['treble', 'bass'])
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -68,33 +65,129 @@ class BassClarinet(Instrument):
             ])
         self._starting_clefs = indicatortools.ClefInventory(['treble'])
 
-#    ### PUBLIC PROPERTIES ###
-#
-#    @property
-#    def sounding_pitch_of_written_middle_c(self):
-#        r'''Gets and sets sounding pitch of written middle C.
-#
-#        ::
-#
-#            >>> bass_clarinet.sounding_pitch_of_written_middle_c
-#            NamedPitch('bf,')
-#
-#        ::
-#
-#            >>> bass_clarinet.sounding_pitch_of_written_middle_c = 'b,'
-#            >>> bass_clarinet.sounding_pitch_of_written_middle_c
-#            NamedPitch('b,')
-#
-#        :: 
-#
-#            >>> bass_clarinet.sounding_pitch_of_written_middle_c = None
-#            >>> bass_clarinet.sounding_pitch_of_written_middle_c
-#            NamedPitch('bf,')
-#
-#        Returns named pitch.
-#        '''
-#        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
-#
-#    @sounding_pitch_of_written_middle_c.setter
-#    def sounding_pitch_of_written_middle_c(self, pitch):
-#        Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets bass clarinet's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass_clarinet.allowable_clefs
+                ClefInventory([Clef('treble'), Clef('bass')])
+
+            ::
+
+                >>> show(bass_clarinet.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets bass clarinet's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass_clarinet.instrument_name
+                'bass clarinet'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets bass clarinet's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass_clarinet.instrument_name_markup
+                Markup(('Bass clarinet',))
+
+            ::
+
+                >>> show(bass_clarinet.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets bass clarinet's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass_clarinet.pitch_range
+                PitchRange('[Bb1, G5]')
+
+            ::
+
+                >>> show(bass_clarinet.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets bass clarinet's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass_clarinet.short_instrument_name
+                'bass cl.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets bass clarinet's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass_clarinet.short_instrument_name_markup
+                Markup(('Bass cl.',))
+
+            ::
+
+                >>> show(bass_clarinet.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of bass_clarinet's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass_clarinet.sounding_pitch_of_written_middle_c
+                NamedPitch('bf,')
+
+            ::
+
+                >>> show(bass_clarinet.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)

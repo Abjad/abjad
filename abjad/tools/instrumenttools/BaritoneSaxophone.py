@@ -11,9 +11,8 @@ class BaritoneSaxophone(Instrument):
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> show(staff) # doctest: +SKIP
-        >>> baritone_sax = instrumenttools.BaritoneSaxophone()
-        >>> attach(baritone_sax, staff)
+        >>> baritone_saxophone = instrumenttools.BaritoneSaxophone()
+        >>> attach(baritone_saxophone, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
@@ -43,10 +42,9 @@ class BaritoneSaxophone(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range=None,
-        sounding_pitch_of_written_middle_c='ef,',
+        pitch_range='[C2, Ab4]',
+        sounding_pitch_of_written_middle_c='Eb2',
         ):
-        pitch_range = pitch_range or pitchtools.PitchRange(-24, 8)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -65,33 +63,129 @@ class BaritoneSaxophone(Instrument):
             'saxophonist',
             ])
 
-#    ### PUBLIC PROPERTIES ###
-#
-#    @property
-#    def sounding_pitch_of_written_middle_c(self):
-#        r'''Gets and sets sounding pitch of written middle C.
-#
-#        ::
-#
-#            >>> baritone_sax.sounding_pitch_of_written_middle_c
-#            NamedPitch('ef,')
-#
-#        ::
-#
-#            >>> baritone_sax.sounding_pitch_of_written_middle_c = 'e' 
-#            >>> baritone_sax.sounding_pitch_of_written_middle_c
-#            NamedPitch('e')
-#
-#        ::
-#
-#            >>> baritone_sax.sounding_pitch_of_written_middle_c = None
-#            >>> baritone_sax.sounding_pitch_of_written_middle_c
-#            NamedPitch('ef,')
-#
-#        Returns named pitch.
-#        '''
-#        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
-#
-#    @sounding_pitch_of_written_middle_c.setter
-#    def sounding_pitch_of_written_middle_c(self, pitch):
-#        Instrument.sounding_pitch_of_written_middle_c.fset(self, pitch)
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets baritone saxophone's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> baritone_saxophone.allowable_clefs
+                ClefInventory([Clef('treble')])
+
+            ::
+
+                >>> show(baritone_saxophone.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets baritone saxophone's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> baritone_saxophone.instrument_name
+                'baritone saxophone'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets baritone saxophone's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> baritone_saxophone.instrument_name_markup
+                Markup(('Baritone saxophone',))
+
+            ::
+
+                >>> show(baritone_saxophone.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets baritone saxophone's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> baritone_saxophone.pitch_range
+                PitchRange('[C2, Ab4]')
+
+            ::
+
+                >>> show(baritone_saxophone.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets baritone saxophone's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> baritone_saxophone.short_instrument_name
+                'bar. sax.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets baritone saxophone's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> baritone_saxophone.short_instrument_name_markup
+                Markup(('Bar. sax.',))
+
+            ::
+
+                >>> show(baritone_saxophone.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of baritone saxophone's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> baritone_saxophone.sounding_pitch_of_written_middle_c
+                NamedPitch('ef,')
+
+            ::
+
+                >>> show(baritone_saxophone.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)

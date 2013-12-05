@@ -41,12 +41,10 @@ class BassVoice(Instrument):
         short_instrument_name='bass',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        allowable_clefs=None,
-        pitch_range=None,
+        allowable_clefs=('bass',),
+        pitch_range='[E2, F4]',
         sounding_pitch_of_written_middle_c=None,
         ):
-        allowable_clefs = indicatortools.ClefInventory(['bass'])
-        pitch_range = pitch_range = pitchtools.PitchRange('[E2, F4]')
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -63,4 +61,130 @@ class BassVoice(Instrument):
             'bass',
             ])
         self._is_primary_instrument = True
-        self._starting_clefs = indicatortools.ClefInventory(['bass'])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets bass's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass.allowable_clefs
+                ClefInventory([Clef('bass')])
+
+            ::
+
+                >>> show(bass.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets bass's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass.instrument_name
+                'bass'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets bass's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass.instrument_name_markup
+                Markup(('Bass',))
+
+            ::
+
+                >>> show(bass.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets bass's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass.pitch_range
+                PitchRange('[E2, F4]')
+
+            ::
+
+                >>> show(bass.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets bass's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass.short_instrument_name
+                'bass'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets bass's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass.short_instrument_name_markup
+                Markup(('Bass',))
+
+            ::
+
+                >>> show(bass.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of bass's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> bass.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(bass.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)

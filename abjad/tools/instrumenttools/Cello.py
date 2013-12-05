@@ -44,16 +44,10 @@ class Cello(Instrument):
         short_instrument_name='vc.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        allowable_clefs=None,
-        pitch_range=None,
+        allowable_clefs=('bass', 'tenor', 'treble'),
+        pitch_range='[C2, G5]',
         sounding_pitch_of_written_middle_c=None,
         ):
-        pitch_range = pitch_range or pitchtools.PitchRange(-24, 19)
-        allowable_clefs = allowable_clefs or indicatortools.ClefInventory([
-            indicatortools.Clef('bass'),
-            indicatortools.Clef('tenor'),
-            indicatortools.Clef('treble'),
-            ])
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -71,3 +65,130 @@ class Cello(Instrument):
             ])
         self._starting_clefs = indicatortools.ClefInventory(['bass'])
         self._is_primary_instrument = True
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets cello's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> cello.allowable_clefs
+                ClefInventory([Clef('bass'), Clef('tenor'), Clef('treble')])
+
+            ::
+
+                >>> show(cello.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets cello's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> cello.instrument_name
+                'cello'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets cello's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> cello.instrument_name_markup
+                Markup(('Cello',))
+
+            ::
+
+                >>> show(cello.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets cello's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> cello.pitch_range
+                PitchRange('[C2, G5]')
+
+            ::
+
+                >>> show(cello.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets cello's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> cello.short_instrument_name
+                'vc.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets cello's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> cello.short_instrument_name_markup
+                Markup(('Vc.',))
+
+            ::
+
+                >>> show(cello.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of cello's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> cello.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(cello.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)
