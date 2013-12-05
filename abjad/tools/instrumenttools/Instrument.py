@@ -90,7 +90,7 @@ class Instrument(AbjadObject):
             )
 
     def __eq__(self, arg):
-        r'''True when `arg` is an instrument with instrument name and short
+        r'''Is true when `arg` is an instrument with instrument name and short
         instrument name equal to those of this instrument. Otherwise false.
 
         Returns boolean.
@@ -98,13 +98,6 @@ class Instrument(AbjadObject):
         if isinstance(arg, type(self)):
             if self.instrument_name == arg.instrument_name and \
                 self.short_instrument_name == arg.short_instrument_name:
-                #self.instrument_name_markup == arg.instrument_name_markup and \
-                #self.short_instrument_name_markup == \
-                #    arg.short_instrument_name_markup and \
-                #self.allowable_clefs == arg.allowable_clefs and \
-                #self.pitch_range == arg.pitch_range and \
-                #self.sounding_pitch_of_written_middle_c == \
-                #    arg.sounding_pitch_of_written_middle_c:
                 return True
         return False
 
@@ -122,7 +115,7 @@ class Instrument(AbjadObject):
         return str(self)
 
     def __hash__(self):
-        '''Hash value of instrument.
+        '''Gets hash value instrument.
 
         Computed on type, instrument name and short instrument name.
 
@@ -132,11 +125,6 @@ class Instrument(AbjadObject):
             type(self).__name__,
             self.instrument_name, 
             self.short_instrument_name,
-            #self.instrument_name_markup,
-            #self.short_instrument_name_markup,
-            #self.allowable_clefs,
-            #self.pitch_range,
-            #self.sounding_pitch_of_written_middle_c,
             ))
 
     def __makenew__(
@@ -178,7 +166,7 @@ class Instrument(AbjadObject):
         return new
 
     def __repr__(self):
-        r'''Interpreter representation of instrument.
+        r'''Gets interpreter representation of instrument.
 
         Returns string.
         '''

@@ -18,7 +18,8 @@ class AbjadObject(object):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True when ID of `expr` equals ID of Abjad object.
+        r'''Is true when ID of `expr` equals ID of Abjad object.
+        Otherwise false.
 
         Returns boolean.
         '''
@@ -49,14 +50,15 @@ class AbjadObject(object):
         return state
 
     def __ne__(self, expr):
-        r'''True when Abjad object does not equal `expr`.
+        r'''Is true when Abjad object does not equal `expr`.
+        Otherwise false.
 
         Returns boolean.
         '''
         return not self == expr
 
     def __repr__(self):
-        r'''Interpreter representation of Abjad object.
+        r'''Gets interpreter representation of Abjad object.
 
         Returns string.
         '''
