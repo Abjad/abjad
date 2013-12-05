@@ -5,13 +5,13 @@ from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class EFlatClarinet(Instrument):
-    r'''A E-flat clarinet.
+class ClarinetInBFlat(Instrument):
+    r'''A B-flat clarinet.
 
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> clarinet = instrumenttools.EFlatClarinet()
+        >>> clarinet = instrumenttools.ClarinetInBFlat()
         >>> attach(clarinet, staff)
         >>> show(staff) # doctest: +SKIP
 
@@ -19,8 +19,8 @@ class EFlatClarinet(Instrument):
 
         >>> print format(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { Clarinet in E-flat }
-            \set Staff.shortInstrumentName = \markup { Cl. E-flat }
+            \set Staff.instrumentName = \markup { Clarinet in B-flat }
+            \set Staff.shortInstrumentName = \markup { Cl. in B-flat }
             c'4
             d'4
             e'4
@@ -33,17 +33,19 @@ class EFlatClarinet(Instrument):
 
     __slots__ = ()
 
+    performer_abbreviation = 'cl.'
+
     ### INITIALIZER ###
 
     def __init__(
         self,
-        instrument_name='clarinet in E-flat',
-        short_instrument_name='cl. E-flat',
+        instrument_name='clarinet in B-flat',
+        short_instrument_name='cl. in B-flat',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range='[F3, C7]',
-        sounding_pitch_of_written_middle_c='Eb4',
+        pitch_range='[D3, Bb6]',
+        sounding_pitch_of_written_middle_c='Bb3',
         ):
         Instrument.__init__(
             self,
@@ -63,12 +65,33 @@ class EFlatClarinet(Instrument):
             'clarinettist',
             'clarinetist',
             ])
+        self._is_primary_instrument = True
+
+    ### PRIVATE METHODS ###
+
+    def _get_performer_names(self):
+        r'''Get performer names:
+
+        ::
+
+            >>> for performer_name in clarinet._get_performer_names():
+            ...     performer_name
+            'instrumentalist'
+            'wind player'
+            'reed player'
+            'single reed player'
+            'clarinettist'
+            'clarinetist'
+
+        Returns list.
+        '''
+        return super(ClarinetInBFlat, self)._get_performer_names()
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def allowable_clefs(self):
-        r'''Gets clarinet in E-flat's allowable clefs.
+        r'''Gets clarinet in B-flat's allowable clefs.
 
         ..  container:: example
 
@@ -87,14 +110,14 @@ class EFlatClarinet(Instrument):
 
     @property
     def instrument_name(self):
-        r'''Gets clarinet in E-flat's name.
+        r'''Gets clarinet in B-flat's name.
 
         ..  container:: example
 
             ::
 
                 >>> clarinet.instrument_name
-                'clarinet in E-flat'
+                'clarinet in B-flat'
 
         Returns string.
         '''
@@ -102,14 +125,14 @@ class EFlatClarinet(Instrument):
 
     @property
     def instrument_name_markup(self):
-        r'''Gets clarinet in E-flat's instrument name markup.
+        r'''Gets clarinet in B-flat's instrument name markup.
 
         ..  container:: example
 
             ::
 
                 >>> clarinet.instrument_name_markup
-                Markup(('Clarinet in E-flat',))
+                Markup(('Clarinet in B-flat',))
 
             ::
 
@@ -121,14 +144,14 @@ class EFlatClarinet(Instrument):
 
     @property
     def pitch_range(self):
-        r'''Gets clarinet in E-flat's range.
+        r'''Gets clarinet in B-flat's range.
 
         ..  container:: example
 
             ::
 
                 >>> clarinet.pitch_range
-                PitchRange('[F3, C7]')
+                PitchRange('[D3, Bb6]')
 
             ::
 
@@ -140,14 +163,14 @@ class EFlatClarinet(Instrument):
 
     @property
     def short_instrument_name(self):
-        r'''Gets clarinet in E-flat's short instrument name.
+        r'''Gets clarinet in B-flat's short instrument name.
 
         ..  container:: example
 
             ::
 
                 >>> clarinet.short_instrument_name
-                'cl. E-flat'
+                'cl. in B-flat'
 
         Returns string.
         '''
@@ -155,14 +178,14 @@ class EFlatClarinet(Instrument):
 
     @property
     def short_instrument_name_markup(self):
-        r'''Gets clarinet in E-flat's short instrument name markup.
+        r'''Gets clarinet in B-flat's short instrument name markup.
 
         ..  container:: example
 
             ::
 
                 >>> clarinet.short_instrument_name_markup
-                Markup(('Cl. E-flat',))
+                Markup(('Cl. in B-flat',))
 
             ::
 
@@ -174,14 +197,14 @@ class EFlatClarinet(Instrument):
 
     @property
     def sounding_pitch_of_written_middle_c(self):
-        r'''Gets sounding pitch of clarinet in E-flat's written middle C.
+        r'''Gets sounding pitch of clarinet in B-flat's written middle C.
 
         ..  container:: example
 
             ::
 
                 >>> clarinet.sounding_pitch_of_written_middle_c
-                NamedPitch("ef'")
+                NamedPitch('bf')
 
             ::
 

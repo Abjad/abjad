@@ -7,7 +7,7 @@ def default_instrument_name_to_instrument_class(default_instrument_name):
     ::
 
         >>> instrumenttools.default_instrument_name_to_instrument_class('clarinet in E-flat')
-        <class 'abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet'>
+        <class 'abjad.tools.instrumenttools.ClarinetInEFlat.ClarinetInEFlat'>
 
     Returns class.
 

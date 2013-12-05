@@ -376,16 +376,16 @@ class Performer(AbjadObject):
                 Cello
             clarinetist:
                 BassClarinet
-                BFlatClarinet
                 ClarinetInA
+                ClarinetInBFlat
+                ClarinetInEFlat
                 ContrabassClarinet
-                EFlatClarinet
             clarinettist:
                 BassClarinet
-                BFlatClarinet
                 ClarinetInA
+                ClarinetInBFlat
+                ClarinetInEFlat
                 ContrabassClarinet
-                EFlatClarinet
             contrabassist:
                 Contrabass
             contralto:
@@ -428,16 +428,16 @@ class Performer(AbjadObject):
                 BassSaxophone
                 BassTrombone
                 BassVoice
-                BFlatClarinet
                 Cello
                 ClarinetInA
+                ClarinetInBFlat
+                ClarinetInEFlat
                 Contrabass
                 ContrabassClarinet
                 ContrabassFlute
                 Contrabassoon
                 ContrabassSaxophone
                 ContraltoVoice
-                EFlatClarinet
                 EnglishHorn
                 Flute
                 FrenchHorn
@@ -486,12 +486,12 @@ class Performer(AbjadObject):
                 BassClarinet
                 Bassoon
                 BassSaxophone
-                BFlatClarinet
                 ClarinetInA
+                ClarinetInBFlat
+                ClarinetInEFlat
                 ContrabassClarinet
                 Contrabassoon
                 ContrabassSaxophone
-                EFlatClarinet
                 EnglishHorn
                 Oboe
                 SopraninoSaxophone
@@ -510,11 +510,11 @@ class Performer(AbjadObject):
                 BaritoneSaxophone
                 BassClarinet
                 BassSaxophone
-                BFlatClarinet
                 ClarinetInA
+                ClarinetInBFlat
+                ClarinetInEFlat
                 ContrabassClarinet
                 ContrabassSaxophone
-                EFlatClarinet
                 SopraninoSaxophone
                 SopranoSaxophone
                 TenorSaxophone
@@ -552,7 +552,26 @@ class Performer(AbjadObject):
                 TenorVoice
             wind player:
                 AltoFlute
-                ...
+                AltoSaxophone
+                BaritoneSaxophone
+                BassClarinet
+                BassFlute
+                Bassoon
+                BassSaxophone
+                ClarinetInA
+                ClarinetInBFlat
+                ClarinetInEFlat
+                ContrabassClarinet
+                ContrabassFlute
+                Contrabassoon
+                ContrabassSaxophone
+                EnglishHorn
+                Flute
+                FrenchHorn
+                Oboe
+                Piccolo
+                SopraninoSaxophone
+                SopranoSaxophone
                 TenorSaxophone
             xylophonist:
                 Xylophone
