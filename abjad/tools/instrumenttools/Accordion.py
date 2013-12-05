@@ -87,8 +87,6 @@ class Accordion(Instrument):
 
         ..  container:: example
 
-            Without customization:
-
             ::
 
                 >>> accordion = instrumenttools.Accordion()
@@ -117,47 +115,6 @@ class Accordion(Instrument):
                         '[E1, C8]'
                         ),
                     sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
-                    )
-
-        ..  container:: example
-
-            With customization:
-
-            ::
-
-                >>> custom = instrumenttools.Accordion(
-                ...     instrument_name='fisarmonica',
-                ...     instrument_name_markup=markuptools.Markup('Fisarmonica'),
-                ...     short_instrument_name='fis.',
-                ...     short_instrument_name_markup=markuptools.Markup('Fis.'),
-                ...     allowable_clefs=['treble'],
-                ...     pitch_range='[C4, C6]',
-                ...     sounding_pitch_of_written_middle_c="c''",
-                ...     )
-
-            ::
-
-                >>> print format(custom)
-                instrumenttools.Accordion(
-                    instrument_name='fisarmonica',
-                    short_instrument_name='fis.',
-                    instrument_name_markup=markuptools.Markup(
-                        ('Fisarmonica',)
-                        ),
-                    short_instrument_name_markup=markuptools.Markup(
-                        ('Fis.',)
-                        ),
-                    allowable_clefs=indicatortools.ClefInventory(
-                        [
-                            indicatortools.Clef(
-                                'treble'
-                                ),
-                            ]
-                        ),
-                    pitch_range=pitchtools.PitchRange(
-                        '[C4, C6]'
-                        ),
-                    sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c''"),
                     )
 
         Returns string.
