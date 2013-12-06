@@ -44,16 +44,10 @@ signatures:
 
 <abjad>
 staff = Staff("c'8 d'8 e'8 d'8 e'8 f'8 g'4 e'4 f'4 d'4 c'2")
-</abjad>
-
-<abjad>
 time_signature_1 = indicatortools.TimeSignature((3, 8))
 time_signature_2 = indicatortools.TimeSignature((2, 4))
-time_signature_1.attach(staff)
-time_signature_2.attach(staff[6])
-</abjad>
-
-<abjad>
+attach(time_signature_1, staff)
+attach(time_signature_2, staff[6])
 show(staff)
 </abjad>
 
@@ -67,13 +61,6 @@ Creating measures
 Create a measure with a time signature and music:
 
 <abjad>
-measure = Measure((3, 8), "c'8 d'8 e'8")
-</abjad>
-
-<abjad>
-f(measure)
-</abjad>
-
-<abjad>
+measure = Measure(TimeSignature((3, 8)), "c'8 d'8 e'8")
 show(measure)
 </abjad>

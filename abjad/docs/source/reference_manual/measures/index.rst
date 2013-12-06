@@ -43,20 +43,10 @@ signatures:
 ::
 
    >>> staff = Staff("c'8 d'8 e'8 d'8 e'8 f'8 g'4 e'4 f'4 d'4 c'2")
-
-
-::
-
    >>> time_signature_1 = indicatortools.TimeSignature((3, 8))
    >>> time_signature_2 = indicatortools.TimeSignature((2, 4))
-   >>> time_signature_1.attach(staff)
-   TimeSignature((3, 8))(Staff{11})
-   >>> time_signature_2.attach(staff[6])
-   TimeSignature((2, 4))(g'4)
-
-
-::
-
+   >>> attach(time_signature_1, staff)
+   >>> attach(time_signature_2, staff[6])
    >>> show(staff)
 
 .. image:: images/index-2.png
@@ -73,22 +63,8 @@ Create a measure with a time signature and music:
 
 ::
 
-   >>> measure = Measure((3, 8), "c'8 d'8 e'8")
-
-
-::
-
-   >>> f(measure)
-   {
-       \time 3/8
-       c'8
-       d'8
-       e'8
-   }
-
-
-::
-
+   >>> measure = Measure(TimeSignature((3, 8)), "c'8 d'8 e'8")
    >>> show(measure)
 
 .. image:: images/index-3.png
+
