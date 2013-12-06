@@ -19,7 +19,7 @@ You can make rests from a LilyPond input string:
 Making rests from durations
 ---------------------------
 
-You can also make rests from a duration:
+You can make rests from durations:
 
 ::
 
@@ -33,55 +33,66 @@ You can also make rests from a duration:
 Making rests from other Abjad leaves
 ------------------------------------
 
-You can make rests from other Abjad leaves:
+You can also make rests from other Abjad leaves:
 
 ::
 
    >>> note = Note("d'4..")
-   >>> show(note)
+   >>> rest = Rest(note)
+   >>> show(rest)
 
 .. image:: images/index-3.png
 
 
+
+Understanding the interpreter representation of a rest
+------------------------------------------------------
+
 ::
 
-   >>> rest = Rest(note)
-   >>> show(rest)
-
-.. image:: images/index-4.png
+   >>> rest
+   Rest('r4..')
 
 
+``Rest`` tells you the rest's class.
 
-Making multi-measure rests
---------------------------
+``4..`` tells you that the rest's duration is equal to that of a doubly dotted
+quarter note.
 
-You can create multimeasure rests too:
+
+Making multimeasure rests
+-------------------------
+
+Create multimeasure rests like this:
 
 ::
 
    >>> multimeasure_rest = scoretools.MultimeasureRest('R1')
    >>> show(multimeasure_rest)
 
-.. image:: images/index-5.png
+.. image:: images/index-4.png
 
+
+Multiply the duration of multimeasure rests like this:
 
 ::
 
-   >>> multimeasure_rest.lilypond_duration_multiplier = 4
+   >>> attach(Multiplier(4), multimeasure_rest)
    >>> staff = Staff([multimeasure_rest])
    >>> show(staff)
 
-.. image:: images/index-6.png
+.. image:: images/index-5.png
 
+
+Use a LilyPond command to compress full-bar rests:
 
 ::
 
    >>> command = indicatortools.LilyPondCommand('compressFullBarRests')
-   >>> command.attach(staff)
-   LilyPondCommand('compressFullBarRests')(Staff{1})
+   >>> attach(command, staff)
    >>> show(staff)
 
-.. image:: images/index-7.png
+.. image:: images/index-6.png
 
 
 
@@ -103,4 +114,5 @@ Set the written duration of rests like this:
    >>> rest.written_duration = Duration(3, 16)
    >>> show(rest)
 
-.. image:: images/index-8.png
+.. image:: images/index-7.png
+
