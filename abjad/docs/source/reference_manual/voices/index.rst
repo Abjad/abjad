@@ -5,7 +5,7 @@ Voices
 Making a voice from a LilyPond input string
 -------------------------------------------
 
-You can make an Abjad voice from a LilyPond input string:
+You can make a voice from a LilyPond input string:
 
 ::
 
@@ -16,14 +16,15 @@ You can make an Abjad voice from a LilyPond input string:
 
 
 
-Making a voice from a list of other Abjad components
-----------------------------------------------------
+Making a voice from a list of other components
+----------------------------------------------
 
-You can also make a voice from a list of other Abjad components:
+You can also make a voice from a list of other components:
 
 ::
 
-   >>> components = [Tuplet(Fraction(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
+   >>> tuplet = Tuplet(Multiplier(2, 3), "c'4 d'4 e'4")
+   >>> components = [tuplet, Note("f'2"), Note("g'1")]
    >>> voice = Voice(components)
    >>> show(voice)
 
@@ -34,7 +35,7 @@ You can also make a voice from a list of other Abjad components:
 Understanding the interpreter representation of a voice
 -------------------------------------------------------
 
-The interpreter representation of an Abjad voice contains three parts:
+The interpreter representation of a voice contains three parts:
 
 ::
 
@@ -51,22 +52,14 @@ Curly braces ``{`` and ``}`` tell you that the music inside the voice is
 interpreted sequentially rather than simultaneously.
 
 
-Inspecting the LilyPond format of a voice
------------------------------------------
+Formatting voices
+-----------------
 
-Get the LilyPond input format of any Abjad object with ``lilypond_format``:
-
-::
-
-   >>> voice.lilypond_format
-   "\\new Voice {\n\t\\times 2/3 {\n\t\tc'4\n\t\td'4\n\t\te'4\n\t}\n\tf'2\n\tg'1\n}"
-
-
-Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
+Use ``format()`` to get the LilyPond format of a voice:
 
 ::
 
-   >>> f(voice)
+   >>> print format(voice, 'lilypond')
    \new Voice {
        \times 2/3 {
            c'4
@@ -79,22 +72,22 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 
 
-Selecting the music in a voice
-------------------------------
+Selecting the components in a voice
+-----------------------------------
 
-Slice a voice to select its components:
+Select the components in a voice like this:
 
 ::
 
    >>> voice[:]
-   SliceSelection(Tuplet(2/3, [c'4, d'4, e'4]), Note("f'2"), Note("g'1"))
+   SliceSelection(Tuplet(Multiplier(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1"))
 
 
 
-Inspecting a voice's leaves
----------------------------
+Selecting a voice's leaves
+--------------------------
 
-Get the leaves in a voice with ``select_leaves()``:
+Use ``select_leaves()`` to select the leaves in a voice:
 
 ::
 
@@ -106,10 +99,10 @@ Get the leaves in a voice with ``select_leaves()``:
 Getting the length of a voice
 -----------------------------
 
-The length of a voice is defined equal to the number of top-level components
-the voice contains.
+Use ``len()`` to get the length of a voice.
 
-Get the length of a voice with ``len()``:
+The length of a voice is defined equal to the number of top-level components
+the voice contains:
 
 ::
 
@@ -118,8 +111,8 @@ Get the length of a voice with ``len()``:
 
 
 
-Inspecting duration
--------------------
+Inspecting voice duration
+-------------------------
 
 Use the inspector to get the duration of a voice:
 
@@ -130,10 +123,10 @@ Use the inspector to get the duration of a voice:
 
 
 
-Adding one component to the end of a voice
-------------------------------------------
+Appending one component to the end of a voice
+---------------------------------------------
 
-Add one component to the end of a voice with ``append()``:
+Use ``append()`` to append one component to the end of a voice:
 
 ::
 
@@ -154,10 +147,10 @@ You can also use a LilyPond input string:
 
 
 
-Adding many components to the end of a voice
---------------------------------------------
+Extending a voice with multiple components at once
+--------------------------------------------------
 
-Add many components to the end of a voice with ``extend()``:
+Use ``extend()`` to extend a voice with multiple components at once:
 
 ::
 
@@ -182,7 +175,7 @@ You can also use a LilyPond input string:
 Finding the index of a component in a voice
 -------------------------------------------
 
-Find the index of a component in a voice with ``index()``:
+Use ``index()`` to find the index of any component in a voice:
 
 ::
 
@@ -197,10 +190,10 @@ Find the index of a component in a voice with ``index()``:
 
 
 
-Removing a voice component by index
------------------------------------
+Popping a voice component by index
+----------------------------------
 
-Use ``pop()`` to remove the last component of a voice:
+Use ``pop()`` to pop the last component of a voice:
 
 ::
 
@@ -215,7 +208,7 @@ Use ``pop()`` to remove the last component of a voice:
 Removing a voice component by reference
 ---------------------------------------
 
-Remove voice components by reference with ``remove()``:
+Use ``remove()`` to remove any component from a voice by reference:
 
 ::
 
@@ -236,7 +229,7 @@ You can name Abjad voices:
    >>> voice.name = 'Upper Voice'
 
 
-Voice names appear in LilyPond input:
+Voice names appear in LilyPond input but not in notation output:
 
 ::
 
@@ -255,8 +248,6 @@ Voice names appear in LilyPond input:
        f'4
    }
 
-
-But not in notational output:
 
 ::
 
@@ -277,7 +268,10 @@ The context of a voice is set to ``'Voice'`` by default:
    'Voice'
 
 
-But you can change the context of a voice if you want:
+But you can change the context of a voice if you want.
+
+Change the context of a voice when you have defined a new LilyPond context
+based on a LilyPond voice:
 
 ::
 
@@ -307,6 +301,3 @@ But you can change the context of a voice if you want:
        f'4
    }
 
-
-Change the context of a voice when you have defined a new LilyPond context
-based on a LilyPond voice.
