@@ -5,27 +5,26 @@ Tuplets
 Making a tuplet from a LilyPond input string
 --------------------------------------------
 
-You can make an Abjad tuplet from a multiplier and a LilyPond input string:
+You can tuplets from a LilyPond input string:
 
 ::
 
-   >>> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+   >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
    >>> show(tuplet)
 
 .. image:: images/index-1.png
 
 
 
-Making a tuplet from a list of other Abjad components
------------------------------------------------------
+Making a tuplet from a list of other components
+-----------------------------------------------
 
-You can also make a tuplet from a multiplier and a list of other Abjad
-components:
+You can also make tuplets from a list of other components:
 
 ::
 
    >>> leaves = [Note("fs'8"), Note("g'8"), Rest('r8')]
-   >>> tuplet = Tuplet(Fraction(2, 3), leaves)
+   >>> tuplet = Tuplet(Multiplier(2, 3), leaves)
    >>> show(tuplet)
 
 .. image:: images/index-2.png
@@ -40,15 +39,14 @@ The interprer representation of an tuplet contains three parts:
 ::
 
    >>> tuplet
-   Tuplet(2/3, [fs'8, g'8, r8])
+   Tuplet(Multiplier(2, 3), "fs'8 g'8 r8")
 
 
 ``Tuplet`` tells you the tuplet's class.
 
-``2/3`` tells you the tuplet's multiplier.
+``Multiplier(2, 3)`` tells you the tuplet's multiplier.
 
-The list ``[fs'8, g'8, r8]`` shows the top-level components the tuplet
-contains.
+``[fs'8, g'8, r8]`` tells you the top-level components the tuplet contains.
 
 
 Understanding the string representation of a tuplet
@@ -75,19 +73,11 @@ The remaining arguments show the top-level components of tuplet.
 Inspecting the LilyPond format of a tuplet
 ------------------------------------------
 
-Get the LilyPond input format of any Abjad object with ``lilypond_format``:
+Use ``format()`` to get the LilyPond format a tuplet:
 
 ::
 
-   >>> tuplet.lilypond_format
-   "\\times 2/3 {\n\tfs'8\n\tg'8\n\tr8\n}"
-
-
-Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
-
-::
-
-   >>> f(tuplet)
+   >>> print format(tuplet, 'lilypond')
    \times 2/3 {
        fs'8
        g'8
@@ -99,7 +89,7 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 Selecting the music in a tuplet
 -------------------------------
 
-Slice a tuplet to select its components:
+Select the music in a tuplet like this:
 
 ::
 
@@ -108,10 +98,10 @@ Slice a tuplet to select its components:
 
 
 
-Inspecting a tuplet's leaves
-----------------------------
+Selecting a tuplet's leaves
+---------------------------
 
-Get the leaves in a tuplet with ``select_leaves()``:
+Use ``select_leaves()`` to get the leaves in a tuplet:
 
 ::
 
@@ -123,10 +113,10 @@ Get the leaves in a tuplet with ``select_leaves()``:
 Getting the length of a tuplet
 ------------------------------
 
-The length of a tuplet is defined equal to the number of top-level components
-the tuplet contains.
+Use ``len()`` to get the length of a tuplet.
 
-Get the length of a tuplet with ``len()``:
+The length of a tuplet is defined equal to the number of top-level components
+the tuplet contains:
 
 ::
 
@@ -135,10 +125,10 @@ Get the length of a tuplet with ``len()``:
 
 
 
-Inspecting duration
--------------------
+Inspecting tuplet duration
+--------------------------
 
-Use the inspector to get the duration of a voice:
+Use the inspector to get the duration of a tuplet:
 
 ::
 
@@ -175,10 +165,18 @@ augmentation:
 
 
 
-Changing the multiplier of a tuplet
------------------------------------
+Getting and setting the multiplier of a tuplet
+----------------------------------------------
 
-You can change the multiplier of a tuplet with ``multiplier``:
+Get the multiplier of a tuplet like this:
+
+::
+
+   >>> tuplet.multiplier
+   Multiplier(2, 3)
+
+
+Set the multiplier of a tuplet like this:
 
 ::
 
@@ -189,10 +187,10 @@ You can change the multiplier of a tuplet with ``multiplier``:
 
 
 
-Adding one component to the end of a tuplet
---------------------------------------------
+Appending one component to the end of a tuplet
+----------------------------------------------
 
-Add one component to the end of a tuplet with ``append``:
+Use ``append()`` to append one component to the end of a tuplet:
 
 ::
 
@@ -213,10 +211,10 @@ You can also use a LilyPond input string:
 
 
 
-Adding many components to the end of a tuplet
----------------------------------------------
+Extending a tuplet with multiple components at once
+---------------------------------------------------
 
-Add many components to the end of a tuplet with ``extend``:
+Use ``extend()`` to extend a tuplet with multiple components at once:
 
 ::
 
@@ -241,7 +239,7 @@ You can also use a LilyPond input string:
 Finding the index of a component in a tuplet
 --------------------------------------------
 
-Find the index of a component in a tuplet with ``index()``:
+Use ``index()`` to find the index of any component in a tuplet:
 
 ::
 
@@ -256,8 +254,8 @@ Find the index of a component in a tuplet with ``index()``:
 
 
 
-Removing a tuplet component by index
-------------------------------------
+Popping a tuplet component by index
+-----------------------------------
 
 Use ``pop()`` to remove the last component of a tuplet:
 
@@ -274,7 +272,7 @@ Use ``pop()`` to remove the last component of a tuplet:
 Removing a tuplet component by reference
 ----------------------------------------
 
-Remove tuplet components by reference with ``remove()``:
+Use ``remove()`` to remove any component from a tuplet by reference:
 
 ::
 
@@ -293,16 +291,9 @@ Override attributes of the LilyPond tuplet number grob like this:
 ::
 
    >>> string = 'tuplet-number::calc-fraction-text'
-   >>> tuplet.override.tuplet_number.text = schemetools.Scheme(string)
-   >>> tuplet.override.tuplet_number.color = 'red'
-
-
-We'll place the tuplet into a Staff object, so that LilyPond does not complain
-about the overrides we've applied, which lexically can not appear in a
-``\score`` block.
-
-::
-
+   >>> scheme = schemetools.Scheme(string)
+   >>> override(tuplet).tuplet_number.text = scheme
+   >>> override(tuplet).tuplet_number.color = 'red'
    >>> staff = Staff([tuplet])
    >>> show(staff)
 
@@ -319,7 +310,7 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 
 ::
 
-   >>> tuplet.override.tuplet_bracket.color = 'red'
+   >>> override(tuplet).tuplet_bracket.color = 'red'
    >>> show(staff)
 
 .. image:: images/index-11.png

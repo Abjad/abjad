@@ -118,10 +118,10 @@ class Tuplet(Container):
 
         Returns string.
         '''
-        result = '{}({}, {!r})'
+        result = '{}({!r}, {!r})'
         result = result.format(
             type(self).__name__,
-            self.multiplier.pair,
+            self.multiplier,
             self._string_summary,
             )
         return result
@@ -132,14 +132,14 @@ class Tuplet(Container):
         Returns string.
         '''
         if 0 < len(self):
-            return '{{} {} {} {}}'.format(
+            return '{{{} {} {} {}}}'.format(
                 self._signifier,
                 self._ratio_string,
                 self._summary,
                 self._signifier,
                 )
         else:
-            return '{{} {} {}}'.format(
+            return '{{{} {} {}}}'.format(
                 self._signifier,
                 self.multiplier,
                 self._signifier,
