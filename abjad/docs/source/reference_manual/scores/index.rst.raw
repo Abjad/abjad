@@ -53,26 +53,20 @@ score
 
 ``Score`` tells you the score's class.
 
-``3`` tells you the score's length (which is the number of top-level components
+``2`` tells you the score's length (which is the number of top-level components
 the score contains).
 
 Curly braces ``{`` and ``}`` tell you that the music inside the score is
 interpreted sequentially rather than simultaneously.
 
 
-Inspecting the LilyPond format of a score
------------------------------------------
+Understanding the LilyPond format of a score
+--------------------------------------------
 
-Get the LilyPond input format of any Abjad object with ``lilypond_format``:
-
-<abjad>
-score.lilypond_format
-</abjad>
-
-Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
+Use ``format()`` to get the LilyPond format of a score:
 
 <abjad>
-f(score)
+print format(score, 'lilypond')
 </abjad>
 
 
@@ -85,32 +79,28 @@ Slice a score to select its components:
 score[:]
 </abjad>
 
-Abjad returns a selection.
 
+Selecting a score's leaves
+--------------------------
 
-Inspecting a score's leaves
----------------------------
-
-Get the leaves in a score with ``select_leaves()``:
+Use ``select_leaves()`` to select the leaves in a score:
 
 <abjad>
 score.select_leaves(allow_discontiguous_leaves=True)
 </abjad>
 
-Abjad returns a selection.
-
 
 Getting the length of a score
 -----------------------------
 
-Get the length of a score with ``len()``:
+Use ``len()`` to get the length of a score.
+
+The length of a score is defined equal to the number of top-level components
+the score contains:
 
 <abjad>
 len(score)
 </abjad>
-
-The length of a score is defined equal to the number of top-level components
-the score contains.
 
 
 Inspecting duration
@@ -123,19 +113,19 @@ inspect(score).get_duration()
 </abjad>
 
 
-Adding one component to the bottom of a score
----------------------------------------------
+Appending one component to the bottom of a score
+------------------------------------------------
 
-Add one component to the bottom of a score with ``append()``:
+Use ``append()`` to append one component to the bottom of a score:
 
 <abjad>
-bass_staff = Staff("g4 f4 e4 d4 d1")
-bass_clef = indicatortools.Clef('bass')
-bass_clef.attach(bass_staff)
+staff = Staff("g4 f4 e4 d4 d1")
+clef = Clef('bass')
+attach(clef, staff)
 </abjad>
 
 <abjad>
-score.append(bass_staff)
+score.append(staff)
 </abjad>
 
 <abjad>
@@ -146,7 +136,7 @@ show(score)
 Finding the index of a score component
 --------------------------------------
 
-Find the index of a score component with ``index()``:
+Use ``index()`` to find the index of a score component:
 
 <abjad>
 score.index(treble_staff_1)
@@ -170,7 +160,7 @@ show(score)
 Removing a score component by reference
 ---------------------------------------
 
-Remove a score component by reference with ``remove()``:
+Use ``remove()`` to remove a score component by reference:
 
 <abjad>
 score.remove(treble_staff_1)
@@ -195,7 +185,7 @@ treble_staff_2 in score
 </abjad>
 
 <abjad>
-bass_staff in score
+staff in score
 </abjad>
 
 
@@ -208,13 +198,11 @@ You can name Abjad scores:
 score.name = 'Example Score'
 </abjad>
 
-Score names appear in LilyPond input:
+Score names appear in LilyPond input but not in notational output:
 
 <abjad>
 f(score)
 </abjad>
-
-But do not appear in notational output:
 
 <abjad>
 show(score)
