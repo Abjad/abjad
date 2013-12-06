@@ -32,4 +32,4 @@ def test_PerformerEditor_move_instrument_02():
 
     editor = scoremanagertools.editors.PerformerEditor()
     editor._run(pending_user_input='add 1 add 2 move 1 2 q')
-    assert editor.target == Performer(instruments=[AltoFlute(), Accordion()])
+    assert editor.target == Performer(instruments=[AltoVoice(), Accordion()])

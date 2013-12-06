@@ -38,4 +38,6 @@ def test_PerformerEditor_delete_instruments_03():
 
     editor = scoremanagertools.editors.PerformerEditor()
     editor._run(pending_user_input='add 1-3 rm 1,3 q')
-    assert editor.target == instrumenttools.Performer(instruments=[instrumenttools.AltoFlute()])
+    assert editor.target == instrumenttools.Performer(
+        instruments=[instrumenttools.AltoVoice()]
+        )

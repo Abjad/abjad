@@ -5,22 +5,22 @@ from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class ContraltoVoice(Instrument):
-    r'''A contralto voice.
+class AltoVoice(Instrument):
+    r'''A alto voice.
 
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> contralto = instrumenttools.ContraltoVoice()
-        >>> attach(contralto, staff)
+        >>> alto = instrumenttools.AltoVoice()
+        >>> attach(alto, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
         >>> print format(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { Contralto }
-            \set Staff.shortInstrumentName = \markup { Contralto }
+            \set Staff.instrumentName = \markup { Alto }
+            \set Staff.shortInstrumentName = \markup { Alto }
             c'4
             d'4
             e'4
@@ -33,14 +33,14 @@ class ContraltoVoice(Instrument):
 
     __slots__ = ()
 
-    performer_abbreviation = 'contr.'
+    performer_abbreviation = 'alto'
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        instrument_name='contralto',
-        short_instrument_name='contralto',
+        instrument_name='alto',
+        short_instrument_name='alto',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
@@ -60,7 +60,7 @@ class ContraltoVoice(Instrument):
             )
         self._performer_names.extend([
             'vocalist',
-            'contralto',
+            'alto',
             ])
         self._is_primary_instrument = True
 
@@ -68,18 +68,18 @@ class ContraltoVoice(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets contralto's allowable clefs.
+        r'''Gets alto's allowable clefs.
 
         ..  container:: example
 
             ::
 
-                >>> contralto.allowable_clefs
+                >>> alto.allowable_clefs
                 ClefInventory([Clef('treble')])
 
             ::
 
-                >>> show(contralto.allowable_clefs) # doctest: +SKIP
+                >>> show(alto.allowable_clefs) # doctest: +SKIP
 
         Returns clef inventory.
         '''
@@ -87,14 +87,14 @@ class ContraltoVoice(Instrument):
 
     @property
     def instrument_name(self):
-        r'''Gets contralto's name.
+        r'''Gets alto's name.
 
         ..  container:: example
 
             ::
 
-                >>> contralto.instrument_name
-                'contralto'
+                >>> alto.instrument_name
+                'alto'
 
         Returns string.
         '''
@@ -102,18 +102,18 @@ class ContraltoVoice(Instrument):
 
     @property
     def instrument_name_markup(self):
-        r'''Gets contralto's instrument name markup.
+        r'''Gets alto's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> contralto.instrument_name_markup
-                Markup(('Contralto',))
+                >>> alto.instrument_name_markup
+                Markup(('Alto',))
 
             ::
 
-                >>> show(contralto.instrument_name_markup) # doctest: +SKIP
+                >>> show(alto.instrument_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -121,18 +121,18 @@ class ContraltoVoice(Instrument):
 
     @property
     def pitch_range(self):
-        r'''Gets contralto's range.
+        r'''Gets alto's range.
 
         ..  container:: example
 
             ::
 
-                >>> contralto.pitch_range
+                >>> alto.pitch_range
                 PitchRange('[F3, G5]')
 
             ::
 
-                >>> show(contralto.pitch_range) # doctest: +SKIP
+                >>> show(alto.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -140,14 +140,14 @@ class ContraltoVoice(Instrument):
 
     @property
     def short_instrument_name(self):
-        r'''Gets contralto's short instrument name.
+        r'''Gets alto's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> contralto.short_instrument_name
-                'contralto'
+                >>> alto.short_instrument_name
+                'alto'
 
         Returns string.
         '''
@@ -155,18 +155,18 @@ class ContraltoVoice(Instrument):
 
     @property
     def short_instrument_name_markup(self):
-        r'''Gets contralto's short instrument name markup.
+        r'''Gets alto's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> contralto.short_instrument_name_markup
-                Markup(('Contralto',))
+                >>> alto.short_instrument_name_markup
+                Markup(('Alto',))
 
             ::
 
-                >>> show(contralto.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(alto.short_instrument_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -174,18 +174,18 @@ class ContraltoVoice(Instrument):
 
     @property
     def sounding_pitch_of_written_middle_c(self):
-        r'''Gets sounding pitch of contralto's written middle C.
+        r'''Gets sounding pitch of alto's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> contralto.sounding_pitch_of_written_middle_c
+                >>> alto.sounding_pitch_of_written_middle_c
                 NamedPitch("c'")
 
             ::
 
-                >>> show(contralto.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(alto.sounding_pitch_of_written_middle_c) # doctest: +SKIP
 
         Returns named pitch.
         '''

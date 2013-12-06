@@ -141,13 +141,13 @@ class Performer(AbjadObject):
             ...     name
             ...
             'accordionist'
+            'alto'
             'baritone'
             'bass'
             'bassist'
             'bassoonist'
             'cellist'
             'clarinetist'
-            'contralto'
             'flutist'
             'guitarist'
             'harpist'
@@ -188,13 +188,13 @@ class Performer(AbjadObject):
             ...     pair
             ...
             ('accordionist', 'acc.')
+            ('alto', 'alto')
             ('baritone', 'bar.')
             ('bass', 'bass')
             ('bassist', 'vb.')
             ('bassoonist', 'bsn.')
             ('cellist', 'vc.')
             ('clarinetist', 'cl.')
-            ('contralto', 'contr.')
             ('flutist', 'fl.')
             ('guitarist', 'gt.')
             ('harpist', 'hp.')
@@ -356,6 +356,8 @@ class Performer(AbjadObject):
             ...         print '\t{}'.format(x.__name__)
             accordionist:
                 Accordion
+            alto:
+                AltoVoice
             baritone:
                 BaritoneVoice
             bass:
@@ -388,8 +390,6 @@ class Performer(AbjadObject):
                 ContrabassClarinet
             contrabassist:
                 Contrabass
-            contralto:
-                ContraltoVoice
             double reed player:
                 Bassoon
                 Contrabassoon
@@ -420,6 +420,7 @@ class Performer(AbjadObject):
                 AltoFlute
                 AltoSaxophone
                 AltoTrombone
+                AltoVoice
                 BaritoneSaxophone
                 BaritoneVoice
                 BassClarinet
@@ -437,7 +438,6 @@ class Performer(AbjadObject):
                 ContrabassFlute
                 Contrabassoon
                 ContrabassSaxophone
-                ContraltoVoice
                 EnglishHorn
                 Flute
                 FrenchHorn
@@ -544,9 +544,9 @@ class Performer(AbjadObject):
             violist:
                 Viola
             vocalist:
+                AltoVoice
                 BaritoneVoice
                 BassVoice
-                ContraltoVoice
                 MezzoSopranoVoice
                 SopranoVoice
                 TenorVoice
@@ -575,6 +575,8 @@ class Performer(AbjadObject):
                 TenorSaxophone
             xylophonist:
                 Xylophone
+
+
 
         Returns ordered dictionary.
         '''

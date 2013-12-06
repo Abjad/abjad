@@ -293,7 +293,7 @@ Added new classes to ``instrumenttools``.
 
     instrumenttools.BaritoneVoice
     instrumenttools.BassVoice
-    instrumenttools.ContraltoVoice
+    instrumenttools.AltoVoice
     instrumenttools.MezzoSopranoVoice
     instrumenttools.SopranoVoice
     instrumenttools.TenorVoice

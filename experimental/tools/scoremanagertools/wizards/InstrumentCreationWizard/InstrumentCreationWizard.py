@@ -68,6 +68,14 @@ class InstrumentCreationWizard(Wizard):
     ### PUBLIC METHODS ###
 
     def change_instrument_name_to_instrument(self, instrument_name):
+        if instrument_name in (
+            'alto',
+            'baritone',
+            'bass',
+            'soprano',
+            'tenor',
+            ):
+            instrument_name = instrument_name + ' Voice'
         instrument_name = instrument_name.title()
         instrument_name = instrument_name.replace(' ', '')
         command = 'instrument = instrumenttools.{}()'.format(instrument_name)

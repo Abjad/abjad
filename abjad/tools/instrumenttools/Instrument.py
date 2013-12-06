@@ -224,6 +224,7 @@ class Instrument(AbjadObject):
             ...     instrument_name
             ...
             'accordion'
+            'alto'
             'alto flute'
             ...
 
@@ -251,6 +252,7 @@ class Instrument(AbjadObject):
             'AltoFlute'
             'AltoSaxophone'
             'AltoTrombone'
+            'AltoVoice'
             'BaritoneSaxophone'
             ...
 
