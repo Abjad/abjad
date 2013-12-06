@@ -1,25 +1,36 @@
-LilyPond command marks
-======================
+LilyPond commands
+=================
 
-LilyPond command marks allow you to attach arbitrary LilyPond commands
+LilyPond commands allow you to attach arbitrary LilyPond commands
 to Abjad score components.
 
 
-Creating LilyPond command marks
--------------------------------
+Creating LilyPond commands
+--------------------------
 
-Use ``indicatortools`` to create LilyPond command marks:
+Use ``indicatortools`` to create a LilyPond command:
 
 ::
 
    >>> command = indicatortools.LilyPondCommand('bar "||"', 'after')
 
 
+
+Understanding the interpreter representation of LilyPond commands
+-----------------------------------------------------------------
+
 ::
 
    >>> command
-   LilyPondCommand('bar "||"')
+   LilyPondCommand('bar "||"', 'after')
 
+
+``LilyPondCommand`` tells you the command's class.
+
+``'bar "||"'`` tells you the LilyPond command to be formatted.
+
+``'after'`` tells you where the command will be formatted relative to the leaf
+to which it is attached.
 
 
 Attaching LilyPond command marks to Abjad components
@@ -31,23 +42,21 @@ Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
 
    >>> import copy
    >>> staff = Staff([])
-   >>> key_signature = indicatortools.KeySignature('f', 'major')
-   >>> key_signature.attach(staff)
-   KeySignature(NamedPitchClass('f'), Mode('major'))(Staff{})
-   >>> staff.extend(p("{ d''16 ( c''16 fs''16 g''16 ) }"))
-   >>> staff.extend(p("{ f''16 ( e''16 d''16 c''16 ) }"))
-   >>> staff.extend(p("{ cs''16 ( d''16 f''16 d''16 ) }"))
-   >>> staff.extend(p("{ a'8 b'8 }"))
-   >>> staff.extend(p("{ d''16 ( c''16 fs''16 g''16 )} "))
-   >>> staff.extend(p("{ f''16 ( e''16 d''16 c''16 ) }"))
-   >>> staff.extend(p("{ cs''16 ( d''16 f''16 d''16 ) }"))
-   >>> staff.extend(p("{ a'8 b'8 c''2 }"))
+   >>> key_signature = KeySignature('f', 'major')
+   >>> attach(key_signature, staff)
+   >>> staff.extend("{ d''16 ( c''16 fs''16 g''16 ) }")
+   >>> staff.extend("{ f''16 ( e''16 d''16 c''16 ) }")
+   >>> staff.extend("{ cs''16 ( d''16 f''16 d''16 ) }")
+   >>> staff.extend("{ a'8 b'8 }")
+   >>> staff.extend("{ d''16 ( c''16 fs''16 g''16 )} ")
+   >>> staff.extend("{ f''16 ( e''16 d''16 c''16 ) }")
+   >>> staff.extend("{ cs''16 ( d''16 f''16 d''16 ) }")
+   >>> staff.extend("{ a'8 b'8 c''2 }")
 
 
 ::
 
-   >>> command.attach(staff[-2])
-   LilyPondCommand('bar "||"')(b'8)
+   >>> attach(command, staff[-2])
 
 
 ::
@@ -58,33 +67,27 @@ Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
 
 
 
-Inspecting the LilyPond command marks attached to an Abjad component
---------------------------------------------------------------------
+Inspecting the LilyPond commands attached to a leaf
+---------------------------------------------------
 
-Use the inspector to get the LilyPond command marks attached to a leaf:
-
-::
-
-   >>> inspect(staff[-2]).get_marks(indicatortools.LilyPondCommand)
-   (LilyPondCommand('bar "||"')(b'8),)
-
-
-
-Detaching LilyPond command marks from a component
--------------------------------------------------
-
-Use ``detach()`` to detach LilyPond command marks from a component:
+Use the inspector to get the LilyPond commands attached to a leaf:
 
 ::
 
-   >>> command.detach()
-   LilyPondCommand('bar "||"')
+   >>> inspect(staff[-2]).get_indicators(indicatortools.LilyPondCommand)
+   (LilyPondCommand('bar "||"', 'after'),)
 
+
+
+Detaching LilyPond commands
+---------------------------
+
+Use ``detach()`` to detach LilyPond commands:
 
 ::
 
-   >>> command
-   LilyPondCommand('bar "||"')
+   >>> detach(command, staff[-2])
+   (LilyPondCommand('bar "||"', 'after'),)
 
 
 ::
@@ -95,110 +98,57 @@ Use ``detach()`` to detach LilyPond command marks from a component:
 
 
 
-Inspecting the component to which a LilyPond command mark is attached
----------------------------------------------------------------------
+Getting the name of a LilyPond command
+--------------------------------------
 
-Use ``start_component`` to inspect the component to which a LilyPond command
-mark is attached:
-
-::
-
-   >>> command = indicatortools.LilyPondCommand('bar "||"', 'closing')
-   >>> command.attach(staff[-2])
-   LilyPondCommand('bar "||"')(b'8)
-
+Use ``name`` to get the name of a LilyPond command:
 
 ::
 
-   >>> show(staff)
+   >>> command.name
+   'bar "||"'
 
-.. image:: images/index-3.png
-
-
-::
-
-   >>> command.start_component
-   Note("b'8")
-
-
-
-Getting and setting the command name of a LilyPond command mark
----------------------------------------------------------------
-
-Set the ``command_name`` of a LilyPond command mark to change the
-LilyPond command a LilyPond command mark prints:
-
-::
-
-   >>> command.command_name = 'bar "|."'
-
-
-::
-
-   >>> show(staff)
-
-.. image:: images/index-4.png
-
-
-
-Copying LilyPond commands
--------------------------
-
-Use ``copy.copy()`` to copy a LilyPond command mark:
-
-::
-
-   >>> import copy
-
-
-::
-
-   >>> command_copy_1 = copy.copy(command)
-
-
-::
-
-   >>> command_copy_1
-   LilyPondCommand('bar "|."')
-
-
-::
-
-   >>> command_copy_1.attach(staff[-1])
-   LilyPondCommand('bar "|."')(c''2)
-
-
-::
-
-   >>> show(staff)
-
-.. image:: images/index-5.png
-
-
-Or use ``copy.deepcopy()`` to do the same thing.
 
 
 Comparing LilyPond command marks
 --------------------------------
 
-LilyPond command marks compare equal with equal command names:
+LilyPond command marks compare equal with equal names. Otherwise LilyPond
+command marks do not compare equal:
 
 ::
 
-   >>> command.command_name
-   'bar "|."'
-
-
-::
-
-   >>> command_copy_1.command_name
-   'bar "|."'
+   >>> command_1 = indicatortools.LilyPondCommand('bar "||"', 'after')
+   >>> command_2 = indicatortools.LilyPondCommand('bar "||"', 'before')
+   >>> command_3 = indicatortools.LilyPondCommand('slurUp')
 
 
 ::
 
-   >>> command == command_copy_1
+   >>> command_1 == command_1
+   True
+   >>> command_1 == command_2
+   True
+   >>> command_1 == command_3
+   False
+
+
+::
+
+   >>> command_2 == command_1
+   True
+   >>> command_2 == command_2
+   True
+   >>> command_2 == command_3
+   False
+
+
+::
+
+   >>> command_3 == command_1
+   False
+   >>> command_3 == command_2
+   False
+   >>> command_3 == command_3
    True
 
-
-Otherwise LilyPond command marks do not compare equal.
