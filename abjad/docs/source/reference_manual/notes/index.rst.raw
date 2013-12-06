@@ -16,12 +16,26 @@ show(note)
 Making notes from numbers
 -------------------------
 
-You can also make notes from a pitch number and duration:
+You can also make notes from numbers:
 
 <abjad>
 note = Note(0, Duration(1, 4))
 show(note)
 </abjad>
+
+
+Understanding the interpreter representation of a note
+------------------------------------------------------
+
+<abjad>
+note
+</abjad>
+
+``Note`` tells you the note's class.
+
+``c'`` tells you that the note's pitch is equal to middle C.
+
+``4`` tells you that the note's duration is equal to a quarter note.
 
 
 Getting and setting the written pitch of notes

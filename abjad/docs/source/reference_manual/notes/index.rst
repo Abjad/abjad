@@ -19,7 +19,7 @@ You can make notes from a LilyPond input string:
 Making notes from numbers
 -------------------------
 
-You can also make notes from a pitch number and duration:
+You can also make notes from numbers:
 
 ::
 
@@ -28,6 +28,22 @@ You can also make notes from a pitch number and duration:
 
 .. image:: images/index-2.png
 
+
+
+Understanding the interpreter representation of a note
+------------------------------------------------------
+
+::
+
+   >>> note
+   Note("c'4")
+
+
+``Note`` tells you the note's class.
+
+``c'`` tells you that the note's pitch is equal to ``C4``.
+
+``4`` tells you that the note's duration is equal to a quarter note.
 
 
 Getting and setting the written pitch of notes
