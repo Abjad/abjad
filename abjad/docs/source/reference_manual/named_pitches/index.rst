@@ -1,20 +1,20 @@
 Named pitches
 =============
 
-Named pitches are the everyday pitches attached to notes and chords:
+Named pitches are the everyday pitches of notes and chords:
 
 ::
 
    >>> note = Note("cs''8")
-   >>> show(note)
-
-.. image:: images/index-1.png
+   >>> note.written_pitch
+   NamedPitch("cs''")
 
 
 ::
 
-   >>> note.written_pitch
-   NamedPitch("cs''")
+   >>> show(note)
+
+.. image:: images/index-1.png
 
 
 
@@ -28,17 +28,23 @@ Create named pitches like this:
    >>> named_pitch = NamedPitch("cs''")
 
 
+
+Understanding the interpreter representation of a named pitch
+-------------------------------------------------------------
+
 ::
 
    >>> named_pitch
    NamedPitch("cs''")
 
 
+``NamedPitch`` tells you the pitch's class.
 
-Inspecting the name of a named pitch
-------------------------------------
+``cs''`` tells you the pitch is equal to ``C#5``.
 
-Use ``str()`` to get the name of named pitches:
+
+Understanding the string representation of a named pitch
+--------------------------------------------------------
 
 ::
 
@@ -46,103 +52,115 @@ Use ``str()`` to get the name of named pitches:
    "cs''"
 
 
-
-Inspecting the octave of a named pitch
---------------------------------------
-
-Get the octave number of named pitches with ``octave_number``:
-
-::
-
-   >>> named_pitch.octave_number
-   5
+``cs''`` tells you the pitch is equal to ``C#5``.
 
 
+Getting the accidental of a named pitch
+---------------------------------------
 
-Sorting named pitches
----------------------
-
-Named pitches sort by octave, diatonic pitch-class and accidental:
+Use ``accidental`` to get the accidental of a named pitch:
 
 ::
 
-   >>> pitchtools.NamedPitch('es') < pitchtools.NamedPitch('ff')
-   True
+   >>> named_pitch.accidental
+   Accidental('s')
+
+
+
+Getting the octave of a named pitch
+-----------------------------------
+
+Use ``octave`` to get the octave of a named pitch:
+
+::
+
+   >>> named_pitch.octave
+   Octave(5)
 
 
 
 Comparing named pitches
 -----------------------
 
-You can compare named pitches to each other:
+Named pitches compare equal with equal pitch-class and octave:
 
 ::
 
-   >>> named_pitch_1 = pitchtools.NamedPitch("c''")
-   >>> named_pitch_2 = pitchtools.NamedPitch("d''")
+   >>> named_pitch_1 = pitchtools.NamedPitch("cs''")
+   >>> named_pitch_2 = pitchtools.NamedPitch("df''")
 
 
 ::
 
+   >>> named_pitch_1 == named_pitch_1
+   True
    >>> named_pitch_1 == named_pitch_2
    False
 
 
 ::
 
-   >>> named_pitch_1 != named_pitch_2
+   >>> named_pitch_2 == named_pitch_1
+   False
+   >>> named_pitch_2 == named_pitch_2
    True
 
 
+You can also compare named pitches with greater-than and less-than:
+
 ::
 
-   >>> named_pitch_1 > named_pitch_2
+   >>> named_pitch_1 < named_pitch_1
    False
-
-
-::
-
    >>> named_pitch_1 < named_pitch_2
    True
-
-
-::
-
-   >>> named_pitch_1 >= named_pitch_2
+   >>> named_pitch_2 < named_pitch_1
+   False
+   >>> named_pitch_2 < named_pitch_2
    False
 
 
 ::
 
+   >>> named_pitch_1 <= named_pitch_1
+   True
    >>> named_pitch_1 <= named_pitch_2
+   True
+   >>> named_pitch_2 <= named_pitch_1
+   False
+   >>> named_pitch_2 <= named_pitch_2
+   True
+
+
+::
+
+   >>> named_pitch_1 > named_pitch_1
+   False
+   >>> named_pitch_1 > named_pitch_2
+   False
+   >>> named_pitch_2 > named_pitch_1
+   True
+   >>> named_pitch_2 > named_pitch_2
+   False
+
+
+::
+
+   >>> named_pitch_1 >= named_pitch_1
+   True
+   >>> named_pitch_1 >= named_pitch_2
+   False
+   >>> named_pitch_2 >= named_pitch_1
+   True
+   >>> named_pitch_2 >= named_pitch_2
    True
 
 
 
-Converting a named pitch to a numbered pitch
---------------------------------------------
+Changing named pitches to named pitch-classes
+---------------------------------------------
 
-Convert a named pitch to a numbered pitch like this:
-
-::
-
-   >>> named_pitch.numbered_pitch
-   NumberedPitch(13)
-
-
-Or like this:
-
-::
-
-   >>> pitchtools.NumberedPitch(named_pitch)
-   NumberedPitch(13)
-
-
-
-Converting a named pitch to a named pitch-class
------------------------------------------------
-
-Convert a named pitch to a named pitch-class like this:
+Use ``named_pitch_class`` to change a named pitch to a named pitch-class:
 
 ::
 
@@ -150,7 +168,7 @@ Convert a named pitch to a named pitch-class like this:
    NamedPitchClass('cs')
 
 
-Or like this:
+Or use ``pitchtools``:
 
 ::
 
@@ -159,10 +177,30 @@ Or like this:
 
 
 
-Converting a named pitch to a numbered pitch-class
---------------------------------------------------
+Changing named pitches to numbered pitches
+------------------------------------------
 
-Convert a named pitch to a numbered pitch-class like this:
+Use ``numbered_pitch`` to change a named pitch to a numbered pitch:
+
+::
+
+   >>> named_pitch.numbered_pitch
+   NumberedPitch(13)
+
+
+Or use ``pitchtools``:
+
+::
+
+   >>> pitchtools.NumberedPitch(named_pitch)
+   NumberedPitch(13)
+
+
+
+Changing named pitches to numbered pitch-classes
+------------------------------------------------
+
+Use ``numbered_pitch_class`` to change a named pitch to a numbered pitch-class:
 
 ::
 
@@ -170,29 +208,10 @@ Convert a named pitch to a numbered pitch-class like this:
    NumberedPitchClass(1)
 
 
-Or like this:
+Or use ``pitchtools``:
 
 ::
 
    >>> pitchtools.NumberedPitchClass(named_pitch)
    NumberedPitchClass(1)
 
-
-
-Copying named pitches
----------------------
-
-Use ``copy.copy()`` to copy named pitches:
-
-::
-
-   >>> import copy
-
-
-::
-
-   >>> copy.copy(named_pitch)
-   NamedPitch("cs''")
-
-
-Or use ``copy.deepcopy()`` to do the same thing.

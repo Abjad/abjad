@@ -11,12 +11,6 @@ class NamedPitch(Pitch):
     ::
 
         >>> named_pitch = NamedPitch("cs''")
-        >>> pitch = NamedPitch(13)
-        >>> named_pitch
-        NamedPitch("cs''")
-
-    ::
-
         >>> show(named_pitch) # doctest: +SKIP
 
     '''
