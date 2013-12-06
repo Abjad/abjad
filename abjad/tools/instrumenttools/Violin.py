@@ -42,10 +42,9 @@ class Violin(Instrument):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=None,
-        pitch_range=None,
+        pitch_range='[G3, G7]',
         sounding_pitch_of_written_middle_c=None,
         ):
-        pitch_range = pitch_range or pitchtools.PitchRange(-5, 43)
         Instrument.__init__(
             self,
             instrument_name=instrument_name,
@@ -62,3 +61,130 @@ class Violin(Instrument):
             'violinist',
             ])
         self._is_primary_instrument = True
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def allowable_clefs(self):
+        r'''Gets violin's allowable clefs.
+
+        ..  container:: example
+
+            ::
+
+                >>> violin.allowable_clefs
+                ClefInventory([Clef('treble')])
+
+            ::
+
+                >>> show(violin.allowable_clefs) # doctest: +SKIP
+
+        Returns clef inventory.
+        '''
+        return Instrument.allowable_clefs.fget(self)
+
+    @property
+    def instrument_name(self):
+        r'''Gets violin's name.
+
+        ..  container:: example
+
+            ::
+
+                >>> violin.instrument_name
+                'violin'
+
+        Returns string.
+        '''
+        return Instrument.instrument_name.fget(self)
+
+    @property
+    def instrument_name_markup(self):
+        r'''Gets violin's instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> violin.instrument_name_markup
+                Markup(('Violin',))
+
+            ::
+
+                >>> show(violin.instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.instrument_name_markup.fget(self)
+
+    @property
+    def pitch_range(self):
+        r'''Gets violin's range.
+
+        ..  container:: example
+
+            ::
+
+                >>> violin.pitch_range
+                PitchRange('[G3, G7]')
+
+            ::
+
+                >>> show(violin.pitch_range) # doctest: +SKIP
+
+        Returns pitch range.
+        '''
+        return Instrument.pitch_range.fget(self)
+
+    @property
+    def short_instrument_name(self):
+        r'''Gets violin's short instrument name.
+
+        ..  container:: example
+
+            ::
+
+                >>> violin.short_instrument_name
+                'vn.'
+
+        Returns string.
+        '''
+        return Instrument.short_instrument_name.fget(self)
+
+    @property
+    def short_instrument_name_markup(self):
+        r'''Gets violin's short instrument name markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> violin.short_instrument_name_markup
+                Markup(('Vn.',))
+
+            ::
+
+                >>> show(violin.short_instrument_name_markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Instrument.short_instrument_name_markup.fget(self)
+
+    @property
+    def sounding_pitch_of_written_middle_c(self):
+        r'''Gets sounding pitch of violin's written middle C.
+
+        ..  container:: example
+
+            ::
+
+                >>> violin.sounding_pitch_of_written_middle_c
+                NamedPitch("c'")
+
+            ::
+
+                >>> show(violin.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+
+        Returns named pitch.
+        '''
+        return Instrument.sounding_pitch_of_written_middle_c.fget(self)

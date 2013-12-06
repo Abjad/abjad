@@ -73,7 +73,7 @@ def test_InstrumentSpecifierEditor_run_02():
                         ]
                     ),
                 pitch_range=pitchtools.PitchRange(
-                    '[C0, Eb7]'
+                    '[A0, C8]'
                     ),
                 sounding_pitch_of_written_middle_c=pitchtools.NamedPitch("c'"),
                 ),

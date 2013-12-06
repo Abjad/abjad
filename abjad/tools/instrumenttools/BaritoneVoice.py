@@ -13,12 +13,15 @@ class BaritoneVoice(Instrument):
         >>> staff = Staff("c4 d4 e4 fs4")
         >>> baritone = instrumenttools.BaritoneVoice()
         >>> attach(baritone, staff)
+        >>> clef = Clef('bass')
+        >>> attach(clef, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
         >>> print format(staff)
         \new Staff {
+            \clef "bass"
             \set Staff.instrumentName = \markup { Baritone }
             \set Staff.shortInstrumentName = \markup { Bar. }
             c4

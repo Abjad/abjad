@@ -15,6 +15,7 @@ class Harpsichord(Instrument):
         >>> piano_staff = scoretools.PianoStaff([upper_staff, lower_staff])
         >>> harpsichord = instrumenttools.Harpsichord()
         >>> attach(harpsichord, piano_staff)
+        >>> attach(Clef('bass'), lower_staff)
         >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
@@ -30,6 +31,7 @@ class Harpsichord(Instrument):
                 f'4
             }
             \new Staff {
+                \clef "bass"
                 c'2
                 b2
             }

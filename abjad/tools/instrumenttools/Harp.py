@@ -15,6 +15,7 @@ class Harp(Instrument):
         >>> piano_staff.append(Staff("c'2 b2"))
         >>> harp = instrumenttools.Harp()
         >>> attach(harp, piano_staff)
+        >>> attach(Clef('bass'), piano_staff[1])
         >>> show(piano_staff) # doctest: +SKIP
 
     ..  doctest::
@@ -30,6 +31,7 @@ class Harp(Instrument):
                 f'4
             }
             \new Staff {
+                \clef "bass"
                 c'2
                 b2
             }
