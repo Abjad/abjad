@@ -54,19 +54,11 @@ interpreted sequentially rather than simultaneously.
 Inspecting the LilyPond format of a staff
 -----------------------------------------
 
-Get the LilyPond input format of any Abjad object with ``lilypond_format``:
+Use ``format()`` to get the LilyPond format of a staff:
 
 ::
 
-   >>> staff.lilypond_format
-   "\\new Staff {\n\t\\times 2/3 {\n\t\tc'4\n\t\td'4\n\t\te'4\n\t}\n\tf'2\n\tg'1\n}"
-
-
-Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
-
-::
-
-   >>> f(staff)
+   >>> print format(staff, 'lilypond')
    \new Staff {
        \times 2/3 {
            c'4
@@ -87,14 +79,14 @@ Slice a staff to select its components:
 ::
 
    >>> staff[:]
-   SliceSelection(Tuplet(2/3, [c'4, d'4, e'4]), Note("f'2"), Note("g'1"))
+   SliceSelection(Tuplet((2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1"))
 
 
 
-Inspecting a staff's leaves
----------------------------
+Selecting a staff's leaves
+--------------------------
 
-Get the leaves in a staff with ``select_leaves()``:
+Use ``select_leaves()`` to select in the leaves in a staff:
 
 ::
 
@@ -106,10 +98,10 @@ Get the leaves in a staff with ``select_leaves()``:
 Getting the length of a staff
 -----------------------------
 
-The length of a staff is defined equal to the number of top-level components
-the staff contains.
+Use ``len()`` to get the length of a staff.
 
-Get the length of a staff with ``len()``:
+The length of a staff is defined equal to the number of top-level components
+the staff contains:
 
 ::
 
@@ -130,10 +122,10 @@ Use the inspector to get the duration of a staff:
 
 
 
-Adding one component to the end of a staff
-------------------------------------------
+Appending one component to the end of a staff
+---------------------------------------------
 
-Add one component to the end of a staff with ``append()``:
+Use ``append()`` to append one component to the end of a staff:
 
 ::
 
@@ -154,10 +146,10 @@ You can also use a LilyPond input string:
 
 
 
-Adding many components to the end of a staff
---------------------------------------------
+Extending a staff with multiple components at once
+--------------------------------------------------
 
-Add many components to the end of a staff with ``extend()``:
+Use ``extend()`` to extend a staff with multiple components at once:
 
 ::
 
@@ -182,7 +174,7 @@ You can also use a LilyPond input string:
 Finding the index of a component in a staff
 -------------------------------------------
 
-Find staff component index with ``index()``:
+Use ``index()`` to find the index of any component in a staff:
 
 ::
 
@@ -197,10 +189,10 @@ Find staff component index with ``index()``:
 
 
 
-Removing a staff component by index
------------------------------------
+Popping a staff component by index
+----------------------------------
 
-Use ``pop()`` to remove the last component of a staff:
+Use ``pop()`` to pop the last component of a staff:
 
 ::
 
@@ -221,7 +213,7 @@ Use ``pop()`` to remove the last component of a staff:
 Removing a staff component by reference
 ---------------------------------------
 
-Remove staff components by reference with ``remove()``:
+Use ``remove()`` to remove any component in a staff by reference:
 
 ::
 
@@ -242,7 +234,7 @@ You can name Abjad staves:
    >>> staff.name = 'Example Staff'
 
 
-Staff names appear in LilyPond input:
+Staff names appear in LilyPond input but not in notational output:
 
 ::
 
@@ -264,8 +256,6 @@ Staff names appear in LilyPond input:
    }
 
 
-But not in notational output:
-
 ::
 
    >>> show(staff)
@@ -285,7 +275,10 @@ The context of a staff is set to ``Staff`` by default:
    'Staff'
 
 
-But you can change the context of a staff if you want:
+But you can change the context of a staff if you want.
+
+Change the context of a voice when you have defined a new LilyPond context
+based on a LilyPond staff:
 
 ::
 
@@ -318,9 +311,6 @@ But you can change the context of a staff if you want:
    }
 
 
-Change the context of a voice when you have defined a new LilyPond context
-based on a LilyPond staff.
-
 
 Making parallel voices in a staff
 ---------------------------------
@@ -332,10 +322,11 @@ You can make a staff treat its contents as simultaneous with
 
    >>> soprano_voice = Voice(r"b'4 a'8 g'8 a'4 d''4 b'4 g'4 a'2 \fermata")
    >>> alto_voice = Voice(r"d'4 d'4 d'4 fs'4 d'4 d'8 e'8 fs'2") 
-   >>> soprano_voice.override.stem.direction = Up
-   >>> alto_voice.override.stem.direction = Down
+   >>> override(soprano_voice).stem.direction = Up
+   >>> override(alto_voice).stem.direction = Down
    >>> staff = Staff([soprano_voice, alto_voice])
    >>> staff.is_simultaneous = True
    >>> show(staff)
 
 .. image:: images/index-10.png
+

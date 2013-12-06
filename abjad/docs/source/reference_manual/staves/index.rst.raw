@@ -46,16 +46,10 @@ interpreted sequentially rather than simultaneously.
 Inspecting the LilyPond format of a staff
 -----------------------------------------
 
-Get the LilyPond input format of any Abjad object with ``lilypond_format``:
+Use ``format()`` to get the LilyPond format of a staff:
 
 <abjad>
-staff.lilypond_format
-</abjad>
-
-Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
-
-<abjad>
-f(staff)
+print format(staff, 'lilypond')
 </abjad>
 
 
@@ -69,10 +63,10 @@ staff[:]
 </abjad>
 
 
-Inspecting a staff's leaves
----------------------------
+Selecting a staff's leaves
+--------------------------
 
-Get the leaves in a staff with ``select_leaves()``:
+Use ``select_leaves()`` to select in the leaves in a staff:
 
 <abjad>
 staff.select_leaves()
@@ -82,10 +76,10 @@ staff.select_leaves()
 Getting the length of a staff
 -----------------------------
 
-The length of a staff is defined equal to the number of top-level components
-the staff contains.
+Use ``len()`` to get the length of a staff.
 
-Get the length of a staff with ``len()``:
+The length of a staff is defined equal to the number of top-level components
+the staff contains:
 
 <abjad>
 len(staff)
@@ -102,10 +96,10 @@ inspect(staff).get_duration()
 </abjad>
 
 
-Adding one component to the end of a staff
-------------------------------------------
+Appending one component to the end of a staff
+---------------------------------------------
 
-Add one component to the end of a staff with ``append()``:
+Use ``append()`` to append one component to the end of a staff:
 
 <abjad>
 staff.append(Note("d''2"))
@@ -120,10 +114,10 @@ show(staff)
 </abjad>
 
 
-Adding many components to the end of a staff
---------------------------------------------
+Extending a staff with multiple components at once
+--------------------------------------------------
 
-Add many components to the end of a staff with ``extend()``:
+Use ``extend()`` to extend a staff with multiple components at once:
 
 <abjad>
 notes = [Note("e''8"), Note("d''8"), Note("c''4")]
@@ -142,7 +136,7 @@ show(staff)
 Finding the index of a component in a staff
 -------------------------------------------
 
-Find staff component index with ``index()``:
+Use ``index()`` to find the index of any component in a staff:
 
 <abjad>
 notes[0]
@@ -153,10 +147,10 @@ staff.index(notes[0])
 </abjad>
 
 
-Removing a staff component by index
------------------------------------
+Popping a staff component by index
+----------------------------------
 
-Use ``pop()`` to remove the last component of a staff:
+Use ``pop()`` to pop the last component of a staff:
 
 <abjad>
 staff[8]
@@ -171,7 +165,7 @@ show(staff)
 Removing a staff component by reference
 ---------------------------------------
 
-Remove staff components by reference with ``remove()``:
+Use ``remove()`` to remove any component in a staff by reference:
 
 <abjad>
 staff.remove(staff[-1])
@@ -188,13 +182,11 @@ You can name Abjad staves:
 staff.name = 'Example Staff'
 </abjad>
 
-Staff names appear in LilyPond input:
+Staff names appear in LilyPond input but not in notational output:
 
 <abjad>
 f(staff)
 </abjad>
-
-But not in notational output:
 
 <abjad>
 show(staff)
@@ -210,7 +202,10 @@ The context of a staff is set to ``Staff`` by default:
 staff.context_name
 </abjad>
 
-But you can change the context of a staff if you want:
+But you can change the context of a staff if you want.
+
+Change the context of a voice when you have defined a new LilyPond context
+based on a LilyPond staff:
 
 <abjad>
 staff.context_name = 'CustomUserStaff'
@@ -224,9 +219,6 @@ staff.context_name
 f(staff)
 </abjad>
 
-Change the context of a voice when you have defined a new LilyPond context
-based on a LilyPond staff.
-
 
 Making parallel voices in a staff
 ---------------------------------
@@ -237,8 +229,8 @@ You can make a staff treat its contents as simultaneous with
 <abjad>
 soprano_voice = Voice(r"b'4 a'8 g'8 a'4 d''4 b'4 g'4 a'2 \fermata")
 alto_voice = Voice(r"d'4 d'4 d'4 fs'4 d'4 d'8 e'8 fs'2") 
-soprano_voice.override.stem.direction = Up
-alto_voice.override.stem.direction = Down
+override(soprano_voice).stem.direction = Up
+override(alto_voice).stem.direction = Down
 staff = Staff([soprano_voice, alto_voice])
 staff.is_simultaneous = True
 show(staff)
