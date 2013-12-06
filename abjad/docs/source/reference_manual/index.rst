@@ -23,12 +23,22 @@ Containers
         :numbered:
 
         containers/index
-        lilypond_files/index
         measures/index
         scores/index
         staves/index
         tuplets/index
         voices/index
+
+
+LilyPond files
+--------------
+
+..  container:: two-column
+
+    ..  toctree::
+        :numbered:
+
+        lilypond_files/index
 
 
 Attachments

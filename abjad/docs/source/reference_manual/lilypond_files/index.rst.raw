@@ -25,8 +25,8 @@ show(lilypond_file)
 </abjad>
 
 
-Inspecting header, layout and paper blocks
-------------------------------------------
+Getting header, layout and paper blocks
+---------------------------------------
 
 Basic LilyPond files also come equipped with header, layout and paper blocks:
 

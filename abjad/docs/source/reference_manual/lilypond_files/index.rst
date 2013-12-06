@@ -22,10 +22,9 @@ Make a basic LilyPond file with the ``lilypondfiletools`` package:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 12391:12394
-   % 2013-10-18 11:14
+   % 2013-12-06 10:55
    
-   \version "2.17.27"
+   \version "2.17.96"
    \language "english"
    
    \score {
@@ -46,15 +45,15 @@ Make a basic LilyPond file with the ``lilypondfiletools`` package:
 
 
 
-Inspecting header, layout and paper blocks
-------------------------------------------
+Getting header, layout and paper blocks
+---------------------------------------
 
 Basic LilyPond files also come equipped with header, layout and paper blocks:
 
 ::
 
    >>> lilypond_file.header_block
-   HeaderBlock(1)
+   HeaderBlock()
 
 
 ::
@@ -84,18 +83,13 @@ Set default LilyPond global staff size and paper size like this:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 12391:12394
-   % 2013-10-18 11:14
+   % 2013-12-06 10:55
    
-   \version "2.17.27"
+   \version "2.17.96"
    \language "english"
    
    #(set-default-paper-size "A7" 'portrait)
    #(set-global-staff-size 14)
-   
-   \header {
-       tagline = \markup {  }
-   }
    
    \score {
        \new Staff {
@@ -130,10 +124,9 @@ information:
 ::
 
    >>> f(lilypond_file)
-   % Abjad revision 12391:12394
-   % 2013-10-18 11:14
+   % 2013-12-06 10:55
    
-   \version "2.17.27"
+   \version "2.17.96"
    \language "english"
    
    #(set-default-paper-size "A7" 'portrait)
@@ -141,7 +134,6 @@ information:
    
    \header {
        composer = \markup { Josquin }
-       tagline = \markup {  }
        title = \markup { Missa sexti tonus }
    }
    
@@ -160,3 +152,4 @@ information:
    >>> show(lilypond_file)
 
 .. image:: images/index-3.png
+
