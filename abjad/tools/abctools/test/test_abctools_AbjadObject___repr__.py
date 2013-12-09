@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import abctools
+from abjad import *
 
 
 def test_abctools_AbjadObject___repr___01():
