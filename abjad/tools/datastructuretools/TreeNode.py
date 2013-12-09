@@ -1,13 +1,12 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
 class TreeNode(AbjadObject):
-    r'''A node in a generalized tree.
-
-    Return `TreeNode` instance.
+    r'''A node.
+    
+    Node in a generalized tree.
     '''
 
     ### INITIALIZER ###
@@ -232,6 +231,7 @@ class TreeNode(AbjadObject):
         
         Returns tuple.
         '''
+        from abjad.tools import sequencetools
         order = []
         for parent, child in sequencetools.iterate_sequence_pairwise_strict(
             reversed(self.improper_parentage)):

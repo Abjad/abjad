@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.CyclicTuple import CyclicTuple
 from abjad.tools.datastructuretools.Matrix import Matrix
 
 
+# TODO: change CyclicMatrix(columns=[...]) to CyclicMatrix.from_columns(...)
 class CyclicMatrix(Matrix):
     '''A cyclic matrix.
 
@@ -127,21 +127,32 @@ class CyclicMatrix(Matrix):
     ### PRIVATE METHODS ###
 
     def _initialize_from_columns(self, columns):
-        columns = CyclicTuple([CyclicTuple(column) for column in columns])
+        from abjad.tools import datastructuretools
+        columns = datastructuretools.CyclicTuple([
+            datastructuretools.CyclicTuple(column) 
+            for column in columns
+            ])
         rows = []
         for row_index in range(len(columns[0])):
-            row = CyclicTuple([column[row_index] for column in columns])
+            row = datastructuretools.CyclicTuple([
+                column[row_index] for column in columns
+                ])
             rows.append(row)
-        rows = CyclicTuple(rows)
+        rows = datastructuretools.CyclicTuple(rows)
         return rows, columns
 
     def _initialize_from_rows(self, rows):
-        rows = CyclicTuple([CyclicTuple(row) for row in rows])
+        from abjad.tools import datastructuretools
+        rows = datastructuretools.CyclicTuple([
+            datastructuretools.CyclicTuple(row) for row in rows
+            ])
         columns = []
         for column_index in range(len(rows[0])):
-            column = CyclicTuple([row[column_index] for row in rows])
+            column = datastructuretools.CyclicTuple([
+                row[column_index] for row in rows
+                ])
             columns.append(column)
-        columns = CyclicTuple(columns)
+        columns = datastructuretools.CyclicTuple(columns)
         return rows, columns
 
     ### PUBLIC PROPERTIES ###

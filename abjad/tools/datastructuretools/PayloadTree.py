@@ -4,7 +4,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class PayloadTree(AbjadObject):
-    r'''Abjad data structure to work with a sequence whose elements have been
+    r'''A payload tree.
+    
+    Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of containment.
 
     Here is a tree:

@@ -9,8 +9,11 @@ class Matrix(AbjadObject):
 
     ::
 
-        >>> matrix = datastructuretools.Matrix(
-        ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+        >>> matrix = datastructuretools.Matrix([
+        ...     [0, 1, 2, 3], 
+        ...     [10, 11, 12, 13], 
+        ...     [20, 21, 22, 23],
+        ...     ])
 
     ::
 
@@ -36,8 +39,12 @@ class Matrix(AbjadObject):
 
     ::
 
-        >>> matrix = datastructuretools.Matrix(
-        ...     columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+        >>> matrix = datastructuretools.Matrix(columns=[
+        ...     [0, 10, 20], 
+        ...     [1, 11, 21], 
+        ...     [2, 12, 22], 
+        ...     [3, 13, 23],
+        ...     ])
 
     ::
 

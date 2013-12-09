@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class StatalServer(AbjadObject):
-    r'''Statal server.
+    r'''A statal server.
     '''
 
     ### INITIALIZER ###

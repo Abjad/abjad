@@ -3,7 +3,9 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
 class TreeContainer(TreeNode):
-    r'''An inner node in a generalized tree data-structure.
+    r'''A tree container.
+    
+    Inner node in a generalized tree data structure.
 
     ::
 

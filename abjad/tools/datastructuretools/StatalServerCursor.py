@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class StatalServerCursor(AbjadObject):
-    r'''Statal server cursor.
+    r'''A statal server cursor.
     '''
 
     ### INITIALIZER ###

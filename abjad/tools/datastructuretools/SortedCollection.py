@@ -3,7 +3,9 @@ import bisect
 
 
 class SortedCollection(object):
-    r'''Sequence sorted by a key function.
+    r'''A sorted collection.
+    
+    Sequence sorted by a key function.
 
     SortedCollection() is much easier to work with than using bisect() 
     directly. It supports key functions like those use in sorted(), min(), 

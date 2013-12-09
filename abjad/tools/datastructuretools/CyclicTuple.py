@@ -2,6 +2,7 @@
 from abjad.tools import abctools
 
 
+# TODO: remove multiple inheritance; hold a private _tuple instead
 class CyclicTuple(abctools.AbjadObject, tuple):
     '''A cylic tuple.
 

@@ -4,7 +4,9 @@ from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
 class TypedList(TypedCollection):
-    '''Ordered collection of objects, which optionally coerces its contents
+    '''A typed list.
+    
+    Ordered collection of objects, which optionally coerces its contents
     to the same type:
 
     ::

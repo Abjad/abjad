@@ -1,69 +1,70 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.CyclicList import CyclicList
 from abjad.tools.datastructuretools.PayloadTree import PayloadTree
 
 
 class CyclicPayloadTree(PayloadTree):
-    r'''Abjad data structure to work with a sequence whose elements have been
+    r'''A cyclic payload tree.
+
+    Abjad data structure to work with a sequence whose elements have been
     grouped into arbitrarily many levels of cyclic containment.
 
     Exactly like the ``PayloadTree`` class but with the additional affordance
     that all integer indices of any size work at every level of structure.
 
-    Cyclic trees raise no index errors.
+    Cyclic pyaload trees raise no index errors.
 
-    Here is a cyclic tree:
+    Here is a cyclic payload tree:
 
     ::
 
         >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-        >>> cyclic_tree = datastructuretools.CyclicPayloadTree(sequence)
+        >>> tree = datastructuretools.CyclicPayloadTree(sequence)
 
     ::
 
-        >>> cyclic_tree
+        >>> tree
         CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
     Here's an internal node:
 
     ::
 
-        >>> cyclic_tree[2]
+        >>> tree[2]
         CyclicPayloadTree([4, 5])
 
     Here's the same node indexed with a different way:
 
     ::
 
-        >>> cyclic_tree[2]
+        >>> tree[2]
         CyclicPayloadTree([4, 5])
 
     With a negative index:
 
     ::
 
-        >>> cyclic_tree[-2]
+        >>> tree[-2]
         CyclicPayloadTree([4, 5])
 
     And another negative index:
 
     ::
 
-        >>> cyclic_tree[-6]
+        >>> tree[-6]
         CyclicPayloadTree([4, 5])
 
     Here's a leaf node:
 
     ::
 
-        >>> cyclic_tree[2][0]
+        >>> tree[2][0]
         CyclicPayloadTree(4)
 
     And here's the same node indexed a different way:
 
     ::
 
-        >>> cyclic_tree[2][20]
+        >>> tree[2][20]
         CyclicPayloadTree(4)
 
     All other interface attributes function as in ``PayloadTree``.
@@ -89,7 +90,7 @@ class CyclicPayloadTree(PayloadTree):
 
         ::
 
-            >>> for x in cyclic_tree:
+            >>> for x in tree:
             ...     x
             CyclicPayloadTree([0, 1])
             CyclicPayloadTree([2, 3])
@@ -103,7 +104,8 @@ class CyclicPayloadTree(PayloadTree):
     ### PRVATE METHODS ###
 
     def _initialize_children_list(self):
-        return CyclicList([])
+        from abjad.tools import datastructuretools
+        return datastructuretools.CyclicList([])
 
     ### PUBLIC METHODS ###
 
@@ -183,26 +185,26 @@ class CyclicPayloadTree(PayloadTree):
         ::
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> cyclic_tree = datastructuretools.CyclicPayloadTree(sequence)
+            >>> tree = datastructuretools.CyclicPayloadTree(sequence)
 
         ::
 
-            >>> cyclic_tree.get_node_at_position((2, 1))
+            >>> tree.get_node_at_position((2, 1))
             CyclicPayloadTree(5)
 
         ::
 
-            >>> cyclic_tree.get_node_at_position((2, 99))
+            >>> tree.get_node_at_position((2, 99))
             CyclicPayloadTree(5)
 
         ::
 
-            >>> cyclic_tree.get_node_at_position((82, 1))
+            >>> tree.get_node_at_position((82, 1))
             CyclicPayloadTree(5)
 
         ::
 
-            >>> cyclic_tree.get_node_at_position((82, 99))
+            >>> tree.get_node_at_position((82, 99))
             CyclicPayloadTree(5)
 
         Returns node.
@@ -213,7 +215,7 @@ class CyclicPayloadTree(PayloadTree):
         r'''Iterate cyclic payload tree tree depth first.
 
             >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            >>> cyclic_tree = datastructuretools.CyclicPayloadTree(sequence)
+            >>> tree = datastructuretools.CyclicPayloadTree(sequence)
 
         ..  container:: example
         
@@ -221,7 +223,7 @@ class CyclicPayloadTree(PayloadTree):
 
             ::
 
-                >>> generator = cyclic_tree.iterate_forever_depth_first()
+                >>> generator = tree.iterate_forever_depth_first()
                 >>> for i in range(20):
                 ...     generator.next()
                 CyclicPayloadTree([[0, 1], [2, 3], [4, 5], [6, 7]])
@@ -251,7 +253,7 @@ class CyclicPayloadTree(PayloadTree):
 
             ::
 
-                >>> generator = cyclic_tree.iterate_forever_depth_first(
+                >>> generator = tree.iterate_forever_depth_first(
                 ...     reverse=True)
                 >>> for i in range(20):
                 ...     generator.next()

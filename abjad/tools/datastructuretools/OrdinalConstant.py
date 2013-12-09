@@ -5,9 +5,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 @functools.total_ordering
 class OrdinalConstant(AbjadObject):
-    r'''Ordinal constant.
+    r'''An ordinal constant.
 
-    Initialize with `dimension`, `value` and `representation`:
+    Initializes with `dimension`, `value` and `representation`:
 
     ::
 
