@@ -595,9 +595,9 @@ def test_agenttools_InspectionAgent_get_leaf_16():
     r'''Does connect in sequence of alternating containers and notes.
     '''
 
-    container_1 = Container([Note(i, (1 ,8)) for i in range(2)])
-    container_2 = Container([Note(i, (1 ,8)) for i in range(3,5)])
-    voice = Voice([container_1, Note(2, (1 ,8)), container_2])
+    container_1 = Container([Note(i, (1, 8)) for i in range(2)])
+    container_2 = Container([Note(i, (1, 8)) for i in range(3, 5)])
+    voice = Voice([container_1, Note(2, (1, 8)), container_2])
 
     assert systemtools.TestManager.compare(
         voice,
@@ -627,9 +627,11 @@ def test_agenttools_InspectionAgent_get_leaf_17():
     r'''Does connect in sequence of alternating tuplets and notes.
     '''
 
-    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(3)])
-    tuplet_2 = scoretools.FixedDurationTuplet(Duration(1,4), [Note(i, (1 ,8)) for i in range(4,7)])
-    voice = Voice([tuplet_1, Note(3, (1 ,8)), tuplet_2])
+    notes = [Note(i, Duration(1, 8)) for i in range(3)]
+    tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 4), notes)
+    notes = [Note(i, Duration(1, 8)) for i in range(4, 7)]
+    tuplet_2 = scoretools.FixedDurationTuplet(Duration(1, 4), notes)
+    voice = Voice([tuplet_1, Note(3, (1, 8)), tuplet_2])
 
     assert systemtools.TestManager.compare(
         voice,
@@ -661,8 +663,9 @@ def test_agenttools_InspectionAgent_get_leaf_18():
     r'''Does connect through asymmetrically nested tuplets.
     '''
 
-    inner_tuplet = scoretools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), inner_tuplet, Note("c'4")])
+    inner_tuplet = scoretools.FixedDurationTuplet((1, 4), "c'8 c'8 c'8")
+    contents = [Note("c'4"), inner_tuplet, Note("c'4")]
+    tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), contents)
 
     assert systemtools.TestManager.compare(
         tuplet,
@@ -689,9 +692,9 @@ def test_agenttools_InspectionAgent_get_leaf_19():
     r'''Returns none in asymmetric logical voice parentage structures.
     '''
 
-    voice_1 = Voice([Note(i , (1 ,8)) for i in range(3)])
-    note = Note(3, (1 ,8))
-    voice_2 = Voice([Note(i , (1 ,8)) for i in range(4 ,8)])
+    voice_1 = Voice([Note(i, (1, 8)) for i in range(3)])
+    note = Note(3, (1, 8))
+    voice_2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
     staff = Staff([voice_1, note, voice_2])
 
     assert systemtools.TestManager.compare(
@@ -722,14 +725,14 @@ def test_agenttools_InspectionAgent_get_leaf_19():
 
 
 def test_agenttools_InspectionAgent_get_leaf_20():
-    r'''Non-contiguous or broken logical voices do not connect.
+    r'''Noncontiguous or broken logical voices do not connect.
     '''
 
-    voice_1 = Voice([Note(i , (1 ,8)) for i in range(3)])
+    voice_1 = Voice([Note(i, (1, 8)) for i in range(3)])
     voice_1.name = 'My Voice'
-    voice_2 = Voice([Note(i , (1 ,8)) for i in range(4 ,8)])
+    voice_2 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
     voice_2.name = 'Your Voice'
-    voice_3 = Voice([Note(i , (1 ,8)) for i in range(4 ,8)])
+    voice_3 = Voice([Note(i, (1, 8)) for i in range(4, 8)])
     voice_3.name = 'My Voice'
     staff = Staff([voice_1, voice_2, voice_3])
 
@@ -774,8 +777,8 @@ def test_agenttools_InspectionAgent_get_leaf_21():
     r'''Does not connect through nested anonymous voices.
     '''
 
-    inner_voice = Voice([Note(i, (1 ,8)) for i in range(3)])
-    outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
+    inner_voice = Voice([Note(i, (1, 8)) for i in range(3)])
+    outer_voice = Voice([inner_voice, Note(3, (1, 8))])
 
     assert systemtools.TestManager.compare(
         outer_voice,
@@ -804,8 +807,8 @@ def test_agenttools_InspectionAgent_get_leaf_22():
     r'''Does not connect through nested anonymous voices.
     '''
 
-    inner_voice = Voice([Note(i, (1 ,8)) for i in range(1,4)])
-    outer_voice = Voice([Note(0, (1 ,8)), inner_voice])
+    inner_voice = Voice([Note(i, (1, 8)) for i in range(1, 4)])
+    outer_voice = Voice([Note(0, (1, 8)), inner_voice])
 
     assert systemtools.TestManager.compare(
         outer_voice,
@@ -835,9 +838,9 @@ def test_agenttools_InspectionAgent_get_leaf_23():
     r'''Does connect through nested equally named voices.
     '''
 
-    inner_voice = Voice([Note(i, (1 ,8)) for i in range(3)])
+    inner_voice = Voice([Note(i, (1, 8)) for i in range(3)])
     inner_voice.name = 'My Voice'
-    outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
+    outer_voice = Voice([inner_voice, Note(3, (1, 8))])
     outer_voice.name = 'My Voice'
 
     assert systemtools.TestManager.compare(
@@ -867,9 +870,9 @@ def test_agenttools_InspectionAgent_get_leaf_24():
     r'''Does connect through nested equally named voices.
     '''
 
-    inner_voice = Voice([Note(i, (1 ,8)) for i in range(1,4)])
+    inner_voice = Voice([Note(i, (1, 8)) for i in range(1, 4)])
     inner_voice.name = 'My Voice'
-    outer_voice = Voice([Note(0, (1 ,8)), inner_voice])
+    outer_voice = Voice([Note(0, (1, 8)), inner_voice])
     outer_voice.name = 'My Voice'
 
     assert systemtools.TestManager.compare(
@@ -896,12 +899,12 @@ def test_agenttools_InspectionAgent_get_leaf_24():
 
 
 def test_agenttools_InspectionAgent_get_leaf_25():
-    r'''Returns none on nested *differently* named voices.
+    r'''Returns none on nested differently named voices.
     '''
 
-    inner_voice = Voice([Note(i, (1 ,8)) for i in range(3)])
+    inner_voice = Voice([Note(i, (1, 8)) for i in range(3)])
     inner_voice.name = 'Your Voice'
-    outer_voice = Voice([inner_voice, Note(3, (1 ,8))])
+    outer_voice = Voice([inner_voice, Note(3, (1, 8))])
     outer_voice.name = 'My Voice'
 
     assert systemtools.TestManager.compare(
@@ -928,7 +931,7 @@ def test_agenttools_InspectionAgent_get_leaf_25():
 
 
 def test_agenttools_InspectionAgent_get_leaf_26():
-    r'''Returns none on nested *differently* named Voices.
+    r'''Returns none on nested differently named voices.
     '''
 
     inner_voice = Voice([Note(i, (1, 8)) for i in range(1, 4)])

@@ -33,8 +33,8 @@ def test_agenttools_IterationAgent_by_leaf_pair_01():
         '''
         )
 
-    # make sure to show score if trying to verify test results     #
-    # as the integer indices below are difficult to keep in mind. #
+    # make sure to render score PDF if trying to verify test results
+    # as the integer indices below are difficult to keep in mind.
 
     pairs = iterate(score).by_leaf_pair()
     pairs = list(pairs)

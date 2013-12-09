@@ -26,7 +26,8 @@ def test_agenttools_InspectionAgent_get_indicators_01():
         '''
         )
 
-    indicators = inspect(staff[0]).get_indicators(indicatortools.LilyPondCommand)
+    indicators = inspect(staff[0]).get_indicators(
+        indicatortools.LilyPondCommand)
     assert command_1 in indicators
     assert command_2 in indicators
     assert len(indicators) == 2

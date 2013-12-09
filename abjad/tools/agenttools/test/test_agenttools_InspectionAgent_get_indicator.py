@@ -52,7 +52,7 @@ def test_agenttools_InspectionAgent_get_indicator_05():
     annotation = indicatortools.Annotation('more special information')
     attach(annotation, note)
 
-    statement = 'inspect(note).get_indicator(indicatortools.Annotation)',
+    statement = 'inspect(note).get_indicator(indicatortools.Annotation)'
     assert pytest.raises(Exception, statement)
 
 
@@ -69,7 +69,7 @@ def test_agenttools_InspectionAgent_get_indicator_07():
 
     note = Note("c'8")
 
-    statement = 'inspect(note).get_indicator(Articulation)',
+    statement = 'inspect(note).get_indicator(Articulation)'
     assert pytest.raises(Exception, statement)
 
 
@@ -81,7 +81,7 @@ def test_agenttools_InspectionAgent_get_indicator_08():
     articulation = Articulation('marcato')
     attach(articulation, note)
 
-    statement = 'inspect(note).get_indicator(Articulation)',
+    statement = 'inspect(note).get_indicator(Articulation)'
     assert pytest.raises(Exception, statement)
 
 
@@ -91,7 +91,8 @@ def test_agenttools_InspectionAgent_get_indicator_09():
     command = indicatortools.LilyPondCommand('stemUp')
     attach(command, note)
 
-    assert inspect(note).get_indicator(indicatortools.LilyPondCommand) is command
+    result = inspect(note).get_indicator(indicatortools.LilyPondCommand) 
+    assert result is command
 
 
 def test_agenttools_InspectionAgent_get_indicator_10():

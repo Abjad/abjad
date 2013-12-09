@@ -202,16 +202,11 @@ def test_agenttools_InspectionAgent_get_effective_10():
         )
 
     flute = instrumenttools.Flute()
-    assert inspect(staff).get_effective(
-        instrumenttools.Instrument) == flute
-    assert inspect(staff[0]).get_effective(
-        instrumenttools.Instrument) == flute
-    assert inspect(staff[1]).get_effective(
-        instrumenttools.Instrument) == flute
-    assert inspect(staff[2]).get_effective(
-        instrumenttools.Instrument) == flute
-    assert inspect(staff[3]).get_effective(
-        instrumenttools.Instrument) == flute
+    assert inspect(staff).get_effective(instrumenttools.Instrument) == flute
+    assert inspect(staff[0]).get_effective(instrumenttools.Instrument) == flute
+    assert inspect(staff[1]).get_effective(instrumenttools.Instrument) == flute
+    assert inspect(staff[2]).get_effective(instrumenttools.Instrument) == flute
+    assert inspect(staff[3]).get_effective(instrumenttools.Instrument) == flute
 
 
 def test_agenttools_InspectionAgent_get_effective_11():
